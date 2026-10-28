@@ -61,6 +61,9 @@ def main():
         info[st] = {'rows': len(spots), 'live': live, 'waiting': wait, 'unfinished': stuck, 'not_sure': notsure,
                     'dropped': sum(1 for s in spots if st_of(s).startswith('dropped')), 'merged': sum(1 for s in spots if st_of(s).startswith('merged'))}
         if wait: why.append(f'{st}: {wait} rows still waiting for a pass (out of time: run the worker again)')
+        # Oct 28 (HQ + chat 8, Michigan): a row the USGS water map never answered for is not a result: never READY with one
+        wnc = sum(1 for s in spots if re.search(r'water not checked|water map did not answer', st_of(s)))
+        if wnc: why.append(f'water service: {st}: {wnc} rows not checked because the USGS water map did not answer (run the worker again)')
         if stuck: why.append(f'{st}: {stuck} rows stuck at a pass status (a pass was killed before its save)')
     res = {'about': 'Assembly-line verdict for one area (fetcher -> worker -> checker). READY only when every pass finished in this run, nothing was cut short, the known answers + missing check pass.',
            'tag': tag, 'states': sts, 'since': since, 'date': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime()),

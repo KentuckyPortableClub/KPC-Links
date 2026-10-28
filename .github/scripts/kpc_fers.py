@@ -730,6 +730,7 @@ NHD_DOWN = {'until': 0.0, 'fails': 0, 'pauses': 0}
 WATER_STORE = os.environ.get('WATER_STORE') or ''
 WATER_MARK = []                     # dates of saved copies used since the caller last cleared it
 WATER_N = {'live': 0, 'saved': 0, 'missing': 0}
+WATER_RETRY = {'budget': float(os.environ.get('WATER_RETRY_S') or 1500), 'spent': 0.0, 'tries': 0, 'won': 0}
 
 
 def _wpath(i, jt): return pathlib.Path(WATER_STORE) / f'{i}_{jt}.json.gz'
@@ -788,6 +789,15 @@ def nhd_water(box, rivers_only=False):
                         if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
                 if feats is None:
                     sv = _wload(i, jt)
+                    # Oct 28 (HQ 12:28 PM, Michigan: 39 rows 'water not checked'): no saved copy of this tile = ask the live map again
+                    # with back-off (30 s, 90 s, 4 min) before giving up, even during a pause, within a 25-minute budget per run
+                    for wait in ((30, 90, 240) if sv is None else ()):
+                        if WATER_RETRY['spent'] + wait > WATER_RETRY['budget'] or late(): break
+                        time.sleep(wait); WATER_RETRY['spent'] += wait; WATER_RETRY['tries'] += 1
+                        try:
+                            feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; NHD_DOWN['until'] = 0.0; WATER_N['live'] += 1; WATER_RETRY['won'] += 1; _wsave(i, jt, feats); break
+                        except Exception as e: LOG.append(f'NHD water retry: {str(e)[:60]}')  # noqa: BLE001
+                if feats is None:
                     if sv is None:
                         WATER_N['missing'] += 1
                         return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
@@ -2496,6 +2506,23 @@ def main():
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
                 try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
                 except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+        # Oct 28 (HQ 12:28 PM): rows the water map did not answer for are re-checked once more at the end, after a pause
+        again = [x for x in cand if str(x.get('status', '')).startswith('not sure: water not checked')]
+        if again and not late():
+            NHD_DOWN['until'] = 0.0; time.sleep(min(300, max(0, WATER_RETRY['budget'] - WATER_RETRY['spent'])))
+            for x in again:
+                if late(): break
+                WATER_MARK.clear()
+                try: lc = land_check(x, G)
+                except Exception as e: lc = 'not checked'; LOG.append(f"water again {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+                water_date(x)
+                if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1; n['still not checked'] -= 1
+                elif lc != 'not checked':
+                    x['status'] = 'candidate' if not x.get('fresh') else 'candidate (saved outline only)'
+                    if (x.get('wide_m') or 0) < TIGHT_M: x['status'] = VERY_TIGHT; x['list'] = 'Very tight (members only)'
+                    n['still not checked'] -= 1
+            n['re-checked at the end'] = len(again)
+        n['water retries (won / tries)'] = f"{WATER_RETRY['won']} / {WATER_RETRY['tries']}"
         mark(f'water re-check of {len(cand)} spots + {len(same)} same-land rows')
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
