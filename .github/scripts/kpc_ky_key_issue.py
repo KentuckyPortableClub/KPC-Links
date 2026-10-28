@@ -34,7 +34,7 @@ if found:
     num = str(found[0]['number']); gh('issue', 'edit', num, '--title', title, '--body-file', '-', inp=body)
 else:
     num = gh('issue', 'create', '--title', title, '--label', LABEL, '--body-file', '-', inp=body).strip().rsplit('/', 1)[-1]
-real = [c for c in res.get('changes', []) if c.startswith('NEW PARK') and ': 0 outline' in c or ' → 0' in c]   # Brandon Oct 18: email only for real problems (a park lost / has no outline)
+real = [c for c in res.get('changes', []) if c.startswith('NEW PARK') and ': 0 outline' in c or ' → 0' in c or c.startswith('TRANSFERRED')]   # Oct 28: a transfer is named   # Brandon Oct 18: email only for real problems (a park lost / has no outline)
 if real:
     res = dict(res, changes=real)
     gh('issue', 'comment', num, '--body-file', '-', inp='**What changed:**\n\n' + '\n'.join('- ' + c for c in res['changes']))

@@ -64,7 +64,7 @@ def us(res):
     n = 0
     for f in sorted(pathlib.Path('data/us-key').glob('US-??.json')):
         st = f.stem[3:]
-        parks = {r: p for r, p in json.load(open(f))['parks'].items() if not p.get('m')}
+        parks = {r: p for r, p in json.load(open(f))['parks'].items() if not p.get('m') and not p.get('joined_in')}   # Oct 28: joined in another state it crosses = not missing
         if not parks: continue
         got = K['load_cache'](st)
         if not got: res['skipped'].append(f'US-{st}: no saved copy'); continue

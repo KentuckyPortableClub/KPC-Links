@@ -12,7 +12,8 @@ rows = sorted(idx.items(), key=lambda kv: -((kv[1]['check'] + kv[1]['none']) / m
 tot = {k: sum(v[k] for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
 L = ['Every state but Kentucky (Kentucky has its own list, issue label ky-answer-key). Built by `.github/scripts/kpc_us_key.py` from USGS PAD-US federal + state land and POTA.',
      'A park is **joined** only when the name AND the kind of place match (WMA to WMA, state park to state park). Everything else is only listed for a person to check.', '',
-     f"**All states: {tot['matched']:,} of {tot['parks']:,} parks joined · {tot['check']:,} to check · {tot['none']:,} nothing found**", '',
+     f"**All states: {tot['matched']:,} of {tot['parks']:,} parks joined · {tot['check']:,} to check · {tot['none']:,} nothing found**"
+     + (f" ({sum(v.get('joined_in_another_state', 0) for v in idx.values())} of those are trails / rivers joined in another state they cross: not missing)" if any(v.get('joined_in_another_state') for v in idx.values()) else ''), '',
      '| State | Parks | Joined | To check | Nothing found | % joined |', '|---|---:|---:|---:|---:|---:|']
 L += [f"| [{st}]({URL % st}) | {c['parks']} | {c['matched']} | {c['check']} | {c['none']} | {round(100 * c['matched'] / max(1, c['parks']))}% |" for st, c in rows]
 body = '\n'.join(L)

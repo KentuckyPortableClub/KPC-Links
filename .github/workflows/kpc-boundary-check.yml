@@ -87,6 +87,7 @@ jobs:
           GEO_DETAIL: '0.001'
           GEO_PAGE: '200'
         run: |
+          pip install --quiet --break-system-packages pyshp pyproj || true   # Oct 28: zipped-shapefile layers (Mississippi)
           if [ -n "$STATES" ]; then echo "::notice title=Boundary check::rebuilding $STATES"; python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || true; fi
           if [ -n "$REFRESH" ]; then
             echo "::notice title=Boundary check::re-reading the saved outlines of $REFRESH from the agencies (monthly rotation)"

@@ -56,6 +56,18 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
     const g = await B.kyFor(x.c);
     g.forEach(f => parks[x.c].tracts.push([f._L.k, f._nm, acres(f.geometry), 'pin', B.ringsOf(f.geometry).length]));
   }
+  // Oct 28 (HQ, Brandon): a park handed to a county / city keeps its POTA number and NEVER loses its outline. Tag who runs it;
+  // when the state layer drops it and no other file holds it, keep the last official copy (from the previous key) and say so.
+  let TR = {}; try { TR = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/park-transfers.json'), 'utf8')).parks || {}; } catch (e) {}
+  let prev = null; try { prev = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ky-answer-key.json'), 'utf8')); } catch (e) {}
+  const kept = [];
+  for (const r in TR) if (parks[r]) {
+    parks[r].run_by = TR[r].by + (TR[r].since ? ' since ' + TR[r].since : '');
+    if (!parks[r].tracts.length && prev && prev.parks[r] && prev.parks[r].tracts.length) {
+      parks[r].tracts = prev.parks[r].tracts.map(t => [t[0], t[1], t[2], 'kept: last official copy (transferred to ' + TR[r].by + ')', t[4] || 1]);
+      kept.push(r);
+    }
+  }
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
   for (const r in parks) parks[r].tracts.sort((a, b) => b[2] - a[2]);
@@ -69,6 +81,7 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
       const a = (old.parks[r] || { tracts: [] }).tracts.map(t => t[0] + '|' + t[1]).sort().join(';'), b = parks[r].tracts.map(t => t[0] + '|' + t[1]).sort().join(';');
       if (!old.parks[r]) ch.push(`NEW PARK ${r} ${parks[r].n}: ${parks[r].tracts.length} outline piece(s)`);
       else if (a !== b) ch.push(`${r} ${parks[r].n}: outlines ${old.parks[r].tracts.length} → ${parks[r].tracts.length}`);
+      if (TR[r] && (a !== b || kept.includes(r))) ch.push(`TRANSFERRED ${r} ${parks[r].n} (run by ${parks[r].run_by}): ${kept.includes(r) ? 'dropped off the state layer, last official copy KEPT' : 'outline source changed'}: check the new owner's map`);
     }
     const on = new Set(old.nonum.map(x => x[0] + '|' + x[1])), nn = new Set(nonum.map(x => x[0] + '|' + x[1]));
     nonum.filter(x => !on.has(x[0] + '|' + x[1])).forEach(x => ch.push(`NOW NO NUMBER: ${x[1]}`));

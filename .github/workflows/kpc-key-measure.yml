@@ -56,7 +56,7 @@ jobs:
           STATES: ${{ inputs.states }}
           GEO_CACHE_MODE: only
         run: |
-          pip install --quiet --break-system-packages pykakasi pyshp || true
+          pip install --quiet --break-system-packages pykakasi pyshp pyproj || true
           case "${{ inputs.scope }}" in
             world)
               ALL="${STATES:-$(ls cache/world | sed -n 's/^W-\(..\)\.json\.gz$/\1/p' | tr '\n' ' ')}"

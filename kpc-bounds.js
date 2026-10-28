@@ -182,6 +182,12 @@
     m.forEach(x => { const s = String(x[0]), pre = (s.match(/^[a-z]+/) || [''])[0], id = s.slice(pre.length), o = off(+x[2] || 0), g = pre + o; (groups[g] = groups[g] || { pre, o, ids: [] }).ids.push(id); });
     const jobs = [];
     Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(','), X = XMAP[g.pre];
+      if (X && String(X[0]).startsWith('file:')) {   /* Oct 28: a zipped-shapefile layer (Mississippi): the key's own simplified copy */
+        const want = new Set(g.ids.slice(i, i + 40).map(n => g.pre + n));
+        jobs.push(dfetch(X[0].slice(5) + '?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : { features: [] })
+          .then(j => (j.features || []).filter(f => want.has(String((f.properties || {}).OBJECTID))).map(f => (f._src = X[2], f))).catch(() => []));
+        continue;
+      }
       jobs.push(X ? jget(X[0] + '?' + new URLSearchParams({ objectIds: ids, outFields: X[1], returnGeometry: true, outSR: 4326, maxAllowableOffset: g.o, geometryPrecision: 5, f: 'geojson' }), null, 30000).then(j => (j.features || []).map(f => { f._src = X[2]; const p = f.properties || {}; f.properties = Object.assign({ Unit_Nm: p[X[1]] }, p); return f; })).catch(() => [])
         : padus({ objectIds: ids, returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: g.o }).then(j => (j.features || []).map(f => (f._src = 'USGS PAD-US', f))).catch(() => [])); } });
     const fs = (await Promise.all(jobs)).flat().filter(f => f.geometry);

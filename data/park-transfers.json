@@ -1,0 +1,7 @@
+{
+ "about": "Parks handed from one agency to another that KEEP their POTA number (Brandon Oct 28: still a park, grandfathered). The answer keys never let such a park lose its outline: the new owner's official outline, else PAD-US, else the last official copy, and the card says who runs it now. Add a park the day a transfer is known (source + date).",
+ "parks": {
+  "US-1264": {"n": "Levi Jackson Wilderness Road State Park", "by": "City of London", "since": "2019-09", "src": "https://www.washingtontimes.com/news/2019/sep/12/kentucky-state-park-handed-over-to-city/", "map": "https://levijacksonpark.com/wp-content/uploads/2023/06/levi-jackson-park-map-2023.pdf", "note": "former state park, now a City of London park (London Tourism and Parks); PAD-US outline 722 ac vs 896 ac in published descriptions: check against the 2023 park map"},
+  "US-8144": {"n": "Otter Creek State Recreation Area", "by": "Meade County", "since": "2026-07-02", "src": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx", "note": "transferred from KDFWR (2,300+ ac); KDFWR keeps the shooting range and public hunting/fishing there"}
+ }
+}
