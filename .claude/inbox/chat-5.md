@@ -2,9 +2,11 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 9:30 AM, Brandon): NEW BOT: YOUTUBE COMMENTS → DISCORD STAFF ROOM, once a day. Channels: https://youtube.com/@ky.pota.campout and https://youtube.com/@kpc-n4kpc (resolve the handles to channel ids once with channels?forHandle=). YouTube Data API v3 with secret `YOUTUBE_API_KEY` (read-only, public comments; commentThreads?allThreadsRelatedToChannelId= is 1 unit a call, well inside the 10,000/day free quota). Post ONE message a day to the staff room via secret `KPC_DISCORD_STAFF_WEBHOOK` (never the public webhook): per new comment = channel, video title, commenter, the text (trim ~300 chars), a link to the comment; replies to comments too; nothing new = no post. Remember what was sent (a small seen-list file, last 60 days) so nothing posts twice. Runs in KPC-Data (workflow + script there), quiet when a secret is missing (skip with a notice, never a red run). Test with one dry run that prints instead of posting, then the first real post. Brandon adds both secrets (in NEEDS BRANDON).
 - (Oct 28 8 AM, chat 5: BUILT in PREVIEW: 'ga-wrd' source in kpc_us_closures.py; first real read at the 8:23 AM KPC-Data closures run lands in KPC-Data data/alerts/us-parks.json sources['ga-wrd'].preview (nothing on cards yet); next inbox: compare with the live page, then switch GA_LIVE on.) HQ (Oct 28 7:09 AM): GEORGIA CLOSURES: Brandon ruled GA5-GA9 YES (website.md); chat 8's fixes GA-R1..R9 are in KPC_RuleSheet_GA_closures_desk.md. BUILD it (after the 8 AM release post), Kentucky's reader untouched, test on today's live page incl. chat 8's traps (negations, split sentences, end-dated Cohutta).
 
 ## NEEDS BRANDON
+- YouTube bot: add `YOUTUBE_API_KEY` (Google Cloud → enable YouTube Data API v3 → Credentials → API key) and `KPC_DISCORD_STAFF_WEBHOOK` (staff room → Edit Channel → Integrations → Webhooks) in KPC-Data → Settings → Secrets → Actions. Never in chat.
 
 ## DONE
 - Oct 28 8:17 AM: WEBSITE RELEASE STATEMENT posted once, text exactly as written: Discord message id 1564991515305050304 (general/announcements webhook) + Facebook Page post id 1342190728983628_122116985253489767 (the Page, not a Group). Recorded in data/kpc-club-posts-state.json 'release_post' (can't post again); the one-time workflow + script removed.
