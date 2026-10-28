@@ -7,6 +7,8 @@ Read .claude/inbox/README.md first.
 
 - HQ (Oct 28 4:48 AM): NOTES PUSHES SHOULDN'T REBUILD THE SITE: add a Pages deploy workflow (actions/upload-pages-artifact + deploy-pages) with paths-ignore '.claude/**' (+ the same _config.yml excludes), so pushes that only change notes/inboxes skip the rebuild. Test it, then Brandon switches Settings -> Pages -> Source to 'GitHub Actions' (one click; the API is blocked for us). Until he does, nothing changes.
 
+- HQ (Oct 28 5:00 AM): Map Coverage tab will get MORE COLUMNS (chat 10's nightly scoreboard bot: outline source, size check, official map, rules, hours/fees, access, campground info, closures, who runs it, 2-fer checked; '% complete' per state). When its JSON lands, add the columns (a column picker on phones), keep it members-only; 'Send it' per missing item -> Map Rep as now.
+
 ## NEEDS BRANDON
 
 ## DONE
