@@ -1,0 +1,17 @@
+{
+ "about": "Chat 9 round K1 (inbox, chat 8 / Brandon Oct 28 7 AM: 'why no map for Green River State Natural Area'): which LIVE Kentucky layers hold Boiling Springs (OKNP point 37.30642,-85.719109) and Brandon's boundary-sign point 37.2948,-85.832497 (Timberlake? 115.75 ac)? Point queries (within 800 m) on every polygon layer of the KY nature-preserve / natural-area / state-land services, + a walk of kygisserver for any other OKNP layer, + KyGeoportal search. Plus Slovenia ARSO WFS typenames. Results: roundK1-tested.json.",
+ "orgs": [
+  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services", "match": "KNP|Nature|Preserv|Natural|SNA|StateLand|State_Land|Public_Land|Conservation|Heritage|FW_|KDFWR|WMA", "note": "every KY service that could hold OKNP land"}
+ ],
+ "pointq": [
+  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 800, "note": "OKNP nature preserves service (all polygon layers)"},
+  {"st": "KY", "url": "https://services2.arcgis.com/CcI36Pduqd0OR4W9/arcgis/rest/services/Public_Lands_and_Conservation/FeatureServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 800, "note": "guess: KY public lands (fails harmlessly if wrong)"}
+ ],
+ "searches": [
+  {"st": "KY", "q": "(\"State Natural Areas\" OR \"State Nature Preserves\" OR OKNP OR \"Nature Preserves\") AND Kentucky", "why": "KyGeoportal / opengisdata layers for OKNP land"},
+  {"st": "KY", "q": "Kentucky AND (\"state owned\" OR \"public lands\" OR \"protected lands\") AND (boundaries OR parcels)", "why": "any KY state-land parcel layer"}
+ ],
+ "pages": [
+  {"st": "SI", "raw": true, "url": "https://prostor4.gov.si/ows2-ins/ps/wfs?service=wfs&version=2.0.0&request=GetCapabilities", "look": "Name>[^<]+<|AccessConstraints>[^<]+|Fees>[^<]+", "note": "Slovenia protected areas WFS typenames"}
+ ]
+}

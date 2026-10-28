@@ -360,6 +360,30 @@ def nrhp(cfg):
     return out
 
 
+def pointq(cfg):
+    """Oct 28: which polygons hold (or lie within dist m of) given points, on every polygon layer of the given services."""
+    out = []
+    for x in cfg.get('pointq') or []:
+        r = {k: x[k] for k in ('st', 'url', 'note') if k in x}; r['hits'] = []
+        try:
+            u = x['url'].rstrip('/')
+            lays = [u] if re.search(r'/\d+$', u) else [f"{u}/{l['id']}" for l in (get(u).get('layers') or []) if not l.get('subLayerIds')]
+            for lu in lays[:20]:
+                try:
+                    m = get(lu)
+                    if 'Polygon' not in str(m.get('geometryType')): continue
+                    for la, lo in x['points']:
+                        q = get(lu + '/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                                                'distance': x.get('dist', 0), 'units': 'esriSRUnit_Meter', 'where': '1=1', 'outFields': '*', 'returnGeometry': 'false'}, t=90)
+                        for f in (q.get('features') or [])[:10]:
+                            r['hits'].append({'layer': f"{lu.rsplit('/', 1)[-1]} {m.get('name')}", 'point': [la, lo],
+                                              'attrs': {k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '', ' ') and not re.search(r'shape|globalid|objectid', k, re.I)}})
+                except Exception as e: r['hits'].append({'layer': lu, 'error': str(e)[:100]})
+        except Exception as e: r['error'] = str(e)[:140]
+        out.append(r)
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -396,6 +420,7 @@ def main():
         except Exception as e: res['nrhp'] = {'error': str(e)[:200]}
         notice('NRHP: ' + json.dumps((res['nrhp'] or {}).get('count') or res['nrhp'].get('error'))[:500])
     if cfg.get('queries'): res['queries'] = queries(cfg)
+    if cfg.get('pointq'): res['pointq'] = pointq(cfg)
     if cfg.get('browse'):
         try: res['browse'] = browse(cfg)
         except Exception as e: res['browse'] = [{'error': str(e)[:140]}]
