@@ -486,7 +486,43 @@
     var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (not checked yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
     $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="Checked">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
-    $('ovReg').addEventListener('change', function () { loadRegion(this.value); });
+    $('ovReg').addEventListener('change', function () { loadRegion(this.value); usMark(); });
+  }
+  /* Oct 28 (Brandon: 'under the hero have a state level clickable map'): every state drawn from kpc-us-states.json; gold = a
+     checked list, grey = not checked yet; a tap does what the STATE / PROVINCE box does. Alaska + Hawaii in small boxes. */
+  var US_P = null;
+  function usMap() {
+    var svg = $('ovUsMap'); if (!svg) return;
+    (US_P || (US_P = j('kpc-us-states.json'))).then(function (B) {
+      if (!B || !B.length) { svg.closest('.ov-us').hidden = true; return; }
+      var c38 = Math.cos(38 * Math.PI / 180);
+      var proj = function (a) {   // lower 48: a plain lon/lat picture squeezed for latitude; AK + HI moved into boxes bottom-left
+        if (a === 'AK') return function (x, y) { return [40 + (x + 172) * 10 * Math.cos(62 * Math.PI / 180), 556 - (y - 51) * 10 * .55]; };
+        if (a === 'HI') return function (x, y) { return [270 + (x + 160.5) * 17 * Math.cos(20 * Math.PI / 180), 552 - (y - 18.8) * 17]; };
+        return function (x, y) { return [60 + (x + 125) * 18 * c38, 8 + (49.6 - y) * 18 * 1.08]; };
+      };
+      var html = '';
+      B.forEach(function (st) {
+        var P = proj(st.a), d = '';
+        (st.p || []).forEach(function (poly) { (poly || []).forEach(function (ring) {
+          if (st.a === 'AK') ring = ring.filter(function (q) { return q[0] < -129 || q[1] > 54.5; }).map(function (q) { return [q[0] > 0 ? q[0] - 360 : q[0], q[1]]; });
+          if (ring.length < 3) return;
+          d += 'M' + ring.map(function (q) { var v = P(q[0], q[1]); return v[0].toFixed(1) + ',' + v[1].toFixed(1); }).join('L') + 'Z';
+        }); });
+        if (!d) return;
+        var r = regionOf('US', st.a), id = r ? r.id : 'US-' + st.a;
+        html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(st.n) + (r ? ': checked list' : ': not checked yet') + '"><title>' + esc(st.n) + (r ? '' : ' (not checked yet)') + '</title></path>';
+      });
+      svg.innerHTML = html;
+      var go = function (e) { var t = e.target.closest('path'); if (!t) return; loadRegion(t.getAttribute('data-r')); usMark(); var w = document.querySelector('.ov-wrap'); if (w) scrollTo({ top: w.getBoundingClientRect().top + scrollY - 70, behavior: 'smooth' }); };
+      svg.addEventListener('click', go);
+      svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
+      usMark();
+    });
+  }
+  function usMark() {
+    var svg = $('ovUsMap'); if (!svg || !REG) return;
+    [].forEach.call(svg.querySelectorAll('path'), function (p) { p.classList.toggle('on', p.getAttribute('data-r') === REG.id); });
   }
   function notChecked(id) {
     var m = /^(US|CA)-([A-Z]{2})$/.exec(id || ''); if (!m) return null; var hit = PLACES[m[1]].split('|').filter(function (x) { return x.slice(0, 2) === m[2]; })[0]; return hit ? { id: id, label: hit.slice(3), files: [], none: true } : null;
@@ -520,6 +556,7 @@
     regionSelect();
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
+    usMap();
   });
   window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; } };
 })();
