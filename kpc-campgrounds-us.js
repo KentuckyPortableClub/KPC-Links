@@ -264,8 +264,10 @@
   var bar = '<section class="cgp" id="cgPick" data-keep-light aria-label="Pick a state"><div class="cg-wrap">' +
     '<h2 class="cgp-h">Campgrounds &amp; cabins in <b id="cgpName">Kentucky</b> <button type="button" class="cgp-chg" id="cgpChange">· change state ▾</button></h2>' +
     '<div class="cgp-row"><label class="cgp-l" for="cgSt">📍 PICK A STATE</label><select id="cgSt">' + Object.keys(ST).sort(function (a, b) { return ST[a] < ST[b] ? -1 : 1; }).map(function (k) {
-      return '<option value="' + k + '">' + esc(ST[k]) + (k === 'KY' ? ' (checked by hand)' : '') + '</option>'; }).join('') + '</select>' +
-    '<button type="button" class="cgp-near" id="cgpNear">📍 NEAR ME</button></div><p class="cgp-msg" id="cgpMsg" aria-live="polite">Every US state is here. Kentucky is checked by hand; other states come from the agencies’ official lists.</p></div></section>';
+      return '<option value="' + k + '">' + esc(ST[k]) + (k === 'KY' ? ' (checked by club members)' : '') + '</option>'; }).join('') + '</select>' +
+    '<button type="button" class="cgp-near" id="cgpNear">📍 NEAR ME</button></div><p class="cgp-msg" id="cgpMsg" aria-live="polite">Every US state is here. Kentucky: checked by club members<span id="cgpKyD"></span>; other states come from the agencies’ official lists.</p></div></section>';
+    /* Oct 28 (chat 8 / Brandon): say who checked Kentucky and when (kpc-campgrounds.json 'updated') */
+    getJSON('kpc-campgrounds.json').then(function (d) { var m = d && /^(\d{4})-(\d{2})-(\d{2})/.exec(d.updated || ''), e = document.getElementById('cgpKyD'); if (m && e) e.textContent = ', last checked ' + ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1]; });
   if (hero) hero.insertAdjacentHTML('afterend', bar); else row.insertAdjacentHTML('beforebegin', bar);
   row.insertAdjacentHTML('beforeend', '<select id="cguPark" aria-label="Park" class="cgu-only"><option value="">All parks</option></select>' +
     '<select id="cguRad" aria-label="How far from the park" class="cgu-only"><option value="2">At the park (2 mi)</option><option value="10" selected>Park + 10 mi around</option><option value="25">Park + 25 mi around</option><option value="50">Park + 50 mi around</option></select>');

@@ -213,7 +213,7 @@
     if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
     if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site };
     let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
-    return fs.length ? { fs, label: 'approx', why: 'found by a name search that our checking bot has not reviewed yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
+    return fs.length ? { fs, label: 'approx', why: 'found by a name search and not checked yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
   }
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
@@ -357,7 +357,7 @@
     let k = null; try { k = await worldKey(ref); } catch (e) {}
     if (k && k.state === 'ok') return k.fs;
     const e = await euro(name, la, lo, o);
-    if (k && k.state === 'none') e.forEach(f => { f._approx = true; f._why = 'our checking bot did not find a sure match; this is a live guess by name'; });
+    if (k && k.state === 'none') e.forEach(f => { f._approx = true; f._why = 'our maps did not find a sure match; this is a live guess by name'; });
     return e;
   }
   /* POTA parks near a point */

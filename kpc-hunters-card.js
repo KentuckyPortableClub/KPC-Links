@@ -9,7 +9,7 @@
   const hr = h => { h = +String(h).slice(0, 2); return h === 0 || h === 24 ? '12 AM' : h === 12 ? '12 PM' : h > 12 ? (h - 12) + ' PM' : h + ' AM'; };
   const out = box.querySelector('.hu-body');
   fetch('kpc-hunters.json?v=' + Date.now().toString(36).slice(0, 6), { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).then(j => {
-    if (!j || !j.grid) { out.innerHTML = '<p class="hu-note">The bots started counting on Oct 23, 2026. Check back in about two weeks.</p>'; return; }
+    if (!j || !j.grid) { out.innerHTML = '<p class="hu-note">We started counting on Oct 23, 2026. Check back in about two weeks.</p>'; return; }
     const max = Math.max(1, ...j.grid.flat());
     let g = '<div class="hu-grid" role="img" aria-label="POTA spots on US parks by day and hour, Central time"><span></span>';
     for (let h = 0; h < 24; h += 1) g += '<span class="hu-h">' + (h % 3 ? '' : hr(h).replace(' ', '')) + '</span>';

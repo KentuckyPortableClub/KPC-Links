@@ -72,5 +72,11 @@ for x in d['spots']:
                  'points': pts, 'note': ' '.join(e.replace('..', '.') for e in extra)})
 rows.sort(key=lambda r: (-len(r['refs']), r['how'].startswith(('Very tight', '🚤')), r['county'], r['refs']))
 s = s[:m.start(1)] + json.dumps(rows, ensure_ascii=False, separators=(',', ':')) + s[m.end(1):]
+# Oct 28 (chat 8 / Brandon): the foot shows the DATA's date (the newest 'checked' in this run), never a fixed rebuild date
+_ds = sorted(str(x.get('checked') or '') for x in (d.get('spots') or []) if re.match(r'\d{4}-\d{2}-\d{2}', str(x.get('checked') or '')))
+if _ds:
+    _y, _m, _dd = _ds[-1][:10].split('-')
+    _nice = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(_m) - 1] + f' {int(_dd)}, {_y}'
+    s = re.sub(r'(<span id="mpDate">)[^<]*(</span>)', lambda mm: mm.group(1) + _nice + mm.group(2), s)
 open(PAGE, 'w').write(s)
 print(len(rows), 'spots;', sum(1 for r in rows if len(r['refs']) > 2), 'with 3+ parks;', sum(len(r['points']) for r in rows), 'points')

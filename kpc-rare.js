@@ -50,7 +50,7 @@
     const u = new URL(location.href); u.searchParams.set('where', PLACE); history.replaceState(null, '', u);
     const ky = PLACE === 'US-KY';
     $('regW').hidden = !ky; $('refresh').hidden = !ky; $('qsoH').hidden = !ky; reg = '';
-    $('srcNote').textContent = ky ? 'Kentucky: POTA\'s public records read live (activations with 10+ QSOs; "Last" = the most recent activation of any kind), saved in your browser for 12 hours.' : placeName(PLACE) + ': activation counts from POTA, refreshed every night by the club\'s bots.';
+    $('srcNote').textContent = ky ? 'Kentucky: POTA\'s public records read live (activations with 10+ QSOs; "Last" = the most recent activation of any kind), saved in your browser for 12 hours.' : placeName(PLACE) + ': activation counts from POTA, refreshed every night.';
     $('stats').innerHTML = '<div class="stat"><b>…</b><span>LOADING</span></div>'; $('tbody').innerHTML = '';
     try { P = await load(force); } catch (e) { $('stats').innerHTML = ''; $('tbody').innerHTML = '<tr><td colspan="4" class="muted">Could not load the park list for ' + esc(placeName(PLACE)) + '.</td></tr>'; return; }
     const known = P.filter(p => p.acts != null), never = known.filter(p => p.acts === 0).length, u5 = known.filter(p => p.acts <= 5).length, tot = known.reduce((s, p) => s + p.acts, 0);

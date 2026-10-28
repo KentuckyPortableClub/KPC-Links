@@ -38,7 +38,7 @@
     var main = [].concat(refs || [])[0];   // name the reference only when the report is for a linked one (a park's KFF or SOTA ref)
     return conds(refs).map(function (c) {
       return '<div class="kpc-cond no-print" role="note">⚠ <b>' + esc(c.kind || 'Report') + '</b>' + (c.ref !== main ? ' (' + esc(c.ref) + ')' : '') + ' — seen ' + esc(nice(c.seen)) +
-        (c.call ? ' by ' + esc(c.call) : '') + (c.details ? ': ' + esc(c.details) : '') + ' <small>(shows until ' + esc(nice(c.expires)) + ')</small></div>';
+        (c.call && !/\bBOT\b/i.test(c.call) ? ' by ' + esc(c.call) : '')   /* Brandon Oct 28: never say a bot did it */ + (c.details ? ': ' + esc(c.details) : '') + ' <small>(shows until ' + esc(nice(c.expires)) + ')</small></div>';
     }).join('');
   }
   /* A reference plus the ones on the same ground (a POTA park's KFF / SOTA refs and back), from kpc-ky-data.json. */
