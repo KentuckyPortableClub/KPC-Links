@@ -494,8 +494,8 @@
   function regionOf(cc, code) { return CFG.regions.filter(function (r) { return r.id === code && cc === 'US' || (r.files || []).indexOf(cc + '-' + code) >= 0; })[0]; }
   function regionSelect() {
     var done = CFG.regions.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; }).join('');
-    var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (not checked yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
-    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="Checked">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
+    var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
+    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="With a list">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
     $('ovReg').addEventListener('change', function () { US_PICK = true; loadRegion(this.value); usMark(); });
   }
@@ -522,7 +522,7 @@
         }); });
         if (!d) return;
         var r = regionOf('US', st.a), id = r ? r.id : 'US-' + st.a;
-        html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(st.n) + (r ? ': checked list' : ': not checked yet') + '"><title>' + esc(st.n) + (r ? '' : ' (not checked yet)') + '</title></path>';
+        html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(st.n) + (r ? ': has a list' : ': no list yet') + '"><title>' + esc(st.n) + (r ? '' : ' (no list yet)') + '</title></path>';
       });
       svg.innerHTML = html;
       US_VIEW = 'all'; vb(0, 0, 960, 560); var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
@@ -600,9 +600,9 @@
         var v = P(c[1], c[0]); n++;
         html += '<g class="dot" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + '"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '"></circle></g>';
       });
-      if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">not checked yet</text>';
+      if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">no list yet</text>';
       svg.innerHTML = html; US_VIEW = 'state'; vb(0, 0, 960, 560);
-      var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': not checked yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
+      var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': no list yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
       var bk = $('ovUsBack'); if (bk) bk.hidden = false;
     });
   }
