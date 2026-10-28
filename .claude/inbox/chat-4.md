@@ -8,7 +8,7 @@ Read .claude/inbox/README.md first.
 - TO DO (later): iPhone: browser phone remote first (plan in ft8-app.md 'IPHONE PLAN').
 
 ## NEEDS BRANDON
-- Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
+- ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
 ## DONE
 - Oct 28 7 AM: iPhone plan written (5 points, ft8-app.md 'IPHONE PLAN'): browser remote first (HTTPS via Tailscale cert), real iOS app = Swift plugins + $99/yr + macOS runner, no USB CAT on iOS. Nothing built.

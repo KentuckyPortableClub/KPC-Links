@@ -26,6 +26,8 @@ KPC is an independent ham radio club, not part of Parks on the Air®, SOTA or WW
 ```
 - HQ (Oct 28 1:49 AM): Georgia closures rule sheet GA1-GA4 RULED by Brandon (website.md): wait for chat 8's break of the sheet, then build. (Oct 28 5 AM: still waiting: no KPC_RuleSheet_GA_closures_desk.md from chat 8 yet.)
 
+- HQ (Oct 28 7:09 AM): GEORGIA CLOSURES: Brandon ruled GA5-GA9 YES (website.md); chat 8's fixes GA-R1..R9 are in KPC_RuleSheet_GA_closures_desk.md. BUILD it (after the 8 AM release post), Kentucky's reader untouched, test on today's live page incl. chat 8's traps (negations, split sentences, end-dated Cohutta).
+
 ## NEEDS BRANDON
 
 ## DONE
