@@ -109,13 +109,11 @@ KINDS = [('wma', r'wildlife management area|\bwma\b|\bswa\b|wildlife area|game l
          ('wsr', r'wild (and|&) scenic river|recreational river'),
          ('ca', r'conservation area|conservation reserve|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage|\bpreserve\b|natural state conservation|natural reserve|scientific and natural|natural environment area|\bnea\b|\bnrma\b'),
-         ('hist', r'(?<!national )historic(al)? (site|park|area)|\bshs\b'),
+         ('hist', r'historic(al)? (site|area)|(?<!national )historic(al)? park|\bshs\b'),
          ('sp', r'state (resort )?park|(?<!national )historic(al)? park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
          ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b|\bfh\b'),
-         ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway|historical park|historic site)'),
-         # Oct 28 (Q5 / N-2): kinds for POTA types that used to have none, so they no longer match anything
-         ('fl', r'(state|public|county) fishing lake'), ('trail', r'state trail|national (scenic|historic|recreation) trail'), ('harbor', r'state harbou?r'),
+         ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway|historical park)'),
          ('wild', r'wilderness(?! study)'), ('wsa', r'wilderness study area|\bwsa\b'),
          ('hma', r'herd (management )?area|\bhma\b'),
          ('rma', r'recreation management area|\bs?rma\b|\berma\b|campground|recreation site|day use area')]
@@ -214,7 +212,6 @@ def same_words(a, b, ka, kb):
     if ('nfh' in ka) != ('nfh' in kb) or bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
-    if (l - s) & FEATURE: return False   # Oct 28 (N-4/N-8): 'Sacramento' is not 'Sacramento RIVER', 'Cheatham' not 'Cheatham LAKE'
     big = [w for w in s if len(w) > 2]
     if len(big) == 1:   # one long word, same kind ('Keyhole' = 'Keyhole Reservoir'); wrong ones go in overrides.json 'no'
         return len(big[0]) >= 6 and ka == kb and s <= l and len(l - s) <= 2
@@ -228,7 +225,7 @@ def _same(a, b):
     return len(s) > 5 and l.startswith(s) and l[len(s):len(s) + 1] == ' ' and len(s) / len(l) >= 0.6   # whole words only (World War I is not World War II)
 
 
-US_COMPAT = [{'wild', 'wsa'}, {'ca', 'snp'}]   # POTA lists many BLM study areas as 'BLM Wilderness Area'
+US_COMPAT = [{'wild', 'wsa'}, {'ca', 'snp'}, {'nps', 'hist'}]   # Oct 28: a National Historical Park (nps) = PAD-US's 'NHS' designation (hist)   # POTA lists many BLM study areas as 'BLM Wilderness Area'
 def same_kind(ka, kb): return not ka or not kb or bool(ka & kb) or any(ka & c and kb & c and (ka | kb) & c == c for c in US_COMPAT)
 
 
@@ -778,7 +775,8 @@ def run(st):
         # Oct 28 (N-4, HQ: the 3 live wrong joins Sacramento NWR, Gunnison SWA, Cheatham WMA): a record whose name is EXACTLY
         # another POTA park's in this state belongs to that park, unless it is exactly this park's name too
         if m and SIB.get(st):
-            m = [x for x in m if exact_name(name, x[1]) or not any(r2 != ref and exact_name(n2, x[1]) for r2, n2 in SIB[st])]
+            def _eq(p, q): return _sing(norm(p)) == _sing(norm(q)) and bool(kinds(p) & kinds(q))   # strict + same kind: 'Cheatham' is not 'Cheatham Lake'; 'Wister' SP is not 'Wister' WMA
+            m = [x for x in m if _eq(name, x[1]) or not any(r2 != ref and _eq(n2, x[1]) for r2, n2 in SIB[st])]
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(x) for x in ov.get('no', [])}
