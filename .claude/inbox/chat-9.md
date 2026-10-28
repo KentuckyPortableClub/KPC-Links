@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 6:24 AM): your NZ question ANSWERED: world OUTLINES are allowed anywhere official (house rule), so NZ's DOC layer is wanted; it's queued in CHAT 2's inbox (LATER) to load NZ's POTA park list + NZ name/type rules into the world key; keep DOC on chat9-world until then. NZ 2-fers stay off (not top 10).
 - (chat 9, ongoing) World: Slovenia ARSO (rights 'No limitations'; WFS prostor4.gov.si/ows2-ins/ps/wfs: typename to read), then the rest of Stage 1 (AT SK HU RO LV NOT READY per chat 8). New Zealand waits on HQ's answer (report below).
 
 - HQ (Oct 28 5:10 AM): coming soon, chat 10's LAYER INTAKE LINE (data/intake/queue.json -> intake bot probes -> data/intake/ready.json): your probe rounds become APPROVE / REJECT on ready.json; approved rows go into one nightly key rebuild. Until it lands, carry on as now; send chat 10 your probe script notes if it asks.
