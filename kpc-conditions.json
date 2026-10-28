@@ -2,6 +2,26 @@
  "updated": "2026-10-28",
  "items": [
   {
+   "id": "uc-mo-parks-advisory-the-hermitage-camping-area-will-be-closed-november-US-1778",
+   "ref": "US-1778",
+   "kind": "Closure",
+   "details": "Missouri State Parks: Advisory — The Hermitage camping area will be closed November 4th-6th 2026 due to a scheduled managed deer hunt. For the safety of hunters and park visitors, public access to the camping area will be restricted ",
+   "seen": "2026-10-28",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://mostateparks.com/park/pomme-de-terre-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-sites-182-205-281-are-temporarily-closed-for-leaf-US-1787",
+   "ref": "US-1787",
+   "kind": "Closure",
+   "details": "Missouri State Parks: Advisory — Sites 182, 205, 281 are temporarily closed for leaf removal in the campgrounds. Nov 1 - Dec 15, 2026 Site 202 is temporarily closed due to a tree removal. · Trail Closure: Portions of White River Valley Trail will be closed during the dates below to allow for hunting seasons on Corps of Engineers property. Closed sections: Trailhead 2; Trailhead 3; on the",
+   "seen": "2026-10-28",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://mostateparks.com/park/table-rock-state-park"
+  },
+  {
    "id": "pa-fs-tornado-damaged-area-closure-london-pulaski-counties-US-11181",
    "ref": "US-11181",
    "kind": "Park alert",
@@ -582,16 +602,6 @@
    "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
   },
   {
-   "id": "uc-wi-dnr-governor-dodge-sp-construction-notice-2026-maintenance-US-1451",
-   "ref": "US-1451",
-   "kind": "Park notice",
-   "details": "Wisconsin DNR: Governor Dodge SP Construction Notice 2026 — maintenance",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
    "id": "uc-wi-dnr-glacial-drumlin-st-hwy-67-to-opengate-court-closed-sept-n-US-9792",
    "ref": "US-9792",
    "kind": "Closure",
@@ -770,46 +780,6 @@
    "call": "KPC BOT",
    "expires": "2026-10-31",
    "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
-   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12919",
-   "ref": "US-12919",
-   "kind": "Closure",
-   "details": "Montana FWP: Stage I Fire Restriction",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://myfwp.mt.gov/fishMT/fas/39754621"
-  },
-  {
-   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12918",
-   "ref": "US-12918",
-   "kind": "Closure",
-   "details": "Montana FWP: Stage I Fire Restriction",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://myfwp.mt.gov/fishMT/fas/39754581"
-  },
-  {
-   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12647",
-   "ref": "US-12647",
-   "kind": "Closure",
-   "details": "Montana FWP: Stage I Fire Restriction",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://myfwp.mt.gov/fishMT/fas/39754638"
-  },
-  {
-   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12646",
-   "ref": "US-12646",
-   "kind": "Closure",
-   "details": "Montana FWP: Stage I Fire Restriction",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://myfwp.mt.gov/fishMT/fas/39754581"
   },
   {
    "id": "uc-mt-fwp-site-closure-partial-there-is-a-temporary-closure-of-the-a-US-11218",
@@ -1100,16 +1070,6 @@
    "call": "KPC BOT",
    "expires": "2026-10-31",
    "link": "https://www.mostateparks.com/historic-site/locust-creek-covered-bridge-state-historic-site"
-  },
-  {
-   "id": "uc-mo-parks-advisory-trail-closure-portions-of-white-river-valley-trail-US-1787",
-   "ref": "US-1787",
-   "kind": "Closure",
-   "details": "Missouri State Parks: Advisory — Trail Closure: Portions of White River Valley Trail will be closed during the dates below to allow for hunting seasons on Corps of Engineers property. Closed sections: Trailhead 2; Trailhead 3; on the",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-31",
-   "link": "https://mostateparks.com/park/table-rock-state-park"
   },
   {
    "id": "uc-mo-parks-advisory-the-site-is-closed-on-tuesdays-and-wednesdays-tour-US-3365",
@@ -2074,6 +2034,126 @@
    "seen": "2026-10-21",
    "call": "KPC BOT",
    "expires": "2026-11-27"
+  },
+  {
+   "id": "uc-ga-wrd-roads-closed-to-vehicles-walking-allowed-georgia-dnr-upda-US-4653",
+   "ref": "US-4653",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: Roads closed to vehicles (walking allowed) — Georgia DNR (updated 10/8/26): \"Hickory Mountain Rd. and Thompson South Rd. are currently closed to vehicle traffic for ongoing roadwork.\"",
+   "seen": "2026-10-08",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-boardwalk-georgia-dnr-updated-10-8-26-the-b-US-3751",
+   "ref": "US-3751",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: boardwalk — Georgia DNR (updated 10/8/26): \"The boardwalk is closed until further notice.\"",
+   "seen": "2026-10-08",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-etowah-river-bridge-shoal-creek-rd-on-the-co-US-3743",
+   "ref": "US-3743",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: Etowah River Bridge (Shoal Creek Rd.) on the COA Tract — Georgia DNR (updated 8/6/26): \"The Etowah River Bridge (Shoal Creek Rd.) on the COA Tract remains closed to all traffic.\"",
+   "seen": "2026-08-06",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-blue-trail-georgia-dnr-updated-8-6-26-blue-US-3743",
+   "ref": "US-3743",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: Blue Trail — Georgia DNR (updated 8/6/26): \"Blue Trail is temporarily closed beyond the Orange and Pink Trail turnoffs until further notice for timber harvesting.\"",
+   "seen": "2026-08-06",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-north-side-of-the-campground-georgia-dnr-updat-US-7136",
+   "ref": "US-7136",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: north side of the campground — Georgia DNR (updated 8/5/26): \"The bathhouse and north side of the campground will be closed for renovations starting July 15 and continue until January 2027.\" (until Jan 31)",
+   "seen": "2026-08-05",
+   "call": "KPC BOT",
+   "expires": "2027-01-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-bathhouse-closed-georgia-dnr-updated-8-5-26-the-bathhous-US-7136",
+   "ref": "US-7136",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: Bathhouse closed — Georgia DNR (updated 8/5/26): \"The bathhouse and north side of the campground will be closed for renovations starting July 15 and continue until January 2027.\" (until Jan 31)",
+   "seen": "2026-08-05",
+   "call": "KPC BOT",
+   "expires": "2027-01-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-old-ccc-camp-road-georgia-dnr-updated-7-22-26-US-7446",
+   "ref": "US-7446",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: Old CCC Camp Road — Georgia DNR (updated 7/22/26): \"The first unpaved half‑mile of Old CCC Camp Road/Forest Service Road 18—from the Dill Creek Bridge to the Holly Creek Bridge—will be closed to through traffic beginning September 8.\"",
+   "seen": "2026-07-22",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-on-and-off-georgia-dnr-updated-7-22-26-the-emery-creek-US-7446",
+   "ref": "US-7446",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: 📅 On and off — Georgia DNR (updated 7/22/26): \"The Emery Creek Trailhead will experience intermittent closures from September 8 through the end of December while crews work to expand and improve the parking area.\" (until Dec 31)",
+   "seen": "2026-07-22",
+   "call": "KPC BOT",
+   "expires": "2026-12-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-part-closed-roads-995e-and-955b-georgia-dnr-updated-4-10-2-US-3758",
+   "ref": "US-3758",
+   "kind": "Closure",
+   "details": "Georgia DNR Wildlife Resources: PART CLOSED: Roads 995E and 955B — Georgia DNR (updated 4/10/26): \"Roads 995E and 955B are temporarily closed.\"",
+   "seen": "2026-04-10",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-drawn-quota-hunts-check-the-agency-page-georgia-dnr-upda-US-3774",
+   "ref": "US-3774",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: 🦌 Drawn quota hunts: check the agency page — Georgia DNR (updated 3/27/25): \"Hunters drawn for Sapelo Island deer quota hunts must arrange for their own transportation to the island via private boat.\"",
+   "seen": "2025-03-27",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-old-notice-10-16-23-lake-margery-at-marben-pfa-is-curr-US-7467",
+   "ref": "US-7467",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: ℹ️ Old notice (10/16/23) — \"Lake Margery at Marben PFA is currently closed to all access (fishing/boating).\" May be out of date: check the agency page.",
+   "seen": "2023-10-16",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
+  },
+  {
+   "id": "uc-ga-wrd-old-notice-7-9-21-due-to-military-training-needs-on-th-US-3751",
+   "ref": "US-3751",
+   "kind": "Park notice",
+   "details": "Georgia DNR Wildlife Resources: ℹ️ Old notice (7/9/21) — \"Due to military training needs on the federally owned portion (Highway 221 tract) of Grand Bay WMA, that section will be closed to public access periodically.\" May be out of date: check the agency page.",
+   "seen": "2021-07-09",
+   "call": "KPC BOT",
+   "expires": "2026-10-31",
+   "link": "https://georgiawildlife.com/closures"
   }
  ]
 }
