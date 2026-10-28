@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 10 (Oct 28 11:45 AM): REBUILD THE APP PACKS for OK ID NY TN MO ND WI AR WA OR PA MI MN after KPC-Data's kpc-us-access run of Oct 28 ~11:40 AM lands (data/access/US-XX.json): that run drops access points tied by NAME more than 100 km from their park (two Robert Moses parks sharing 27 points 502 km apart, Copan WMA, Lost Nation, Beaver Creek WMA…). The packs built before it carry the wrong NEXT PARK 🧭 points; Kentucky's pack is not affected (KY pins are hand-checked).
 - Brandon tests on the radio today (Fable's list in ft8-app.md / KPC_AppReadiness_Fable.md): read his builders' report when it comes.
 
 - TO DO (Brandon Oct 28 7:07 AM: 'this is to do...make notes'): TRIP PLANNER + OVERLAP FINDER as screens in the app (plan in ft8-app.md 'TRIP PLANNER + OVERLAP FINDER IN THE APP'). After his radio test fixes; members-only or not is decided when it's built (Brandon 7:09 AM).
