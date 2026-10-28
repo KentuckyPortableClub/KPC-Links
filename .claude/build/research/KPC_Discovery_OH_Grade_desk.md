@@ -84,3 +84,19 @@ I have NOT made these changes: they are grade rules, and after two self-graded r
 before it runs again (RULES FIRST). Suggest: HQ reads this, chat 8 confirms the 0-of-10 and spot-checks three PDFs, then one more
 Ohio run tomorrow.
 
+
+## CHAT 8 CONFIRMS THE REGRADE (Oct 27 ~10 PM; this is the independent check chat 2 asked for)
+**(1) Regrade: CONFIRMED, with one correction.** 0 of 10 agree. Row by row I agree with chat 2's C's (Earthquakes_EB, the three Commercial Fishing closed-zone services, DOW_LakeHPRestrictions, DOW_Lakes_Bathymetry) and with "Parking_Areas_view is already read" (access-layers.json holds Parking_Areas_view/MapServer/29; the FeatureServer form is the same service). Correction: the table starts at row 4 of the current leads.md; rows 1-3 are Watercraft Paddling Draw, ODNR Lakes, Boater and Stream Access, all bot A 5 where my grade is B (so also disagree). The count stays 0 of 10 either way. Also: the "Commercial Fishing" services appear in pairs (MapServer + FeatureServer), so about 6 of the top 13 rows are duplicates.
+**(2) Three PDFs (WebFetch of the real files; Grade A for existence, B for contents because I read text, not the drawing):**
+| PDF | What it is | Verdict |
+|---|---|---|
+| killdeerplains.pdf | Killdeer Plains Wildlife Area, ODNR Division of Wildlife, 9,118.91 acres, published 4/20/2023; legend: parking, boat launch, headquarters, refuge (permit only) | real map of the right area, current. **Good.** |
+| beavercreek.pdf | Beaver Creek Wildlife Area, 373 acres, Greene/Montgomery/Clark counties, published 9/8/2022; legend has a Wildlife Area Boundary line + parking | real map, current, draws the boundary. **Good.** |
+| paintcreek.pdf | Paint Creek Lake Wildlife Area, Publication 211 (R797) = a 1997 reprint, no date; lists 11,024 acres while the text says 5,090 | right area, but **old**: keep as a map link with "map is old (1997)", never as the outline source. |
+So the pattern works: 3 of 3 are the right area's own ODNR map. Rule for the 77: link only (official map button), keep the map's date when it prints one (2 of 3 do), flag undated or pre-2015 as old. The slug match can also pick a same-named place (Beaver Creek WA vs Beaver Creek State Park): the bot should only try the pattern for names whose kind is wildlife area / fishing area, which it does; check the first Beaver Creek-type collision by name, not only HTTP 200.
+**(3) The three grade fixes: right, but not enough.**
+1. Band inflation: right in aim. Careful with "cap at 4 unless a layer names parks we lack": trail lines and access points never name parks, so the best find (Parks_DNAP_Trails) could never reach A. Better: **A = fills a gap that is EMPTY in that state** (Ohio: trail lines = empty, so Parks_DNAP_Trails and Wildlife_Trails_Verify are A; access = we already read 4 ODNR layers, so more access points are B). Needs a count per state per gap from the files the bot already loads.
+2. One row per service: right. Also treat `gis.` / `gis2.` hosts of the same agency as one, and fold MapServer/FeatureServer/layer-number endings.
+3. Tighten closures: right. Add a short block list as well (seismic, earthquake, commercial fishing, bathymetry, horsepower, dams, bluff, watershed, permit), because 'area' is too broad a park word.
+**Add a fourth: roads/water is a Canada gap only.** In the US we take water from NHD (rule 9), so ODNR Lakes, Dams, Otter Bridge Rivers, HP restrictions and bathymetry should never be leads in a US state. That removes 5-6 of the 24 A's by itself.
+Chat 2's two hand-find fixes (read the service name; walk sub-folders and keep the catalog copy when the server has none) are right too. Then one Ohio rerun, and I grade the new top 10.
