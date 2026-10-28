@@ -244,6 +244,141 @@ def src_ar(): return _rss_rows('https://www.agfc.com/category/wma-closure/feed/'
 def src_nc(): return _rss_rows('https://www.ncparks.gov/blog-category/alerts/feed', r'clos|status|open|restrict|alert')
 
 
+# ---------------------------------------------------------------- Georgia WRD closures page (chat 5, Oct 28 2026)
+# RULE SHEET: 'GEORGIA WILDLIFE CLOSURES PAGE AS A SOURCE' (website.md) + chat 8's fixes GA-R1..R9
+# (.claude/build/research/KPC_RuleSheet_GA_closures_desk.md) + Brandon's rulings GA1-GA9. The page is a hand-written list
+# (area heading, 'Updated m/d/yy', free-text sentences), so it is read as plain text, sentence by sentence.
+# PREVIEW: until GA_LIVE is True, Georgia's items go only into sources['ga-wrd']['preview'] (for checking), not onto cards.
+GA_LIVE = False
+GA_PAGE = 'https://georgiawildlife.com/closures'
+_GA_AREA = re.compile(r"\b(WMA|PFA|VPA|Wildlife Management Area|Public Fishing Area|Hatchery|Wildlife Center|Education Center|Boat Ramp|Ramp)\b", re.I)
+_GA_SECT = re.compile(r'^(WMA,? PFA,? ?(&|and) Hatchery Closures|Shooting Ranges?|Education Centers?|Boat Ramps?|Closures|Cautions|Region \d+.*)$', re.I)
+_GA_MON = {m: i + 1 for i, m in enumerate(['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august',
+                                            'september', 'october', 'november', 'december'])}
+
+
+def _ga_lines(html_text):
+    t = re.sub(r'(?is)<(script|style|noscript|nav|header|footer)\b.*?</\1>', ' ', html_text)
+    t = re.sub(r'(?i)<br\s*/?>|</(p|div|li|h[1-6]|tr|td|section|article|strong|b)>|<(h[1-6]|li|p)\b[^>]*>', '\n', t)
+    t = re.sub(r'<[^>]+>', ' ', t)
+    import html as _h
+    out = []
+    for ln in _h.unescape(t).split('\n'):
+        ln = re.sub(r'\s+', ' ', ln).strip()
+        if ln: out.append(ln)
+    return out
+
+
+def _ga_end(sent, upd):
+    """'through November', 'until January 2027', 'through the end of December' -> last day of that month."""
+    m = re.search(r'\b(?:through|until|thru|to)\s+(?:the\s+end\s+of\s+)?(January|February|March|April|May|June|July|August|September|October|November|December)(?:\s+(\d{1,2})(?!\d))?(?:,?\s+(\d{4}))?', sent, re.I)
+    if not m: return None
+    mo = _GA_MON[m.group(1).lower()]
+    yr = int(m.group(3)) if m.group(3) else (upd.year if upd else TODAY.year)
+    if not m.group(3) and upd and mo < upd.month: yr += 1          # 'through January' written in August = next year
+    if m.group(2):
+        try: return dt.date(yr, mo, int(m.group(2)))
+        except ValueError: return None
+    nxt = dt.date(yr + (mo == 12), mo % 12 + 1, 1)
+    return nxt - dt.timedelta(days=1)
+
+
+def _ga_parse(lines):
+    """-> list of (section, heading, heading_names, updated_date, sentence)"""
+    out, sect, head, names, upd = [], '', '', [], None
+    for ln in lines:
+        if re.match(r'(?i)^last updated', ln): continue
+        if _GA_SECT.match(ln) and len(ln) < 70:
+            if not ln.lower().startswith('region'): sect = ln.lower()
+            head, names, upd = (ln, [], None) if ln.lower().startswith('region') else (head, names, upd)
+            continue
+        mu = re.match(r'(?i)^updated:?\s*(\d{1,2})/(\d{1,2})/(\d{2,4})\s*[,:;-]?\s*(.*)$', ln)
+        if mu:
+            y = int(mu.group(3)); y += 2000 if y < 100 else 0
+            try: upd = dt.date(y, int(mu.group(1)), int(mu.group(2)))
+            except ValueError: upd = None
+            ln = mu.group(4).strip()
+            if not ln: continue
+        if len(ln) < 110 and _GA_AREA.search(ln) and not re.search(r'[.!?]$', ln) and not re.search(r'\b(is|are|was|will|has|have)\b', ln):
+            head, upd = ln, None
+            names = [x.strip() for x in re.split(r'\s*/\s*', re.sub(r'\(.*?\)', '', ln)) if x.strip()]
+            continue
+        for sent in re.split(r'(?<=[.!?])\s+(?=[A-Z])', ln):
+            sent = sent.strip()
+            if len(sent) > 8: out.append((sect, head, names, upd, sent))
+    return out
+
+
+def _ga_rows(entries):
+    rows, seen = [], {}
+    for sect, head, names, upd, sent in entries:
+        low = sent.lower()
+        if 'shooting range' in sect or 'education' in sect: continue                     # not the park (sheet 2)
+        if not names: continue                                                             # 'general' lines: no area named
+        # GA-R7: a sentence repeated under two headings = one item, tied to the place the sentence names
+        key = re.sub(r'\W+', ' ', low).strip()
+        place = next((n for n in names if n.lower().split(' (')[0][:12] in low), None)
+        for n in names:
+            core = re.sub(r'(?i)\b(wma|pfa|vpa)\b', '', n).strip().lower()
+            if core and core in low: place = n
+        place = place or names[0]
+        if key in seen: continue
+        seen[key] = 1
+        tract = re.search(r"(?i)\b([A-Z][\w'. ]{2,40} Tract)\b", sent) or re.search(r"(?i)\b([A-Z][\w'. ]{2,40} Tract)\b", head)
+        on = f' on the {tract.group(1)}' if tract else ''
+        old = upd is not None and (TODAY - upd).days >= 365
+        end = _ga_end(sent, upd)
+        if end and end < TODAY: continue                                                  # a window that has ended (GA-R4)
+        datestr = f"updated {upd.month}/{upd.day}/{str(upd.year)[2:]}" if upd else 'dates not given'
+        base = {'name': place, 'end': end, 'at': None, 'link': GA_PAGE, 'date': upd}
+        # NOT closures
+        if re.search(r'\bno\b[^.]{0,40}\bclos|\bnot\b[^.]{0,20}\bclos|\bnone\b|remains? open|minimal impact', low) and not re.search(r'\bremains? closed', low):
+            continue                                                                      # GA-R2 negations
+        if re.search(r'\b(is|are)\s+open\b[^.]*\b(a\.?m\.?|p\.?m\.?)|\bopen from\b|\bgate\b[^.]*\bopen\b', low):
+            continue                                                                      # GA-R5 hours = info, not closures
+        if re.search(r'quota hunt|drawn hunters?', low):
+            rows.append({**base, 'kind': 'Park notice', 'title': '🦌 Drawn quota hunts: check the agency page', 'text': f'Georgia DNR ({datestr}): "{sent}"'}); continue   # GA9
+        if re.search(r'lease[^.]*(not (been )?renewed|ended|expired)|no longer (open|available)', low):
+            rows.append({**base, 'kind': 'Park notice', 'title': 'ℹ️ May not be public land now', 'text': f'Georgia DNR ({datestr}): "{sent}"'}); continue   # GA3
+        if not re.search(r'\bclos(e|ed|es|ing|ure|ures)\b', low): continue                # no closing word = not a closure
+        if 'caution' in sect:
+            rows.append({**base, 'kind': 'Park notice', 'title': 'Caution', 'text': f'Georgia DNR ({datestr}): "{sent}"'}); continue
+        if old and not end:
+            rows.append({**base, 'kind': 'Park notice', 'title': f'ℹ️ Old notice ({upd.month}/{upd.day}/{str(upd.year)[2:]})',
+                         'text': f'"{sent}" May be out of date: check the agency page.'}); continue   # GA1 / GA-R8 (before the on/off rule)
+        if re.search(r'intermittent|periodic|at times|on and off', low):
+            rows.append({**base, 'kind': 'Park notice', 'title': '📅 On and off' + on, 'text': f'Georgia DNR ({datestr}): "{sent}"'}); continue   # GA6
+        if re.search(r'closed to vehicles?|vehicle traffic', low) and not re.search(r'all traffic|all access|foot|pedestrian', low):
+            rows.append({**base, 'kind': 'Park notice', 'title': 'Roads closed to vehicles (walking allowed)' + on, 'text': f'Georgia DNR ({datestr}): "{sent}"'}); continue   # GA2
+        if old and not end:
+            rows.append({**base, 'kind': 'Park notice', 'title': f'ℹ️ Old notice ({upd.month}/{upd.day}/{str(upd.year)[2:]})',
+                         'text': f'"{sent}" May be out of date: check the agency page.'}); continue   # GA1 / GA-R8
+        # GA-R3: 'the bathhouse and north side of the campground are closed' = a facility note + a part closure
+        m2 = re.match(r'(?i)^(?:the\s+)?(bath ?house|restrooms?|showers?|office|pavilion)\s+and\s+(.+?)\s+(?:is|are|will be)\s+closed', sent)
+        if m2:
+            rows.append({**base, 'kind': 'Park notice', 'title': f'{m2.group(1).capitalize()} closed' + on, 'text': f'Georgia DNR ({datestr}): "{sent}"'})
+            rows.append({**base, 'kind': 'Closure', 'title': f'PART CLOSED: {m2.group(2)}' + on, 'text': f'Georgia DNR ({datestr}): "{sent}"'})
+            continue
+        whole = re.search(r'closed to all (access|public use)', low) and any(n.lower().split(' (')[0] in low for n in names) \
+            and not re.search(r'\b(lake|pond|road|trail|bridge|boardwalk|ramp|campground|area of|portion|section)\b', low)
+        mp = re.match(r'(?i)^(?:the\s+)?(.{3,90}?)\s+(?:is|are|will be|remains?|has been|have been)\s+(?:currently\s+|temporarily\s+)?closed', sent)
+        part = (mp.group(1) if mp else '').strip()
+        if not part:
+            mc = re.match(r'(?i)^(?:the\s+)?(.{3,80}?)\s+(?:has\s+a\s+)?(?:temporary\s+)?closure\b', sent)
+            part = (mc.group(1) if mc else '').strip()
+        title = 'CLOSED' + on if whole else ('PART CLOSED: ' + part + on if part else 'PART CLOSED' + on)
+        rows.append({**base, 'kind': 'Closure', 'title': title, 'text': f'Georgia DNR ({datestr}): "{sent}"'})
+    return rows
+
+
+def src_ga():
+    b = get(GA_PAGE, raw=True).decode('utf-8', 'replace')
+    rows = _ga_rows(_ga_parse(_ga_lines(b)))
+    if not rows and 'closure' not in b.lower():
+        raise RuntimeError('page layout changed: nothing readable')   # keeps last items (sheet 4)
+    return rows
+
+
 SOURCES = [  # id, state, agency, its page for people, reader
     ('ca-parks', 'CA', 'California State Parks', 'https://www.parks.ca.gov/?page_id=30009', src_ca),
     ('wi-dnr', 'WI', 'Wisconsin DNR', 'https://dnr.wisconsin.gov/topic/parks/propertynotices', src_wi),
@@ -255,6 +390,7 @@ SOURCES = [  # id, state, agency, its page for people, reader
     ('co-cpw', 'CO', 'Colorado Parks & Wildlife', 'https://cpw.state.co.us/', src_co),
     ('ar-agfc', 'AR', 'Arkansas Game & Fish', 'https://www.agfc.com/category/wma-closure/', src_ar),
     ('nc-parks', 'NC', 'NC State Parks', 'https://www.ncparks.gov/', src_nc),
+    ('ga-wrd', 'GA', 'Georgia DNR Wildlife Resources', 'https://georgiawildlife.com/closures', src_ga),
 ]
 
 
@@ -332,7 +468,7 @@ def main():
             lines.append(f'{sid}: NOT READ ({str(e)[:80]}), kept {len(old.get(sid, []))}')
             continue
         parks = park_list(st)
-        n, nomatch = 0, []
+        n, nomatch, prev = 0, [], []
         for r in rows:
             refs = match(K, r, parks, st)
             if not refs:
@@ -340,7 +476,9 @@ def main():
             exp = r['end'] if r.get('end') and r['end'] >= TODAY else TODAY + dt.timedelta(days=3)
             det = f"{agency}: {r['title']}" + (f" — {r['text']}" if r.get('text') and r['text'] != r['title'] else '')
             if r.get('end'): det += f" (until {r['end'].strftime('%b %-d')})"
-            kind = 'Closure' if re.search(r'clos|restrict', r['title'] + ' ' + r['text'], re.I) else 'Park notice'
+            kind = r.get('kind') or ('Closure' if re.search(r'clos|restrict', r['title'] + ' ' + r['text'], re.I) else 'Park notice')
+            if sid == 'ga-wrd' and not GA_LIVE:              # preview only: record what WOULD show, put nothing on cards
+                prev.append({'refs': refs, 'kind': kind, 'details': det[:400], 'expires': exp.isoformat()}); n += 1; continue
             for ref in refs:
                 key = re.sub(r'[^a-z0-9]+', '-', (r['title'] + ' ' + r['text'])[:60].lower()).strip('-')
                 iid = f'uc-{sid}-{key}-{ref}'
@@ -349,7 +487,8 @@ def main():
                               'expires': exp.isoformat(), 'link': r.get('link') or page})
                 n += 1
         srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': True, 'rows': len(rows), 'n': n,
-                     'unmatched': nomatch[:15], **source_clock((was.get('sources') or {}).get(sid), True, n)}
+                     'unmatched': nomatch[:15], **({'preview': prev} if prev else {}),
+                     **source_clock((was.get('sources') or {}).get(sid), True, n)}
         lines.append(f'{sid}: {len(rows)} notices, {n} park entries' + (f'; no park for: {"; ".join(nomatch[:6])}' if nomatch else ''))
     seen_ids, uniq = set(), []
     for it in sorted(items, key=lambda x: x['id']):
