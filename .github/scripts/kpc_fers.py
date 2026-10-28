@@ -1150,6 +1150,12 @@ class Frame:
             if gm is not None: m |= gm
         return m
 
+    def window(self, P, pad):
+        """A sub-raster of THIS frame's pixel grid around pixel points P (+ pad pixels), clipped to the frame."""
+        c0 = max(0, int(math.floor(P[:, 0].min())) - pad); r0 = max(0, int(math.floor(P[:, 1].min())) - pad)
+        c1 = min(self.W, int(math.ceil(P[:, 0].max())) + pad + 1); r1 = min(self.H, int(math.ceil(P[:, 1].max())) + pad + 1)
+        return Win(self, c0, r0, max(1, c1 - c0), max(1, r1 - r0))
+
     def lines(self, ls, width_m):
         m = np.zeros((self.H, self.W), np.uint8)
         th = max(1, int(round(2 * width_m / self.cell)))
@@ -1165,6 +1171,21 @@ class Frame:
         keep = [p for p in parts if p[:, 0].max() >= -pad and p[:, 0].min() <= self.W * 16 + pad and p[:, 1].max() >= -pad and p[:, 1].min() <= self.H * 16 + pad]
         if keep: cv2.polylines(m, keep, False, 1, thickness=th, lineType=cv2.LINE_8, shift=4)
         return m
+
+
+class Win(Frame):
+    """A window of a Frame: the parent's pixel grid shifted by whole pixels (px = parent px minus the offset, exact in floats),
+    so fillPoly / polylines paint exactly the parent's pixels there."""
+    def __init__(self, F, c0, r0, W, H):
+        self.P, self.c0, self.r0, self.W, self.H, self.cell = F, c0, r0, W, H, F.cell
+        self.lat0, self.lon0, self.kx, self.ky, self.x0, self.y1 = F.lat0, F.lon0, F.kx, F.ky, F.x0, F.y1
+
+    def px(self, pts):
+        return Frame.px(self.P, pts) - np.array([self.c0, self.r0], dtype=np.float64)
+
+    def ll(self, c, r): return self.P.ll(c + self.c0, r + self.r0)
+
+    def bounds(self): raise RuntimeError('Win.bounds: use the parent frame')
 
 
 def inter(b1, b2, pad=0.0):
@@ -1941,10 +1962,19 @@ def line_zone(x, G, PIN):
     if not lref or not oref: return None
     b = x.get('box') or bbox_lines([x['shape']])
     F = Frame(b, CELL, 60)
-    own = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
-    z = (F.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    # Oct 28 (pass-5 speed-up): the zone lies within 100 ft of THIS stretch's own line, but a main row's box covers every stretch
+    # folded into it (Sheltowee x Daniel Boone: a 961-million-pixel frame, 4 GB). So the same global pixel grid is used, but only a
+    # window around the stretch's line (+ a margin far wider than the pen and the 5-m distance test) is drawn: the same pixels.
+    w = F.window(F.px(x['shape']), int(math.ceil((ZONE + STATION_IN) / CELL)) + 24)
+    m = w.area(G[oref])
+    if oref in OWNED and m.any():
+        o = owned_land(OWNED[oref], F.bounds())   # the global frame's bounds: the same ownership-map answer as before
+        if o is None: OWNED_FAIL.add(oref); m = np.zeros_like(m)
+        else: m &= w.area(o)
+    own = (dt(m) * CELL >= STATION_IN).astype(np.uint8)
+    z = (w.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
     if not z.any(): return {'zone': [], 'zone_acres': 0, 'zone_wide_m': 0}
-    cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE, offset=(w.c0, w.r0))
     rings = []
     for c in sorted(cs, key=cv2.contourArea, reverse=True)[:12]:
         c = cv2.approxPolyDP(c, 1.0, True).reshape(-1, 2)
