@@ -66,6 +66,7 @@
     var css = document.createElement('style');
     css.textContent = '.kpc-hol{background:#0b0b0b;padding:18px 16px 22px;text-align:center;border-bottom:1px solid #2a2a2a}' +
       '.kpc-hol figure{margin:0 auto;max-width:980px}' +
+      '.kpc-hol.wide figure{max-width:1800px}.kpc-hol.wide{padding:14px 24px 20px}' +
       '.kpc-hol-box{position:relative;display:block;border:2px solid #d5a63a;border-radius:14px;overflow:hidden;background:#070707;box-shadow:0 10px 34px rgba(0,0,0,.6),0 0 0 1px rgba(240,201,107,.25)}' +
       '.kpc-hol-box img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;margin:0 auto}' +
       '.kpc-hol-box canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}' +
@@ -95,7 +96,7 @@
     var src = String(h.img || '').replace(/\.webp$/i, '-wide.webp');
     if (src === h.img) return;
     var test = new Image();
-    test.onload = function () { var img = sec.querySelector('.kpc-hol-box img'); if (img) img.src = src; };
+    test.onload = function () { var img = sec.querySelector('.kpc-hol-box img'); if (img) { img.src = src; sec.classList.add('wide'); } };
     test.src = src;
   }
 
