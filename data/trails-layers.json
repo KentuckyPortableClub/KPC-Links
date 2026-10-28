@@ -1,5 +1,5 @@
 {
- "about": "Official trail LINE layers picked by hand (Brandon's sheets, Oct 24 2026). The trails bot tries these first for trails in that state / province; the name must still match and the line must be near the POTA pin. Key = state letters or CA-province.",
+ "about": "Official trail LINE layers picked by hand (Brandon's sheets, Oct 24 2026). The trails bot tries these first for trails in that state / province; the name must still match and the line must be near the POTA pin. Key = state letters or CA-province. 'credits' (HQ Oct 27): the credit line a layer asks for; the bot shows it as the source.",
  "layers": {
   "FL": [
    "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer"
@@ -58,6 +58,21 @@
   ],
   "MN": [
    "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0"
+  ],
+  "WI": [
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0"
+  ],
+  "WV": [
+   "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0"
+  ],
+  "AR": [
+   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22"
   ]
+ },
+ "credits": {
+  "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0": "Wisconsin DNR, Bureau of Parks & Recreation Management",
+  "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0": "WVGISTC, WVDOT",
+  "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22": "Arkansas State Parks, Arkansas Natural Heritage Commission",
+  "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0": "Minnesota DNR (DNR GIS Data License Agreement)"
  }
 }

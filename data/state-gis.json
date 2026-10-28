@@ -788,6 +788,17 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks"
+   },
+   {
+    "ag": "Tennessee Wildlife Resources Agency (credit: TWRA)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "own": "OWNERSHIP",
+    "lic": "credit only, no use limits (HQ Oct 27 ruling): TWRA",
+    "read": "2026-10-27",
+    "note": "228 areas; OWNERSHIP + OWNCODE = rule 14 (federal-owned WMAs are SE-1: NOT SURE)",
+    "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3"
    }
   ],
   "TX": [
