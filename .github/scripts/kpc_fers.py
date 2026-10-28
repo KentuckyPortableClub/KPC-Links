@@ -2085,6 +2085,10 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['status'] = 'not sure: water not checked (the USGS water map did not answer for this river bank): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
     if s['kind'] != 'area' and all(water_route(r, LN, PIN) for r in refs):   # Oct 28 (chat 8 KY 4, rule 9): two water routes alone share only the water
         s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
+    if s.get('masked_out') and len(refs) > 2:   # Oct 28 (HQ 9:20 AM, chat 8: Rockcastle River WMA 3-fer, 28 ac): the agency's own map says the
+        # three-way patch is not its land = no 3-fer THERE (rule 14b); each pair's own overlap is its own row and stands
+        s['status'] = ('dropped: the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out']) + ' shows no agency land on the patch all '
+                       + str(len(refs)) + ' share (rule 14b): the pairs stand as their own rows'); return
     if s.get('masked_out'):   # Oct 27 (Fable #4, HQ 10:35 AM: contradiction A): the mask decides the SHAPE; no owned patch = NOT SURE, never silence
         s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
                        + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
