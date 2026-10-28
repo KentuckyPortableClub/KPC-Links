@@ -26,7 +26,9 @@ jobs:
         env:
           STATES: ${{ inputs.states }}
           MINUTES: '300'
-        run: python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log
+        run: |
+          pip install --quiet --break-system-packages pyshp pyproj || true   # Oct 28: zipped-shapefile layers (Mississippi)
+          python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log
       - name: Review issue
         env:
           GH_TOKEN: ${{ github.token }}

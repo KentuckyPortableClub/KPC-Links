@@ -66,6 +66,7 @@ jobs:
           MINUTES: '320'
         run: |
           echo "::notice title=Saved shapes::fetching $STATES"
+          pip install --quiet --break-system-packages pyshp pyproj || true   # Oct 28: zipped-shapefile layers (Mississippi)
           python3 .github/scripts/kpc_us_key.py || true
       - name: Put them on the release
         continue-on-error: true

@@ -416,6 +416,16 @@ def download(parks, refs, det, prec):
         oids = sorted({i[2] for i in items})
         found = {}
         for u in urls:
+            if u.startswith('file:'):   # Oct 28: a zipped-shapefile layer = the key's own simplified copy (no live map)
+                try:
+                    for ft in json.load(open(u[5:])).get('features') or []:
+                        pr = ft.get('properties') or {}; mm = re.fullmatch(r'[a-z]+(\d+)', str(pr.get('OBJECTID')))
+                        gm = ft.get('geometry') or {}
+                        rs = gm.get('coordinates') or []
+                        rs = rs if gm.get('type') == 'Polygon' else [r for poly in rs for r in poly]
+                        if mm and int(mm.group(1)) in oids: found.setdefault(int(mm.group(1)), []).append((pr, rs))
+                except Exception as e: LOG.append(f'{u}: not read ({str(e)[:60]})')  # noqa: BLE001
+                continue
             for k in range(0, len(oids), 100):
                 ids = [o for o in oids[k:k + 100] if o not in found]
                 if not ids: continue
@@ -824,6 +834,26 @@ def pad_closed(box):
     return [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
 
 
+# Oct 28 (chat 9 hand-off, rule 14): the Corps of Engineers' own recreation-area polygons (3,659, 'which agency runs it').
+# Corps project land under a state park / WMA is the layered case PAD-US often misses (no fee record, or the state as owner).
+USACE_REC = 'https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0/query'
+CORPS_RUN = {'State Agency': 'STATE', 'Local Government Agency': 'LOCAL', 'Corps of Engineers': 'FED:USACE'}
+
+
+def usace_at(lon, lat):
+    """USACE recreation areas at one point: [(name, managing agency)]; [] when none or the map did not answer."""
+    try:
+        j = get(USACE_REC, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                            'outFields': 'FEATURENAME,RECPROJECTSITENAME,MANAGINGAGENCY', 'returnGeometry': 'false', 'f': 'json'}, tries=2, timeout=60)
+    except Exception: return []  # noqa: BLE001
+    out = []
+    for f in j.get('features') or []:
+        a = f.get('attributes') or {}
+        ma = str(a.get('MANAGINGAGENCY') or '')
+        out.append((str(a.get('FEATURENAME') or a.get('RECPROJECTSITENAME') or 'Corps recreation area'), next((v for k, v in CORPS_RUN.items() if ma.startswith(k)), ma or '?')))
+    return out
+
+
 def cpcad_at(lon, lat):
     j = get(CPCAD, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                     'outFields': '*', 'returnGeometry': 'false', 'f': 'json'})
@@ -910,13 +940,20 @@ def ownership_step(s, parks, PIN):
     # Oct 27 (Fable #3): the owner is read at up to 5 points of the patch (its middle + the farthest inside point each way),
     # never one; every point must show the SAME public owner
     canada = refs[0].startswith('CA-')
-    recs, seen = [], []
+    recs, seen, corps = [], [], []
     for lo, la in patch_points(s):
         try: rr = cpcad_at(lo, la) if canada else pad_at(lo, la)
         except Exception as e: return 'not sure', f'ownership map did not answer ({str(e)[:40]})'  # noqa: BLE001
         recs += rr
         if canada: h = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in rr} - {''}
         else: h = {owner_of_pad(a) for a in rr if a.get('Category') == 'Fee'}
+        if not canada and REGION != 'world':
+            ua = usace_at(lo, la)
+            if ua:
+                # rule 14 (Oct 28): Corps project land. The Corps OWNS it; the agency that RUNS it (state, county) layers on it.
+                corps.append(ua)
+                if not h: h = {'FED:USACE'}   # PAD-US has no fee record here: the Corps project land is the owner
+                h = {'FED:USACE' if re.search(r'CORPS|USACE|ARMY CORPS', x) else x for x in h}
         seen.append(h - {'JOINT'})   # PAD-US 'joint' records are mixed-owner corridors (Kentucky wild rivers): a designation, not an owner
     here = set().union(*seen) if seen else set()
     if any(r in OWNED for r in refs):
@@ -931,15 +968,22 @@ def ownership_step(s, parks, PIN):
         if len(here) > 1: return 'not sure', 'the ownership map shows more than one owner across the spot: ' + ', '.join(sorted(here))
         ground = next(iter(here), '')
     bad, unk = [], []
+    # Corps land at every point: a park the Corps recreation-area map says the STATE / COUNTY runs is that agency running Corps land
+    run_by = set().union(*[{m for _, m in ua} for ua in corps]) if corps and len(corps) == len(seen) else set()
+    if run_by and ground == 'FED:USACE':
+        s['corps_land'] = sorted({n for ua in corps for n, _ in ua})[:3]
     for r in refs:
         o = owners[r]
         if o == '': continue                                             # a designation layers on the ground's owner
+        if ground == 'FED:USACE' and o in run_by and o in ('STATE', 'STAT', 'LOCAL'): continue   # state / county runs it on Corps land: layered
+        if ground == 'FED:USACE' and o == 'STAT' and 'STATE' in run_by: continue
         if covered(r, recs, parks, PIN) and not any(x in OWNED for x in refs): continue   # its own record at the spot (a lease / agreement); not against the agency's own ownership map
         if o == '?': unk.append(r); continue
         if ground and o != ground: bad.append(f"{PIN.get(r, [r])[0]} is {owner_word(o)} land, the ground here is {owner_word(ground)}")
         if not ground and len(set(real.values())) > 1: bad.append('two owners side by side')
     if bad: return 'drop', 'side by side, not layered: ' + '; '.join(bad[:2])
     if unk: return 'not sure', 'owner not known for ' + ', '.join(PIN.get(r, [r])[0] for r in unk)
+    if s.get('corps_land'): return 'ok', f"layered on Corps of Engineers land ({', '.join(s['corps_land'])}: USACE recreation areas map)"
     return 'ok', f'layered on {owner_word(ground) or "one owner"} land'
 
 
@@ -1571,7 +1615,7 @@ def nearest_access(spot, st_of):
 
 FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'US-KY' if REGION == 'ky' else r'(?!US-KY)(US|CA)-[A-Z]{2}'
 OWN = {}
-FEDDES = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'rst', 'rma'}   # federal DESIGNATIONS / planning areas, not ownership
+FEDDES = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'rst', 'rma', 'fwsr', 'fsod'}   # Oct 28 (chat 9): + FS wild-river corridors, FS other designated areas   # federal DESIGNATIONS / planning areas, not ownership
 
 
 def owners(parks):

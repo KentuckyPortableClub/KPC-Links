@@ -481,10 +481,79 @@ def _num(v):   # Oct 25: an acres field can be text (NPS legal boundary layer): 
     except (TypeError, ValueError): return 0
 
 
+# Oct 28 (HQ, chat 9 hand-off): layers that exist only as ZIPPED SHAPEFILES (Mississippi's MARIS has no live layers).
+# Same reader as the Canada key's sz_pull(): the projection comes from the zip's own .prj. 'tk' = TYPE value -> kind
+# (a TYPE not listed is left out). Credit 'MARIS / Mississippi Dept. of Wildlife, Fisheries & Parks' (disclaimer only, no use limits).
+MS_TK = {'wma': 'wma', 'wma zone2': 'wma', 'sp': 'sp', 'refuge': 'wma', 'waterfowl': 'wma'}   # runner probe Oct 28: TYPE values; 'WMAcossar1..7' = WMA pieces
+# left out on purpose: PRIVATE (198 inholdings), '16 section lease 2015' (a private lease, Q12), 'WMA tobe' (not yet a WMA), USFS (the
+# Forest Service's own land), and the hunting zones INSIDE a WMA (Dog / Still Hunting Area, NO Hunting, Handicap, Greentree, Restricted,
+# SANDBAR, IMPOUNDMENT, Lake): they are rules on a WMA's land, not more land
+SZ_US = [('mszw', 'https://maris.mississippi.edu/MARISdata/Boundaries/MS_WildlifeManagementAreas_2026.zip', ('Name',), ('ACREAGE',),
+          'MARIS / Mississippi Dept. of Wildlife, Fisheries & Parks (WMAs 2026, zip)', 'STAT', {'MS'}, {'type': 'TYPE', 'tk': MS_TK, 'tk_re': r'^wmacossar\d+$'}),
+         # parks: NAME = a tract ('JP COLEMAN TRACT 5'), LABEL = the park ('JP COLEMAN SP'). MARIS: 'not a legal description, the general area'
+         ('mszp', 'https://maris.mississippi.edu/MARISdata/Cultural/MS_StateParks_2026.zip', ('LABEL',), ('ACRES',),
+          'MARIS / Mississippi Dept. of Wildlife, Fisheries & Parks (state parks 2026, zip; general area, not a legal description)', 'STAT', {'MS'},
+          {'kind': 'sp', 'sub': [(r'\bSP$', 'State Park')]})]
+ZIPC = {}
+
+
+def zip_state(st, have):
+    """Records from the zipped-shapefile layers for this state ([] when none, or when pyshp / pyproj are missing)."""
+    out = []
+    for pre, url, nfs, afs, label, own, sts, opt in SZ_US:
+        if st not in sts: continue
+        try:
+            import io, zipfile, shapefile
+            from pyproj import CRS, Transformer
+            if url not in ZIPC:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
+            z = ZIPC[url]; n = 0
+            for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
+                b = sp[:-4]
+                prj = next((q for q in z.namelist() if q.lower() == (b + '.prj').lower()), None)
+                tr = Transformer.from_crs(CRS.from_wkt(z.read(prj).decode('utf8', 'ignore')) if prj else CRS.from_epsg(4326), 4326, always_xy=True)
+                rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')))
+                fn = [f[0] for f in rd.fields[1:]]
+                nf = next((f for f in fn if f in nfs or f.lower() in {x.lower() for x in nfs}), None)
+                af = next((f for f in fn if f in afs or f.lower() in {x.lower() for x in afs}), None)
+                tf = next((f for f in fn if f.lower() == str(opt.get('type', '')).lower()), None)
+                if not nf: notice(f'US key {st}', f'{label}: no name field in {fn}'); continue
+                for i, (shp, rec) in enumerate(zip(rd.shapes(), rd.records())):
+                    a = dict(zip(fn, list(rec))); nm = str(a.get(nf) or '').strip()
+                    if not nm or not shp.points: continue
+                    for pat, rp in opt.get('sub') or []: nm = re.sub(pat, rp, nm, flags=re.I)
+                    if tf:
+                        tv = str(a.get(tf) or '').strip().lower()
+                        kd = opt['tk'].get(tv) or ('wma' if opt.get('tk_re') and re.match(opt['tk_re'], tv) else None)
+                        if not kd: continue
+                        kk = {kd}
+                    else: kk = {opt.get('kind')} - {None}
+                    pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
+                    rs = []
+                    for k2 in range(len(parts) - 1):
+                        ring = pts[parts[k2]:parts[k2 + 1]]
+                        xs, ys = tr.transform([q[0] for q in ring], [q[1] for q in ring])
+                        rs.append([[round(x, 6), round(y, 6)] for x, y in zip(xs, ys)])
+                    g = {'rings': rs}; k = kinds(nm) | kk
+                    if (norm(nm), frozenset(k)) in have: continue
+                    ZIPGEO.setdefault(pre, {})[f'{pre}{i}'] = [nm, [[q for q in r2[::max(1, len(r2) // 400)]] + [r2[-1]] for r2 in rs if len(r2) > 3]]
+                    out.append({'OBJECTID': f'{pre}{i}', 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(), 'Loc_Mang': label,
+                                'Des_Tp': '', 'GIS_Acres': _num(a.get(af) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
+                    n += 1
+            XCOUNT[pre] = XCOUNT.get(pre, 0) + n
+            LAYERS_ZIP[pre] = [url, nf, label]
+        except Exception as e: notice(f'US key {st}', f'{label} not read ({str(e)[:120]})')  # noqa: BLE001
+    return out
+
+
+LAYERS_ZIP = {}
+ZIPGEO = {}   # prefix -> {id: [name, rings]}: saved as data/us-key/zip-<prefix>.json, because a zip has no live map to draw from
+
+
 def extra_state(st, have, only=None):
     box = st_box(st)
     if not box: return []
-    out = []
+    out = [] if only is not None else zip_state(st, have)
     for x in XS:
         pre, url, nf, af, kk, label = x[:6]
         if only is not None and pre not in only: continue
@@ -592,6 +661,15 @@ def score_park(name, typ, la, lo, recs, clusters):
 
 
 RD = {}
+_TR = []
+def transfers():
+    """data/park-transfers.json: parks handed to another agency that keep their POTA number (Oct 28)."""
+    if not _TR:
+        try: _TR.append(json.load(open('data/park-transfers.json')).get('parks') or {})
+        except Exception: _TR.append({})  # noqa: BLE001
+    return _TR[0]
+
+
 def outline_dates(p, recs):
     """Rule B7 (boundary review #2): 'read' = the oldest day this park's joined land was read from its agency; 'src' = what it
     came from (PAD-US version, or the agency layer). Only changes when a saved copy is re-read, so the key does not churn."""
@@ -886,11 +964,17 @@ def run(st):
     try:
         old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
         ids_here = {_oid(a) for a in recs}; kept = 0
+        TR = transfers()
         for ref, op in old.items():
             np_ = parks.get(ref)
             if not np_ or np_.get('m') or not op.get('m'): continue
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
+            if om and ref in TR and any(str(x[0]) in ids_here for x in om):
+                # Oct 28 (HQ, Brandon): a TRANSFERRED park (handed to a county / city, POTA number kept) never loses its outline:
+                # its land is still in the read but no longer under the old name: keep the last good join, say why
+                np_['m'] = [x for x in om if str(x[0]) in ids_here]; np_['c'] = []
+                np_['kept'] = f"transferred to {TR[ref].get('by')}: the last official outline is kept"; kept += 1; continue
             if om and not any(str(x[0]) in ids_here for x in om):
                 # boundary review #3: the same land under a new PAD-US id (a new PAD-US version) = found by name + acres
                 fp = []
@@ -910,6 +994,12 @@ def run(st):
         if kept: notice(f'US key {st}', f'{kept} park(s) kept their last good outline (their land was missing from this read)')
     except FileNotFoundError: pass
     except Exception as e: notice(f'US key {st}', f'keep-last-good check skipped: {e}')  # noqa: BLE001
+    try:
+        for ref, t in transfers().items():
+            if ref in parks: parks[ref]['run_by'] = t.get('by', '') + (f" since {t['since']}" if t.get('since') else '')
+            if ref in parks and t.get('outline_note'): parks[ref]['outline_note'] = t['outline_note']
+    except FileNotFoundError: pass
+    except Exception as e: notice(f'US key {st}', f'transfer tags skipped: {e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
@@ -971,13 +1061,41 @@ for st in STATES:
     for x in XS:
         if x[0] in RESOLVED: LJ[x[0]] = [RESOLVED[x[0]][0], RESOLVED[x[0]][1], x[5]]
         elif not x[1].startswith('svc:'): LJ[x[0]] = [x[1], x[2], x[5]]
+    # Oct 28: zipped-shapefile layers: the map pages and the 2-fer bot read the outlines from our own simplified copy
+    for pre, recs_ in ZIPGEO.items():
+        fc = {'type': 'FeatureCollection', 'about': f'{LAYERS_ZIP[pre][2]}; from {LAYERS_ZIP[pre][0]}; read {time.strftime("%Y-%m-%d")}',
+              'features': [{'type': 'Feature', 'properties': {'OBJECTID': i, 'Unit_Nm': v[0]}, 'geometry': {'type': 'Polygon' if len(v[1]) == 1 else 'MultiPolygon',
+                            'coordinates': [v[1][0]] if len(v[1]) == 1 else [[r] for r in v[1]]}} for i, v in sorted(recs_.items()) if v[1]]}
+        save_json(OUT / f'zip-{pre}.json', fc)
+        LJ[pre] = [f'file:data/us-key/zip-{pre}.json', 'Unit_Nm', LAYERS_ZIP[pre][2]]
     save_json(OUT / 'layers.json', LJ)
+# Oct 28 (HQ item C): a park POTA files under several states (132 do: the Appalachian Trail under 14) is not 'nothing found' in
+# one state when another state's key joined it. Such parks are marked 'joined_in' and counted apart ('joined_in_another_state').
+try:
+    import glob as _g0
+    _all = {pathlib.Path(_f).stem: json.load(open(_f)) for _f in _g0.glob(str(OUT / 'US-??.json'))}
+    _joined = {}
+    for _st, _d in _all.items():
+        for _r, _p in (_d.get('parks') or {}).items():
+            if _p.get('m'): _joined.setdefault(_r, []).append(_st)
+    for _st, _d in _all.items():
+        _n = 0; _was = json.dumps(_d, sort_keys=True)
+        for _r, _p in (_d.get('parks') or {}).items():
+            _else = [x for x in _joined.get(_r, []) if x != _st]
+            if not _p.get('m') and _else:
+                _p['joined_in'] = _else; _n += 1
+            elif _p.get('joined_in') and not _else: _p.pop('joined_in')
+        _c = _d.get('counts') or {}
+        _c['joined_in_another_state'] = _n; _d['counts'] = _c
+        if json.dumps(_d, sort_keys=True) != _was: save_json(OUT / f'{_st}.json', _d)
+        if _st[3:] in idx: idx[_st[3:]]['joined_in_another_state'] = _n
+except Exception as _e: print(f'cross-state count skipped: {_e}', flush=True)  # noqa: BLE001
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 if CMODE != 'off':
     notice('US key saved shapes', f"mode {CMODE}, detail {DETAIL}: loaded {len(CACHE_USED)} ({' '.join(CACHE_USED)}), "
                                   f"saved {len(CACHE_SAVED)} ({' '.join(CACHE_SAVED)})")
-notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found")
+notice('US answer key', f"{len(done)} states this run ({' '.join(done)}). All states so far: {tot['parks']} parks, {tot['matched']} joined, {tot['check']} to check, {tot['site']} sites on bigger land, {tot['none']} nothing found (of them {sum(v.get('joined_in_another_state', 0) for v in idx.values())} are joined in another state they cross: not missing)")
 # How many joins put the park's pin outside the land it was joined to? A big number here means the match
 # count has been flattering us. Printed per run so it can be watched rather than discovered later.
 try:
