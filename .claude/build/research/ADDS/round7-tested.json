@@ -1,0 +1,1310 @@
+{
+ "about": "Chat 9 round 7 (HQ Oct 27 11:55 PM): NY OPRHP state-park boundary (dev host -> production, licence, date) + chat 8's BOT LOOK-UP rows 31-37 (KPC_OtherMaps_desk.md; 31-33 observe only, copy nothing) + leads from round 6 (MARIS ArcGIS Online group, Michigan Mi_State_Forest + DNRBoundariesParksHuntableLands, NC State-Owned Land). Results: round7-tested.json.",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "NY",
+   "kind": "park",
+   "ag": "NYS OPRHP (dev host)",
+   "url": "https://gisportaldev.dot.ny.gov/server/rest/services/CulturalResources/Cultural_Resources/MapServer/16",
+   "note": "row 34: dev host",
+   "answers": true,
+   "service": "OPRHP Boundary",
+   "licence": "",
+   "years_in_text": [],
+   "description": "NYS Office of Parks, Recreation and Historic Preservation boundary file",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": null,
+     "name": "OPRHP Boundary",
+     "geom": "Polygon",
+     "nameField": "Name",
+     "ownerField": "",
+     "typeField": "Category",
+     "fields": [
+      "OBJECTID",
+      "UID",
+      "Name",
+      "Category",
+      "Descript",
+      "Region",
+      "County",
+      "Source",
+      "Orig",
+      "Update_",
+      "URL",
+      "Acre",
+      "Tot_acre",
+      "Shape_Leng",
+      "Shape",
+      "Shape.STArea()",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 805,
+     "sample": [
+      "Robert Moses",
+      "Robert Moses",
+      "Robert Moses",
+      "Croil Island",
+      "Croil Island",
+      "Croil Island",
+      "Croil Island",
+      "Wilson Hill Boat Launch"
+     ],
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    }
+   ]
+  },
+  {
+   "st": "MI",
+   "kind": "forest",
+   "ag": "Michigan DNR",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer",
+   "note": "r6 org walk",
+   "answers": true,
+   "service": "",
+   "licence": "Michigan Department of Natural Resources",
+   "years_in_text": [],
+   "description": "Michigan DNR Mi State Forest service is used to convey the Michigan DNR compartment review process to the public.",
+   "item_licence": "This dataset is a public record and, as more fully described below, there are no restrictions on the use, reproduction, or distribution of this dataset. Notwithstanding the foregoing, the public release of this dataset should not be construed, expressed or implied, as to whether any use constitutes ",
+   "item_modified": "2026-10-26",
+   "item_owner": "heintzelmanc_dnr",
+   "item_org": "Michigan Department of Natural Resources",
+   "item_title": "Mi State Forest",
+   "layers": [
+    {
+     "id": 8,
+     "name": "Mi State Forest - Compartment Outline",
+     "geom": "Polygon",
+     "nameField": "DistrictName",
+     "ownerField": "ManagementType",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "ManagementType",
+      "EcoRegion",
+      "ManagementArea",
+      "DistrictName",
+      "UnitName",
+      "UnitNumber",
+      "FCKey",
+      "CompartmentNumber",
+      "County",
+      "Acres",
+      "YOE",
+      "MapPhase",
+      "Source",
+      "CompartmentComments",
+      "CompartmentPacket",
+      "RecordofDecision",
+      "MiStateForestStatus",
+      "GlobalID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 2011,
+     "sample": [
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD"
+     ],
+     "owner_values": [
+      "State Forests",
+      "Unspecified"
+     ]
+    },
+    {
+     "id": 0,
+     "name": "Mi State Forest - Area's Unavailable to Harvest",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "GlobalID",
+      "ForestKey",
+      "FCSKey",
+      "Acres",
+      "SiteCondition1",
+      "Comments",
+      "FCKey",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 29963
+    },
+    {
+     "id": 1,
+     "name": "Mi State Forest - Treatment History",
+     "geom": "Polygon",
+     "nameField": "TreatmentName",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "GlobalID",
+      "PercentProposed",
+      "AcresProposed",
+      "ForestKey",
+      "FCKey",
+      "TreatmentName",
+      "TreatmentType",
+      "TreatmentMethod",
+      "TreatmentPurpose",
+      "Acres",
+      "ApprovedAcres",
+      "ProposedStartDate",
+      "SponsorAffliation",
+      "ApprovalStatus",
+      "CovertypeObjective",
+      "ApprovalDate",
+      "OtherComments",
+      "RxSpecs",
+      "NextSteps",
+      "ImplementationNotes",
+      "AcceptableRegen",
+      "OOYOEFCKey",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 43821,
+     "sample": [
+      "002-Cut",
+      "003-Cut",
+      "005-S T Select",
+      "006 RP Marking",
+      "007-Cut_regen",
+      "007-Cut",
+      "007-North  MO Aspen",
+      "007-South JP MO"
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Mi State Forest -  On-Going Treatments",
+     "geom": "Polygon",
+     "nameField": "TreatmentName",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "GlobalID",
+      "PercentProposed",
+      "AcresProposed",
+      "ForestKey",
+      "FCKey",
+      "TreatmentName",
+      "TreatmentType",
+      "TreatmentMethod",
+      "TreatmentPurpose",
+      "Acres",
+      "ApprovedAcres",
+      "ProposedStartDate",
+      "SponsorAffliation",
+      "ApprovalStatus",
+      "CovertypeObjective",
+      "ApprovalDate",
+      "OtherComments",
+      "RxSpecs",
+      "NextSteps",
+      "ImplementationNotes",
+      "AcceptableRegen",
+      "OOYOEFCKey",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 5429,
+     "sample": [
+      "11007030-NonFor",
+      "11045009-NonFor",
+      "11058005.2_NF",
+      "11072035-CCut",
+      "12007017-NonFor",
+      "12127023-NonFor",
+      "32007008.21_Cut",
+      "32001062.20_Cut"
+     ]
+    },
+    {
+     "id": 3,
+     "name": "Mi State Forest - Proposed Treatments",
+     "geom": "Polygon",
+     "nameField": "TreatmentName",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "GlobalID",
+      "PercentProposed",
+      "AcresProposed",
+      "ForestKey",
+      "FCKey",
+      "TreatmentName",
+      "TreatmentType",
+      "TreatmentMethod",
+      "TreatmentPurpose",
+      "Acres",
+      "ApprovedAcres",
+      "ProposedStartDate",
+      "SponsorAffliation",
+      "ApprovalStatus",
+      "CovertypeObjective",
+      "ApprovalDate",
+      "OtherComments",
+      "RxSpecs",
+      "NextSteps",
+      "ImplementationNotes",
+      "AcceptableRegen",
+      "OOYOEFCKey",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 239,
+     "sample": [
+      "72262404-NF",
+      "52020004_Monitor",
+      "52020040_Monitor",
+      "52020045_Monitor",
+      "52020120.43_Monitor",
+      "52020003_Monitor",
+      "52020036.33_Cut",
+      "52020017.32_Cut"
+     ]
+    },
+    {
+     "id": 4,
+     "name": "Mi State Forest - Stand Yellow Outline",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "ManagementNotes",
+     "typeField": "PublicCoverType",
+     "fields": [
+      "PublicCoverType",
+      "GlobalID",
+      "FCKey",
+      "Date",
+      "Examiner",
+      "SurveyType",
+      "CanopyClosure",
+      "UpLow",
+      "PlantedNatural",
+      "OverallSize",
+      "AgeStructure",
+      "DominantAgeClass",
+      "DominantAgeSource",
+      "SecondAgeSource",
+      "BARange",
+      "ForestObjective",
+      "RegenStock",
+      "ManagementNotes",
+      "GeneralComments",
+      "L4Covertype",
+      "CoverCode",
+      "CoverType",
+      "SizeDensityDescription",
+      "ACRES",
+      "FirstOriginYear",
+      "FCSKEY",
+      "StandNumber",
+      "OBJECTID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 203128,
+     "owner_values": [
+      "   Could cut the overstory or just leave",
+      "   Less than 10sq/ft oak. OI COMMENTS: L",
+      "   Some retained  oak and pine of larger",
+      "  \"Tioga Creek Conifer Block 11-003-78A\"",
+      "  * need permission from WE for access.",
+      "  . ",
+      "  2003FMD: HORSE TRAIL INFLUENCE-  leave",
+      "  2005/05/16, Bonnette: Potential for th",
+      "  2008 comments: Cut if practical and if",
+      "  2019: Continue the regen survey treatm",
+      "  52-103-15 Corey Lake Road Mix",
+      "  6\" BF  50 yrs\r\n  6\" BF  46 yrs\r\n  7\" B",
+      "  8\" NWC  106 yrs\r\n  8\" NWC  105 yrs\r\n11",
+      "  8\" WP  51 yrs\r\n  7\" WP  46 yrs\r\n25\" WP",
+      "  9\" NWC  124 yrs\r\n11\" NWC  131 yrs\r\n4\" ",
+      "  9\" RP  48 yrs\r\n10\" RP  48 yrs",
+      "  9\" WP  53 yrs\r\n  8\" WP  37 yrs\r\n26\" RP",
+      "  Apparent Trespass of cabin on north bo",
+      "  Berberis thunbergii - trace",
+      "  Big old red pine along slope in NW cor",
+      "  Black Spruce and Tamarack.",
+      "  C/C 1991",
+      "  Close illegal trails per Susan's illeg",
+      "  Consider harvesting stand when stand 4",
+      "  Cut all deciduous 2\" or more and conif",
+      "  Dead ash.  Cedar remnant. Drains into ",
+      "  Do nothing at this time.  ",
+      "  Final harvest next YOE.",
+      "  HARVESTED IN 2010.",
+      "  Hardwood saps in understory are light,"
+     ],
+     "type_values": []
+    },
+    {
+     "id": 5,
+     "name": "Mi State Forest - Stand Cover Type",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "ManagementNotes",
+     "typeField": "PublicCoverType",
+     "fields": [
+      "PublicCoverType",
+      "GlobalID",
+      "FCKey",
+      "Date",
+      "Examiner",
+      "SurveyType",
+      "CanopyClosure",
+      "UpLow",
+      "PlantedNatural",
+      "OverallSize",
+      "AgeStructure",
+      "DominantAgeClass",
+      "DominantAgeSource",
+      "SecondAgeSource",
+      "BARange",
+      "ForestObjective",
+      "RegenStock",
+      "ManagementNotes",
+      "GeneralComments",
+      "L4Covertype",
+      "CoverCode",
+      "CoverType",
+      "SizeDensityDescription",
+      "ACRES",
+      "FirstOriginYear",
+      "FCSKEY",
+      "StandNumber",
+      "OBJECTID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 158670,
+     "owner_values": [
+      "   Could cut the overstory or just leave",
+      "   Less than 10sq/ft oak. OI COMMENTS: L",
+      "   Some retained  oak and pine of larger",
+      "  \"Tioga Creek Conifer Block 11-003-78A\"",
+      "  * need permission from WE for access.",
+      "  . ",
+      "  2003FMD: HORSE TRAIL INFLUENCE-  leave",
+      "  2008 comments: Cut if practical and if",
+      "  2019: Continue the regen survey treatm",
+      "  52-103-15 Corey Lake Road Mix",
+      "  6\" BF  50 yrs\r\n  6\" BF  46 yrs\r\n  7\" B",
+      "  8\" NWC  106 yrs\r\n  8\" NWC  105 yrs\r\n11",
+      "  8\" WP  51 yrs\r\n  7\" WP  46 yrs\r\n25\" WP",
+      "  9\" NWC  124 yrs\r\n11\" NWC  131 yrs\r\n4\" ",
+      "  9\" RP  48 yrs\r\n10\" RP  48 yrs",
+      "  9\" WP  53 yrs\r\n  8\" WP  37 yrs\r\n26\" RP",
+      "  Apparent Trespass of cabin on north bo",
+      "  Big old red pine along slope in NW cor",
+      "  Black Spruce and Tamarack.",
+      "  C/C 1991",
+      "  Close illegal trails per Susan's illeg",
+      "  Consider harvesting stand when stand 4",
+      "  Cut all deciduous 2\" or more and conif",
+      "  Dead ash.  Cedar remnant. Drains into ",
+      "  Do nothing at this time.  ",
+      "  Final harvest next YOE.",
+      "  HARVESTED IN 2010.",
+      "  Hardwood saps in understory are light,",
+      "  Harvest stand to regenerate.  ",
+      "  Harvest/manage adjacent portion of sta"
+     ],
+     "type_values": []
+    },
+    {
+     "id": 6,
+     "name": "Mi State Forest - Compartments",
+     "geom": "Polygon",
+     "nameField": "DistrictName",
+     "ownerField": "ManagementType",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "ManagementType",
+      "EcoRegion",
+      "ManagementArea",
+      "DistrictName",
+      "UnitName",
+      "UnitNumber",
+      "FCKey",
+      "CompartmentNumber",
+      "County",
+      "Acres",
+      "YOE",
+      "MapPhase",
+      "Source",
+      "CompartmentComments",
+      "CompartmentPacket",
+      "RecordofDecision",
+      "MiStateForestStatus",
+      "GlobalID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 2013,
+     "sample": [
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD",
+      "West UP FD"
+     ],
+     "owner_values": [
+      "State Forests",
+      "Unspecified",
+      "Wildlife"
+     ]
+    },
+    {
+     "id": 9,
+     "name": "Mi State Forest -  On-Going Monitoring Treatments",
+     "geom": "Polygon",
+     "nameField": "TreatmentName",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "GlobalID",
+      "PercentProposed",
+      "AcresProposed",
+      "ForestKey",
+      "FCKey",
+      "TreatmentName",
+      "TreatmentType",
+      "TreatmentMethod",
+      "TreatmentPurpose",
+      "Acres",
+      "ApprovedAcres",
+      "ProposedStartDate",
+      "SponsorAffliation",
+      "ApprovalStatus",
+      "CovertypeObjective",
+      "ApprovalDate",
+      "OtherComments",
+      "RxSpecs",
+      "NextSteps",
+      "ImplementationNotes",
+      "AcceptableRegen",
+      "OOYOEFCKey",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 1069,
+     "sample": [
+      "45155049.30_Monitor",
+      "45155058.29_Monitor",
+      "53004105.36_Monitor",
+      "61051021-Cut_Prep_Survey",
+      "71023059.3_Monitor",
+      "71020107.15_Monitor",
+      "52149036-Monitor",
+      "52149041-Monitor"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "MI",
+   "kind": "land",
+   "ag": "Michigan DNR",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRBoundariesParksHuntableLandsOPENDATA/FeatureServer",
+   "note": "r6 org walk: parks + huntable lands (state game areas?)",
+   "answers": true,
+   "service": "",
+   "licence": "Michigan Department of Natural Resources",
+   "years_in_text": [],
+   "description": "Whether an area is open or closed to hunting and what seasons in which it is allowed is determined by several factors including: restrictions listed in Wildlife Conservation Orders for that park unit, local restrictions set by city and county governments.",
+   "item_licence": "The Michigan Department of Natural Resources\n(DNR) is making every effort to ensure this information meets WCAG 2.1 AA\naccessibility standards. However, we recognize that there may be limitations to\nour efforts based on the limitations of the product used to build the\ninformation. We are working wit",
+   "item_modified": "2026-10-26",
+   "item_owner": "MichiganDNR",
+   "item_org": "Michigan Department of Natural Resources",
+   "item_title": "DNRBoundariesParksHuntableLandsOPENDATA",
+   "layers": [
+    {
+     "id": 2,
+     "name": "DNR Parks Hunting Land Boundary",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "Acres",
+      "District",
+      "Facility",
+      "HuntTrap",
+      "HuntTrapRestrictions",
+      "EarlyGoose",
+      "EarlyGooseDates",
+      "EarlyGooseRestrictions",
+      "Comments",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date",
+      "GlobalID",
+      "OBJECTID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-26",
+     "layer_copyright": "Michigan Department of Natural Resources",
+     "records": 183
+    }
+   ]
+  },
+  {
+   "st": "NC",
+   "kind": "land",
+   "ag": "NC Dept. of Administration, State Property Office",
+   "url": "https://services3.arcgis.com/zMTrRjxZirPAKsKd/arcgis/rest/services/State_Owned_Land_NC_Latest_02/FeatureServer",
+   "note": "r6 search: state-owned land; are state parks in it (owner/agency field)?",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "DISCLAIMER:     The NC Department of Administration, State Property Office is charged with maintaining an inventory of state-owned lands, buildings, and space in buildings for use by state agencies to efficiently and effectively manage their allocated properties. Although effort has been made to ens",
+   "item_modified": "2026-08-12",
+   "item_owner": "Jason.Brown@doa.nc.gov",
+   "item_org": "            North Carolina Department of Administration",
+   "item_title": "State-Owned Land (Latest)",
+   "layers": [
+    {
+     "id": 0,
+     "name": "State-Owned Land (Latest)",
+     "geom": "Polygon",
+     "nameField": "DeptName",
+     "ownerField": "",
+     "typeField": "ComplexTypeKey",
+     "fields": [
+      "FID",
+      "DEED_ACRES",
+      "GIS_ACRES",
+      "DeptName",
+      "DivName",
+      "Shape_Leng",
+      "Shape_Area",
+      "ComplexTypeKey",
+      "CountyKey",
+      "ComplexKey",
+      "AssetKey",
+      "ComplexCombinedID",
+      "AssetCombinedID",
+      "EditDate",
+      "LandAssetID",
+      "FileNumber",
+      "ComplexName",
+      "AcquisitionYear",
+      "PROJECTNUM"
+     ],
+     "last_edit": "2026-10-27",
+     "layer_copyright": "Department of Administration (DOA), State Property Office (SPO)",
+     "records": 6316,
+     "sample": [
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION",
+      "ADMINISTRATION"
+     ],
+     "type_values": [
+      "1",
+      "1 - IN STATE",
+      "5"
+     ]
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "MS",
+   "q": "group:7c4cfadd30c44634817a0ce3b50c1a4e",
+   "why": "MARIS group: WMA / state parks feature services",
+   "found": [
+    {
+     "title": "Mississippi County Borders",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/CountyBorders/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "NHD  MS Flowlines 2018",
+     "org": "",
+     "owner": "swalker183",
+     "url": "https://services8.arcgis.com/CljF5ahAt0YcHY0S/arcgis/rest/services/NHD__MS_Flowlines_2018/FeatureServer",
+     "modified": "2018-10-22",
+     "licence": "None. Acknowledgment of the originating agencies would be appreciated in products derived from these data."
+    },
+    {
+     "title": "MS_Major_State_Government_Buildings",
+     "org": "",
+     "owner": "swalker183",
+     "url": "https://services8.arcgis.com/CljF5ahAt0YcHY0S/arcgis/rest/services/MS_Major_State_Government_Buildings/FeatureServer",
+     "modified": "2018-10-22",
+     "licence": ""
+    },
+    {
+     "title": "MS Private Schools",
+     "org": "",
+     "owner": "swalker183",
+     "url": "https://services8.arcgis.com/CljF5ahAt0YcHY0S/arcgis/rest/services/private_schools17/FeatureServer",
+     "modified": "2018-10-22",
+     "licence": "none"
+    },
+    {
+     "title": "MS EPA CERCLA Facilities",
+     "org": "",
+     "owner": "swalker183",
+     "url": "https://services8.arcgis.com/CljF5ahAt0YcHY0S/arcgis/rest/services/MS_EPA_CERCLA_Facilities/FeatureServer",
+     "modified": "2018-10-22",
+     "licence": ""
+    },
+    {
+     "title": "MS Landslide Regions",
+     "org": "",
+     "owner": "swalker183",
+     "url": "https://services8.arcgis.com/CljF5ahAt0YcHY0S/arcgis/rest/services/MS_Landslide_Regions/FeatureServer",
+     "modified": "2018-10-22",
+     "licence": "Access Constraint: None (Public Domain Information) Use Constraint: None (Public Use) Use Limitations: No warranty expre"
+    },
+    {
+     "title": "TIGER Roads - 2010",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/TIGER_Roads2010/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "National Hydrography Dataset",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/NHD_Hydro/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "Digital Ortho Quarter Quads 1995-1996",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/DOQQ_Quads/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "National Hydrography Dataset - Major Streams",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/NHD_MajorStreams/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "NAIP 2012 CIR (Color Infrared) (1 meter)",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/NAIP/NAIP2012CIR/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "National Hydrography Dataset - Minor Streams",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/NHD_MinorStreams/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "Populated Places",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/PopulatedPLaces/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "National Hydrography Dataset - Water Bodies",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/NHD_WaterBodies/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "Oil and Gas well data - 2011",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/OilandGas2011/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "Mississippi Senate Districts",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/MS_Senate_12/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "Mississippi House of Representative Districts",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/MS_House_12/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    },
+    {
+     "title": "U.S. Congressional Districts",
+     "org": "",
+     "owner": "swalker183",
+     "url": "http://www.maris.state.ms.us/arcgis/rest/services/MARIS/MS_Congress/MapServer",
+     "modified": "2013-12-12",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "MS",
+   "q": "(\"Wildlife Management Areas\" OR \"State Parks\") AND Mississippi AND (MARIS OR MDWFP)",
+   "why": "MS feature copies",
+   "found": [
+    {
+     "title": "PAULIE",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+     "modified": "2026-10-22",
+     "licence": "The Geographic Information System (GIS) Data to which this notice is attached are made available pursuant to the Minneso"
+    },
+    {
+     "title": "TylerEPL",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": ""
+    },
+    {
+     "title": "WFL2_Basemap_Items",
+     "org": "",
+     "owner": "Rachel_CCE",
+     "url": "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer",
+     "modified": "2024-10-28",
+     "licence": ""
+    },
+    {
+     "title": "Mississippi",
+     "org": "",
+     "owner": "BG59031@tn.gov_TDEC",
+     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Mississippi/FeatureServer",
+     "modified": "2026-03-16",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "NY",
+   "q": "(OPRHP OR \"Parks, Recreation and Historic Preservation\") AND (boundary OR boundaries)",
+   "why": "row 34",
+   "found": [
+    {
+     "title": "NY State Parks Points",
+     "org": "NYS OPRHP",
+     "owner": "NYS.Parks.Admin",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/ParkPoints/FeatureServer",
+     "modified": "2026-10-06",
+     "licence": "The data are dynamic and may change over time. Although\nevery effort has been made to ensure the accuracy of information"
+    },
+    {
+     "title": "GIT_New",
+     "org": "",
+     "owner": "goodrichb_TiogaCountyNY",
+     "url": "https://services3.arcgis.com/PvkAiSMFS7cpxnJP/arcgis/rest/services/GIT_New/FeatureServer",
+     "modified": "2023-02-08",
+     "licence": ""
+    },
+    {
+     "title": "NY State Parks Property (Legacy)",
+     "org": "",
+     "owner": "NYS.Parks.Admin",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NYS_Park_Polygons/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "Data cannot be edited.  Credit source of NY State Parks.  Do not redistribute.  The data are dynamic and may change over"
+    },
+    {
+     "title": "Kent_NRI_files_upload Feature Layer",
+     "org": "",
+     "owner": "townofkent",
+     "url": "https://services1.arcgis.com/9nZxvmWTS2DtH8f8/arcgis/rest/services/Kent_NRI_files_upload_gdb/FeatureServer",
+     "modified": "2025-02-12",
+     "licence": ""
+    },
+    {
+     "title": "NY State Parks Regional Boundary",
+     "org": "NYS OPRHP",
+     "owner": "NYS.Parks.Admin",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/Regions/FeatureServer",
+     "modified": "2026-09-09",
+     "licence": "The data are dynamic and may change over time. Although\nevery effort has been made to ensure the accuracy of information"
+    },
+    {
+     "title": "NYS DEC Lands",
+     "org": "New York State Department of Environmental Conservation",
+     "owner": "NYSDEC_PUB",
+     "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_DEC_Lands/FeatureServer",
+     "modified": "2026-10-27",
+     "licence": "1. The NYS DEC asks to be credited in derived products.   2. Secondary Distribution of the data is not allowed.   3. Any"
+    },
+    {
+     "title": "Gunks_TimeLapse_Jan2019_AGOL",
+     "org": "",
+     "owner": "kyamane_osiny",
+     "url": "https://services5.arcgis.com/Qgy791PwCQvVznG0/arcgis/rest/services/Gunks_TimeLapse_Jan2019_AGOL/FeatureServer",
+     "modified": "2023-06-14",
+     "licence": ""
+    },
+    {
+     "title": "Existing public power_WFL1",
+     "org": "",
+     "owner": "andrea_johnson",
+     "url": "https://services5.arcgis.com/QygLi7lRn9WflKMX/arcgis/rest/services/Existing_public_power_WFL1/FeatureServer",
+     "modified": "2025-03-18",
+     "licence": ""
+    },
+    {
+     "title": "Public Open Space",
+     "org": "",
+     "owner": "Zoe.VossLee_nyc",
+     "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/NYC_Parks_Merged/FeatureServer",
+     "modified": "2024-06-10",
+     "licence": ""
+    },
+    {
+     "title": "NY State Parks",
+     "org": "",
+     "owner": "Rebecca.Newell@parks.ny.gov_nysparks",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Park_Properties_by_County_(public_view)/FeatureServer",
+     "modified": "2025-10-23",
+     "licence": "The data and applications are provided for informational and non-commercial purposes. Any maps, reports, or other materi"
+    },
+    {
+     "title": "NY State Parks Hunting Areas view",
+     "org": "",
+     "owner": "Sean.Heaton@parks.ny.gov_nysparks",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Hunting_Areas_2_view/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "The data are dynamic and may change over time. Although every effort has been made to ensure the accuracy of information"
+    },
+    {
+     "title": "Gunks_TimeLapse_Sept2019_AGOL",
+     "org": "",
+     "owner": "kyamane_osiny",
+     "url": "https://services5.arcgis.com/Qgy791PwCQvVznG0/arcgis/rest/services/Gunks_TimeLapse_Sept2019_AGOL/FeatureServer",
+     "modified": "2023-06-13",
+     "licence": ""
+    },
+    {
+     "title": "Niagara Zoom Map_WFL1",
+     "org": "",
+     "owner": "andrea_johnson",
+     "url": "https://services5.arcgis.com/QygLi7lRn9WflKMX/arcgis/rest/services/Niagara_Zoom_Map_WFL1/FeatureServer",
+     "modified": "2024-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Regional Economic Development Council Regions",
+     "org": "",
+     "owner": "Christina.Croll@parks.ny.gov_nysparks",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/Regional_Economic_Development_Council_Regions/FeatureServer",
+     "modified": "2021-11-22",
+     "licence": ""
+    },
+    {
+     "title": "NYS Historic Sites and Park Boundaries (Public View Layer)",
+     "org": "",
+     "owner": "ParksTrailsNewYork",
+     "url": "https://services8.arcgis.com/n04kfJI3iJERUht5/arcgis/rest/services/NYS_Historic_Sites_and_Park_Boundaries_(Public_View_Layer)/FeatureServer",
+     "modified": "2025-12-02",
+     "licence": ""
+    },
+    {
+     "title": "National Register Building Listings",
+     "org": "",
+     "owner": "NYS.Parks.Admin",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/National_Register_Building_Listings/FeatureServer",
+     "modified": "2026-10-27",
+     "licence": "The data are dynamic and may change over time. Although every effort has been made to ensure the accuracy of information"
+    },
+    {
+     "title": "NYSCounties",
+     "org": "",
+     "owner": "Rebecca.Newell@parks.ny.gov_nysparks",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NYSCounties/FeatureServer",
+     "modified": "2025-02-28",
+     "licence": ""
+    },
+    {
+     "title": "NYC_public_ownership_WFL1",
+     "org": "",
+     "owner": "andrea_johnson",
+     "url": "https://services5.arcgis.com/QygLi7lRn9WflKMX/arcgis/rest/services/NYC_public_ownership_WFL1/FeatureServer",
+     "modified": "2024-03-27",
+     "licence": ""
+    },
+    {
+     "title": "NY State Parks Temporary Trail Closures",
+     "org": "",
+     "owner": "Tyler.Stempsey@parks.ny.gov_nysparks",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Temporary_Trail_Closure/FeatureServer",
+     "modified": "2025-04-22",
+     "licence": ""
+    },
+    {
+     "title": "State Parks",
+     "org": "",
+     "owner": "NYSDOS_GIS",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer",
+     "modified": "2024-10-07",
+     "licence": "This dataset and related graphics are being provided to the public free of charge and for informational purposes only. T"
+    },
+    {
+     "title": "OPRHP Regional Boundaries",
+     "org": "",
+     "owner": "NYS.Parks.Admin",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/OPRHP_Regional_Boundaries/FeatureServer",
+     "modified": "2020-12-29",
+     "licence": "Internal Use only"
+    },
+    {
+     "title": "nridata2",
+     "org": "",
+     "owner": "necurri_Vassar",
+     "url": "https://services2.arcgis.com/HXuDXoXgsUiaeXTG/arcgis/rest/services/nridata2/FeatureServer",
+     "modified": "2019-07-29",
+     "licence": ""
+    },
+    {
+     "title": "PkNRIdata",
+     "org": "",
+     "owner": "necurri_Vassar",
+     "url": "https://services2.arcgis.com/HXuDXoXgsUiaeXTG/arcgis/rest/services/PkNRIdata/FeatureServer",
+     "modified": "2019-07-29",
+     "licence": ""
+    },
+    {
+     "title": "NYS Heritage Areas",
+     "org": "",
+     "owner": "NYSDOS_GIS",
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYSHeritageAreas/FeatureServer/0",
+     "modified": "2024-10-07",
+     "licence": "This dataset and related graphics are being provided to the public free of charge and for informational purposes only. T"
+    },
+    {
+     "title": "oprhp18",
+     "org": "",
+     "owner": "joanna.grand@audubon.org_audubon",
+     "url": "https://services1.arcgis.com/lDFzr3JyGEn5Eymu/arcgis/rest/services/oprhp18/FeatureServer",
+     "modified": "2024-03-29",
+     "licence": "Credit must be given when using the data"
+    }
+   ]
+  }
+ ],
+ "orgs": [],
+ "hubs": [
+  {
+   "st": "NY",
+   "note": "row 34: item behind the dev layer",
+   "dataset": "11b1b5b778ef416f9bf30b938637dbfd",
+   "items": [
+    {
+     "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+     "err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is "
+    }
+   ]
+  },
+  {
+   "st": "NY",
+   "q": "OPRHP Boundary",
+   "note": "row 34: production address",
+   "search_hits": [],
+   "items": []
+  },
+  {
+   "st": "NY",
+   "q": "State Park Boundaries New York OPRHP",
+   "note": "row 34 alt",
+   "search_hits": [],
+   "items": []
+  },
+  {
+   "st": "MS",
+   "q": "group:7c4cfadd30c44634817a0ce3b50c1a4e",
+   "note": "MARIS ArcGIS Online group (from the MARIS page)",
+   "search_hits": [],
+   "items": []
+  }
+ ],
+ "pages": [
+  {
+   "st": "--",
+   "url": "https://raw.githubusercontent.com/cwhelchel/potamap.ol/main/LICENSE",
+   "look": "licen|permission|MIT|GPL|Apache|copyright",
+   "note": "row 35",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "st": "--",
+   "url": "https://raw.githubusercontent.com/cwhelchel/potamap.ol/main/README.md",
+   "look": "state|community|layer|outline|boundar",
+   "note": "row 35",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "st": "--",
+   "url": "https://git.ianrenton.com/ian/new-park-finder/raw/branch/main/README.md",
+   "note": "row 36",
+   "status": 200,
+   "ctype": "text/plain; charset=utf-8",
+   "bytes": 7653,
+   "links": [],
+   "hits": [
+    "ide Flora & Fauna (WWFF), Global Mountain Activity (GMA) and Lagos y Lagunas On The Air (LLOTA) to find places that they have not yet operated from (\"activated\") or have not been activated at all. ![Screenshot](/img/banner2.png) Use it at [https://newparks.m0trt.radio](https://newparks.m0trt.radio). ### Us",
+    "bal Mountain Activity (GMA) and Lagos y Lagunas On The Air (LLOTA) to find places that they have not yet operated from (\"activated\") or have not been activated at all. ![Screenshot](/img/banner2.png) Use it at [https://newparks.m0trt.radio](https://newparks.m0trt.radio). ### Usage To use the software, star",
+    "ks.m0trt.radio). ### Usage To use the software, start by entering your callsign at the top left. This allows the software to distinguish between your activations, and other people's. Entering this is optional, so if you don't have a callsign or just want to see which parks have been activated in general, y",
+    "sh between your activations, and other people's. Entering this is optional, so if you don't have a callsign or just want to see which parks have been activated in general, you can leave it empty. Next, position your view where in the world you are interested in. The Search button should be available. If no",
+    " instead a prompt telling you to zoom in, you will need to zoom in (scroll wheel or pinch) until the button appears. This is to avoid overloading the API with a large number of requests for reference statuses over a very wide area. Once the button is available, clicking it will cause the software to qu",
+    "large number of requests for reference statuses over a very wide area. Once the button is available, clicking it will cause the software to query the API, and if everything is working you should start to see markers appear on your screen. (If you don't, but the status shows \"OK\", there may just not be ",
+    "rkers appear on your screen. (If you don't, but the status shows \"OK\", there may just not be any parks in your view. If the status shows \"Error\", the API may be offline.) Markers initially appear grey, showing that the software knows a reference is there, but has not yet queried its status. Over the ne",
+    "ol are locations for which data has not yet been loaded. (Wait a few seconds!) * Red markers with a \"star\" symbol show locations that have never been activated. A \"cross\" appears instead if you are filtering activations by year, so it's more clear that it is not necessarily an all-time new one. * Yellow ma",
+    "Wait a few seconds!) * Red markers with a \"star\" symbol show locations that have never been activated. A \"cross\" appears instead if you are filtering activations by year, so it's more clear that it is not necessarily an all-time new one. * Yellow markers with a \"person\" symbol show locations that have been",
+    "nds!) * Red markers with a \"star\" symbol show locations that have never been activated. A \"cross\" appears instead if you are filtering activations by year, so it's more clear that it is not necessarily an all-time new one. * Yellow markers with a \"person\" symbol show locations that have been activated b",
+    "ons by year, so it's more clear that it is not necessarily an all-time new one. * Yellow markers with a \"person\" symbol show locations that have been activated by other people, but not by you * Brown markers with a \"check list\" symbol show locations that you have attempted to activate, but not succeeded. *",
+    "cations that have been activated by other people, but not by you * Brown markers with a \"check list\" symbol show locations that you have attempted to activate, but not succeeded. * Green markers with a \"tick\" symbol show locations that you have successfully activated. * Green markers with a \"medal\" symbol "
+   ]
+  },
+  {
+   "st": "NY",
+   "url": "https://data.gis.ny.gov/search?q=OPRHP",
+   "note": "row 34: NYS GIS Clearinghouse",
+   "status": 200,
+   "ctype": "text/html; charset=utf-8",
+   "bytes": 111740,
+   "links": [
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.33524.bc3eb7b1c788eb47dddf.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.33524.bc3eb7b1c788eb47dddf.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.94600.acdaefe216fc9ad0737e.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/opendata-rtl-72a94a798a32a2ed59e91000a2e863c9.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/opendata-ui-d506263913410bf3410d61a2f701ecf6.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/vendor-4e67da638136388d59ddf99b8e586359.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/vendor-56aff585951ae46098a4ba021b4c2e93.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/calcite-components/5.1.1/cdn/index.js"
+   ],
+   "hits": []
+  }
+ ],
+ "queries": [
+  {
+   "st": "CA",
+   "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+   "where": "UNITNAME LIKE '%Oro%'",
+   "note": "row 37: Montaña de Oro accent",
+   "error": "{'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'details': [\"'outFields' parameter is invalid\"]}"
+  },
+  {
+   "st": "NY",
+   "url": "https://gisportaldev.dot.ny.gov/server/rest/services/CulturalResources/Cultural_Resources/MapServer/16",
+   "where": "Name LIKE '%Thompson%' OR Name LIKE '%Letchworth%' OR Name LIKE '%Iona%'",
+   "note": "row 34 names",
+   "rows": [
+    {
+     "OBJECTID": 187,
+     "UID": "R086",
+     "Name": "Letchworth",
+     "Category": "State Park",
+     "Descript": " ",
+     "Region": "03",
+     "County": "Liv/Wyo",
+     "Source": " ",
+     "Orig": "1911",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/79/details.aspx",
+     "Acre": 6.76937743,
+     "Tot_acre": 14408.0
+    },
+    {
+     "OBJECTID": 188,
+     "UID": "R086",
+     "Name": "Letchworth",
+     "Category": "State Park",
+     "Descript": "National Register (00NR01660)",
+     "Region": "03",
+     "County": "Liv/Wyo",
+     "Source": " ",
+     "Orig": "1911",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/79/details.aspx",
+     "Acre": 14361.9390092,
+     "Tot_acre": 14408.0
+    },
+    {
+     "OBJECTID": 189,
+     "UID": "R086",
+     "Name": "Letchworth",
+     "Category": "State Park",
+     "Descript": "National Register (00NR01660)",
+     "Region": "03",
+     "County": "Liv/Wyo",
+     "Source": " ",
+     "Orig": "1911",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/79/details.aspx",
+     "Acre": 0.52852392,
+     "Tot_acre": 14408.0
+    },
+    {
+     "OBJECTID": 210,
+     "UID": "R086",
+     "Name": "Letchworth",
+     "Category": "State Park",
+     "Descript": "National Register (00NR01660)",
+     "Region": "03",
+     "County": "Liv/Wyo",
+     "Source": " ",
+     "Orig": "1911",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/79/details.aspx",
+     "Acre": 55.62168038,
+     "Tot_acre": 14408.0
+    },
+    {
+     "OBJECTID": 341,
+     "UID": " ",
+     "Name": "Iona Island",
+     "Category": "State Park",
+     "Descript": "National Register",
+     "Region": "08",
+     "County": "Rockland",
+     "Source": " ",
+     "Orig": " ",
+     "Update_": " ",
+     "URL": " ",
+     "Acre": 131.42802432,
+     "Tot_acre": 133.0
+    },
+    {
+     "OBJECTID": 507,
+     "UID": "R138",
+     "Name": "John Boyd Thacher (Thompson's Lake Campground)",
+     "Category": "State Park",
+     "Descript": "contains Knox District School No. 5 National Register listing (04NR05391)",
+     "Region": "11",
+     "County": "Albany",
+     "Source": " ",
+     "Orig": "1961",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/99/details.aspx",
+     "Acre": 83.16650491,
+     "Tot_acre": 298.0
+    },
+    {
+     "OBJECTID": 508,
+     "UID": "R138",
+     "Name": "John Boyd Thacher (Thompson's Lake Campground)",
+     "Category": "State Park",
+     "Descript": "contains Knox District School No. 5 National Register listing (04NR05391)",
+     "Region": "11",
+     "County": "Albany",
+     "Source": " ",
+     "Orig": "1961",
+     "Update_": " ",
+     "URL": "http://nysparks.com/parks/99/details.aspx",
+     "Acre": 227.7809259,
+     "Tot_acre": 298.0
+    }
+   ]
+  }
+ ],
+ "browse": [
+  {
+   "st": "--",
+   "url": "https://potamap.us/",
+   "note": "row 31: outlines? data sources",
+   "title": "POTAMAP OL",
+   "data_requests": [
+    "https://googleads.g.doubleclick.net/pagead/id",
+    "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+    "https://potamap.us/data/merged_search_data.json",
+    "https://www.youtube.com/youtubei/v1/log_event"
+   ],
+   "text_hits": []
+  },
+  {
+   "st": "--",
+   "url": "https://ham-map.com/",
+   "note": "row 32: pins only?",
+   "title": "HAM-MAP.com - Outdoor activity HAM map by OK1SIM",
+   "data_requests": [
+    "https://ham-map.com/cdn-cgi/rum"
+   ],
+   "text_hits": [
+    " Later I added more features, better backend and frontend and other data sources such as POTA, SOTA etc",
+    "Open source on GitHub"
+   ]
+  },
+  {
+   "st": "--",
+   "url": "https://newparks.m0trt.radio/",
+   "note": "row 33: data sources",
+   "title": "New Park Finder",
+   "data_requests": [],
+   "text_hits": []
+  }
+ ]
+}
