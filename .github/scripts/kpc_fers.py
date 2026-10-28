@@ -2195,7 +2195,10 @@ def main():
             area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
             save_json(OUT / f'looked-{area}.json', {'about': 'What the 2-fer bot looked at in pass 1 (for the missing check).', 'date': today,
                                                     'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
-                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks)}, indent=None)
+                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks),
+                                                    # Oct 27 (HQ: the missing check's 1 km filter measures OUTLINE to OUTLINE): each park's box, so the
+                                                    # check can measure every park, not only the ones in the PAD-US cache
+                                                    'boxes': {r: [round(v, 4) for v in bbox_groups(G[r])] for r in G if G.get(r)}}, indent=None)
         except Exception as e: LOG.append(f'looked file: {str(e)[:80]}')  # noqa: BLE001
         try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)

@@ -37,7 +37,7 @@ def main():
             try: refs = list(json.load(open(f'data/parkinfo/{st}.json'))['parks'])
             except Exception:  # noqa: BLE001
                 print(f'::notice title=POTA pairs::{st}: no park list (data/parkinfo/{st}.json), skipped', flush=True); continue
-        days, n, complete = {}, 0, True
+        days, counts, n, complete = {}, {}, 0, True
         for ref in sorted(refs):
             if time.time() - T0 > LIMIT: complete = False; break
             j = get(f'https://api.pota.app/park/activations/{ref}?count=all')
@@ -50,13 +50,23 @@ def main():
                 call = str(a.get('activeCallsign') or a.get('activator') or a.get('callsign') or '').upper()
                 call = max(call.split('/'), key=len) if call else ''
                 day = str(a.get('qso_date') or a.get('date') or '').replace('-', '')[:8]
-                if call and day: days.setdefault((call, day), set()).add(ref)
+                if call and day:
+                    days.setdefault((call, day), set()).add(ref)
+                    # HQ Oct 27: a pair POTA shows as ONE session logging both parks is always kept by the missing check.
+                    # POTA's park lists carry no 'both parks' field, so the closest the data comes is the same call on the same
+                    # day with IDENTICAL QSO counts at both parks (one log sent to both). Labelled as a likely one-session pair.
+                    counts.setdefault((call, day), {})[ref] = (a.get('totalQSOs'), a.get('qsosCW'), a.get('qsosDATA'), a.get('qsosPHONE'))
+        same = set()
+        for cd, byref in counts.items():
+            for (ra, ca), (rb, cb) in itertools.combinations(sorted(byref.items()), 2):
+                if ca == cb and ca[0]: same.add(f'{ra}+{rb}' if ra < rb else f'{rb}+{ra}')
         pairs = {}
         for parks in days.values():
             for a, b in itertools.combinations(sorted(parks), 2): pairs[f'{a}+{b}'] = pairs.get(f'{a}+{b}', 0) + 1
         OUT.mkdir(parents=True, exist_ok=True)
         f.write_text(json.dumps({'about': 'Pairs of parks POTA activators worked on the same day (counts only, no calls or dates). A hint, never proof.',
-                                 'made': time.strftime('%Y-%m-%d'), 'parks_read': n, 'complete': complete, 'pairs': dict(sorted(pairs.items()))}, indent=0) + '\n')
+                                 'made': time.strftime('%Y-%m-%d'), 'parks_read': n, 'complete': complete, 'pairs': dict(sorted(pairs.items())),
+                                 'same_session': sorted(same), 'same_session_about': 'same call, same day, identical QSO counts at both parks = one session logged to both (a likely 2-fer; POTA publishes no "both parks" field)'}, indent=0) + '\n')
         print(f'::notice title=POTA pairs::{st}: {n} of {len(refs)} parks read, {len(pairs)} pairs worked the same day' + ('' if complete else ' (stopped for time)'), flush=True)
 
 
