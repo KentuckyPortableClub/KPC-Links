@@ -66,6 +66,14 @@ def layer(x):
     out['years_in_text'] = sorted(set(re.findall(r'\b(?:19|20)\d{2}\b', desc[:6000])))[-4:]
     out['description'] = ' '.join(desc.split())[:400]
     if j.get('serviceItemId'): out.update(item(j['serviceItemId']))
+    else:   # Oct 28: agency servers keep their item terms at <service>/info/iteminfo (Nevada State Parks' licence was there)
+        try:
+            svc = re.sub(r'/\d+/?$', '', x['url'].rstrip('/'))
+            ii = get(svc + '/info/iteminfo')
+            out['item_licence'] = re.sub(r'<[^>]+>', ' ', ii.get('licenseInfo') or '').strip()[:300]
+            out['item_credits'] = re.sub(r'<[^>]+>', ' ', ii.get('accessInformation') or '').strip()[:300]
+            out['item_about'] = ' '.join(re.sub(r'<[^>]+>', ' ', (ii.get('description') or '') + ' ' + (ii.get('snippet') or '')).split())[:500]
+        except Exception: pass
     lays = j.get('layers')
     if lays is None and 'geometryType' in j: lays = [{'id': None}]
     if not lays and re.search(r'(Map|Feature)Server/?$', x['url']):      # round 6: MARIS roots list no layers: ask /layers, then ids 0-12
@@ -186,10 +194,10 @@ def page(x):
                           for p in (j.get('result') or {}).get('results') or []][:40]
         return out
     if 'pdf' in out['ctype']: return out
-    txt = ' '.join(re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', ' ', raw.decode('utf-8', 'replace'), flags=re.S | re.I).split())
+    txt = raw.decode('utf-8', 'replace') if x.get('raw') else ' '.join(re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', ' ', raw.decode('utf-8', 'replace'), flags=re.S | re.I).split())
     out['links'] = sorted(set(re.findall(r'https?://[^"\'\s<>]*(?:MapServer|FeatureServer|\.zip|\.kmz|\.geojson|arcgis\.com/[^"\'\s<>]*)', raw.decode('utf-8', 'replace'))))[:30]
     if x.get('look'):
-        out['hits'] = [txt[max(0, m.start() - 150): m.end() + 150] for m in re.finditer(x['look'], txt, re.I)][:12]
+        out['hits'] = ([m.group(0)[:200] for m in re.finditer(x['look'], txt, re.I)][:80] if x.get('raw') else [txt[max(0, m.start() - 150): m.end() + 150] for m in re.finditer(x['look'], txt, re.I)][:12])
     return out
 
 
