@@ -16,3 +16,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **SD Game, Fish and Parks:** park pages `https://gfp.sd.gov/parks/detail/<Park-Name>` (irregular slugs: double hyphen, trailing hyphen) (A); the page has NO per-park map link, only the site Maps page https://gfp.sd.gov/maps and the Go Outdoors reservation site (A). Handbook PDFs `gfp.sd.gov/UserDocs/nav/<year>StateParkHandbook_web.pdf` (2023, 2024, 2025 seen, B) = a yearly map book, a good dated source. Some brochures `gfp.sd.gov/userdocs/<name>.pdf` or `/state-parks/docs/<name>.pdf` (B). Rules: https://gfp.sd.gov/pages/regulations (A). No dates in links.
+- Corps (nwo.usace.army.mil) failed: BOT LOOK-UP. Handovers: none seen.

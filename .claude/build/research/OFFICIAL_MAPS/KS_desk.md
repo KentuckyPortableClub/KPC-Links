@@ -18,3 +18,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (thin: search only, grade B)
+- **KDWP (ksoutdoors.com):** hunting atlas (old 2008 note found) and public land pages; the 3 ksoutdoors.com links in the data did not open for the bot (0 of 3), and 14 of 14 Corps Kansas City district links (nwk.usace.army.mil) failed. Everything Kansas = BOT LOOK-UP: KDWP area pages, the current Hunting Atlas, state park pages (ksoutdoors.com/State-Parks/Locations/<name>, B).
+- Handovers: none seen.

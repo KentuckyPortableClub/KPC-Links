@@ -21,3 +21,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Nebraska Game and Parks:** open GIS page https://outdoornebraska.gov/Maps/ lists interactive maps (public access, state parks, trails...) but no REST addresses (A); "for reference only", no licence named (A). Park maps are PDFs "on each park's page" (A); the Park Areas layer is in the BTAA catalog https://geo.btaa.org/catalog/ba20d669b821473089a5d542b54f9771_0 (B). Guides: https://outdoornebraska.gov/guides (B); the Public Access Atlas by sheet (B). Natural Resources Districts (lpsnrd.maps.arcgis.com 5 of 5 ok; papionrd.org, lenrd.org failed) run their own areas. Dates: none on the page.
+- Handovers: none seen. Rules: not opened.

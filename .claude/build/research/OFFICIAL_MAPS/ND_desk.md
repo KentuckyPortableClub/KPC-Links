@@ -16,3 +16,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **ND Game and Fish:** one index https://gf.nd.gov/maps/map-index: a table of Link / Format / Description / Category; hosts vary: ArcGIS Online (ndgf.maps.arcgis.com), Geocortex viewers (geocortex.gf.nd.gov), `gf.nd.gov/gnf/maps/...` PDFs/JPGs (A). No dates (only "updated annually" for one). Rules: gf.nd.gov/regulations (A).
+- **State parks (ND Parks & Recreation):** not opened: BOT LOOK-UP. Park outlines: gis.dmr.nd.gov ND_State_Parks FeatureServer (B) - to chat 9.
+- Corps (nwo.usace.army.mil) failed: BOT LOOK-UP. Handovers: none seen.

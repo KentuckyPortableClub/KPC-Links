@@ -16,3 +16,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Iowa DNR:** WMA listing is a dashboard (https://www.arcgis.com/apps/dashboards/b8a7ff4dc22343fdb1177db6df794676) and a Hunting Atlas viewer (iowadnr.maps.arcgis.com webappviewer); the page has no park maps (A). Page patterns: `iowadnr.gov/places-go/wildlife-management-areas/<slug>`, `.../places-go/state-parks/all-parks/<slug>` (A). Map files not found in text: BOT LOOK-UP, read each park page's map link. Open GIS: https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer (B) - to chat 9.
+- **Rules:** WMA rules = Iowa Administrative Code Chapter 51 (legis.iowa.gov/DOCS/ACO/IAC/LINC/Chapter.571.51.pdf), refuges Chapter 52, parks https://www.iowadnr.gov/places-go/state-parks/parks-use-rules-guidelines (A). Dates: page updated 2026-09-18; no map dates.
+- Handovers: none seen.
