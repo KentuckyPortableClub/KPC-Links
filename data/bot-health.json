@@ -6,7 +6,7 @@
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
  ],
- "checked": "2026-10-28T10:25+00:00",
+ "checked": "2026-10-28T19:13+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -227,5 +227,112 @@
   "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
   "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
   "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions"
- ]
+ ],
+ "sizes": {
+  "L:kpc-hunters.json": {
+   "b": 2662
+  },
+  "L:data/ky-answer-key.json": {
+   "b": 31164
+  },
+  "L:data/us-key": {
+   "b": 10081981
+  },
+  "L:data/ca-key": {
+   "b": 1669985
+  },
+  "L:data/world-key": {
+   "b": 13230413
+  },
+  "L:data/pota": {
+   "b": 5660640
+  },
+  "L:data/canada.json": {
+   "b": 2496082
+  },
+  "L:kpc-top25.json": {
+   "b": 16587
+  },
+  "L:data/ky-official-maps.json": {
+   "b": 92565
+  },
+  "L:data/parkinfo-web.json": {
+   "b": 529287
+  },
+  "L:data/state-gis.json": {
+   "b": 78347
+  },
+  "L:data/boundary-score.json": {
+   "b": 946695
+  },
+  "L:data/campfed": {
+   "b": 662048
+  },
+  "L:data/campstate": {
+   "b": 439119
+  },
+  "L:data/nwr": {
+   "b": 334288
+  },
+  "L:locations.json": {
+   "b": 5418897
+  },
+  "L:kpc-events-auto.json": {
+   "b": 20515
+  },
+  "L:kpc-special-events.json": {
+   "b": 24983
+  },
+  "L:kpc-youtube.json": {
+   "b": 2948
+  },
+  "L:kpc-conditions.json": {
+   "b": 99096
+  },
+  "L:data/kpc-whats-new.json": {
+   "b": 684
+  },
+  "D:data/leaders": {
+   "b": 1032925
+  },
+  "D:data/sota-land": {
+   "b": 1696741
+  },
+  "D:data/parkinfo": {
+   "b": 15110394
+  },
+  "D:data/trails": {
+   "b": 6146736
+  },
+  "D:data/access": {
+   "b": 3775962
+  },
+  "D:data/wwff": {
+   "b": 11660561
+  },
+  "D:data/review/scoreboard.json": {
+   "b": 130822
+  },
+  "D:data/truth": {
+   "b": 487182
+  },
+  "D:data/alerts/eu.json": {
+   "b": 62671
+  },
+  "D:data/alerts/us-parks.json": {
+   "b": 93454
+  },
+  "D:data/closures": {
+   "b": 113947
+  },
+  "D:data/intake": {
+   "b": 71556
+  },
+  "D:data/detective": {
+   "b": 33802
+  },
+  "D:data/map-observations.json": {
+   "b": 444262
+  }
+ }
 }
