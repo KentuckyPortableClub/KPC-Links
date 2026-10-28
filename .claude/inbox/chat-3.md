@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 9:20 AM) BRANDON'S GO: put the KENTUCKY + OHIO 2-fer lists (the 8:51 AM line run, chat 8 READY) on the MEMBERS-ONLY Overlap Finder now, labelled BETA (members testing). Standing GO from here on: each area chat 8 marks READY from the US + Canada queue goes on the members-only Overlap Finder too (BETA), batched (one push per day at most), no new GO needed. Still members only: nothing public, no menu change, no posts. 2-fer notices as usual.
 
 
 ## NEEDS BRANDON
