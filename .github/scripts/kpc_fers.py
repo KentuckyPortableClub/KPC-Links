@@ -1150,6 +1150,61 @@ class Frame:
             if gm is not None: m |= gm
         return m
 
+    def _ring_boxes(self, gs):
+        """Per record, its rings as 1/16-pixel points with each ring's pixel box on this frame (clipped to the frame)."""
+        out = []
+        for g in gs:
+            rs = []
+            for ring in g:
+                if not len(ring): continue
+                r = np.round(self.px(ring) * 16).astype(np.int32)
+                if r[:, 0].max() < -48 or r[:, 0].min() > self.W * 16 + 48 or r[:, 1].max() < -48 or r[:, 1].min() > self.H * 16 + 48: rs.append((r, None)); continue
+                x0 = max(0, (int(r[:, 0].min()) >> 4) - 2); x1 = min(self.W, (int(r[:, 0].max()) >> 4) + 3)
+                y0 = max(0, (int(r[:, 1].min()) >> 4) - 2); y1 = min(self.H, (int(r[:, 1].max()) >> 4) + 3)
+                rs.append((r, (x0, y0, x1, y1) if x0 < x1 and y0 < y1 else None))
+            out.append(rs)
+        return out
+
+    def area_in(self, gs, w):
+        """Frame.area(gs) cut to window w, without drawing the whole frame: each ring filled in its own box (fillPoly gives the
+        same pixels for a polygon moved by whole pixels; the picture's real edges stay where they are), XOR per record as in area()."""
+        m = np.zeros((w.H, w.W), np.uint8)
+        for rs in self._ring_boxes(gs):
+            gm = None; any_ring = False
+            for r, bx in rs:
+                any_ring = True
+                if bx is None: continue
+                x0, y0, x1, y1 = bx
+                a0, b0, a1, b1 = max(x0, w.c0), max(y0, w.r0), min(x1, w.c0 + w.W), min(y1, w.r0 + w.H)
+                if a0 >= a1 or b0 >= b1: continue   # this ring paints nothing in the window (XOR with zeros there)
+                t = np.zeros((y1 - y0, x1 - x0), np.uint8)
+                cv2.fillPoly(t, [r], 1, lineType=cv2.LINE_8, shift=4, offset=(-x0 * 16, -y0 * 16))
+                if gm is None: gm = np.zeros_like(m)
+                gm[b0 - w.r0:b1 - w.r0, a0 - w.c0:a1 - w.c0] ^= t[b0 - y0:b1 - y0, a0 - x0:a1 - x0]
+            if gm is not None: m |= gm
+        return m
+
+    def any_in(self, gs):
+        """Would area(gs) paint any pixel? (the same rings, the same test: True as soon as one record paints one)"""
+        for rs in self._ring_boxes(gs):
+            boxes = [(r, bx) for r, bx in rs if bx is not None]
+            if not boxes: continue
+            x0 = min(b[0] for _, b in boxes); y0 = min(b[1] for _, b in boxes); x1 = max(b[2] for _, b in boxes); y1 = max(b[3] for _, b in boxes)
+            if (x1 - x0) * (y1 - y0) > 50_000_000: return True   # a frame-sized record: it paints (only the ownership-map call depends on this)
+            gm = np.zeros((y1 - y0, x1 - x0), np.uint8)
+            for r, (a0, b0, a1, b1) in boxes:
+                t = np.zeros((b1 - b0, a1 - a0), np.uint8)
+                cv2.fillPoly(t, [r], 1, lineType=cv2.LINE_8, shift=4, offset=(-a0 * 16, -b0 * 16))
+                gm[b0 - y0:b1 - y0, a0 - x0:a1 - x0] ^= t
+            if gm.any(): return True
+        return False
+
+    def window(self, P, pad):
+        """A sub-raster of THIS frame's pixel grid around pixel points P (+ pad pixels), clipped to the frame."""
+        c0 = max(0, int(math.floor(P[:, 0].min())) - pad); r0 = max(0, int(math.floor(P[:, 1].min())) - pad)
+        c1 = min(self.W, int(math.ceil(P[:, 0].max())) + pad + 1); r1 = min(self.H, int(math.ceil(P[:, 1].max())) + pad + 1)
+        return Win(self, c0, r0, max(1, c1 - c0), max(1, r1 - r0))
+
     def lines(self, ls, width_m):
         m = np.zeros((self.H, self.W), np.uint8)
         th = max(1, int(round(2 * width_m / self.cell)))
@@ -1165,6 +1220,21 @@ class Frame:
         keep = [p for p in parts if p[:, 0].max() >= -pad and p[:, 0].min() <= self.W * 16 + pad and p[:, 1].max() >= -pad and p[:, 1].min() <= self.H * 16 + pad]
         if keep: cv2.polylines(m, keep, False, 1, thickness=th, lineType=cv2.LINE_8, shift=4)
         return m
+
+
+class Win(Frame):
+    """A window of a Frame: the parent's pixel grid shifted by whole pixels (px = parent px minus the offset, exact in floats),
+    so fillPoly / polylines paint exactly the parent's pixels there."""
+    def __init__(self, F, c0, r0, W, H):
+        self.P, self.c0, self.r0, self.W, self.H, self.cell = F, c0, r0, W, H, F.cell
+        self.lat0, self.lon0, self.kx, self.ky, self.x0, self.y1 = F.lat0, F.lon0, F.kx, F.ky, F.x0, F.y1
+
+    def px(self, pts):
+        return Frame.px(self.P, pts) - np.array([self.c0, self.r0], dtype=np.float64)
+
+    def ll(self, c, r): return self.P.ll(c + self.c0, r + self.r0)
+
+    def bounds(self): raise RuntimeError('Win.bounds: use the parent frame')
 
 
 def inter(b1, b2, pad=0.0):
@@ -1941,10 +2011,32 @@ def line_zone(x, G, PIN):
     if not lref or not oref: return None
     b = x.get('box') or bbox_lines([x['shape']])
     F = Frame(b, CELL, 60)
-    own = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
-    z = (F.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    # Oct 28 (pass-5 speed-up): the zone lies within 100 ft of THIS stretch's own line, but a main row's box covers every stretch
+    # folded into it (Sheltowee x Daniel Boone: a 961-million-pixel frame, 4 GB). So the same global pixel grid is used, but only a
+    # window around the stretch's line (+ a margin far wider than the pen and the 5-m distance test) is drawn: the same pixels.
+    w = F.window(F.px(x['shape']), int(math.ceil((ZONE + STATION_IN) / CELL)) + 24)
+    # land: each ring is filled in its own box on the WHOLE frame's grid and edges (fillPoly gives other pixels when the picture
+    # edge cuts a polygon somewhere else: tested), then only the window is kept
+    m = F.area_in(G[oref], w)
+    if oref in OWNED and F.any_in(G[oref]):
+        o = owned_land(OWNED[oref], F.bounds())   # the global frame's bounds: the same ownership-map answer as before
+        if o is None: OWNED_FAIL.add(oref); m = np.zeros_like(m)
+        else: m &= F.area_in(o, w)
+    own = (dt(m) * CELL >= STATION_IN).astype(np.uint8)
+    z = (w.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    if os.environ.get('ZONE_CHECK') and F.W * F.H < 200e6:   # proof hook: the old whole-frame zone, pixel by pixel
+        own0 = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
+        z0 = (F.lines([x['shape']], ZONE + STATION_IN) & own0).astype(np.uint8)
+        zz = np.zeros_like(z0); zz[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = z
+        d = np.argwhere(zz != z0)
+        print(f"ZONECHECK {x.get('id')} frame {F.W}x{F.H} win {w.c0},{w.r0},{w.W}x{w.H} old {int(z0.sum())} new {int(z.sum())} diff {len(d)} at {d[:5].tolist()}", flush=True)
+        if len(d):
+            l0 = F.lines([x['shape']], ZONE + STATION_IN); m0 = pmask(F, oref, G)
+            lw = np.zeros_like(l0); lw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = w.lines([x['shape']], ZONE + STATION_IN)
+            mw = np.zeros_like(m0); mw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = m
+            print(f"ZONECHECK   lines differ {int((lw != l0).sum())}, land differ (inside window) {int((mw != m0)[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W].sum())}", flush=True)
     if not z.any(): return {'zone': [], 'zone_acres': 0, 'zone_wide_m': 0}
-    cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE, offset=(w.c0, w.r0))
     rings = []
     for c in sorted(cs, key=cv2.contourArea, reverse=True)[:12]:
         c = cv2.approxPolyDP(c, 1.0, True).reshape(-1, 2)
@@ -2184,6 +2276,16 @@ def how_checked(s, parks, PIN):
     s['how_checked'] = '; '.join(bits + ['the spot itself is Forest Service-owned land']) if bits else 'the spot is Forest Service-owned land'
 
 
+MARK_T = [time.time()]
+def mark(what):
+    """Oct 28 (pass-5 speed-up): one log line per stage: seconds since the last mark + the process's peak memory so far."""
+    try:
+        import resource
+        mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
+    except Exception: mb = -1  # noqa: BLE001
+    now = time.time(); print(f'stage: {what}: {now - MARK_T[-1]:.0f} s, peak {mb} MB', flush=True); MARK_T.append(now)
+
+
 def tidy_rows(spots, PIN, today):
     """Chat 8's Kentucky final look (Oct 27 ~2 PM): (1) one AREA pair with several separate patches (a wild river corridor x
     Daniel Boone: 6 rows) = ONE row with up to 3 pins, like the trail rows (KR-1); (5) a 3-fer (or more) and the pair rows that
@@ -2363,12 +2465,14 @@ def main():
             save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
     elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
+        mark('pass 5 start')
         want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
         cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
         same = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'same land' and str(x.get('status', '')).startswith('candidate')]
         refs = sorted({r for x in cand + same for r in x['refs'] if r in parks and parks[r]['ids']})
         if REGION == 'ky': G, bad = ky_geom(parks, refs)
         else: G, bad = download(parks, refs, DET, PREC)
+        mark(f'geometry of {len(refs)} parks read')
         n = {'checked': 0, 'water only': 0, 'still not checked': 0}
         for x in cand:
             if late(): break
@@ -2392,17 +2496,22 @@ def main():
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
                 try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
                 except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+        mark(f'water re-check of {len(cand)} spots + {len(same)} same-land rows')
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if more:
             g2, _ = ky_geom(parks, more) if REGION == 'ky' else download(parks, more, DET, PREC)
             G.update(g2)
+        mark(f'geometry of {len(more)} more parks')
         n['spots given their boundary lines'] = add_lines(files, G, today)
+        mark(f"boundary lines for {n['spots given their boundary lines']} spots")
         tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
             g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
             G.update(g3)
+        mark(f'geometry of {len(tw)} trail-pair parks')
         n['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
+        mark(f"zones for {n['trail stretches given their true zone']} trail stretches")
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT

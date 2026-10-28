@@ -1,0 +1,21 @@
+{
+"about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
+"changed": {
+"data/fers/US-KY.json": "2026-10-28",
+"data/fers/US-OH.json": "2026-10-28",
+"data/fers/looked-ky.json": "2026-10-28",
+"data/fers/looked-oh.json": "2026-10-28",
+"data/fers/missing-ky.json": "2026-10-28",
+"data/fers/missing-oh.json": "2026-10-28",
+"data/fers/report-ky.json": "2026-10-28",
+"data/fers/report-oh.json": "2026-10-28",
+"data/fers/reuse-p1-ky.json": "2026-10-28",
+"data/fers/reuse-p1-oh.json": "2026-10-28",
+"data/fers/reuse-p2-ky.json": "2026-10-28",
+"data/fers/reuse-p2-oh.json": "2026-10-28",
+"data/fers/reuse-p3-ky.json": "2026-10-28",
+"data/fers/reuse-p3-oh.json": "2026-10-28",
+"data/fers/same-outline-ky.json": "2026-10-28",
+"data/fers/same-outline-oh.json": "2026-10-28"
+}
+}
