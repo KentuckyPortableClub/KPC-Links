@@ -109,3 +109,8 @@ One short, friendly email per agency from Brandon (KZ4CP, Kentucky Portable Club
 - [x] Texas Historical Commission: NOT NEEDED, disclaimer-only terms = passes (waits on chat 2's zip reader); contact kept: atlas@thc.texas.gov.
 Round 19 (Oct 28 2:11 AM): Ohio DNR + ND Parks + Missouri park boundaries PASS (terms on the agency item pages). STILL NO TERMS: Tennessee Register polygons, PEI parks, NH GRANIT trails, Missouri trail lines, NC HPO, SC heritage preserves; world: Denmark, Finland (Metsähallitus), Lithuania. NOTE: chat 9's round 19 re-reads each 'nothing stated' layer's own item page (Nevada's terms were there); some of the rows above may pass the same way: check before sending.
 When a YES comes back: forward it to HQ -> HQ records the credit line in mapping.md -> chat 9 adds the layer.
+
+## SECRETS FOR CHAT 10'S BOTS (Brandon; reminder set for Oct 28 9:00 AM CDT)
+- [ ] KPC-Data → Settings → Secrets and variables → Actions → `RIDB_API_KEY` (his Recreation.gov key from ridb.recreation.gov → profile; same key KPC-Links uses; GitHub never shows a saved secret again).
+- [ ] Free FCC Broadband Data Collection account → add `FCC_BDC_USERNAME` + `FCC_BDC_TOKEN` (cell coverage at campgrounds).
+Never paste them in a chat.
