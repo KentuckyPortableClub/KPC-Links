@@ -25,6 +25,7 @@ import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+import zlib
 
 UA = 'Mozilla/5.0 (compatible; KPC-new-lands; +https://kentuckyportableclub.github.io/KPC-Links/)'
 SEEN = pathlib.Path('data/ky-lands-seen.json')
@@ -56,6 +57,8 @@ def get(url, tries=3, data=None, ua=None):
                 return r.read().decode('utf-8', 'replace')
         except Exception as e:  # noqa: BLE001
             last = e
+            if getattr(e, 'code', 0) in (403, 404, 410):
+                break   # Oct 28: a missing page stays missing; no retry wait
             time.sleep(5 * (i + 1))
     raise last
 
@@ -206,10 +209,22 @@ def owner_type(s):
 
 
 def wma_owners(urls):
-    """Read the 'Owned by ...' / 'privately owned' / 'cooperative agreement between the owner ...' sentence on every KDFWR WMA page."""
+    """Read the 'Owned by ...' / 'privately owned' / 'cooperative agreement between the owner ...' sentence on every KDFWR WMA page.
+    Oct 28 speed-up: a page read in the last 4 weeks with the same link is reused (owners rarely change); about a quarter
+    of the pages are read again each week, plus every new or changed link."""
     out = {}
+    try:
+        prev = json.loads(WMA_OWNERS.read_text(encoding='utf-8')).get('wmas', {})
+    except (OSError, ValueError):
+        prev = {}
+    since = (dt.date.today() - dt.timedelta(days=28)).isoformat()
+    reused = 0
     for n, u in sorted(urls.items()):
         if not u.startswith('http'):
+            continue
+        pv = prev.get(n) or {}
+        if pv.get('url') == u and pv.get('read', '') >= since:
+            out[n] = pv; reused += 1
             continue
         try:
             t = get(u, tries=2)
@@ -232,8 +247,10 @@ def wma_owners(urls):
                 cut = d.end(); break
             s = seg[:cut]
             s = re.sub(r'\s*(View Detailed Map|Mapping Resources).*$', '', s).strip()
-        out[n] = {'url': u, 'says': s[:300], 'type': owner_type(s) if s else ''}
+        out[n] = {'url': u, 'says': s[:300], 'type': owner_type(s) if s else '',
+                  'read': (dt.date.today() - dt.timedelta(days=0 if pv.get('read') else 7 * (zlib.crc32(n.encode()) % 4))).isoformat()}   # first time: spread over 4 weeks
         time.sleep(0.4)
+    notice('KDFWR pages', '%d read this week, %d reused from the last 4 weeks' % (len(out) - reused, reused))
     return out
 
 
@@ -244,6 +261,10 @@ def main():
         try:
             now['lists'][label] = ky_layer(path, field, web, owner)
             notice('Read ' + label, '%d places' % len(now['lists'][label]))
+            o = len((old or {}).get('lists', {}).get(label, {}))
+            if o >= 5 and len(now['lists'][label]) < 0.9 * o:   # Oct 28 GATE: a short answer is a hiccup, not removed land
+                notice(label, 'GATE FAIL %d read vs %d last week: kept last week\'s list' % (len(now['lists'][label]), o))
+                now['lists'][label] = old['lists'][label]
         except Exception as e:  # noqa: BLE001
             notice('Could not read ' + label, e)
             if old and label in old.get('lists', {}):
@@ -258,13 +279,22 @@ def main():
                 OWNERS[n] = {'State': 'KDFWR / state', 'Private': 'Private', 'Corps': 'U.S. Army Corps of Engineers', 'University': 'University', 'Local': 'County / city', 'Federal': 'Federal'}[o['type']]
         notice('KDFWR owners read', '%d pages, %d with an owner sentence' % (len(WO), sum(1 for o in WO.values() if o['type'])))
     try:
-        now['lists']['USGS PAD-US (federal + state, open to the public)'] = padus()
+        PU = padus()
+        o = len((old or {}).get('lists', {}).get('USGS PAD-US (federal + state, open to the public)', {}))
+        if o >= 5 and len(PU) < 0.9 * o:
+            raise RuntimeError('GATE FAIL %d read vs %d last week' % (len(PU), o))
+        now['lists']['USGS PAD-US (federal + state, open to the public)'] = PU
     except Exception as e:  # noqa: BLE001
         notice('Could not read PAD-US', e)
         if old and old['lists'].get('USGS PAD-US (federal + state, open to the public)'):
             now['lists']['USGS PAD-US (federal + state, open to the public)'] = old['lists']['USGS PAD-US (federal + state, open to the public)']
     try:
         P = pota()
+        o = len((old or {}).get('pota', {}))
+        lost = [k for k in ('US-1264', 'US-8144', 'US-4484') if k not in P]
+        if lost or (o and len(P) < 0.98 * o):   # Oct 28 GATE: POTA API hiccup guard
+            raise RuntimeError('GATE FAIL %d parks read vs %d last week%s' % (len(P), o, (', missing ' + ', '.join(lost)) if lost else ''))
+        notice('POTA US-KY', 'GATE PASS %d parks (last week %d), known parks present' % (len(P), o))
         now['pota'] = P
     except Exception as e:  # noqa: BLE001
         notice('Could not read POTA', e)
@@ -288,9 +318,13 @@ def main():
             for n, info in L.items():
                 if n not in before and not any(norm(n) == norm(b) for b in before):
                     new_lands.append((label, n, info, in_pota(n, P)))
+        try:
+            daily = {i['ref'] for i in json.loads(pathlib.Path('kpc-new-refs.json').read_text(encoding='utf-8')).get('items', []) if i.get('prog') == 'pota'}
+        except (OSError, ValueError):
+            daily = set()
         for ref, n in P.items():
             if ref not in old.get('pota', {}):
-                new_pota.append((ref, n))
+                new_pota.append((ref, n, ref in daily))
         for k, v in now['news'].items():
             if k not in old.get('news', {}):
                 new_news.append(v)
@@ -348,7 +382,15 @@ def main():
             line += (' · KDFWR page: "%s"' % o['says']) if o.get('says') else ' · _owner not stated on its KDFWR page: ask Fish & Wildlife_'
         (maybe if w else good).append(line + ((' · _%s_' % w) if w else ''))
     lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. A public road, trail or boat ramp in is enough access (Fish & Wildlife lakes with a public ramp count). Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
-    lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; each week with something new adds a comment (GitHub emails you about comments).']
+    lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; a week with new land not in POTA (or a new Kentucky park) adds a comment (GitHub emails you about comments). News headlines are listed here only.']
+    wk = []
+    if new_pota:
+        wk += ['**New POTA parks in Kentucky:** ' + ', '.join('[%s %s](https://pota.app/#/park/%s)' % (r, n, r) for r, n, _ in new_pota)]
+    if new_lands:
+        wk += ['**New names in the land lists:**'] + ['- %s · %s%s' % (link(n), label, (' · already POTA %s' % ref) if ref else ' · **not in POTA**') for label, n, info, ref in new_lands]
+    if new_news:
+        wk += ['**News headlines (leads, not proof):**'] + ['- [%s](%s) %s' % (x['title'], x['link'], x['date']) for x in new_news[:15]]
+    lines += ['', '### This week (%s)' % when, ''] + (wk or ['Nothing new this week.'])
     body = '\n'.join(lines)
 
     gh('label', 'create', LABEL, '--color', '2C9A55', '--description', 'New Kentucky public lands watch (weekly)', '--force')
@@ -360,23 +402,21 @@ def main():
     else:
         out = gh('issue', 'create', '--title', title, '--label', LABEL, '--body-file', '-', input_text=body).strip()
         num = out.rstrip('/').split('/')[-1] if out else ''
-    if new_lands or new_pota or new_news:
-        c = ['### New this week (%s)' % when, '']
-        if new_pota:
-            c += ['**New POTA parks in Kentucky** (add them to the site data):', ''] + ['- [%s %s](https://pota.app/#/park/%s)' % (r, n, r) for r, n in new_pota] + ['']
-        if new_lands:
-            c += ['**New names in the state / federal land lists:**', '']
-            for label, n, info, ref in new_lands:
-                c.append('- %s · %s%s%s' % (link(n), label, (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else ''), (' · already POTA %s' % ref) if ref else ' · **not in POTA**'))
-            c.append('')
-        if new_news:
-            c += ['**News headlines (last 30 days):**', ''] + ['- [%s](%s) %s' % (x['title'], x['link'], x['date']) for x in new_news[:15]] + ['']
-        c.append('Check each one with the Tool Box before emailing the Map Rep: news and new map entries are leads, not proof.')
-        if num:
-            gh('issue', 'comment', num, '--body-file', '-', input_text='\n'.join(c))
-        notice('New this week', '%d new POTA parks, %d new land names, %d news items' % (len(new_pota), len(new_lands), len(new_news)))
-    else:
-        notice('Nothing new', 'No new lands, POTA parks or news this week.')
+    # Oct 28 (email only for real issues): the COMMENT (which emails) carries only new land not in POTA and new POTA parks
+    # the daily new-references bot has not already commented; everything else (news, names already in POTA) is in the BODY.
+    c = []
+    fresh_pota = [(r, n) for r, n, told in new_pota if not told]
+    real_lands = [x for x in new_lands if not x[3]]
+    if fresh_pota:
+        c += ['**New POTA parks in Kentucky** (add them to the site data):', ''] + ['- [%s %s](https://pota.app/#/park/%s)' % (r, n, r) for r, n in fresh_pota] + ['']
+    if real_lands:
+        c += ['**New names in the state / federal land lists, not in POTA:**', '']
+        for label, n, info, ref in real_lands:
+            c.append('- %s · %s%s' % (link(n), label, (' · ' + info) if info and not info.startswith('http') else (' · [official page](%s)' % info if info else '')))
+        c.append('')
+    if c and num:
+        gh('issue', 'comment', num, '--body-file', '-', input_text='\n'.join(['### New this week (%s)' % when, ''] + c + ['Check each one with the Tool Box before emailing the Map Rep: new map entries are leads, not proof.']))
+    notice('New this week', '%d new POTA parks (%d already told by the daily bot), %d new land names (%d not in POTA), %d news items (in the issue body)' % (len(new_pota), len(new_pota) - len(fresh_pota), len(new_lands), len(real_lands), len(new_news)))
 
 
 if __name__ == '__main__':
