@@ -1,0 +1,195 @@
+{
+ "about": "Chat 9 round 13 (HQ Oct 28 1:01 AM): SC managed lands item credits (Clemson hosting SCDNR's data?), SCDNR hub dataset list, the 5 National Register test sites re-tested BY PIN. Results: round13-tested.json.",
+ "date": "2026-10-28",
+ "layers": [],
+ "searches": [],
+ "orgs": [],
+ "hubs": [
+  {
+   "st": "SC",
+   "q": "SCDNR_Managed_Lands_Public_Viewer",
+   "note": "item credits / description: whose data?",
+   "search_hits": [
+    "SCDNR_Managed_Lands_Public_Viewer [bneece@clemson.edu_Clemson] Feature Service https://services1.arcgis.com/x5wCko8UnSi4h0CB/arcgis/rest/services/SCDNR_Managed_Lands_Public_Viewer/FeatureServer"
+   ],
+   "items": [
+    {
+     "item_licence": "",
+     "item_modified": "2023-05-04",
+     "item_owner": "bneece@clemson.edu_Clemson",
+     "item_org": "Clemson University",
+     "item_title": "SCDNR_Managed_Lands_Public_Viewer",
+     "item_credits": "",
+     "item_about": "South Carolina DNR public managed lands",
+     "url": "https://services1.arcgis.com/x5wCko8UnSi4h0CB/arcgis/rest/services/SCDNR_Managed_Lands_Public_Viewer/FeatureServer",
+     "type": "Feature Service",
+     "layer_read": {
+      "st": "SC",
+      "kind": "?",
+      "url": "https://services1.arcgis.com/x5wCko8UnSi4h0CB/arcgis/rest/services/SCDNR_Managed_Lands_Public_Viewer/FeatureServer",
+      "answers": true,
+      "service": "",
+      "licence": "",
+      "years_in_text": [],
+      "description": "",
+      "item_licence": "",
+      "item_modified": "2023-05-04",
+      "item_owner": "bneece@clemson.edu_Clemson",
+      "item_org": "Clemson University",
+      "item_title": "SCDNR_Managed_Lands_Public_Viewer",
+      "item_credits": "",
+      "item_about": "South Carolina DNR public managed lands",
+      "layers": [
+       {
+        "id": 0,
+        "name": "SCDNR_Managed_Lands_Public_Viewer",
+        "geom": "Polygon",
+        "nameField": "prop_id",
+        "ownerField": "",
+        "typeField": "",
+        "fields": [
+         "FID",
+         "OBJECTID",
+         "prop_id",
+         "prop_name",
+         "prop_tract",
+         "prop_use",
+         "prop_type",
+         "heritage_p",
+         "wildlife_m",
+         "wma_specia",
+         "prop_statu",
+         "prop_publi",
+         "scdnr_regi",
+         "scdnr_game",
+         "public_vis",
+         "Shape__Are",
+         "Shape__Len",
+         "GlobalID",
+         "Shape__Area",
+         "Shape__Length"
+        ],
+        "last_edit": "2023-05-04",
+        "layer_copyright": "",
+        "records": 963,
+        "sample": [
+         "25",
+         "32",
+         "122",
+         "0",
+         "23",
+         "23",
+         "20",
+         "0"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "st": "SC",
+   "items": "https://public-lands-scdnr.hub.arcgis.com/api/v3/datasets?page[size]=100",
+   "note": "SCDNR hub datasets (v3)",
+   "error": "HTTP Error 400: Bad Request"
+  }
+ ],
+ "pages": [
+  {
+   "st": "SC",
+   "url": "https://public-lands-scdnr.hub.arcgis.com/api/v3/datasets?page[size]=100",
+   "note": "SCDNR hub raw list (links)",
+   "status": 200,
+   "ctype": "application/json; charset=utf-8",
+   "bytes": 25091363,
+   "links": [
+    "https://amsis-geoscience-au.hub.arcgis.com/",
+    "https://data-osi.opendata.arcgis.com/",
+    "https://etsu.maps.arcgis.com/home/item.html?id=2d555832025c4d299b73966cdafd77a3&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=3855c61f3dbf4970975343327dbafe31&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=5a1ef71a14e149efb197174aeaa7fd64&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=5a783c2226fe479dba71494eafe23557&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=64a9434c3803436f920b49e8b37bb827&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=6afe21b74eb2406bbf79522472010837&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=805bd49e99314bce88ed903e993cec32&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=89ebe8f5cefe4023b2847b3e501148f4&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=9e997741219943d6b48865a1c09e4c53&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=9fe5b63058304a6c9d76783925d255d4&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=b2a2aef80b04453187090d5d36a2fb62&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=d6c9808a623c4b3cbe3c1a8ee5991419&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=d8b24e065647498b9200d23ea7ccfc7a&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=e38f60c3e38b4365a8bdbfa9cc1f533a&amp;sublayer=0",
+    "https://etsu.maps.arcgis.com/home/item.html?id=e552b45b15ab44529c4dadc881595a77&amp;sublayer=0",
+    "https://experience.arcgis.com/experience/747d8a8726a24dbababd0b1aeafe9119",
+    "https://experience.arcgis.com/experience/8d68267de5e04ab3b044cd68890c2d54",
+    "https://gis.environment.gov.au/gispub/rest/services/marine/BiologicallyImportantAreas/MapServer",
+    "https://gis.glc.org/server/rest/services/Hosted/Watershed_based_Stressors_for_the_Great_Lakes_Basin/FeatureServer",
+    "https://kytc.maps.arcgis.com/home/item.html?id=fb2f3aea6c7c4a649a6e82db3414f980#overview",
+    "https://livingatlas.arcgis.com/livefeeds-status/",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Aree_SIN_Papigno/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Aree_SIN_Papigno_Sottratte_da_tutela/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Concessione_San_Lorenzo/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Confini_comunali_limite_catastale_scala_1_2_000_DBSN/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Impianti_AU_autorizzati_25082026/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Impianti_AU_autorizzati_25082026_centroide/FeatureServer",
+    "https://maps.regione.umbria.it/server/rest/services/Hosted/Vincolo_Idrogeologico_trasposizione/FeatureServer"
+   ]
+  }
+ ],
+ "nrhp": {
+  "tests": [
+   {
+    "ref": "US-3785",
+    "park": "Perryville Battlefield State Historic Site",
+    "found": []
+   },
+   {
+    "ref": "US-1256",
+    "park": "Fort Boonesborough State Park",
+    "found": []
+   },
+   {
+    "ref": "US-1269",
+    "park": "Old Fort Harrod State Park",
+    "found": []
+   },
+   {
+    "ref": "US-3715",
+    "park": "Etowah Indian Mounds State Historic Site",
+    "found": [
+     {
+      "RESNAME": "Etowah Mounds",
+      "State": "GEORGIA",
+      "STATUS": "Listed",
+      "ResType": "site",
+      "Is_NHL": "X",
+      "MAP_METHOD": "Derived by XY event point or centroid generation",
+      "SRC_SCALE": "1:24000",
+      "SRC_ACCU": "+/- 12 meters",
+      "BND_TYPE": "Circumscribed polygon",
+      "EDIT_DATE": 1345161600000,
+      "NRIS_Refnum": "66000272",
+      "acres": 103.1
+     }
+    ]
+   },
+   {
+    "ref": "US-0708",
+    "park": "Stones River National Battlefield",
+    "found": []
+   }
+  ],
+  "count": {
+   "checked": 0,
+   "polygon_holds_pin": 0,
+   "same_name": 0,
+   "sure_by_rule": 0,
+   "nps_units": 0,
+   "removed": 0,
+   "errors": 0
+  },
+  "note": "size check: POTA gives no park area, so 'size within ~20%' needs the park's published acres: polygon acres are shown for chat 8 to compare. sure_by_rule = pin inside + same name, not an NPS unit (NPS boundary first); size still to confirm.",
+  "rows": []
+ }
+}
