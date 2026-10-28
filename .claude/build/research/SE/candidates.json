@@ -4,82 +4,58 @@
   {
    "st": "MS",
    "kind": "wild",
-   "ag": "MDWFP via MARIS (Mississippi State)",
+   "ag": "MDWFP via MARIS",
    "nm": "",
-   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer",
-   "note": "the big MS gap: 66 of 155 parks have no outline"
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer/0",
+   "note": "round 5: the MapServer root reports no layer list, so ask layer 0 directly"
   },
   {
    "st": "MS",
    "kind": "park",
    "ag": "MDWFP via MARIS",
    "nm": "",
-   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer",
-   "note": "53 polygons per the metadata"
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer/0",
+   "note": "round 5: layer 0 directly"
   },
   {
    "st": "MS",
    "kind": "refuge",
    "ag": "USFWS via MARIS",
    "nm": "",
-   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer",
-   "note": "1997: old, PAD-US probably wins (rule 6)"
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer/0",
+   "note": "1997: PAD-US probably wins"
   },
   {
    "st": "MS",
    "kind": "16th-section",
-   "ag": "MS Secretary of State via MARIS",
+   "ag": "MS via MARIS",
    "nm": "",
-   "url": "https://gis.mississippi.edu/server/rest/services/Cadastral/MS_16thSectLands_2021/MapServer",
-   "note": "GREY AREA SE-3: school-trust land leased to the state. Added to RECOGNISE it, never to make a 2-fer, until Brandon rules"
-  },
-  {
-   "st": "WI",
-   "kind": "trail",
-   "ag": "Wisconsin DNR",
-   "nm": "TRAIL_NAME",
-   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
-   "note": "state trail segments (lines); TRAIL_MANAGER field"
-  },
-  {
-   "st": "MN",
-   "kind": "trail",
-   "ag": "Minnesota DNR",
-   "nm": "",
-   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0",
-   "note": "16 state trails"
-  },
-  {
-   "st": "MO",
-   "kind": "trail",
-   "ag": "Missouri DNR",
-   "nm": "",
-   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer",
-   "note": "layers 3 + 7 = Trail Routes and Long Trails; 12 natural areas (read), 13 wild areas (not read)"
-  },
-  {
-   "st": "MO",
-   "kind": "wild-area",
-   "ag": "Missouri DNR",
-   "nm": "",
-   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/13",
-   "note": "wild areas"
-  },
-  {
-   "st": "ND",
-   "kind": "forest",
-   "ag": "North Dakota Forest Service",
-   "nm": "",
-   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/ArcGIS/rest/services/NDGISHUB_State_Forest/FeatureServer",
-   "note": "2011 data per the desk: check the date before it outranks anything newer (rule 6)"
+   "url": "https://gis.mississippi.edu/server/rest/services/Cadastral/MS_16thSectLands_2021/MapServer/0",
+   "note": "SE-3 grey area: recognise it, never a 2-fer until Brandon rules"
   },
   {
    "st": "MI",
-   "kind": "forest",
+   "kind": "land",
    "ag": "Michigan DNR",
    "nm": "",
-   "url": "https://services1.arcgis.com/3nMhWgyVdnKJMg2j/arcgis/rest/services/State_Forest_Boundaries/FeatureServer",
-   "note": "GUESS: the MI key has no state forest layer and 6 forests are unjoined; if this fails the search below finds the right one"
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_Managed_Sites/FeatureServer",
+   "note": "from the MI search: 'DNR Managed Sites' (publisher Michigan Department of...); the MI key has no state forest layer"
+  },
+  {
+   "st": "IN",
+   "kind": "park",
+   "ag": "Indiana DNR",
+   "nm": "",
+   "url": "https://services1.arcgis.com/UWGh5lQD8ljz9ocR/arcgis/rest/services/IN_DNR_Properties/FeatureServer",
+   "note": "from the IN search: 'IN DNR Properties'; 13 lake State Recreation Areas are unjoined"
+  },
+  {
+   "st": "MN",
+   "kind": "wild",
+   "ag": "Minnesota DNR",
+   "nm": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/DNRWildlifeManagementAreas_Public/FeatureServer",
+   "note": "from the MN search: the WMA public layer the desk wanted"
   }
  ],
  "servers": [
@@ -123,18 +99,18 @@
  "round2_search": [
   {
    "st": "MI",
-   "q": "(\"state forest\" OR \"state trail\" OR \"harbor\") AND \"Michigan\" AND (DNR OR \"Department of Natural Resources\")",
-   "why": "MI: 6 state forests, 6 state trails, 13 harbours unjoined; the key has no forest layer"
+   "q": "\"DNR Managed Sites\" OR \"State Forest\" AND Michigan",
+   "why": "confirm the Michigan host above (the guess may be wrong)"
   },
   {
    "st": "IN",
-   "q": "(\"state recreation area\" OR \"state forest\" OR trails) AND \"Indiana\" AND (DNR OR \"Department of Natural Resources\")",
-   "why": "IN: 13 lake State Recreation Areas not found"
+   "q": "\"IN DNR Properties\" OR \"IN DNR Trails\"",
+   "why": "confirm the Indiana hosts above"
   },
   {
    "st": "MN",
-   "q": "(\"wildlife management area\") AND \"Minnesota\" AND DNR",
-   "why": "MN DNR WMA public layer (top add 5)"
+   "q": "DNRWildlifeManagementAreas_Public",
+   "why": "confirm the Minnesota WMA host above"
   }
  ]
 }

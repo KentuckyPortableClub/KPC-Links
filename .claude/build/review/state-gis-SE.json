@@ -758,6 +758,15 @@
     "nm": "mgtprjname",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 17 outline-less parks",
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10"
+   },
+   {
+    "ag": "Minnesota DNR",
+    "host": "agency",
+    "kind": "trail",
+    "nm": "trail_name",
+    "note": "978 state trail lines (16 named trails)",
+    "read": "2026-10-27",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0"
    }
   ],
   "MO": [
@@ -782,6 +791,33 @@
     "nm": "Area_Name",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 6",
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5"
+   },
+   {
+    "ag": "Missouri DNR",
+    "host": "agency",
+    "kind": "trail",
+    "nm": "",
+    "note": "Trail Routes, 373 lines",
+    "read": "2026-10-27",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/3"
+   },
+   {
+    "ag": "Missouri DNR",
+    "host": "agency",
+    "kind": "trail",
+    "nm": "",
+    "note": "Long Trails, 7 lines (Katy Trail and friends)",
+    "read": "2026-10-27",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/7"
+   },
+   {
+    "ag": "Missouri DNR",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "WA_NAME",
+    "note": "13 wild areas inside state parks: a designation ON another park's land (rule 3 layering)",
+    "read": "2026-10-27",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/13"
    }
   ],
   "MT": [
@@ -855,6 +891,15 @@
     "kind": "park",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0"
+   },
+   {
+    "ag": "North Dakota Forest Service",
+    "host": "agol",
+    "kind": "forest",
+    "nm": "DESCRIPTION",
+    "note": "27 polygons; the desk says the data is from 2011, so a newer agency boundary always wins (rule 6)",
+    "read": "2026-10-27",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/ArcGIS/rest/services/NDGISHUB_State_Forest/FeatureServer/0"
    }
   ],
   "NE": [
@@ -1794,6 +1839,16 @@
     "kind": "land",
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1"
+   },
+   {
+    "ag": "Wisconsin DNR",
+    "host": "agency",
+    "kind": "trail",
+    "nm": "TRAIL_NAME",
+    "note": "254 state trail segments (lines, rule 5); TRAIL_MANAGER says who runs each",
+    "own": "TRAIL_MANAGER",
+    "read": "2026-10-27",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0"
    }
   ],
   "WV": [
