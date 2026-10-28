@@ -2,30 +2,6 @@
  "about": "Southeast candidate layers to add before the line reaches the region (chat 8's source book + HQ Oct 27 9:46 PM). Probed by .github/scripts/kpc_se_probe.py from a GitHub runner, because chat sessions cannot reach state map servers. 'kind' is the park kind the answer key would join; 'owner' = the field that carries land ownership (rule 14).",
  "layers": [
   {
-   "st": "MS",
-   "kind": "wild",
-   "ag": "MDWFP via MARIS",
-   "nm": "",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/WildL_Areas/MapServer",
-   "note": "WMAs + refuges + 16th Section leases + state parks as TYPE values; 2019, no use limits"
-  },
-  {
-   "st": "MS",
-   "kind": "park",
-   "ag": "MDWFP via MARIS",
-   "nm": "",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/State_Parks/MapServer",
-   "note": "53 polygons, 2019, no use limits"
-  },
-  {
-   "st": "MS",
-   "kind": "forest-own",
-   "ag": "US Forest Service via MARIS",
-   "nm": "",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/NatFor_OwnerBnd/MapServer",
-   "note": "OWNERSHIP, not the proclamation line (rule 1b)"
-  },
-  {
    "st": "VA",
    "kind": "wild",
    "ag": "Virginia DWR",
@@ -66,6 +42,54 @@
    "nm": "",
    "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
    "note": "already read as sgtnb: confirm the NAME field for the 7 SNAs that look unjoined"
+  },
+  {
+   "st": "MS",
+   "kind": "wild",
+   "ag": "MDWFP via MARIS (Mississippi State)",
+   "nm": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer",
+   "note": "the big MS gap: 66 of 155 parks have no outline"
+  },
+  {
+   "st": "MS",
+   "kind": "park",
+   "ag": "MDWFP via MARIS",
+   "nm": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer",
+   "note": "53 polygons per the metadata"
+  },
+  {
+   "st": "MS",
+   "kind": "refuge",
+   "ag": "USFWS via MARIS",
+   "nm": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer",
+   "note": "1997: old, PAD-US probably wins (rule 6)"
+  },
+  {
+   "st": "MS",
+   "kind": "16th-section",
+   "ag": "MS Secretary of State via MARIS",
+   "nm": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cadastral/MS_16thSectLands_2021/MapServer",
+   "note": "GREY AREA SE-3: school-trust land leased to the state. Added to RECOGNISE it, never to make a 2-fer, until Brandon rules"
+  },
+  {
+   "st": "TN",
+   "kind": "tva",
+   "ag": "Tennessee Valley Authority",
+   "nm": "",
+   "url": "https://egismaps.tva.gov/arcgis/rest/services/TVA_Undeveloped_Land/MapServer",
+   "note": "chat 8 found no TVA layer: this is TVA's own server (2021)"
+  },
+  {
+   "st": "TN",
+   "kind": "tva",
+   "ag": "TVA (ArcGIS Online copy)",
+   "nm": "",
+   "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/TVA_Undeveloped_Land_Hosted/FeatureServer",
+   "note": "2023 copy of the same"
   }
  ],
  "servers": [
@@ -107,62 +131,10 @@
  ],
  "round2_servers": [
   {
-   "st": "MS",
-   "what": "MARIS (host guess 1)",
-   "url": "https://gis.maris.mississippi.edu/server/rest/services"
-  },
-  {
-   "st": "MS",
-   "what": "MARIS (host guess 2)",
-   "url": "https://maris.mississippi.edu/server/rest/services"
-  },
-  {
-   "st": "MS",
-   "what": "MARIS / Mississippi State (guess 3)",
-   "url": "https://gis.mississippi.edu/server/rest/services"
-  },
-  {
-   "st": "FL",
-   "what": "SFWMD (guess)",
-   "url": "https://gisweb.sfwmd.gov/arcgis/rest/services"
-  },
-  {
-   "st": "FL",
-   "what": "SWFWMD (guess)",
-   "url": "https://www25.swfwmd.state.fl.us/arcgis12/rest/services"
-  },
-  {
-   "st": "NC",
-   "what": "NC OneMap open server",
-   "url": "https://services.nconemap.gov/arcgis/rest/services"
+   "st": "TN",
+   "what": "TVA own server root",
+   "url": "https://egismaps.tva.gov/arcgis/rest/services"
   }
  ],
- "round2_search": [
-  {
-   "st": "MS",
-   "q": "(wildlife management area OR state park) AND \"Mississippi\"",
-   "why": "MS has no layer in the key at all (66 parks with no outline)"
-  },
-  {
-   "st": "TN",
-   "q": "\"Tennessee Valley Authority\" AND (land OR reservoir OR property OR boundary)",
-   "why": "TVA land layer: chat 8 found none"
-  },
-  {
-   "st": "FL",
-   "q": "(conservation lands OR district lands) AND (\"Water Management District\" AND Florida)",
-   "why": "the three water districts' conservation sites (~15 parks)"
-  },
-  {
-   "st": "NC",
-   "q": "(state park OR state trail OR game land) AND \"North Carolina\"",
-   "why": "no state park, forest or trail layer in the key"
-  },
-  {
-   "st": "AL",
-   "what": "",
-   "q": "(state park OR wildlife management area OR state forest) AND \"Alabama\"",
-   "why": "10+ TVA-managed parks with no layer"
-  }
- ]
+ "round2_search": []
 }
