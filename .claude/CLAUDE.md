@@ -10,6 +10,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - `.claude/notes/ft8-app.md`: the FT8 + Logger + digi APP build plan (private repo, GitHub builds, signing, who does what: Fable / Opus / Sonnet). Start Thu Oct 22 1:15 AM CDT.
 - `.claude/notes/ideas.md`: Brandon's later/to-do list (FT8 app build notes, release plans, N4KPC sparkle…).
 - `.claude/notes/notices.md`: the exact wording of the two notices (open when a page/tool/post shows maps, park info or 2-fers).
+- `.claude/notes/world-stages.md`: the staged WORLD 2-fer list (one country per Brandon GO).
 - `.claude/notes/new-chat-starters.md`: one-line starters for a new chat per topic (Brandon Oct 24: one dedicated chat per area).
 When you add a note, put it in the right topic file (one short bullet, dated, Brandon's words); keep this main file short.
 
