@@ -1,0 +1,15 @@
+{
+ "about": "Chat 9 round K3 (HQ Oct 28 7:30 AM, Green River SNA): find an OPEN Kentucky parcel layer holding Hart County parcel 073-00-00-009.00 (account 6541, 115.758 ac, Johnson Springs Rd, Commonwealth of Kentucky FBO Kentucky Nature Preserves = Timber Lane tract), the Wild Rivers parcels on Rush Island Bend Rd / Davis Bend Rd, and 036-00-00-069.00 (Davis Williams Rd, 60.80 ac). Never qPublic. Results: roundK3-tested.json.",
+ "orgs": [
+  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services", "match": "parcel|pva|cadastr|property|land_?own|plss", "note": "state parcel services"},
+  {"st": "KY", "url": "https://maps.kytc.ky.gov/arcgis/rest/services", "match": "parcel|pva|cadastr|property|row|right", "note": "KYTC services"}
+ ],
+ "searches": [
+  {"st": "KY", "q": "(\"Hart County\" AND Kentucky AND (parcel OR parcels OR PVA))", "why": "Hart County parcels"},
+  {"st": "KY", "q": "Kentucky AND (\"statewide parcels\" OR \"parcel fabric\" OR \"PVA parcels\")", "why": "KY statewide parcels"},
+  {"st": "KY", "q": "owner:KyGovMaps AND parcel", "why": "KyGovMaps parcel items"}
+ ],
+ "pointq": [
+  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Wild_River_Corridors_WGS84WM/MapServer", "points": [[37.2948, -85.832497], [37.30642, -85.719109]], "dist": 1500, "note": "Green River Wild River corridor near both points (Wild Rivers parcels)"}
+ ]
+}
