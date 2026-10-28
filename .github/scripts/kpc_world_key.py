@@ -136,6 +136,14 @@ SRC['NO'] = SRC['NO'] + [('Miljødirektoratet protected areas (NLOD)', 'arcgis',
 # (© State of Tasmania credit, no use limits): the named reserve / park / conservation-area parcels (TEN_CLASS gives the kind).
 SRC['NL'] = SRC['NL'] + [('PDOK RVO national parks (CC0)', 'wfs', 'https://service.pdok.nl/rvo/nationale-parken-geharmoniseerd/wfs/v1_0', 'beschermde-gebieden:ProtectedSite')]
 SRC['AU'] = SRC['AU'] + [('TAS LIST land tenure (© State of Tasmania)', 'arcgis', 'https://services.thelist.tas.gov.au/arcgis/rest/services/Public/OpenDataWFS/MapServer/26', ["FEAT_NAME IS NOT NULL AND FEAT_NAME <> 'None' AND TEN_CLASS NOT LIKE '%Private%'"])]
+# Oct 28 (chat 9, world round W3): National Trust 'Always Open' land (England + Wales, CC BY 4.0, credit 'National Trust'):
+# HQ / Brandon Q3: CHARITY land, an outline source only; it must NOT count as public land in any 2-fer until the UK GO decides Q3.
+# ONF 'Forêts publiques de France métropolitaine' (state + communal forests; free use with credit to ONF and the update date).
+# IGN Géoplateforme INPN national parks + regional nature parks (same INPN family as the ZNIEFF layers above).
+SRC['GB'] = SRC['GB'] + [('National Trust Always Open land (CC BY 4.0) [charity land, Q3: not public land for 2-fers]', 'arcgis', 'https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer/0')]
+SRC['FR'] = SRC['FR'] + [('ONF public forests (credit ONF)', 'arcgis', 'https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/For%C3%AAts_publiques_de_France_m%C3%A9tropolitaine/FeatureServer/0'),
+                         ('IGN Géoplateforme INPN national parks', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_pn:parc_national'),
+                         ('IGN Géoplateforme INPN regional nature parks', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_pnr:pnr')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
