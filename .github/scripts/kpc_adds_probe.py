@@ -185,6 +185,7 @@ def page(x):
     out = {k: x[k] for k in ('st', 'url', 'note') if k in x}
     with urllib.request.urlopen(urllib.request.Request(x['url'], headers=UA), timeout=60) as r:
         raw = r.read(); out['status'] = r.status; out['ctype'] = r.headers.get('Content-Type', '')
+        out['final_url'] = r.geturl()   # Oct 28: a short map link resolves to the agency's pinned coordinate
     out['bytes'] = len(raw)
     if x.get('json'):
         j = json.loads(raw.decode('utf-8', 'replace'))
