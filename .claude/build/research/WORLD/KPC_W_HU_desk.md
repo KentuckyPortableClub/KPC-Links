@@ -1,0 +1,10 @@
+# World W24: HUNGARY (HU) (desk, Oct 27 2026)
+Grades: A = opened and read, B = search result only, C = inference. Read only; no polygon queried. Builds on KPC_2fer_Preflight_World_desk.md (W-1..W-8 not repeated). WDPA never; EEA Natura 2000 fine. Counts are from data/world-key/<CC>.json.
+Key: 244 parks, **119 no outline**, 102 to check; sources: EEA only.
+1. **Official layers:** Agrárstatisztika / Ministry data "Védett természeti területek, Natura 2000" (B: agrarstatisztika.kormany.hu quality report, data file 1709, 2018-2025 report templates). National park directorates publish site maps. A press report (Telex, Aug 2025) suggests the exact borders of **strictly protected areas ("fokozottan védett") are not public** and entering them can be fined (B; page would not open — C, check).
+2. **Public/owned land:** national parks are state-owned (Nemzeti Park Igazgatóságok, C); state forest companies (Erdészeti Zrt.) (B); no polygon layer found. NOT SURE.
+3. **No outline (119):** State Trail 91 (all none): National Blue Trail Sections HU-0134 Írott-kő, HU-0135 Sárvár (the Országos Kéktúra trail: lines); Park 49 (48 none): Erdei Tornapálya HU-0011, Bujtosi Park HU-0012 (city); State Forest Park 18 (all none): Tokaji Parkerdő HU-0087, Celldömölk-Izsákfai HU-0088 (Erdészeti Zrt. "parkerdő" = state forests with recreation: public land if a layer exists); National Geologic Trail 13 (all none): Eperjes Tanösvény HU-0055, Ráktanya HU-0125 (educational trails); National Park 15 (5 none): Cigány Zátony HU-0024, Tiszaalpár (Kiskunság NP) HU-0048 (POTA labels are odd; Kiskunság NP is real).
+4. **Sea/lake:** Lake Balaton, Lake Fertő (shared with Austria), Tisza Lake: water-only.
+5. **NEW grey areas:** W24-1: **strictly protected zones with non-public borders**: do not show or count them. W24-2: the 91 **Blue Trail sections** as separate parks: lines, 100 ft rule; no official line layer.
+6. **Known-good:** EEA; Hungarian protected areas file (to get). **2-fers (C):** Hortobágy NP vs Natura 2000 (layered, state land); Kiskunság NP vs its Natura sites.
+7. **NOT READY**: no layer with licence; the strictly protected-area border question.

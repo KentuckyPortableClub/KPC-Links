@@ -1,0 +1,10 @@
+# World W11: SWITZERLAND (CH) (desk, Oct 27 2026)
+Grades: A = opened and read, B = search result only, C = inference. Read only; no polygon queried. Builds on KPC_2fer_Preflight_World_desk.md (W-1..W-8 not repeated). WDPA never; EEA Natura 2000 fine. Counts are from data/world-key/<CC>.json.
+Key: 319 parks, 36 no outline, 22 to check, 189 saved-only; sources: EEA + **BAFU federal inventories** (BLN, hunting reserves, water/migratory bird reserves, mire landscapes, floodplains, raised bogs, fens, Ramsar, more).
+1. **Official layers:** BAFU (FOEN) federal inventories on opendata.swiss / geo.admin.ch (in key, 10+ layers); opendata.swiss also lists Smaragd areas, Swiss National Park, amphibian spawning sites (B). swisstopo geodata is free since 1 Mar 2021 (B). Licence "OGD" terms (open with source): confirm per layer.
+2. **Public/owned land:** cantonal and **Bürgergemeinde/commune forests are public**; no national ownership polygon found (B). Swiss National Park is a federal-statute park on commune and cantonal land (GR). NOT SURE for most pairs.
+3. **No outline (36):** Nature Park 16 (11 none): Aargau CH-0002, Diemtigtal CH-0006 (regional nature parks, Pärke von nationaler Bedeutung: BAFU "Pärke" dataset not in key; add); National Scenic Trail 8 (all none): Via Alpina CH-0216, Trans Swiss Trail CH-0217 (lines; SchweizMobil publishes routes, B); Nature Reserve 7 (Altläufe der Glatt CH-0021, Ried am Äntschberg CH-0043); World Heritage 7 (Abbey of St. Gall CH-0031, Valli di Lodano CH-0032): pin; Park 5 (Schützenmatt CH-0053, Kannenfeld CH-0054): city parks, never.
+4. **Sea/lake:** Lake Geneva, Constance, Neuchâtel, Lago Maggiore: water-only.
+5. **NEW grey areas:** W11-1: **federal inventory objects** (BLN landscapes, mire landscapes, floodplains) are legal protections on mostly private/communal land: treat like whole-line parks (W-2).
+6. **Known-good:** BAFU Pärke von nationaler Bedeutung, Swiss National Park, BAFU inventories. **2-fers (C):** Swiss National Park vs Val Müstair-Biosfera (adjacent); BLN landscapes over many fens (layered, private).
+7. **READY for outlines** once the Pärke dataset is added; ownership NOT READY.
