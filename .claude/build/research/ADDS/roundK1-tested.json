@@ -1,0 +1,459 @@
+{
+ "about": "Chat 9 round K1 (inbox, chat 8 / Brandon Oct 28 7 AM: 'why no map for Green River State Natural Area'): which LIVE Kentucky layers hold Boiling Springs (OKNP point 37.30642,-85.719109) and Brandon's boundary-sign point 37.2948,-85.832497 (Timberlake? 115.75 ac)? Point queries (within 800 m) on every polygon layer of the KY nature-preserve / natural-area / state-land services, + a walk of kygisserver for any other OKNP layer, + KyGeoportal search. Plus Slovenia ARSO WFS typenames. Results: roundK1-tested.json.",
+ "date": "2026-10-28",
+ "layers": [],
+ "searches": [
+  {
+   "st": "KY",
+   "q": "(\"State Natural Areas\" OR \"State Nature Preserves\" OR OKNP OR \"Nature Preserves\") AND Kentucky",
+   "why": "KyGeoportal / opengisdata layers for OKNP land",
+   "found": [
+    {
+     "title": "State Natural Areas in Kentucky",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_StateNaturalAreas_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "State Nature Preserves in Kentucky",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_State_NaturePreserves_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Kentucky Heritage Land Conservation Fund Areas",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_KyHeritageLandConservationFund_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Kentucky's Recreational Trails",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_Recreational_Trails/FeatureServer",
+     "modified": "2026-10-09",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Ky KNP State Nature Preserves",
+     "org": "",
+     "owner": "ian.horn_kygeonet",
+     "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer",
+     "modified": "2023-08-15",
+     "licence": "LIMITATION OF LIABILITY:  The Division of Geographic Information has no reason to believe that there are any inaccuracie"
+    },
+    {
+     "title": "Recreational Trailheads in Kentucky",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_Recreational_Trailheads/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Kentucky's SWAP 2023 SGCN Species Ranges",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/KDFWR_SWAP_2023_SGCN_Species_Ranges/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "Available for download and use to the public with attribution.    LIMITATION OF LIABILITY: The Kentucky Division of Geog"
+    },
+    {
+     "title": "KDFWR SWAP 2023 Hybrid Level Ecoregions",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/KDFWR_SWAP_2023_Hybrid_Level_Ecoregions/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "Available for download and use to the public with attribution.    LIMITATION OF LIABILITY: The Kentucky Division of Geog"
+    },
+    {
+     "title": "Parks",
+     "org": "",
+     "owner": "sgay_BCPC",
+     "url": "https://services1.arcgis.com/kleO5B3qko1eLO4Z/arcgis/rest/services/Parks/FeatureServer",
+     "modified": "2026-10-08",
+     "licence": ""
+    },
+    {
+     "title": "Blackside Dace Streams in Kentucky (2009)",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Blackside_Dace_Streams_2009_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "These data are restricted from redistribution and are intended for the end user’s internal use only.  https://creativeco"
+    },
+    {
+     "title": "Kentucky's SWAP 2023 Conservation Opportunity Areas",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_KDFWR_SWAP_Conservation_Opportunity_Areas_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "Available for download and use to the public with attribution.    LIMITATION OF LIABILITY: The Kentucky Division of Geog"
+    },
+    {
+     "title": "KDFWR SWAP 2023 Aquatic Habitat Flowlines",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/KDFWR_SWAP_2023_Aquatic_Habitat_Flowlines/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "No limitations, but KDFWR should be credited.    LIMITATION OF LIABILITY: The Kentucky Division of Geographic Informatio"
+    },
+    {
+     "title": "USFWS Critical Habitat in Kentucky",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_USFWS_Critical_Habitat_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Kentucky Wild Rivers (Corridors)",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_Wild_RIvers_Corridors_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe that there are any inaccuracies"
+    },
+    {
+     "title": "Kentucky Nature Preserves",
+     "org": "",
+     "owner": "BRADD_Admin",
+     "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0",
+     "modified": "2025-07-29",
+     "licence": "This general-purpose content was derived from digital databases maintained by the Barren River Area Development District"
+    },
+    {
+     "title": "Natural Areas",
+     "org": "",
+     "owner": "BRADD_Admin",
+     "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM/MapServer/0",
+     "modified": "2025-07-29",
+     "licence": "This general-purpose content was derived from digital databases maintained by the Barren River Area Development District"
+    },
+    {
+     "title": "GAP_land_stewardship",
+     "org": "",
+     "owner": "birdboy_EKUGeoscience",
+     "url": "https://services3.arcgis.com/6ivv17yGXadPbqNc/arcgis/rest/services/GAP_land_stewardship/FeatureServer",
+     "modified": "2023-01-08",
+     "licence": ""
+    },
+    {
+     "title": "Kentucky_State_NaturePreserves",
+     "org": "",
+     "owner": "allisonhardy_ecorise",
+     "url": "https://services7.arcgis.com/WIe8YRDgpZGS85me/arcgis/rest/services/Kentucky_State_NaturePreserves/FeatureServer",
+     "modified": "2022-12-24",
+     "licence": "This product is for informational purposes and may not have been prepared for or be suitable for legal, engineering, or "
+    },
+    {
+     "title": "Types of Gardens",
+     "org": "",
+     "owner": "trinity.kays",
+     "url": "https://services3.arcgis.com/TQiVlCo10CHGxDih/arcgis/rest/services/Types_of_Gardens/FeatureServer",
+     "modified": "2025-05-14",
+     "licence": ""
+    },
+    {
+     "title": "Kentucky_Designated_Habitat_Roadside_Conservation_Areas",
+     "org": "",
+     "owner": "Alexis.Sheehan_kygis",
+     "url": "https://services.arcgis.com/TosFUe3nXUAksqSj/arcgis/rest/services/Kentucky_Designated_Habitat_Roadside_Conservation_Areas/FeatureServer",
+     "modified": "2026-08-31",
+     "licence": ""
+    },
+    {
+     "title": "KR Recreational Experiences",
+     "org": "",
+     "owner": "sjevan0@uky.edu_UKY_EDU",
+     "url": "https://services.arcgis.com/vQ8kO5zdqETeirEL/arcgis/rest/services/KR_Recreational_Experiences/FeatureServer",
+     "modified": "2025-12-03",
+     "licence": ""
+    },
+    {
+     "title": "Office of Kentucky Nature Preserve Volunteer Application_form",
+     "org": "",
+     "owner": "kendall.mcdonald_kygis",
+     "url": "https://services.arcgis.com/TosFUe3nXUAksqSj/arcgis/rest/services/survey123_126173dbd0d5451cb714f46f2e8aeb49_form/FeatureServer",
+     "modified": "2024-07-12",
+     "licence": ""
+    },
+    {
+     "title": "KR Heritage Land",
+     "org": "",
+     "owner": "sjevan0@uky.edu_UKY_EDU",
+     "url": "https://services.arcgis.com/vQ8kO5zdqETeirEL/arcgis/rest/services/KR_Heritage_Land/FeatureServer",
+     "modified": "2025-12-03",
+     "licence": ""
+    },
+    {
+     "title": "KR Nature Preserves",
+     "org": "",
+     "owner": "sjevan0@uky.edu_UKY_EDU",
+     "url": "https://services.arcgis.com/vQ8kO5zdqETeirEL/arcgis/rest/services/KR_Nature_Preserves/FeatureServer",
+     "modified": "2025-12-03",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "KY",
+   "q": "Kentucky AND (\"state owned\" OR \"public lands\" OR \"protected lands\") AND (boundaries OR parcels)",
+   "why": "any KY state-land parcel layer",
+   "found": [
+    {
+     "title": "Regrid USA Nationwide Parcel Boundaries",
+     "org": "Regrid",
+     "owner": "data_regrid",
+     "url": "https://tiles.arcgis.com/tiles/KzeiCaQsMoeCfoCq/arcgis/rest/services/Regrid_Nationwide_Parcel_Boundaries_v1/MapServer",
+     "modified": "2026-07-28",
+     "licence": "All of Regrid's datasets, including the data layer published on ArcGIS Living Atlas and the data purchased on the Regrid"
+    },
+    {
+     "title": "BLM Natl MLRS Oil and Gas Leases",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Oil_and_Gas_Leases/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "BLM Natl MLRS Mining Claims - Not Closed",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Mining_Claims_Not_Closed/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "City of Cincinnati Tree Canopy 2020",
+     "org": "",
+     "owner": "parks_cbelcher",
+     "url": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/CPB_Tree_Canopy__Population__and_Resilience_Statistics_WFL1/FeatureServer",
+     "modified": "2026-05-01",
+     "licence": ""
+    },
+    {
+     "title": "BLM Natl MLRS Mining Claims-Closed (Past Year)",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Mining_Claims_Closed/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Combined Opportunity Area Conserved Lands_WFL1",
+     "org": "",
+     "owner": "northolympiclandtrust",
+     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
+     "modified": "2023-03-03",
+     "licence": ""
+    },
+    {
+     "title": "Protected Areas Database of the United States (PAD-US)",
+     "org": "",
+     "owner": "lindsjor@oregonstate.edu_OSUGISci",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+     "modified": "2021-04-11",
+     "licence": "Publicly available — PAD-US is published by the Federal government; it is open and free to use for all public and commer"
+    },
+    {
+     "title": "BLM_Lands",
+     "org": "",
+     "owner": "bhanceCLLC",
+     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
+     "modified": "2023-04-17",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "BLM Natl MLRS Oil and Gas Agreements",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Oil_and_Gas_Agreements/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "Elk Hunting Units in Kentucky",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_KDFWR_ElkHuntingUnits_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "No limits, credit KDFWR       LIMITATION OF LIABILITY: The Division of Geographic Information has no reason to believe t"
+    },
+    {
+     "title": "BLM Natl MLRS Land Use Authorization- Rights of Way ROW",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_LUA_ROW/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "National park (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "BLM Natl MLRS Oil and Gas Participating Areas",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Oil_and_Gas_Participating_Areas/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "BLM Natl MLRS Land Use Authorization- Leases-Permits-Easements",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_LUA_Leases_Permits_Esmts/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "BLM Natl MLRS Locatable Notices",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Locatable_Notices/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "BLM Natl MLRS Geothermal Leases",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://nlsdbpubgis.blm.gov/arcgishub/rest/services/HUB/BLM_Natl_MLRS_Geothermal_Leases/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "Department of Defense Managed Land",
+     "org": "",
+     "owner": "annariling_Wilderness",
+     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
+     "modified": "2022-01-14",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "PublicWaters",
+     "org": "",
+     "owner": "Pamela.Brooks_IDNR",
+     "url": "https://geoservices3.dnr.illinois.gov/arcgis/rest/services/PublicWaters/MapServer",
+     "modified": "2025-01-15",
+     "licence": ""
+    },
+    {
+     "title": "USGS_PAD14_NationalRecreationArea_20160501",
+     "org": "",
+     "owner": "OA_Admin",
+     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/USGS_PAD14_NationalRecreationArea_20160501/FeatureServer",
+     "modified": "2023-03-30",
+     "licence": "It is strongly recommended that these data are directly acquired from the U.S. Geological Survey Gap Analysis Program we"
+    },
+    {
+     "title": "Protected Areas Database",
+     "org": "",
+     "owner": "jill_ory@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer",
+     "modified": "2023-09-22",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Illinois Public Waters View",
+     "org": "",
+     "owner": "Phillip.hinz_idnr",
+     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Illinois_Public_Waters_View/FeatureServer",
+     "modified": "2026-09-10",
+     "licence": "This geodatabase should be used as a graphical guide to the general location of waters dedicated to public use in Illino"
+    },
+    {
+     "title": "EasternHemlockProject_NationalForests",
+     "org": "",
+     "owner": "mapping_AdvSciAdmin",
+     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
+     "modified": "2024-11-01",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    }
+   ]
+  }
+ ],
+ "orgs": [
+  {
+   "st": "KY",
+   "url": "https://kygisserver.ky.gov/arcgis/rest/services",
+   "note": "every KY service that could hold OKNP land",
+   "folders": [
+    "GeoprocessingServices",
+    "Temp_Services",
+    "Utilities",
+    "WGS84WM_Services"
+   ],
+   "n_services": 184,
+   "matching": [
+    "WGS84WM_Services/Ky_KNP_Heritage_Land_Conservation_Fund_WGS84WM (MapServer)",
+    "WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM (MapServer)",
+    "WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM (MapServer)",
+    "WGS84WM_Services/Ky_KNP_Wild_River_Corridors_WGS84WM (MapServer)"
+   ]
+  }
+ ],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "SI",
+   "raw": true,
+   "url": "https://prostor4.gov.si/ows2-ins/ps/wfs?service=wfs&version=2.0.0&request=GetCapabilities",
+   "look": "Name>[^<]+<|AccessConstraints>[^<]+|Fees>[^<]+",
+   "note": "Slovenia protected areas WFS typenames",
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  }
+ ],
+ "pointq": [
+  {
+   "st": "KY",
+   "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer",
+   "note": "OKNP nature preserves service (all polygon layers)",
+   "hits": []
+  },
+  {
+   "st": "KY",
+   "url": "https://services2.arcgis.com/CcI36Pduqd0OR4W9/arcgis/rest/services/Public_Lands_and_Conservation/FeatureServer",
+   "note": "guess: KY public lands (fails harmlessly if wrong)",
+   "hits": [],
+   "error": "{'code': 400, 'message': 'Invalid URL', 'details': ['Invalid URL']}"
+  }
+ ]
+}
