@@ -193,7 +193,7 @@ body.field .page-jump-nav{display:none!important}
 <thead><tr><th>PARK TYPE</th><th>TOTAL</th><th>MISSING</th><th></th></tr></thead>
 <tbody></tbody>
 </table></div>
-<div class="note">We don't have a confirmed official map for these yet. Know of one? Send it in and we'll add it.</div>
+<div class="note">We don't have a confirmed official map for these yet. Know of one? "Send it" opens the Map Rep Tool Box with the state and park type filled in, so a Mapping Rep can pull up the official records — that tool is for invited Mapping helpers and asks for its own password.</div>
 </div>
 </div></section>
 
@@ -228,10 +228,11 @@ body.field .page-jump-nav{display:none!important}
   var totalParks=data.states.reduce(function(a,s){return a+s.total},0);
   document.getElementById('mcTotal').textContent=totalParks.toLocaleString()+' parks across North America • '+totalMissing.toLocaleString()+' still missing a map';
  }
- function mapSuggestLink(stateName,country,type){
-  var subj='Official map: '+type+' ('+stateName+', '+country+')';
-  var body='I know of an official map or boundary layer for: '+type+' in '+stateName+', '+country+'.\n\nLink or source: \n\nPark name(s) if you know them: \n';
-  return 'mailto:brandonwhite42166@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+ function mapSuggestLink(stateCode,type){
+  /* Points at the Map Rep Tool Box's own search, prefilled (it reads ?name=&state= and runs its research automatically).
+     We only have the park TYPE here, not an individual park name/number yet — chat 8's per-park file will let this
+     prefill a real park once it lands. */
+  return 'kpc-maprep.html?'+new URLSearchParams({name:type,state:stateCode}).toString();
  }
  function drill(code){
   var parts=code.split('-'),country=parts[0],st=parts[1];
@@ -246,7 +247,7 @@ body.field .page-jump-nav{display:none!important}
   } else {
    tb.innerHTML=s.types.map(function(t){
     return '<tr><td>'+esc(t.type)+'</td><td>'+t.total+'</td><td><b style="color:#a33">'+t.missing+'</b></td>'+
-     '<td><a class="btn alt sm" href="'+mapSuggestLink(s.name,s.country,t.type)+'">KNOW THE OFFICIAL MAP? SEND IT</a></td></tr>';
+     '<td><a class="btn alt sm" href="'+mapSuggestLink(s.code,t.type)+'">KNOW THE OFFICIAL MAP? SEND IT</a></td></tr>';
    }).join('');
   }
   window.scrollTo({top:document.getElementById('mcDrill').getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'});
