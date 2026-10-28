@@ -2731,14 +2731,14 @@
     "park": "Chain O' Lakes State Park",
     "link": "https://www.in.gov/dnr/state-parks/files/chain_o_lakes_trail.pdf",
     "result": "ok",
-    "map_date": "\u00a9 02/2026"
+    "map_date": "© 02/2026"
    },
    {
     "ref": "US-2253",
     "park": "Charlestown State Park",
     "link": "https://www.in.gov/dnr/state-parks/files/charlestown_trail.pdf",
     "result": "ok",
-    "map_date": "\u00a9 01/2026"
+    "map_date": "© 01/2026"
    }
   ],
   "researched": "state-level note (applies to the state, not proven per agency)"
@@ -3284,7 +3284,7 @@
     "park": "Fort Snelling State Park",
     "link": "https://files.dnr.state.mn.us/maps/state_parks/spk00154_summer.pdf",
     "result": "ok",
-    "map_date": "\u00a9 2023"
+    "map_date": "© 2023"
    },
    {
     "ref": "US-7145",
@@ -5615,7 +5615,7 @@
     "park": "Sam Houston National Forest Wildlife Management Area",
     "link": "https://tpwd.texas.gov/publications/pwdpubs/media/pwd_bk_w7000_0112a.pdf",
     "result": "ok",
-    "map_date": "2025\u20132026 edition"
+    "map_date": "2025–2026 edition"
    },
    {
     "ref": "US-13588",
@@ -6937,7 +6937,7 @@
  {
   "state": "WORLD",
   "country": "DE",
-  "agency": "Mecklenburg-Vorpommern / other L\u00e4nder",
+  "agency": "Mecklenburg-Vorpommern / other Länder",
   "agency_site": "umweltkarten.mv-regierung.de",
   "address_pattern": "umweltportal.mv-regierung.de/meta/<layer>_f.pdf",
   "list_page": "per Land portal",
@@ -7027,7 +7027,7 @@
  {
   "state": "WORLD",
   "country": "NO",
-  "agency": "Milj\u00f8direktoratet protected areas",
+  "agency": "Miljødirektoratet protected areas",
   "agency_site": "geonorge.no",
   "address_pattern": "geonorge.no record 5857ec0a-8d2c-4cd8-baa2-0dc54ae213b4",
   "list_page": "same",
@@ -7113,5 +7113,140 @@
   "grade": "C",
   "tested": [],
   "file": "WORLD/RO_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "AT",
+  "agency": "Länder nature-protection portals (e.g. Upper Austria DORIS, INSPIRE records)",
+  "agency_site": "",
+  "address_pattern": "only Upper Austria records surfaced in search; no national source found",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "BOT LOOK-UP: data.gv.at, Umweltbundesamt Schutzgebiete, and each Land's GIS portal",
+  "rules_page": "BOT LOOK-UP",
+  "status": "BOT LOOK-UP",
+  "grade": "B",
+  "tested": [],
+  "file": "WORLD/AT_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "SE",
+  "agency": "Naturvårdsverket (Swedish EPA) Naturvårdsregistret",
+  "agency_site": "",
+  "address_pattern": "open data v1.2 (2025-10-23) CC0. WFS https://geodata.naturvardsverket.se/naturvardsregistret/wfs (layers SkyddadeOmraden, SkyddadePunkter); Natura 2000 WFS .../n2000/wfs; shapefiles .../nedladdning/na",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "dataset version date in the metadata (A)",
+  "rules_page": "BOT LOOK-UP",
+  "status": "READY",
+  "grade": "A",
+  "tested": [],
+  "file": "WORLD/SE_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "SI",
+  "agency": "ARSO (Environment Agency) Zavarovana območja (poligoni)",
+  "agency_site": "",
+  "address_pattern": "ATOM feed http://gis.arso.gov.si/related/atom/inspire/servicefeeds/zav_obm_poli.xml; GML 3.2.1 EPSG:4258; created 2021-12-10; licence 'Ni omejitev' (no restrictions stated)",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "creation date in the feed (A)",
+  "rules_page": "BOT LOOK-UP",
+  "status": "READY",
+  "grade": "A",
+  "tested": [],
+  "file": "WORLD/SI_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "CZ",
+  "agency": "AOPK ČR (Nature Conservation Agency)",
+  "agency_site": "",
+  "address_pattern": "MapServer gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer (Přírodní parky); issued 2022-11-01; 'viewing only', no open licence stated. Other layers (ZCHU, NP, CHKO) not opened",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "issue date in metadata (A)",
+  "rules_page": "BOT LOOK-UP",
+  "status": "READY",
+  "grade": "A",
+  "tested": [],
+  "file": "WORLD/CZ_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "BE",
+  "agency": "Flanders: Agentschap Natuur en Bos / Departement Omgeving (datavindplaats)",
+  "agency_site": "",
+  "address_pattern": "datasets 'Gebieden met recht van voorkoop', natuurreservaten (2014.02), Natuurbeheerplannen",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "dataset date on the record",
+  "rules_page": "BOT LOOK-UP",
+  "status": "BOT LOOK-UP",
+  "grade": "B",
+  "tested": [],
+  "file": "WORLD/BE_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "BE",
+  "agency": "Wallonia: SPW / DNF reserves list",
+  "agency_site": "",
+  "address_pattern": "PDF list of reserves (2022); geoportal.wallonie.be layers not opened",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "PDF date",
+  "rules_page": "BOT LOOK-UP",
+  "status": "BOT LOOK-UP",
+  "grade": "B",
+  "tested": [],
+  "file": "WORLD/BE_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "BE",
+  "agency": "Brussels: Bruxelles Environnement / geobru",
+  "agency_site": "",
+  "address_pattern": "record seen, not opened",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "",
+  "rules_page": "BOT LOOK-UP",
+  "status": "BOT LOOK-UP",
+  "grade": "B",
+  "tested": [],
+  "file": "WORLD/BE_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "DK",
+  "agency": "Danish Nature Agency / Miljøministeriet",
+  "agency_site": "",
+  "address_pattern": "https://kort.vd.dk/server/rest/services/Grunddata/Fredede_områder/MapServer: 4 polygon layers (Bekendtgørelsesfredninger, Fredede områder, Fredede områder - forslag, Natur/vildt reservater); no descri",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "none stated; BOT LOOK-UP for date and licence (Danmarks Miljøportal / Datafordeler)",
+  "rules_page": "BOT LOOK-UP",
+  "status": "READY",
+  "grade": "A",
+  "tested": [],
+  "file": "WORLD/DK_desk.md"
+ },
+ {
+  "state": "WORLD",
+  "country": "IE",
+  "agency": "NPWS (National Parks & Wildlife Service)",
+  "agency_site": "",
+  "address_pattern": "download page: shapefiles only; SAC and SPA updated 2026-03-03, NHA 2019-06-28, pNHA 2015-11-01; no licence stated on that page. National Parks boundary: ArcGIS FeatureServer services-eu1.arcgis.com/J",
+  "list_page": "see file",
+  "how_to_match": "by name/area id",
+  "date_method": "dates on the download page (A)",
+  "rules_page": "BOT LOOK-UP",
+  "status": "READY",
+  "grade": "A",
+  "tested": [],
+  "file": "WORLD/IE_desk.md"
  }
 ]
