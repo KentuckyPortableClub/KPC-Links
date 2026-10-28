@@ -84,7 +84,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 .pl-info .pi-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 </style>
 <link rel="stylesheet" href="kpc-dress.css?v=20261017c">
-<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<link rel="stylesheet" href="kpc-nav.css?v=20261028a">
 <style>#plModes .chip[aria-pressed=true]{background:#171717;color:#f0c96b;border-color:#171717}.rt-end{width:26px;height:26px;border-radius:50%;background:#171717;color:#f0c96b;font:900 13px/26px sans-serif;text-align:center;border:2px solid #f0c96b;box-shadow:0 1px 4px rgba(0,0,0,.5)}.controls[hidden]{display:none}.pl-sug{margin-top:8px;background:#fff;border:1px solid #cbbf9f;border-radius:6px;box-shadow:0 10px 24px rgba(0,0,0,.14);max-height:300px;overflow:auto}.pl-sug[hidden]{display:none}.pl-sug button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;border-bottom:1px solid #eee5cf;background:#fff;color:#171717;font:inherit;font-size:15px;cursor:pointer;min-height:44px}.pl-sug button:hover,.pl-sug button:focus{background:#fffaf0}.pl-sug small{display:block;color:#68635a;font-size:12px;margin-top:2px}.pl-sug button.addr{background:#f3f8fd}</style>
 </head>
 <body class="kd kd-wrap" style="--kd-bg:url('bg-lake-camp.jpg');--kd-bgm:url('bg-lake-camp-mobile.jpg')">
@@ -101,7 +101,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
       <a href="parks.html">KY Parks</a>
       <a href="events.html">Events</a>
       <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
-      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a><a href="#" class="nav-translate" aria-label="Translate this page" title="Translate (opens Google Translate)">🌐</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -197,7 +197,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

@@ -469,7 +469,7 @@ body.field .page-jump-nav{display:none!important}
 @media(max-width:900px){.kpc-hero-shade,.kpc-hero-shade.center{background:linear-gradient(180deg,rgba(5,5,5,.2) 0%,rgba(5,5,5,.55) 38%,rgba(5,5,5,.74) 100%)}}
 .hero h1,.hero .hero-copy,.hero .eyebrow,.hero-inner p{text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.6)}
 </style>
-<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<link rel="stylesheet" href="kpc-nav.css?v=20261028a">
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
 <style id="kpc-n4-hero">/* N4KPC (grant Oct 23 2026): KPC logo + the gold call over the hero picture; on computers the logo sits left of the call */
 .hero-brand{display:flex;align-items:center;gap:28px;margin-bottom:18px}
@@ -494,7 +494,7 @@ body.field .page-jump-nav{display:none!important}
       <a href="parks.html">KY Parks</a>
       <a href="events.html">Events</a>
       <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
-      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a><a href="#" class="nav-translate" aria-label="Translate this page" title="Translate (opens Google Translate)">🌐</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -749,7 +749,7 @@ fetch('kpc-events-auto.json',{cache:'no-cache'}).then(function(r){return r.ok?r.
 
 <script src="kpc-holiday.js?v=20261026a" defer></script>
 <script src="kpc-fold.js?v=20261011c" defer></script>
-<script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

@@ -13,6 +13,7 @@ header.site-nav{position:sticky;top:0;z-index:1000;margin:0;padding:0;background
 .site-nav .nav-links>a{color:#fff;padding:9px 10px;font-size:13px;font-weight:800;letter-spacing:.6px;border:0;border-bottom:2px solid transparent;border-radius:0;transition:color .2s,border-color .2s;white-space:nowrap;text-decoration:none;background:none}
 .site-nav .nav-links>a:hover,.site-nav .nav-links>a[aria-current="page"]{color:#f0c96b;border-bottom-color:#d5a63a}
 .site-nav .nav-links>a.nav-search-icon{font-size:16px;padding:9px 8px;letter-spacing:0}
+.site-nav .nav-links>a.nav-translate{font-size:16px;padding:9px 8px;letter-spacing:0}
 
 /* Live: red text with a small glowing red dot (matches the preview) */
 .site-nav .nav-links>a.nav-live{display:flex;align-items:center;gap:6px;color:#ff6b6b}
@@ -48,6 +49,7 @@ header.site-nav{position:sticky;top:0;z-index:1000;margin:0;padding:0;background
   .site-nav .nav-links>a{padding:13px 8px;font-size:14px;border-bottom:1px solid #292929}
   .site-nav .nav-links>a:hover,.site-nav .nav-links>a[aria-current="page"]{border-bottom-color:#292929}
   .site-nav .nav-links>a.nav-search-icon::after{content:" Search";font-size:14px;letter-spacing:.6px}
+  .site-nav .nav-links>a.nav-translate::after{content:" Translate";font-size:14px;letter-spacing:.6px}
   .site-nav .nav-more{display:block;margin:10px 0 0}
   .site-nav .nav-more-btn{width:100%;justify-content:space-between;padding:12px 12px;font-size:14px}
   .site-nav .nav-dropdown{position:static;min-width:0;max-height:none;overflow:visible;margin-top:8px;box-shadow:none}

@@ -36,7 +36,7 @@
 .bp-special{margin-top:16px;background:#fff8e6;border:1px solid #e3d9bd;border-left:5px solid #b5452b;padding:14px 18px;font-size:14px}
 @media(max-width:560px){.bp-row{grid-template-columns:84px 1fr}.bp-row b{font-size:10px;letter-spacing:.3px}.bp-scale{margin-left:94px}.bp-band{padding:14px}.bp-seg{font-size:9px;letter-spacing:0}}
 footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}footer.kpc-about-footer .kpc-footer-brand{font-size:12px;letter-spacing:2px;font-weight:400;color:#fff}footer.kpc-about-footer .kpc-footer-tag{color:#e5c87b;margin-top:5px;font-family:Georgia,serif;font-size:14px}footer.kpc-about-footer .footer-actions{display:flex;flex-wrap:wrap;gap:10px}footer.kpc-about-footer .footer-actions a{display:inline-block;padding:11px 14px;border:1px solid rgba(255,255,255,.28);border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.8px;text-decoration:none;color:#fff;background:transparent}footer.kpc-about-footer .footer-actions a:hover{border-color:#e5c87b;color:#e5c87b}@media(max-width:600px){footer.kpc-about-footer{flex-direction:column;align-items:flex-start}}
-</style><link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+</style><link rel="stylesheet" href="kpc-nav.css?v=20261028a">
 </head>
 <body>
 <header class="site-nav">
@@ -52,7 +52,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
       <a href="parks.html">KY Parks</a>
       <a href="events.html">Events</a>
       <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
-      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a><a href="#" class="nav-translate" aria-label="Translate this page" title="Translate (opens Google Translate)">🌐</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -138,7 +138,7 @@ let s0='all';try{s0=localStorage.getItem('kpcBandPlanClass')||'all'}catch(e){}if
 </script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

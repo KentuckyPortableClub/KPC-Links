@@ -113,7 +113,7 @@ body.field .page-jump-nav{display:none!important}
 .lg-feat.lg-note{border-color:rgba(130,170,230,.7);background:linear-gradient(90deg,rgba(50,80,140,.32),rgba(0,0,0,.35))}.lg-nbtn{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}.lg-nadd{min-height:42px;padding:8px 18px;border:0;border-radius:999px;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05!important;font:900 12.5px Arial,sans-serif;letter-spacing:1px;cursor:pointer}.lg-nread{color:#f0c96b!important;font:900 12px Arial,sans-serif;letter-spacing:1px;text-decoration:underline}.lg-nwhich{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}.lg-nwhich[hidden]{display:none}.lg-nwhich span{font:700 13px Arial,sans-serif;color:#e6dfcf}.lg-nwhich a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid #f0c96b;color:#f0c96b!important;font:900 12px Arial,sans-serif;letter-spacing:1px;text-decoration:none}
 @media(max-width:600px){.lg-feat{flex-direction:column;align-items:flex-start}}
 </style>
-<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<link rel="stylesheet" href="kpc-nav.css?v=20261028a">
 <link rel="stylesheet" href="kpc-tools.css?v=20261017p">
 <style>
 /* ACTIVATORS LOUNGE look (Oct 24, Brandon: 'the page needs to be dressed up and look fancy') */
@@ -211,7 +211,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
       <a href="parks.html">KY Parks</a>
       <a href="events.html">Events</a>
       <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
-      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a><a href="#" class="nav-translate" aria-label="Translate this page" title="Translate (opens Google Translate)">🌐</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -357,7 +357,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <script src="kpc-closures.js?v=20261027b6" defer></script>
 <script src="kpc-facilities.js?v=20261025b" defer></script>
 <script src="kpc-lounge.js?v=20261027v" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><link rel="stylesheet" href="kpc-band-maps.css"><script src="kpc-band-maps.js?v=20261024a" defer></script>
-<script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

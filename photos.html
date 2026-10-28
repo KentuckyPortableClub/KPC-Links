@@ -137,7 +137,7 @@ body.field .page-jump-nav{display:none!important}
 @media(max-width:900px){.ph-albums{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.ph-albums{grid-template-columns:1fr}.ph-grid{grid-template-columns:repeat(3,1fr);gap:4px}.ph-grid button{border-radius:3px}.lb-stage{padding:0}.lb-nav{display:none}}
 </style>
-<link rel="stylesheet" href="kpc-nav.css?v=20261015a">
+<link rel="stylesheet" href="kpc-nav.css?v=20261028a">
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
 <style id="kpc-hero-pic">.hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 42%,rgba(7,7,7,.18) 72%,rgba(7,7,7,0) 100%),url("hero-overlook-cam.jpg") center 50%/cover no-repeat #070707}@media(max-width:760px){.hero{min-height:460px;background:linear-gradient(180deg,rgba(7,7,7,.35) 0%,rgba(7,7,7,.55) 45%,rgba(7,7,7,.88) 100%),url("hero-overlook-cam-mobile.jpg") center 50%/cover no-repeat #070707}}</style>
 </head>
@@ -155,7 +155,7 @@ body.field .page-jump-nav{display:none!important}
       <a href="parks.html">KY Parks</a>
       <a href="events.html">Events</a>
       <a href="https://photos.google.com/share/AF1QipN_67gAbiviP12miCyaNfycMYrocCz2kSVt3TDT4DO5ujNEQTHfvXvJ_K3wjgJihg?key=TzM2S2hWSGFmRzhHMnRBcm5yMnF4NjFwUkpvdmF3" target="_blank" rel="noopener" title="KPC photo album (opens Google Photos)">Photos</a>
-      <a href="find.html" class="nav-search-icon">&#128269;</a>
+      <a href="find.html" class="nav-search-icon">&#128269;</a><a href="#" class="nav-translate" aria-label="Translate this page" title="Translate (opens Google Translate)">🌐</a>
       <a href="kpc-live.html" class="nav-live"><i></i>Live</a>
       <div class="nav-more" id="kpcNavMore">
         <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">See More <span class="nav-chevron">&#9662;</span></button>
@@ -255,7 +255,7 @@ Promise.all([(window.KPCReports?KPCReports.ready:Promise.resolve()),albumsP,fetc
 });
 })();
 </script>
-<script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
