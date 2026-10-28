@@ -1,0 +1,273 @@
+{
+ "about": "Chat 9 round R1 (inbox, chat 8 Oct 28 7:55 PM, KPC_OwnLandLayers_Rivers_desk.md section 2): RIVER-WATER TEST: does each ownership layer HIT a point on the water inside its own unit (owner / interest / status) or NO HIT (= the layer cuts rivers out)? One pass, 1 request per 2 s per host. Points marked (chat 9) were picked from the river course, approximate. Results -> data/review/river-water-test.json.",
+ "date": "2026-10-28",
+ "layers": [],
+ "searches": [],
+ "orgs": [],
+ "hubs": [],
+ "pages": [],
+ "pointq": [
+  {
+   "st": "US",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "NPS tracts: Green River in Mammoth Cave (desk point + Houchin Ferry reach + Dennison Ferry reach, chat 9)",
+   "hits": [
+    {
+     "layer": "1 nps_tracts",
+     "point": [
+      37.1856,
+      -86.1305
+     ],
+     "attrs": {
+      "TRACT_ID": "01-101",
+      "ALPHA": "MACA",
+      "ALPHA_TRACT": "MACA-01-101",
+      "STATENAME": "KENTUCKY",
+      "ESTATE": "Fee",
+      "STATUS": "Federal",
+      "REGION": "SER",
+      "Interest": "Federal Land (Fee)",
+      "AreaID": 212,
+      "NPS_DATEUP": 1689638400000,
+      "ConveyDate": -1111017600000
+     }
+    },
+    {
+     "layer": "1 nps_tracts",
+     "point": [
+      37.2,
+      -86.248
+     ],
+     "attrs": {
+      "TRACT_ID": "01-101",
+      "ALPHA": "MACA",
+      "ALPHA_TRACT": "MACA-01-101",
+      "STATENAME": "KENTUCKY",
+      "ESTATE": "Fee",
+      "STATUS": "Federal",
+      "REGION": "SER",
+      "Interest": "Federal Land (Fee)",
+      "AreaID": 212,
+      "NPS_DATEUP": 1689638400000,
+      "ConveyDate": -1111017600000
+     }
+    },
+    {
+     "layer": "1 nps_tracts",
+     "point": [
+      37.1808,
+      -86.0336
+     ],
+     "attrs": {
+      "TRACT_ID": "08-119",
+      "ALPHA": "MACA",
+      "ALPHA_TRACT": "MACA-08-119",
+      "STATENAME": "KENTUCKY",
+      "ESTATE": "Fee",
+      "STATUS": "Private",
+      "REGION": "SER",
+      "Interest": "Private",
+      "AreaID": 212,
+      "NPS_DATEUP": 1689638400000
+     }
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "NPS tracts: New River Gorge",
+   "hits": [
+    {
+     "layer": "1 nps_tracts",
+     "point": [
+      37.925,
+      -81.078
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "NPS tracts: Big South Fork",
+   "hits": [
+    {
+     "layer": "1 nps_tracts",
+     "point": [
+      36.495,
+      -84.693
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "note": "FWS realty: Ohio River Islands NWR channel (desk point)",
+   "hits": [
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      39.33,
+      -81.7
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "note": "FWS realty: Cache River NWR (AR) river point (chat 9, approx)",
+   "hits": [
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      34.975,
+      -91.27
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "note": "FWS realty: Detroit River NWR water point (chat 9, approx)",
+   "hits": [
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      42.1,
+      -83.15
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+   "note": "FS Basic Ownership: Red River gorge channel; Cumberland River in DBNF",
+   "hits": [
+    {
+     "layer": "0 BdyOwn_LSRS_BasicOwnership",
+     "point": [
+      37.82,
+      -83.63
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 BdyOwn_LSRS_BasicOwnership",
+     "point": [
+      36.84,
+      -84.32
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "OH",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+   "note": "ODNR nolakes /5 (parks): Mosquito Lake mid-lake",
+   "hits": [
+    {
+     "layer": "5 Division of Parks and Watercraft",
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "OH",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7",
+   "note": "ODNR nolakes /7 (wildlife): Mosquito Lake mid-lake",
+   "hits": [
+    {
+     "layer": "7 Division of Wildlife",
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_Lands_Dissolved/MapServer",
+   "note": "ODNR_Lands_Dissolved: Mosquito Lake mid-lake",
+   "hits": []
+  },
+  {
+   "st": "US",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer",
+   "note": "ODNR_ODNR_Lands_External: Mosquito Lake mid-lake",
+   "hits": [
+    {
+     "layer": "0 ODNR_LANDS",
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+   "note": "MI DNR parks /8: Lake Michigan at Warren Dunes; Manistee River (chat 9, approx; Manistee NF is FS land, so a NO HIT here is expected)",
+   "hits": [
+    {
+     "layer": "8 DNR Parks Unit Boundary",
+     "point": [
+      41.915,
+      -86.595
+     ],
+     "attrs": {
+      "LinkID": "SPRK504",
+      "Acres": 1276.87088615,
+      "District": "Plainwell",
+      "Facility": "Warren Dunes State Park",
+      "CreatedUser": "MichiganDNR",
+      "CreatedDate": 1787145900226,
+      "EditName": "MichiganDNR",
+      "EditDate": 1787145900226
+     }
+    },
+    {
+     "layer": "8 DNR Parks Unit Boundary",
+     "point": [
+      44.26,
+      -85.93
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+   "note": "FS Basic Ownership: Manistee River inside Manistee NF (chat 9, approx)",
+   "hits": [
+    {
+     "layer": "0 BdyOwn_LSRS_BasicOwnership",
+     "point": [
+      44.26,
+      -85.93
+     ],
+     "nohit": true
+    }
+   ]
+  }
+ ]
+}
