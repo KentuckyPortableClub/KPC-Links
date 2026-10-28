@@ -48,4 +48,10 @@
   3. A REAL iOS APP = Capacitor iOS (same www/; the Java plugins must be rewritten in Swift: audio, files, notifications), Apple Developer Program $99/yr, TestFlight to share, builds on a macOS runner (private repo: macOS minutes count 10x against the free allowance) or Brandon's own Mac.
   4. iOS radio control: no USB serial for apps (Digirig / radio USB SOUND works, CAT does not); CAT only via the PC remote, Bluetooth LE adapters (not the IC-705's classic Bluetooth SPP: iOS blocks it without Apple MFi), or VOX for keying.
   5. Order: browser remote (≈ a day, Fable+Opus) → see if members ask → then iOS Lite (logger + spots + FT8 by VOX/USB sound), not the full app.
+- **TRIP PLANNER + OVERLAP FINDER IN THE APP (Oct 28, chat 4; Brandon 6:15 AM 'maybe add hunters lounge, kpc trip planner, overlay'; ideas.md LATER item 2; build nothing until Brandon says):**
+  1. Two new screens in the SAME app (full + Lite), reading the same KPC-Data files as the website (no copy of the logic to keep in step: share the website's JS where it is plain, like kpc-cont.js).
+  2. TRIP: pick parks on the KPCMap (already in the app), order them, drive times, then one tap = a MY LOGS activation log with a stop per park (the BREAK / NEXT PARK frame already exists) + directions to each park's access point from the park packs.
+  3. OVERLAP: the list from the 2-fer rule-sheet output only (never our own guess), FULL 2-fer notice on the screen, SHORT on every card, the info notice line; tap = map + 'activate both' (fills MY PARK with both). NEEDS BRANDON: the overlap list is members-only on the website; the app is public: show it in the app or not?
+  4. Hunters Lounge parts already in the app: SPOTS (filters like the Lounge) + MY POTA FILES (new to me); the rest (VIP, leaderboard) stays on the website.
+  5. Order (ideas.md): website 'Add to Home Screen' first (chat 1, cheap) → these screens → iPhone.
 
