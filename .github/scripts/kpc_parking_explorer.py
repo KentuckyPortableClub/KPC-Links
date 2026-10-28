@@ -9,7 +9,10 @@ sample rows. Layers already in data/access-layers.json are marked 'known'.
 
 Writes data/access-leads.json {about, states: {ST: [lead...]}} and data/access-leads.md (for a person to review). Chat 2
 then adds the good ones to data/access-layers.json (kpc_us_access.py reads that). Nothing is added automatically.
-Empty / thin states first. Time-limited (MINUTES, default 100), never fails (exit 0). Monthly: kpc-parking-explorer.yml."""
+Empty / thin states first. Time-limited (MINUTES, default 100), never fails (exit 0). Monthly: kpc-parking-explorer.yml.
+Oct 28 (HQ tune + speed-up): polite (1 request / 2 s per host); a layer already in the state's lead file is reused as it was
+(no count / sample re-read; REFRESH=1 re-reads all); a layer the service list already says is the wrong shape is not opened;
+when a server could not be listed this time, its leads from last time are kept (SD's timeout had emptied a state)."""
 import json, os, pathlib, re, sys, time, urllib.parse, urllib.request
 from kpc_save import save_json, save_text
 
@@ -41,8 +44,17 @@ TYPEF = re.compile(r'type|class|categ|use|feat|desc|kind|subtype|fac', re.I)
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', ' ')[:900]), flush=True)
 
 
+GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host
+_LAST = {}
+REFRESH = os.environ.get('REFRESH') == '1'
+
+
 def get(url, params=None, timeout=40):
     u = url + ('?' + urllib.parse.urlencode(params) if params else '')
+    h = urllib.parse.urlsplit(u).netloc
+    w = _LAST.get(h, 0) + GAP - time.time()
+    if w > 0: time.sleep(w)
+    _LAST[h] = time.time()
     with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=timeout) as r:
         j = json.loads(r.read().decode('utf-8', 'replace'))
     if isinstance(j, dict) and j.get('error'): raise RuntimeError(str(j['error'])[:120])
@@ -133,7 +145,9 @@ def main():
         if time.time() - T0 > LIMIT:
             log.append(f'stopped for time before {st}; earlier results kept')
             break
-        got = []
+        got, failed = [], False
+        try: oldl = {x['url']: x for x in json.load(open(D / f'{st}.json')).get('leads', [])}
+        except Exception: oldl = {}  # noqa: E722
         pairs = {roots(e.get('url', '')) for e in sg[st] if e.get('url')}
         first = [(r, '') for r in ROOTS.get(st, [])]
         todo = first + sorted(p for p in pairs if p[0] and p not in first)
@@ -149,17 +163,21 @@ def main():
                 svcs = services(base, folder)
                 svcs = sorted(svcs, key=lambda x: not REC.search(x[0]))[:200 if not deep else 400]
             except Exception as e:  # noqa: BLE001
-                log.append(f'{st}: {base}/{folder} not listed ({str(e)[:60]})'); continue
+                log.append(f'{st}: {base}/{folder} not listed ({str(e)[:60]})'); failed = True; continue
             for name, typ in svcs:
-                if time.time() - T0 > LIMIT: break
+                if time.time() - T0 > LIMIT: failed = True; break   # cut short: keep the leads not reached
                 su = f'{base}/{name}/{typ}'
                 try: info = get(su, {'f': 'json'})
-                except Exception: continue  # noqa: E722
+                except Exception: failed = True; continue  # noqa: E722
                 for L in info.get('layers', []) or []:
                     lname = L.get('name') or ''
                     full = f'{name} {lname}'
                     if not WANT.search(full) or NOT.search(lname): continue
                     lu = f"{su}/{L.get('id')}"
+                    gt = str(L.get('geometryType') or '')
+                    if gt and ('Polygon' if KIND == 'outline' else 'Point') not in gt: continue   # the list already says: wrong shape
+                    if lu in oldl and not REFRESH:   # Oct 28: reuse last time's look at this layer
+                        x = dict(oldl[lu]); x['known'] = lu.rstrip('/').lower() in known; got.append(x); continue
                     try:
                         li = get(lu, {'f': 'json'})
                         if ('Polygon' if KIND == 'outline' else 'Point') not in str(li.get('geometryType', '')): continue
@@ -174,12 +192,9 @@ def main():
                                 'area': next((f for f in flds if AREAF.search(f)), ''), 'typef': next((f for f in flds if TYPEF.search(f)), ''),
                                 'fields': flds[:20], 'sample': [{k: v for k, v in (x.get('attributes') or {}).items() if v not in (None, '')} for x in smp],
                                 'known': lu.rstrip('/').lower() in known, 'agency': (info.get('copyrightText') or '')[:80]})
-                time.sleep(.2)
-        if deep:   # keep what the shallow look found before
-            try: old = json.load(open(D / f'{st}.json')).get('leads', [])
-            except Exception: old = []  # noqa: E722
+        if deep or failed:   # keep what the earlier look found (deep: the shallow look; failed: a server that did not answer)
             have = {x['url'] for x in got}
-            got += [x for x in old if x['url'] not in have]
+            got += [dict(x, known=x['url'].rstrip('/').lower() in known) for x in oldl.values() if x['url'] not in have]
         leads[st] = sorted(got, key=lambda x: (x['known'], -x['count']))
         save_json(D / f'{st}.json', {'st': st, 'checked': today, 'leads': leads[st]}, indent=1)
         log.append(f"{st}: {len(got)} point layers ({sum(1 for x in got if not x['known'])} new)")
