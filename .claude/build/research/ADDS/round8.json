@@ -1,0 +1,30 @@
+{
+ "about": "Chat 9 round 8 (Oct 28): region top adds found by round 5's searches (NE, SC2, MTN, PAC), licence terms HQ asked for (MN Geospatial Commons, VA DWR, MO DNR), retries of rows 35 + 37. Results: round8-tested.json.",
+ "layers": [
+  {"st": "ID", "kind": "park", "ag": "Idaho Parks and Recreation", "url": "https://gis2.idaho.gov/arcgis/rest/services/DPR/IDPR_State_Parks/MapServer", "note": "MTN 1: the 74-park Idaho hole (5 SP + 31 SRAs)"},
+  {"st": "ID", "kind": "land", "ag": "Idaho Department of Lands", "url": "https://services2.arcgis.com/1cvrwLhZRFh3okEF/arcgis/rest/services/State_Ownership/FeatureServer", "note": "MTN 1b: state land (rule 14 owner data, not parks)"},
+  {"st": "OR", "kind": "forest", "ag": "Oregon Department of Forestry", "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/StateForests_OwnershipManagedLands_View/FeatureServer", "note": "PAC 4: 'no use constraints'"},
+  {"st": "OR", "kind": "forest", "ag": "Oregon Department of Forestry", "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODF_Managed_Lands/FeatureServer", "note": "PAC 4"},
+  {"st": "NE", "kind": "park", "ag": "Nebraska Game and Parks", "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer", "note": "SC2 6: 'no restrictions'"},
+  {"st": "CT", "kind": "land", "ag": "CT DEEP", "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer", "note": "NE 6"},
+  {"st": "NH", "kind": "trail", "ag": "NH GRANIT (NH DNCR)", "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/2", "note": "NE 5: trail lines"},
+  {"st": "DE", "kind": "trail", "ag": "State of Delaware (FirstMap)", "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer", "note": "NE 8: rail-trail lines"},
+  {"st": "LA", "kind": "park", "ag": "?", "url": "https://services1.arcgis.com/PwLrOgCfU0cYShcG/arcgis/rest/services/State_Parks/FeatureServer", "note": "SC2 4: who publishes it?"},
+  {"st": "LA", "kind": "park", "ag": "?", "url": "https://services2.arcgis.com/mzukOs9wABhl5gyA/arcgis/rest/services/State_Parks/FeatureServer", "note": "SC2 4: who publishes it?"},
+  {"st": "CO", "kind": "trail", "ag": "Colorado Parks and Wildlife (COTREX)", "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15", "note": "MTN 3b: COTREX trail lines, terms?"},
+  {"st": "AK", "kind": "land", "ag": "?", "url": "https://services.arcgis.com/8MMg7skvEbOESlSM/arcgis/rest/services/DNR_PublicLandTypes/FeatureServer", "note": "PAC 5: who publishes it; state rec sites?"},
+  {"st": "ID", "kind": "trail", "ag": "Idaho Parks and Recreation", "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer", "note": "ALREADY in data/trails-layers.json ID: its terms say 'not for commercial use': read them in full"}
+ ],
+ "pages": [
+  {"st": "MN", "url": "https://gisdata.mn.gov/api/3/action/package_show?id=bdry-dnr-wildlife-mgmt-areas-pub", "json": false, "look": "licen|use_limitation|constraint|terms|metadata_modified", "note": "HQ: MN Commons terms for the WMA layer"},
+  {"st": "MN", "url": "https://www.dnr.state.mn.us/sitetools/data_software_license.html", "look": "licen|use|distribut|attribut|warrant", "note": "HQ: MN DNR GIS data licence"},
+  {"st": "VA", "url": "https://dwr-hub-gis-data-dgif-virginia.hub.arcgis.com/api/v3/datasets?q=WMA", "look": "licen|terms", "note": "VA DWR hub terms"},
+  {"st": "MO", "url": "https://dnr.mo.gov/data-e-services/geographic-information-systems", "look": "licen|terms|use|disclaim|public domain|sunshine", "note": "MO DNR GIS terms"},
+  {"st": "--", "url": "https://raw.githubusercontent.com/cwhelchel/potamap.ol/master/LICENSE", "look": "licen|permission|MIT|GPL|Apache|copyright", "note": "row 35 retry"},
+  {"st": "--", "url": "https://api.github.com/repos/cwhelchel/potamap.ol", "look": "license|default_branch|description", "note": "row 35: licence + branch"}
+ ],
+ "queries": [
+  {"st": "CA", "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0", "where": "UNITNAME LIKE '%Oro%'", "out": "*", "note": "row 37 retry"},
+  {"st": "NY", "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0", "where": "Name LIKE '%Thompson%' OR Name LIKE '%Iona%' OR Name LIKE '%Barcelona%'", "out": "*", "note": "NY: does the layer we read hold the 'missing' parks (name mismatch check)"}
+ ]
+}
