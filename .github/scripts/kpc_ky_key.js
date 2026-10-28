@@ -63,6 +63,7 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   const kept = [];
   for (const r in TR) if (parks[r]) {
     parks[r].run_by = TR[r].by + (TR[r].since ? ' since ' + TR[r].since : '');
+    if (TR[r].outline_note) parks[r].outline_note = TR[r].outline_note;   // Oct 28: e.g. Levi Jackson's PAD-US outline is ~174 ac short
     if (!parks[r].tracts.length && prev && prev.parks[r] && prev.parks[r].tracts.length) {
       parks[r].tracts = prev.parks[r].tracts.map(t => [t[0], t[1], t[2], 'kept: last official copy (transferred to ' + TR[r].by + ')', t[4] || 1]);
       kept.push(r);

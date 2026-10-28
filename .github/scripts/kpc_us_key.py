@@ -997,6 +997,7 @@ def run(st):
     try:
         for ref, t in transfers().items():
             if ref in parks: parks[ref]['run_by'] = t.get('by', '') + (f" since {t['since']}" if t.get('since') else '')
+            if ref in parks and t.get('outline_note'): parks[ref]['outline_note'] = t['outline_note']
     except FileNotFoundError: pass
     except Exception as e: notice(f'US key {st}', f'transfer tags skipped: {e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
