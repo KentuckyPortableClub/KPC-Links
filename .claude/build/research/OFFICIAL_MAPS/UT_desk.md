@@ -23,3 +23,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Utah DWR WMAs:** one ArcGIS Experience viewer (experience.arcgis.com/experience/2cb690e760b444e7a280af164e6f6766/) with a per-WMA layer index in the link (Topaz and Timpie Springs share index 231: one is wrong) (A). No per-WMA files, no map dates (page 'Last updated Aug 27 2026'). GIS hub: https://dwr-data-utahdnr.hub.arcgis.com/ (A) - to chat 9. Hunt boundaries: hunt.utah.gov, dwrapps.utah.gov/huntboundary/hbstart (A).
+- **Utah State Parks:** old pattern `site.utah.gov/stateparks/wp-content/uploads/sites/13/<YYYY>/<MM>/<Park>-Map.pdf` (B, Utah-Lake-State-Park-SE-Map.pdf, 2018/01 = a date clue); bot ok only 1 of 4 on stateparks.utah.gov: BOT LOOK-UP. BLM Utah 6 of 8 ok. Handovers: none seen (Utah Lake state park was an earlier NOT SURE, see the verdict file).

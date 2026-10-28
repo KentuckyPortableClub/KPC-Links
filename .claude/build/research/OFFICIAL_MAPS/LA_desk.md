@@ -15,3 +15,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (thin)
+- Only NPS links (3 of 3 ok) exist in the data. Louisiana State Parks (lastateparks.com) and LDWF WMA maps were not looked at: BOT LOOK-UP. Handovers: none seen.

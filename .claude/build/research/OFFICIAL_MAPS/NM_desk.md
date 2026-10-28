@@ -19,3 +19,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (thin)
+- Bot data: NPS 12 of 12 open; Forest Service 0 of 2; NM EMNRD (state parks, emnrd.state.nm.us) 0 of 1; BLM eplanning 1 of 1. Nothing opened by me: BOT LOOK-UP the New Mexico State Parks map pages. Handovers: none seen.

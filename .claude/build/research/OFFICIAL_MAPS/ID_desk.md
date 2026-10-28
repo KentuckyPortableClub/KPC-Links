@@ -17,3 +17,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Idaho Fish and Game WMAs:** `idfg.idaho.gov/sites/default/files/wma-map-r<region>-<name>-<year>.pdf` (B); the one I opened (Hagerman) is a U.S. Fish and Wildlife Service map marked 'Last Updated 2/11/2022' (A): the date is on the map. Map hub https://idfg.idaho.gov/ifwis/maps (B). **Idaho Parks and Recreation:** parksandrecreation.idaho.gov/?p=<id> pages (B); the one bot-checked link failed (0 of 1): BOT LOOK-UP. Handovers: none seen.

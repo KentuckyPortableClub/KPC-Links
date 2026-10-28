@@ -19,3 +19,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Colorado Parks and Wildlife (state parks AND state wildlife areas):** finder pages cpw.state.co.us/state-parks and /swa-finder; maps hub cpw.state.co.us/maps-and-gis (A). Static maps live in the Map Library on cpw.widencollective.com (A, a script-loaded portal = BOT). PDFs also at `cpw.state.co.us/learn/Maps/<Name>_geo.pdf` (B, e.g. RFW_SilverSpur_Overview_geo.pdf). Interactive: Hunting Atlas and Fishing Atlas at ndismaps.nrel.colostate.edu (A). **Dates:** CPW says public-access boundaries are updated on a schedule: Aug first week, Sep first week and early Nov (Walk-In Access), regions/areas first week of March, GMUs first week of February (A). That is the best date rule found in any state. Bot ok: cpw.state.co.us 10 of 10. Rules: a general Rules and Regulations page, nothing per area (A). Handovers: none seen.

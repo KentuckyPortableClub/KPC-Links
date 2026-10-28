@@ -18,3 +18,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Wyoming Game and Fish (Wildlife Habitat Management Areas):** each WHMA page `wgfd.wyo.gov/Public-Access/WHMA/WHMA/<slug>` (lowercase, hyphens), plus one interactive map (experience.arcgis.com/experience/0d8c61f58b4a46a8ad617377b426bfa8) (A). No per-area files, no map dates (A). Hunt-area PDFs `wgfapps.wyo.gov/GISFLS/Hunt_Planner/Deer_Area_<n>.pdf` and `wgfd.wyo.gov/sites/default/files/geopdf_files/<name>.pdf` (B) are hunt units, not parks. Rules: Commission Chapter 23 at wgfd.wyo.gov/node/11629?nid=203; area rules on each area page; fire bans page (A). State parks (wyoparks.wyo.gov): not opened: BOT LOOK-UP. Handovers: none seen.

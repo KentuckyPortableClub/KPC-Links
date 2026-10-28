@@ -18,3 +18,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Montana FWP (fishing access sites, WMAs):** `fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/<number>.pdf` (A, ~18 found, all numeric ids); the one I opened (Reed & Bowles Fishing Access Site, Fergus County) is dated 12/18/2019 ON the map (A). The number is not a date. Forest Service Montana links 0 of 3 open: BOT LOOK-UP. State parks: not found this pass. Handovers: none seen.

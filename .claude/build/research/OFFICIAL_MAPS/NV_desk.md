@@ -16,3 +16,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- Bot data holds only NPS (2) and BLM (2) links, all ok: no Nevada State Parks or Wildlife link ever checked: BOT LOOK-UP (parks.nv.gov park pages, ndow.org). Nevada State Parks boundaries layer: arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer (A, edited to 2026-01-23) - to chat 9. SHPO historical markers: only a PDF list (shpo.nv.gov/uploads/documents/Markers_Sorted_by_Number_current.pdf, A): the 68 'State Historical Monument' parks are pin only. Handovers: none seen.
