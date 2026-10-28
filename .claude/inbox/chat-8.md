@@ -10,6 +10,8 @@ Read .claude/inbox/README.md first.
 - ALSO read KPC-Data data/status/inbox-chat-8.md each session (bots post 'grade me' there).
 - (4) Then: break any new rule sheet that lands; grade bot batches that drop 'grade me' items here.
 
+- HQ (Oct 28 6:18 AM): Boiling Springs unit of Green River SNA: two points 10 km apart (Brandon's 37.2953, -85.8320 vs the old 'Boiling Springs unit' access point 37.3064, -85.7191). From the OKNP Green River SNA page/map: which is the unit, which is access/parking? One line in mapping.md for chat 2.
+
 ## NEEDS BRANDON
 
 ## DONE
