@@ -110,3 +110,4 @@
 
 - LATER (Brandon Oct 27 10:23 PM 'yes eventually'): a 🌐 language button in the header that opens the page in Google Translate (chat 1, an afternoon); maybe checked translations of the two notices after. No full translated copies of the site (5x upkeep).
 - LATER (Brandon Oct 27 11:58 PM 'should've made a desktop version of them images'): optional WIDE holiday art ~2400x800 named <id>-wide.webp; chat 1 makes kpc-holiday.js use it on wide screens when it exists (phones keep the normal one). First chance: Thanksgiving Nov 26.
+- LATER (HQ Oct 28 12:30 AM, from chat 8's official-maps job): Georgia wildlife closures page georgiawildlife.com/closures = a closures-bot source like Kentucky's (chat 5 / chat 2, rule sheet for closures applies). Official-maps job: ~half the agencies need the BROWSER bot (FL map buttons, TN 403s, federal agencies) -> Fable's official-documents bot session uses chat 8's OFFICIAL_MAPS patterns + BOT LOOK-UP rows.
