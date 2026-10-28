@@ -1,12 +1,10 @@
 name: Deploy Pages (Actions)
 # HQ (Oct 28 4:48 AM): a notes/inbox-only push shouldn't rebuild the whole site. This workflow only runs when
-# something outside .claude/** changes, and only actually publishes once Brandon flips
-# Settings -> Pages -> Source to "GitHub Actions" (a one-click switch we can't do from here).
-# Until he does, GitHub's own built-in "pages build and deployment" pipeline (the one CLAUDE.md's
-# `gh run list -w 372361621` checks) keeps doing the real deploys on every push, same as today.
-# continue-on-error on the deploy job: until the switch, this job's deploy step is expected to fail
-# (Pages isn't set up for an Actions source yet) - this keeps that from going red and emailing Brandon.
-# Remove continue-on-error once he's switched and a normal run has gone green.
+# something outside .claude/** changes. Brandon switched Settings -> Pages -> Source to "GitHub Actions"
+# Oct 28 ~5:05 AM; this is now the real deploy (CLAUDE.md's old `gh run list -w 372361621` pipeline is
+# retired - update that note to this workflow's run list instead). Confirmed live Oct 28 5:06 AM
+# (deployment API: state success, sha matched HEAD) and confirmed a .claude/**-only push does NOT
+# trigger a run (chat 10's notes-only commit landed with no new workflow_dispatch/push run).
 on:
   push:
     branches: [main]
@@ -40,7 +38,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
