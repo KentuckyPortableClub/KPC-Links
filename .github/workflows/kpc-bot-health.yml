@@ -3,6 +3,8 @@ name: KPC check-up
 # (Brandon GO 11:50 AM). ONE issue (label bot-health), grouped by chat; only a NEW real problem adds a comment
 # (= one email). Every part is its own step and never fails the job.
 #   DAILY : bot check (did each timed bot run, did it work) + public-list guard (kpc-gate.js PUBLIC list vs the pages).
+#   DAILY (Oct 28): each data bot's OUTPUT (last change vs its timer, size vs last time) + keys/tokens answer (FB expiry).
+#   SUNDAY: weekly BACKUP snapshot = a DRAFT release (drafts are private and send no email), last 8 kept.
 #   SUNDAY: site test as a guest (390 px + desktop), reference check for every state, data link check.
 # Run it by hand with 'full' ticked to do the Sunday parts on any day.
 on:
@@ -12,6 +14,10 @@ on:
     inputs:
       full:
         description: 'Also run the Sunday parts (site test, reference check, link check)'
+        type: boolean
+        default: false
+      backup:
+        description: 'Make the weekly backup snapshot now (normally Sundays)'
         type: boolean
         default: false
       release:
@@ -51,6 +57,13 @@ jobs:
       - name: Public-list guard (daily)
         continue-on-error: true
         run: python3 .github/scripts/kpc_checkup.py guard || true
+      - name: Keys and tokens answer (daily; a key is never printed)
+        continue-on-error: true
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
+          RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
+        run: python3 .github/scripts/kpc_key_check.py || true
       - name: Reference check, every state (Sunday)
         if: steps.day.outputs.weekly == 'yes'
         continue-on-error: true
@@ -89,6 +102,23 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
         run: python3 .github/scripts/kpc_bot_health.py || true
+      - name: Weekly backup snapshot (Sunday) as a DRAFT release, last 8 kept
+        if: (github.event_name == 'schedule' && steps.day.outputs.weekly == 'yes') || inputs.backup
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D=$(date -u +%F); R=$GITHUB_REPOSITORY; W=$RUNNER_TEMP/bk; mkdir -p $W
+          git clone -q --depth 1 https://github.com/KentuckyPortableClub/KPC-Data $W/kd || { echo "::notice title=Backup::KPC-Data could not be read; no backup this week"; exit 0; }
+          (cd $W/kd && zip -qr -9 $W/KPC-Data-data-$D.zip data) || true
+          # KPC-Links: the COMMITTED data (not the overlay copies on disk) + the notes
+          git archive --format=zip -9 -o $W/KPC-Links-data-notes-$D.zip HEAD data .claude/notes || true
+          ls -la $W/*.zip
+          gh release create "backup-$D" $W/*.zip -R $R --draft --title "Backup $D" \
+            --notes "Weekly backup: KPC-Data data/ + KPC-Links data/ and .claude/notes, as of $D. Draft = only club admins see it; nothing is published." \
+            && echo "::notice title=Backup::backup-$D saved ($(du -ch $W/*.zip | tail -1 | cut -f1))" || echo "::notice title=Backup::could not save the backup"
+          gh api "repos/$R/releases?per_page=100" --jq '[.[] | select(.name|startswith("Backup "))] | sort_by(.created_at) | reverse | .[8:] | .[].id' \
+            | while read id; do gh api -X DELETE "repos/$R/releases/$id" >/dev/null && echo "old backup $id removed"; done || true
       - name: Save
         continue-on-error: true
         run: |

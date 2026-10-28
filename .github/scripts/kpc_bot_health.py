@@ -31,8 +31,32 @@ CHATS = {1: 'Chat 1 · Website', 2: 'Chat 2 · Maps & park data', 3: 'Chat 3 · 
 OWNER = [(2, r'key|boundary|canada|state-|trail|access|fers|world|nwr|new-lands|ky-|sota-land|wwff|closures|camps|geo-|outline|official|new-refs|ref-check|top25|land|usace|parkinfo|map-'),
          (3, r'hunters|campground|park-notes|activation'), (6, r'ses\.yml|events|contests|youtube'), (4, r'app'),
          (1, r'guide|approvals|boards|reports|community|whats-new')]
-PARTS = ('guard', 'site', 'refs', 'links')
+PARTS = ('guard', 'keys', 'site', 'refs', 'links')
 WEEKLY = ('site', 'refs', 'links')
+# SILENT BOTS (HQ/Brandon Oct 28): a green run is not enough; check what each data bot MAKES.
+# (workflow, repo L=KPC-Links / D=KPC-Data, output file or folder, kind). kind 'data' = rebuilt on its timer, so it should
+# change; 'news' = only changes when the news does (closures, events...), so 'unchanged' is normal and only shown.
+OUTPUTS = [
+    ('kpc-hunters.yml', 'L', 'kpc-hunters.json', 'data'), ('kpc-ky-key.yml', 'L', 'data/ky-answer-key.json', 'data'),
+    ('kpc-us-key.yml', 'L', 'data/us-key', 'data'), ('kpc-ca-key.yml', 'L', 'data/ca-key', 'data'),
+    ('kpc-world-key.yml', 'L', 'data/world-key', 'data'), ('kpc-world-pota.yml', 'L', 'data/pota', 'data'),
+    ('kpc-canada.yml', 'L', 'data/canada.json', 'data'), ('kpc-top25.yml', 'L', 'kpc-top25.json', 'data'),
+    ('kpc-ky-maps.yml', 'L', 'data/ky-official-maps.json', 'data'), ('kpc-official-links.yml', 'L', 'data/parkinfo-web.json', 'data'),
+    ('kpc-state-gis.yml', 'L', 'data/state-gis.json', 'data'), ('kpc-boundary-check.yml', 'L', 'data/boundary-score.json', 'data'),
+    ('kpc-fed-camps.yml', 'L', 'data/campfed', 'data'), ('kpc-state-camps.yml', 'L', 'data/campstate', 'data'),
+    ('kpc-nwr.yml', 'L', 'data/nwr', 'data'),
+    ('kpc-new-refs.yml', 'L', 'locations.json', 'news'), ('kpc-events.yml', 'L', 'kpc-events-auto.json', 'news'),
+    ('kpc-ses.yml', 'L', 'kpc-special-events.json', 'news'), ('kpc-youtube.yml', 'L', 'kpc-youtube.json', 'news'),
+    ('kpc-park-alerts.yml', 'L', 'kpc-conditions.json', 'news'), ('kpc-whats-new.yml', 'L', 'data/kpc-whats-new.json', 'news'),
+    ('kpc-state-leaders.yml', 'D', 'data/leaders', 'data'), ('kpc-sota-land.yml', 'D', 'data/sota-land', 'data'),
+    ('kpc-state-links.yml', 'D', 'data/parkinfo', 'data'), ('kpc-state-trails.yml', 'D', 'data/trails', 'data'),
+    ('kpc-us-access.yml', 'D', 'data/access', 'data'), ('kpc-wwff-dir.yml', 'D', 'data/wwff', 'data'),
+    ('kpc-scoreboard.yml', 'D', 'data/review/scoreboard.json', 'data'), ('kpc-workshop.yml', 'D', 'data/truth', 'data'),
+    ('kpc-eu-alerts.yml', 'D', 'data/alerts/eu.json', 'news'), ('kpc-us-closures.yml', 'D', 'data/alerts/us-parks.json', 'news'),
+    ('kpc-closures.yml', 'D', 'data/closures', 'news'), ('kpc-intake.yml', 'D', 'data/intake', 'news'),
+    ('kpc-detective.yml', 'D', 'data/detective', 'news'), ('kpc-watch.yml', 'D', 'data/map-observations.json', 'news'),
+]
+REPOS = {'L': 'KentuckyPortableClub/KPC-Links', 'D': 'KentuckyPortableClub/KPC-Data'}
 
 
 # G22 (Brandon Oct 27): issue #17 and data/bot-health.json are PUBLIC, so members-only pages are never named there:
@@ -93,6 +117,67 @@ def last_commit_age(path):
     return (NOW.timestamp() - int(r)) / 3600 if r else None
 
 
+WF = {}
+
+
+def api_age(repo, path):
+    """hours since the file/folder last changed on main (GitHub API; None if unknown)"""
+    c = gh(f'repos/{repo}/commits?path={path}&per_page=1&sha=main')
+    if not c: return None
+    t = c[0]['commit']['committer']['date']
+    return (NOW - dt.datetime.fromisoformat(t.replace('Z', '+00:00'))).total_seconds() / 3600
+
+
+def sizes(repo):
+    t = gh(f'repos/{repo}/git/trees/main?recursive=1') or {}
+    return {x['path']: x.get('size', 0) for x in t.get('tree', []) if x.get('type') == 'blob'}, bool(t.get('truncated'))
+
+
+def outputs(st):
+    """SILENT BOTS: each data bot's output: last change vs its timer, and size vs last time. -> (items, notes, table)"""
+    items, notes, rows = [], [], []
+    trees = {r: sizes(REPOS[r]) for r in REPOS}
+    prev = st.setdefault('sizes', {})
+    for wf, r, path, kind in OUTPUTS:
+        need, has_run = WF.get((r, wf), (None, False))
+        if need is None: continue                      # no such timed workflow (any more)
+        tree, cut = trees[r]
+        size = sum(v for k, v in tree.items() if k == path or k.startswith(path + '/'))
+        age = api_age(REPOS[r], path)
+        limit = 72 if need <= 24 else 216 if need <= 168 else need * 1.3      # daily: 3 days; weekly: 9 days
+        young = not has_run                                                  # no timed run yet: the bot check covers it
+        c = owner(wf); key = f'{r}:{path}'
+        flag = ''
+        if not size and not cut:
+            flag = '🔴 missing'
+            if not young: items.append({'key': f'out:missing:{key}', 'chat': c, 'msg': f'{wf}: its output {path} is MISSING'})
+        elif age is not None and age > limit and not young:
+            if kind == 'data':
+                flag = '🟡 stale'
+                notes.append({'chat': c, 'msg': f'{wf}: {path} unchanged for {age / 24:.0f} days (it runs about every {need:.0f} h): is it silently doing nothing?'})
+            else:
+                flag = '⏸ quiet (news only)'
+        p = prev.get(key) or {}
+        base = p.get('b')
+        if size and base and size < base * 0.7:
+            since = p.get('since') or NOW.date().isoformat()
+            if (NOW.date() - dt.date.fromisoformat(since)).days < 7:   # flagged for a week, then the new size is the normal
+                flag = '🔴 shrank'
+                msg = f'{wf}: {path} SHRANK {100 - size * 100 / base:.0f}% ({base / 1e6:.2f} MB → {size / 1e6:.2f} MB) since {since}'
+                if kind == 'data': items.append({'key': f'out:shrank:{key}', 'chat': c, 'msg': msg})
+                else: notes.append({'chat': c, 'msg': msg + ' (news file: may just be fewer items)'})
+                prev[key] = {'b': base, 'since': since}
+            else:
+                prev[key] = {'b': size}
+        elif size:
+            prev[key] = {'b': size}
+        rows.append(f"| {('KPC-Data/' if r == 'D' else '') + wf} | `{path}` | {'?' if age is None else (f'{age:.0f} h' if age < 48 else f'{age / 24:.0f} d')} ago | "
+                    f"{size / 1e6:.2f} MB | {flag or ('no timed run yet' if young else '✅')} |")
+    table = ('<details><summary>Bot outputs: last change and size (' + str(len(rows)) + ' data bots)</summary>\n\n'
+             '| Bot | Output | Last change | Size | |\n|---|---|---|---|---|\n' + '\n'.join(rows) + '\n\n</details>\n') if rows else ''
+    return items, notes, table
+
+
 def main():
     problems, ok = [], []
     # Oct 27 (storage step B5): bots that moved to KPC-Data are checked too (the workflow checks its files out into kpcdata-wf/)
@@ -108,12 +193,12 @@ def main():
         runs = gh(f'repos/{repo}/actions/workflows/{f.name}/runs?per_page=5&event=schedule') or {}
         runs = runs.get('workflow_runs') or []
         done = [r for r in runs if r.get('status') == 'completed']
-        fresh_file = last_commit_age(str(f)) if not tag else None   # its timer was changed lately: give it time before calling it late
-        grace = fresh_file is not None and fresh_file < max(need * 2.5, need + 26)
-        if tag and not [r for r in runs if r.get('status') == 'completed']:
-            grace = True              # a bot that just moved to KPC-Data and has not had a timed run yet
+        fresh_file = last_commit_age(str(f)) if not tag else api_age(repo, f'.github/workflows/{f.name}')
+        grace = fresh_file is not None and fresh_file < max(need * 2.5, need + 26)   # its timer was changed lately: give it time
+        WF[('D' if tag else 'L', f.name)] = (need, bool(done))
         if not done:
             if need < 24 * 30 and not grace: problems.append((tag + f.name, f'{name}: no timed run found yet'))
+            else: ok.append(f'{name} · waiting for its first timed run')
             continue
         last = done[0]
         age = (NOW - dt.datetime.fromisoformat(last['created_at'].replace('Z', '+00:00'))).total_seconds() / 3600
@@ -157,12 +242,18 @@ def main():
                 items.append(x)
         notes += d.get('notes', [])
         oks += [f"{part} ({d.get('date', '')}): {o}" for o in d.get('ok', [])]
+    try:
+        oi, on, table = outputs(st)
+    except Exception as e:  # noqa: BLE001
+        oi, on, table = [], [{'chat': 5, 'msg': f'output check stopped: {e}'}], ''
+    items += oi; notes += on
     keys = sorted({x['key'] for x in items})
     new = [k for k in keys if k not in st.get('open', [])]
     st['open'] = keys; st['checked'] = NOW.isoformat(timespec='minutes')
     STATE.write_text(json.dumps(st, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     when = NOW.strftime('%b %d, %Y %H:%M UTC')
     body = (f'_Checked {when} by the KPC check-up (.github/workflows/kpc-bot-health.yml). Daily: bot check + public-list guard. '
+            'Daily too: each data bot\'s OUTPUT (last change, size) and the keys/tokens. '
             'Sundays: site test as a guest (390 px + desktop), reference check for every state, data link check. '
             'Each chat fixes what is under its name. Only a NEW problem emails._\n\n')
     body += (f'## ⚠ {len(items)} to look at\n\n' if items else '## ✅ Nothing to fix.\n\n')
@@ -175,6 +266,7 @@ def main():
         if ni:
             body += f'<details><summary>{len(ni)} note(s), nothing to fix yet</summary>\n\n' + ''.join(f"- {x['msg']}\n" for x in ni[:60]) + '\n</details>\n'
         body += '\n'
+    body += table
     body += '<details><summary>What was checked</summary>\n\n' + '\n'.join(f'- {x}' for x in oks) + '\n\n' + '\n'.join(f'- {x}' for x in ok) + '\n\n</details>\n'
     problems = [(x['key'], x['msg']) for x in items]
     body = body[:60000]
