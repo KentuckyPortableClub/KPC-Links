@@ -105,6 +105,7 @@ One short, friendly email per agency from Brandon (KZ4CP, Kentucky Portable Club
 - [ ] Prince Edward Island: provincial park polygons (46). Contact: chat 9 finding.
 - [ ] SC DNR: managed lands (963, on Clemson's account): is it SCDNR's official data + may we use it. Contact: chat 9 finding (or passes without asking if SCDNR's own hub publishes it).
 - [ ] NH GRANIT: state trail lines. Contact: chat 9 finding.
-- [ ] Nevada State Parks: park boundary layer (30 parks/monuments/rec areas, edited June 2026) = MOST VALUABLE ask (Nevada = biggest hole). Contact: chat 9 finding. HQ drafts on request.
-- [ ] Texas Historical Commission: 21 historic-site polygons (zip, 10/25). Contact: chat 9 finding.
+- [x] Nevada State Parks: NOT NEEDED, its item terms = disclaimer + credits = passes (chat 9, Oct 28 1:47 AM); contact kept: stparks@parks.nv.gov.
+- [x] Texas Historical Commission: NOT NEEDED, disclaimer-only terms = passes (waits on chat 2's zip reader); contact kept: atlas@thc.texas.gov.
+NOTE: chat 9's round 19 re-reads each 'nothing stated' layer's own item page (Nevada's terms were there); some of the rows above may pass the same way: check before sending.
 When a YES comes back: forward it to HQ -> HQ records the credit line in mapping.md -> chat 9 adds the layer.
