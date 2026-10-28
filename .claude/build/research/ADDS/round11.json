@@ -1,9 +1,86 @@
 {
- "about": "Chat 9 round 11 (HQ Oct 28 12:44 AM, chat 8's Midwest maps survey): Ohio DNR's gis2.ohiodnr.gov outline layers (parks + wildlife areas). The key already reads ODNR_ODNR_Lands_Public_nolakes layers 5-8 on gis.ohiodnr.gov: is gis2 newer / fuller (dates, counts, names)? Ohio is on the 2-fer line: nothing changes until its verdict. Results: round11-tested.json.",
+ "about": "Chat 9 round 11 (HQ Oct 28 12:44 AM, chat 8's Midwest maps survey): Ohio DNR's gis2.ohiodnr.gov outline layers (parks + wildlife areas). The key already reads ODNR_ODNR_Lands_Public_nolakes layers 5-8 on gis.ohiodnr.gov: is gis2 newer / fuller (dates, counts, names)? Ohio is on the 2-fer line: nothing changes until its verdict. Results: round11-tested.json. + (HQ 12:49 AM) Missouri Dept. of Conservation gisblue administrative areas + MDC's terms, Iowa DNR state parks, North Dakota state parks. NOTE: MDC Administrative Areas/5, Iowa State_Parks/9 and ND NDGISHUB_State_Parks/0 are ALREADY in the key: this round reads their terms + dates (and looks for anything newer).",
  "orgs": [
-  {"st": "OH", "url": "https://gis2.ohiodnr.gov/arcgis/rest/services", "match": "park|wildlife|land|boundar|forest|preserve|natural|recreat|DNAP|property", "note": "walk gis2"}
+  {
+   "st": "OH",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services",
+   "match": "park|wildlife|land|boundar|forest|preserve|natural|recreat|DNAP|property",
+   "note": "walk gis2"
+  },
+  {
+   "st": "MO",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services",
+   "match": "admin|area|conservation|land|boundar|property",
+   "note": "MDC administrative areas"
+  }
  ],
  "layers": [
-  {"st": "OH", "kind": "park", "ag": "Ohio DNR (key today)", "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer", "note": "baseline: counts, dates, licence of what the key reads now"}
+  {
+   "st": "OH",
+   "kind": "park",
+   "ag": "Ohio DNR (key today)",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer",
+   "note": "baseline: counts, dates, licence of what the key reads now"
+  },
+  {
+   "st": "IA",
+   "kind": "park",
+   "ag": "Iowa DNR",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer",
+   "note": "chat 8 MW survey"
+  },
+  {
+   "st": "MO",
+   "kind": "land",
+   "ag": "Missouri Dept. of Conservation (key today)",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer",
+   "note": "terms + date"
+  },
+  {
+   "st": "ND",
+   "kind": "park",
+   "ag": "ND Parks and Recreation (key today)",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer",
+   "note": "terms + date"
+  },
+  {
+   "st": "MO",
+   "kind": "park",
+   "ag": "Missouri DNR (key today)",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer",
+   "note": "terms of MO DNR's own park service (same publisher as the 3 listed layers)"
+  }
+ ],
+ "searches": [
+  {
+   "st": "MO",
+   "q": "owner:MDC_GIS OR (\"Missouri Department of Conservation\" AND (\"conservation areas\" OR \"administrative areas\"))",
+   "why": "MDC layers + their licenceInfo (terms)"
+  },
+  {
+   "st": "ND",
+   "q": "\"North Dakota\" AND (\"Parks and Recreation\" OR NDPRD) AND (\"state parks\" OR \"state park\") AND (boundary OR boundaries)",
+   "why": "ND state parks layer"
+  },
+  {
+   "st": "MO",
+   "q": "\"Missouri State Parks\" OR (\"Missouri Department of Natural Resources\" AND (\"state parks\" OR trails))",
+   "why": "MO DNR items' licenceInfo (the 3 listed layers)"
+  }
+ ],
+ "pages": [
+  {
+   "st": "MO",
+   "url": "https://mdc.mo.gov/about-us/website-policies",
+   "look": "licen|copyright|use|reproduc|permission|data",
+   "note": "MDC terms"
+  },
+  {
+   "st": "MO",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services?f=json",
+   "look": "",
+   "json": false,
+   "note": "MDC server root"
+  }
  ]
 }
