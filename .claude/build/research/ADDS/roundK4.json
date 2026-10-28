@@ -1,0 +1,254 @@
+{
+ "about": "Chat 9 round K4 (inbox Oct 28 12:55 PM): (A) official pages + maps for the KY wild rivers + nature preserves with no map (eec.ky.gov: map/brochure links), Salato page + hours; (B) official POINTS for the 20 KY campgrounds with none (LBL = a Forest Service unit: the national recreation-sites points layer; NPS POIs; agency pages). Results: roundK4-tested.json.",
+ "pages": [
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Green-River-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Green-River-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Cumberland-River-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Cumberland-River-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Rockcastle-River-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Big-South-Fork-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Big-South-Fork-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rock-Creek-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Rock-Creek-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch-Wild-River.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Bad-Branch-Wild-River"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Rush-Island-Bottoms"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Six-Mile-Island"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Beargrass-Creek.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Beargrass-Creek"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Crooked-Creek"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Jesse-Stuart"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Burnett-WWCA"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: Dr.-William-H.-Martin-WWCA"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|jpeg|png)[^\"]*\"|href=\"[^\"]*(?:arcgis|maps\\.|map)[^\"]*\"|[Mm]odified[^<]{0,60}|[Uu]pdated[^<]{0,60}",
+   "note": "docs: E.-Lucy-Braun"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/default.aspx",
+   "look": "href=\"[^\"]+(?:Wild-River|Brochure|\\.pdf)[^\"]*\"",
+   "note": "OKNP locations list (brochure links)"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://eec.ky.gov/Nature-Preserves/water/Pages/wild-rivers.aspx",
+   "look": "href=\"[^\"]+\\.(?:pdf|jpg|png)[^\"]*\"|href=\"[^\"]*Wild-River[^\"]*\"",
+   "note": "Wild Rivers program page"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://fw.ky.gov/Education/Pages/Salato-Wildlife-Education-Center.aspx",
+   "look": "[Hh]ours[^<]{0,160}|[Oo]pen[^<]{0,120}|[Cc]losed[^<]{0,120}|href=\"[^\"]+\\.(?:pdf)[^\"]*\"|[Aa]dmission[^<]{0,120}",
+   "note": "Salato page + hours (chat 11 lead)"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/hillman-ferry-campground/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL hillman-ferry-campground"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/energy-lake-campground/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL energy-lake-campground"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/wranglers-campground/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL wranglers-campground"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/piney-campground/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL piney-campground"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/fenton-lake-campground/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL fenton-lake-campground"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://landbetweenthelakes.us/stay/camping/self-service-campgrounds/",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|maps\\.google[^\"']+|google\\.com/maps[^\"']+|[Ll]at(?:itude)?[^<]{0,40}|GPS[^<]{0,80}",
+   "note": "LBL self-service-campgrounds"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://parks.ky.gov/corbin/parks/resort/levi-jackson-wilderness-road-state-park",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: Levi Jackson"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://parks.ky.gov/cumberland/parks/resort/kingdom-come-state-park",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: Kingdom Come"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://www.breakspark.com/camping",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: Breaks"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://www.nps.gov/cuga/planyourvisit/wilderness-road-campground.htm",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: Wilderness Road"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://www.nps.gov/maca/planyourvisit/campgrounds.htm",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: Mammoth Cave campgrounds"
+  },
+  {
+   "st": "KY",
+   "raw": true,
+   "url": "https://www.nps.gov/biso/planyourvisit/campgrounds.htm",
+   "look": "-?\\d{2}\\.\\d{4,}\\s*,\\s*-?\\d{2}\\.\\d{4,}|google\\.com/maps[^\"']+|maps\\.app[^\"']+|GPS[^<]{0,80}|[Ll]atitude[^<]{0,60}",
+   "note": "camp point: BSF campgrounds"
+  }
+ ],
+ "queries": [
+  {
+   "st": "KY",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+   "where": "RECAREANAME LIKE '%Hillman%' OR RECAREANAME LIKE '%Energy Lake%' OR RECAREANAME LIKE '%Wrangler%' OR RECAREANAME LIKE '%Piney%' OR RECAREANAME LIKE '%Fenton%'",
+   "out": "*",
+   "geom": true,
+   "n": 15,
+   "note": "LBL camps (FS rec points)"
+  },
+  {
+   "st": "KY",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+   "where": "FORESTNAME LIKE '%Land Between%' AND (MARKERACTIVITY LIKE '%Camp%' OR RECAREANAME LIKE '%Camp%')",
+   "out": "*",
+   "geom": true,
+   "n": 15,
+   "note": "LBL self-service lakeside camps"
+  },
+  {
+   "st": "KY",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+   "where": "RECAREANAME LIKE '%Zilpo%'",
+   "out": "*",
+   "geom": true,
+   "n": 15,
+   "note": "Daniel Boone: Zilpo point check"
+  }
+ ],
+ "searches": [
+  {
+   "st": "US",
+   "q": "NPS AND (\"Points of Interest\" OR POI) AND (campground OR campgrounds) AND (public OR national)",
+   "why": "NPS campground points (Mammoth Cave, BSF, Cumberland Gap)"
+  },
+  {
+   "st": "KY",
+   "q": "Kentucky AND (KDFWR OR \"Fish and Wildlife\") AND (campsites OR camping OR campground) AND (WMA OR \"wildlife management\")",
+   "why": "KDFWR WMA camping points"
+  },
+  {
+   "st": "KY",
+   "q": "Kentucky AND \"State Parks\" AND (campground OR campgrounds) AND (points OR locations)",
+   "why": "KY state park campground points"
+  }
+ ]
+}

@@ -239,8 +239,13 @@ def queries(cfg):
     for x in cfg.get('queries') or []:
         r = {k: x[k] for k in ('st', 'url', 'where', 'note') if k in x}
         try:
-            q = get(x['url'] + '/query', {'where': x['where'], 'outFields': x.get('out', '*'), 'returnGeometry': 'false', 'resultRecordCount': 20}, t=60)
-            r['rows'] = [{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '') and not re.search(r'shape|globalid', k, re.I)} for f in q.get('features') or []][:20]
+            q = get(x['url'] + '/query', {'where': x['where'], 'outFields': x.get('out', '*'), 'returnGeometry': 'true' if x.get('geom') else 'false', 'outSR': 4326, 'resultRecordCount': x.get('n', 20)}, t=60)
+            r['rows'] = []
+            for f in (q.get('features') or [])[:x.get('n', 20)]:
+                row = {k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '') and not re.search(r'shape|globalid', k, re.I)}
+                g = f.get('geometry') or {}
+                if x.get('geom') and 'x' in g: row['_pt'] = [round(g['y'], 6), round(g['x'], 6)]   # Oct 28: a point's own lat/lon
+                r['rows'].append(row)
         except Exception as e: r['error'] = str(e)[:140]
         out.append(r)
     return out
