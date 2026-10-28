@@ -69,11 +69,18 @@ ABBR = {'sulphur': 'sulfur', 'sulpher': 'sulfur', 'vehicular': 'vehicle', 'recre
 # Oct 24: the Oct 22 'keep a leading type word' rule must not keep a leading article or filler - 'The 400 State Trail'
 # came out as 'the 400 trail' and no longer met '400 State Trail' (found measuring the WI key)
 NOTNAME = {'the', 'of', 'and', 'state', 'national', 'no', 'number', 'blm', 'designated', 'a', 'an'}
+def fold(s):
+    """Oct 28 (HQ item 6): accents folded before names are compared (Montaña = Montana, é = e, ç = c)."""
+    import unicodedata
+    return ''.join(ch for ch in unicodedata.normalize('NFKD', str(s or '')) if not unicodedata.combining(ch))
+
+
 def norm(s, drop1=False):
-    s = str(s or '')
+    s = fold(s)
     # Oct 26 (gap hunt): Michigan DNR names its State Game Lands 'Bill Rollo Memorial Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA)';
     # POTA says 'Bill Rollo Memorial State Game Land'. The GEMS words (and anything after, '... of Plum Creek') are not the name
     s = re.sub(r'\s*\bgrouse\s+enh.*$', ' ', s, flags=re.I)
+    s = re.sub(r'\bblm\b|\b(special |extensive )?recreation management area\b|\bs?rma\b', ' ', s, flags=re.I)   # Oct 28 (HQ item 3): POTA's 'X BLM Recreation Management Area' / 'X SRMA' = BLM's 'X'
     # Oct 22: a named piece of one area is still that area - 'Cherokee SWA - Lone Pine Unit', 'Roaring Fork SWA -
     # Wheeler Parcel', 'Dolores River Canyon, Zone 3'. Drop the piece's own name after the dash or comma. Done FIRST,
     # while the dash is still a dash (it becomes a space a few lines down).
@@ -102,11 +109,13 @@ KINDS = [('wma', r'wildlife management area|\bwma\b|\bswa\b|wildlife area|game l
          ('wsr', r'wild (and|&) scenic river|recreational river'),
          ('ca', r'conservation area|conservation reserve|\baccess$'),          # Missouri: 'Kings Prairie Access' = Kings Prairie Access State Conservation Area
          ('snp', r'nature preserve|natural area|\bsnp\b|\bsna\b|natural heritage|\bpreserve\b|natural state conservation|natural reserve|scientific and natural|natural environment area|\bnea\b|\bnrma\b'),
-         ('hist', r'historic(al)? (site|park|area)|\bshs\b'),
-         ('sp', r'state (resort )?park|historic(al)? park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
+         ('hist', r'(?<!national )historic(al)? (site|park|area)|\bshs\b'),
+         ('sp', r'state (resort )?park|(?<!national )historic(al)? park|\bsrp\b|recreation(al)? area|state beach|state seashore'),
          ('nf', r'national forest|national grassland'), ('sf', r'state forest'),
          ('nwr', r'wildlife refuge|\bnwr\b'), ('nfh', r'hatchery|\bnfh\b|\bfh\b'),
-         ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway)'),
+         ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway|historical park|historic site)'),
+         # Oct 28 (Q5 / N-2): kinds for POTA types that used to have none, so they no longer match anything
+         ('fl', r'(state|public|county) fishing lake'), ('trail', r'state trail|national (scenic|historic|recreation) trail'), ('harbor', r'state harbou?r'),
          ('wild', r'wilderness(?! study)'), ('wsa', r'wilderness study area|\bwsa\b'),
          ('hma', r'herd (management )?area|\bhma\b'),
          ('rma', r'recreation management area|\bs?rma\b|\berma\b|campground|recreation site|day use area')]
@@ -168,6 +177,7 @@ def name_ok(a, b, ka, kb):
     if not same_kind(ka, kb): return False
     if ('nfh' in ka) != ('nfh' in kb): return False                      # a hatchery only joins a hatchery (Dworshak Reservoir is not the hatchery)
     if bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False   # a trail only joins a trail
+    if not ka and not kb: return exact_name(a, b)   # Oct 28 (Q5): no kind on either side = exact name only, never loose words
     return exact_name(a, b) if (bool(ka) != bool(kb)) else same_name(a, b)
 
 
@@ -192,6 +202,9 @@ def wset(s):
     return set(w for w in _sing(norm(str(s or '').replace('(', ' ').replace(')', ' '))).split() if len(w) > 1)
 
 
+FEATURE = {'lake', 'river', 'creek', 'island', 'islands', 'mountain', 'trail', 'reservoir', 'bay', 'spring', 'springs', 'canyon', 'falls', 'marsh', 'swamp', 'bottoms', 'point', 'ridge'}
+
+
 def same_words(a, b, ka, kb):
     # all words of the shorter name are in the longer one, at most 2 extra words, and BOTH names say the same kind of place
     if not (ka and kb and ka & kb): return False
@@ -201,6 +214,7 @@ def same_words(a, b, ka, kb):
     if ('nfh' in ka) != ('nfh' in kb) or bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False
     w1, w2 = wset(a), wset(b)
     s, l = (w1, w2) if len(w1) <= len(w2) else (w2, w1)
+    if (l - s) & FEATURE: return False   # Oct 28 (N-4/N-8): 'Sacramento' is not 'Sacramento RIVER', 'Cheatham' not 'Cheatham LAKE'
     big = [w for w in s if len(w) > 2]
     if len(big) == 1:   # one long word, same kind ('Keyhole' = 'Keyhole Reservoir'); wrong ones go in overrides.json 'no'
         return len(big[0]) >= 6 and ka == kb and s <= l and len(l - s) <= 2
@@ -439,9 +453,10 @@ try:
         for _i, _l in enumerate(_lays):
             _u = str(_l.get('url') or '').rstrip('/')
             if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
+            if re.search(r'local_?parks|county_?parks|city_?parks|municipal', _u, re.I) or _l.get('kind') == 'local': continue   # Oct 28 (N-7, house rule): never a local-park layer
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
             XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
-                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or ''}))
+                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or '', 'kind_field': _l.get('kind_field') or ''}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 def resolve(pre, url, nf, af):
@@ -508,7 +523,7 @@ def extra_state(st, have, only=None):
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
                 if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
-                k = kinds(nm) | kk
+                k = kinds(nm) | (kinds(a.get(opt['kind_field'].lower()) or '') if opt.get('kind_field') else kk)   # Oct 28 (N-1): a MIXED layer gives each record its own kind
                 if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
                 if (norm(nm), frozenset(k)) in have and not opt.get('where'): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
                 g = f.get('geometry') or {}
@@ -591,6 +606,7 @@ def score_park(name, typ, la, lo, recs, clusters):
     return KM.choose(cands)
 
 
+SIB = {}   # state -> [(ref, POTA name)] (N-4)
 RD = {}
 def outline_dates(p, recs):
     """Rule B7 (boundary review #2): 'read' = the oldest day this park's joined land was read from its agency; 'src' = what it
@@ -742,6 +758,7 @@ def run(st):
     parks, used = {}, set()
     RD.clear()
     clusters = name_clusters(recs)
+    SIB[st] = [(r2, v[0]) for r2, v in P.items() if v and v[0]]
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
         if la is None and ref in pins(): la, lo = pins()[ref]
@@ -758,6 +775,10 @@ def run(st):
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
+        # Oct 28 (N-4, HQ: the 3 live wrong joins Sacramento NWR, Gunnison SWA, Cheatham WMA): a record whose name is EXACTLY
+        # another POTA park's in this state belongs to that park, unless it is exactly this park's name too
+        if m and SIB.get(st):
+            m = [x for x in m if exact_name(name, x[1]) or not any(r2 != ref and exact_name(n2, x[1]) for r2, n2 in SIB[st])]
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(x) for x in ov.get('no', [])}
@@ -972,6 +993,29 @@ for st in STATES:
         if x[0] in RESOLVED: LJ[x[0]] = [RESOLVED[x[0]][0], RESOLVED[x[0]][1], x[5]]
         elif not x[1].startswith('svc:'): LJ[x[0]] = [x[1], x[2], x[5]]
     save_json(OUT / 'layers.json', LJ)
+# Oct 28 (HQ item C): a park POTA files under several states (132 do: the Appalachian Trail under 14) is not 'nothing found' in
+# one state when another state's key joined it. Such parks are marked 'joined_in' and leave this state's 'none' count.
+try:
+    import glob as _g0
+    _all = {pathlib.Path(_f).stem: json.load(open(_f)) for _f in _g0.glob(str(OUT / 'US-??.json'))}
+    _joined = {}
+    for _st, _d in _all.items():
+        for _r, _p in (_d.get('parks') or {}).items():
+            if _p.get('m'): _joined.setdefault(_r, []).append(_st)
+    for _st, _d in _all.items():
+        _n = 0
+        for _r, _p in (_d.get('parks') or {}).items():
+            _else = [x for x in _joined.get(_r, []) if x != _st]
+            if not _p.get('m') and _else:
+                if _p.get('joined_in') != _else: _p['joined_in'] = _else
+                _n += 1
+            elif _p.get('joined_in') and not _else: _p.pop('joined_in')
+        _c = _d.get('counts') or {}
+        _c['joined_in_another_state'] = _n
+        _d['counts'] = _c
+        save_json(OUT / f'{_st}.json', _d)
+        if _st[3:] in idx: idx[_st[3:]]['joined_in_another_state'] = _n
+except Exception as _e: print(f'cross-state count skipped: {_e}', flush=True)  # noqa: BLE001
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 if CMODE != 'off':
