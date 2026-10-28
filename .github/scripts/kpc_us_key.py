@@ -13,6 +13,7 @@ import json, math, os, re, sys, time, urllib.parse, urllib.request, pathlib
 Q = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
 STATES = (os.environ.get('STATES') or '').upper().replace(',', ' ').split() or ALL
+if os.environ.get('FINISH_ONLY'): STATES = []   # Oct 28 (key speed-up): the join job after the split jobs: only the all-state steps at the end
 OUT = pathlib.Path('data/us-key'); OUT.mkdir(parents=True, exist_ok=True)
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 import gzip

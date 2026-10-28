@@ -1,5 +1,9 @@
 name: KPC US answer key
 # Every state but KY: POTA parks joined to official land (USGS PAD-US) only when name + kind match; the rest goes on review lists.
+# Oct 28 (HQ: key rebuild speed-up): the states are SPLIT over 3 jobs at once, balanced by last run's seconds per state
+# (data/us-key/index.json 'seconds'); each job runs the same script on its own states (a state's result never depends on
+# another state's); a JOIN job puts the files together and runs the all-state steps at the end (parks joined in another
+# state, totals, the pin check), then the review issue and ONE save.
 on:
   schedule:
     - cron: '37 9 1 * *'   # monthly
@@ -8,6 +12,9 @@ on:
       states:
         description: 'States (blank = all but KY), e.g. TN IN OH'
         default: ''
+      jobs:
+        description: 'Jobs at once (1-3)'
+        default: '3'
 permissions:
   contents: write
   issues: write
@@ -15,20 +22,98 @@ concurrency:
   group: kpc-us-key
   cancel-in-progress: false
 jobs:
-  run:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      groups: ${{ steps.p.outputs.groups }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: p
+        env:
+          STATES: ${{ inputs.states }}
+          NJOBS: ${{ inputs.jobs }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
+          st = [x for x in (os.environ.get('STATES') or '').upper().replace(',', ' ').split() if x != 'KY'] or ALL
+          n = max(1, min(3, int(os.environ.get('NJOBS') or 3), len(st)))
+          try: sec = {k: (v.get('seconds') or 60) for k, v in json.load(open('data/us-key/index.json'))['states'].items()}
+          except Exception: sec = {}
+          g = [[] for _ in range(n)]; load = [0] * n
+          for s in sorted(st, key=lambda s: -sec.get(s, 60)):   # biggest first, each to the lightest job
+              i = load.index(min(load)); g[i].append(s); load[i] += sec.get(s, 60)
+          print('groups=' + json.dumps([{'i': i, 'states': ' '.join(sorted(x))} for i, x in enumerate(g) if x]))
+          print(f'::notice title=US key plan::{n} jobs: ' + ' | '.join(f'{" ".join(sorted(x))} (~{l // 60} min)' for x, l in zip(g, load)))
+          PY
+  build:
+    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        g: ${{ fromJSON(needs.plan.outputs.groups) }}
     steps:
       - uses: actions/checkout@v5
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
-      - name: Build the answer key
+      - name: Build the answer key (this job's states)
         env:
-          STATES: ${{ inputs.states }}
+          STATES: ${{ matrix.g.states }}
           MINUTES: '300'
         run: |
           pip install --quiet --break-system-packages pyshp pyproj || true   # Oct 28: zipped-shapefile layers (Mississippi)
-          python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log
+          python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
+          mkdir -p part
+          for st in $STATES; do [ -f data/us-key/US-$st.json ] && cp data/us-key/US-$st.json part/; done
+          cp data/us-key/index.json part/index.json; cp data/us-key/layers.json part/layers.json 2>/dev/null || true
+          cp data/us-key/zip-*.json part/ 2>/dev/null || true
+          echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: us-key-part-${{ matrix.g.i }}
+          path: part/
+          retention-days: 3
+  join:
+    needs: build
+    if: ${{ always() && needs.build.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: us-key-part-*
+          path: parts
+      - name: Put the parts together + the all-state steps
+        run: |
+          python3 - <<'PY'
+          import glob, json, os, shutil
+          idx = json.load(open('data/us-key/index.json')).get('states', {}) if os.path.exists('data/us-key/index.json') else {}
+          try: LJ = json.load(open('data/us-key/layers.json'))
+          except Exception: LJ = {}
+          n = 0
+          for d in sorted(glob.glob('parts/us-key-part-*')):
+              sts = open(f'{d}/states.txt').read().split()
+              pi = json.load(open(f'{d}/index.json')).get('states', {})
+              for st in sts:
+                  if os.path.exists(f'{d}/US-{st}.json'): shutil.copy(f'{d}/US-{st}.json', f'data/us-key/US-{st}.json'); n += 1
+                  if st in pi: idx[st] = pi[st]
+              try: LJ.update(json.load(open(f'{d}/layers.json')))
+              except Exception: pass
+              for z in glob.glob(f'{d}/zip-*.json'): shutil.copy(z, 'data/us-key/' + os.path.basename(z))
+              shutil.copy(glob.glob(f'{d}/us-key-*.log')[0], '.') if glob.glob(f'{d}/us-key-*.log') else None
+          import sys; sys.path.insert(0, '.github/scripts')
+          from kpc_save import save_json   # the same writer the script uses (same bytes as a serial run)
+          save_json('data/us-key/index.json', {'states': {k: idx[k] for k in idx}})
+          save_json('data/us-key/layers.json', LJ)
+          print(f'::notice title=US key join::{n} state files from {len(glob.glob("parts/us-key-part-*"))} jobs')
+          PY
+          FINISH_ONLY=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-join.log
+          cat us-key-*.log > us-key.log 2>/dev/null || true
       - name: Review issue
         env:
           GH_TOKEN: ${{ github.token }}
