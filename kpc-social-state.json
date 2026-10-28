@@ -124,14 +124,14 @@
    "acts": 478
   },
   "KQ4HZK": {
-   "parks": 0,
-   "counties": 0,
-   "acts": 0
+   "parks": 72,
+   "counties": 48,
+   "acts": 112
   },
   "K4ZSR": {
    "parks": 58,
    "counties": 40,
-   "acts": 276
+   "acts": 277
   },
   "N4KPC": {
    "parks": 2,
@@ -1056,7 +1056,8 @@
   "KQ4HZK|20261021",
   "KQ4HZK|20261022",
   "KQ4HZK|20261023",
-  "N4KPC|20261023"
+  "N4KPC|20261023",
+  "K4ZSR|20261028"
  ],
  "pages": [
   "about.html",
