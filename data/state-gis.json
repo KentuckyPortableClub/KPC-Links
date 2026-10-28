@@ -41,6 +41,16 @@
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources)",
+    "host": "agency",
+    "nm": "PARKNAME",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "157 state park units incl. State Recreation Sites (HT-19)",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2"
    }
   ],
   "AR": [
@@ -93,6 +103,17 @@
     "host": "agency",
     "where": "ORGCODE IN (41570,22560)",
     "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "wild",
+    "ag": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092)",
+    "host": "agol",
+    "nm": "Name",
+    "where": "Name NOT LIKE '%Easement%'",
+    "lic": "not-a-survey disclaimer, no use limits",
+    "read": "2026-10-28",
+    "note": "1,862 CDFW owned + operated lands (ecological reserves, wildlife areas); conservation easements left out (private land)",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0"
    }
   ],
   "CO": [
@@ -930,6 +951,16 @@
     "read": "2026-10-27",
     "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0",
     "lic": "item terms: 'Data may be used as is … reference purposes only' (no use limits)"
+   },
+   {
+    "kind": "land",
+    "ag": "Virginia Dept. of Historic Resources (credit)",
+    "host": "agency",
+    "nm": "PropertyNames",
+    "lic": "credit line only; licence field 'Public'",
+    "read": "2026-10-28",
+    "note": "3,168 VLR/NRHP/NHL listed property polygons (historic sites join only on a sure match; HT-18)",
+    "url": "https://vcris.dhr.virginia.gov/arcgis/rest/services/dhr/dhr_public/MapServer/3"
    }
   ],
   "WA": [
