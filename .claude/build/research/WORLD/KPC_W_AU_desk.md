@@ -1,4 +1,5 @@
 # World W2: AUSTRALIA (desk, Oct 27 2026)
+Format note: HQ seven points map to sections: (1) = 1, (2) = 1 and 4 (tenure), (3) = 2, (4) = 4/5, (5) = NEW grey areas, (6) = 5 and 6, (7) = SUMMARY at the top.
 Grades: A = opened and read, B = search only, C = inference. Read only. Key = data/world-key/AU.json: 10,272 parks, 2,228 no outline, 1,433 pin outside, 1,067 to check; sources in key: CAPAD, NSW State Forest, QLD State Forest, VIC state forests, WA DBCA state forests. Australia has the best public-land data of any country we hold: **most parks are Crown land (public) and every state publishes a tenure layer**, so rule 14 can run here.
 
 ## SUMMARY (READY / GAPS)

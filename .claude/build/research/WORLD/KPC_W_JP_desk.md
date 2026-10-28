@@ -1,4 +1,5 @@
 # World W3: JAPAN (desk, Oct 27 2026)
+Format note: HQ seven points map to sections: (1) = 1, (2) = 1 and 4 (tenure), (3) = 2, (4) = 4/5, (5) = NEW grey areas, (6) = 5 and 6, (7) = SUMMARY at the top.
 Grades: A = opened, B = search only, C = inference. Read only. Key = data/world-key/JP.json: 1,217 parks, only 185 joined, **1,031 no outline**, 22 pin outside; sources in key: MoE national parks (Esri Japan), MLIT natural park areas A10 (national file). HQ asked me to look for newer maps first.
 
 ## SUMMARY (READY / GAPS)
