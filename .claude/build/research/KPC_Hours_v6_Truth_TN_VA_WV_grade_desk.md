@@ -17,3 +17,10 @@ Verdict: FAIL for WV and VA (bar 90%; the junk is systematic), TN flags usable o
 2. Skip "acre" sentences that name a lake/pond/farm/preserve system ('108-acre Hungry Mother Lake', '207-acre farm', 'sixty-nine preserves encompassing').
 3. Park on a state line ('KY,TN', 'NC and TN', GA+TN): compare to the whole-park total only with the other state's pieces added, else label 'crosses states', never 'off'.
 4. Hours: drop hunting-page permit sentences that do not name the area; keep the gate rows list.
+
+## ADDENDUM 6:55 PM: truth checker NC AL SC FL MS IN IL + reruns
+- Shared-number junk is only in WV (76) and IL (3 = Illinois 'did you know' page, 4.4 million acres on Illinois Beach etc.); NC, IN, AL, SC, FL, MS have 0 flags sharing a number: those states are clean on that fault. 'off' counts: NC 28, AL 18, SC 28, FL 54, MS 5, IN 9, IL 80 (of 219).
+- IL random 8 'off': right/usable 4 (Jubilee College 3,200 vs 6,675; Big River SF 2,900 vs 5,608; Weldon Springs 550 vs 1,100; Denby 5 vs 12 weak), junk 4 (Chain-O-Lakes '80 acres within the park' = a preserve inside; Illinois Beach = statewide 4.4 million; Nauvoo = a '4-acre plot'; Lusk Creek = the surrounding 4,796-acre wilderness). **IL = 50%, FAIL.**
+- New fix (chat 10): skip acre sentences with 'within the park', 'plot', 'adjacent', 'in the middle of the N acre', 'owned by the US Forest Service' about another unit; a figure < 25% of ours needs 'park is/covers N acres' wording.
+- Access reruns + fed-camp reruns: STILL not landed (far points 178, doubled camp ids 132, same as 12:30 PM).
+- Docs chunks 4-5 of 6:26 PM add MO/IN/IL/WI/MN/IA/ND/SD and re-save the southeast; the four bulk faults stay at 0.
