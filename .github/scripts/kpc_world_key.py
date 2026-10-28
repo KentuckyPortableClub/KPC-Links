@@ -156,6 +156,9 @@ SRC['FR'] = SRC['FR'] + [('ONF public forests (credit ONF)', 'arcgis', 'https://
 # own account, terms of use = CC BY 4.0 per chat 8, credit 'Coillte Teoranta'). W20-1: a Coillte forest POTA calls a National
 # Park / Forest Reserve is state forest.
 SRC['IE'] = SRC['IE'] + [('Coillte properties (credit Coillte Teoranta)', 'arcgis', 'https://services7.arcgis.com/6LSAdqgf43oKRpP6/arcgis/rest/services/Coillte_Boundaries_Consultation/FeatureServer/2')]
+# Oct 28 (chat 9, world round W5): Sweden's national register Naturvårdsregistret (Naturvårdsverket, CC0): protected areas
+# (national parks, nature reserves, nature conservation areas, biotope protection) straight from the agency.
+SRC['SE'] = SRC['SE'] + [('Naturvårdsverket Naturvårdsregistret protected areas (CC0)', 'wfs', 'https://geodata.naturvardsverket.se/naturvardsregistret/wfs', 'Naturvardsregistret_WFS:SkyddadeOmraden')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
