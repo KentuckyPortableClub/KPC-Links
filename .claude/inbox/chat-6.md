@@ -5,7 +5,7 @@ Read .claude/inbox/README.md first.
 - (nothing else open)
 
 ## NEEDS BRANDON
-- KPC27 challenge drafts: send the rough list (a few words each) and how each is scored. Then chat 6 suggests improvements + new ideas and, with a GO, builds the scorer (Opus). Asked Oct 28.
+- PARKED (Brandon Oct 28 2:38 PM: a months-out project; don't ask again until he brings it up). WAS: KPC27 challenge drafts: send the rough list (a few words each) and how each is scored. Then chat 6 suggests improvements + new ideas and, with a GO, builds the scorer (Opus). Asked Oct 28.
 
 ## DONE
 
