@@ -172,15 +172,16 @@ body.field .page-jump-nav{display:none!important}
 <div class="panel"><div class="controls">
 <div class="chips" style="flex:1 1 auto" role="group" aria-label="Sort by">
 <button type="button" class="chip" data-sort="gap" aria-pressed="true">BIGGEST GAP FIRST</button>
+<button type="button" class="chip" data-sort="pct">LOWEST % COMPLETE</button>
 <button type="button" class="chip" data-sort="total">MOST PARKS</button>
 <button type="button" class="chip" data-sort="name">A–Z</button>
 </div>
 </div>
 <div class="tablewrap"><table class="list" id="mcTable">
-<thead><tr><th>STATE / PROVINCE</th><th>PARKS</th><th>WITH A MAP</th><th>MISSING</th><th>PIN ONLY</th></tr></thead>
-<tbody><tr><td colspan="5" class="empty">Loading…</td></tr></tbody>
+<thead><tr><th>STATE / PROVINCE</th><th>PARKS</th><th>WITH A MAP</th><th>MISSING</th><th>PIN ONLY</th><th>% COMPLETE</th></tr></thead>
+<tbody><tr><td colspan="6" class="empty">Loading…</td></tr></tbody>
 </table></div>
-<div class="note">"Missing" = no official layer found yet, or a near-miss that needs a hand check. Pin-only parks (a historic site, trailhead or similar single-spot park) and parks with an official trail/river line are not missing — they have the right kind of record for what they are. Counts come from chat 8's research pass over the answer-key files; a bot will refresh them nightly.</div>
+<div class="note">"Missing" = no official layer found yet, or a near-miss that needs a hand check. Pin-only parks (a historic site, trailhead or similar single-spot park) and parks with an official trail/river line are not missing — they have the right kind of record for what they are. "% complete" counts every column a park could have filled in (map, rules, hours, fees, access point, who runs it, size check, campground), not just the outline. A nightly bot keeps these counts current.</div>
 </div>
 </div>
 
@@ -189,11 +190,12 @@ body.field .page-jump-nav{display:none!important}
 <button type="button" class="btn alt sm" id="mcBack">← ALL STATES</button>
 <b id="mcDrillTitle" style="font-family:Georgia,serif;font-size:20px"></b>
 </div>
+<div class="controls" style="margin-top:10px"><b class="muted" style="font-size:11px;letter-spacing:1px;align-self:center">SHOW COLUMNS:</b><div class="chips" id="mcCols" role="group" aria-label="Choose columns"></div></div>
 <div class="tablewrap"><table class="list" id="mcDrillTable">
-<thead><tr><th>PARK TYPE</th><th>TOTAL</th><th>MISSING</th><th></th></tr></thead>
-<tbody></tbody>
+<thead><tr><th>PARK</th><th>GAP</th><th></th></tr></thead>
+<tbody><tr><td colspan="3" class="empty">Loading…</td></tr></tbody>
 </table></div>
-<div class="note">We don't have a confirmed official map for these yet. Know of one? "Send it" opens the Map Rep Tool Box with the state and park type filled in, so a Mapping Rep can pull up the official records — that tool is for invited Mapping helpers and asks for its own password.</div>
+<div class="note">Every park here is still missing an official boundary. Know of one? "Send it" opens the Map Rep Tool Box with the park's name and state filled in, so a Mapping Rep can pull up the official records — that tool is for invited Mapping helpers and asks for its own password.</div>
 </div>
 </div></section>
 
@@ -201,10 +203,13 @@ body.field .page-jump-nav{display:none!important}
 <script>
 (function(){
  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+ /* ---------- state table ---------- */
  function sortRows(rows,by){
   rows=rows.slice();
   if(by==='total')rows.sort(function(a,b){return b.total-a.total});
   else if(by==='name')rows.sort(function(a,b){return (a.name+', '+a.country).localeCompare(b.name+', '+b.country)});
+  else if(by==='pct')rows.sort(function(a,b){return (a.pct_complete||0)-(b.pct_complete||0)});
   else rows.sort(function(a,b){return b.missing-a.missing});
   return rows;
  }
@@ -218,21 +223,81 @@ body.field .page-jump-nav{display:none!important}
     '<td>'+s.with_outline+'</td>'+
     '<td>'+(s.missing?('<b style="color:#a33">'+s.missing+'</b>'):'0')+'</td>'+
     '<td>'+s.pin_only+'</td>'+
+    '<td>'+(s.pct_complete==null?'—':s.pct_complete+'%')+'</td>'+
    '</tr>';
   }).join('');
   Array.prototype.forEach.call(tb.querySelectorAll('.mc-row'),function(tr){
    tr.addEventListener('click',function(){drill(tr.getAttribute('data-code'))});
    tr.addEventListener('keydown',function(e){if(e.key==='Enter')drill(tr.getAttribute('data-code'))});
   });
-  var totalMissing=data.states.reduce(function(a,s){return a+s.missing},0);
-  var totalParks=data.states.reduce(function(a,s){return a+s.total},0);
-  document.getElementById('mcTotal').textContent=totalParks.toLocaleString()+' parks across North America • '+totalMissing.toLocaleString()+' still missing a map';
+  var t=(data.totals||{}).north_america||{};
+  var pct=data.totals?data.totals.north_america_pct_complete:null;
+  document.getElementById('mcTotal').textContent=(t.total||0).toLocaleString()+' parks across North America • '+
+   (pct==null?'':pct+'% complete • ')+(t.missing||0).toLocaleString()+' still missing a map';
  }
- function mapSuggestLink(stateCode,type){
-  /* Points at the Map Rep Tool Box's own search, prefilled (it reads ?name=&state= and runs its research automatically).
-     We only have the park TYPE here, not an individual park name/number yet — chat 8's per-park file will let this
-     prefill a real park once it lands. */
-  return 'kpc-maprep.html?'+new URLSearchParams({name:type,state:stateCode}).toString();
+
+ /* ---------- drill-down (individual parks) ---------- */
+ var COLS=[
+  {key:'type',label:'TYPE',get:function(p){return(window.__mcParks.types||[])[p.t]||'—'}},
+  {key:'map',label:'OFFICIAL MAP',get:function(p){return p.map===2?'Have (dated)':p.map===1?'Have':'Missing'}},
+  {key:'rules',label:'RULES PAGE',get:function(p){return p.rul?'Have':'Missing'}},
+  {key:'hours',label:'HOURS',get:function(p){return p.hrs?'Have':'Missing'}},
+  {key:'fees',label:'FEES',get:function(p){return p.fee?'Have':'Missing'}},
+  {key:'access',label:'ACCESS POINT',get:function(p){return p.acc?'Have':'Missing'}},
+  {key:'campground',label:'CAMPGROUND',get:function(p){return p.camp==='h'?'Have':p.camp==='n'?'None found':p.camp==='-'?'N/A':'Unknown'}},
+  {key:'who',label:'WHO RUNS IT',get:function(p){return p.who?esc(p.who):'Unknown'}},
+  {key:'size',label:'SIZE CHECK',get:function(p){return({agree:'Agrees',off:'Off',unsure:'Unsure'})[p.sz]||'Unknown'}},
+  {key:'fer',label:'2-FER CHECKED',get:function(p){return p.fer==='y'?'Yes':p.fer==='p'?'Partial':'No'}}
+ ];
+ function phoneDefaultCols(){return['map'];}
+ function visibleCols(){
+  var saved=null; try{saved=JSON.parse(localStorage.getItem('kpcMcCols')||'null');}catch(e){}
+  if(Array.isArray(saved))return saved;
+  var phone=false; try{phone=matchMedia('(max-width:760px)').matches;}catch(e){}
+  return phone?phoneDefaultCols():COLS.map(function(c){return c.key});
+ }
+ function saveCols(keys){try{localStorage.setItem('kpcMcCols',JSON.stringify(keys));}catch(e){}}
+ function renderColPicker(){
+  var vis=visibleCols();
+  var box=document.getElementById('mcCols');
+  box.innerHTML=COLS.map(function(c){
+   return '<button type="button" class="chip" data-col="'+c.key+'" aria-pressed="'+(vis.indexOf(c.key)>=0)+'">'+c.label+'</button>';
+  }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-col]'),function(b){
+   b.addEventListener('click',function(){
+    var k=b.getAttribute('data-col'),v=visibleCols().slice();
+    var on=b.getAttribute('aria-pressed')!=='true';
+    v=on?v.concat([k]):v.filter(function(x){return x!==k});
+    saveCols(v); b.setAttribute('aria-pressed',on);
+    renderDrillTable(window.__mcDrillList);
+   });
+  });
+ }
+ function mapSuggestLink(stateCode,parkName){
+  /* Points at the Map Rep Tool Box's own search, prefilled (it reads ?name=&state= and runs its research automatically). */
+  return 'kpc-maprep.html?'+new URLSearchParams({name:parkName,state:stateCode}).toString();
+ }
+ function gapText(p){
+  if(p.status==='likely name mismatch')return 'Likely name mismatch'+(p.near_miss?' — check "'+esc(p.near_miss)+'"':'');
+  if(p.status==='no layer')return 'No official layer found';
+  return 'No official map';
+ }
+ function renderDrillTable(list){
+  window.__mcDrillList=list;
+  var cols=COLS.filter(function(c){return visibleCols().indexOf(c.key)>=0});
+  document.querySelector('#mcDrillTable thead').innerHTML='<tr><th>PARK</th><th>GAP</th>'+
+   cols.map(function(c){return '<th>'+c.label+'</th>'}).join('')+'<th></th></tr>';
+  var tb=document.querySelector('#mcDrillTable tbody');
+  if(!list.length){
+   tb.innerHTML='<tr><td colspan="'+(3+cols.length)+'" class="empty">Nothing missing here — every park has an official map or is a pin-only/line-type park.</td></tr>';
+   return;
+  }
+  tb.innerHTML=list.map(function(p){
+   return '<tr><td><a href="https://pota.app/#/park/'+esc(p.ref)+'" target="_blank" rel="noopener" class="ref">'+esc(p.ref)+'</a> '+esc(p.n)+'</td>'+
+    '<td>'+gapText(p)+'</td>'+
+    cols.map(function(c){return '<td>'+c.get(p)+'</td>'}).join('')+
+    '<td><a class="btn alt sm" href="'+mapSuggestLink(p.a.split('-')[1],p.n)+'">SEND IT</a></td></tr>';
+  }).join('');
  }
  function drill(code){
   var parts=code.split('-'),country=parts[0],st=parts[1];
@@ -240,17 +305,27 @@ body.field .page-jump-nav{display:none!important}
   if(!s)return;
   document.getElementById('mcState').style.display='none';
   document.getElementById('mcDrill').style.display='';
-  document.getElementById('mcDrillTitle').textContent=s.name+' ('+s.country+'-'+s.code+') — missing parks by type';
+  document.getElementById('mcDrillTitle').textContent=s.name+' ('+s.country+'-'+s.code+') — missing parks';
+  renderColPicker();
   var tb=document.querySelector('#mcDrillTable tbody');
-  if(!s.types.length){
-   tb.innerHTML='<tr><td colspan="4" class="empty">Nothing missing here — every park type in '+esc(s.name)+' has an official map or is a pin-only/line-type park.</td></tr>';
-  } else {
-   tb.innerHTML=s.types.map(function(t){
-    return '<tr><td>'+esc(t.type)+'</td><td>'+t.total+'</td><td><b style="color:#a33">'+t.missing+'</b></td>'+
-     '<td><a class="btn alt sm" href="'+mapSuggestLink(s.code,t.type)+'">KNOW THE OFFICIAL MAP? SEND IT</a></td></tr>';
-   }).join('');
-  }
-  window.scrollTo({top:document.getElementById('mcDrill').getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'});
+  tb.innerHTML='<tr><td class="empty">Loading…</td></tr>';
+  loadParks().then(function(){
+   var list=Object.keys(window.__mcParks.parks).filter(function(k){
+    var p=window.__mcParks.parks[k];
+    return p.a===code&&p.o==='miss';
+   }).map(function(k){return Object.assign({ref:k},window.__mcParks.parks[k])})
+    .sort(function(a,b){return a.n.localeCompare(b.n)});
+   renderDrillTable(list);
+   window.scrollTo({top:document.getElementById('mcDrill').getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'});
+  }).catch(function(){
+   tb.innerHTML='<tr><td class="empty">Could not load the park list right now — try again in a minute.</td></tr>';
+  });
+ }
+ var parksPromise=null;
+ function loadParks(){
+  if(window.__mcParks)return Promise.resolve();
+  if(!parksPromise)parksPromise=KPC.dataUrl('data/review/scoreboard-parks.json').then(function(r){return r.json()}).then(function(d){window.__mcParks=d;});
+  return parksPromise;
  }
  document.getElementById('mcBack').addEventListener('click',function(){
   document.getElementById('mcDrill').style.display='none';
@@ -267,7 +342,7 @@ body.field .page-jump-nav{display:none!important}
   window.__mcData=data;
   renderTable(data,'gap');
  }).catch(function(){
-  document.querySelector('#mcTable tbody').innerHTML='<tr><td colspan="5" class="empty">Could not load the coverage data right now — try again in a minute.</td></tr>';
+  document.querySelector('#mcTable tbody').innerHTML='<tr><td colspan="6" class="empty">Could not load the coverage data right now — try again in a minute.</td></tr>';
  });
 })();
 </script>
