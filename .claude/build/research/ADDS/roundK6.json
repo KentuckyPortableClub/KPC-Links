@@ -1,0 +1,64 @@
+{
+ "about": "Chat 9 round K6 (inbox: KY camp points): resolve LBL's pinned map links (Piney, Energy Lake, Wranglers); Forest Service recreation points for LBL + Daniel Boone (lower-case fields) to place LBL self-service camps and test the hand-list points; KY State Park campsites for Levi Jackson, Kingdom Come and a park list. Results: roundK6-tested.json.",
+ "pages": [
+  {
+   "st": "KY",
+   "url": "https://maps.app.goo.gl/wm3NnZDYguTxTamM7",
+   "raw": true,
+   "look": "!3d-?\\d+\\.\\d+!4d-?\\d+\\.\\d+",
+   "note": "LBL pin https://maps.app.goo.gl/wm3NnZDYguTxTamM7"
+  },
+  {
+   "st": "KY",
+   "url": "https://maps.app.goo.gl/Xy8CgDSkYjH4tCxHA",
+   "raw": true,
+   "look": "!3d-?\\d+\\.\\d+!4d-?\\d+\\.\\d+",
+   "note": "LBL pin https://maps.app.goo.gl/Xy8CgDSkYjH4tCxHA"
+  },
+  {
+   "st": "KY",
+   "url": "https://maps.app.goo.gl/Pbvrt1jiZxdxgek78",
+   "raw": true,
+   "look": "!3d-?\\d+\\.\\d+!4d-?\\d+\\.\\d+",
+   "note": "LBL pin https://maps.app.goo.gl/Pbvrt1jiZxdxgek78"
+  }
+ ],
+ "queries": [
+  {
+   "st": "KY",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+   "where": "forestname LIKE '%Land Between%' AND (markeractivity LIKE '%Camp%' OR recareaname LIKE '%Camp%' OR recareaname LIKE '%Bay%' OR recareaname LIKE '%Landing%' OR recareaname LIKE '%Ferry%' OR recareaname LIKE '%Point%' OR recareaname LIKE '%Hollow%' OR recareaname LIKE '%Branch%')",
+   "out": "recareaname,markeractivity,forestname,recareaurl,latitude,longitude",
+   "geom": true,
+   "n": 200,
+   "note": "LBL FS camping points"
+  },
+  {
+   "st": "KY",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+   "where": "forestname LIKE '%Daniel Boone%' AND (markeractivity LIKE '%Camp%' OR recareaname LIKE '%Camp%')",
+   "out": "recareaname,markeractivity,forestname,latitude,longitude",
+   "geom": true,
+   "n": 200,
+   "note": "Daniel Boone FS camping points"
+  },
+  {
+   "st": "KY",
+   "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_State_Park_Campsites_WM_gdb/FeatureServer/0",
+   "where": "PARK_NAME LIKE '%LEVI%' OR PARK_NAME LIKE '%KINGDOM%' OR PARK_NAME LIKE '%BREAKS%' OR PARK_NAME LIKE '%OTTER%'",
+   "out": "PARK_NAME,CAMPSITE_NO,SITE_TYPE,ELECTRIC,COMMENT",
+   "geom": true,
+   "n": 400,
+   "note": "state park campsites: Levi Jackson, Kingdom Come"
+  },
+  {
+   "st": "KY",
+   "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_State_Park_Campsites_WM_gdb/FeatureServer/0",
+   "where": "1=1",
+   "out": "PARK_NAME",
+   "geom": true,
+   "n": 2000,
+   "note": "all state park campsites (park names + points) to test the hand list"
+  }
+ ]
+}
