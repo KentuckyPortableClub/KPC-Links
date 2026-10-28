@@ -895,6 +895,10 @@ def ky_owner(ref, parks):
                 t = v.get('type') or ''
                 KYOWN[low(n)] = {'State': 'STATE', 'Local': 'STATE', 'Corps': 'FED:USACE', 'Private': 'PRIVATE', 'University': 'UNIVERSITY'}.get(t) or owner_of_text(v.get('says')) or ''
         except Exception: KYOWN['_'] = ''  # noqa: BLE001
+        try:   # Oct 28: hand finds where KDFWR's page names no owner (Boatwright: the Office of Nature Preserves page says KDFWR)
+            for n, v in json.load(open('data/ky-wma-owners-hand.json'))['wmas'].items():
+                if not KYOWN.get(low(n)): KYOWN[low(n)] = {'State': 'STATE', 'Local': 'STATE', 'Corps': 'FED:USACE', 'Federal': 'FED', 'Private': 'PRIVATE', 'University': 'UNIVERSITY'}.get(v.get('type'), '')
+        except Exception: pass  # noqa: BLE001
     if ref == 'US-4484': return 'FED:USFS'
     srcs = [str(rid).split('|', 1) for rid in parks[ref]['ids']]
     for src, nm in srcs:
@@ -960,8 +964,17 @@ def ownership_step(s, parks, PIN):
         # an agency-land park's mask IS the agency's own ownership map (rule B2: the agency beats PAD-US): the ground is its land
         ground = OWNER_KEY.get(OWNED[next(r for r in refs if r in OWNED)], 'FED:USFS')
     else:
+        # Oct 28 (HQ): in KENTUCKY, KDFWR's own WMA pages (data/ky-wma-owners.json) are an owner source AHEAD of PAD-US: where
+        # PAD-US has no fee record, a WMA at the spot that KDFWR says a public agency owns gives the ground's owner
+        if REGION == 'ky' and seen and any(not h for h in seen):
+            kyo = {ky_owner(r, parks) for r in refs if parks.get(r, {}).get('ids')} - {'', '?', 'PRIVATE', 'UNIVERSITY'}
+            if len(kyo) == 1:
+                seen = [h or set(kyo) for h in seen]; here = set().union(*seen); s['owner_src'] = "KDFWR's own WMA page (data/ky-wma-owners.json): PAD-US has no fee record here"
         # Oct 27 (Fable #2): no public fee owner at the spot = NOT SURE (designations stacked over private land must never pass)
         if not seen or any(not h for h in seen):
+            if REGION == 'ky' and any(str(i).startswith('bwma|') for r in refs for i in (parks.get(r) or {}).get('ids') or []):
+                blank = [PIN.get(r, [r])[0] for r in refs if any(str(i).startswith('bwma|') for i in (parks.get(r) or {}).get('ids') or []) and ky_owner(r, parks) in ('', '?')]
+                if blank: return 'not sure', "no public owner on PAD-US at the spot, and KDFWR's own page names no owner for " + ', '.join(blank) + ' (a person adds it to data/ky-wma-owners.json)'
             return 'not sure', ('no public owner on the ownership map (' + ('CPCAD' if canada else 'PAD-US fee records')
                                 + ') at ' + ('the spot' if len(seen) < 2 else 'every part of the spot') + ': could be private land under the designations')
         if 'PRIVATE' in here: return 'drop', 'private land at the spot (ownership map): counts only for its own park number, never a 2-fer'
