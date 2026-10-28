@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **903 of 1158** joined (same name + same kind). **19** to check, **210** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **924 of 1180** joined (same name + same kind). **21** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -23,6 +23,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-6012** Morrison Dam Conservation Area (Conservation Area) → Morrison Dam CA (~0 ac, same name, different kind of place); Morrison Dam CA (~0 ac, same name, different kind of place)
 - **CA-6208** Ausable River Cut Conservation Area (Conservation Area) → Ausable River Cut CA (~0 ac, same name, different kind of place)
 - **CA-6350** Old Hay Bay Church National Historic Site (National Historic Site) → Hay Bay (~0 ac, similar name)
+- **CA-6617** H. R. Frink Conservation Area (Conservation Area) → H.R. Frink Conservation Area (~510 ac, similar name)
+- **CA-6619** Depot Lakes Conservation Area (Conservation Area) → Depot Lakes Conservation Area North Conservation Reserve (~2,229 ac, similar name); Depot Lakes Conservation Area South Conservation Reserve (~1,336 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
@@ -232,13 +234,12 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6019 Hersey Lake Conservation Area (Conservation Area)
 - CA-6020 White Waterfront Conservation Area (Conservation Area)
 - CA-6088 Tiny Marshes Provincial Wildlife Area (Provincial Wildlife Area)
-- CA-6089 Marl Lake Resources Area (Resources Area)
+- CA-6089 Marl Lake Resource Management Area (Resources Area)
 - CA-6090 Matchedash Bay Provincial Wildlife Area (Provincial Wildlife Area)
 - CA-6095 Fort William (Thunder Bay) Historic Site (Historic Site)
 - CA-6096 Battle of Beaver Dams National Historic Site (National Historic Site)
 - CA-6097 Tower at Christian Island National Heritage Site (National Heritage Site)
 - CA-6139 Fingal Wildlife Management Area (Wildlife Management Area)
-- CA-6154 Lower Big Creek Conservation Area (Conservation Area)
 - CA-6155 Fisher Conservation Area (Conservation Area)
 - CA-6209 High Falls Conservation Area (Conservation Area)
 - CA-6210 Battle of Chippawa (Battlefield Park) National Historic Site (National Historic Site)

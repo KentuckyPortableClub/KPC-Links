@@ -30,7 +30,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6116 Athabasca River National Heritage River National Heritage Area (National Heritage Area) → on Jasper (~0 ac); Jasper National Park Of Canada (~2,688,008 ac)
 - CA-6117 North Saskatchewan River National Heritage River National Heritage Area (National Heritage Area) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
 - CA-6126 Livingston Public Land Use Zone Recreation Park (Recreation Park) → on Livingstone (~0 ac)
-- CA-6588 Barrier Lake PRA Recreation Site (Recreation Site) → on The Kananaskis Country (~0 ac)
+- CA-6588 Barrier Lake Provincial Recreation Area (Recreation Site) → on The Kananaskis Country (~0 ac)
 
 ## Nothing found in CPCAD
 
