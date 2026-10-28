@@ -15,6 +15,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 12:40 PM: grade-me US-MI 2-fer line checked: NOT READY (39 rows "water not checked"). US-OH bot line = READY (same as my Ohio check).
 - Oct 28 10:05 AM: CAMP & ACTIVATE KENTUCKY done (KPC_CampActivate_KY_desk.md): Sheet E examples answered, 2 CAMP HERE ACTIVATE BOTH (Twin Knobs, Great Meadows), 35 parks with campgrounds inside, Zilpo = check first, 20 campgrounds with no point.
 - Oct 28 9:25 AM: KY + OH 2-fer RECHECK = READY (merge fixed, no duplicates, not sure 9 / 6). In KPC_KY_OH_2fer_FinalCheck_desk.md. Camp & Activate KY next.
 - Oct 28 8:40 AM: KY + OH 2-fer final check done (KPC_KY_OH_2fer_FinalCheck_desk.md). KENTUCKY NOT READY (merge swallows big 2-fers into small 3-fer patches, 8 duplicate river rows); OHIO READY after same fix.
@@ -27,6 +28,7 @@ Read .claude/inbox/README.md first.
 - Oct 28: Trail of Tears x Big Rivers traced (guide -> ky-trail-parks.json; ToT 24.6 km from Big Rivers; L&C 0.6 km; Ballard/Boatwright/West KY stay).
 
 ## REPORT TO HQ (newest first)
+- Oct 28 12:40 PM (chat 8): US-MI 2-fer line = NOT READY although the bot wrote READY. 39 of 59 NOT SURE rows are only "water not checked (the USGS water map did not answer)": all areas, incl. Ottawa NF x McCormick Wilderness 16,757 ac, Sylvania x Ottawa 15,104 ac, 3-fers with Yellow Dog / Sturgeon. The verdict must NOT be READY when a pass did not get its answer. Rest is clean: no duplicate live rows, no 3-fer swallow, 84 live, 16 "no public owner" are trail/river pairs (right reason). Fix sent to chat 2: rerun the water step for those 39, and make the checker refuse READY when any row says "did not answer". OH = READY. Michigan before the other states that landed after it: please same check on each.
 - Oct 28 10:05 AM (chat 8): Camp & Activate KY = KPC_CampActivate_KY_desk.md (known answers for chat 10). 99 campgrounds, 79 placed, 35 parks with campgrounds inside, 2 CAMP HERE ACTIVATE BOTH (Twin Knobs, Great Meadows), 0 line-park rows (Sheltowee nearest 85 m). Blue Heron and Cumberland Falls = inside only, as ruled. ZILPO = check first (RIDB point rounded 38.075,-83.500, 1.4 km from the hand-list point, which flips the answer). NO POINT for 20 (Otter Creek, Houchin Ferry, all of LBL, Levi Jackson, Breaks...): chat 9 needs real points from the agency pages. Trail of Tears / Lewis and Clark / Sheltowee have no outline in the key.
 - Oct 28 9:25 AM (chat 8): KY + OH 2-fer line = READY. Big 2-fers live on their own (Pioneer 7,707, Cane Creek 6,649, Clifty 12,364 ac...), no duplicates, ToT x L&C water only, NOT SURE 9 KY / 6 OH, reasons right. Chat 2 may start the US + Canada queue. Starting Camp & Activate KY.
 - Oct 28 8:40 AM (chat 8): KY = NOT READY. Known answers 18/18 and rulings show right, BUT the merge folds Pioneer Weapons/Zilpo/Cane Creek/Rockcastle NWSR/Clifty x Daniel Boone (up to 12,364 ac) into 1-592 ac 3-fer rows; 8 duplicate river rows; ToT x L&C must be water only. Fixes sent to chat 2. Ohio READY after the same fix (no swallow, 27 live, 14 not sure, reasons right). Do not start the whole US queue yet.
