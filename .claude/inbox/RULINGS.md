@@ -31,4 +31,5 @@ Sorted by what it unlocks. HQ records answers in the owning topic file and moves
 - Q3 UK charity land (National Trust etc.) as public land: at the UK GO.
 
 ## ANSWERED
+- Oct 28 6:32 AM (Brandon): DOC-3 campground-only map = YES with a NOTE on the card ('campground map: the agency has no park map'); DOC-4 YES; DOC-5 YES; DOC-6 YES; DOC-7 YES; DOC-8 YES; DOC-11 YES. CL-1 YES; CL-2 YES; CL-3 YES; CL-4 YES; CL-6 YES; CL-8 YES. CA-1 YES; CA-2 YES + PICNIC SHELTERS shown too as DAY-USE INFO (not camping rows: 'good info'); CA-3 YES; CA-4 dispersed camping = shown under the park's CAMPING INFO (not a campground row). ASKED FOR MORE: DOC-10 (Avenza/Gaia), CL-5 (KY reader wins), CL-7 (PDF lists), CA-5 (hunt dates), CA-6 (state lists first).
 - (see mapping.md / website.md, Oct 27-28 rulings)
