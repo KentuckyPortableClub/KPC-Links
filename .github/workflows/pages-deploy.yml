@@ -1,0 +1,49 @@
+name: Deploy Pages (Actions)
+# HQ (Oct 28 4:48 AM): a notes/inbox-only push shouldn't rebuild the whole site. This workflow only runs when
+# something outside .claude/** changes, and only actually publishes once Brandon flips
+# Settings -> Pages -> Source to "GitHub Actions" (a one-click switch we can't do from here).
+# Until he does, GitHub's own built-in "pages build and deployment" pipeline (the one CLAUDE.md's
+# `gh run list -w 372361621` checks) keeps doing the real deploys on every push, same as today.
+# continue-on-error on the deploy job: until the switch, this job's deploy step is expected to fail
+# (Pages isn't set up for an Actions source yet) - this keeps that from going red and emailing Brandon.
+# Remove continue-on-error once he's switched and a normal run has gone green.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.claude/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
