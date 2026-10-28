@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 8 (Oct 28 6:30 PM, wording look, Brandon asked): (1) Brandon's Oct 27 3:44 PM ruling removed "POTA sets the rules, and activations run on the honor system: it's up to each activator to follow them." from the FULL 2-fer notice, but it is STILL on kpc-multi-park-spots.html, kpc-club.html, kpc-guide-pota.html, kpc-overlap-finder.html, kpc-overlap-preview.html (2x), kpc-planner.html; the Oct 27 rebuild of the 2-fer page probably put it back. Remove it everywhere and make the rebuild script not re-add it. (2) kpc-multi-park-spots.html footer: "checked three times against fresh official boundary maps" and "the research desk's final look" sound like we verified it (the notice says we cannot confirm) and "research desk" is our inside word: say "built from public map data and checked by our bots and club members; not field-checked at every spot". "Rebuilt ... on Oct 27" will be stale after the Oct 28 runs: show the data's date. "Your own field-checked pins" -> "Club members' field-checked pins". (3) kpc-planner-us.html: "adds hand-checked access points, 2-fers and more" -> 2-fers are not hand-checked: say "hand-checked access points, plus 2-fer research". "marked NOT OFFICIAL" -> the ruled label "OpenStreetMap outline (unofficial)". (4) kpc-campgrounds-us.js: "Kentucky is checked by hand" / "(checked by hand)" -> say who and when ("Kentucky: checked by club members, last checked <date>") so it is not an unbacked promise.
 
 
 ## NEEDS BRANDON
