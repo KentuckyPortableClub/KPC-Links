@@ -440,21 +440,25 @@
      "lo": -83.58639044,
      "phone": "606-784-6428",
      "source": "https://www.fs.usda.gov/r08/danielboone/recreation/clear-creek-campground",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "electric": false,
+     "cite": "Forest Service page: 'There is no electricity or shower facilities.' / 'a twenty-site primitive campground' / 'Drinking water is available from faucets.'"
     },
     {
      "id": "white-sulphur-horse-camp",
      "name": "White Sulphur Horse Camp",
      "url": "https://www.fs.usda.gov/r08/danielboone/recreation/white-sulphur-horse-camp",
      "sites": "Not stated",
-     "hookups": "Primitive; no electric, no water",
+     "hookups": "Primitive; no electric, no potable water",
      "season": "Year-round",
-     "extras": "Horse camp, picket lines, water trough, vault toilets",
+     "extras": "Horse camp, picket lines, water trough for horses, vault toilets; parking for up to 30 vehicles with trailers to 50 ft",
      "la": 38.08675672,
      "lo": -83.57558553,
      "phone": "606-784-6428",
      "source": "https://www.fs.usda.gov/r08/danielboone/recreation/white-sulphur-horse-camp",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "electric": false,
+     "cite": "Forest Service page: 'a primitive campground (without electricity)' / 'Potable water is not available at this site.' / 'Picket lines and a watering trough are available for horses.'"
     },
     {
      "id": "koomer-ridge-campground",
@@ -470,7 +474,9 @@
      "lo": -83.63263379,
      "phone": "606-784-6428",
      "source": "https://www.fs.usda.gov/r08/danielboone/recreation/koomer-ridge-campground",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "electric": false,
+     "cite": "Forest Service page: 'no hookups', 'No dump station' (chat 8 grade, Oct 28); Recreation.gov site 52: 'Water Hookup: No'"
     },
     {
      "id": "holly-bay-campground",
@@ -533,7 +539,9 @@
      "lo": -84.726545,
      "phone": "606-376-5323",
      "source": "https://www.fs.usda.gov/r08/danielboone/recreation/great-meadows-campground",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "electric": false,
+     "cite": "Forest Service page: 'No hookups or dumpsites are available.' / '18 primitive sites for tent and RV camping' / 'RVs up to 35 feet'"
     },
     {
      "id": "barren-fork-horse-camp",
