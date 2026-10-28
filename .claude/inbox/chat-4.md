@@ -4,7 +4,7 @@ Read .claude/inbox/README.md first.
 ## OPEN (top = first)
 - Brandon tests on the radio today (Fable's list in ft8-app.md / KPC_AppReadiness_Fable.md): read his builders' report when it comes.
 
-- TO DO (Brandon Oct 28 7:07 AM: 'this is to do...make notes'): TRIP PLANNER + OVERLAP FINDER as screens in the app (plan in ft8-app.md 'TRIP PLANNER + OVERLAP FINDER IN THE APP'). After his radio test fixes; the members-only question below first.
+- TO DO (Brandon Oct 28 7:07 AM: 'this is to do...make notes'): TRIP PLANNER + OVERLAP FINDER as screens in the app (plan in ft8-app.md 'TRIP PLANNER + OVERLAP FINDER IN THE APP'). After his radio test fixes; members-only or not is decided when it's built (Brandon 7:09 AM).
 - TO DO (later): iPhone: browser phone remote first (plan in ft8-app.md 'IPHONE PLAN').
 
 ## NEEDS BRANDON
