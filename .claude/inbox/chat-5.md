@@ -2,7 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 6:50 AM) — BRANDON'S GO: POST THE WEBSITE RELEASE STATEMENT ONCE to Discord (the general/announcements webhook) AND the Facebook Page (Page ID 1342190728983628, never Groups), text below EXACTLY as written (no additions, no logo). One post each, never twice (record it in the bot state); a text post (no picture needed; use the KPC logo card only if the posting code requires an image). Confirm both posted (post links/ids) in your report.
+- HQ (Oct 28 6:50 AM) — BRANDON'S GO, SEND AT 8:00 AM CDT (Brandon told chat 5 at 6:52): POST THE WEBSITE RELEASE STATEMENT ONCE to Discord (the general/announcements webhook) AND the Facebook Page (Page ID 1342190728983628, never Groups), text below EXACTLY as written (no additions, no logo). One post each, never twice (record it in the bot state); a text post (no picture needed; use the KPC logo card only if the posting code requires an image). Confirm both posted (post links/ids) in your report.
 ```
 📻 The Kentucky Portable Club website is now open to everyone!
 
