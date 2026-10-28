@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28 09:46",
+ "updated": "2026-10-28 18:28",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -822,62 +822,13 @@
    "refs": []
   }
  },
- "burn_queue": [
-  {
-   "refs": [
-    "US-4484"
-   ],
-   "title": "National Visitor Use Monitoring, Oct 2026-Sept 2027",
-   "text": "From October 2026 through September 2027, survey interviewers will be conducting National Visitor Use Monitoring surveys of Daniel Boone National Forest visitors around the Forest. Surveys are voluntary and all responses are confidential. Surveys take roughly 15 minutes to complete. Survey sites…"
-  },
-  {
-   "refs": [
-    "US-4484"
-   ],
-   "title": "No phone service, pass sales at Redbird Office in Big Creek, KY",
-   "text": "The Redbird Ranger District Office in Big Creek, KY does not have phone or internet service at this time and is unable to process map or pass sales. For visitor information, contact the Daniel Boone National Forest Supervisor's Office or stop by the Redbird Ranger District Office Monday through…"
-  },
-  {
-   "refs": [
-    "US-4484"
-   ],
-   "title": "No visitor services at Supervisor's Office in Winchester, KY",
-   "text": "Until further notice, visitor services at the USDA Forest Service office front desk in Winchester, KY, are unavailable. All other Daniel Boone National Forest offices remain open and will continue to provide visitor services during their standard hours. Find the closest Daniel Boone National Forest…"
-  },
-  {
-   "refs": [
-    "US-10158"
-   ],
-   "title": "Pioneer Weapons Wildlife Management Area Camping Prohibition",
-   "text": "Except for designated sites, camping within 300 feet of National Forest System Road 918 in the Pioneer Weapons Wildlife Management Area is prohibited."
-  },
-  {
-   "refs": [
-    "US-11181"
-   ],
-   "title": "Laurel River Lake and Lake Cumberland Camping Prohibitions",
-   "text": "1) Camping within 300 feet of the high water line of the portion of Upper Lake Cumberland, from the Mouth of Laurel Boat Ramp upstream on the Laurel River, and from the Sheltowee Trace National Recreation Trail to the administrative boundary between National Forest System and U.S. Army Corps of…"
-  },
-  {
-   "refs": [
-    "US-4484"
-   ],
-   "title": "General Forest Prohibitions",
-   "text": "The following acts are prohibited in all areas of the Daniel Boone National Forest:Building, maintaining, attending or using a fire, campfire or stove within 100 feet of the base of any cliff, or the back of a rock shelter unless at a designated site;Possession of a controlled substance unless said…"
-  },
-  {
-   "refs": [
-    "US-10158"
-   ],
-   "title": "Cave Run Lake Prohibitions",
-   "text": "The following acts are prohibited:Motorized use of the White Sulphur OHV Trail from sunset to sunrise from May 1 to November 30;Non-motorized use of the White Sulphur OHV Trail from May 1 to November 30;Camping within 300 feet of NFSR 918 in the Pioneer Weapons Wildlife Management Area. Camping at…"
-  }
- ],
+ "burn_queue": [],
  "sources": [
   "fs",
   "kdfwr",
   "ky",
   "lbl",
   "nps"
- ]
+ ],
+ "burns_posted_on": "2026-10-28"
 }
