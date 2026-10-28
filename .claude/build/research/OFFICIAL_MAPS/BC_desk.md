@@ -15,3 +15,10 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Agency: BC Parks (bcparks.ca). List page: https://bcparks.ca/plan-your-trip/maps/ (A, opened). Printable park maps sit on each park's own page under 'maps and location' (B, page text only). Two interactive ArcGIS maps on governmentofbc.maps.arcgis.com hold park boundaries (A).
+- Date method: none published on the page. Treat as NO DATE; bot records the day it read the PDF.
+- Rules: page disclaimer only ('may not reflect current closures'). Rules page per park (BOT LOOK-UP: confirm /park/<slug>/ pattern).
+- Status: NEEDS A BROWSER BOT (park pages load maps by script). Outline source: BC Data Catalogue 'BC Parks, Ecological Reserves, and Protected Areas' (BOT LOOK-UP: confirm REST address + licence; Open Government Licence - BC expected, C).
+- Historic sites agency: Heritage BC / Parks Canada; not checked (C).

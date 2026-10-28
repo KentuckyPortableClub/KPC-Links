@@ -18,3 +18,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Agency: Alberta Parks (albertaparks.ca) and Alberta Environment (alberta.ca). Page https://www.alberta.ca/public-land-recreation-maps.aspx (A, opened) lists trail and Public Land Use Zone maps only, not provincial park maps; files live at open.alberta.ca/publications/<slug>.
+- Dates: page published 2026-10-05; file names carry codes like 'fp-03-2026' (A). The existing 95 geospatial.alberta.ca links in parkinfo-web.json are the real park-map source: keep that pattern.
+- Status: READY for a bot for geospatial.alberta.ca links; licence not stated on the page (A).

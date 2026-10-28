@@ -15,3 +15,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Not researched yet: web search found nothing usable. BOT LOOK-UP: agency parks page + open-data portal (NS Open Data, NL Atlas, PE GIS, Yukon Geomatics, NWT Centre for Geomatics, Nunavut Parks). Status: NEEDS A BROWSER BOT. SK: SK parks maps live on saskparks.com (BOT LOOK-UP).

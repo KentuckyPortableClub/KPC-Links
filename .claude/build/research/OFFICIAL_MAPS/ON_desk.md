@@ -15,3 +15,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Agency: Ontario Parks (ontarioparks.ca). Pattern (A, opened): maps page https://www.ontarioparks.ca/park/<slug>/maps ; PDF https://www.ontarioparks.ca/pdf/maps/<slug>/park_map.pdf ; rules https://www.ontarioparks.ca/park/<slug>/rules. Example tested: ladyevelynsmoothwater.
+- Match a park: slug = park name lowercased, no spaces/punctuation (B from the one example; BOT LOOK-UP: test 2 more slugs).
+- Date method: none in map links (A). NO DATE.
+- Status: READY for a bot (pattern is plain), match by slug; outlines: Ontario GeoHub 'Provincial Park' layer (BOT LOOK-UP, C).

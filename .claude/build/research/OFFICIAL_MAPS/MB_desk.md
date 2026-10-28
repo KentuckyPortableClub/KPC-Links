@@ -15,3 +15,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Agency: Manitoba Sustainable Development. List page https://www.gov.mb.ca/sd/parks/park-maps-and-locations/ (A). Pattern: .../park-maps-and-locations/<region>/<slug>.html, regions eastern, central, northeast, northwest, western; slugs short, sometimes odd (birds, malo, stgeorge, camp_morton) so match by the region index page, not by guessing (A).
+- Date: none on page (A). Rules: none on page.
+- Gotcha: main list and sidebar differ (Colvin Lake, Nueltin Lake, Marchand, Poplar Bay, South Atikaki, Wallace Lake, Memorial Park only in the sidebar) so read both.
+- Status: READY for a bot (read region index pages).

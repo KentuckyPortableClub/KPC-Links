@@ -30,3 +30,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (Canada)
+- Agency: Sépaq (sepaq.com) for SEPAQ parks; municipal/regional parks separate. Overview map PDF https://www.sepaq.com/resources/docs/voyage/carte_sepaq_en.pdf (B, search result). Per-park maps are on each park page (BOT LOOK-UP).
+- Outlines: Données Québec 'territoires récréatifs' layer (B, not opened); BOT LOOK-UP for REST address and licence (CC-BY expected, C).
+- Status: NEEDS A BROWSER BOT. Date: none seen.
