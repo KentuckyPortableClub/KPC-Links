@@ -67,6 +67,12 @@
   ],
   "AR": [
    "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22"
+  ],
+  "DE": [
+   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0"
+  ],
+  "CO": [
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15"
   ]
  },
  "credits": {
@@ -74,6 +80,8 @@
   "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0": "WVGISTC, WVDOT",
   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22": "Arkansas State Parks, Arkansas Natural Heritage Commission",
   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0": "Minnesota DNR (DNR GIS Data License Agreement)",
-  "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)"
+  "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)",
+  "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Delaware State Parks",
+  "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)"
  }
 }
