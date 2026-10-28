@@ -249,7 +249,7 @@ def src_nc(): return _rss_rows('https://www.ncparks.gov/blog-category/alerts/fee
 # (.claude/build/research/KPC_RuleSheet_GA_closures_desk.md) + Brandon's rulings GA1-GA9. The page is a hand-written list
 # (area heading, 'Updated m/d/yy', free-text sentences), so it is read as plain text, sentence by sentence.
 # PREVIEW: until GA_LIVE is True, Georgia's items go only into sources['ga-wrd']['preview'] (for checking), not onto cards.
-GA_LIVE = False
+GA_LIVE = True
 GA_PAGE = 'https://georgiawildlife.com/closures'
 _GA_AREA = re.compile(r"\b(WMA|PFA|VPA|Wildlife Management Area|Public Fishing Area|Hatchery|Wildlife Center|Education Center|Boat Ramp|Ramp)\b", re.I)
 _GA_SECT = re.compile(r'^(WMA,? PFA,? ?(&|and) Hatchery Closures|Shooting Ranges?|Education Centers?|Boat Ramps?|Closures|Cautions|Region \d+.*)$', re.I)
@@ -324,6 +324,11 @@ def _ga_rows(entries):
         place = place or names[0]
         if key in seen: continue
         seen[key] = 1
+        # GA-R10 (Oct 28, from the first live read): headings repeat the full sentence below them, and
+        # 'This closure will affect ...' points back at the item before it: neither is an item of its own
+        if re.match(r'^\s*[-\u2013\u2014]', sent): continue
+        if len(sent.split()) < 12 and not re.search(r'\b(is|are|will|remains?|has|have|was|were)\b', low): continue
+        if re.match(r'(?i)^\s*(this|that|these|the)\s+closures?\b', sent): continue
         tract = re.search(r"(?i)\b([A-Z][\w'. ]{2,40} Tract)\b", sent) or re.search(r"(?i)\b([A-Z][\w'. ]{2,40} Tract)\b", head)
         on = f' on the {tract.group(1)}' if tract else ''
         old = upd is not None and (TODAY - upd).days >= 365
@@ -366,6 +371,10 @@ def _ga_rows(entries):
         if not part:
             mc = re.match(r'(?i)^(?:the\s+)?(.{3,80}?)\s+(?:has\s+a\s+)?(?:temporary\s+)?closure\b', sent)
             part = (mc.group(1) if mc else '').strip()
+        if not part or len(part) > 60:                                                    # long lead-in: name the road/trail it is about
+            mr = re.search(r"([A-Z][\w'.]*(?:\s+[A-Z0-9][\w'.]*){0,4}\s+(?:Road|Rd\.|Trail|Trailhead|Bridge|Boardwalk|Campground|Ramp))", sent)
+            part = mr.group(1) if mr else ''
+        if tract and tract.group(1).lower() in part.lower(): on = ''                     # don't say the tract twice
         title = 'CLOSED' + on if whole else ('PART CLOSED: ' + part + on if part else 'PART CLOSED' + on)
         rows.append({**base, 'kind': 'Closure', 'title': title, 'text': f'Georgia DNR ({datestr}): "{sent}"'})
     return rows
