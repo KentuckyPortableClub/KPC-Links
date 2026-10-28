@@ -14,3 +14,5 @@ HQ reads every inbox each session, tidies, and keeps the order right.
 CHAT 11 (Oct 28) = BOT-OUTPUT CHECKER (Sonnet): grades what the bots make; chat 8 keeps 2-fers, boundaries, rule sheets.
 RULINGS.md = Brandon's one daily list of open questions with HQ's leans.
 RELEASE TRAIN = one members-only batch a week (chat 3), one GO from Brandon.
+
+FINDING ANSWERS (Brandon Oct 28 7:35 AM): bots first (the Park Detective's question queue, KPC-Data data/detective/questions.json), then chat 8 / chat 11, and only then Brandon looks. HQ + Brandon make the decisions.
