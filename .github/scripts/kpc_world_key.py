@@ -159,6 +159,13 @@ SRC['IE'] = SRC['IE'] + [('Coillte properties (credit Coillte Teoranta)', 'arcgi
 # Oct 28 (chat 9, world round W5): Sweden's national register Naturvårdsregistret (Naturvårdsverket, CC0): protected areas
 # (national parks, nature reserves, nature conservation areas, biotope protection) straight from the agency.
 SRC['SE'] = SRC['SE'] + [('Naturvårdsverket Naturvårdsregistret protected areas (CC0)', 'wfs', 'https://geodata.naturvardsverket.se/naturvardsregistret/wfs', 'Naturvardsregistret_WFS:SkyddadeOmraden')]
+# Oct 28 (chat 9, world round W6): Croatia's protected areas from the ministry's Bioportal INSPIRE WFS (terms: 'nema ograničenja' =
+# no restrictions). LIVE-ONLY (HQ rule): Czechia AOPK nature parks ('viewing only') and Denmark's protected areas (no terms
+# stated): read from the agency every run, never kept.
+SRC['HR'] = SRC['HR'] + [('Bioportal (Ministry) protected areas INSPIRE (no restrictions)', 'wfs', 'http://services.bioportal.hr/inspire/geos1/ps/wfs', 'ps1:ProtectedSite')]
+SRC['CZ'] = SRC['CZ'] + [('AOPK ČR nature parks [live-only: viewing only]', 'arcgis', 'https://gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer/0')]
+SRC['DK'] = SRC['DK'] + [('Miljøstyrelsen protected areas (fredede områder) [live-only: no terms stated]', 'arcgis', 'https://kort.vd.dk/server/rest/services/Grunddata/Fredede_omr%C3%A5der/MapServer/2')]
+LIVE_ONLY |= {'AOPK ČR nature parks [live-only: viewing only]', 'Miljøstyrelsen protected areas (fredede områder) [live-only: no terms stated]'}
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
@@ -423,7 +430,7 @@ def inside(la, lo, rs): return sum(1 for r in rs if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-NAMEF = ['offisieltNavn', 'nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名', 'navn', 'omraadeNavn']   # Oct 28 chat 9: Norway (Miljødirektoratet) official names
+NAMEF = ['offisieltNavn', 'nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名', 'navn', 'omraadeNavn', 'NAZEV', 'fred_navn']   # Oct 28 chat 9: Norway (Miljødirektoratet) official names
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
 
 
