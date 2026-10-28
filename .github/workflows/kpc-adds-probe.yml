@@ -24,6 +24,7 @@ jobs:
         continue-on-error: true
         env:
           CAND: ${{ inputs.cand }}
+          PROBE_T: 180
       - name: Save
         continue-on-error: true
         run: |

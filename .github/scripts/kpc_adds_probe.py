@@ -19,7 +19,7 @@ NAMEW = re.compile(r'name|nm$|label|title|site|unit|prop', re.I)
 def notice(m): print('::notice title=Adds probe::' + str(m).replace('\n', ' ')[:900], flush=True)
 
 
-def get(u, p=None, t=90):
+def get(u, p=None, t=int(os.environ.get("PROBE_T") or 90)):
     q = dict(p or {}); q.setdefault('f', 'json')
     err = None
     for i in range(2):
