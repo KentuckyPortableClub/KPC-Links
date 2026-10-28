@@ -22,3 +22,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 
 ## Desk research Oct 28 (thin)
 - Bot data: NPS 12 of 12 open; Forest Service 0 of 2; NM EMNRD (state parks, emnrd.state.nm.us) 0 of 1; BLM eplanning 1 of 1. Nothing opened by me: BOT LOOK-UP the New Mexico State Parks map pages. Handovers: none seen.
+
+## Desk research Oct 28 (second try)
+- NM State Parks (emnrd.nm.gov/spd): desk fetch refused (site not on the allowlist) and web search returned only generic map sites, no agency pages. Nothing opened, so no pattern graded above C. BOT LOOK-UP: open the agency list page, find the per-park Maps section, record the PDF address pattern, a map date (if printed) and the rules page for 3 parks; also check the state open-data portal first (research order).

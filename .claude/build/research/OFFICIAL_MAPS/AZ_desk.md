@@ -24,3 +24,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 
 ## Desk research Oct 28 (thin)
 - Bot data: Arizona Game and Fish (azgfd.com) 0 of 9 links open (A): BOT LOOK-UP the AZGFD area pages. NPS 19 of 19, Forest Service 5 of 5, BLM 3 of 3 open. Arizona State Parks (azstateparks.com): no bot-checked link; search returned only map shops, so the pattern is NOT FOUND this pass: BOT LOOK-UP. Handovers: none seen.
+
+## Desk research Oct 28 (second try)
+- Arizona State Parks (azstateparks.com): desk fetch refused (site not on the allowlist) and web search returned only generic map sites, no agency pages. Nothing opened, so no pattern graded above C. BOT LOOK-UP: open the agency list page, find the per-park Maps section, record the PDF address pattern, a map date (if printed) and the rules page for 3 parks; also check the state open-data portal first (research order).

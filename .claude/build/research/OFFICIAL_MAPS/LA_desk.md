@@ -18,3 +18,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 
 ## Desk research Oct 28 (thin)
 - Only NPS links (3 of 3 ok) exist in the data. Louisiana State Parks (lastateparks.com) and LDWF WMA maps were not looked at: BOT LOOK-UP. Handovers: none seen.
+
+## Desk research Oct 28 (second try)
+- Louisiana State Parks (lastateparks.com): desk fetch refused (site not on the allowlist) and web search returned only generic map sites, no agency pages. Nothing opened, so no pattern graded above C. BOT LOOK-UP: open the agency list page, find the per-park Maps section, record the PDF address pattern, a map date (if printed) and the rules page for 3 parks; also check the state open-data portal first (research order).
