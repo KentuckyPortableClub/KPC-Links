@@ -222,9 +222,19 @@ def main():
     ip = os.path.join(OUT, 'index.json')
     idx = json.load(open(ip)) if os.path.exists(ip) else {'found': {}, 'miss': {}}
     idx.setdefault('found', {}); idx.setdefault('miss', {})
+    # Oct 28 (tune pass): the Canada answer key (data/ca-key, kpc-ca-key.yml) decides the outlines now. A park it joined is
+    # drawn from that list (CPCAD live by id, or a file kpc_ca_fill_bounds.py saved), so this older matcher leaves it alone:
+    # before, every park whose CPCAD-only file the storage plan removed (1,539) looked 'missing' and would be fetched again.
+    keyed = set()
+    for kf in __import__('glob').glob('data/ca-key/CA-*.json'):
+        try: keyed |= {ref for ref, p in json.load(open(kf))['parks'].items() if p.get('m')}
+        except Exception: pass
+    idx['found'] = {k: v for k, v in idx['found'].items() if os.path.exists(os.path.join(OUT, k + '.json'))}   # no file = not found
     todo = []
     for r in parks:
         ref = r[1]
+        if ref in keyed and not RECHECK:
+            continue
         if not RECHECK and ref in idx['found'] and os.path.exists(os.path.join(OUT, ref + '.json')):
             continue
         m = idx['miss'].get(ref)
@@ -235,7 +245,7 @@ def main():
         todo.append(r)
     if LIMIT:
         todo = todo[:LIMIT]
-    note('Canada boundaries', f'{len(parks)} Canadian POTA parks; {len(idx["found"])} already saved; checking {len(todo)} now')
+    note('Canada boundaries', f'{len(parks)} Canadian POTA parks; {len(keyed)} joined by the answer key (left alone); {len(idx["found"])} files saved; checking {len(todo)} now')
     outf = ','.join(x for x in [F['oid'], F['name'], F.get('namef'), F['type'], F['owner'], F['mgr'], F['loc']] if x)
 
     def extra_try(ref, nm, la, lo, why):
@@ -305,7 +315,7 @@ def main():
         return ref, feat, 'ok'
 
     done = miss = err = 0
-    with cf.ThreadPoolExecutor(max_workers=int(os.environ.get('THREADS', '6'))) as ex:
+    with cf.ThreadPoolExecutor(max_workers=int(os.environ.get('THREADS', '2'))) as ex:
         for ref, feat, why in ex.map(one, todo):
             if why == 'time':
                 continue

@@ -33,6 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Find the outlines
+        continue-on-error: true      # Oct 28: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         env:
           MODE: ${{ inputs.mode }}
           LIMIT: ${{ inputs.limit }}
@@ -42,8 +43,8 @@ jobs:
         run: python3 .github/scripts/kpc_canada_bounds.py
       - name: Save
         if: ${{ inputs.mode != 'info' }}
+        # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files); red ONLY when the save failed
+        env:
+          STRICT: '1'
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/canada-bounds || true
-          if ! git diff --cached --quiet; then git commit -m 'Canada park boundaries (CPCAD)'; git pull --rebase --autostash || true; git push; fi
+          bash .github/scripts/kpc_push_data.sh . 'Canada park boundaries (CPCAD)' data/canada-bounds
