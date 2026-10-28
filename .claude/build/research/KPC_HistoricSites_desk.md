@@ -24,7 +24,7 @@ Rule for the bot: a polygon is used ONLY if it passes the house rule (100% match
 
 ## 2. State historic-site agencies: do they publish site boundaries? (one line each)
 Filled in as I go through each state's official-maps file.
-- KY (Kentucky State Parks, historic sites): publishes site PARK MAPS as PDFs (Perryville trail map, Fort Boonesborough, Old Fort Harrod; listed in data/ky-official-maps.json via kentuckytourism.com/media/docs/...), not a boundary layer found. Kentucky Heritage Council = NRHP listings (B).
+- KY (Kentucky State Parks, historic sites): publishes site PARK MAPS as PDFs on kentuckytourism.com (Perryville trail map, Fort Boonesborough park + campground map, Old Fort Harrod park + fort map; all in data/ky-official-maps.json); no boundary layer found. Kentucky Heritage Council = NRHP listings (B).
 - TN: state has its own NRHP boundaries layer: https://tnmap.tn.gov/arcgis/rest/services/HISTORICAL/NATIONAL_REGISTER_TN/MapServer/2 "National Register of Historic Places Boundaries" (B, search result; not opened). TN state historic sites (TN State Parks): brochures only (B).
 - GA (state historic sites under Georgia State Parks): trail/site map PDFs on gastateparks.org, no boundary layer seen (A for maps, C for no layer).
 - AL, FL, MS, NC, SC, VA, WV: not yet looked at for this question; will add a line as each region is done.
