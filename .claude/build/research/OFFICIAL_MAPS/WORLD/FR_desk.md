@@ -1,0 +1,9 @@
+# France (FR) official park maps (desk, Oct 28 2026)
+Our key: 14,367 parks. Biological Reserve 11,195 (!); Natura 2000 1,718; Conservation Area 406; Recreation Park 365; Conservation Park 208; National Nature Reserve 104. The 11,195 'Biological Reserve' count is almost certainly ZNIEFF-type or INPN sites mapped as one type: world rule says ZNIEFF = NOT SURVEYED/NOT SURE (W-1).
+| Agency | Where | Date method | Rules | Status |
+|---|---|---|---|---|
+| **INPN / PatriNat (MNHN)** | data.gouv.fr/datasets/espaces-naturels-proteges (A): Licence Ouverte 2.0; last updated 28 June 2025 (created 5 June 2024); 11 files, formats not named; covers parcs nationaux, réserves biologiques / naturelles, PNR, parcs naturels marins, arrêtés de protection, ENS, conservatoire land; harvested from naturefrance.fr; a cyberattack on MNHN servers makes some INPN pages unavailable indefinitely (page says use the temporary download page) | per-dataset dates (A) | each reserve's regulation (arrêté) on INPN fiche (BOT LOOK-UP) | READY for outlines (open licence); INPN fiche pages may be down: BOT LOOK-UP |
+| **Parcs nationaux de France** | parcs-nationaux.fr and each park's site (11 parks); boundary dataset data.gouv.fr/datasets/parcs-nationaux (B: WMS/WFS advertised) | | each park's 'réglementation' page (BOT LOOK-UP) | NEEDS A BROWSER BOT for the map pages |
+| **Parcs naturels régionaux** | each PNR's site; federation parcs-naturels-regionaux.fr | | | NOT SURVEYED |
+| **Géoportail / IGN** | geoportail.gouv.fr layer catalogue (B), geoservices.ign.fr WMS/WFS | metadata | Etalab / Licence Ouverte (C) | BOT LOOK-UP |
+Grey areas for Brandon (FR): sea sites water-only (world-stages note); Natura 2000 is a designation over mixed land; many réserves biologiques are inside national forests (ONF), which are public: ONF forest ownership is the clean source (BOT LOOK-UP: ONF open data 'forêts domaniales').
