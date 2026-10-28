@@ -22,6 +22,8 @@ jobs:
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true
           rm -f cache/us/prev-* || true
+          # Oct 28: the park lists (data/parkinfo) moved to KPC-Data; the Canada half needs CA.json
+          mkdir -p data/parkinfo && curl -fsSL https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/main/data/parkinfo/CA.json -o data/parkinfo/CA.json || true
       - run: python3 .github/scripts/kpc_candidates.py || true
         continue-on-error: true
         env:
