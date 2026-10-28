@@ -46,6 +46,7 @@ def wsave(cc, recs):
     WCACHE.mkdir(parents=True, exist_ok=True)
     rows = []
     for r in recs:
+        if r.get('src') in LIVE_ONLY: continue   # Oct 28 LIVE-ONLY RULE: never keep a copy of these
         o = {k: v for k, v in r.items() if k != '_k'}
         o['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in (r.get('_r') or [])]
         rows.append(o)
@@ -69,6 +70,9 @@ def wload(cc):
         if r.get('_bb') is not None: r['_bb'] = list(r['_bb'])
     WUSED.append(cc)
     return recs
+# Oct 28 LIVE-ONLY RULE (HQ 2:07 AM, mapping.md): sources whose terms say 'viewing only' or state nothing are read LIVE from the
+# agency's own server on every run: never written to the saved cache (cache/world) nor to data/world-bounds. Labels from SRC.
+LIVE_ONLY = set()
 SRC = {
     'AU': [('CAPAD (DCCEEW)', 'arcgis', 'https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0')],
     'DE': [('BfN ' + t, 'wfs', 'https://geodienste.bfn.de/ogc/wfs/schutzgebiet', 'schutzgebiet:' + t) for t in
@@ -1018,6 +1022,7 @@ for cc in COUNTRIES:
             la, lo = P[ref][5], P[ref][6]
             polys = []
             for x in mm:
+                if x[2] in LIVE_ONLY: continue   # Oct 28 LIVE-ONLY RULE: drawn from the agency's server, never saved here
                 for r in byn.get((x[2], x[1]), []):
                     if la and lo and r.get('_bb') and not near(la, lo, r['_bb'], .6): continue
                     for ring in (r.get('_r') or []):
