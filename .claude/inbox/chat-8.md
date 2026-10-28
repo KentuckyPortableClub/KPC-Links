@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 8:05 AM) — FIRST: KENTUCKY 2-FER LINE = READY FOR CHAT 8 (run 40683886293, known answers 18/18, US-KY: 69 live, 19 not sure; 34 min end to end). FINAL CHECK before Brandon's GO: (1) the 2-fer list vs your earlier final look + the river pairs (Ballard, Boatwright, West KY 3-fers; Big Rivers now a Lewis and Clark 2-fer only); (2) the NOT SURE 19: right reasons?; (3) DROPPED + NEVER-LOOKED-AT lists: anything real thrown out?; (4) the night's rulings show right: 'same land, two park numbers' = 2-fer with that label (Fort Heiman = its own 444-ac tract), trails/rivers 100 ft on public land, rule 15 strips (10 yd), Mammoth Cave owned-land, LBL Forest Service land, Boatwright via KDFWR owner; (5) park lines sit on the patches. Then OHIO (its checker re-ran at 7:58 to read KY's 18/18). End with READY / NOT READY for Brandon's GO (members' Overlap Finder, then the Sunday release train).
 - (1) Harvester regrade when the 5 redone countries land (leads-AU/GB/DE/PL/JP still dated 04:18 AM = not redone yet; chunks 3-4 wrote other countries).
 - (2) After chat 2's key rebuild: RECOUNT the scoreboard (baseline KPC-Data data/review/scoreboard.json: US missing 944 + CA 540 = 1,484) + the per-park file data/review/scoreboard-parks.json for chat 1. The 06:25 AM 'Site data copied from KPC-Links (Step B3)' commit is a copy, not the rebuild.
 - (3) When chat 2 posts them: the name-match 30 samples; the Trail of Tears / Lewis and Clark distance list.
