@@ -226,7 +226,7 @@
     if (!window.L && (openRow.tries = (openRow.tries || 0) + 1) < 40) { setTimeout(function () { openRow(key); }, 250); return; }   // the map library is still loading
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
     showTab('map'); if (!mkMap()) { $('ovSpot').innerHTML = '<p class="ov-note">The map could not load (no signal?). The list still works.</p>'; return; }
-    cur = g; stopGps(); meas = []; lastIn = false; leftUntil = 0; if (pinM) { map.removeLayer(pinM); pinM = null; }
+    cur = g; OVON = true; stopGps(); meas = []; lastIn = false; leftUntil = 0; if (pinM) { map.removeLayer(pinM); pinM = null; }
     cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
     spotPanel(); legend(); mapKey(); step = 0; clearTimeout(timer);
     /* Brandon Oct 27 5:59 PM (Pine Mountain trail + Jefferson NF WMA opened zoomed out with the overlap in a corner): fit to the MAIN
@@ -329,7 +329,7 @@
     /* the other park's own edge where it crosses the band: a gold copy clipped to the band */
     var bd = [].map.call(svg.querySelectorAll('path.ov-tclip.ov-band'), function (e) { return e.getAttribute('d') || ''; }).join(' ').trim();
     cb.innerHTML = ''; if (bd) { var bp = document.createElementNS('http://www.w3.org/2000/svg', 'path'); bp.setAttribute('d', bd); cb.appendChild(bp); }
-    var gold = svg.querySelector('path.ov-edgegold'); if (step > parks.length && bd) { if (!gold) { gold = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gold.setAttribute('class', 'ov-edgegold'); svg.querySelector('g').appendChild(gold); }
+    var gold = svg.querySelector('path.ov-edgegold'); if (step > parks.length && bd && OVON) { if (!gold) { gold = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gold.setAttribute('class', 'ov-edgegold'); svg.querySelector('g').appendChild(gold); }
       gold.setAttribute('d', d); gold.setAttribute('fill', 'none'); gold.setAttribute('stroke', '#ffd34d'); gold.setAttribute('stroke-width', '4'); gold.setAttribute('stroke-dasharray', '14 10'); gold.setAttribute('clip-path', 'url(#ovClipB)'); gold.style.pointerEvents = 'none'; }
     else if (gold) gold.remove();
   }
@@ -352,7 +352,7 @@
       if (p.line) cur.rings.forEach(function (x) { if (x.line && x.first) { gAll.addLayer(L.polygon((x.band || x.ring).map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls + ' ov-tclip ov-band', interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
-    if (step > parks.length) cur.rings.forEach(function (x) {
+    if (step > parks.length && OVON) cur.rings.forEach(function (x) {
       var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = (fading ? ' ov-in-patch' : '') + (x.line && !x.zone ? ' ov-tclip' : '');
       if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
       else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
@@ -405,7 +405,8 @@
       (look === 2 ? '<div><span class="ov-sw" style="background:#fff;border:3px dashed #111"></span><b>clear with a black-and-white border = inside both parks: where our maps suggest they may overlap</b></div>' : look === 4 ? '<div><span class="ov-sw" style="background:#fff;border:3px dashed #d5a63a;outline:2px solid #111"></span><b>clear with a moving gold border = inside both parks: where our maps suggest they may overlap</b></div>' : '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid ' + (look === 3 ? '#fff' : '#b8860b') + '"></span><b>gold = inside both parks: where our maps suggest they may overlap</b></div>') + '</div>';
     var kb = el.querySelector('[data-key]'); if (kb) kb.onclick = function (e) { e.preventDefault(); store('kpcOvKey', open ? '0' : '1'); mapKey(); };
   }
-  function legend() { $('ovLeg').innerHTML = parks.map(function (p, i) { return '<li><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><label><input type="checkbox" data-on="' + i + '"' + (p.on ? ' checked' : '') + '> <b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' <i>(line: 100-ft band)</i>' : '') + '</label></li>'; }).join(''); }
+  var OVON = true;   // Oct 28 (Brandon): the overlap (moving gold line) can be switched off too, to look at one park's boundary at a time
+  function legend() { $('ovLeg').innerHTML = '<li><span class="ov-num" style="background:#ffd34d;color:#111">★</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="#ffd34d" stroke-width="4" stroke-dasharray="8 5"/></svg><label><input type="checkbox" data-on="ov"' + (OVON ? ' checked' : '') + '> <b>The overlap</b> (moving gold line)</label></li>' + parks.map(function (p, i) { return '<li><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><label><input type="checkbox" data-on="' + i + '"' + (p.on ? ' checked' : '') + '> <b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' <i>(line: 100-ft band)</i>' : '') + '</label></li>'; }).join(''); }
 
   /* ---------- GPS walk-in / dropped pin ---------- */
   function status(p, acc, isPin) {
@@ -458,12 +459,12 @@
     var pl = e.target.closest('#ov [data-place]');
     if (pl) { e.preventDefault(); var kk = pl.dataset.place.split('|'); openPlace(kk[0], +kk[1]); return; }
     var b = e.target.closest('#ov [data-tab], #ov [data-open], #ov [data-t], #ov [data-f], #ov [data-on], #ovAllOn, #ovAllOff, #ov [data-region]'); if (!b) return;
-    if (b.matches('[data-on]')) { parks[+b.dataset.on].on = b.checked; draw(); return; }
+    if (b.matches('[data-on]')) { if (b.dataset.on === 'ov') OVON = b.checked; else parks[+b.dataset.on].on = b.checked; draw(); clipTrail(); return; }
     e.preventDefault();
     if (b.matches('[data-tab]')) { showTab(b.dataset.tab); if (b.dataset.tab === 'map' && !cur && ROWS.length) { var first = ROWS.filter(function (g) { return visiblePatches(g).length; })[0]; if (first) openRow(first.key); else mkMap(); } return; }
     if (b.matches('[data-open]')) { openRow(b.dataset.open);   /* only the SHOW buttons open the map (Brandon: 'See more takes me to map') */ scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); return; }
     if (b.matches('[data-region]')) { loadRegion(b.dataset.region); return; }
-    if (b.id === 'ovAllOn' || b.id === 'ovAllOff') { parks.forEach(function (p) { p.on = b.id === 'ovAllOn'; }); legend(); draw(); return; }
+    if (b.id === 'ovAllOn' || b.id === 'ovAllOff') { OVON = b.id === 'ovAllOn'; parks.forEach(function (p) { p.on = b.id === 'ovAllOn'; }); legend(); draw(); clipTrail(); return; }
     if (b.matches('[data-f]')) { var f = b.dataset.f;
       if (f === 'near') { if (F.near) { F.near = false; b.classList.remove('on'); $('ovNearNote').hidden = true; list(); return; }
         if (!navigator.geolocation) { toast('This browser cannot give a location.'); return; }
