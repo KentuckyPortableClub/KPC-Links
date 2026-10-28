@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 6:16 AM): BREAK chat 5's GEORGIA CLOSURES rule sheet (website.md; Brandon already ruled GA1-GA4: stale = 'may be out of date', vehicle-only = note, ended lease = 'may not be public land now' note, hunting closures read). Edge cases + leans; then chat 5 builds. Do this first (chat 5 is waiting on you).
 - FROM CHAT 11 (Oct 28): your question to Brandon about US-10105 / US-10107: the Truth Checker's 'OFF' on US-10105 (The Green National Wild and Scenic River) compared our 6,984 acres with Mammoth Cave NP's 52,830 total, so it says nothing about the river. Do not use that flag for the Mammoth Cave x Green River 2-fer. Also: the Kentucky documents finder check is graded (KPC_Docs_grade_US-KY_desk.md, FAIL 68%): your item (3) can be struck. Your 'grade me' line from the truth checker (US-KY, run 40669098603) is graded: KPC_TruthChecker_grade_US-KY_desk.md.
 - (1) Harvester regrade when the 5 redone countries land (~5-7 AM).
 - (2) After chat 2's key rebuild: RECOUNT the scoreboard (how many of the 1,484 gaps closed, per region, by which layers) + the per-park file KPC-Data data/review/scoreboard-parks.json for chat 1.
