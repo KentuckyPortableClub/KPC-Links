@@ -1,5 +1,5 @@
 {
- "about": "Official trail LINE layers picked by hand (Brandon's sheets, Oct 24 2026). The trails bot tries these first for trails in that state / province; the name must still match and the line must be near the POTA pin. Key = state letters or CA-province.",
+ "about": "Official trail LINE layers picked by hand (Brandon's sheets, Oct 24 2026). The trails bot tries these first for trails in that state / province; the name must still match and the line must be near the POTA pin. Key = state letters or CA-province. 'credits' (HQ Oct 27): the credit line a layer asks for; the bot shows it as the source.",
  "layers": {
   "FL": [
    "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer"
@@ -55,6 +55,33 @@
   ],
   "CA-NB": [
    "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "MN": [
+   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0"
+  ],
+  "WI": [
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0"
+  ],
+  "WV": [
+   "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0"
+  ],
+  "AR": [
+   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22"
+  ],
+  "DE": [
+   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0"
+  ],
+  "CO": [
+   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15"
   ]
+ },
+ "credits": {
+  "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0": "Wisconsin DNR, Bureau of Parks & Recreation Management",
+  "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0": "WVGISTC, WVDOT",
+  "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22": "Arkansas State Parks, Arkansas Natural Heritage Commission",
+  "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0": "Minnesota DNR (DNR GIS Data License Agreement)",
+  "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)",
+  "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Delaware State Parks",
+  "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)"
  }
 }

@@ -41,6 +41,16 @@
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources)",
+    "host": "agency",
+    "nm": "PARKNAME",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "157 state park units incl. State Recreation Sites (HT-19)",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2"
    }
   ],
   "AR": [
@@ -93,6 +103,17 @@
     "host": "agency",
     "where": "ORGCODE IN (41570,22560)",
     "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "wild",
+    "ag": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092)",
+    "host": "agol",
+    "nm": "Name",
+    "where": "Name NOT LIKE '%Easement%'",
+    "lic": "not-a-survey disclaimer, no use limits",
+    "read": "2026-10-28",
+    "note": "1,862 CDFW owned + operated lands (ecological reserves, wildlife areas); conservation easements left out (private land)",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0"
    }
   ],
   "CO": [
@@ -128,6 +149,16 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Colorado Parks and Wildlife (credit: CPW GIS Unit, CPW Real Estate Unit)",
+    "host": "agency",
+    "nm": "PropName",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "386 State Wildlife Areas + State Parks, 2026 (HT-26); names carry SWA / SP",
+    "url": "https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9"
    }
   ],
   "DE": [
@@ -312,6 +343,16 @@
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
     "host": "agency",
     "note": "Public Lands Used for Conservation and Recreation in Iowa (5,439 areas; on Iowa Geodata). Reachable from GitHub Oct 25 2026 (earlier 403 was temporary). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Iowa DNR (credit: Iowa Department of Natural Resources)",
+    "host": "agency",
+    "nm": "NameUnit",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "326 public area boundaries (state parks, forests, wildlife and access areas; names carry the type word)",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10"
    }
   ],
   "ID": [
@@ -340,6 +381,16 @@
     "nm": "unitname",
     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office)",
+    "host": "agency",
+    "nm": "unitname",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "196 managed nature preserves (HT-10); access_ CLOSED/RESTRICTED kept as a note for rule 10",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_NaturePreserves/FeatureServer/0"
    }
   ],
   "KS": [
@@ -496,6 +547,16 @@
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "North Dakota Parks and Recreation Department (credit)",
+    "host": "agol",
+    "nm": "Name",
+    "lic": "item credit line only",
+    "read": "2026-10-28",
+    "note": "39 NDPRD properties (the NDGISHUB copy has 21)",
+    "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0"
    }
   ],
   "NJ": [
@@ -566,6 +627,16 @@
     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks)",
+    "host": "agency",
+    "nm": "landname",
+    "lic": "item terms: illustrative only, not a survey, no liability (no use limits); updated through 2026-01-23",
+    "read": "2026-10-28",
+    "note": "30 state parks, historic state monuments + rec areas (HT-11)",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1"
    }
   ],
   "NY": [
@@ -582,7 +653,9 @@
     "ag": "New York State Parks",
     "nm": "Name",
     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
-    "host": "agol"
+    "host": "agol",
+    "nm2": "Label",
+    "note": "Oct 28 chat 9: Label = the full name with its type word ('Thompsons Lake State Park'); Name drops it."
    },
    {
     "kind": "park",
@@ -691,6 +764,16 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "preserve",
+    "ag": "PA DCNR Bureau of State Parks (credit)",
+    "host": "agency",
+    "nm": "NAME",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "23 natural areas inside state parks (HT-24; layered on state park land)",
+    "url": "https://gis.dcnr.pa.gov/agsprod/rest/services/StateParks/BSP_StateParksNaturalAreas/MapServer/0"
    }
   ],
   "RI": [
@@ -788,6 +871,17 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks"
+   },
+   {
+    "ag": "Tennessee Wildlife Resources Agency (credit: TWRA)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "own": "OWNERSHIP",
+    "lic": "credit only, no use limits (HQ Oct 27 ruling): TWRA",
+    "read": "2026-10-27",
+    "note": "228 areas; OWNERSHIP + OWNCODE = rule 14 (federal-owned WMAs are SE-1: NOT SURE)",
+    "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3"
    }
   ],
   "TX": [
@@ -896,6 +990,27 @@
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "ag": "Virginia Department of Wildlife Resources",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "WMA_NAME",
+    "note": "242 WMAs; Owner field = rule 14 (WMAs on USFS / Corps / power-company land are SE-1: NOT SURE until Brandon rules)",
+    "own": "Owner",
+    "read": "2026-10-27",
+    "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0",
+    "lic": "item terms: 'Data may be used as is … reference purposes only' (no use limits)"
+   },
+   {
+    "kind": "land",
+    "ag": "Virginia Dept. of Historic Resources (credit)",
+    "host": "agency",
+    "nm": "PropertyNames",
+    "lic": "credit line only; licence field 'Public'",
+    "read": "2026-10-28",
+    "note": "3,168 VLR/NRHP/NHL listed property polygons (historic sites join only on a sure match; HT-18)",
+    "url": "https://vcris.dhr.virginia.gov/arcgis/rest/services/dhr/dhr_public/MapServer/3"
    }
   ],
   "WA": [
@@ -940,6 +1055,26 @@
     "note": "outside research bot round 2, tested 2026-10-25; matched 71 of 73",
     "where": "GNIS_Name IS NOT NULL AND FType IN (390,436)",
     "water": 1
+   },
+   {
+    "kind": "wild",
+    "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
+    "host": "agency",
+    "nm": "WildlifeAreaUnitName",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "218 wildlife area UNITS on WDFW's own server (HT-20)",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/0"
+   },
+   {
+    "kind": "wild",
+    "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
+    "host": "agency",
+    "nm": "WildlifeAreaName",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "33 wildlife areas on WDFW's own server (HT-20)",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/1"
    }
   ],
   "WI": [
@@ -1082,6 +1217,26 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Ohio DNR, Office of Information Technology (credit)",
+    "host": "agency",
+    "nm": "Name_Label",
+    "lic": "item credit line only (iteminfo, round 19)",
+    "read": "2026-10-28",
+    "note": "865 ODNR lands with readable names ('A W Marion SP')",
+    "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer/0"
+   },
+   {
+    "kind": "land",
+    "ag": "Ohio DNR (credit): city, county + NGO lands",
+    "host": "agency",
+    "nm": "FIRST_NAME",
+    "lic": "item credit line only (iteminfo, round 19)",
+    "read": "2026-10-28",
+    "note": "623 city / county / NGO lands: outline only on a SURE match (WORK STYLE Oct 28)",
+    "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/0"
    }
   ],
   "SC": [
@@ -1108,6 +1263,18 @@
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
+   },
+   {
+    "kind": "land",
+    "ag": "South Carolina Department of Natural Resources (credit: SCDNR)",
+    "host": "agol",
+    "nm": "PropertyName",
+    "own": "PropertyOwner",
+    "where": "PropertyType <> 'Easem'",
+    "lic": "no-warranty terms only (SCDNR own account)",
+    "read": "2026-10-28",
+    "note": "576 SCDNR public properties (WMAs, heritage preserves, others); conservation easements left out; PropertyType Own/Leas = rule 14. Layer is labelled DEV by SCDNR: if PropertyName turns out empty, HQ's rule = name each polygon from the ONE named point (layer 6) inside it",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3"
    }
   ],
   "ME": [
@@ -1238,6 +1405,26 @@
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 6"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Missouri Department of Conservation (credit)",
+    "host": "agency",
+    "nm": "Area_Name",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "192 MDC natural areas (polygons)",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3"
+   },
+   {
+    "kind": "wild",
+    "ag": "Missouri DNR, Division of State Parks (credit)",
+    "host": "agency",
+    "nm": "WA_NAME",
+    "lic": "item credit line only (iteminfo, round 19)",
+    "read": "2026-10-28",
+    "note": "13 wild areas inside state parks (layered, rule 3)",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2"
    }
   ],
   "CT": [
@@ -1255,6 +1442,17 @@
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 5; a 2011 open-space set"
+   },
+   {
+    "kind": "land",
+    "ag": "CT DEEP (credit: Department of Energy & Environmental Protection)",
+    "host": "agol",
+    "nm": "HuntAName",
+    "where": "HuntAName NOT LIKE '%Private%'",
+    "lic": "planning-use disclaimer, no use limits",
+    "read": "2026-10-28",
+    "note": "178 areas open for hunting (state forests, WMAs, parks); private-land areas left out",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0"
    }
   ],
   "IL": [
@@ -1348,6 +1546,16 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "ag": "Nebraska Game and Parks Commission",
+    "host": "agol",
+    "nm": "AreaName",
+    "lic": "'There are no restrictions on the use and distribution'",
+    "read": "2026-10-28",
+    "note": "74 park areas: SP, SRA and SHP (historical parks join when the match is sure, HQ/Brandon Oct 28)",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0"
    }
   ],
   "NC": [
@@ -1680,6 +1888,16 @@
     "host": "agency",
     "code": "PE-PP",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 18 (PE Provincial Park)"
+   },
+   {
+    "kind": "wild",
+    "ag": "Province of PEI, Department of Land & Environment (credit; updated Dec 2025)",
+    "host": "agency",
+    "nm": "NAME_E",
+    "lic": "credit line only, no use limits",
+    "read": "2026-10-28",
+    "note": "49 wildlife management + natural areas (TYPE_E: provincial, provincially owned natural area, privately owned WMA)",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
    }
   ],
   "AB": [
@@ -1739,6 +1957,18 @@
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
     "code": "BC-HCA"
+   }
+  ],
+  "NT": [
+   {
+    "kind": "park",
+    "ag": "GNWT Environment and Natural Resources (credit: Conservation Planning and Implementation Unit, ENR; Open Government Licence - NWT)",
+    "host": "agency",
+    "nm": "Name",
+    "lic": "credit only, no use limits; GNWT publishes under the Open Government Licence - NWT",
+    "read": "2026-10-27",
+    "note": "Federal/Territorial Conservation Areas: 4 polygons incl. Gwich'in + Hidden Lake Territorial Parks (BigHoles R2-6)",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
    }
   ]
  },

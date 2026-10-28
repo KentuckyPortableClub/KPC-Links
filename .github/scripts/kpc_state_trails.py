@@ -12,7 +12,7 @@ Writes data/trails/<REF>.json (same format as the national trails) + data/trails
 [{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC)."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA').split()
+STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA WI MN AR DE CO ID').split()  # Oct 27-28 chat 9 (HQ): WI, MN, AR, DE, CO, ID added with their official trail layers
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
 CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
@@ -182,6 +182,8 @@ def likes(fld, w):
     return [f"{fld} LIKE '%{'%'.join(x.title() for x in w)}%'", f"{fld} LIKE '%{'%'.join(x.upper() for x in w)}%'"]
 try: EXTRA = json.load(open('data/trails-layers.json')).get('layers', {})
 except Exception: EXTRA = {}
+try: CREDITS = json.load(open('data/trails-layers.json')).get('credits', {})  # Oct 27 chat 9 (HQ): a layer's credit line is shown as its source
+except Exception: CREDITS = {}  # noqa: BLE001
 def agency(name, st, la, lo, lim=None):
     lim = lim or CHECK_KM
     """ArcGIS Online search for the trail's name; only services published by a STATE agency of that state or a federal
@@ -211,7 +213,7 @@ def agency(name, st, la, lo, lim=None):
         if not official_org(org, st): ALOG.append([name, 'skip (not state/federal)', org[:60], it.get('title', '')[:60]]); continue
         tries.append((u, org, None))
     # Oct 24 (Brandon's layer lists): official layers picked by hand per state / province (data/trails-layers.json), tried first
-    tries[1:1] = [(u, 'official layer picked by KPC', None) for u in EXTRA.get(st, [])]
+    tries[1:1] = [(u, CREDITS.get(u) or 'official layer picked by KPC', None) for u in EXTRA.get(st, [])]
     for u, org, flds in tries[:26]:
         try:
             lays = [u] if re.search(r'/\d+$', u) else [f"{u}/{l['id']}" for l in (get(u + '?f=json', t=40).get('layers') or [])[:8]]
