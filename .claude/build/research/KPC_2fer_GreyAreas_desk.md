@@ -22,3 +22,6 @@ One row per case, newest last. When chat 2's Kentucky rerun or a later check tur
 
 ## RULED (Brandon via HQ, Oct 27 8:10 AM, see mapping.md / website.md 'FINAL (HQ Oct 27 8:10 AM)')
 Grey 4 (same land, two park numbers): RULED, shown openly with that label. Grey 6 (trail x trail on one river): RULED, listed as possible, 'both trail lines are approximate'. KR-1..KR-4 RULED as in KPC_KY2fer_Recheck_desk.md. Grey 2 was ruled earlier by B-G2.
+
+## Canada regions (Oct 27, chat 8): new grey areas awaiting Brandon
+Full tables with my lean in research/CAE/KPC_CAE_Summary_desk.md (CAE-1 to CAE-8) and research/CAW/KPC_CAW_Summary_desk.md (CAW-1 to CAW-6). Biggest: Indigenous co-managed parks (CAE-1/3/5/6, CAW-1), QC private nature reserves (CAE-2), portage and canal lines (CAE-4), NL no-redistribution file (CAE-7), municipal numbered parks (CAE-8/CAW-6), Crown-land recreation sites (CAW-5).
