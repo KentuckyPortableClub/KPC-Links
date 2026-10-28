@@ -16,3 +16,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **ODWC (wildlife areas):** public hunting area maps are PDFs: `wildlifedepartment.com/sites/default/files/<YYYY-MM>/<name>.pdf` (e.g. 2024-10/2024 Public Hunting Area Map.pdf; 2026-03/McCurtainCountySSA.pdf) (B): the folder is the upload month = a date clue. The paper Wildlife Management Area Atlas (5, GoOutdoorsOklahoma.com) is the full set (A). State parks: travelok.com / oklahoma state parks maps: not opened (BOT LOOK-UP). Handovers: none seen.

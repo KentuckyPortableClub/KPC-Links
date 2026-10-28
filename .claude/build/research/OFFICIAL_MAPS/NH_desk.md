@@ -18,3 +18,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **NH State Parks:** one statewide Map & Guide PDF per year: `nhstateparks.org/NHStateParks/media/NHStateParks/PDFs/Find Parks and Trails/26_NHSP_MapAndGuide_v7-2026.pdf` (B; the year is in the file name = a date clue) and the find page https://www.nhstateparks.org/find-parks-trails (B). 2 of 4 bot-checked links opened. State forest reservation maps: https://www.nhdfl.dncr.nh.gov/land-management/state-reservation-maps (B). Parks outlines: maps.dot.nh.gov NHDOT_BOUNDARIES_Parks_Forest (B) - to chat 9. Handovers: none seen.

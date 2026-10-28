@@ -17,3 +17,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **RI DEM (management areas) + RI State Parks:** management-area maps are PDFs under Data & Maps > Hunting Atlas (e.g. Killingly (41), Round Top (64)); the page gives no file addresses (A). All bot-checked links open (dem.ri.gov 8 of 8, riparks.ri.gov 3 of 3). One overview: dem.ri.gov/programs/naturalresources/documents/map-management-areas.pdf (B). Outlines: risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/MapServer layer 21 'DEM Managed Recreational Land' (B) - to chat 9. No dates. Handovers: none seen.

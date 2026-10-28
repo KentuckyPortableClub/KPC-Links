@@ -16,3 +16,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **DNREC wildlife areas:** 'Wildlife Area Maps and Regulations' https://dnrec.delaware.gov/fish-wildlife/wildlife-areas/ (A; the individual files are not in the page text: BOT). Maps updated in 2016 per news (B). State parks: destateparks.com link failed for the bot (0 of 1): BOT LOOK-UP. State GIS: apps.firstmap.delaware.gov/apps/rest/services/DNREC/DNREC_Offline_Layers/MapServer/11 'Wildlife Area Boundaries'; enterprise.firstmap.delaware.gov .../Society/DE_State_Lands/MapServer/0 (B) - to chat 9. Handovers: none seen.

@@ -24,3 +24,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **TPWD state parks:** all maps through https://tpwd.texas.gov/state-parks/maps (A, named on the publications page); no per-park address or date in the page. Rules: https://tpwd.texas.gov/state-parks/park-information/rules/ and PDF pwd_br_p4000_0000a.pdf (A). **WMAs / public hunting:** `tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/<Name>_<id>.pdf` (B), WMA list `tpwd.texas.gov/huntwild/hunt/wma/find_a_wma/list/?id=<N>` (B). REST: tpwd.texas.gov/server/rest/services/Wildlife/ (B) - to chat 9. BOT LOOK-UP: the state parks maps page (script-loaded list). Handovers: none seen.

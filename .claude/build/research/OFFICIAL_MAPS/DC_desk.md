@@ -15,3 +15,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- All 22 bot-checked DC links are National Park Service pages (nps.gov/<code>/planyourvisit/maps.htm, all open). DC has no state park agency in the data. Nothing else needed.

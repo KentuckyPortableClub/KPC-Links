@@ -23,3 +23,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **AGFC (wildlife management areas):** maps hub https://agfc.com/en/resources/maps/ lists the Interactive Mapper (gis.agfc.com) and Public Use Maps (https://apps.agfc.com/maps/) - individual files not in the page text (A): BOT LOOK-UP apps.agfc.com/maps/. REST: gisec2.agfc.com/arcgis/rest/services/GIS/AGFC_DATA/MapServer (B) - to chat 9. **State parks:** arkansasstateparks.com and the Arkansas Heritage links (Mills Park PDF with a sfvrsn version tag) come from the bot data (48 links). No dates on the hub. Handovers: none seen.

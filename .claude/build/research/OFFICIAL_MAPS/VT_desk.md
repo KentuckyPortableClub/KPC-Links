@@ -17,3 +17,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Vermont State Parks:** publications page https://vtstateparks.com/publications (A). Maps: `vtstateparks.com/media/<number>` or `/media/document/<park>-state-park-map-and-guide` (A). No dates, except old geology maps (1987, 1962). Corps lakes (nae.usace.army.mil) 0 of 2: BOT LOOK-UP. Forests, Parks & Recreation lands beyond state parks: not looked at. Handovers: none seen.

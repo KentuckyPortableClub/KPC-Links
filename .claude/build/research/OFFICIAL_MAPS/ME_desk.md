@@ -15,3 +15,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Maine Bureau of Parks and Lands (DACF):** list https://www.maine.gov/dacf/parks/publications_maps/index.shtml (A). Brochures `maine.gov/dacf/parksearch/PropertyGuides/PDF_GUIDE/<name>.pdf`; full-size maps `.../PropertyGuides/Maps/FullSize/<name>.pdf` (A). No years in names; page footer 'Copyright 2021' only (A): map dates unknown, treat as old. Conservation lands overview: .../conservation_lands_maine.html (B). Bot data: only NPS links, so no Maine agency link was ever checked: BOT LOOK-UP the patterns above. Handovers: none seen.

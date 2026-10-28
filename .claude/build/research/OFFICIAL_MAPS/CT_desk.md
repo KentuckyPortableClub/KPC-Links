@@ -17,3 +17,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **DEEP (state parks and forests):** one list page https://portal.ct.gov/DEEP/State-Parks/Trail-and-Camping-Maps---CT-State-Parks-and-Forests (A). Files `portal.ct.gov/-/media/deep/stateparks/maps/<name>pdf.pdf?rev=&hash=` (trail maps `<name>pdf.pdf`, campground `<name>cgpdf.pdf`); `rev`/`hash` are cache ids, not dates (A). A few say 'Map is not available' (Fort Griswold, Haystack Mountain). Only date clue: a year inside a file name (sunrisestatepark_2018r.pdf). Per-forest Maps pages: `portal.ct.gov/DEEP/State-Parks/Forests/<Forest>/Maps` (B). Rules: https://portal.ct.gov/deep/state-parks/recreation-information/recreational-trail-use-information (A). Corps nae.usace.army.mil 0 of 3: BOT LOOK-UP. Handovers: none seen. Boundary data: CT ECO (cteco.uconn.edu DEEP property, B) - to chat 9.
