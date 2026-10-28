@@ -27,9 +27,7 @@ jobs:
         run: python3 .github/scripts/kpc_fed_camps.py || true
       - name: Save
         if: always()
-        continue-on-error: true
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          mkdir -p data/campfed; git add data/campfed
-          if ! git diff --cached --quiet; then git commit -m 'Federal campgrounds: all states'; for i in 1 2 3; do git pull --rebase --autostash && git push && break; sleep 9; done; fi; true
+        # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files); red ONLY when the save failed
+        env:
+          STRICT: '1'
+        run: mkdir -p data/campfed && bash .github/scripts/kpc_push_data.sh . 'Federal campgrounds (Recreation.gov)' data/campfed

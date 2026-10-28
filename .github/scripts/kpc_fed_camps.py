@@ -80,12 +80,68 @@ try:
         a = state_of(r[2], r[3])
         if a and r[0] not in BY[a]: BY[a][r[0]] = r; added += 1
     note('Nationwide pass', f'{added} campgrounds added that the state search missed')
+    # Oct 28 (tune pass): RIDB's state search goes by the OFFICE address, so 196 rows sat in the wrong state file (Hartwell Lake's
+    # South Carolina campgrounds listed under Georgia, 132 in two files). The pin decides: a row whose pin is inside another
+    # state's outline moves there (or leaves, when that state is not in this run); a pin inside no outline (coast) stays.
+    def pin_state(la, lo):
+        for a, rings in SHAPES:
+            if any(inside(lo, la, r) for r in rings): return a
+        return ''
+    OWN = dict(SHAPES)
+    def near_own(st, la, lo):     # about 3 miles of slack: the state outlines are simplified along the borders
+        return any(inside(lo + dx, la + dy, r) for dx, dy in ((0, 0), (.05, 0), (-.05, 0), (0, .05), (0, -.05)) for r in OWN.get(st, []))
+    moved = 0
+    for st in list(BY):
+        for fid, r in list(BY[st].items()):
+            if near_own(st, r[2], r[3]): continue
+            a = pin_state(r[2], r[3])
+            if a and a != st:
+                del BY[st][fid]; moved += 1
+                if a in BY: BY[a].setdefault(fid, r)
+    seen = {}
+    for st in BY:
+        for fid in BY[st]: seen.setdefault(fid, []).append(st)
+    for fid, sts in seen.items():          # one campground, one state file (the planner reads the states nearby anyway)
+        if len(sts) < 2: continue
+        r = BY[sts[0]][fid]; home = pin_state(r[2], r[3])
+        for st in sts:
+            if st != (home if home in sts else sts[0]): del BY[st][fid]; moved += 1
+    note('Pin check', f'{moved} campgrounds moved to the state their pin is in (or listed once instead of twice)')
 except Exception as e: note('Nationwide pass FAILED', str(e)[:150])
-total = 0
+# SELF-GRADE GATE (Oct 28, HQ): Kentucky's federal campgrounds in the hand-checked kpc-campgrounds.json (Recreation.gov ones
+# with a pin) must be in the KY list, same name within 2 km (the hand pins sit at the entrance, RIDB's at the middle: Zilpo
+# is 1.5 km apart). A FAIL keeps last month's Kentucky file and says so.
+def hav_m(a, b, c, d):
+    import math
+    p = math.pi / 180
+    h = math.sin((c - a) * p / 2) ** 2 + math.cos(a * p) * math.cos(c * p) * math.sin((d - b) * p / 2) ** 2
+    return 12742000 * math.asin(math.sqrt(h))
+def nw(s): return {w for w in re.sub(r'[^a-z0-9 ]', ' ', s.lower()).split() if w not in ('campground', 'camp', 'the', 'ky', 'tn', 'daniel', 'boone', 'nat', 'for')}
+GATE = None
+if 'KY' in BY:
+    try:
+        want = [g for p in json.load(open('kpc-campgrounds.json'))['parks'] for g in p.get('campgrounds', [])
+                if 'recreation.gov' in (g.get('reserve', '') + g.get('source', '')) and g.get('la') and g.get('lo')]
+        want = list({g['name']: g for g in want}.values())
+        pool = list(BY['KY'].values()) + list(BY.get('TN', {}).values())
+        miss = [g['name'] for g in want if not any(nw(g['name']) & nw(r[1]) and hav_m(g['la'], g['lo'], r[2], r[3]) <= 2000 for r in pool)]
+        GATE = {'result': 'FAIL' if (miss or not want) else 'PASS', 'checked': len(want), 'missing': miss, 'date': datetime.date.today().isoformat()}
+        note('Federal camps GATE ' + GATE['result'], f"{len(want) - len(miss)} of {len(want)} known Kentucky federal campgrounds found within 2 km" + (f"; missing: {', '.join(miss)}" if miss else '')
+             + f" · grade me: federal campgrounds {GATE['result']}")
+    except Exception as e: note('Federal camps GATE', f'not run: {str(e)[:120]}')
+total = kept = 0
 for st in STATES:
     if st not in ok and not BY.get(st): continue
     camps = sorted(BY.get(st, {}).values(), key=lambda c: c[1])
-    json.dump({'state': st, 'updated': datetime.date.today().isoformat(), 'camps': camps}, open(f'{OUT}/US-{st}.json', 'w'), separators=(',', ':'))
+    fn = f'{OUT}/US-{st}.json'
+    try: old = json.load(open(fn)).get('camps') or []
+    except Exception: old = []
+    # a state that came back with less than half of last month's list (RIDB timed out part way) keeps last month's file
+    if (len(old) >= 10 and len(camps) < len(old) / 2) or (st == 'KY' and GATE and GATE['result'] == 'FAIL'):
+        note(f'US-{st} kept', f'{len(camps)} read vs {len(old)} last time: last month\'s file kept'); kept += 1; continue
+    out = {'state': st, 'updated': datetime.date.today().isoformat(), 'camps': camps}
+    if st == 'KY' and GATE: out['gate'] = GATE
+    json.dump(out, open(fn, 'w'), separators=(',', ':'))
     total += len(camps)
-    if st in ('LA', 'DE', 'TN', 'KY') or len(camps) < 3: note(f'US-{st}', f'{sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters')
-note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states')
+    if st in ('LA', 'DE', 'TN', 'KY') or len(camps) < 3: print(f'US-{st}: {sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters')
+note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states' + (f'; {kept} state file(s) kept from last time' if kept else ''))
