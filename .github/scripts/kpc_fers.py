@@ -805,7 +805,10 @@ def nhd_water(box, rivers_only=False):
             k = (i, jt)
             if k not in NHDC:
                 feats = None
-                if time.time() >= NHD_DOWN['until']:
+                sv0 = _wload(i, jt)
+                if sv0 and str(sv0.get('d', '')).startswith('USGS NHDPlus HR file'):   # Oct 28 (HQ 4:05 PM): the bulk-file copy FIRST
+                    feats = sv0['f']; WATER_N['bulk file'] = WATER_N.get('bulk file', 0) + 1; NHDC[k + ('d',)] = sv0['d']
+                if feats is None and time.time() >= NHD_DOWN['until']:
                     try:
                         feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; WATER_N['live'] += 1; _wsave(i, jt, feats)
                     except Exception as e:  # noqa: BLE001
@@ -813,6 +816,7 @@ def nhd_water(box, rivers_only=False):
                         if NHD_DOWN['fails'] >= 2:   # Oct 27 KY run: 504s cost ~9 min a tile and pass 1 ran out of time after 28 pairs
                             NHD_DOWN['until'] = time.time() + 600; NHD_DOWN['fails'] = 0; NHD_DOWN['pauses'] += 1
                         if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
+                sv = None
                 if feats is None:
                     sv = _wload(i, jt)
                     # Oct 28 (HQ 12:28 PM, Michigan: 39 rows 'water not checked'): no saved copy of this tile = ask the live map again
@@ -2192,7 +2196,9 @@ def water_date(s):
     """Rule 13: a spot whose water came from the saved copy says so, with that copy's date."""
     if WATER_MARK:
         m = min(WATER_MARK)
-        s.setdefault('map_dates', {})['USGS water'] = (m.replace('USGS NHD (second service) ', 'USGS NHD second service, read ') + ' (the main USGS water map did not answer)') if m.startswith('USGS NHD (second') else ('saved copy of ' + m + ' (the live map did not answer)')
+        s.setdefault('map_dates', {})['USGS water'] = ((m.replace('USGS NHD (second service) ', 'USGS NHD second service, read ') + ' (the main USGS water map did not answer)') if m.startswith('USGS NHD (second')
+                                                       else (m + ' (the same NHDPlus HR water, from USGS\'s download files)') if m.startswith('USGS NHDPlus HR file')
+                                                       else ('saved copy of ' + m + ' (the live map did not answer)'))
         WATER_MARK.clear()
     elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
 
