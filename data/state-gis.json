@@ -1005,6 +1005,26 @@
     "note": "outside research bot round 2, tested 2026-10-25; matched 71 of 73",
     "where": "GNIS_Name IS NOT NULL AND FType IN (390,436)",
     "water": 1
+   },
+   {
+    "kind": "wild",
+    "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
+    "host": "agency",
+    "nm": "WildlifeAreaUnitName",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "218 wildlife area UNITS on WDFW's own server (HT-20)",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/0"
+   },
+   {
+    "kind": "wild",
+    "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
+    "host": "agency",
+    "nm": "WildlifeAreaName",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "33 wildlife areas on WDFW's own server (HT-20)",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/1"
    }
   ],
   "WI": [
