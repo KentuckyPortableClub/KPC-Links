@@ -1,0 +1,12 @@
+{
+ "about": "Chat 9 round 12 (HQ Oct 28 12:50 AM, chat 8's KPC_HistoricSites_desk.md): state historic-boundary sources after the National Register count: NC HPO shapefile (find the monthly zip, size, date, licence; NO licence stated per the desk = list it until the HPO says yes, ruling Q6), Tennessee's own National Register polygons, Kentucky's National Register Landmarks (points or polygons?). Plus round 9 leftovers: Upper Thames conservation authority layer (OGL-Ontario), PEI provincial park polygons' fields. NPS units use NPS boundaries first. Results: round12-tested.json.",
+ "layers": [
+  {"st": "TN", "kind": "historic", "ag": "TN Historical Commission (state National Register)", "url": "https://tnmap.tn.gov/arcgis/rest/services/HISTORICAL/NATIONAL_REGISTER_TN/MapServer", "note": "layer 2 = boundaries"},
+  {"st": "KY", "kind": "historic", "ag": "KY DGI / Heritage Council", "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_National_Register_Landmarks_WGS84WM/MapServer", "note": "points or polygons?"},
+  {"st": "ON", "kind": "land", "ag": "Upper Thames River Conservation Authority", "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Upper_Thames_River_Conservation_Authority/FeatureServer", "note": "r9: OGL-Ontario; layer id + name field"},
+  {"st": "PE", "kind": "park", "ag": "Government of PEI", "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_provincial_park_polygon_ENV/MapServer/0", "note": "r9: 46 polygons, no name field found: list all fields"}
+ ],
+ "pages": [
+  {"st": "NC", "url": "https://www.hpo.nc.gov/gis-maps-and-data", "look": "licen|terms|use|disclaim|shapefile|zip|updated|NCHPO", "note": "NC HPO: the monthly zip address + any terms"}
+ ]
+}
