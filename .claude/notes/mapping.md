@@ -544,3 +544,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - **Oct 28 9:19 AM (Brandon, GO):** 2-fer line results go on the MEMBERS-ONLY Overlap Finder as BETA: KY + OH now, then every area chat 8 marks READY (chat 3, batched). Public = a separate GO later.
 - Oct 28 10:05 AM (chat 8): CAMP & ACTIVATE KENTUCKY computed -> KPC_CampActivate_KY_desk.md (2 activate-both: Twin Knobs, Great Meadows; Zilpo check first; 20 campgrounds have no point; 0 line-park rows).
 - Oct 28 12:40 PM (chat 8): US-MI 2-fer grade-me = NOT READY (39 rows 'water not checked': USGS water map did not answer; bot wrongly wrote READY). OH bot line = READY.
+- Oct 28 5:50 PM (chat 8): US-MI 2-fer line regraded READY (120 live / 20 not sure). River-corridor shape check: look at Manistee WSR x Manistee River SGL (5.8 km straight edge) and Black River WSR x Ottawa NF (9.6 km edge) on the satellite map.
