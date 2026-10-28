@@ -42,3 +42,4 @@ Six files here (ON QC NB NS PE NL). Read only; nothing changed. Grades: A opened
 
 ## What is solid, what is not
 Solid (A): QC register fields/licence/dates, Parks Canada places licence, NHN licence and links, NB parks licence, NL file terms, NS PAS description, ON park service description. Not solid: CPCAD licence (not stated), ON licence on the AGOL service, NS licence terms, PE (no layer found), most 2-fer predictions (B/C).
+- 2026-10-27 (desk, Round 4): QC/ON/NB/NS holes sorted (never / pin / mismatch / real layer); about 190 of 1,077 need a layer: ON conservation-authority lands (~87), NS provincial parks (38), NB nature preserves (~25). See KPC_BigHoles_desk.md 'ROUND 4'.

@@ -158,3 +158,49 @@ Rule check (house rules): trails, rivers and byways are LINES (100-ft rule); BLM
 | 20 | https://catalog.data.gov/dataset/oregon-national-historic-trail (and California, Pony Express, Lewis and Clark, Nez Perce, Old Spanish, Mormon Pioneer) | the REST/download link of the NPS trail line layer; licence |
 | 21 | https://gis.blm.gov/utarcgis/rest/services/NLCS/BLM_UT_WSR/MapServer | Utah's own WSR layer if the national one lacks UT segments |
 Nothing was loaded or changed by the desk.
+
+---
+# ROUND 4: Canada's holes, QC / ON / NB / NS first (desk, Oct 27 2026 night, read only)
+Counts are from the Canada key (A), sorted by POTA type and reading the names of the unmatched parks (A for counts, C for my reading of what each name is). Municipal = never (house rule); historic = pin only (ruled). Full table in KPC_Scoreboard_NA.csv.
+
+## R4-1 What the holes really are
+| Prov | No outline | Municipal / regional (never) | Historic / heritage (pin) | Name mismatch (layer exists) | REAL missing layer |
+|---|---|---|---|---|---|
+| QC (839 parks) | 398 | 230 (143 "Regional Park", 87 "Recreation Park") + ~15 Montreal parks typed "Nature Reserve" (Champ de Mars, Dorchester Square, Oxford Park…) + 8 Montreal "Forest Reserve"/"Nature Park" | 96 (76 National Historic Sites, 20 historic) | ~15: Old-Growth / Rare Forest Ecosystem "Nature Reserves" (Lac à Jos, Lac Ancelin, Lac Hastel, Riviere Pikauba… = Québec "écosystèmes forestiers exceptionnels", which ARE in the register), Réserve naturelle de Pointe-Yamachiche, Banc-des-AmÃ©ricains (POTA's name is broken text: "AmÃ©ricains"), Migratory Bird Sanctuaries (federal CWS layer), 3 Biosphere reserves | ~4 **Zec** (zones d'exploitation contrôlée: Zec Normandie, Restigo, Nordique, Chapeau-de-Paille: Crown land run by non-profits; not protected areas, so not in the register) |
+| ON (1,158) | 255 | 6 "Recreation Park" | 94 (85 NHS, 5 historic, 4 heritage) | 15 "Conservation Reserve" (POTA adds the words "Conservation Reserve" after names that already say "Park" or "Complex"; the provincial layer is read, so spelling) + 9 Wilderness Areas (Abitibi Lake Narrows, Bat Cave, Fairy Point…: check the provincial layer) + 7 "National Park" that are National Capital Commission city sites (Major's Hill, LeBreton Flats, Confederation: pin) | **81 Conservation Areas + 6 "Management Areas"** (Beverly Swamp, Decew Falls, Tiffany Falls, Edenvale, Wawanosh, Glenorchy, Bognor Marsh, The Glen…): conservation authority lands, one layer per authority (36 authorities) |
+| NB (562) | 256 | 40 "Recreation Park" | 143 (74 NHS, 58 historic, 7 heritage, 4 provincial historic) | the 10 "Ecological Areas" and 5 "Protected Areas" (Bantalor, Martial Brook, McCoy Brook, Portage Lakes, Stony Brook) probably sit in GeoNB's Protected Natural Areas (B) | 15 "Nature Reserves" (Daly Point, Pagan Point, Sugar Island, Grindstone Island, Navy Island, James C. Yerxa, Rockwood Park (a Saint John city park), Hyla Park): mixed, provincial Nature Preserves + city reserves; 6 "Conservation Areas" (gardens, walkways: pin) |
+| NS (489) | 168 | 4 "Recreation Park" | 112 (66 NHS, 34 National Heritage Sites, 12 historic) | 1-2 | **38 Provincial Parks** (Lawrencetown Beach, Fort Point Lighthouse, Scots Bay, Sherbrooke, Trout Brook, MacCormack Beach, Rainbow Haven…): the Protected Areas System file holds only "selected" provincial parks |
+So of the 1,077 unmatched parks in these four provinces, about **620 are never/pin-only, about 50 are name mismatches, and about 190 need a layer** (ON ~87, NS 38, NB ~25, QC ~4 Zecs; the rest are the Montreal and city items).
+
+## R4-2 Layers found (what I opened)
+| Place | Layer | Address | Publisher, date, licence | Covers |
+|---|---|---|---|---|
+| QC | Registre des aires protégées et des AMCE (the key reads it) | https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer ; WMS https://geo.environnement.gouv.qc.ca/donnees/services/Biodiversite/Aires_protegees/MapServer/WMSServer ; record https://www.donneesquebec.ca/recherche/fr/dataset/f0250998-eac1-46a8-8e0c-d7278ae85506 | MELCCFP, data to 2026-03-31, metadata 2026-09-23, **CC-BY 4.0**, semi-annual (A) | réserve naturelle, réserve écologique, réserve de biodiversité, réserve aquatique, réserve nationale de faune, parc national, refuge faunique, refuge d'oiseaux migrateurs, habitat faunique, **écosystème forestier exceptionnel**, milieu naturel de conservation volontaire, AMCE. "Locations have no legal standing." **Regional parks are NOT in it.** Covers the ~15 forest-ecosystem and nature-reserve mismatches once names are matched without accents/English words |
+| ON | Conservation Authority Administrative Area (jurisdictions, NOT their lands) | https://data2.ontario.ca/dataset/conservation-authority-administrative-area ; https://services3.arcgis.com/KQcdsE7S72bcD7R8/ArcGIS/rest/services/LG_ConservationAuthority_Boundary_OpenData/FeatureServer | Ontario (OGL-Ontario) (A page, B licence) | the boundaries of the 36 authorities only: **no province-wide layer of their conservation areas exists** |
+| ON | Shared conservation-authority ArcGIS organisation d0ZCwU7eGKVeNiEE (hosts NPCA_Administrative_Boundary, NPCA_APPROXIMATE_REGULATION_LANDS, KRCA_RegulatedAreaBoundary, CA_Boundaries_Update_2023, NBMCA) | https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/ArcGIS/rest/services | several authorities (B) | regulation limits, not conservation-area parcels; walk the service list for "park / conservation area / property" |
+| ON | Hamilton Conservation Authority open data hub (B) | listed at https://library.mcmaster.ca/maps/geospatial/hamilton-conservation-authority-open-data-hub | HCA | Beverly Swamp, Tiffany Falls, Dundas Valley etc. (HCA lands) |
+| NB | Nature Legacy protected areas | https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/MapServer | NB Natural Resources and Energy Development, no licence shown (A) | **NOMINATED sites, not designated areas: do not use as park outlines** |
+| NB | Protected Natural Areas | https://donnees.iriu.ca/en/dataset/4c8566db-bf93-2bc9-13af-56c0a564761b (record) ; GeoNB catalogue https://www.gnb.ca/en/campaign/geonb.html (old page snb.ca/geonb1/e/DC/ProtectedA.asp now redirects) | GNB (B) | Protected Natural Areas: probably Martial Brook, McCoy Brook, Portage Lakes, Stony Brook, Bantalor |
+| NB | Provincial Parks (already in key) | https://www.gnb.ca/en/campaign/geonb/data-catalogue/provincial-parks.html | GNB, OGL-NB | |
+| NS | Protected Areas System (already in key): "selected" provincial parks only | https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=GeoJSON | NS Environment | |
+| NS | **No open Provincial Parks polygon layer found.** GeoNOVA's GeoData page (https://geonova.novascotia.ca/geodata) lists no parks layer; "Property boundaries and ownership" (NSPRD) is a paid/licensed product. Leads: NS Topographic Database "Delimiters (Poly Layer)" (https://open.canada.ca/data/en/dataset/256eb4dd-3319-876a-1f3e-3e23e889f546, B) and the Parks and Protected Areas Map Index (https://novascotia.ca/parksandprotectedareas/pdf/Parks-and-Protected-Areas-Map-Index-New-Designations-Dec_2015.pdf, B) | | | the 38 day-use beach and roadside parks |
+
+## R4-3 Verdict and order for chat 2
+1. **Do first, no new layer:** a name-clean retry for QC (strip accents, drop POTA's trailing words "Nature Reserve", "Old Growth Forest", fix the broken-text "AmÃ©ricains") and ON (drop the trailing "Conservation Reserve"). ~35 parks.
+2. **Never:** QC Regional/Recreation Parks, Montreal city parks typed as nature reserves, NB Recreation Parks, ON city sites: ~330.
+3. **Pin only:** historic and heritage: ~445.
+4. **Real layers still to find:** (a) Ontario conservation-authority lands (the biggest: ~87), per authority; (b) Nova Scotia provincial parks (38); (c) NB Nature Preserves / Protected Natural Areas (~25); (d) Québec Zecs (4, pin is enough).
+
+## R4-4 BOT LOOK-UP (Round 4)
+| # | URL | What to check |
+|---|-----|---------------|
+| 22 | https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer?f=pjson | layer list; does an "écosystème forestier exceptionnel" layer exist and do names like "Lac à Jos" match POTA "Lac a Jos Old Growth Forest" |
+| 23 | https://www.donneesquebec.ca/recherche/fr/dataset?q=zec (and "zone d'exploitation contrôlée") | a MELCCFP / Forêt Québec Zec boundary layer + licence |
+| 24 | https://www.donneesquebec.ca/recherche/fr/dataset?q=parc+régional | whether any regional park layer exists (only needed if Q7 in the rulings list is answered "no, include") |
+| 25 | https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/ArcGIS/rest/services?f=json | list every service; look for conservation-area parcels / "Parks" / "Properties" (NPCA, HCA, GRCA, CH, TRCA, NVCA, Grey Sauble) |
+| 26 | https://data.ontario.ca/dataset?q=conservation+authority+lands and https://geohub.lio.gov.on.ca (search "conservation area") | a province-wide CA-lands layer (none known) |
+| 27 | https://data2.ontario.ca/dataset/conservation-reserve-land and the Wilderness Areas layer (search "wilderness area" on GeoHub) | field names so POTA's names (Abitibi Lake Narrows, Bat Cave…) match |
+| 28 | https://www.gnb.ca/en/campaign/geonb/data-catalogue.html (Protected Natural Areas; Nature Preserves; Ecological areas) | designated vs nominated; service URL; licence |
+| 29 | https://data.novascotia.ca (search "provincial park", "Crown land", "parks") ; https://nsgi.novascotia.ca/datalocator/ | a parks layer or a Crown Land layer with a "Provincial Park" class; licence |
+| 30 | https://open.canada.ca/data/en/dataset/256eb4dd-3319-876a-1f3e-3e23e889f546 | does the NS Topographic Database "Delimiters" polygon layer contain parks |
+Nothing was loaded or changed by the desk.

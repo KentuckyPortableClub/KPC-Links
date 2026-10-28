@@ -1,0 +1,837 @@
+step,country,park_type,total,with_outline,without_outline,pin_only,line_type,likely_name_mismatch,no_layer_found
+W1,GB,Nature Reserve,1558,955,603,0,0,204,399
+W1,GB,Site of Significant Scientific Interest,1356,1288,68,0,0,57,11
+W1,GB,Park,1184,40,1144,1144,0,0,0
+W1,GB,Country Park,803,404,399,0,0,87,312
+W1,GB,National Scenic Trail,367,8,359,0,359,0,0
+W1,GB,National Nature Reserve,314,285,29,0,0,23,6
+W1,GB,Reserve,191,4,187,0,0,56,131
+W1,GB,RSPB Reserve,149,55,94,0,0,49,45
+W1,GB,Scenic Site,136,8,128,128,0,0,0
+W1,GB,Protected Area,119,89,30,0,0,24,6
+W1,GB,Historic Site,99,0,99,99,0,0,0
+W1,GB,Scenic Reserve,99,1,98,98,0,0,0
+W1,GB,Forest Reserve,92,1,91,0,0,17,74
+W1,GB,National Park,69,23,46,0,0,7,39
+W1,GB,Conservation Area,54,27,27,0,0,20,7
+W1,GB,Recreation Park,49,0,49,49,0,0,0
+W1,GB,Park Reserve,37,1,36,0,0,6,30
+W1,GB,National Landscape,36,34,2,0,0,1,1
+W1,GB,Wildlife Reserve,32,5,27,0,0,8,19
+W1,GB,Conservation Reserve,31,16,15,0,0,13,2
+W1,GB,Nature Park,27,7,20,0,0,3,17
+W1,GB,National Recreation Trail,27,1,26,0,26,0,0
+W1,GB,National Historic Trail,24,2,22,0,22,0,0
+W1,GB,Coastal Park,21,3,18,18,0,0,0
+W1,GB,Area of Outstanding Natural Beauty,18,2,16,0,0,6,10
+W1,GB,Wetland Reserve,18,1,17,0,0,4,13
+W1,GB,Ramsar Site,17,17,0,0,0,0,0
+W1,GB,National Monument,15,0,15,15,0,0,0
+W1,GB,Geopark,12,0,12,12,0,0,0
+W1,GB,National Forest,11,0,11,0,0,0,11
+W1,GB,Wildlife Area,11,1,10,0,0,1,9
+W1,GB,National Historic Site,10,0,10,10,0,0,0
+W1,GB,Historical Reserve,9,0,9,9,0,0,0
+W1,GB,World Heritage Site,7,0,7,7,0,0,0
+W1,GB,Botanical Gardens,6,0,6,6,0,0,0
+W1,GB,National Historical Site,5,0,5,5,0,0,0
+W1,GB,National Reserve,5,2,3,0,0,0,3
+W1,GB,National Heritage Site,5,1,4,4,0,0,0
+W1,GB,Biosphere Reserve,4,1,3,0,0,2,1
+W1,GB,Regional Park,4,3,1,0,0,0,1
+W1,GB,Recreation Site,4,0,4,4,0,0,0
+W1,GB,Biological Reserve,4,0,4,0,0,1,3
+W1,GB,Conservation Park,3,0,3,0,0,0,3
+W1,GB,Archeological Reserve,3,0,3,3,0,0,0
+W1,GB,Landscape Park,3,0,3,0,0,0,3
+W1,GB,Royal Forest,2,1,1,0,0,0,1
+W1,GB,Nature Recreation Area,2,0,2,0,0,1,1
+W1,GB,Ecological Park,2,0,2,0,0,0,2
+W1,GB,State Trail,2,0,2,0,2,0,0
+W1,GB,Landscape Reserve,2,0,2,0,0,0,2
+W1,GB,Natural Area,1,1,0,0,0,0,0
+W1,GB,Provincial Park,1,0,1,0,0,1,0
+W1,GB,County Showground,1,0,1,0,0,0,1
+W1,GB,Marine National Park,1,0,1,0,0,0,1
+W1,GB,Wildlife Management Area,1,0,1,0,0,0,1
+W1,GB,National Conservation Area,1,0,1,0,0,0,1
+W1,GB,National Lakeshore,1,0,1,0,0,0,1
+W1,GB,Mountain Park,1,0,1,0,0,0,1
+W1,GB,Natura 2000,1,1,0,0,0,0,0
+W1,GB,Water Management Area,1,0,1,1,0,0,0
+W1,GB,State Forest Park,1,0,1,0,0,0,1
+W1,GB,Flora and Fauna Reserve,1,0,1,0,0,1,0
+W1,GB,State Fishing Lake,1,0,1,0,0,0,1
+W1,GB,Nature Conservation Reserve,1,0,1,0,0,0,1
+W1,GB,Wilderness Area,1,0,1,0,0,0,1
+W1,GB,Wildlife Refuge,1,0,1,0,0,0,1
+W2,AU,Reserve,2286,1765,521,0,0,360,161
+W2,AU,State Forest,1343,852,491,0,0,92,399
+W2,AU,State Beach,1231,5,1226,1226,0,0,0
+W2,AU,Nature Reserve,954,911,43,0,0,22,21
+W2,AU,National Park,749,719,30,0,0,11,19
+W2,AU,Nature Park,474,472,2,0,0,0,2
+W2,AU,Conservation Area,450,381,69,0,0,25,44
+W2,AU,National Wild and Scenic River,354,5,349,0,349,0,0
+W2,AU,Conservation Park,272,265,7,0,0,5,2
+W2,AU,Nature Conservation Reserve,242,240,2,0,0,2,0
+W2,AU,Wildlife Reserve,215,212,3,0,0,2,1
+W2,AU,Flora Reserve,204,200,4,0,0,3,1
+W2,AU,State Conservation Area,150,150,0,0,0,0,0
+W2,AU,Regional Reserve,145,145,0,0,0,0,0
+W2,AU,State Heritage Area,87,1,86,86,0,0,0
+W2,AU,Flora and Fauna Reserve,75,73,2,0,0,0,2
+W2,AU,State Reserve,67,65,2,0,0,1,1
+W2,AU,State Trail,67,0,67,0,67,0,0
+W2,AU,Nature Refuge,65,65,0,0,0,0,0
+W2,AU,Park,62,8,54,54,0,0,0
+W2,AU,Historic Site,61,29,32,32,0,0,0
+W2,AU,Resources Area,60,59,1,0,0,1,0
+W2,AU,Conservation Reserve,59,45,14,0,0,8,6
+W2,AU,Regional Park,54,29,25,0,0,5,20
+W2,AU,Natural Features Reserve,49,27,22,0,0,22,0
+W2,AU,Water Management Area,46,1,45,45,0,0,0
+W2,AU,Forest Reserve,45,31,14,0,0,4,10
+W2,AU,Nature Recreation Area,38,38,0,0,0,0,0
+W2,AU,Scenic Reserve,29,22,7,7,0,0,0
+W2,AU,Marine Park,28,7,21,21,0,0,0
+W2,AU,Aboriginal Area,26,21,5,0,0,0,5
+W2,AU,State Park,25,25,0,0,0,0,0
+W2,AU,National Heritage Site,23,0,23,23,0,0,0
+W2,AU,National Park Aboriginal,22,15,7,0,0,7,0
+W2,AU,Natural Area,21,1,20,0,0,20,0
+W2,AU,Wilderness Zone,20,19,1,0,0,1,0
+W2,AU,Historical Reserve,18,12,6,6,0,0,0
+W2,AU,State Historic Site,15,0,15,15,0,0,0
+W2,AU,Marine National Park,13,4,9,0,0,0,9
+W2,AU,Aquatic Reserve,12,1,11,0,0,1,10
+W2,AU,State Natural Reserve,11,0,11,0,0,9,2
+W2,AU,Indigenous Protected Area,11,11,0,0,0,0,0
+W2,AU,Game Reserve,11,11,0,0,0,0,0
+W2,AU,Coastal Park,9,8,1,1,0,0,0
+W2,AU,Habitat Protection Area,9,0,9,0,0,1,8
+W2,AU,State Nature Preserve,7,1,6,0,0,5,1
+W2,AU,Other Conservation Area,6,6,0,0,0,0,0
+W2,AU,5(1)(g) Reserve,4,4,0,0,0,0,0
+W2,AU,National Historic Site,4,0,4,4,0,0,0
+W2,AU,Botanical Gardens,4,2,2,2,0,0,0
+W2,AU,Karst Conservation Reserve,4,4,0,0,0,0,0
+W2,AU,NRS Addition - Gazettal in Progress,4,1,3,0,0,3,0
+W2,AU,Wilderness Park,3,3,0,0,0,0,0
+W2,AU,Coastal & Marine Park,3,0,3,3,0,0,0
+W2,AU,National Scenic Trail,3,0,3,0,3,0,0
+W2,AU,State Historical Monument,3,0,3,3,0,0,0
+W2,AU,Management Area,3,1,2,0,0,2,0
+W2,AU,Marine Reserve,3,0,3,0,0,1,2
+W2,AU,National Heritage Area,2,0,2,2,0,0,0
+W2,AU,Sanctuary,2,1,1,0,0,1,0
+W2,AU,Wetland Reserve,2,1,1,0,0,0,1
+W2,AU,Country Park,1,0,1,0,0,0,1
+W2,AU,National Historic Trail,1,0,1,0,1,0,0
+W2,AU,Ramsar Site,1,0,1,0,0,1,0
+W2,AU,Permanent Park Preserve,1,1,0,0,0,0,0
+W2,AU,Commonwealth Marine Reserve,1,0,1,0,0,0,1
+W2,AU,Private Sanctuary,1,1,0,0,0,0,0
+W2,AU,Protected Area,1,1,0,0,0,0,0
+W2,AU,Recreation Site,1,0,1,1,0,0,0
+W3,JP,Prefectural Park,789,43,746,746,0,0,0
+W3,JP,Prefectural Nature Park,306,90,216,0,0,0,216
+W3,JP,Quasi-National Park,58,16,42,42,0,0,0
+W3,JP,National Park,36,34,2,0,0,0,2
+W3,JP,National Government Park,21,0,21,0,0,0,21
+W3,JP,Prefectural Forest,4,1,3,0,0,0,3
+W3,JP,Provincial Park,2,1,1,0,0,0,1
+W3,JP,Park,1,0,1,1,0,0,0
+W4,DE,Recreation Park,182,20,162,162,0,0,0
+W4,DE,Nature Reserve,175,157,18,0,0,17,1
+W4,DE,Flora and Fauna Reserve,156,156,0,0,0,0,0
+W4,DE,Nature Park,112,106,6,0,0,4,2
+W4,DE,Natura 2000,95,92,3,0,0,3,0
+W4,DE,National Historic Trail,61,0,61,0,61,0,0
+W4,DE,National Nature Reserve,41,36,5,0,0,5,0
+W4,DE,Bird Sanctuary,39,38,1,0,0,1,0
+W4,DE,National Recreation Trail,37,2,35,0,35,0,0
+W4,DE,Provincial Recreation Area,35,4,31,0,0,13,18
+W4,DE,National Recreation Area,33,4,29,0,0,20,9
+W4,DE,Landscape Park,29,2,27,0,0,11,16
+W4,DE,Historic Site,28,1,27,27,0,0,0
+W4,DE,National Historical Park,27,2,25,25,0,0,0
+W4,DE,State Trail,24,0,24,0,24,0,0
+W4,DE,National Park,23,22,1,0,0,1,0
+W4,DE,Landscape Reserve,21,7,14,0,0,13,1
+W4,DE,Recreation Site,16,2,14,14,0,0,0
+W4,DE,National Scenic Trail,12,0,12,0,12,0,0
+W4,DE,Park,11,0,11,11,0,0,0
+W4,DE,Biosphere Reserve,10,9,1,0,0,1,0
+W4,DE,Nature Recreation Area,8,0,8,0,0,5,3
+W4,DE,Provincial Park,6,1,5,0,0,4,1
+W4,DE,Botanical Gardens,6,0,6,6,0,0,0
+W4,DE,UNESCO Biosphere Reserve,5,5,0,0,0,0,0
+W4,DE,National Historic Site,5,0,5,5,0,0,0
+W4,DE,World Heritage Site,5,0,5,5,0,0,0
+W4,DE,Historical Reserve,4,2,2,2,0,0,0
+W4,DE,State Forest Park,4,0,4,0,0,3,1
+W4,DE,Provincial Park Reserve,4,2,2,0,0,1,1
+W4,DE,Forest Reserve,4,2,2,0,0,2,0
+W4,DE,UNESCO Geopark,3,0,3,3,0,0,0
+W4,DE,Regional Park,3,0,3,0,0,2,1
+W4,DE,Nature Recreation Reserve,3,1,2,0,0,2,0
+W4,DE,National Forest,3,1,2,0,0,2,0
+W4,DE,National Historical Site,3,0,3,3,0,0,0
+W4,DE,National Geologic Trail,3,0,3,0,3,0,0
+W4,DE,Provincial Nature Reserve,3,1,2,0,0,2,0
+W4,DE,Habitat Protection Area,2,1,1,0,0,1,0
+W4,DE,State Park,2,0,2,0,0,2,0
+W4,DE,State Forest,2,0,2,0,0,2,0
+W4,DE,Geopark,2,0,2,2,0,0,0
+W4,DE,State Historical Park,2,0,2,2,0,0,0
+W4,DE,Nature Reserve Wilderness Area,1,1,0,0,0,0,0
+W4,DE,Wilderness Protection Area,1,0,1,0,0,1,0
+W4,DE,Aquatic Reserve,1,1,0,0,0,0,0
+W4,DE,Nature Conservation Reserve,1,0,1,0,0,1,0
+W4,DE,Regional Reserve,1,0,1,0,0,0,1
+W4,DE,Mountain Park,1,0,1,0,0,1,0
+W4,DE,National Military Park,1,1,0,0,0,0,0
+W4,DE,State Wildlife Area,1,1,0,0,0,0,0
+W4,DE,Wildlife Area,1,0,1,0,0,1,0
+W4,DE,National Conservation Area,1,1,0,0,0,0,0
+W4,DE,Wildlife Reserve,1,1,0,0,0,0,0
+W4,DE,National Heritage Site,1,0,1,1,0,0,0
+W4,DE,Natural Monument,1,0,1,1,0,0,0
+W4,DE,Wildlife Management Area,1,0,1,0,0,1,0
+W4,DE,State Recreation Area,1,0,1,0,0,0,1
+W4,DE,National Wildlife Area,1,1,0,0,0,0,0
+W5,PL,Nature Reserve,1359,1347,12,0,0,10,2
+W5,PL,Natura 2000,834,832,2,0,0,2,0
+W5,PL,Protected Landscape Area,362,333,29,0,0,28,1
+W5,PL,Nature and Landscape Complex,246,33,213,0,0,116,97
+W5,PL,Landscape Park,126,122,4,0,0,3,1
+W5,PL,Ecological Site,25,0,25,25,0,0,0
+W5,PL,National Park,23,23,0,0,0,0,0
+W5,PL,Natural Monument,5,0,5,5,0,0,0
+W5,PL,Landscape Reserve,1,1,0,0,0,0,0
+W5,PL,Archeological Reserve,1,0,1,1,0,0,0
+W6,FR,Biological Reserve,11195,10787,408,0,0,321,87
+W6,FR,Natura 2000,1718,1681,37,0,0,36,1
+W6,FR,Conservation Area,406,89,317,0,0,237,80
+W6,FR,Recreation Park,365,13,352,352,0,0,0
+W6,FR,Conservation Park,208,176,32,0,0,30,2
+W6,FR,National Nature Reserve,104,94,10,0,0,10,0
+W6,FR,Marine Conservation Area,85,42,43,0,0,39,4
+W6,FR,Regional Park,55,53,2,0,0,2,0
+W6,FR,National Park,51,49,2,0,0,1,1
+W6,FR,Provincial Park,39,23,16,0,0,15,1
+W6,FR,Regional Reserve,31,28,3,0,0,3,0
+W6,FR,Nature Reserve,25,16,9,0,0,8,1
+W6,FR,Biosphere Reserve,15,14,1,0,0,1,0
+W6,FR,State Nature Preserve,12,4,8,0,0,6,2
+W6,FR,Ramsar Site,9,5,4,0,0,3,1
+W6,FR,State Natural Reserve,9,4,5,0,0,5,0
+W6,FR,Flora and Fauna Reserve,5,3,2,0,0,2,0
+W6,FR,National Reserve,4,4,0,0,0,0,0
+W6,FR,Geopark,4,0,4,4,0,0,0
+W6,FR,Natural Area,4,4,0,0,0,0,0
+W6,FR,Nature Park,3,3,0,0,0,0,0
+W6,FR,Natural Features Reserve,3,3,0,0,0,0,0
+W6,FR,Park,2,1,1,1,0,0,0
+W6,FR,Archeological Reserve,2,0,2,2,0,0,0
+W6,FR,Recreation Site,1,0,1,1,0,0,0
+W6,FR,UNESCO Biosphere Reserve,1,0,1,0,0,1,0
+W6,FR,Ecological Site,1,0,1,1,0,0,0
+W6,FR,National Park Reserve,1,1,0,0,0,0,0
+W6,FR,Flora Reserve,1,1,0,0,0,0,0
+W6,FR,National Preserve,1,1,0,0,0,0,0
+W6,FR,Marine Protected Area,1,0,1,0,0,0,1
+W6,FR,National Ecological Reserve,1,0,1,0,0,0,1
+W6,FR,Ecological Reserve,1,1,0,0,0,0,0
+W6,FR,Forest Reserve,1,1,0,0,0,0,0
+W6,FR,Other Conservation Area,1,0,1,0,0,1,0
+W6,FR,Protected Landscape,1,0,1,0,0,0,1
+W6,FR,Coastal Park,1,1,0,0,0,0,0
+W7,ES,Natura 2000,1461,1439,22,0,0,13,9
+W7,ES,Wetland Reserve,220,20,200,0,0,114,86
+W7,ES,Nature Park,136,87,49,0,0,46,3
+W7,ES,National Recreation Trail,133,5,128,0,128,0,0
+W7,ES,Nature Reserve,99,84,15,0,0,14,1
+W7,ES,National Park,59,44,15,0,0,13,2
+W7,ES,Biosphere Reserve,53,16,37,0,0,29,8
+W7,ES,World Heritage Site,43,1,42,42,0,0,0
+W7,ES,State Trail,36,0,36,0,36,0,0
+W7,ES,Natural Monument,29,20,9,9,0,0,0
+W7,ES,National Historic Trail,28,1,27,0,27,0,0
+W7,ES,Nature and Landscape Complex,25,12,13,0,0,13,0
+W7,ES,National Historic Site,25,1,24,24,0,0,0
+W7,ES,Regional Park,17,11,6,0,0,1,5
+W7,ES,Wildlife Management Area,16,4,12,0,0,9,3
+W7,ES,Geopark,15,5,10,10,0,0,0
+W7,ES,Natural Area,12,4,8,0,0,6,2
+W7,ES,Protected Landscape,10,7,3,0,0,1,2
+W7,ES,Nature Monument,9,4,5,5,0,0,0
+W7,ES,Protected Area,8,8,0,0,0,0,0
+W7,ES,Archeological Reserve,5,0,5,5,0,0,0
+W7,ES,Wetland Management District,4,0,4,0,0,3,1
+W7,ES,National Scenic Trail,4,0,4,0,4,0,0
+W7,ES,Historic Site,4,0,4,4,0,0,0
+W7,ES,Metropolitan Protected Areas,3,0,3,0,0,2,1
+W7,ES,National Reserve,3,2,1,0,0,1,0
+W7,ES,National Recreation Area,3,0,3,0,0,0,3
+W7,ES,Recreation Park,3,0,3,3,0,0,0
+W7,ES,Coastal Park,3,0,3,3,0,0,0
+W7,ES,Landscape Reserve,2,2,0,0,0,0,0
+W7,ES,Forest Reserve,2,1,1,0,0,0,1
+W7,ES,Area of Outstanding Natural Beauty,2,1,1,0,0,1,0
+W7,ES,UNESCO Biosphere Reserve,2,0,2,0,0,1,1
+W7,ES,Ecological Park,2,1,1,0,0,1,0
+W7,ES,Protected Landscape Area,1,1,0,0,0,0,0
+W7,ES,Wildlife Area,1,1,0,0,0,0,0
+W7,ES,Regional Reserve,1,0,1,0,0,0,1
+W7,ES,Nature Recreation Area,1,1,0,0,0,0,0
+W7,ES,Ecological Reserve,1,1,0,0,0,0,0
+W7,ES,Flora and Fauna Reserve,1,1,0,0,0,0,0
+W7,ES,National Historical Site,1,1,0,0,0,0,0
+W7,ES,National Monument,1,1,0,0,0,0,0
+W7,ES,Historical Reserve,1,0,1,1,0,0,0
+W7,ES,Nature Conservation Reserve,1,0,1,0,0,1,0
+W7,ES,Management Area,1,0,1,0,0,0,1
+W7,ES,National Wildlife Management Area,1,0,1,0,0,1,0
+W7,ES,Wildlife Reserve,1,0,1,0,0,0,1
+W7,ES,Karst Conservation Reserve,1,0,1,0,0,0,1
+W7,ES,Sanctuary,1,0,1,0,0,0,1
+W7,ES,Ecological Area,1,0,1,0,0,0,1
+W7,ES,Scientific Reserve,1,1,0,0,0,0,0
+W7,ES,Water Management Area,1,0,1,1,0,0,0
+W7,ES,Park Reserve,1,1,0,0,0,0,0
+W7,ES,Site of Significant Scientific Interest,1,0,1,0,0,1,0
+W7,ES,Coastal & Marine Park,1,0,1,1,0,0,0
+W8,IT,Natura 2000,1712,1706,6,0,0,6,0
+W8,IT,Other Conservation Area,144,30,114,0,0,38,76
+W8,IT,Provincial Park,72,38,34,0,0,24,10
+W8,IT,Regional Park,43,35,8,0,0,2,6
+W8,IT,Natural Monument,37,26,11,11,0,0,0
+W8,IT,Regional Reserve,37,28,9,0,0,6,3
+W8,IT,State Natural Reserve,30,9,21,0,0,17,4
+W8,IT,National Park,23,12,11,0,0,11,0
+W8,IT,Nature Reserve,21,16,5,0,0,4,1
+W8,IT,World Heritage Site,10,2,8,8,0,0,0
+W8,IT,Protected Area,7,1,6,0,0,4,2
+W8,IT,Marine Protected Area,6,6,0,0,0,0,0
+W8,IT,Provincial Park Reserve,6,3,3,0,0,3,0
+W8,IT,Nature Park,6,5,1,0,0,1,0
+W8,IT,State Reserve,3,1,2,0,0,2,0
+W8,IT,Wetland Reserve,2,0,2,0,0,0,2
+W8,IT,Wilderness Area,2,0,2,0,0,2,0
+W8,IT,Historic Site,1,0,1,1,0,0,0
+W8,IT,Territorial Park,1,0,1,0,0,1,0
+W8,IT,Wildlife Area,1,0,1,0,0,1,0
+W8,IT,Nature Monument,1,1,0,0,0,0,0
+W8,IT,Recreation Site,1,0,1,1,0,0,0
+W8,IT,Nature Recreation Area,1,0,1,0,0,0,1
+W9,NO,Nature Reserve,2673,2661,12,0,0,7,5
+W9,NO,Landscape Reserve,166,165,1,0,0,0,1
+W9,NO,National Recreation Area,159,0,159,0,0,17,142
+W9,NO,National Wildlife Area,104,89,15,0,0,15,0
+W9,NO,National Park,43,41,2,0,0,1,1
+W9,NO,Park,39,0,39,39,0,0,0
+W9,NO,Biosphere Reserve,33,32,1,0,0,1,0
+W9,NO,National Ecological Reserve,18,17,1,0,0,1,0
+W9,NO,Marine Protected Area,17,15,2,0,0,2,0
+W9,NO,National Military Park,14,0,14,0,0,0,14
+W9,NO,Nature Recreation Area,10,0,10,0,0,0,10
+W9,NO,Flora Reserve,10,5,5,0,0,5,0
+W9,NO,Nature Monument,9,7,2,2,0,0,0
+W9,NO,National Recreation Trail,8,0,8,0,8,0,0
+W9,NO,Flora and Fauna Reserve,8,7,1,0,0,1,0
+W9,NO,Recreation Park,6,0,6,6,0,0,0
+W9,NO,State Forest,4,0,4,0,0,0,4
+W9,NO,Bird Sanctuary,2,2,0,0,0,0,0
+W9,NO,Historic Site,2,0,2,2,0,0,0
+W9,NO,National Historical Park,1,0,1,1,0,0,0
+W9,NO,Reserve,1,1,0,0,0,0,0
+W9,NO,Other Conservation Area,1,0,1,0,0,1,0
+W9,NO,Wildlife Reserve,1,0,1,0,0,1,0
+W9,NO,Habitat Protection Area,1,1,0,0,0,0,0
+W9,NO,National Monument,1,0,1,1,0,0,0
+W9,NO,National Marine Area,1,0,1,0,0,0,1
+W9,NO,Geopark,1,0,1,1,0,0,0
+W9,NO,National Reserve,1,1,0,0,0,0,0
+W9,NO,Natural Area,1,0,1,0,0,0,1
+W9,NO,National Historic Site,1,0,1,1,0,0,0
+W9,NO,Landscape Park,1,0,1,0,0,0,1
+W10,NL,Provincial Park,104,38,66,0,0,44,22
+W10,NL,Park,73,8,65,65,0,0,0
+W10,NL,National Park,37,19,18,0,0,15,3
+W10,NL,Natura 2000,35,14,21,0,0,13,8
+W10,NL,Landscape Park,12,0,12,0,0,4,8
+W10,NL,Nature Park,11,0,11,0,0,8,3
+W10,NL,Nature Reserve,7,0,7,0,0,6,1
+W10,NL,World Heritage Site,6,0,6,6,0,0,0
+W10,NL,Historic Site,5,1,4,4,0,0,0
+W10,NL,Recreation Park,4,0,4,4,0,0,0
+W10,NL,National Recreation Trail,3,0,3,0,3,0,0
+W10,NL,Marine Protected Area,2,0,2,0,0,2,0
+W10,NL,Provincial Nature Reserve,2,0,2,0,0,2,0
+W10,NL,Scenic Site,2,0,2,2,0,0,0
+W10,NL,UNESCO Geopark,2,0,2,2,0,0,0
+W10,NL,Coastal Park,1,1,0,0,0,0,0
+W10,NL,State Harbor,1,0,1,0,0,0,1
+W10,NL,Marine Park,1,0,1,1,0,0,0
+W10,NL,National Reserve,1,0,1,0,0,0,1
+W10,NL,Wetland Reserve,1,0,1,0,0,1,0
+W10,NL,Nature and Landscape Complex,1,0,1,0,0,0,1
+W10,NL,State Forest,1,0,1,0,0,1,0
+W11,CH,Natural Monument,151,150,1,1,0,0,0
+W11,CH,Nature Reserve,38,31,7,0,0,2,5
+W11,CH,Wetland Reserve,21,16,5,0,0,4,1
+W11,CH,Forest Reserve,20,17,3,0,0,2,1
+W11,CH,Nature Park,16,5,11,0,0,5,6
+W11,CH,Ramsar Site,11,11,0,0,0,0,0
+W11,CH,World Heritage Site,9,2,7,7,0,0,0
+W11,CH,Game Reserve,9,8,1,0,0,1,0
+W11,CH,National Scenic Trail,8,0,8,0,8,0,0
+W11,CH,Flora and Fauna Reserve,7,7,0,0,0,0,0
+W11,CH,Park,5,0,5,5,0,0,0
+W11,CH,Protected Area,3,3,0,0,0,0,0
+W11,CH,Wildlife Reserve,3,0,3,0,0,1,2
+W11,CH,Biosphere Reserve,2,0,2,0,0,0,2
+W11,CH,Conservation Area,2,2,0,0,0,0,0
+W11,CH,Aquatic Reserve,2,2,0,0,0,0,0
+W11,CH,Biological Reserve,2,2,0,0,0,0,0
+W11,CH,National Monument,2,1,1,1,0,0,0
+W11,CH,National Park,1,1,0,0,0,0,0
+W11,CH,Wilderness Park,1,0,1,0,0,1,0
+W11,CH,Landscape Park,1,0,1,0,0,1,0
+W11,CH,Mountain Park,1,1,0,0,0,0,0
+W11,CH,Regional Reserve,1,1,0,0,0,0,0
+W11,CH,Historic Site,1,0,1,1,0,0,0
+W11,CH,National Conservation Area,1,1,0,0,0,0,0
+W11,CH,Wildlife Refuge,1,0,1,0,0,0,1
+W12,PT,Natura 2000,83,73,10,0,0,7,3
+W12,PT,Protected Area,81,40,41,0,0,33,8
+W12,PT,Forest Reserve,59,2,57,0,0,26,31
+W12,PT,Nature Reserve,40,37,3,0,0,2,1
+W12,PT,Nature Park,32,18,14,0,0,7,7
+W12,PT,Protected Landscape,31,28,3,0,0,1,2
+W12,PT,National Forest,27,3,24,0,0,11,13
+W12,PT,National Park,16,0,16,0,0,4,12
+W12,PT,Marine Reserve,13,5,8,0,0,4,4
+W12,PT,Natural Monument,10,9,1,1,0,0,0
+W12,PT,Nature Monument,4,2,2,2,0,0,0
+W12,PT,Protected Landscape Area,3,1,2,0,0,2,0
+W12,PT,Marine Protected Area,2,1,1,0,0,1,0
+W12,PT,Geopark,2,1,1,1,0,0,0
+W12,PT,Biosphere Reserve,2,1,1,0,0,1,0
+W12,PT,National Reserve,1,1,0,0,0,0,0
+W12,PT,UNESCO Biosphere Reserve,1,0,1,0,0,1,0
+W12,PT,Marine Park,1,1,0,0,0,0,0
+W12,PT,Reserve,1,0,1,0,0,1,0
+W12,PT,Natural Area,1,0,1,0,0,0,1
+W13,RO,Historic Site,191,3,188,188,0,0,0
+W13,RO,Park,156,3,153,153,0,0,0
+W13,RO,Natural Area,138,10,128,0,0,45,83
+W13,RO,Protected Area,86,56,30,0,0,23,7
+W13,RO,Natura 2000,77,63,14,0,0,12,2
+W13,RO,Recreation Park,73,2,71,71,0,0,0
+W13,RO,Recreation Site,62,2,60,60,0,0,0
+W13,RO,National Recreation Trail,59,5,54,0,54,0,0
+W13,RO,National Park,55,30,25,0,0,16,9
+W13,RO,Nature Reserve,43,29,14,0,0,10,4
+W13,RO,Area of Outstanding Natural Beauty,42,3,39,0,0,27,12
+W13,RO,Forest Reserve,33,25,8,0,0,1,7
+W13,RO,National Scenic Trail,23,4,19,0,19,0,0
+W13,RO,Nature Recreation Area,22,1,21,0,0,4,17
+W13,RO,Reserve,16,7,9,0,0,5,4
+W13,RO,Geopark,16,7,9,9,0,0,0
+W13,RO,National Forest,14,1,13,0,0,6,7
+W13,RO,National Lakeshore,14,3,11,0,0,5,6
+W13,RO,Nature and Landscape Complex,13,0,13,0,0,5,8
+W13,RO,National Memorial,12,0,12,12,0,0,0
+W13,RO,National Historic Site,12,0,12,12,0,0,0
+W13,RO,National Landscape,11,2,9,0,0,4,5
+W13,RO,National Recreation Area,11,1,10,0,0,7,3
+W13,RO,State Fishing Lake,10,0,10,0,0,7,3
+W13,RO,Habitat Protection Area,8,6,2,0,0,1,1
+W13,RO,Landscape Park,8,0,8,0,0,2,6
+W13,RO,Regional Reserve,8,6,2,0,0,1,1
+W13,RO,State Historical Monument,7,0,7,7,0,0,0
+W13,RO,Flora Reserve,6,2,4,0,0,2,2
+W13,RO,Nature Park,6,5,1,0,0,0,1
+W13,RO,National Nature Reserve,5,2,3,0,0,3,0
+W13,RO,Flora and Fauna Reserve,5,3,2,0,0,1,1
+W13,RO,Marine Park,5,3,2,2,0,0,0
+W13,RO,State Fish and Wildlife Area,5,0,5,0,0,5,0
+W13,RO,National Battlefield,4,0,4,0,0,1,3
+W13,RO,National Geologic Trail,4,2,2,0,2,0,0
+W13,RO,Biological Reserve,4,3,1,0,0,1,0
+W13,RO,Multiple Use Area,3,0,3,0,0,1,2
+W13,RO,Other Conservation Area,3,1,2,0,0,1,1
+W13,RO,State Forest,3,0,3,0,0,2,1
+W13,RO,Mountain Park,3,1,2,0,0,0,2
+W13,RO,National Historic Trail,3,0,3,0,3,0,0
+W13,RO,Aquatic Reserve,3,1,2,0,0,2,0
+W13,RO,Bird Sanctuary,3,2,1,0,0,1,0
+W13,RO,Botanical Gardens,2,0,2,2,0,0,0
+W13,RO,Country Park,2,0,2,0,0,0,2
+W13,RO,National Wild & Scenic River,2,1,1,0,0,0,1
+W13,RO,Landscape Reserve,2,0,2,0,0,2,0
+W13,RO,State Natural Reserve,2,1,1,0,0,1,0
+W13,RO,National Seashore,2,0,2,0,0,1,1
+W13,RO,Nature Recreation Reserve,2,0,2,0,0,0,2
+W13,RO,Nature Reserve Wilderness Area,2,1,1,0,0,1,0
+W13,RO,National Conservation Area,2,0,2,0,0,2,0
+W13,RO,State Historic Site,2,0,2,2,0,0,0
+W13,RO,Wildlife Reserve,1,1,0,0,0,0,0
+W13,RO,Ecological Reserve,1,1,0,0,0,0,0
+W13,RO,World Heritage Site,1,0,1,1,0,0,0
+W13,RO,Provincial Recreation Area,1,0,1,0,0,0,1
+W13,RO,Water Management Area,1,0,1,1,0,0,0
+W13,RO,UNESCO Geopark,1,0,1,1,0,0,0
+W13,RO,Natural Features Reserve,1,0,1,0,0,0,1
+W13,RO,State Natural Site,1,1,0,0,0,0,0
+W13,RO,Wildlife Area,1,0,1,0,0,0,1
+W13,RO,Scenic Reserve,1,1,0,0,0,0,0
+W13,RO,National Wildlife Area,1,0,1,0,0,1,0
+W13,RO,Biosphere Reserve,1,1,0,0,0,0,0
+W13,RO,Marine Protected Area,1,1,0,0,0,0,0
+W13,RO,Conservation Area,1,0,1,0,0,0,1
+W13,RO,Scenic Site,1,0,1,1,0,0,0
+W13,RO,Wildlife Refuge,1,0,1,0,0,1,0
+W13,RO,National Reserve,1,1,0,0,0,0,0
+W13,RO,Nature Refuge,1,0,1,0,0,1,0
+W13,RO,Management Area,1,0,1,0,0,1,0
+W13,RO,Natural Monument,1,0,1,1,0,0,0
+W13,RO,Scientific Reserve,1,0,1,0,0,1,0
+W13,RO,State Forest Park,1,0,1,0,0,1,0
+W13,RO,National Heritage Area,1,0,1,1,0,0,0
+W13,RO,National Monument,1,0,1,1,0,0,0
+W13,RO,State Recreation Site,1,0,1,1,0,0,0
+W13,RO,Nature Conservation Reserve,1,1,0,0,0,0,0
+W13,RO,Nature Monument,1,0,1,1,0,0,0
+W13,RO,State Historical Park,1,0,1,1,0,0,0
+W13,RO,Dolphin Sanctuary,1,0,1,0,0,1,0
+W14,AT,Nature Reserve,81,65,16,0,0,13,3
+W14,AT,Natura 2000,61,59,2,0,0,2,0
+W14,AT,Protected Area,49,36,13,0,0,10,3
+W14,AT,Landscape Reserve,35,30,5,0,0,5,0
+W14,AT,Park,34,2,32,32,0,0,0
+W14,AT,National Reserve,30,30,0,0,0,0,0
+W14,AT,Nature Conservation Reserve,16,15,1,0,0,1,0
+W14,AT,Historic Site,15,1,14,14,0,0,0
+W14,AT,National Park,13,11,2,0,0,1,1
+W14,AT,Recreation Park,12,1,11,11,0,0,0
+W14,AT,Nature Park,10,5,5,0,0,4,1
+W14,AT,Recreation Site,7,0,7,7,0,0,0
+W14,AT,Protected Landscape Area,6,5,1,0,0,1,0
+W14,AT,National Conservation Area,6,2,4,0,0,4,0
+W14,AT,County Showground,4,0,4,0,0,0,4
+W14,AT,Protected Landscape,4,4,0,0,0,0,0
+W14,AT,National Recreation Trail,4,0,4,0,4,0,0
+W14,AT,State Trail,4,0,4,0,4,0,0
+W14,AT,Flora and Fauna Reserve,4,3,1,0,0,1,0
+W14,AT,Nature Monument,3,0,3,3,0,0,0
+W14,AT,Scenic Site,3,0,3,3,0,0,0
+W14,AT,Country Park,2,0,2,0,0,0,2
+W14,AT,Bird Sanctuary,2,1,1,0,0,0,1
+W14,AT,National Scenic Trail,2,0,2,0,2,0,0
+W14,AT,State Harbor,1,0,1,0,0,1,0
+W14,AT,Sanctuary,1,0,1,0,0,0,1
+W14,AT,National Wildlife Refuge,1,0,1,0,0,0,1
+W14,AT,National Nature Reserve,1,1,0,0,0,0,0
+W14,AT,Natural Monument,1,0,1,1,0,0,0
+W14,AT,National Military Park,1,0,1,0,0,0,1
+W14,AT,UNESCO Biosphere Reserve,1,0,1,0,0,1,0
+W14,AT,Natural Area,1,0,1,0,0,0,1
+W14,AT,Other Conservation Area,1,0,1,0,0,1,0
+W14,AT,Nature Recreation Reserve,1,0,1,0,0,1,0
+W14,AT,UNESCO Geopark,1,1,0,0,0,0,0
+W14,AT,Flora Reserve,1,1,0,0,0,0,0
+W14,AT,Biosphere Reserve,1,0,1,0,0,1,0
+W15,SE,Nature Reserve,1208,1181,27,0,0,16,11
+W15,SE,Natura 2000,760,741,19,0,0,6,13
+W15,SE,Historic Site,75,2,73,73,0,0,0
+W15,SE,National Park,47,36,11,0,0,11,0
+W15,SE,National Heritage Area,37,9,28,28,0,0,0
+W15,SE,National Reserve,28,16,12,0,0,11,1
+W15,SE,State Trail,19,2,17,0,17,0,0
+W15,SE,Protected Landscape,18,14,4,0,0,4,0
+W15,SE,National Nature Reserve,12,10,2,0,0,1,1
+W15,SE,World Heritage Site,8,0,8,8,0,0,0
+W15,SE,Nature Conservation Reserve,4,3,1,0,0,1,0
+W15,SE,Nature Park,3,0,3,0,0,3,0
+W15,SE,National Park Reserve,1,1,0,0,0,0,0
+W15,SE,Natural Monument,1,0,1,1,0,0,0
+W15,SE,Wilderness Area,1,1,0,0,0,0,0
+W15,SE,Nature Refuge,1,0,1,0,0,1,0
+W15,SE,Protected Landscape Area,1,0,1,0,0,1,0
+W16,SI,Recreation Site,296,6,290,290,0,0,0
+W16,SI,Historic Site,166,2,164,164,0,0,0
+W16,SI,Recreation Park,96,2,94,94,0,0,0
+W16,SI,Park,83,10,73,73,0,0,0
+W16,SI,National Park,82,39,43,0,0,24,19
+W16,SI,National Historic Site,73,0,73,73,0,0,0
+W16,SI,Natura 2000,58,42,16,0,0,11,5
+W16,SI,Memorial Parkway,44,0,44,0,44,0,0
+W16,SI,National Historic Trail,36,0,36,0,36,0,0
+W16,SI,Archeological Reserve,36,0,36,36,0,0,0
+W16,SI,National Heritage Site,24,0,24,24,0,0,0
+W16,SI,Landscape Park,23,20,3,0,0,3,0
+W16,SI,National Recreation Trail,21,0,21,0,21,0,0
+W16,SI,Scenic Site,18,0,18,18,0,0,0
+W16,SI,Nature Park,16,0,16,0,0,9,7
+W16,SI,National Historical Site,16,0,16,16,0,0,0
+W16,SI,Park Reserve,10,4,6,0,0,4,2
+W16,SI,Nature Reserve,5,1,4,0,0,2,2
+W16,SI,Regional Park,4,2,2,0,0,1,1
+W16,SI,Forest Reserve,4,1,3,0,0,3,0
+W16,SI,Natural Monument,4,3,1,1,0,0,0
+W16,SI,National Scenic Trail,4,0,4,0,4,0,0
+W16,SI,National Heritage Area,4,0,4,4,0,0,0
+W16,SI,National Preserve,4,1,3,0,0,1,2
+W16,SI,Geopark,3,0,3,3,0,0,0
+W16,SI,Sanctuary,3,0,3,0,0,2,1
+W16,SI,National Historical Park,3,0,3,3,0,0,0
+W16,SI,Historical Reserve,3,0,3,3,0,0,0
+W16,SI,Habitat Protection Area,2,0,2,0,0,2,0
+W16,SI,Aquatic Reserve,2,0,2,0,0,1,1
+W16,SI,National Reserve,2,0,2,0,0,2,0
+W16,SI,Botanical Gardens,2,0,2,2,0,0,0
+W16,SI,National Memorial,2,0,2,2,0,0,0
+W16,SI,Nature Monument,2,0,2,2,0,0,0
+W16,SI,Reserve,2,1,1,0,0,1,0
+W16,SI,5(1)(g) Reserve,2,0,2,0,0,1,1
+W16,SI,State Trail,2,0,2,0,2,0,0
+W16,SI,National Forest,1,0,1,0,0,1,0
+W16,SI,Other Conservation Area,1,1,0,0,0,0,0
+W16,SI,Landscape Reserve,1,0,1,0,0,1,0
+W16,SI,National Military Park,1,0,1,0,0,0,1
+W16,SI,State Historic Site,1,0,1,1,0,0,0
+W16,SI,Flora and Fauna Reserve,1,0,1,0,0,1,0
+W16,SI,State Park,1,0,1,0,0,1,0
+W16,SI,Territorial Park,1,0,1,0,0,0,1
+W16,SI,Flora Reserve,1,0,1,0,0,1,0
+W16,SI,State Recreation Site,1,0,1,1,0,0,0
+W16,SI,National Battlefield,1,0,1,0,0,1,0
+W16,SI,Ramsar Site,1,0,1,0,0,1,0
+W16,SI,Protected Area,1,1,0,0,0,0,0
+W16,SI,Scenic Reserve,1,0,1,1,0,0,0
+W16,SI,Protected Landscape,1,0,1,0,0,1,0
+W16,SI,Ecological Park,1,0,1,0,0,0,1
+W16,SI,Coastal & Marine Park,1,0,1,1,0,0,0
+W16,SI,Marine Park,1,0,1,1,0,0,0
+W16,SI,State Park Preserve,1,0,1,0,0,0,1
+W16,SI,National Monument,1,0,1,1,0,0,0
+W16,SI,National Landscape,1,0,1,0,0,1,0
+W16,SI,National Parkway,1,0,1,0,1,0,0
+W16,SI,National Conservation Area,1,1,0,0,0,0,0
+W16,SI,National Ecological Reserve,1,0,1,0,0,0,1
+W17,CZ,Nature Reserve,36,36,0,0,0,0,0
+W17,CZ,Nature Monument,33,21,12,12,0,0,0
+W17,CZ,Natura 2000,33,33,0,0,0,0,0
+W17,CZ,National Nature Reserve,31,31,0,0,0,0,0
+W17,CZ,Protected Landscape Area,27,27,0,0,0,0,0
+W17,CZ,Nature Park,24,5,19,0,0,2,17
+W17,CZ,Natural Monument,20,20,0,0,0,0,0
+W17,CZ,National Monument,16,8,8,8,0,0,0
+W17,CZ,National Park,4,4,0,0,0,0,0
+W17,CZ,Conservation Area,3,3,0,0,0,0,0
+W17,CZ,National Reserve,2,2,0,0,0,0,0
+W17,CZ,Protected Area,1,1,0,0,0,0,0
+W17,CZ,Bird Sanctuary,1,1,0,0,0,0,0
+W17,CZ,Biosphere Reserve,1,1,0,0,0,0,0
+W18,BE,Nature Reserve,265,67,198,0,0,145,53
+W18,BE,National Park,128,37,91,0,0,58,33
+W18,BE,Park,101,44,57,57,0,0,0
+W18,BE,National Forest,49,8,41,0,0,29,12
+W18,BE,Nature Park,9,3,6,0,0,1,5
+W18,BE,Landscape Park,4,0,4,0,0,2,2
+W18,BE,Wildlife Area,3,1,2,0,0,2,0
+W18,BE,National Conservation Area,3,0,3,0,0,2,1
+W18,BE,National Historic Site,2,0,2,2,0,0,0
+W18,BE,National Preserve,2,0,2,0,0,2,0
+W18,BE,Historic Site,2,0,2,2,0,0,0
+W18,BE,Flora and Fauna Reserve,2,1,1,0,0,1,0
+W18,BE,BLM Recreation Management Area,2,0,2,0,0,1,1
+W18,BE,Natural Area,2,0,2,0,0,1,1
+W18,BE,Bird Sanctuary,1,0,1,0,0,1,0
+W18,BE,Game Preserve,1,0,1,0,0,1,0
+W18,BE,Country Park,1,0,1,0,0,1,0
+W18,BE,Ecological Reserve,1,0,1,0,0,1,0
+W18,BE,Game Reserve,1,0,1,0,0,1,0
+W18,BE,National Nature Reserve,1,1,0,0,0,0,0
+W18,BE,State Park,1,0,1,0,0,1,0
+W18,BE,Natura 2000,1,1,0,0,0,0,0
+W18,BE,National Historical Park,1,0,1,1,0,0,0
+W18,BE,Regional Park,1,0,1,0,0,1,0
+W18,BE,Water Management Area,1,0,1,1,0,0,0
+W18,BE,UNESCO Biosphere Reserve,1,0,1,0,0,1,0
+W18,BE,Area of Outstanding Natural Beauty,1,0,1,0,0,0,1
+W18,BE,Landscape Reserve,1,1,0,0,0,0,0
+W18,BE,Conservation Park,1,0,1,0,0,0,1
+W18,BE,Conservation Area,1,0,1,0,0,1,0
+W18,BE,BLM Special Recreation Management Area,1,0,1,0,0,1,0
+W18,BE,National Recreation Trail,1,0,1,0,1,0,0
+W18,BE,Recreation Park,1,0,1,1,0,0,0
+W19,DK,Park,63,15,48,48,0,0,0
+W19,DK,Natura 2000,59,50,9,0,0,9,0
+W19,DK,Protected Area,50,13,37,0,0,15,22
+W19,DK,Coastal Park,45,7,38,38,0,0,0
+W19,DK,Nature Reserve,25,10,15,0,0,10,5
+W19,DK,National Forest,12,2,10,0,0,3,7
+W19,DK,National Park,7,3,4,0,0,2,2
+W19,DK,Historic Site,4,0,4,4,0,0,0
+W19,DK,Nature Park,4,0,4,0,0,3,1
+W19,DK,Protected Landscape,3,1,2,0,0,2,0
+W19,DK,Protected Landscape Area,3,0,3,0,0,2,1
+W19,DK,Wildlife Reserve,2,1,1,0,0,1,0
+W19,DK,Landscape Park,2,0,2,0,0,1,1
+W19,DK,National Monument,1,0,1,1,0,0,0
+W19,DK,National Historic Site,1,0,1,1,0,0,0
+W19,DK,National Historical Park,1,1,0,0,0,0,0
+W19,DK,Coastal & Marine Park,1,0,1,1,0,0,0
+W19,DK,Landscape Reserve,1,0,1,0,0,1,0
+W19,DK,Bird Sanctuary,1,1,0,0,0,0,0
+W19,DK,National Historical Site,1,0,1,1,0,0,0
+W19,DK,Wildlife Area,1,1,0,0,0,0,0
+W19,DK,Botanical Gardens,1,0,1,1,0,0,0
+W19,DK,Other Conservation Area,1,0,1,0,0,0,1
+W19,DK,National Scenic Trail,1,0,1,0,1,0,0
+W19,DK,Marine Protected Area,1,1,0,0,0,0,0
+W20,IE,National Forest,73,0,73,0,0,19,54
+W20,IE,Nature Reserve,49,16,33,0,0,17,16
+W20,IE,Natura 2000,49,48,1,0,0,1,0
+W20,IE,Conservation Area,22,19,3,0,0,1,2
+W20,IE,Forest Reserve,21,0,21,0,0,3,18
+W20,IE,National Park,20,8,12,0,0,1,11
+W20,IE,Historic Site,13,0,13,13,0,0,0
+W20,IE,State Trail,6,0,6,0,6,0,0
+W20,IE,National Scenic Trail,4,0,4,0,4,0,0
+W20,IE,Park,3,0,3,3,0,0,0
+W20,IE,National Recreation Area,3,0,3,0,0,1,2
+W20,IE,National Historic Site,3,0,3,3,0,0,0
+W20,IE,Country Park,2,0,2,0,0,1,1
+W20,IE,State Park,2,0,2,0,0,0,2
+W20,IE,National Monument,2,0,2,2,0,0,0
+W20,IE,Regional Park,2,0,2,0,0,0,2
+W20,IE,National Heritage Area,2,0,2,2,0,0,0
+W20,IE,National Historical Park,2,0,2,2,0,0,0
+W20,IE,National Historic Trail,2,0,2,0,2,0,0
+W20,IE,National Heritage Site,2,0,2,2,0,0,0
+W20,IE,Recreation Park,2,0,2,2,0,0,0
+W20,IE,Recreation Site,1,0,1,1,0,0,0
+W20,IE,Wildlife Area,1,0,1,0,0,1,0
+W20,IE,Botanical Gardens,1,0,1,1,0,0,0
+W20,IE,Wetland Reserve,1,0,1,0,0,0,1
+W20,IE,Bird Sanctuary,1,0,1,0,0,1,0
+W20,IE,National Conservation Area,1,1,0,0,0,0,0
+W20,IE,Protected Area,1,1,0,0,0,0,0
+W20,IE,Mountain Park,1,0,1,0,0,0,1
+W20,IE,Ecological Park,1,0,1,0,0,1,0
+W20,IE,State Historic Site,1,0,1,1,0,0,0
+W20,IE,Protected Landscape Area,1,0,1,0,0,0,1
+W20,IE,Nature Conservation Reserve,1,1,0,0,0,0,0
+W20,IE,UNESCO Geopark,1,0,1,1,0,0,0
+W20,IE,Marine Conservation Area,1,0,1,0,0,1,0
+W20,IE,Marine Park,1,0,1,1,0,0,0
+W20,IE,Coastal & Marine Park,1,1,0,0,0,0,0
+W20,IE,Habitat Protection Area,1,1,0,0,0,0,0
+W20,IE,BLM Historic Area,1,0,1,1,0,0,0
+W20,IE,Nature Recreation Area,1,0,1,0,0,0,1
+W20,IE,State Marine Reserve,1,0,1,0,0,1,0
+W20,IE,Coastal Park,1,0,1,1,0,0,0
+W20,IE,Historical Reserve,1,0,1,1,0,0,0
+W20,IE,National Landscape,1,0,1,0,0,1,0
+W21,SK,National Monument,150,1,149,149,0,0,0
+W21,SK,Park,106,2,104,104,0,0,0
+W21,SK,Protected Area,43,38,5,0,0,4,1
+W21,SK,Protected Landscape Area,14,14,0,0,0,0,0
+W21,SK,Nature Reserve,13,13,0,0,0,0,0
+W21,SK,National Park,10,1,9,0,0,8,1
+W21,SK,Natura 2000,8,8,0,0,0,0,0
+W21,SK,Natural Monument,6,6,0,0,0,0,0
+W21,SK,Ecological Park,1,0,1,0,0,0,1
+W21,SK,Coastal Park,1,0,1,1,0,0,0
+W22,HR,Natura 2000,342,341,1,0,0,0,1
+W22,HR,Nature Park,12,9,3,0,0,3,0
+W22,HR,National Park,9,6,3,0,0,3,0
+W22,HR,Park,9,4,5,5,0,0,0
+W22,HR,Reserve,4,4,0,0,0,0,0
+W22,HR,Recreation Site,2,0,2,2,0,0,0
+W22,HR,Landscape Park,1,1,0,0,0,0,0
+W22,HR,Forest Reserve,1,1,0,0,0,0,0
+W22,HR,Recreation Park,1,0,1,1,0,0,0
+W23,FI,Natura 2000,1150,1110,40,0,0,30,10
+W23,FI,State Nature Preserve,288,161,127,0,0,120,7
+W23,FI,Protected Area,148,137,11,0,0,11,0
+W23,FI,Nature Reserve,69,58,11,0,0,3,8
+W23,FI,National Park,60,53,7,0,0,6,1
+W23,FI,Marine Protected Area,34,24,10,0,0,4,6
+W23,FI,Wilderness Area,12,2,10,0,0,9,1
+W23,FI,World Heritage Site,12,1,11,11,0,0,0
+W23,FI,Nature Park,10,10,0,0,0,0,0
+W23,FI,State Preserve,10,4,6,0,0,6,0
+W23,FI,State Natural Reserve,7,3,4,0,0,4,0
+W23,FI,State Park Preserve,6,5,1,0,0,1,0
+W23,FI,Geopark,5,2,3,3,0,0,0
+W23,FI,Conservation Area,4,4,0,0,0,0,0
+W23,FI,Wetland Reserve,3,2,1,0,0,0,1
+W23,FI,Forest Reserve,3,2,1,0,0,1,0
+W23,FI,Natural Area,3,3,0,0,0,0,0
+W23,FI,Habitat Protection Area,2,2,0,0,0,0,0
+W23,FI,Bird Sanctuary,2,1,1,0,0,1,0
+W23,FI,National Nature Reserve,2,1,1,0,0,1,0
+W23,FI,Protected Landscape Area,1,1,0,0,0,0,0
+W23,FI,National Park Reserve,1,1,0,0,0,0,0
+W23,FI,National Reserve,1,1,0,0,0,0,0
+W23,FI,Metropolitan Protected Areas,1,1,0,0,0,0,0
+W23,FI,Protected Landscape,1,1,0,0,0,0,0
+W23,FI,National Historic Site,1,0,1,1,0,0,0
+W23,FI,State Beach,1,1,0,0,0,0,0
+W23,FI,State Forest,1,1,0,0,0,0,0
+W24,HU,State Trail,91,0,91,0,91,0,0
+W24,HU,Park,49,1,48,48,0,0,0
+W24,HU,State Forest Park,18,0,18,0,0,4,14
+W24,HU,National Park,15,10,5,0,0,5,0
+W24,HU,National Geologic Trail,13,0,13,0,13,0,0
+W24,HU,State Fishing Lake,5,0,5,0,0,2,3
+W24,HU,Nature Reserve,4,1,3,0,0,1,2
+W24,HU,Historic Site,4,0,4,4,0,0,0
+W24,HU,Botanical Gardens,4,0,4,4,0,0,0
+W24,HU,Recreation Park,4,0,4,4,0,0,0
+W24,HU,Geopark,4,0,4,4,0,0,0
+W24,HU,Natura 2000,4,2,2,0,0,1,1
+W24,HU,National Nature Reserve,3,2,1,0,0,0,1
+W24,HU,National Conservation Area,3,2,1,0,0,1,0
+W24,HU,Natural Area,3,2,1,0,0,1,0
+W24,HU,Nature Conservation Reserve,3,1,2,0,0,0,2
+W24,HU,Memorial Parkway,3,0,3,0,3,0,0
+W24,HU,Landscape Reserve,2,2,0,0,0,0,0
+W24,HU,Nature and Landscape Complex,2,0,2,0,0,2,0
+W24,HU,National Lakeshore,2,0,2,0,0,1,1
+W24,HU,National Reserve,1,0,1,0,0,1,0
+W24,HU,National Preserve,1,0,1,0,0,1,0
+W24,HU,Habitat Protection Area,1,0,1,0,0,0,1
+W24,HU,Protected Area,1,0,1,0,0,0,1
+W24,HU,Historical Reserve,1,0,1,1,0,0,0
+W24,HU,National Historical Site,1,0,1,1,0,0,0
+W24,HU,State Natural Reserve,1,0,1,0,0,1,0
+W24,HU,National Historical Park,1,0,1,1,0,0,0
+W25,EE,State Recreation Site,65,4,61,61,0,0,0
+W25,EE,Natura 2000,55,54,1,0,0,1,0
+W25,EE,State Recreation Area,13,1,12,0,0,7,5
+W25,EE,National Park,6,6,0,0,0,0,0
+W25,EE,State Trail,4,0,4,0,4,0,0
+W25,EE,Nature Park,3,3,0,0,0,0,0
+W25,EE,Landscape Reserve,3,2,1,0,0,1,0
+W25,EE,Nature Reserve,2,2,0,0,0,0,0
+W25,EE,World Heritage Site,2,0,2,2,0,0,0
+W25,EE,Biosphere Reserve,1,0,1,0,0,0,1
+W25,EE,Ramsar Site,1,0,1,0,0,1,0
+,LT,Regional Park,30,25,5,0,0,5,0
+,LT,National Park,5,3,2,0,0,2,0
+,LT,Nature Reserve,2,0,2,0,0,1,1
+,LT,UNESCO Biosphere Reserve,1,0,1,0,0,1,0
+,LV,National Park,6,4,2,0,0,2,0
+,LV,Nature Park,5,3,2,0,0,2,0
+,LV,World Heritage Site,3,0,3,3,0,0,0
+,LU,Protected Area,38,37,1,0,0,1,0
+,LU,Natura 2000,14,8,6,0,0,2,4
+,LU,Nature Park,1,0,1,0,0,1,0

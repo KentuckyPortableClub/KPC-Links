@@ -1,0 +1,1450 @@
+region,state_or_province,country,park_type,total,with_outline,without_outline,pin_only,line_type,likely_name_mismatch,no_layer_found
+CAE,NB,CA,Biosphere Reserve,1,1,0,0,0,0,0
+CAE,NB,CA,Bird Sanctuary,3,3,0,0,0,0,0
+CAE,NB,CA,Conservation Area,6,0,6,0,0,0,6
+CAE,NB,CA,Ecological Area,10,0,10,0,0,1,9
+CAE,NB,CA,Ecological Park,1,0,1,0,0,0,1
+CAE,NB,CA,Ecological Site,1,0,1,0,0,0,1
+CAE,NB,CA,Geopark,1,0,1,0,0,0,1
+CAE,NB,CA,Historic Site,60,2,58,58,0,0,0
+CAE,NB,CA,International Park,1,0,1,0,0,0,1
+CAE,NB,CA,National Heritage Area,5,2,3,3,0,0,0
+CAE,NB,CA,National Heritage Site,7,0,7,7,0,0,0
+CAE,NB,CA,National Historic Site,76,2,74,74,0,0,0
+CAE,NB,CA,National Historical Site,2,0,2,2,0,0,0
+CAE,NB,CA,National Memorial,3,0,3,3,0,0,0
+CAE,NB,CA,National Monument,2,0,2,0,0,0,2
+CAE,NB,CA,National Park,2,2,0,0,0,0,0
+CAE,NB,CA,National Recreation Trail,3,0,3,0,3,0,0
+CAE,NB,CA,National Scenic Trail,2,0,2,0,2,0,0
+CAE,NB,CA,National Wildlife Area,5,5,0,0,0,0,0
+CAE,NB,CA,Natural Area,23,20,3,0,0,0,3
+CAE,NB,CA,Natural Monument,2,0,2,0,0,0,2
+CAE,NB,CA,Nature Conservation Reserve,1,1,0,0,0,0,0
+CAE,NB,CA,Nature Park,3,1,2,0,0,0,2
+CAE,NB,CA,Nature Recreation Area,1,0,1,0,0,0,1
+CAE,NB,CA,Nature Reserve,67,52,15,0,0,0,15
+CAE,NB,CA,Park,3,0,3,3,0,0,0
+CAE,NB,CA,Protected Area,168,163,5,0,0,0,5
+CAE,NB,CA,Protected Landscape Area,1,1,0,0,0,0,0
+CAE,NB,CA,Provincial Historic Site,6,2,4,4,0,0,0
+CAE,NB,CA,Provincial Park,15,14,1,0,0,0,1
+CAE,NB,CA,Provincial Recreation Area,1,1,0,0,0,0,0
+CAE,NB,CA,Ramsar Site,2,0,2,0,0,0,2
+CAE,NB,CA,Recreation Park,44,4,40,40,0,0,0
+CAE,NB,CA,Recreation Site,4,1,3,0,0,0,3
+CAE,NB,CA,Wetland Reserve,1,1,0,0,0,0,0
+CAE,NB,CA,Wilderness Area,1,0,1,0,0,1,0
+CAE,NB,CA,Wildlife Management Area,27,27,0,0,0,0,0
+CAE,NB,CA,Wildlife Refuge,1,1,0,0,0,0,0
+CAE,NL,CA,Bird Sanctuary,3,3,0,0,0,0,0
+CAE,NL,CA,Ecological Reserve,17,17,0,0,0,0,0
+CAE,NL,CA,Geopark,1,0,1,0,0,0,1
+CAE,NL,CA,Historic Site,6,0,6,6,0,0,0
+CAE,NL,CA,Marine Protected Area,2,2,0,0,0,0,0
+CAE,NL,CA,National Battlefield,1,0,1,1,0,0,0
+CAE,NL,CA,National Heritage Area,2,2,0,0,0,0,0
+CAE,NL,CA,National Heritage Site,12,0,12,12,0,0,0
+CAE,NL,CA,National Historic Site,43,0,43,43,0,0,0
+CAE,NL,CA,National Park,3,3,0,0,0,0,0
+CAE,NL,CA,National Park Reserve,1,1,0,0,0,0,0
+CAE,NL,CA,Nature Reserve,2,2,0,0,0,0,0
+CAE,NL,CA,Protected Area,3,3,0,0,0,0,0
+CAE,NL,CA,Provincial Historic Site,1,0,1,1,0,0,0
+CAE,NL,CA,Provincial Park,22,21,1,0,0,0,1
+CAE,NL,CA,Provincial Park Reserve,10,10,0,0,0,0,0
+CAE,NL,CA,Ramsar Site,1,0,1,0,0,0,1
+CAE,NL,CA,Wilderness Preserve,1,1,0,0,0,0,0
+CAE,NL,CA,Wildlife Reserve,3,2,1,0,0,0,1
+CAE,NS,CA,Biosphere Reserve,2,0,2,0,0,0,2
+CAE,NS,CA,Bird Sanctuary,7,7,0,0,0,0,0
+CAE,NS,CA,Conservation Area,1,0,1,0,0,0,1
+CAE,NS,CA,Geopark,1,0,1,0,0,0,1
+CAE,NS,CA,Historic Site,13,1,12,12,0,0,0
+CAE,NS,CA,Marine Protected Area,1,1,0,0,0,0,0
+CAE,NS,CA,National Heritage Area,3,1,2,2,0,0,0
+CAE,NS,CA,National Heritage Site,35,1,34,34,0,0,0
+CAE,NS,CA,National Historic District,1,0,1,1,0,0,0
+CAE,NS,CA,National Historic Site,84,18,66,66,0,0,0
+CAE,NS,CA,National Historical Park,1,0,1,0,0,0,1
+CAE,NS,CA,National Park,3,3,0,0,0,0,0
+CAE,NS,CA,National Wildlife Area,8,8,0,0,0,0,0
+CAE,NS,CA,Nature Park,1,1,0,0,0,0,0
+CAE,NS,CA,Nature Reserve,84,82,2,0,0,0,2
+CAE,NS,CA,Protected Area,3,3,0,0,0,0,0
+CAE,NS,CA,Provincial Park,157,119,38,0,0,1,37
+CAE,NS,CA,Provincial Park Reserve,1,0,1,0,0,0,1
+CAE,NS,CA,Provincial Wildlife Area,1,0,1,0,0,0,1
+CAE,NS,CA,Ramsar Site,1,0,1,0,0,0,1
+CAE,NS,CA,Recreation Park,4,0,4,4,0,0,0
+CAE,NS,CA,Wilderness Area,76,76,0,0,0,0,0
+CAE,NS,CA,World Heritage Site,1,0,1,1,0,0,0
+CAE,ON,CA,Biosphere Reserve,4,1,3,0,0,0,3
+CAE,ON,CA,Bird Sanctuary,8,8,0,0,0,0,0
+CAE,ON,CA,Conservation Area,264,183,81,0,0,9,72
+CAE,ON,CA,Conservation Park,4,1,3,0,0,1,2
+CAE,ON,CA,Conservation Reserve,331,316,15,0,0,2,13
+CAE,ON,CA,Ecological Reserve,1,1,0,0,0,0,0
+CAE,ON,CA,Forest Reserve,1,0,1,0,0,0,1
+CAE,ON,CA,Game Preserve,1,0,1,0,0,0,1
+CAE,ON,CA,Historic Site,5,0,5,5,0,0,0
+CAE,ON,CA,Management Area,6,0,6,0,0,5,1
+CAE,ON,CA,National Geologic Trail,1,0,1,0,1,0,0
+CAE,ON,CA,National Heritage Area,1,0,1,1,0,0,0
+CAE,ON,CA,National Heritage Site,4,0,4,4,0,0,0
+CAE,ON,CA,National Historic Site,92,7,85,85,0,0,0
+CAE,ON,CA,National Historical Park,1,0,1,0,0,0,1
+CAE,ON,CA,National Historical Site,2,0,2,2,0,0,0
+CAE,ON,CA,National Marine Area,1,1,0,0,0,0,0
+CAE,ON,CA,National Park,14,7,7,0,0,0,7
+CAE,ON,CA,National Recreation Trail,2,0,2,0,2,0,0
+CAE,ON,CA,National Wild & Scenic River,1,0,1,0,1,0,0
+CAE,ON,CA,National Wildlife Area,7,7,0,0,0,0,0
+CAE,ON,CA,Natural Area,4,3,1,0,0,0,1
+CAE,ON,CA,Nature Reserve,6,3,3,0,0,0,3
+CAE,ON,CA,Nature Reserve Wilderness Area,1,1,0,0,0,0,0
+CAE,ON,CA,Park,2,1,1,1,0,0,0
+CAE,ON,CA,Protected Area,2,2,0,0,0,0,0
+CAE,ON,CA,Provincial Nature Reserve,1,0,1,0,0,0,1
+CAE,ON,CA,Provincial Park,340,337,3,0,0,0,3
+CAE,ON,CA,Provincial Wildlife Area,2,0,2,0,0,0,2
+CAE,ON,CA,Recreation Park,7,1,6,6,0,0,0
+CAE,ON,CA,Recreation Site,3,0,3,0,0,0,3
+CAE,ON,CA,Regional Park,1,0,1,1,0,0,0
+CAE,ON,CA,Resources Area,1,0,1,0,0,0,1
+CAE,ON,CA,Scenic Site,1,0,1,1,0,0,0
+CAE,ON,CA,Wilderness Area,24,15,9,0,0,0,9
+CAE,ON,CA,Wilderness Park,3,3,0,0,0,0,0
+CAE,ON,CA,Wildlife Area,5,3,2,0,0,1,1
+CAE,ON,CA,Wildlife Management Area,3,1,2,0,0,0,2
+CAE,ON,CA,Wildlife Reserve,1,1,0,0,0,0,0
+CAE,PE,CA,Historic Site,1,0,1,1,0,0,0
+CAE,PE,CA,National Heritage Site,5,0,5,5,0,0,0
+CAE,PE,CA,National Historic Site,10,0,10,10,0,0,0
+CAE,PE,CA,National Nature Reserve,1,0,1,0,0,0,1
+CAE,PE,CA,National Park,1,1,0,0,0,0,0
+CAE,PE,CA,National Park Reserve,1,1,0,0,0,0,0
+CAE,PE,CA,Natural Area,5,2,3,0,0,0,3
+CAE,PE,CA,Nature Recreation Area,1,1,0,0,0,0,0
+CAE,PE,CA,Protected Area,1,0,1,0,0,0,1
+CAE,PE,CA,Provincial Nature Reserve,1,1,0,0,0,0,0
+CAE,PE,CA,Provincial Park,24,10,14,0,0,0,14
+CAE,PE,CA,Provincial Recreation Area,1,0,1,0,0,1,0
+CAE,PE,CA,Provincial Wildlife Area,1,1,0,0,0,0,0
+CAE,QC,CA,Archeological Reserve,1,0,1,0,0,1,0
+CAE,QC,CA,Biological Reserve,1,1,0,0,0,0,0
+CAE,QC,CA,Biosphere Reserve,4,1,3,0,0,0,3
+CAE,QC,CA,Bird Sanctuary,29,26,3,0,0,0,3
+CAE,QC,CA,Conservation Park,1,1,0,0,0,0,0
+CAE,QC,CA,Ecological Reserve,72,70,2,0,0,0,2
+CAE,QC,CA,Forest Reserve,5,1,4,0,0,0,4
+CAE,QC,CA,Geopark,1,0,1,0,0,0,1
+CAE,QC,CA,Historic Site,23,3,20,20,0,0,0
+CAE,QC,CA,National Heritage Site,2,0,2,2,0,0,0
+CAE,QC,CA,National Historic Site,84,8,76,76,0,0,0
+CAE,QC,CA,National Historical Site,1,0,1,1,0,0,0
+CAE,QC,CA,National Marine Park,1,1,0,0,0,0,0
+CAE,QC,CA,National Park,32,29,3,0,0,0,3
+CAE,QC,CA,National Park Reserve,3,3,0,0,0,0,0
+CAE,QC,CA,National Wildlife Area,8,8,0,0,0,0,0
+CAE,QC,CA,Nature Park,6,2,4,0,0,0,4
+CAE,QC,CA,Nature Reserve,291,248,43,0,0,0,43
+CAE,QC,CA,Park,2,0,2,2,0,0,0
+CAE,QC,CA,Provincial Park,3,1,2,0,0,1,1
+CAE,QC,CA,Recreation Park,88,1,87,87,0,0,0
+CAE,QC,CA,Regional Park,168,25,143,143,0,0,0
+CAE,QC,CA,Wildlife Area,1,1,0,0,0,0,0
+CAE,QC,CA,Wildlife Refuge,4,3,1,0,0,0,1
+CAE,QC,CA,Wildlife Reserve,8,8,0,0,0,0,0
+CAW,AB,CA,Biosphere Reserve,2,1,1,0,0,0,1
+CAW,AB,CA,Bird Sanctuary,4,3,1,0,0,0,1
+CAW,AB,CA,Conservation Reserve,1,1,0,0,0,0,0
+CAW,AB,CA,Ecological Reserve,15,15,0,0,0,0,0
+CAW,AB,CA,Historic Site,1,0,1,1,0,0,0
+CAW,AB,CA,National Heritage Area,2,0,2,2,0,0,0
+CAW,AB,CA,National Heritage Site,2,0,2,2,0,0,0
+CAW,AB,CA,National Historic Site,39,0,39,39,0,0,0
+CAW,AB,CA,National Park,5,5,0,0,0,0,0
+CAW,AB,CA,National Scenic Trail,1,0,1,0,1,0,0
+CAW,AB,CA,National Wildlife Area,4,4,0,0,0,0,0
+CAW,AB,CA,Natural Area,141,134,7,0,0,0,7
+CAW,AB,CA,Other Conservation Area,1,0,1,0,0,1,0
+CAW,AB,CA,Park,1,0,1,1,0,0,0
+CAW,AB,CA,Provincial Historic Site,1,0,1,1,0,0,0
+CAW,AB,CA,Provincial Park,117,116,1,0,0,0,1
+CAW,AB,CA,Provincial Recreation Area,112,107,5,0,0,0,5
+CAW,AB,CA,Recreation Park,3,1,2,2,0,0,0
+CAW,AB,CA,Recreation Site,3,2,1,0,0,0,1
+CAW,AB,CA,Regional Park,1,0,1,1,0,0,0
+CAW,AB,CA,Wilderness Area,2,2,0,0,0,0,0
+CAW,AB,CA,Wilderness Park,1,1,0,0,0,0,0
+CAW,BC,CA,Biosphere Reserve,2,0,2,0,0,0,2
+CAW,BC,CA,Bird Sanctuary,6,6,0,0,0,0,0
+CAW,BC,CA,Botanical Gardens,1,0,1,0,0,0,1
+CAW,BC,CA,Conservation Area,94,92,2,0,0,0,2
+CAW,BC,CA,Ecological Reserve,141,138,3,0,0,0,3
+CAW,BC,CA,Geopark,1,0,1,0,0,0,1
+CAW,BC,CA,Historic Site,3,3,0,0,0,0,0
+CAW,BC,CA,Marine Park,24,23,1,0,0,0,1
+CAW,BC,CA,Marine Protected Area,4,3,1,0,0,0,1
+CAW,BC,CA,National Heritage Area,3,1,2,2,0,0,0
+CAW,BC,CA,National Heritage Site,1,0,1,1,0,0,0
+CAW,BC,CA,National Historic Site,22,12,10,10,0,0,0
+CAW,BC,CA,National Historic Trail,1,1,0,0,0,0,0
+CAW,BC,CA,National Park,7,6,1,0,0,0,1
+CAW,BC,CA,National Park Reserve,1,1,0,0,0,0,0
+CAW,BC,CA,National Wildlife Area,5,5,0,0,0,0,0
+CAW,BC,CA,Natural Area,1,0,1,0,0,1,0
+CAW,BC,CA,Nature Reserve,2,1,1,0,0,1,0
+CAW,BC,CA,Park,95,21,74,74,0,0,0
+CAW,BC,CA,Protected Area,164,160,4,0,0,0,4
+CAW,BC,CA,Provincial Park,602,596,6,0,0,1,5
+CAW,BC,CA,Provincial Recreation Area,1,1,0,0,0,0,0
+CAW,BC,CA,Recreation Park,10,2,8,8,0,0,0
+CAW,BC,CA,Recreation Site,4,3,1,0,0,1,0
+CAW,BC,CA,Regional Park,31,22,9,9,0,0,0
+CAW,BC,CA,Wilderness Park,1,1,0,0,0,0,0
+CAW,BC,CA,Wildlife Management Area,27,27,0,0,0,0,0
+CAW,MB,CA,Biosphere Reserve,1,1,0,0,0,0,0
+CAW,MB,CA,Bird Sanctuary,1,1,0,0,0,0,0
+CAW,MB,CA,Conservation Area,2,0,2,0,0,0,2
+CAW,MB,CA,Ecological Reserve,30,30,0,0,0,0,0
+CAW,MB,CA,Forest Reserve,1,1,0,0,0,0,0
+CAW,MB,CA,Historic Site,6,1,5,5,0,0,0
+CAW,MB,CA,International Park,1,0,1,0,0,0,1
+CAW,MB,CA,National Heritage Site,1,0,1,1,0,0,0
+CAW,MB,CA,National Historic Site,46,0,46,46,0,0,0
+CAW,MB,CA,National Park,3,2,1,0,0,0,1
+CAW,MB,CA,National Wildlife Area,3,3,0,0,0,0,0
+CAW,MB,CA,Natural Area,1,0,1,0,0,0,1
+CAW,MB,CA,Park,2,0,2,2,0,0,0
+CAW,MB,CA,Park Reserve,3,3,0,0,0,0,0
+CAW,MB,CA,Provincial Park,84,80,4,0,0,0,4
+CAW,MB,CA,Provincial Wildlife Area,1,1,0,0,0,0,0
+CAW,MB,CA,Recreation Park,22,7,15,15,0,0,0
+CAW,MB,CA,Wildlife Management Area,98,88,10,0,0,0,10
+CAW,MB,CA,Wildlife Refuge,1,1,0,0,0,0,0
+CAW,MB,CA,Wildlife Reserve,1,0,1,0,0,0,1
+CAW,NT,CA,Bird Sanctuary,5,5,0,0,0,0,0
+CAW,NT,CA,Habitat Protection Area,1,1,0,0,0,0,0
+CAW,NT,CA,National Historic Site,11,1,10,10,0,0,0
+CAW,NT,CA,National Park,2,1,1,0,0,0,1
+CAW,NT,CA,National Park Reserve,3,3,0,0,0,0,0
+CAW,NT,CA,Natural Area,1,1,0,0,0,0,0
+CAW,NT,CA,Protected Area,4,3,1,0,0,0,1
+CAW,NT,CA,Ramsar Site,1,0,1,0,0,0,1
+CAW,NT,CA,Territorial Park,37,0,37,0,0,0,37
+CAW,NT,CA,UNESCO Biosphere Reserve,1,0,1,0,0,0,1
+CAW,NT,CA,Wilderness Preserve,2,0,2,0,0,0,2
+CAW,NU,CA,Bird Sanctuary,10,10,0,0,0,0,0
+CAW,NU,CA,National Heritage Area,2,0,2,2,0,0,0
+CAW,NU,CA,National Historic Site,8,0,8,8,0,0,0
+CAW,NU,CA,National Marine Area,1,1,0,0,0,0,0
+CAW,NU,CA,National Park,5,5,0,0,0,0,0
+CAW,NU,CA,National Wildlife Area,5,5,0,0,0,0,0
+CAW,NU,CA,Ramsar Site,1,0,1,0,0,0,1
+CAW,NU,CA,Territorial Park,14,12,2,0,0,0,2
+CAW,NU,CA,Wilderness Preserve,2,1,1,0,0,0,1
+CAW,SK,CA,Area of Outstanding Natural Beauty,1,1,0,0,0,0,0
+CAW,SK,CA,Biosphere Reserve,1,1,0,0,0,0,0
+CAW,SK,CA,Bird Sanctuary,16,16,0,0,0,0,0
+CAW,SK,CA,Conservation Area,2,2,0,0,0,0,0
+CAW,SK,CA,Ecological Reserve,7,7,0,0,0,0,0
+CAW,SK,CA,Game Preserve,4,4,0,0,0,0,0
+CAW,SK,CA,Historic Site,4,2,2,2,0,0,0
+CAW,SK,CA,National Geologic Trail,1,0,1,0,1,0,0
+CAW,SK,CA,National Historic Site,42,9,33,33,0,0,0
+CAW,SK,CA,National Historic Trail,5,0,5,0,5,0,0
+CAW,SK,CA,National Historical Park,1,0,1,0,0,0,1
+CAW,SK,CA,National Historical Site,1,0,1,1,0,0,0
+CAW,SK,CA,National Park,2,2,0,0,0,0,0
+CAW,SK,CA,National Recreation Trail,16,0,16,0,16,0,0
+CAW,SK,CA,National Wildlife Area,16,14,2,0,0,0,2
+CAW,SK,CA,Natural Area,3,3,0,0,0,0,0
+CAW,SK,CA,Park Reserve,2,1,1,0,0,0,1
+CAW,SK,CA,Protected Area,8,8,0,0,0,0,0
+CAW,SK,CA,Provincial Historic Site,1,1,0,0,0,0,0
+CAW,SK,CA,Provincial Park,36,35,1,0,0,0,1
+CAW,SK,CA,Recreation Park,1,0,1,1,0,0,0
+CAW,SK,CA,Recreation Site,165,121,44,0,0,0,44
+CAW,SK,CA,Regional Park,72,71,1,1,0,0,0
+CAW,SK,CA,Resource Management Area,1,0,1,0,0,0,1
+CAW,SK,CA,Wildlife Refuge,3,3,0,0,0,0,0
+CAW,YT,CA,Archeological Reserve,1,0,1,0,0,0,1
+CAW,YT,CA,Habitat Protection Area,15,12,3,0,0,0,3
+CAW,YT,CA,Historic Site,12,0,12,12,0,0,0
+CAW,YT,CA,National Heritage Area,4,0,4,4,0,0,0
+CAW,YT,CA,National Historic Site,12,0,12,12,0,0,0
+CAW,YT,CA,National Park,4,3,1,0,0,0,1
+CAW,YT,CA,National Wildlife Area,1,1,0,0,0,0,0
+CAW,YT,CA,Nature Reserve,1,0,1,0,0,0,1
+CAW,YT,CA,Recreation Park,18,2,16,16,0,0,0
+CAW,YT,CA,Recreation Site,33,2,31,0,0,0,31
+CAW,YT,CA,Regional Park,1,0,1,1,0,0,0
+CAW,YT,CA,Territorial Park,10,7,3,0,0,0,3
+MTN,AZ,US,BLM Historic Preservation Site,1,0,1,1,0,0,0
+MTN,AZ,US,BLM National Conservation Area,1,1,0,0,0,0,0
+MTN,AZ,US,BLM Recreation Management Area,6,1,5,2,0,0,3
+MTN,AZ,US,BLM Special Recreation Management Area,5,4,1,0,0,0,1
+MTN,AZ,US,BLM Wilderness Area,1,1,0,0,0,0,0
+MTN,AZ,US,National Conservation Area,2,2,0,0,0,0,0
+MTN,AZ,US,National Forest,6,6,0,0,0,0,0
+MTN,AZ,US,National Historic Site,3,2,1,1,0,0,0
+MTN,AZ,US,National Historic Trail,4,0,4,0,4,0,0
+MTN,AZ,US,National Historical Park,1,1,0,0,0,0,0
+MTN,AZ,US,National Historical Site,1,0,1,1,0,0,0
+MTN,AZ,US,National Memorial,1,1,0,0,0,0,0
+MTN,AZ,US,National Monument,17,16,1,0,0,0,1
+MTN,AZ,US,National Park,3,3,0,0,0,0,0
+MTN,AZ,US,National Recreation Area,2,2,0,0,0,0,0
+MTN,AZ,US,National Recreation Trail,3,0,3,0,3,0,0
+MTN,AZ,US,National Scenic Trail,1,0,1,0,1,0,0
+MTN,AZ,US,National Wildlife Refuge,9,9,0,0,0,0,0
+MTN,AZ,US,State Fish Hatchery,2,1,1,1,0,0,0
+MTN,AZ,US,State Historic Site,1,0,1,1,0,0,0
+MTN,AZ,US,State Historical Park,3,3,0,0,0,0,0
+MTN,AZ,US,State Natural Area,2,2,0,0,0,0,0
+MTN,AZ,US,State Park,23,21,2,0,0,0,2
+MTN,AZ,US,State Recreation Area,1,1,0,0,0,0,0
+MTN,AZ,US,State Wildlife Area,17,17,0,0,0,0,0
+MTN,AZ,US,Wilderness Area,6,6,0,0,0,0,0
+MTN,AZ,US,Wildlife Area,1,1,0,0,0,0,0
+MTN,CO,US,BLM Historic Area,1,1,0,0,0,0,0
+MTN,CO,US,BLM Historic Preservation Site,1,0,1,1,0,0,0
+MTN,CO,US,BLM Historic Trail,1,0,1,0,1,0,0
+MTN,CO,US,BLM Recreation Management Area,1,1,0,0,0,0,0
+MTN,CO,US,BLM Special Recreation Management Area,4,4,0,0,0,0,0
+MTN,CO,US,BLM Wilderness Area,9,8,1,0,0,0,1
+MTN,CO,US,National Conservation Area,5,5,0,0,0,0,0
+MTN,CO,US,National Forest,13,11,2,0,0,0,2
+MTN,CO,US,National Grassland,2,2,0,0,0,0,0
+MTN,CO,US,National Historic Site,3,2,1,1,0,0,0
+MTN,CO,US,National Historic Trail,4,0,4,0,4,0,0
+MTN,CO,US,National Monument,9,7,2,0,0,0,2
+MTN,CO,US,National Park,4,4,0,0,0,0,0
+MTN,CO,US,National Preserve,1,1,0,0,0,0,0
+MTN,CO,US,National Recreation Area,8,5,3,0,0,0,3
+MTN,CO,US,National Scenic Trail,1,0,1,0,1,0,0
+MTN,CO,US,National Wildlife Management Area,1,1,0,0,0,0,0
+MTN,CO,US,National Wildlife Refuge,8,8,0,0,0,0,0
+MTN,CO,US,Recreation Park,1,1,0,0,0,0,0
+MTN,CO,US,Recreation Site,1,1,0,0,0,0,0
+MTN,CO,US,State Fish Hatchery,4,3,1,1,0,0,0
+MTN,CO,US,State Park,41,41,0,0,0,0,0
+MTN,CO,US,State Wildlife Area,152,150,2,0,0,0,2
+MTN,CO,US,Wilderness Area,1,1,0,0,0,0,0
+MTN,ID,US,BLM Herd Management Area,6,6,0,0,0,0,0
+MTN,ID,US,BLM Historic Area,3,1,2,2,0,0,0
+MTN,ID,US,BLM Interpretive Site,3,1,2,2,0,0,0
+MTN,ID,US,BLM Recreation Management Area,83,11,72,58,0,1,13
+MTN,ID,US,BLM Special Recreation Management Area,5,1,4,2,0,0,2
+MTN,ID,US,BLM Wild and Scenic River,1,0,1,0,1,0,0
+MTN,ID,US,Habitat Protection Area,1,1,0,0,0,0,0
+MTN,ID,US,Management Area,3,3,0,0,0,0,0
+MTN,ID,US,National Conservation Area,2,2,0,0,0,0,0
+MTN,ID,US,National Fish Hatchery,3,3,0,0,0,0,0
+MTN,ID,US,National Forest,12,12,0,0,0,0,0
+MTN,ID,US,National Geologic Trail,1,0,1,0,1,0,0
+MTN,ID,US,National Grassland,1,1,0,0,0,0,0
+MTN,ID,US,National Historic Site,2,1,1,1,0,0,0
+MTN,ID,US,National Historic Trail,4,0,4,0,4,0,0
+MTN,ID,US,National Historical Park,1,1,0,0,0,0,0
+MTN,ID,US,National Monument,2,2,0,0,0,0,0
+MTN,ID,US,National Park,2,1,1,0,0,0,1
+MTN,ID,US,National Parkway,7,0,7,7,0,0,0
+MTN,ID,US,National Recreation Area,3,1,2,0,0,0,2
+MTN,ID,US,National Scenic Trail,2,0,2,0,2,0,0
+MTN,ID,US,National Wild & Scenic River,2,0,2,0,2,0,0
+MTN,ID,US,National Wild and Scenic River,2,0,2,0,2,0,0
+MTN,ID,US,National Wildlife Refuge,6,6,0,0,0,0,0
+MTN,ID,US,Natural Monument,3,1,2,0,0,0,2
+MTN,ID,US,Nature Park,1,1,0,0,0,0,0
+MTN,ID,US,Scenic Site,3,0,3,3,0,0,0
+MTN,ID,US,State Fish Hatchery,13,11,2,2,0,0,0
+MTN,ID,US,State Fish and Wildlife Area,2,1,1,0,0,0,1
+MTN,ID,US,State Fishing Lake,74,73,1,0,0,0,1
+MTN,ID,US,State Forest,2,0,2,0,0,0,2
+MTN,ID,US,State Park,26,21,5,0,0,0,5
+MTN,ID,US,State Recreation Area,32,1,31,0,0,0,31
+MTN,ID,US,State Recreation Site,1,0,1,0,0,0,1
+MTN,ID,US,State Trail,2,1,1,0,1,0,0
+MTN,ID,US,State Wildlife Habitat Management Area,1,0,1,0,0,0,1
+MTN,ID,US,Wetland Management District,1,0,1,0,0,1,0
+MTN,ID,US,Wilderness Area,10,10,0,0,0,0,0
+MTN,ID,US,Wildlife Area,1,1,0,0,0,0,0
+MTN,ID,US,Wildlife Management Area,32,31,1,0,0,0,1
+MTN,MT,US,BLM Historic Preservation Site,1,0,1,1,0,0,0
+MTN,MT,US,BLM Recreation Management Area,1,1,0,0,0,0,0
+MTN,MT,US,BLM Special Recreation Management Area,1,1,0,0,0,0,0
+MTN,MT,US,BLM Wild and Scenic River,1,1,0,0,0,0,0
+MTN,MT,US,BLM Wilderness Area,6,6,0,0,0,0,0
+MTN,MT,US,National Battlefield,1,1,0,0,0,0,0
+MTN,MT,US,National Fish Hatchery,1,1,0,0,0,0,0
+MTN,MT,US,National Forest,9,7,2,0,0,0,2
+MTN,MT,US,National Geologic Trail,1,0,1,0,1,0,0
+MTN,MT,US,National Historic Site,2,2,0,0,0,0,0
+MTN,MT,US,National Historic Trail,2,0,2,0,2,0,0
+MTN,MT,US,National Historical Park,1,0,1,0,0,0,1
+MTN,MT,US,National Monument,4,3,1,0,0,0,1
+MTN,MT,US,National Park,2,2,0,0,0,0,0
+MTN,MT,US,National Recreation Area,1,1,0,0,0,0,0
+MTN,MT,US,National Scenic Trail,2,0,2,0,2,0,0
+MTN,MT,US,National Wild and Scenic River,1,1,0,0,0,0,0
+MTN,MT,US,National Wildlife Refuge,18,14,4,0,0,0,4
+MTN,MT,US,Protected Area,1,0,1,0,0,0,1
+MTN,MT,US,Recreation Site,5,3,2,0,0,1,1
+MTN,MT,US,State Beach,2,1,1,0,0,0,1
+MTN,MT,US,State Fish Hatchery,5,0,5,5,0,0,0
+MTN,MT,US,State Fish and Wildlife Area,93,90,3,0,0,0,3
+MTN,MT,US,State Forest,7,7,0,0,0,0,0
+MTN,MT,US,State Park,55,54,1,0,0,0,1
+MTN,MT,US,State Recreation Area,1,1,0,0,0,0,0
+MTN,MT,US,Wilderness Area,2,2,0,0,0,0,0
+MTN,MT,US,Wildlife Management Area,28,28,0,0,0,0,0
+MTN,NM,US,BLM Historic Area,2,0,2,2,0,0,0
+MTN,NM,US,BLM Historic Preservation Site,1,0,1,1,0,0,0
+MTN,NM,US,BLM National Conservation Area,2,1,1,0,0,0,1
+MTN,NM,US,BLM Recreation Management Area,19,14,5,1,0,0,4
+MTN,NM,US,BLM Special Recreation Management Area,1,0,1,0,0,0,1
+MTN,NM,US,BLM Wilderness Area,1,1,0,0,0,0,0
+MTN,NM,US,Historic Site,6,2,4,4,0,0,0
+MTN,NM,US,National Conservation Area,2,2,0,0,0,0,0
+MTN,NM,US,National Forest,5,5,0,0,0,0,0
+MTN,NM,US,National Grassland,1,1,0,0,0,0,0
+MTN,NM,US,National Historic Site,1,0,1,1,0,0,0
+MTN,NM,US,National Historic Trail,4,0,4,0,4,0,0
+MTN,NM,US,National Historical Park,3,2,1,0,0,0,1
+MTN,NM,US,National Monument,14,14,0,0,0,0,0
+MTN,NM,US,National Park,2,2,0,0,0,0,0
+MTN,NM,US,National Recreation Area,3,3,0,0,0,0,0
+MTN,NM,US,National Recreation Trail,2,0,2,0,2,0,0
+MTN,NM,US,National Scenic Trail,1,0,1,0,1,0,0
+MTN,NM,US,National Wildlife Refuge,7,7,0,0,0,0,0
+MTN,NM,US,Natural Area,1,1,0,0,0,0,0
+MTN,NM,US,Park,1,0,1,1,0,0,0
+MTN,NM,US,Recreation Site,3,1,2,0,0,0,2
+MTN,NM,US,State Historic Site,1,0,1,1,0,0,0
+MTN,NM,US,State Park,35,34,1,0,0,0,1
+MTN,NM,US,Wilderness Area,3,3,0,0,0,0,0
+MTN,NM,US,Wildlife Refuge,1,1,0,0,0,0,0
+MTN,NV,US,Archeological Reserve,1,1,0,0,0,0,0
+MTN,NV,US,Area of Outstanding Natural Beauty,10,1,9,9,0,0,0
+MTN,NV,US,BLM Backcountry Airstrip,21,0,21,21,0,0,0
+MTN,NV,US,BLM Herd Management Area,74,73,1,0,0,0,1
+MTN,NV,US,BLM Historic Area,5,1,4,4,0,0,0
+MTN,NV,US,BLM Historic Preservation Site,9,0,9,9,0,0,0
+MTN,NV,US,BLM Historic Trail,1,0,1,0,1,0,0
+MTN,NV,US,BLM Interpretive Site,2,0,2,2,0,0,0
+MTN,NV,US,BLM National Conservation Area,1,0,1,0,0,0,1
+MTN,NV,US,BLM Recreation Management Area,31,21,10,5,0,0,5
+MTN,NV,US,BLM Special Recreation Management Area,9,8,1,0,0,0,1
+MTN,NV,US,BLM Wilderness Area,23,23,0,0,0,0,0
+MTN,NV,US,Historic Site,1,0,1,1,0,0,0
+MTN,NV,US,National Conservation Area,6,6,0,0,0,0,0
+MTN,NV,US,National Fish Hatchery,1,1,0,0,0,0,0
+MTN,NV,US,National Forest,3,3,0,0,0,0,0
+MTN,NV,US,National Historic District,2,0,2,2,0,0,0
+MTN,NV,US,National Historic Site,5,0,5,5,0,0,0
+MTN,NV,US,National Historic Trail,3,0,3,0,3,0,0
+MTN,NV,US,National Landscape,1,1,0,0,0,0,0
+MTN,NV,US,National Monument,4,4,0,0,0,0,0
+MTN,NV,US,National Park,2,2,0,0,0,0,0
+MTN,NV,US,National Recreation Area,3,3,0,0,0,0,0
+MTN,NV,US,National Wildlife Refuge,8,8,0,0,0,0,0
+MTN,NV,US,Recreation Site,1,0,1,0,0,0,1
+MTN,NV,US,Scenic Site,1,0,1,1,0,0,0
+MTN,NV,US,State Fish Hatchery,4,0,4,4,0,0,0
+MTN,NV,US,State Historic Site,4,0,4,4,0,0,0
+MTN,NV,US,State Historical Monument,69,1,68,68,0,0,0
+MTN,NV,US,State Park,23,19,4,0,0,2,2
+MTN,NV,US,State Recreation Area,7,7,0,0,0,0,0
+MTN,NV,US,State Wildlife Area,1,0,1,0,0,0,1
+MTN,NV,US,Wilderness Area,20,20,0,0,0,0,0
+MTN,NV,US,Wildlife Management Area,11,11,0,0,0,0,0
+MTN,UT,US,BLM Backcountry Airstrip,6,0,6,6,0,0,0
+MTN,UT,US,BLM Herd Management Area,23,20,3,0,0,1,2
+MTN,UT,US,BLM Historic Area,7,3,4,4,0,0,0
+MTN,UT,US,BLM Historic Preservation Site,13,0,13,13,0,0,0
+MTN,UT,US,BLM Historic Trail,4,0,4,0,4,0,0
+MTN,UT,US,BLM Interpretive Site,9,1,8,8,0,0,0
+MTN,UT,US,BLM National Conservation Area,7,7,0,0,0,0,0
+MTN,UT,US,BLM Recreation Management Area,257,41,216,66,0,1,149
+MTN,UT,US,BLM Special Recreation Management Area,25,11,14,3,0,0,11
+MTN,UT,US,BLM Wild and Scenic River,12,5,7,0,7,0,0
+MTN,UT,US,BLM Wilderness Area,5,4,1,0,0,0,1
+MTN,UT,US,Biosphere Reserve,1,1,0,0,0,0,0
+MTN,UT,US,Conservation Area,1,0,1,0,0,0,1
+MTN,UT,US,Historic Site,1,0,1,1,0,0,0
+MTN,UT,US,Management Area,1,1,0,0,0,0,0
+MTN,UT,US,National Conservation Area,2,2,0,0,0,0,0
+MTN,UT,US,National Fish Hatchery,2,2,0,0,0,0,0
+MTN,UT,US,National Forest,8,5,3,0,0,0,3
+MTN,UT,US,National Historic Site,6,1,5,5,0,0,0
+MTN,UT,US,National Historic Trail,6,0,6,0,6,0,0
+MTN,UT,US,National Historical Park,2,1,1,0,0,1,0
+MTN,UT,US,National Historical Site,1,1,0,0,0,0,0
+MTN,UT,US,National Monument,9,9,0,0,0,0,0
+MTN,UT,US,National Park,5,5,0,0,0,0,0
+MTN,UT,US,National Parkway,6,0,6,6,0,0,0
+MTN,UT,US,National Recreation Area,3,2,1,0,0,0,1
+MTN,UT,US,National Recreation Trail,3,0,3,0,3,0,0
+MTN,UT,US,National Scenic Trail,1,0,1,0,1,0,0
+MTN,UT,US,National Wild and Scenic River,1,1,0,0,0,0,0
+MTN,UT,US,National Wildlife Management Area,1,1,0,0,0,0,0
+MTN,UT,US,National Wildlife Refuge,3,3,0,0,0,0,0
+MTN,UT,US,Park,2,0,2,2,0,0,0
+MTN,UT,US,Recreation Site,1,0,1,0,0,0,1
+MTN,UT,US,Site of Significant Scientific Interest,1,0,1,0,0,0,1
+MTN,UT,US,State Fish Hatchery,11,8,3,3,0,0,0
+MTN,UT,US,State Fish and Wildlife Area,1,1,0,0,0,0,0
+MTN,UT,US,State Historic Site,1,1,0,0,0,0,0
+MTN,UT,US,State Historical Park,1,0,1,0,0,0,1
+MTN,UT,US,State Park,44,42,2,0,0,2,0
+MTN,UT,US,State Recreation Area,7,3,4,0,0,0,4
+MTN,UT,US,State Recreation Site,5,0,5,0,0,0,5
+MTN,UT,US,State Waterfowl Management Area,12,12,0,0,0,0,0
+MTN,UT,US,State Wilderness Area,1,1,0,0,0,0,0
+MTN,UT,US,State Wildlife Area,11,11,0,0,0,0,0
+MTN,UT,US,State Wildlife Habitat Management Area,8,8,0,0,0,0,0
+MTN,UT,US,USFS National Historic Site,1,0,1,1,0,0,0
+MTN,UT,US,Wetland Reserve,1,1,0,0,0,0,0
+MTN,UT,US,Wilderness Area,88,83,5,0,0,0,5
+MTN,UT,US,Wildlife Management Area,65,61,4,0,0,0,4
+MTN,WY,US,BLM Herd Management Area,18,17,1,0,0,0,1
+MTN,WY,US,BLM Historic Area,3,0,3,3,0,0,0
+MTN,WY,US,BLM Historic Preservation Site,7,0,7,7,0,0,0
+MTN,WY,US,BLM Interpretive Site,14,2,12,12,0,0,0
+MTN,WY,US,BLM Recreation Management Area,56,16,40,13,0,2,25
+MTN,WY,US,BLM Special Recreation Management Area,8,3,5,3,0,0,2
+MTN,WY,US,BLM Wilderness Area,5,5,0,0,0,0,0
+MTN,WY,US,National Battlefield,4,1,3,3,0,0,0
+MTN,WY,US,National Fish Hatchery,2,2,0,0,0,0,0
+MTN,WY,US,National Forest,7,7,0,0,0,0,0
+MTN,WY,US,National Grassland,1,1,0,0,0,0,0
+MTN,WY,US,National Historic Site,4,2,2,2,0,0,0
+MTN,WY,US,National Historic Trail,5,0,5,0,5,0,0
+MTN,WY,US,National Monument,2,2,0,0,0,0,0
+MTN,WY,US,National Park,2,2,0,0,0,0,0
+MTN,WY,US,National Parkway,2,2,0,0,0,0,0
+MTN,WY,US,National Recreation Area,2,2,0,0,0,0,0
+MTN,WY,US,National Scenic Trail,1,0,1,0,1,0,0
+MTN,WY,US,National Wild & Scenic River,2,1,1,0,1,0,0
+MTN,WY,US,National Wildlife Refuge,6,6,0,0,0,0,0
+MTN,WY,US,Recreation Site,2,0,2,0,0,1,1
+MTN,WY,US,State Fish Hatchery,10,3,7,7,0,0,0
+MTN,WY,US,State Fish and Wildlife Area,3,2,1,0,0,0,1
+MTN,WY,US,State Historic Site,26,22,4,4,0,0,0
+MTN,WY,US,State Historical Monument,1,0,1,1,0,0,0
+MTN,WY,US,State Park,13,12,1,0,0,1,0
+MTN,WY,US,State Recreation Area,3,2,1,0,0,0,1
+MTN,WY,US,State Wilderness Area,2,2,0,0,0,0,0
+MTN,WY,US,State Wildlife Area,3,3,0,0,0,0,0
+MTN,WY,US,State Wildlife Habitat Management Area,26,25,1,0,0,1,0
+MTN,WY,US,USFS Recreation Area,1,0,1,0,0,0,1
+MTN,WY,US,Wilderness Area,38,38,0,0,0,0,0
+MTN,WY,US,Wildlife Area,1,1,0,0,0,0,0
+MTN,WY,US,Wildlife Management Area,18,17,1,0,0,1,0
+MW,IA,US,National Historic Site,1,1,0,0,0,0,0
+MW,IA,US,National Historic Trail,2,0,2,0,2,0,0
+MW,IA,US,National Monument,1,1,0,0,0,0,0
+MW,IA,US,National Wildlife Refuge,7,6,1,0,0,0,1
+MW,IA,US,State Forest,10,10,0,0,0,0,0
+MW,IA,US,State Historic Site,2,2,0,0,0,0,0
+MW,IA,US,State Park,55,55,0,0,0,0,0
+MW,IA,US,State Preserve,5,5,0,0,0,0,0
+MW,IA,US,State Recreation Area,11,11,0,0,0,0,0
+MW,IA,US,State Trail,1,0,1,0,1,0,0
+MW,IA,US,State Waterfowl Management Area,1,0,1,0,0,1,0
+MW,IA,US,Wetland Management District,1,0,1,0,0,0,1
+MW,IA,US,Wildlife Area,15,14,1,0,0,0,1
+MW,IA,US,Wildlife Management Area,69,69,0,0,0,0,0
+MW,IL,US,Habitat Protection Area,1,1,0,0,0,0,0
+MW,IL,US,Historic Site,2,2,0,0,0,0,0
+MW,IL,US,National Forest,1,1,0,0,0,0,0
+MW,IL,US,National Grassland,1,1,0,0,0,0,0
+MW,IL,US,National Historic Site,2,2,0,0,0,0,0
+MW,IL,US,National Historic Trail,3,0,3,0,3,0,0
+MW,IL,US,National Monument,1,1,0,0,0,0,0
+MW,IL,US,National Preserve,1,1,0,0,0,0,0
+MW,IL,US,National Wildlife Refuge,12,11,1,0,0,0,1
+MW,IL,US,State Conservation Area,1,1,0,0,0,0,0
+MW,IL,US,State Fish and Wildlife Area,44,40,4,0,0,2,2
+MW,IL,US,State Forest,6,6,0,0,0,0,0
+MW,IL,US,State Game Land,1,1,0,0,0,0,0
+MW,IL,US,State Historic Site,19,19,0,0,0,0,0
+MW,IL,US,State Natural Area,12,12,0,0,0,0,0
+MW,IL,US,State Natural Reserve,1,1,0,0,0,0,0
+MW,IL,US,State Nature Preserve,20,20,0,0,0,0,0
+MW,IL,US,State Park,66,64,2,0,0,1,1
+MW,IL,US,State Recreation Area,15,12,3,0,0,0,3
+MW,IL,US,State Reserve,1,1,0,0,0,0,0
+MW,IL,US,State Trail,2,2,0,0,0,0,0
+MW,IL,US,State Wildlife Area,5,4,1,0,0,0,1
+MW,IL,US,USFS Recreation Area,1,0,1,0,0,0,1
+MW,IL,US,Wildlife Management Area,1,1,0,0,0,0,0
+MW,IN,US,Conservation Area,4,4,0,0,0,0,0
+MW,IN,US,National Forest,1,1,0,0,0,0,0
+MW,IN,US,National Historic Trail,1,0,1,0,1,0,0
+MW,IN,US,National Historical Park,1,1,0,0,0,0,0
+MW,IN,US,National Historical Site,1,1,0,0,0,0,0
+MW,IN,US,National Memorial,1,1,0,0,0,0,0
+MW,IN,US,National Park,1,1,0,0,0,0,0
+MW,IN,US,National Recreation Area,1,1,0,0,0,0,0
+MW,IN,US,National Wildlife Refuge,3,3,0,0,0,0,0
+MW,IN,US,State Fish Hatchery,2,2,0,0,0,0,0
+MW,IN,US,State Fish and Wildlife Area,26,25,1,0,0,0,1
+MW,IN,US,State Fishing Lake,8,8,0,0,0,0,0
+MW,IN,US,State Forest,16,15,1,0,0,0,1
+MW,IN,US,State Game Land,2,2,0,0,0,0,0
+MW,IN,US,State Historic Site,11,8,3,3,0,0,0
+MW,IN,US,State Natural Area,1,1,0,0,0,0,0
+MW,IN,US,State Nature Preserve,86,84,2,0,0,0,2
+MW,IN,US,State Park,25,25,0,0,0,0,0
+MW,IN,US,State Recreation Area,37,24,13,0,0,0,13
+MW,IN,US,Wildlife Management Area,1,0,1,0,0,0,1
+MW,MI,US,National Battlefield,1,1,0,0,0,0,0
+MW,MI,US,National Fish Hatchery,2,2,0,0,0,0,0
+MW,MI,US,National Forest,4,4,0,0,0,0,0
+MW,MI,US,National Historical Park,1,1,0,0,0,0,0
+MW,MI,US,National Lakeshore,2,2,0,0,0,0,0
+MW,MI,US,National Memorial,1,1,0,0,0,0,0
+MW,MI,US,National Park,1,1,0,0,0,0,0
+MW,MI,US,National Recreation Area,4,0,4,0,0,0,4
+MW,MI,US,National Recreation Trail,1,0,1,0,1,0,0
+MW,MI,US,National Scenic Trail,1,0,1,0,1,0,0
+MW,MI,US,National Wild and Scenic River,16,0,16,0,16,0,0
+MW,MI,US,National Wildlife Management Area,5,0,5,0,0,5,0
+MW,MI,US,National Wildlife Refuge,4,4,0,0,0,0,0
+MW,MI,US,Scenic Site,4,3,1,1,0,0,0
+MW,MI,US,State Fish Hatchery,6,6,0,0,0,0,0
+MW,MI,US,State Forest,6,0,6,0,0,0,6
+MW,MI,US,State Game Land,115,114,1,0,0,0,1
+MW,MI,US,State Harbor,16,3,13,0,0,0,13
+MW,MI,US,State Historical Park,2,2,0,0,0,0,0
+MW,MI,US,State Park,81,80,1,0,0,0,1
+MW,MI,US,State Recreation Area,27,26,1,0,0,1,0
+MW,MI,US,State Trail,7,1,6,0,6,0,0
+MW,MI,US,State Wildlife Area,13,13,0,0,0,0,0
+MW,MI,US,Wetland Management District,1,0,1,0,0,0,1
+MW,MI,US,Wilderness Area,3,3,0,0,0,0,0
+MW,MI,US,Wildlife Management Area,63,59,4,0,0,1,3
+MW,MI,US,Wildlife Refuge,1,1,0,0,0,0,0
+MW,MN,US,Aquatic Reserve,2,1,1,0,0,1,0
+MW,MN,US,Marine Protected Area,2,0,2,0,0,0,2
+MW,MN,US,National Forest,2,2,0,0,0,0,0
+MW,MN,US,National Monument,2,2,0,0,0,0,0
+MW,MN,US,National Park,1,1,0,0,0,0,0
+MW,MN,US,National Recreation Area,1,0,1,0,0,0,1
+MW,MN,US,National Recreation Trail,1,0,1,0,1,0,0
+MW,MN,US,National Scenic Trail,1,0,1,0,1,0,0
+MW,MN,US,National Wild and Scenic River,1,1,0,0,0,0,0
+MW,MN,US,National Wildlife Refuge,12,12,0,0,0,0,0
+MW,MN,US,Protected Area,3,0,3,0,0,1,2
+MW,MN,US,Scenic Reserve,6,6,0,0,0,0,0
+MW,MN,US,State Conservation Area,4,4,0,0,0,0,0
+MW,MN,US,State Forest,60,60,0,0,0,0,0
+MW,MN,US,State Natural Area,1,1,0,0,0,0,0
+MW,MN,US,State Natural Site,1,1,0,0,0,0,0
+MW,MN,US,State Park,65,65,0,0,0,0,0
+MW,MN,US,State Recreation Area,8,7,1,0,0,1,0
+MW,MN,US,State Sanctuary,4,4,0,0,0,0,0
+MW,MN,US,State Trail,26,10,16,0,16,0,0
+MW,MN,US,Unique Area,8,8,0,0,0,0,0
+MW,MN,US,Wetland Management District,7,0,7,0,0,0,7
+MW,MN,US,Wildlife Management Area,76,73,3,0,0,2,1
+MW,MO,US,Conservation Reserve,23,23,0,0,0,0,0
+MW,MO,US,National Battlefield,1,1,0,0,0,0,0
+MW,MO,US,National Forest,1,1,0,0,0,0,0
+MW,MO,US,National Historic Site,2,2,0,0,0,0,0
+MW,MO,US,National Historic Trail,7,0,7,0,7,0,0
+MW,MO,US,National Historical Park,2,1,1,0,0,0,1
+MW,MO,US,National Historical Site,1,1,0,0,0,0,0
+MW,MO,US,National Memorial,1,0,1,1,0,0,0
+MW,MO,US,National Monument,1,1,0,0,0,0,0
+MW,MO,US,National Park,1,1,0,0,0,0,0
+MW,MO,US,National Wild and Scenic River,1,1,0,0,0,0,0
+MW,MO,US,National Wildlife Refuge,6,6,0,0,0,0,0
+MW,MO,US,Natural Area,7,7,0,0,0,0,0
+MW,MO,US,State Conservation Area,385,382,3,0,0,0,3
+MW,MO,US,State Fish and Wildlife Area,1,0,1,0,0,0,1
+MW,MO,US,State Forest,8,8,0,0,0,0,0
+MW,MO,US,State Historic Site,36,35,1,1,0,0,0
+MW,MO,US,State Natural Area,2,2,0,0,0,0,0
+MW,MO,US,State Park,60,58,2,0,0,0,2
+MW,MO,US,State Recreation Area,2,2,0,0,0,0,0
+MW,MO,US,State Recreation Site,1,1,0,0,0,0,0
+MW,MO,US,State Trail,1,0,1,0,1,0,0
+MW,MO,US,State Wildlife Area,4,4,0,0,0,0,0
+MW,MO,US,Wetland Reserve,1,1,0,0,0,0,0
+MW,MO,US,Wildlife Area,5,5,0,0,0,0,0
+MW,MO,US,Wildlife Reserve,1,1,0,0,0,0,0
+MW,ND,US,Game Preserve,1,1,0,0,0,0,0
+MW,ND,US,National Fish Hatchery,1,1,0,0,0,0,0
+MW,ND,US,National Grassland,3,3,0,0,0,0,0
+MW,ND,US,National Historic Site,2,2,0,0,0,0,0
+MW,ND,US,National Historic Trail,1,0,1,0,1,0,0
+MW,ND,US,National Park,1,1,0,0,0,0,0
+MW,ND,US,National Scenic Trail,1,0,1,0,1,0,0
+MW,ND,US,National Wildlife Refuge,17,17,0,0,0,0,0
+MW,ND,US,Park,1,0,1,1,0,0,0
+MW,ND,US,State Forest,6,0,6,0,0,0,6
+MW,ND,US,State Historic Site,36,0,36,36,0,0,0
+MW,ND,US,State Natural Area,1,0,1,0,0,0,1
+MW,ND,US,State Park,13,13,0,0,0,0,0
+MW,ND,US,State Recreation Area,4,3,1,0,0,0,1
+MW,ND,US,Wetland Management District,5,0,5,0,0,0,5
+MW,ND,US,Wildlife Management Area,62,61,1,0,0,0,1
+MW,OH,US,National Forest,1,1,0,0,0,0,0
+MW,OH,US,National Historic Site,4,3,1,1,0,0,0
+MW,OH,US,National Historic Trail,1,0,1,0,1,0,0
+MW,OH,US,National Historical Park,2,2,0,0,0,0,0
+MW,OH,US,National Memorial,1,1,0,0,0,0,0
+MW,OH,US,National Monument,1,1,0,0,0,0,0
+MW,OH,US,National Park,1,1,0,0,0,0,0
+MW,OH,US,National Preserve,1,1,0,0,0,0,0
+MW,OH,US,National Scenic Trail,1,0,1,0,1,0,0
+MW,OH,US,National Wildlife Refuge,2,2,0,0,0,0,0
+MW,OH,US,State Forest,23,23,0,0,0,0,0
+MW,OH,US,State Nature Preserve,54,54,0,0,0,0,0
+MW,OH,US,State Park,77,77,0,0,0,0,0
+MW,OH,US,State Wildlife Area,107,107,0,0,0,0,0
+MW,SD,US,National Forest,2,1,1,0,0,0,1
+MW,SD,US,National Grassland,3,3,0,0,0,0,0
+MW,SD,US,National Historic Site,1,1,0,0,0,0,0
+MW,SD,US,National Historic Trail,1,0,1,0,1,0,0
+MW,SD,US,National Memorial,1,1,0,0,0,0,0
+MW,SD,US,National Monument,1,1,0,0,0,0,0
+MW,SD,US,National Park,2,2,0,0,0,0,0
+MW,SD,US,National Wild & Scenic River,1,1,0,0,0,0,0
+MW,SD,US,National Wildlife Refuge,4,4,0,0,0,0,0
+MW,SD,US,Nature Recreation Area,1,1,0,0,0,0,0
+MW,SD,US,State Natural Area,2,2,0,0,0,0,0
+MW,SD,US,State Nature Preserve,1,0,1,0,0,0,1
+MW,SD,US,State Park,14,14,0,0,0,0,0
+MW,SD,US,State Recreation Area,80,77,3,0,0,1,2
+MW,SD,US,State Trail,2,0,2,0,2,0,0
+MW,SD,US,State Vehicle Recreational Area,1,1,0,0,0,0,0
+MW,SD,US,Wetland Management District,3,0,3,0,0,0,3
+MW,WI,US,National Fish Hatchery,2,1,1,1,0,0,0
+MW,WI,US,National Forest,1,1,0,0,0,0,0
+MW,WI,US,National Lakeshore,1,1,0,0,0,0,0
+MW,WI,US,National Scenic Trail,2,1,1,0,1,0,0
+MW,WI,US,National Wild and Scenic River,1,1,0,0,0,0,0
+MW,WI,US,National Wildlife Refuge,8,8,0,0,0,0,0
+MW,WI,US,State Fish and Wildlife Area,50,47,3,0,0,0,3
+MW,WI,US,State Forest,10,10,0,0,0,0,0
+MW,WI,US,State Natural Area,24,24,0,0,0,0,0
+MW,WI,US,State Park,53,52,1,0,0,0,1
+MW,WI,US,State Recreation Area,15,9,6,0,0,2,4
+MW,WI,US,State Trail,29,27,2,0,2,0,0
+MW,WI,US,State Wilderness Area,3,3,0,0,0,0,0
+MW,WI,US,State Wildlife Area,147,141,6,0,0,1,5
+MW,WI,US,Wetland Management District,2,0,2,0,0,0,2
+NE,CT,US,Historical Reserve,1,1,0,0,0,0,0
+NE,CT,US,National Historic Site,1,1,0,0,0,0,0
+NE,CT,US,National Historic Trail,1,0,1,0,1,0,0
+NE,CT,US,National Scenic Trail,2,0,2,0,2,0,0
+NE,CT,US,National Wild and Scenic River,2,0,2,0,2,0,0
+NE,CT,US,National Wildlife Refuge,2,1,1,0,0,0,1
+NE,CT,US,Park Reserve,1,1,0,0,0,0,0
+NE,CT,US,Scenic Reserve,2,2,0,0,0,0,0
+NE,CT,US,State Beach,1,1,0,0,0,0,0
+NE,CT,US,State Forest,29,29,0,0,0,0,0
+NE,CT,US,State Park,96,93,3,0,0,1,2
+NE,CT,US,State Park Preserve,2,1,1,0,0,1,0
+NE,CT,US,State Recreation Area,1,0,1,0,0,0,1
+NE,CT,US,State Reserve,1,1,0,0,0,0,0
+NE,CT,US,State Trail,5,4,1,0,1,0,0
+NE,CT,US,Wildlife Management Area,10,10,0,0,0,0,0
+NE,DE,US,Conservation Area,1,1,0,0,0,0,0
+NE,DE,US,National Historic Trail,2,0,2,0,2,0,0
+NE,DE,US,National Historical Park,1,1,0,0,0,0,0
+NE,DE,US,National Recreation Trail,4,0,4,0,4,0,0
+NE,DE,US,National Reserve,2,2,0,0,0,0,0
+NE,DE,US,National Wild and Scenic River,1,1,0,0,0,0,0
+NE,DE,US,National Wildlife Refuge,2,2,0,0,0,0,0
+NE,DE,US,State Beach,1,1,0,0,0,0,0
+NE,DE,US,State Conservation Area,2,1,1,0,0,0,1
+NE,DE,US,State Fishing Lake,29,27,2,0,0,0,2
+NE,DE,US,State Forest,3,3,0,0,0,0,0
+NE,DE,US,State Historic Site,2,1,1,1,0,0,0
+NE,DE,US,State Nature Preserve,4,4,0,0,0,0,0
+NE,DE,US,State Park,17,16,1,0,0,0,1
+NE,DE,US,State Wildlife Area,18,18,0,0,0,0,0
+NE,MA,US,National Historic Site,7,7,0,0,0,0,0
+NE,MA,US,National Historic Trail,1,0,1,0,1,0,0
+NE,MA,US,National Historical Park,6,6,0,0,0,0,0
+NE,MA,US,National Recreation Area,1,1,0,0,0,0,0
+NE,MA,US,National Scenic Trail,2,0,2,0,2,0,0
+NE,MA,US,National Seashore,1,1,0,0,0,0,0
+NE,MA,US,National Wild and Scenic River,3,0,3,0,3,0,0
+NE,MA,US,National Wildlife Refuge,9,8,1,0,0,0,1
+NE,MA,US,State Forest,69,69,0,0,0,0,0
+NE,MA,US,State Park,55,53,2,0,0,0,2
+NE,MA,US,State Recreation Area,4,2,2,0,0,0,2
+NE,MA,US,State Reserve,37,35,2,0,0,0,2
+NE,MA,US,State Trail,5,5,0,0,0,0,0
+NE,MA,US,Wildlife Management Area,221,220,1,0,0,0,1
+NE,MD,US,Memorial Parkway,1,1,0,0,0,0,0
+NE,MD,US,National Battlefield,2,2,0,0,0,0,0
+NE,MD,US,National Heritage Site,2,0,2,2,0,0,0
+NE,MD,US,National Historic Site,3,3,0,0,0,0,0
+NE,MD,US,National Historic Trail,4,0,4,0,4,0,0
+NE,MD,US,National Historical Park,4,3,1,0,0,0,1
+NE,MD,US,National Monument,1,1,0,0,0,0,0
+NE,MD,US,National Parkway,1,0,1,1,0,0,0
+NE,MD,US,National Scenic Trail,2,0,2,0,2,0,0
+NE,MD,US,National Seashore,1,1,0,0,0,0,0
+NE,MD,US,National Wildlife Refuge,5,5,0,0,0,0,0
+NE,MD,US,Natural Area,22,21,1,0,0,0,1
+NE,MD,US,Park,5,5,0,0,0,0,0
+NE,MD,US,Resource Management Area,1,1,0,0,0,0,0
+NE,MD,US,State Conservation Area,1,1,0,0,0,0,0
+NE,MD,US,State Forest,9,9,0,0,0,0,0
+NE,MD,US,State Natural Area,7,5,2,0,0,1,1
+NE,MD,US,State Park,58,54,4,0,0,0,4
+NE,MD,US,Wildlife Management Area,57,55,2,0,0,0,2
+NE,ME,US,Ecological Reserve,5,3,2,0,0,0,2
+NE,ME,US,Historic Site,1,1,0,0,0,0,0
+NE,ME,US,International Park,1,0,1,0,0,0,1
+NE,ME,US,National Forest,1,1,0,0,0,0,0
+NE,ME,US,National Heritage Site,1,0,1,1,0,0,0
+NE,ME,US,National Historic Trail,1,0,1,0,1,0,0
+NE,ME,US,National Monument,2,1,1,0,0,0,1
+NE,ME,US,National Park,1,1,0,0,0,0,0
+NE,ME,US,National Scenic Trail,1,0,1,0,1,0,0
+NE,ME,US,National Wildlife Refuge,9,9,0,0,0,0,0
+NE,ME,US,State Conservation Area,3,3,0,0,0,0,0
+NE,ME,US,State Forest,1,1,0,0,0,0,0
+NE,ME,US,State Historic Site,11,11,0,0,0,0,0
+NE,ME,US,State Park,39,38,1,0,0,0,1
+NE,ME,US,State Preserve,9,9,0,0,0,0,0
+NE,ME,US,State Trail,2,2,0,0,0,0,0
+NE,ME,US,Wetland Management District,1,0,1,0,0,1,0
+NE,ME,US,Wildlife Management Area,59,56,3,0,0,0,3
+NE,NH,US,National Forest,1,1,0,0,0,0,0
+NE,NH,US,National Historic Site,1,1,0,0,0,0,0
+NE,NH,US,National Scenic Trail,1,0,1,0,1,0,0
+NE,NH,US,National Wild and Scenic River,3,0,3,0,3,0,0
+NE,NH,US,National Wildlife Refuge,5,5,0,0,0,0,0
+NE,NH,US,State Beach,1,1,0,0,0,0,0
+NE,NH,US,State Forest,118,115,3,0,0,0,3
+NE,NH,US,State Historic Site,13,11,2,2,0,0,0
+NE,NH,US,State Natural Area,3,3,0,0,0,0,0
+NE,NH,US,State Natural Reserve,1,1,0,0,0,0,0
+NE,NH,US,State Natural Site,1,0,1,0,0,0,1
+NE,NH,US,State Park,48,45,3,0,0,0,3
+NE,NH,US,State Preserve,1,1,0,0,0,0,0
+NE,NH,US,State Trail,2,1,1,0,1,0,0
+NE,NH,US,State Wildlife Area,2,2,0,0,0,0,0
+NE,NH,US,Wildlife Management Area,4,4,0,0,0,0,0
+NE,NJ,US,Historic Site,1,1,0,0,0,0,0
+NE,NJ,US,National Conservation Area,1,0,1,0,0,0,1
+NE,NJ,US,National Historic Site,1,0,1,1,0,0,0
+NE,NJ,US,National Historic Trail,1,0,1,0,1,0,0
+NE,NJ,US,National Historical Park,3,3,0,0,0,0,0
+NE,NJ,US,National Recreation Area,2,2,0,0,0,0,0
+NE,NJ,US,National Scenic Trail,1,0,1,0,1,0,0
+NE,NJ,US,National Wild and Scenic River,4,3,1,0,1,0,0
+NE,NJ,US,National Wildlife Refuge,5,5,0,0,0,0,0
+NE,NJ,US,Park,1,1,0,0,0,0,0
+NE,NJ,US,State Conservation Area,2,2,0,0,0,0,0
+NE,NJ,US,State Forest,11,11,0,0,0,0,0
+NE,NJ,US,State Historic Site,1,1,0,0,0,0,0
+NE,NJ,US,State Park,32,31,1,0,0,0,1
+NE,NJ,US,State Recreation Area,3,2,1,0,0,0,1
+NE,NJ,US,State Trail,1,0,1,0,1,0,0
+NE,NJ,US,Wildlife Management Area,64,63,1,0,0,0,1
+NE,NY,US,Multiple Use Area,19,19,0,0,0,0,0
+NE,NY,US,National Forest,1,1,0,0,0,0,0
+NE,NY,US,National Heritage Area,1,0,1,1,0,0,0
+NE,NY,US,National Historic District,1,0,1,1,0,0,0
+NE,NY,US,National Historic Site,12,8,4,4,0,0,0
+NE,NY,US,National Historic Trail,2,0,2,0,2,0,0
+NE,NY,US,National Historical Park,3,3,0,0,0,0,0
+NE,NY,US,National Memorial,3,2,1,1,0,0,0
+NE,NY,US,National Monument,6,6,0,0,0,0,0
+NE,NY,US,National Recreation Area,2,1,1,0,0,0,1
+NE,NY,US,National Scenic Trail,2,0,2,0,2,0,0
+NE,NY,US,National Seashore,1,1,0,0,0,0,0
+NE,NY,US,National Wild and Scenic River,1,1,0,0,0,0,0
+NE,NY,US,National Wildlife Refuge,11,11,0,0,0,0,0
+NE,NY,US,Park,1,1,0,0,0,0,0
+NE,NY,US,State Conservation Area,2,2,0,0,0,0,0
+NE,NY,US,State Forest,419,415,4,0,0,1,3
+NE,NY,US,State Historic Site,30,30,0,0,0,0,0
+NE,NY,US,State Historical Park,4,4,0,0,0,0,0
+NE,NY,US,State Nature Preserve,1,1,0,0,0,0,0
+NE,NY,US,State Park,170,167,3,0,0,0,3
+NE,NY,US,State Park Preserve,4,4,0,0,0,0,0
+NE,NY,US,State Preserve,3,3,0,0,0,0,0
+NE,NY,US,State Recreation Area,9,5,4,0,0,0,4
+NE,NY,US,State Recreation Site,1,1,0,0,0,0,0
+NE,NY,US,State Trail,4,3,1,0,1,0,0
+NE,NY,US,State Wildlife Area,1,0,1,0,0,0,1
+NE,NY,US,Unique Area,17,17,0,0,0,0,0
+NE,NY,US,Wilderness Area,1,1,0,0,0,0,0
+NE,NY,US,Wildlife Management Area,118,116,2,0,0,0,2
+NE,PA,US,Conservation Area,1,1,0,0,0,0,0
+NE,PA,US,National Battlefield,1,1,0,0,0,0,0
+NE,PA,US,National Forest,1,1,0,0,0,0,0
+NE,PA,US,National Historic Site,7,6,1,1,0,0,0
+NE,PA,US,National Historic Trail,3,0,3,0,3,0,0
+NE,PA,US,National Historical Park,3,3,0,0,0,0,0
+NE,PA,US,National Memorial,3,3,0,0,0,0,0
+NE,PA,US,National Military Park,1,1,0,0,0,0,0
+NE,PA,US,National Recreation Area,1,1,0,0,0,0,0
+NE,PA,US,National Scenic Trail,3,0,3,0,3,0,0
+NE,PA,US,National Wild & Scenic River,1,0,1,0,1,0,0
+NE,PA,US,National Wild and Scenic River,4,2,2,0,2,0,0
+NE,PA,US,National Wildlife Refuge,3,2,1,0,0,0,1
+NE,PA,US,State Conservation Area,10,6,4,0,0,0,4
+NE,PA,US,State Forest,20,20,0,0,0,0,0
+NE,PA,US,State Game Land,308,308,0,0,0,0,0
+NE,PA,US,State Historical Park,1,1,0,0,0,0,0
+NE,PA,US,State Park,120,120,0,0,0,0,0
+NE,PA,US,State Preserve,2,2,0,0,0,0,0
+NE,PA,US,State Trail,1,1,0,0,0,0,0
+NE,RI,US,Management Area,2,1,1,0,0,0,1
+NE,RI,US,National Historic Trail,1,0,1,0,1,0,0
+NE,RI,US,National Historical Park,1,1,0,0,0,0,0
+NE,RI,US,National Memorial,1,1,0,0,0,0,0
+NE,RI,US,National Wildlife Refuge,5,5,0,0,0,0,0
+NE,RI,US,State Beach,6,6,0,0,0,0,0
+NE,RI,US,State Forest,2,2,0,0,0,0,0
+NE,RI,US,State Historic Site,1,1,0,0,0,0,0
+NE,RI,US,State Nature Preserve,1,0,1,0,0,1,0
+NE,RI,US,State Park,18,18,0,0,0,0,0
+NE,RI,US,State Preserve,1,1,0,0,0,0,0
+NE,RI,US,State Recreation Area,5,4,1,0,0,1,0
+NE,RI,US,State Wildlife Area,1,1,0,0,0,0,0
+NE,RI,US,Wildlife Management Area,15,14,1,0,0,0,1
+NE,RI,US,Wildlife Refuge,1,1,0,0,0,0,0
+NE,VT,US,National Forest,1,1,0,0,0,0,0
+NE,VT,US,National Historical Park,1,1,0,0,0,0,0
+NE,VT,US,National Scenic Trail,2,0,2,0,2,0,0
+NE,VT,US,National Wildlife Refuge,2,2,0,0,0,0,0
+NE,VT,US,State Forest,36,35,1,0,0,0,1
+NE,VT,US,State Historic Site,1,1,0,0,0,0,0
+NE,VT,US,State Park,61,47,14,0,0,0,14
+NE,VT,US,State Wildlife Habitat Management Area,4,3,1,0,0,0,1
+NE,VT,US,Wildlife Management Area,1,1,0,0,0,0,0
+PAC,AK,US,Archeological Reserve,1,0,1,0,0,0,1
+PAC,AK,US,BLM Historic Area,1,0,1,1,0,0,0
+PAC,AK,US,BLM Recreation Management Area,12,1,11,10,0,0,1
+PAC,AK,US,BLM Special Recreation Management Area,1,1,0,0,0,0,0
+PAC,AK,US,BLM Wild and Scenic River,4,2,2,0,2,0,0
+PAC,AK,US,National Conservation Area,1,1,0,0,0,0,0
+PAC,AK,US,National Forest,2,2,0,0,0,0,0
+PAC,AK,US,National Heritage Area,1,0,1,1,0,0,0
+PAC,AK,US,National Heritage Site,1,0,1,1,0,0,0
+PAC,AK,US,National Historic Site,1,1,0,0,0,0,0
+PAC,AK,US,National Historic Trail,1,0,1,0,1,0,0
+PAC,AK,US,National Historical Park,2,2,0,0,0,0,0
+PAC,AK,US,National Monument,4,3,1,0,0,0,1
+PAC,AK,US,National Park,9,9,0,0,0,0,0
+PAC,AK,US,National Preserve,5,5,0,0,0,0,0
+PAC,AK,US,National Recreation Trail,1,0,1,0,1,0,0
+PAC,AK,US,National Wild and Scenic River,9,0,9,0,9,0,0
+PAC,AK,US,National Wildlife Refuge,16,16,0,0,0,0,0
+PAC,AK,US,Recreation Site,7,0,7,0,0,1,6
+PAC,AK,US,State Conservation Area,1,1,0,0,0,0,0
+PAC,AK,US,State Forest,3,3,0,0,0,0,0
+PAC,AK,US,State Game Land,1,1,0,0,0,0,0
+PAC,AK,US,State Historic Site,3,3,0,0,0,0,0
+PAC,AK,US,State Historical Park,6,6,0,0,0,0,0
+PAC,AK,US,State Marine Reserve,1,1,0,0,0,0,0
+PAC,AK,US,State Natural Area,1,1,0,0,0,0,0
+PAC,AK,US,State Park,11,11,0,0,0,0,0
+PAC,AK,US,State Preserve,1,1,0,0,0,0,0
+PAC,AK,US,State Recreation Area,19,18,1,0,0,0,1
+PAC,AK,US,State Recreation Site,45,35,10,0,0,3,7
+PAC,AK,US,State Trail,1,0,1,0,1,0,0
+PAC,AK,US,Wildlife Refuge,7,7,0,0,0,0,0
+PAC,CA,US,BLM Herd Management Area,1,1,0,0,0,0,0
+PAC,CA,US,BLM Recreation Management Area,5,0,5,0,0,0,5
+PAC,CA,US,BLM Special Recreation Management Area,7,2,5,0,0,0,5
+PAC,CA,US,Ecological Reserve,10,10,0,0,0,0,0
+PAC,CA,US,Historic Site,1,1,0,0,0,0,0
+PAC,CA,US,National Conservation Area,2,2,0,0,0,0,0
+PAC,CA,US,National Forest,20,20,0,0,0,0,0
+PAC,CA,US,National Geologic Trail,1,0,1,0,1,0,0
+PAC,CA,US,National Grassland,1,1,0,0,0,0,0
+PAC,CA,US,National Historic Site,6,4,2,2,0,0,0
+PAC,CA,US,National Historic Trail,5,0,5,0,5,0,0
+PAC,CA,US,National Historical Park,2,1,1,0,0,0,1
+PAC,CA,US,National Monument,16,14,2,0,0,0,2
+PAC,CA,US,National Park,9,9,0,0,0,0,0
+PAC,CA,US,National Recreation Area,4,4,0,0,0,0,0
+PAC,CA,US,National Scenic Trail,1,0,1,0,1,0,0
+PAC,CA,US,National Seashore,1,1,0,0,0,0,0
+PAC,CA,US,National Wild and Scenic River,4,3,1,0,1,0,0
+PAC,CA,US,National Wildlife Area,1,1,0,0,0,0,0
+PAC,CA,US,National Wildlife Refuge,24,23,1,0,0,0,1
+PAC,CA,US,Natural Area,1,0,1,0,0,0,1
+PAC,CA,US,Natural Monument,1,0,1,0,0,0,1
+PAC,CA,US,Park,3,2,1,1,0,0,0
+PAC,CA,US,Recreation Park,1,1,0,0,0,0,0
+PAC,CA,US,State Beach,64,61,3,0,0,0,3
+PAC,CA,US,State Conservation Area,14,13,1,0,0,0,1
+PAC,CA,US,State Fish and Wildlife Area,2,2,0,0,0,0,0
+PAC,CA,US,State Forest,6,6,0,0,0,0,0
+PAC,CA,US,State Historic Site,1,1,0,0,0,0,0
+PAC,CA,US,State Historical Park,48,47,1,0,0,0,1
+PAC,CA,US,State Marine Reserve,2,2,0,0,0,0,0
+PAC,CA,US,State Natural Reserve,1,1,0,0,0,0,0
+PAC,CA,US,State Park,99,97,2,0,0,0,2
+PAC,CA,US,State Recreation Area,31,31,0,0,0,0,0
+PAC,CA,US,State Vehicle Recreational Area,6,6,0,0,0,0,0
+PAC,CA,US,State Wildlife Area,6,6,0,0,0,0,0
+PAC,CA,US,Wilderness Area,1,1,0,0,0,0,0
+PAC,CA,US,Wildlife Management Area,2,2,0,0,0,0,0
+PAC,HI,US,Forest Reserve,14,14,0,0,0,0,0
+PAC,HI,US,Game Reserve,2,1,1,0,0,0,1
+PAC,HI,US,Historic Site,1,0,1,1,0,0,0
+PAC,HI,US,National Historic District,1,0,1,1,0,0,0
+PAC,HI,US,National Historic Site,3,2,1,1,0,0,0
+PAC,HI,US,National Historic Trail,1,1,0,0,0,0,0
+PAC,HI,US,National Historical Park,3,3,0,0,0,0,0
+PAC,HI,US,National Memorial,1,1,0,0,0,0,0
+PAC,HI,US,National Monument,1,0,1,0,0,0,1
+PAC,HI,US,National Park,2,2,0,0,0,0,0
+PAC,HI,US,National Wildlife Refuge,10,9,1,0,0,0,1
+PAC,HI,US,Nature Reserve,1,0,1,0,0,0,1
+PAC,HI,US,Scenic Site,1,1,0,0,0,0,0
+PAC,HI,US,State Historic Site,2,1,1,1,0,0,0
+PAC,HI,US,State Historical Park,2,2,0,0,0,0,0
+PAC,HI,US,State Park,25,25,0,0,0,0,0
+PAC,HI,US,State Preserve,6,3,3,0,0,3,0
+PAC,HI,US,State Recreation Area,15,15,0,0,0,0,0
+PAC,HI,US,State Reserve,1,1,0,0,0,0,0
+PAC,HI,US,State Trail,9,4,5,0,5,0,0
+PAC,HI,US,Wildlife Reserve,1,0,1,0,0,1,0
+PAC,OR,US,BLM Herd Management Area,18,18,0,0,0,0,0
+PAC,OR,US,BLM Historic Area,2,1,1,1,0,0,0
+PAC,OR,US,BLM Historic Preservation Site,1,1,0,0,0,0,0
+PAC,OR,US,BLM Historic Trail,3,3,0,0,0,0,0
+PAC,OR,US,BLM Interpretive Site,1,0,1,1,0,0,0
+PAC,OR,US,BLM Recreation Management Area,77,62,15,1,0,2,12
+PAC,OR,US,BLM Special Recreation Management Area,8,4,4,1,0,0,3
+PAC,OR,US,BLM Wild and Scenic River,4,3,1,0,1,0,0
+PAC,OR,US,BLM Wilderness Area,5,4,1,0,0,0,1
+PAC,OR,US,National Fish Hatchery,1,1,0,0,0,0,0
+PAC,OR,US,National Forest,13,13,0,0,0,0,0
+PAC,OR,US,National Geologic Trail,1,0,1,0,1,0,0
+PAC,OR,US,National Grassland,1,1,0,0,0,0,0
+PAC,OR,US,National Historic Site,1,0,1,1,0,0,0
+PAC,OR,US,National Historic Trail,4,0,4,0,4,0,0
+PAC,OR,US,National Historical Park,2,1,1,0,0,0,1
+PAC,OR,US,National Monument,4,3,1,0,0,0,1
+PAC,OR,US,National Nature Reserve,1,1,0,0,0,0,0
+PAC,OR,US,National Park,1,1,0,0,0,0,0
+PAC,OR,US,National Recreation Area,2,0,2,0,0,0,2
+PAC,OR,US,National Recreation Trail,1,1,0,0,0,0,0
+PAC,OR,US,National Scenic Trail,2,0,2,0,2,0,0
+PAC,OR,US,National Wild & Scenic River,1,0,1,0,1,0,0
+PAC,OR,US,National Wild and Scenic River,9,2,7,0,7,0,0
+PAC,OR,US,National Wildlife Refuge,19,19,0,0,0,0,0
+PAC,OR,US,Natural Area,1,0,1,0,0,0,1
+PAC,OR,US,State Fish Hatchery,27,9,18,18,0,0,0
+PAC,OR,US,State Fish and Wildlife Area,17,17,0,0,0,0,0
+PAC,OR,US,State Forest,10,7,3,0,0,0,3
+PAC,OR,US,State Historic Site,8,8,0,0,0,0,0
+PAC,OR,US,State Natural Area,19,18,1,0,0,0,1
+PAC,OR,US,State Natural Site,2,2,0,0,0,0,0
+PAC,OR,US,State Park,85,85,0,0,0,0,0
+PAC,OR,US,State Park Preserve,2,2,0,0,0,0,0
+PAC,OR,US,State Recreation Area,55,55,0,0,0,0,0
+PAC,OR,US,State Recreation Site,6,3,3,0,0,0,3
+PAC,OR,US,State Trail,8,4,4,0,4,0,0
+PAC,OR,US,State Wildlife Area,5,5,0,0,0,0,0
+PAC,OR,US,Wetland Reserve,1,0,1,0,0,0,1
+PAC,OR,US,Wilderness Area,12,12,0,0,0,0,0
+PAC,WA,US,BLM Interpretive Site,1,1,0,0,0,0,0
+PAC,WA,US,BLM Recreation Management Area,14,3,11,0,0,0,11
+PAC,WA,US,BLM Special Recreation Management Area,1,1,0,0,0,0,0
+PAC,WA,US,National Conservation Area,1,1,0,0,0,0,0
+PAC,WA,US,National Fish Hatchery,4,4,0,0,0,0,0
+PAC,WA,US,National Forest,8,5,3,0,0,0,3
+PAC,WA,US,National Geologic Trail,1,0,1,0,1,0,0
+PAC,WA,US,National Historic Site,3,2,1,1,0,0,0
+PAC,WA,US,National Historic Trail,2,0,2,0,2,0,0
+PAC,WA,US,National Historical Park,5,4,1,0,0,0,1
+PAC,WA,US,National Monument,3,1,2,0,0,0,2
+PAC,WA,US,National Park,3,3,0,0,0,0,0
+PAC,WA,US,National Parkway,1,0,1,1,0,0,0
+PAC,WA,US,National Recreation Area,7,5,2,0,0,0,2
+PAC,WA,US,National Scenic Trail,2,0,2,0,2,0,0
+PAC,WA,US,National Wild & Scenic River,2,0,2,0,2,0,0
+PAC,WA,US,National Wild and Scenic River,1,0,1,0,1,0,0
+PAC,WA,US,National Wildlife Refuge,15,15,0,0,0,0,0
+PAC,WA,US,Nature Recreation Area,1,1,0,0,0,0,0
+PAC,WA,US,Scenic Reserve,1,1,0,0,0,0,0
+PAC,WA,US,State Conservation Area,6,6,0,0,0,0,0
+PAC,WA,US,State Fish Hatchery,6,5,1,1,0,0,0
+PAC,WA,US,State Fish and Wildlife Area,33,33,0,0,0,0,0
+PAC,WA,US,State Fishing Lake,79,76,3,0,0,0,3
+PAC,WA,US,State Forest,15,2,13,0,0,1,12
+PAC,WA,US,State Forest Park,1,1,0,0,0,0,0
+PAC,WA,US,State Heritage Area,2,2,0,0,0,0,0
+PAC,WA,US,State Historic Site,1,1,0,0,0,0,0
+PAC,WA,US,State Natural Area,6,6,0,0,0,0,0
+PAC,WA,US,State Natural Reserve,1,1,0,0,0,0,0
+PAC,WA,US,State Nature Preserve,6,6,0,0,0,0,0
+PAC,WA,US,State Park,149,148,1,0,0,0,1
+PAC,WA,US,State Preserve,1,1,0,0,0,0,0
+PAC,WA,US,State Recreation Area,6,3,3,0,0,0,3
+PAC,WA,US,State Recreation Site,19,3,16,0,0,12,4
+PAC,WA,US,State Trail,5,4,1,0,1,0,0
+PAC,WA,US,State Wildlife Area,104,103,1,0,0,0,1
+PAC,WA,US,Wildlife Area,19,19,0,0,0,0,0
+PAC,WA,US,Wildlife Management Area,1,1,0,0,0,0,0
+SC2,AR,US,National Fish Hatchery,3,3,0,0,0,0,0
+SC2,AR,US,National Forest,2,2,0,0,0,0,0
+SC2,AR,US,National Heritage Area,1,0,1,1,0,0,0
+SC2,AR,US,National Historic Site,3,3,0,0,0,0,0
+SC2,AR,US,National Historic Trail,4,0,4,0,4,0,0
+SC2,AR,US,National Historical Site,1,0,1,1,0,0,0
+SC2,AR,US,National Memorial,1,1,0,0,0,0,0
+SC2,AR,US,National Military Park,1,1,0,0,0,0,0
+SC2,AR,US,National Monument,1,0,1,0,0,0,1
+SC2,AR,US,National Park,1,1,0,0,0,0,0
+SC2,AR,US,National Parkway,1,0,1,1,0,0,0
+SC2,AR,US,National Recreation Area,3,2,1,0,0,0,1
+SC2,AR,US,National Recreation Trail,1,0,1,0,1,0,0
+SC2,AR,US,National Scenic Trail,1,0,1,0,1,0,0
+SC2,AR,US,National Wild and Scenic River,1,1,0,0,0,0,0
+SC2,AR,US,National Wildlife Area,1,1,0,0,0,0,0
+SC2,AR,US,National Wildlife Refuge,10,10,0,0,0,0,0
+SC2,AR,US,Natural Area,5,5,0,0,0,0,0
+SC2,AR,US,Nature Park,2,0,2,0,0,1,1
+SC2,AR,US,Nature Recreation Area,2,0,2,0,0,0,2
+SC2,AR,US,Recreation Park,2,0,2,2,0,0,0
+SC2,AR,US,State Conservation Area,2,1,1,0,0,0,1
+SC2,AR,US,State Fish Hatchery,3,0,3,3,0,0,0
+SC2,AR,US,State Fish and Wildlife Area,2,1,1,0,0,0,1
+SC2,AR,US,State Fishing Lake,6,3,3,0,0,2,1
+SC2,AR,US,State Forest,1,1,0,0,0,0,0
+SC2,AR,US,State Historical Park,1,1,0,0,0,0,0
+SC2,AR,US,State Natural Area,44,44,0,0,0,0,0
+SC2,AR,US,State Natural Reserve,2,0,2,0,0,0,2
+SC2,AR,US,State Natural Site,1,0,1,0,0,0,1
+SC2,AR,US,State Park,52,52,0,0,0,0,0
+SC2,AR,US,State Recreation Area,21,12,9,0,0,0,9
+SC2,AR,US,State Recreation Site,1,0,1,0,0,0,1
+SC2,AR,US,State Trail,15,0,15,0,15,0,0
+SC2,AR,US,Wilderness Zone,1,1,0,0,0,0,0
+SC2,AR,US,Wildlife Management Area,105,104,1,0,0,0,1
+SC2,KS,US,National Conservation Area,1,1,0,0,0,0,0
+SC2,KS,US,National Grassland,1,1,0,0,0,0,0
+SC2,KS,US,National Historic Site,4,4,0,0,0,0,0
+SC2,KS,US,National Historic Trail,5,0,5,0,5,0,0
+SC2,KS,US,National Wildlife Refuge,4,4,0,0,0,0,0
+SC2,KS,US,State Fish Hatchery,2,0,2,2,0,0,0
+SC2,KS,US,State Fishing Lake,48,46,2,0,0,0,2
+SC2,KS,US,State Historic Site,16,2,14,14,0,0,0
+SC2,KS,US,State Park,28,26,2,0,0,0,2
+SC2,KS,US,State Preserve,1,1,0,0,0,0,0
+SC2,KS,US,State Trail,1,0,1,0,1,0,0
+SC2,KS,US,State Wildlife Area,34,33,1,0,0,0,1
+SC2,LA,US,Conservation Area,2,2,0,0,0,0,0
+SC2,LA,US,National Forest,1,1,0,0,0,0,0
+SC2,LA,US,National Historic Trail,1,0,1,0,1,0,0
+SC2,LA,US,National Historical Park,2,2,0,0,0,0,0
+SC2,LA,US,National Military Park,1,1,0,0,0,0,0
+SC2,LA,US,National Monument,1,0,1,0,0,0,1
+SC2,LA,US,National Wildlife Refuge,21,21,0,0,0,0,0
+SC2,LA,US,State Historic Site,11,9,2,2,0,0,0
+SC2,LA,US,State Park,21,17,4,0,0,0,4
+SC2,LA,US,Wildlife Management Area,54,54,0,0,0,0,0
+SC2,LA,US,Wildlife Refuge,8,8,0,0,0,0,0
+SC2,NE,US,National Forest,2,2,0,0,0,0,0
+SC2,NE,US,National Grassland,1,1,0,0,0,0,0
+SC2,NE,US,National Historic Site,2,0,2,2,0,0,0
+SC2,NE,US,National Historic Trail,5,0,5,0,5,0,0
+SC2,NE,US,National Historical Park,2,1,1,0,0,0,1
+SC2,NE,US,National Monument,2,2,0,0,0,0,0
+SC2,NE,US,National Waterfowl Production Area,6,6,0,0,0,0,0
+SC2,NE,US,National Wild & Scenic River,1,1,0,0,0,0,0
+SC2,NE,US,National Wild and Scenic River,1,1,0,0,0,0,0
+SC2,NE,US,National Wildlife Management Area,1,0,1,0,0,0,1
+SC2,NE,US,National Wildlife Refuge,7,7,0,0,0,0,0
+SC2,NE,US,State Historic Site,2,0,2,2,0,0,0
+SC2,NE,US,State Historical Park,8,8,0,0,0,0,0
+SC2,NE,US,State Park,14,11,3,0,0,0,3
+SC2,NE,US,State Recreation Area,77,71,6,0,0,0,6
+SC2,NE,US,Wetland Management District,1,0,1,0,0,0,1
+SC2,NE,US,Wildlife Management Area,64,64,0,0,0,0,0
+SC2,OK,US,Conservation Area,1,1,0,0,0,0,0
+SC2,OK,US,Conservation Reserve,1,1,0,0,0,0,0
+SC2,OK,US,Game Preserve,1,0,1,0,0,1,0
+SC2,OK,US,Historic Site,5,0,5,5,0,0,0
+SC2,OK,US,National Fish Hatchery,1,1,0,0,0,0,0
+SC2,OK,US,National Forest,2,0,2,0,0,0,2
+SC2,OK,US,National Grassland,2,2,0,0,0,0,0
+SC2,OK,US,National Historic Site,4,1,3,3,0,0,0
+SC2,OK,US,National Historic Trail,3,0,3,0,3,0,0
+SC2,OK,US,National Historical Site,2,0,2,2,0,0,0
+SC2,OK,US,National Memorial,1,0,1,1,0,0,0
+SC2,OK,US,National Nature Reserve,1,0,1,0,0,0,1
+SC2,OK,US,National Recreation Area,3,1,2,0,0,0,2
+SC2,OK,US,National Recreation Trail,1,0,1,0,1,0,0
+SC2,OK,US,National Wildlife Area,1,0,1,0,0,0,1
+SC2,OK,US,National Wildlife Management Area,1,1,0,0,0,0,0
+SC2,OK,US,National Wildlife Refuge,8,7,1,0,0,0,1
+SC2,OK,US,Recreation Site,4,0,4,0,0,0,4
+SC2,OK,US,Scenic Reserve,1,0,1,0,0,0,1
+SC2,OK,US,Scenic Site,1,0,1,1,0,0,0
+SC2,OK,US,State Fish Hatchery,3,0,3,3,0,0,0
+SC2,OK,US,State Fishing Lake,18,13,5,0,0,0,5
+SC2,OK,US,State Historic Site,19,2,17,17,0,0,0
+SC2,OK,US,State Park,39,38,1,0,0,0,1
+SC2,OK,US,State Trail,2,0,2,0,2,0,0
+SC2,OK,US,Wildlife Management Area,79,75,4,0,0,0,4
+SC2,OK,US,Wildlife Refuge,1,0,1,0,0,0,1
+SC2,TX,US,Historic Site,1,0,1,1,0,0,0
+SC2,TX,US,National Conservation Area,1,1,0,0,0,0,0
+SC2,TX,US,National Forest,5,4,1,0,0,0,1
+SC2,TX,US,National Grassland,4,4,0,0,0,0,0
+SC2,TX,US,National Historic Site,2,1,1,1,0,0,0
+SC2,TX,US,National Historic Trail,3,0,3,0,3,0,0
+SC2,TX,US,National Historical Park,2,2,0,0,0,0,0
+SC2,TX,US,National Memorial,1,1,0,0,0,0,0
+SC2,TX,US,National Monument,2,2,0,0,0,0,0
+SC2,TX,US,National Nature Reserve,1,1,0,0,0,0,0
+SC2,TX,US,National Park,3,2,1,0,0,0,1
+SC2,TX,US,National Recreation Area,2,2,0,0,0,0,0
+SC2,TX,US,National Seashore,1,1,0,0,0,0,0
+SC2,TX,US,National Wild and Scenic River,1,0,1,0,1,0,0
+SC2,TX,US,National Wildlife Refuge,18,18,0,0,0,0,0
+SC2,TX,US,State Conservation Area,6,6,0,0,0,0,0
+SC2,TX,US,State Forest,5,4,1,0,0,0,1
+SC2,TX,US,State Historic Site,36,26,10,10,0,0,0
+SC2,TX,US,State Natural Area,1,1,0,0,0,0,0
+SC2,TX,US,State Park,80,80,0,0,0,0,0
+SC2,TX,US,State Preserve,1,1,0,0,0,0,0
+SC2,TX,US,State Wildlife Area,1,1,0,0,0,0,0
+SC2,TX,US,Wildlife Management Area,45,44,1,0,0,0,1
+SE,AL,US,5(1)(g) Reserve,1,0,1,0,0,0,1
+SE,AL,US,BLM Recreation Management Area,1,1,0,0,0,0,0
+SE,AL,US,Conservation Area,2,1,1,0,0,1,0
+SE,AL,US,Conservation Reserve,2,2,0,0,0,0,0
+SE,AL,US,Historic Site,3,2,1,1,0,0,0
+SE,AL,US,Management Area,3,3,0,0,0,0,0
+SE,AL,US,Multiple Use Area,3,0,3,0,0,0,3
+SE,AL,US,National Conservation Area,1,1,0,0,0,0,0
+SE,AL,US,National Forest,5,5,0,0,0,0,0
+SE,AL,US,National Historic Site,4,2,2,2,0,0,0
+SE,AL,US,National Historic Trail,2,1,1,0,1,0,0
+SE,AL,US,National Historical Park,1,1,0,0,0,0,0
+SE,AL,US,National Military Park,1,1,0,0,0,0,0
+SE,AL,US,National Monument,3,3,0,0,0,0,0
+SE,AL,US,National Park,4,0,4,0,0,0,4
+SE,AL,US,National Parkway,1,1,0,0,0,0,0
+SE,AL,US,National Preserve,1,1,0,0,0,0,0
+SE,AL,US,National Recreation Area,1,0,1,0,0,0,1
+SE,AL,US,National Scenic Trail,1,0,1,0,1,0,0
+SE,AL,US,National Wildlife Area,1,1,0,0,0,0,0
+SE,AL,US,National Wildlife Refuge,11,11,0,0,0,0,0
+SE,AL,US,Nature Recreation Area,1,0,1,0,0,0,1
+SE,AL,US,Nature Refuge,1,0,1,0,0,1,0
+SE,AL,US,Nature Reserve,1,0,1,0,0,1,0
+SE,AL,US,Park,1,1,0,0,0,0,0
+SE,AL,US,Regional Park,1,0,1,1,0,0,0
+SE,AL,US,Resource Management Area,1,0,1,0,0,0,1
+SE,AL,US,State Conservation Area,9,8,1,0,0,1,0
+SE,AL,US,State Fish and Wildlife Area,2,2,0,0,0,0,0
+SE,AL,US,State Fishing Lake,1,1,0,0,0,0,0
+SE,AL,US,State Forest,5,5,0,0,0,0,0
+SE,AL,US,State Historical Park,4,1,3,0,0,0,3
+SE,AL,US,State Natural Area,1,1,0,0,0,0,0
+SE,AL,US,State Nature Preserve,2,2,0,0,0,0,0
+SE,AL,US,State Park,23,21,2,0,0,0,2
+SE,AL,US,State Public Fishing Lake,16,16,0,0,0,0,0
+SE,AL,US,State Wildlife Area,1,0,1,0,0,1,0
+SE,AL,US,Wilderness Area,2,2,0,0,0,0,0
+SE,AL,US,Wildlife Management Area,31,29,2,0,0,0,2
+SE,FL,US,National Conservation Area,1,1,0,0,0,0,0
+SE,FL,US,National Forest,3,3,0,0,0,0,0
+SE,FL,US,National Memorial,2,2,0,0,0,0,0
+SE,FL,US,National Monument,2,2,0,0,0,0,0
+SE,FL,US,National Park,3,3,0,0,0,0,0
+SE,FL,US,National Preserve,1,1,0,0,0,0,0
+SE,FL,US,National Scenic Trail,1,0,1,0,1,0,0
+SE,FL,US,National Seashore,2,2,0,0,0,0,0
+SE,FL,US,National Wild and Scenic River,2,1,1,0,1,0,0
+SE,FL,US,National Wildlife Refuge,20,20,0,0,0,0,0
+SE,FL,US,Park Reserve,1,1,0,0,0,0,0
+SE,FL,US,State Conservation Area,157,140,17,0,0,6,11
+SE,FL,US,State Forest,37,37,0,0,0,0,0
+SE,FL,US,State Historic Site,4,3,1,1,0,0,0
+SE,FL,US,State Park,161,161,0,0,0,0,0
+SE,FL,US,State Recreation Area,1,1,0,0,0,0,0
+SE,FL,US,State Trail,9,9,0,0,0,0,0
+SE,FL,US,Water Management Area,3,3,0,0,0,0,0
+SE,FL,US,Wildlife Area,18,18,0,0,0,0,0
+SE,FL,US,Wildlife Management Area,32,32,0,0,0,0,0
+SE,GA,US,National Battlefield,1,1,0,0,0,0,0
+SE,GA,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,GA,US,National Forest,1,1,0,0,0,0,0
+SE,GA,US,National Heritage Area,2,0,2,2,0,0,0
+SE,GA,US,National Historic Site,3,3,0,0,0,0,0
+SE,GA,US,National Historic Trail,1,0,1,0,1,0,0
+SE,GA,US,National Military Park,1,1,0,0,0,0,0
+SE,GA,US,National Monument,3,3,0,0,0,0,0
+SE,GA,US,National Recreation Area,2,1,1,0,0,0,1
+SE,GA,US,National Scenic Trail,1,0,1,0,1,0,0
+SE,GA,US,National Seashore,1,1,0,0,0,0,0
+SE,GA,US,National Wild and Scenic River,1,0,1,0,1,0,0
+SE,GA,US,National Wildlife Refuge,10,10,0,0,0,0,0
+SE,GA,US,Recreation Park,2,0,2,2,0,0,0
+SE,GA,US,State Fish Hatchery,5,5,0,0,0,0,0
+SE,GA,US,State Fishing Lake,10,10,0,0,0,0,0
+SE,GA,US,State Forest,4,2,2,0,0,0,2
+SE,GA,US,State Historic Site,16,14,2,2,0,0,0
+SE,GA,US,State Park,52,49,3,0,0,0,3
+SE,GA,US,State Recreation Area,2,1,1,0,0,0,1
+SE,GA,US,Wilderness Area,1,1,0,0,0,0,0
+SE,GA,US,Wildlife Management Area,117,116,1,0,0,0,1
+SE,MS,US,Archeological Reserve,1,0,1,0,0,0,1
+SE,MS,US,Coastal Park,1,0,1,0,0,0,1
+SE,MS,US,National Battlefield,3,3,0,0,0,0,0
+SE,MS,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,MS,US,National Forest,6,6,0,0,0,0,0
+SE,MS,US,National Historical Park,1,1,0,0,0,0,0
+SE,MS,US,National Historical Site,1,0,1,1,0,0,0
+SE,MS,US,National Military Park,1,1,0,0,0,0,0
+SE,MS,US,National Parkway,1,1,0,0,0,0,0
+SE,MS,US,National Scenic Trail,1,1,0,0,0,0,0
+SE,MS,US,National Seashore,1,0,1,0,0,0,1
+SE,MS,US,National Wildlife Refuge,13,13,0,0,0,0,0
+SE,MS,US,Recreation Park,1,1,0,0,0,0,0
+SE,MS,US,State Fishing Lake,16,1,15,0,0,0,15
+SE,MS,US,State Historic Site,2,0,2,2,0,0,0
+SE,MS,US,State Historical Park,1,1,0,0,0,0,0
+SE,MS,US,State Park,25,23,2,0,0,0,2
+SE,MS,US,State Recreation Area,24,2,22,0,0,0,22
+SE,MS,US,State Recreation Site,1,0,1,0,0,0,1
+SE,MS,US,Wildlife Management Area,54,34,20,0,0,0,20
+SE,NC,US,Historic Site,4,1,3,3,0,0,0
+SE,NC,US,Multiple Use Area,2,0,2,0,0,0,2
+SE,NC,US,National Battlefield,1,1,0,0,0,0,0
+SE,NC,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,NC,US,National Forest,4,4,0,0,0,0,0
+SE,NC,US,National Historic Site,2,2,0,0,0,0,0
+SE,NC,US,National Historic Trail,2,0,2,0,2,0,0
+SE,NC,US,National Memorial,1,1,0,0,0,0,0
+SE,NC,US,National Military Park,1,1,0,0,0,0,0
+SE,NC,US,National Park,3,1,2,0,0,1,1
+SE,NC,US,National Parkway,1,1,0,0,0,0,0
+SE,NC,US,National Recreation Area,1,0,1,0,0,0,1
+SE,NC,US,National Scenic Trail,1,0,1,0,1,0,0
+SE,NC,US,National Seashore,2,2,0,0,0,0,0
+SE,NC,US,National Wild and Scenic River,1,1,0,0,0,0,0
+SE,NC,US,National Wildlife Refuge,11,11,0,0,0,0,0
+SE,NC,US,Recreation Park,4,0,4,4,0,0,0
+SE,NC,US,State Conservation Area,6,5,1,0,0,1,0
+SE,NC,US,State Fish Hatchery,6,4,2,2,0,0,0
+SE,NC,US,State Fishing Lake,1,0,1,0,0,0,1
+SE,NC,US,State Forest,9,9,0,0,0,0,0
+SE,NC,US,State Game Land,93,92,1,0,0,0,1
+SE,NC,US,State Historic Site,28,24,4,4,0,0,0
+SE,NC,US,State Nature Preserve,8,4,4,0,0,2,2
+SE,NC,US,State Park,36,36,0,0,0,0,0
+SE,NC,US,State Preserve,3,1,2,0,0,0,2
+SE,NC,US,State Recreation Area,4,4,0,0,0,0,0
+SE,NC,US,State Reserve,4,4,0,0,0,0,0
+SE,NC,US,State Trail,5,3,2,0,2,0,0
+SE,NC,US,Wilderness Area,6,6,0,0,0,0,0
+SE,NC,US,Wildlife Management Area,2,0,2,0,0,0,2
+SE,SC,US,Heritage Preserve,29,29,0,0,0,0,0
+SE,SC,US,National Battlefield,1,1,0,0,0,0,0
+SE,SC,US,National Forest,2,2,0,0,0,0,0
+SE,SC,US,National Historic Site,3,3,0,0,0,0,0
+SE,SC,US,National Historic Trail,1,0,1,0,1,0,0
+SE,SC,US,National Military Park,1,1,0,0,0,0,0
+SE,SC,US,National Monument,1,1,0,0,0,0,0
+SE,SC,US,National Park,1,1,0,0,0,0,0
+SE,SC,US,National Wild and Scenic River,1,0,1,0,1,0,0
+SE,SC,US,National Wildlife Refuge,7,7,0,0,0,0,0
+SE,SC,US,State Fishing Lake,3,3,0,0,0,0,0
+SE,SC,US,State Forest,5,5,0,0,0,0,0
+SE,SC,US,State Historic Site,8,8,0,0,0,0,0
+SE,SC,US,State Historical Park,1,1,0,0,0,0,0
+SE,SC,US,State Park,41,38,3,0,0,0,3
+SE,SC,US,State Recreation Area,1,1,0,0,0,0,0
+SE,SC,US,State Trail,1,0,1,0,1,0,0
+SE,SC,US,Wildlife Management Area,60,58,2,0,0,0,2
+SE,TN,US,Archeological Reserve,1,0,1,0,0,0,1
+SE,TN,US,National Battlefield,3,3,0,0,0,0,0
+SE,TN,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,TN,US,National Forest,1,1,0,0,0,0,0
+SE,TN,US,National Historic Site,1,1,0,0,0,0,0
+SE,TN,US,National Historic Trail,2,0,2,0,2,0,0
+SE,TN,US,National Historical Park,2,1,1,0,0,0,1
+SE,TN,US,National Military Park,1,1,0,0,0,0,0
+SE,TN,US,National Park,1,1,0,0,0,0,0
+SE,TN,US,National Parkway,1,0,1,1,0,0,0
+SE,TN,US,National Recreation Area,2,2,0,0,0,0,0
+SE,TN,US,National Recreation Trail,1,0,1,0,1,0,0
+SE,TN,US,National Scenic Trail,2,0,2,0,2,0,0
+SE,TN,US,National Wild and Scenic River,1,1,0,0,0,0,0
+SE,TN,US,National Wildlife Refuge,7,7,0,0,0,0,0
+SE,TN,US,Park,1,0,1,1,0,0,0
+SE,TN,US,State Conservation Area,1,1,0,0,0,0,0
+SE,TN,US,State Fishing Lake,7,5,2,0,0,0,2
+SE,TN,US,State Forest,15,15,0,0,0,0,0
+SE,TN,US,State Historical Park,1,1,0,0,0,0,0
+SE,TN,US,State Natural Area,46,39,7,0,0,0,7
+SE,TN,US,State Park,65,63,2,0,0,1,1
+SE,TN,US,State Trail,1,0,1,0,1,0,0
+SE,TN,US,State Wilderness Area,1,1,0,0,0,0,0
+SE,TN,US,State Wildlife Area,7,7,0,0,0,0,0
+SE,TN,US,Wildlife Management Area,101,97,4,0,0,1,3
+SE,TN,US,Wildlife Refuge,4,4,0,0,0,0,0
+SE,VA,US,BLM Special Recreation Management Area,1,1,0,0,0,0,0
+SE,VA,US,Memorial Parkway,1,1,0,0,0,0,0
+SE,VA,US,National Battlefield,4,3,1,1,0,0,0
+SE,VA,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,VA,US,National Forest,1,1,0,0,0,0,0
+SE,VA,US,National Historic Site,1,1,0,0,0,0,0
+SE,VA,US,National Historic Trail,6,0,6,0,6,0,0
+SE,VA,US,National Historical Park,5,5,0,0,0,0,0
+SE,VA,US,National Historical Site,3,1,2,2,0,0,0
+SE,VA,US,National Memorial,1,0,1,1,0,0,0
+SE,VA,US,National Military Park,1,1,0,0,0,0,0
+SE,VA,US,National Monument,3,3,0,0,0,0,0
+SE,VA,US,National Park,2,2,0,0,0,0,0
+SE,VA,US,National Parkway,2,2,0,0,0,0,0
+SE,VA,US,National Recreation Area,1,0,1,0,0,1,0
+SE,VA,US,National Recreation Trail,12,1,11,0,11,0,0
+SE,VA,US,National Scenic Trail,2,0,2,0,2,0,0
+SE,VA,US,National Seashore,1,1,0,0,0,0,0
+SE,VA,US,National Wildlife Refuge,11,11,0,0,0,0,0
+SE,VA,US,Park,2,2,0,0,0,0,0
+SE,VA,US,State Fish Hatchery,9,9,0,0,0,0,0
+SE,VA,US,State Forest,24,24,0,0,0,0,0
+SE,VA,US,State Historic Site,1,0,1,1,0,0,0
+SE,VA,US,State Natural Area,17,17,0,0,0,0,0
+SE,VA,US,State Park,44,44,0,0,0,0,0
+SE,VA,US,State Trail,3,0,3,0,3,0,0
+SE,VA,US,Wilderness Area,23,23,0,0,0,0,0
+SE,VA,US,Wildlife Refuge,1,1,0,0,0,0,0
+SE,VA,US,Wildlife Reserve,1,0,1,0,0,0,1
+SE,WV,US,National Fish Hatchery,1,1,0,0,0,0,0
+SE,WV,US,National Forest,2,2,0,0,0,0,0
+SE,WV,US,National Historic Trail,1,0,1,0,1,0,0
+SE,WV,US,National Historical Park,2,2,0,0,0,0,0
+SE,WV,US,National Park,1,1,0,0,0,0,0
+SE,WV,US,National Recreation Area,1,1,0,0,0,0,0
+SE,WV,US,National Scenic Trail,1,0,1,0,1,0,0
+SE,WV,US,National Wild and Scenic River,1,1,0,0,0,0,0
+SE,WV,US,National Wildlife Refuge,2,2,0,0,0,0,0
+SE,WV,US,State Fish Hatchery,5,0,5,5,0,0,0
+SE,WV,US,State Forest,8,8,0,0,0,0,0
+SE,WV,US,State Natural Area,1,0,1,0,0,0,1
+SE,WV,US,State Park,36,36,0,0,0,0,0
+SE,WV,US,State Recreation Area,1,0,1,0,0,0,1
+SE,WV,US,State Trail,3,0,3,0,3,0,0
+SE,WV,US,Wilderness Area,8,8,0,0,0,0,0
+SE,WV,US,Wildlife Management Area,98,98,0,0,0,0,0
