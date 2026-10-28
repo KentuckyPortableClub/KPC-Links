@@ -101,11 +101,11 @@ STATUS: **SET UP Oct 26 6:28 PM (Brandon).** Form made, founders list = 7 emails
 One short, friendly email per agency from Brandon (KZ4CP, Kentucky Portable Club, non-commercial; asks to show the layer on our free maps with a small simplified copy, credit the agency on every map, never sell it; asks for any terms / credit line). The list of agencies + what each unlocks = 'ASK THE PUBLISHER' table in mapping.md (chat 9 keeps it current and finds the contacts). HQ re-drafts any email on request.
 - [ ] NC State Historic Preservation Office: historic boundaries shapefile. Contact: Andrew Edmonds, andrew.edmonds@ncdcr.gov, 919-814-6592. READY TO SEND.
 - [ ] Tennessee Historical Commission: National Register boundaries (2,047 polygons). Contact: chat 9 finding.
-- [ ] Missouri State Parks (DNR): Katy Trail + state park trails + 13 wild areas. Contact: chat 9 finding.
+- [ ] Missouri State Parks (DNR): NOW ONLY the trail lines (Katy Trail + state park trails); its park boundaries + 13 wild areas PASS (credit line found, round 19). Email: trim to the trails. Contact: chat 9 finding.
 - [ ] Prince Edward Island: provincial park polygons (46). Contact: chat 9 finding.
 - [ ] SC DNR: managed lands (963, on Clemson's account): is it SCDNR's official data + may we use it. Contact: chat 9 finding (or passes without asking if SCDNR's own hub publishes it).
 - [ ] NH GRANIT: state trail lines. Contact: chat 9 finding.
 - [x] Nevada State Parks: NOT NEEDED, its item terms = disclaimer + credits = passes (chat 9, Oct 28 1:47 AM); contact kept: stparks@parks.nv.gov.
 - [x] Texas Historical Commission: NOT NEEDED, disclaimer-only terms = passes (waits on chat 2's zip reader); contact kept: atlas@thc.texas.gov.
-NOTE: chat 9's round 19 re-reads each 'nothing stated' layer's own item page (Nevada's terms were there); some of the rows above may pass the same way: check before sending.
+Round 19 (Oct 28 2:11 AM): Ohio DNR + ND Parks + Missouri park boundaries PASS (terms on the agency item pages). STILL NO TERMS: Tennessee Register polygons, PEI parks, NH GRANIT trails, Missouri trail lines, NC HPO, SC heritage preserves; world: Denmark, Finland (Metsähallitus), Lithuania. NOTE: chat 9's round 19 re-reads each 'nothing stated' layer's own item page (Nevada's terms were there); some of the rows above may pass the same way: check before sending.
 When a YES comes back: forward it to HQ -> HQ records the credit line in mapping.md -> chat 9 adds the layer.
