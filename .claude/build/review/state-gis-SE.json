@@ -1,0 +1,1871 @@
+{
+ "note": "Curated from data/state-gis-found.json (State GIS layer scan). agency = on the state's own server; agol = the agency's account on ArcGIS Online. KY uses its own KYL list in kpc-maprep.js.",
+ "portals": {
+  "CO": [
+   [
+    "Colorado Parks & Wildlife GIS",
+    "https://cpw.state.co.us/learn/Pages/GIS.aspx"
+   ]
+  ],
+  "FL": [
+   [
+    "Florida DEP GIS open data (geodata.dep.state.fl.us)",
+    "https://geodata.dep.state.fl.us/"
+   ],
+   [
+    "Florida DEP Map Direct",
+    "https://ca.dep.state.fl.us/mapdirect/"
+   ]
+  ],
+  "IA": [
+   [
+    "Iowa DNR GIS",
+    "https://geodata.iowa.gov/"
+   ]
+  ],
+  "IN": [
+   [
+    "IndianaMap (gisdata.in.gov)",
+    "https://www.indianamap.org/"
+   ]
+  ],
+  "KY": [
+   [
+    "Kentucky Geography Network (KyGovMaps)",
+    "https://kygeonet.ky.gov/"
+   ]
+  ],
+  "MD": [
+   [
+    "Maryland iMAP",
+    "https://imap.maryland.gov/"
+   ]
+  ],
+  "ME": [
+   [
+    "Maine GeoLibrary",
+    "https://www.maine.gov/geolib/"
+   ]
+  ],
+  "MN": [
+   [
+    "Minnesota Geospatial Commons",
+    "https://gisdata.mn.gov/"
+   ]
+  ],
+  "MT": [
+   [
+    "Montana FWP GIS data",
+    "https://fwp.mt.gov/conservation/gis"
+   ]
+  ],
+  "NY": [
+   [
+    "NYS DEC GIS data",
+    "https://gis.ny.gov/"
+   ]
+  ],
+  "OH": [
+   [
+    "Ohio DNR GIS (gis.ohiodnr.gov)",
+    "https://gis.ohiodnr.gov/"
+   ]
+  ],
+  "PA": [
+   [
+    "Pennsylvania DCNR maps",
+    "https://www.dcnr.pa.gov/Maps/"
+   ]
+  ],
+  "SC": [
+   [
+    "SCDNR public lands hub",
+    "https://public-lands-scdnr.hub.arcgis.com/"
+   ]
+  ],
+  "TX": [
+   [
+    "TPWD GIS data",
+    "https://tpwd.texas.gov/gis/"
+   ]
+  ],
+  "WI": [
+   [
+    "Wisconsin DNR open data",
+    "https://data-wi-dnr.opendata.arcgis.com/"
+   ]
+  ]
+ },
+ "states": {
+  "AB": [
+   {
+    "ag": "Government of Alberta - Forestry and Parks / Public Lands",
+    "code": "AB-PLUZ",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PLUZ_NAME",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 2 (AB Recreation Park)",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
+   }
+  ],
+  "AK": [
+   {
+    "ag": "Alaska State Parks (DNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARKNAME",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2"
+   },
+   {
+    "ag": "Alaska Department of Natural Resources",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "LDA_NAME_1",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0"
+   },
+   {
+    "ag": "Alaska DNR Division of Forestry (Alaska DNR AGOL org)",
+    "host": "agency",
+    "kind": "forest",
+    "nm": "forestname",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 13",
+    "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   },
+   {
+    "ag": "Alaska DNR State Parks (park boundaries)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARKNAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2"
+   }
+  ],
+  "AL": [
+   {
+    "ag": "Alabama State Parks (ADCNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0"
+   },
+   {
+    "ag": "Alabama Dept of Conservation and Natural Resources, State La",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "DCNR_Name",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0"
+   },
+   {
+    "ag": "ADCNR Wildlife and Freshwater Fisheries",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 11 of 15",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0"
+   },
+   {
+    "ag": "ADCNR Wildlife and Freshwater Fisheries",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 1",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1"
+   }
+  ],
+  "AR": [
+   {
+    "ag": "Arkansas Natural Heritage Commission",
+    "ds": "Natural Area",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "maname",
+    "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21"
+   },
+   {
+    "ag": "Arkansas State Parks",
+    "host": "agency",
+    "kind": "park",
+    "nm": "name",
+    "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0"
+   },
+   {
+    "ag": "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "fisheries_name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 6 of 9",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
+    "water": 1
+   }
+  ],
+  "AZ": [
+   {
+    "ag": "Arizona State Parks & Trails",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0"
+   },
+   {
+    "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "MasterName",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 2",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Prop_name",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 1",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0"
+   },
+   {
+    "ag": "US Fish and Wildlife Service (approved boundary)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "ORGNAME",
+    "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGCODE IN (41570,22560)"
+   },
+   {
+    "ag": "Arizona State Parks and Trails (park boundaries)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0"
+   }
+  ],
+  "BC": [
+   {
+    "ag": "Government of British Columbia (Historic Places)",
+    "code": "BC-HP",
+    "host": "agency",
+    "kind": "land",
+    "nm": "COMMON_SITE_NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 18 outline-less parks",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82"
+   },
+   {
+    "ag": "Government of British Columbia (Heritage Conservation Areas)",
+    "code": "BC-HCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "DESIGNATED_AREA_NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46"
+   }
+  ],
+  "CA": [
+   {
+    "ag": "California Department of Fish & Wildlife",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "PROP_NAME",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
+    "web": "LINK"
+   },
+   {
+    "ag": "California State Parks",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNITNAME",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0"
+   },
+   {
+    "ag": "US Fish and Wildlife Service (approved boundary)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "ORGNAME",
+    "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGCODE IN (41570,22560)"
+   }
+  ],
+  "CO": [
+   {
+    "ag": "Colorado Parks & Wildlife",
+    "ds": "State Wildlife Area",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "PropName",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30"
+   },
+   {
+    "ag": "Colorado Parks & Wildlife",
+    "ds": "State Park",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PropName",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41"
+   },
+   {
+    "ag": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "PropName",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "CT": [
+   {
+    "ag": "Connecticut DEEP",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROPERTY",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0"
+   },
+   {
+    "ag": "CT DEEP (deepgis account)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "OFFIC_NAME",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 5; a 2011 open-space set",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0"
+   }
+  ],
+  "DE": [
+   {
+    "ag": "Delaware DNREC",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0",
+    "web": "WEBSITE"
+   },
+   {
+    "ag": "Delaware Forest Service",
+    "ds": "State Forest",
+    "host": "agency",
+    "kind": "forest",
+    "nm": "LABEL",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0"
+   },
+   {
+    "ag": "Delaware Fish & Wildlife (DNREC)",
+    "ds": "Wildlife Area",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "AREA_NAME",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17"
+   },
+   {
+    "ag": "Delaware nature preserves (DNREC)",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "NAME",
+    "note": "lead Oct 24 (tested on DE's test server, same service as layer 17 here)",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8"
+   },
+   {
+    "ag": "Delaware public protected lands (DNREC)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "lead Oct 24 (tested on DE's test server, same service as layer 17 here)",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11",
+    "web": "WEB_ADDRESSES"
+   }
+  ],
+  "FL": [
+   {
+    "ag": "Florida State Parks (DEP)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "SITE_NAME",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0",
+    "web": "URL"
+   },
+   {
+    "ag": "Florida Forest Service",
+    "ds": "State Forest",
+    "host": "agol",
+    "kind": "forest",
+    "nm": "LABEL",
+    "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
+    "web": "WEBSITE"
+   },
+   {
+    "ag": "Suwannee River Water Management District",
+    "host": "agency",
+    "kind": "land",
+    "nm": "TRACT_NAME",
+    "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0"
+   },
+   {
+    "ag": "St. Johns River Water Management District",
+    "host": "agency",
+    "kind": "land",
+    "nm": "CONSERVATION_AREA",
+    "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0"
+   },
+   {
+    "ag": "Florida DEP Division of State Lands",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROJECT_NAME",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0"
+   },
+   {
+    "ag": "FWC",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 2",
+    "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1"
+   },
+   {
+    "ag": "US Fish and Wildlife Service (approved boundary)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "ORGNAME",
+    "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGCODE IN (41570,22560)"
+   }
+  ],
+  "GA": [
+   {
+    "ag": "Georgia DNR Wildlife Resources Division",
+    "ds": "WMA",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "PropName",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
+    "web": "Website"
+   },
+   {
+    "ag": "Georgia State Parks (DNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PropName",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0"
+   },
+   {
+    "ag": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "PropName",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14"
+   }
+  ],
+  "HI": [
+   {
+    "ag": "Hawaii Division of State Parks (DLNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "name",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16"
+   },
+   {
+    "ag": "Hawaii DLNR reserves (DOFAW)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "name",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
+    "web": "linktowebpage"
+   },
+   {
+    "ag": "Hawaii State Parks (DLNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "IA": [
+   {
+    "ag": "Iowa DNR",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "AREA_NAME",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9",
+    "web": "Atlas_Link"
+   },
+   {
+    "ag": "Iowa DNR",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2"
+   },
+   {
+    "ag": "Iowa DNR",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "Public Lands Used for Conservation and Recreation in Iowa (5,439 areas; on Iowa Geodata). Reachable from GitHub Oct 25 2026 (earlier 403 was temporary). chat 2",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0"
+   }
+  ],
+  "ID": [
+   {
+    "ag": "Idaho Fish & Game",
+    "ds": "WMA",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "Name",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0"
+   },
+   {
+    "ag": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 51 of 52",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
+    "water": 1
+   }
+  ],
+  "IL": [
+   {
+    "ag": "Illinois Department of Natural Resources",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "Site_Name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0"
+   },
+   {
+    "ag": "Illinois Department of Natural Resources",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "Site_Name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3"
+   },
+   {
+    "ag": "Illinois DNR (public conservation lands)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "Site_Name",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2"
+   }
+  ],
+  "IN": [
+   {
+    "ag": "Indiana DNR",
+    "host": "agency",
+    "kind": "land",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0"
+   }
+  ],
+  "KS": [
+   {
+    "ag": "Kansas Wildlife & Parks (state park areas, KDOT GIS)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "Description",
+    "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0"
+   },
+   {
+    "ag": "KDWPT (owner jjones_KDWPT)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "Label_Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 14 of 38",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Unit_Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 3 of 24",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
+    "where": "Owner LIKE 'Kansas Department of Wildlife%' OR Manager LIKE 'Kansas Department of Wildlife%'"
+   }
+  ],
+  "LA": [
+   {
+    "ag": "Louisiana Department of Wildlife & Fisheries",
+    "ds": "WMA",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
+    "web": "Link"
+   },
+   {
+    "ag": "LDWF (owner LDWF_ArcGIS1), Sep 2025 edition",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "Name_Short",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 13",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0"
+   },
+   {
+    "ag": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0"
+   }
+  ],
+  "MA": [
+   {
+    "ag": "MassGIS / Executive Office of Energy and Environmental Affai",
+    "host": "agency",
+    "kind": "land",
+    "nm": "SITE_NAME",
+    "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0"
+   },
+   {
+    "ag": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "SITE_NAME",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 9 of 14",
+    "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   },
+   {
+    "ag": "National Park Service (property boundaries)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0"
+   }
+  ],
+  "MD": [
+   {
+    "ag": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
+    "ds": "",
+    "host": "agency",
+    "kind": "land",
+    "nm": "DNRName",
+    "own": "ManagedBy",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0",
+    "web": "WebLink"
+   },
+   {
+    "ag": "Maryland DNR (Maryland Natural Areas)",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "AREA_NAME",
+    "note": "gap hunt (chat 8 desk + chat 2 probe, 2026-10-26): 34 areas; lead test: 14 of our parks with no outline have the same name near their pin",
+    "url": "https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer/0",
+    "web": "weblink"
+   }
+  ],
+  "ME": [
+   {
+    "acc": "PUB_ACCESS",
+    "ag": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "PARCEL_NAME",
+    "own": "HOLD1_NAME",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0"
+   }
+  ],
+  "MI": [
+   {
+    "ag": "Michigan DNR Parks & Recreation",
+    "host": "agol",
+    "kind": "park",
+    "nm": "Facility",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8"
+   },
+   {
+    "ag": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "OfficialWLDProjectAreaName",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 23 of 52",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2"
+   }
+  ],
+  "MN": [
+   {
+    "ag": "Minnesota DNR",
+    "ds": "WMA",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0"
+   },
+   {
+    "ag": "Minnesota DNR",
+    "ds": "State Forest",
+    "host": "agency",
+    "kind": "forest",
+    "nm": "name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4"
+   },
+   {
+    "ag": "Minnesota DNR",
+    "ds": "Scientific and Natural Area",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4"
+   },
+   {
+    "ag": "Minnesota State Parks (DNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "AREA_NAME",
+    "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2"
+   },
+   {
+    "ag": "Minnesota DNR (state land admin: parks and trails)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "mgtprjname",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 17 outline-less parks",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10"
+   }
+  ],
+  "MO": [
+   {
+    "ag": "Missouri State Parks (DNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "LOC_NAME",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Missouri Natural Areas (DNR)",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "NAME",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3"
+   },
+   {
+    "ag": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Area_Name",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 6",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5"
+   }
+  ],
+  "MT": [
+   {
+    "ag": "Montana Fish, Wildlife & Parks",
+    "ds": "State Park",
+    "host": "agol",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+    "web": "WEB_PAGE"
+   },
+   {
+    "ag": "Montana Fish, Wildlife & Parks",
+    "ds": "Wildlife Management Area",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
+    "web": "WEB_PAGE"
+   },
+   {
+    "ag": "Montana Fish, Wildlife & Parks",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0"
+   }
+  ],
+  "NB": [
+   {
+    "ag": "Government of New Brunswick, Dept of Natural Resources and Energy Development (GeoNB)",
+    "code": "NB-PP",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 14 of 193 (NB Historic Site, National Historic Site, Natural Area, Provincial Park, Recreation Park, Recreation Site)",
+    "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+   }
+  ],
+  "NC": [
+   {
+    "ag": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "MA_NAME",
+    "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0"
+   },
+   {
+    "ag": "NCWRC (owner ncwildlife.gov)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "GML_HAB",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 15",
+    "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21"
+   }
+  ],
+  "ND": [
+   {
+    "ag": "North Dakota Game & Fish",
+    "ds": "WMA",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "Unit_Name",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "North Dakota Parks & Recreation",
+    "host": "agol",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0"
+   }
+  ],
+  "NE": [
+   {
+    "ag": "Nebraska Game and Parks Commission",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "AreaName",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0"
+   },
+   {
+    "ag": "NGPC (owner NGPC.GISAdmin)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "AreaName",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 11 of 27",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "NH": [
+   {
+    "ag": "NH GRANIT",
+    "host": "agency",
+    "kind": "land",
+    "nm": "name",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6"
+   },
+   {
+    "ag": "New Hampshire Fish and Game Department (NHFG AGOL org)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 3",
+    "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2"
+   },
+   {
+    "ag": "NH GRANIT (recreation inventory areas)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "site",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3"
+   }
+  ],
+  "NJ": [
+   {
+    "ag": "New Jersey DEP (Natural Lands Trust preserves)",
+    "ds": "Preserve",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "FACILITY",
+    "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1",
+    "web": "AGENCY_URL"
+   },
+   {
+    "ag": "New Jersey DEP (state-owned open space)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "FEATURE_NAME",
+    "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67"
+   }
+  ],
+  "NM": [
+   {
+    "ag": "New Mexico Department of Game & Fish",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6"
+   },
+   {
+    "ag": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
+    "host": "agency",
+    "kind": "park",
+    "nm": "Name",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 3; uploaded by a contractor account inside the state of New Mexico ArcGIS org",
+    "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0"
+   }
+  ],
+  "NS": [
+   {
+    "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+    "code": "NS-NHS",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME1",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 17 of 118 (NS National Heritage Site, National Historic Site)",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+   },
+   {
+    "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+    "code": "NS-F111",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME1",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 39 (NS Provincial Park)",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52"
+   },
+   {
+    "ag": "Nova Scotia Environment (Parks and Protected Areas System)",
+    "code": "NS-PPA",
+    "host": "agol",
+    "kind": "land",
+    "nm": "PROT_NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
+   }
+  ],
+  "NU": [
+   {
+    "ag": "Crown-Indigenous Relations and Northern Affairs Canada (Nunavut Map Viewer); SOURCE=GN-ENV (Government of Nunavut Environment)",
+    "code": "NU-TP",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME_E",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 6 of 7 (NU Territorial Park)",
+    "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
+   }
+  ],
+  "NV": [
+   {
+    "ag": "Nevada Department of Wildlife",
+    "ds": "WMA",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "LandName",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "name",
+    "note": "lead Oct 24, tested from GitHub Oct 25 (Berlin-Ichthyosaur SP found)",
+    "own": "ownership",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
+   },
+   {
+    "ag": "Nevada Division of State Parks (AGOL org owner NDSP_1PARK; copyright Nevada Division of State Lands; UsingAgenc NDSP)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "LandName",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 9",
+    "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2"
+   },
+   {
+    "ag": "Nevada (SCORP recreation areas)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "name",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0"
+   }
+  ],
+  "NY": [
+   {
+    "ag": "New York State DEC",
+    "host": "agol",
+    "kind": "land",
+    "nm": "FACILITY",
+    "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
+    "web": "URL"
+   },
+   {
+    "ag": "New York State Parks",
+    "host": "agol",
+    "kind": "park",
+    "nm": "Name",
+    "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "OH": [
+   {
+    "ag": "Ohio DNR Division of Parks and Watercraft",
+    "host": "agency",
+    "kind": "park",
+    "nm": "LANDS_NAME",
+    "nm2": "ALT_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5"
+   },
+   {
+    "ag": "Ohio DNR Division of Wildlife",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "LANDS_NAME",
+    "nm2": "ALT_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7"
+   },
+   {
+    "ag": "Ohio DNR Division of Forestry",
+    "ds": "State Forest",
+    "host": "agency",
+    "kind": "forest",
+    "nm": "LANDS_NAME",
+    "nm2": "ALT_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6"
+   },
+   {
+    "ag": "Ohio DNR Division of Natural Areas and Preserves",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "LANDS_NAME",
+    "nm2": "ALT_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8"
+   },
+   {
+    "ag": "Ohio DNR",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "OK": [
+   {
+    "ag": "Oklahoma State Parks (ODOT GIS)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "PARK_NAME",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3"
+   },
+   {
+    "ag": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0"
+   },
+   {
+    "ag": "ODWC (owner ODWC_GIS)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "SHORTNAME",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 12",
+    "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1"
+   }
+  ],
+  "ON": [
+   {
+    "ag": "Niagara Peninsula Conservation Authority",
+    "code": "ON-NPCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "CA_Name",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 17 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2"
+   },
+   {
+    "ag": "Ausable Bayfield Conservation Authority",
+    "code": "ON-ABCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "prop_nam",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0"
+   },
+   {
+    "ag": "Essex Region Conservation Authority",
+    "code": "ON-ERCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "table_LandInformation_LMUName",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0"
+   },
+   {
+    "ag": "Lower Thames Valley Conservation Authority",
+    "code": "ON-LTVCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Site_Name",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0"
+   },
+   {
+    "ag": "Kawartha Region Conservation Authority (Kawartha Conservation)",
+    "code": "ON-KRCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Name",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6"
+   },
+   {
+    "ag": "Credit Valley Conservation",
+    "code": "ON-CVC",
+    "host": "agency",
+    "kind": "land",
+    "nm": "propname",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 182 (ON Conservation Area, Natural Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0"
+   },
+   {
+    "ag": "Toronto and Region Conservation Authority",
+    "code": "ON-TRCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROP_NAME",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250"
+   },
+   {
+    "ag": "Lake Simcoe Region Conservation Authority",
+    "code": "ON-LSRCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROPERTY_NAME",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)",
+    "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46"
+   },
+   {
+    "ag": "Conservation Halton (Halton Region Conservation Authority)",
+    "code": "ON-CH",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Park_Name",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 7 of 180 (ON Conservation Area)",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0"
+   },
+   {
+    "ag": "Grey County GIS (upper-tier municipal government) publishing Grey Sauble Conservation Authority property data",
+    "code": "ON-GSCA",
+    "host": "county",
+    "kind": "land",
+    "nm": "PROP_NAME",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 15 of 180 (ON Conservation Area); published by Grey County for the conservation authority",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3"
+   },
+   {
+    "ag": "Grey County GIS publishing Saugeen Valley Conservation Authority property data",
+    "code": "ON-SVCA",
+    "host": "county",
+    "kind": "land",
+    "nm": "PROPERTY_N",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 12 of 180 (ON Conservation Area); published by Grey County for the conservation authority",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
+   },
+   {
+    "ag": "Ganaraska Region Conservation Authority (maps2.grca.on.ca)",
+    "code": "ON-GANA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "name",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 11 of 180 (ON Conservation Area)",
+    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+   },
+   {
+    "ag": "Otonabee Region Conservation Authority (hosted on the Ganaraska server maps2.grca.on.ca, ORCA_Public folder)",
+    "code": "ON-ORCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "CANAME",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 180 (ON Conservation Area)",
+    "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
+   },
+   {
+    "ag": "Lower Trent Conservation",
+    "code": "ON-LTC",
+    "host": "agency",
+    "kind": "land",
+    "nm": "AREA_NAME",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 5 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "Mississippi Valley Conservation Authority",
+    "code": "ON-MVC",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROP_NAME",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "Rideau Valley Conservation Authority",
+    "code": "ON-RVCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Property_Name",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)",
+    "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+   },
+   {
+    "ag": "Grand River Conservation Authority (GRCA Open Data Licence)",
+    "code": "ON-GRCA",
+    "epsg": 26917,
+    "fmt": "shpzip",
+    "host": "agency",
+    "kind": "land",
+    "licence": "GRCA Open Data Licence v2 (attribution required)",
+    "nm": "CA_NAME",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 12 of 183 (ON Conservation Area, Wildlife Management Area)",
+    "url": "https://data.grandriver.ca/downloads/gis/GRCA_Parks.zip"
+   },
+   {
+    "ag": "Cataraqui Conservation",
+    "code": "ON-CRCA",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Property_Name",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area); built for a 2021 report by a CRCA staff account: check it is still kept up",
+    "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0"
+   }
+  ],
+  "OR": [
+   {
+    "ag": "Oregon Parks & Recreation Department",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0"
+   },
+   {
+    "ag": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "FULL_NAME",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 5",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0"
+   },
+   {
+    "ag": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "AreaName",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 25",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0"
+   },
+   {
+    "ag": "State of Oregon (all state owned and managed lands)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 8 outline-less parks",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0"
+   },
+   {
+    "ag": "State of Oregon (Oregon parklands)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARK_NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0"
+   }
+  ],
+  "PA": [
+   {
+    "ag": "Pennsylvania DCNR Bureau of State Parks",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARK_NAME",
+    "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9",
+    "web": "WEBLINK"
+   },
+   {
+    "ag": "Pennsylvania State Parks (DCNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "StParkName",
+    "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0"
+   },
+   {
+    "ag": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "sgl_name",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 1",
+    "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "PE": [
+   {
+    "ag": "Government of Prince Edward Island, Dept of Environment, Energy and Climate Action (GeoLinc, gis.princeedwardisland.ca)",
+    "code": "PE-PP",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARK",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 18 (PE Provincial Park)",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
+   }
+  ],
+  "QC": [
+   {
+    "ag": "Minist\u00e8re de la Culture et des Communications du Qu\u00e9bec (R\u00e9pertoire du patrimoine culturel du Qu\u00e9bec), via Donn\u00e9es Qu\u00e9bec",
+    "code": "QC-SPC",
+    "fmt": "geojson",
+    "host": "agency",
+    "kind": "land",
+    "nm": "nom_bien",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 250 (QC Historic Site, National Historic Site, Provincial Park, Regional Park)",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/578d182d-4897-4c11-aa7f-ee0cfed222a0/resource/5abd7e57-bfeb-49ba-a76c-93d961ae0633/download/sites_classes_pg.geojson"
+   },
+   {
+    "ag": "Minist\u00e8re de la Culture et des Communications du Qu\u00e9bec (R\u00e9pertoire du patrimoine culturel du Qu\u00e9bec), via Donn\u00e9es Qu\u00e9bec",
+    "code": "QC-SPD",
+    "fmt": "geojson",
+    "host": "agency",
+    "kind": "land",
+    "nm": "nom_bien",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 82 (QC National Historic Site)",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/b35078ae-f1a6-4f9a-a9d2-b00244ae1e84/resource/059897d4-f927-4c30-b345-bf6810f2d00f/download/sites_declares_pg.geojson"
+   },
+   {
+    "ag": "Minist\u00e8re de la Culture et des Communications du Qu\u00e9bec (R\u00e9pertoire du patrimoine culturel du Qu\u00e9bec), via Donn\u00e9es Qu\u00e9bec",
+    "code": "QC-IPC",
+    "fmt": "geojson",
+    "host": "agency",
+    "kind": "land",
+    "nm": "nom_bien",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 5 of 104 (QC Historic Site, National Historic Site)",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/33a72ee0-4af3-4d76-8a13-0338e10cdaeb/resource/a82a8015-d06a-45bc-bedc-7e03399f71a8/download/terrains_protege_pg.geojson"
+   },
+   {
+    "ag": "Minist\u00e8re des Ressources naturelles et des For\u00eats du Qu\u00e9bec (Territoires r\u00e9cr\u00e9atifs du Qu\u00e9bec)",
+    "code": "QC-RF",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NOM_OFFICIEL",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 44 (QC Nature Reserve)",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
+   }
+  ],
+  "RI": [
+   {
+    "ag": "Rhode Island DEM",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0",
+    "web": "SurvURL"
+   },
+   {
+    "ag": "Rhode Island DEM",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   },
+   {
+    "ag": "Rhode Island DEM (state conservation land)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3"
+   }
+  ],
+  "SC": [
+   {
+    "acc": "PublicAccess",
+    "ag": "South Carolina DNR (WMAs, heritage preserves)",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "PropertyName",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
+    "web": "prop_page_url"
+   },
+   {
+    "ag": "South Carolina State Parks (PRT)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0"
+   },
+   {
+    "ag": "South Carolina DNR (heritage preserves)",
+    "host": "agol",
+    "kind": "preserve",
+    "nm": "PropertyName",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0"
+   }
+  ],
+  "SD": [
+   {
+    "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "AreaName",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 6",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer/0"
+   },
+   {
+    "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "AreaName",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 6",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/0a01764b6c3b4d13b9af23df1610214b/rest/services/OpenData/SouthDakota_GFPManagedLands/FeatureServer/0",
+    "where": "Division='Parks and Rec'"
+   },
+   {
+    "ag": "National Park Service (legal boundary)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "UNIT_NAME",
+    "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')"
+   }
+  ],
+  "SK": [
+   {
+    "ag": "Government of Saskatchewan, Ministry of Parks, Culture and Sport (gis.saskatchewan.ca)",
+    "code": "SK-ALL",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARKNM",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 6 of 88 (SK Historic Site, National Historic Site, Recreation Site)",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+   },
+   {
+    "ag": "Government of Saskatchewan (Parks as titled)",
+    "code": "SK-PT",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PARKNM",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+   }
+  ],
+  "TN": [
+   {
+    "ag": "Tennessee State Parks (TDEC)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "PARK_NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee State Natural Areas (TDEC)",
+    "ds": "State Natural Area",
+    "host": "agol",
+    "kind": "preserve",
+    "nm": "SITE_NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee Wildlife Resources Agency",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee Department of Agriculture, Division of Forestry",
+    "host": "agency",
+    "kind": "forest",
+    "nm": "StateForestName",
+    "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 4 of 11",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49"
+   },
+   {
+    "ag": "Tennessee Department of Environment and Conservation (TDEC public lands)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "NAME_1",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 11 outline-less parks",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee State Parks (TDEC state park boundaries)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "PRIMARY_NAME__LONG_",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
+    "host": "agol",
+    "kind": "preserve",
+    "nm": "NaturalAreaName",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10"
+   },
+   {
+    "ag": "Tennessee Wildlife Resources Agency",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "NAME",
+    "note": "228 areas; OWNERSHIP + OWNCODE = rule 14 (federal-owned WMAs are SE-1: NOT SURE)",
+    "own": "OWNERSHIP",
+    "read": "2026-10-27",
+    "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3"
+   }
+  ],
+  "TX": [
+   {
+    "ag": "Texas Parks & Wildlife Department (state parks)",
+    "ds": "State Park",
+    "host": "agol",
+    "kind": "park",
+    "nm": "ParkName",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Texas Parks & Wildlife Department (public hunting lands)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "Name",
+    "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9"
+   },
+   {
+    "ag": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "LoName",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 2",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0"
+   },
+   {
+    "ag": "Texas Parks and Wildlife (public conservation lands)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "P_Loc_Nm",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 6 outline-less parks",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0"
+   }
+  ],
+  "UT": [
+   {
+    "ag": "Utah State Parks",
+    "ds": "State Park",
+    "host": "agol",
+    "kind": "park",
+    "nm": "name",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
+    "web": "weblink1"
+   },
+   {
+    "ag": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "Property_N",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 12",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0"
+   },
+   {
+    "ag": "Utah (National Historic Landmarks)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "L_Name",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0"
+   }
+  ],
+  "VA": [
+   {
+    "ag": "Virginia Department of Forestry",
+    "host": "agol",
+    "kind": "forest",
+    "nm": "Name",
+    "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0"
+   },
+   {
+    "ag": "Virginia DCR Natural Heritage",
+    "ds": "Natural Area Preserve",
+    "host": "agol",
+    "kind": "preserve",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1"
+   },
+   {
+    "ag": "Virginia State Parks (DCR)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "LABEL",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
+    "web": "LANDLINK"
+   },
+   {
+    "ag": "Virginia DCR State Parks (tracts)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0"
+   },
+   {
+    "ag": "Virginia DCR (Virginia's conservation lands)",
+    "host": "agol",
+    "kind": "land",
+    "nm": "LABEL",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0"
+   },
+   {
+    "ag": "Virginia DCR (local parks 2023)",
+    "host": "agol",
+    "kind": "park",
+    "nm": "NAME",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0"
+   },
+   {
+    "ag": "Virginia Department of Wildlife Resources",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "WMA_NAME",
+    "note": "242 WMAs; Owner field = rule 14 (WMAs on USFS / Corps / power-company land are SE-1: NOT SURE until Brandon rules)",
+    "own": "Owner",
+    "read": "2026-10-27",
+    "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0"
+   }
+  ],
+  "VT": [
+   {
+    "ag": "Vermont Agency of Natural Resources",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "NAME",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38"
+   }
+  ],
+  "WA": [
+   {
+    "ag": "Washington State Parks",
+    "ds": "State Park",
+    "host": "agol",
+    "kind": "park",
+    "nm": "ParkName",
+    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
+    "web": "WebPage"
+   },
+   {
+    "ag": "Washington Department of Fish and Wildlife",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "ManagedPlaceName",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0"
+   },
+   {
+    "ag": "Washington State Department of Natural Resources",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "PARCEL_LABEL_NM",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6"
+   },
+   {
+    "ag": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "NAME",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 54",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1",
+    "where": "OWNER='State Government'"
+   },
+   {
+    "ag": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
+    "host": "agency",
+    "kind": "land",
+    "nm": "GNIS_Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 71 of 73",
+    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
+    "water": 1,
+    "where": "GNIS_Name IS NOT NULL AND FType IN (390,436)"
+   }
+  ],
+  "WI": [
+   {
+    "ag": "Wisconsin DNR",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0"
+   },
+   {
+    "ag": "Wisconsin State Parks (DNR)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
+    "web": "INFO_URL"
+   },
+   {
+    "ag": "Wisconsin DNR Natural Heritage Conservation",
+    "host": "agency",
+    "kind": "preserve",
+    "nm": "SNA_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1"
+   },
+   {
+    "ag": "Wisconsin DNR Bureau of Facilities and Lands",
+    "host": "agency",
+    "kind": "land",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1"
+   }
+  ],
+  "WV": [
+   {
+    "ag": "West Virginia DNR",
+    "host": "agol",
+    "kind": "wild",
+    "nm": "NAME",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+    "web": "HighResMapURL"
+   },
+   {
+    "ag": "West Virginia State Forests (DNR)",
+    "host": "agol",
+    "kind": "forest",
+    "nm": "Name",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
+    "web": "MapURL"
+   },
+   {
+    "acc": "Pub_Access",
+    "ag": "West Virginia State Parks (WVDOT boundaries server)",
+    "host": "agency",
+    "kind": "park",
+    "nm": "Loc_Nm",
+    "note": "lead Oct 24, tested Oct 25 (36 parks)",
+    "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10"
+   },
+   {
+    "ag": "WV State Rail Authority / WVDOT",
+    "host": "agency",
+    "kind": "trail",
+    "nm": "trailname",
+    "note": "21 rail-trail LINES (line parks, rule 5: 100 ft from the line); dataagency says who published each",
+    "own": "dataagency",
+    "read": "2026-10-27",
+    "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0"
+   }
+  ],
+  "WY": [
+   {
+    "ag": "Wyoming State Parks",
+    "host": "agol",
+    "kind": "park",
+    "nm": "Park_Name",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
+    "web": "Hyperlink"
+   },
+   {
+    "ag": "Wyoming State Parks, Historic Sites & Trails",
+    "host": "agency",
+    "kind": "park",
+    "nm": "site_name",
+    "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0"
+   },
+   {
+    "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "WHMA_Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 6",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4"
+   },
+   {
+    "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
+    "host": "agency",
+    "kind": "wild",
+    "nm": "PAA_Name",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 5 of 16",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1"
+   }
+  ]
+ },
+ "when": "2026-10-27"
+}
