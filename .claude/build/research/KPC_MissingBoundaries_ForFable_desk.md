@@ -874,3 +874,5 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-13319 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-13370 | | PAD-US at pin: Las Vegas Field Office (PUB, owner BLM/FED, manager BLM, 2378020 ac, Fee, PAD id 2028) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-8646 | | PAD-US at pin: Kaw/Ponca joint-use Oklahoma Tribal Stat (TRIBL, owner DESG/DESG, manager TRIB, 70680 ac, Proclamation, PAD id 1610); Pioneer Woman Monument (LP, owner CITY/LOC, manager CITY, 11 ac, Fee, PAD id 119743); CLO Lands (SRMA, owner SLB/STAT, manager SLB, 3238968 ac, Fee, PAD id 237726) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+
+**ALL US STATES ACTIVE (Brandon 5:23 PM):** chat 3 adds GA 9, FL 10, TX 11, WI 12, MI 16, UT 17, OR 18, WA 20, OK 31, ND 42, NV 68; chat 8 adds NE 9, AL 11, WY 11, VT 14, IN 17, KS 18, NC 19, AR 22, ID 38, MS 51. Record address + GPS + official source per park, and note when it is not the park itself.
