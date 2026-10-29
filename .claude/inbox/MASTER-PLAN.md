@@ -16,6 +16,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## FABLE BOOK ORDER (Brandon 5:28 PM: 'Once fable book been gone through opus gives it a shot and then fable final review ....then move on to Canada'): (1) chats 3 + 8 (+2/9/11) work every US state in the Fable file to 'STATE DONE'; (2) an OPUS pass on every row still 'pin, no source' / grey area (chat 10 on Opus, all files attached), same Rule G; (3) FABLE does the FINAL review of what is left (one session, KPC-Links + KPC-Data attached = H.1); (4) THEN Canada's list goes through the same steps. Canada addresses (chat 8) can be collected meanwhile; no Canada R-G7 tracing until the US is through step 3.
 
+## FABLE'S METHOD (Oct 29 6:20 PM, Brandon GO): R-G9 picture maps = Approximate only (tool later, chat 10); R-G10 'why not' tags; R-G11 pin-outside split (chat 2 → chat 11); P-1 size units + rebuild (chat 2); P-2 polygons before pages (chat 9); P-3 address+parcel by county (chats 8, 3); P-4 by agency; P-5 city/county parks. Fable returns for the FINAL review.
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.

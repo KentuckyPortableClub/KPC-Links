@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ FABLE'S METHOD (Oct 29 6:20 PM, Brandon 6:14 PM GO; notes/mapping.md 'RULE SHEET G, FABLE'S METHOD NOTES' = R-G9 picture maps (Approximate only, 4 conditions, tool later), R-G10 'why not' tag, R-G11 pin-outside split, P-1 size units, P-2 polygons before pages, P-3 address+parcel by county, P-4 batch by agency, P-5 city/county parks). Read it once; then: YOU:** same as chat 8 for your states: wait for chat 9's P-2 polygon hits before reading pages; P-3 parcel requests by county; P-4 by agency; R-G10 'why not' word on every row; picture maps: link + scale / grid / roads noted, no tracing.
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-wi answered: 11 result(s), 10 read OK, 11 screenshot(s) -> .claude/lookup/answers/3-fable-wi.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-tx answered: 11 result(s), 11 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-tx.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-ga-fl-pages answered: 13 result(s), 11 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-ga-fl-pages.json
