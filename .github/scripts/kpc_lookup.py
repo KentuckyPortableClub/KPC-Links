@@ -134,13 +134,20 @@ def arc(u, params):
     return j
 
 
+OWNER_RX = r'^(?:own(?:er)?(?:_?name)?\d?|owner1|ownername|own_nm|deeded_?owner|grantee|taxpayer(?:_?name)?|mail(?:ing)?_?name|ownernme1?)$|owner'
+PARCEL_RX = r'^(?:parcel(?:_?id|_?no|_?num(?:ber)?)?|pin|apn|parid|par_id|pidn?|parcelnumb|map_?par(?:cel)?|tax_?id|account(?:_?no)?)$|parcel'
+
+
 def do_parcel(q):
     lay = q['layer'].rstrip('/'); out = []
     for la, lo in (q.get('points') or [])[:50]:
         try:
             j = arc(lay + '/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                                      'outFields': q.get('fields') or '*', 'returnGeometry': 'false'})
-            out.append({'point': [la, lo], 'features': [f.get('attributes') for f in (j.get('features') or [])][:10]})
+            feats = [f.get('attributes') or {} for f in (j.get('features') or [])][:10]
+            pick = lambda a, rx: next((str(v) for k, v in a.items() if v not in (None, '') and re.search(rx, k, re.I)), None)
+            out.append({'point': [la, lo], 'owner': [pick(a, OWNER_RX) for a in feats], 'parcel_id': [pick(a, PARCEL_RX) for a in feats],
+                        'features': feats})   # P-3 (HQ 6:20 PM): owner + parcel id per point, the full record kept beside them
         except Exception as e: out.append({'point': [la, lo], 'error': str(e)[:140]})  # noqa: BLE001
     return out
 

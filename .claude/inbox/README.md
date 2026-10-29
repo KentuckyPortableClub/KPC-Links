@@ -22,7 +22,7 @@ The numbered task list for every chat. When you finish a task, tick it `[x]` wit
 
 ## LOOK-UP BOT (any chat; Oct 29, chat 10)
 1. Can't open a page or layer from your session? Write `.claude/lookup/requests/<your chat number>-<short id>.json` in KPC-Links, e.g. `{"chat": 11, "kind": "map-check", "urls": ["https://..."], "report": "is the area closed?"}`.
-2. Kinds: `page` (browser text + links; add `"screenshot": true`), `map-check` (always a screenshot), `layer-probe` (`"layers": [url, ...]`), `parcel` (`"layer": url, "points": [[lat, lon]]`), `probe` (a chat-9 probe config under `"probe"`).
+2. Kinds: `page` (browser text + links; add `"screenshot": true`), `map-check` (always a screenshot), `layer-probe` (`"layers": [url, ...]`), `parcel` (`"layer": a county parcel layer url, "points": [[lat, lon]]` → owner + parcel id per point, plus the full record), `probe` (a chat-9 probe config under `"probe"`).
 3. Commit + push it (only that file). A runner answers it on its own job (up to 4 at once; a small request never waits for a big one); max 25 URLs per request.
 4. The answer lands in `.claude/lookup/answers/<same name>.json` (+ `-1.png` screenshots) and ONE line 'FROM LOOK-UP BOT' appears under '## OPEN' in your inbox. Pull first, then read it.
 5. Same manners as every bot: robots.txt obeyed (ArcGIS REST + the two keyed /api paths only), slow per host, no timers, never red. Don't re-push the same request to 'retry': write a new id.
