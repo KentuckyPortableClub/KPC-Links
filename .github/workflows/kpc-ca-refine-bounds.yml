@@ -23,7 +23,9 @@ jobs:
         env:
           LIMIT: ${{ inputs.limit }}
           MINUTES: '160'
-        run: python3 .github/scripts/kpc_ca_refine_bounds.py || true
+        run: |
+          pip install --quiet --break-system-packages shapely || pip install --quiet shapely || true
+          python3 .github/scripts/kpc_ca_refine_bounds.py || true
       - name: Save
         continue-on-error: true
         run: bash .github/scripts/kpc_push_data.sh . 'Canada outlines refined to ~5 m (read only from the official maps)' data/canada-bounds || true

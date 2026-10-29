@@ -16,6 +16,12 @@ OFFS = [(0.00005, 5), (0.0001, 10), (0.0002, 20), (0.0004, 45), (0.002, 220)]
 LIMIT = int(os.environ.get('LIMIT') or 0)
 DEADLINE = time.time() + float(os.environ.get('MINUTES') or 150) * 60
 LAST = {}
+UCS = [None]
+try:   # Oct 29 v3: ALL the park's records, merged into one shape (CPCAD alone can be a 58-acre piece of an 1,900-acre area)
+    from shapely.geometry import Polygon as _P, mapping as _map
+    from shapely.ops import unary_union as _U
+    UNION = True
+except Exception: UNION = False  # noqa: BLE001
 
 
 def notice(m): print('::notice title=Canada outlines refined::' + str(m).replace('\n', ' ')[:900], flush=True)
@@ -87,7 +93,7 @@ def refine(ref, feat, key, layers, off):
     m = (key.get(ref) or {}).get('m') or []
     # ONE family per park (test run: CPCAD + 1-3 provincial copies of the same land made files 8x bigger): the CPCAD records
     # when the key has any, else the provincial ones
-    if any(str(x[0]).isdigit() for x in m): m = [x for x in m if str(x[0]).isdigit()]
+    if not UNION and any(str(x[0]).isdigit() for x in m): m = [x for x in m if str(x[0]).isdigit()]
     m = [x for x in m if ':n-' not in str(x[0])]   # records saved without a number cannot be asked for by id
     if m:
         groups = {}
@@ -158,27 +164,41 @@ def main():
         if LIMIT and n >= LIMIT: break
         try: feat = json.load(open(f))
         except Exception: continue  # noqa: BLE001
-        if (feat.get('properties') or {}).get('refine_v') == 2: continue
+        if (feat.get('properties') or {}).get('refine_v') == 3: continue
         n += 1
         ref = f.stem; before = f.stat().st_size
         rings, why, used = None, '', None
         for off, metres in OFFS:
             rings, why = refine(ref, feat, key, layers, off)
             if rings is None: break
-            geo = {'type': 'MultiPolygon', 'coordinates': polys(rings)}
+            if UNION and rings:
+                try:
+                    ps = []
+                    for poly in polys(rings):
+                        g = _P(poly[0], poly[1:]).buffer(0)
+                        if not g.is_empty: ps.append(g)
+                    u = _U(ps).simplify(off * .6, preserve_topology=True)
+                    mm = _map(u)
+                    cs = mm['coordinates'] if mm['type'] == 'MultiPolygon' else [mm['coordinates']] if mm['type'] == 'Polygon' else []
+                    rings = [[[round(x, 6), round(y, 6)] for x, y in r] for poly in cs for r in poly]
+                    rings = [r if k == 0 else r for k, r in enumerate(rings)]
+                    UCS[0] = [[[[round(x, 6), round(y, 6)] for x, y in r] for r in poly] for poly in cs]
+                except Exception: UCS[0] = None  # noqa: BLE001
+            else: UCS[0] = None
+            geo = {'type': 'MultiPolygon', 'coordinates': UCS[0] or polys(rings)}
             if len(json.dumps(geo, separators=(',', ':'))) < 120_000: used = metres; break
         if rings is None or used is None:
             rep['kept_old'][ref] = why or 'over 450 KB at every detail'; continue
         old_rings = [r for poly in (feat.get('geometry') or {}).get('coordinates') or [] for r in poly] if (feat.get('geometry') or {}).get('type') == 'MultiPolygon' else (feat.get('geometry') or {}).get('coordinates') or []
         a0, a1 = area_ac(old_rings), area_ac([r for r in rings])
         if a0 and abs(a1 - a0) / a0 > .25: rep['acres_changed_over_25pct'].append([ref, round(a0), round(a1)])
-        feat['geometry'] = {'type': 'MultiPolygon', 'coordinates': polys(rings)}
-        feat.setdefault('properties', {})['detail_m'] = used; feat['properties']['refine_v'] = 2
+        feat['geometry'] = {'type': 'MultiPolygon', 'coordinates': UCS[0] or polys(rings)}
+        feat.setdefault('properties', {})['detail_m'] = used; feat['properties']['refine_v'] = 3
         feat['properties']['refined'] = time.strftime('%Y-%m-%d') + ' (' + why + ')'
         f.write_text(json.dumps(feat, separators=(',', ':')))
         rep['done'] += 1; rep['bytes_before'] += before; rep['bytes_after'] += f.stat().st_size
         rep['detail_m'][str(used)] = rep['detail_m'].get(str(used), 0) + 1
-    left = sum(1 for f in files if (json.load(open(f)).get('properties') or {}).get('refine_v') != 2)
+    left = sum(1 for f in files if (json.load(open(f)).get('properties') or {}).get('refine_v') != 3)
     rep['left'] = left
     (OUT / 'refine-report.json').write_text(json.dumps(rep, indent=1))
     grow = rep['bytes_after'] / rep['bytes_before'] if rep['bytes_before'] else 0
