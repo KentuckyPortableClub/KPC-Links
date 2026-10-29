@@ -644,3 +644,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 
 - Oct 29 10:39 AM (Brandon GO): WETLAND MANAGEMENT DISTRICTS (POTA-numbered, e.g. US-0421 Arrowwood WMD) = outline made of the tracts FWS OWNS (fee) from FWS National Realty Boundaries; easement tracts = private land, dropped. Applies to every scattered-tract FWS park.
 - **Oct 29 11:12 AM (Brandon) CLOSURE POSTS:** 'Yes one week out after Ky closures are 100% fixed': Discord / Facebook park closing + reopening posts move to the new closures bot one week after KY closures are clean; the old kpc-park-alerts reader keeps posting until then. Cards move first (waiting room, Sat Oct 31).
+- Oct 29 11:25 AM (Brandon: 'Your call' → HQ: use): openly published official state GIS layers with no stated terms are used like the others, agency credited; stop if the agency objects or posts restrictive terms.
