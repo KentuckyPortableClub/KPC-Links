@@ -19,9 +19,13 @@
  ],
  "Manitoba wil": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0",
-  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1",
-  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2",
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
+ ],
+ "Manitoba wil~1": [
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1"
+ ],
+ "Manitoba wil~2": [
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2"
  ],
  "NB WMZ": [
   "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
@@ -38,17 +42,28 @@
  "NS-PPA Nova ": [
   "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
  ],
+ "NT GNWT Envi": [
+  "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+ ],
  "NU-TP Crown-": [
   "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
  ],
  "New Brunswic": [
-  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0",
-  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0",
+  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0"
+ ],
+ "New Brunswic~1": [
+  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0"
+ ],
+ "New Brunswic~2": [
   "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer/0"
  ],
  "Nova Scotia ": [
-  "https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer/0",
-  "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer/0",
+  "https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer/0"
+ ],
+ "Nova Scotia ~1": [
+  "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer/0"
+ ],
+ "Nova Scotia ~2": [
   "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
  ],
  "ON-ABCA Ausa": [
@@ -114,6 +129,9 @@
  "Ontario muni": [
   "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
  ],
+ "PE Province ": [
+  "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
+ ],
  "PE-PP Govern": [
   "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
  ],
@@ -124,9 +142,15 @@
   "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
  ],
  "Québec Parc ": [
-  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3",
-  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4",
-  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5",
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3"
+ ],
+ "Québec Parc ~1": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4"
+ ],
+ "Québec Parc ~2": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5"
+ ],
+ "Québec Parc ~3": [
   "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
  ],
  "Québec Refug": [
@@ -154,12 +178,24 @@
   "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
  ],
  "Saskatchewan": [
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0",
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1",
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2",
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3",
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4",
-  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0"
+ ],
+ "Saskatchewan~1": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1"
+ ],
+ "Saskatchewan~2": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2"
+ ],
+ "Saskatchewan~3": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3"
+ ],
+ "Saskatchewan~4": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+ ],
+ "Saskatchewan~5": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5"
+ ],
+ "Saskatchewan~6": [
   "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
  ],
  "Yukon campgr": [

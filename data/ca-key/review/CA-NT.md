@@ -1,12 +1,13 @@
 # Canada NT: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **15 of 68** joined (same name + same kind). **0** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **17 of 68** joined (same name + same kind). **0** to check, **47** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
+- CA-0752 Cameron Falls Trail Territorial Park (Territorial Park) → on Hidden Lake Territorial Park (~0 ac)
 - CA-4347 Whooping Crane Summer Range Ramsar Site (Ramsar Site) → on Wood Buffalo National Park Of Canada (~2,257,603 ac)
 - CA-5474 Fort Reliance National Historic Site (National Historic Site) → on Thaidene Nene National Park Reserve Of Canada (~3,476,767 ac)
 - CA-5477 Kittigazuit Archaeological Sites National Historic Site (National Historic Site) → on Tarium Niryutait Marine Protected Area (~114,795 ac)
@@ -15,12 +16,10 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 - CA-0002 Aulavik National Park (National Park)
 - CA-0751 Blackstone Territorial Park (Territorial Park)
-- CA-0752 Cameron Falls Trail Territorial Park (Territorial Park)
 - CA-0753 Chan Lake Territorial Park (Territorial Park)
 - CA-0754 Fort Simpson Territorial Park (Territorial Park)
 - CA-0755 Fred Henne Territorial Park (Territorial Park)
 - CA-0756 Hay River Territorial Park (Territorial Park)
-- CA-0757 Hidden Lake Territorial Park (Territorial Park)
 - CA-0758 Jak Territorial Park (Territorial Park)
 - CA-0759 Lady Evelyn Falls Territorial Park (Territorial Park)
 - CA-0760 Madeline Lake Territorial Park (Territorial Park)
@@ -36,7 +35,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-4324 Dory Point Territorial Park (Territorial Park)
 - CA-4326 Fort Providence Territorial Park (Territorial Park)
 - CA-4327 Fort Smith Mission Territorial Park (Territorial Park)
-- CA-4328 Gwich'in Territorial Park (Territorial Park)
 - CA-4329 Happy Valley Territorial Park (Territorial Park)
 - CA-4330 Kakisa River Territorial Park (Territorial Park)
 - CA-4333 Little Buffalo River Crossing Territorial Park (Territorial Park)

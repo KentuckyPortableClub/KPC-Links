@@ -1,10 +1,11 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **306 of 562** joined (same name + same kind). **3** to check, **41** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **305 of 562** joined (same name + same kind). **4** to check, **41** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-0793** Saint Croix Island National Historic Site (National Historic Site) → Saint Croix (~0 ac, same name, different kind of place); New Brunswick #20 Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
+- **CA-6161** Upper Restigouche (Listuguj) River National Heritage Area (National Heritage Area) → Restigouche Wilderness Waterway - Kedgwick River (~0 ac, similar name); Restigouche Wilderness Waterway - Restigouche River South (~0 ac, similar name)
 - **CA-6481** New Brunswick Highlands Ecological Area (Ecological Area) → New Brunswick #7 Wildlife Management Area (~0 ac, similar name); New Brunswick #5 Wildlife Management Area (~0 ac, similar name)
 - **CA-6536** New Brunswick #20 Wilderness Area (Wilderness Area) → New Brunswick #20 Wildlife Management Area (~0 ac, same name, different kind of place); Lepreau River Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
 
