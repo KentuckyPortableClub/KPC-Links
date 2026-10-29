@@ -2321,9 +2321,12 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         # three-way patch is not its land = no 3-fer THERE (rule 14b); each pair's own overlap is its own row and stands
         s['status'] = ('dropped: the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out']) + ' shows no agency land on the patch all '
                        + str(len(refs)) + ' share (rule 14b): the pairs stand as their own rows'); return
-    if s.get('masked_out'):   # Oct 27 (Fable #4, HQ 10:35 AM: contradiction A): the mask decides the SHAPE; no owned patch = NOT SURE, never silence
-        s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
-                       + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
+    if s.get('masked_out'):   # Oct 27 (Fable #4) was NOT SURE; Brandon Oct 29 8:07 AM ruled: 'if state owned inside a federal park no
+        # overlap, not a 2fer ... if federal claims all the land (a national park + a state park on it) 2fer'. The patch sits inside
+        # the federal line but the agency's own land map shows none of it as theirs = someone else's land inside the line = DROP
+        s['status'] = ('dropped: inside the federal boundary, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
+                       + " shows this patch is not the agency's own land (state or other land inside a federal boundary is not an overlap; Brandon Oct 29)")
+        s['map_note'] = "the agency land map may be out of date: if the agency does own this patch, it is a 2-fer"
         s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
     if REGION != 'ky' and any(r in LOWCONF for r in refs):   # pre-flight fix 9 (Oct 28: not in Kentucky: its outlines come from Kentucky's own files, not the US key join the score is about)
         s['status'] = 'not sure: low-confidence outline for ' + ', '.join(PIN[r][0] for r in refs if r in LOWCONF) + ' (check the join)'; return
@@ -2708,7 +2711,7 @@ def main():
         # Oct 29 (chat 8 NOT SURE groups 2 + 6): rows left from older runs with an owner wording the simple test no longer makes
         # ('more than one owner across the spot': all-public mixes are 'ok' now) or an ownership map that did not answer (BLM
         # time-outs, fixed in kpc_owned.py) are decided AGAIN here; pass 3 never re-reads a 'not sure' row
-        STALE = re.compile(r'^not sure: (the ownership map shows more than one owner|the agency ownership map did not answer|ownership map did not answer)')
+        STALE = re.compile(r'^not sure: (the ownership map shows more than one owner|the agency ownership map did not answer|ownership map did not answer|the outlines overlap, but the )')
         stale = [x for d in files.values() for x in d.get('spots', []) if STALE.search(str(x.get('status', '')))]
         if stale and not late():
             need = sorted({r for x in stale for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
