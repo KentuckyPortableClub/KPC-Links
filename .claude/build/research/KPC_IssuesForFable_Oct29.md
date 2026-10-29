@@ -138,3 +138,22 @@ I grade the 2-fer lines and the research bots' output from the saved files (neve
 6. **last_run.json per bot** (started / finished / unchanged), so 'not rerun' is visible.
 7. **Never gzip without a stub**, and never name a rebuilt file the same as a copy.
 8. **Grader access:** a read-only way to render two overlaps on the satellite map from a link (the HQ 'drawing check') so I can do it without a screen.
+
+## 14. CHAT 9 (data adds, Opus): MY KNOWN ISSUES, BOT BY BOT + WHAT I WANT TO SEE BETTER (written Oct 28 ~10:05 PM CDT)
+My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (layer, licence, hub and page look-ups, point and river tests) and `kpc-candidates.yml` + `kpc_candidates.py` (the one-off candidate finder). They join nothing; both are deleted once the world rounds and the finder's second pass are done.
+
+| bot | what went wrong | what I want to see |
+|---|---|---|
+| **Probe: queue** | Only one waiting run per concurrency group: a 2nd dispatch silently CANCELS the waiting one. A dispatch sent before my push landed ran an OLD commit (twice; cancelled + re-sent each time). | the probe prints the commit it ran on in its first notice; one shared 'dispatch after push confirmed' helper (`git ls-remote` = local HEAD, then dispatch). |
+| **Probe: slow / blocked servers** | USGS NHD (hydro.nationalmap.gov) timed out / 504 on layers 6, 5 and 3 most of the R2 run (Detroit River got 0 points). Idaho Parks' ArcGIS server never answers runners. | retry once with a longer wait + a fallback source (NHDPlus HR or the state hydro layer); a 'server down from runners' list the whole team shares, so nobody re-probes it. |
+| **Probe: reading layers** | Name field guessed wrong (SC picked PropertyID); MARIS service roots list no layers (had to try ids 0-12); ArcGIS Hub search API returned 400; the licence is often NOT on the layer but on `<service>/info/iteminfo` or the portal item (Nevada). | name field chosen by 'text field whose values look like names', never by position; licence look-up always tries layer → service → iteminfo → portal item → hub page, and says which one answered. |
+| **Point / river tests** | R1 had no control point, so a NO HIT could mean 'cuts rivers out' or 'the query is wrong' (Forest Service turned out solid in R2). In R2 the FWS control (Shiawassee) MISSED, so FWS is still unknown; NPS New River / Big South Fork river points missed but had no control INSIDE those units (the tract layer may not cover them). I picked one control coordinate wrong myself and had to cancel. | chat 8's `own_land_hit()` with three answers (HIT / NO HIT / QUERY FAILED); the control point taken automatically from INSIDE one of that layer's own polygons (no hand coordinates), one control per unit tested. |
+| **Candidate finder** | It reads the saved copies of the keys; until chat 2 rebuilds the keys its second pass would just repeat the first. Historic and city/county parks had been skipped in pass 1 (fixed: 'sure_only' section). | a key build time stamp it can check, so it refuses to run on an old key and says so. |
+| **World live-only layers (CZ, DK)** | Not stored (no licence), so their outlines depend on the agency server being up at read time; a down server looks like 'no outline'. | the world key notes 'live source did not answer' apart from 'no outline found'. |
+
+### What I want to see better, best value first
+1. **Control points picked automatically from the layer's own polygons** + the three-answer HIT / NO HIT / QUERY FAILED helper (would have saved R1 and the FWS rerun).
+2. **Probe prints the commit it ran on** + a safe dispatch-after-push helper (stops stale runs and cancelled queues).
+3. **One licence look-up path** (layer → service → iteminfo → portal → hub) that says where it found the terms.
+4. **A shared 'blocked from runners' list** (Idaho Parks, slow NHD) with the date last tried.
+5. **Live-source 'did not answer' kept apart from 'no outline'** in the world key.
