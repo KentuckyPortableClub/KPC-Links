@@ -177,3 +177,9 @@ R-G7 step 4(a): the park has its own official boundary line (the Blue Line; our 
 | CT | Connecticut_DEEP_Property FeatureServer/0 (services1.arcgis.com/FjPcSmEFuDYlIdKC) | land DEEP owns in fee (parks, forests, wildlife areas, water access sites); excludes easements; CC0; updated Aug 19 2026; GeoJSON/shapefile downloads at geodata.ct.gov. |
 | ME | gis.maine.gov dep ... MapServer/5 "Maine Conservation Lands" | parcels with PARCEL_NAME, DESIGNATION (State Park, State WMA, ...), ECO_RESERVE flag, HOLD1_NAME (holder), RPT_AC. |
 Point-in-polygon look-ups filed at the park pins: 8-rg7-pk-ak (8 parks), -ny (3), -ct (4), -me (2).
+| US-11944 | Dankworth Pond SP | AZ State Parks park map PDF (DAPO_Park Map_8-2023) | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-3390 | River Island SP | AZ State Parks park map PDF (Park Map-RIIS) | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-9652 | Grenada SWA | CPW GranadaDeadmanSWA_geo.pdf | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-7769 | Heaters Island WMA | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-2685 | Winslow SP | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-8103 | Cayuga Lake WMA | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
