@@ -603,3 +603,5 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 29 (chat 8): harvester seeds for the unseeded countries + 4 run fixes: KPC_HarvesterSeeds_desk.md.
 
 - Oct 29 (chat 8): names dump decoded (8 rules; SURE 107 of 900 US no-outline parks; clean set 22/30): KPC_NameMismatch_Decoded_desk.md.
+
+- Oct 29 (chat 8): wrong same-outline joins solved (name-only join, no distance test; 189 pairs): KPC_WrongJoins_Solved_desk.md.
