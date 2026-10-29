@@ -26,15 +26,15 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 3.2 Add each area chat 8 passes (members, BETA); keep the 'hide' list for rows chat 8 drops
 - [ ] 3.3 LATER (GO needed): owners / % water info line on the card; 'help us check' for the review list
 
-## CHAT 8 (research desk) — IN THIS ORDER
+## CHAT 8 (research desk) — IN THIS ORDER (Brandon: 'stick to the plan'; 8.5, 8.6, 8.8 moved to chat 11)
 - [ ] 8.1 Area checks as they land (blocks chat 3): Midwest rerun, New England, CO/WY, ID/MT, Quebec, North, the READY states inside PART areas, and every rerun from 2.1/2.2
 - [ ] 8.2 KENTUCKY HUNT-CLOSURE LIST from the yearly guide PDF (KDFWR hunting guide quota tables): data/closures/hunt-lists/US-KY-2026-27.json, expires end of Feb; Brandon checks it (season starts Nov 6-8)
 - [ ] 8.3 Missing boundaries + name-mismatch report (US + Canada) for FABLE to review
 - [ ] 8.4 NOT SURE groups (871 rows by reason) + Nova Scotia puzzle (check whether chat 2's layer-id fix already solved NS)
-- [ ] 8.5 Break the waiting room when chat 10 writes 'ready to break'
-- [ ] 8.6 Known 2-fer pairs, 3-5 per state (G7)
+- [→] 8.5 MOVED to chat 11 (11.3)
+- [→] 8.6 MOVED to chat 11 (11.4)
 - [ ] 8.7 State parks on federal land: layered or hard boundary (report + rule)
-- [ ] 8.8 Review list: 148 NOT SURE + 115 weak water first, hints last
+- [→] 8.8 MOVED to chat 11 (11.5)
 - [ ] 8.9 Agency own-land records (real private tracts) + official water's-edge sources (no OpenStreetMap)
 - [ ] 8.10 Source Book 2 (Southeast next, then the rest); hunt sources per state
 - [ ] 8.11 Other states' hunt PDF lists (or chat 9 if chat 8 is too slow: HQ decides)
@@ -54,6 +54,9 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 ## CHAT 11 (bot-output checker)
 - [ ] 11.1 Grade every 'grade me' line as it lands (truth IL, hours, closures, intake, docs WV, campground)
 - [ ] 11.2 Grade the waiting room's first week once it is on
+- [ ] 11.3 (from 8.5) BREAK the waiting room when chat 10 writes 'ready to break': try to make bad files pass + good files hold; grey areas to HQ. Your OK = Brandon's signal for his GO
+- [ ] 11.4 (from 8.6) Known 2-fer pairs, 3-5 per state, from official maps (a mix of kinds; one actually activated where possible), stable key, into data/waiting/known/fers.json
+- [ ] 11.5 (from 8.8) Review list data/fers/review-all.md: the 148 NOT SURE + 115 'water map weak' rows first, biggest first (LIVE / DROP / still NOT SURE + why / for members); POTA-history hints last
 
 ## CHAT 9 (data adds)
 - [ ] 9.1 Campground points for Land Between the Lakes + KY state parks (Camp & Activate's 20 missing)
@@ -67,10 +70,10 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## BRANDON
 - [ ] B.1 Decide RIDB / NPS keyed APIs (allow / block both / leave as is)
-- [ ] B.2 GO to switch the waiting room on (after 8.5)
+- [ ] B.2 GO to switch the waiting room on: ONLY once chat 11 (11.3, the break test) says OK
 - [ ] B.3 Check the KY hunt list (8.2)
 - [ ] B.4 Check the Park Service key result on the check-up page
-- [ ] B.5 Permission emails (NC ready)
+- [-] B.5 Permission emails: PARKED (Brandon Oct 29: not now)
 
 ## HQ
 - [ ] H.1 Next scheduled Fable session: attach KPC-Data (last night's could not save there)
