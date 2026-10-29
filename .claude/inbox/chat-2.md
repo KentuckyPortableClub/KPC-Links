@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 7:05 PM) CANADA KEY = RULE G + R-GC1..R-GC8 (notes/mapping.md 'RULE SHEET G, CANADA'):** (1) wire the layers chat 9 confirms into kpc_canada_bounds.py EXTRA / BC WFS (official hosts only, licence noted); (2) make kpc_ca_key.py carry the same Rule G pieces as the US key: R-G8 words test, R-G10 why-not tags → data/ca-key/why-not.json, R-G11 pin-outside note, G-1 named-record joins, the EN/FR designation map (R-GC2), 'aire faunique / aire de concentration' never an outline (R-GC4), Crown land = owner only (R-GC6); (3) one Canada rebuild at 3 m (R-G6) after the US release; STAGED. Report counts: outlined / tags per province.
 - FROM LOOK-UP BOT (2026-10-29): 2-more-layers-probe answered: 13 result(s), 11 read OK -> .claude/lookup/answers/2-more-layers-probe.json
 - FROM LOOK-UP BOT (2026-10-29): 2-more-layers-folders answered: 23 result(s), 23 read OK, 0 screenshot(s) -> .claude/lookup/answers/2-more-layers-folders.json
 - WAIT: look-up answers `2-more-layers-folders` + `2-more-layers-probe` (then chat 8 picks layers) -> add the layers that answer to state-gis.json / trails-layers.json and to the doc (section Where to look next), rebuild the key.

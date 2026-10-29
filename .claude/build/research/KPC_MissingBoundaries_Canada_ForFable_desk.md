@@ -167,3 +167,10 @@ Read from KPC-Links data/ca-key (the current Canada key): 5,899 parks, 4,188 out
 ## WORK LOG BY PROVINCE (everything found goes in THIS file)
 
 ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go.
+
+
+## RULES + LAYERS TO START (Fable, Oct 29 7:05 PM)
+Rule Sheet G applies unchanged; Canada reading rules R-GC1..R-GC8 and the starter layer list (✓ wired / ◯ to probe) are in notes/mapping.md under 'RULE SHEET G, CANADA'. Order: layer probing + wiring now (prep); R-G7 hand tracing after the US book is through the Opus + Fable passes (Brandon 5:28 PM).
+
+## WORK LOG BY PROVINCE
+Same row format as the US file: `| park | name | source found | Rule G step | result | by chat | date |`, one section per province, low to high: NU 14, PE 35, NT 51, AB 66, NL 67, SK 110, MB 89, YT 85, BC 129, NS 167, NB 243, ON 248, QC 407.

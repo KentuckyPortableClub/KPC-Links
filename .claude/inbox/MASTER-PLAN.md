@@ -18,6 +18,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## FABLE'S METHOD (Oct 29 6:20 PM, Brandon GO): R-G9 picture maps = Approximate only (tool later, chat 10); R-G10 'why not' tags; R-G11 pin-outside split (chat 2 → chat 11); P-1 size units + rebuild (chat 2); P-2 polygons before pages (chat 9); P-3 address+parcel by county (chats 8, 3); P-4 by agency; P-5 city/county parks. Fable returns for the FINAL review.
 
+## CANADA (Fable, Oct 29 7:05 PM, Brandon 6:56 PM): Rule Sheet G, Canada (R-GC1..R-GC8) + starter layer list in mapping.md; chat 9 probes + P-2, chat 2 wires + Rule G pieces into the Canada key (staged); tracing waits for the US passes.
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.
