@@ -1,0 +1,2804 @@
+{
+"Fairbanks North Star Borough|02|02090": [
+{
+"ref": "US-10464",
+"name": "Chena Wayside State Recreation Site",
+"pt": [
+64.8389,
+-147.807
+]
+}
+],
+"La Paz County|04|04012": [
+{
+"ref": "US-3390",
+"name": "River Island State Park",
+"pt": [
+34.2556,
+-114.137
+]
+}
+],
+"Lower Connecticut River Valley Planning Region|09|09130": [
+{
+"ref": "US-6875",
+"name": "The Preserve Essex Land Trust State Park Preserve",
+"pt": [
+41.3175,
+-72.4324
+]
+}
+],
+"Sussex County|10|10005": [
+{
+"ref": "US-9885",
+"name": "Indian River Life-Saving Station State Historic Site",
+"pt": [
+38.6338,
+-75.0671
+]
+}
+],
+"Owyhee County|16|16073": [
+{
+"ref": "US-12226",
+"name": "Bruneau Arm Reservoir State Fishing Lake",
+"pt": [
+42.9131,
+-115.871
+]
+}
+],
+"Pope County|17|17151": [
+{
+"ref": "US-12640",
+"name": "Rauchfuss Hill State Recreation Area",
+"pt": [
+37.375,
+-88.4848
+]
+}
+],
+"Jersey County|17|17083": [
+{
+"ref": "US-4118",
+"name": "Copperhead Hollow State Wildlife Area",
+"pt": [
+39.0805,
+-90.5104
+]
+}
+],
+"Putnam County|18|18133": [
+{
+"ref": "US-5685",
+"name": "Lieber State Recreation Area",
+"pt": [
+39.4869,
+-86.8752
+]
+}
+],
+"Essex County|25|25009": [
+{
+"ref": "US-2436",
+"name": "Greycourt State Park",
+"pt": [
+42.7294,
+-71.1839
+]
+}
+],
+"Norfolk County|25|25021": [
+{
+"ref": "US-8385",
+"name": "Farnham-Connolly State Park",
+"pt": [
+42.1675,
+-71.1674
+]
+}
+],
+"Suffolk County|25|25025": [
+{
+"ref": "US-8387",
+"name": "Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area",
+"pt": [
+42.2448,
+-71.1265
+]
+}
+],
+"Garrett County|24|24023": [
+{
+"ref": "US-13564",
+"name": "Savage Highlands State Park",
+"pt": [
+39.6548,
+-79.0218
+]
+}
+],
+"Shannon County|29|29203": [
+{
+"ref": "US-5715",
+"name": "Roger Pryor Pioneer Backcountry State Park",
+"pt": [
+37.3158,
+-91.4074
+]
+}
+],
+"Coos County|33|33007": [
+{
+"ref": "US-2642",
+"name": "Androscoggin Wayside State Park",
+"pt": [
+44.7423,
+-71.1792
+]
+}
+],
+"Rockingham County|33|33015": [
+{
+"ref": "US-8024",
+"name": "Taylor Saw Mill State Historic Site",
+"pt": [
+42.8751,
+-71.2393
+]
+}
+],
+"Benton County|41|41003": [
+{
+"ref": "US-12986",
+"name": "Alsea River State Fish Hatchery",
+"pt": [
+44.4206,
+-123.563
+]
+}
+],
+"Lane County|41|41039": [
+{
+"ref": "US-13096",
+"name": "Bob Creek Wayside State Recreation Site",
+"pt": [
+44.2443,
+-124.112
+]
+},
+{
+"ref": "US-13097",
+"name": "Strawberry Hill Wayside State Recreation Site",
+"pt": [
+44.2539,
+-124.112
+]
+}
+],
+"Union County|45|45087": [
+{
+"ref": "US-9229",
+"name": "Wild Turkey Wildlife Management Area",
+"pt": [
+34.7111,
+-81.5392
+]
+}
+],
+"Grundy County|47|47061": [
+{
+"ref": "US-3941",
+"name": "Grundy Forest State Natural Area",
+"pt": [
+35.2525,
+-85.7472
+]
+}
+],
+"Franklin County|47|47051": [
+{
+"ref": "US-6247",
+"name": "Hawkins Cove State Natural Area",
+"pt": [
+35.1773,
+-85.9598
+]
+}
+],
+"Washington County|50|50023": [
+{
+"ref": "US-3129",
+"name": "Little River State Park",
+"pt": [
+44.3898,
+-72.7673
+]
+}
+],
+"Kitsap County|53|53035": [
+{
+"ref": "US-13516",
+"name": "Horseshoe -Kitsap- State Fishing Lake",
+"pt": [
+47.407,
+-122.667
+]
+}
+],
+"Grant County|55|55043": [
+{
+"ref": "US-4242",
+"name": "Fenley State Recreation Area",
+"pt": [
+42.5726,
+-90.6521
+]
+}
+],
+"Butler County|01|01013": [
+{
+"ref": "US-12311",
+"name": "Butler County State Wildlife Management Area",
+"pt": [
+31.7427,
+-86.8129
+]
+},
+{
+"ref": "US-9918",
+"name": "Thigpen Hill Nature Recreation Area",
+"pt": [
+31.8648,
+-86.6586
+]
+}
+],
+"Chilton County|01|01021": [
+{
+"ref": "US-12517",
+"name": "Confederate Memorial Park Historic Site",
+"pt": [
+32.7202,
+-86.4735
+]
+}
+],
+"Morgan County|01|01103": [
+{
+"ref": "US-12962",
+"name": "TVA Veterans Park Regional Park",
+"pt": [
+34.4415,
+-86.9803
+]
+}
+],
+"Dallas County|01|01047": [
+{
+"ref": "US-13473",
+"name": "Old Cahawba Archaeological Park State Historical Park",
+"pt": [
+32.3196,
+-87.1045
+]
+}
+],
+"Bibb County|01|01007": [
+{
+"ref": "US-13533",
+"name": "Brierfield Ironworks Historial State Park State Historical Park",
+"pt": [
+33.038,
+-86.9519
+]
+}
+],
+"Washington County|01|01129": [
+{
+"ref": "US-13558",
+"name": "St. Stephens State Historical Park",
+"pt": [
+31.5559,
+-88.0378
+]
+}
+],
+"Limestone County|01|01083": [
+{
+"ref": "US-6457",
+"name": "Elk River Lodge State Park",
+"pt": [
+34.8036,
+-87.2253
+]
+}
+],
+"Sumter County|01|01119": [
+{
+"ref": "US-6459",
+"name": "Kinterbish Wildlife Management Area",
+"pt": [
+32.3138,
+-88.2509
+]
+}
+],
+"Clark County|05|05019": [
+{
+"ref": "US-11214",
+"name": "Highway 7 Rec Area State Fish and Wildlife Area",
+"pt": [
+34.1224,
+-93.0458
+]
+}
+],
+"Arkansas County|05|05001": [
+{
+"ref": "US-11355",
+"name": "Cook\u2019s Lake Nature Center Nature Recreation Area",
+"pt": [
+34.5143,
+-91.276
+]
+}
+],
+"Newton County|05|05101": [
+{
+"ref": "US-11356",
+"name": "Ponca Nature Center Nature Recreation Area",
+"pt": [
+36.0227,
+-93.3622
+]
+}
+],
+"Randolph County|05|05121": [
+{
+"ref": "US-11394",
+"name": "Muddy Creek WMA Wildlife Management Area",
+"pt": [
+36.4377,
+-90.9996
+]
+}
+],
+"Ouachita County|05|05103": [
+{
+"ref": "US-11874",
+"name": "Tates Bluff Rec area State Recreation Area",
+"pt": [
+33.8053,
+-92.8971
+]
+}
+],
+"Sebastian County|05|05131": [
+{
+"ref": "US-11960",
+"name": "Janet Huckabee Arkansas River Valley Nature Center State Natural Reserve",
+"pt": [
+35.3022,
+-94.3353
+]
+}
+],
+"Cleburne County|05|05023": [
+{
+"ref": "US-12093",
+"name": "Sugarloaf Mountain State Recreation Area",
+"pt": [
+35.4911,
+-91.9857
+]
+}
+],
+"Lonoke County|05|05085": [
+{
+"ref": "US-12753",
+"name": "Joe Hogan State Conservation Area",
+"pt": [
+34.7697,
+-91.9093
+]
+}
+],
+"Garland County|05|05051": [
+{
+"ref": "US-12754",
+"name": "Andrew H. Hulsey State Fish Hatchery",
+"pt": [
+34.4154,
+-93.0597
+]
+}
+],
+"Benton County|05|05007": [
+{
+"ref": "US-12762",
+"name": "Charlie Craig State Fish Hatchery",
+"pt": [
+36.3501,
+-94.292
+]
+}
+],
+"Fulton County|05|05049": [
+{
+"ref": "US-12764",
+"name": "Jim Hinkle Spring River State Fish Hatchery",
+"pt": [
+36.467,
+-91.5292
+]
+}
+],
+"Nevada County|05|05099": [
+{
+"ref": "US-7437",
+"name": "Little Missouri River Access State Recreation Area",
+"pt": [
+33.8776,
+-93.3068
+]
+}
+],
+"Perry County|05|05105": [
+{
+"ref": "US-7444",
+"name": "Nimrood Lake River Road State Recreation Area",
+"pt": [
+34.9535,
+-93.1541
+]
+}
+],
+"Conway County|05|05029": [
+{
+"ref": "US-7522",
+"name": "Cherokee State Recreation Area",
+"pt": [
+35.1299,
+-92.7866
+]
+}
+],
+"Tehama County|06|06103": [
+{
+"ref": "US-12616",
+"name": "Black Butte Lake Park",
+"pt": [
+39.8121,
+-122.338
+]
+}
+],
+"San Mateo County|06|06081": [
+{
+"ref": "US-7375",
+"name": "Cowell Ranch State Beach",
+"pt": [
+37.4222,
+-122.426
+]
+}
+],
+"Kent County|10|10001": [
+{
+"ref": "US-4367",
+"name": "First State Heritage State Park",
+"pt": [
+39.1584,
+-75.5203
+]
+}
+],
+"Okeechobee County|12|12093": [
+{
+"ref": "US-12125",
+"name": "Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area",
+"pt": [
+27.3169,
+-81.0216
+]
+}
+],
+"Houston County|13|13153": [
+{
+"ref": "US-12772",
+"name": "Georgia National Fairgrounds State Recreation Area",
+"pt": [
+32.441,
+-83.75
+]
+}
+],
+"Union County|13|13291": [
+{
+"ref": "US-7459",
+"name": "Lake Nottely Dam Recreation Park",
+"pt": [
+34.9559,
+-84.0845
+]
+}
+],
+"Fannin County|13|13111": [
+{
+"ref": "US-7460",
+"name": "Lake Blue Ridge Dam Recreation Park",
+"pt": [
+34.8847,
+-84.2818
+]
+}
+],
+"Monroe County|13|13207": [
+{
+"ref": "US-7858",
+"name": "Dames Ferry Campground State Park",
+"pt": [
+33.0442,
+-83.7577
+]
+}
+],
+"Bonneville County|16|16019": [
+{
+"ref": "US-12230",
+"name": "South Fork Snake River Access State Fish and Wildlife Area",
+"pt": [
+43.623,
+-111.665
+]
+}
+],
+"Lemhi County|16|16059": [
+{
+"ref": "US-13485",
+"name": "Twin Peaks Ranch State Park",
+"pt": [
+44.9475,
+-113.99
+]
+}
+],
+"Teton County|16|16081": [
+{
+"ref": "US-4584",
+"name": "Ashton-Tetonia Trail State Park",
+"pt": [
+43.8105,
+-111.165
+]
+}
+],
+"Blaine County|16|16013": [
+{
+"ref": "US-7813",
+"name": "Cox's Well Airstrip State Recreation Area",
+"pt": [
+43.2178,
+-113.228
+]
+},
+{
+"ref": "US-7830",
+"name": "Smiley Creek Airstrip State Recreation Area",
+"pt": [
+43.9121,
+-114.796
+]
+}
+],
+"Valley County|16|16085": [
+{
+"ref": "US-7818",
+"name": "Johnson Creek Airstrip State Recreation Area",
+"pt": [
+44.9117,
+-115.486
+]
+}
+],
+"Adams County|16|16003": [
+{
+"ref": "US-7825",
+"name": "New Meadows Airstrip State Recreation Area",
+"pt": [
+44.978,
+-116.284
+]
+}
+],
+"Boundary County|16|16021": [
+{
+"ref": "US-7827",
+"name": "Porthill/Eckhart Airstrip State Recreation Area",
+"pt": [
+48.9905,
+-116.502
+]
+}
+],
+"Idaho County|16|16049": [
+{
+"ref": "US-7829",
+"name": "Slate Creek Airstrip State Recreation Area",
+"pt": [
+45.6718,
+-116.306
+]
+}
+],
+"Elmore County|16|16039": [
+{
+"ref": "US-7831",
+"name": "Smith Prairie Airstrip State Recreation Area",
+"pt": [
+43.4984,
+-115.547
+]
+}
+],
+"Custer County|16|16037": [
+{
+"ref": "US-7832",
+"name": "Stanley Airstrip State Recreation Area",
+"pt": [
+44.2086,
+-114.935
+]
+}
+],
+"Spencer County|18|18147": [
+{
+"ref": "US-4667",
+"name": "Spencer County State Forest",
+"pt": [
+38.1137,
+-86.8169
+]
+}
+],
+"Posey County|18|18129": [
+{
+"ref": "US-6972",
+"name": "Historic New Harmony State Historic Site",
+"pt": [
+38.1292,
+-87.935
+]
+}
+],
+"Jefferson County|18|18077": [
+{
+"ref": "US-6973",
+"name": "Lanier Mansion State Historic Site",
+"pt": [
+38.7536,
+-85.3859
+]
+}
+],
+"Wayne County|18|18177": [
+{
+"ref": "US-6974",
+"name": "Levi Coffin House State Historic Site",
+"pt": [
+39.9562,
+-84.9175
+]
+}
+],
+"Miami County|20|20121": [
+{
+"ref": "US-5718",
+"name": "Flint Hills Trail State Park",
+"pt": [
+38.5037,
+-95.0115
+]
+}
+],
+"Doniphan County|20|20043": [
+{
+"ref": "US-7386",
+"name": "Browning Oxbow State Fishing Lake",
+"pt": [
+39.7607,
+-94.8988
+]
+},
+{
+"ref": "US-9189",
+"name": "Iowa and Sac & Fox Mission State Historic Site",
+"pt": [
+39.864,
+-95.2295
+]
+}
+],
+"Linn County|20|20107": [
+{
+"ref": "US-7866",
+"name": "Mine Creek Civil War Battlefield State Historic Site",
+"pt": [
+38.1454,
+-94.7239
+]
+},
+{
+"ref": "US-9190",
+"name": "Marais des Cygnes Massacre State Historic Site",
+"pt": [
+38.2818,
+-94.6208
+]
+}
+],
+"Douglas County|20|20045": [
+{
+"ref": "US-9177",
+"name": "Constitution Hall State Historic Site",
+"pt": [
+39.0454,
+-95.3946
+]
+}
+],
+"Wyandotte County|20|20209": [
+{
+"ref": "US-9179",
+"name": "Grinter Place State Historic Site",
+"pt": [
+39.0749,
+-94.7599
+]
+}
+],
+"Washington County|20|20201": [
+{
+"ref": "US-9180",
+"name": "Hollenberg Pony Express Station State Historic Site",
+"pt": [
+39.9015,
+-96.8469
+]
+}
+],
+"Morris County|20|20127": [
+{
+"ref": "US-9181",
+"name": "Kaw Mission State Historic Site",
+"pt": [
+38.6655,
+-96.4936
+]
+}
+],
+"Republic County|20|20157": [
+{
+"ref": "US-9182",
+"name": "Pawnee Indian Museum State Historic Site",
+"pt": [
+39.9079,
+-97.8603
+]
+}
+],
+"Lyon County|20|20111": [
+{
+"ref": "US-9183",
+"name": "Red Rocks State Historic Site",
+"pt": [
+38.4096,
+-96.1754
+]
+}
+],
+"Sheridan County|20|20179": [
+{
+"ref": "US-9184",
+"name": "Cottonwood Ranch State Historic Site",
+"pt": [
+39.3547,
+-100.173
+]
+}
+],
+"Riley County|20|20161": [
+{
+"ref": "US-9186",
+"name": "Goodnow House State Historic Site",
+"pt": [
+39.192,
+-96.596
+]
+}
+],
+"Barton County|20|20009": [
+{
+"ref": "US-9191",
+"name": "Pawnee Rock State Historic Site",
+"pt": [
+38.2725,
+-98.9826
+]
+}
+],
+"Rapides Parish|22|22079": [
+{
+"ref": "US-10354",
+"name": "Forts Randolph & Buhlow State Historic Site",
+"pt": [
+31.3206,
+-92.448
+]
+}
+],
+"West Feliciana Parish|22|22125": [
+{
+"ref": "US-10447",
+"name": "Audubon State Historic Site",
+"pt": [
+30.8001,
+-91.3077
+]
+}
+],
+"St. Bernard Parish|22|22087": [
+{
+"ref": "US-2374",
+"name": "Saint Bernard State Park",
+"pt": [
+29.8619,
+-89.8998
+]
+}
+],
+"Franklin County|25|25011": [
+{
+"ref": "US-8388",
+"name": "Great Falls Discovery Center State Recreation Area",
+"pt": [
+42.6102,
+-72.5576
+]
+}
+],
+"Anne Arundel County|24|24003": [
+{
+"ref": "US-6388",
+"name": "Helen Avalynne Tawes Garden State Park",
+"pt": [
+38.9831,
+-76.5053
+]
+}
+],
+"Calvert County|24|24009": [
+{
+"ref": "US-6389",
+"name": "Jefferson Patterson Park and Museum State Park",
+"pt": [
+38.399,
+-76.508
+]
+}
+],
+"Crawford County|26|26039": [
+{
+"ref": "US-4774",
+"name": "Au Sable State Forest",
+"pt": [
+44.7903,
+-84.8364
+]
+}
+],
+"Menominee County|26|26109": [
+{
+"ref": "US-4776",
+"name": "Escanaba River State Forest",
+"pt": [
+45.524,
+-87.4008
+]
+},
+{
+"ref": "US-6808",
+"name": "Cedar River State Harbor",
+"pt": [
+45.413,
+-87.352
+]
+}
+],
+"Emmet County|26|26047": [
+{
+"ref": "US-4778",
+"name": "Mackinaw State Forest",
+"pt": [
+45.4495,
+-84.7302
+]
+}
+],
+"Keweenaw County|26|26083": [
+{
+"ref": "US-6809",
+"name": "Copper Harbor State Harbor",
+"pt": [
+47.4722,
+-87.9044
+]
+},
+{
+"ref": "US-6814",
+"name": "Lac LaBelle State Harbor",
+"pt": [
+47.3782,
+-88.0276
+]
+}
+],
+"Presque Isle County|26|26141": [
+{
+"ref": "US-6813",
+"name": "Hammond Bay State Harbor",
+"pt": [
+45.5915,
+-84.1643
+]
+}
+],
+"Sanilac County|26|26151": [
+{
+"ref": "US-6815",
+"name": "Lexington State Harbor",
+"pt": [
+43.2685,
+-82.5278
+]
+}
+],
+"Luce County|26|26095": [
+{
+"ref": "US-6817",
+"name": "Little Lake State Harbor",
+"pt": [
+46.716,
+-85.3601
+]
+}
+],
+"Cheboygan County|26|26031": [
+{
+"ref": "US-6821",
+"name": "Straits State Harbor",
+"pt": [
+45.7784,
+-84.7219
+]
+}
+],
+"Chippewa County|26|26033": [
+{
+"ref": "US-6822",
+"name": "Whitefish Point State Harbor",
+"pt": [
+46.7586,
+-84.9666
+]
+}
+],
+"Lake County|27|27075": [
+{
+"ref": "US-13547",
+"name": "Two Harbors Protected Area",
+"pt": [
+47.009,
+-91.6593
+]
+}
+],
+"Clay County|29|29047": [
+{
+"ref": "US-10575",
+"name": "Walnut Woods State Conservation Area",
+"pt": [
+39.2335,
+-94.3826
+]
+},
+{
+"ref": "US-10576",
+"name": "Rush Creek State Conservation Area",
+"pt": [
+39.2498,
+-94.3922
+]
+}
+],
+"Noxubee County|28|28103": [
+{
+"ref": "US-11881",
+"name": "Dancing Rabbit Creek Treaty State Historic Site",
+"pt": [
+33.0097,
+-88.7562
+]
+}
+],
+"Adams County|28|28001": [
+{
+"ref": "US-11882",
+"name": "Grand Village of the Natchez State Historic Site",
+"pt": [
+31.5256,
+-91.3807
+]
+}
+],
+"Jasper County|28|28061": [
+{
+"ref": "US-12193",
+"name": "Lake Claude Bennett State Fishing Lake",
+"pt": [
+32.1009,
+-89.0345
+]
+},
+{
+"ref": "US-7115",
+"name": "Tallahala Wildlife Management Area",
+"pt": [
+32.2073,
+-89.2819
+]
+}
+],
+"Lee County|28|28081": [
+{
+"ref": "US-12194",
+"name": "Lake Lamar Bruce State Fishing Lake",
+"pt": [
+34.391,
+-88.6695
+]
+},
+{
+"ref": "US-12195",
+"name": "Elvis Presley State Fishing Lake",
+"pt": [
+34.303,
+-88.6497
+]
+}
+],
+"Tippah County|28|28139": [
+{
+"ref": "US-12196",
+"name": "Tippah County State Fishing Lake",
+"pt": [
+34.7912,
+-88.9572
+]
+}
+],
+"Monroe County|28|28095": [
+{
+"ref": "US-12197",
+"name": "Lake Monroe State Fishing Lake",
+"pt": [
+33.9465,
+-88.5642
+]
+},
+{
+"ref": "US-7133",
+"name": "Amory Recreation Area State Recreation Area",
+"pt": [
+34.007,
+-88.4735
+]
+}
+],
+"Neshoba County|28|28099": [
+{
+"ref": "US-12198",
+"name": "Neshoba County State Fishing Lake",
+"pt": [
+32.7102,
+-89.011
+]
+}
+],
+"Lauderdale County|28|28075": [
+{
+"ref": "US-12199",
+"name": "Lake Tom Bailey State Fishing Lake",
+"pt": [
+32.4221,
+-88.5278
+]
+},
+{
+"ref": "US-8516",
+"name": "Dunn's Falls State Recreation Area",
+"pt": [
+32.228,
+-88.82
+]
+}
+],
+"Simpson County|28|28127": [
+{
+"ref": "US-12200",
+"name": "Simpson County State Fishing Lake",
+"pt": [
+31.911,
+-89.7914
+]
+}
+],
+"Smith County|28|28129": [
+{
+"ref": "US-12201",
+"name": "Prentiss Walker State Fishing Lake",
+"pt": [
+31.834,
+-89.5918
+]
+}
+],
+"Jones County|28|28067": [
+{
+"ref": "US-12202",
+"name": "Lake Bogue Homa State Fishing Lake",
+"pt": [
+31.7024,
+-89.0244
+]
+},
+{
+"ref": "US-8514",
+"name": "Big Creek State Recreation Area",
+"pt": [
+31.683,
+-89.337
+]
+}
+],
+"Lawrence County|28|28077": [
+{
+"ref": "US-12203",
+"name": "Lake Mary Crawford State Fishing Lake",
+"pt": [
+31.5729,
+-90.1555
+]
+}
+],
+"Covington County|28|28031": [
+{
+"ref": "US-12205",
+"name": "Lake Mike Conner State Fishing Lake",
+"pt": [
+31.5717,
+-89.6479
+]
+},
+{
+"ref": "US-8515",
+"name": "Dry Creek State Recreation Area",
+"pt": [
+31.752,
+-89.726
+]
+}
+],
+"Jefferson Davis County|28|28065": [
+{
+"ref": "US-12206",
+"name": "Lake Jeff Davis State Fishing Lake",
+"pt": [
+31.5651,
+-89.8443
+]
+}
+],
+"Walthall County|28|28147": [
+{
+"ref": "US-12207",
+"name": "Lake Walthall State Fishing Lake",
+"pt": [
+31.0654,
+-90.1298
+]
+}
+],
+"Bolivar County|28|28011": [
+{
+"ref": "US-7072",
+"name": "Riverfront Wildlife Management Area",
+"pt": [
+33.8578,
+-91.0549
+]
+}
+],
+"Lafayette County|28|28071": [
+{
+"ref": "US-7098",
+"name": "Graham Waterfowl Wildlife Management Area",
+"pt": [
+34.5236,
+-89.4647
+]
+},
+{
+"ref": "US-7128",
+"name": "Sardis Lake State Recreation Area",
+"pt": [
+34.4302,
+-89.7004
+]
+}
+],
+"Franklin County|28|28037": [
+{
+"ref": "US-7120",
+"name": "Caston Creek Wildlife Management Area",
+"pt": [
+31.4335,
+-90.8549
+]
+}
+],
+"Tate County|28|28137": [
+{
+"ref": "US-7124",
+"name": "Arkabutla Lake State Recreation Area",
+"pt": [
+34.7419,
+-90.122
+]
+}
+],
+"Yalobusha County|28|28161": [
+{
+"ref": "US-7125",
+"name": "Enid Lake State Recreation Area",
+"pt": [
+34.139,
+-89.8262
+]
+}
+],
+"Grenada County|28|28043": [
+{
+"ref": "US-7126",
+"name": "Grenada Lake State Recreation Area",
+"pt": [
+33.8033,
+-89.7511
+]
+}
+],
+"Lowndes County|28|28087": [
+{
+"ref": "US-7129",
+"name": "Columbus Lake State Recreation Area",
+"pt": [
+33.5218,
+-88.4834
+]
+}
+],
+"Tishomingo County|28|28141": [
+{
+"ref": "US-7131",
+"name": "Bay Springs Lake State Recreation Area",
+"pt": [
+34.5328,
+-88.3129
+]
+}
+],
+"Chickasaw County|28|28017": [
+{
+"ref": "US-7629",
+"name": "Davis Lake State Recreation Area",
+"pt": [
+34.0484,
+-88.9349
+]
+}
+],
+"Clarke County|28|28023": [
+{
+"ref": "US-8513",
+"name": "Archusa Creek State Recreation Area",
+"pt": [
+32.0301,
+-88.704
+]
+}
+],
+"Stone County|28|28131": [
+{
+"ref": "US-8517",
+"name": "Flint Creek State Recreation Area",
+"pt": [
+30.871,
+-89.121
+]
+}
+],
+"Wayne County|28|28153": [
+{
+"ref": "US-8518",
+"name": "Maynor Creek State Recreation Area",
+"pt": [
+31.655,
+-88.723
+]
+}
+],
+"Newton County|28|28101": [
+{
+"ref": "US-8519",
+"name": "Turkey Creek State Recreation Area",
+"pt": [
+32.401,
+-89.153
+]
+}
+],
+"Harrison County|28|28047": [
+{
+"ref": "US-9849",
+"name": "Deer Island Coastal Park",
+"pt": [
+30.3845,
+-88.8728
+]
+}
+],
+"Fergus County|30|30027": [
+{
+"ref": "US-11216",
+"name": "Big Springs Trout State Fish Hatchery",
+"pt": [
+47.0021,
+-109.344
+]
+}
+],
+"Davidson County|37|37057": [
+{
+"ref": "US-10259",
+"name": "NC Vietnam Veteran's Memorial Historic Site",
+"pt": [
+35.8428,
+-80.131
+]
+}
+],
+"Clay County|37|37043": [
+{
+"ref": "US-10398",
+"name": "Chatuge Dam Trail Recreation Park",
+"pt": [
+35.0205,
+-83.7854
+]
+}
+],
+"Orange County|37|37135": [
+{
+"ref": "US-3851",
+"name": "Brumley Forest State Nature Preserve",
+"pt": [
+36.0345,
+-79.0489
+]
+}
+],
+"Lenoir County|37|37107": [
+{
+"ref": "US-6837",
+"name": "CSS Neuse Civil War Interpretive Center State Historic Site",
+"pt": [
+35.2604,
+-77.5816
+]
+}
+],
+"Rowan County|37|37159": [
+{
+"ref": "US-6847",
+"name": "NC Transportation Museum State Historic Site",
+"pt": [
+35.6898,
+-80.4301
+]
+}
+],
+"Wake County|37|37183": [
+{
+"ref": "US-6852",
+"name": "State Capitol State Historic Site",
+"pt": [
+35.7806,
+-78.6391
+]
+}
+],
+"Vance County|37|37181": [
+{
+"ref": "US-6963",
+"name": "Nutbush Wildlife Management Area",
+"pt": [
+36.4771,
+-78.3785
+]
+}
+],
+"Barnes County|38|38003": [
+{
+"ref": "US-12782",
+"name": "Camp Arnold State Historic Site",
+"pt": [
+46.9933,
+-97.7911
+]
+},
+{
+"ref": "US-12783",
+"name": "Camp Corning State Historic Site",
+"pt": [
+47.212,
+-98.0677
+]
+},
+{
+"ref": "US-8558",
+"name": "Wadeson Cabin State Historic Site",
+"pt": [
+46.6734,
+-97.9449
+]
+}
+],
+"Stutsman County|38|38093": [
+{
+"ref": "US-12784",
+"name": "Camp Grant State Historic Site",
+"pt": [
+47.1829,
+-99.3719
+]
+}
+],
+"Divide County|38|38023": [
+{
+"ref": "US-5639",
+"name": "Writing Rock State Historic Site",
+"pt": [
+48.7797,
+-103.86
+]
+}
+],
+"McHenry County|38|38049": [
+{
+"ref": "US-5743",
+"name": "Mouse River State Forest",
+"pt": [
+48.3881,
+-100.378
+]
+},
+{
+"ref": "US-8534",
+"name": "David Thompson State Historic Site",
+"pt": [
+48.1224,
+-100.75
+]
+}
+],
+"Ransom County|38|38073": [
+{
+"ref": "US-5746",
+"name": "Sheyenne River State Forest",
+"pt": [
+46.5029,
+-97.8782
+]
+}
+],
+"Richland County|38|38077": [
+{
+"ref": "US-5748",
+"name": "Fort Abercrombie State Historic Site",
+"pt": [
+46.4457,
+-96.72
+]
+}
+],
+"Rolette County|38|38079": [
+{
+"ref": "US-7143",
+"name": "International Peace Garden Park",
+"pt": [
+48.9985,
+-100.059
+]
+}
+],
+"Morton County|38|38059": [
+{
+"ref": "US-8524",
+"name": "Bismarck-Deadwood Stage Trail State Historic Site",
+"pt": [
+46.4587,
+-101.219
+]
+},
+{
+"ref": "US-8540",
+"name": "Fort Rice State Historic Site",
+"pt": [
+46.513,
+-100.583
+]
+},
+{
+"ref": "US-8561",
+"name": "Missouri River State Natural Area",
+"pt": [
+46.8359,
+-100.865
+]
+}
+],
+"Griggs County|38|38039": [
+{
+"ref": "US-8526",
+"name": "Camp Atchison State Historic Site",
+"pt": [
+47.524,
+-98.3293
+]
+},
+{
+"ref": "US-8546",
+"name": "Lake Jessie State Historic Site",
+"pt": [
+47.5409,
+-98.2907
+]
+},
+{
+"ref": "US-8547",
+"name": "Lake Johnson State Historic Site",
+"pt": [
+47.3555,
+-98.1358
+]
+},
+{
+"ref": "US-8552",
+"name": "November 33 Launch Facility State Historic Site",
+"pt": [
+47.4399,
+-98.0664
+]
+},
+{
+"ref": "US-8555",
+"name": "Oscar-Zero Missile Alert Facility State Historic Site",
+"pt": [
+47.4976,
+-98.1267
+]
+}
+],
+"Sargent County|38|38081": [
+{
+"ref": "US-8527",
+"name": "Camp Buell State Historic Site",
+"pt": [
+46.2489,
+-97.4568
+]
+}
+],
+"Burleigh County|38|38015": [
+{
+"ref": "US-8528",
+"name": "Camp Hancock State Historic Site",
+"pt": [
+46.8052,
+-100.79
+]
+},
+{
+"ref": "US-8535",
+"name": "Double Ditch Indian Village State Historic Site",
+"pt": [
+46.9346,
+-100.899
+]
+},
+{
+"ref": "US-8549",
+"name": "Menoken Indian Village State Historic Site",
+"pt": [
+46.8414,
+-100.518
+]
+}
+],
+"Grant County|38|38037": [
+{
+"ref": "US-8531",
+"name": "Cannonball Stage Station State Historic Site",
+"pt": [
+46.2217,
+-101.478
+]
+}
+],
+"Billings County|38|38007": [
+{
+"ref": "US-8532",
+"name": "Chateau De Mores State Historic Site",
+"pt": [
+46.9124,
+-103.535
+]
+}
+],
+"Williams County|38|38105": [
+{
+"ref": "US-8536",
+"name": "Fort Buford State Historic Site",
+"pt": [
+47.9865,
+-104.0
+]
+},
+{
+"ref": "US-8550",
+"name": "Missouri-Yellowstone Confluence Interpretive Center State Historic Site",
+"pt": [
+47.9851,
+-103.989
+]
+}
+],
+"Mercer County|38|38057": [
+{
+"ref": "US-8537",
+"name": "Fort Clark State Historic Site",
+"pt": [
+47.253,
+-101.279
+]
+}
+],
+"Bowman County|38|38011": [
+{
+"ref": "US-8538",
+"name": "Fort Dilts State Historic Site",
+"pt": [
+46.2791,
+-103.776
+]
+}
+],
+"McLean County|38|38055": [
+{
+"ref": "US-8539",
+"name": "Fort Mandan Overlook State Historic Site",
+"pt": [
+47.2963,
+-101.285
+]
+}
+],
+"Pembina County|38|38067": [
+{
+"ref": "US-8542",
+"name": "Gingras Trading Post State Historic Site",
+"pt": [
+48.9369,
+-97.8909
+]
+},
+{
+"ref": "US-8553",
+"name": "Oak Lawn Church State Historic Site",
+"pt": [
+48.7606,
+-97.9279
+]
+},
+{
+"ref": "US-8554",
+"name": "Pembina State Museum State Historic Site",
+"pt": [
+48.9732,
+-97.2542
+]
+}
+],
+"Dickey County|38|38021": [
+{
+"ref": "US-8543",
+"name": "Hudson Townsite State Historic Site",
+"pt": [
+46.096,
+-98.1314
+]
+},
+{
+"ref": "US-8560",
+"name": "Whitestone Hill State Historic Site",
+"pt": [
+46.1689,
+-98.8568
+]
+}
+],
+"Dunn County|38|38025": [
+{
+"ref": "US-8545",
+"name": "Killdeer Mountain Battlefield State Historic Site",
+"pt": [
+47.4217,
+-102.917
+]
+}
+],
+"Cass County|38|38017": [
+{
+"ref": "US-8548",
+"name": "Maple Creek Crossing State Historic Site",
+"pt": [
+46.7282,
+-97.325
+]
+}
+],
+"Emmons County|38|38029": [
+{
+"ref": "US-8559",
+"name": "Welk Homestead State Historic Site",
+"pt": [
+46.1503,
+-100.208
+]
+}
+],
+"Antelope County|31|31003": [
+{
+"ref": "US-3374",
+"name": "Neligh Mill State Historic Site",
+"pt": [
+42.1264,
+-98.0311
+]
+}
+],
+"Webster County|31|31181": [
+{
+"ref": "US-3492",
+"name": "Willa Cather Memorial Prairie State Historic Site",
+"pt": [
+40.0039,
+-98.5229
+]
+}
+],
+"Douglas County|31|31055": [
+{
+"ref": "US-4010",
+"name": "Heron Haven State Park",
+"pt": [
+41.2926,
+-96.0971
+]
+},
+{
+"ref": "US-4012",
+"name": "Elkhorn Crossing State Park",
+"pt": [
+41.3608,
+-96.3021
+]
+},
+{
+"ref": "US-4013",
+"name": "Prairie View State Recreation Area",
+"pt": [
+41.3737,
+-96.1973
+]
+}
+],
+"Jefferson County|31|31095": [
+{
+"ref": "US-4025",
+"name": "Buckley Creek State Recreation Area",
+"pt": [
+40.0692,
+-97.3058
+]
+}
+],
+"Fillmore County|31|31059": [
+{
+"ref": "US-4027",
+"name": "Lone Star State Recreation Area",
+"pt": [
+40.4178,
+-97.383
+]
+}
+],
+"Merrimack County|33|33013": [
+{
+"ref": "US-4931",
+"name": "Max Israel State Forest",
+"pt": [
+43.2722,
+-71.7459
+]
+}
+],
+"Essex County|50|50009": [
+{
+"ref": "US-4936",
+"name": "Nash Stream Forest State Forest",
+"pt": [
+44.7271,
+-71.6901
+]
+}
+],
+"Windham County|50|50025": [
+{
+"ref": "US-4980",
+"name": "White Farm State Forest",
+"pt": [
+43.189,
+-72.5595
+]
+}
+],
+"Rio Arriba County|35|35039": [
+{
+"ref": "US-11797",
+"name": "Los Luceros Historic Site",
+"pt": [
+36.1156,
+-106.035
+]
+}
+],
+"De Baca County|35|35011": [
+{
+"ref": "US-11821",
+"name": "Bosque Redondo Memorial/Fort Sumner Historic Site",
+"pt": [
+34.4018,
+-104.193
+]
+}
+],
+"White Pine County|32|32033": [
+{
+"ref": "US-13242",
+"name": "Spring Creek Rearing Station State Fish Hatchery",
+"pt": [
+38.9174,
+-114.106
+]
+},
+{
+"ref": "US-13249",
+"name": "Nevada Northern Railway Museum State Historic Site",
+"pt": [
+39.2592,
+-114.868
+]
+}
+],
+"Carson City|32|32510": [
+{
+"ref": "US-13274",
+"name": "Empire & Carson River Mills State Historical Monument",
+"pt": [
+39.1873,
+-119.706
+]
+}
+],
+"Elko County|32|32007": [
+{
+"ref": "US-13276",
+"name": "West End of Hastings Cutoff State Historical Monument",
+"pt": [
+40.7661,
+-115.92
+]
+},
+{
+"ref": "US-13304",
+"name": "Fort Halleck Military Reservation State Historic Site",
+"pt": [
+40.8086,
+-115.335
+]
+},
+{
+"ref": "US-13305",
+"name": "Carlin Canyon State Historical Monument",
+"pt": [
+40.7238,
+-116.023
+]
+},
+{
+"ref": "US-13477",
+"name": "Dinner Station Nevada State Historical Monument",
+"pt": [
+41.0999,
+-115.866
+]
+},
+{
+"ref": "US-13479",
+"name": "Diamondfield Jack Davis State Historical Monument",
+"pt": [
+41.9848,
+-114.672
+]
+}
+],
+"Clark County|32|32003": [
+{
+"ref": "US-13278",
+"name": "El Dorado Canyon State Historic Site",
+"pt": [
+35.8281,
+-114.937
+]
+},
+{
+"ref": "US-13301",
+"name": "Pueblo Grande de Nevada State Historical Monument",
+"pt": [
+36.525,
+-114.434
+]
+},
+{
+"ref": "US-13453",
+"name": "Original Homesite of a Las Vegas Pioneer \u201cPop\u201d Squires 1865-1958 State Historical Monument",
+"pt": [
+36.1646,
+-115.141
+]
+}
+],
+"Lander County|32|32015": [
+{
+"ref": "US-13280",
+"name": "Austin State Historical Monument",
+"pt": [
+39.4919,
+-117.07
+]
+}
+],
+"Douglas County|32|32005": [
+{
+"ref": "US-13283",
+"name": "Nevada\u2019s Birthplace State Historical Monument",
+"pt": [
+38.996,
+-119.78
+]
+},
+{
+"ref": "US-13405",
+"name": "Kingsbury Grade State Historical Monument",
+"pt": [
+38.9655,
+-119.84
+]
+}
+],
+"Nye County|32|32023": [
+{
+"ref": "US-13285",
+"name": "Tonopah Nevada State Historical Monument",
+"pt": [
+38.067,
+-117.229
+]
+},
+{
+"ref": "US-13448",
+"name": "Chief Tecopa Peacemaker of the Paiutes State Historical Monument",
+"pt": [
+36.2091,
+-115.99
+]
+}
+],
+"Humboldt County|32|32013": [
+{
+"ref": "US-13289",
+"name": "The Humboldt Canal State Historical Monument",
+"pt": [
+40.9817,
+-117.727
+]
+},
+{
+"ref": "US-13325",
+"name": "Paradise Valley State Historical Monument",
+"pt": [
+41.4917,
+-117.535
+]
+},
+{
+"ref": "US-13414",
+"name": "Button Point State Historic Site",
+"pt": [
+41.0165,
+-117.573
+]
+}
+],
+"Churchill County|32|32001": [
+{
+"ref": "US-13290",
+"name": "Forty Mile Desert State Historical Monument",
+"pt": [
+39.5667,
+-118.833
+]
+},
+{
+"ref": "US-13450",
+"name": "Hazen Nevada State Historical Monument",
+"pt": [
+39.5635,
+-119.048
+]
+},
+{
+"ref": "US-13470",
+"name": "Lahontan Dam State Historical Monument",
+"pt": [
+39.4661,
+-119.07
+]
+}
+],
+"Washoe County|32|32031": [
+{
+"ref": "US-13291",
+"name": "Chinese in Nevada-#29 State Historical Monument",
+"pt": [
+39.5347,
+-119.753
+]
+},
+{
+"ref": "US-13303",
+"name": "Derby Diversion Dam State Historical Monument",
+"pt": [
+39.589,
+-119.446
+]
+},
+{
+"ref": "US-13306",
+"name": "Reno Nevada State Historical Monument",
+"pt": [
+39.5243,
+-119.812
+]
+},
+{
+"ref": "US-13322",
+"name": "Grand Army Of The Republic Memorial Tree State Historical Monument",
+"pt": [
+39.5364,
+-119.815
+]
+},
+{
+"ref": "US-13368",
+"name": "Franktown Nevada State Historical Monument",
+"pt": [
+39.2714,
+-119.841
+]
+},
+{
+"ref": "US-13454",
+"name": "Steamboat Springs Nevada State Historical Monument",
+"pt": [
+39.38,
+-119.742
+]
+},
+{
+"ref": "US-13319",
+"name": "Truckee River \u2013 West State Historical Monument",
+"pt": [
+39.5094,
+-119.937
+]
+}
+],
+"Storey County|32|32029": [
+{
+"ref": "US-13320",
+"name": "Truckee River \u2013 East State Historical Monument",
+"pt": [
+39.5501,
+-119.574
+]
+},
+{
+"ref": "US-13323",
+"name": "Savage Mansion (c. 1863) State Historical Monument",
+"pt": [
+39.3054,
+-119.651
+]
+},
+{
+"ref": "US-13469",
+"name": "Old Geiger Grade State Historical Monument",
+"pt": [
+39.3726,
+-119.668
+]
+}
+],
+"Eureka County|32|32011": [
+{
+"ref": "US-13321",
+"name": "Palisade Nevada State Historical Monument",
+"pt": [
+40.6102,
+-116.199
+]
+}
+],
+"Lincoln County|32|32017": [
+{
+"ref": "US-13363",
+"name": "Panaca Mercantile Store State Historical Monument",
+"pt": [
+37.7903,
+-114.387
+]
+},
+{
+"ref": "US-13451",
+"name": "Panaca Ward Chapel State Historical Monument",
+"pt": [
+37.7909,
+-114.387
+]
+},
+{
+"ref": "US-13464",
+"name": "Bullionville Nevada State Historical Monument",
+"pt": [
+37.8066,
+-114.406
+]
+},
+{
+"ref": "US-13467",
+"name": "Hiko Nevada State Historical Monument",
+"pt": [
+37.5969,
+-115.224
+]
+},
+{
+"ref": "US-13478",
+"name": "Union Pacific Depot 1923 State Historical Monument",
+"pt": [
+37.6128,
+-114.514
+]
+}
+],
+"Lyon County|32|32019": [
+{
+"ref": "US-13367",
+"name": "Wabuska Nevada State Historical Monument",
+"pt": [
+39.1436,
+-119.182
+]
+},
+{
+"ref": "US-13407",
+"name": "Courthouse Site (1865-1907) State Historical Monument",
+"pt": [
+39.2381,
+-119.591
+]
+},
+{
+"ref": "US-13413",
+"name": "Chinatown State Historical Monument",
+"pt": [
+39.2362,
+-119.589
+]
+}
+],
+"Pershing County|32|32027": [
+{
+"ref": "US-13411",
+"name": "Unionville (Pershing County) State Historical Monument",
+"pt": [
+40.4498,
+-118.072
+]
+}
+],
+"Hamilton County|36|36041": [
+{
+"ref": "US-2001",
+"name": "Adirondack State Park",
+"pt": [
+43.9685,
+-74.4187
+]
+}
+],
+"Ulster County|36|36111": [
+{
+"ref": "US-8070",
+"name": "Catskill State Park",
+"pt": [
+42.0277,
+-74.2697
+]
+}
+],
+"Garfield County|40|40047": [
+{
+"ref": "US-10951",
+"name": "Cherokee Strip Regional Heritage Center Historic Site",
+"pt": [
+36.3913,
+-97.8728
+]
+}
+],
+"Alfalfa County|40|40003": [
+{
+"ref": "US-11245",
+"name": "Byron State Fish Hatchery",
+"pt": [
+36.8401,
+-98.1806
+]
+},
+{
+"ref": "US-8647",
+"name": "Sod House Museum State Historic Site",
+"pt": [
+36.4723,
+-98.4264
+]
+}
+],
+"Logan County|40|40083": [
+{
+"ref": "US-11837",
+"name": "Smallest National Park Historic Site",
+"pt": [
+35.8776,
+-97.4274
+]
+},
+{
+"ref": "US-8645",
+"name": "Oklahoma Territorial Museum State Historic Site",
+"pt": [
+35.8781,
+-97.421
+]
+}
+],
+"Noble County|40|40103": [
+{
+"ref": "US-8641",
+"name": "Cherokee Strip Museum State Historic Site",
+"pt": [
+36.2907,
+-97.3222
+]
+}
+],
+"Oklahoma County|40|40109": [
+{
+"ref": "US-8643",
+"name": "Oklahoma History Center State Historic Site",
+"pt": [
+35.4944,
+-97.4967
+]
+}
+],
+"Linn County|41|41043": [
+{
+"ref": "US-10610",
+"name": "South Santiam State Fish Hatchery",
+"pt": [
+44.4151,
+-122.676
+]
+}
+],
+"Jackson County|41|41029": [
+{
+"ref": "US-10613",
+"name": "Cole M. Rivers State Fish Hatchery",
+"pt": [
+42.6626,
+-122.685
+]
+}
+],
+"Lincoln County|41|41041": [
+{
+"ref": "US-12977",
+"name": "Salmon River State Fish Hatchery",
+"pt": [
+45.0172,
+-123.937
+]
+}
+],
+"Tillamook County|41|41057": [
+{
+"ref": "US-12980",
+"name": "Trask River State Fish Hatchery",
+"pt": [
+45.4321,
+-123.725
+]
+}
+],
+"Douglas County|41|41019": [
+{
+"ref": "US-12990",
+"name": "Rock Creek State Fish Hatchery",
+"pt": [
+43.3364,
+-123.001
+]
+}
+],
+"Curry County|41|41015": [
+{
+"ref": "US-12993",
+"name": "Elk River State Fish Hatchery",
+"pt": [
+42.7381,
+-124.402
+]
+}
+],
+"Clatsop County|41|41007": [
+{
+"ref": "US-12994",
+"name": "Klaskanine State Fish Hatchery",
+"pt": [
+46.0899,
+-123.718
+]
+}
+],
+"Malheur County|41|41045": [
+{
+"ref": "US-13070",
+"name": "Owyhee State Airstrip State Recreation Site",
+"pt": [
+43.4248,
+-117.346
+]
+}
+],
+"Lexington County|45|45063": [
+{
+"ref": "US-13016",
+"name": "Pine Island State Park",
+"pt": [
+34.0685,
+-81.2555
+]
+}
+],
+"Williamsburg County|45|45089": [
+{
+"ref": "US-13198",
+"name": "Black River State Park",
+"pt": [
+33.5704,
+-79.7953
+]
+}
+],
+"Cannon County|47|47015": [
+{
+"ref": "US-11869",
+"name": "Jim Cummings Park",
+"pt": [
+35.8119,
+-86.0287
+]
+}
+],
+"Carroll County|47|47017": [
+{
+"ref": "US-13514",
+"name": "Lake Halford State Fishing Lake",
+"pt": [
+35.934,
+-88.461
+]
+}
+],
+"Wilson County|47|47189": [
+{
+"ref": "US-6273",
+"name": "Vine Cedar Glade State Natural Area",
+"pt": [
+36.0346,
+-86.3535
+]
+}
+],
+"Midland County|48|48329": [
+{
+"ref": "US-10272",
+"name": "Bush Family Home State Historic Site",
+"pt": [
+31.9987,
+-102.091
+]
+}
+],
+"Armstrong County|48|48011": [
+{
+"ref": "US-10273",
+"name": "Charles and Mary Ann Goodnight Ranch State Historic Site",
+"pt": [
+35.0306,
+-101.183
+]
+}
+],
+"Goliad County|48|48175": [
+{
+"ref": "US-10275",
+"name": "Presidio la Bahia State Historic Site",
+"pt": [
+28.6476,
+-97.3827
+]
+}
+],
+"Brazoria County|48|48039": [
+{
+"ref": "US-12109",
+"name": "Stephen F. Austin Memorial Historic Site",
+"pt": [
+29.1556,
+-95.6567
+]
+}
+],
+"Travis County|48|48453": [
+{
+"ref": "US-6560",
+"name": "French Legation State Historic Site",
+"pt": [
+30.2668,
+-97.732
+]
+}
+],
+"San Augustine County|48|48405": [
+{
+"ref": "US-6582",
+"name": "Mission Dolores State Historic Site",
+"pt": [
+31.5236,
+-94.1151
+]
+}
+],
+"Fannin County|48|48147": [
+{
+"ref": "US-6601",
+"name": "Sam Rayburn House State Historic Site",
+"pt": [
+33.57,
+-96.2075
+]
+}
+],
+"Austin County|48|48015": [
+{
+"ref": "US-6602",
+"name": "San Felipe de Austin State Historic Site",
+"pt": [
+29.807,
+-96.0977
+]
+}
+],
+"Iron County|49|49021": [
+{
+"ref": "US-12069",
+"name": "Old Iron Town State Historical Park",
+"pt": [
+37.6,
+-113.449
+]
+}
+],
+"Cache County|49|49005": [
+{
+"ref": "US-12998",
+"name": "Cache Valley Public Shooting Range Utah DWR State Recreation Site",
+"pt": [
+41.7556,
+-111.909
+]
+}
+],
+"Weber County|49|49057": [
+{
+"ref": "US-13590",
+"name": "Fremont Island Upper - Back Country Airstrip State Recreation Site",
+"pt": [
+41.16,
+-112.333
+]
+},
+{
+"ref": "US-13591",
+"name": "Fremont Island Lower - Backcountry Airstrip State Recreation Site",
+"pt": [
+41.1757,
+-112.381
+]
+},
+{
+"ref": "US-5844",
+"name": "Monte Cristo State Recreation Area",
+"pt": [
+41.4105,
+-111.583
+]
+}
+],
+"Garfield County|49|49017": [
+{
+"ref": "US-13596",
+"name": "Butch Cassidy State Monument Park",
+"pt": [
+38.1446,
+-112.304
+]
+}
+],
+"Staunton city|51|51790": [
+{
+"ref": "US-9931",
+"name": "Frontier Culture Museum State Historic Site",
+"pt": [
+38.1256,
+-79.0503
+]
+}
+],
+"Berkshire County|25|25003": [
+{
+"ref": "US-10300",
+"name": "Kesick Swamp State Wildlife Habitat Management Area",
+"pt": [
+42.0922,
+-73.1186
+]
+}
+],
+"King County|53|53033": [
+{
+"ref": "US-10711",
+"name": "Marckworth State Forest",
+"pt": [
+47.7216,
+-121.876
+]
+}
+],
+"Stevens County|53|53065": [
+{
+"ref": "US-12567",
+"name": "Douglas Falls State Recreation Area",
+"pt": [
+48.6143,
+-117.899
+]
+},
+{
+"ref": "US-5570",
+"name": "Little Pend Oreille State Forest",
+"pt": [
+48.6812,
+-117.75
+]
+}
+],
+"Cowlitz County|53|53015": [
+{
+"ref": "US-13391",
+"name": "Olequa Crossing State Recreation Site",
+"pt": [
+46.3677,
+-122.934
+]
+}
+],
+"Randolph County|54|54083": [
+{
+"ref": "US-12052",
+"name": "Bowden State Fish Hatchery",
+"pt": [
+38.9097,
+-79.7142
+]
+}
+],
+"Pocahontas County|54|54075": [
+{
+"ref": "US-12053",
+"name": "Edray State Fish Hatchery",
+"pt": [
+38.2703,
+-80.1056
+]
+}
+],
+"Morgan County|54|54065": [
+{
+"ref": "US-12054",
+"name": "Ridge State Fish Hatchery",
+"pt": [
+39.4636,
+-78.3113
+]
+}
+],
+"Grant County|54|54023": [
+{
+"ref": "US-12055",
+"name": "Petersburg State Fish Hatchery",
+"pt": [
+38.9871,
+-79.172
+]
+}
+],
+"Kanawha County|54|54039": [
+{
+"ref": "US-9739",
+"name": "Forks of the Coal State Natural Area",
+"pt": [
+38.2672,
+-81.7948
+]
+}
+],
+"Jackson County|54|54035": [
+{
+"ref": "US-9915",
+"name": "Cedar Lakes State Recreation Area",
+"pt": [
+38.7952,
+-81.6849
+]
+}
+],
+"Sheridan County|56|56033": [
+{
+"ref": "US-10817",
+"name": "Story State Fish Hatchery",
+"pt": [
+44.5657,
+-106.927
+]
+}
+],
+"Natrona County|56|56025": [
+{
+"ref": "US-10821",
+"name": "Dan Speas State Fish Hatchery",
+"pt": [
+42.7584,
+-106.531
+]
+}
+],
+"Fremont County|56|56013": [
+{
+"ref": "US-10823",
+"name": "Dubois State Fish Hatchery",
+"pt": [
+43.5046,
+-109.585
+]
+}
+],
+"Big Horn County|56|56003": [
+{
+"ref": "US-10825",
+"name": "Tillett Springs State Fish Hatchery",
+"pt": [
+44.9853,
+-108.282
+]
+}
+],
+"Park County|56|56029": [
+{
+"ref": "US-12720",
+"name": "Ralston Reservoir BOR & State Fish and Wildlife Area",
+"pt": [
+44.7113,
+-108.887
+]
+}
+],
+"Prowers County|08|08099": [
+{
+"ref": "US-9652",
+"name": "Grenada State Wildlife Area",
+"pt": [
+38.0245,
+-102.196
+]
+}
+]
+}
