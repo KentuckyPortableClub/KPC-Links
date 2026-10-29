@@ -93,3 +93,26 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 | US-4931 | Max Israel State Forest | NH Div. of Forests and Lands "State Reservation Maps" page (nhdfl.dncr.nh.gov/land-management/state-reservation-maps); consnh | 3 | page to read (bot filed) | 8 | Oct 29 |
 | US-4936 | Nash Stream Forest State Forest | same | 3 | page to read (bot filed) | 8 | Oct 29 |
 | US-4980 | White Farm State Forest | same | 3 | page to read (bot filed) | 8 | Oct 29 |
+### NM (add)
+| US-2719 | Angel Fire Vietnam Veterans Memorial | our docs none; POTA link https://www.vietnamveteransmemorial.org/ | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+### DE
+| US-10687 | Trussum Pond State Fishing Lake | POTA link = DNREC pond maps web app (experience.arcgis.com ...Pond-Maps); our docs: no map | R-G7 step 3 (a pond map, check it shows land) | to check, then 4b | chat 3 | Oct 29 |
+| US-4367 | First State Heritage Park | https://destateparks.com/History/FirstStateHeritage ; docs: none; nothing near | R-G7 step 3 -> 4b (Dover, state-owned parcels) | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-9885 | Indian River Life-Saving Station SHS | https://destateparks.com/Centers/IRLifesavingStation ; pin inside Delaware Seashore SP | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-9886 | Dupont Nature Center State Conservation Area | DNREC page; pin inside Milford Neck Wildlife Area | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+### MT
+| US-11216, 11219 | Big Springs / Jacko River Trout State Fish Hatcheries | MT FWP lands pages (lmsId 39753636, 39753949) | R-G7 step 3 -> 4b (FWP-owned parcel) | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-12827 | Brownes Lake SFWA | FWP FAS page 39753504 (pin inside Brownes Bridge FAS: different name) | R-G7 step 2/3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-12925 | Thoreau State Beach | FWP FAS page 39753904 (key 'likely' = Missoula Field Office: wrong, R-G8) | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+### IL
+| US-10661 | Oakwood Bottoms USFS Rec Area | OUR DOCS ok: https://www.fs.usda.gov/r09/shawnee/maps-guides (Shawnee NF maps page, may not name the area) | R-G7 step 3; USFS rec sites usually have no boundary: 4b NF-owned parcel inside Shawnee | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-10788 | Ray Norbut East Hannibal Unit SFWA | docs: no readable map; https://huntillinois.org/sites/ray-norbut-sfwa/ | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-12640 | Rauchfuss Hill SRA | OUR DOCS ok: hunter map PDF .../RauchfussHillHunterMap.pdf (a hunter map: check for the property line) | R-G7 step 4a from our docs if a line shows | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-4118 | Copperhead Hollow SWA | OUR DOCS ok: hunter map PDF .../CopperheadHollowHunterMap.pdf | R-G7 step 4a from our docs if a line shows | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-13298 | North Point Marina SRA | https://dnr.illinois.gov/parks/park.northpointmarina.html ; docs none; pin inside Illinois Beach SP | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+### MA
+| US-2436 | Greycourt State Park | docs none; mass.gov Lawrence Heritage page is a different park's page: check | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-8385 | Farnham-Connolly State Park | mass.gov page; docs none | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-8387 | Martini Shell Park / Moynihan SRA | mass.gov page; pin inside Neponset River Reservation | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-8388 | Great Falls Discovery Center SRA | mass.gov page; nothing near | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-8422 | Pope John Paul II Park State Reserve | OUR DOCS ok: https://www.mass.gov/doc/neponset-river-greenway-map-tnf | R-G7 step 4a from our docs if the map shows the line | pending (3-fable-low-c) | chat 3 | Oct 29 |

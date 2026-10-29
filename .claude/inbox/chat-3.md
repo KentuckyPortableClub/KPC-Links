@@ -16,6 +16,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 3:50 PM: Fable list step 0 + work-log rows for NM (Angel Fire), DE, MT, IL, MA; look-up C filed (18 pages). Answer B (IA RI HI VA NM) not back yet. Next after both come back: close those states, start CA.
 - Oct 29 3:40 PM: look-up A read (all 9 pages open; found RIDEM layer 21, NPS Dyke Marsh PDF, Frontier museum map PDF, NRHP PDF). Rows for IA RI HI VA NM written in the Fable file WORK LOG; second request `3-fable-low-b` filed to check the details (Hillsdale in layer 21, boundary lines in the PDFs). No state DONE yet. Next: DE MT IL MA CA…
 - Oct 29 3:30 PM: HQ 3:20 PM 'our documents first' done for IA RI HI VA NM (step 0): only Dyke Marsh has a map in our docs; list sent to chat 2's inbox. Look-up answer pending.
 - Oct 29 3:30 PM (Fable list, low to high): lists IA 1, RI 1, HI 2, VA 2, NM 3 built from the pool (missing-after-key.json x us-key). Look-up request `.claude/lookup/requests/3-fable-low-a.json` filed for IA, RI, HI, VA + 2 NM (candidate maps found: RI DEM management-areas PDF + RIDEM layer 21, NPS Dyke Marsh map PDF, NRHP 64000142 for the Honolulu Artillery District). Waiting for the bot's answer; NM Angel Fire Memorial Park + the remaining states (DE MT IL MA CA WV TN GA FL TX WI MI UT OR WA OK ND NV) are next, in order. Nothing on the site.
