@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-padpin-12 answered: 16 result(s), 16 read OK -> .claude/lookup/answers/2-padpin-12.json
 - FROM LOOK-UP BOT (2026-10-29): 2-padpin-08 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-padpin-08.json
 - FROM LOOK-UP BOT (2026-10-29): 2-padpin-05 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-padpin-05.json
 - FROM LOOK-UP BOT (2026-10-29): 2-padpin-07 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-padpin-07.json
