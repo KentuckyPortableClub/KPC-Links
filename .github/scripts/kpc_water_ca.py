@@ -76,7 +76,8 @@ def listing(need=()):
             for href in re.findall(r'href="([^"]+\.zip)"', html, re.I):
                 m = re.search(r'(\d{2}[a-z]{2}\d{3})', href, re.I)
                 if m: files.setdefault(m.group(1).upper(), href if href.startswith('http') else BASE + sub + href.split('/')[-1])
-        except Exception as e: print(f'listing {sub}: {str(e)[:80]}', flush=True)  # noqa: BLE001
+            if not files: notice(f'listing {sub}: no work-unit zip found; first links: ' + ', '.join(re.findall(r'href="([^"]+)"', html)[:8]))
+        except Exception as e: notice(f'listing {sub}: {str(e)[:80]}')  # noqa: BLE001
     for w in need: files.setdefault(w, f'{BASE}gpkg_en/{w[:2]}/nhn_rhn_{w.lower()}_gpkg_en.zip')
     if files: print(f'NHN files: {len(files)}, e.g. {next(iter(files.values()))}', flush=True)
     return files
@@ -120,6 +121,35 @@ def read_wu(zpath, tiles, out, tmp):
     return n
 
 
+WU_OK = []
+
+
+def read_wu_shp(zpath, tiles, out):
+    """The same water-body polygons from a work unit's SHAPEFILE package (pyshp; NHN shapefiles are in degrees, NAD83)."""
+    import shapefile
+    n = 0
+    with zipfile.ZipFile(zpath) as z:
+        shp = [q for q in z.namelist() if q.lower().endswith('.shp') and 'waterbody' in q.lower()]
+        for sp in shp:
+            b = sp[:-4]
+            rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')))
+            for i in range(len(rd)):
+                try: shp_ = rd.shape(i)
+                except Exception: continue  # noqa: BLE001
+                if not shp_.points: continue
+                bx = shp_.bbox
+                parts = list(shp_.parts) + [len(shp_.points)]
+                rings = [[[round(p[0], 6), round(p[1], 6)] for p in shp_.points[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
+                rings = [r for r in rings if len(r) > 2]
+                for (i2, j2) in tiles:
+                    tb = (i2 * .1 - .02, j2 * .1 - .02, (i2 + 1) * .1 + .02, (j2 + 1) * .1 + .02)
+                    if bx[2] < tb[0] or bx[0] > tb[2] or bx[3] < tb[1] or bx[1] > tb[3]: continue
+                    out.setdefault((i2, j2), []).append(['wb', rings]); n += 1
+    try: os.remove(zpath)
+    except Exception: pass  # noqa: BLE001
+    return n
+
+
 def main():
     WB.STATES[:] = [s for s in WB.STATES if s.startswith('CA-')]
     if not WB.STATES: print('no Canadian provinces in STATES', flush=True); return
@@ -147,10 +177,20 @@ def main():
         zp = os.path.join(tmp, f'{w}.zip')
         try:
             t0 = time.time()
-            with urllib.request.urlopen(urllib.request.Request(files[w], headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
+            # Oct 29: the GeoPackage name is a guess when a folder will not list: try the usual names, then the shapefile package
+            tries = [files[w], f'{BASE}gpkg_en/{w[:2]}/nhn_rhn_{w.lower()}_gpkg_en.zip', f'{BASE}gpkg_en/{w[:2]}/NHN_RHN_{w}_GPKG_EN.zip',
+                     f'{BASE}shp_en/{w[:2]}/nhn_rhn_{w.lower()}_shp_en.zip', f'{BASE}shp_en/{w[:2]}/NHN_RHN_{w}_SHP_EN.zip']
+            got, last = None, None
+            for u in dict.fromkeys(tries):
+                try:
+                    with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
+                    got = u; break
+                except Exception as e2: last = e2  # noqa: BLE001
+            if not got: raise last
+            if not WU_OK: notice(f'NHN files found at {got}'); WU_OK.append(got)
             mb = os.path.getsize(zp) / 1048576
             ts = [t for t in miss if w in cover[t]]
-            n = read_wu(zp, ts, out, tmp); used.add(w)
+            n = read_wu(zp, ts, out, tmp) if not got.lower().endswith('_shp_en.zip') else read_wu_shp(zp, ts, out); used.add(w)
             print(f'NHN {w} ({mb:.0f} MB): {n} water pieces for {len(ts)} tiles in {time.time() - t0:.0f} s', flush=True)
         except Exception as e: failed[w] = str(e)[:100]; print(f'NHN {w}: not read ({str(e)[:100]})', flush=True)  # noqa: BLE001
         finally:
