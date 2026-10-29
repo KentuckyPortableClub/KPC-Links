@@ -1,5 +1,5 @@
 {
- "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final. beta:true = a BETA tag in the drop-down + the banner (members testing); Brandon Oct 28 9:20 AM: KY + OH on as BETA, and every area chat 8 marks READY goes on too (members only, BETA, one push a day at most). missing + missingSt = a shared missing file (e.g. missing-midwest) filtered to this state.",
+ "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final. beta:true = a BETA tag in the drop-down + the banner (members testing); Brandon Oct 28 9:20 AM: KY + OH on as BETA, and every area chat 8 marks READY goes on too (members only, BETA, one push a day at most). missing + missingSt = a shared missing file (e.g. missing-midwest) filtered to this state. hide = {pair key: why}: rows chat 8 said to drop (wrong joins), hidden on every region until the data drops them.",
  "base": "../KPC-Data/data/fers/",
  "regions": [
   {
@@ -128,6 +128,206 @@
    "beta": true,
    "showWaiting": true,
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "IA",
+   "label": "Iowa",
+   "files": [
+    "US-IA"
+   ],
+   "missing": "missing-ia",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "TN",
+   "label": "Tennessee",
+   "files": [
+    "US-TN"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "TN"
+  },
+  {
+   "id": "NC",
+   "label": "North Carolina",
+   "files": [
+    "US-NC"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "NC"
+  },
+  {
+   "id": "VA",
+   "label": "Virginia",
+   "files": [
+    "US-VA"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "VA"
+  },
+  {
+   "id": "WV",
+   "label": "West Virginia",
+   "files": [
+    "US-WV"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "WV"
+  },
+  {
+   "id": "GA",
+   "label": "Georgia",
+   "files": [
+    "US-GA"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "GA"
+  },
+  {
+   "id": "AL",
+   "label": "Alabama",
+   "files": [
+    "US-AL"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "AL"
+  },
+  {
+   "id": "SC",
+   "label": "South Carolina",
+   "files": [
+    "US-SC"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "SC"
+  },
+  {
+   "id": "FL",
+   "label": "Florida",
+   "files": [
+    "US-FL"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "FL"
+  },
+  {
+   "id": "MS",
+   "label": "Mississippi",
+   "files": [
+    "US-MS"
+   ],
+   "missing": "missing-southeast",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "MS"
+  },
+  {
+   "id": "PA",
+   "label": "Pennsylvania",
+   "files": [
+    "US-PA"
+   ],
+   "missing": "missing-nea",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "PA"
+  },
+  {
+   "id": "NJ",
+   "label": "New Jersey",
+   "files": [
+    "US-NJ"
+   ],
+   "missing": "missing-nea",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "NJ"
+  },
+  {
+   "id": "DE",
+   "label": "Delaware",
+   "files": [
+    "US-DE"
+   ],
+   "missing": "missing-nea",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "DE"
+  },
+  {
+   "id": "MD",
+   "label": "Maryland",
+   "files": [
+    "US-MD"
+   ],
+   "missing": "missing-nea",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "MD"
+  },
+  {
+   "id": "DC",
+   "label": "District of Columbia",
+   "files": [
+    "US-DC"
+   ],
+   "missing": "missing-nea",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
+   "missingSt": "DC"
   }
- ]
+ ],
+ "hide": {
+  "US-6936+US-6937": "chat 8 Oct 29: wrong join (Pisgah SGL vs Pisgah WRC SGL, 81 km apart)",
+  "US-2937+US-7580": "chat 8 Oct 29: wrong join (Cordell Hull Birthplace SP vs Cordell Hull WMA)",
+  "US-2937+US-7581": "chat 8 Oct 29: wrong join (Cordell Hull Birthplace SP vs Cordell Hull WMA)",
+  "US-6893+US-6894": "chat 8 Oct 29: wrong join (Chowan vs Chowan Swamp SGL, 34 km apart)"
+ }
 }

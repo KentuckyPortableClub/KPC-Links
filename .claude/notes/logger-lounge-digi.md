@@ -146,3 +146,4 @@ GREY AREAS for Brandon (B): B1 time zone shown: Central only (now), the viewer's
 - Oct 28 8:20 PM (HQ): IN IL MO WI ND SD on the Finder (BETA; regions 'missingSt' filters missing-midwest); patches light gold fill; near(): only park pieces near the overlap are drawn (fsAll kept for the grey veil + land checks). v=20261028c.
 - Oct 28 8:55 PM (HQ/Brandon 'overlap lines drawn correct and match the borders'): onEdges() snaps area patch corners to the live lines (≤20 m) and walks the edge between corners on the same edge: 0 m median off the borders (was 1-23 m); zone rows skip the screen-made gold edge. KPCOverlap.rings(g) test hook. v=20261028e.
 - Oct 28 9:10 PM (HQ): MN on the Finder (BETA); jz() reads <file>.json, else <file>.json.gz unpacked with DecompressionStream. v=20261028f.
+- Oct 29 12:45 AM: IA + Southeast + nea on the Finder (BETA, 25 regions); kpc-fers-regions.json 'hide' {pair key: why} drops rows chat 8 flags as wrong joins. v=20261029a.

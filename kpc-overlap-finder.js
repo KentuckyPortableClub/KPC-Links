@@ -47,6 +47,7 @@
     var groups = {}; ROWS = []; TIGHT = []; WATER = []; WAITN = 0;
     all.forEach(function (s) {
       if (!ok3(s)) return;
+      if (CFG && CFG.hide && CFG.hide[(s.refs || []).slice().sort().join('+')]) return;   // a row chat 8 said to drop (kpc-fers-regions.json 'hide')
       var st = String(s.status || '');
       if (/^very tight/.test(st)) { if (MEMBER) TIGHT.push(s); return; }
       if (/^water only/.test(st)) { if (MEMBER) WATER.push(s); return; }   /* rule 9: water-only spots are listed apart (boat or kayak) */
