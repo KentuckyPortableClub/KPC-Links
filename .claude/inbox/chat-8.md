@@ -141,3 +141,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 10:05 AM): 2-fer check: no new READY lines; pca STOPPED (1 water row); nothing else changed since 8:10.
 - DONE (Oct 29 11:15 AM): SOURCE BOOK 2 for the nothing-near states -> KPC_SourceBook2_NothingNear_desk.md (BLM recreation polygons cover ~400 parks; MS State Parks + WMAs are MARIS downloads; ND forests probe; pin-only groups named). REPORT TO HQ: chat 9 probes (a-e), chat 2 reads layers in, chat 11 checks.
 - DONE (Oct 29 11:00 AM): "pin only" group withdrawn per Brandon 10:42; leads per hard kind added to the Source Book 2 file + chat 9 probe (f).
+- DONE (Oct 29 11:20 AM): river-water test v3 graded: FWS/FS/Ohio AGREE, NPS tracts not proven (check distinct unit codes) -> KPC_RiverWaterTest_v3_grade_desk.md, chat 9 told.
