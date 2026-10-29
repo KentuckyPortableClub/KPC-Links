@@ -1,0 +1,210 @@
+# Misplaced-park sweep on the new US + Canada key (chat 11, Oct 29 ~6:00 PM)
+Grade: script over data/us-key + data/ca-key (18,732 park records, 15,044 'official'); the key has no coordinates, so I used what it carries: pin distance ('far'), piece names, piece acres vs record acres, pieces shared between parks. I did NOT look at outline shapes or agency maps yet (look-up bot step still to come).
+
+## Counts
+- Shared pieces (same outline on 2+ different parks, names with no word in common): 23. Most are neighbouring National Forests sharing a wilderness/overlap piece (Boise/Payette/Sawtooth/Salmon-Challis, Inyo/Sierra, Plumas/Tahoe/Lassen, Malheur/Ochoco, Arapaho/White River, Hood/Willamette, Wallowa-Whitman/Nez Perce/Payette) = 'same land, two numbers' is allowed, not errors. Possible real errors: **US-7467 Marben State Fishing Lake (GA)** gets the whole 6,273-ac Clybel/Marben/Charlie Elliott piece (same as Clybel WMA US-7141) - Marben alone is far smaller: HELD. Others (Bailey/Angostura SD, Lake Tahoe/Spooner NV, Detroit Lake/Mongold OR, CA Railroad Museum/Old Sacramento, North Chickamauga/Cumberland Trail TN, Day Pond/Salmon River CT) are neighbours or nested: look OK by name.
+- Name/kind not matching: 85, nearly all spelling variants (Blackhawk/Black Hawk, Tibbetts/Tibbitts, Ohio short names like LtlMScnPkSP, Starski/Stariski): fine. The Wetland Management Districts (MN/ND/SD/WI) are built from their WPAs = OK by kind. Nothing wrong-kind found in this list.
+- Size way off (<1/5 or >5x): 436 flagged, but **the piece 'acres' for state-layer pieces (ids starting 'sg') are not acres**: e.g. Standing Boy Creek 68,840,167, Brazoria 4,369,662, Laguna Atascosa 5,385,188 beside their real piece (47,030 / 100,351), and many 0-7 for sg pieces (Fair Hill, Kiholo, Richmond WMA). Chat 2: please check that field's units for 'sg' pieces and that the outline itself is not scaled; until then size can't be trusted for those. After removing sg-only pieces, real size flags I'd look at: Lake Chelan SP WA (record 29,630 ac vs 286), Lake Dardanelle SP AR (41,528 vs 422), Seneca Creek SP MD (5,809 vs 60), Susquehanna SP / Susquehanna NWR MD, Lake Desire SFL WA, Old Cahawba Prairie AL. These are probably POTA 'ac' being the lake/whole area, but they are HELD for an eye check.
+- Pin 'well outside' the outline while the grade is 'official': **198 parks** (list below). Biggest groups: NB 28, NV 20, SK 17, CO 12, UT 12, BC 11, WY 7, NH 7. This is the best sign of an outline on the wrong land; each needs a yes/no.
+
+## HELD until I answer (flag list for chat 2 + HQ)
+Marben State Fishing Lake US-7467; Standing Boy Creek US-7896, Neches River NWR US-11268, Brazoria NWR US-0545, Laguna Atascosa NWR US-0549 (unit check only: the 'name' pieces beside them look right); Lake Chelan US-3213, Lake Dardanelle US-1091, Seneca Creek US-1596, Susquehanna SP US-1601, Susquehanna NWR US-0335, Lake Desire US-13441, Old Cahawba US-11032; plus the 198 'well outside' parks:
+
+- US-0361 MN Hamden Slough National Wildlife Refuge
+- US-11023 MN Egret Island SNA State Conservation Area
+- US-12152 MN Canosia Wildlife Management Area
+- US-13354 MN Pelican Lake Wildlife Management Area
+- US-9387 MN Luce Line State Trail
+- US-12027 OK Altus-Lugert State Fishing Lake
+- US-12028 OK Barren Fork Wildlife Management Area
+- US-6361 OK McGee Creek Wildlife Management Area
+- US-7682 OK Lake Vanderwork State Fishing Lake
+- US-8140 OK Gary Sherrer Wildlife Management Area
+- US-10844 NV Diamond BLM Herd Management Area
+- US-11913 NV Bad Lands BLM Wilderness Area
+- US-13017 NV Agusta Mountains BLM Herd Management Area
+- US-13018 NV Black Rock Range East/West BLM Herd Management Area
+- US-13024 NV Callaghan BLM Herd Management Area
+- US-13034 NV Goshute BLM Herd Management Area
+- US-13039 NV Owyhee River Wilderness Area
+- US-13048 NV Rocky Hills BLM Herd Management Area
+- US-13128 NV Jackson Mountains BLM Herd Management Area
+- US-13130 NV Lava Beds BLM Herd Management Area
+- US-13132 NV Seven Mile BLM Herd Management Area
+- US-13134 NV Rock Creek BLM Herd Management Area
+- US-13138 NV Wassuk BLM Herd Management Area
+- US-13139 NV Muddy Mountains BLM Herd Management Area
+- US-13145 NV Warm Springs Canyon BLM Herd Management Area
+- US-13194 NV Egan Crest Trailhead BLM Recreation Management Area
+- US-9246 NV East Fork High Rock Canyon Wilderness Area
+- US-9247 NV Eldorado BLM Wilderness Area
+- US-9258 NV Ireteba Peaks BLM Wilderness Area
+- US-9273 NV North Jackson Mountains Wilderness Area
+- US-13296 ID Upper Salmon River Access BLM Recreation Management Area
+- US-4387 ID Wallowa-Whitman National Forest
+- US-5616 ID Red River Wildlife Management Area
+- US-0456 NY Wallkill River National Wildlife Refuge
+- US-10292 NY Watson's East Triangle Complex State Preserve
+- US-10293 NY Raquette Boreal Complex State Preserve
+- US-9037 NY Allegheny Reservoir Wildlife Management Area
+- US-5532 VT Hapgood State Forest
+- US-5538 VT Lower Clarendon Gorge State Forest
+- US-5553 VT Camels Hump State Forest
+- US-0723 LA Vicksburg National Military Park
+- US-12717 NC Deep River State Trail
+- US-0573 VA Wallops Island National Wildlife Refuge
+- US-6275 TN Walls of Jericho State Natural Area
+- US-5742 ND Homen State Forest
+- US-7707 ND Maclean Bottoms Wildlife Management Area
+- US-10816 WY Saratoga National Fish Hatchery
+- US-10890 WY Sinks Canyon BLM Recreation Management Area
+- US-6135 WY Pennock Mountain Wildlife Management Area
+- US-6197 WY Popo Agie Wilderness Area
+- US-6202 WY North Absaroka Wilderness Area
+- US-6204 WY Little Colorado BLM Herd Management Area
+- US-6218 WY Boulder Lake BLM Recreation Management Area
+- US-3660 FL Suwannee River Wilderness State Trail
+- US-12601 WI Hackmatack National Wildlife Refuge
+- US-9800 WI Hank Aaron State Trail
+- US-0150 AK Kodiak National Wildlife Refuge
+- US-10281 AK White Mountains National Recreation Area BLM Recreation Management Area
+- US-6332 AK Hatcher Pass State Natural Area
+- US-7191 AK Anchor River State Recreation Area
+- US-7242 AK Portage Cove State Recreation Site
+- US-1696 CT Mianus River State Park
+- US-7749 MD Pocomoke Sound Wildlife Management Area
+- US-7760 MD Nanjemoy Creek Wildlife Management Area
+- US-9470 OH Jockey Hollow State Wildlife Area
+- US-7271 AR Camp Robinson Wildlife Management Area
+- US-7274 AR Cedar Creek Wildlife Management Area
+- US-7027 WV Slatyfork Wildlife Management Area
+- US-7043 WV Tate Lohr Wildlife Management Area
+- US-11401 MA Cummington Wildlife Management Area
+- US-11631 MA Hartley Reservoir Wildlife Management Area
+- US-4457 OR Klamath National Forest
+- US-9159 OR Lower Deschutes National Wild and Scenic River
+- US-9356 NE Willow Lake Wildlife Management Area
+- US-4868 NH Annett State Forest
+- US-4886 NH Connecticut Lakes State Forest
+- US-4894 NH Davis-White State Forest
+- US-4926 NH Lovewell Mountain State Forest
+- US-4933 NH Merrimack River State Forest
+- US-4934 NH Merriman State Forest
+- US-4955 NH Saltmarsh Pond State Forest
+- US-6090 AZ Beaver Dam Mountain Wilderness Area
+- US-0185 CO Hugo State Wildlife Area
+- US-12185 CO Grand Junction: West Lake State Wildlife Area
+- US-1249 CO Vega State Park
+- US-9594 CO Gunnison Gorge BLM National Conservation Area
+- US-9605 CO Alma State Wildlife Area
+- US-9620 CO Bodo State Wildlife Area
+- US-9622 CO Bosque Del Oso State Wildlife Area
+- US-9631 CO Coalbed Canyon State Wildlife Area
+- US-9632 CO Cochetopa State Wildlife Area
+- US-9635 CO Colorow Mountain State Wildlife Area
+- US-9638 CO Dan Noble State Wildlife Area
+- US-9639 CO Deadman State Wildlife Area
+- US-12020 IN Prophetstown Fen State Nature Preserve
+- US-0197 CA Kern National Wild and Scenic River
+- US-0203 CA North Central Valley Wildlife Management Area
+- US-0211 CA San Luis National Wildlife Refuge
+- US-3523 CA Oceano Dunes State Recreation Area
+- US-4136 IL Kinkaid Lake State Fish and Wildlife Area
+- US-10972 UT Beartrap Canyon BLM Wild and Scenic River
+- US-11007 UT White River BLM Recreation Management Area
+- US-11115 UT North Fork Virgin River BLM Wild and Scenic River
+- US-11748 UT Cedar Mesa BLM Special Recreation Management Area
+- US-5758 UT Dolores River BLM Recreation Management Area
+- US-5782 UT Indian Creek BLM Special Recreation Management Area
+- US-5789 UT Behind the Rocks Wilderness Area
+- US-5828 UT Dark Canyon BLM Special Recreation Management Area
+- US-5833 UT Horseshoe Canyon (North) BLM Wilderness Area
+- US-5869 UT 9 Mile Canyon BLM Recreation Management Area
+- US-5897 UT Lower Last Chance BLM Wilderness Area
+- US-6007 UT Cedar Mountain BLM Herd Management Area
+- US-10717 MI Sylvania Wilderness Area
+- US-11033 AL The Portland Landing Conservation Reserve
+- US-12996 AL Fowl River Access Site BLM Recreation Management Area
+- US-3701 AL Pike County Pocosin Complex State Fish and Wildlife Area
+- CA-4663 PE Pituamkek National Park Reserve
+- CA-2439 MB Langruth Wildlife Management Area
+- CA-2441 MB Lee Lake Wildlife Management Area
+- CA-2506 MB Saskeram Wildlife Management Area
+- CA-4547 NL Funk Island Ecological Reserve
+- CA-4623 YT Old Crow Flats Special Management Area Habitat Protection Area
+- CA-0366 ON River Aux Sables Provincial Park
+- CA-1336 ON Cache Bay Wetland Conservation Reserve
+- CA-5111 ON Oak Ridges Corridor Conservation Reserve
+- CA-5633 ON Bowmanville Valley Conservation Area
+- CA-6154 ON Big Creek Conservation Reserve
+- CA-6620 ON Deerock Lake Conservation Area
+- CA-6629 ON Whitefish River Conservation Reserve
+- CA-1752 NS Dunraven Bog Nature Reserve
+- CA-5830 NS Marconi Wireless Station National Historic Site
+- CA-0129 QC Ulittaniujalik National Park
+- CA-2301 QC Zec Collin Nature Reserve
+- CA-2324 QC Zec Mars-Moulin Nature Reserve
+- CA-2370 QC Zec Wessonneau Nature Reserve
+- CA-5042 QC Sentiers pédestres Neil-Tillotson Regional Park
+- CA-0109 AB Waterton Biosphere Reserve
+- CA-1164 AB Beaver Lake Provincial Recreation Area
+- CA-1197 AB Victoria Settlement Provincial Park
+- CA-3085 AB Mystery Lake Natural Area
+- CA-6112 AB Kananaskis Country Provincial Park
+- CA-0625 SK St. Victor Petroglyphs Provincial Park
+- CA-2547 SK Amisk Lake Ecological Reserve
+- CA-2550 SK Arena Recreation Site
+- CA-2554 SK Backes Island Wildlife Refuge
+- CA-2581 SK Bittern Lake Recreation Site
+- CA-2582 SK Bluebell Recreation Site
+- CA-2633 SK Dore Lake Recreation Site
+- CA-2658 SK Foam Lake Recreation Site
+- CA-2679 SK Gull Lake Recreation Site
+- CA-2687 SK Hazlet Regional Park Recreation Site
+- CA-2713 SK Laurier Recreation Site
+- CA-2778 SK Nokomis Recreation Site
+- CA-2816 SK Raymore Recreation Site
+- CA-2826 SK Riverhurst Ferry Recreation Site
+- CA-2846 SK Shell Lake Recreation Site
+- CA-2860 SK St. Walburg Recreation Site
+- CA-2919 SK Wreford Recreation Site
+- CA-3408 BC Denetiah Corridor Protected Area
+- CA-3445 BC Glen Valley Regional Park
+- CA-3666 BC Kensington Park
+- CA-3900 BC Nisga'a Memorial Lava Bed Corridor Protected Area
+- CA-3905 BC Nooseseck Conservation Area
+- CA-3937 BC Pa-aat Conservation Area
+- CA-4002 BC Queen Elizabeth Park
+- CA-4094 BC Skagit River Cottonwoods Ecological Reserve
+- CA-4189 BC Telegraph Trail Park
+- CA-5345 BC Swalwell Recreation Park
+- CA-6131 BC Cowichan River National Heritage Area
+- CA-0770 NB Clark Point Natural Area
+- CA-4350 NB Allardville Protected Natural Area
+- CA-4356 NB Bass River Protected Area
+- CA-4357 NB Becaguimec Stream Protected Natural Area
+- CA-4360 NB Belleville Protected Area
+- CA-4362 NB Belone Brook Protected Area
+- CA-4365 NB Big Falls Protected Area
+- CA-4367 NB Big Rocky Brook Protected Area
+- CA-4380 NB Cains River Protected Area
+- CA-4382 NB Carr Falls Brook Protected Area
+- CA-4420 NB Kingston Family Nature Preserve Protected Area
+- CA-4434 NB Lower North Branch Little Southwest Miramichi River Protected Area
+- CA-4435 NB MacFarlane Brook Protected Area
+- CA-4443 NB McCluskey Brook Protected Area
+- CA-4453 NB Miscou Grande Plaine Protected Area
+- CA-4457 NB Mount Denys Protected Area
+- CA-4459 NB Mount Tom Protected Area
+- CA-4470 NB North Branch Burnt Church River Protected Area
+- CA-4472 NB North Pole Stream Protected Area
+- CA-4486 NB Pocowogamis Stream Protected Area
+- CA-4496 NB Quisibis River Protected Area
+- CA-4508 NB Shikatehawk Stream Protected Area
+- CA-5153 NB Butternut Island Nature Reserve
+- CA-5204 NB Nashwaaksis Stream Nature Park
+- CA-5235 NB Warren Kent Coleman Nature Reserve
+- CA-6103 NB North Lake Provincial Park
+- CA-6544 NB New Brunswick #5 Wildlife Management Area
+- CA-6549 NB New Brunswick #6 Wildlife Management Area
+- CA-4344 NT Tarium Niryutait Marine Protected Area
