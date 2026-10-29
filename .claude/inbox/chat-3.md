@@ -27,6 +27,7 @@ Read .claude/inbox/README.md first.
 - G-MT1 + G-MT2 (Montana, researched Oct 29 4:35 PM): POTA's 'Brownes Lake' park and 'Thoreau State Beach' both link to a Montana wildlife-agency page for a place with a different name (Brownes Bridge FAS, Thibodeau FAS) and the pin sits on that page's exact point. My lean: YES, use those two agency boundaries (details in the Fable file). Waiting on your ruling.
 
 ## DONE
+- Oct 29 5:20 PM (Brandon 5:08 PM 'note if it is nearby office'): the address column now flags '⚠ NEARBY OFFICE' / 'NOT THIS PARK' (Iowa DNR, Lake Tahoe NV, Hearst San Simeon, Pere Marquette, Lawrence Heritage, Tijuana visitor area); same rule for the rows still to come.
 - Oct 29 5:15 PM (Brandon 5:06 PM): address + official site + GPS table for my 48 open parks added to the Fable file (known addresses filled from pages already read; the rest 'to read'); look-up requests 3-fable-addr-h / -i filed for the remaining official pages.
 - Oct 29 4:40 PM: grey areas G-MT1 / G-MT2 researched (see Fable file): POTA's own link + the pin's coordinates match the agency's Brownes Bridge and Thibodeau pages; lean YES.
 - Oct 29 4:50 PM: PDF look-up E seen by eye: official lines found for MT Big Springs + Jocko hatcheries, IL Rauchfuss Hill + Copperhead Hollow (to trace), MA Pope John Paul II (ownership, approximate); NOT usable: MT Brownes (different name, grey area G-MT1), MT Thoreau (wrong site), IL North Point (marina drawing), IL Ray Norbut. Logged in the Fable file.

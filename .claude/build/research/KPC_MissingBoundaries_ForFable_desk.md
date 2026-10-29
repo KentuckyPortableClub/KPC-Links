@@ -259,7 +259,7 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 ### Oct 29 5:10 PM chat 3: ADDRESS + OFFICIAL SITE + GPS for my 12 states (Brandon 5:06 PM). 'POTA pin' = POTA's own point; 'site GPS' = a point the official page itself shows; blank = not read yet (look-up H/I filed)
 | park | name | official site (POTA's link) | street address (from the page) | site GPS | POTA pin |
 |---|---|---|---|---|---|
-| US-9334 IA | Teal Basins State Waterfowl Management Area | https://www.arcgis.com/apps/webappviewer/index.html?id=f9161b90cddb4fcfb35a96901882a4b7&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CTEAL%20BASINS%20WPA | Iowa DNR WMA dir: 6200 Park Ave, Des Moines (office, not the area) | to read | 43.2137, -93.4424 |
+| US-9334 IA | Teal Basins State Waterfowl Management Area | https://www.arcgis.com/apps/webappviewer/index.html?id=f9161b90cddb4fcfb35a96901882a4b7&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CTEAL%20BASINS%20WPA | ⚠ NEARBY OFFICE, not the area: Iowa DNR, 6200 Park Ave Suite 200, Des Moines, IA 50321 | to read | 43.2137, -93.4424 |
 | US-10545 RI | Hillsdale Preserve Management Area | https://dem.ri.gov/press-releases/dem-forest-restoration-project-aims-future-proof-45-acre-parcel-richmond-effects | to read | to read | 41.522, -71.6411 |
 | US-10923 HI | Artillery District of Honolulu Historic Site | https://npgallery.nps.gov/AssetDetail/NRIS/64000142 | to read | to read | 21.279, -157.834 |
 | US-10925 HI | HI State Game Reserve | https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/ | to read | to read | 21.5168, -158.144 |
@@ -280,17 +280,17 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-10788 IL | Ray Norbut East Hannibal Unit State Fish and Wildlife Area | https://huntillinois.org/sites/ray-norbut-sfwa/ | to read | 39.68485, -90.64865 (huntillinois page) | 39.7265, -91.3486 |
 | US-12640 IL | Rauchfuss Hill State Recreation Area | https://huntillinois.org/sites/rauchfuss-hill-sra/ | to read | to read | 37.375, -88.4848 |
 | US-13298 IL | North Point Marina State Recreation Area | https://dnr.illinois.gov/parks/park.northpointmarina.html | to read | 42.482, -87.806 (IDNR page) | 42.481, -87.806 |
-| US-4118 IL | Copperhead Hollow State Wildlife Area | https://huntillinois.org/sites/copperhead-hollow-sfwa | c/o Pere Marquette SP, 13112 Visitor Center Lane, Grafton, IL 62037 | to read | 39.0805, -90.5104 |
-| US-2436 MA | Greycourt State Park | https://www.mass.gov/locations/lawrence-heritage-state-park | 1 Jackson St, Lawrence, MA 01840 (this is Lawrence Heritage SP page; Greycourt not named) | to read | 42.7294, -71.1839 |
+| US-4118 IL | Copperhead Hollow State Wildlife Area | https://huntillinois.org/sites/copperhead-hollow-sfwa | ⚠ NEARBY OFFICE (the area's managing park): Pere Marquette SP, 13112 Visitor Center Lane, Grafton, IL 62037 | to read | 39.0805, -90.5104 |
+| US-2436 MA | Greycourt State Park | https://www.mass.gov/locations/lawrence-heritage-state-park | ⚠ NOT THIS PARK: 1 Jackson St, Lawrence, MA 01840 is Lawrence Heritage SP's address (the page POTA links); Greycourt is not named | to read | 42.7294, -71.1839 |
 | US-8385 MA | Farnham-Connolly State Park | https://www.mass.gov/locations/farnham-connolly-state-park | 705 Neponset St, Canton, MA 02021 (Google link on mass.gov page) | to read | 42.1675, -71.1674 |
 | US-8387 MA | Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area | https://www.mass.gov/locations/francis-d-martini-memorial-shell-park-and-moynihan-recreation-area | 1015 Truman Parkway, Boston, MA 02136 | to read | 42.2448, -71.1265 |
 | US-8388 MA | Great Falls Discovery Center State Recreation Area | https://www.mass.gov/locations/great-falls-discovery-center | 2 Avenue A, Turners Falls, MA 01376 (Google link on page) | to read | 42.6102, -72.5576 |
 | US-8422 MA | Pope John Paul II Park State Reserve | https://www.mass.gov/locations/pope-john-paul-ii-park-reservation | to read | to read | 42.284, -71.0429 |
 | US-11336 CA | Rainbow Basin Natural Area | https://www.blm.gov/visit/rainbow-basin-natural-area | to read | to read | 35.0312, -117.033 |
 | US-12616 CA | Black Butte Lake Park | https://www.spk.usace.army.mil/Black-Butte-Lake | to read | to read | 39.8121, -122.338 |
-| US-2638 CA | Van Sickle Bi State Park | http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-3 | NV State Parks page: 30 Lake Pkwy, South Lake Tahoe, NV 96150 (Lake Tahoe Nevada SP office) | to read | 38.9549, -119.94 |
-| US-3578 CA | Tijuana Estuary Reserve State Conservation Area | https://www.parks.ca.gov/?page_id=669 | 301 Caspian Way, Imperial Beach, CA 91932 | to read | 32.555, -117.122 |
-| US-6448 CA | William Randolph Hearst Memorial State Beach | https://www.parks.ca.gov/?page_id=589 | 750 Hearst Castle Rd, San Simeon, CA 93452 (Hearst San Simeon SP) | to read | 35.6438, -121.187 |
+| US-2638 CA | Van Sickle Bi State Park | http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-3 | ⚠ NEARBY OFFICE, not the park: Lake Tahoe Nevada SP, 30 Lake Pkwy, South Lake Tahoe, NV 96150 | to read | 38.9549, -119.94 |
+| US-3578 CA | Tijuana Estuary Reserve State Conservation Area | https://www.parks.ca.gov/?page_id=669 | ⚠ PARK OFFICE (Border Field/Tijuana Estuary visitor area as printed): 301 Caspian Way, Imperial Beach, CA 91932 | to read | 32.555, -117.122 |
+| US-6448 CA | William Randolph Hearst Memorial State Beach | https://www.parks.ca.gov/?page_id=589 | ⚠ NEARBY OFFICE / parent park: Hearst San Simeon SP, 750 Hearst Castle Rd, San Simeon, CA 93452 | to read | 35.6438, -121.187 |
 | US-7375 CA | Cowell Ranch State Beach | https://www.coastsidestateparks.org/cowell-ranch-state-beach | 1 New Years Creek Rd, Pescadero, CA 94060 (Coastside page) | to read | 37.4222, -122.426 |
 | US-12052 WV | Bowden State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.9097, -79.7142 |
 | US-12053 WV | Edray State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.2703, -80.1056 |
@@ -307,3 +307,4 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-6237 TN | Mr. and Mrs. Harry Lee Carter State Natural Area | https://www.tn.gov/content/tn/environment/natural-areas/what-we-do/sna/cu/harry-lee-carter.html | to read | to read | 35.0927, -85.9223 |
 | US-6247 TN | Hawkins Cove State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cu/hawkins-cove.html | to read | to read | 35.1773, -85.9598 |
 | US-6273 TN | Vine Cedar Glade State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cb/vine-cedar-glade.html | to read | to read | 36.0346, -86.3535 |
+**Address rule (Brandon 5:08 PM):** if an address is a nearby office, the managing park's office or another park's page, the row says '⚠ NEARBY OFFICE' (or 'NOT THIS PARK') and names whose address it is; a plain address means the page gives it for this park itself.
