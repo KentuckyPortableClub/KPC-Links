@@ -1,0 +1,24 @@
+name: KPC refine Kentucky outline files (by hand, temporary)
+# Oct 29 2026 (chat 2; Brandon 7:07 AM): re-read the four KY state-GIS outline files at ~5 m; the result goes to branch
+# chat2-ky-refine (NOT main) so chat 2 proves the Kentucky 2-fers offline before merging. Deleted after. Never fails.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Refine
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_ky_refine_files.py || true
+      - name: Save to a branch
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -b chat2-ky-refine
+          git add ky-hunting-areas.geojson ky-state-parks.geojson ky-nature-preserves.geojson ky-natural-areas.geojson ky-refine-report.json || true
+          git commit -m 'Kentucky outline files re-read at ~5 m (branch, for chat 2 proof)' || true
+          git push -f origin chat2-ky-refine || true
