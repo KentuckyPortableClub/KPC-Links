@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-low-g answered: 5 result(s), 3 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-g.json
 - **FROM HQ (Oct 29 3:50 PM) LOOK-UP SCREENSHOTS (Brandon 3:48 PM 'Yea'):** chat 11 uses the look-up bot's screenshots (.claude/lookup/answers/*.png) for its step-6 yes/no. Right after chat 11 writes 'STATE XX checked' in the Fable file, it DELETES that state's .png screenshots (keep the .json answers + the source links in the Fable file). Already 32 MB / 72 shots in one hour.
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-f answered: 16 result(s), 8 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-f.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-e answered: 9 result(s), 9 read OK, 1 screenshot(s) -> .claude/lookup/answers/3-fable-low-e.json
