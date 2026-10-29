@@ -130,13 +130,14 @@ def owned_land(kind, box, det, prec):
                                        'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
                                        'maxAllowableOffset': det, 'geometryPrecision': prec, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'}, timeout=240)
                         if 'error' in jj: raise RuntimeError(str(jj['error'])[:80])
+                        if 'features' not in jj: raise RuntimeError('not a query answer')   # Oct 28: a layer description is never 'no land'
                         fs = jj.get('features') or []
                         gs += [esri_rings(x.get('geometry')) for x in fs if esri_rings(x.get('geometry'))]
                         if not fs or not jj.get('exceededTransferLimit'): break
                         off += len(fs)
                     return gs
                 if kind == 'nps':
-                    try: gs = read(NPSTR, NPSQ); OWN_SRC[k] = 'NPS tracts'
+                    try: gs = read(NPSTR + '/query', NPSQ); OWN_SRC[k] = 'NPS tracts'
                     except Exception as e: LOG.append(f'Park Service tracts: {str(e)[:60]}: PAD-US used'); gs = read(url, where); OWN_SRC[k] = 'PAD-US'  # noqa: BLE001
                 else: gs = read(url, where)
                 OWN_T[k] = gs

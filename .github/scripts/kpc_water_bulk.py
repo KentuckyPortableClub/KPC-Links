@@ -13,7 +13,7 @@ kpc_fers.nhd_water reads) for every tile under this area's spots that has NO sav
   4. saved as {'d': 'USGS NHDPlus HR file <date>', 'f': [[layer, rings], ...]}; a tile already saved (a live read) is never
      replaced. Rule 13: the rows show 'USGS water: saved copy of USGS NHDPlus HR file <date>'.
 Env: STATES, WATER_STORE, DATA (data/fers), MAX_HU4 (default 40). Never fails the job."""
-import glob, gzip, json, math, os, pathlib, re, shutil, sys, tempfile, time, urllib.parse, urllib.request, zipfile
+import glob, gzip, json, math, os, pathlib, re, shutil, sys, tempfile, time, urllib.error, urllib.parse, urllib.request, zipfile
 
 STATES = (os.environ.get('STATES') or '').split()
 STORE = pathlib.Path(os.environ.get('WATER_STORE') or 'bundle/water')
@@ -84,6 +84,19 @@ def hu4_products(tiles):
                     if bb and (bb.get('maxX', 999) < tb[0] or bb.get('minX', -999) > tb[2] or bb.get('maxY', 999) < tb[1] or bb.get('minY', -999) > tb[3]): continue
                     G.setdefault(t, set()).add(m.group(1))
     return prods, G
+
+
+def s3_find(hu):
+    """The current NHDPlus HR GeoPackage for one HU4 straight from USGS's Amazon storage listing (when the product list is stale)."""
+    base = 'https://prd-tnm.s3.amazonaws.com/'
+    for fmt in ('GPKG', 'GDB'):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(base + '?' + urllib.parse.urlencode({'prefix': f'StagedProducts/Hydrography/NHDPlusHR/VPU/Current/{fmt}/NHDPLUS_H_{hu}_HU4'}), headers=UA), timeout=60) as r:
+                keys = re.findall(r'<Key>([^<]+\.zip)</Key>', r.read().decode('utf-8', 'replace'))
+            keys = [k for k in keys if 'GPKG' in k.upper()]
+            if keys: return base + sorted(keys)[-1]
+        except Exception: pass  # noqa: BLE001
+    return None
 
 
 def _wkb_polys(b, o=0):
@@ -166,7 +179,14 @@ def main():
         zp = os.path.join(tmp, f'{hu}.zip')
         try:
             t0 = time.time()
-            with urllib.request.urlopen(urllib.request.Request(p['url'], headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
+            try:
+                with urllib.request.urlopen(urllib.request.Request(p['url'], headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
+            except urllib.error.HTTPError as e:
+                if e.code != 404: raise
+                u2 = s3_find(hu)   # Oct 28 (Southeast: 0601-0604 = 404): the product list points at an old file name; ask the storage itself
+                if not u2: raise
+                print(f'HU4 {hu}: the listed file is gone (404), using {u2}', flush=True)
+                with urllib.request.urlopen(urllib.request.Request(u2, headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
             mb = os.path.getsize(zp) / 1048576
             n = read_hu4(zp, miss, out, tmp); used[hu] = p['date']
             print(f'HU4 {hu} ({mb:.0f} MB, {p["date"]}): {n} water pieces in {time.time() - t0:.0f} s', flush=True)
