@@ -64,3 +64,32 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 | US-9759 | May Forest SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13016 | Pine Island SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13198 | Black River SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+
+### LA
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-2365 | Jimmie Davis SP | our doc: no map on file; web search: no Louisiana state-parks open-data layer found (LDOTD layers only) | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-2373 | Poverty Point Reservoir SP | our doc: no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-10354 | Forts Randolph & Buhlow SHS | our doc: no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-10447 | Audubon SHS | our doc: only a brochure-request page | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-2374 | Saint Bernard SP | our doc: no map | 3 | pin (no source yet) | 8 | Oct 29 |
+
+### MD
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-13564 | Savage Highlands SP | our doc: no map; leads: MD iMAP MD_ProtectedLands (geodata.md.gov) + DNR AIMS layers (dnr.geodata.md.gov); layer-probe 8-rg7-mdnh filed | 2 -> 3 | to check state layer | 8 | Oct 29 |
+| US-7768 | Frederick City Watershed WMA | our doc: map page does not name park; lead WMABoundaries FeatureServer + MD_ProtectedLands | 2 | to check state layer | 8 | Oct 29 |
+| US-7769 | Heaters Island WMA | our doc: dnr.maryland.gov/wildlife/Documents/heatersislandmap.pdf (own map PDF) + WMABoundaries layer | 3 (map found) | to trace | 8 | Oct 29 |
+| US-6388 | Tawes Garden SP | our doc: map page does not name park; MD_ProtectedLands | 2 | to check state layer | 8 | Oct 29 |
+| US-6389 | Jefferson Patterson Park & Museum SP | our doc: no map; MD_ProtectedLands | 2 | to check state layer | 8 | Oct 29 |
+
+### NH
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-2642 | Androscoggin Wayside SP | our doc: shared 51-park file dropped; leads: NHDOT_BOUNDARIES_Parks_Forest MapServer, GRANIT consnh conservation lands | 2 | to check state layer | 8 | Oct 29 |
+| US-2654 | Gardner Memorial Wayside SP | same | 2 | to check state layer | 8 | Oct 29 |
+| US-2685 | Winslow SP | our doc: nhstateparks.org Mt-Kearsarge map PDF (own map) + consnh | 3 (map found) | to trace | 8 | Oct 29 |
+| US-8024 | Taylor Saw Mill SHS | our doc: dropped shared file; consnh | 2 | to check state layer | 8 | Oct 29 |
+| US-4931 | Max Israel State Forest | NH Div. of Forests and Lands "State Reservation Maps" page (nhdfl.dncr.nh.gov/land-management/state-reservation-maps); consnh | 3 | page to read (bot filed) | 8 | Oct 29 |
+| US-4936 | Nash Stream Forest State Forest | same | 3 | page to read (bot filed) | 8 | Oct 29 |
+| US-4980 | White Farm State Forest | same | 3 | page to read (bot filed) | 8 | Oct 29 |
