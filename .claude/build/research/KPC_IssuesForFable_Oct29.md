@@ -16,6 +16,9 @@ Fable, this is your morning pass. Work the bots in THIS ORDER (numbers = the bot
 
 Rules that stay in force: no run goes on the site without Brandon's GO; every dispatch is followed by a run-list check; after every 'fixed', COUNT the saved file; the EMAIL-ONLY-FOR-REAL-ISSUES house rule (batch runs, never fail loudly); RULES FIRST before any bot that decides something for people. Chat 8 grades the 2-fer lines and the research bots from the saved files, chat 11 grades the data bots: tell us when a fix is ready to grade ('grade me' line). Write a short summary for Brandon at the end (what is fixed, what is scheduled, what needs his ruling).
 
+
+**[Brandon, Oct 28 10:26 PM, via chat 11]: if a fix is simple, do not spend time on it: write the note (NOTES FOR OPUS) and move on to the harder issues where Fable shines. Pass scheduled for 2:30 AM CDT.**
+
 ## WHO IS WHO (tags used below)
 | tag | chat | role | model | wrote |
 |---|---|---|---|---|
