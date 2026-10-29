@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-county-06 answered: 43 result(s), 43 read OK -> .claude/lookup/answers/2-county-06.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-04 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-04.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-01 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-01.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-02 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-02.json
