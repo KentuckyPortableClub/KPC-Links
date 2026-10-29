@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 11:24 PM): chat 8 CONFIRMED Kentucky READY 19/19 (line run 40813970583): Mammoth Cave x Green River now LIVE 6,852 ac (+ its channel water-only row), Kentucky Lake shore 3-fer back. Refresh KENTUCKY on the members' Overlap Finder in your next push. Northeast: wait for chat 2's answer on the 'nec' Appalachian Trail rows filed under Maine before adding MA VT NH ME; nea + neb not ready yet.
 
 
 ## NEEDS BRANDON
