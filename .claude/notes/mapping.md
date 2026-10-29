@@ -589,3 +589,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 28 10:35 PM (chat 8): reorganized KPC_IssuesForFable_Oct29.md by bot with author tags (no text removed).
 - Oct 28 10:20 PM (chat 8): added INSTRUCTIONS FOR FABLE at the top of KPC_IssuesForFable_Oct29.md (Brandon's order 13,8,14,7,6,1,2 then rest; water map first).
 - Oct 28 10:25 PM (chat 8): Fable may stop any bot except the 2-fer line and run short test sessions (Brandon); added to the Issues file instructions.
+- Oct 28 10:50 PM (chat 8): KPC_SearchWishes_1to5_desk.md (satellite-picture bot, NPS Data API, link-opener, state water-area test, preserve tracts).
