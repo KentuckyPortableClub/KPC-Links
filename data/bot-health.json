@@ -1,33 +1,64 @@
 {
  "open": [
   "guard:maprep:M-527b (members page)",
-  "refs:gone:CA-QC:CA-2156",
+  "links:https://assessment.cot.tn.gov/TPAD",
+  "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
+  "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
+  "links:https://dor.georgia.gov/node/27121",
+  "links:https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
+  "links:https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
+  "links:https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer",
+  "links:https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+  "links:https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
+  "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+  "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions",
+  "refs:gone:CA-NB:CA-5166,CA-5170,CA-5188,CA-5190,CA-5219,CA-5224,CA-5673,CA-5694,CA-5697,CA-5701,CA-5709,CA-5713,CA-5722,CA-6534",
+  "refs:gone:CA-QC:CA-2045,CA-2160,CA-2161,CA-2266,CA-5919",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
-  "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
+  "refs:gone:US-WY:US-10846,US-12729",
+  "refs:gone:trails:CA-5701,CA-5722",
+  "site:wide:kpc-live.html:desktop",
+  "site:wide:kpc-weather.html:desktop"
  ],
- "checked": "2026-10-29T10:27+00:00",
+ "checked": "2026-10-29T14:10+00:00",
  "weekly": {
   "site": {
    "part": "site",
-   "date": "2026-10-27",
-   "problems": [],
+   "date": "2026-10-29",
+   "problems": [
+    {
+     "key": "site:wide:kpc-weather.html:desktop",
+     "chat": 1,
+     "msg": "kpc-weather.html (desktop): page is 13px wider than the screen (sideways scroll)"
+    },
+    {
+     "key": "site:wide:kpc-live.html:desktop",
+     "chat": 1,
+     "msg": "kpc-live.html (desktop): page is 4px wider than the screen (sideways scroll)"
+    }
+   ],
    "notes": [],
    "ok": [
     "60 public pages opened as a guest at phone width (390px)",
-    "members door checked on toolbox.html, kpc-club.html, kpc-logger.html, kpc-spot-me.html",
-    "60 public pages opened as a guest at desktop width (1280px)",
-    "117 pages opened as a signed-in member at phone width"
+    "members door checked on M-eb1a (members page), M-04b8 (members page), M-cbb8 (members page), M-e281 (members page)",
+    "60 public pages opened as a guest at desktop width (1280px)"
    ]
   },
   "refs": {
    "part": "refs",
-   "date": "2026-10-26",
+   "date": "2026-10-29",
    "problems": [
     {
-     "key": "refs:gone:CA-QC:CA-2156",
+     "key": "refs:gone:CA-NB:CA-5166,CA-5170,CA-5188,CA-5190,CA-5219,CA-5224,CA-5673,CA-5694,CA-5697,CA-5701,CA-5709,CA-5713,CA-5722,CA-6534",
      "chat": 2,
-     "msg": "CA-QC: 1 park number(s) POTA no longer lists, still in our data: CA-2156 (answer key)"
+     "msg": "CA-NB: 14 park number(s) POTA no longer lists, still in our data: CA-5166 (answer key), CA-5170 (answer key), CA-5188 (answer key), CA-5190 (answer key), CA-5219 (answer key), CA-5224 (answer key), CA-5673 (answer key), CA-5694 (answer key), CA-5697 (answer key), CA-5701 (answer key), CA-5709 (answer key), CA-5713 (answer key) +2 more"
+    },
+    {
+     "key": "refs:gone:CA-QC:CA-2045,CA-2160,CA-2161,CA-2266,CA-5919",
+     "chat": 2,
+     "msg": "CA-QC: 5 park number(s) POTA no longer lists, still in our data: CA-2045 (answer key), CA-2160 (answer key), CA-2161 (answer key), CA-2266 (answer key), CA-5919 (answer key)"
     },
     {
      "key": "refs:gone:CA-SI:CA-0120",
@@ -40,75 +71,93 @@
      "msg": "CA-SP: 1 park number(s) POTA no longer lists, still in our data: CA-0122 (answer key)"
     },
     {
-     "key": "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153",
+     "key": "refs:gone:US-WY:US-10846,US-12729",
      "chat": 2,
-     "msg": "US-WY: 4 park number(s) POTA no longer lists, still in our data: US-10846 (access points/answer key), US-12729 (access points/answer key), US-6128 (answer key), US-6153 (answer key)"
+     "msg": "US-WY: 2 park number(s) POTA no longer lists, still in our data: US-10846 (access points), US-12729 (access points)"
+    },
+    {
+     "key": "refs:gone:trails:CA-5701,CA-5722",
+     "chat": 2,
+     "msg": "trails: 2 park number(s) POTA no longer lists, still in our data: CA-5701 (trail lines), CA-5722 (trail lines)"
     }
    ],
-   "notes": [
-    {
-     "chat": 2,
-     "msg": "CA-AB: 4 name(s) differ from POTA (renamed or spelled differently): CA-6587 ours \"Lusk Creek PRA Recreation Site\" / POTA \"Lusk Creek Provincial Recreation Area\"; CA-6588 ours \"Barrier Lake PRA Recreation Site\" / POTA \"Barrier Lake Provincial Recreation Area\"; CA-6589 ours \"Snow Creek PRA Recreation Site\" / POTA \"Snow Creek Provincial Recreation Area\"; CA-6603 ours \"Saskatoon Mountain Provincial Recreation Park\" / POTA \"Saskatoon Mountain Provincial Recreation Area\""
-    },
-    {
-     "chat": 2,
-     "msg": "CA-NS: 1 name(s) differ from POTA (renamed or spelled differently): CA-6600 ours \"Mabou Provincal Park Provincial Park\" / POTA \"Mabou Provincial Park\""
-    },
-    {
-     "chat": 2,
-     "msg": "CA-ON: 1 name(s) differ from POTA (renamed or spelled differently): CA-6154 ours \"Lower Big Creek Conservation Area\" / POTA \"Big Creek Conservation Reserve\""
-    },
-    {
-     "chat": 2,
-     "msg": "US-AR: 1 name(s) differ from POTA (renamed or spelled differently): US-10258 ours \"Ouachita National National Recreation Trail\" / POTA \"Ouachita National Recreation Trail\""
-    },
-    {
-     "chat": 2,
-     "msg": "US-AZ: 1 name(s) differ from POTA (renamed or spelled differently): US-0917 ours \"Chiricahua National Monument\" / POTA \"Chiricahua National Park\""
-    },
-    {
-     "chat": 2,
-     "msg": "US-NV: 1 name(s) differ from POTA (renamed or spelled differently): US-13228 ours \"ZOLD - Red Spring Picnic Area BLM Recreation Management Area\" / POTA \"Red Spring Picnic Area BLM Recreation Management Area\""
-    },
-    {
-     "chat": 2,
-     "msg": "US-OK: 1 name(s) differ from POTA (renamed or spelled differently): US-10258 ours \"Ouachita National National Recreation Trail\" / POTA \"Ouachita National Recreation Trail\""
-    }
-   ],
+   "notes": [],
    "ok": [
-    "18928 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+    "18914 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
    ]
   },
   "links": {
    "part": "links",
-   "date": "2026-10-26",
+   "date": "2026-10-29",
    "problems": [
     {
      "key": "links:https://assessment.cot.tn.gov/TPAD",
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://assessment.cot.tn.gov/TPAD → HTTP 403",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://aws.boe.ca.gov/proptaxes/countycontacts.htm → no answer (<urlopen error [Errno -2] Name or service not know)",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6 → not a map-server answer",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf → HTTP 403",
+     "confirmed": true
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1 → no answer (<urlopen error timed out>)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0 → no answer (<urlopen error timed out>)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1 → no answer (<urlopen error timed out>)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis2/rest/services/LF_Master_Planning/FL_PropertyPlanning_Infrastructure_WTM_Ext/MapServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://dnrmaps.wi.gov/arcgis2/rest/services/LF_Master_Planning/FL_PropertyPlanning_Infrastructure_WTM_Ext/MapServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_Boat_Access_Shore_Fishing_WTM_Ext/MapServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_Boat_Access_Shore_Fishing_WTM_Ext/MapServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0 → host not answering",
      "confirmed": false
     },
     {
@@ -116,41 +165,41 @@
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://dor.georgia.gov/node/27121 → HTTP 403",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf → no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] ce)",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
      "chat": 2,
      "twice": true,
      "msg": "trails-layers.json: https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer → server error: Token Required",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer",
      "chat": 2,
      "twice": true,
      "msg": "campstate-layers.json: https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer → server error: Token Required",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0",
      "chat": 2,
      "twice": true,
      "msg": "campstate-layers.json: https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0 → no answer (<urlopen error timed out>)",
-     "confirmed": false
+     "confirmed": true
     },
     {
-     "key": "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+     "key": "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
      "chat": 2,
      "twice": true,
-     "msg": "state-gis.json: https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0 → not a map-server answer",
+     "msg": "state-gis.json: https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9 → no answer (<urlopen error [Errno 111] Connection refused>)",
      "confirmed": false
     },
     {
@@ -158,73 +207,60 @@
      "chat": 2,
      "twice": true,
      "msg": "state-gis.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2 → server error: Invalid URL",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2 → not a map-server answer",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3 → not a map-server answer",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
      "chat": 2,
      "twice": true,
      "msg": "trails-layers.json: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer → server error: Invalid URL",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828 → not a map-server answer",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
      "chat": 2,
      "twice": true,
      "msg": "trails-layers.json: https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19 → no answer (<urlopen error [Errno -2] Name or service not know)",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions",
      "chat": 2,
      "twice": true,
      "msg": "land-owner.json: https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions → HTTP 403",
-     "confirmed": false
+     "confirmed": true
     }
    ],
-   "notes": [],
+   "notes": [
+    {
+     "chat": 2,
+     "msg": "parkinfo-web.json map links (from the monthly map-link check): 1917 load, 217 do not: CA-4959 map no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_); CA-5032 map HTTP 403; US-0264 map HTTP 530; US-0727 map HTTP 404; US-1001 map HTTP 404; US-10403 map HTTP 403; US-10428 map HTTP 404; US-1055 map HTTP 403"
+    }
+   ],
    "ok": [
-    "455 of 472 map-server / data addresses answered"
+    "481 of 501 map-server / data addresses answered"
    ]
   }
  },
  "link_fail_prev": [
   "links:https://assessment.cot.tn.gov/TPAD",
   "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
-  "links:https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6",
   "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
+  "links:https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1",
+  "links:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
+  "links:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
+  "links:https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+  "links:https://dnrmaps.wi.gov/arcgis2/rest/services/LF_Master_Planning/FL_PropertyPlanning_Infrastructure_WTM_Ext/MapServer/2",
+  "links:https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_Boat_Access_Shore_Fishing_WTM_Ext/MapServer/2",
+  "links:https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
   "links:https://dor.georgia.gov/node/27121",
   "links:https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
   "links:https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
   "links:https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer",
   "links:https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0",
-  "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+  "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
   "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
-  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
-  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
   "links:https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
-  "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
   "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
   "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions"
  ],
@@ -233,13 +269,13 @@
    "b": 2761
   },
   "L:data/ky-answer-key.json": {
-   "b": 31164
+   "b": 31176
   },
   "L:data/us-key": {
-   "b": 10323677
+   "b": 10352850
   },
   "L:data/ca-key": {
-   "b": 1671442
+   "b": 1695030
   },
   "L:data/world-key": {
    "b": 13230413
@@ -281,13 +317,14 @@
    "b": 20515
   },
   "L:kpc-special-events.json": {
-   "b": 24983
+   "b": 25764
   },
   "L:kpc-youtube.json": {
    "b": 2948
   },
   "L:kpc-conditions.json": {
-   "b": 104334
+   "b": 104334,
+   "since": "2026-10-29"
   },
   "L:data/kpc-whats-new.json": {
    "b": 684
@@ -305,7 +342,7 @@
    "b": 6146736
   },
   "D:data/access": {
-   "b": 3765509
+   "b": 3787277
   },
   "D:data/wwff": {
    "b": 11660561
@@ -314,25 +351,26 @@
    "b": 130930
   },
   "D:data/truth": {
-   "b": 7348142
+   "b": 7338151
   },
   "D:data/alerts/eu.json": {
-   "b": 75345
+   "b": 75345,
+   "since": "2026-10-29"
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 211445
+   "b": 231105
   },
   "D:data/intake": {
-   "b": 782165
+   "b": 1049737
   },
   "D:data/detective": {
    "b": 53730
   },
   "D:data/map-observations.json": {
-   "b": 444262
+   "b": 601443
   }
  }
 }
