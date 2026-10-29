@@ -1126,7 +1126,10 @@ def run(st):
         r = P.get(ref) or []
         la_, lo_ = (r[5], r[6]) if len(r) > 6 else (None, None)
         if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
-        weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK]
+        # the record NAMES the park when every word of POTA's name is in it ('White Horse Hill Game Preserve' in 'White Horse
+        # Hill National Game Preserve' = the agency's own record, G-1: any distance); only the rest must prove their place
+        _pw = words(p.get('n') or (r[0] if r else ''))
+        weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw <= words(x[1]))]
         if weak and la_ is not None:
             ok = [x for x in m if x not in weak]
             left = list(weak)
@@ -1148,7 +1151,7 @@ def run(st):
         m = p.get('m') or []
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
-        p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK for x in m) else 'official')
+        p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw <= words(x[1])) for x in m) else 'official')
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
