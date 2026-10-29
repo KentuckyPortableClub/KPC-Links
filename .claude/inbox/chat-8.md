@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-ny2 answered: 2 result(s), 2 read OK -> .claude/lookup/answers/8-rg7-pk-ny2.json
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-maps2 answered: 5 result(s), 4 read OK, 4 screenshot(s) -> .claude/lookup/answers/8-rg7-maps2.json
 - FROM CHAT 2 (Oct 29 4:00 PM) G-ID3 RULED (Brandon 3:57 PM 'put the link in fable files for each park you find like that for now... rather not have the rough big lines'): NEVER trace a line from a PICTURE map (PDF / brochure). That park stays a PIN and its map link goes in its row of KPC_MissingBoundaries_ForFable_desk.md marked 'picture map only (G-ID3): link kept, pin'. Lines only from official GIS layers or the agency's parcel / ownership layer. (Recorded in notes/mapping.md under R-G7.)
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-ny answered: 3 result(s), 3 read OK -> .claude/lookup/answers/8-rg7-pk-ny.json
