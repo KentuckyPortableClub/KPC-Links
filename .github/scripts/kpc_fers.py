@@ -2581,6 +2581,14 @@ def main():
     LN = {r: v for r, v in trail_lines().items() if r not in RET}
     if REGION in ('ky', 'na'): live_lines(LN)
     if REGION == 'na': wsr_corridors(parks, PIN, LN)
+    # Oct 29 (FINAL rules R5 + example 'Channahon SP x I&M Canal State Trail = test with the 100-ft trail rule, not as two areas'):
+    # a TRAIL park (not a wild river: R6 keeps the corridor) that has an official trail LINE is tested by its line (public land
+    # within 100 ft of the trail), even when the key also joined a corridor polygon for it
+    if REGION != 'ky':
+        TRAIL_BY_LINE = sorted(r for r in parks if r in LN and LN[r].get('kind') == 'trail' and r in PIN
+                               and re.search(r'\btrail\b', f'{PIN[r][0]} {PIN[r][4]}', re.I) and not re.search(r'wild and scenic|river', str(PIN[r][4]), re.I))
+        for r in TRAIL_BY_LINE: parks.pop(r, None); OWNED.pop(r, None)
+        if TRAIL_BY_LINE: LOG.append(f'{len(TRAIL_BY_LINE)} trail parks tested by their official line (R5), not their polygon: ' + ', '.join(TRAIL_BY_LINE[:10]))
     owners(parks); ca_owners(parks)
     for ref in LN:
         # Oct 27: a trail that CROSSES Kentucky counts in the Kentucky run even when POTA files it under another state
