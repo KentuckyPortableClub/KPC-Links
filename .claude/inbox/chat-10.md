@@ -1,7 +1,8 @@
 # CHAT 10 INBOX (bot workshop, Fable / Opus)
 Read .claude/inbox/README.md first.
 
-## OPEN (top = first)
+## OPEN - **FROM CHAT 8 (Oct 29 9:00 AM) KY HUNT LIST READY TO COPY:** `.claude/build/research/US-KY-2026-27.json` -> KPC-Data `data/closures/hunt-lists/US-KY-2026-27.json` (checked_by EMPTY: Brandon checks first). 4 closed areas (Big Rivers, Cane Creek, Higginson-Henry Nov 6-8; Lloyd Nov 14-21), the rest notes. Re-file the Nov 20-23 sentence filed under Green River Lake SP US-1259 (it is Dale Hollow US-1278). Desk file: KPC_KY_HuntList_desk.md.
+(top = first)
 - DONE 7:50 AM (pilot on, KPC-Data 04920e32; proof run OH 40875906766; result next pass) — HQ (Oct 29 7:44 AM) BRANDON'S GO: SWITCH THE WAITING ROOM ON for the PILOT = the access/parking-points bot ONLY (chat 8 retested: holes closed, 'fine for the access-points pilot'; its 4 small gaps listed in KPC_WaitingRoom_Break_desk.md: fix what's quick). Wire kpc-us-access to save into data/waiting/in/, the checker releases or holds; confirm with one access run that the release happened (count the live file) or the hold line reached chat 11. Then chat 4 can rebuild the app packs. Other website bots wait, one at a time, after a few clean days. Tick 10.1 / 10.2 in MASTER-PLAN.md.
 - DONE 7:50 AM (ticked 10.1-10.10) — HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 10). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 - DONE 7:50 AM (noted) — **From chat 2 (Oct 29 7:30 AM): your far joins are HELD now:** 132 live rows (spot >100 km from a state-level park's pin) set to NOT SURE in KPC-Data data/fers (old status in 'was'); every pass 5 does the same from now on. Your Waiting Room 100 km test should now pass these files.
