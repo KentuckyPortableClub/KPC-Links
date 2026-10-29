@@ -23,7 +23,9 @@ jobs:
               with urllib.request.urlopen(U+'?f=json',timeout=60) as r: L=json.loads(r.read())
               print('::notice title=FWS fields::'+', '.join(f"{f['name']}" for f in L.get('fields',[]))[:900])
           except Exception as e: print('::notice title=FWS fields::'+str(e)[:200])
-          for nm in ('ARROWWOOD','DEVILS LAKE','KULM','VALLEY CITY','SALYER'):
-              print(f'::notice title=FWS {nm}::'+json.dumps(q(f"UPPER(ORGNAME) LIKE '%{nm}%'",'ORGNAME,INTTYPE1'))[:900])
-          print('::notice title=FWS INTTYPE1 values::'+json.dumps(q("1=1",'INTTYPE1'))[:600])
+          for nm in ('ARROWWOOD','DEVILS LAKE','KULM','VALLEY CITY','SALYER','WETLAND','WMD'):
+              w=' OR '.join(f"UPPER({f}) LIKE '%{nm}%'" for f in ('ORGNAME','UNITNAME','CMPXNAME','DIVNAME','RSL_TYPE'))
+              print(f'::notice title=FWS2 {nm}::'+json.dumps(q(w,'ORGNAME,UNITNAME,CMPXNAME,RSL_TYPE,INTTYPE1'))[:1500])
+          print('::notice title=FWS2 RSL::'+json.dumps(q("1=1",'RSL_TYPE'))[:800])
+          print('::notice title=FWS2 INTTYPE2::'+json.dumps(q("1=1",'INTTYPE2'))[:800])
           PY
