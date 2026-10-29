@@ -191,3 +191,16 @@ Point-in-polygon look-ups filed at the park pins: 8-rg7-pk-ak (8 parks), -ny (3)
 - No hit for the two TWRA state fishing lakes (US-12775, US-13514): no boundary layer found; stay pins (step 4b parcel later).
 - NEXT (chat 2 / the key bot): read 'Tennessee State Park Boundaries (Public View)' for names matching the 8 TN parks (step 2). I could not open the layer's URL from here.
 
+
+### Point-in-polygon ANSWERS at the park pins, Oct 29 ~5:30 PM (chat 8, grade A: bot answers 8-rg7-pk-ak/ct/ny/me)
+| st | park | official polygon at the pin | Rule G step | result |
+|---|---|---|---|---|
+| AK | US-10464 Chena Wayside SRS | "Chena River State Recreation Site" 27.4 ac, ASP Park Boundary layer (POTA's own link is the Chena River SRS page "chenariversrs.htm") | 2 (agency's own record, same site) | MATCH: trace this polygon (chat 11 yes/no) |
+| AK | US-11846 Bing's Landing, US-12709 Funny River, US-12710 Izaak Walton, US-12711 Morgan's Landing campgrounds | only "Kenai River Special Management Area" 50,234 ac (a bigger area, different name) | R-G7 case: step 2 no named piece -> step 3 DPOR campground/site maps (Alaska State Parks Kenai unit pages) -> 4b | NOT the SMA outline; bot/map hunt for each campground map |
+| AK | US-11834 Susitna Landing, US-11835 Little Susitna, US-13462 Sportsman's Angler Access | no DPOR polygon (these are Alaska Dept of Fish and Game sites) | 2 none | step 3 ADF&G access site pages; else pin |
+| CT | US-7529 Beckley Iron Furnace SP | "Industrial Monument Historic Preserve" 2.86 ac (DEEP Property; POTA's page is "Beckley Furnace Industrial Monument") | 2 | MATCH by identity: trace (chat 11 yes/no) |
+| CT | US-6875 The Preserve | "Preserve State Forest" 888.8 ac, DEEP-owned (State Forest) | 2 | STRONG CANDIDATE: name "Preserve" + POTA's page is a DEEP page; so it is DEEP land, my earlier 'land trust, take-back' note is wrong. chat 11 checks size/name |
+| CT | US-7542 Satan's Kingdom SRA | "Farmington River Water Access (New Hartford)" 12.3 ac, DEEP-owned | 2 | CANDIDATE: Satan's Kingdom is the New Hartford Farmington River access; chat 11 checks (name differs) |
+| CT | US-6860 Ferry Landing SP | "Marine District Headquarters" 16.2 ac (DEEP) | 2 | NOT a match by name; Ferry Landing SP sits beside the DEEP marine HQ at Old Lyme: needs a second look (name search in DEEP Property: bot) |
+| NY | US-2081 Iona Island, US-8103 Cayuga Lake, US-2151 Thompsons Lake | DEC Lands layer 2: nothing at the pins | 2 | retry on the WMA layer (8-rg7-pk-ny2); Thompsons Lake is OPRHP (parks), not DEC |
+| ME | US-9174 Mahoosuc, US-8287 Capitol | layer URL answered 404 "service not found" | 2 | retry on the other Maine host (8-rg7-pk-me2); Capitol Park parcel (Augusta tax map 32 lot 24) stands |
