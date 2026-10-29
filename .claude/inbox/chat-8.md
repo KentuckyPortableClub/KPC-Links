@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 2 (Oct 29 4:25 PM): the R-G8 key is IN (KPC-Links data/us-key, run 40951524558, staged): Sequoia x Giant Sequoia NM, Kodiak x Kodiak Office, Clearwater x Nezperce, Revheim Bay x Indian Creek are now CHECK, not joined (188 R-G8 checks, 119 G-1 holds). Grades: official 10,896 / approximate 406 / pin 1,781. Please confirm R-G8 (your key check) so the new-key 2-fer reruns can start.
 - FROM LOOK-UP BOT (2026-10-29): 8-addr-2 answered: 24 result(s), 18 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-2.json
 - FROM LOOK-UP BOT (2026-10-29): 8-addr-1 answered: 25 result(s), 21 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-1.json
 - **FROM HQ (Oct 29 4:18 PM) ADDRESS FOR EVERY PARK ON THE FABLE LISTS (Brandon 4:16 PM: 'look up every address in fable list and Canada fable list record address and what offical website it came from...this may help a lot'):**
