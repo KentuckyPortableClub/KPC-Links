@@ -14,17 +14,53 @@ One section per state, low to high (IA, MN, RI, CO, HI, ME, VA, AZ, NM, …, NV)
 `| park | name | source found (link / layer / our doc) | Rule G step | result: traced / owned land / pin | by chat | date |`
 When every park in a state has a row, add 'STATE XX DONE' under it. What is left with 'pin' and no source = the real Fable list.
 
-### IA
-| US-9334 | Teal Basins State Waterfowl Mgmt Area | our docs: no map; key has 'Teal Basins WPA' (FWS, 151 ac, similar name); FWS Iowa WMD page + map page https://www.fws.gov/refuge/iowa-wetland-management-district/map ; Iowa DNR WMA listing dashboard | R-G7 step 3 (+R-G8 check: FWS WPA vs state WMA) | pending: bot request 3-fable-low-b | chat 3 | Oct 29 |
-### RI
-| US-10545 | Hillsdale Preserve Management Area | our docs: no map; RIDEM layer 21 'DEM Managed Recreational Land' (open, polygons, 'approximate edges'): https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/MapServer/21 ; management-areas PDF dem.ri.gov (a state-wide map, opened) | R-G7 step 2/3 | pending: name query on layer 21 (3-fable-low-b); pin sits in Beaver River - deCoppett | chat 3 | Oct 29 |
-### HI
-| US-10923 | Artillery District of Honolulu HS | our parkinfo link NRHP 64000142; PDF https://npgallery.nps.gov/GetAsset/2ba3e818-1abd-4f73-93a1-28d5de77a0fd | R-G7 step 3 | pending: does the PDF hold a boundary map (3-fable-low-b) | chat 3 | Oct 29 |
-| US-10925 | HI State Game Reserve (Kaala) | DLNR forestry page https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/ ; dofaw game-reserves page is 404; pin inside Kaala NAR (1,087 ac) | R-G7 step 3 | pending (3-fable-low-b) | chat 3 | Oct 29 |
-### VA
-| US-9961 | Dyke Marsh Wildlife Reserve | OUR DOCS ok: https://www.nps.gov/gwmp/planyourvisit/maps.htm ; PDF https://www.nps.gov/gwmp/planyourvisit/upload/Dyke-Marsh-Wildlife-Preserve-map-508.pdf (opened by the bot, a map) | R-G7 step 4a from our docs (trace the preserve line; GWMP shape never the outline) | to trace (chat 2) | chat 3 | Oct 29 |
-| US-9931 | Frontier Culture Museum SHS | our docs: no map; site map PDF https://frontiermuseum.org/wp-content/uploads/2023/10/FCMV_Map_2023-Web.pdf (visitor map, may show no boundary) | R-G7 step 3 -> 4b (state-owned parcel, Staunton) if no line | pending (3-fable-low-b) | chat 3 | Oct 29 |
-### NM
-| US-11797 | Los Luceros HS | our parkinfo: https://nmhistoricsites.org/los-luceros ; museumfoundation.org page says 148 ac ranch | R-G7 step 3 -> 4b (Rio Arriba parcel, owner NM) | pending (3-fable-low-b) | chat 3 | Oct 29 |
-| US-11821 | Bosque Redondo Memorial/Fort Sumner HS | https://nmhistoricsites.org/bosque-redondo (page opened, no map link found) | R-G7 step 3 -> 4b (De Baca parcel) | no map yet | chat 3 | Oct 29 |
-| US-2719 | Angel Fire Vietnam Veterans Memorial | https://www.vietnamveteransmemorial.org/ (not asked yet) | R-G7 step 3 -> 4b (Colfax parcel; memorial is a state park) | to look up in the next request | chat 3 | Oct 29 |
+### MN
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-13547 | Two Harbors Protected Area | our doc: DNR harbor page, no map; look-up blocked (403) | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13546 | Twin Points Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13548 | Knife River Marine Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13549 | McQuade Marine Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+
+### CO
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-9652 | Grenada SWA | our parkinfo: POTA link = cpw.state.co.us GranadaDeadmanSWA_geo.pdf (opened 200); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-10540 | Bellevue-Watson Fish Hatchery | cpw.state.co.us/hatchery/bellvue-watson (opened; page, no map); Watson Lake SWA geo PDF likely | 3 | pin until map seen | 8 | Oct 29 |
+
+### ME
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-9174 | Mahoosuc Ecological Reserve | our doc: maine.gov/dacf/mnap page, no map; BPL site 403 to bot | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-8287 | Capitol State Park | NRHP 89000252 nomination PDF opened (200), written boundary; POTA link is AllTrails | 3 -> 4a | to read + trace | 8 | Oct 29 |
+
+### AZ
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-11944 | Dankworth Pond SP | AZ State Parks park map PDF (usedirect DAPO_Park Map_8-2023); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-3390 | River Island SP | AZ State Parks park map PDF Park Map-RIIS (opened 200); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-6071 | Little Black Mountain Petroglyph Site | BLM page (opened 200): BLM Arizona Strip site, not state land; BLM surface layer | 3 -> 4b | BLM land: trace from BLM layer | 8 | Oct 29 |
+
+### CT
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-6860 | Ferry Landing SP | our doc: depdata.ct.gov parks map (statewide, does not name park) | 3 | pin until DEEP park map seen | 8 | Oct 29 |
+| US-6875 | The Preserve (Essex Land Trust) | our doc: DEEP page, no map; land trust owns | 3 -> 4b | land-trust parcel; take-back candidate | 8 | Oct 29 |
+| US-7529 | Beckley Iron Furnace SP | our doc: DEEP page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-7542 | Satan's Kingdom SRA | our doc: no map on DEEP page | 3 | pin (no source yet) | 8 | Oct 29 |
+
+### MO
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-5715 | Roger Pryor Pioneer Backcountry SP | our doc: park page, no working map; mostateparks trail map PDFs | 3 | pin until map seen | 8 | Oct 29 |
+| US-5716 | Bruce R. Watkins Cultural Heritage Center SP | our doc: no map | 3 -> 4b | Jackson County parcel | 8 | Oct 29 |
+| US-10575 | Walnut Woods CA | MDC news (opened): donated to City of Liberty Parks & Rec; our doc: no map | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
+| US-10576 | Rush Creek CA | MDC news (opened): donated to City of Liberty Parks & Rec | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
+
+### SC
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-9229 | Wild Turkey WMA | SCDNR WMA map PDF wmamap5 (opened 200; WMA unconfirmed); SCDNR ManagedLand/116 page; map-check filed | 3 | to confirm which WMA the PDF is | 8 | Oct 29 |
+| US-9759 | May Forest SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13016 | Pine Island SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13198 | Black River SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
