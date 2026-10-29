@@ -88,10 +88,18 @@ def main():
     res = {'about': 'Assembly-line verdict for one area (fetcher -> worker -> checker). READY only when every pass finished in this run, nothing was cut short, the known answers + missing check pass.',
            'tag': tag, 'states': sts, 'since': since, 'date': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime()),
            'verdict': 'READY FOR CHAT 8' if not why else 'STOPPED', 'why': why, **info}
+    # Oct 28 10:31 PM (Brandon: 'the stopped file go to the list of reviews and we rerun them later, the good files go out'):
+    # the verdict is also given PER STATE. A state named in a reason is HELD (review list + a later rerun); when nothing is wrong
+    # with the area as a whole (known answers, missing check, passes not cut short), the other states are READY = PART READY.
+    held = sorted({st for st in sts for w in why if re.search(r'(^|: )' + re.escape(st) + r'(:|\b)', w)})
+    area_why = [w for w in why if not any(re.search(r'(^|: )' + re.escape(st) + r'(:|\b)', w) for st in sts)]
+    res['states_ready'] = [] if area_why else [st for st in sts if st not in held]
+    res['states_held'] = sts if area_why else held
+    if why and not area_why and res['states_ready']: res['verdict'] = 'PART READY FOR CHAT 8'
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f'line-{tag}.json').write_text(json.dumps(res, indent=1) + '\n')
     ns = '; '.join(f"{st}: live {v['live']}, not sure {sum(v['not_sure'].values())}" for st, v in info.items() if isinstance(v, dict) and 'live' in v)
-    print(f"::notice title=2-fer line::{tag}: {res['verdict']}" + (': ' + '; '.join(why)[:600] if why else f" · known {info['known_answers']} · missing check {info['missing_check']} · {ns}"), flush=True)
+    print(f"::notice title=2-fer line::{tag}: {res['verdict']}" + (f" (ready: {' '.join(res['states_ready'])}; held: {' '.join(res['states_held'])})" if res['verdict'].startswith('PART') else '') + (': ' + '; '.join(why)[:600] if why else f" · known {info['known_answers']} · missing check {info['missing_check']} · {ns}"), flush=True)
 
 
 if __name__ == '__main__':
