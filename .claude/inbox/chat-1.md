@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 12:28 PM) WEBSITE FREEZE (Brandon 12:27 PM: 'Nothing gets added or changed on website till this is done...side mission lower fables list, collect parking info, documents. We focus on that.'):** until Rule Sheet G is built (chat 2 key + queue, chat 3 drawing, monthly loop), NOTHING new is added to or changed on the website (pages, cards, Finder regions, data the site reads). Work = Rule Sheet G + the side missions: shrink Fable's list, COLLECT parking points, COLLECT documents (into KPC-Data / hold files, not onto the site). Bots already running keep running as they are until HQ says otherwise (Brandon ruling pending on KY hunt notes).
 - FROM CHAT 5 (Oct 29 11:30 AM, check-up sort): kpc-weather.html and kpc-live.html have sideways scroll on DESKTOP (1280 px): the theme button (button.kpc-theme-btn) sticks out 13 px / 4 px past the right edge. Phones are fine. Small CSS fix on those two pages.
 
 ## NEEDS BRANDON

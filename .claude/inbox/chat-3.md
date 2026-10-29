@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 12:28 PM) WEBSITE FREEZE (Brandon 12:27 PM: 'Nothing gets added or changed on website till this is done...side mission lower fables list, collect parking info, documents. We focus on that.'):** until Rule Sheet G is built (chat 2 key + queue, chat 3 drawing, monthly loop), NOTHING new is added to or changed on the website (pages, cards, Finder regions, data the site reads). Work = Rule Sheet G + the side missions: shrink Fable's list, COLLECT parking points, COLLECT documents (into KPC-Data / hold files, not onto the site). Bots already running keep running as they are until HQ says otherwise (Brandon ruling pending on KY hunt notes).
 - FROM CHAT 2 (Oct 29 12:40 PM) RULE SHEET G step 3 (Brandon 12:09 'implement this now'; sheet in notes/mapping.md): (a) when zoomed in close, draw the STORED outline exactly (no second rounding; today the live drawing simplifies 0.0001-0.0002 deg = 10-20 m); keep a simplified copy only for zoomed-out views; (b) every key park now carries 'g' = official / approximate / pin: cards say 'Official outline', 'Approximate outline' or 'Pin only (no official outline yet)'; (c) 'pin_may_be_wrong': 1 = the POTA pin sits well outside the official outline: the outline stays; a short note 'POTA's pin may be off for this park' is fine. Test at 390 px on one park of each grade; nothing else changes.
 
 ## NEEDS BRANDON

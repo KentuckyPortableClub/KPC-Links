@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 12:28 PM) WEBSITE FREEZE (Brandon 12:27 PM: 'Nothing gets added or changed on website till this is done...side mission lower fables list, collect parking info, documents. We focus on that.'):** until Rule Sheet G is built (chat 2 key + queue, chat 3 drawing, monthly loop), NOTHING new is added to or changed on the website (pages, cards, Finder regions, data the site reads). Work = Rule Sheet G + the side missions: shrink Fable's list, COLLECT parking points, COLLECT documents (into KPC-Data / hold files, not onto the site). Bots already running keep running as they are until HQ says otherwise (Brandon ruling pending on KY hunt notes).
 - **FROM HQ (Oct 29 11:45 AM, Brandon 11:43 AM 'Yes'):** the OLD reader's closure posts (kpc_park_alerts.py Discord/Facebook) and the automatic WMA heads-up (kpc_club_posts.py) are OFF UNTIL THE SWITCH (date set to 2099, not Nov 5). Closure posts come back ONLY from the new closures bot, one week after KY closures are fully fixed (chat 10 builds the posting there; Brandon's GO on the day). HQ hand-makes the Wednesday heads-ups for Brandon's GO meanwhile (first Nov 4).
 
 ## NEEDS BRANDON

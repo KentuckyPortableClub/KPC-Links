@@ -3,6 +3,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## SCOPE (Brandon Oct 29 8:36 AM, see CLAUDE.md 'SCOPE'): KY = everything; rest of US + Canada = boundaries, official docs/maps, 2-fers, parking/access points, trails; world = boundaries + docs/maps only; OUTSIDE KY no hours / fees / closures / camping.
 
+## WEBSITE FREEZE (Brandon Oct 29 12:27 PM): nothing added/changed on the website until Rule Sheet G is done. Focus: Rule Sheet G + side missions (shrink Fable's list, collect parking, collect documents).
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.
