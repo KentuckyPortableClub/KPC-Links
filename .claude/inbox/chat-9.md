@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-c2 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-c2.json
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-1 answered: 25 result(s), 21 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-1.json
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-3 answered: 11 result(s), 9 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-3.json
 - **FROM HQ (Oct 29 1:20 PM, Brandon 1:15 PM):** new block in notes/mapping.md: "POTA'S RULES, PLAIN ANSWERS" = 16 questions (2-fers, trails, river trails, corridors, water, state lines, sub-parks, open/closed, which map…), each with POTA's quoted words + our rule. Read it before deciding any of those; a question it does not answer = a numbered grey area for Brandon, not a guess.
