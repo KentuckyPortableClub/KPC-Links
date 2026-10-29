@@ -1057,8 +1057,11 @@ def run(st):
     for ref in wmd:
         core = re.sub(r'\s*(wpa\s+)?wetland management district.*$', '', parks[ref]['n'], flags=re.I).strip().upper().replace("'", "''")
         if not core: continue
-        q = {'where': f"UPPER(ORGNAME) LIKE '%{core}%' AND (UPPER(ORGNAME) LIKE '%WETLAND%' OR UPPER(ORGNAME) LIKE '%WMD%') AND INTTYPE1 = 'F'",
-             'outFields': 'OBJECTID,ORGNAME,INTTYPE1,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
+        # Oct 29 noon probe of the FWS realty layer: the district is the tract's COMPLEX (CMPXNAME 'KULM WETLAND MANAGEMENT
+        # DISTRICT'), each tract is a county Waterfowl Production Area (RSL_TYPE 'WPA'), and OWNED tracts are INTTYPE1 'O'
+        # ('E' = easement on private land: never part of the outline). There is no 'F' code (the first try joined 0 of 5).
+        q = {'where': f"UPPER(CMPXNAME) LIKE '%{core}%WETLAND MANAGEMENT DISTRICT%' AND RSL_TYPE = 'WPA' AND INTTYPE1 = 'O'",
+             'outFields': 'OBJECTID,ORGNAME,UNITNAME,CMPXNAME,INTTYPE1,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
         fs, off_, bad_ = [], 0, False
         while True:
             try: j, _pg = fetch_geo(FWS, dict(q, resultOffset=off_))
@@ -1072,7 +1075,7 @@ def run(st):
         m = []
         for f in fs:
             a = f.get('attributes') or {}; g = f.get('geometry') or {}
-            rec = {'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': (a.get('ORGNAME') or '').title(), 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED',
+            rec = {'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': ((a.get('UNITNAME') + ' WPA, ') if a.get('UNITNAME') else '') + (a.get('ORGNAME') or '').title(), 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED',
                    'Mang_Name': 'FWS', 'Loc_Mang': 'U.S. Fish & Wildlife Service (own realty map, fee tracts)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0,
                    'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': {'nwr'}}
             recs.append(rec)
