@@ -79,8 +79,11 @@ def main():
         if wait: why.append(f'{st}: {wait} rows still waiting for a pass (out of time: run the worker again)')
         # Oct 28 (HQ + chat 8, Michigan): a row the USGS water map never answered for is not a result: never READY with one
         wnc = sum(1 for s in spots if re.search(r'water not checked|water map did not answer', st_of(s)))
-        # Brandon Oct 28 8:53 PM ('keep running'): no longer a stop; those rows go on the review list as 'water map weak here'
-        if wnc: info.setdefault('water_weak', {})[st] = wnc
+        # Oct 28 10:29 PM (Brandon): any 'not checked' row = STOPPED, never READY (a quiet water map must never give a false READY).
+        # 'Keep running' (8:53 PM) still holds: the other areas go on, the rows are on the review list as 'water map weak here'.
+        if wnc:
+            info.setdefault('water_weak', {})[st] = wnc
+            why.append(f'water not checked: {st}: {wnc} rows (the USGS water map / files had no answer there): never READY with one')
         if stuck: why.append(f'{st}: {stuck} rows stuck at a pass status (a pass was killed before its save)')
     res = {'about': 'Assembly-line verdict for one area (fetcher -> worker -> checker). READY only when every pass finished in this run, nothing was cut short, the known answers + missing check pass.',
            'tag': tag, 'states': sts, 'since': since, 'date': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime()),
