@@ -597,3 +597,5 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 29 (chat 8): Canada known answers (6 + 3 controls) and water source check (NHN base, CHN where released, OGL-Canada): KPC_Canada_KnownAnswers_Water_desk.md.
 
 - Oct 29 (chat 8): name-mismatch list US+CA (112 near-misses, 66 sister names): KPC_NameMismatch_USCA_desk.md; needs a layer names dump to go further.
+
+- Oct 29 (chat 8): harvester seeds for the unseeded countries + 4 run fixes: KPC_HarvesterSeeds_desk.md.
