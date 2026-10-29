@@ -2,6 +2,11 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 4:25 PM) PAD-US PIN CHECK + POTAMAP CROSS-CHECK (Brandon 4:23 PM: 'Go but make sure g rules are followed etc'):**
+  1. OFFLINE, no new downloads: for each of the 566 open US Fable-list parks (missing-after-key.json), list every PAD-US feature AT the POTA pin (point-in-polygon on our saved PAD-US copy) with its name, designation type, OWNER (Own_Name), MANAGER (Mang_Name), acres, PAD-US id. Write one row per park into the Fable file WORK LOG ('PAD-US at pin: …') = the owner for R-G7 step 4b.
+  2. ONE read of potamap.us's PUBLIC GitHub (cwhelchel/potamap.ol): its POTA ref → PAD-US feature assignments. For our open parks only, list where potamap assigned a PAD-US shape we did not: LEAD ONLY.
+  3. RULE G DECIDES, not PAD-US and not potamap: every lead or pin hit goes through R-G1 (official: PAD-US only where the agency has no own map) → R-G2 name agrees → R-G3 location / G-1 agency record → R-G8 (shared words: place word, same kind, not bigger) → R-G7 steps 4-7 → chat 11 yes/no + your recheck → staged (freeze). A potamap 'community' (volunteer) shape is NEVER used. Pins never moved. POTA plain answers apply.
+  4. Report counts (how many pins hit a PAD-US shape, how many potamap leads, how many passed Rule G) in REPORT TO HQ.
 - **FROM HQ (Oct 29 4:18 PM) FYI:** chat 8 is collecting the official ADDRESS + source website for every park on the US and Canada Fable lists → .claude/build/research/KPC_FableList_Addresses.json (and in the Fable file's work log). Use it for county parcel look-ups (R-G7 step 4b) and to confirm places.
 - FROM LOOK-UP BOT (2026-10-29): 2-tn-parks answered: 1 result(s), 0 read OK -> .claude/lookup/answers/2-tn-parks.json
 - WAITING (Oct 29 4:05 PM, chat 3's TN find): TDEC 'Tennessee State Park Boundaries (Public View)' March 2024 (State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/0; multi-site parks dissolved into one shape) = newer than the 2 TN park layers in data/state-gis.json. Look-up request 2-tn-parks (fields + Cherokee/Trail of Tears records) filed; when it answers: add it to state-gis.json TN (park, its name field, credit TDEC), staged for the next key run. TN natural areas = points only, fishing lakes = no layer: pins.
