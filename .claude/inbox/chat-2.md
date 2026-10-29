@@ -2,6 +2,8 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 2:00 PM) STALE KEY COPY FOUND (HQ checked):** KPC-Data's data/us-key is a COPY made once a day (last 'Site data copied from KPC-Links' this morning) = the OLD numbers (11,257 outlined). The CURRENT Rule G key lives in KPC-Links data/us-key (rebuilt 1:01 PM + 1:35 PM held-piece joins): 13,083 parks, 11,312 outlined (+55), 808 sites on bigger land (-41), 120 check, 858 none, pin outside 4,210 (+494 = Rule G lets the official record win even when POTA's pin is off: those parks go on the 'POTA pin may be wrong' list). Always read keys from KPC-Links data/*-key until the copy catches up.
+  Chat 2: should the daily KPC-Data copy of the keys run right after each key rebuild instead (so chats never read a stale key)? Your call; tell HQ.
 - RUNNING (Oct 29 1:55 PM, Brandon 1:45 PM 'Yes'): WWFF missing pins: KPC-Data temp workflow kpc-wwff-locate.yml -> data/wwff-locate/found.json + KPC_WWFF_Locate.md (official EEA registers only; held). Next: read the notice, spot-check 10 found pins on the official map, delete the workflow; the rest (China, Venezuela, islands, Antarctica) -> chat 9 for official registers.
 - FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-2 answered: 14 result(s), 8 read OK, 8 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-2.json
 - FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-1 answered: 16 result(s), 10 read OK, 10 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-1.json
