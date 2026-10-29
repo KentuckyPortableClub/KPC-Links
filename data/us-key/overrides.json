@@ -6139,11 +6139,11 @@
    "when": "2026-10-29"
   },
   "US-11025": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside · Oct 29: alias taken back: held: chat 8 asks a person to check (is the tract the whole area?)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Uchee Creek Confluence"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-11027": {
    "alias": [
@@ -6181,11 +6181,11 @@
    "when": "2026-10-29"
   },
   "US-6875": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Preserve State Forest'; joins only with the POTA pin inside · Oct 29: alias taken back: a town / land trust parcel (chat 8)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Preserve State Forest"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Preserve State Forest'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-7547": {
    "alias": [
@@ -6223,11 +6223,11 @@
    "when": "2026-10-29"
   },
   "US-0280": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Oxford Slough"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-0980": {
    "alias": [
@@ -6279,11 +6279,11 @@
    "when": "2026-10-29"
   },
   "US-12378": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside · Oct 29: alias taken back: held: one unit of a many-unit WMA (chat 8 check)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Whitewater WMA: Main Branch Unit"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-13545": {
    "alias": [
@@ -6293,11 +6293,11 @@
    "when": "2026-10-29"
   },
   "US-10527": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Judith Landing State Park'; joins only with the POTA pin inside · Oct 29: alias taken back: BLM site vs the state park (chat 8)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Judith Landing State Park"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Judith Landing State Park'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-12371": {
    "alias": [
@@ -6335,11 +6335,11 @@
    "when": "2026-10-29"
   },
   "US-10547": {
-   "alias": [
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Silver Spring Lake Fishing Access'; joins only with the POTA pin inside · Oct 29: alias taken back: held: a fishing access may be only a corner (chat 8 check)",
+   "when": "2026-10-29",
+   "alias_held": [
     "Silver Spring Lake Fishing Access"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Silver Spring Lake Fishing Access'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   ]
   },
   "US-7723": {
    "alias": [
@@ -6768,6 +6768,27 @@
     "IRON RANGE OFF HWY VEH"
    ],
    "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('IRON RANGE OFF HWY VEH'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-9652": {
+   "alias": [
+    "Granada State Wildlife Area"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Granada State Wildlife Area'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-9334": {
+   "alias": [
+    "TEAL BASINS WPA"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'TEAL BASINS WPA'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-13236": {
+   "alias": [
+    "Rockdale Highlands WMA"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Rockdale Highlands WMA'; joins only with the POTA pin inside",
    "when": "2026-10-29"
   }
  }
