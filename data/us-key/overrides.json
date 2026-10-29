@@ -6223,10 +6223,11 @@
    "when": "2026-10-29"
   },
   "US-0280": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8)",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
    "when": "2026-10-29",
-   "alias_held": [
-    "Oxford Slough"
+   "alias": [
+    "Oxford Slough Waterfowl Production Area",
+    "OXFORD SLOUGH WATERFOWL PRODUCTION AREA"
    ]
   },
   "US-0980": {
@@ -6279,10 +6280,10 @@
    "when": "2026-10-29"
   },
   "US-12378": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside · Oct 29: alias taken back: held: one unit of a many-unit WMA (chat 8 check)",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside · Oct 29: alias taken back: held: one unit of a many-unit WMA (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree: the outline = ALL the 'Whitewater WMA: …' units of the DNR layer",
    "when": "2026-10-29",
-   "alias_held": [
-    "Whitewater WMA: Main Branch Unit"
+   "alias_all": [
+    "Whitewater WMA"
    ]
   },
   "US-13545": {
@@ -6308,9 +6309,10 @@
   },
   "US-3861": {
    "alias": [
-    "Durham County - Little River Park"
+    "Durham County - Little River Park",
+    "Little River Regional Park"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Durham County - Little River Park'; joins only with the POTA pin inside",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Durham County - Little River Park'; joins only with the POTA pin inside · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
    "when": "2026-10-29"
   },
   "US-12372": {
@@ -6335,9 +6337,9 @@
    "when": "2026-10-29"
   },
   "US-10547": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Silver Spring Lake Fishing Access'; joins only with the POTA pin inside · Oct 29: alias taken back: held: a fishing access may be only a corner (chat 8 check)",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Silver Spring Lake Fishing Access'; joins only with the POTA pin inside · Oct 29: alias taken back: held: a fishing access may be only a corner (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
    "when": "2026-10-29",
-   "alias_held": [
+   "alias": [
     "Silver Spring Lake Fishing Access"
    ]
   },
@@ -6789,6 +6791,21 @@
     "Rockdale Highlands WMA"
    ],
    "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Rockdale Highlands WMA'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-8287": {
+   "alias": [
+    "Capital Park",
+    "CAPITAL PARK"
+   ],
+   "why": " · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
+   "when": "2026-10-29"
+  },
+  "US-5564": {
+   "alias": [
+    "State Tree Nursery"
+   ],
+   "why": " · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
    "when": "2026-10-29"
   }
  }

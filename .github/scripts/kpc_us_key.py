@@ -865,6 +865,13 @@ def run(st):
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
         # Oct 29 (chat 8's name-mismatch list, Brandon 'help the boundaries'): 'alias' = another name the official layer uses for this
         # park. An alias joins ONLY with the sure-match test: same name as the alias AND the POTA pin inside that record's outline
+        # 'alias_all' = a name PREFIX for a park the layer splits into units (Whitewater WMA: Main Branch Unit, …): when one of
+        # them holds the pin or lies within ~3 km of it, every unit with that prefix within ~30 km joins (chat 2 + chat 8, Oct 29)
+        if not m and la is not None and ov.get('alias_all'):
+            for pre in ov['alias_all']:
+                units = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '').startswith(_nf(pre)) and near(la, lo, a['_bb'], .3)]
+                if any(inside(la, lo, a['_g']) or near(la, lo, a['_bb'], .03) for a in units):
+                    for a in units: m.append([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(a.get('GIS_Acres') or 0), f'alias units: {pre}'])
         if not m and la is not None and ov.get('alias'):
             for al in ov['alias']:
                 for a in recs:
