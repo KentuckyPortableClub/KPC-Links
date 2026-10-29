@@ -6,7 +6,7 @@
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
  ],
- "checked": "2026-10-28T19:13+00:00",
+ "checked": "2026-10-29T10:27+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -230,25 +230,25 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2662
+   "b": 2761
   },
   "L:data/ky-answer-key.json": {
    "b": 31164
   },
   "L:data/us-key": {
-   "b": 10081981
+   "b": 10323677
   },
   "L:data/ca-key": {
-   "b": 1669985
+   "b": 1671442
   },
   "L:data/world-key": {
    "b": 13230413
   },
   "L:data/pota": {
-   "b": 5660640
+   "b": 5661497
   },
   "L:data/canada.json": {
-   "b": 2496082
+   "b": 2494063
   },
   "L:kpc-top25.json": {
    "b": 16587
@@ -263,10 +263,10 @@
    "b": 78347
   },
   "L:data/boundary-score.json": {
-   "b": 946695
+   "b": 962382
   },
   "L:data/campfed": {
-   "b": 662048
+   "b": 643240
   },
   "L:data/campstate": {
    "b": 439119
@@ -287,7 +287,7 @@
    "b": 2948
   },
   "L:kpc-conditions.json": {
-   "b": 99096
+   "b": 104334
   },
   "L:data/kpc-whats-new.json": {
    "b": 684
@@ -305,31 +305,31 @@
    "b": 6146736
   },
   "D:data/access": {
-   "b": 3775962
+   "b": 3765509
   },
   "D:data/wwff": {
    "b": 11660561
   },
   "D:data/review/scoreboard.json": {
-   "b": 130822
+   "b": 130930
   },
   "D:data/truth": {
-   "b": 487182
+   "b": 7348142
   },
   "D:data/alerts/eu.json": {
-   "b": 62671
+   "b": 75345
   },
   "D:data/alerts/us-parks.json": {
-   "b": 93454
+   "b": 93698
   },
   "D:data/closures": {
-   "b": 113947
+   "b": 211445
   },
   "D:data/intake": {
-   "b": 71556
+   "b": 782165
   },
   "D:data/detective": {
-   "b": 33802
+   "b": 53730
   },
   "D:data/map-observations.json": {
    "b": 444262
