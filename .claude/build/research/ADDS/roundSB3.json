@@ -1,0 +1,167 @@
+{
+ "about": "Chat 9 round SB3 (Oct 29 ~11:10 AM): follow-ups from SB2: layer ids / fields / counts / terms for the services SB2's server walks found (ND DMR parks, forests, WMAs; BLM UT rec areas; BLM WY recreation areas, features, scenic backways; Alaska DNR park boundaries; Idaho Parks parks + facilities; LDWF access points + boat launches; MARIS recreation facilities layer ids), + 9.5 parking search for the states with NO access file at all (SD, HI, DC, MS). No keyed calls. Results: roundSB3-tested.json.",
+ "layers": [
+  {
+   "st": "ND",
+   "kind": "park",
+   "ag": "",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/MapServer",
+   "note": "SB2 d: ND state parks"
+  },
+  {
+   "st": "ND",
+   "kind": "forest",
+   "ag": "",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer",
+   "note": "SB2 d: ND state forests"
+  },
+  {
+   "st": "ND",
+   "kind": "wild",
+   "ag": "",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/Wildlife_Management_Areas/MapServer",
+   "note": "SB2 d: ND WMAs"
+  },
+  {
+   "st": "UT",
+   "kind": "park",
+   "ag": "",
+   "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer",
+   "note": "SB2 b: BLM Utah rec areas (RMAs?)"
+  },
+  {
+   "st": "WY",
+   "kind": "park",
+   "ag": "",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_Recreation_Areas_HUB/MapServer",
+   "note": "SB2 b: BLM Wyoming rec areas"
+  },
+  {
+   "st": "WY",
+   "kind": "point",
+   "ag": "",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_Recreation_Features_HUB/MapServer",
+   "note": "SB2 b + 9.5: BLM Wyoming recreation features (parking / trailheads?)"
+  },
+  {
+   "st": "WY",
+   "kind": "road",
+   "ag": "",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_ScenicBackways_HUB/MapServer",
+   "note": "pin-only kinds: BLM Wyoming scenic backways (lines)"
+  },
+  {
+   "st": "AK",
+   "kind": "park",
+   "ag": "",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer",
+   "note": "SB2 e: Alaska state park boundaries"
+  },
+  {
+   "st": "AK",
+   "kind": "point",
+   "ag": "",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer",
+   "note": "SB2 e + 9.5: Alaska parks facilities"
+  },
+  {
+   "st": "LA",
+   "kind": "point",
+   "ag": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/SR_AccessPts/FeatureServer",
+   "note": "9.5 LDWF access points"
+  },
+  {
+   "st": "LA",
+   "kind": "point",
+   "ag": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LA_Boat_Launch_Marina/FeatureServer",
+   "note": "9.5 LDWF boat launches + marinas"
+  },
+  {
+   "st": "LA",
+   "kind": "point",
+   "ag": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_BoatRamps01142025/FeatureServer",
+   "note": "9.5 LDWF boat ramps 2025"
+  },
+  {
+   "st": "LA",
+   "kind": "wild",
+   "ag": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer",
+   "note": "LDWF WMAs/refuges (boundaries)"
+  },
+  {
+   "st": "MS",
+   "kind": "point",
+   "ag": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/MapServer/0",
+   "note": "9.5 MARIS rec facilities id 0"
+  },
+  {
+   "st": "MS",
+   "kind": "point",
+   "ag": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/MapServer/1",
+   "note": "9.5 MARIS rec facilities id 1"
+  },
+  {
+   "st": "MS",
+   "kind": "point",
+   "ag": "",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/FeatureServer",
+   "note": "9.5 MARIS rec facilities as FeatureServer"
+  }
+ ],
+ "pages": [
+  {
+   "st": "ID",
+   "url": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items?q=IDPR_Parks_and_Facilities&limit=10",
+   "raw": true,
+   "look": "\"url\":\"[^\"]+(FeatureServer|MapServer)[^\"]*\"|\"license\":\"[^\"]*\"|\"title\":\"[^\"]+\"",
+   "note": "SB2 e: Idaho parks + facilities service address"
+  }
+ ],
+ "orgs": [
+  {
+   "st": "HI",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services",
+   "match": ".",
+   "note": "9.5 HI: list everything (SB2 match found 0 of 81)"
+  },
+  {
+   "st": "MS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural",
+   "match": ".",
+   "note": "9.5 MS Cultural folder"
+  }
+ ],
+ "searches": [
+  {
+   "st": "SD",
+   "q": "(\"South Dakota\" OR SDGFP OR \"Game, Fish and Parks\") AND (\"boat ramp\" OR \"boat ramps\" OR \"access area\" OR parking OR \"lakeside use area\")",
+   "why": "9.5 SD (no access file)"
+  },
+  {
+   "st": "SD",
+   "q": "(\"South Dakota\" OR SDGFP) AND (\"state park\" OR \"recreation area\" OR \"game production area\")",
+   "why": "9.5 SD parks layer (place match)"
+  },
+  {
+   "st": "HI",
+   "q": "(Hawaii OR DLNR OR DOBOR OR \"State Parks\") AND (\"boat ramp\" OR \"small boat harbor\" OR parking OR trailhead OR \"Na Ala Hele\")",
+   "why": "9.5 HI (no access file)"
+  },
+  {
+   "st": "DC",
+   "q": "(\"District of Columbia\" OR DC OR \"Open Data DC\") AND (parking OR \"boat ramp\" OR trailhead) AND (park OR parks)",
+   "why": "9.5 DC (no access file)"
+  },
+  {
+   "st": "MS",
+   "q": "(MDWFP OR \"Mississippi Department of Wildlife\") AND (\"boat ramp\" OR \"boat launch\" OR \"access\")",
+   "why": "9.5 MS (no access file)"
+  }
+ ]
+}

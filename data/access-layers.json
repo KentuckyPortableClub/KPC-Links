@@ -3198,6 +3198,19 @@
    "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
    "licence": "none stated",
    "agency": "Niagara Peninsula Conservation Authority"
+  },
+  {
+   "prog": "park",
+   "st": "CA-MB",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0",
+   "what": "points: waterbody entry points (boat launches / shore access)",
+   "typef": "ENTRY_TYPE",
+   "vals": "by place",
+   "area": "location only",
+   "count": "212",
+   "tested": "yes 2026-10-29 (chat 9 probe SB2)",
+   "licence": "Manitoba Open Data Licence (OpenMB): carry the line 'Contains information licensed under the OpenMB Information and Data Use Licence'",
+   "agency": "Government of Manitoba, Manitoba Waterbody Entry Points (2025-02-05)"
   }
  ]
 }
