@@ -97,6 +97,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] F.1 chat 8: Source Book 2 for the nothing-near states (NV MS ND first) → chat 2 reads layers → chat 11 checks
 - [ ] F.2 chat 2 BOT checks all ~480 (pin / size / owner) → CAN'T TELL rows to chat 11 (Sonnet, after bot grading) → chat 2 reviews + adds SURE ones; was: chat 11: name matches (107 SURE, 140 maybes, 112+66 near-misses, 18 aliases) → YES list → chat 2 REVIEWS each, adds only the ones it also passes (Brandon 10:30)
 - [ ] F.3 chat 8: Canada regrade after chat 2's rerun
+- [ ] F.6 (Brandon 2:02 PM) R-G7 on 289 + 266 + 11 open parks, state by state: chat 8 step 3 official maps (files its own look-ups), chat 9 Source Book 2 probes on the shared bot, chat 2 steps 4-5 trace/cut, chat 11 step 6 yes/no, staged
 - [ ] F.4 Fable gets only: the 313 'pin inside a bigger area' state parks (part-level clip method)
 
 - [ ] F.5 (Brandon 11:17 AM) chat 9 research bot: official department maps for every lake-type POTA park FIRST → then Brandon decides the lake-outline rule

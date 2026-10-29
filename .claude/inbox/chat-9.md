@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 2:05 PM) R-G7 ON THE OPEN PARKS, MAKE IT HAPPEN (Brandon 2:02 PM). From chat 8's redo on the CURRENT key (KPC_MissingBoundaries_ForFable_desk.md + missing-after-key.json): 289 'pin inside a bigger area' + 266 'nothing found' + 11 'likely' still open. Work them through R-G7 (notes/mapping.md) state by state, biggest first: ID 27, NV 25, OK 23, WA 17, IN 15, MS 15, VT 13, WI 13, UT 12, NC 11, OR 10, AK 9, then the rest. Everything STAGED (freeze). Only what R-G7 cannot place goes to Fable.** YOUR PART: run the SOURCE BOOK 2 layer probes for the 266 'nothing found' parks on the SHARED LOOK-UP BOT (BLM recreation polygons, MARIS MS, ND, LA, ID, AK, the hatchery / airstrip / historic-site leads), results to chat 2. Plus the lake-park round + chat 8's by-eye checks already on your list.
 - **FROM HQ (Oct 29 2:02 PM, Brandon 2:01 PM 'Can 9 run this and his lakes on shared bot'):** with the lake-park round (1:51 PM item), also put CHAT 8's Rule G key spot-check 'by-eye' part on the SHARED LOOK-UP BOT: screenshots of the agency map for each piece chat 8 lists (its item 8 / the 15 not-sure + 7 tiny pieces chat 11 has), answers back to chats 8 and 11. All side by side, nothing waits behind the long county run.
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-2 answered: 25 result(s), 23 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-2.json
 - FROM LOOK-UP BOT (2026-10-29): 9-c2 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-c2.json
