@@ -308,3 +308,569 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-6247 TN | Hawkins Cove State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cu/hawkins-cove.html | to read | to read | 35.1773, -85.9598 |
 | US-6273 TN | Vine Cedar Glade State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cb/vine-cedar-glade.html | to read | to read | 36.0346, -86.3535 |
 **Address rule (Brandon 5:08 PM):** if an address is a nearby office, the managing park's office or another park's page, the row says '⚠ NEARBY OFFICE' (or 'NOT THIS PARK') and names whose address it is; a plain address means the page gives it for this park itself.
+| US-10464 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11798 | | PAD-US at pin: Glennallen Field Office (PUB, owner BLM/FED, manager BLM, 4244135 ac, Fee, PAD id 1866) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11834 | | PAD-US at pin: Knik Alaska Native Village Statistical A (TRIBL, owner DESG/DESG, manager TRIB, 4712787 ac, Proclamation, PAD id 1463) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11835 | | PAD-US at pin: Knik Alaska Native Village Statistical A (TRIBL, owner DESG/DESG, manager TRIB, 4712787 ac, Proclamation, PAD id 1463); Susitna Flats State Game Refuge (SCA, owner SDNR/STAT, manager SDNR, 296685 ac, Fee, PAD id 165808) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11846 | | PAD-US at pin: Kenaitze Alaska Native Village Statistic (TRIBL, owner DESG/DESG, manager TRIB, 1316059 ac, Proclamation, PAD id 1455); Kenai River Special Management Area (SOTH, owner SDNR/STAT, manager SDNR, 1404 ac, Fee, PAD id 165883) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12709 | | PAD-US at pin: Kenaitze Alaska Native Village Statistic (TRIBL, owner DESG/DESG, manager TRIB, 1316059 ac, Proclamation, PAD id 1455) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12710 | | PAD-US at pin: Kenaitze Alaska Native Village Statistic (TRIBL, owner DESG/DESG, manager TRIB, 1316059 ac, Proclamation, PAD id 1455) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12711 | | PAD-US at pin: Kenaitze Alaska Native Village Statistic (TRIBL, owner DESG/DESG, manager TRIB, 1316059 ac, Proclamation, PAD id 1455) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13462 | | PAD-US at pin: Kenaitze Alaska Native Village Statistic (TRIBL, owner DESG/DESG, manager TRIB, 1316059 ac, Proclamation, PAD id 1455) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12405 | | PAD-US at pin: Wheeler Reservoir Retained Land (FOTH, owner UNK/UNK, manager TVA, 16536 ac, Fee, PAD id 1818) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13311 | | PAD-US at pin: Upper Bear Creek Reservoir Retained Land (FOTH, owner UNK/UNK, manager TVA, 3216 ac, Fee, PAD id 1816) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11155 | | PAD-US at pin: Ozark National Forest (NF, owner USFS/FED, manager USFS, 1132752 ac, Fee, PAD id 3003) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11354 | | PAD-US at pin: Kelly's Slab (SCA, owner SFW/STAT, manager SFW, 378 ac, Fee, PAD id 166801) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12078 | | PAD-US at pin: Camp Robinson Wildlife Demonstration Are (SCA, owner SFW/STAT, manager SFW, 4211 ac, Fee, PAD id 166781) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13229 | | PAD-US at pin: J.P. Hammerschmidt Recreation Area (REC, owner UNK/UNK, manager USACE, 4491 ac, Fee, PAD id 2501); Fort Smith Park (LP, owner CITY/LOC, manager CITY, 50 ac, Fee, PAD id 102268) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7442 | | PAD-US at pin: Ozark National Forest (NF, owner USFS/FED, manager USFS, 1132752 ac, Fee, PAD id 3003) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7525 | | PAD-US at pin: Pine Bluff Regional Park (LP, owner CITY/LOC, manager CITY, 472 ac, Fee, PAD id 119300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7526 | | PAD-US at pin: Craighead Forest Park (LP, owner CITY/LOC, manager CITY, 701 ac, Fee, PAD id 107091) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9169 | | PAD-US at pin: Fair Park (LP, owner CITY/LOC, manager CITY, 169 ac, Fee, PAD id 105624) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11944 | | PAD-US at pin: Roper Lake State Park (SP, owner JNT/JNT, manager SPR, 81 ac, Fee, PAD id 167331) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3390 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6071 | | PAD-US at pin: Arizona Strip Field Office (PUB, owner BLM/FED, manager BLM, 2766023 ac, Fee, PAD id 1879) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11336 | | PAD-US at pin: Barstow Field Office (PUB, owner BLM/FED, manager BLM, 2723972 ac, Fee, PAD id 2179) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2638 | | PAD-US at pin: Unnamed site - California Tahoe Conserva (SOTH, owner SDC/STAT, manager SDC, 5702 ac, Fee, PAD id 183179) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3578 | | PAD-US at pin: Imperial Beach Navy Outlying Field (MIL, owner DESG/DESG, manager DOD, 1205 ac, Proclamation, PAD id 608); Tijuana Slough National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 1059 ac, Fee, PAD id 4397) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6448 | | PAD-US at pin: Hearst San Simeon State Park (SP, owner SPR/STAT, manager SPR, 7 ac, Fee, PAD id 183989) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10540 | | PAD-US at pin: Watson Lake SFU (SOTH, owner SFW/STAT, manager SFW, 142 ac, Fee, PAD id 189331) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6860 | | PAD-US at pin: Marine District Headquarters (SOTH, owner OTHS/STAT, manager UNK, 7 ac, Fee, PAD id 51673) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6875 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7529 | | PAD-US at pin: Industrial Monument Historic Preserve (SOTH, owner OTHS/STAT, manager UNK, 1 ac, Fee, PAD id 51664) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7542 | | PAD-US at pin: Farmington River Water Access (SREC, owner SFW/STAT, manager UNK, 8 ac, Fee, PAD id 57476) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10687 | | PAD-US at pin: Trap Pond State Park (SP, owner SPR/STAT, manager UNK, 2118 ac, Fee, PAD id 60712) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9885 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9886 | | PAD-US at pin: Mispillion Marine Reserve (SOTH, owner SFW/STAT, manager SFW, 200 ac, Fee, PAD id 76230) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12121 | | PAD-US at pin: Kissimmee Chain of Lakes (LREC, owner RWD/DIST, manager RWD, 30368 ac, Other, PAD id 191930) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12123 | | PAD-US at pin: Kissimmee River (WPA, owner RWD/DIST, manager RWD, 43232 ac, Other, PAD id 191931) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12124 | | PAD-US at pin: Stormwater Treatment Areas (WPA, owner RWD/DIST, manager RWD, 47574 ac, Fee, PAD id 190265) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12130 | | PAD-US at pin: Lake Okeechobee Water Retention Phosphor (WPA, owner RWD/DIST, manager RWD, 2401 ac, Fee, PAD id 190259) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12132 | | PAD-US at pin: Kissimmee River (WPA, owner RWD/DIST, manager RWD, 43232 ac, Other, PAD id 191931) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12134 | | PAD-US at pin: Everglades Agricultural Area (WPA, owner RWD/DIST, manager RWD, 51975 ac, Fee, PAD id 190258) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3621 | | PAD-US at pin: Open Space (LOTH, owner RWD/DIST, manager RWD, 18062 ac, Fee, PAD id 86290); Hillsborough River State Park (SP, owner SDOL/STAT, manager SPR, 3319 ac, Fee, PAD id 191856) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8329 | | PAD-US at pin: Choctawhatchee River Water Management Ar (WPA, owner RWD/DIST, manager RWD, 62693 ac, Fee, PAD id 190219) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8719 | | PAD-US at pin: Upper Lake Marion Creek Watershed (WPA, owner RWD/DIST, manager RWD, 290 ac, Fee, PAD id 190306) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3724 | | PAD-US at pin: F. D. Roosevelt State Park (SP, owner SDNR/STAT, manager SDNR, 9995 ac, Fee, PAD id 195129) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4648 | | PAD-US at pin: Bartram Forest Wildlife Management Area (SCA, owner SDNR/STAT, manager SDNR, 2063 ac, Fee, PAD id 195185); Baldwin State Forest (SRMA, owner SDNR/STAT, manager SDNR, 2153 ac, Fee, PAD id 195190) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4649 | | PAD-US at pin: Oconee National Forest (NF, owner USFS/FED, manager USFS, 116196 ac, Fee, PAD id 2998) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7140 | | PAD-US at pin: Charlie Elliott Wildlife Center Clybel W (SCA, owner SDNR/STAT, manager SDNR, 6273 ac, Fee, PAD id 195024) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7861 | | PAD-US at pin: Stephen C. Foster State Park (SP, owner SDNR/STAT, manager SDNR, 320 ac, Fee, PAD id 195159) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10923 | | PAD-US at pin: Fort De Russy (MIL, owner DESG/DESG, manager DOD, 73 ac, Proclamation, PAD id 288) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10925 | | PAD-US at pin: Kaala Natural Area Reserve (SCA, owner SDNR/STAT, manager SDNR, 1087 ac, Fee, PAD id 195288) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10268 | | PAD-US at pin: Salmon National Forest (NF, owner USFS/FED, manager USFS, 1774122 ac, Fee, PAD id 2799) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10427 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1982653 ac, Fee, PAD id 199300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11157 | | PAD-US at pin: State of Idaho (SOTH, owner OTHS/STAT, manager OTHS, 517 ac, Fee, PAD id 199283) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12226 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4665 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1982653 ac, Fee, PAD id 199300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4666 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1982653 ac, Fee, PAD id 199300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5617 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 53342 ac, Fee, PAD id 199309) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7805 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1982653 ac, Fee, PAD id 199300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7806 | | PAD-US at pin: Boise National Forest (NF, owner USFS/FED, manager USFS, 2132070 ac, Fee, PAD id 2768) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7807 | | PAD-US at pin: Shoshone Field Office (PUB, owner BLM/FED, manager BLM, 1723598 ac, Fee, PAD id 1948) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7808 | | PAD-US at pin: Payette National Forest (NF, owner USFS/FED, manager USFS, 2287258 ac, Fee, PAD id 2795) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7809 | | PAD-US at pin: Upper Snake Field Office (PUB, owner BLM/FED, manager BLM, 1813172 ac, Fee, PAD id 1949) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7810 | | PAD-US at pin: Boise National Forest (NF, owner USFS/FED, manager USFS, 2132070 ac, Fee, PAD id 2768) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7811 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1289 ac, Fee, PAD id 199294) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7812 | | PAD-US at pin: Challis National Forest (NF, owner USFS/FED, manager USFS, 2197868 ac, Fee, PAD id 2782) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7814 | | PAD-US at pin: Idaho Department of Lands (SRMA, owner SDOL/STAT, manager SDOL, 1982653 ac, Fee, PAD id 199300) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7815 | | PAD-US at pin: Bruneau Field Office (PUB, owner BLM/FED, manager BLM, 1448603 ac, Fee, PAD id 1925) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7817 | | PAD-US at pin: Shoshone Field Office (PUB, owner BLM/FED, manager BLM, 1723598 ac, Fee, PAD id 1948) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7819 | | PAD-US at pin: Shoshone Field Office (PUB, owner BLM/FED, manager BLM, 1723598 ac, Fee, PAD id 1948) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7820 | | PAD-US at pin: Coeur d'Alene National Forest (NF, owner USFS/FED, manager USFS, 727061 ac, Fee, PAD id 2650) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7822 | | PAD-US at pin: Challis Field Office (PUB, owner BLM/FED, manager BLM, 792074 ac, Fee, PAD id 1930) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7823 | | PAD-US at pin: Department of Energy (FOTH, owner UNK/UNK, manager DOE, 567306 ac, Fee, PAD id 1795) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7824 | | PAD-US at pin: Jarbidge Field Office (PUB, owner BLM/FED, manager BLM, 1321755 ac, Fee, PAD id 1935) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7826 | | PAD-US at pin: Boise National Forest (NF, owner USFS/FED, manager USFS, 2132070 ac, Fee, PAD id 2768) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7828 | | PAD-US at pin: Payette National Forest (NF, owner USFS/FED, manager USFS, 2287258 ac, Fee, PAD id 2795) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7833 | | PAD-US at pin: Challis Field Office (PUB, owner BLM/FED, manager BLM, 792074 ac, Fee, PAD id 1930) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7834 | | PAD-US at pin: Boise National Forest (NF, owner USFS/FED, manager USFS, 2132070 ac, Fee, PAD id 2768) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10661 | | PAD-US at pin: Shawnee National Forest (NF, owner USFS/FED, manager USFS, 273706 ac, Fee, PAD id 3079) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10788 | | PAD-US at pin: Miscellaneous Property (UNK, owner SDNR/STAT, manager SDNR, 104 ac, Fee, PAD id 71120) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12640 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13298 | | PAD-US at pin: Adeline Jay Geo-Karis Illinois Beach Sta (SP, owner SDC/STAT, manager SDC, 3186 ac, Fee, PAD id 158058) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4118 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5680 | | PAD-US at pin: Hoosier National Forest (NF, owner USFS/FED, manager USFS, 204291 ac, Fee, PAD id 3053) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5681 | | PAD-US at pin: J. Edward Roush Recreation Area (REC, owner UNK/UNK, manager USACE, 8533 ac, Fee, PAD id 2525); Roush Lake Fish And Wildlife Area (SCA, owner USACE/FED, manager SFW, 8475 ac, Other, PAD id 201130) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5682 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5683 | | PAD-US at pin: J. Edward Roush Recreation Area (REC, owner UNK/UNK, manager USACE, 8533 ac, Fee, PAD id 2525); Roush Lake Fish And Wildlife Area (SCA, owner USACE/FED, manager SFW, 8475 ac, Other, PAD id 201130) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5684 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5685 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5686 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5688 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5689 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5690 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5692 | | PAD-US at pin: Monroe Recreation Area (REC, owner UNK/UNK, manager USACE, 25720 ac, Fee, PAD id 2527) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7842 | | PAD-US at pin: Mississinewa Recreation Area (REC, owner UNK/UNK, manager USACE, 15067 ac, Fee, PAD id 2526) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7843 | | PAD-US at pin: Mississinewa Recreation Area (REC, owner UNK/UNK, manager USACE, 15067 ac, Fee, PAD id 2526) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2334 | | PAD-US at pin: Toronto State Park (SP, owner SPR/STAT, manager SPR, 1292 ac, Fee, PAD id 201314) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7943 | | PAD-US at pin: Finney Game Refuge (SCA, owner SFW/STAT, manager SFW, 3622 ac, Fee, PAD id 201141) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9185 | | PAD-US at pin: Fort Riley (MIL, owner DESG/DESG, manager DOD, 101726 ac, Proclamation, PAD id 309) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2365 | | PAD-US at pin: Caney Creek Lake State Park (SP, owner SPR/STAT, manager SPR, 312 ac, Fee, PAD id 203110) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2373 | | PAD-US at pin: State Lands (SOTH, owner SDNR/STAT, manager SDNR, 7733 ac, Fee, PAD id 202974) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2436 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8385 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8387 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8422 | | PAD-US at pin: Neponset River Reservation (SCA, owner SPR/STAT, manager UNK, 11 ac, Fee, PAD id 59031) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13564 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7768 | | PAD-US at pin: Frederick Municipal Forest (LOTH, owner CITY/LOC, manager UNK, 5186 ac, Fee, PAD id 16458) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7769 | | PAD-US at pin: ISLANDS OF THE POTOMAC Wildlife Manageme (SCA, owner SDNR/STAT, manager UNK, 322 ac, Fee, PAD id 56533) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9174 | | PAD-US at pin: Mahoosucs (LOTH, owner SPR/STAT, manager SPR, 3367 ac, Fee, PAD id 206767) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12802 | | PAD-US at pin: Ottawa National Forest (NF, owner USFS/FED, manager USFS, 994695 ac, Fee, PAD id 3074) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4775 | | PAD-US at pin: Crystal Falls State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 300717 ac, Fee, PAD id 71307) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4777 | | PAD-US at pin: Newberry State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 348461 ac, Fee, PAD id 71314) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4779 | | PAD-US at pin: Cadillac State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 221994 ac, Fee, PAD id 71306) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6728 | | PAD-US at pin: Sleeping Bear Dunes National Lakeshore (NLS, owner NPS/FED, manager NPS, 56717 ac, Fee, PAD id 3320) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5715 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5716 | | PAD-US at pin: Community 298 (LP, owner CITY/LOC, manager CITY, 15 ac, Fee, PAD id 107399) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12208 | | PAD-US at pin: Mississippi 16th Section Public School T (SRMA, owner SLB/STAT, manager SLB, 646179 ac, Other, PAD id 211240) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12638 | | PAD-US at pin: Lakeshore Recreation Area (LREC, owner RWD/DIST, manager RWD, 103 ac, Fee, PAD id 86280) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7097 | | PAD-US at pin: Tombigbee National Forest (NF, owner USFS/FED, manager USFS, 67449 ac, Fee, PAD id 3025) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7104 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7105 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7106 | | PAD-US at pin: Camp Shelby (MIL, owner DESG/DESG, manager DOD, 138435 ac, Proclamation, PAD id 80); De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7111 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7116 | | PAD-US at pin: Bienville National Forest (NF, owner USFS/FED, manager USFS, 180227 ac, Fee, PAD id 2945) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7130 | | PAD-US at pin: Canal Section Wma (SCA, owner DOD/FED, manager UNK, 29203 ac, Fee, PAD id 211177) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7134 | | PAD-US at pin: Divide Section (SCA, owner DOD/FED, manager UNK, 16145 ac, Fee, PAD id 211178) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7630 | | PAD-US at pin: Holly Springs National Forest (NF, owner USFS/FED, manager USFS, 156210 ac, Fee, PAD id 2977) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7631 | | PAD-US at pin: Tombigbee National Forest (NF, owner USFS/FED, manager USFS, 67449 ac, Fee, PAD id 3025) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7633 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7634 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7635 | | PAD-US at pin: De Soto National Forest (NF, owner USFS/FED, manager USFS, 532454 ac, Fee, PAD id 2963) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11219 | | PAD-US at pin: Flathead Reservation (TRIBL, owner DESG/DESG, manager TRIB, 1317006 ac, Proclamation, PAD id 800); Local Other or Unknown (LOTH, owner UNKL/LOC, manager UNKL, 31781 ac, Fee, PAD id 211293) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12827 | | PAD-US at pin: Brownes Bridge Fishing Access Site (SREC, owner UNK/UNK, manager SFW, 10 ac, Fee, PAD id 211523) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10263 | | PAD-US at pin: Historic Bath State Historic Site (SHCA, owner OTHS/STAT, manager UNK, 9 ac, Fee, PAD id 214564) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10388 | | PAD-US at pin: Historic Bath State Historic Site (SHCA, owner OTHS/STAT, manager UNK, 9 ac, Fee, PAD id 214564) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10389 | | PAD-US at pin: Tennessee Valley Authority - Hiwassee Da (UNK, owner OTHF/FED, manager UNK, 424 ac, Fee, PAD id 211891) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10399 | | PAD-US at pin: Tennessee Valley Authority - Hiwassee Da (UNK, owner OTHF/FED, manager UNK, 424 ac, Fee, PAD id 211891) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12414 | | PAD-US at pin: Blue Ridge Parkway (SDA, owner NPS/FED, manager NPS, 52757 ac, Fee, PAD id 3545) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12662 | | PAD-US at pin: Pisgah National Forest (NF, owner USFS/FED, manager USFS, 509978 ac, Fee, PAD id 3008) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3854 | | PAD-US at pin: Triangle Land Conservancy Preserve (PCON, owner NGO/NGO, manager UNK, 4787 ac, Fee, PAD id 214369) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6848 | | PAD-US at pin: Polk Memorial State Historic Site (SHCA, owner OTHS/STAT, manager UNK, 20 ac, Fee, PAD id 214577) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8010 | | PAD-US at pin: Sandhills Game Land (SCA, owner SFW/STAT, manager UNK, 65144 ac, Fee, PAD id 214773) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8011 | | PAD-US at pin: Pisgah National Forest (NF, owner USFS/FED, manager USFS, 509978 ac, Fee, PAD id 3008) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8226 | | PAD-US at pin: Nicholson Creek Game Land (SCA, owner SFW/STAT, manager UNK, 1021 ac, Fee, PAD id 214757) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5741 | | PAD-US at pin: North Dakota State Forest Service Land (SRMA, owner SDOL/STAT, manager SDOL, 14517 ac, Fee, PAD id 215431) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5744 | | PAD-US at pin: North Dakota State Forest Service Land (SRMA, owner SDOL/STAT, manager SDOL, 14517 ac, Fee, PAD id 215431) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5745 | | PAD-US at pin: North Dakota State Forest Service Land (SRMA, owner SDOL/STAT, manager SDOL, 14517 ac, Fee, PAD id 215431) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8541 | | PAD-US at pin: Spirit Lake Reservation (TRIBL, owner DESG/DESG, manager TRIB, 255631 ac, Proclamation, PAD id 900) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8544 | | PAD-US at pin: Oaha Recreation Area (REC, owner UNK/UNK, manager USACE, 90626 ac, Fee, PAD id 2579) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-0446 | | PAD-US at pin: Phelps County Waterfowl Production Area (RMA, owner FWS/FED, manager FWS, 4677 ac, Fee, PAD id 4221); Phelps County Waterfowl Production Area (RMA, owner FWS/FED, manager FWS, 4677 ac, Fee, PAD id 5176) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2642 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2654 | | PAD-US at pin: Gile State Forest (SRMA, owner SDNR/STAT, manager SDNR, 6759 ac, Other, PAD id 64275) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2685 | | PAD-US at pin: Mount Kearsarge State Forest (SRMA, owner SDNR/STAT, manager SDNR, 3893 ac, Other, PAD id 64278) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8024 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2719 | | PAD-US at pin: VVM - Main Site (SOTH, owner UNK/UNK, manager SPR, 33 ac, Fee, PAD id 79463) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13023 | | PAD-US at pin: Alkali Lake Wildlife Management Area (SCA, owner SFW/STAT, manager SFW, 1568 ac, Fee, PAD id 230119) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13183 | | PAD-US at pin: Las Vegas Field Office (PUB, owner BLM/FED, manager BLM, 2378020 ac, Fee, PAD id 2028) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13240 | | PAD-US at pin: Ruby Lake National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 39950 ac, Fee, PAD id 4282); Ruby Lake National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 40070 ac, Fee, PAD id 5239) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13281 | | PAD-US at pin: Bristlecone Field Office (PUB, owner BLM/FED, manager BLM, 5647647 ac, Fee, PAD id 2012) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13282 | | PAD-US at pin: Mount Lewis Field Office (PUB, owner BLM/FED, manager BLM, 4383120 ac, Fee, PAD id 2029) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13286 | | PAD-US at pin: Stillwater Field Office (PUB, owner BLM/FED, manager BLM, 3582451 ac, Fee, PAD id 2040) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13288 | | PAD-US at pin: Tonopah Field Office (PUB, owner BLM/FED, manager BLM, 6073247 ac, Fee, PAD id 2042) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13300 | | PAD-US at pin: Lake Mead National Recreation Area (NRA, owner NPS/FED, manager NPS, 581651 ac, Fee, PAD id 3508) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13302 | | PAD-US at pin: Tonopah Field Office (PUB, owner BLM/FED, manager BLM, 6073247 ac, Fee, PAD id 2042) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13308 | | PAD-US at pin: Caliente Field Office (PUB, owner BLM/FED, manager BLM, 5063883 ac, Fee, PAD id 2017) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13365 | | PAD-US at pin: Las Vegas Field Office (PUB, owner BLM/FED, manager BLM, 2378020 ac, Fee, PAD id 2028) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13366 | | PAD-US at pin: Stillwater Field Office (PUB, owner BLM/FED, manager BLM, 3582451 ac, Fee, PAD id 2040) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13369 | | PAD-US at pin: Red Rock/Sloan Field Office (PUB, owner BLM/FED, manager BLM, 245885 ac, Fee, PAD id 2035) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13408 | | PAD-US at pin: Mount Lewis Field Office (PUB, owner BLM/FED, manager BLM, 4383120 ac, Fee, PAD id 2029) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13409 | | PAD-US at pin: Belmont Courthouse State Historical Site (SHCA, owner SPR/STAT, manager SPR, 2 ac, Fee, PAD id 230124) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13412 | | PAD-US at pin: Tonopah Field Office (PUB, owner BLM/FED, manager BLM, 6073247 ac, Fee, PAD id 2042) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13449 | | PAD-US at pin: Toiyabe National Forest (NF, owner USFS/FED, manager USFS, 3206430 ac, Fee, PAD id 2813) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13452 | | PAD-US at pin: Lake Havasu Field Office (PUB, owner BLM/FED, manager BLM, 42218 ac, Fee, PAD id 1886) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13468 | | PAD-US at pin: Sierra Front Field Office (PUB, owner BLM/FED, manager BLM, 1146352 ac, Fee, PAD id 2039) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13475 | | PAD-US at pin: Toiyabe National Forest (NF, owner USFS/FED, manager USFS, 3206430 ac, Fee, PAD id 2813) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13476 | | PAD-US at pin: Humboldt River Field Office (PUB, owner BLM/FED, manager BLM, 6081514 ac, Fee, PAD id 2022) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13480 | | PAD-US at pin: Mount Lewis Field Office (PUB, owner BLM/FED, manager BLM, 4383120 ac, Fee, PAD id 2029) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13481 | | PAD-US at pin: Toiyabe National Forest (NF, owner USFS/FED, manager USFS, 3206430 ac, Fee, PAD id 2813) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2638 | | PAD-US at pin: Unnamed site - California Tahoe Conserva (SOTH, owner SDC/STAT, manager SDC, 5702 ac, Fee, PAD id 183179) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4438 | | PAD-US at pin: Fort Churchill State Historic Park (SHCA, owner SDOL/STAT, manager SPR, 3468 ac, Fee, PAD id 230191) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2081 | | PAD-US at pin: Bear Mountain State Park (SP, owner SPR/STAT, manager SPR, 5477 ac, Fee, PAD id 237450) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2151 | | PAD-US at pin: John Boyd Thacher State Park (SP, owner SPR/STAT, manager SPR, 2477 ac, Fee, PAD id 237529) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8082 | | PAD-US at pin: Gateway National Recreation Area (NRA, owner NPS/FED, manager NPS, 18548 ac, Fee, PAD id 3501) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8084 | | PAD-US at pin: Gateway National Recreation Area (NRA, owner NPS/FED, manager NPS, 18548 ac, Fee, PAD id 3501) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8088 | | PAD-US at pin: Gateway National Recreation Area (NRA, owner NPS/FED, manager NPS, 18548 ac, Fee, PAD id 3501) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8103 | | PAD-US at pin: Cayuga-Seneca Canal (SREC, owner OTHS/STAT, manager OTHS, 1234 ac, Fee, PAD id 232523) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10658 | | PAD-US at pin: CLO Lands (SRMA, owner SLB/STAT, manager SLB, 3238968 ac, Fee, PAD id 237726) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11182 | | PAD-US at pin: Kiowa-Comanche-Apache-Fort Sill Apache O (TRIBL, owner DESG/DESG, manager TRIB, 4114577 ac, Proclamation, PAD id 1595) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11769 | | PAD-US at pin: Sac and Fox Oklahoma Tribal Statistical  (TRIBL, owner DESG/DESG, manager TRIB, 481004 ac, Proclamation, PAD id 1604) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11820 | | PAD-US at pin: Ponca Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 106848 ac, Proclamation, PAD id 1602) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11842 | | PAD-US at pin: Osage Reservation (TRIBL, owner DESG/DESG, manager TRIB, 1474579 ac, Proclamation, PAD id 863) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12154 | | PAD-US at pin: Kaw/Ponca joint-use Oklahoma Tribal Stat (TRIBL, owner DESG/DESG, manager TRIB, 70680 ac, Proclamation, PAD id 1610) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12735 | | PAD-US at pin: Cherokee Oklahoma Tribal Statistical Are (TRIBL, owner DESG/DESG, manager TRIB, 4456467 ac, Proclamation, PAD id 1585) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13077 | | PAD-US at pin: Kiowa-Comanche-Apache-Ft Sill Apache/Cad (TRIBL, owner DESG/DESG, manager TRIB, 123811 ac, Proclamation, PAD id 1612) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13105 | | PAD-US at pin: CLO Lands (SRMA, owner SLB/STAT, manager SLB, 3238968 ac, Fee, PAD id 237726) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6335 | | PAD-US at pin: Cherokee Oklahoma Tribal Statistical Are (TRIBL, owner DESG/DESG, manager TRIB, 4456467 ac, Proclamation, PAD id 1585) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6336 | | PAD-US at pin: Creek Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 3062681 ac, Proclamation, PAD id 1590) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6337 | | PAD-US at pin: Choctaw Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 6985246 ac, Proclamation, PAD id 1588) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8119 | | PAD-US at pin: Kiowa-Comanche-Apache-Fort Sill Apache O (TRIBL, owner DESG/DESG, manager TRIB, 4114577 ac, Proclamation, PAD id 1595) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8128 | | PAD-US at pin: Cheyenne and Arapaho Oklahoma Tribal Sta (TRIBL, owner DESG/DESG, manager TRIB, 5232757 ac, Proclamation, PAD id 1586) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8134 | | PAD-US at pin: Choctaw Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 6985246 ac, Proclamation, PAD id 1588) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8272 | | PAD-US at pin: Creek Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 3062681 ac, Proclamation, PAD id 1590) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8639 | | PAD-US at pin: Osage Reservation (TRIBL, owner DESG/DESG, manager TRIB, 1474579 ac, Proclamation, PAD id 863) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8642 | | PAD-US at pin: Kiowa-Comanche-Apache-Fort Sill Apache O (TRIBL, owner DESG/DESG, manager TRIB, 4114577 ac, Proclamation, PAD id 1595) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8644 | | PAD-US at pin: Cheyenne and Arapaho Oklahoma Tribal Sta (TRIBL, owner DESG/DESG, manager TRIB, 5232757 ac, Proclamation, PAD id 1586) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8648 | | PAD-US at pin: Choctaw Oklahoma Tribal Statistical Area (TRIBL, owner DESG/DESG, manager TRIB, 6985246 ac, Proclamation, PAD id 1588) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8649 | | PAD-US at pin: Cherokee Oklahoma Tribal Statistical Are (TRIBL, owner DESG/DESG, manager TRIB, 4456467 ac, Proclamation, PAD id 1585) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8650 | | PAD-US at pin: Osage Reservation (TRIBL, owner DESG/DESG, manager TRIB, 1474579 ac, Proclamation, PAD id 863) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8651 | | PAD-US at pin: Cherokee Oklahoma Tribal Statistical Are (TRIBL, owner DESG/DESG, manager TRIB, 4456467 ac, Proclamation, PAD id 1585) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10486 | | PAD-US at pin: Lakeview District Lakeview Field Office (PUB, owner BLM/FED, manager BLM, 3203414 ac, Fee, PAD id 2062) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10612 | | PAD-US at pin: Deschutes National Forest (NF, owner USFS/FED, manager USFS, 1612322 ac, Fee, PAD id 2892) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12986 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13078 | | PAD-US at pin: Mt. Hood National Forest (NF, owner USFS/FED, manager USFS, 45405 ac, Fee, PAD id 2907) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13096 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13097 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5456 | | PAD-US at pin: Forest Development Fund (Board Of Forest (SRMA, owner SDNR/STAT, manager SLB, 627317 ac, Fee, PAD id 241270) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5459 | | PAD-US at pin: Forest Development Fund (Board Of Forest (SRMA, owner SDNR/STAT, manager SLB, 627317 ac, Fee, PAD id 241270) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5460 | | PAD-US at pin: Forest Development Fund (Board Of Forest (SRMA, owner SDNR/STAT, manager SLB, 627317 ac, Fee, PAD id 241270) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9983 | | PAD-US at pin: Nw Oregon Marys Peak Field Office (PUB, owner BLM/FED, manager BLM, 128244 ac, Fee, PAD id 2071) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10545 | | PAD-US at pin: Beaver River - deCoppett (SOTH, owner SDNR/STAT, manager UNK, 1825 ac, Fee, PAD id 57103); Decoppet Estate (SOTH, owner SDNR/STAT, manager SDNR, 1825 ac, Fee, PAD id 78857) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9229 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9759 | | PAD-US at pin: Fort Johnson Marine Resources Center (SRMA, owner SDNR/STAT, manager SDNR, 98 ac, Fee, PAD id 254177) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12775 | | PAD-US at pin: Humboldt Hatchery (SOTH, owner SFW/STAT, manager SFW, 240 ac, Fee, PAD id 255785) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13364 | | PAD-US at pin: Hiwassee Refuge (SCA, owner UNK/UNK, manager SFW, 8192 ac, Fee, PAD id 256223) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3941 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6237 | | PAD-US at pin: Sherwood Forest State Natural Area (SCA, owner OTHS/STAT, manager OTHS, 4061 ac, Fee, PAD id 255823) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6247 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10274 | | PAD-US at pin: Lower Rio Grande Valley National Wildlif (NWR, owner FWS/FED, manager FWS, 88266 ac, Fee, PAD id 4060); Lower Rio Grande Valley National Wildlif (NWR, owner FWS/FED, manager FWS, 89898 ac, Fee, PAD id 5015) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10276 | | PAD-US at pin: Washington-on-the-Brazos State Historic  (SHCA, owner OTHS/STAT, manager OTHS, 295 ac, Fee, PAD id 261746) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6538 | | PAD-US at pin: Washington-on-the-Brazos State Historic  (SHCA, owner OTHS/STAT, manager OTHS, 295 ac, Fee, PAD id 261746) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10963 | | PAD-US at pin: Utah State Department of Wildlife Resour (SCA, owner SDNR/STAT, manager SFW, 18 ac, Fee, PAD id 264098) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11095 | | PAD-US at pin: Utah State Department of Wildlife Resour (SCA, owner SDNR/STAT, manager SFW, 264 ac, Fee, PAD id 264142) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11186 | | PAD-US at pin: Uintah and Ouray Reservation (TRIBL, owner DESG/DESG, manager TRIB, 4366696 ac, Proclamation, PAD id 1086) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11207 | | PAD-US at pin: Price Field Office (PUB, owner BLM/FED, manager BLM, 2480295 ac, Fee, PAD id 2107) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11921 | | PAD-US at pin: Cedar City Field Office (PUB, owner BLM/FED, manager BLM, 2093236 ac, Fee, PAD id 2095) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5787 | | PAD-US at pin: Moab Field Office (PUB, owner BLM/FED, manager BLM, 1860872 ac, Fee, PAD id 2103) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5875 | | PAD-US at pin: Price Field Office (PUB, owner BLM/FED, manager BLM, 2480295 ac, Fee, PAD id 2107) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5957 | | PAD-US at pin: Fillmore Field Office (PUB, owner BLM/FED, manager BLM, 4420134 ac, Fee, PAD id 2097) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5972 | | PAD-US at pin: Salt Lake  Field Office (PUB, owner BLM/FED, manager BLM, 3284358 ac, Fee, PAD id 2113) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5998 | | PAD-US at pin: Salt Lake  Field Office (PUB, owner BLM/FED, manager BLM, 3284358 ac, Fee, PAD id 2113) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6060 | | PAD-US at pin: Fillmore Field Office (PUB, owner BLM/FED, manager BLM, 4420134 ac, Fee, PAD id 2097) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9961 | | PAD-US at pin: George Washington Memorial Parkway (SDA, owner NPS/FED, manager NPS, 3477 ac, Fee, PAD id 3549); George Washington Memorial Parkway (NP, owner NPS/FED, manager NPS, 2776 ac, Fee, PAD id 271111) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3100 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 3028 ac, Fee, PAD id 61248) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3102 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 3028 ac, Fee, PAD id 61248) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3118 | | PAD-US at pin: Bomoseen State Park (SP, owner SPR/STAT, manager UNK, 296 ac, Fee, PAD id 60986) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3121 | | PAD-US at pin: Burton Island State Park (SP, owner SPR/STAT, manager UNK, 17 ac, Fee, PAD id 61004) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3122 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 5952 ac, Fee, PAD id 61252) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3129 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3135 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 4664 ac, Fee, PAD id 61250) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3139 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 5952 ac, Fee, PAD id 61252) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3142 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 3215 ac, Fee, PAD id 61267) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3144 | | PAD-US at pin: Mt. Mansfield State Forest (SRMA, owner SPR/STAT, manager UNK, 47 ac, Fee, PAD id 61387) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3145 | | PAD-US at pin: Groton State Forest (SRMA, owner SPR/STAT, manager UNK, 5952 ac, Fee, PAD id 61252) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3149 | | PAD-US at pin: Mt. Mansfield State Forest (SRMA, owner SPR/STAT, manager UNK, 369 ac, Fee, PAD id 61351) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3150 | | PAD-US at pin: Mt. Mansfield State Forest (SRMA, owner SPR/STAT, manager UNK, 75 ac, Fee, PAD id 61378) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11145 | | PAD-US at pin: Washington State Department of Fish & Wi (SRMA, owner SDNR/STAT, manager SFW, 91115 ac, Fee, PAD id 271376) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12296 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12315 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12316 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12565 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12566 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12569 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13516 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5565 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5566 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5567 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5568 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5569 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5571 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5572 | | PAD-US at pin: Olympic National Forest (NF, owner USFS/FED, manager USFS, 631799 ac, Fee, PAD id 2916) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5576 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10184 | | PAD-US at pin: Western Prairie Habitat Restoration (SCA, owner SDNR/STAT, manager SDNR, 938 ac, Fee, PAD id 72056); Deer Park State Habitat Area-Western Pra (SREC, owner SDNR/STAT, manager SDNR, 210 ac, Fee, PAD id 272516) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10192 | | PAD-US at pin: Stream Bank Protection Fee Program (SCA, owner SDNR/STAT, manager SDNR, 5131 ac, Fee, PAD id 72036); Kinnickinnic River Fishery Area (SREC, owner SDNR/STAT, manager SDNR, 1218 ac, Fee, PAD id 272601) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10194 | | PAD-US at pin: Western Prairie Habitat Restoration (SCA, owner SDNR/STAT, manager SDNR, 938 ac, Fee, PAD id 72056); Erin Prairie State Habitat Area-Western  (SREC, owner SDNR/STAT, manager SDNR, 148 ac, Fee, PAD id 272541) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10195 | | PAD-US at pin: Western Prairie Habitat Restoration (SCA, owner SDNR/STAT, manager SDNR, 938 ac, Fee, PAD id 72056); New Richmond State Habitat Area-Western  (SREC, owner SDNR/STAT, manager SDNR, 77 ac, Fee, PAD id 272686) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10198 | | PAD-US at pin: Kinnickinnic River Fishery Area (SREC, owner SDNR/STAT, manager SDNR, 1218 ac, Fee, PAD id 272601) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10644 | | PAD-US at pin: Rem-Love Creek (SREC, owner SDNR/STAT, manager SDNR, 578 ac, Fee, PAD id 272794) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11230 | | PAD-US at pin: Statewide Wildlife Habitat (SCA, owner SDNR/STAT, manager SDNR, 2774 ac, Fee, PAD id 72055); Statewide Wildlife Habitat - Wd (SREC, owner SDNR/STAT, manager SDNR, 1573 ac, Fee, PAD id 272930) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-1458 | | PAD-US at pin: John Michael Kohler State Park (SP, owner SDNR/STAT, manager SDNR, 751 ac, Fee, PAD id 272345) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4242 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4260 | | PAD-US at pin: Kettle Moraine State Forest-Northern Uni (SRMA, owner SDNR/STAT, manager SDNR, 30180 ac, Fee, PAD id 273047) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4261 | | PAD-US at pin: Kettle Moraine State Forest-Northern Uni (SRMA, owner SDNR/STAT, manager SDNR, 30180 ac, Fee, PAD id 273047) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9829 | | PAD-US at pin: Extensive Wl Habitat - Public Hunting Gr (SCA, owner CNTY/LOC, manager CNTY, 10834 ac, Fee, PAD id 67034); Extensive Wl Habitat - Se (SREC, owner SDNR/STAT, manager SDNR, 700 ac, Fee, PAD id 272547) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12056 | | PAD-US at pin: Byrd Pool Recreation Area (REC, owner UNK/UNK, manager USACE, 681 ac, Fee, PAD id 2445) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10818 | | PAD-US at pin: Caribou National Forest (NF, owner USFS/FED, manager USFS, 971046 ac, Fee, PAD id 2778) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10822 | | PAD-US at pin: State Lands 1111115411 (SRMA, owner SLB/STAT, manager SLB, 639 ac, Fee, PAD id 278105) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10824 | | PAD-US at pin: Bighorn National Forest (NF, owner USFS/FED, manager USFS, 1105122 ac, Fee, PAD id 2695) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13244 | | PAD-US at pin: Wind River Reservation (TRIBL, owner DESG/DESG, manager TRIB, 2255744 ac, Proclamation, PAD id 1096) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6169 | | PAD-US at pin: Wind River Reservation (TRIBL, owner DESG/DESG, manager TRIB, 2255744 ac, Proclamation, PAD id 1096); Sand Mesa Wildlife Habitat Management Ar (SCA, owner SFW/STAT, manager SFW, 21133 ac, Fee, PAD id 273818) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6219 | | PAD-US at pin: Seedskadee National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 25985 ac, Fee, PAD id 4322); Seedskadee National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 25985 ac, Fee, PAD id 5279) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12311 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12517 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12962 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13473 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13533 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13558 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6457 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6459 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9918 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11214 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11355 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11356 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11394 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11874 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11960 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12093 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12753 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12754 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12762 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12764 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7437 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7444 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7522 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12616 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7375 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4367 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12125 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12772 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7459 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7460 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7858 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12230 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13485 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4584 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7813 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7818 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7825 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7827 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7829 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7830 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7831 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7832 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4667 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6972 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6973 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6974 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5718 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7386 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7866 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9177 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9179 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9180 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9181 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9182 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9183 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9184 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9186 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9189 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9191 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10354 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10447 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2374 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8388 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6388 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6389 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4774 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4776 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4778 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6808 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6809 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6813 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6814 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6815 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6817 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6821 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6822 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13547 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10575 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10576 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11881 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11882 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12193 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12194 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12195 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12196 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12197 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12198 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12199 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12200 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12201 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12202 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12203 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12205 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12206 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12207 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7072 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7098 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7115 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7120 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7124 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7125 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7126 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7128 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7129 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7131 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7133 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7629 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8513 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8514 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8515 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8516 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8517 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8518 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8519 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9849 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11216 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10259 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10398 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3851 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6837 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6847 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6852 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6963 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12782 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12783 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12784 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5639 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5743 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5746 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5748 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7143 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8524 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8526 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8527 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8528 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8531 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8532 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8534 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8535 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8536 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8537 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8538 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8539 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8540 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8542 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8543 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8545 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8546 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8547 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8548 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8549 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8550 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8552 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8553 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8554 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8555 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8558 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8559 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8560 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8561 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3374 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3492 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4010 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4012 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4013 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4025 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4027 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4931 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4936 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4980 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11797 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11821 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13242 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13249 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13274 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13276 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13278 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13280 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13283 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13285 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13289 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13290 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13291 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13301 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13303 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13304 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13305 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13306 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13320 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13321 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13322 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13323 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13325 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13363 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13367 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13368 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13405 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13407 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13411 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13413 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13414 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13448 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13450 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13451 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13453 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13454 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13464 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13467 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13469 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13470 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13477 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13478 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13479 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-2001 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8070 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10951 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11245 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11837 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8641 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8643 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8645 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8647 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10610 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10613 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12977 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12980 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12990 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12993 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12994 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13070 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13016 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13198 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11869 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13514 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6273 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10272 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10273 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10275 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12109 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6560 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6582 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6601 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6602 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12069 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12998 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13590 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13591 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13596 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5844 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9931 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10300 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10711 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12567 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13391 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5570 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12052 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12053 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12054 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12055 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9739 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9915 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10817 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10821 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10823 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10825 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12720 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9652 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9334 | | PAD-US at pin: Cerro Gordo County Waterfowl Production  (RMA, owner FWS/FED, manager FWS, 2719 ac, Fee, PAD id 3710); Cerro Gordo County Waterfowl Production  (RMA, owner FWS/FED, manager FWS, 2719 ac, Fee, PAD id 4644) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9187 | | PAD-US at pin: John Brown Memorial Park (LP, owner CITY/LOC, manager CITY, 45 ac, Fee, PAD id 117970) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9190 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8287 | | PAD-US at pin: Capital Park (LP, owner UNK/UNK, manager UNK, 22 ac, Fee, PAD id 207532) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12925 | | PAD-US at pin: Missoula Field Office (PUB, owner BLM/FED, manager BLM, 175579 ac, Fee, PAD id 1971) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10511 | | PAD-US at pin: Suggs Mill Pond Game Land (SCA, owner SFW/STAT, manager UNK, 11001 ac, Fee, PAD id 214781); NC Land and Water Fund Project (SOTH, owner OTHS/STAT, manager UNK, 46389 ac, Other, PAD id 215289) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4011 | | PAD-US at pin: Wehrspann Recreation Area (REC, owner UNK/UNK, manager USACE, 1196 ac, Fee, PAD id 2590) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13319 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13370 | | PAD-US at pin: Las Vegas Field Office (PUB, owner BLM/FED, manager BLM, 2378020 ac, Fee, PAD id 2028) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-8646 | | PAD-US at pin: Kaw/Ponca joint-use Oklahoma Tribal Stat (TRIBL, owner DESG/DESG, manager TRIB, 70680 ac, Proclamation, PAD id 1610); Pioneer Woman Monument (LP, owner CITY/LOC, manager CITY, 11 ac, Fee, PAD id 119743); CLO Lands (SRMA, owner SLB/STAT, manager SLB, 3238968 ac, Fee, PAD id 237726) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |

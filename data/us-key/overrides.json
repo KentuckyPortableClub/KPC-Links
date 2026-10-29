@@ -422,10 +422,17 @@
   },
   "US-1836": {
    "join": [
-    "The Barnacle Historic State Park"
+    "The Barnacle Historic State Park",
+    "sgfla34"
    ],
-   "why": "Oct 18 review: same place, official name written differently",
-   "when": "2026-10-18"
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 5:55 PM: waiting-room piece 'The Barnacle Historic State Park' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29",
+   "fp": {
+    "sgfla34": [
+     "The Barnacle Historic State Park",
+     10
+    ]
+   }
   },
   "US-1918": {
    "join": [
@@ -534,10 +541,22 @@
   },
   "US-6402": {
    "join": [
-    "Lava Tree State Monument"
+    "Lava Tree State Monument",
+    "sghia47",
+    "sghic47"
    ],
-   "why": "Oct 18 review: same place, official name written differently",
-   "when": "2026-10-18"
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 5:55 PM: waiting-room piece 'LAVA TREE STATE MONUMENT' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'LAVA TREE STATE MONUMENT' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29",
+   "fp": {
+    "sghia47": [
+     "LAVA TREE STATE MONUMENT",
+     18
+    ],
+    "sghic47": [
+     "LAVA TREE STATE MONUMENT",
+     18
+    ]
+   }
   },
   "US-6421": {
    "join": [
@@ -748,14 +767,19 @@
   "US-13570": {
    "join": [
     "Gladwin Game Unit and Field Trial Area of State Forest",
-    "sgmib88"
+    "sgmib88",
+    "mid783"
    ],
-   "why": "Oct 18 review: same place, official name written differently · Oct 29 3:05 PM: held piece 'Gladwin State Game Area' = YES (chat 11 agency page, chat 2 recheck)",
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 3:05 PM: held piece 'Gladwin State Game Area' = YES (chat 11 agency page, chat 2 recheck) · Oct 29 5:55 PM: waiting-room piece 'Gladwin State Game Area' YES (chat 11, rechecked: name + kind + size)",
    "when": "2026-10-29",
    "fp": {
     "sgmib88": [
      "Gladwin State Game Area",
      1354
+    ],
+    "mid783": [
+     "Gladwin State Game Area",
+     159
     ]
    },
    "approx": 1
@@ -1266,10 +1290,17 @@
   },
   "US-9408": {
    "join": [
-    "Gallagher / Springfield Fen"
+    "Gallagher / Springfield Fen",
+    "sgohd84"
    ],
-   "why": "Oct 18 review: same place, official name written differently",
-   "when": "2026-10-18"
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 5:55 PM: waiting-room piece 'GalSpfFenNP' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29",
+   "fp": {
+    "sgohd84": [
+     "GalSpfFenNP",
+     212
+    ]
+   }
   },
   "US-9411": {
    "join": [
@@ -1452,8 +1483,11 @@
    "join": [
     "Jasper State Recreation Site"
    ],
-   "why": "Oct 18 review: same place, official name written differently",
-   "when": "2026-10-18"
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 5:55 PM: 'Jasper Meadows Park' NO (chat 11)",
+   "when": "2026-10-29",
+   "no": [
+    "sgore12456"
+   ]
   },
   "US-9560": {
    "join": [
@@ -2526,8 +2560,22 @@
    "no": [
     "Upper Delta Wildlife Management Area"
    ],
-   "why": "a different WMA, pin well outside (hand review Oct 22 (shadow check))",
-   "when": "2026-10-22"
+   "why": "a different WMA, pin well outside (hand review Oct 22 (shadow check)) · Oct 29 5:55 PM: waiting-room piece 'W. L. Holland Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'W. L. Holland Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "166137",
+    "166139"
+   ],
+   "fp": {
+    "166137": [
+     "W. L. Holland Wildlife Management Area",
+     1783
+    ],
+    "166139": [
+     "W. L. Holland Wildlife Management Area",
+     296
+    ]
+   }
   },
   "US-4015": {
    "no": [
@@ -4089,8 +4137,17 @@
   },
   "US-0883": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 5:55 PM: waiting-room piece 'Flathead, Montana National Wild and Scenic River' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "fwsr198"
+   ],
+   "fp": {
+    "fwsr198": [
+     "Flathead, Montana National Wild and Scenic River",
+     27500
+    ]
+   }
   },
   "US-10524": {
    "join": [
@@ -7365,7 +7422,10 @@
     "Kohler Park Dunes"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · Oct 29 5:55 PM: potamap lead + chat 11 YES as a PIECE (the Kohler half)",
+   "join": [
+    "John Michael Kohler State Park"
+   ]
   },
   "US-9598": {
    "alias": [
@@ -7669,10 +7729,1456 @@
   },
   "US-12068": {
    "no": [
-    "272833"
+    "272833",
+    "wid709181",
+    "sgwia709181",
+    "sgwid19695105"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 3:05 PM: 'Rib River Fishery Area' is not this park (chat 11 agency page)"
+   "why": "Oct 29 3:05 PM: 'Rib River Fishery Area' is not this park (chat 11 agency page) · Oct 29 5:55 PM: 'Rib River Fishery Area' NO (chat 11) · Oct 29 5:55 PM: 'Rib River Fishery Area' NO (chat 11) · Oct 29 5:55 PM: 'Rib River Fishery Area' NO (chat 11)"
+  },
+  "US-0150": {
+   "no": [
+    "fws448"
+   ],
+   "why": "Oct 29 5:55 PM: 'Kodiak Office' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-7191": {
+   "join": [
+    "sgaka81",
+    "sgake81",
+    "sgakf81"
+   ],
+   "fp": {
+    "sgaka81": [
+     "Anchor River State Recreation Site",
+     37
+    ],
+    "sgake81": [
+     "Anchor River State Recreation Site",
+     37
+    ],
+    "sgakf81": [
+     "Anchor River State Recreation Site",
+     37
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Anchor River State Recreation Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Anchor River State Recreation Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Anchor River State Recreation Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7252": {
+   "join": [
+    "157452"
+   ],
+   "fp": {
+    "157452": [
+     "Halibut Point State Recreation Park",
+     22
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Halibut Point State Recreation Park' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11032": {
+   "join": [
+    "166161"
+   ],
+   "fp": {
+    "166161": [
+     "Old Cahawba Prairie Tract",
+     3024
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Old Cahawba Prairie Tract' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0171": {
+   "join": [
+    "4704",
+    "3765"
+   ],
+   "fp": {
+    "4704": [
+     "Dale Bumpers White River National Wildlife Refuge",
+     156927
+    ],
+    "3765": [
+     "Dale Bumpers White River National Wildlife Refuge",
+     156769
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Dale Bumpers White River National Wildlife Refuge' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Dale Bumpers White River National Wildlife Refuge' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0854": {
+   "join": [
+    "3163"
+   ],
+   "fp": {
+    "3163": [
+     "President William Jefferson Clinton Birthplace Home National Historic Site",
+     1
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'President William Jefferson Clinton Birthplace Home National Historic Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1106": {
+   "join": [
+    "166829"
+   ],
+   "fp": {
+    "166829": [
+     "Old Washington Historic State Park",
+     1
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Old Washington Historic State Park' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0063": {
+   "no": [
+    "fsod24"
+   ],
+   "why": "Oct 29 5:55 PM: 'Giant Sequoia National Monument' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-11908": {
+   "no": [
+    "rst10927"
+   ],
+   "why": "Oct 29 5:55 PM: 'North Desert' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-1660": {
+   "no": [
+    "52976"
+   ],
+   "why": "Oct 29 5:55 PM: 'Day Pond State Park and Salmon River State Forest' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-7548": {
+   "no": [
+    "52844",
+    "52847",
+    "52843",
+    "52845",
+    "52846"
+   ],
+   "why": "Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-1744": {
+   "no": [
+    "52035"
+   ],
+   "why": "Oct 29 5:55 PM: 'Wilmington and Western Railroad' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-12417": {
+   "no": [
+    "sggac745",
+    "sggaa9",
+    "194396"
+   ],
+   "why": "Oct 29 5:55 PM: 'RICH MOUNTAIN WMA' NO (chat 11) · Oct 29 5:55 PM: 'RICH MOUNTAIN WMA' NO (chat 11) · Oct 29 5:55 PM: 'Rich Mountain Wildlife Management Area' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-7899": {
+   "join": [
+    "194359"
+   ],
+   "fp": {
+    "194359": [
+     "Coosawattee-Carters Lake Wildlife Management Area",
+     4132
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Coosawattee-Carters Lake Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12298": {
+   "no": [
+    "rst13894"
+   ],
+   "why": "Oct 29 5:55 PM: 'Gamlin Lake' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-4476": {
+   "no": [
+    "2675"
+   ],
+   "why": "Oct 29 5:55 PM: 'Nezperce National Forest' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-4477": {
+   "join": [
+    "2663"
+   ],
+   "fp": {
+    "2663": [
+     "Kaniksu National Forest",
+     898213
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1021": {
+   "join": [
+    "70911"
+   ],
+   "fp": {
+    "70911": [
+     "Sangchris Lake State Resource Area",
+     3071
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Sangchris Lake State Resource Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10237": {
+   "join": [
+    "200897",
+    "200896"
+   ],
+   "fp": {
+    "200897": [
+     "Mongoquinong Nature Preserve Sawmill Fen",
+     38
+    ],
+    "200896": [
+     "Mongoquinong Nature Preserve Buckbean Fen",
+     37
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Sawmill Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Buckbean Fen' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6978": {
+   "join": [
+    "200679"
+   ],
+   "fp": {
+    "200679": [
+     "Vincennes State Historic Site - Fort Knox",
+     35
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Vincennes State Historic Site - Fort Knox' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-8386": {
+   "join": [
+    "59169",
+    "59167",
+    "59168",
+    "59171",
+    "59170"
+   ],
+   "fp": {
+    "59169": [
+     "Fort Revere",
+     2
+    ],
+    "59167": [
+     "Fort Revere",
+     1
+    ],
+    "59168": [
+     "Fort Revere",
+     1
+    ],
+    "59171": [
+     "Fort Revere",
+     1
+    ],
+    "59170": [
+     "Fort Revere",
+     0
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Fort Revere' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Fort Revere' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Fort Revere' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Fort Revere' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Fort Revere' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-4767": {
+   "join": [
+    "9291"
+   ],
+   "fp": {
+    "9291": [
+     "Pocomoke River State Forest",
+     599
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Pocomoke River State Forest' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7735": {
+   "join": [
+    "56479"
+   ],
+   "fp": {
+    "56479": [
+     "CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland",
+     2
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7761": {
+   "join": [
+    "56565"
+   ],
+   "fp": {
+    "56565": [
+     "PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands",
+     550
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1523": {
+   "join": [
+    "sgmia53"
+   ],
+   "fp": {
+    "sgmia53": [
+     "William Mitchell State Park",
+     776
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'William Mitchell State Park' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1550": {
+   "join": [
+    "sgmia24"
+   ],
+   "fp": {
+    "sgmia24": [
+     "Van Buren State Park Rail Trail",
+     110
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Van Buren State Park Rail Trail' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6660": {
+   "join": [
+    "71455"
+   ],
+   "fp": {
+    "71455": [
+     "Devil's Lake and River Flooding State Wildlife Management Area",
+     911
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Devil's Lake and River Flooding State Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6675": {
+   "join": [
+    "71462",
+    "sgmib79"
+   ],
+   "fp": {
+    "71462": [
+     "Fraser Township No. 2 State Game Area",
+     33
+    ],
+    "sgmib79": [
+     "Fraser Township No. 2 State Game Area",
+     33
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Fraser Township No. 2 State Game Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Fraser Township No. 2 State Game Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6712": {
+   "join": [
+    "mid499"
+   ],
+   "fp": {
+    "mid499": [
+     "Keeler Township State Game Area",
+     1038
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Keeler Township State Game Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6763": {
+   "join": [
+    "71484"
+   ],
+   "fp": {
+    "71484": [
+     "Portage Marsh State Wildilfe Management Area",
+     147
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Portage Marsh State Wildilfe Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6804": {
+   "join": [
+    "sgmib224"
+   ],
+   "fp": {
+    "sgmib224": [
+     "Waterloo Wildlife Unit of Waterloo State Recreation Area",
+     5776
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Waterloo Wildlife Unit of Waterloo State Recreation Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12812": {
+   "join": [
+    "sgmna1461"
+   ],
+   "fp": {
+    "sgmna1461": [
+     "Root River WMA: Main Unit",
+     896
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Root River WMA: Main Unit' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13619": {
+   "join": [
+    "sgmna1073",
+    "sgmna1761"
+   ],
+   "fp": {
+    "sgmna1073": [
+     "Whitefield WMA: Main Unit",
+     254
+    ],
+    "sgmna1761": [
+     "Whitefield WMA: Northwest Unit",
+     234
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Whitefield WMA: Main Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Whitefield WMA: Northwest Unit' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13161": {
+   "no": [
+    "210560"
+   ],
+   "why": "Oct 29 5:55 PM: 'Roaring River Conservation Area' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-1791": {
+   "join": [
+    "sgmoa1475"
+   ],
+   "fp": {
+    "sgmoa1475": [
+     "Annie and Abel Van Meter State Park",
+     1124
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Annie and Abel Van Meter State Park' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-4839": {
+   "join": [
+    "210771"
+   ],
+   "fp": {
+    "210771": [
+     "Davis (Lester R.) Memorial Forest",
+     79
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-5713": {
+   "join": [
+    "sgmoa1626"
+   ],
+   "fp": {
+    "sgmoa1626": [
+     "Jay Nixon Backcountry",
+     1236
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Jay Nixon Backcountry' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7084": {
+   "join": [
+    "mszw502",
+    "mszw498",
+    "mszw497",
+    "mszw516",
+    "mszw519",
+    "mszw518",
+    "mszw500",
+    "mszw517",
+    "mszw501"
+   ],
+   "fp": {
+    "mszw502": [
+     "PHIL BRYANT WMA - TEN POINT",
+     6477
+    ],
+    "mszw498": [
+     "PHIL BRYANT WMA - BUCK BAYOU",
+     3163
+    ],
+    "mszw497": [
+     "PHIL BRYANT WMA - GOOSELAKE",
+     2057
+    ],
+    "mszw516": [
+     "PHIL BRYANT WMA - BACKWOODS 1",
+     1306
+    ],
+    "mszw519": [
+     "PHIL BRYANT WMA - BACKWOODS 4",
+     1287
+    ],
+    "mszw518": [
+     "PHIL BRYANT WMA - BACKWOODS 3",
+     960
+    ],
+    "mszw500": [
+     "PHIL BRYANT WMA - GOOSELAKE",
+     833
+    ],
+    "mszw517": [
+     "PHIL BRYANT WMA - BACKWOODS 2",
+     659
+    ],
+    "mszw501": [
+     "PHIL BRYANT WMA - GOOSELAKE",
+     330
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - TEN POINT' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - BUCK BAYOU' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - GOOSELAKE' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - BACKWOODS 1' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - BACKWOODS 4' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - BACKWOODS 3' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - GOOSELAKE' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - BACKWOODS 2' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'PHIL BRYANT WMA - GOOSELAKE' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-2739": {
+   "join": [
+    "sgnca21239"
+   ],
+   "fp": {
+    "sgnca21239": [
+     "Lake James State Park Dedicated Nature Preserve",
+     299
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Lake James State Park Dedicated Nature Preserve' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6893": {
+   "join": [
+    "sgncb17"
+   ],
+   "fp": {
+    "sgncb17": [
+     "Chowan Swamp",
+     33769
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Chowan Swamp' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12736": {
+   "join": [
+    "215830",
+    "216188"
+   ],
+   "fp": {
+    "215830": [
+     "Gifford Wildlife Management Area",
+     1531
+    ],
+    "216188": [
+     "Gifford Wildlife Management Area",
+     1480
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Gifford Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Gifford Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0329": {
+   "join": [
+    "4343"
+   ],
+   "fp": {
+    "4343": [
+     "Silvio O. Conte National Fish And Wildlife Refuge",
+     7496
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Silvio O. Conte National Fish And Wildlife Refuge' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0180": {
+   "join": [
+    "226907",
+    "226909",
+    "226910",
+    "226911"
+   ],
+   "fp": {
+    "226907": [
+     "Twin Lights Lighthouse Historic Site",
+     2
+    ],
+    "226909": [
+     "Twin Lights Lighthouse Historic Site",
+     0
+    ],
+    "226910": [
+     "Twin Lights Lighthouse Historic Site",
+     0
+    ],
+    "226911": [
+     "Twin Lights Lighthouse Historic Site",
+     0
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Twin Lights Lighthouse Historic Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Twin Lights Lighthouse Historic Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Twin Lights Lighthouse Historic Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Twin Lights Lighthouse Historic Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-8056": {
+   "no": [
+    "216668"
+   ],
+   "why": "Oct 29 5:55 PM: 'Turkey Swamp Park' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-13038": {
+   "no": [
+    "hma150"
+   ],
+   "why": "Oct 29 5:55 PM: 'Little Owyhee' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-2634": {
+   "join": [
+    "sgnve1",
+    "sgnve28"
+   ],
+   "fp": {
+    "sgnve1": [
+     "Mormon Station Historic State Monument",
+     4
+    ],
+    "sgnve28": [
+     "Mormon Station Historic State Monument",
+     1
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Mormon Station Historic State Monument' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mormon Station Historic State Monument' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-2057": {
+   "join": [
+    "sgnyb442",
+    "sgnyb443"
+   ],
+   "fp": {
+    "sgnyb442": [
+     "Franny Reese Preserve",
+     250
+    ],
+    "sgnyb443": [
+     "Franny Reese Preserve",
+     0
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1951": {
+   "join": [
+    "sgoha210"
+   ],
+   "fp": {
+    "sgoha210": [
+     "OhRvFkdRnSP",
+     15
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'OhRvFkdRnSP' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10018": {
+   "no": [
+    "241251"
+   ],
+   "why": "Oct 29 5:55 PM: 'Silver Creek Park' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-10055": {
+   "join": [
+    "rma11016",
+    "rst11016"
+   ],
+   "fp": {
+    "rma11016": [
+     "Cline Buttes OHV Area - Play Area",
+     62
+    ],
+    "rst11016": [
+     "Cline Buttes OHV Area - Play Area",
+     62
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10496": {
+   "join": [
+    "rma11233",
+    "rst11233"
+   ],
+   "fp": {
+    "rma11233": [
+     "Sharps Creek Recreation Site",
+     29
+    ],
+    "rst11233": [
+     "Sharps Creek Recreation Site",
+     29
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Sharps Creek Recreation Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Sharps Creek Recreation Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10605": {
+   "join": [
+    "241553",
+    "sgorb27"
+   ],
+   "fp": {
+    "241553": [
+     "Muriel O. Ponsler Memorial State Scenic Viewpoint",
+     3
+    ],
+    "sgorb27": [
+     "Muriel O. Ponsler Memorial State Scenic Viewpoint",
+     3
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Muriel O. Ponsler Memorial State Scenic Viewpoint' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Muriel O. Ponsler Memorial State Scenic Viewpoint' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10609": {
+   "join": [
+    "241528"
+   ],
+   "fp": {
+    "241528": [
+     "Bolon Island Tideways State Scenic Corridor",
+     10
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Bolon Island Tideways State Scenic Corridor' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12837": {
+   "join": [
+    "rma11252",
+    "rst11252"
+   ],
+   "fp": {
+    "rma11252": [
+     "East Shore Campground",
+     2
+    ],
+    "rst11252": [
+     "East Shore Campground",
+     2
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12841": {
+   "join": [
+    "rst12757"
+   ],
+   "fp": {
+    "rst12757": [
+     "Fawn Creek Campground",
+     3
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Fawn Creek Campground' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9549": {
+   "join": [
+    "241419"
+   ],
+   "fp": {
+    "241419": [
+     "Golden Townsite State Heritage Site",
+     7
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Golden Townsite State Heritage Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9559": {
+   "join": [
+    "241504"
+   ],
+   "fp": {
+    "241504": [
+     "Lost Creek State Recreation Site",
+     31
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Lost Creek State Recreation Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9570": {
+   "join": [
+    "sgorb410"
+   ],
+   "fp": {
+    "sgorb410": [
+     "Otter Point State Recreation Site",
+     1
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Otter Point State Recreation Site' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10414": {
+   "join": [
+    "sgscc91",
+    "sgscc92",
+    "sgscc93",
+    "sgscc102",
+    "sgscc103"
+   ],
+   "fp": {
+    "sgscc91": [
+     "Wateree River Heritage Preserve and Wildlife Management Area",
+     4459
+    ],
+    "sgscc92": [
+     "Wateree River Heritage Preserve and Wildlife Management Area",
+     4459
+    ],
+    "sgscc93": [
+     "Wateree River Heritage Preserve and Wildlife Management Area",
+     4459
+    ],
+    "sgscc102": [
+     "Wateree River Heritage Preserve and Wildlife Management Area",
+     4459
+    ],
+    "sgscc103": [
+     "Wateree River Heritage Preserve and Wildlife Management Area",
+     4459
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Wateree River Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wateree River Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wateree River Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wateree River Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wateree River Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-3889": {
+   "join": [
+    "sgscc46",
+    "sgscc47",
+    "sgscc48"
+   ],
+   "fp": {
+    "sgscc46": [
+     "Botany Bay Heritage Preserve and Wildlife Management Area",
+     4687
+    ],
+    "sgscc47": [
+     "Botany Bay Heritage Preserve and Wildlife Management Area",
+     4687
+    ],
+    "sgscc48": [
+     "Botany Bay Heritage Preserve and Wildlife Management Area",
+     4687
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Botany Bay Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Botany Bay Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Botany Bay Heritage Preserve and Wildlife Management Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10349": {
+   "no": [
+    "255133"
+   ],
+   "why": "Oct 29 5:55 PM: 'Snake Creek State Recreation Area' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-8188": {
+   "no": [
+    "255303"
+   ],
+   "why": "Oct 29 5:55 PM: 'Indian Creek Recreation Area' NO (chat 11)",
+   "when": "2026-10-29"
+  },
+  "US-6027": {
+   "join": [
+    "rst9580"
+   ],
+   "fp": {
+    "rst9580": [
+     "Topaz Mountain",
+     1603
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Topaz Mountain' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7794": {
+   "join": [
+    "54447"
+   ],
+   "fp": {
+    "54447": [
+     "Goshen Pass State Natural Area Preserve",
+     35
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Goshen Pass State Natural Area Preserve' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12545": {
+   "join": [
+    "sgwab1371",
+    "sgwaf1371"
+   ],
+   "fp": {
+    "sgwab1371": [
+     "Island",
+     0
+    ],
+    "sgwaf1371": [
+     "Island",
+     0
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12549": {
+   "join": [
+    "sgwab1371",
+    "sgwaf1371"
+   ],
+   "fp": {
+    "sgwab1371": [
+     "Island",
+     0
+    ],
+    "sgwaf1371": [
+     "Island",
+     0
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-1449": {
+   "join": [
+    "78258",
+    "78259"
+   ],
+   "fp": {
+    "78258": [
+     "Devils Lake State Park-Iansr 14",
+     40
+    ],
+    "78259": [
+     "Devils Lake State Park-Iansr 9",
+     20
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Devils Lake State Park-Iansr 14' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Devils Lake State Park-Iansr 9' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-4344": {
+   "join": [
+    "273010",
+    "wid710027",
+    "sgwia710027",
+    "sgwid19720470"
+   ],
+   "fp": {
+    "273010": [
+     "Wolf River Bottoms Wildlife Area",
+     3141
+    ],
+    "wid710027": [
+     "Wolf River Bottoms Wildlife Area",
+     3138
+    ],
+    "sgwia710027": [
+     "Wolf River Bottoms Wildlife Area",
+     3138
+    ],
+    "sgwid19720470": [
+     "Wolf River Bottoms Wildlife Area",
+     73
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-4352": {
+   "join": [
+    "wid710112",
+    "sgwia710112",
+    "wid710773",
+    "sgwia710773",
+    "sgwid19665541",
+    "sgwid19665544",
+    "sgwid19665543",
+    "sgwid19665531",
+    "sgwid19665542"
+   ],
+   "fp": {
+    "wid710112": [
+     "Kettle Moraine State Forest-Northern Unit",
+     30183
+    ],
+    "sgwia710112": [
+     "Kettle Moraine State Forest-Northern Unit",
+     30183
+    ],
+    "wid710773": [
+     "Kettle Moraine State Forest-Northern Unit",
+     77
+    ],
+    "sgwia710773": [
+     "Kettle Moraine State Forest-Northern Unit",
+     77
+    ],
+    "sgwid19665541": [
+     "Kettle Moraine State Forest-Northern Unit",
+     74
+    ],
+    "sgwid19665544": [
+     "Kettle Moraine State Forest-Northern Unit",
+     67
+    ],
+    "sgwid19665543": [
+     "Kettle Moraine State Forest-Northern Unit",
+     61
+    ],
+    "sgwid19665531": [
+     "Kettle Moraine State Forest-Northern Unit",
+     54
+    ],
+    "sgwid19665542": [
+     "Kettle Moraine State Forest-Northern Unit",
+     47
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Kettle Moraine State Forest-Northern Unit' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9854": {
+   "join": [
+    "272628",
+    "wid709871",
+    "sgwia709871"
+   ],
+   "fp": {
+    "272628": [
+     "Lima Marsh - Storrs Lake Wildlife Area",
+     2870
+    ],
+    "wid709871": [
+     "Lima Marsh - Storrs Lake Wildlife Area",
+     2867
+    ],
+    "sgwia709871": [
+     "Lima Marsh - Storrs Lake Wildlife Area",
+     2867
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Lima Marsh - Storrs Lake Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Lima Marsh - Storrs Lake Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Lima Marsh - Storrs Lake Wildlife Area' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9855": {
+   "join": [
+    "272671",
+    "wid709887",
+    "sgwia709887",
+    "sgwid19697879",
+    "sgwid19697880",
+    "sgwid19669525",
+    "sgwid19669544",
+    "sgwid19669545",
+    "sgwid19669546",
+    "sgwid19669553",
+    "sgwid19669554",
+    "sgwid19700173",
+    "sgwid19669509",
+    "sgwid19669510",
+    "sgwid19669511",
+    "sgwid19669517",
+    "sgwid19669520",
+    "sgwid19669521",
+    "sgwid19669522",
+    "sgwid19669526",
+    "sgwid19669527",
+    "sgwid19669528",
+    "sgwid19669533",
+    "sgwid19669547",
+    "sgwid19669548",
+    "sgwid19669549",
+    "sgwid19669550",
+    "sgwid19669551",
+    "sgwid19669557",
+    "sgwid19669558",
+    "sgwid19669559",
+    "sgwid19669560",
+    "sgwid19697877",
+    "sgwid19697878",
+    "sgwid19717437",
+    "sgwid19718515",
+    "sgwid19718516",
+    "sgwid19669512",
+    "sgwid19669514",
+    "sgwid19669515",
+    "sgwid19669516",
+    "sgwid19669518",
+    "sgwid19669519",
+    "sgwid19669531",
+    "sgwid19669532",
+    "sgwid19669534",
+    "sgwid19669535",
+    "sgwid19669536",
+    "sgwid19669537",
+    "sgwid19669538",
+    "sgwid19669539",
+    "sgwid19669513",
+    "sgwid19669508",
+    "sgwid19700172",
+    "sgwid19669524",
+    "sgwid19692143",
+    "sgwid19669541",
+    "sgwid19669543",
+    "sgwid19669552",
+    "78189",
+    "sgwid19727151",
+    "sgwid19669523",
+    "sgwid19692142"
+   ],
+   "fp": {
+    "272671": [
+     "Mud Lake Wildlife Area-Columbia",
+     2280
+    ],
+    "wid709887": [
+     "Mud Lake Wildlife Area-Columbia",
+     2277
+    ],
+    "sgwia709887": [
+     "Mud Lake Wildlife Area-Columbia",
+     2277
+    ],
+    "sgwid19697879": [
+     "Mud Lake Wildlife Area-Columbia",
+     42
+    ],
+    "sgwid19697880": [
+     "Mud Lake Wildlife Area-Columbia",
+     42
+    ],
+    "sgwid19669525": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669544": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669545": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669546": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669553": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669554": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19700173": [
+     "Mud Lake Wildlife Area-Columbia",
+     41
+    ],
+    "sgwid19669509": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669510": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669511": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669517": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669520": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669521": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669522": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669526": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669527": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669528": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669533": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669547": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669548": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669549": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669550": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669551": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669557": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669558": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669559": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669560": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19697877": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19697878": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19717437": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19718515": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19718516": [
+     "Mud Lake Wildlife Area-Columbia",
+     40
+    ],
+    "sgwid19669512": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669514": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669515": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669516": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669518": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669519": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669531": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669532": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669534": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669535": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669536": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669537": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669538": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669539": [
+     "Mud Lake Wildlife Area-Columbia",
+     39
+    ],
+    "sgwid19669513": [
+     "Mud Lake Wildlife Area-Columbia",
+     38
+    ],
+    "sgwid19669508": [
+     "Mud Lake Wildlife Area-Columbia",
+     37
+    ],
+    "sgwid19700172": [
+     "Mud Lake Wildlife Area-Columbia",
+     35
+    ],
+    "sgwid19669524": [
+     "Mud Lake Wildlife Area-Columbia",
+     30
+    ],
+    "sgwid19692143": [
+     "Mud Lake Wildlife Area-Columbia",
+     30
+    ],
+    "sgwid19669541": [
+     "Mud Lake Wildlife Area-Columbia",
+     27
+    ],
+    "sgwid19669543": [
+     "Mud Lake Wildlife Area-Columbia",
+     27
+    ],
+    "sgwid19669552": [
+     "Mud Lake Wildlife Area-Columbia",
+     24
+    ],
+    "78189": [
+     "Mud Lake Wildlife Area-Columbia 6",
+     23
+    ],
+    "sgwid19727151": [
+     "Mud Lake Wildlife Area-Columbia",
+     23
+    ],
+    "sgwid19669523": [
+     "Mud Lake Wildlife Area-Columbia",
+     20
+    ],
+    "sgwid19692142": [
+     "Mud Lake Wildlife Area-Columbia",
+     16
+    ]
+   },
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia 6' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mud Lake Wildlife Area-Columbia' YES (chat 11, rechecked: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10790": {
+   "no": [
+    "sgwyc14160"
+   ],
+   "why": "Oct 29 5:55 PM: 'Laramie Peak' NO (chat 11) · Oct 29 5:55 PM: WGFD's own 37,113.6-ac record at the pin (chat 11; the 0-ac sliver stays 'no')",
+   "when": "2026-10-29",
+   "join": [
+    "Laramie Peak"
+   ]
+  },
+  "US-12728": {
+   "no": [
+    "sgwyd10124"
+   ],
+   "why": "Oct 29 5:55 PM: 'Fall Creek' NO (chat 11) · Oct 29 5:55 PM: WGFD's own 632.7-ac record at the pin (chat 11; the 0-ac sliver stays 'no')",
+   "when": "2026-10-29",
+   "join": [
+    "Fall Creek"
+   ]
+  },
+  "US-6848": {
+   "join": [
+    "Polk Memorial State Historic Site"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 5:55 PM: potamap lead + chat 11 YES (older name of the same NC site)"
+  },
+  "US-13409": {
+   "join": [
+    "Belmont Courthouse State Historical Site"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 5:55 PM: potamap lead + chat 11 YES"
+  },
+  "US-10575": {
+   "join": [
+    "Walnut Woods Conservation Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)"
+  },
+  "US-2081": {
+   "why": "Oct 29: 'Iona Island State Park' is not this WMA (chat 11 NO)"
   }
  }
 }
