@@ -1,0 +1,62 @@
+# ISSUES FOR FABLE: Oct 29 1:20 AM pass (chat 10, written Oct 28 ~9:45 PM CDT on Opus)
+Bot-by-bot list of what went wrong in the last 48 hours, what fixed it and what is still open. Sources: the chat-10 inbox (DONE + REPORT TO HQ), chat 11's grade files (`KPC_*_grade_desk.md`, `KPC_KY_Regrade1-3_desk.md`, `KPC_BotTuning_Check_desk.md`, `KPC_Closures_r8_Truth_v10_grade_desk.md`, `KPC_Closures_r9_Truth_KY_v11_grade_desk.md`) and tonight's run results. **OPEN** = what the Fable pass should look at first.
+
+## 0. WAITING ROOM (built tonight on Opus, NOT switched on)
+- **Built:** KPC-Data `.github/scripts/kpc_waiting_room.py` (independent: imports no bot code, never reads a bot's own gate/READY/test fields). One check per kind of file: access, campfed, campstate, campinfo, trails, docs, hours, truth, access-leads, us-key/ca-key, intake, fers (2-fers), pota index, review status files; closures NEVER wait (bad rows taken out, an empty/garbled file holds). Unknown kind of file, a check that cannot run, or any error = HOLD (fail closed). Modes: `check [--promote]` (promotes only with WAITING_ON=1), `replay`, `undo <path>`, `undo-bot <bot> [area]`, `release <path>`. Known answers per bot: `data/waiting/known/*.json`. Replay manifest: `data/waiting/replay.json` (16 real bad outputs from git history + 4 good). **Replay: 20/20 right** (`data/waiting/replay.md`). Check / promote / undo / release tested on a scratch copy.
+- **Not built yet (next Opus step, ~10 min):** the by-hand workflow `kpc-waiting-room.yml` (dispatch only, fetch-depth 0 for the replay, heartbeat: red only if no good run for 24 h); Rule Sheet F in `mapping.md`; wiring any bot to write to `data/waiting/in/` (needs Brandon's GO, bot by bot).
+- **Hard parts / open questions for Fable:**
+  1. **Hours F-H3 holds TODAY's live KY hours file:** 32 of 107 hours lines have no time ('Open year-round', 'Four pull-throughs open year-round', 'Pickleball courts … open year-round'). Chat 11's rule says hours need a day AND a time. Is 'open year-round' park hours (keep, exempt it) or attraction noise (the bot should drop it)? Needs a ruling.
+  2. **2-fers known answers are EMPTY** (`known/fers.json`): chat 2's 18 Kentucky known answers belong there, but spot ids change when an outline changes. Needs a stable key (pair + rounded center?).
+  3. **Docs link re-test needs the network:** without NET=1 every docs file holds (by design). The workflow must run with NET=1 and the polite 2 s/host gap; 20 links per file sampled. Is 20 enough?
+  4. **Thresholds are chat 11's starting numbers** (access far 100 km, drops 30/40/50%, shared URL >20 parks or >10%, 5 shared OFF sizes). Tune after a month of verdicts.
+  5. **Set-level checks** (campground id in two state files) read the other states' LIVE files from disk; when two bots save at once, the order matters. Check the logic.
+  6. **Hours gate drift** (the 24% gate story) is not re-done independently: there is no machine-readable KY hours hand key wired in. Add one?
+  7. **Dead links in replay:** case 7 of chat 11's list (map/rules links that error) holds only as 'unsure' offline; a real dead-link case needs a network replay.
+
+## 1. CLOSURES SUPER-BOT (KPC-Data kpc_closures_bot.py) — **OPEN: still FAILS (46% vs 80%)**
+- Round 1-3 (Oct 28 AM): standing rules filed as closures ('is prohibited', unlicensed vehicles, groups over ten), fragments, George Washington & Jefferson NF Virginia notices under KY, expired items re-dated. Fixed rounds 4-5.
+- Rounds 4-8: hunt closures 0. Wrong guesses: 'script-built page', then 'landing page tiles'. **Real cause (round 9):** KDFWR's 59 WMA pages (data/ky-hunting.json 'wma') are ASP.NET and wrap the whole page in one `<form>`; the reader stripped every `<form>` = 0 rows from all 59 pages. Fixed → hunt 0 → 28, gate 21% → 65%.
+- Round 10: 13 of those 28 were LAST SEASON's quota RESULTS table rows ('Clay WMA | Nov. 1-2 | 29 | 19 | 0.31 | 37% | 1 : 2.5') = 2025 dates. Dropped; 'first Saturday in November / day before / odd-even years / four (4) consecutive days' computed for this season.
+- Round 11: junk was mostly OLD items carried over (kept to their end date / 'taken down' for days): every carried-over item is now re-checked against today's rules. KY: 115 → 60 items, junk gone. **Gate fell to 46%** (15/32) because junk rows had been 'matching'.
+- **OPEN for Fable:** (a) the missing hunt items are Kentucky's hand list's quota DATES for WMAs whose pages do not print them (Kleber, Kentucky River, Higginson-Henry, Beaver Creek, Ballard: Nov 7-8 / Dec 5-6; Peabody Oct 15). Find which KDFWR page prints per-WMA quota dates (the hunting guide PDF? app.fw.ky.gov/Quota?) and add it to the plug; (b) is the gate itself fair? HQ says the hc- items were HQ research (Oct 25), not a live reader, so some may not be on any page; (c) HQ's per-state HUNT PLUG (sources.json, seasons fallback for states with no per-area source) is not built; (d) ONE CLOSURES READER switch waits on the pass.
+
+## 2. PARK TRUTH CHECKER (kpc_truth_bot.py, now v12) — **OPEN: KY+VA+IL v12 test running**
+- v1-v6: '708, 879' read as 879; other units' pages (Green WSR vs Mammoth Cave, Fort Heiman vs Fort Donelson); land grants / history; Levi Jackson's own 896 dropped as 'another park'; map-PDF labels (Cumberland Gap 15 ac, Taylorsville 248). Fixed; KY gate PASS v6.
+- v8-v9: WV statewide '1.4 million acres' on 76 WMAs; VA 66,000 preserves total x13, a 108-ac lake, a 207-ac farm; IL 'within the park' / '4-acre plot' / surrounding wilderness; cross-state parks (Smokies, Big South Fork) compared one state. Fixed (shared numbers, agency pages, part words, whole-park compare). WV PASS.
+- v10-v11: the per-area gate judged a 220-char window, not the sentence; then YEARS and STREET NUMBERS read as acres ('November 10, 1978 Acreage' = 1,978 ac; 'Wildlife Area 24621 North River Road'; '/inpc/area1boone…'): 'acre' matched inside 'Acreage' and 'Area' took a number with no unit. Fixed + 6 permanent known sentences.
+- v11 KY gate FAILED: Kentucky Ridge SF 'consists of 15,251 acres and was acquired by lease in 1930' read as history; Green River NWR: every fws.gov refuge page 404s (FWS moved pages). v12 fixes both (+ FWS refuge home page) + 3 more known sentences.
+- **OPEN for Fable:** read the v12 test (Actions run 40805970008); if KY/VA/IL pass, restart the long run (paused since Oct 28 night). FWS's new page layout may affect every refuge in the queue.
+
+## 3. HOURS / FEES / PERMITS BOT (kpc_hours_bot.py v9) — gate PASS 88% (KY), not on the long run yet
+- v1-v6: sentences cut at 'Nov.', headings, statewide licence prices ($31.71 turkey) and nationwide free-day notices as a park's fee, '$5 million' as a fee, events/questions as hours, over-filtering (163 of 193 'nothing'), a crash (3-tuple pages from truth v4). Fixed over v3-v6.
+- v7-v9: brochure PDFs read as bytes (400 KB slices); parks.ky.gov script pages blank; PDF hyphen breaks; 'open 8-4' without a.m./p.m. Fixed: whole PDF, browser read, hyphen join. Chat 11's last grade: random 12 = 92%.
+- **OPEN:** 'open year-round' lines (see 0.1); Griffith Woods generic permit line; recall 48 of 193 parks.
+
+## 4. CAMPGROUND INFO BOT (kpc_campinfo_bot.py v8) — own fact gate PASS 95%; **OPEN: chat 11's v8 grade not in yet**
+- v1-v7: elevation stored as RV length (4 WMAs; 675 / 980 ft), hunting season as camping season, 'no sewer hook-ups' = sewer true, footer/877 reservation phones, '13 sites' copied onto 9 Forest Service camps, duplicates (Twin Knobs x3), Horse Park fee = '$5 Million Renovation' headline, Energy Lake = Hillman Ferry's page, a useless 'FCC 0 files' cell block, 'needs browser' on 42 records. The big lesson: **v7 passed its own gate while 3 of 4 filled records were wrong** → v8's gate checks the FACTS against kpc-campgrounds.json.
+- Taken OFF the long run (it looped 5 h on KY: merged ids counted as 'left'; the driver now stops a bot after a no-progress chunk).
+
+## 5. ACCESS / PARKING POINTS (KPC-Links kpc_us_access.py, VERSION v3) — **FIXED tonight, counted**
+- Oct 28: 230 then 178 points 100-380 km from their park, LIVE on cards / planner / Kit / the app's NEXT PARK. The 11:45 AM fix spared points 'on the park's own land'; **all 178 were tagged own land** because the park's outline in our key holds a far piece (two Beaver Creek WMAs, Robert Moses x2, Copan…). AND the 13-state rerun reported 'dispatched' at 11:45 AM **never started** (silent failure: no run-list check).
+- Fix: any point 100+ km from the pin is dropped unless a line park; parks with a far outline piece listed in the run notice for chat 2. Rerun (13 states, full) saved: far points **178 → 0** (52 kept on 7 line parks: Katy Trail, Old Erie Canal, Gandy Dancer, Cumberland Trail, Genesee Valley Greenway, Delta Heritage Trail, Upper Salmon River).
+- **OPEN:** chat 2: fix the outlines the notices name (NY 10+ parks incl. US-10284, MN US-12811 + US-4822, PA US-8785/8928/9016, OR US-5461, OK US-6347, ND US-2764, MO US-7680, MI US-6826). Chat 4: rebuild the app packs for the 13 states. Every dispatch is now followed by a run-list check.
+
+## 6. FEDERAL CAMPGROUNDS (KPC-Links kpc_fed_camps.py) — **FIXED tonight, counted**
+- RIDB's state search goes by OFFICE address: 196 rows in the wrong state, 132 ids in two state files. The tune fix only cleaned the states read in that run; the 6-state rerun could not reach the GA/SC, ID/UT/MT/WY doubles.
+- Fix: a final sweep over EVERY saved state file + a count line. Nationwide run: doubled ids **132 → 0** in both repos; KY gate 5/5.
+
+## 7. STATE CAMPGROUNDS, TRAILS, NEW-PARK CATCHERS, CANADA (tuned Oct 28 AM, table in chat-10 inbox 9th pass)
+- kpc-state-camps: a half-answered layer could overwrite a good list; 9 empty files. kpc-us-trails / kpc-state-trails: shorter lines could replace saved ones; 40 pages re-read per park. kpc-new-refs / kpc-ref-check: a short POTA answer could retire parks (now two reads, ≤2% drop). kpc-new-lands: emails for news-only weeks. kpc-state-gis: one timeout dropped a layer. kpc-bot-queue: a failed save could start a job twice. kpc-canada-bounds / kpc-ca-key: 1,539 parks re-fetched; retired CA-2156 still outlined (removed). All gated; no open grade failures known.
+- **OPEN:** state-camps' known answers come from its own Oct 28 lists (they catch a list getting WORSE, not one wrong from the start).
+
+## 8. INTAKE BOT, SCOREBOARD, PARK DETECTIVE (built Oct 28)
+- Intake: a read error became REJECT (SCDNR 'Invalid URL'); Czech AOPK READY on a credit line (terms are 'viewing only'); USACE reservoirs READY (water only); SSSI 'closes 27' counted pin-only matches. Fixed (RETRY never REJECT, known-terms table, water-only verdict). Gate PASS.
+- Scoreboard: matches chat 8's counts on all 30 checked columns.
+- Detective: run 1 'answered' Boiling Springs with the polygon under the pin. Fixed. **OPEN:** chat 11's grade: steps 3 (hub search) and 4 (PAD-US point query) did not open: retry once or report blocked; skip unrelated EEC documents; label a different-site context line.
+
+## 9. THE PATTERNS (for the whole review)
+1. **Bots passed their own gates while wrong** (campground v7, closures 'matching' junk): every gate must check FACTS against an outside key → the Waiting Room's whole point.
+2. **Silent failures:** a dispatch that never started; a 'fix' whose condition never fired (own-land exemption); old items kept alive after a rule changed; a reader that discarded the page (`<form>`). Count the live file after every fix.
+3. **One number, many parks:** statewide totals, shared pages, results tables, copied site counts. A value repeated across many records is almost always wrong.
+4. **Wrong year:** last season's tables, years read as sizes, dates without a year.
+5. **The agency's site changed under us:** FWS refuge pages 404, KDFWR quota page layout, ky-fs-lbl URL.
