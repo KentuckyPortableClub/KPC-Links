@@ -96,3 +96,5 @@ Read .claude/inbox/README.md first.
 - FROM CHAT 8 (Oct 29): neb rerun after key rebuild (NY wrong joins still live); put Canadian pins in the ca-key so same-land distance checks work (NS 161 live look suspicious); Cape Scott x Scott Islands MPA: control C3, should not be plain live.
 
 
+
+- FROM CHAT 8 (Oct 29 10:50 AM): missing-pairs report KPC_MissingPairs_Why_desk.md: (1) did the missing check run before the trail lines (scoreboard says line, check says no official boundary)? rerun; (2) reason + overlap size for Jonathan Dickinson x Loxahatchee, Merritt Island x Canaveral, Greenbelt x National Capital Parks, Gettysburg x Eisenhower; (3) does boxes-do-not-touch use a long trail whole box?

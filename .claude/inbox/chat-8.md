@@ -99,3 +99,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29): clue search graded: 11 yes, 3 check, 4 no of the 18; 8 far ones worth a pin look, rest generic words (see ClueSearch desk file bottom).
 
 - DONE (Oct 29 10:20 AM): graded mtcowy/mtidmt/southcentral/midwest READY except 3 wrong same-land pairs (Truman, Salinas, Horseshoe Canyon) + 3 to check (Grand Canyon/Parashant, Coronado, Kinnickinnic). Entry at end of Issues file. REPORT TO HQ: pacific + caon still stopped.
+
+- DONE (Oct 29 10:50 AM): missing-2-fer report -> KPC_MissingPairs_Why_desk.md (5,907 dropped, 68,947 never looked at; main cause = no outline / trail lines not tested; 1 ruling for Brandon: state park inside a federal unit). REPORT TO HQ: ask chat 2 if the missing check ran before the trail lines; NPS National Trails route lines are the one fix for most of it.
