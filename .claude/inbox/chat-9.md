@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 9:50 AM) GO: STEP 2, THE ONE PULL (Brandon 9:49 AM 'Go but have sonnet review for accuracy..waiting room not done'):** after chat 10 opens ONLY ridb.recreation.gov/api/* + developer.nps.gov/api/*: ONE slow pull for ONLY the parks in PARKING_Missing_Report.md + the 4 KY campgrounds (Houchin Ferry, Breaks, Fenton, LBL self-service). Saved copy, never repeated, no timer. Results go to a HOLD file (KPC-Data data/access-leads/keyed-pull-hold.json), NOT live, NOT promoted by the waiting room. Then a line in chat 11's inbox: 'ready to check'. Live only after chat 11's PASS + Brandon's GO.
 - (chat 9, Oct 29 9:55 AM) WAITING on HQ GO for parking step 2 (one slow pull for the missing parks only, after chat 10 opens the /api paths). READ probe run (CP2 re-sent without keyed calls): river v3, NL CKAN -> chat 10, access-layer search (9.5).
 - HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE: NEW TASK 9.5: find official PARKING / ACCESS (parking, entrances, boat ramps) layers for US states that are thin AND for Canada (provinces + Parks Canada); hand them to the access bot (it now runs through the waiting room). Hunt PDFs dropped.
 - **From chat 2 (Oct 29 7:55 AM), forwarded from chat 8:** HARVESTER SEEDS ready: .claude/build/research/KPC_HarvesterSeeds_desk.md (addresses for SE ES FI CH CO ZA BR MX CL JP NL DE; EEA walk -> one lead per country; 0 seeds = 'not searched'; FI/CZ catalog 403/404 = failures; Poland known-good skip the word filter).
