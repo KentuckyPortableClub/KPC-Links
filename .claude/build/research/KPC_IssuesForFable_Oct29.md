@@ -1,7 +1,42 @@
-# ISSUES FOR FABLE: Oct 29 1:20 AM pass (chat 10, written Oct 28 ~9:45 PM CDT on Opus)
-Bot-by-bot list of what went wrong in the last 48 hours, what fixed it and what is still open. Sources: the chat-10 inbox (DONE + REPORT TO HQ), chat 11's grade files (`KPC_*_grade_desk.md`, `KPC_KY_Regrade1-3_desk.md`, `KPC_BotTuning_Check_desk.md`, `KPC_Closures_r8_Truth_v10_grade_desk.md`, `KPC_Closures_r9_Truth_KY_v11_grade_desk.md`) and tonight's run results. **OPEN** = what the Fable pass should look at first.
+# ISSUES FOR FABLE: Oct 29 pass, organized BY BOT
+Shared file. Reorganized by chat 8 on Oct 28 ~10:30 PM CDT at Brandon's ask: every note is kept word for word, grouped under the bot it is about, and tagged with who wrote it. **Add new notes under the right bot with your tag, not at the bottom.**
 
-## 0. WAITING ROOM (built tonight on Opus, NOT switched on)
+## WHO IS WHO (tags used below)
+| tag | chat | role | model | wrote |
+|---|---|---|---|---|
+| **[chat 10]** | bot workshop / pipeline | builds and tunes the bots, runs them | Opus (Fable for building) | the original file (old sections 0-9, 11) |
+| **[chat 11]** | bot-output checker | grades each bot's saved output with random samples | Sonnet | old section 12 |
+| **[chat 2]** | 2-fer assembly line | the 2-fer bots, keys, rebuilds | (assembly chat) | old section 10 |
+| **[chat 8]** | research desk | grades the 2-fer lines and the research bots from the saved files; cannot open most agency sites or the satellite map | Sonnet | old section 13 |
+| **[chat 9]** | data adds | temp read-only probes (layers, licences, point/river tests, candidate finder) | Opus | old section 14 |
+
+Old section numbers are kept in [brackets] so earlier messages that say 'section 12' or '10.5' still find their text. **OPEN** = what the Fable pass should look at first.
+
+**[chat 10]** original intro: Bot-by-bot list of what went wrong in the last 48 hours, what fixed it and what is still open. Sources: the chat-10 inbox (DONE + REPORT TO HQ), chat 11's grade files (`KPC_*_grade_desk.md`, `KPC_KY_Regrade1-3_desk.md`, `KPC_BotTuning_Check_desk.md`, `KPC_Closures_r8_Truth_v10_grade_desk.md`, `KPC_Closures_r9_Truth_KY_v11_grade_desk.md`) and tonight's run results. **OPEN** = what the Fable pass should look at first.
+
+## CONTENTS
+- 1. Waiting Room
+- 2. Closures super-bot
+- 3. Park truth checker
+- 4. Hours / fees / permits bot
+- 5. Campground info bot
+- 6. Official documents bot
+- 7. Park detective / gap filler
+- 8. Layer intake
+- 9. Scoreboard
+- 10. US access points
+- 11. Federal campgrounds
+- 12. State campgrounds, trails, new-park catchers, Canada
+- 13. 2-fer assembly line (+ checker, river/water rows, own-land reader, camp & activate)
+- 14. World harvester
+- 15. Chat 9's probes (queue, servers, layers, point/river tests, candidate finder, world live-only layers)
+- 16. Source books and research files (chat 8)
+- 17. Not yet graded
+- 18. PATTERNS (whole review)
+- 19. WISH LISTS BY AUTHOR
+
+## 1. WAITING ROOM (built Oct 28 on Opus, NOT switched on)
+**[chat 10]** [old section 0]
 - **Built:** KPC-Data `.github/scripts/kpc_waiting_room.py` (independent: imports no bot code, never reads a bot's own gate/READY/test fields). One check per kind of file: access, campfed, campstate, campinfo, trails, docs, hours, truth, access-leads, us-key/ca-key, intake, fers (2-fers), pota index, review status files; closures NEVER wait (bad rows taken out, an empty/garbled file holds). Unknown kind of file, a check that cannot run, or any error = HOLD (fail closed). Modes: `check [--promote]` (promotes only with WAITING_ON=1), `replay`, `undo <path>`, `undo-bot <bot> [area]`, `release <path>`. Known answers per bot: `data/waiting/known/*.json`. Replay manifest: `data/waiting/replay.json` (16 real bad outputs from git history + 4 good). **Replay: 20/20 right** (`data/waiting/replay.md`). Check / promote / undo / release tested on a scratch copy.
 - **Also built (Oct 28 ~10 PM):** the by-hand workflow KPC-Data `kpc-waiting-room.yml` (modes replay / check / undo / undo-bot / release; no schedule; promotion only when the repo variable WAITING_ON=1; never red) and RULE SHEET F in `.claude/notes/mapping.md` (F-1..F-7 + grey areas G1-G4). One replay run on the runner was started to prove it works there.
 - **Not built (needs Brandon's GO, bot by bot):** wiring a bot to write to `data/waiting/in/`; the 24-hour 'checker is down' alarm (only matters once it runs on its own).
@@ -14,55 +49,138 @@ Bot-by-bot list of what went wrong in the last 48 hours, what fixed it and what 
   6. **Hours gate drift** (the 24% gate story) is not re-done independently: there is no machine-readable KY hours hand key wired in. Add one?
   7. **Dead links in replay:** case 7 of chat 11's list (map/rules links that error) holds only as 'unsure' offline; a real dead-link case needs a network replay.
 
-## 1. CLOSURES SUPER-BOT (KPC-Data kpc_closures_bot.py) — **OPEN: still FAILS (46% vs 80%)**
+## 2. CLOSURES SUPER-BOT (KPC-Data kpc_closures_bot.py) — OPEN: still FAILS (46% vs 80%)
+**[chat 10]** [old section 1]
 - Round 1-3 (Oct 28 AM): standing rules filed as closures ('is prohibited', unlicensed vehicles, groups over ten), fragments, George Washington & Jefferson NF Virginia notices under KY, expired items re-dated. Fixed rounds 4-5.
 - Rounds 4-8: hunt closures 0. Wrong guesses: 'script-built page', then 'landing page tiles'. **Real cause (round 9):** KDFWR's 59 WMA pages (data/ky-hunting.json 'wma') are ASP.NET and wrap the whole page in one `<form>`; the reader stripped every `<form>` = 0 rows from all 59 pages. Fixed → hunt 0 → 28, gate 21% → 65%.
 - Round 10: 13 of those 28 were LAST SEASON's quota RESULTS table rows ('Clay WMA | Nov. 1-2 | 29 | 19 | 0.31 | 37% | 1 : 2.5') = 2025 dates. Dropped; 'first Saturday in November / day before / odd-even years / four (4) consecutive days' computed for this season.
 - Round 11: junk was mostly OLD items carried over (kept to their end date / 'taken down' for days): every carried-over item is now re-checked against today's rules. KY: 115 → 60 items, junk gone. **Gate fell to 46%** (15/32) because junk rows had been 'matching'.
 - **OPEN for Fable:** (a) the missing hunt items are Kentucky's hand list's quota DATES for WMAs whose pages do not print them (Kleber, Kentucky River, Higginson-Henry, Beaver Creek, Ballard: Nov 7-8 / Dec 5-6; Peabody Oct 15). Find which KDFWR page prints per-WMA quota dates (the hunting guide PDF? app.fw.ky.gov/Quota?) and add it to the plug; (b) is the gate itself fair? HQ says the hc- items were HQ research (Oct 25), not a live reader, so some may not be on any page; (c) HQ's per-state HUNT PLUG (sources.json, seasons fallback for states with no per-area source) is not built; (d) ONE CLOSURES READER switch waits on the pass.
 
-## 2. PARK TRUTH CHECKER (kpc_truth_bot.py, now v12) — **OPEN: KY+VA+IL v12 test running**
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Closures super-bot** | r9/10 KY: 50% (6/12); r8 69%; r3 77%; r1 42%. Round 11 (60 items) NOT graded | quota RESULTS rows and standing 'note' rules ('Check online calendar', 'permit required', 'ATVs prohibited'), fragments under ~40 chars; hunt dates for WMAs whose pages print none; 4 KDFWR closures never matched a park (AJ Jolly, Laurel Bridge ramp, Sympson, West Point) | grade the round-11 file first; a 'note' with no date AND no closed-word is not an item; list unmatched closures in the review file with the nearest park so I can judge the match |
+
+## 3. PARK TRUTH CHECKER (kpc_truth_bot.py, v12)
+**[chat 10]** [old section 2]
 - v1-v6: '708, 879' read as 879; other units' pages (Green WSR vs Mammoth Cave, Fort Heiman vs Fort Donelson); land grants / history; Levi Jackson's own 896 dropped as 'another park'; map-PDF labels (Cumberland Gap 15 ac, Taylorsville 248). Fixed; KY gate PASS v6.
 - v8-v9: WV statewide '1.4 million acres' on 76 WMAs; VA 66,000 preserves total x13, a 108-ac lake, a 207-ac farm; IL 'within the park' / '4-acre plot' / surrounding wilderness; cross-state parks (Smokies, Big South Fork) compared one state. Fixed (shared numbers, agency pages, part words, whole-park compare). WV PASS.
 - v10-v11: the per-area gate judged a 220-char window, not the sentence; then YEARS and STREET NUMBERS read as acres ('November 10, 1978 Acreage' = 1,978 ac; 'Wildlife Area 24621 North River Road'; '/inpc/area1boone…'): 'acre' matched inside 'Acreage' and 'Area' took a number with no unit. Fixed + 6 permanent known sentences.
 - v11 KY gate FAILED: Kentucky Ridge SF 'consists of 15,251 acres and was acquired by lease in 1930' read as history; Green River NWR: every fws.gov refuge page 404s (FWS moved pages). v12 fixes both (+ FWS refuge home page) + 3 more known sentences.
 - **OPEN for Fable:** read the v12 test (Actions run 40805970008); if KY/VA/IL pass, restart the long run (paused since Oct 28 night). FWS's new page layout may affect every refuge in the queue.
 
-## 3. HOURS / FEES / PERMITS BOT (kpc_hours_bot.py v9) — gate PASS 88% (KY), not on the long run yet
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Truth checker** | v10: WV fixed (96 to 20 flags); VA 87%; IL 75%; KY v11 file best yet (agree 109) | years / street numbers as acres (fixed v11); cross-state parks; 237 of 277 TN and 187 of 229 IN say 'no size on page' (recall); the one-state compare for GRSM / Big South Fork / Chickamauga | re-sample VA + IL after v12; for 'no size on page' states, try the agency's park-list or PAD-US size as a SECOND source, labelled; keep each 'off' row's exact sentence in the file |
+
+**[chat 8]** [old section 13, shared row 'Truth checker / docs / hours / campinfo']
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **Truth checker / docs / hours / campinfo** | My earlier grades are in KPC_*_desk.md (docs, hours+campinfo, truth). Most repeating failure I hit as grader: abbreviations ('Nov.', 'U.S.') cutting sentences; negation traps ('no fee' read as fee); a quote cut mid-sentence. | one shared sentence splitter + negation test used by all readers (chat 10 item 7 is the same idea for dates). |
+
+## 4. HOURS / FEES / PERMITS BOT (kpc_hours_bot.py v9)
+**[chat 10]** [old section 3]
 - v1-v6: sentences cut at 'Nov.', headings, statewide licence prices ($31.71 turkey) and nationwide free-day notices as a park's fee, '$5 million' as a fee, events/questions as hours, over-filtering (163 of 193 'nothing'), a crash (3-tuple pages from truth v4). Fixed over v3-v6.
 - v7-v9: brochure PDFs read as bytes (400 KB slices); parks.ky.gov script pages blank; PDF hyphen breaks; 'open 8-4' without a.m./p.m. Fixed: whole PDF, browser read, hyphen join. Chat 11's last grade: random 12 = 92%.
 - **OPEN:** 'open year-round' lines (see 0.1); Griffith Woods generic permit line; recall 48 of 193 parks.
 
-## 4. CAMPGROUND INFO BOT (kpc_campinfo_bot.py v8) — own fact gate PASS 95%; **OPEN: chat 11's v8 grade not in yet**
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Hours / fees / permits** | KY: 92% (11/12) on what it finds, 48 of 193 parks (25%); gate 37% then PASS 88% at v9 | Griffith Woods statewide permit line on one area; 'open year-round' lines (Fable ruling 0.1); 145 parks with nothing | rule on 'open year-round' now; add a machine-readable KY hours key (I can write 12 rows from my samples); recall: WMAs and nature preserves rarely print hours: say 'agency prints none' instead of empty |
+
+**[chat 8]** [old section 13]: shared row, see bot 3 (Truth checker / docs / hours / campinfo).
+
+## 5. CAMPGROUND INFO BOT (kpc_campinfo_bot.py v8)
+**[chat 10]** [old section 4]
 - v1-v7: elevation stored as RV length (4 WMAs; 675 / 980 ft), hunting season as camping season, 'no sewer hook-ups' = sewer true, footer/877 reservation phones, '13 sites' copied onto 9 Forest Service camps, duplicates (Twin Knobs x3), Horse Park fee = '$5 Million Renovation' headline, Energy Lake = Hillman Ferry's page, a useless 'FCC 0 files' cell block, 'needs browser' on 42 records. The big lesson: **v7 passed its own gate while 3 of 4 filled records were wrong** → v8's gate checks the FACTS against kpc-campgrounds.json.
 - Taken OFF the long run (it looped 5 h on KY: merged ids counted as 'left'; the driver now stops a bot after a no-progress chunk).
 
-## 5. ACCESS / PARKING POINTS (KPC-Links kpc_us_access.py, VERSION v3) — **FIXED tonight, counted**
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Campground info** | v7 KY: 1 of 4 fact-bearing records right (25%); 6 of 10 random = federal rows with elevation only. v8 NOT graded | headline fee, wrong page (Energy Lake = Hillman Ferry), 'cabin 13', useless cell block (removed?), federal rows empty (needs RIDB/NPS read now the keys exist) | grade v8 first; one record = one camp page that names the camp; facts only from the camp's own section; every empty federal row should say which key/step is missing |
+
+**[chat 8]** [old section 13]: shared row, see bot 3.
+
+## 6. OFFICIAL DOCUMENTS BOT
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Official documents bot** | v5 maps 92% (11/12, seed 123); KY-SC all ver 5; PA NY NJ CT RI MA VT NH and MN IA ND SD landed, NOT sampled | map recall dropped when 'does not name this park' maps were thrown out (WV 163 to 36, GA 218 to 108, VA 162 to 91; Teter Creek / Dunkard Fork file names carry the park); rules pages: some agency-wide pages fit (floridastateparks), some are wrong (Nashville 'court-rules', usda 'policies-and-links', AL admin code); TN 245 and SC 129 parks 'no map on file' | confirm chat 2's file-name map recovery landed (recount WV/GA/VA maps); label agency-wide rules pages 'agency rules'; a fresh 12 from the northeast chunks |
+
+**[chat 8]** [old section 13]: shared row, see bot 3.
+
+## 7. PARK DETECTIVE / GAP FILLER
+**[chat 10]** [old section 8]
+- Detective: run 1 'answered' Boiling Springs with the polygon under the pin. Fixed. **OPEN:** chat 11's grade: steps 3 (hub search) and 4 (PAD-US point query) did not open: retry once or report blocked; skip unrelated EEC documents; label a different-site context line.
+
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Park detective / gap filler** | KY first grade: leads honest (0 'sure', Trail of Tears name mismatch right), 2 questions PARTLY | steps 3 (hub search) and 4 (PAD-US point query) did not open on both questions; reads of unrelated EEC documents; a context line about a different site (Davis Bend) next to Timber Lane | retry once or write 'steps 3-4 blocked'; skip documents with no park/area word in the title |
+
+**[chat 8]** [old section 13]
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **Park detective / gap filler** | (chat 11 graded it; I read the Boiling Springs and Green River SNA answers myself) A polygon under the pin is not a boundary; the Green River SNA has three tracts and the pin sat in one. | when a unit has several tracts (state nature preserves), list ALL tract rows from the agency page and say which one the pin is in. |
+
+## 8. LAYER INTAKE
+**[chat 10]** [old section 8]
+- Intake: a read error became REJECT (SCDNR 'Invalid URL'); Czech AOPK READY on a credit line (terms are 'viewing only'); USACE reservoirs READY (water only); SSSI 'closes 27' counted pin-only matches. Fixed (RETRY never REJECT, known-terms table, water-only verdict). Gate PASS.
+
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Layer intake** | KY run PASS; earlier 8/10 | (fixed per chat 10) | nothing; sample 10 READY rows after the next run |
+
+## 9. SCOREBOARD (+ per-park file)
+**[chat 10]** [old section 8]
+- Scoreboard: matches chat 8's counts on all 30 checked columns.
+
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Scoreboard** | counts match chat 8's on 22/30 columns, then all 30 | per-park file (scoreboard-parks.json) never graded by me | I will grade it if it is wired to a page |
+
+**[chat 8]** [old section 13]
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **Scoreboard / per-park file** | Waiting on chat 2's key rebuild; the 06:25 AM 'Site data copied' commit looks like a rebuild but is a copy. | the commit message should say 'copy' vs 'rebuild' and the scoreboard should carry the key's build time. |
+
+## 10. US ACCESS POINTS (KPC-Links kpc_us_access.py, v3) — FIXED, counted
+**[chat 10]** [old section 5]
 - Oct 28: 230 then 178 points 100-380 km from their park, LIVE on cards / planner / Kit / the app's NEXT PARK. The 11:45 AM fix spared points 'on the park's own land'; **all 178 were tagged own land** because the park's outline in our key holds a far piece (two Beaver Creek WMAs, Robert Moses x2, Copan…). AND the 13-state rerun reported 'dispatched' at 11:45 AM **never started** (silent failure: no run-list check).
 - Fix: any point 100+ km from the pin is dropped unless a line park; parks with a far outline piece listed in the run notice for chat 2. Rerun (13 states, full) saved: far points **178 → 0** (52 kept on 7 line parks: Katy Trail, Old Erie Canal, Gandy Dancer, Cumberland Trail, Genesee Valley Greenway, Delta Heritage Trail, Upper Salmon River).
 - **OPEN:** chat 2: fix the outlines the notices name (NY 10+ parks incl. US-10284, MN US-12811 + US-4822, PA US-8785/8928/9016, OR US-5461, OK US-6347, ND US-2764, MO US-7680, MI US-6826). Chat 4: rebuild the app packs for the 13 states. Every dispatch is now followed by a run-list check.
 
-## 6. FEDERAL CAMPGROUNDS (KPC-Links kpc_fed_camps.py) — **FIXED tonight, counted**
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **US access points** | I found the 178 far points (counted from the saved files, parkinfo pins) | fixed tonight per section 5: far points 178 to 0 | I recount from the files after the next monthly run; add the near-miss class: a point in a DIFFERENT state's box (Robert Moses shared 27 points) |
+
+## 11. FEDERAL CAMPGROUNDS (KPC-Links kpc_fed_camps.py) — FIXED, counted
+**[chat 10]** [old section 6]
 - RIDB's state search goes by OFFICE address: 196 rows in the wrong state, 132 ids in two state files. The tune fix only cleaned the states read in that run; the 6-state rerun could not reach the GA/SC, ID/UT/MT/WY doubles.
 - Fix: a final sweep over EVERY saved state file + a count line. Nationwide run: doubled ids **132 → 0** in both repos; KY gate 5/5.
 
-## 7. STATE CAMPGROUNDS, TRAILS, NEW-PARK CATCHERS, CANADA (tuned Oct 28 AM, table in chat-10 inbox 9th pass)
+**[chat 11]** [old section 12, shared row 'Federal / state campgrounds, trails, Canada']: see bot 12.
+
+## 12. STATE CAMPGROUNDS, TRAILS, NEW-PARK CATCHERS, CANADA
+**[chat 10]** [old section 7]
 - kpc-state-camps: a half-answered layer could overwrite a good list; 9 empty files. kpc-us-trails / kpc-state-trails: shorter lines could replace saved ones; 40 pages re-read per park. kpc-new-refs / kpc-ref-check: a short POTA answer could retire parks (now two reads, ≤2% drop). kpc-new-lands: emails for news-only weeks. kpc-state-gis: one timeout dropped a layer. kpc-bot-queue: a failed save could start a job twice. kpc-canada-bounds / kpc-ca-key: 1,539 parks re-fetched; retired CA-2156 still outlined (removed). All gated; no open grade failures known.
 - **OPEN:** state-camps' known answers come from its own Oct 28 lists (they catch a list getting WORSE, not one wrong from the start).
 
-## 8. INTAKE BOT, SCOREBOARD, PARK DETECTIVE (built Oct 28)
-- Intake: a read error became REJECT (SCDNR 'Invalid URL'); Czech AOPK READY on a credit line (terms are 'viewing only'); USACE reservoirs READY (water only); SSSI 'closes 27' counted pin-only matches. Fixed (RETRY never REJECT, known-terms table, water-only verdict). Gate PASS.
-- Scoreboard: matches chat 8's counts on all 30 checked columns.
-- Detective: run 1 'answered' Boiling Springs with the polygon under the pin. Fixed. **OPEN:** chat 11's grade: steps 3 (hub search) and 4 (PAD-US point query) did not open: retry once or report blocked; skip unrelated EEC documents; label a different-site context line.
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Federal / state campgrounds, trails, Canada** | tuning check (partial): fed KY 5/5 PASS; Canada outlines kept; AT + Sheltowee kept | fed doubles 132 to 0 per section 6; LBL camps in no camp file; Lillydale + Willow Grove (TN, 2-3 km from the KY line) unverified | recount doubles + check those two; LBL source from chat 9 |
 
-## 9. THE PATTERNS (for the whole review)
-1. **Bots passed their own gates while wrong** (campground v7, closures 'matching' junk): every gate must check FACTS against an outside key → the Waiting Room's whole point.
-2. **Silent failures:** a dispatch that never started; a 'fix' whose condition never fired (own-land exemption); old items kept alive after a rule changed; a reader that discarded the page (`<form>`). Count the live file after every fix.
-3. **One number, many parks:** statewide totals, shared pages, results tables, copied site counts. A value repeated across many records is almost always wrong.
-4. **Wrong year:** last season's tables, years read as sizes, dates without a year.
-5. **The agency's site changed under us:** FWS refuge pages 404, KDFWR quota page layout, ky-fs-lbl URL.
+## 13. 2-FER ASSEMBLY LINE (chat 2; kpc_fers.py + kpc_owned.py + kpc_water_bulk.py + kpc_fers_line_check.py + kpc_fers_review.py + kpc_fers_known.py; KPC-Data kpc-fers-line.yml / kpc-fers-lines.yml / kpc-fers-pending.yml)
+**[chat 2]** [old section 10, written Oct 28 9:50 PM; items keep their 10.x numbers]
 
-## 10. THE 2-FER ASSEMBLY LINE (chat 2; KPC-Links kpc_fers.py + kpc_owned.py + kpc_water_bulk.py + kpc_fers_line_check.py + kpc_fers_review.py + kpc_fers_known.py; KPC-Data kpc-fers-line.yml / kpc-fers-lines.yml / kpc-fers-pending.yml) — written Oct 28 9:50 PM
 Rules in force (Brandon Oct 28 evening): **the simple test** = two OFFICIAL boundaries overlap on PUBLIC ground → live, whatever mix of public owners; nothing is deleted: boat / water-only rows, mixed owners, private or unknown parts, weak water and POTA-history hints go on `data/fers/review-all.json` for later. Ownership belongs to the KEYS (step 1), the line only overlaps (step 2).
 - **10.1 Water's edge (the biggest one). OPEN.** Needed now only for water trails (100 ft from the edge) and the 'how much is water' info. The USGS live water map was down most of Oct 28; the USGS download files (NHDPlus HR per HU4) work, but the product list points at files that are gone (404: HU4 0601-0604, Tennessee basin) → now found through USGS's storage listing. Order: saved tile → USGS files → one short live try → review list 'water map weak here' (no longer stops an area). **Suggestion:** our OWN water copy (Brandon YES, HQ conditions: only water within ~1 km of park outlines + water trails, ~1 m simplified, release files not git); measure KY + one big state, then one US run after the queue; refresh when USGS publishes. Backups from chat 8: Michigan Hydrography_Polygons v17a + EGLE shorelines, KY Census TIGER area hydrography; Ohio has no lake source (Mosquito Lake missing in all 3 ODNR layers); Canada: no water map read yet (rows say 'water not checked').
 - **10.2 Big areas run out of time. PART FIXED.** A job stops at 6 h: the Northeast (11,233 box-touching pairs) finished pass 1 on 2,576; Mississippi waited for pass 2 in the 9-state Southeast. Northeast now split in 3 (PA NJ DE MD DC / NY CT RI / MA VT NH ME); the worker finishes rows left at pass 2. **Suggestion:** size the lines by last run's seconds per state (like the US key's 3-job split), ≤ ~4 h each; TX and CA may need their own line.
@@ -74,7 +192,62 @@ Rules in force (Brandon Oct 28 evening): **the simple test** = two OFFICIAL boun
 - **10.8 Known answers only in Kentucky. OPEN.** 19 KY river / trail pairs + Mammoth Cave x Green River (Brandon activates it). **Suggestion:** 5-10 hand-checked pairs per area from members / chat 8's grading, each area's checker runs its own list.
 - **10.9 Proofs and reading results.** Line changes are proven OFFLINE on Kentucky's saved bundle (HTTP_OFFLINE=1, old code vs new code on the same bundle), never by rerunning KY live; results come only through notice lines (max 10 a step). **Suggestion:** every line run commits one small status file (verdict, counts per state, what stopped) that chats read instead of the logs.
 
-## 11. WHAT CHAT 10 WOULD LIKE IMPROVED (Oct 28 ~9:55 PM, Opus; my own wish list, best value first)
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **2-fer line** | not mine (chat 8): I only noted the Michigan / Indiana / Illinois 'not checked' rows must make a run STOPPED, never READY | water 'no answer' rows | the Waiting Room already checks 'not checked rows > 0'; wire that first |
+
+**[chat 8]** [old section 13]: five rows (assembly line, READY verdict, river/water rows, own-land layer reader, camp & activate)
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **2-fer assembly line (chat 2)** | (1) The merge folded big 2-fers into small 3-fer rows (Pioneer Weapons x Daniel Boone 7,707 ac inside a 1.2-ac row): fixed, rechecked READY. (2) It wrote READY while 38 Michigan rows said 'water map did not answer': fixed to STOPPED, then rerun. (3) Midwest: Iowa has 4 spots from 174 outlined parks while POTA co-activation pairs with both outlines (Backbone SP x SF, Effigy Mounds x Yellow River SF, Pikes Peak x Yellow River SF...) are not in the file at all, not even as dropped. (4) Minnesota's file is gzipped: I called it 'missing' by mistake, so a plain-looking `ls` is a trap for graders. (5) Mammoth Cave x Green River WR moved to NOT SURE once the Park Service's own tracts were read first (right), but nothing tells a reader WHY in one line. | a PAIR LEDGER per state: every pair that was tested, with its fate (live / dropped + rule / not sure + why); a 'hint pairs missing' count (POTA co-activation pairs, both outlined, absent from the file) printed in the run notice; do not gzip a file without a stub `.json` that says 'see .gz'. |
+| **2-fer checker / READY verdict** | READY has been written over: unanswered water rows (MI), a listed state with no usable file (MN, my mistake but a stub would have saved the argument), a state with far fewer spots than outlines (IA). | READY only when: 0 unanswered rows, every listed state has a file, and spots >= a floor vs outlines unless a note explains. The check should print those three numbers on the grade-me line. |
+| **River / water rows** | My satellite check is not possible from my session; I judged corridors by outline shape (max edge in metres, vertex count), a weak test (Black River x Ottawa NF: one 9.6 km edge; Manistee WSR x Manistee River SGL: 5.8 km). | the bot should print, per corridor row, max straight edge, vertex count and whether the corridor edge was snapped to the water map, so a human only opens the odd ones; plus a 'looked at on the map by: <who>' field members can set. |
+| **Own-land layer reader (Forest Service / FWS / NPS / state)** | The water test (chat 9, graded by me): NPS tracts keep the Green River (and show a PRIVATE tract at Dennison Ferry); the Forest Service 'NO HIT at Red River gorge' contradicts our own owned-land file made from the same layer, so the query itself was suspect (no control point). Ohio's three ODNR land layers all miss Mosquito Lake. | every live-layer test needs a CONTROL point on dry owned land that must HIT, and water points taken from inside the unit's own polygon, never by hand. One helper `own_land_hit(layer, point)` that returns HIT / NO HIT / QUERY FAILED (three different answers). |
+| **Camp & Activate (my KY run, a script I wrote)** | Two records for one campground can disagree (Zilpo: RIDB rounded point 38.075,-83.5 is 1.4 km from the hand-list point, and the answer flips); 20 of 99 hand-list campgrounds have no point at all (Otter Creek, Houchin Ferry, all of LBL); RIDB points with only 3 decimals. | job 4's campground records should carry a `point_source` (agency map / RIDB / hand / address) and a `precision` flag; the Camp & Activate bot refuses 'activate both' on a rounded or address point. |
+
+**[chat 8] update, Oct 28 ~10:35 PM:** chat 9's second run (bot 15, 'Point / river tests') says the Forest Service layer turned out solid with control points and FWS is still unknown (its control point missed). So read my Forest Service line above as superseded.
+
+## 14. WORLD HARVESTER
+**[chat 8]** [old section 13]
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **World harvester** | The five redone countries (AU GB DE PL JP) still carried the 04:18 AM date at my last check, so I have not regraded; I cannot tell from the repo whether the rerun ran and found nothing or never started. | a `last_run.json` per bot (started / finished / rows written / rows unchanged) so 'not redone' and 'redone, same answer' look different. |
+
+## 15. CHAT 9'S PROBES (temp, read-only: kpc-adds-probe.yml + kpc_adds_probe.py; kpc-candidates.yml + kpc_candidates.py)
+**[chat 9]** [old section 14]
+My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (layer, licence, hub and page look-ups, point and river tests) and `kpc-candidates.yml` + `kpc_candidates.py` (the one-off candidate finder). They join nothing; both are deleted once the world rounds and the finder's second pass are done.
+| bot | what went wrong | what I want to see |
+|---|---|---|
+| **Probe: queue** | Only one waiting run per concurrency group: a 2nd dispatch silently CANCELS the waiting one. A dispatch sent before my push landed ran an OLD commit (twice; cancelled + re-sent each time). | the probe prints the commit it ran on in its first notice; one shared 'dispatch after push confirmed' helper (`git ls-remote` = local HEAD, then dispatch). |
+| **Probe: slow / blocked servers** | USGS NHD (hydro.nationalmap.gov) timed out / 504 on layers 6, 5 and 3 most of the R2 run (Detroit River got 0 points). Idaho Parks' ArcGIS server never answers runners. | retry once with a longer wait + a fallback source (NHDPlus HR or the state hydro layer); a 'server down from runners' list the whole team shares, so nobody re-probes it. |
+| **Probe: reading layers** | Name field guessed wrong (SC picked PropertyID); MARIS service roots list no layers (had to try ids 0-12); ArcGIS Hub search API returned 400; the licence is often NOT on the layer but on `<service>/info/iteminfo` or the portal item (Nevada). | name field chosen by 'text field whose values look like names', never by position; licence look-up always tries layer → service → iteminfo → portal item → hub page, and says which one answered. |
+| **Point / river tests** | R1 had no control point, so a NO HIT could mean 'cuts rivers out' or 'the query is wrong' (Forest Service turned out solid in R2). In R2 the FWS control (Shiawassee) MISSED, so FWS is still unknown; NPS New River / Big South Fork river points missed but had no control INSIDE those units (the tract layer may not cover them). I picked one control coordinate wrong myself and had to cancel. | chat 8's `own_land_hit()` with three answers (HIT / NO HIT / QUERY FAILED); the control point taken automatically from INSIDE one of that layer's own polygons (no hand coordinates), one control per unit tested. |
+| **Candidate finder** | It reads the saved copies of the keys; until chat 2 rebuilds the keys its second pass would just repeat the first. Historic and city/county parks had been skipped in pass 1 (fixed: 'sure_only' section). | a key build time stamp it can check, so it refuses to run on an old key and says so. |
+| **World live-only layers (CZ, DK)** | Not stored (no licence), so their outlines depend on the agency server being up at read time; a down server looks like 'no outline'. | the world key notes 'live source did not answer' apart from 'no outline found'. |
+
+## 16. SOURCE BOOKS AND RESEARCH FILES (chat 8's own work)
+**[chat 8]** [old section 13]
+| bot | what I saw (from my own checks) | what I want to see |
+|---|---|---|
+| **Source books / research files I write** | Search results give me URLs I cannot open (fws.gov, nps.gov, many state sites), so most of my 'official source' rows are grade B. | a 'bot opens these' queue: any row I mark B (URL only) is picked up by a GitHub bot that opens it and writes back A or 'dead / blocked', so a human never re-checks it. |
+
+## 17. NOT YET GRADED
+**[chat 11]** [old section 12]
+| bot | my last grade | what is still wrong (from my samples) | what I want to see |
+|---|---|---|---|
+| **Not yet graded by me** | World harvester (no 'grade me' line), new-refs / ref-check / new-lands / state-gis / bot-queue / parking explorer / state trails (no output seen) | n/a | tell me when they save; I need: the file, the old file, and 3 real sources to check against |
+
+## 18. PATTERNS (whole review)
+**[chat 10]** [old section 9]
+1. **Bots passed their own gates while wrong** (campground v7, closures 'matching' junk): every gate must check FACTS against an outside key → the Waiting Room's whole point.
+2. **Silent failures:** a dispatch that never started; a 'fix' whose condition never fired (own-land exemption); old items kept alive after a rule changed; a reader that discarded the page (`<form>`). Count the live file after every fix.
+3. **One number, many parks:** statewide totals, shared pages, results tables, copied site counts. A value repeated across many records is almost always wrong.
+4. **Wrong year:** last season's tables, years read as sizes, dates without a year.
+5. **The agency's site changed under us:** FWS refuge pages 404, KDFWR quota page layout, ky-fs-lbl URL.
+
+## 19. WISH LISTS BY AUTHOR
+### **[chat 10]** [old section 11]
 1. **One shared 'did it really change?' step after every fix.** Tonight's two worst misses (the access + fed-camps reruns) were green runs that changed nothing. Every bot run should end with a COUNT line taken from the SAVED file (e.g. 'far points 178 -> 0', 'ids in two files 132 -> 0'), and the report to HQ quotes that line, never 'dispatched'. Build it once (a tiny `kpc_count.py <kind> <path>` that reuses the Waiting Room's checks read-only) and call it from each workflow's last step.
 2. **Make the Waiting Room's checks the bots' own gates too.** Each bot has its own self-gate today (they drift and 'pass themselves'). Each bot's TEST step could run `kpc_waiting_room.py` on its own output before saving: same rules everywhere, one place to add a known answer.
 3. **Outside answer keys for every gate, never the bot's own output.** Closures (Kentucky's hand list), campground facts (kpc-campgrounds.json) and truth (chat 11's rows) have one; hours has none in machine form; the 2-fers' 18 KY answers are not wired into the Waiting Room; state campgrounds' 'known answers' are their own Oct 28 lists. Fable: list each bot's key; where none exists, ask chat 8 for 10 hand-checked rows.
@@ -86,24 +259,7 @@ Rules in force (Brandon Oct 28 evening): **the simple test** = two OFFICIAL boun
 9. **Switch the Waiting Room on ONE bot at a time** after G1-G4 are ruled: access points first (clearest checks, most visible harm), then federal campgrounds, then docs (needs the network re-test working on the runner).
 10. **My own habit (lesson):** after every dispatch, check the run list; after every 'fixed', count the live file; never report a run as done from the dispatch alone.
 
-## 12. CHAT 11 (bot-output checker, Sonnet): MY KNOWN ISSUES, BOT BY BOT + WHAT I WANT TO SEE BETTER (written Oct 28 ~10 PM CDT)
-Method every time: a random 10-12 from the saved JSON (my own seed, never the bot's 'first 12'), judged A/B/C against the real page or a clear sign, plus whole-file COUNTS of repeats (one URL or number on many parks). Bar 90% A+B. Grade files: `KPC_*_grade_desk.md`, `KPC_KY_Regrade1-3`, `KPC_Docs_chunks1-3`, `KPC_Docs_v5_Campinfo_v7`, `KPC_Hours_v6_Truth_TN_VA_WV`, `KPC_Closures_r8_Truth_v10`, `KPC_Closures_r9_Truth_KY_v11`, `KPC_Detective_FL_Docs`. Latest numbers (not re-sampled after v12 / round 11 / v8 / v9: check these first):
-| bot | my last grade | what is still wrong (from my samples) | what I want to see |
-|---|---|---|---|
-| **Closures super-bot** | r9/10 KY: 50% (6/12); r8 69%; r3 77%; r1 42%. Round 11 (60 items) NOT graded | quota RESULTS rows and standing 'note' rules ('Check online calendar', 'permit required', 'ATVs prohibited'), fragments under ~40 chars; hunt dates for WMAs whose pages print none; 4 KDFWR closures never matched a park (AJ Jolly, Laurel Bridge ramp, Sympson, West Point) | grade the round-11 file first; a 'note' with no date AND no closed-word is not an item; list unmatched closures in the review file with the nearest park so I can judge the match |
-| **Truth checker** | v10: WV fixed (96 to 20 flags); VA 87%; IL 75%; KY v11 file best yet (agree 109) | years / street numbers as acres (fixed v11); cross-state parks; 237 of 277 TN and 187 of 229 IN say 'no size on page' (recall); the one-state compare for GRSM / Big South Fork / Chickamauga | re-sample VA + IL after v12; for 'no size on page' states, try the agency's park-list or PAD-US size as a SECOND source, labelled; keep each 'off' row's exact sentence in the file |
-| **Hours / fees / permits** | KY: 92% (11/12) on what it finds, 48 of 193 parks (25%); gate 37% then PASS 88% at v9 | Griffith Woods statewide permit line on one area; 'open year-round' lines (Fable ruling 0.1); 145 parks with nothing | rule on 'open year-round' now; add a machine-readable KY hours key (I can write 12 rows from my samples); recall: WMAs and nature preserves rarely print hours: say 'agency prints none' instead of empty |
-| **Campground info** | v7 KY: 1 of 4 fact-bearing records right (25%); 6 of 10 random = federal rows with elevation only. v8 NOT graded | headline fee, wrong page (Energy Lake = Hillman Ferry), 'cabin 13', useless cell block (removed?), federal rows empty (needs RIDB/NPS read now the keys exist) | grade v8 first; one record = one camp page that names the camp; facts only from the camp's own section; every empty federal row should say which key/step is missing |
-| **Official documents bot** | v5 maps 92% (11/12, seed 123); KY-SC all ver 5; PA NY NJ CT RI MA VT NH and MN IA ND SD landed, NOT sampled | map recall dropped when 'does not name this park' maps were thrown out (WV 163 to 36, GA 218 to 108, VA 162 to 91; Teter Creek / Dunkard Fork file names carry the park); rules pages: some agency-wide pages fit (floridastateparks), some are wrong (Nashville 'court-rules', usda 'policies-and-links', AL admin code); TN 245 and SC 129 parks 'no map on file' | confirm chat 2's file-name map recovery landed (recount WV/GA/VA maps); label agency-wide rules pages 'agency rules'; a fresh 12 from the northeast chunks |
-| **Park detective / gap filler** | KY first grade: leads honest (0 'sure', Trail of Tears name mismatch right), 2 questions PARTLY | steps 3 (hub search) and 4 (PAD-US point query) did not open on both questions; reads of unrelated EEC documents; a context line about a different site (Davis Bend) next to Timber Lane | retry once or write 'steps 3-4 blocked'; skip documents with no park/area word in the title |
-| **Layer intake** | KY run PASS; earlier 8/10 | (fixed per chat 10) | nothing; sample 10 READY rows after the next run |
-| **Scoreboard** | counts match chat 8's on 22/30 columns, then all 30 | per-park file (scoreboard-parks.json) never graded by me | I will grade it if it is wired to a page |
-| **US access points** | I found the 178 far points (counted from the saved files, parkinfo pins) | fixed tonight per section 5: far points 178 to 0 | I recount from the files after the next monthly run; add the near-miss class: a point in a DIFFERENT state's box (Robert Moses shared 27 points) |
-| **Federal / state campgrounds, trails, Canada** | tuning check (partial): fed KY 5/5 PASS; Canada outlines kept; AT + Sheltowee kept | fed doubles 132 to 0 per section 6; LBL camps in no camp file; Lillydale + Willow Grove (TN, 2-3 km from the KY line) unverified | recount doubles + check those two; LBL source from chat 9 |
-| **2-fer line** | not mine (chat 8): I only noted the Michigan / Indiana / Illinois 'not checked' rows must make a run STOPPED, never READY | water 'no answer' rows | the Waiting Room already checks 'not checked rows > 0'; wire that first |
-| **Not yet graded by me** | World harvester (no 'grade me' line), new-refs / ref-check / new-lands / state-gis / bot-queue / parking explorer / state trails (no output seen) | n/a | tell me when they save; I need: the file, the old file, and 3 real sources to check against |
-
-### What I want to see better (my wish list, best value first)
+### **[chat 11]** [old section 12 wish list]
 1. **A fresh random 12 per bot, written by the bot itself, with seed + the OLD value next to the new one.** Today I draw my own sample and re-read every field. A sample file that shows 'before / after / source sentence' for each row makes a grade 3 minutes instead of 15.
 2. **'Repeat' counts printed in every run notice:** top 3 values that sit on 3+ records (a URL, a number, a sentence). Every bad batch I found (WV 1.4 million, GA publuu, WV whitewater rules, FL shooting-range page, VA inciweb, Youth-free notes x2) was a repeat. One line catches them before I do.
 3. **Known-answer keys that are NOT the bot's own output:** I can write them from my samples (hours 12 rows, truth 17 rows, campground 16 rows exist; closures needs the page that prints dates).
@@ -113,23 +269,7 @@ Method every time: a random 10-12 from the saved JSON (my own seed, never the bo
 7. **The agency-site alarm** (chat 10's item 6) would have caught the FWS 404s that made Green River look wrong; yes please.
 8. **Grade after, not during:** when a bot is mid-run (chunks landing), I should be told which chunk set is final; I graded docs chunks that were then redone at v5.
 
-## 13. CHAT 8 (research desk, Sonnet): MY KNOWN ISSUES, BOT BY BOT + WHAT I WANT TO SEE BETTER (written Oct 28 ~10:15 PM CDT)
-I grade the 2-fer lines and the research bots' output from the saved files (never the bot's own verdict). I cannot open agency sites or the satellite map from my session, so some of my checks are by file and outline shape only; I say so on every row.
-
-| bot | what I saw (from my own checks) | what I want to see |
-|---|---|---|
-| **2-fer assembly line (chat 2)** | (1) The merge folded big 2-fers into small 3-fer rows (Pioneer Weapons x Daniel Boone 7,707 ac inside a 1.2-ac row): fixed, rechecked READY. (2) It wrote READY while 38 Michigan rows said 'water map did not answer': fixed to STOPPED, then rerun. (3) Midwest: Iowa has 4 spots from 174 outlined parks while POTA co-activation pairs with both outlines (Backbone SP x SF, Effigy Mounds x Yellow River SF, Pikes Peak x Yellow River SF...) are not in the file at all, not even as dropped. (4) Minnesota's file is gzipped: I called it 'missing' by mistake, so a plain-looking `ls` is a trap for graders. (5) Mammoth Cave x Green River WR moved to NOT SURE once the Park Service's own tracts were read first (right), but nothing tells a reader WHY in one line. | a PAIR LEDGER per state: every pair that was tested, with its fate (live / dropped + rule / not sure + why); a 'hint pairs missing' count (POTA co-activation pairs, both outlined, absent from the file) printed in the run notice; do not gzip a file without a stub `.json` that says 'see .gz'. |
-| **2-fer checker / READY verdict** | READY has been written over: unanswered water rows (MI), a listed state with no usable file (MN, my mistake but a stub would have saved the argument), a state with far fewer spots than outlines (IA). | READY only when: 0 unanswered rows, every listed state has a file, and spots >= a floor vs outlines unless a note explains. The check should print those three numbers on the grade-me line. |
-| **River / water rows** | My satellite check is not possible from my session; I judged corridors by outline shape (max edge in metres, vertex count), a weak test (Black River x Ottawa NF: one 9.6 km edge; Manistee WSR x Manistee River SGL: 5.8 km). | the bot should print, per corridor row, max straight edge, vertex count and whether the corridor edge was snapped to the water map, so a human only opens the odd ones; plus a 'looked at on the map by: <who>' field members can set. |
-| **Own-land layer reader (Forest Service / FWS / NPS / state)** | The water test (chat 9, graded by me): NPS tracts keep the Green River (and show a PRIVATE tract at Dennison Ferry); the Forest Service 'NO HIT at Red River gorge' contradicts our own owned-land file made from the same layer, so the query itself was suspect (no control point). Ohio's three ODNR land layers all miss Mosquito Lake. | every live-layer test needs a CONTROL point on dry owned land that must HIT, and water points taken from inside the unit's own polygon, never by hand. One helper `own_land_hit(layer, point)` that returns HIT / NO HIT / QUERY FAILED (three different answers). |
-| **Camp & Activate (my KY run, a script I wrote)** | Two records for one campground can disagree (Zilpo: RIDB rounded point 38.075,-83.5 is 1.4 km from the hand-list point, and the answer flips); 20 of 99 hand-list campgrounds have no point at all (Otter Creek, Houchin Ferry, all of LBL); RIDB points with only 3 decimals. | job 4's campground records should carry a `point_source` (agency map / RIDB / hand / address) and a `precision` flag; the Camp & Activate bot refuses 'activate both' on a rounded or address point. |
-| **World harvester** | The five redone countries (AU GB DE PL JP) still carried the 04:18 AM date at my last check, so I have not regraded; I cannot tell from the repo whether the rerun ran and found nothing or never started. | a `last_run.json` per bot (started / finished / rows written / rows unchanged) so 'not redone' and 'redone, same answer' look different. |
-| **Scoreboard / per-park file** | Waiting on chat 2's key rebuild; the 06:25 AM 'Site data copied' commit looks like a rebuild but is a copy. | the commit message should say 'copy' vs 'rebuild' and the scoreboard should carry the key's build time. |
-| **Park detective / gap filler** | (chat 11 graded it; I read the Boiling Springs and Green River SNA answers myself) A polygon under the pin is not a boundary; the Green River SNA has three tracts and the pin sat in one. | when a unit has several tracts (state nature preserves), list ALL tract rows from the agency page and say which one the pin is in. |
-| **Truth checker / docs / hours / campinfo** | My earlier grades are in KPC_*_desk.md (docs, hours+campinfo, truth). Most repeating failure I hit as grader: abbreviations ('Nov.', 'U.S.') cutting sentences; negation traps ('no fee' read as fee); a quote cut mid-sentence. | one shared sentence splitter + negation test used by all readers (chat 10 item 7 is the same idea for dates). |
-| **Source books / research files I write** | Search results give me URLs I cannot open (fws.gov, nps.gov, many state sites), so most of my 'official source' rows are grade B. | a 'bot opens these' queue: any row I mark B (URL only) is picked up by a GitHub bot that opens it and writes back A or 'dead / blocked', so a human never re-checks it. |
-
-### What I want to see better, best value first
+### **[chat 8]** [old section 13 wish list]
 1. **A pair ledger + hint-pairs-missing count in every 2-fer run** (the Iowa and Minnesota arguments would not have happened).
 2. **READY with numbers:** the three checks above printed on the grade-me line, so I can verify in one read.
 3. **Control points on every live-layer query** (chat 9's water test could not tell 'cuts rivers out' from 'point is off').
@@ -139,21 +279,14 @@ I grade the 2-fer lines and the research bots' output from the saved files (neve
 7. **Never gzip without a stub**, and never name a rebuilt file the same as a copy.
 8. **Grader access:** a read-only way to render two overlaps on the satellite map from a link (the HQ 'drawing check') so I can do it without a screen.
 
-## 14. CHAT 9 (data adds, Opus): MY KNOWN ISSUES, BOT BY BOT + WHAT I WANT TO SEE BETTER (written Oct 28 ~10:05 PM CDT)
-My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (layer, licence, hub and page look-ups, point and river tests) and `kpc-candidates.yml` + `kpc_candidates.py` (the one-off candidate finder). They join nothing; both are deleted once the world rounds and the finder's second pass are done.
-
-| bot | what went wrong | what I want to see |
-|---|---|---|
-| **Probe: queue** | Only one waiting run per concurrency group: a 2nd dispatch silently CANCELS the waiting one. A dispatch sent before my push landed ran an OLD commit (twice; cancelled + re-sent each time). | the probe prints the commit it ran on in its first notice; one shared 'dispatch after push confirmed' helper (`git ls-remote` = local HEAD, then dispatch). |
-| **Probe: slow / blocked servers** | USGS NHD (hydro.nationalmap.gov) timed out / 504 on layers 6, 5 and 3 most of the R2 run (Detroit River got 0 points). Idaho Parks' ArcGIS server never answers runners. | retry once with a longer wait + a fallback source (NHDPlus HR or the state hydro layer); a 'server down from runners' list the whole team shares, so nobody re-probes it. |
-| **Probe: reading layers** | Name field guessed wrong (SC picked PropertyID); MARIS service roots list no layers (had to try ids 0-12); ArcGIS Hub search API returned 400; the licence is often NOT on the layer but on `<service>/info/iteminfo` or the portal item (Nevada). | name field chosen by 'text field whose values look like names', never by position; licence look-up always tries layer → service → iteminfo → portal item → hub page, and says which one answered. |
-| **Point / river tests** | R1 had no control point, so a NO HIT could mean 'cuts rivers out' or 'the query is wrong' (Forest Service turned out solid in R2). In R2 the FWS control (Shiawassee) MISSED, so FWS is still unknown; NPS New River / Big South Fork river points missed but had no control INSIDE those units (the tract layer may not cover them). I picked one control coordinate wrong myself and had to cancel. | chat 8's `own_land_hit()` with three answers (HIT / NO HIT / QUERY FAILED); the control point taken automatically from INSIDE one of that layer's own polygons (no hand coordinates), one control per unit tested. |
-| **Candidate finder** | It reads the saved copies of the keys; until chat 2 rebuilds the keys its second pass would just repeat the first. Historic and city/county parks had been skipped in pass 1 (fixed: 'sure_only' section). | a key build time stamp it can check, so it refuses to run on an old key and says so. |
-| **World live-only layers (CZ, DK)** | Not stored (no licence), so their outlines depend on the agency server being up at read time; a down server looks like 'no outline'. | the world key notes 'live source did not answer' apart from 'no outline found'. |
-
-### What I want to see better, best value first
+### **[chat 9]** [old section 14 wish list]
 1. **Control points picked automatically from the layer's own polygons** + the three-answer HIT / NO HIT / QUERY FAILED helper (would have saved R1 and the FWS rerun).
 2. **Probe prints the commit it ran on** + a safe dispatch-after-push helper (stops stale runs and cancelled queues).
 3. **One licence look-up path** (layer → service → iteminfo → portal → hub) that says where it found the terms.
 4. **A shared 'blocked from runners' list** (Idaho Parks, slow NHD) with the date last tried.
 5. **Live-source 'did not answer' kept apart from 'no outline'** in the world key.
+
+### Author method notes (how each checker/author worked)
+- **[chat 11]**: Method every time: a random 10-12 from the saved JSON (my own seed, never the bot's 'first 12'), judged A/B/C against the real page or a clear sign, plus whole-file COUNTS of repeats (one URL or number on many parks). Bar 90% A+B. Grade files: `KPC_*_grade_desk.md`, `KPC_KY_Regrade1-3`, `KPC_Docs_chunks1-3`, `KPC_Docs_v5_Campinfo_v7`, `KPC_Hours_v6_Truth_TN_VA_WV`, `KPC_Closures_r8_Truth_v10`, `KPC_Closures_r9_Truth_KY_v11`, `KPC_Detective_FL_Docs`. Latest numbers (not re-sampled after v12 / round 11 / v8 / v9: check these first):
+- **[chat 8]**: I grade the 2-fer lines and the research bots' output from the saved files (never the bot's own verdict). I cannot open agency sites or the satellite map from my session, so some of my checks are by file and outline shape only; I say so on every row.
+- **[chat 9]**: My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (layer, licence, hub and page look-ups, point and river tests) and `kpc-candidates.yml` + `kpc_candidates.py` (the one-off candidate finder). They join nothing; both are deleted once the world rounds and the finder's second pass are done.

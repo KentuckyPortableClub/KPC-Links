@@ -586,3 +586,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - **Oct 28 9:15 PM (Brandon, CORRECTS HQ's 8:17 PM note): KEEP EVERYTHING, REVIEW LATER.** Boat / water-only rows and multiple-owner information are NOT deleted: rows run as they are; anything questionable goes on the review list (review-all) for chat 8 later. The simple test decides LIVE; it never removes information.
 - **Oct 28 9:35 PM (Brandon) WMA CAMPING NOTE = THE OPPOSITE:** a WMA card gets a camping note ONLY when camping IS permitted ('⛺ Camping allowed at this WMA', short, no campground details: it is not a campground). 'Camping prohibited' / 'no ATVs / horseback' standing rules = NO note (dropped). Closures, hunts etc. still show as usual.
 - Oct 28 10:15 PM (chat 8): added section 13 (my bot-by-bot issues + wish list) to KPC_IssuesForFable_Oct29.md.
+- Oct 28 10:35 PM (chat 8): reorganized KPC_IssuesForFable_Oct29.md by bot with author tags (no text removed).

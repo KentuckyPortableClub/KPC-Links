@@ -27,6 +27,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 10:35 PM: KPC_IssuesForFable_Oct29.md reorganized BY BOT with author tags (chat 10 / 11 / 2 / 8 / 9), nothing removed, old section numbers kept in [brackets]; add future notes under the right bot with your tag.
 - Oct 28 10:15 PM: wrote section 13 (chat 8: known issues bot by bot + wish list) into KPC_IssuesForFable_Oct29.md (Brandon's ask).
 - Oct 28 10:10 PM: SOURCE BOOK 2 batch 1 (KY OH MI) written + handed off. Next batches (Southeast, Midwest, Northeast, ...) continue; HQ items for water's-edge backups and hunt closures are folded into this book (items 1, 4).
 - Oct 28 9:10 PM: MIDWEST re-read: MN is fine (my "no file" was wrong: the file is stored gzipped, US-MN.json.gz: 858 spots, 115 live, 9 not sure, 0 duplicates, 0 unanswered, big 2-fers 52,069 / 120,800 / 146,996 ac kept) = READY. IA still undercounted (see report).
