@@ -20,7 +20,7 @@ for i in 1 2 3 4 5 6; do
     git commit -qm "$MSG"
     ERR=$(git push -q origin HEAD:main 2>&1) && { echo "saved: $(echo $CH | wc -w) files"; exit 0; }
   else ERR="fetch failed"; fi
-  echo "::notice title=Save try $i::${ERR:0:300}"; sleep $((i * 10))
+  WHY=$(echo "$ERR" | grep -v "Trace:" | grep -v "^remote: *$" | tr "\n" " "); echo "::notice title=Save try $i::${WHY:0:600}"   # Oct 29: the Alaska save hid its reason behind 6 Trace lines; sleep $((i * 10))
 done
 echo "::notice title=Save FAILED::$(echo $CH | wc -w) files not saved"
 [ "$STRICT" = 1 ] && exit 1   # the assembly line: a failed save = a red run (HQ Oct 27)
