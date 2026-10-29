@@ -25,9 +25,9 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 2.10 Rerun ALL 2-fers (plan step 4)
 
 ## CHAT 3 (Overlap Finder / site maps)
-- [ ] 3.1 3 m close-ups on every 2-fer map (US + Canada + KY), tested at full zoom + phone width, < 1 s extra
-- [ ] 3.2 Add each area chat 8 passes (members, BETA); keep the 'hide' list for rows chat 8 drops
-- [ ] 3.4 SCOPE: HIDE campground data outside Kentucky on every page/tool (Lounge campground tab/cards, park cards, planner, Kit): keep the files, don't show them; closures outside KY disappear when chat 5 clears them
+- [x] 3.1 3 m close-ups on every 2-fer map (US + Canada + KY), tested at full zoom + phone width, < 1 s extra · Oct 29 7:55 AM: KPCB.closeUp re-reads live outlines near the spot at 0.00003 deg (1.5 s cap, giants skipped); KY + canada-bounds use the 2-fer 'lines'; live US server untested from here (Brandon to eyeball one non-KY spot)
+- [ ] 3.2 Add each area chat 8 passes (members, BETA); keep the 'hide' list for rows chat 8 drops · STANDING: 34 states on as of Oct 29 5:40 AM, 14 pairs hidden
+- [x] 3.4 SCOPE: HIDE campground data outside Kentucky on every page/tool (Lounge campground tab/cards, park cards, planner, Kit): keep the files, don't show them; closures outside KY disappear when chat 5 clears them · Oct 29 8:55 AM: Campgrounds page = Kentucky only (KY_ONLY switch in kpc-campgrounds-us.js, no picker / NEAR ME / ?state=), Kit + park sheet outside KY say 'Campground details are shown for Kentucky parks only for now', US planner shows no federal campgrounds outside KY; files untouched
 - [ ] 3.3 LATER (GO needed): owners / % water info line on the card; 'help us check' for the review list
 
 ## CHAT 8 (research desk) — IN THIS ORDER (Brandon: 'stick to the plan'; 8.5, 8.6, 8.8 moved to chat 11)

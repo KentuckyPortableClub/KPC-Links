@@ -234,7 +234,7 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const ky=nk||(!nu&&stateAt(s.la,s.lo)==='KY'),n=nk+nu,href=ky?'kpc-park-notes.html#'+encodeURIComponent(s.c):'kpc-park-notes-us.html?ref='+encodeURIComponent(s.c)+'#find';
   h+=`<div class="meta" style="margin:8px 0 2px;font-weight:800"><a href="${href}">📝 ${n?'PARK NOTES: '+n+' TIP'+(n===1?'':'S'):'PARK NOTES: BE THE FIRST TO ADD A TIP'} ›</a></div>`}
  /* federal campgrounds + picnic shelters within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
- const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=dfetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])].filter(x=>x==='KY')){/* HQ + Brandon Oct 29: campground data outside KY hidden (files kept) */if(!(st in CFED))CFED[st]=dfetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
  near.sort((a,b)=>a.mi-b.mi);
  const row=({c,mi})=>ln(`<a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'right there':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}`);

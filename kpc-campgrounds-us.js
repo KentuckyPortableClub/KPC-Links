@@ -260,6 +260,9 @@
   var row = document.querySelector('.cg-row');
   /* Oct 26 (HQ/Brandon: 'the state picker is too hidden; people don't realize they can see other states'): a big 📍 PICK A STATE bar
      right under the hero, a 'Campgrounds & cabins in <state> · change state ▾' heading, and 📍 NEAR ME (the visitor's state from the GPS). */
+  /* HQ + Brandon Oct 29 8:38 AM (scope rule, MASTER-PLAN 3.4): campground data outside Kentucky is HIDDEN (files kept). KY_ONLY = true
+     shows Kentucky only: no state picker, no NEAR ME, ?state= ignored. Set it to false to bring the other states back. */
+  var KY_ONLY = true;
   var hero = document.querySelector('main .hero') || document.querySelector('.hero');
   var bar = '<section class="cgp" id="cgPick" data-keep-light aria-label="Pick a state"><div class="cg-wrap">' +
     '<h2 class="cgp-h">Campgrounds &amp; cabins in <b id="cgpName">Kentucky</b> <button type="button" class="cgp-chg" id="cgpChange">· change state ▾</button></h2>' +
@@ -269,6 +272,7 @@
     /* Oct 28 (chat 8 / Brandon): say who checked Kentucky and when (kpc-campgrounds.json 'updated') */
     getJSON('kpc-campgrounds.json').then(function (d) { var m = d && /^(\d{4})-(\d{2})-(\d{2})/.exec(d.updated || ''), e = document.getElementById('cgpKyD'); if (m && e) e.textContent = ', last checked ' + ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1]; });
   if (hero) hero.insertAdjacentHTML('afterend', bar); else row.insertAdjacentHTML('beforebegin', bar);
+  if (KY_ONLY) { var pr = document.querySelector('#cgPick .cgp-row'); if (pr) pr.hidden = true; $('cgpChange').hidden = true; $('cgpMsg').innerHTML = 'Kentucky parks: checked by club members<span id="cgpKyD"></span>.'; }
   row.insertAdjacentHTML('beforeend', '<select id="cguPark" aria-label="Park" class="cgu-only"><option value="">All parks</option></select>' +
     '<select id="cguRad" aria-label="How far from the park" class="cgu-only"><option value="2">At the park (2 mi)</option><option value="10" selected>Park + 10 mi around</option><option value="25">Park + 25 mi around</option><option value="50">Park + 50 mi around</option></select>');
   $('cgChips').insertAdjacentHTML('afterend', '<div class="cg-chips cgu-only" id="cguChips"><button class="cg-chip" type="button" data-u="lodge" aria-pressed="false">CABINS &amp; LODGES</button><button class="cg-chip" type="button" data-u="rev" aria-pressed="false">★ HAS REVIEWS</button></div>' +
@@ -292,7 +296,7 @@
   $('cguChips').addEventListener('click', function (e) { var b = e.target.closest('.cg-chip'); if (!b) return; var k = b.dataset.u; Fu[k] = !Fu[k]; b.setAttribute('aria-pressed', String(Fu[k])); shown = PAGE; draw(); });
   $('cgQ').addEventListener('input', function () { if (cur !== 'KY') { shown = PAGE; draw(); } });
 
-  var q = (new URLSearchParams(location.search).get('state') || '').toUpperCase(), first = ST[q] ? q : (ST[store('kpcCgSt')] ? store('kpcCgSt') : 'KY');
+  var q = (new URLSearchParams(location.search).get('state') || '').toUpperCase(), first = KY_ONLY ? 'KY' : ST[q] ? q : (ST[store('kpcCgSt')] ? store('kpcCgSt') : 'KY');
   $('cgSt').value = first;
   if (first !== 'KY') setMode(first);
 })();
