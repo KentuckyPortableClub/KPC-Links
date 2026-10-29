@@ -214,6 +214,17 @@ if recs is None:
 
     _ERR = []
     LAYERS = {'cpcad': [f'{SVC}/{lid}']}   # Oct 24: the website fetches a joined area by id from its own map (data/ca-key/layers.json)
+    # Oct 29 (chat 8 'NS wrong joins solved'): an id was '<first 12 letters of the label>:<record number>', and two layers can share
+    # those 12 letters (two Nova Scotia sources, one source with 4 sub-layers): record 731 of one layer = record 731 of another.
+    # Each LAYER now gets its own prefix: the first keeps the old 12 letters (old ids and hand joins still point at it), the next
+    # ones get '~1', '~2' …
+    _PID, _BASE = {}, {}
+    def pid_for(label, lu):
+        k = (label, lu)
+        if k not in _PID:
+            b = label[:12]; n = _BASE.get(b, 0); _BASE[b] = n + 1
+            _PID[k] = b if n == 0 else f'{b}~{n}'
+        return _PID[k]
     def arc_pull(label, url, nf):
         lays = []
         if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
@@ -226,7 +237,8 @@ if recs is None:
             try: li = get(lu, {'f': 'json'})
             except Exception as e: print(f'{label} {lu}: {e}', flush=True); _ERR.append(f'{label[:30]} layer: {str(e)[:80]}'); continue  # noqa: BLE001
             if 'Polygon' not in str(li.get('geometryType', '')): continue
-            LAYERS.setdefault(label[:12], []).append(lu)
+            pid = pid_for(label, lu)
+            LAYERS.setdefault(pid, []).append(lu)
             fl = [f['name'] for f in li.get('fields', [])]
             names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
             oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
@@ -255,7 +267,7 @@ if recs is None:
                     a = f.get('attributes') or {}; g = f.get('geometry') or {}
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
                     if not nm: continue
-                    r = {'oid': f'{label[:12]}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
                     r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                     got.append(r)
                 if ids is not None: off += 100; time.sleep(.4); continue
@@ -324,7 +336,7 @@ if recs is None:
             rs = c if t == 'Polygon' else [q for pp in c for q in pp] if t == 'MultiPolygon' else []
             k = max(1, max((len(q) for q in rs), default=1) // 400)
             g = {'rings': [[[round(pt[0], 5), round(pt[1], 5)] for pt in q[::k]] for q in rs]}
-            rr = {'oid': f'{label[:12]}:{P.get("OBJECTID") or P.get("objectid") or i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+            rr = {'oid': f'{pid_for(label, url)}:{P.get("OBJECTID") or P.get("objectid") or i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
             rr['_k'] = kinds(nm); got.append(rr)
         return got
     def sz_pull(label, url, nf, epsg):
@@ -348,7 +360,7 @@ if recs is None:
                     xs, ys = tr.transform([q[0] for q in ring[::st]], [q[1] for q in ring[::st]])
                     rs.append([[round(x, 5), round(y, 5)] for x, y in zip(xs, ys)])
                 g = {'rings': rs}
-                rr = {'oid': f'{label[:12]}:{i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                rr = {'oid': f'{pid_for(label, url)}:{i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
                 rr['_k'] = kinds(nm); got.append(rr)
         return got
     _mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
