@@ -588,3 +588,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 28 10:15 PM (chat 8): added section 13 (my bot-by-bot issues + wish list) to KPC_IssuesForFable_Oct29.md.
 - Oct 28 10:35 PM (chat 8): reorganized KPC_IssuesForFable_Oct29.md by bot with author tags (no text removed).
 - Oct 28 10:20 PM (chat 8): added INSTRUCTIONS FOR FABLE at the top of KPC_IssuesForFable_Oct29.md (Brandon's order 13,8,14,7,6,1,2 then rest; water map first).
+- Oct 28 10:25 PM (chat 8): Fable may stop any bot except the 2-fer line and run short test sessions (Brandon); added to the Issues file instructions.
