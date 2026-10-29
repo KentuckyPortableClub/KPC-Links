@@ -32,6 +32,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 12:15 PM: KEYED PULL v3 = 26/30, no wrong-park point; fix = drop 129 Wilderness/WSA area labels (KPC_KeyedPull_v3_grade_desk.md), then PASS.
 - Oct 29 12:40 PM: chat 2 NAME MATCHES (107 rows): YES 42 / NO 20 / NOT SURE 45 (KPC_AliasCheck_Verdicts_desk.md); agency maps unreachable from here, said so. No new bot output since 11:12 AM. Keyed pull waits for v3.
 - Oct 29 12:10 PM: DOCS v7 south graded (83% sample, 3 bulk faults to chat 2, recall steady): KPC_Docs_v7_South_grade_desk.md. Keyed pull re-sample waits for chat 9 v3 (HQ put-back rulings).
 - Oct 29 11:50 AM: KEYED PULL accuracy check = FAIL as one batch (A+C good, B mixed, D drop, Acadia sign bug, 3 of 4 KY camps missing): KPC_KeyedPull_grade_desk.md; fixes to chat 9.
@@ -71,6 +72,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - Oct 28: first batch graded, all from Kentucky, all FAIL the 90% bar: TRUTH CHECKER 9/12 = 75% (flagged rows 15/19), HOURS 4/12 = 33% (its own gate 24%), CAMPGROUND INFO random 10 = 50%, DOCUMENTS bot finder check 17/25 = 68% (12-sample 10/12). Files: `.claude/build/research/KPC_TruthChecker_grade_US-KY_desk.md`, `KPC_Hours_grade_US-KY_desk.md`, `KPC_CampInfo_grade_US-KY_desk.md`, `KPC_Docs_grade_US-KY_desk.md`. Fixes sent to chat 10 (3 bots), chat 2 (documents bot + outline leads), chat 8 (US-10105 flag, finder check done). The truth checker's 'grade me' line (run 40669098603) is graded; I cannot edit KPC-Data from here, so chat 8 strikes it.
 
 ## REPORT TO HQ (newest first)
+- Oct 29 12:15 PM (chat 11): KEYED PULL v3: 26/30 = 87%, NO wrong-park point (v2 FAIL fixed: hotels, museums, shared facilities, sign bug gone). One class left: 129 designated Wilderness / WSA areas listed as access points; filter them and it PASSES. Question for HQ: ski areas outside the park line (14 resort/ski labels): keep only those inside? Only 1 of the 4 KY camps is in the file.
 - Oct 29 12:40 PM (chat 11): NAME MATCHES done for chat 2: YES 42 / NO 20 / NOT SURE 45 of 107; I cannot open the agencies' maps, so the YES list is name + size + pin reasoning (flagged in the file); NOT SURE rows need a bot. Nothing new from the bots; keyed pull still waits for chat 9's v3 (lookouts / visitor centers / lodges back).
 - Oct 29 12:10 PM (chat 11): DOCUMENTS v7 south (11 states, 2,482 parks): random 12 = 83% FAIL, but only 16 of 1,010 maps are definitely wrong (Indiana Museum on 10 IN historic sites, FWS rivers map on 5 rivers, Dawson WMA); recall steady. To chat 2/3. Keyed pull v2 waits for v3 with Brandon's put-back rulings (lookouts, visitor centers, lodges, campgrounds), then I sample.
 - Oct 29 11:50 AM (chat 11): KEYED PARKING PULL = FAIL as one batch (30-sample over 17 states). Good: rule A (NPS lots) and C (name matches). Mixed: B (right forest, mostly campgrounds/lookouts, not parking). Bad: D (hotels, museums, one facility on 15 DC parks). One sign bug (Acadia Cadillac Mountain lon +68). Only 1 of 4 KY camps (Houchin Ferry, correct). Nothing goes live; fixes + a re-sample sent to chat 9.
