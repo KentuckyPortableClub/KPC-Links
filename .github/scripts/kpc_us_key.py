@@ -1155,6 +1155,21 @@ def run(st):
     # its edges can sit up to that far off, so the tests allow that much more before holding a piece
     _slack = DETAIL * 111.0
     held_g, pin_wrong = [], []
+    g8 = []
+    def _g8tok(s):
+        s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
+        s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
+        return {w for w in re.findall(r'[a-z0-9]+', s) if len(w) > 2 and w not in G8_TYPE}
+    G8_DES = ('national park', 'state park', 'national monument', 'monument', 'national forest', 'state forest', 'forest', 'refuge', 'recreation area', 'wildlife area',
+              'wildlife management area', 'wma', 'game land', 'preserve', 'seashore', 'lakeshore', 'grassland', 'historic site', 'battlefield', 'office', 'park')
+    def _g8des(s):
+        s = ' ' + re.sub(r'[^a-z ]', ' ', str(s or '').lower()) + ' '
+        # only the STRONG designations can disagree (Park / Monument / Forest / Refuge / Office…); area, WMA, game land, site are
+        # the same family of state lands and never count as 'another kind' by themselves
+        return {x.split()[-1] for x in G8_DES if f' {x} ' in s} & {'park', 'monument', 'forest', 'refuge', 'office', 'seashore', 'lakeshore', 'battlefield', 'preserve', 'grassland'}
+    G8_TYPE = {'park', 'parks', 'forest', 'forests', 'monument', 'refuge', 'recreation', 'area', 'areas', 'lake', 'lakes', 'creek', 'bay', 'state', 'national', 'wildlife',
+               'management', 'office', 'field', 'district', 'unit', 'units', 'site', 'sites', 'river', 'trail', 'wilderness', 'preserve', 'reserve', 'natural', 'scenic',
+               'historic', 'historical', 'memorial', 'fish', 'game', 'conservation', 'county', 'city', 'public', 'land', 'lands', 'blm', 'nwr', 'wma', 'the', 'and'}
     for ref, p in parks.items():
         m = p.get('m') or []
         r = P.get(ref) or []
@@ -1163,7 +1178,30 @@ def run(st):
         # the record NAMES the park when every word of POTA's name is in it ('White Horse Hill Game Preserve' in 'White Horse
         # Hill National Game Preserve' = the agency's own record, G-1: any distance); only the rest must prove their place
         _pw = words(p.get('n') or (r[0] if r else ''))
-        weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw <= words(x[1]))]
+        weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
+        # R-G8 (HQ ruling Oct 29 2:45 PM, Brandon 2:40 PM): a shared-words piece joins only if (1) it shares a PLACE word (type
+        # words do not count), (2) the kind of place agrees (an office is never park land), (3) it is not bigger than the park's
+        # own name-matched record; else CHECK (the waiting room), never joined, never silently dropped
+        if weak:
+            _kp = kinds(p.get('n') or '') | kinds(p.get('t') or '')
+            _strong = [x for x in m if x not in weak]
+            _nm = [x[2] or 0 for x in _strong if str(x[3]).split(' · ')[0] == 'name']
+            _cap = 1.1 * sum(_nm) + 5 if _nm and all(_nm) else None   # the park's own name-matched land (all its records), 10% slack; a record with no acres on file = no size test
+            _bad = []
+            for x in weak:
+                a = gs_.get(str(x[0])) or {}
+                ta, tb = _g8tok(p.get('n') or ''), _g8tok(x[1])
+                pw_ = (ta & tb) or {w for w in ta | tb if any(w == u + v for u in ta | tb for v in ta | tb if u != v)}
+                da, db = _g8des(p.get('n') or ''), _g8des(x[1])
+                why8 = ('no shared place word' if not pw_ else
+                        'another kind of place' if (KM.is_admin(x[1]) or 'office' in db or (da and db and not da & db) or not same_kind(_kp, a.get('_k') or kinds(x[1]))) else
+                        'bigger than the park\'s own record' if (_cap is not None and (x[2] or 0) > _cap) else '')
+                if why8: _bad.append((x, why8))
+            if _bad:
+                m = [x for x in m if x not in [b[0] for b in _bad]]; p['m'] = sorted(m, key=lambda x: -x[2])
+                p['c'] = (p.get('c') or []) + [[b[0][0], b[0][1], b[0][2], f'check (rule R-G8): {b[1]}'] for b in _bad]
+                g8.append(f"{ref} ({', '.join(b[0][1][:24] for b in _bad[:2])})")
+                weak = [x for x in weak if x not in [b[0] for b in _bad]]
         if weak and la_ is not None:
             ok = [x for x in m if x not in weak]
             left = list(weak)
@@ -1185,7 +1223,8 @@ def run(st):
         m = p.get('m') or []
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
-        p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw <= words(x[1])) for x in m) else 'official')
+        p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1])) for x in m) else 'official')
+    if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
