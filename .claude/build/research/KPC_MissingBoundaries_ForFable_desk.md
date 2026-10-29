@@ -204,3 +204,17 @@ Point-in-polygon look-ups filed at the park pins: 8-rg7-pk-ak (8 parks), -ny (3)
 | CT | US-6860 Ferry Landing SP | "Marine District Headquarters" 16.2 ac (DEEP) | 2 | NOT a match by name; Ferry Landing SP sits beside the DEEP marine HQ at Old Lyme: needs a second look (name search in DEEP Property: bot) |
 | NY | US-2081 Iona Island, US-8103 Cayuga Lake, US-2151 Thompsons Lake | DEC Lands layer 2: nothing at the pins | 2 | retry on the WMA layer (8-rg7-pk-ny2); Thompsons Lake is OPRHP (parks), not DEC |
 | ME | US-9174 Mahoosuc, US-8287 Capitol | layer URL answered 404 "service not found" | 2 | retry on the other Maine host (8-rg7-pk-me2); Capitol Park parcel (Augusta tax map 32 lot 24) stands |
+### Oct 29 4:20 PM chat 3: LOOK-UP E SEEN (the PDF pictures; I looked at each one)
+| park | what the picture shows | Rule G result |
+|---|---|---|
+| MT US-11216 Big Springs Trout Hatchery | MT FWP map 'Big Springs Trout Hatchery' draws a red hatched 'Site Boundary' (6 small pieces along the creek) | R-G7 step 4a, official line, from https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/htc/39753636.pdf: TO TRACE (chat 2); chat 11 yes/no |
+| MT US-11219 Jocko River Trout Hatchery | FWP map 'Jocko River Trout Hatchery' (spelled Jocko) draws a 'Site Boundary' (one polygon, Flathead Reservation) | step 4a, official line, .../htc/39753949.pdf: TO TRACE; chat 11 yes/no (name spelling Jacko vs Jocko = same place) |
+| MT US-12827 Brownes Lake SFWA | the FWP map is 'Browns Bridge Fishing Access Site' with a boundary: a DIFFERENT NAME than POTA's 'Brownes Lake' | NOT used. Grey area for Brandon (G-MT1): is Brownes Lake SFWA the same land as Brownes Bridge FAS? Pin until ruled |
+| MT US-12925 Thoreau State Beach | the FWP page id we had (39753904) is 'Thibodeau' FAS, not Thoreau: wrong site | NOT used. Needs the FWP page for Thoreau (not found); pin |
+| IL US-13298 North Point Marina SRA | a marina drawing (no boundary line, no scale) | NOT a boundary map; pin. Step 4b (IDNR-owned land inside Illinois Beach SP) |
+| IL US-12640 Rauchfuss Hill SRA | IDNR 'Rauchfuss Hill - Dixson Springs State Recreation Area' hunter map: blue 'IDNR Property' line drawn (2 blocks + a strip by Marina Dr) | step 4a, official line, from our docs: TO TRACE (chat 2); chat 11 checks the strip by Marina Dr (Golconda Marina belongs to a different park) |
+| IL US-4118 Copperhead Hollow SFWA | IDNR hunter map with a clear blue 'IDNR Boundary' line (one shape, ~0.45 mi scale) | step 4a, official line, from our docs: TO TRACE |
+| MA US-8422 Pope John Paul II Park | DCR Neponset River Greenway map: the park drawn as a green 'DCR owned or managed' shape (legend says 'not authoritative') | step 4b: ownership shape, grade APPROXIMATE; chat 2 to cut it; chat 11 yes/no |
+| IL US-10788 Ray Norbut | web app opens on a satellite picture with no outline | still no boundary; pin |
+NEW RULING NEEDED (G-MT1): see the line above (Brownes Lake vs Brownes Bridge). Also a naming note: POTA 'Jacko' vs FWP 'Jocko' is one place (spelling).
+
