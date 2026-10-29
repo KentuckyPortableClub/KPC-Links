@@ -43,7 +43,7 @@
 "say": "find {county} County and call that PVA office (free)"
 },
 "CA": {
-"list": "https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
+"list": "https://www.boe.ca.gov/proptaxes/countycontacts.htm",
 "name": "California county assessors (State Board of Equalization)",
 "say": "find {county} County and call that office (free)"
 },

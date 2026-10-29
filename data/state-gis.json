@@ -557,6 +557,15 @@
     "read": "2026-10-28",
     "note": "39 NDPRD properties (the NDGISHUB copy has 21)",
     "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0"
+   },
+   {
+    "kind": "forest",
+    "ag": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
+    "nm": "DESCRIPTION",
+    "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer/0",
+    "host": "agency",
+    "lic": "none stated (HQ Oct 29 11:27 AM: use, credit the agency)",
+    "note": "chat 9 probe Oct 29 (27 records, name in DESCRIPTION); added by chat 2 for the 5 ND state forests"
    }
   ],
   "NJ": [
@@ -942,6 +951,15 @@
     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "kind": "land",
+    "ag": "BLM Utah State Office (congressionally designated recreation areas)",
+    "nm": "RECS_NAME",
+    "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1",
+    "host": "agency",
+    "lic": "credit line",
+    "note": "chat 9 probe Oct 29 (PASS, 26 NCAs / recreation areas); added by chat 2"
    }
   ],
   "VA": [
@@ -1469,14 +1487,6 @@
     "nm": "Site_Name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
     "host": "agency"
-   },
-   {
-    "kind": "land",
-    "ag": "Illinois DNR (public conservation lands)",
-    "nm": "Site_Name",
-    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
-    "host": "agol",
-    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
    }
   ],
   "VT": [
