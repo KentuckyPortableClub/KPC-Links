@@ -116,3 +116,8 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 | US-8387 | Martini Shell Park / Moynihan SRA | mass.gov page; pin inside Neponset River Reservation | R-G7 step 3 | pending (3-fable-low-c) | chat 3 | Oct 29 |
 | US-8388 | Great Falls Discovery Center SRA | mass.gov page; nothing near | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
 | US-8422 | Pope John Paul II Park State Reserve | OUR DOCS ok: https://www.mass.gov/doc/neponset-river-greenway-map-tnf | R-G7 step 4a from our docs if the map shows the line | pending (3-fable-low-c) | chat 3 | Oct 29 |
+### Oct 29 3:55 PM chat 3 update (look-up B read)
+- RI US-10545: layer 21 name query returned 'Failed to execute query' (400); retried with UPPER(NAME) LIKE in 3-fable-low-d.
+- IA US-9334: FWS Iowa WMD map page opened (75 WPAs, 18 counties); whether Teal Basins is drawn needs a screenshot (low-d).
+- VA US-9931, HI US-10923, VA US-9961: the bot read the PDFs as raw bytes (no text); screenshots asked in low-d.
+- NM US-11797 Los Luceros: nmhistoricsites page opened, no map link. HI US-10925: dlnr forestry reserves page is 404 (both Hawaii DLNR URLs dead); needs a search for the working page.
