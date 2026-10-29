@@ -218,7 +218,7 @@ if recs is None:
     # those 12 letters (two Nova Scotia sources, one source with 4 sub-layers): record 731 of one layer = record 731 of another.
     # Each LAYER now gets its own prefix: the first keeps the old 12 letters (old ids and hand joins still point at it), the next
     # ones get '~1', '~2' …
-    _PID, _BASE = {}, {}
+    _PID, _BASE, ERRLAB = {}, {}, set()
     def pid_for(label, lu):
         k = (label, lu)
         if k not in _PID:
@@ -259,7 +259,7 @@ if recs is None:
                     if ids is None and off == 0:
                         try: ids = sorted(get(f'{lu}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or []); print(f'{label}: paging by {len(ids)} ids', flush=True); continue
                         except Exception as e2: e = e2  # noqa: BLE001
-                    print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
+                    print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); ERRLAB.add(label); break  # noqa: BLE001
                 fs = j.get('features', [])
                 if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
                     at = fs[0].get('attributes') or {}; names = [k for k in at if NAMEY.search(k) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3] or names
@@ -382,7 +382,21 @@ if recs is None:
     old = cload() if (_ERR or any('FAILED' in x for x in _mores)) else None
     if old is not None and len(recs) < .97 * len(old):   # only when the read came back SHORT (Québec fails most runs)
         notice('Canada key', f'a map did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
-    elif CMODE in ('use', 'refresh'): csave(recs)
+    else:
+        # Oct 29 (15 Québec regional parks lost their outline when 'Parc régional (MRNF)' answered 400): a layer whose query
+        # failed this run and brought back NOTHING keeps its records from the saved copy (ids moved to the layer's own prefix)
+        topped = 0
+        have = {r.get('src') for r in recs}
+        _sv = (old if old is not None else cload()) if ERRLAB - have else []
+        for lab in sorted(ERRLAB):
+            if lab in have: continue
+            pids = [v for (l2, _u), v in _PID.items() if l2 == lab]
+            if len(pids) != 1: continue
+            saved = [dict(r) for r in (_sv or []) if r.get('src') == lab]
+            for r in saved:
+                r['oid'] = pids[0] + ':' + str(r.get('oid', '')).split(':', 1)[-1]; recs.append(r); topped += 1
+        if topped: notice('Canada key', f'{topped} areas of layers that did not answer this run were taken from the saved copy ({", ".join(sorted(ERRLAB))[:200]})')
+        if CMODE in ('use', 'refresh') and not topped: csave(recs)
 # Oct 26 (gap hunt, HQ): POTA's 'New Brunswick #24 Wildlife Management Area' parks are New Brunswick's numbered WILDLIFE
 # MANAGEMENT ZONES (OpenData/WMZ, one number field, 27 zones). A probe found 23 of the 25 pins inside the zone of their own
 # number. No zone carries a name, so each gets the POTA-style name from its number and joins by name like any other area.
@@ -474,7 +488,11 @@ for pv, parks_in in sorted(by.items()):
             m = [q for q in m if str(q[0]) not in no and _nf(q[1]) not in {_nf(x) for x in no}]
             for want in ov.get('join', []):
                 for r in NEAR:
-                    if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
+                    # Oct 29 (R-CA1): a hand join written as an OLD id 'Nova Scotia :26' (12-letter prefix, before one prefix per
+                    # layer) also matches the same record number in that prefix's other layers ('Nova Scotia ~1:26'), but only
+                    # close to the pin (0.1 deg), so the reviewed record is found again and a far namesake number is not
+                    oldid = ':' in str(want) and '~' not in str(want) and re.sub(r'~\d+:', ':', str(r['oid'])) == str(want) and str(r['oid']) != str(want)
+                    if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want) or (oldid and la is not None and near(la, lo, r['_bb'], .1))) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
         # Oct 29 (chat 2 + chat 8, as in the US key): 'alias' = another name the official layer uses; joins ONLY with the pin inside it
         if not m and la is not None and ov.get('alias'):
