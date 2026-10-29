@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 10 (Oct 29 9:35 AM, Brandon 9:25 AM: a REAL closure must be more noticeable than a hunt note): in kpc-closures.js give each item row a class from the item's class field (note vs part / whole / hunt) and style the real ones, e.g. `.kcl-i.kcl-real{border-left:5px solid #e8590c;padding-left:9px;background:#fff4e6;font-weight:600}`. Preview: .claude/build/research/KY_HuntCards_preview_Oct29.png. Takes effect when the cards read the closures super-bot (ONE CLOSURES READER, after chat 11's pass).
 
 ## NEEDS BRANDON
 
