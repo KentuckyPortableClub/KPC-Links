@@ -592,3 +592,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 28 10:50 PM (chat 8): KPC_SearchWishes_1to5_desk.md (satellite-picture bot, NPS Data API, link-opener, state water-area test, preserve tracts).
 
 - Oct 28 (chat 8): boundary gaps + river layers desk file KPC_BoundaryGaps_Rivers_desk.md; 918 US missing, BLM layer already read; rivers feed water map only.
+- **RULED (Brandon Oct 28 11:21 PM, 'Season'; Rule Sheet F / hours bot):** 'open year-round', 'seasonal' and other lines with no day or time are SEASON facts, not hours: the hours bot writes them to a `season` field; `hours` keeps only lines with a day or a time; Waiting Room F-H3 measures hours only.
