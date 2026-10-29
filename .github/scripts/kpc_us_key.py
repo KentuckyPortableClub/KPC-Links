@@ -1033,12 +1033,12 @@ def run(st):
         # camps); a 500-part national forest is not cut to the bit near a pin. Parts near the pins must not overlap, and the
         # pins must be more than 15 km apart (the same distance as the prune above)
         if len(refs) < 2 or not ps or len(ps) > 6 or any(r not in pinx for r in refs): continue
-        near = {r: [i for i, q in enumerate(ps) if _dk1(r, q) <= 2] for r in refs}
-        if any(not v for v in near.values()): continue
+        nearp = {r: [i for i, q in enumerate(ps) if _dk1(r, q) <= 2] for r in refs}
+        if any(not v for v in nearp.values()): continue
         rl = sorted(refs)
-        if any(set(near[a_]) & set(near[b_]) or _dk1(a_, [pinx[b_][1], pinx[b_][0], pinx[b_][1], pinx[b_][0]]) <= 15
+        if any(set(nearp[a_]) & set(nearp[b_]) or _dk1(a_, [pinx[b_][1], pinx[b_][0], pinx[b_][1], pinx[b_][0]]) <= 15
                for k_, a_ in enumerate(rl) for b_ in rl[k_ + 1:]): continue
-        for r, v in near.items():
+        for r, v in nearp.items():
             if len(v) == len(ps) or any(str(x[0]) == rid and str(x[3]).startswith('reviewed') for x in parks[r]['m']): continue
             parks[r].setdefault('parts', {})[rid] = [[round(c, 4) for c in ps[i]] for i in v]
             clipped.append(f'{r} ({len(v)} of {len(ps)} parts)')
