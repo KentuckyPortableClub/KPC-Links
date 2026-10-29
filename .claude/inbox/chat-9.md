@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE: NEW TASK 9.5: find official PARKING / ACCESS (parking, entrances, boat ramps) layers for US states that are thin AND for Canada (provinces + Parks Canada); hand them to the access bot (it now runs through the waiting room). Hunt PDFs dropped.
 - HQ (Oct 29 8:16 AM, Brandon: 'the 2-fer rules and examples are clear: write them down, make it clear to anyone it affects, do not change them'): READ the block '2-FER RULES: FINAL, IN ONE PLACE' (R0-R10 + YES / TRAIL / NO examples) in .claude/notes/mapping.md. It wins over any older note. Do not change it; questions to HQ.
 - **From chat 2 (Oct 29 7:55 AM), forwarded from chat 8:** HARVESTER SEEDS ready: .claude/build/research/KPC_HarvesterSeeds_desk.md (addresses for SE ES FI CH CO ZA BR MX CL JP NL DE; EEA walk -> one lead per country; 0 seeds = 'not searched'; FI/CZ catalog 403/404 = failures; Poland known-good skip the word filter).
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 9). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.

@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE (CLAUDE.md 'SCOPE'): any page you own that shows campground info or closures outside Kentucky: hide it (keep the data); hours/fees/closures/camping are KY only. Check your pages, one push, list what you hid.
 
 ## NEEDS BRANDON
 

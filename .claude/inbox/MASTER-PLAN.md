@@ -1,6 +1,8 @@
 # MASTER PLAN + TASK LIST (HQ, Brandon's plan Oct 29 7:31 AM)
 Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the date/time + one short result. When you START one, `[~]`. New tasks only through HQ. HQ reads this file for every status report.
 
+## SCOPE (Brandon Oct 29 8:36 AM, see CLAUDE.md 'SCOPE'): KY = everything; rest of US + Canada = boundaries, official docs/maps, 2-fers, parking/access points, trails; world = boundaries + docs/maps only; OUTSIDE KY no hours / fees / closures / camping.
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.
@@ -18,12 +20,14 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 2.6 Virginia key double-counts tracts (Dragon Run 2x, from chat 11)
 - [ ] 2.7 Fix the parks with a far outline piece named by the access run (NY US-10284…, MN, PA, OR, OK, ND, MO, MI)
 - [ ] 2.8 Our own water copy near parks (release files, size first) AFTER the US queue
+- [ ] 2.11 SCOPE: NO world 2-fers (stages off); world = outlines only
 - [ ] 2.9 LATER: monthly 2-fer rerun with a changes list; keys change-check; small-batch list for new outlines (built? confirm)
 - [ ] 2.10 Rerun ALL 2-fers (plan step 4)
 
 ## CHAT 3 (Overlap Finder / site maps)
 - [ ] 3.1 3 m close-ups on every 2-fer map (US + Canada + KY), tested at full zoom + phone width, < 1 s extra
 - [ ] 3.2 Add each area chat 8 passes (members, BETA); keep the 'hide' list for rows chat 8 drops
+- [ ] 3.4 SCOPE: HIDE campground data outside Kentucky on every page/tool (Lounge campground tab/cards, park cards, planner, Kit): keep the files, don't show them; closures outside KY disappear when chat 5 clears them
 - [ ] 3.3 LATER (GO needed): owners / % water info line on the card; 'help us check' for the review list
 
 ## CHAT 8 (research desk) — IN THIS ORDER (Brandon: 'stick to the plan'; 8.5, 8.6, 8.8 moved to chat 11)
@@ -37,8 +41,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [→] 8.8 MOVED to chat 11 (11.5)
 - [ ] 8.12 LAYERED-LAND LIST (Brandon Oct 29 7:48 AM: 'we need to track all these in case we have to review them'): one file .claude/build/research/KPC_LayeredLand_List_desk.md (+ data/fers/layered.json for the bots) of EVERY pair where the federal agency OWNS the land and the state MANAGES it (and the reverse), per pair: both POTA numbers + POTA's NAME and TYPE for each (does POTA call it a state WMA / state park or a federal unit?), owner + manager from PAD-US Own_/Mang_ fields at the patch, the agency evidence (lease / cooperative agreement page), live / not sure in the line, last checked. BOTH sides must be POTA PARKS (Brandon 7:54 AM: 'we compare POTA parks to POTA parks'): a federal POTA park (e.g. a national forest) + a state POTA park (e.g. a state WMA) on that federal land = 2-fer IN THE OVERLAP. A WMA on Corps / TVA land with no federal POTA number = NOT a pair (one park only). KY first (Redbird, Pioneer Weapons, Beaver Creek WMAs x Daniel Boone NF), then GA (Cohutta WMA x Chattahoochee NF), TN (Cherokee WMA x Cherokee NF), AR (WMAs x Ozark NF), then every state; confirm both POTA numbers before listing a pair. Kept current: the line adds a row whenever it finds a new layered pair.
 - [ ] 8.9 Agency own-land records (real private tracts) + official water's-edge sources (no OpenStreetMap)
-- [ ] 8.10 Source Book 2 (Southeast next, then the rest); hunt sources per state
-- [ ] 8.11 Other states' hunt PDF lists (or chat 9 if chat 8 is too slow: HQ decides)
+- [ ] 8.10 Source Book 2 (Southeast next, then the rest): ONLY boundaries / own-land / hydrography / official docs + maps / parking-access / trails items (no hunt, closure, hours, camping items outside KY: SCOPE)
+- [-] 8.11 DROPPED by SCOPE (no closures outside KY)
 
 ## CHAT 10 (bot workshop)
 - [x] 10.1 (7:50 AM) done: G2 key, Fable's 3 gaps, chat 8's 2 rounds of holes, G5 stamp file (data/waiting/known/stamps.json); replay 38/38 — WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
@@ -52,6 +56,9 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [x] 10.9 (Oct 29 night) detective v5: layer steps first, 'budget used up' reported — Detective: report 'budget used up', layer steps first
 - [~] 10.10 state-park rows done (93%); federal rows wait for Brandon's RIDB decision — Campground: rerun after any fix; federal rows wait for Brandon's RIDB decision
 
+## CHAT 5 (bots / Discord / Facebook)
+- [ ] 5.1 SCOPE: turn OFF closures on park cards OUTSIDE Kentucky (US park closures bot + the Georgia source): stop the non-KY closure sources, clear their items from the live closures file so cards outside KY show none; Kentucky's stay
+
 ## CHAT 11 (bot-output checker)
 - [ ] 11.1 Grade every 'grade me' line as it lands (truth IL, hours, closures, intake, docs WV, campground) — 8:30 AM: truth v15 VA PASS / IL FAIL (new junk class), hours v11 FAIL (kept rows), intake 8 READY (3 junk) FAIL; docs WV v6/v7 + campground still owed; ongoing
 - [ ] 11.2 Grade the waiting room's first week once it is on — started 8:30 AM: OH access PASS agrees with my independent count (0 far, 0 outside); week runs to Nov 5
@@ -63,7 +70,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 9.1 Campground points for Land Between the Lakes + KY state parks (Camp & Activate's 20 missing)
 - [ ] 9.2 Storage tidy of its own folders
 - [ ] 9.3 River-layer test v3 (Park Service / Fish & Wildlife control points)
-- [ ] 9.4 STANDBY: other states' hunt PDFs if HQ moves 8.11 here
+- [-] 9.4 DROPPED by SCOPE
+- [ ] 9.5 PARKING / ACCESS points: find official parking / entrance / boat-ramp layers for US states still thin AND Canada (provinces + Parks Canada); feed them to the access bot (through the waiting room)
 
 ## CHAT 4 (app) — waits for Brandon
 - [ ] 4.1 Rebuild the app park packs for the 13 states (after the access pilot)

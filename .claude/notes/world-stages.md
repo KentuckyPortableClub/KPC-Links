@@ -1,3 +1,5 @@
+**PAUSED (Brandon Oct 29 8:36 AM SCOPE): NO world 2-fers. World = accurate outlines + official documents/maps only. This file is kept for reference.**
+
 # WORLD 2-FER STAGES (HQ, Oct 27 2026 10 PM; Brandon: "a list that covers all, staged, I give the command for the next country")
 
 HOW IT WORKS: nothing outside the US + Canada runs until Brandon says "GO <country>" (one at a time, or one PACK at a time for the small ones).

@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE (CLAUDE.md 'SCOPE'): closures OUTSIDE Kentucky are OFF: stop the US park closures sources for non-KY parks (incl. 'ga-wrd' Georgia, NPS/other 'uc-'/'pa-' non-KY items), clear their items from the live closures file so cards outside KY show no closures; KY items stay. MASTER-PLAN 5.1; tick it.
 
 ## NEEDS BRANDON
 

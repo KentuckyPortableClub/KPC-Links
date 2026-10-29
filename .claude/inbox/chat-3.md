@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE: HIDE campground data outside Kentucky on every page/tool you own (Lounge campground tab/cards, park cards, planner, Kit); keep the files. Closures outside KY vanish when chat 5 clears them. MASTER-PLAN 3.4.
 - HQ (Oct 29 8:16 AM, Brandon: 'the 2-fer rules and examples are clear: write them down, make it clear to anyone it affects, do not change them'): READ the block '2-FER RULES: FINAL, IN ONE PLACE' (R0-R10 + YES / TRAIL / NO examples) in .claude/notes/mapping.md. It wins over any older note. Do not change it; questions to HQ.
 - **From chat 2 (Oct 29 7:55 AM), outlines (Brandon 7:07 AM 'yes send it'):** the 4 Kentucky state-GIS outline files (hunting areas, state parks, nature preserves, natural areas; 220 outlines) are re-read at ~5 m and LIVE (KY 2-fer proof 19/19, no live pair changed; hunting areas 2.1 -> 3.2 MB). data/canada-bounds is being re-read at ~3-5 m with all of a park's records merged (fixes doubled outlines like Banff 3.3M -> 1.65M ac); folder ~16 -> ~43 MB, done in ~2-3 h. The KY app pack (chat 4) should be rebuilt from the new KY files.
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 3). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
