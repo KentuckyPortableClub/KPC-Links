@@ -438,3 +438,9 @@ Counts from the saved state files; pins from app/packs; I cannot see the satelli
 | **5 Campground (RIDB)** | ruled by Brandon; one line in kpc_manners.py | — | — | Opus (top of its inbox) | — |
 
 **Not done tonight (and why):** test runs (no KPC-Data dispatch from this session); the Utah BLM probe (gis.blm.gov egress blocked); the offline KY byte-identical proof (bundle on KPC-Data's release). **For the next scheduled Fable pass:** add KentuckyPortableClub/KPC-Data to the task's repositories (push access), or every KPC-Data fix stays a patch file.
+
+## Review Oct 29 (chat 8): reruns + Canada line
+- **neb: NOT READY.** Still live NY wrong joins (Robert Moses LI vs Thousand Islands 503 km; Lost Nation 377; Black Creek 180; Bear Swamp 134; Tracy Creek 103; Hogsback 68; plus South Hill US-8096+8097 and Captree x Robert Moses). It ran before the full US key rebuild: rerun neb after the key. CT and RI clean.
+- **nea READY** (only MD US-1569+US-4764, 13 km: confirm both pins inside). **mi READY** (84 live, 6 water, 9 NOT SURE; only US-6694+US-6729, 9 km to confirm). **southeast READY** (Pisgah + Cordell Hull gone; confirm both pins inside for TN US-3933+7578, TN US-7580+7581, NC Chowan US-6893+6894 34 km, GA US-12417+7452 19 km). No duplicate live ids.
+- **Canada known answers:** Lanz and Cox x Scott Islands MPA live (8,429 ac) good; Cape Scott x Scott Islands MPA live (7,230 ac, control C3: should NOT be plain live, check); Jasper x Willmore now NOT SURE (control C1 ok); Fundy 0024+0025, Long Point 0052+0053 and 0052+0279, Bruce Peninsula x Bruce Trail live (right); Fathom Five x Bruce Trail dropped (right).
+- **Canada to check:** NS has 161 live 'same land' rows (suspicious: looks like name-only joins); the distance check could not run because NS/ON pins are not in the POTA tiles under those ids. Ask: give the checker Canadian pins (ca-key lat/lon). BC 9 rows water not checked; caon STOPPED (4 rows). QC 101 and NB 304 are NOT SURE (fine).

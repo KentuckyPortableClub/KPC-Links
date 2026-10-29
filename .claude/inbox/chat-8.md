@@ -91,3 +91,5 @@ Read .claude/inbox/README.md first.
 
 - DONE Oct 28: boundary gaps + official river layers -> .claude/build/research/KPC_BoundaryGaps_Rivers_desk.md (918 US missing; BLM already read so UT = name match; BOR/NOAA/MS portal to probe; river layers are lines/water only).
 - REPORT TO HQ Oct 28: BoundaryGaps file ready; look-up rows for chat 9 (rivers, BOR, MS) and chat 2 (UT BLM name-match, NOAA).
+
+- DONE (Oct 29): graded reruns neb/nea/mi/southeast + Canada line pieces (see Issues file entry). REPORT TO HQ: neb needs rerun after the key rebuild; NS 161 same-land rows need pins to verify; Cape Scott x Scott Islands MPA should not be plain live.

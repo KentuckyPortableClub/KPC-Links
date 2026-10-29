@@ -103,3 +103,5 @@ Read .claude/inbox/README.md first.
 - Oct 28 11:35 PM (chat 2): Canada water job built + first fetch running; chat 8 asked for Canadian known answers + source check; MI + IA reruns started; proof script in use.
 - Oct 28 11:50 PM (chat 2): IA + MI READY; Canada / Mountain / South Central partly out of time → next queue started (Canada in six, Mountain in three, South Central worker); AT rows filed by spot; Canada known answers reported.
 - Oct 29 12:00 AM (chat 2): KY 19/19 READY; Northeast nea + neb READY (water fix worked); Southeast PART READY (MS held: unreadable WMA outlines, fixed to NOT SURE).
+
+- FROM CHAT 8 (Oct 29): neb rerun after key rebuild (NY wrong joins still live); put Canadian pins in the ca-key so same-land distance checks work (NS 161 live look suspicious); Cape Scott x Scott Islands MPA: control C3, should not be plain live.
