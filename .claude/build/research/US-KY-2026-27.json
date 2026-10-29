@@ -6,7 +6,7 @@
  "made_by": "chat 8",
  "checked_by": "",
  "made": "2026-10-29",
- "about": "DEER quota hunts only (guide rows 1-38). Closed = the area's own page says it is closed to everyone except drawn hunters. Note = hunt dates only. Dates read twice from the guide (two reads agree on all 38 rows; the reader paraphrases notes). Not in the guide's deer table: pheasant, waterfowl, elk, fox-trial hunts (area pages already feed those).",
+ "about": "DEER quota hunts only (guide rows 1-38). Closed = the area's own page says it is closed to everyone except drawn hunters. Note = hunt dates only. Dates read twice from the guide (two reads agree on all 38 rows; the reader paraphrases notes). Not in the guide's deer table: pheasant, waterfowl, elk, fox-trial hunts (area pages already feed those). State park hunts: inside_park NOT VERIFIED = held back until the hunt map is checked against the POTA boundary.",
  "rows": [
   {
    "ref": "US-3796",
@@ -282,7 +282,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#27",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Nov. 20-22."
   },
   {
    "ref": "US-1278",
@@ -294,7 +296,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#28",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 4-6 (youth only)."
   },
   {
    "ref": "US-1280",
@@ -306,7 +310,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#29",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 17-20."
   },
   {
    "ref": "US-1259",
@@ -318,7 +324,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#30",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure. NOTE: the closures bot also holds a sentence \"closed for four consecutive days starting the third Friday in November\" (Nov. 20-23) filed under Green River Lake SP from the Quota Hunts page; that matches Dale Hollow #27 (Nov. 20-22), not Green River Lake: check."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 10-13 (archery/crossbow)."
   },
   {
    "ref": "US-1259",
@@ -330,7 +338,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#31",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 17-20 (archery/crossbow)."
   },
   {
    "ref": "US-1282",
@@ -342,7 +352,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#32",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Nov. 19-22 (archery/crossbow)."
   },
   {
    "ref": "US-1282",
@@ -354,7 +366,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#33",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 3-6."
   },
   {
    "ref": "US-1261",
@@ -366,7 +380,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#34",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 3-6."
   },
   {
    "ref": "US-1261",
@@ -378,7 +394,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#35",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Dec. 11-14."
   },
   {
    "ref": "US-1284",
@@ -390,7 +408,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#36",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Nov. 2-6 (archery/crossbow)."
   },
   {
    "ref": "US-1284",
@@ -402,7 +422,9 @@
    "what": "deer quota hunt",
    "hunt_no": "#37",
    "page": "https://www.fw.ky.gov/Hunt/Documents/HuntingGuideQuotaHunts.pdf",
-   "note": "A state park hunt: Brandon/members check the park's own page before treating it as a closure. The area page does not say the area closes to everyone: shown as a hunt note, not a closure."
+   "note": "Brandon Oct 29 8:23 AM: a state park hunt is a NOTE only, the park stays open to visitors, at most parts close. Wording is used ONLY after the hunt ground is confirmed INSIDE this park's POTA boundary; until then the bot shows nothing for it. The hunt info sheet (kyparks.com) and the guide do not say where the ground is.",
+   "inside_park": "NOT VERIFIED",
+   "text": "Parts of the park may be closed during the quota hunt Jan. 5-6."
   },
   {
    "ref": "US-10171",
