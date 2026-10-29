@@ -54,7 +54,8 @@ def compare(old_d, new_d, out_p):
         if sum(len(x) for x in (c['old'], c['new'])) > 60: continue   # keep the picture readable
         pick.append(c); seen.add(c['st'])
     tot = {k: sum(v[k] for v in per.values()) for k in next(iter(per.values()))}
-    json.dump({'made': time.strftime('%Y-%m-%d %H:%M'), 'totals': tot, 'per_state': per, 'changed_count': len(changed), 'samples': pick}, open(out_p, 'w'), indent=1)
+    lost = [c for c in changed if c['old'] and not c['new']]
+    json.dump({'made': time.strftime('%Y-%m-%d %H:%M'), 'totals': tot, 'per_state': per, 'changed_count': len(changed), 'samples': pick, 'lost': lost}, open(out_p, 'w'), indent=1)
     print(f"::notice title=Key preview::{len(changed)} parks changed; totals {tot}; {len(pick)} samples", flush=True)
 
 
