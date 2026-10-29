@@ -1,0 +1,29 @@
+name: KPC key preview shapes (temporary, chat 2)
+# One run for Brandon's look (Oct 29 5:20 PM 'Let me see it 1st'): old key (the copy the site reads, KPC-Data) vs the new Rule G key
+# (KPC-Links) + the sample parks' outlines from the official layers at 3 m. Saves only .claude/build/preview/ here. Never fails. Deleted after.
+on: workflow_dispatch
+permissions:
+  contents: write
+concurrency:
+  group: kpc-key-preview
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - name: Old key (the site's copy)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data old && git -C old sparse-checkout set data/us-key && git -C old checkout -q || true
+      - name: Compare + fetch the sample shapes
+        run: |
+          mkdir -p .claude/build/preview
+          python3 .github/scripts/kpc_key_preview.py compare old/data/us-key data/us-key .claude/build/preview/key-preview.json || true
+          python3 .github/scripts/kpc_key_preview.py fetch .claude/build/preview/key-preview.json data/us-key .claude/build/preview/key-preview-shapes.json || true
+      - name: Save
+        run: |
+          rm -rf old
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/preview && git commit -qm "Key preview for Brandon (old vs new, sample shapes)" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done || true
