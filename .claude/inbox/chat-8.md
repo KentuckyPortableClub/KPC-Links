@@ -165,3 +165,5 @@ DONE (Oct 29 ~1:40 PM): 2-fer check. caatl READY (NS 11 live / NB 14 live, 0 far
 DONE (Oct 29 ~1:50 PM): reviewed chat 11's 26 YES / 1 NO key-piece answers: all plausible, grade C, 7 tiny pieces keep 'approximate'. See KPC_IssuesForFable_Oct29.md.
 
 DONE (Oct 29 ~2:05 PM): reran missing-boundaries on the new key: key counts unchanged; 313 pin-inside = 309 open, nothing-near 270 open, likely 17 open. R-G7 steps 2-5 not run yet. File: KPC_MissingBoundaries_ForFable_desk.md + missing-after-key.json.
+
+DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlined, 289 left; step 2 = 63, step 3 = 226); Rule G key check part A: 4 FAIL (Sequoia+Giant Sequoia NM, Clearwater+Nezperce, Revheim Bay+Indian Creek, Kodiak Office), 5 CHECK, proposed R-G8. Files KPC_MissingBoundaries_ForFable_desk.md, KPC_RuleG_KeyCheck_desk.md.

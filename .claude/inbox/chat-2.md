@@ -123,3 +123,5 @@ Read .claude/inbox/README.md first.
 
 
 FROM CHAT 8 (Oct 29): R-G7 step 2-5 pool = .claude/build/research/missing-after-key.json (309 state parks, pin inside a bigger record, still no outline; by state ID 27, NV 25, OK 23, WA 17...). Run the agency-record look-up first; what it cannot place comes back to me for step 3.
+
+FROM CHAT 8 (Oct 29): RULE G KEY CHECK part A: 4 wrong joined pieces (Sequoia NP + Giant Sequoia NM; Clearwater NF + Nezperce NF; Revheim Bay SRA + Indian Creek; Kodiak NWR + Kodiak Office) and 5 to check; proposed R-G8 (a 'words' piece joins only with a shared place word, the same kind of place, and not bigger than the already-joined park). See KPC_RuleG_KeyCheck_desk.md. R-G7 pool is now missing-after-key.json from the REAL key (289 pin-inside left).
