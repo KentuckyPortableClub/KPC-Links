@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-tx answered: 11 result(s), 11 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-tx.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-ga-fl-pages answered: 13 result(s), 11 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-ga-fl-pages.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-ga-fl-maps answered: 10 result(s), 10 read OK, 9 screenshot(s) -> .claude/lookup/answers/3-fable-ga-fl-maps.json
 - **FROM HQ (Oct 29 5:30 PM) FABLE BOOK ORDER (Brandon 5:28 PM: 'Once fable book been gone through opus gives it a shot and then fable final review ....then move on to Canada'): (1) chats 3 + 8 (+2/9/11) work every US state in the Fable file to 'STATE DONE'; (2) an OPUS pass on every row still 'pin, no source' / grey area (chat 10 on Opus, all files attached), same Rule G; (3) FABLE does the FINAL review of what is left (one session, KPC-Links + KPC-Data attached = H.1); (4) THEN Canada's list goes through the same steps. Canada addresses (chat 8) can be collected meanwhile; no Canada R-G7 tracing until the US is through step 3.**
