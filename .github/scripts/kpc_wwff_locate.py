@@ -52,10 +52,11 @@ def layers():
         for s in (j.get('services') or []):
             if s.get('type') not in ('MapServer', 'FeatureServer'): continue
             nm = s['name']
-            if not re.search(r'natura|cdda|nationally', nm, re.I): continue
+            if not re.search(r'natura|cdda|nationally', nm, re.I) or re.search(r'historical|historic', nm, re.I): continue   # Oct 29: the current sites only, not the yearly archives
             su = f"{ROOT}/{nm}/{s['type']}"
             info = get(su, {'f': 'json'})
             for ly in (info.get('layers') or []):
+                if re.search(r'scale', str(ly.get('name')), re.I): continue   # the same sites drawn per zoom level: read one copy (the query layer)
                 li = get(f"{su}/{ly['id']}", {'f': 'json'})
                 fl = {f['name'] for f in (li.get('fields') or [])}
                 namef = next((f for f in ('SITENAME', 'SITE_NAME', 'siteName', 'sitename', 'Site_Name') if f in fl), None)
@@ -63,6 +64,7 @@ def layers():
                 if namef and ctry and li.get('geometryType') == 'esriGeometryPolygon':
                     out.append({'url': f"{su}/{ly['id']}", 'name': namef, 'ctry': ctry, 'label': f"{nm.split('/')[-1]} / {li.get('name')}", 'natura': bool(re.search('natura', nm, re.I))})
     out.sort(key=lambda x: not x['natura'])
+    out = out[:4]   # Natura 2000 + CDDA query layers are enough; 86 copies ran out of time (Oct 29 first run: 1 found, 1,151 'out of time')
     print(f"::notice title=WWFF locate layers::{len(out)} EEA layers: " + '; '.join(x['label'] for x in out)[:800], flush=True)
     return out
 
