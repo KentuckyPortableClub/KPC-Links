@@ -14,8 +14,14 @@
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function j(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   /* Oct 28 (HQ: Minnesota's file is gzipped): a region file may be <name>.json or <name>.json.gz; the .gz is unpacked in the browser */
-  function jz(u) { return j(u).then(function (d) { if (d || typeof DecompressionStream === 'undefined') return d;
-    return fetch(u + '.gz', { cache: 'no-cache' }).then(function (r) { if (!r.ok) return null; return new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json(); }).catch(function () { return null; }); }); }
+  function jgz(u) { if (typeof DecompressionStream === 'undefined') return Promise.resolve(null);
+    return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) return null; return new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json(); }).catch(function () { return null; }); }
+  function jz(u) { return j(u).then(function (d) { return d || jgz(u + '.gz'); }); }
+  /* Oct 29 (chat 2: Alaska's results file was 135 MB): a spot may keep its big patch shape + park edges + trail zone APART
+     (spot.heavy = 'shapes/<region>/<hash>', file <base><heavy>.json.gz = {id, shape, lines, zone}); they are fetched only when a row is opened. */
+  var HB = '../KPC-Data/data/fers/';
+  function hydrate(x) { if (!x.heavy || x._hy) return Promise.resolve(true);
+    return jgz(HB + x.heavy + '.json.gz').then(function (h) { if (!h || h.id !== x.id) return false; ['shape', 'lines', 'zone'].forEach(function (k) { if (h[k]) x[k] = h[k]; }); x._hy = true; return true; }); }
   var SHORT = '⚠️ Parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';   /* Brandon Oct 27 4:23 PM: 'Say this instead' */
   var YD = 1.09361, BAND = 30.48, COL = ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#56B4E9', '#8E6CEF', '#9A9A9A', '#F0E442', '#E69F00'];   /* Brandon Oct 27 3:04 PM: no gold/orange for the first parks: gold is the overlap */
   var DASH = ['', '12 6', '3 6', '12 6 3 6', '2 8', '18 6 4 6 4 6', '8 4', '1 5 9 5', '22 8'];
@@ -58,7 +64,7 @@
       var rev = reviewed(s); if (!rev) WAITN++;
       var key = s.refs.slice().sort().join('+');
       var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice().sort(function (x, y) { return +(/(\d+)$/.exec(x) || [0, 0])[1] - +(/(\d+)$/.exec(y) || [0, 0])[1]; }), names: {}, patches: [], st: s._st, trail: false });
-      Object.assign(g.names, s.names || {}); s._kids = (kids[s.id] || []).filter(function (k, i, A) { var sh = JSON.stringify(k.shape || ''); return sh !== JSON.stringify(s.shape || '') && A.findIndex(function (o) { return JSON.stringify(o.shape || '') === sh; }) === i; });   /* Brandon Oct 27 6:16 PM ('steps 2 and 3 are the same'): the data listed one stretch twice */ s._rev = rev; s._noAcc = noAcc;
+      Object.assign(g.names, s.names || {}); s._kids = (kids[s.id] || []).filter(function (k, i, A) { var sh = (k.shape_sig || JSON.stringify(k.shape || '')); return sh !== (s.shape_sig || JSON.stringify(s.shape || '')) && A.findIndex(function (o) { return (o.shape_sig || JSON.stringify(o.shape || '')) === sh; }) === i; });   /* Brandon Oct 27 6:16 PM ('steps 2 and 3 are the same'): the data listed one stretch twice */ s._rev = rev; s._noAcc = noAcc;
       if (s.kind === 'trail' || s.kind === 'river') g.trail = true; if (s.kind === 'river') g.river = true; g.patches.push(s);   // Oct 28: a water-route row is a LINE (the bank), drawn as its 100-ft band like a trail, never as a polygon
     });
     Object.keys(groups).forEach(function (k) { var g = groups[k];
@@ -253,7 +259,15 @@
       if (z.length) z.forEach(function (r, i) { out.push({ s: x, ring: r, line: x.shape, band: band, zone: true, first: i === 0 }); });
       else out.push({ s: x, ring: band, line: x.shape, band: band, first: true }); }
     else out.push({ s: x, ring: x.lines ? onEdges(x.shape, x.lines) : x.shape, line: null }); }); }); return out; }
-  function openRow(key) {
+  function openRow(key) {   // Oct 29: bring in any apart-stored shapes first (hydrate), then draw
+    var g0 = ROWS.filter(function (r) { return r.key === key; })[0], all = [];
+    if (g0) g0.patches.forEach(function (p) { all.push(p); (p._kids || []).forEach(function (k) { all.push(k); }); });
+    var need = all.filter(function (x) { return x.heavy && !x._hy; });
+    if (!need.length) return openRowDraw(key);
+    if ($('ovSpot')) $('ovSpot').innerHTML = '<p class="ov-note">Loading the outline…</p>';
+    return Promise.all(need.map(hydrate)).then(function (r) { if (r.some(function (x) { return !x; })) toast('Part of this outline could not load. Try again with a signal.'); openRowDraw(key); });
+  }
+  function openRowDraw(key) {
     if (!window.L && (openRow.tries = (openRow.tries || 0) + 1) < 40) { setTimeout(function () { openRow(key); }, 250); return; }   // the map library is still loading
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
     showTab('map'); if (!mkMap()) { $('ovSpot').innerHTML = '<p class="ov-note">The map could not load (no signal?). The list still works.</p>'; return; }
@@ -671,7 +685,7 @@
     if (REG.none) { ROWS = []; TIGHT = []; WATER = []; MISS = []; var nb0 = $('ovRegNote'); if (nb0) nb0.hidden = true; list(); return Promise.resolve(); }
     store('kpcOvRegion', REG.id);
     $('ovList').innerHTML = '<p class="ov-note">Loading ' + esc(REG.label) + '…</p>';
-    var base = CFG.base || '../KPC-Data/data/fers/';
+    var base = CFG.base || '../KPC-Data/data/fers/'; HB = base;
     return Promise.all(REG.files.map(function (f) { return jz(base + f + '.json'); }).concat([REG.missing && MEMBER ? j(base + REG.missing + '.json') : null])).then(function (a) {
       var files = a.slice(0, REG.files.length), miss = a[REG.files.length];
       if (files.some(function (x) { return !x; })) {   // offline: a saved copy that has not expired
