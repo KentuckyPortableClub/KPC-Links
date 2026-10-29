@@ -168,3 +168,12 @@ R-G7 step 4(a): the park has its own official boundary line (the Blue Line; our 
 - WV: state portals found (RESEARCH ORDER step 1): WV GIS & Mapping https://wvdnr.gov/gis-mapping/ , Hunt/Fish map https://www.mapwv.gov/huntfish/ , WMA map & list https://wvdnr.gov/lands-waters/wildlife-management-areas/ , stream access points. None names the hatcheries or Forks of the Coal yet. Cedar Lakes maps page has only picture links (no boundary seen).
 - TN: ALL 7 tn.gov / tnstateparks pages return 403 to the bot (blocked). Needs a different route (TN open data portal, or Brandon opening one).
 
+
+### Layer facts read Oct 29 ~5:15 PM (chat 8, grade A: layer metadata opened)
+| st | layer | what it is |
+|---|---|---|
+| AK | arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer/2 "ASP Park Boundary" | Alaska DNR Parks' own polygons (NAME, PARKNAME, ACREAGE, PRKTYPABRV); "land available for public recreation", compiled from statutes + state land ownership; may differ from the outer statutory boundary (that is the R-G6 official-map-detail case). Max 1000 records. |
+| NY | gisservices.dec.ny.gov reference/MapServer/2 "DEC Lands" | lands in DEC's care: WMAs, Unique Areas, State Forests, Forest Preserve (UNIT, FACILITY, CATEGORY, CLASS, ACRES, MANAGE_BY). |
+| CT | Connecticut_DEEP_Property FeatureServer/0 (services1.arcgis.com/FjPcSmEFuDYlIdKC) | land DEEP owns in fee (parks, forests, wildlife areas, water access sites); excludes easements; CC0; updated Aug 19 2026; GeoJSON/shapefile downloads at geodata.ct.gov. |
+| ME | gis.maine.gov dep ... MapServer/5 "Maine Conservation Lands" | parcels with PARCEL_NAME, DESIGNATION (State Park, State WMA, ...), ECO_RESERVE flag, HOLD1_NAME (holder), RPT_AC. |
+Point-in-polygon look-ups filed at the park pins: 8-rg7-pk-ak (8 parks), -ny (3), -ct (4), -me (2).
