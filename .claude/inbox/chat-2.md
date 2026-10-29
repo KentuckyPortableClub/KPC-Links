@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 12:19 PM) RULE SHEET G: ALL 5 RULED (Brandon 12:18 '2 official map wins yes 3-5'):** G-2 = the official map wins: a 'piece only' outline (Beall Woods) is drawn exactly as the agency's map has it and graded OFFICIAL (no extra grade, no 'part of the park' note). G-3 monthly check on the 1st, G-4 chat 11 answers + you recheck, G-5 no-terms layers settled = YES. Build.
 - **FROM HQ (Oct 29 12:16 PM) RULE SHEET G: BUILD NOW (Brandon 12:09 'Implement this now'; grey area 1 RULED 12:14):**
   - **G-1 (Brandon 12:14, 'Pins can be wrong...this is offical'):** the AGENCY'S OWN OFFICIAL RECORD is the proof. A piece whose own official record names / ids that park (e.g. FWS tract 'Arrowwood WMD', a refuge's island units) joins AT ANY DISTANCE, and does NOT need the POTA pin inside it. POTA PINS CAN BE WRONG: a pin outside its official outline never removes or blocks the outline; it goes on the 'POTA pin may be wrong' list. The 2 km chain applies ONLY to pieces matched by a similar name on SOME OTHER map (not the agency's own record for that park).
   - G-2..G-5 = HQ's answers, building on them unless Brandon changes them: (2) 3 grades only; a 'piece only' outline (Beall Woods) = Official + 'part of the park' note. (3) monthly 'changed since saved?' check on the 1st, early morning. (4) waiting-room yes/no = chat 11, chat 2 rechecks before adding; only true grey areas to Brandon. (5) openly published layers with no stated terms = settled, use (Brandon 11:25).
