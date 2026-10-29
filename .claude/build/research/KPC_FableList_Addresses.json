@@ -630,5 +630,410 @@
   "gps_source": "",
   "date": "2026-10-29",
   "address_for": "page did not open (HTTP 404), retry"
+ },
+ "US-0446": {
+  "st": "NE",
+  "name": "Funk WPA Wetland Management District",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3374": {
+  "st": "NE",
+  "name": "Neligh Mill State Historic Site",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3492": {
+  "st": "NE",
+  "name": "Willa Cather Memorial Prairie State Historic Site",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4010": {
+  "st": "NE",
+  "name": "Heron Haven State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4011": {
+  "st": "NE",
+  "name": "Chalco Hills State Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4012": {
+  "st": "NE",
+  "name": "Elkhorn Crossing State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4013": {
+  "st": "NE",
+  "name": "Prairie View State Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4025": {
+  "st": "NE",
+  "name": "Buckley Creek State Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-4027": {
+  "st": "NE",
+  "name": "Lone Star State Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-12311": {
+  "st": "AL",
+  "name": "Butler County State Wildlife Management Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-12405": {
+  "st": "AL",
+  "name": "TVA Guntersville Dam 5(1)(g) Reserve",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-12517": {
+  "st": "AL",
+  "name": "Confederate Memorial Park Historic Site",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-12962": {
+  "st": "AL",
+  "name": "TVA Veterans Park Regional Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-13311": {
+  "st": "AL",
+  "name": "TVA Upper Bear Creek Dam Resource Management Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-13473": {
+  "st": "AL",
+  "name": "Old Cahawba Archaeological Park State Historical Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-13533": {
+  "st": "AL",
+  "name": "Brierfield Ironworks Historial State Park State Historical Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-13558": {
+  "st": "AL",
+  "name": "St. Stephens State Historical Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-6457": {
+  "st": "AL",
+  "name": "Elk River Lodge State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-6459": {
+  "st": "AL",
+  "name": "Kinterbish Wildlife Management Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-9918": {
+  "st": "AL",
+  "name": "Thigpen Hill Nature Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10817": {
+  "st": "WY",
+  "name": "Story State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10818": {
+  "st": "WY",
+  "name": "Auburn State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10821": {
+  "st": "WY",
+  "name": "Dan Speas State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10822": {
+  "st": "WY",
+  "name": "Daniel State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10823": {
+  "st": "WY",
+  "name": "Dubois State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10824": {
+  "st": "WY",
+  "name": "Ten Sleep State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10825": {
+  "st": "WY",
+  "name": "Tillett Springs State Fish Hatchery",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-12720": {
+  "st": "WY",
+  "name": "Ralston Reservoir BOR & State Fish and Wildlife Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-13244": {
+  "st": "WY",
+  "name": "1838 Mountain Man Rendezvous State Historic Site",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-6169": {
+  "st": "WY",
+  "name": "Lake Cameahwait State Recreation Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-6219": {
+  "st": "WY",
+  "name": "Lombard Ferry State Historic Site",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-10300": {
+  "st": "VT",
+  "name": "Kesick Swamp State Wildlife Habitat Management Area",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3100": {
+  "st": "VT",
+  "name": "Big Deer State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/bigdeer.html",
+  "address": "1467 Boulder Beach Rd, Groton, VT 05046",
+  "address_for": "the park itself (Vermont State Parks page): park page prints the Groton State Forest address (shared with Boulder Beach)"
+ },
+ "US-3102": {
+  "st": "VT",
+  "name": "Boulder Beach State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3118": {
+  "st": "VT",
+  "name": "Halfmoon Pond State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3121": {
+  "st": "VT",
+  "name": "Kamp Kill Kare State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3122": {
+  "st": "VT",
+  "name": "Kettle Pond State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/kettlepond.html",
+  "address": "6993 State Forest Rd, Groton, VT 05046",
+  "address_for": "the park itself (Vermont State Parks page)"
+ },
+ "US-3129": {
+  "st": "VT",
+  "name": "Little River State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/littleriver.html",
+  "address": "3444 Little River Rd, Waterbury, VT 05676",
+  "address_for": "the park itself (Vermont State Parks page)"
+ },
+ "US-3135": {
+  "st": "VT",
+  "name": "New Discovery State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/newdiscovery.html",
+  "address": "Marshfield, VT 05658 (town only, no street on the page)",
+  "address_for": "the park itself (Vermont State Parks page): town only"
+ },
+ "US-3139": {
+  "st": "VT",
+  "name": "Ricker Pond State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3142": {
+  "st": "VT",
+  "name": "Seyon Lodge State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3144": {
+  "st": "VT",
+  "name": "Smugglers' Notch State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
+ },
+ "US-3145": {
+  "st": "VT",
+  "name": "Stillwater State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/stillwater.html",
+  "address": "44 Stillwater Rd, Groton, VT 05046",
+  "address_for": "the park itself (Vermont State Parks page)"
+ },
+ "US-3149": {
+  "st": "VT",
+  "name": "Underhill State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "https://vtstateparks.com/underhill.html",
+  "address": "352 Mountain Road, Underhill, VT 05490",
+  "address_for": "the park itself (Vermont State Parks page)"
+ },
+ "US-3150": {
+  "st": "VT",
+  "name": "Waterbury Center State Park",
+  "date": "2026-10-29",
+  "gps": null,
+  "agency_page": "",
+  "address": "",
+  "address_for": "no official address yet: guessed agency page did not open (404/403); needs the real page from a search"
  }
 }
