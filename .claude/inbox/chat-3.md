@@ -2,12 +2,12 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 29 5:37 AM): chat 8 PASSED (12:30-12:35 AM) for the members' Overlap Finder (BETA), one push: IOWA, MICHIGAN (3 rows to eyeball, keep them), PA/NJ/DE/MD/DC ('nea'), the SOUTHEAST minus Mississippi (TN NC VA WV GA AL SC FL) with chat 8's 4 wrong-join 'same land' rows hidden (KPC_IssuesForFable_Oct29.md 12:30 AM review), plus the KENTUCKY 19/19 refresh if not done. New York, Mississippi and the rest wait for chat 8.
 
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 5:40 AM: HQ's 5:37 list was already on (IA, MI with its 3 rows kept, nea, Southeast, KY live) since 12:45-5:25 AM, plus CO WY ID MT AR LA OK TX KS NE from chat 8's 10:20 grade. Only change now: MISSISSIPPI taken OFF the Finder until chat 8 passes it (HQ: 'Mississippi waits'). Hidden rows: chat 8's 4 wrong joins + the 4 'pins not both inside' Southeast pairs + 6 from the 10:20 grade.
 - Oct 29 5:25 AM (chat 8's 10:20 grade: mtcowy, mtidmt, southcentral, midwest READY except listed pairs): added CO 17 / WY 45 / ID 46 / MT 23 / AR 12 / LA 3 / OK 32 / TX 12 / KS 21 / NE 17 pairs (35 regions). Hidden: chat 8's 3 WRONG (Truman, Salinas, Horseshoe Canyon) + its 3 CHECK pairs until someone checks them (Grand Canyon x Parashant, Coronado NMem x Coronado NF, Kinnickinnic SFWA x SP).
 - Oct 29 5:05 AM (chat 8's grade via Brandon): nea, mi, southeast reruns READY (already on, live). Checked chat 8's 4 'pins > 8 km' Southeast pairs: in NONE are both park pins inside the shared spots (TN US-3933+US-7578 0 of 2 inside, TN US-7580+US-7581 1 of 2, NC US-6893+US-6894 0 of 2, GA US-12417+US-7452 1 of 2) = hidden via `hide`. neb (NY CT RI) still NOT READY: not on the Finder.
 - Oct 29 12:45 AM (Brandon 'check for 2fers'; chat 8 READY 12:30-12:35 AM, standing GO): added as members-only BETA: IOWA (1 pair), SOUTHEAST TN 67 / NC 80 / VA 46 / WV 26 / GA 55 / AL 19 / SC 27 / FL 166 / MS 5 pairs, NEA PA 50 / NJ 27 / DE 68 / MD 68 / DC 11 pairs (25 regions now). The 4 rows chat 8 said to DROP are hidden by a new 'hide' list in kpc-fers-regions.json (Pisgah US-6936+US-6937, Cordell Hull US-2937+US-7580 / +US-7581, Chowan US-6893+US-6894). NOT added: neb (NY CT RI, NOT READY), mountain, southcentral, Canada, Northeast nec (waiting on chat 2's AT answer).

@@ -246,19 +246,6 @@
    "missingSt": "FL"
   },
   {
-   "id": "MS",
-   "label": "Mississippi",
-   "files": [
-    "US-MS"
-   ],
-   "missing": "missing-southeast",
-   "public": false,
-   "beta": true,
-   "showWaiting": true,
-   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
-   "missingSt": "MS"
-  },
-  {
    "id": "PA",
    "label": "Pennsylvania",
    "files": [
