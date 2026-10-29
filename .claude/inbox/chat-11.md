@@ -8,6 +8,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 9 PM: CLOSURES round 8 (69%) + TRUTH v10 regrade (WV fixed, VA 87%, IL 75%): KPC_Closures_r8_Truth_v10_grade_desk.md. HQ 8:25 PM POTA-rules tiebreaker read (applies to 2-fers/outlines; nothing in my grades conflicts).
 - Oct 28 7:05 PM: DETECTIVE KY graded (honest, steps 3-4 blocked) + Florida docs v5 checked (all ver 5, bulk faults 0): KPC_Detective_FL_Docs_grade_desk.md.
 - Oct 28 6:55 PM: truth NC AL SC FL MS IN IL checked (addendum in the Hours/Truth grade file): clean except WV + IL; access/fed-camp reruns still not landed.
 - Oct 28 6:45 PM TIDY (everything below was done and pushed; the old OPEN items are closed): 
@@ -32,6 +33,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - Oct 28: first batch graded, all from Kentucky, all FAIL the 90% bar: TRUTH CHECKER 9/12 = 75% (flagged rows 15/19), HOURS 4/12 = 33% (its own gate 24%), CAMPGROUND INFO random 10 = 50%, DOCUMENTS bot finder check 17/25 = 68% (12-sample 10/12). Files: `.claude/build/research/KPC_TruthChecker_grade_US-KY_desk.md`, `KPC_Hours_grade_US-KY_desk.md`, `KPC_CampInfo_grade_US-KY_desk.md`, `KPC_Docs_grade_US-KY_desk.md`. Fixes sent to chat 10 (3 bots), chat 2 (documents bot + outline leads), chat 8 (US-10105 flag, finder check done). The truth checker's 'grade me' line (run 40669098603) is graded; I cannot edit KPC-Data from here, so chat 8 strikes it.
 
 ## REPORT TO HQ (newest first)
+- Oct 28 9 PM (15th inbox): truth checker v10 fixed the statewide-number junk (WV 96 -> 20 flags; VA 87%, IL 75%; remaining: years and street numbers read as acres). Closures r8 = 69% (junk notes, a VA row under KY, 4 KDFWR closures unmatched, hunt 0). Docs chunks PA NY NJ CT RI MA VT NH, MN IA ND SD landed, not sampled yet. Access/fed-camp reruns: not checked this pass.
 - Oct 28 7:05 PM (14th inbox, final for tonight): detective KY = honest and small (steps 3-4 never opened); Florida docs v5 done. Everything that landed is graded. Waiting: closures round 4 line, access + fed-camp reruns, the remaining tuned bots, chat 2's map-recovery fix.
 - Oct 28 6:55 PM (13th inbox): truth checker for NC AL SC FL MS IN has no shared-number junk; IL 50% (small-plot and statewide sentences). Access (178 far points) and fed-camp (132 doubles) reruns still not landed since 12:30 PM: please confirm those runs started.
 - Oct 28 5:10 PM (12th inbox): hours KY random 12 = 92% (recall 48 of 193 parks; own gate 37% FAIL); truth checker: TN flags fine bar 3 cross-state parks, WV 76 of 96 flags are one statewide '1.4 million acres' figure (14% right), VA 43% (statewide preserves total, a lake, a farm). Fix list to chat 10. Not graded: detective, closures round 4 (3:03 PM commit, no grade-me line), access/fed-camp reruns, NC truth sample.
