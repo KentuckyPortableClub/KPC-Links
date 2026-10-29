@@ -390,6 +390,16 @@
    "d": "2026-10-23",
    "src": "world"
   },
+  "FR-16712": {
+   "n": "prairie du marais Biological Reserve",
+   "d": "2026-10-29",
+   "src": "world"
+  },
+  "FR-3744": {
+   "n": "SITE A CHAUVES SOURIS DE VIGNOUX SUR BARANGEON  FR2402005 Natura 2000",
+   "d": "2026-10-29",
+   "src": "world"
+  },
   "GB-2511": {
    "n": "Coed Cilygroeslwyd Nature Reserve",
    "d": "2026-10-25",
@@ -447,5 +457,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-28"
+ "updated": "2026-10-29"
 }
