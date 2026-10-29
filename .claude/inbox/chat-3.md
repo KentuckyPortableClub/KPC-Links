@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 8:21 PM, Brandon: 'make sure the overlap lines are drawn correct and match the borders'): on the Overlap Finder map, the gold overlap outline must sit exactly on the two parks' borders: draw it from the line's full-detail edge (chat 2's edge-keeping thinning), with the light fill; test on Mammoth Cave x Green River and one Daniel Boone corridor at full zoom on satellite.
 
 
 ## NEEDS BRANDON
