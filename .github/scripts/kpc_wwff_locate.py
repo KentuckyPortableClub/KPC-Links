@@ -86,7 +86,9 @@ def main():
     miss = []
     for f in sorted(glob.glob('data/wwff/*.json')):
         pre = os.path.basename(f)[:-7] if f.endswith('FF.json') else os.path.basename(f)[:-5]
+        if not f.endswith('FF.json'): continue   # index.json / SELECT.json are not reference lists
         for r in json.load(open(f)):
+            if not isinstance(r, list) or len(r) < 4: continue
             if r[2] in (None, '', 0) or r[3] in (None, '', 0) or r[2] == 0.0:
                 miss.append({'ref': r[0], 'name': r[1], 'prefix': pre, 'iso': ISO.get(pre)})
     L = layers() if any(m['iso'] for m in miss) else []
