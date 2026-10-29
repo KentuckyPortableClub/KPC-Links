@@ -70,7 +70,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## BRANDON
 - [ ] B.1 Decide RIDB / NPS keyed APIs (allow / block both / leave as is)
-- [ ] B.2 GO to switch the waiting room on (pilot = access/parking bot): chat 8 says OK for the pilot (8.5) = READY FOR YOUR GO
+- [x] B.2 GO given Oct 29 7:42 AM: waiting room ON for the access/parking pilot
 - [ ] B.3 Check the KY hunt list (8.2)
 - [ ] B.4 Check the Park Service key result on the check-up page
 - [-] B.5 Permission emails: PARKED (Brandon Oct 29: not now)
