@@ -439,6 +439,97 @@
    "beta": true,
    "showWaiting": true,
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "NY",
+   "label": "New York",
+   "files": [
+    "US-NY"
+   ],
+   "missing": "missing-neb",
+   "missingSt": "NY",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CT",
+   "label": "Connecticut",
+   "files": [
+    "US-CT"
+   ],
+   "missing": "missing-neb",
+   "missingSt": "CT",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "RI",
+   "label": "Rhode Island",
+   "files": [
+    "US-RI"
+   ],
+   "missing": "missing-neb",
+   "missingSt": "RI",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA-SK",
+   "label": "Saskatchewan",
+   "files": [
+    "CA-SK"
+   ],
+   "missing": "missing-cambsk",
+   "missingSt": "CA-SK",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA-QC",
+   "label": "Quebec",
+   "files": [
+    "CA-QC"
+   ],
+   "missing": "missing-caqc",
+   "missingSt": "CA-QC",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA-NL",
+   "label": "Newfoundland and Labrador",
+   "files": [
+    "CA-NL"
+   ],
+   "missing": "missing-caatl",
+   "missingSt": "CA-NL",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA-NT",
+   "label": "Northwest Territories",
+   "files": [
+    "CA-NT"
+   ],
+   "missing": "missing-canorth",
+   "missingSt": "CA-NT",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   }
  ],
  "hide": {
@@ -456,6 +547,14 @@
   "US-0771+US-4429": "chat 8 Oct 29 10:20: to CHECK (Coronado NMem is not forest-owned land); hidden until checked",
   "US-10186+US-1457": "chat 8 Oct 29 10:20: to CHECK (Kinnickinnic SFWA vs State Park, pins 22 km); hidden until checked",
   "US-1569+US-4764": "chat 8 Oct 29 check + chat 3 test: 'same land' pins 13 km apart, only one pin inside the shared outline (Elk Neck State Park vs Elk Neck State Forest)",
-  "US-6694+US-6729": "chat 8 Oct 29 check + chat 3 test: 'same land' pins 9 km apart, only one pin inside the shared outline (Gratiot-Saginaw SGL vs Gratiot-Saginaw Connector SGL)"
+  "US-6694+US-6729": "chat 8 Oct 29 check + chat 3 test: 'same land' pins 9 km apart, only one pin inside the shared outline (Gratiot-Saginaw SGL vs Gratiot-Saginaw Connector SGL)",
+  "US-0681+US-8906": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Upper Delaware x PA 209 State Game Land)",
+  "US-0681+US-5466": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Upper Delaware x Delaware State Forest)",
+  "US-13160+US-4492": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (John Baumgardt CA x Mark Twain NF, 266 km)",
+  "US-11137+US-4492": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Peter A. Eck CA x Mark Twain NF, 80 km)",
+  "US-2764+US-2766": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Lake Sakakawea SP x Little Missouri SP, 97 km)",
+  "US-2764+US-5747": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Lake Sakakawea SP x Crow Flies High SRA, 96 km)",
+  "US-2621+US-4015": "chat 8 Oct 29 ~8:10 AM: WRONG join (Platte River SP x Platte River Landing SP, sister names 40 km)",
+  "CA-1027+CA-2312": "chat 8 Oct 29 ~8:10 AM: to CHECK (QC, pins 228 km); hidden until checked"
  }
 }

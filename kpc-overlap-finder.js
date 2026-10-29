@@ -330,7 +330,7 @@
       var trailPatch = g.patches.some(function (s) { return s.kind === 'trail' && s.line_source && s.line_source[p.ref]; });
       if (trailPatch) { p.line = true; return null; }   // a line park: its zone is the 100-ft band, drawn from the patch itself
       var ky = /^US-/.test(p.ref) && (g.st === 'KY' || /KY/.test(g.st));
-      var pr = ky && B.kyFor ? B.kyFor(p.ref) : B.usOutline ? B.usOutline(p.ref, nm(g, p.ref), g.best.center[0], g.best.center[1], [String(g.st || '').replace(/^US-/, '')]).then(function (o) { return o && o.fs; }) : Promise.resolve(null);
+      var pr = ky && B.kyFor ? B.kyFor(p.ref) : /^CA-/.test(p.ref) && B.canada ? B.canada(p.ref) : B.usOutline ? B.usOutline(p.ref, nm(g, p.ref), g.best.center[0], g.best.center[1], [String(g.st || '').replace(/^US-/, '')]).then(function (o) { return o && o.fs; }) : Promise.resolve(null);
       return Promise.resolve(pr).then(function (fs) { p.fsAll = (fs || []).filter(function (f) { return f && f.geometry; }); p.fs = near(g, p.fsAll); }).catch(function () { p.fs = []; p.fsAll = []; });
     }));
   }
