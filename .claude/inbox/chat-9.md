@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 2:02 PM, Brandon 2:01 PM 'Can 9 run this and his lakes on shared bot'):** with the lake-park round (1:51 PM item), also put CHAT 8's Rule G key spot-check 'by-eye' part on the SHARED LOOK-UP BOT: screenshots of the agency map for each piece chat 8 lists (its item 8 / the 15 not-sure + 7 tiny pieces chat 11 has), answers back to chats 8 and 11. All side by side, nothing waits behind the long county run.
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-2 answered: 25 result(s), 23 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-2.json
 - FROM LOOK-UP BOT (2026-10-29): 9-c2 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-c2.json
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-1 answered: 25 result(s), 21 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-1.json
