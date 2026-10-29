@@ -146,3 +146,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 11:00 AM): "pin only" group withdrawn per Brandon 10:42; leads per hard kind added to the Source Book 2 file + chat 9 probe (f).
 - DONE (Oct 29 11:20 AM): river-water test v3 graded: FWS/FS/Ohio AGREE, NPS tracts not proven (check distinct unit codes) -> KPC_RiverWaterTest_v3_grade_desk.md, chat 9 told.
 - DONE (Oct 29 11:30 AM): chat 9 probe (a)-(e) read; Source Book 2 file corrected (BLM national layer is mostly sites; UT/WY RMA layers exist, NV only survey layers; MS + ND confirmed). Waiting on rounds SB3 + F.
+- DONE (Oct 29 12:00 PM): behind-list caught up: SB2 file has chat 9 rounds F + F2; F.3 Canada regrade not possible yet (files still pre-fix). Next: 8.6 known 2-fer pairs.
