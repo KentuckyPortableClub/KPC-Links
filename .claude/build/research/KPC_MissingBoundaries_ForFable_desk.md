@@ -915,3 +915,5 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | TN US-6237 / 6247 / 6273 natural areas | tn.gov natural areas pages | ⚠ AGENCY HQ: TDEC, 500 James Robertson Pkwy, Nashville, TN 37243 | none |
 **GPS differences to watch:** IL Ray Norbut's page point is ~40 km from POTA's pin (grey area for Brandon: R-G7 'pin may be wrong' list, line never moved). Others match the pin.
 
+
+**FABLE BOOK ORDER (Brandon 5:28 PM: 'Once fable book been gone through opus gives it a shot and then fable final review ....then move on to Canada'): (1) chats 3 + 8 (+2/9/11) work every US state in the Fable file to 'STATE DONE'; (2) an OPUS pass on every row still 'pin, no source' / grey area (chat 10 on Opus, all files attached), same Rule G; (3) FABLE does the FINAL review of what is left (one session, KPC-Links + KPC-Data attached = H.1); (4) THEN Canada's list goes through the same steps. Canada addresses (chat 8) can be collected meanwhile; no Canada R-G7 tracing until the US is through step 3.**
