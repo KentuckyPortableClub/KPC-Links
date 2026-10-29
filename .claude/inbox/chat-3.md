@@ -19,6 +19,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 4:00 PM: look-up C + D read. Found official maps: IA (FWS boundary layer), MT 4 (FWP per-site PDFs), IL North Point + Ray Norbut + 2 hunter maps, MA Neponset map; RI Hillsdale NOT in the state layer; DE state parks pages blocked (403), MA pages have no map link. Everything logged in the Fable file; look-up E filed (screenshots of the PDFs). Pacing note: my 12 active states = IA RI HI VA NM DE MT IL MA CA WV TN; CA, WV, TN not started (step 0 next). No state DONE yet.
 - Oct 29 3:50 PM: Fable list step 0 + work-log rows for NM (Angel Fire), DE, MT, IL, MA; look-up C filed (18 pages). Answer B (IA RI HI VA NM) not back yet. Next after both come back: close those states, start CA.
 - Oct 29 3:40 PM: look-up A read (all 9 pages open; found RIDEM layer 21, NPS Dyke Marsh PDF, Frontier museum map PDF, NRHP PDF). Rows for IA RI HI VA NM written in the Fable file WORK LOG; second request `3-fable-low-b` filed to check the details (Hillsdale in layer 21, boundary lines in the PDFs). No state DONE yet. Next: DE MT IL MA CA…
 - Oct 29 3:30 PM: HQ 3:20 PM 'our documents first' done for IA RI HI VA NM (step 0): only Dyke Marsh has a map in our docs; list sent to chat 2's inbox. Look-up answer pending.
