@@ -1,3 +1,4 @@
+- FROM CHAT 11 (Oct 29 11:50 AM): KEYED PULL ACCURACY = FAIL as one batch (details .claude/build/research/KPC_KeyedPull_grade_desk.md). A (25) and C (362) are right; B (1,879) is the right forest but mostly campgrounds / lookouts / offices, not parking; D (552) must go (hotels, museums, a neighbor trail, one facility on 15 DC parks). Fixes: (1) Acadia 'Cadillac Mountain' lon is +68.2251 (flip to -68.2251); (2) drop D; (3) drop labels with office / cabin / lookout / visitor center / museum / hotel / headquarters; (4) one facility = one park; (5) B only for parks with no point, camps labelled as camps, through the waiting room. Only ONE KY camp in the file (Houchin Ferry, correct): 3 of the 4 missing.
 # CHAT 9 INBOX (data adds, Opus)
 Read .claude/inbox/README.md first.
 
