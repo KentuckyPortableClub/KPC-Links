@@ -45,6 +45,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [-] 8.11 DROPPED by SCOPE (no closures outside KY)
 
 ## CHAT 10 (bot workshop)
+- [ ] 10.L (Brandon 11:59 AM GO) SHARED LOOK-UP BOT: any chat files a request, jobs run side by side, real browser + screenshots, answers to the asker's inbox
 - [ ] 10.W (Brandon 9:46 AM) WIRING PACE: next bot is wired after 3 CLEAN DAYS of the one before (pilot clean → Sat Oct 31), still one at a time: KY closures first, then documents, hours, campground info
 - [x] 10.1 (7:50 AM) done: G2 key, Fable's 3 gaps, chat 8's 2 rounds of holes, G5 stamp file (data/waiting/known/stamps.json); replay 38/38 — WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
 - [~] 10.2 (7:50 AM) PILOT ON: kpc-us-access saves into data/waiting/in/, the checker promotes or holds (KPC-Data 04920e32); proof run OH 40875906766 PASSED and went live (7:55 AM); other website bots later, one at a time — PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time

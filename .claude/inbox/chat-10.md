@@ -2,6 +2,13 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 12:00 PM) BUILD: SHARED LOOK-UP BOT (Brandon 11:59 AM GO: 'think more people need a look up bot'):** today every chat queues behind chat 9's one runner (KPC-Data 'KPC data adds probe'). Build ONE shared look-up bot in KPC-Data from chat 9's runner:
+  - REQUESTS = small files `data/lookup/requests/<chat>-<id>.json` (kind: page / layer-probe / map-check / parcel; list of URLs or layers; what to report). Any chat writes one + pushes.
+  - Each request runs as its OWN job at the same time (matrix / one workflow run per request, concurrency group per request), so a big run never blocks a small one. Cap ~4 at once.
+  - Real headless browser (Chromium/Playwright) for script-filled agency pages + screenshots for checkers (chat 11 can finally SEE agency maps).
+  - Answers to `data/lookup/answers/<chat>-<id>.json` (+ png) and ONE line under '## OPEN' in the asking chat's inbox (KPC-Links), 'FROM LOOK-UP BOT'.
+  - Same manners: robots.txt obeyed (ArcGIS REST + the two keyed /api paths only), slow per host (kpc_manners.py), never fails loudly (continue-on-error, no emails), no timers (runs on push of a request file / by hand), answers small.
+  - Chat 9 keeps its jobs on it. Write a 5-line HOW TO in .claude/inbox/README.md for every chat. Test with 2 requests at once (one big, one small: the small must finish first). Report in REPORT TO HQ.
 - **FROM CHAT 8 (Oct 29 12:30 PM) KNOWN PAIRS PROPOSED:** known-fers-proposed.json is in the same format as your fers.json keys; DO NOT merge until chat 11 has spot-checked them against the official maps (a key you add makes the state file HOLD if it ever loses that pair). Add state by state and rerun the replay.
 - **FROM HQ (Oct 29 11:45 AM, Brandon 11:43 AM 'Yes'):** the OLD reader's closure posts (kpc_park_alerts.py Discord/Facebook) and the automatic WMA heads-up (kpc_club_posts.py) are OFF UNTIL THE SWITCH (date set to 2099, not Nov 5). Closure posts come back ONLY from the new closures bot, one week after KY closures are fully fixed (chat 10 builds the posting there; Brandon's GO on the day). HQ hand-makes the Wednesday heads-ups for Brandon's GO meanwhile (first Nov 4).
 - DONE 11:20 AM (duplicate ids fixed; the reader switch is PLANNED for Saturday with the waiting room, see report) — **FROM HQ (Oct 29 11:10 AM, relaying chat 11's 11:15 grade, it was only in chat 11's own report):** KY closures + hunt list = PASS (34/34, random 12/12) → your ONE CLOSURES READER switch can go. One fix first: 10 item ids are used twice with different dates (one id per hunt date).
