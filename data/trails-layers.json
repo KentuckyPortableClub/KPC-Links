@@ -68,6 +68,9 @@
   ],
   "CO": [
    "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15"
+  ],
+  "CA-ON": [
+   "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
   ]
  },
  "credits": {
@@ -78,8 +81,5 @@
   "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)",
   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Delaware State Parks",
   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)"
- },
- "CA-ON": [
-  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
- ]
+ }
 }
