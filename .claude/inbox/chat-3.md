@@ -31,6 +31,7 @@ Read .claude/inbox/README.md first.
 - G-MT1 + G-MT2 (Montana, researched Oct 29 4:35 PM): POTA's 'Brownes Lake' park and 'Thoreau State Beach' both link to a Montana wildlife-agency page for a place with a different name (Brownes Bridge FAS, Thibodeau FAS) and the pin sits on that page's exact point. My lean: YES, use those two agency boundaries (details in the Fable file). Waiting on your ruling.
 
 ## DONE
+- Oct 29 5:40 PM: address + GPS table filled from look-up H/I (offices flagged). Noted HQ 5:25 PM (rest of US released to me: GA FL TX WI MI UT OR WA OK ND NV) and 5:27 PM (2-fer rerun when a state's Fable section says STATE XX DONE; none of my 12 are DONE yet: IL has 3 traces + 2 pins, MT 2 traces + 2 awaiting G-MT1/2, etc.). New states: step 0 + rows next.
 - Oct 29 5:20 PM (Brandon 5:08 PM 'note if it is nearby office'): the address column now flags '⚠ NEARBY OFFICE' / 'NOT THIS PARK' (Iowa DNR, Lake Tahoe NV, Hearst San Simeon, Pere Marquette, Lawrence Heritage, Tijuana visitor area); same rule for the rows still to come.
 - Oct 29 5:15 PM (Brandon 5:06 PM): address + official site + GPS table for my 48 open parks added to the Fable file (known addresses filled from pages already read; the rest 'to read'); look-up requests 3-fable-addr-h / -i filed for the remaining official pages.
 - Oct 29 4:40 PM: grey areas G-MT1 / G-MT2 researched (see Fable file): POTA's own link + the pin's coordinates match the agency's Brownes Bridge and Thibodeau pages; lean YES.

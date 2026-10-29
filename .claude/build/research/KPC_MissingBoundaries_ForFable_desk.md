@@ -876,3 +876,42 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-8646 | | PAD-US at pin: Kaw/Ponca joint-use Oklahoma Tribal Stat (TRIBL, owner DESG/DESG, manager TRIB, 70680 ac, Proclamation, PAD id 1610); Pioneer Woman Monument (LP, owner CITY/LOC, manager CITY, 11 ac, Fee, PAD id 119743); CLO Lands (SRMA, owner SLB/STAT, manager SLB, 3238968 ac, Fee, PAD id 237726) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 
 **ALL US STATES ACTIVE (Brandon 5:23 PM):** chat 3 adds GA 9, FL 10, TX 11, WI 12, MI 16, UT 17, OR 18, WA 20, OK 31, ND 42, NV 68; chat 8 adds NE 9, AL 11, WY 11, VT 14, IN 17, KS 18, NC 19, AR 22, ID 38, MS 51. Record address + GPS + official source per park, and note when it is not the park itself.
+### Oct 29 5:35 PM chat 3: ADDRESS / GPS ROWS FILLED from look-up H + I (read from each official page; '⚠' = not the park's own address)
+| park | official page | address on the page | GPS on the page |
+|---|---|---|---|
+| RI US-10545 Hillsdale Preserve | dem.ri.gov press release | ⚠ AGENCY HQ OFFICE: RIDEM, 235 Promenade St, Providence, RI 02908 | none on page |
+| HI US-10923 Artillery District | NRHP 64000142 (NPGallery) | none on page | none (NRHP file has the boundary PDF) |
+| HI US-10925 HI State Game Reserve | dlnr forestry page | page 404 | none |
+| VA US-9931 Frontier Culture Museum | frontiermuseum.org | 1290 Richmond Rd, Staunton, VA 24401 (the museum's own) | none (Google link 38.1313, -79.0450) |
+| VA US-9961 Dyke Marsh | nps.gov/gwmp dykemarsh.htm | ⚠ PARKWAY HQ OFFICE: George Washington Memorial Pkwy, 700 George Washington Memorial Pkwy, McLean, VA 22101 | none |
+| NM US-11797 Los Luceros | nmhistoricsites.org | none on this page (253 County Road 41, Alcalde, NM 87511 on the museumfoundation.org page) | none |
+| NM US-11821 Bosque Redondo, US-2719 Angel Fire | agency / memorial pages | none on page | none |
+| DE US-4367, US-9885 | destateparks.com | page blocked to the bot (403) | not read |
+| DE US-9886 Dupont Nature Center | DNREC page | none on page | none (Google map pin 38.9477, -75.3149 = on the page's own map link) |
+| MT US-11216 / 11219 hatcheries | myfwp lands pages | none printed | FWP map PDFs say the site; page GPS none |
+| MT US-12827 Brownes / US-12925 Thoreau | myfwp FAS pages | none printed | 45.54671, -112.6923 / 46.95252, -113.61191 (map links on the pages = the pins) |
+| IL US-10661 Oakwood Bottoms | fs.usda.gov page | none on page | none |
+| IL US-10788 Ray Norbut | huntillinois.org | none on page | 39.68485, -90.64865 (POTA pin was 39.7265, -91.3486: ~40 km apart: PIN MAY BE WRONG, ask) |
+| IL US-12640 Rauchfuss Hill | huntillinois.org | none on page | 37.37518, -88.48568 (matches POTA pin 37.375, -88.4848) |
+| IL US-13298 North Point Marina | dnr.illinois.gov | none on page | 42.482, -87.806 (matches POTA pin) |
+| IL US-4118 Copperhead Hollow | huntillinois.org | 17836 State Hwy 100 North, Grafton, IL 62037 (the area; the map says c/o Pere Marquette SP) | 39.07624, -90.51424 (matches POTA pin 39.0805, -90.5104) |
+| MA US-2436 Greycourt | mass.gov (Lawrence Heritage page) | ⚠ NOT THIS PARK: 1 Jackson St, Lawrence, MA 01840 | none |
+| MA US-8385 Farnham-Connolly | mass.gov | 705 Neponset St, Canton, MA 02021 (the park's own) | none |
+| MA US-8387 Martini Shell / Moynihan | mass.gov | 1015 Truman Parkway, Boston, MA 02136 (the park's own) | none |
+| MA US-8388 Great Falls Discovery Ctr, US-8422 Pope John Paul II | mass.gov | none on page (Google link 2 Avenue A, Turners Falls for Great Falls) | none |
+| CA US-11336 Rainbow Basin | blm.gov | none on page | none |
+| CA US-12616 Black Butte Lake | usace.army.mil | page blocked (403) | not read |
+| CA US-2638 Van Sickle | parks.nv.gov | ⚠ NEARBY OFFICE: Lake Tahoe Nevada SP, 30 Lake Pkwy, South Lake Tahoe, NV 96150 | none |
+| CA US-3578 Tijuana Estuary | parks.ca.gov | 301 Caspian Way, Imperial Beach, CA 91932 (a park office) | none |
+| CA US-6448 Hearst Beach | parks.ca.gov | ⚠ PARENT PARK: 750 Hearst Castle Rd, San Simeon, CA 93452 | none |
+| CA US-7375 Cowell Ranch | coastsidestateparks.org | 1 New Years Creek Rd, Pescadero, CA 94060 (this is a partner site; Cowell Ranch is at Half Moon Bay: ⚠ may be Bean Hollow SB's address) | none |
+| WV US-9739 Forks of the Coal | wvdnr.gov | 301 Forks of Coal Way, Alum Creek, WV 25003 (the center's own) | none |
+| WV US-9915 Cedar Lakes | cedarlakes.com | 82 FFA Drive, Ripley, WV 25271 (the camp's own) | none |
+| WV hatcheries US-12052/53/54/55/56 | wvdnr.gov/fishing/fish-stocking | none per hatchery | none |
+| TN US-12775 Davy Crockett SFL | twra page | none on page | none |
+| TN US-13514 Lake Halford SFL | twra page | ⚠ AGENCY HQ: TWRA, 5107 Edmondson Pike (Ellington Agricultural Center), Nashville, TN 37211 | none |
+| TN US-13364 Cherokee Trail of Tears | tnstateparks.com | page blocked (403) | not read |
+| TN US-3941 Grundy Forest | tn.gov natural areas page | page 404 | none |
+| TN US-6237 / 6247 / 6273 natural areas | tn.gov natural areas pages | ⚠ AGENCY HQ: TDEC, 500 James Robertson Pkwy, Nashville, TN 37243 | none |
+**GPS differences to watch:** IL Ray Norbut's page point is ~40 km from POTA's pin (grey area for Brandon: R-G7 'pin may be wrong' list, line never moved). Others match the pin.
+
