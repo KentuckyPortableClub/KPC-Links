@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 10:25 AM) FYI, DONE BY HQ (Brandon 10:18 AM: 'Park closure social media announcements turn off for one week till it is working properly'):** POSTS_PAUSED_UNTIL = '2026-11-05' in kpc_park_alerts.py (post_discord / post_facebook return with a notice; alerts still read + marked seen, so no flood after; staff room unchanged) and the WMA heads-up in kpc_club_posts.py skipped until then. Nothing to do now; on Nov 5 it turns back on by itself unless Brandon says keep it off — HQ asks him Nov 4.
 - FROM CHAT 11 (Oct 29 9:40 AM): data/alerts/us-parks.json still lists 11 agency 'sources' (ok:false) after the OFF: the park sheet reads them and claims 'Checked: <agency> (every 6 hours)' for CA FL GA MO NC NJ WI AR CO MT OR parks. Empty 'sources' (or chat 3 ignores ok:false). Items 0 confirmed.
 
 ## NEEDS BRANDON

@@ -490,7 +490,20 @@ def post_staff(title, text):
         notice('Park alerts', f'Staff room HTTP {c}: {r[:200]}')
 
 
+# PAUSE (Brandon Oct 29 10:18 AM: 'Park closure social media announcements turn off for one week till it is working
+# properly'): no Discord / Facebook closure posts before this date. Alerts are still read, saved and marked as seen,
+# so nothing floods out when the pause ends; the private staff room still gets the unmatched ones.
+POSTS_PAUSED_UNTIL = '2026-11-05'
+
+
+def paused():
+    return datetime.date.today().isoformat() < POSTS_PAUSED_UNTIL
+
+
 def post_discord(title, text):
+    if paused():
+        notice('Park alerts', f'Closure posts paused until {POSTS_PAUSED_UNTIL} (Brandon): not sent to Discord: {title[:80]}')
+        return
     if not DISCORD.startswith('https://'):
         notice('Park alerts', 'No Discord webhook set; nothing sent to Discord.')
         return
@@ -502,6 +515,9 @@ def post_discord(title, text):
 
 
 def post_facebook(title, text):
+    if paused():
+        notice('Park alerts', f'Closure posts paused until {POSTS_PAUSED_UNTIL} (Brandon): not sent to Facebook.')
+        return
     if not FB_ID or not FB_TOKEN:
         notice('Park alerts', 'No Facebook secrets; nothing sent to Facebook.')
         return

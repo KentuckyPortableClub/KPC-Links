@@ -620,7 +620,10 @@ def main():
     except Exception:  # noqa: BLE001
         ct_hour = 9
     wait = state.get('holiday_on') == today.isoformat() and ct_hour < 12     # G6: holiday + closure posts hours apart
-    if wma_closures(state, today, force=ONLY == 'wma', wait=wait):
+    # PAUSE (Brandon Oct 29 10:18 AM): no WMA closure heads-up posts before 2026-11-05.
+    if today.isoformat() < '2026-11-05':
+        notice('WMA closure heads-up paused until 2026-11-05 (Brandon): closures are being fixed.')
+    elif wma_closures(state, today, force=ONLY == 'wma', wait=wait):
         did.append('WMA closure heads-up')
     if want_wx:
         r = event_weather(state, today)
