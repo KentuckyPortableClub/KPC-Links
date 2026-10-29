@@ -135,8 +135,8 @@
     const [pts, o] = await Promise.all([officialPoints(p), outline(p)]);
     if (cur !== p) return;
     p.pts = pts; p.fs = o.fs || [];
-    $('afBnd').textContent = p.fs.length ? (o.label === 'official' ? 'Park line: official outline' + (o.src ? ' (' + o.src + ')' : '') + '.' : 'Park line: APPROXIMATE outline, not official' + (o.why ? ' (' + o.why + ')' : '') + '. Check the park’s own map.')
-      : 'No park outline on file, so points are not checked against the line. Check the park’s own map.';
+    $('afBnd').textContent = (p.fs.length ? (o.label === 'official' ? 'Official outline' + (o.src ? ' (' + o.src + ')' : '') + '.' : 'Approximate outline, not official' + (o.why ? ' (' + o.why + ')' : '') + '. Check the park’s own map.')
+      : 'Pin only (no official outline yet), so points are not checked against the line. Check the park’s own map.') + (o.pinOff ? ' POTA’s pin may be off for this park.' : '');   /* RULE SHEET G wording */
     pts.forEach(x => Object.assign(x, { w: where(x, p.fs) }));
     $('afMsg').textContent = '';
     draw(); mapDraw(true);
@@ -156,11 +156,15 @@
       : '<p class="af-msg">' + (all.length ? 'All points are filtered out.' : 'No official parking or access points for this park yet. Tap ＋ FILL IN FROM THE VOLUNTEER MAP, and check the park’s own map.') + '</p>';
   }
   function icon(x) { return L.divIcon({ className: 'pin' + (x.osm ? ' osm' : ''), html: '<span>' + KI[x.kind][1] + '</span>', iconSize: [28, 28], iconAnchor: [14, 14] }); }
+  let sharpStop = null;
   function mapDraw(fit) {
     if (!window.L) return;
     if (!map) { map = L.map('afMap', { zoomControl: true }); if (window.KPCLayers) KPCLayers(map, 'Satellite + streets'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map); gOut = L.layerGroup().addTo(map); gPts = L.layerGroup().addTo(map); }
     gOut.clearLayers(); gPts.clearLayers();
-    (cur.fs || []).forEach(f => { try { L.geoJSON(f.geometry || f, { style: { color: '#f0c96b', weight: 3, fillOpacity: .06 } }).addTo(gOut); } catch (e) {} });
+    /* RULE SHEET G: one outline layer; zoomed in, the agency's full-detail copy of the part on screen (KPCB.sharpLayer) */
+    if (sharpStop) { sharpStop(); sharpStop = null; }
+    const fsOk = (cur.fs || []).filter(f => f && f.geometry); const outL = L.geoJSON({ type: 'FeatureCollection', features: fsOk.map(f => ({ type: 'Feature', properties: {}, geometry: f.geometry })) }, { style: { color: '#f0c96b', weight: 3, fillOpacity: .06 } }).addTo(gOut);
+    if (B() && B().sharpLayer && fsOk.length) sharpStop = B().sharpLayer(map, outL, fsOk, { map: f => ({ type: 'Feature', properties: {}, geometry: f.geometry }) });
     const all = cur.pts || [];
     shown().forEach(x => L.marker([x.la, x.lo], { icon: icon(x) }).bindPopup('<b>' + esc(x.label) + '</b><br>' + (x.osm ? 'Volunteer map (OpenStreetMap)' : esc(x.src)) + (x.w.t ? '<br>' + esc(x.w.t) : '') + '<br><a href="' + dir(x.la, x.lo) + '" target="_blank" rel="noopener">Directions ›</a>').addTo(gPts));
     if (isFinite(cur.la)) L.circleMarker([cur.la, cur.lo], { radius: 6, color: '#fff', weight: 2, fillColor: '#c0392b', fillOpacity: 1 }).bindPopup('POTA park pin').addTo(gPts);

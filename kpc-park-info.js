@@ -125,7 +125,9 @@
     setTimeout(() => { a.remove(); URL.revokeObjectURL(url); }, 60000);
     const was = btn.textContent; btn.textContent = 'SAVED ✓ (CHECK DOWNLOADS)'; setTimeout(() => btn.textContent = was, 3000);
   }
+  let sharpStop = null;   /* RULE SHEET G: zoomed-in outlines at the agency's full detail (KPCB.sharpLayer) */
   async function boundary(o) {
+    if (sharpStop) { sharpStop(); sharpStop = null; }
     const B = $('piBnd'), BB = $('piBndBtns'); lastGeo = null;
     const show = (fc, color, dash, fill) => { if (layer) layer.remove(); layer = L.geoJSON(fc, { style: { color, weight: 3, dashArray: dash, fillOpacity: fill } }).addTo(map); try { map.fitBounds(layer.getBounds(), { padding: [20, 20], maxZoom: 15 }); } catch (e) {} lastGeo = fc; };
     const dl = () => {
@@ -144,10 +146,10 @@
         const u = await KPCB.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean));
         if (u.fs.length) {
           const fc = { type: 'FeatureCollection', features: u.fs.map(f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry })) }, ap = u.label === 'approx';
-          show(fc, '#ffb000', ap ? '10 6' : null, ap ? .06 : .12); dl(); B.className = 'pi-bnd ' + (ap ? 'osm' : 'ok');
+          show(fc, '#ffb000', ap ? '10 6' : null, ap ? .06 : .12); dl(); if (KPCB.sharpLayer && layer) { if (sharpStop) sharpStop(); sharpStop = KPCB.sharpLayer(map, layer, u.fs, { map: f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry }) }); } B.className = 'pi-bnd ' + (ap ? 'osm' : 'ok');
           const names = [...new Set(u.fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ');
-          B.innerHTML = ap ? `<b>Approximate outline, not official:</b> ${names} (${esc(u.src)}). We are not sure this is the park: ${esc(u.why)}. Check the park's own map.`
-            : `<b>${names}</b>. Official boundary from ${esc(u.src)}. Check the park's own map for closed areas.${u.note ? ' <b>' + esc(u.note) + '</b>' : ''}`;
+          B.innerHTML = ap ? `<b>Approximate outline, not official:</b> ${names} (${esc(u.src)}). We are not sure this is the park: ${esc(u.why)}. Check the park's own map.${u.pinOff ? ' POTA\u2019s pin may be off for this park.' : ''}`
+            : `<b>${names}</b>. Official outline from ${esc(u.src)}. Check the park's own map for closed areas.${u.note ? ' <b>' + esc(u.note) + '</b>' : ''}${u.pinOff ? ' POTA\u2019s pin may be off for this park.' : ''}`;
           return;
         }
         if (u.label === 'none') {

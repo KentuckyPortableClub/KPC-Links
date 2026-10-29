@@ -209,6 +209,8 @@
     map.on('popupopen', function () { $('ovMap').classList.add('ov-popopen'); var w = $('ovMap').parentNode; if (w) w.classList.add('ov-popopen'); });
     map.on('popupclose', function () { $('ovMap').classList.remove('ov-popopen'); var w = $('ovMap').parentNode; if (w) w.classList.remove('ov-popopen'); });
     map.on('zoomend moveend viewreset', function () { setTimeout(clipTrail, 0); });
+    /* RULE SHEET G: zoomed in close anywhere on the map, the parks' pieces on screen are re-read at full detail too */
+    var shT = null; map.on('moveend', function () { clearTimeout(shT); shT = setTimeout(function () { if (cur && map.getZoom() >= 13) { var b = map.getBounds().pad(0.2); sharpen(cur, [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]); } }, 400); });
     if (!window.KPCLayers) base.street.addTo(map); gAll = L.layerGroup().addTo(map);
     if (window.KPCLocate) { try { KPCLocate(map); } catch (e) {} } if (window.KPCFull) { try { KPCFull(map); } catch (e) {} }
     map.on('click', function (e) { if (mode === 'pin') { if (pinM) map.removeLayer(pinM); status([e.latlng.lat, e.latlng.lng], 0, true);
@@ -305,8 +307,8 @@
      ~3 m detail for the spot's small box (KPCB.closeUp, 1.5 s limit) and swapped in; nothing waits on it, a slow server = no change */
   function spotBox(g) { var bb = [180, 90, -180, -90]; patchRings(g).forEach(function (x) { x.ring.forEach(function (q) { bb[0] = Math.min(bb[0], q[0]); bb[1] = Math.min(bb[1], q[1]); bb[2] = Math.max(bb[2], q[0]); bb[3] = Math.max(bb[3], q[1]); }); });
     if (bb[0] > bb[2]) return null; var pad = Math.max(0.01, 0.3 * Math.max(bb[2] - bb[0], bb[3] - bb[1])); return [bb[0] - pad, bb[1] - pad, bb[2] + pad, bb[3] + pad]; }
-  function sharpen(g) {
-    var B = window.KPCB; if (!B || !B.closeUp) return; var box = spotBox(g); if (!box) return; var t0 = Date.now();
+  function sharpen(g, view) {
+    var B = window.KPCB; if (!B || !B.closeUp) return; var box = view || spotBox(g); if (!box) return; var t0 = Date.now();
     Promise.all(parks.map(function (p) { return p.fsAll && p.fsAll.length ? B.closeUp(p.fsAll, box, 1500).then(function (fs) { return [p, fs]; }) : null; })).then(function (r) {
       if (cur !== g) return; var n = 0;
       r.forEach(function (x) { if (!x) return; var sharp = x[1].filter(function (f) { return f._sharp; }).length; if (!sharp) return; n += sharp; x[0].fsAll = x[1]; x[0].fs = near(g, x[1]); });

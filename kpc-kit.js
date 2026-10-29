@@ -5,6 +5,7 @@
    Uses kpc-bounds.js (window.KPCB). ?ref=US-1234 / KFF-1234 / W4K/EC-001 opens one. */
 (function () {
   'use strict';
+  let kitSharp = null;   /* RULE SHEET G: stops the zoom-in sharpening of the last map */
   /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
   const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
   const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
@@ -199,6 +200,7 @@
 
   /* ---------- map ---------- */
   async function drawMap(P) {
+    if (kitSharp) { kitSharp(); kitSharp = null; }
     if (map) { map.remove(); map = null; }
     geo = null;
     if (!window.L) { $('kitMap').innerHTML = '<p class="kit-msg">Map unavailable.</p>'; return; }
@@ -243,10 +245,12 @@
       const ap2 = (us && us.label === 'approx') || (!!wsrc && P.prog !== 'SOTA' && !!feats[0]._approx); if (ap2 && !us) us = { why: feats[0]._why };
       const lay = L.geoJSON(fc, { style: f => f.properties._proc ? { color: '#2f7fd6', weight: 1.5, opacity: .75, dashArray: '6 8', fill: false } : f.properties._own ? { color: '#ffb000', weight: 2, fillColor: '#ffb000', fillOpacity: .15 } : kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, dashArray: ap2 ? '10 6' : null, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
       if (!proc || own) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
-      $('kitBnd').innerHTML = ap2 ? '<b>Approximate outline, not official:</b> ' + esc(feats[0]._nm || '') + '. We are not sure this is the park: ' + esc(us.why) + '. Check the park\'s own map.' + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '') : (kpc ? '<b>OpenStreetMap outline (unofficial)</b>: this park has no official map file. OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : own ? '<b>Shaded = Forest Service-owned land</b> (its ownership map, 2015 data: land bought since may be missing, so check the official map). The faint dashed line is the forest boundary line: not all land inside is public.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : feats[0]._src && feats[0]._src !== 'USGS PAD-US' ? ' from ' + [...new Set(feats.map(f => f._src).filter(Boolean))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (us && us.note && !ap2 ? ' <b>' + esc(us.note) + '</b>' : '') + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
-      if (us && us.old) $('kitBnd').insertAdjacentHTML('beforeend', ' <b>Outline last read ' + esc(us.read) + ': check the official map.</b>');   /* rule B7: over a year since we last read it */
+      $('kitBnd').innerHTML = ap2 ? '<b>Approximate outline, not official:</b> ' + esc(feats[0]._nm || '') + '. We are not sure this is the park: ' + esc(us.why) + '. Check the park\'s own map.' + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '') : (kpc ? '<b>OpenStreetMap outline (unofficial)</b>: this park has no official map file. OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : own ? '<b>Shaded = Forest Service-owned land</b> (its ownership map, 2015 data: land bought since may be missing, so check the official map). The faint dashed line is the forest boundary line: not all land inside is public.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official outline' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : feats[0]._src && feats[0]._src !== 'USGS PAD-US' ? ' from ' + [...new Set(feats.map(f => f._src).filter(Boolean))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (us && us.note && !ap2 ? ' <b>' + esc(us.note) + '</b>' : '') + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
+      if (us && us.old) $('kitBnd').insertAdjacentHTML('beforeend', ' <b>Outline last read ' + esc(us.read) + ': check the official map.</b>');
+      if (us && us.pinOff) $('kitBnd').insertAdjacentHTML('beforeend', ' POTA’s pin may be off for this park.');
+      if (B.sharpLayer && us && us.fs && us.fs.length) { if (kitSharp) kitSharp(); kitSharp = B.sharpLayer(map, lay, us.fs, { map: f => ({ type: 'Feature', properties: { NAME: f._nm, _proc: !!(f._L && f._L.proc), _own: !!(f._L && f._L.own) }, geometry: f.geometry }) }); }   /* RULE SHEET G: zoomed-in full detail */   /* rule B7: over a year since we last read it */
       files(fc);
-    } else $('kitBnd').innerHTML = 'No boundary file found. Use the official map.' + (ap.length ? ' Green dots: parking / trailhead points.' : '');
+    } else $('kitBnd').innerHTML = 'Pin only (no official outline yet). Use the official map.' + (us && us.pinOff ? ' POTA’s pin may be off for this park.' : '') + (ap.length ? ' Green dots: parking / trailhead points.' : '');
   }
 
   /* ---------- weather (Open-Meteo + NWS alerts) ---------- */
