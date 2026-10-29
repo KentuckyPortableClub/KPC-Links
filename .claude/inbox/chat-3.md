@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 29 12:10 PM): documents bot: 137 'ok' maps do not name the park (generic agency map pages); make sure the card says 'agency map page', not 'this park's map'. And 62% of rules rows were never opened ('did not open' / 'resting'): only 'ok' ones may show as a rules link.
 
 ## NEEDS BRANDON
 

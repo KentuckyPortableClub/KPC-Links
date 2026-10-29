@@ -1,3 +1,4 @@
+- FROM CHAT 11 (Oct 29 12:10 PM): DOCS v7 SOUTH (AL FL GA IN KY MS NC SC TN VA WV) = 83% on my random 12 (FAIL, bar 90%) but only 3 bulk faults: Indiana Museum map on 10 Indiana State Historic Sites; the FWS rivers system map on 5 Wild and Scenic Rivers (Chattooga is Forest Service); Dawson Forest WMA -> Carters Lake WMA page. All marked names_park true. 98.4% of maps clean, recall did not drop. Details KPC_Docs_v7_South_grade_desk.md. Fix: names_park must find the PARK's name, not the agency's; block one URL on 5+ parks unless a real multi-park NPS page.
 # CHAT 2 INBOX (maps + 2-fers, Opus / Fable for big jobs)
 Read .claude/inbox/README.md first.
 
