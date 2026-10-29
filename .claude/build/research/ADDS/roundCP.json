@@ -1,0 +1,37 @@
+{"about": "Chat 9 round CP (Brandon Oct 29 4:55 AM): the missing KY camp points (LBL self-service + Fenton, Houchin Ferry, Bear Creek Horse Camp check, KDFWR WMA camps, Breaks, Kingdom Come, Otter Creek) by a real browser read of the agencies' own pages, + chat 8's BoundaryGaps look-ups (river layers R1 R2 R5 R7 at the Green River + Ohio River at Louisville; BOR Reclamation_Boundary at 5 reservoirs; Mississippi WMA / park layers). ONE run. Results: roundCP-tested.json.",
+ "pinhunt": [
+  {"id": "lbl-self-service", "url": "https://www.landbetweenthelakes.us/facility/self-service-camping/", "names": ["Fenton", "Cravens", "Nickell", "Birmingham", "Smith Bay", "Sugar Bay", "Taylor Bay", "Redd Hollow", "Boswell", "Gatlin", "Turkey Bay"]},
+  {"id": "lbl-camping", "url": "https://www.landbetweenthelakes.us/camping/", "names": ["Fenton", "Cravens", "Nickell", "Birmingham", "Smith Bay", "Sugar Bay", "Taylor Bay", "Redd Hollow", "Boswell", "Gatlin", "Turkey Bay", "Self-Service", "Self Service"]},
+  {"id": "houchin-ferry", "url": "https://home.nps.gov/maca/planyourvisit/houchinferrycg.htm"},
+  {"id": "bear-creek-horse", "url": "https://home.nps.gov/biso/planyourvisit/bear-creek-horse-camp.htm"},
+  {"id": "ridb-251468", "url": "https://www.recreation.gov/camping/campgrounds/251468", "wait": 9000},
+  {"id": "yellowbank", "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192"},
+  {"id": "higginson-henry", "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132"},
+  {"id": "west-kentucky", "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137"},
+  {"id": "rolling-fork", "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219"},
+  {"id": "breaks", "url": "https://www.breakspark.com/campground", "names": ["Campground", "Directions", "Map"]},
+  {"id": "kingdom-come", "url": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park", "names": ["Camping", "Campsites", "Map", "Directions"]},
+  {"id": "otter-creek", "url": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx", "names": ["Otter Creek", "Meade", "Camp"]}
+ ],
+ "layers": [
+  {"st": "US", "kind": "river", "ag": "USFS", "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer", "note": "chat 8 R2"},
+  {"st": "US", "kind": "river", "ag": "NPS", "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Nationwide_Rivers_Inventory_Official/FeatureServer/0", "note": "chat 8 R5"},
+  {"st": "US", "kind": "water", "ag": "USGS", "url": "https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer", "note": "chat 8 R7"},
+  {"st": "US", "kind": "land", "ag": "BOR", "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer", "note": "chat 8 row 2"}
+ ],
+ "pages": [
+  {"st": "US", "url": "https://catalog.data.gov/api/3/action/package_search?q=%22wild%20and%20scenic%20river%22%20segments&rows=10", "look": "", "json": true, "note": "chat 8 R1"},
+  {"st": "MS", "url": "https://www.maris.state.ms.us/HTML/DATA/data_Statewide.html", "look": "wildlife|WMA|park|recreation|public land|conservation", "note": "chat 8 MS"},
+  {"st": "MS", "url": "https://www.mdwfp.com/wildlife-hunting/wildlife-management-areas/", "look": "arcgis|shapefile|kml|geojson|FeatureServer|MapServer|boundary|map", "note": "chat 8 MS"}
+ ],
+ "searches": [
+  {"st": "MS", "q": "Mississippi AND (\"wildlife management area\" OR WMA OR \"state park\") AND (boundary OR boundaries)", "why": "chat 8 MS"}
+ ],
+ "nearq": [
+  {"url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0", "points": [[37.1717, -86.1167, "Green River at Mammoth Cave"], [38.27, -85.76, "Ohio River at Louisville"], [37.81, -83.70, "Red River (KY WSR, control)"]]},
+  {"url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Nationwide_Rivers_Inventory_Official/FeatureServer/0", "points": [[37.1717, -86.1167, "Green River at Mammoth Cave"], [38.27, -85.76, "Ohio River at Louisville"]]},
+  {"url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6", "points": [[37.1717, -86.1167, "Green River at Mammoth Cave"], [38.27, -85.76, "Ohio River at Louisville"]]},
+  {"url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9", "points": [[37.1717, -86.1167, "Green River at Mammoth Cave (area)"], [38.27, -85.76, "Ohio River at Louisville (area)"]]},
+  {"url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0", "d": 0.03, "points": [[41.05, -109.55, "Flaming Gorge"], [36.995, -111.49, "Lake Powell (Wahweap)"], [36.0156, -114.7378, "Lake Mead (Hoover Dam)"], [48.0, -106.42, "Fort Peck (Corps lake: expect none)"], [34.296, -114.139, "Lake Havasu (Parker Dam)"]]}
+ ]
+}

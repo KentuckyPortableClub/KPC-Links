@@ -458,6 +458,102 @@ def rivertest(cfg):
     return res
 
 
+PINRX = [r'@(-?\d{1,2}\.\d{3,}),(-?\d{1,3}\.\d{3,})', r'!3d(-?\d{1,2}\.\d{3,})!4d(-?\d{1,3}\.\d{3,})',
+         r'[?&](?:q|ll|daddr|destination|center|query)=(-?\d{1,2}\.\d{3,})(?:,|%2C)\s*(-?\d{1,3}\.\d{3,})',
+         r'lat(?:itude)?["\']?\s*[:=]\s*["\']?(-?\d{1,2}\.\d{3,})["\']?\s*,\s*["\']?(?:lng|lon|longitude)["\']?\s*[:=]\s*["\']?(-?\d{1,3}\.\d{3,})',
+         r'(3[6-9]\.\d{4,})\s*[,/ ]\s*(-8[1-9]\.\d{4,})']
+
+
+def _pins(txt):
+    out = []
+    for rx in PINRX:
+        for a, b in re.findall(rx, txt, re.I):
+            v = [round(float(a), 6), round(float(b), 6)]
+            if 30 < v[0] < 45 and -95 < v[1] < -75 and v not in out: out.append(v)
+    return out[:12]
+
+
+def pinhunt(cfg):
+    """Oct 29 (KY camp points): open each page in a real browser, read every lat/lon it carries (map links, embedded maps,
+    'latitude' text), resolve short Google-Maps links, and follow links whose text matches one of the camp names (one level).
+    Observe only; copies nothing but the coordinates and where each came from."""
+    out = []
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as e: return [{'error': f'no playwright: {e}'}]
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        ctx = b.new_context(user_agent=UA['User-Agent'])
+
+        def read(url, wait=6000):
+            r = {'url': url}
+            pg = ctx.new_page()
+            try:
+                pg.goto(url, timeout=60000); pg.wait_for_timeout(wait)
+                r['final'] = pg.url[:200]; r['title'] = pg.title()[:120]
+                html = pg.content()
+                links = pg.eval_on_selector_all('a[href]', 'e => e.map(a => [a.innerText.trim().slice(0,80), a.href])')
+                frames = [f.url for f in pg.frames if f.url and f.url != pg.url]
+                txt = html + ' ' + ' '.join(h for _, h in links) + ' ' + ' '.join(frames)
+                r['pins'] = _pins(txt + ' ' + pg.url)
+                r['maplinks'] = sorted({h for _, h in links if re.search(r'maps\.app\.goo\.gl|goo\.gl/maps|google\.[a-z.]+/maps|maps\.google', h)})[:10]
+                r['frames'] = [f[:200] for f in frames if re.search(r'map', f, re.I)][:5]
+                body = pg.inner_text('body')[:30000]
+                r['text_hits'] = re.findall(r'[^\n]{0,60}(?:latitude|longitude|GPS|coordinates|directions)[^\n]{0,100}', body, re.I)[:6]
+                r['_links'] = links
+            except Exception as e: r['error'] = str(e)[:160]
+            pg.close()
+            return r
+
+        for x in cfg.get('pinhunt') or []:
+            r = read(x['url'], x.get('wait', 6000))
+            links = r.pop('_links', None) or []
+            for m in list(r.get('maplinks') or [])[:6]:
+                if 'goo.gl' in m:
+                    q = read(m, 4000); q.pop('_links', None)
+                    r.setdefault('resolved', []).append({'link': m, 'final': q.get('final'), 'pins': q.get('pins'), 'error': q.get('error')})
+            names = x.get('names') or []
+            if names:
+                r['follow'] = []
+                seen = set()
+                for t, h in links:
+                    hit = next((n for n in names if n.lower() in (t + ' ' + h.replace('-', ' ')).lower()), None)
+                    if not hit or h in seen or h.split('#')[0] == x['url']: continue
+                    seen.add(h)
+                    if len(seen) > 30: break
+                    q = read(h, 5000); q.pop('_links', None)
+                    for m in list(q.get('maplinks') or [])[:3]:
+                        if 'goo.gl' in m:
+                            z = read(m, 4000); z.pop('_links', None)
+                            q.setdefault('resolved', []).append({'link': m, 'final': z.get('final'), 'pins': z.get('pins')})
+                    r['follow'].append({'name': hit, 'text': t, **q})
+            r.update({k: x[k] for k in ('id', 'note') if k in x})
+            notice(f"pin {x.get('id', '')}: {len(r.get('pins') or [])} pins, {len(r.get('follow') or [])} followed {r.get('error', '')}")
+            out.append(r)
+        b.close()
+    return out
+
+
+def nearq(cfg):
+    """Oct 29 (chat 8 river / BOR rows): what each layer holds within a small box around a point (lines never contain a point)."""
+    out = []
+    for x in cfg.get('nearq') or []:
+        for la, lo, label in x['points']:
+            d = x.get('d', 0.01)
+            r = {'url': x['url'], 'at': label, 'pt': [la, lo]}
+            try:
+                q = get(x['url'] + '/query', {'geometry': f'{lo-d},{la-d},{lo+d},{la+d}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                             'spatialRel': 'esriSpatialRelIntersects', 'where': '1=1', 'outFields': x.get('out', '*'),
+                                             'returnGeometry': 'false', 'resultRecordCount': 8, 'f': 'json'}, t=90)
+                if q.get('error'): r['error'] = str(q['error'])[:160]
+                r['rows'] = [{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '') and not re.search(r'shape|globalid|objectid', k, re.I)}
+                             for f in (q.get('features') or [])][:8]
+            except Exception as e: r['error'] = str(e)[:160]
+            out.append(r)
+            time.sleep(1)
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -496,6 +592,12 @@ def main():
     if cfg.get('queries'): res['queries'] = queries(cfg)
     if cfg.get('pointq'): res['pointq'] = pointq(cfg)
     if cfg.get('rivertest'): res['rivertest'] = rivertest(cfg)
+    if cfg.get('nearq'):
+        try: res['nearq'] = nearq(cfg)
+        except Exception as e: res['nearq'] = [{'error': str(e)[:140]}]
+    if cfg.get('pinhunt'):
+        try: res['pinhunt'] = pinhunt(cfg)
+        except Exception as e: res['pinhunt'] = [{'error': str(e)[:140]}]
     if cfg.get('browse'):
         try: res['browse'] = browse(cfg)
         except Exception as e: res['browse'] = [{'error': str(e)[:140]}]
