@@ -121,3 +121,5 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 - IA US-9334: FWS Iowa WMD map page opened (75 WPAs, 18 counties); whether Teal Basins is drawn needs a screenshot (low-d).
 - VA US-9931, HI US-10923, VA US-9961: the bot read the PDFs as raw bytes (no text); screenshots asked in low-d.
 - NM US-11797 Los Luceros: nmhistoricsites page opened, no map link. HI US-10925: dlnr forestry reserves page is 404 (both Hawaii DLNR URLs dead); needs a search for the working page.
+
+**ACTIVE SET (Brandon 3:29 PM: 24 states at a time, fewest parks first):** IA 1, MN 1, RI 1, CO 2, HI 2, ME 2, VA 2, AZ 3, NM 3, CT 4, DE 4, MO 4, MT 4, SC 4, IL 5, LA 5, MA 5, MD 5, CA 6, NH 7, WV 7, NY 8, TN 8, AK 9 (102 parks). Next in line: GA 9, NE 9, FL 10, AL 11, TX 11, WY 11, WI 12, VT 14, MI 16, IN 17, UT 17, KS 18, OR 18, NC 19, WA 20, AR 22, OK 31, ID 38, ND 42, MS 51, NV 68.
