@@ -1,0 +1,3957 @@
+{
+ "about": "Chat 9 round CP2 (Oct 29 8:40 AM): 9.3 river test v3 with AUTOMATIC control points from inside each layer's own polygons; chat 10's NL CKAN query shape; 9.5 PARKING / ACCESS layer search for thin areas (KS LA NM AZ AK MS HI + Canada MB NB NT NU PE NS YT NL + Parks Canada). ONE run. Results: roundCP2-tested.json. (Oct 29 9:45 AM: keyed NPS / RIDB step REMOVED per HQ 8:48 AM; the 8:40 run stopped at its first line and made no calls.)",
+ "date": "2026-10-29",
+ "layers": [],
+ "searches": [
+  {
+   "st": "KS",
+   "q": "(Kansas OR KDWP OR KDWPT) AND (\"boat ramp\" OR \"boat ramps\" OR parking OR \"public access\" OR \"walk-in\")",
+   "why": "9.5 KS",
+   "found": [
+    {
+     "title": "DentonTraining_082626_WFL1",
+     "org": "",
+     "owner": "patrick.corley_mark_43",
+     "url": "https://services7.arcgis.com/uFAr0LUPy14bDaLg/arcgis/rest/services/DentonTraining_082626_WFL1/FeatureServer",
+     "modified": "2026-08-26",
+     "licence": ""
+    },
+    {
+     "title": "Denton_CAD_101426_WFL1",
+     "org": "",
+     "owner": "emilykmark43",
+     "url": "https://services7.arcgis.com/uFAr0LUPy14bDaLg/arcgis/rest/services/Denton_CAD_101426_WFL1/FeatureServer",
+     "modified": "2026-10-14",
+     "licence": ""
+    },
+    {
+     "title": "CPWHPHTerrestrialData",
+     "org": "",
+     "owner": "rsaccoCPW",
+     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer",
+     "modified": "2025-12-24",
+     "licence": "This wildlife distribution map is a product and property of Colorado Parks and Wildlife, a division of the Colorado Depa"
+    },
+    {
+     "title": "AE Reference Map v2",
+     "org": "",
+     "owner": "aeincmo",
+     "url": "https://services.arcgis.com/Ch1uR5ouFf8JDpk6/arcgis/rest/services/AE_Reference_Map_v2/FeatureServer",
+     "modified": "2026-05-20",
+     "licence": ""
+    },
+    {
+     "title": "CurrentColorAerial",
+     "org": "",
+     "owner": "mjnelson",
+     "url": "https://map.opkansas.org/arcgis/rest/services/CurrentColorAerial/MapServer",
+     "modified": "2020-05-18",
+     "licence": ""
+    },
+    {
+     "title": "World Transit Stops",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Stops_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "GCY _Surveys_GIS",
+     "org": "",
+     "owner": "gcysurvey",
+     "url": "https://services3.arcgis.com/Gx0QO7DVtuJmpPXx/arcgis/rest/services/GCY__Surveys_GIS/FeatureServer",
+     "modified": "2025-09-24",
+     "licence": ""
+    },
+    {
+     "title": "LECL Archive Lewis and Clark Trail Historic Route",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_Trail_Historic_Route/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "LECL Lewis and Clark National Historic Trail Congressionally Designated Route",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "SimpleMappingTemplate",
+     "org": "",
+     "owner": "mjnelson",
+     "url": "https://maps.opkansas.org/mapping/rest/services/Basemaps/OP_Simple_Basemap/MapServer",
+     "modified": "2023-03-23",
+     "licence": ""
+    },
+    {
+     "title": "Trail_Construction_Public_View",
+     "org": "",
+     "owner": "mjnelson",
+     "url": "https://services1.arcgis.com/YQsWDBr0DjMtoTQo/arcgis/rest/services/Trail_Construction_Public_View/FeatureServer",
+     "modified": "2023-03-07",
+     "licence": ""
+    },
+    {
+     "title": "Snow Removal Routes",
+     "org": "",
+     "owner": "cmiller_lawrenceks",
+     "url": "https://services.arcgis.com/8O9UlSTnqjKptoda/arcgis/rest/services/Snow_Routes_2022/FeatureServer",
+     "modified": "2025-12-29",
+     "licence": "DISCLAIMER OF USE OF PUBLIC RECORD INFORMATION OR DATA  The public record, including information in a digital or electro"
+    },
+    {
+     "title": "World Transit Lines by Agency Color",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Lines_by_Attribute_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Groundwork NRG Comprehensive Map_WFL1",
+     "org": "",
+     "owner": "GroundworkNRG",
+     "url": "https://services5.arcgis.com/UajyYtygA0IdScKP/arcgis/rest/services/Groundwork_NRG_Comprehensive_Map_WFL1/FeatureServer",
+     "modified": "2021-06-21",
+     "licence": ""
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "BEH_BGA_COUNTY",
+     "org": "KDHE Public ArcGIS",
+     "owner": "kdhe.gis",
+     "url": "https://maps.kdhe.ks.gov/kdhe_doe/rest/services/BEFS/BGA_County/MapServer",
+     "modified": "2024-09-08",
+     "licence": ""
+    },
+    {
+     "title": "00_kc_tenants_canvassing_WFL1",
+     "org": "",
+     "owner": "jayalakc",
+     "url": "https://services8.arcgis.com/Lhoz48TUQGHBnJv8/arcgis/rest/services/00_kc_tenants_canvassing_WFL1/FeatureServer",
+     "modified": "2021-04-10",
+     "licence": ""
+    },
+    {
+     "title": "World Transit Lines by Modality",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Lines_by_Modality_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "CPWSB181TerrestrialData",
+     "org": "",
+     "owner": "rsaccoCPW",
+     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181TerrestrialData/FeatureServer",
+     "modified": "2025-12-24",
+     "licence": "This wildlife distribution map is a product and property of Colorado Parks and Wildlife, a division of the Colorado Depa"
+    },
+    {
+     "title": "Dickinson County Fire Districts Burn Ban Status (view)",
+     "org": "",
+     "owner": "SekulichR",
+     "url": "https://services6.arcgis.com/XBUaJ9z59sKeDhyY/arcgis/rest/services/FireDistrictsWeb_view/FeatureServer",
+     "modified": "2026-03-18",
+     "licence": "This dataset is provided by Dickinson County, Kansas for informational purposes only. Data are provided “as is” without "
+    },
+    {
+     "title": "AerialImageV1_644_everstorypartners",
+     "org": "",
+     "owner": "plotboxmapping",
+     "url": "https://tiles.arcgis.com/tiles/LTisjkyAR6ZTffiz/arcgis/rest/services/AerialImageV1_644_everstorypartners/MapServer",
+     "modified": "2026-05-07",
+     "licence": ""
+    },
+    {
+     "title": "LECL Lewis and Clark Expedition Historic Channel of the Missouri River in 1804",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Missouri_River1804/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "Combined Opportunity Area Conserved Lands_WFL1",
+     "org": "",
+     "owner": "northolympiclandtrust",
+     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
+     "modified": "2023-03-03",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "LA",
+   "q": "(Louisiana OR LDWF) AND (\"boat launch\" OR \"boat launches\" OR \"boat ramp\" OR parking)",
+   "why": "9.5 LA",
+   "found": [
+    {
+     "title": "GovernmentServices_WFL1",
+     "org": "East Baton Rouge GIS Map Portal",
+     "owner": "jpriola_ebrgis",
+     "url": "https://services.arcgis.com/KYvXadMcgf0K1EzK/arcgis/rest/services/GovernmentServices_WFL1/FeatureServer",
+     "modified": "2026-10-05",
+     "licence": "For public use  The City of Baton Rouge – Parish of East Baton Rouge provides the information herein for general referen"
+    },
+    {
+     "title": "CalSTA_Freight_Policy_Map_Viewer",
+     "org": "",
+     "owner": "NguessanAffi",
+     "url": "https://services3.arcgis.com/bEBzwDKTNCpqDs9I/arcgis/rest/services/CalSTA_Freight_Policy_Map_Viewer/FeatureServer",
+     "modified": "2025-07-15",
+     "licence": ""
+    },
+    {
+     "title": "LECL Archive Lewis and Clark Trail Historic Route",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_Trail_Historic_Route/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "LECL Lewis and Clark National Historic Trail Congressionally Designated Route",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "UsHist_13Colonies_features",
+     "org": "",
+     "owner": "Maps.com_carto",
+     "url": "https://services1.arcgis.com/VAI453sU9tG9rSmh/arcgis/rest/services/UsHist_13Colonies_features/FeatureServer",
+     "modified": "2016-02-10",
+     "licence": "This data is free for personal and educational use only. For more information on licensing our products please contact M"
+    },
+    {
+     "title": "Recreational Facilities 2013",
+     "org": "",
+     "owner": "ncei_cds_noaa",
+     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/US_Recreational_Facilities/FeatureServer",
+     "modified": "2025-07-28",
+     "licence": "Unless otherwise noted, the data and information are in the public domain. Please credit NOAA National Centers for Envir"
+    },
+    {
+     "title": "NMSZ_HSIP2015_Layers_2018",
+     "org": "",
+     "owner": "FEMA_Region7_GIS",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/NMSZ_HSIP2015_Layers_2018/FeatureServer",
+     "modified": "2022-11-30",
+     "licence": ""
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "00_kc_tenants_canvassing_WFL1",
+     "org": "",
+     "owner": "jayalakc",
+     "url": "https://services8.arcgis.com/Lhoz48TUQGHBnJv8/arcgis/rest/services/00_kc_tenants_canvassing_WFL1/FeatureServer",
+     "modified": "2021-04-10",
+     "licence": ""
+    },
+    {
+     "title": "Boat_Launch_Mariana",
+     "org": "",
+     "owner": "LDWF_ArcGIS1",
+     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/Boat_Launch_Mariana/FeatureServer",
+     "modified": "2025-10-31",
+     "licence": ""
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Planned Corridor Districts",
+     "org": "",
+     "owner": "STP_Planning",
+     "url": "https://services8.arcgis.com/xqfvcYWRsxGrAkQR/arcgis/rest/services/Planned_Corridor_Districts/FeatureServer",
+     "modified": "2023-06-08",
+     "licence": ""
+    },
+    {
+     "title": "2020 Census Tiger Data",
+     "org": "",
+     "owner": "BRADD_Admin",
+     "url": "https://services6.arcgis.com/LledJs8ADlUCS7Cz/arcgis/rest/services/2020_Census_Tiger_Data/FeatureServer",
+     "modified": "2025-07-29",
+     "licence": "This general-purpose content was derived from digital databases maintained by the Barren River Area Development District"
+    },
+    {
+     "title": "Louisiana Freshwater Explorer",
+     "org": "",
+     "owner": "damaris.crews@tnc.org_TNC",
+     "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/LA_Freshwater_Explorer/FeatureServer",
+     "modified": "2024-09-23",
+     "licence": ""
+    },
+    {
+     "title": "Web App Basemap Layers_WFL1",
+     "org": "",
+     "owner": "dssadmin",
+     "url": "https://services5.arcgis.com/jZ5BrzylRcCMNevR/arcgis/rest/services/Web_App_Basemap_Layers_WFL1/FeatureServer",
+     "modified": "2020-10-20",
+     "licence": ""
+    },
+    {
+     "title": "LECL Lewis and Clark Expedition Historic Channel of the Missouri River in 1804",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Missouri_River1804/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "Protected Areas Database of the United States (PAD-US)",
+     "org": "",
+     "owner": "lindsjor@oregonstate.edu_OSUGISci",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+     "modified": "2021-04-11",
+     "licence": "Publicly available — PAD-US is published by the Federal government; it is open and free to use for all public and commer"
+    },
+    {
+     "title": "BLM_Lands",
+     "org": "",
+     "owner": "bhanceCLLC",
+     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
+     "modified": "2023-04-17",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Oregon Trail",
+     "org": "",
+     "owner": "mm.atlas",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OREG_NHT/FeatureServer",
+     "modified": "2026-08-07",
+     "licence": "The designated national historic trail is not a fully developed hiking trail, but is a congressionally designated line, "
+    },
+    {
+     "title": "LECL Lewis and Clark NHT High Potential Historic Sites",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/HPHS/FeatureServer",
+     "modified": "2026-03-02",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "National park (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "MoveFairfax_StoryMap Data_WFL1",
+     "org": "",
+     "owner": "Ryandenker3",
+     "url": "https://services2.arcgis.com/DANcyjLcCCpGk8Ri/arcgis/rest/services/MoveFairfax_StoryMap_Data_WFL1/FeatureServer",
+     "modified": "2025-09-04",
+     "licence": ""
+    },
+    {
+     "title": "ParkAnalysis_ABO_WFL1",
+     "org": "",
+     "owner": "ao81_ricegis",
+     "url": "https://services.arcgis.com/lqRTrQp2HrfnJt8U/arcgis/rest/services/ParkAnalysis_ABO_WFL1/FeatureServer",
+     "modified": "2026-04-15",
+     "licence": ""
+    },
+    {
+     "title": "LECL Lewis and Clark Expedition Historic Tributaries and Streams",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Historic_trib_streams/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    }
+   ]
+  },
+  {
+   "st": "NM",
+   "q": "(\"New Mexico\" OR NMDGF OR \"NM State Parks\") AND (\"boat ramp\" OR parking OR \"fishing access\" OR trailhead)",
+   "why": "9.5 NM",
+   "found": [
+    {
+     "title": "NewMexico_DPS_CAD2_WFL1",
+     "org": "",
+     "owner": "elise.austin_mark43",
+     "url": "https://services7.arcgis.com/uFAr0LUPy14bDaLg/arcgis/rest/services/NewMexico_DPS_CAD2_WFL1/FeatureServer",
+     "modified": "2023-08-17",
+     "licence": ""
+    },
+    {
+     "title": "CPWHPHTerrestrialData",
+     "org": "",
+     "owner": "rsaccoCPW",
+     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer",
+     "modified": "2025-12-24",
+     "licence": "This wildlife distribution map is a product and property of Colorado Parks and Wildlife, a division of the Colorado Depa"
+    },
+    {
+     "title": "BLM Surface Ownership",
+     "org": "",
+     "owner": "nmdot",
+     "url": "https://services.arcgis.com/hOpd7wfnKm16p9D9/arcgis/rest/services/BLM_Surface_Ownership/FeatureServer",
+     "modified": "2024-06-03",
+     "licence": "No warranty is made by the Bureau of Land Management as to the accuracy, reliability, or completeness of these data for "
+    },
+    {
+     "title": "Lifeline - All Lifelines - Static - Package - 2019 / Critical Infrastructure (HI",
+     "org": "",
+     "owner": "FEMA_Region9_GIS",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Critical_Infrastructure_Map_Service/FeatureServer",
+     "modified": "2024-02-12",
+     "licence": ""
+    },
+    {
+     "title": "CPW All Species Activity Mapping Data Web Services",
+     "org": "",
+     "owner": "rsaccoCPW",
+     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer",
+     "modified": "2025-12-23",
+     "licence": "This wildlife distribution map is a product and property of Colorado Parks and Wildlife, a division of the Colorado Depa"
+    },
+    {
+     "title": "New Mexico Fishing Waters Map Layers",
+     "org": "",
+     "owner": "keary.howley@dgf.nm.gov_nmdgf",
+     "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer",
+     "modified": "2026-05-18",
+     "licence": "The New Mexico Department of Game and Fish (NMDGF) provides spatial data as a courtesy for general location purposes onl"
+    },
+    {
+     "title": "Rt 66 Hidden Legacies Story Locations",
+     "org": "",
+     "owner": "klenzer_nthp",
+     "url": "https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/X4xcF/FeatureServer",
+     "modified": "2025-10-29",
+     "licence": "This data is approximate and does not represent a legal survey.&nbsp; It cannot be used for legal or navigational purpos"
+    },
+    {
+     "title": "New Mexico Incorporated Places: December 2025",
+     "org": "",
+     "owner": "lbrotman_NMTRD",
+     "url": "https://services5.arcgis.com/f4lpEvI6fkgVYigk/arcgis/rest/services/New_Mexico_incorporated_places_December2025/FeatureServer",
+     "modified": "2025-12-08",
+     "licence": "TRD Data Disclaimer may be viewed at: https://www.tax.newmexico.gov/businesses/geographic-information-system-gis/data-do"
+    },
+    {
+     "title": "Continental Divide National Scenic Trail (official)",
+     "org": "",
+     "owner": "USFSRegion02",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/ContinentalDivideNST/FeatureServer",
+     "modified": "2020-04-03",
+     "licence": "The USDA Forest Service, National Park Service and Continental Divide Trail Coalition make no warranty, expressed or imp"
+    },
+    {
+     "title": "BLM Campgrounds",
+     "org": "",
+     "owner": "RMA_Authoritative",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer",
+     "modified": "2026-02-07",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "Fishing Access",
+     "org": "New Mexico Department of Game and Fish",
+     "owner": "keary.howley@dgf.nm.gov_nmdgf",
+     "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer",
+     "modified": "2025-12-08",
+     "licence": "NMDGF provides spatial data as a courtesy for general location purposes only. NMDGF makes no warranty and assumes no res"
+    },
+    {
+     "title": "PPRP_DIST_MIL_DATA",
+     "org": "",
+     "owner": "shannon.long@erm.com_ERM",
+     "url": "https://services1.arcgis.com/Sh1QwLSVKYk2AYjx/arcgis/rest/services/PPRP_DIST_MIL_DATA_v2/FeatureServer",
+     "modified": "2022-06-16",
+     "licence": ""
+    },
+    {
+     "title": "NMSZ_HSIP2015_Layers_2018",
+     "org": "",
+     "owner": "FEMA_Region7_GIS",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/NMSZ_HSIP2015_Layers_2018/FeatureServer",
+     "modified": "2022-11-30",
+     "licence": ""
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "BLM AZ Gila-San Simon Travel Management Plan Public Web Map Data Layers",
+     "org": "",
+     "owner": "rluu@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_AZ_Gila_San_Simon_Travel_Management_Plan_Web_Map_Data_Layers_view/FeatureServer",
+     "modified": "2023-12-27",
+     "licence": "Access Constraint:          None. These data are considered public domain.                 Use Constraint:          Thes"
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "TRAILHEAD_NEW",
+     "org": "",
+     "owner": "lwilliams@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/TRAILHEAD_NEW/FeatureServer",
+     "modified": "2026-04-15",
+     "licence": "These data are provided by BLM \"as is\" and may contain errors or omissions. The User assumes the entire risk associated "
+    },
+    {
+     "title": "RecPts_Intersect_RecPoly",
+     "org": "",
+     "owner": "lwilliams@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/RecPts_Intersect_RecPoly/FeatureServer",
+     "modified": "2026-04-15",
+     "licence": "These data are provided by BLM \"as is\" and may contain errors or omissions. The User assumes the entire risk associated "
+    },
+    {
+     "title": "WelcometoCoRR_Story_Data",
+     "org": "City of Rio Rancho",
+     "owner": "CoRRGIS",
+     "url": "https://services2.arcgis.com/KQGAxSQd2SGmmuxN/arcgis/rest/services/WelcometoCoRR_Story/FeatureServer",
+     "modified": "2023-05-16",
+     "licence": "DISCLAIMER:   This page contains data from multiple sources and should be used for reference purposes only. While the Ci"
+    },
+    {
+     "title": "MS4 Map",
+     "org": "",
+     "owner": "rmullin_NRS",
+     "url": "https://services6.arcgis.com/NiLPE6S5bwjCDk9X/arcgis/rest/services/MS4_Map/FeatureServer",
+     "modified": "2024-01-19",
+     "licence": ""
+    },
+    {
+     "title": "CPWSB181TerrestrialData",
+     "org": "",
+     "owner": "rsaccoCPW",
+     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181TerrestrialData/FeatureServer",
+     "modified": "2025-12-24",
+     "licence": "This wildlife distribution map is a product and property of Colorado Parks and Wildlife, a division of the Colorado Depa"
+    },
+    {
+     "title": "BLM Natl Recreation Site Points",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer",
+     "modified": "2026-10-13",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "UNM_Parking_20250605",
+     "org": "",
+     "owner": "patrick.corley_mark_43",
+     "url": "https://services7.arcgis.com/uFAr0LUPy14bDaLg/arcgis/rest/services/UNM_Parking_20250605/FeatureServer",
+     "modified": "2025-06-30",
+     "licence": ""
+    },
+    {
+     "title": "R03_Trails_DEPRECATED",
+     "org": "",
+     "owner": "USFSRegion03",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/R03_Trails_Data/FeatureServer",
+     "modified": "2026-10-06",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    }
+   ]
+  },
+  {
+   "st": "AZ",
+   "q": "(Arizona OR AZGFD OR \"Arizona State Parks\") AND (\"boat ramp\" OR \"boating access\" OR parking OR trailhead)",
+   "why": "9.5 AZ",
+   "found": [
+    {
+     "title": "Arizona_National_Scenic_Trail_Feature_Layers_view",
+     "org": "",
+     "owner": "AZTrail",
+     "url": "https://services3.arcgis.com/IKBBLZOXy58PXgpl/arcgis/rest/services/Arizona_National_Scenic_Trail_Feature_Layers_view/FeatureServer",
+     "modified": "2026-05-15",
+     "licence": ""
+    },
+    {
+     "title": "Parcel",
+     "org": "",
+     "owner": "MaricopaCountyGIS",
+     "url": "https://gis.maricopa.gov/arcgis/rest/services/IndividualService/Parcel/MapServer",
+     "modified": "2024-03-20",
+     "licence": "Access      For external distribution or use, please contact the GIS office to obtain written authorization. Any illegal"
+    },
+    {
+     "title": "PAD-US Manager Name",
+     "org": "",
+     "owner": "mcroft@usgs.gov_USGS",
+     "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer",
+     "modified": "2026-07-30",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    },
+    {
+     "title": "Buckeye Hunting Areas ",
+     "org": "",
+     "owner": "AZGFD_GIS",
+     "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/BuckeyeHunting/FeatureServer",
+     "modified": "2026-10-26",
+     "licence": "Terms of Use: Geospatial Data and GIS Services       Please read these Terms of Use (\"Terms\") carefully prior to accessi"
+    },
+    {
+     "title": "Superstition_Wilderness_Recreation_Map",
+     "org": "",
+     "owner": "bmforman_asu",
+     "url": "https://services3.arcgis.com/0OPQIK59PJJqLK0A/arcgis/rest/services/Superstition_Wilderness_Recreation_Map/FeatureServer",
+     "modified": "2018-07-21",
+     "licence": ""
+    },
+    {
+     "title": "Class 1 Areas under the Clean Air Act, US EPA, OAR, OAQPS",
+     "org": "",
+     "owner": "hcakir_EPA",
+     "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Mandatory_Class1_Federal_Areas/FeatureServer",
+     "modified": "2026-04-24",
+     "licence": "Access constraints: None.  Use constraints: None. Please check sources, scale, accuracy, currentness and other available"
+    },
+    {
+     "title": "Parks and Trails (County)",
+     "org": "",
+     "owner": "MaricopaCountyGIS",
+     "url": "https://gis.maricopa.gov/arcgis/rest/services/PNR/ParkAndTrail/MapServer",
+     "modified": "2023-05-03",
+     "licence": "Access    Any download for commercial intent or resale of this information is prohibited, except in accordance with a su"
+    },
+    {
+     "title": "Class I",
+     "org": "",
+     "owner": "adeq_gisnp",
+     "url": "https://services.arcgis.com/SzoH1oFM2apCSkx3/arcgis/rest/services/Class_I/FeatureServer",
+     "modified": "2026-02-10",
+     "licence": "The Arizona Department of Environmental Quality has compiled this GIS Web site from various sources. ADEQ cannot ensure "
+    },
+    {
+     "title": "ADOT 2023 Highway Performance Monitoring System (HPMS) Roadway Data",
+     "org": "",
+     "owner": "mpdgisazgeo_azgeo",
+     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/arcgis/rest/services/HPMS_2023_Data/FeatureServer",
+     "modified": "2025-10-07",
+     "licence": "Although the Arizona Department of Transportation’s data in this data has been produced and processed from sources belie"
+    },
+    {
+     "title": "Strategic_Freight_Planning_Map_Viewer",
+     "org": "",
+     "owner": "OSFP.GIS",
+     "url": "https://services1.arcgis.com/8CpMUd3fdw6aXef7/arcgis/rest/services/Strategic_Freight_Planning_Map_Viewer/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": ""
+    },
+    {
+     "title": "CalSTA_Freight_Policy_Map_Viewer",
+     "org": "",
+     "owner": "NguessanAffi",
+     "url": "https://services3.arcgis.com/bEBzwDKTNCpqDs9I/arcgis/rest/services/CalSTA_Freight_Policy_Map_Viewer/FeatureServer",
+     "modified": "2025-07-15",
+     "licence": ""
+    },
+    {
+     "title": "JUBA_HistoricTrail_ln",
+     "org": "",
+     "owner": "esainburg@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JUBA_HistoricTrail_ln/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "TRIP Map Data 2024",
+     "org": "",
+     "owner": "ThriveRegionalPartnership",
+     "url": "https://services3.arcgis.com/xpR2E2r2KmCE5hF3/arcgis/rest/services/TRIP2024_WFL1/FeatureServer",
+     "modified": "2025-09-18",
+     "licence": ""
+    },
+    {
+     "title": "Statewide Heat Preparedness Network Locations",
+     "org": "",
+     "owner": "AZ_DeptHealthServices_GIS",
+     "url": "https://services1.arcgis.com/mpVYz37anSdrK4d8/arcgis/rest/services/AZCoolingandHydration/FeatureServer",
+     "modified": "2026-05-21",
+     "licence": "While every effort has been made to ensure the accuracy of these data, the Arizona Department of Health Services (ADHS) "
+    },
+    {
+     "title": "TRIP Datasets",
+     "org": "",
+     "owner": "tgiarrusso",
+     "url": "https://services2.arcgis.com/I9cUOJUZvdGAJncI/arcgis/rest/services/GCFHData/FeatureServer",
+     "modified": "2023-10-10",
+     "licence": ""
+    },
+    {
+     "title": "ADOT 2024 Highway Performance Monitoring System (HPMS) Roadway Data",
+     "org": "",
+     "owner": "mpdgisazgeo_azgeo",
+     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/arcgis/rest/services/HPMS_2024_Data/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": "Although the Arizona Department of Transportation’s data in this data has been produced and processed from sources belie"
+    },
+    {
+     "title": "BLM Campgrounds",
+     "org": "",
+     "owner": "RMA_Authoritative",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer",
+     "modified": "2026-02-07",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "STV Incorporation Area_WFL2",
+     "org": "",
+     "owner": "Adrien",
+     "url": "https://services8.arcgis.com/5IyQ1JuhYY9hrQL9/arcgis/rest/services/STV_Incorporation_Area_WFL2/FeatureServer",
+     "modified": "2025-01-04",
+     "licence": ""
+    },
+    {
+     "title": "PAD-US Manager Type",
+     "org": "",
+     "owner": "mcroft@usgs.gov_USGS",
+     "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Type_PADUS/FeatureServer",
+     "modified": "2026-07-30",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    },
+    {
+     "title": "Lots Garages Map_WFL1",
+     "org": "",
+     "owner": "lsharp1_cotgis",
+     "url": "https://services3.arcgis.com/9coHY2fvuFjG9HQX/arcgis/rest/services/Lots_Garages_Map_WFL1/FeatureServer",
+     "modified": "2020-04-16",
+     "licence": ""
+    },
+    {
+     "title": "UA_Storymap_Analysis_WFL1",
+     "org": "",
+     "owner": "raybyrd_egisua",
+     "url": "https://services9.arcgis.com/7pXSKI7IPfaZORZE/arcgis/rest/services/UA_Storymap_Analysis_WFL1/FeatureServer",
+     "modified": "2026-06-24",
+     "licence": ""
+    },
+    {
+     "title": "trailheads_east_pima",
+     "org": "",
+     "owner": "AGONRPRpblsh",
+     "url": "https://services2.arcgis.com/UTBp78iglGpbqp1B/arcgis/rest/services/trailheads_east_pima/FeatureServer",
+     "modified": "2019-10-22",
+     "licence": "Pima County Users"
+    },
+    {
+     "title": "Streets With Terrain",
+     "org": "",
+     "owner": "MaricopaCountyGIS",
+     "url": "https://gis.maricopa.gov/arcgis/rest/services/Basemap/StreetWithTerrain/MapServer",
+     "modified": "2023-05-03",
+     "licence": "For Maricopa County government internal use only. For external distribution or use, please contact the GIS office to obt"
+    },
+    {
+     "title": "City Annexations",
+     "org": "",
+     "owner": "MaricopaCountyGIS",
+     "url": "https://gis.maricopa.gov/arcgis/rest/services/IndividualService/MunicipalAnnexations/MapServer",
+     "modified": "2023-05-03",
+     "licence": ""
+    },
+    {
+     "title": "PAD-US Protection Mechanism Category",
+     "org": "",
+     "owner": "mcroft@usgs.gov_USGS",
+     "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Protection_Mechanism_Category_PADUS/FeatureServer",
+     "modified": "2026-07-30",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    }
+   ]
+  },
+  {
+   "st": "AK",
+   "q": "(Alaska OR ADFG OR \"Alaska State Parks\" OR DNR) AND (\"boat launch\" OR parking OR \"public access\" OR trailhead)",
+   "why": "9.5 AK",
+   "found": [
+    {
+     "title": "World Topographic Map",
+     "org": "",
+     "owner": "esri",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+     "modified": "2026-02-17",
+     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use     &nbsp; "
+    },
+    {
+     "title": "USA National Park Service Lands",
+     "org": "",
+     "owner": "esri_landscape2",
+     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_National_Park_Service_Lands_20170930/FeatureServer",
+     "modified": "2026-06-17",
+     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "USA Topo Maps",
+     "org": "",
+     "owner": "esri",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer",
+     "modified": "2026-02-17",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use     &nbsp;   Expo"
+    },
+    {
+     "title": "PAULIE",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "The Geographic Information System (GIS) Data to which this notice is attached are made available pursuant to the Minneso"
+    },
+    {
+     "title": "Transportation (Roads and Railroads)",
+     "org": "",
+     "owner": "Esri_US_Federal_Data",
+     "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Transportation_v1/FeatureServer",
+     "modified": "2026-10-26",
+     "licence": "This work is licensed under a Creative Commons by Attribution (CC BY 4.0) license. See Credits and Map for Attribution. "
+    },
+    {
+     "title": "USGS Topo Maps (Map Service)",
+     "org": "Florida Department of Environmental Protection",
+     "owner": "FDEPOpenDataPortal",
+     "url": "https://services.arcgisonline.com/arcgis/rest/services/USA_Topo_Maps/MapServer",
+     "modified": "2018-11-28",
+     "licence": "Please see these terms of use -    http://downloads2.esri.com/ArcGISOnline/docs/tou_summary.pdf"
+    },
+    {
+     "title": "USA Federal Lands",
+     "org": "",
+     "owner": "esri_landscape2",
+     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Federal_Lands/FeatureServer",
+     "modified": "2026-06-17",
+     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Wilderness Areas in the United States",
+     "org": "",
+     "owner": "wildernesswebmaster99",
+     "url": "https://services1.arcgis.com/ERdCHt0sNM6dENSD/arcgis/rest/services/Wilderness_Areas_in_the_United_States/FeatureServer",
+     "modified": "2026-08-26",
+     "licence": "This\ndataset is managed by Wilderness Connect, a long-standing project through the\nUniversity of Montana, as both a feat"
+    },
+    {
+     "title": "(EGP) USA Wilderness",
+     "org": "",
+     "owner": "egp_admin",
+     "url": "https://services1.arcgis.com/ERdCHt0sNM6dENSD/arcgis/rest/services/Wilderness_Areas_in_the_United_States/FeatureServer",
+     "modified": "2026-09-10",
+     "licence": "The National Interagency Fire Center and U.S. Forest Service makes no warranty, expressed or implied, including the warr"
+    },
+    {
+     "title": "National Wildland Explorer ",
+     "org": "",
+     "owner": "TWSAdmin",
+     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/National_Wildland_Explorer_updates_2025_WFL1/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": ""
+    },
+    {
+     "title": "WRD_WMA_Public",
+     "org": "",
+     "owner": "WRD.ADMIN",
+     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer",
+     "modified": "2026-08-25",
+     "licence": ""
+    },
+    {
+     "title": "Campgrounds on Michigan State Forest Land",
+     "org": "",
+     "owner": "MichiganDNR",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/dnrParksAndRecreation/FeatureServer/3",
+     "modified": "2026-10-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to ensure this information meets WCAG 2.1 AA a"
+    },
+    {
+     "title": "Wildfire History by Age",
+     "org": "",
+     "owner": "pdoherty_napsg",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/InterAgencyFirePerimeterHistory_All_Years_View/FeatureServer",
+     "modified": "2022-07-07",
+     "licence": "This dataset is provided &quot;as is&quot; without warranty of any kind, including, but not limited to, the implied warr"
+    },
+    {
+     "title": "Michigan State Park Campgrounds",
+     "org": "",
+     "owner": "MichiganDNR",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/dnrParksAndRecreation/FeatureServer/2",
+     "modified": "2026-10-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to ensure this information meets WCAG 2.1 AA a"
+    },
+    {
+     "title": "Michigan DNR Roads",
+     "org": "Michigan Department of Natural Resources",
+     "owner": "MichiganDNR",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_ROADS/FeatureServer",
+     "modified": "2026-06-04",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to ensure this information meets WCAG 2.1 AA a"
+    },
+    {
+     "title": "Parcels",
+     "org": "",
+     "owner": "Admin_GrantCoWA",
+     "url": "https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcels/FeatureServer",
+     "modified": "2023-10-30",
+     "licence": "Grant County strives to provide accurate data. This data is believed to be accurate according to documents provided to G"
+    },
+    {
+     "title": "Atlas_Web_Application_PublicAccess_View",
+     "org": "",
+     "owner": "Monica.Thelen_iowadnr",
+     "url": "https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Atlas_Web_Application_PublicAccess_View/FeatureServer",
+     "modified": "2019-10-05",
+     "licence": ""
+    },
+    {
+     "title": "InterAgencyFirePerimeterHistory_AllYears_View",
+     "org": "",
+     "owner": "WFMRDA_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/InterAgencyFirePerimeterHistory_All_Years_View/FeatureServer",
+     "modified": "2026-07-22",
+     "licence": "Important!    The data displayed here is intended for  STRATEGIC USE ONLY . Always verify the accuracy with the original"
+    },
+    {
+     "title": "SU_fieldworkv4_deletable",
+     "org": "",
+     "owner": "ihnkena_dnr",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/SU_fieldworkv4_deletable/FeatureServer",
+     "modified": "2026-10-22",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to ensure this information meets WCAG 2.1 AA a"
+    },
+    {
+     "title": "Environmental Layers",
+     "org": "",
+     "owner": "ras_byron",
+     "url": "https://services7.arcgis.com/SqbRuGmmUbhRpdi1/arcgis/rest/services/Environmental_Layers/FeatureServer",
+     "modified": "2026-06-16",
+     "licence": ""
+    },
+    {
+     "title": "Park_Land_Hosted",
+     "org": "Municipality of Anchorage",
+     "owner": "MOA_HostedServices",
+     "url": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/Park_Land_Hosted/FeatureServer",
+     "modified": "2026-01-09",
+     "licence": ""
+    },
+    {
+     "title": "Park_Facilities_Hosted",
+     "org": "Municipality of Anchorage",
+     "owner": "MOA_HostedServices",
+     "url": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/Park_Facilities_Hosted/FeatureServer",
+     "modified": "2020-12-29",
+     "licence": ""
+    },
+    {
+     "title": "TylerEPL",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": ""
+    },
+    {
+     "title": "Administrative MSB Boundary",
+     "org": "Matanuska-Susitna Borough",
+     "owner": "MatSuBorough",
+     "url": "https://maps.matsugov.us/map/rest/services/OpenData/Administrative_MSBBoundary/FeatureServer",
+     "modified": "2026-08-31",
+     "licence": "The Matanuska-Susitna Borough (&quot;Borough&quot;) makes published geographic electronic data available to the data rec"
+    },
+    {
+     "title": "NPS Wildfire Risk Assessment (Public)",
+     "org": "National Interagency Fire Center",
+     "owner": "NPSadmin_nifc",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/NPS_Wildfire_Risk_Assessment_v2023_(Public)/FeatureServer",
+     "modified": "2025-10-16",
+     "licence": "The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contained "
+    }
+   ]
+  },
+  {
+   "st": "MS",
+   "q": "(Mississippi OR MDWFP) AND (\"boat ramp\" OR \"boat ramps\" OR \"boat launch\" OR parking)",
+   "why": "9.5 MS",
+   "found": [
+    {
+     "title": "PAULIE",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "The Geographic Information System (GIS) Data to which this notice is attached are made available pursuant to the Minneso"
+    },
+    {
+     "title": "USA Federal Lands",
+     "org": "",
+     "owner": "esri_landscape2",
+     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Federal_Lands/FeatureServer",
+     "modified": "2026-06-17",
+     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "TylerEPL",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": ""
+    },
+    {
+     "title": "zoningOverlay2040",
+     "org": "",
+     "owner": "CPED_Data_cityoflakes",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/zoningOverlay2040/FeatureServer",
+     "modified": "2023-10-03",
+     "licence": ""
+    },
+    {
+     "title": "Planning_Zoning_Overlay",
+     "org": "",
+     "owner": "City_of_Minneapolis",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Planning_Zoning_Overlay/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": "Access and Use Constraints               To the extent possible under law,   City of Minneapolis   has waived all copyri"
+    },
+    {
+     "title": "HattiesburgMS_PublicLayers_PSA",
+     "org": "",
+     "owner": "geojobe_hattiesburgms",
+     "url": "https://services.arcgis.com/jDD84VOqBEa0haCs/arcgis/rest/services/HattiesburgMS_PublicLayers_PSA_WFL1/FeatureServer",
+     "modified": "2026-06-25",
+     "licence": ""
+    },
+    {
+     "title": "zoningOverlay",
+     "org": "",
+     "owner": "CPED_Data_cityoflakes",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/zoningOverlay/FeatureServer",
+     "modified": "2023-10-02",
+     "licence": ""
+    },
+    {
+     "title": "City of Tupelo",
+     "org": "",
+     "owner": "wignew",
+     "url": "https://services1.arcgis.com/K2lG4DOeDaa3nZkf/arcgis/rest/services/City_of_Tupelo/FeatureServer",
+     "modified": "2022-10-20",
+     "licence": ""
+    },
+    {
+     "title": "SF19_EX_ShakeMap_Exposure",
+     "org": "",
+     "owner": "FEMA_MAC",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SF19_EX_ShakeMap_Exposure/FeatureServer",
+     "modified": "2019-05-29",
+     "licence": "Only should be used for exercise purposes."
+    },
+    {
+     "title": "Wabasha_Authoritative_gdb",
+     "org": "",
+     "owner": "mdc_UMN",
+     "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/Wabasha_Authoritative_gdb/FeatureServer",
+     "modified": "2019-07-18",
+     "licence": ""
+    },
+    {
+     "title": "Recreational Facilities 2013",
+     "org": "",
+     "owner": "ncei_cds_noaa",
+     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/US_Recreational_Facilities/FeatureServer",
+     "modified": "2025-07-28",
+     "licence": "Unless otherwise noted, the data and information are in the public domain. Please credit NOAA National Centers for Envir"
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "General Overlay Zoning",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/General_Overlay_Zoning/FeatureServer",
+     "modified": "2024-05-03",
+     "licence": "Public Domain      This data are provided to you “as is” and without any warranty as to their performance, merchantabili"
+    },
+    {
+     "title": "Mississippi River Corridor Critical Area Overlay Zoning",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Mississippi_River_Corridor_Critical_Area_Overlay_Zoning/FeatureServer",
+     "modified": "2024-05-03",
+     "licence": "Public Domain      This data are provided to you “as is” and without any warranty as to their performance, merchantabili"
+    },
+    {
+     "title": "Future Mississippi River Corridor Critical Area Overlay Zoning",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Future_Mississippi_River_Corridor_Critical_Area_Overlay_Zoning/FeatureServer",
+     "modified": "2024-05-03",
+     "licence": "Public Domain      This data are provided to you “as is” and without any warranty as to their performance, merchantabili"
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Marinas and Boat Ramps for Mississippi River Master Plan",
+     "org": "",
+     "owner": "kjh_mvp",
+     "url": "https://services6.arcgis.com/ym4vv2kwBujSjhwm/arcgis/rest/services/Marinas_and_Boat_Ramps_for_Mississippi_River_Master_Plan/FeatureServer",
+     "modified": "2023-02-27",
+     "licence": "The data, information, and maps provided herein are derived from various sources and are dynamic and in an ongoing state"
+    },
+    {
+     "title": "mississippi_headwaters_priority_areas_12_1_23",
+     "org": "",
+     "owner": "brinks31",
+     "url": "https://services7.arcgis.com/26j4Vi9jWPFXTsxU/arcgis/rest/services/Lake_wshd_priorities_base_12_1_23/FeatureServer",
+     "modified": "2024-11-27",
+     "licence": ""
+    },
+    {
+     "title": "SF_R6_Recovery_Plus_60",
+     "org": "",
+     "owner": "FEMA_MAC",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SF_R6_Recovery_Plus_60/FeatureServer",
+     "modified": "2019-06-06",
+     "licence": "Exercise purposes only"
+    },
+    {
+     "title": "SF_R4_Recovery_Plus60",
+     "org": "",
+     "owner": "FEMA_MAC",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SF_R4_Recovery_Plus60/FeatureServer",
+     "modified": "2019-06-06",
+     "licence": "Exercise purposes only"
+    },
+    {
+     "title": "Principal_Zoning",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PrincipalZoning_TEST/FeatureServer",
+     "modified": "2024-05-21",
+     "licence": "Public Domain     This data are provided to you “as is” and without any warranty as to their performance, merchantabilit"
+    },
+    {
+     "title": "SF_R7_Recovery_Plus_60",
+     "org": "",
+     "owner": "FEMA_MAC",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SF_R7_Recovery_Plus_60/FeatureServer",
+     "modified": "2019-06-06",
+     "licence": "Exercise purposes only"
+    },
+    {
+     "title": "Combined Opportunity Area Conserved Lands_WFL1",
+     "org": "",
+     "owner": "northolympiclandtrust",
+     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
+     "modified": "2023-03-03",
+     "licence": ""
+    },
+    {
+     "title": "Existing Enbridge EPND Sandpiper Pipeline",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/Existing_Enbridge_EPND_Sandpiper_Pipeline/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "HI",
+   "q": "(Hawaii OR DLNR OR DOBOR) AND (\"boat ramp\" OR harbor OR parking OR trailhead)",
+   "why": "9.5 HI",
+   "found": [
+    {
+     "title": "World Reference Overlay",
+     "org": "",
+     "owner": "esri",
+     "url": "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer",
+     "modified": "2026-02-17",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use    &nbsp;  Alignm"
+    },
+    {
+     "title": "HLE_071524_WFL1",
+     "org": "",
+     "owner": "elise.austin_mark43",
+     "url": "https://services7.arcgis.com/uFAr0LUPy14bDaLg/arcgis/rest/services/HLE_071524_WFL1/FeatureServer",
+     "modified": "2024-07-15",
+     "licence": ""
+    },
+    {
+     "title": "USA Earthquake Risk",
+     "org": "",
+     "owner": "esri_landscape2",
+     "url": "https://landscape1.arcgis.com/arcgis/rest/services/USA_Earthquake_Risk/MapServer",
+     "modified": "2025-09-03",
+     "licence": "This work is licensed under the Esri Master License Agreement.&nbsp; &nbsp; View Summary  |  View Terms of Use    Import"
+    },
+    {
+     "title": "DOFAWManagedLandsV2",
+     "org": "",
+     "owner": "dlnr_dmatsuwaki",
+     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/DOFAWManagedLandsV2/FeatureServer",
+     "modified": "2020-11-09",
+     "licence": ""
+    },
+    {
+     "title": "Reserves",
+     "org": "",
+     "owner": "HawaiiStateGIS",
+     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
+     "modified": "2026-04-16",
+     "licence": "This dataset was compiled from various data sources and is updated frequently. No warranty is made that the GIS data or "
+    },
+    {
+     "title": "Section 4_ Exercise 1_ Finding the Best Locations_ Cougar Habitat_2_WFL1",
+     "org": "",
+     "owner": "EsriTrainingSvc",
+     "url": "https://services.arcgis.com/ue9rwulIoeLEI9bj/arcgis/rest/services/Section_4__Exercise_1__Finding_the_Best_Locations_and_Paths__Cougar_Habitat_2_WFL1/FeatureServer",
+     "modified": "2026-01-22",
+     "licence": "Use of this Data is restricted to training, demonstration, and educational purposes only. This Data cannot be sold or us"
+    },
+    {
+     "title": "World_Topo_Map",
+     "org": "",
+     "owner": "AngelaWood5",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+     "modified": "2020-04-03",
+     "licence": ""
+    },
+    {
+     "title": "Goldbelt8_WFL1",
+     "org": "",
+     "owner": "caroline_erdmann",
+     "url": "https://services3.arcgis.com/0i8WvfNdfTbWrPkh/arcgis/rest/services/Goldbelt8_WFL1/FeatureServer",
+     "modified": "2026-07-21",
+     "licence": ""
+    },
+    {
+     "title": "DLNR_DOFAWDesignation",
+     "org": "",
+     "owner": "dlnr_dmatsuwaki",
+     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/DLNR_DOFAWDesignation/FeatureServer",
+     "modified": "2023-04-22",
+     "licence": ""
+    },
+    {
+     "title": "Oahu_Crashes_2007to2016",
+     "org": "",
+     "owner": "bbutoaj",
+     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/Oahu_Crashes_2007to2016/FeatureServer",
+     "modified": "2020-11-23",
+     "licence": "State of Hawaii Terms of Use:    https://portal.ehawaii.gov/page/terms-of-use/    There are no expressed warranties asso"
+    },
+    {
+     "title": "National Highway Network",
+     "org": "",
+     "owner": "Greater_Seattle_Partners",
+     "url": "https://maps3.arcgisonline.com/ArcGIS/rest/services/A-16/FHWA_National_Highway_Planning_Network/MapServer",
+     "modified": "2019-04-30",
+     "licence": ""
+    },
+    {
+     "title": "TRIP Map Data 2024",
+     "org": "",
+     "owner": "ThriveRegionalPartnership",
+     "url": "https://services3.arcgis.com/xpR2E2r2KmCE5hF3/arcgis/rest/services/TRIP2024_WFL1/FeatureServer",
+     "modified": "2025-09-18",
+     "licence": ""
+    },
+    {
+     "title": "TRIP Datasets",
+     "org": "",
+     "owner": "tgiarrusso",
+     "url": "https://services2.arcgis.com/I9cUOJUZvdGAJncI/arcgis/rest/services/GCFHData/FeatureServer",
+     "modified": "2023-10-10",
+     "licence": ""
+    },
+    {
+     "title": "Polihale_LandUse",
+     "org": "",
+     "owner": "PBR_CreatorA",
+     "url": "https://services6.arcgis.com/Y6jyX1765vdZuyQH/arcgis/rest/services/Polihale_LandUse/FeatureServer",
+     "modified": "2022-06-08",
+     "licence": ""
+    },
+    {
+     "title": "Benefits of living in volcanic island of Hawaii",
+     "org": "",
+     "owner": "GY_admin7",
+     "url": "https://services5.arcgis.com/XqaKEQIgV03geG0E/arcgis/rest/services/Benefits_of_living_in_volcanic_island_of_Hawaii_WFL1/FeatureServer",
+     "modified": "2019-09-17",
+     "licence": ""
+    },
+    {
+     "title": "World_Topo_Map",
+     "org": "",
+     "owner": "menardcoil",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+     "modified": "2015-10-29",
+     "licence": ""
+    },
+    {
+     "title": "Park & Ride (Rail)",
+     "org": "",
+     "owner": "holisgis",
+     "url": "https://services.arcgis.com/tNJpAOha4mODLkXz/arcgis/rest/services/Park_and_Ride/FeatureServer",
+     "modified": "2018-03-27",
+     "licence": "Information shown on these maps are derived from public records that are constantly undergoing change and do not replace"
+    },
+    {
+     "title": "US NonEGU Air Pollution Point Sources",
+     "org": "",
+     "owner": "GIS_AIR",
+     "url": "https://services3.arcgis.com/17F7m6SrhCakwCcI/arcgis/rest/services/US_NonEGU_Air_Pollution_Point_Sources/FeatureServer",
+     "modified": "2020-12-10",
+     "licence": "Use with attribution"
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "Hawaii ESI 2001",
+     "org": "",
+     "owner": "zachary.whelan_noaa",
+     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/Hawaii_ESI_2001_test/FeatureServer",
+     "modified": "2024-03-22",
+     "licence": "DO NOT USE MAPS FOR NAVIGATIONAL PURPOSES. Management boundaries are not to be considered legal boundaries. Edges may ha"
+    },
+    {
+     "title": "Trip Updates 2026",
+     "org": "",
+     "owner": "ThriveRegionalPartnership",
+     "url": "https://services3.arcgis.com/xpR2E2r2KmCE5hF3/arcgis/rest/services/Trip_Updates_2025/FeatureServer",
+     "modified": "2026-10-06",
+     "licence": ""
+    },
+    {
+     "title": "Gunnison County Wildfire Risk Assessment DRAFT_WFL1",
+     "org": "",
+     "owner": "jedinger_CSUrams",
+     "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/arcgis/rest/services/Gunnison_County_Wildfire_Risk_Assessment_DRAFT_WFL1/FeatureServer",
+     "modified": "2024-06-04",
+     "licence": ""
+    },
+    {
+     "title": "DOFAW Managed Lands",
+     "org": "",
+     "owner": "dlnr_dmatsuwaki",
+     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/DOFAW_Managed_Lands/FeatureServer",
+     "modified": "2019-02-22",
+     "licence": "This dataset was compiled from various data sources and is updated frequently. No warranty is made that the GIS data or "
+    },
+    {
+     "title": "Point and Zone Forecasts (NOAA)",
+     "org": "",
+     "owner": "siteadmin_bpresponse",
+     "url": "http://new.nowcoast.noaa.gov/arcgis/rest/services/nowcoast/forecast_meteoceanhydro_pts_zones_geolinks/MapServer",
+     "modified": "2018-01-31",
+     "licence": ""
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    }
+   ]
+  },
+  {
+   "st": "CA",
+   "q": "(\"Parks Canada\" OR \"Parcs Canada\") AND (parking OR facilities OR \"day use\" OR trailhead)",
+   "why": "9.5 Parks Canada",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Active Wildfires in Canada",
+     "org": "",
+     "owner": "esri_canada",
+     "url": "https://services.arcgis.com/zmLUiqh7X11gGV2d/arcgis/rest/services/Active_Fires_Csv/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": "Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )     Please note, an End-Us"
+    },
+    {
+     "title": "Active Wildfires in Canada",
+     "org": "Esri Canada",
+     "owner": "EsriCanadaContent",
+     "url": "https://services.arcgis.com/wjcPoefzjpzCgffS/arcgis/rest/services/activefires/FeatureServer",
+     "modified": "2026-09-18",
+     "licence": "Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )     Please note, an End-Us"
+    },
+    {
+     "title": "Historical Wildfire Perimeters in Canada",
+     "org": "",
+     "owner": "EsriCanadaContent",
+     "url": "https://services.arcgis.com/wjcPoefzjpzCgffS/arcgis/rest/services/Historical_Wildfire_Perimeters_in_Canada/FeatureServer",
+     "modified": "2026-10-05",
+     "licence": "Open Government Licence - Canada (  https://open.canada.ca/en/open-government-licence-canada  )    ---------------------"
+    },
+    {
+     "title": "ParksCanadaRevised",
+     "org": "",
+     "owner": "EsriCanadaEducation",
+     "url": "https://services.arcgis.com/As5CFN3ThbQpy8Ph/arcgis/rest/services/ParksCanadaRevised/FeatureServer",
+     "modified": "2014-02-10",
+     "licence": "For Educational Use Only"
+    },
+    {
+     "title": "Wildfires - Under Control - Full and Modified response / Feux classifiés maîtris",
+     "org": "",
+     "owner": "cbouchar",
+     "url": "https://services.arcgis.com/txWDfZ2LIgzmw5Ts/arcgis/rest/services/cwfis_active_fires_updated_view/FeatureServer",
+     "modified": "2025-02-26",
+     "licence": "Licenses  Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )  When the Data i"
+    },
+    {
+     "title": "Property Demo Permitting__viewing",
+     "org": "",
+     "owner": "MOJ_GIS",
+     "url": "https://services7.arcgis.com/1glZz4XajYW77W8H/arcgis/rest/services/Property_Demo_Permitting__viewing/FeatureServer",
+     "modified": "2026-10-21",
+     "licence": "Use of any Information indicates your acceptance of the terms below.  The Information Provider grants you a worldwide, r"
+    },
+    {
+     "title": "Map Service for Public Atlas",
+     "org": "",
+     "owner": "lcomeau_kings",
+     "url": "https://services8.arcgis.com/EKgs6jOgtqEQoqHR/arcgis/rest/services/Map_Service_for_Public_Atlas/FeatureServer",
+     "modified": "2025-12-10",
+     "licence": ""
+    },
+    {
+     "title": "Wildfires - Being Held - Full and Modified response / Feux classifiés contenus, ",
+     "org": "",
+     "owner": "cbouchar",
+     "url": "https://services.arcgis.com/txWDfZ2LIgzmw5Ts/arcgis/rest/services/cwfis_active_fires_updated_view/FeatureServer",
+     "modified": "2025-02-26",
+     "licence": "Licenses  Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )  When the Data i"
+    },
+    {
+     "title": "Wildfires - Out of Control - Full and Modified response / Feux classifiés hors-c",
+     "org": "",
+     "owner": "cbouchar",
+     "url": "https://services.arcgis.com/txWDfZ2LIgzmw5Ts/arcgis/rest/services/cwfis_active_fires_updated_view/FeatureServer",
+     "modified": "2025-02-26",
+     "licence": "Licenses  Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )  When the Data i"
+    },
+    {
+     "title": "Official_Trails_JNP_Sentiers_Officiels_PNJ",
+     "org": "",
+     "owner": "Brandon.Gregg_APCA",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Official_Trails_JNP_Sentiers_Officiels_PNJ/FeatureServer",
+     "modified": "2026-03-17",
+     "licence": "Use of any Information indicates your acceptance of the terms below. // L'utilisation de l'Information indique que vous "
+    },
+    {
+     "title": "All Active Wildfires / Tous les feux actifs",
+     "org": "",
+     "owner": "cbouchar",
+     "url": "https://services.arcgis.com/txWDfZ2LIgzmw5Ts/arcgis/rest/services/cwfis_active_fires_updated_view/FeatureServer",
+     "modified": "2025-02-26",
+     "licence": "Licenses  Open Government Licence - Canada ( https://open.canada.ca/en/open-government-licence-canada )  When the Data i"
+    },
+    {
+     "title": "MRG - Fire Locations // Emplacements des feux origional",
+     "org": "",
+     "owner": "marieke.maas_APCA",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Fire_Locations_Endroit_du_feu/FeatureServer",
+     "modified": "2023-07-26",
+     "licence": ""
+    },
+    {
+     "title": "Mountain Pine Beetle",
+     "org": "",
+     "owner": "EsriCanadaEducation",
+     "url": "https://services.arcgis.com/As5CFN3ThbQpy8Ph/arcgis/rest/services/MtPineBeetle/FeatureServer",
+     "modified": "2015-09-09",
+     "licence": "This work is licensed under the Web Services and API Terms of Use.      View Summary   |   View Terms of Use            "
+    },
+    {
+     "title": "National_Priority_Areas_of_Ecological_Corridors",
+     "org": "",
+     "owner": "cicadacreative",
+     "url": "https://services7.arcgis.com/4jWQy4GXJHZDSUrS/arcgis/rest/services/National_Priority_Areas_of_Ecological_Corridors/FeatureServer",
+     "modified": "2025-04-14",
+     "licence": ""
+    },
+    {
+     "title": "StoryMap_PCA_NP_NMCA_2018 coloured",
+     "org": "",
+     "owner": "christopher.pierce_APCA",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/StoryMap_PCA_NP_NMCA_2018/FeatureServer",
+     "modified": "2018-10-04",
+     "licence": ""
+    },
+    {
+     "title": "North America Caribou Current Distribution",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/CAN_USA_Caribou_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": "(c) WCS Canada."
+    },
+    {
+     "title": "National Historic Sites Heritage Rivers",
+     "org": "",
+     "owner": "mappingtct",
+     "url": "https://services2.arcgis.com/rDdKyyk7uludsLpI/arcgis/rest/services/National_Historic_Sites_Heritage_Rivers/FeatureServer",
+     "modified": "2021-11-24",
+     "licence": ""
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/Caribou_Range_Albers/FeatureServer",
+     "modified": "2026-05-22",
+     "licence": ""
+    },
+    {
+     "title": "Official_Trails_JNP_Sentiers_Officiels_PNJ_vw",
+     "org": "",
+     "owner": "Brandon.Gregg_APCA",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Official_Trails_JNP_Sentiers_Officiels_PNJ/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Use of any Information indicates your acceptance of the terms below.  The Information Provider grants you a worldwide, r"
+    },
+    {
+     "title": "DUP_Restricted",
+     "org": "",
+     "owner": "whitney",
+     "url": "https://services.arcgis.com/EVsTT4nNRCwmHNyb/arcgis/rest/services/service_046a8a2902c945d48a370deeb04fedb7/FeatureServer",
+     "modified": "2023-06-13",
+     "licence": ""
+    },
+    {
+     "title": "Parks Canada National Priority Areas for Ecological Corridors (national scale)",
+     "org": "",
+     "owner": "ted.grudzien_apca",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/NPAs_Feb_2024/FeatureServer",
+     "modified": "2025-01-22",
+     "licence": "The polygon\nboundaries are for web map display only and are not to be used for other\npurposes."
+    },
+    {
+     "title": "South Frontenac Official Plan (Open Data View)",
+     "org": "",
+     "owner": "FrontenacGIS",
+     "url": "https://services2.arcgis.com/vJlmDE1PmdTcJF0N/arcgis/rest/services/South_Frontenac_Official_Plan_(Open_Data_View)/FeatureServer",
+     "modified": "2026-03-10",
+     "licence": ""
+    },
+    {
+     "title": "AcadianChurch",
+     "org": "",
+     "owner": "CommMappingAGOL",
+     "url": "https://services.arcgis.com/9PtzeAadJyclx9t7/arcgis/rest/services/AcadianChurch/FeatureServer",
+     "modified": "2019-08-16",
+     "licence": ""
+    },
+    {
+     "title": "Parks Canada National Priority Areas for Ecological Corridors (regional scale)",
+     "org": "",
+     "owner": "ted.grudzien_apca",
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/NPAs_buffer_Feb_2024/FeatureServer",
+     "modified": "2025-01-22",
+     "licence": "The polygon\nboundaries are for web map display only and are not to be used for other\npurposes.     Les limites\ndes polyg"
+    }
+   ]
+  },
+  {
+   "st": "MB",
+   "q": "Manitoba AND (\"boat launch\" OR \"boat launches\" OR parking OR \"provincial park\" facilities)",
+   "why": "9.5 MB",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Manitoba Diagnostics and Surgery Statistics",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Diagnostics_and_Surgical_Statistics/FeatureServer",
+     "modified": "2026-09-04",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Manitoba Diagnostics and Surgical Priority Ranking",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/MB_diag_surg_priority/FeatureServer",
+     "modified": "2026-09-04",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Saskatchewan Oil and Gas IHS",
+     "org": "",
+     "owner": "RFNowGISAdmin",
+     "url": "https://services3.arcgis.com/x1TkFfsiumPGDEXQ/arcgis/rest/services/Saskatchewan_Oil_and_Gas_IHS/FeatureServer",
+     "modified": "2023-10-20",
+     "licence": ""
+    },
+    {
+     "title": "Manitoba Oil and Gas IHS",
+     "org": "",
+     "owner": "RFNowGISAdmin",
+     "url": "https://services3.arcgis.com/x1TkFfsiumPGDEXQ/arcgis/rest/services/Manitoba_Oil_and_Gas_IHS/FeatureServer",
+     "modified": "2022-06-15",
+     "licence": ""
+    },
+    {
+     "title": "Daytime Catchment Areas of Current Emergency Medical Service (EMS) Facilities in",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Daytime_Catchment_Areas_of_Current_EMS_Facilities_in_Manitoba/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Night Time Catchment Areas of Current Emergency Medical Service (EMS) Facilities",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Night_Time_Catchment_Areas_of_Current_EMS_Facilities_in_Manitoba/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Catchment Areas of Future Emergency Medical Service (EMS) Facilities in Manitoba",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Catchment_Areas_of_Future_EMS_Facilities/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Current Emergency Medical Service (EMS) Facilities in Manitoba",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Current_Emergency_Medical_Service_(EMS)_Facilities_in_Manitoba/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Recycling Depot Locations",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Recycling_Depot_Locations/FeatureServer",
+     "modified": "2025-11-10",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Manitoba Solid Waste Sites",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Solid_Waste_Site/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Future Emergency Medical Service (EMS) Facilities in Manitoba",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Future_Emergency_Medical_Service_(EMS)_Facilities_in_Manitoba/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Manitoba Commercial Community Kitchens",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/MB_Commercial_Community_Kitchens/FeatureServer",
+     "modified": "2026-03-16",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Seniors’ Residential Facilities / Résidences pour Aînés",
+     "org": "",
+     "owner": "esri_canada",
+     "url": "https://services.arcgis.com/zmLUiqh7X11gGV2d/arcgis/rest/services/SeniorsResidentialFacilities/FeatureServer",
+     "modified": "2026-02-23",
+     "licence": "Every effort has been made to ensure completeness, Esri Canada does not guarantee accuracy.  No restrictions on use.    "
+    },
+    {
+     "title": "Manitoba Diagnostic and Surgical Wait Time Averages",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Diagnostic_and_Surgical_Wait_Time_Averages/FeatureServer",
+     "modified": "2026-09-04",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Rural Health Care Facilities in Manitoba",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Rural_Health_Care_Facilities_in_Manitoba/FeatureServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Manitoba Forest Management License Areas (FML) – Version 4",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Forest_Management_License_Areas_FML_Version_4/FeatureServer",
+     "modified": "2023-08-03",
+     "licence": "Manitoba Open Data Licence      |      Français       Licence relative au site Ouverture MB"
+    },
+    {
+     "title": "Manitoba Forest Management Licence Agreement Areas – Version 3",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/bdy_mb_fml_py_v3_gdb/FeatureServer",
+     "modified": "2024-06-27",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Canadian Cargo Tank Repair Facilities",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/Canadian_Cargo_Tank_Repair_Facilities/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Canadian Cargo Tank Cleaning Facilities",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/Canadian_Cargo_Tank_Cleaning_Facilities/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Manitoba Diagnostic and Surgical Statistics - Trendlines",
+     "org": "Manitoba Maps",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/mb_surg_diag_trendlines/FeatureServer",
+     "modified": "2023-10-13",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Oil and Natural Gas Wells 2023",
+     "org": "",
+     "owner": "layermanager",
+     "url": "https://services6.arcgis.com/BAJNi3EgCdtQ1BCG/arcgis/rest/services/Oil_and_Natural_Gas_Wells_2023/FeatureServer",
+     "modified": "2024-03-22",
+     "licence": ""
+    },
+    {
+     "title": "Manitoba  Licence  Personal Care Homes",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Licensed_Personal_Care_Homes/FeatureServer",
+     "modified": "2026-08-25",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Manitoba Licensed Personal Care Home Summary Reviews",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Licensed_Personal_Care_Home_Summary_Reviews/FeatureServer",
+     "modified": "2026-10-01",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Seniors’ Residential Facilities / Résidences pour Aînés",
+     "org": "",
+     "owner": "EsriCanadaContent",
+     "url": "https://services.arcgis.com/wjcPoefzjpzCgffS/arcgis/rest/services/Seniors_Residential_Facilities/FeatureServer",
+     "modified": "2025-08-19",
+     "licence": "Every effort has been made to ensure completeness, Esri Canada does not guarantee accuracy.&nbsp; No restrictions on use"
+    }
+   ]
+  },
+  {
+   "st": "NB",
+   "q": "(\"New Brunswick\" OR GeoNB) AND (\"boat launch\" OR parking OR \"provincial park\" OR trailhead)",
+   "why": "9.5 NB",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "New Jersey Urban Enterprise Zones",
+     "org": "",
+     "owner": "NJOGIS",
+     "url": "https://maps.nj.gov/arcgis/rest/services/Applications/DCA_UEZ/MapServer/0",
+     "modified": "2021-03-02",
+     "licence": "This data set is not survey data and must not be used as survey data. See the balance of this metadata record for condit"
+    },
+    {
+     "title": "AuburnSMtest_WFL1",
+     "org": "",
+     "owner": "dante.c_berrydunn",
+     "url": "https://services5.arcgis.com/2jwcjMWXJROJe17F/arcgis/rest/services/AuburnSMtest_WFL1/FeatureServer",
+     "modified": "2025-05-01",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Major Cities - The Atlas of Canada Base Maps of BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/90",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "GeoNB_DNR_CF2",
+     "org": "",
+     "owner": "geonb_admin",
+     "url": "https://geonb.snb.ca/ArcGIS/rest/services/DNR_CF/GeoNB_DNR_CF2/MapServer",
+     "modified": "2022-06-14",
+     "licence": "GeoNB Open Data Licence   /   Licence des données ouvertes de GeoNB"
+    },
+    {
+     "title": "(7.5M) National Parks - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/103",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "Monroe Parcels Clipped",
+     "org": "",
+     "owner": "efeist",
+     "url": "https://services6.arcgis.com/u1cLUtFdrWfOeWwq/arcgis/rest/services/Monroe_Parcels_Clipped/FeatureServer",
+     "modified": "2024-01-31",
+     "licence": "This data set is not survey data and must not be used as such. See Legal Constraints, Use limitation for additional lega"
+    },
+    {
+     "title": "2016 Census Ward Boundary 2018_2022",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Ward_Boundary_2018_2022/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "2016 Census CT",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_CT/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "2016 Census CD CSD",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_CD_CSD/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "2016 Census Service Delivery Area 2017",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Service_Delivery_Area_2017/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "Site_Specific_Incentives_Map",
+     "org": "",
+     "owner": "jessica_volosin",
+     "url": "https://services.arcgis.com/BnY3izA2Kwu6jVHq/arcgis/rest/services/Site_Specific_Incentives_Map/FeatureServer",
+     "modified": "2021-12-07",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Major Roads - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/42",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) Provinces and States - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/101",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "Recreational Facilities",
+     "org": "",
+     "owner": "SoutheastRegionalServiceCommission",
+     "url": "https://services2.arcgis.com/EFg39h3DBNzpxORa/arcgis/rest/services/RecreationalFacilities_NBSE/FeatureServer",
+     "modified": "2026-07-22",
+     "licence": "Disclaimer: This is map a consolidation of data from many sources and reflects the best information made available to th"
+    },
+    {
+     "title": "SanfordInventoryLayers",
+     "org": "",
+     "owner": "dante.c_berrydunn",
+     "url": "https://services5.arcgis.com/2jwcjMWXJROJe17F/arcgis/rest/services/SanfordInventoryLayers/FeatureServer",
+     "modified": "2026-02-06",
+     "licence": ""
+    },
+    {
+     "title": "MAES Temperature Dissolved Oxygen Profiles 2014",
+     "org": "",
+     "owner": "leighm_maesCRI",
+     "url": "https://services.arcgis.com/DzkBIV3ztulDZBgc/arcgis/rest/services/TempDOProfileJuly2Allen/FeatureServer",
+     "modified": "2021-07-20",
+     "licence": "The data and any subsequent information, is not to be used without permission from the Canadian Rivers Institute (CRI). "
+    },
+    {
+     "title": "Boat Launches",
+     "org": "",
+     "owner": "leighm_maesCRI",
+     "url": "https://services.arcgis.com/DzkBIV3ztulDZBgc/arcgis/rest/services/BLDemo2/FeatureServer",
+     "modified": "2021-07-20",
+     "licence": "The\r\ndata and any subsequent information, is not to be used without permission from\r\nthe Canadian Rivers Institute (CRI)"
+    },
+    {
+     "title": "Parks_WFL1",
+     "org": "",
+     "owner": "Lauren_Atlantic",
+     "url": "https://services8.arcgis.com/7I24XR2o9eMXFXvI/arcgis/rest/services/Parks_WFL1/FeatureServer",
+     "modified": "2020-08-11",
+     "licence": ""
+    },
+    {
+     "title": "Tile Layer of Federal Reserve (Managed Forest Code 31)",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://tiles.arcgis.com/tiles/mMUesHYPkXjaFGfS/arcgis/rest/services/CCFM_ManagedForests_Feb2019_AGOL_31/MapServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "Lower Wolastoq Flooding _ Assets_WFL1",
+     "org": "",
+     "owner": "lshaw5",
+     "url": "https://services1.arcgis.com/56dETZIzFXStwLka/arcgis/rest/services/Lower_Wolastoq_Flooding___Assets_WFL1/FeatureServer",
+     "modified": "2022-03-30",
+     "licence": ""
+    },
+    {
+     "title": "Resource Categories_WFL1",
+     "org": "",
+     "owner": "tjda88",
+     "url": "https://services7.arcgis.com/a52w0rTtgMgPMRZa/arcgis/rest/services/Resource_Categories_WFL1/FeatureServer",
+     "modified": "2026-01-02",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Bathymetric  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/2",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) Boundary Lines  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/24",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "DCA_UEZ_MapTool2022",
+     "org": "",
+     "owner": "NJDCA.GIS",
+     "url": "https://services.arcgis.com/Aur8tCo478N3VovT/arcgis/rest/services/DCA_UEZ_MapTool2022/FeatureServer",
+     "modified": "2022-04-28",
+     "licence": "This data set is not survey data and must not be used as survey data. See the balance of this metadata record for condit"
+    }
+   ]
+  },
+  {
+   "st": "NL",
+   "q": "(Newfoundland OR Labrador) AND (\"boat launch\" OR parking OR \"provincial park\" OR trailhead)",
+   "why": "9.5 NL",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "World Transit Stops",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Stops_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Arctic Ecozones in Canada",
+     "org": "",
+     "owner": "EsriCanadaEducation",
+     "url": "https://services.arcgis.com/As5CFN3ThbQpy8Ph/arcgis/rest/services/ArcticExtent/FeatureServer",
+     "modified": "2015-12-14",
+     "licence": "for educational use only"
+    },
+    {
+     "title": "World Transit Lines by Agency Color",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Lines_by_Attribute_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "(7.5M) Major Cities - The Atlas of Canada Base Maps of BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/90",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "World Transit Lines by Modality",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Lines_by_Modality_RC1/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "(7.5M) National Parks - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/103",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "2016 Census Ward Boundary 2018_2022",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Ward_Boundary_2018_2022/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "2016 Census CT",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_CT/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "North America Caribou Current Distribution",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/CAN_USA_Caribou_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": "(c) WCS Canada."
+    },
+    {
+     "title": "2016 Census CD CSD",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_CD_CSD/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/Caribou_Range_Albers/FeatureServer",
+     "modified": "2026-05-22",
+     "licence": ""
+    },
+    {
+     "title": "2016 Census Service Delivery Area 2017",
+     "org": "",
+     "owner": "shahir.alam@peelregion.ca_RegionofPeel",
+     "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/2016_Census_Service_Delivery_Area_2017/FeatureServer",
+     "modified": "2024-01-13",
+     "licence": "Statistics Canada Open License"
+    },
+    {
+     "title": "(7.5M) Major Roads - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/42",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) Provinces and States - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/101",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "Resource Roads - Newfoundland",
+     "org": "Government of Newfoundland and Labrador",
+     "owner": "AdrianRicketts@gov.nl.ca_GNL",
+     "url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/FFA_ResourceRoads_NF/FeatureServer",
+     "modified": "2025-10-31",
+     "licence": "This dataset is licensed under the Newfoundland and Labrador   Open Government Licence  ."
+    },
+    {
+     "title": "Resource Roads - Labrador",
+     "org": "Government of Newfoundland and Labrador",
+     "owner": "AdrianRicketts@gov.nl.ca_GNL",
+     "url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/FFA_ResourceRoads_LB/FeatureServer",
+     "modified": "2025-10-31",
+     "licence": "This dataset is licensed under\nthe Newfoundland and Labrador    Open Government Licence   ."
+    },
+    {
+     "title": "World Transit Agency Centroids",
+     "org": "",
+     "owner": "esri_transit",
+     "url": "https://services6.arcgis.com/4J5SL9a8ALg9oNpW/arcgis/rest/services/Transit_Agency_Centroids/FeatureServer",
+     "modified": "2026-10-07",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Les parc urbains de la Ville de Québec et leurs infrastructures_WFL1",
+     "org": "",
+     "owner": "Temporaire_climoilou",
+     "url": "https://services6.arcgis.com/pG4MNR4EC4WmfCRT/arcgis/rest/services/Les_parc_urbains_de_la_Ville_de_Québec_et_leurs_infrastructures_WFL1/FeatureServer",
+     "modified": "2026-09-15",
+     "licence": "Cette donnée a été faite dans le cadre d'un projet étudiant de fin de parcours (donc fictif). Dès lors, par cette mentio"
+    },
+    {
+     "title": "Circumpolar Arctic Landscape Age Map",
+     "org": "",
+     "owner": "uaf-agc-group_uaa-agol",
+     "url": "https://services.arcgis.com/2j08Y1PuezhQEfCz/arcgis/rest/services/Circumpolar_Arctic_Landscape_Age_Map/FeatureServer",
+     "modified": "2020-07-29",
+     "licence": ""
+    },
+    {
+     "title": "Tile Layer of Federal Reserve (Managed Forest Code 31)",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://tiles.arcgis.com/tiles/mMUesHYPkXjaFGfS/arcgis/rest/services/CCFM_ManagedForests_Feb2019_AGOL_31/MapServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "CPAWS-NL Special Marine Areas (Priority Areas)",
+     "org": "",
+     "owner": "CPAWS_NL",
+     "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/SMA_Priority_Areas/FeatureServer",
+     "modified": "2024-01-10",
+     "licence": "Citation for reference to the data:  Canadian Parks and Wilderness Society - Newfoundland &amp; Labrador Chapter (CPAWS "
+    },
+    {
+     "title": "(7.5M) Bathymetric  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/2",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers Simplified",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/North_America_Caribou_Current_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Boundary Lines  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/24",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    }
+   ]
+  },
+  {
+   "st": "YT",
+   "q": "Yukon AND (\"boat launch\" OR campground OR \"recreation site\" OR parking)",
+   "why": "9.5 YT",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Indian Reserves - Administrative Boundaries",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_admin_boundaries/MapServer/37",
+     "modified": "2023-08-30",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "Park and Protected Areas - 250k",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3",
+     "modified": "2025-07-28",
+     "licence": "This data has been generalized for cartographic purposes from the original legal boundaries. It therefore, should not be"
+    },
+    {
+     "title": "Parks and Campgrounds - Surveyed",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0",
+     "modified": "2023-09-27",
+     "licence": "Open Government Licence - Canada (     https://open.canada.ca/en/open-government-licence-canada     )"
+    },
+    {
+     "title": "Canada Lands Parcel Mapping",
+     "org": "",
+     "owner": "admin_canadacadastral",
+     "url": "https://services7.arcgis.com/hFo7GO2CrHDM1QVm/arcgis/rest/services/ParcelTime/FeatureServer",
+     "modified": "2026-10-13",
+     "licence": "Canada Lands parcel mapping data is made available under the   Open Government License - Canada  ."
+    },
+    {
+     "title": "Yukon Interactive Map_WFL1",
+     "org": "",
+     "owner": "cityofyukon",
+     "url": "https://services6.arcgis.com/NCwl4fQ6WBkUVdM1/arcgis/rest/services/Yukon_Interactive_Map_WFL1/FeatureServer",
+     "modified": "2026-07-30",
+     "licence": ""
+    },
+    {
+     "title": "Park and Protected Areas - 1M",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/4",
+     "modified": "2025-07-28",
+     "licence": "This data has been generallized for cartographic purposes from the original legal boundaries. It therefore, should not b"
+    },
+    {
+     "title": "Areas withdrawn from staking - 50k",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Mining/MapServer/54",
+     "modified": "2021-01-03",
+     "licence": "Open Government Licence - Yukon (    https://open.yukon.ca/data/open-government-licence-yukon     )"
+    },
+    {
+     "title": "National Park Service - Park Unit Boundaries - copy",
+     "org": "",
+     "owner": "mtroutman_ClimateWest",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Park_Boundaries/FeatureServer",
+     "modified": "2018-11-29",
+     "licence": ""
+    },
+    {
+     "title": "North America Caribou Current Distribution",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/CAN_USA_Caribou_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": "(c) WCS Canada."
+    },
+    {
+     "title": "Parks_PEL_Project_Area_WFL1",
+     "org": "",
+     "owner": "jennifer.wright@alaska.gov_AKDOT",
+     "url": "https://services.arcgis.com/r4A0V7UzH9fcLVvv/arcgis/rest/services/Parks_PEL_Project_Area_WFL1/FeatureServer",
+     "modified": "2025-07-29",
+     "licence": ""
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/Caribou_Range_Albers/FeatureServer",
+     "modified": "2026-05-22",
+     "licence": ""
+    },
+    {
+     "title": "Districts_no_parks",
+     "org": "",
+     "owner": "Yukon.government.wildfire",
+     "url": "https://services.arcgis.com/bwohQix8s7zRvYC9/arcgis/rest/services/Districts_no_parks/FeatureServer",
+     "modified": "2025-03-10",
+     "licence": ""
+    },
+    {
+     "title": "NLUIS_Layers_for_Online_2024_02_29_Final",
+     "org": "",
+     "owner": "tsagriff_kivia",
+     "url": "https://services7.arcgis.com/oRWmoPPtXpdPlArx/arcgis/rest/services/NLUIS_Layers_for_Online_2024_02_29_Final/FeatureServer",
+     "modified": "2024-04-19",
+     "licence": "None"
+    },
+    {
+     "title": "Game Management Areas - 250k",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/7",
+     "modified": "2021-04-09",
+     "licence": "This data has been generalized for cartographic purposes from the original legal boundaries. It therefore, should not be"
+    },
+    {
+     "title": "Outfitting Concessions - 250k",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/9",
+     "modified": "2021-04-09",
+     "licence": "This data has been generalized for cartographic purposes from the original legal boundaries. It therefore, should not be"
+    },
+    {
+     "title": "Trapping Concessions - 250k",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/8",
+     "modified": "2021-04-09",
+     "licence": "This data has been generalized for cartographic purposes from the original legal boundaries. It therefore, should not be"
+    },
+    {
+     "title": "2023 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+     "modified": "2024-04-28",
+     "licence": ""
+    },
+    {
+     "title": "Weston_Field_Map_1",
+     "org": "",
+     "owner": "cmacneil_yukonu5",
+     "url": "https://services7.arcgis.com/5WLoMmqnjOy3x2nb/arcgis/rest/services/Weston_Field_Map_1/FeatureServer",
+     "modified": "2024-11-02",
+     "licence": ""
+    },
+    {
+     "title": "Map_WFL1",
+     "org": "",
+     "owner": "yanntroutet_Selkirk",
+     "url": "https://services2.arcgis.com/Atlhpf089cGUuFTD/arcgis/rest/services/Map_WFL1/FeatureServer",
+     "modified": "2023-11-03",
+     "licence": ""
+    },
+    {
+     "title": "Weather Stations",
+     "org": "Government of Yukon",
+     "owner": "Yukon.government",
+     "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_EnvironmentalMonitoring/MapServer/14",
+     "modified": "2021-01-03",
+     "licence": "Open Government Licence - Yukon (     https://open.yukon.ca/data/open-government-licence-yukon     )"
+    },
+    {
+     "title": "National Park Service - Park Unit Boundaries - copy - copy",
+     "org": "",
+     "owner": "NGL_SocialStudies",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Park_Boundaries/FeatureServer",
+     "modified": "2021-12-19",
+     "licence": ""
+    },
+    {
+     "title": "Sport Fishing Opportunities and Access",
+     "org": "",
+     "owner": "ivy.schultz_adfg",
+     "url": "https://services.arcgis.com/VdkVOAHovLuozJG4/arcgis/rest/services/Sport_Fishing_Opportunities_and_Access_DRAFT/FeatureServer",
+     "modified": "2026-10-08",
+     "licence": "By using these data, the user agrees to all the conditions stated in the following paragraphs. \n\n THE STATE OF ALASKA, D"
+    },
+    {
+     "title": "Tile Layer of Federal Reserve (Managed Forest Code 31)",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://tiles.arcgis.com/tiles/mMUesHYPkXjaFGfS/arcgis/rest/services/CCFM_ManagedForests_Feb2019_AGOL_31/MapServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    }
+   ]
+  },
+  {
+   "st": "NT",
+   "q": "(\"Northwest Territories\" OR GNWT OR Nunavut) AND (\"boat launch\" OR campground OR \"territorial park\" OR parking)",
+   "why": "9.5 NT NU",
+   "found": [
+    {
+     "title": "USA and Canada Current Wildfires",
+     "org": "Esri",
+     "owner": "esri_livefeeds2",
+     "url": "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/USA_Wildfires_v1/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Canada Lands Parcel Mapping",
+     "org": "",
+     "owner": "admin_canadacadastral",
+     "url": "https://services7.arcgis.com/hFo7GO2CrHDM1QVm/arcgis/rest/services/ParcelTime/FeatureServer",
+     "modified": "2026-10-13",
+     "licence": "Canada Lands parcel mapping data is made available under the   Open Government License - Canada  ."
+    },
+    {
+     "title": "(7.5M) Major Cities - The Atlas of Canada Base Maps of BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/90",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) National Parks - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/103",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "GNWT_Environment",
+     "org": "",
+     "owner": "richard.tingey",
+     "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer",
+     "modified": "2023-01-31",
+     "licence": ""
+    },
+    {
+     "title": "North America Caribou Current Distribution",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/CAN_USA_Caribou_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": "(c) WCS Canada."
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/Caribou_Range_Albers/FeatureServer",
+     "modified": "2026-05-22",
+     "licence": ""
+    },
+    {
+     "title": "NLUIS_Layers_for_Online_2024_02_29_Final",
+     "org": "",
+     "owner": "tsagriff_kivia",
+     "url": "https://services7.arcgis.com/oRWmoPPtXpdPlArx/arcgis/rest/services/NLUIS_Layers_for_Online_2024_02_29_Final/FeatureServer",
+     "modified": "2024-04-19",
+     "licence": "None"
+    },
+    {
+     "title": "NLUP_Base_Data",
+     "org": "",
+     "owner": "jhunter_maps_dillon",
+     "url": "https://services2.arcgis.com/rEINlaT4LOS0V47X/arcgis/rest/services/NLUP_Base_Data/FeatureServer",
+     "modified": "2021-09-22",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Major Roads - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/42",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) Provinces and States - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/101",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "AWB Whooping Crane migration corridor",
+     "org": "International Crane Foundation",
+     "owner": "dorn@savingcranes.org_savingcranes",
+     "url": "https://services2.arcgis.com/7p8XMQ9sy7kJZN4K/arcgis/rest/services/Map_of_whooping_crane_migration_corridor/FeatureServer",
+     "modified": "2023-10-06",
+     "licence": "Include citations in reference:  Pearse, A.T., Rabbe, Matt, Bidwell, M.T., Juliusson, L.M., Craig-Moore, Lea, Brandt, D."
+    },
+    {
+     "title": "Yellow Knife map_WFL1",
+     "org": "",
+     "owner": "sk5sandh_uwaterloo",
+     "url": "https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Yellow_Knife_map_WFL1/FeatureServer",
+     "modified": "2021-02-02",
+     "licence": ""
+    },
+    {
+     "title": "Kentucky's Frontier Trails",
+     "org": "KyGovMaps",
+     "owner": "Kentucky_DGI",
+     "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_UK_Frontier_Trails_WM_gdb/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "Data not intended for use at scales larger than 1:341,536, the publication scale  https://creativecommons.org/publicdoma"
+    },
+    {
+     "title": "Access_trail",
+     "org": "",
+     "owner": "Terrellknaptonpain@tlicho.com",
+     "url": "https://services5.arcgis.com/PFVCIFl50Rw7JkgE/arcgis/rest/services/Access_trail/FeatureServer",
+     "modified": "2025-06-06",
+     "licence": ""
+    },
+    {
+     "title": "Circumpolar Arctic Landscape Age Map",
+     "org": "",
+     "owner": "uaf-agc-group_uaa-agol",
+     "url": "https://services.arcgis.com/2j08Y1PuezhQEfCz/arcgis/rest/services/Circumpolar_Arctic_Landscape_Age_Map/FeatureServer",
+     "modified": "2020-07-29",
+     "licence": ""
+    },
+    {
+     "title": "Tile Layer of Federal Reserve (Managed Forest Code 31)",
+     "org": "",
+     "owner": "Manitoba_Government",
+     "url": "https://tiles.arcgis.com/tiles/mMUesHYPkXjaFGfS/arcgis/rest/services/CCFM_ManagedForests_Feb2019_AGOL_31/MapServer",
+     "modified": "2022-10-26",
+     "licence": "Manitoba Open Data Licence"
+    },
+    {
+     "title": "(7.5M) Bathymetric  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/2",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "North America Caribou Current Distribution Albers Simplified",
+     "org": "",
+     "owner": "wcs_canada",
+     "url": "https://services.arcgis.com/x494PplYsmeeZsYB/arcgis/rest/services/North_America_Caribou_Current_Distribution/FeatureServer",
+     "modified": "2026-05-23",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Boundary Lines  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/24",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "Federally Managed Lands",
+     "org": "",
+     "owner": "jacqueline.ho@slwb.com",
+     "url": "https://services5.arcgis.com/gLCf8oXhGxcHkBO0/arcgis/rest/services/Oct19_2016/FeatureServer",
+     "modified": "2026-07-29",
+     "licence": "Schedule 4 of the Final Devolution Agreement; Natural Resources Canada (NRCAN); Government of the Northwest Territories "
+    },
+    {
+     "title": "Interim Land Withdrawal",
+     "org": "",
+     "owner": "jacqueline.ho@slwb.com",
+     "url": "https://services5.arcgis.com/gLCf8oXhGxcHkBO0/arcgis/rest/services/Interim_Land_Withdrawal/FeatureServer",
+     "modified": "2017-05-30",
+     "licence": "This data is made available &quot;as is&quot; and without any guarantee, representation or warranty of any kind, either "
+    },
+    {
+     "title": "Open House Engagement Dashboard",
+     "org": "",
+     "owner": "kavison_mh",
+     "url": "https://services2.arcgis.com/QoeQkfdOG126FqSi/arcgis/rest/services/Open_House_Engagement_Dashboard/FeatureServer",
+     "modified": "2026-06-02",
+     "licence": ""
+    },
+    {
+     "title": "(7.5M) Drainage Lines  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/89",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    },
+    {
+     "title": "(7.5M) Drainage Polygons  - The Atlas of Canada Base Maps for BC",
+     "org": "B.C.'s Map Hub",
+     "owner": "Province.Of.British.Columbia",
+     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/27",
+     "modified": "2023-04-12",
+     "licence": "The data set provided by this web service is licensed under  Open Government Licence - Canada  \n   The B.C. Map Hub and "
+    }
+   ]
+  }
+ ],
+ "orgs": [
+  {
+   "st": "MS",
+   "url": "https://gis.mississippi.edu/server/rest/services",
+   "note": "9.5 MS + chat 8 MS WMA/parks",
+   "folders": [
+    "Administrative",
+    "BestAvailable",
+    "BusinessEconomy",
+    "Cadastral",
+    "Census",
+    "ClimateWeather",
+    "County_Parcels",
+    "CountyPointAddresses",
+    "CountyRoadCenterlines",
+    "Cultural",
+    "Education",
+    "Elevation",
+    "EmergencyResponse",
+    "Environmental",
+    "Geoscience",
+    "Health",
+    "Hosted",
+    "Hydrology",
+    "LocalHighResbyRegion",
+    "NAIP21byPDD",
+    "Political",
+    "Raster",
+    "TEMP",
+    "Transportation",
+    "Utilities",
+    "UtilityTelecom",
+    "Vector"
+   ],
+   "n_services": 613,
+   "matching": [
+    "Administrative/MS_NationalWildlifeRefuges_1997 (MapServer)",
+    "Administrative/MS_WildlifeManagementAreas_2019 (MapServer)",
+    "Cultural/MS_MobileHomeParks_2016 (MapServer)",
+    "Cultural/MS_NationalParks_2023 (MapServer)",
+    "Cultural/MS_RecreationalFacilities_2017 (MapServer)",
+    "Cultural/MS_StateParks_2019 (MapServer)",
+    "Hosted/MS_HighwayRamps_2010 (FeatureServer)",
+    "Hosted/MS_MobileHomeParks_2016 (FeatureServer)",
+    "Hosted/MS_National_Parks_2023 (FeatureServer)",
+    "Hosted/MS_NationalParks_1997 (FeatureServer)",
+    "Hosted/MS_NationalWildlifeRefuges_1997 (FeatureServer)",
+    "Hosted/MS_RecreationalFacilities_2017 (FeatureServer)",
+    "Hosted/MS_StateParks_2019 (FeatureServer)",
+    "Hosted/MS_TIGERStreetsTrails_2010 (FeatureServer)",
+    "Hosted/MS_WildlifeManagementAreasWMABoundaries_2019 (FeatureServer)"
+   ]
+  },
+  {
+   "st": "HI",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services",
+   "note": "9.5 HI",
+   "folders": [
+    "Geocoding",
+    "Historic_Maps",
+    "KOHA",
+    "SoH_Imagery",
+    "SoH_Maps",
+    "Utilities"
+   ],
+   "n_services": 81,
+   "matching": []
+  },
+  {
+   "st": "PE",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services",
+   "note": "9.5 PE",
+   "folders": [
+    "Agriculture_2026",
+    "Base_2025",
+    "Environment_2025",
+    "Environment_2026",
+    "Forestry_2025",
+    "GeoLincData",
+    "Hosted",
+    "Internal_Agriculture",
+    "Internal_Basedata",
+    "Internal_Environment",
+    "Internal_Forestry",
+    "Internal_SSO",
+    "Scratch",
+    "Shared_Data",
+    "Utilities",
+    "WAB_FFW"
+   ],
+   "n_services": 115,
+   "matching": [
+    "GeoLinc_Provincial_Parks (MapServer)",
+    "GeoLincData/GeoLinc_provincial_park_polygon_ENV (MapServer)"
+   ]
+  },
+  {
+   "st": "CA",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/ArcGIS/rest/services",
+   "note": "9.5 Parks Canada AGOL account (guess)",
+   "folders": [],
+   "n_services": 798,
+   "matching": [
+    "Access_Points_Draft (FeatureServer)",
+    "Back_Country_Trails_2023 (FeatureServer)",
+    "Cabot_Trail_Distance_Markers_view (FeatureServer)",
+    "CT_Trail_2023 (FeatureServer)",
+    "Day_Use_Trails_2023 (FeatureServer)",
+    "Facilities_Components_APCA_OpenOuvert (FeatureServer)",
+    "Facilities_Components_Installations_Composantes_Poly (FeatureServer)",
+    "Facilities_Installations_Point_OpenData (FeatureServer)",
+    "Facilities_JBC (FeatureServer)",
+    "FraneyTrail_1kmMarkers3D_LOWERloop__WGS84 (FeatureServer)",
+    "FraneyTrail_1kmMarkers3D_UPPERloop__WGS84 (FeatureServer)",
+    "FraneyTrail_2026 (FeatureServer)",
+    "FraneyTrail_retired20251231 (FeatureServer)",
+    "FraneyTrailBridges (FeatureServer)",
+    "GlenRoss_Access (FeatureServer)",
+    "HikingTrails (FeatureServer)",
+    "JCP_Trails (FeatureServer)",
+    "jeremysbaycampground (FeatureServer)",
+    "JNP_Trailhead_Area (FeatureServer)",
+    "KNPR_Trails (FeatureServer)",
+    "Maintained_Trails_2025 (FeatureServer)",
+    "MRG_VisitorFacilities (FeatureServer)",
+    "MRGTrails (FeatureServer)",
+    "Official_Trails_JNP_Sentiers_Officiels_PNJ (FeatureServer)",
+    "oldroadsandtrails (FeatureServer)",
+    "RMNP_Trails_2023 (FeatureServer)",
+    "Route_access (FeatureServer)",
+    "Trail_Linework_Sentiers_DEV (FeatureServer)",
+    "Trail_Linework_Sentiers_DEV_vw (FeatureServer)",
+    "Trail_Linework_Sentiers_PRD_vw (FeatureServer)",
+    "trails_JBC (FeatureServer)",
+    "Trails_Sentiers_APCA_KNP (FeatureServer)",
+    "Trails_Sentiers_APCA_KNP_view (FeatureServer)",
+    "Trails_Sentiers_APCA_Temporary_Temporaire_APCA_OpenOuvert (FeatureServer)",
+    "Trails_Sentiers_PNLM_public (FeatureServer)",
+    "Trails_Sentiers_TIMS_SGIS_ln_DEV (FeatureServer)",
+    "Trails_Sentiers_TIMS_SGIS_ln_DEV_vw (FeatureServer)",
+    "Trails_Sentiers_TIMS_SGIS_ln_vw (FeatureServer)",
+    "Trails2023 (FeatureServer)",
+    "Unmaintained_Backcountry_Campground (FeatureServer)",
+    "vw_Facilities_Components_Installations_Composantes_Point_V2_FGP (FeatureServer)",
+    "vw_Facilities_Installations_Point_V2_FGP (FeatureServer)",
+    "vw_Trails_Sentiers_APCA_V2_FGP (FeatureServer)",
+    "WilsonIsland_Access (FeatureServer)",
+    "Winter_Maintained_Trails_2025 (FeatureServer)",
+    "Winter_Trails_JNP__Sentiers_Hivre_PNJ (FeatureServer)",
+    "Winter_Trails_JNP_Sentiers_Hivre_PNJ (FeatureServer)",
+    "WS_CroweBay_Access (FeatureServer)",
+    "WS_PercyEastAccess (FeatureServer)",
+    "WS_PercyWestAccess (FeatureServer)",
+    "WS_SeymourAccess (FeatureServer)",
+    "wsLakeSimcoeBoatLaunches2025 (FeatureServer)",
+    "wsSeymourPoints2024access (FeatureServer)",
+    "MRG_Trails_Elevation (FeatureServer)"
+   ]
+  }
+ ],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?q=natuur&rows=3",
+   "note": "NL CKAN /data/api/3",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.overheid.nl/data/api/3/action/package_search?q=natuur&rows=3",
+   "bytes": 24074,
+   "results": [
+    {
+     "title": "Natuurbeheerplan, Nieuwe Natuur - Bestaande Natuur",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Onbekende licentie",
+     "modified": "2026-08-19",
+     "links": [
+      [
+       "http://publications.europa.eu/resource/authority/file-type/JSON",
+       "https://atlas.brabant.nl/data_download/geojson/3053d7ee-131c-49f5-b80b-211617d2260e.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/GPKG",
+       "https://atlas.brabant.nl/data_download/geopackage/3053d7ee-131c-49f5-b80b-211617d2260e.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/ZIP",
+       "https://atlas.brabant.nl/data_download/shapes/3053d7ee-131c-49f5-b80b-211617d2260e.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/GML",
+       "https://atlas.brabant.nl/data_download/gml/3053d7ee-131c-49f5-b80b-211617d2260e.zip"
+      ]
+     ]
+    },
+    {
+     "title": "Natuurbeheerplan 2024-2025 - Begrenzing natuur",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Publiek domein",
+     "modified": "2026-08-18",
+     "links": []
+    },
+    {
+     "title": "Natuurbeheerplan 2026 - Begrenzing natuur",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Publiek domein",
+     "modified": "2026-08-18",
+     "links": []
+    }
+   ]
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?q=nationaal%20park&rows=3",
+   "note": "NL two words",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.overheid.nl/data/api/3/action/package_search?q=nationaal%20park&rows=3",
+   "bytes": 21141,
+   "results": [
+    {
+     "title": "Nationaal Park",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Publiek domein",
+     "modified": "2026-08-13",
+     "links": [
+      [
+       "http://publications.europa.eu/resource/authority/file-type/HTML",
+       "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      ]
+     ]
+    },
+    {
+     "title": "Nationaal park Drentsche Aa",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Publiek domein",
+     "modified": "2024-10-16",
+     "links": [
+      [
+       "http://publications.europa.eu/resource/authority/file-type/PNG",
+       "https://kaartportaal.drenthe.nl/portal/sharing/rest/content/items/d9680a7f46474b56a44665a31186b993/info/thumbnail/thumbnail1651577995269.png"
+      ]
+     ]
+    },
+    {
+     "title": "Begrenzing Nationaal Park Nieuw Land",
+     "org": "NationaalGeoregister.nl",
+     "licence": "CC-0 (1.0)",
+     "modified": "2026-10-15",
+     "links": []
+    }
+   ]
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?fq=title:natuur&rows=3",
+   "note": "NL fq",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.overheid.nl/data/api/3/action/package_search?fq=title:natuur&rows=3",
+   "bytes": 21481,
+   "results": [
+    {
+     "title": "Omgevingsverordening, Natuur Netwerk Nederland",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Onbekende licentie",
+     "modified": "2026-10-23",
+     "links": [
+      [
+       "http://publications.europa.eu/resource/authority/file-type/GPKG",
+       "https://atlas.brabant.nl/data_download/geopackage/babcc669-1dc4-476c-b830-6ca195203b1f.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/ZIP",
+       "https://atlas.brabant.nl/data_download/shapes/babcc669-1dc4-476c-b830-6ca195203b1f.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/GML",
+       "https://atlas.brabant.nl/data_download/gml/babcc669-1dc4-476c-b830-6ca195203b1f.zip"
+      ],
+      [
+       "http://publications.europa.eu/resource/authority/file-type/JSON",
+       "https://atlas.brabant.nl/data_download/geojson/babcc669-1dc4-476c-b830-6ca195203b1f.zip"
+      ]
+     ]
+    },
+    {
+     "title": "Indicatief effect van het maatregelenpakket voor landbouw, natuur en stikstof op de stikstofdepositie in 2035",
+     "org": "NationaalGeoregister.nl",
+     "licence": "Publiek domein",
+     "modified": "2026-10-16",
+     "links": [
+      [
+       "http://publications.europa.eu/resource/authority/file-type/ZIP",
+       "https://data.rivm.nl/data/stikstof/Stikstof%20Natuur/2026/Effect-maatregelenpakket-LNS-2035/RIVM-MIL_Effect-maatregelenpakket-LNS-2035_20261015.zip"
+      ]
+     ]
+    },
+    {
+     "title": "Faillissementen; natuurlijke personen, regio",
+     "org": "CBS OpenData",
+     "licence": "CC-BY (4.0)",
+     "modified": "2026-10-12",
+     "links": []
+    }
+   ]
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/action/package_search?q=natuur&rows=3",
+   "note": "NL no /3",
+   "error": "HTTP 404",
+   "body": "\n\n<!DOCTYPE html>\n<html lang=\"nl\" dir=\"ltr\" prefix=\"og: https://ogp.me/ns#\">\n  <head>\n    <meta charset=\"utf-8\" />\n<script type=\"text/javascript\" nonce=\"6d131db5be986e73691eb8e717e450fcb9bd31798bab062ac01c1bd708c7dc1c\">window.dataLayer = window.dataLayer || [];window.dataLayer.push({\"site_name\":\"DONL\",\"site_env\":\"production\",\"page_title\":\"Pagina niet gevonden\",\"page_type\":\"undefined\",\"page_languag"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/api/3/action/package_search?q=natuur&rows=3",
+   "note": "NL no /data",
+   "error": "HTTP 404",
+   "body": "\n\n<!DOCTYPE html>\n<html lang=\"nl\" dir=\"ltr\" prefix=\"og: https://ogp.me/ns#\">\n  <head>\n    <meta charset=\"utf-8\" />\n<script type=\"text/javascript\" nonce=\"c1591e1fc26232c9d15797261881fdd70389ecb50db207834d87ffef897d3b56\">window.dataLayer = window.dataLayer || [];window.dataLayer.push({\"site_name\":\"DONL\",\"site_env\":\"production\",\"page_title\":\"Pagina niet gevonden\",\"page_type\":\"undefined\",\"page_languag"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/status_show",
+   "note": "NL status",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.overheid.nl/data/api/3/action/status_show",
+   "bytes": 460,
+   "links": [],
+   "hits": [
+    "ckan_version",
+    "site_url",
+    "extensions"
+   ]
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20parking&rows=15",
+   "note": "9.5 Parks Canada parking",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20parking&rows=15",
+   "bytes": 101381,
+   "results": [
+    {
+     "title": "Parks Canada visitation",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2020-02-28",
+     "links": []
+    },
+    {
+     "title": "Parks Canada support indicator",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2020-02-28",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2019-20",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2024_25",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2025-06-30",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2021-2022",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2022_23",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2020_21 ",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2023_24",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada attendance 2025_26",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-10-04",
+     "links": []
+    },
+    {
+     "title": "Parks Canada Master List of Fees",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2022-02-22",
+     "links": []
+    },
+    {
+     "title": "Open Government Implementation Plan - Parks Canada",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-11-20",
+     "links": []
+    },
+    {
+     "title": "Parks Canada performance data (support) 2025 26",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-04-29",
+     "links": []
+    },
+    {
+     "title": "Parks Canada performance data (support) 2024_25",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2025-05-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada performance data (support) 2023_24",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Parks Canada performance data (support)_ 2022 23",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-11-20",
+     "links": []
+    }
+   ]
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20facilities&rows=15",
+   "note": "9.5 Parks Canada facilities",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20facilities&rows=15",
+   "bytes": 156356,
+   "results": [
+    {
+     "title": "Parks Canada Master List of Fees",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2022-02-22",
+     "links": []
+    },
+    {
+     "title": "Facilities Components - Point",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-07-17",
+     "links": [
+      [
+       "JSON",
+       "https://opendata.arcgis.com/datasets/f59f7e2d7e89468ea53406cdef27b69f_0.geojson"
+      ],
+      [
+       "SHP",
+       "https://hub.arcgis.com/api/v3/datasets/f59f7e2d7e89468ea53406cdef27b69f_0/downloads/data?format=shp&spatialRefId=3857&where=1%3D1"
+      ],
+      [
+       "KML",
+       "https://opendata.arcgis.com/datasets/f59f7e2d7e89468ea53406cdef27b69f_0.kml"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Components_Installations_Composantes_Point_V2_FGP/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Components_Installations_Composantes_Point_V2_FGP/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Components_APCA_OpenOuvert/FeatureServer/0"
+      ]
+     ]
+    },
+    {
+     "title": "Facilities - Point",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-07-17",
+     "links": [
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer/0"
+      ],
+      [
+       "GEOJSON",
+       "https://opendata.arcgis.com/datasets/28b55decfac848c782819b1706e58aa1_0.geojson"
+      ],
+      [
+       "SHP",
+       "https://hub.arcgis.com/api/v3/datasets/28b55decfac848c782819b1706e58aa1_0/downloads/data?format=shp&spatialRefId=3857&where=1%3D1"
+      ],
+      [
+       "KML",
+       "https://opendata.arcgis.com/datasets/28b55decfac848c782819b1706e58aa1_0.kml"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Installations_Point_OpenData/FeatureServer/0"
+      ]
+     ]
+    },
+    {
+     "title": "Interest Points",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-07-17",
+     "links": [
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Interest_Point_Interet_V2_FGP/FeatureServer/0"
+      ],
+      [
+       "GEOJSON",
+       "https://opendata.arcgis.com/datasets/ed9ba960823e427ab730b3ee1c577c7f_0.geojson"
+      ],
+      [
+       "KML",
+       "https://opendata.arcgis.com/datasets/ed9ba960823e427ab730b3ee1c577c7f_0.kml"
+      ],
+      [
+       "SHP",
+       "https://hub.arcgis.com/api/download/v1/items/ed9ba960823e427ab730b3ee1c577c7f/shapefile?layers=0&redirect=true"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Interest_Point_Interet_APCA_OpenOuvert/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Interest_Point_Interet_V2_FGP/FeatureServer/0"
+      ]
+     ]
+    },
+    {
+     "title": "Exotic Invasive Plants - Kouchibouguac",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Government of Canada’s Greenhouse Gas Emissions Inventory",
+     "org": "Treasury Board of Canada Secretariat | Secrétariat du Conseil du Trésor du Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-04-01",
+     "links": []
+    },
+    {
+     "title": "Bird Diversity and Abundance - Prince Albert",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-03-19",
+     "links": [
+      [
+       "CSV",
+       "https://open.canada.ca/data/dataset/b45c8ed8-bfc4-4a13-a9e2-c19a3e71c2c5/resource/c016a285-bbf7-463b-a60d-07ae76385f4b/download/prince_albert_np_forest_bird_diversity_and_abundance_2005-2025_data.csv"
+      ],
+      [
+       "CSV",
+       "https://open.canada.ca/data/dataset/b45c8ed8-bfc4-4a13-a9e2-c19a3e71c2c5/resource/8af63e4f-4b33-4469-a074-07272ae1f9ff/download/prince_albert_np_forest_bird_diversity_and_abundance_2005-2016_data_dictionary.csv"
+      ]
+     ]
+    },
+    {
+     "title": "Muskrat Aerial Survey - Wood Buffalo National Park",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Wetland Pitcher Plants - Cape Breton Highlands",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "Native Amphibians - Pacific Rim",
+     "org": "Parks Canada | Parcs Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2024-12-09",
+     "links": []
+    },
+    {
+     "title": "2005–2010 Medium-Resolution Land Cover of Canada South of the Treeline derived from 20 m SPOT 4/5 Imagery",
+     "org": "Natural Resources Canada | Ressources naturelles Canada",
+     "licence": "Open Government Licence - Canada",
+     "modified": "2026-10-14",
+     "links": []
+    }
+   ]
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=boat%20launch&rows=25",
+   "note": "9.5 boat launches (federal + provinces)",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://open.canada.ca/data/api/3/action/package_search?q=boat%20launch&rows=25",
+   "bytes": 84228,
+   "results": [
+    {
+     "title": "Manitoba Waterbody Data",
+     "org": "Government of Manitoba | Gouvernement du Manitoba",
+     "licence": "OpenMB Information and Data Use License",
+     "modified": "2025-08-27",
+     "links": [
+      [
+       "ESRI REST",
+       "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Data/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Data/FeatureServer/0"
+      ],
+      [
+       "GEOJSON",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/593e253698a648e88789a661832b2ac0/geojson?layers=0"
+      ],
+      [
+       "KML",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/593e253698a648e88789a661832b2ac0/kml?layers=0"
+      ],
+      [
+       "SHP",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/593e253698a648e88789a661832b2ac0/shapefile?layers=0"
+      ],
+      [
+       "ZIP",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/593e253698a648e88789a661832b2ac0/filegdb?layers=0"
+      ]
+     ]
+    },
+    {
+     "title": "Coastal BC Boat Launches",
+     "org": "Government of British Columbia | Gouvernment de la Colombie-Britannique",
+     "licence": "Open Government Licence - British Columbia",
+     "modified": "2026-01-28",
+     "links": [
+      [
+       "KML",
+       "https://openmaps.gov.bc.ca/kml/geo/layers/WHSE_ENVIRONMENTAL_MONITORING.CHRA_BOAT_LAUNCHES_POINT_loader.kml"
+      ]
+     ]
+    },
+    {
+     "title": "Manitoba Waterbody Entry Points",
+     "org": "Government of Manitoba | Gouvernement du Manitoba",
+     "licence": "OpenMB Information and Data Use License",
+     "modified": "2025-02-05",
+     "links": [
+      [
+       "ESRI REST",
+       "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0"
+      ],
+      [
+       "ESRI REST",
+       "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0"
+      ],
+      [
+       "GEOJSON",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/0da6002741a64f21a6466a7c4e1df276/geojson?layers=0"
+      ],
+      [
+       "KML",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/0da6002741a64f21a6466a7c4e1df276/kml?layers=0"
+      ],
+      [
+       "SHP",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/0da6002741a64f21a6466a7c4e1df276/shapefile?layers=0"
+      ],
+      [
+       "ZIP",
+       "https://geoportal.gov.mb.ca/api/download/v1/items/0da6002741a64f21a6466a7c4e1df276/filegdb?layers=0"
+      ]
+     ]
+    },
+    {
+     "title": "Boat ramp",
+     "org": "Government and Municipalities of Québec | Gouvernement et municipalités du Québec",
+     "licence": "Creative Commons 4.0 Attribution (CC-BY) licence – Quebec",
+     "modified": "2026-05-27",
+     "links": [
+      [
+       "GEOJSON",
+       "https://www.donneesquebec.ca/recherche/dataset/7e29b885-b774-4277-b652-ffdfad62eb3c/resource/d7adfcd1-1c4b-4cb0-9041-f6ef84cd14c4/download/rampebateau.geojson"
+      ],
+      [
+       "KML",
+       "https://www.donneesquebec.ca/recherche/dataset/7e29b885-b774-4277-b652-ffdfad62eb3c/resource/a92e2e45-c6a4-4766-81f9-d932c2d4f7bd/download/rampebateau.kml"
+      ],
+      [
+       "SHP",
+       "https://www.donneesquebec.ca/recherche/dataset/7e29b885-b774-4277-b652-ffdfad62eb3c/resource/8d61cfba-002c-44f3-a286-65c49eee62f9/download/rampebateau.zip"
+      ]
+     ]
+    },
+    {
+     "title": "Boat ramps - Ville de Shawinigan",
+     "org": "Government and Municipalities of Québec | Gouvernement et municipalités du Québec",
+     "licence": "Creative Commons 4.0 Attribution (CC-BY) licence – Quebec",
+     "modified": "2026-05-27",
+     "links": []
+    },
+    {
+     "title": "Fishing access points",
+     "org": "Government of Ontario | Gouvernement de l'Ontario",
+     "licence": "Open Government Licence – Ontario",
+     "modified": "2026-10-07",
+     "links": [
+      [
+       "ESRI REST",
+       "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/15"
+      ],
+      [
+       "ESRI REST",
+       "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/15"
+      ],
+      [
+       "ZIP",
+       "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/fgdb/FISHAPNT.zip"
+      ],
+      [
+       "ZIP",
+       "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/FISHAPNT.zip"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "st": "NS",
+   "url": "https://data.novascotia.ca/api/catalog/v1?q=boat%20launch&limit=10",
+   "note": "9.5 NS",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.novascotia.ca/api/catalog/v1?q=boat%20launch&limit=10",
+   "bytes": 68554,
+   "links": [
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/csv?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/excel?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/featureCollection?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/filegdb?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/geoPackage?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/geojson?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/kml?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/shapefile?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/api/download/v1/items/fb62d804b4a0412dbf961dd949586758/sqlite?layers=0",
+    "https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::other-boat-launches",
+    "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Other_Boat_Launches/FeatureServer",
+    "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Boat_Launches/FeatureServer",
+    "https://www.arcgis.com/home/item.html?id=fb62d804b4a0412dbf961dd949586758&sublayer=0",
+    "https://www.arcgis.com/home/item.html?id=febf07f6d2ef42568708548d9e4795c0&sublayer=0"
+   ],
+   "hits": []
+  },
+  {
+   "st": "NS",
+   "url": "https://data.novascotia.ca/api/catalog/v1?q=parking&limit=10",
+   "note": "9.5 NS",
+   "status": 200,
+   "ctype": "application/json;charset=utf-8",
+   "final_url": "https://data.novascotia.ca/api/catalog/v1?q=parking&limit=10",
+   "bytes": 51537,
+   "links": [],
+   "hits": []
+  },
+  {
+   "st": "PE",
+   "url": "https://data.princeedwardisland.ca/api/catalog/v1?q=boat&limit=10",
+   "note": "9.5 PE",
+   "error": "HTTP 404",
+   "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/catalog/v1</pre>\n</body>\n</html>\n"
+  },
+  {
+   "st": "MS",
+   "url": "https://www.mdwfp.com/fishing-boating/boat-ramps/",
+   "look": "arcgis|FeatureServer|MapServer|kml|latitude|map",
+   "note": "9.5 MS boat ramps (MDWFP)",
+   "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+  }
+ ],
+ "rivertest": [
+  {
+   "test": "NPS tracts v3: New River Gorge, control from a NERI tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      37.855077,
+      -81.061075
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      37.873492,
+      -81.072775
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      38.065616,
+      -81.078313
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "control_auto: no polygon (0 records)",
+    "unit polygon: 1 records, 7 rings",
+    "NHD layer 6: 333 river vertices",
+    "329 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "NPS tracts v3: Big South Fork, control from a BISO tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      36.713506,
+      -84.536017
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.624344,
+      -84.584729
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.580952,
+      -84.643055
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "control_auto: no polygon (0 records)",
+    "unit polygon: 1 records, 9 rings",
+    "NHD layer 6: 349 river vertices",
+    "349 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FWS realty v3: Ohio River Islands, control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     38.686581,
+     -83.590818
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ],
+     "json": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      40.555592,
+      -80.643188
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      40.589689,
+      -80.661302
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      39.876941,
+      -80.79046
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 44 rings",
+    "NHD 6: The read operation timed out",
+    "NHD 5: HTTP Error 504: Gateway Time-out",
+    "NHD layer 4: 268 river vertices",
+    "12 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "152",
+    "INTIDNO": "1149C.152",
+    "IntReg": "1"
+   }
+  },
+  {
+   "test": "FWS realty v3: Cache River (AR), control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     34.971193,
+     -91.316937
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ],
+     "json": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      35.469438,
+      -91.135797
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.631203,
+      -91.074672
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      34.973577,
+      -91.333309
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 18 rings",
+    "NHD layer 6: 355 river vertices",
+    "344 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+    "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+    "DIVNAME": "Cache River National Wildlife Refuge",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "45Au",
+    "INTIDNO": "1051.45Au",
+    "IntReg": "4"
+   }
+  },
+  {
+   "test": "FWS realty v3: Shiawassee control check (was NO HIT by hand)",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     43.377771,
+     -83.992004
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "CMPXNAME": "N/A",
+       "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "N/A",
+       "UNITNAME": "N/A",
+       "SUBUNAME": "N/A",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "114a",
+       "INTIDNO": "458.114a",
+       "RSL_TYPE": "NWR",
+       "IntReg": "3"
+      }
+     ],
+     "json": [
+      {
+       "CMPXNAME": "N/A",
+       "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "N/A",
+       "UNITNAME": "N/A",
+       "SUBUNAME": "N/A",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "114a",
+       "INTIDNO": "458.114a",
+       "RSL_TYPE": "NWR",
+       "IntReg": "3"
+      }
+     ]
+    }
+   },
+   "water": [],
+   "notes": [],
+   "control_from": {
+    "CMPXNAME": "N/A",
+    "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+    "DIVNAME": "N/A",
+    "UNITNAME": "N/A",
+    "SUBUNAME": "N/A",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "114a",
+    "INTIDNO": "458.114a",
+    "IntReg": "3"
+   }
+  },
+  {
+   "test": "Ohio nolakes /5 v3: control from its own polygon, then mid-Mosquito Lake",
+   "layer": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+   "control": {
+    "point": [
+     39.631672,
+     -82.874826
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "ALT_NAME": "A W MARION",
+       "PROP_TYPE": "CONS",
+       "OWN_TYPE": "Own",
+       "MARCS_Property_Type": "SP",
+       "Name_Label": "A W Marion SP",
+       "LANDS_NAME": "AWMarionSP",
+       "HUNTING_STATUS": "RESTRICTED"
+      }
+     ],
+     "json": [
+      {
+       "ALT_NAME": "A W MARION",
+       "PROP_TYPE": "CONS",
+       "OWN_TYPE": "Own",
+       "MARCS_Property_Type": "SP",
+       "Name_Label": "A W Marion SP",
+       "LANDS_NAME": "AWMarionSP",
+       "HUNTING_STATUS": "RESTRICTED"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "result": {
+      "plain": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "MARCS_Property_Type": "SP",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP",
+        "HUNTING_STATUS": "RESTRICTED"
+       }
+      ],
+      "json": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "MARCS_Property_Type": "SP",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP",
+        "HUNTING_STATUS": "RESTRICTED"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [],
+   "control_from": {
+    "ALT_NAME": "A W MARION",
+    "OWN_TYPE": "Own",
+    "Name_Label": "A W Marion SP",
+    "LANDS_NAME": "AWMarionSP",
+    "HUNTING_STATUS": "RESTRICTED"
+   }
+  }
+ ]
+}
