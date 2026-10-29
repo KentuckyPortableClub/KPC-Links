@@ -13,6 +13,9 @@
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function j(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
+  /* Oct 28 (HQ: Minnesota's file is gzipped): a region file may be <name>.json or <name>.json.gz; the .gz is unpacked in the browser */
+  function jz(u) { return j(u).then(function (d) { if (d || typeof DecompressionStream === 'undefined') return d;
+    return fetch(u + '.gz', { cache: 'no-cache' }).then(function (r) { if (!r.ok) return null; return new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json(); }).catch(function () { return null; }); }); }
   var SHORT = '⚠️ Parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';   /* Brandon Oct 27 4:23 PM: 'Say this instead' */
   var YD = 1.09361, BAND = 30.48, COL = ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#56B4E9', '#8E6CEF', '#9A9A9A', '#F0E442', '#E69F00'];   /* Brandon Oct 27 3:04 PM: no gold/orange for the first parks: gold is the overlap */
   var DASH = ['', '12 6', '3 6', '12 6 3 6', '2 8', '18 6 4 6 4 6', '8 4', '1 5 9 5', '22 8'];
@@ -653,7 +656,7 @@
     store('kpcOvRegion', REG.id);
     $('ovList').innerHTML = '<p class="ov-note">Loading ' + esc(REG.label) + '…</p>';
     var base = CFG.base || '../KPC-Data/data/fers/';
-    return Promise.all(REG.files.map(function (f) { return j(base + f + '.json'); }).concat([REG.missing && MEMBER ? j(base + REG.missing + '.json') : null])).then(function (a) {
+    return Promise.all(REG.files.map(function (f) { return jz(base + f + '.json'); }).concat([REG.missing && MEMBER ? j(base + REG.missing + '.json') : null])).then(function (a) {
       var files = a.slice(0, REG.files.length), miss = a[REG.files.length];
       if (files.some(function (x) { return !x; })) {   // offline: a saved copy that has not expired
         var sv = null; try { sv = JSON.parse(localStorage.getItem('kpcOvSave-' + REG.id) || 'null'); } catch (e) {}

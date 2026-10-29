@@ -91,6 +91,19 @@
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   },
   {
+   "id": "MN",
+   "label": "Minnesota",
+   "files": [
+    "US-MN"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "MN",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
    "id": "ND",
    "label": "North Dakota",
    "files": [
