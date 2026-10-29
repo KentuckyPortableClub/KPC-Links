@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 29 9:40 AM): data/alerts/us-parks.json still lists 11 agency 'sources' (ok:false) after the OFF: the park sheet reads them and claims 'Checked: <agency> (every 6 hours)' for CA FL GA MO NC NJ WI AR CO MT OR parks. Empty 'sources' (or chat 3 ignores ok:false). Items 0 confirmed.
 
 ## NEEDS BRANDON
 

@@ -64,7 +64,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 11.2 Grade the waiting room's first week once it is on — started 8:30 AM: OH access PASS agrees with my independent count (0 far, 0 outside); week runs to Nov 5
 - [-] 11.3 NOT NEEDED: chat 8 already broke + retested it (8.5). WAS: BREAK the waiting room when chat 10 writes 'ready to break': try to make bad files pass + good files hold; grey areas to HQ. Your OK = Brandon's signal for his GO
 - [-] 11.4 BACK WITH CHAT 8 (8.6, already started). WAS: Known 2-fer pairs, 3-5 per state, from official maps (a mix of kinds; one actually activated where possible), stable key, into data/waiting/known/fers.json
-- [ ] 11.6 Verify the LIVE site: nothing dropped by SCOPE shows outside KY (closures, hours/fees, camping) + site health (errors, 390 px, menu/footer/notices, lock, links); report KPC_Site_ScopeCheck_Oct29_desk.md
+- [x] 11.6 (9:40 AM, report KPC_Site_ScopeCheck_Oct29_desk.md) 72 loads guest+member x 390+1280: camping hidden outside KY PASS; ONE leftover: the closures panel still renders text for non-KY parks ('Checked: California State Parks' / 'We do not watch closures in TN yet') -> chat 3 + chat 5; 3 wording leftovers -> chat 3; health clean (0 errors, 0 scroll, notices + lock OK); runner link check 40885942620 reads next inbox
 - [ ] 11.5 (from 8.8) Review list data/fers/review-all.md: the 148 NOT SURE + 115 'water map weak' rows first, biggest first (LIVE / DROP / still NOT SURE + why / for members); POTA-history hints last
 
 ## CHAT 9 (data adds)

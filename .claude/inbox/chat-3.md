@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 29 9:40 AM, scope check KPC_Site_ScopeCheck_Oct29_desk.md): (1) kpc-closures.js html() still renders a closures panel for NON-KY parks ('Checked: California State Parks (every 6 hours)' for the 11 states in us-parks.json sources; 'We do not watch closures in <state> yet' elsewhere): for !r.ky return '' (closures outside KY are out of scope). (2) wording: Campgrounds page subtitle 'in every US state', Lounge tab 'state by state', planner legend 'campgrounds, picnic shelters': say Kentucky. Everything else PASS (camping hidden, no scroll, notices, lock).
 
 ## NEEDS BRANDON
 
