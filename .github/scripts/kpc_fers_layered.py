@@ -70,11 +70,23 @@ def main(fdir='data/fers', pdir='data/parkinfo'):
             e['pad_at_patch'] = [{k: a.get(k) for k in ('Unit_Nm', 'Own_Type', 'Own_Name', 'Mang_Type', 'Mang_Name', 'Des_Tp', 'Category')} for a in rr[:8]]
             own = {str(a.get('Own_Type')) for a in rr if a.get('Category') == 'Fee'}
             e['owner_at_patch'] = ' + '.join(sorted(own)) or 'no fee record'
+            # Brandon Oct 29 10:10 AM: 'make sure that state land is not another park': every PAD-US unit at the patch is matched
+            # to POTA's list; a POTA park other than the two in the pair = listed in 'other_parks_here' (a 3-fer to test, or the
+            # land belongs to a different park)
+            def _w(x): return {w for w in re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).split() if w not in ('state', 'park', 'national', 'forest', 'area', 'the', 'of', 'and', 'wildlife', 'management', 'recreation')}
+            others = []
+            for a in rr:
+                wn = _w(a.get('Unit_Nm'))
+                if not wn: continue
+                hit = next((r for r, (nm, ty) in P.items() if r not in e['refs'] and _w(nm) == wn), None)
+                if hit and hit not in [o[0] for o in others]: others.append([hit, P[hit][0], a.get('Unit_Nm'), a.get('Own_Type')])
+            e['other_parks_here'] = others
             e['layered'] = 'FED owns (layered: R4 2-fer)' if own and all(o == 'FED' for o in own) else ('state owns (hard boundary: R4 not a 2-fer)' if own and all(o in ('STAT',) for o in own) else 'mixed / unknown: look')
             filled += 1
     json.dump({'about': "Layered-land list (federal x state POTA pairs, rule R4; chat 2 bot, from chat 8's list): new pairs appended each run, filled columns kept. 'layered' = PAD-US fee owner at the patch: FED owns = layered (2-fer), state owns = hard boundary. Not the verdict: the line decides.",
                'made': time.strftime('%Y-%m-%d'), 'pairs': sorted(found.values(), key=lambda e: (e['area'], e['refs']))}, open(out_p, 'w'), indent=1, ensure_ascii=False)
-    print(f"::notice title=Layered-land list::{len(found)} federal x state pairs ({len(set(found) - set(old))} new), {filled} filled from PAD-US at the patch", flush=True)
+    oth = [e for e in found.values() if e.get('other_parks_here')]
+    print(f"::notice title=Layered-land list::{len(found)} federal x state pairs ({len(set(found) - set(old))} new), {filled} filled from PAD-US at the patch; {len(oth)} have ANOTHER POTA park on the patch: " + '; '.join(f"{'+'.join(e['refs'])}: {', '.join(o[1] for o in e['other_parks_here'])}" for e in oth[:8]), flush=True)
 
 
 if __name__ == '__main__':
