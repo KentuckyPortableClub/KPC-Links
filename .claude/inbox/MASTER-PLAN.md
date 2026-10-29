@@ -42,7 +42,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## CHAT 10 (bot workshop)
 - [x] 10.1 (7:50 AM) done: G2 key, Fable's 3 gaps, chat 8's 2 rounds of holes, G5 stamp file (data/waiting/known/stamps.json); replay 38/38 — WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
-- [~] 10.2 (7:50 AM) PILOT ON: kpc-us-access saves into data/waiting/in/, the checker promotes or holds (KPC-Data 04920e32); proof run OH 40875906766 running; other website bots later, one at a time — PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time
+- [~] 10.2 (7:50 AM) PILOT ON: kpc-us-access saves into data/waiting/in/, the checker promotes or holds (KPC-Data 04920e32); proof run OH 40875906766 PASSED and went live (7:55 AM); other website bots later, one at a time — PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time
 - [x] 10.3 (7:25 AM) table in chat-10 REPORT (26th pass) — Classification table: HIDDEN bots (run when fixed) vs WEBSITE bots (wait for the waiting room)
 - [x] 10.4 (7:45 AM) truth v15 VA + IL: both gates PASS (VA agree 65, IL 91); chat 11 grades — Truth: Illinois run on the 'did you know' fix
 - [x] 10.5 (7:15 AM) intake: coverage layers never READY, READY needs 3+ name matches (offline 21 -> 1); test run 40870647571 — Intake: never READY on a pin-only match (16 of 21 wrong)

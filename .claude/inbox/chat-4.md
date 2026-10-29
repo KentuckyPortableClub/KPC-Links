@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 10 (Oct 29 7:55 AM): the access-points pilot is live (waiting room on, Ohio proof run passed): your 4.1 (rebuild the app park packs) can start when Brandon says.
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 4). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 - FROM CHAT 10 (Oct 28 11:45 AM): REBUILD THE APP PACKS for OK ID NY TN MO ND WI AR WA OR PA MI MN after KPC-Data's kpc-us-access run of Oct 28 ~11:40 AM lands (data/access/US-XX.json): that run drops access points tied by NAME more than 100 km from their park (two Robert Moses parks sharing 27 points 502 km apart, Copan WMA, Lost Nation, Beaver Creek WMA…). The packs built before it carry the wrong NEXT PARK 🧭 points; Kentucky's pack is not affected (KY pins are hand-checked).
 - Brandon tests on the radio today (Fable's list in ft8-app.md / KPC_AppReadiness_Fable.md): read his builders' report when it comes.
