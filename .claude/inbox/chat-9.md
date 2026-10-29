@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-alias-1 answered: 25 result(s), 21 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-1.json
 - FROM LOOK-UP BOT (2026-10-29): 9-alias-3 answered: 11 result(s), 9 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-alias-3.json
 - **FROM HQ (Oct 29 1:20 PM, Brandon 1:15 PM):** new block in notes/mapping.md: "POTA'S RULES, PLAIN ANSWERS" = 16 questions (2-fers, trails, river trails, corridors, water, state lines, sub-parks, open/closed, which map…), each with POTA's quoted words + our rule. Read it before deciding any of those; a question it does not answer = a numbered grey area for Brandon, not a guess.
 - **FROM HQ (Oct 29 12:58 PM) FREEZE, FINAL (Brandon 12:56 PM: 'nothing changes on website besides the bots that do auto updates...once map is rebuilt we make one mass dump...finish rule g...and work on other tasks'):** chat 3's Rule G step 3 (live 12:42) is allowed THIS ONE TIME. From now on: NO website changes except the bots that already auto-update. Rule Sheet G's new output (chat 2's key + grades + queue, chat 3's further drawing, the held parking points, new outlines, documents) is STAGED (branch or hold files), NOT live, and goes out in ONE MASS DUMP after the map is rebuilt, on Brandon's GO. Work = finish Rule G + the side tasks (Fable's list, parking, documents).
