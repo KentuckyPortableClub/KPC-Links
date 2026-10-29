@@ -2,12 +2,12 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 11:24 PM): chat 8 CONFIRMED Kentucky READY 19/19 (line run 40813970583): Mammoth Cave x Green River now LIVE 6,852 ac (+ its channel water-only row), Kentucky Lake shore 3-fer back. Refresh KENTUCKY on the members' Overlap Finder in your next push. Northeast: wait for chat 2's answer on the 'nec' Appalachian Trail rows filed under Maine before adding MA VT NH ME; nea + neb not ready yet.
 
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 11:35 PM: KENTUCKY refresh = nothing to push (the Finder reads KPC-Data live). Checked the new data: Mammoth Cave x Green River is listed, opens centred, the gold outline follows the corridor on both borders (233 → 1,730 points from the live edges), far-off park pieces left off; its channel row is in the 'Water only' box (7 KY water rows). Northeast (MA VT NH ME) waits for chat 2's Appalachian Trail answer, as asked.
 - Oct 28 9:10 PM: MINNESOTA on the members' Overlap Finder (BETA): 90 parks / 104 pairs, 11 very tight, 1 water only, 2 missing. The Finder now also reads a gzipped region file (.json.gz, unpacked in the browser) when the plain .json is not there.
 - Oct 28 8:55 PM: the gold overlap outline now sits ON the parks' full-detail edges: each area patch corner is moved onto the nearest live edge (`lines`, within 20 m) and the edge's own points are walked between corners on the same edge. Measured on all 30 Kentucky area patches: before = 1-23 m off (median), up to 82 m (95%); after = 0 m median, 95% under 1 m on the big ones (a few tiny 3-8 point patches up to 5 m at a corner), area kept (0.85-1.13 on tiny ones, 1.00 on the rest). Trail rows already draw chat 2's exact 'zone'; the screen-made gold edge is now skipped when a zone exists. Light fill on. Mammoth Cave x Green River could not be tested: today's KY data has it 'not sure' (not listed).
 - Oct 28 8:20 PM: INDIANA (81 parks / 51 pairs), ILLINOIS (22 / 13), MISSOURI (45 / 36), WISCONSIN (43 / 28), NORTH DAKOTA (19 / 19), SOUTH DAKOTA (19 / 14) on the members' Overlap Finder as BETA (missing lists = missing-midwest filtered per state). MICHIGAN was already on (5:40 PM). KENTUCKY needs no push: the Finder reads KPC-Data live, so the 2:07 PM run is what shows (58 parks / 63 pairs). Overlap patches get a light gold fill; each park's edges are drawn only NEAR the overlap (the grey 'not park land' shading still uses the whole park).
