@@ -9,6 +9,8 @@ Read from KPC-Links data/us-key (13,083 parks, 11,312 outlined, 120 check, 808 s
 - Other no-outline parks outside these lists (about 1,000): BLM recreation areas, state trails, historic sites, wild and scenic rivers, national recreation trails. Those are Source Book / own-land work, not R-G7.
 - Open key questions: chat 11 answered 26 YES / 1 NO; the rest wait.
 
+- **PICTURE MAPS FOR FABLE (Brandon 3:58 PM: 'fable might figure out something from it'):** rows marked 'picture map only (G-ID3)' keep the map link on purpose: Fable may find a way to use them (e.g. matching the picture to parcels or roads) without drawing a rough line. Search this file for G-ID3.
+
 ## WORK LOG BY STATE (Brandon Oct 29 3:21 PM: everything found goes in THIS file)
 One section per state, low to high (IA, MN, RI, CO, HI, ME, VA, AZ, NM, …, NV). Each chat that works a park adds ONE row under its state, never deletes others' rows:
 `| park | name | source found (link / layer / our doc) | Rule G step | result: traced / owned land / pin | by chat | date |`
