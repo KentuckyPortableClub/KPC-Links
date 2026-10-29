@@ -1680,6 +1680,7 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
 
 # Oct 28 (Brandon 6:18 AM): Fort Heiman (US-3790) = its own outline now (the Fort Heiman tract only, split out of Fort Donelson's
 # 8-piece record), but the pair STAYS a 'same land, two park numbers' row: both numbers apply to that one tract.
+SAME_FAR = []   # same-land pairs left out: pins far apart, not both inside the shared outline (Oct 29)
 SAME_LAND_PAIRS = [(('US-0703', 'US-3790'), 'Fort Heiman tract', 'Fort Heiman (Fort Donelson National Battlefield tract)')]
 
 
@@ -2783,6 +2784,11 @@ def main():
             for x in same:
                 a, b = x['refs']
                 if a not in G or b not in G or a not in PIN or b not in PIN: continue
+                # Oct 29 (chat 8's wrong-joins puzzle: Robert Moses Long Island + Thousand Islands, 503 km apart, 'same land'): two park
+                # numbers joined to one record by NAME alone. Pins more than 8 km apart = only when BOTH pins sit inside the shared outline
+                dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
+                if dkm > 8 and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and not (pip_groups(G[b], PIN[a][2], PIN[a][1]) and pip_groups(G[b], PIN[b][2], PIN[b][1])):
+                    SAME_FAR.append([a, b, round(dkm, 1), x.get('record')]); continue
                 la, lo = PIN[b][1], PIN[b][2]
                 best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
                 ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
@@ -2795,6 +2801,9 @@ def main():
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
                 if any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
                 by.setdefault(st_of(a), []).append(sp)
+            if SAME_FAR:
+                counts['same land left out: pins far apart, not both inside the outline'] = len(SAME_FAR)
+                LOG.append('same land left out (pins far apart): ' + '; '.join(f'{p[0]}+{p[1]} {p[2]} km' for p in SAME_FAR[:8]))
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st not in by and st in old: continue
             sp = by.get(st, [])
