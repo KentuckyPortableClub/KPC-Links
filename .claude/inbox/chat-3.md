@@ -2,12 +2,12 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 8:21 PM, Brandon: 'make sure the overlap lines are drawn correct and match the borders'): on the Overlap Finder map, the gold overlap outline must sit exactly on the two parks' borders: draw it from the line's full-detail edge (chat 2's edge-keeping thinning), with the light fill; test on Mammoth Cave x Green River and one Daniel Boone corridor at full zoom on satellite.
 
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 8:55 PM: the gold overlap outline now sits ON the parks' full-detail edges: each area patch corner is moved onto the nearest live edge (`lines`, within 20 m) and the edge's own points are walked between corners on the same edge. Measured on all 30 Kentucky area patches: before = 1-23 m off (median), up to 82 m (95%); after = 0 m median, 95% under 1 m on the big ones (a few tiny 3-8 point patches up to 5 m at a corner), area kept (0.85-1.13 on tiny ones, 1.00 on the rest). Trail rows already draw chat 2's exact 'zone'; the screen-made gold edge is now skipped when a zone exists. Light fill on. Mammoth Cave x Green River could not be tested: today's KY data has it 'not sure' (not listed).
 - Oct 28 8:20 PM: INDIANA (81 parks / 51 pairs), ILLINOIS (22 / 13), MISSOURI (45 / 36), WISCONSIN (43 / 28), NORTH DAKOTA (19 / 19), SOUTH DAKOTA (19 / 14) on the members' Overlap Finder as BETA (missing lists = missing-midwest filtered per state). MICHIGAN was already on (5:40 PM). KENTUCKY needs no push: the Finder reads KPC-Data live, so the 2:07 PM run is what shows (58 parks / 63 pairs). Overlap patches get a light gold fill; each park's edges are drawn only NEAR the overlap (the grey 'not park land' shading still uses the whole park).
 - Oct 28 6:45 PM: chat 8's 4 wording fixes + 'remove the bot' done (list sent to chat 8's inbox). Honor-system sentence out of 7 pages + 3 build sources; multi-park footer reworded + shows the data's date (build.py fills it); planner-us + campgrounds wording; 'bot' gone from visible text (0 of 120 pages on a full scan).
 - Oct 28 5:40 PM (Brandon: 'MI is ready'; chat 8 READY 5:50 PM): MICHIGAN on the members' Overlap Finder as BETA: 110 parks / 118 pairs, 2 very tight, 10 missing boundary.
@@ -16,6 +16,7 @@ Read .claude/inbox/README.md first.
 - Oct 28 5:00 AM: read HQ's note (nothing new; Spot cache = design only, nothing built). Noted: KY 2-fer data waits for chat 8's check + Brandon's GO.
 
 ## REPORT TO HQ (newest first)
+- Oct 28 8:55 PM (chat 3): overlap outline on the borders, done + measured (DONE line). Works for every region whose spots carry `lines` (area) / `zone` (trail); a spot without `lines` keeps its own shape. Mammoth Cave x Green River: 'not sure' in today's data, so untestable until it is listed.
 - Oct 28 8:20 PM (chat 3): 6 Midwest states + MI on the Finder (BETA), KY live from KPC-Data, gold fill + far-off edges hidden (one push). Note: Mammoth Cave x Green River is 'not sure' in today's KY data, so it isn't listed; the trim applies to every pair.
 - Oct 28 6:35 PM (chat 3): BRANDON: 'I am good with the honor system sentence' (put back everywhere; the Resource PDFs need nothing) and 'unless it is KY, DO NOT SAY checked by club members' (only KY 2-fers page + KY campgrounds say it now; Overlap Finder hero + US outline reasons reworded). Please record both in notices.md / CLAUDE.md.
 - Oct 28 6:45 PM (chat 3): wording + 'no bot' sweep done in one push.

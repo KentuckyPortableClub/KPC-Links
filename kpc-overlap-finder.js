@@ -217,11 +217,36 @@
   function setBase(n) { if (!map) return; map.eachLayer(function (l) { if (l instanceof L.TileLayer && !gAll.hasLayer(l)) map.removeLayer(l); }); Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
   /* Oct 28 (Brandon: 'the overlap boundaries still funky'): a trail stretch's patch = its TRUE 2-fer ground from pass 5 ('zone':
      the 100-ft band that is also inside the other park), not the whole band clipped on the screen; the band stays as the line park's look */
+  /* HQ Oct 28 8:21 PM (Brandon: 'make sure the overlap lines are drawn correct and match the borders'): an area patch's own shape is
+     thinned a little more than the parks' full-detail edges (`lines`, read with the patch), so its corners sat 2-12 m off them. Each
+     patch corner is moved onto the nearest edge (within 20 m), and where two corners in a row sit on the SAME edge, the edge's own
+     points between them are put in, so the gold line runs exactly along the border. A corner with no edge near it stays as it is. */
+  function onEdges(ring, lines) {
+    var Ls = []; Object.keys(lines || {}).forEach(function (r) { (lines[r] || []).forEach(function (l) { if (l && l.length > 1) Ls.push(l); }); });
+    if (!Ls.length || !ring || ring.length < 3) return ring;
+    var k = Math.cos(ring[0][1] * Math.PI / 180) * 111320, m = 110540, XY = function (q, o) { return [(q[0] - o[0]) * k, (q[1] - o[1]) * m]; };
+    var snap = function (p) { var best = null; Ls.forEach(function (l, li) { for (var i = 1; i < l.length; i++) { var a = XY(l[i - 1], p), b = XY(l[i], p), dx = b[0] - a[0], dy = b[1] - a[1], t = -(a[0] * dx + a[1] * dy) / ((dx * dx + dy * dy) || 1); t = Math.max(0, Math.min(1, t));
+        var d = Math.hypot(a[0] + t * dx, a[1] + t * dy); if (!best || d < best.d) best = { d: d, li: li, s: i - 1 + t, q: [l[i - 1][0] + t * (l[i][0] - l[i - 1][0]), l[i - 1][1] + t * (l[i][1] - l[i - 1][1])] }; } }); return best && best.d <= 20 ? best : null; };
+    var closed = ring.length > 3 && ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1], R = closed ? ring.slice(0, -1) : ring.slice();
+    var S = R.map(snap), out = [];
+    var len = function (pts) { var t = 0; for (var i = 1; i < pts.length; i++) { var a = XY(pts[i - 1], pts[0]), b = XY(pts[i], pts[0]); t += Math.hypot(b[0] - a[0], b[1] - a[1]); } return t; };
+    for (var i = 0; i < R.length; i++) {
+      var A = S[i], Bn = S[(i + 1) % R.length]; out.push(A ? A.q : R[i]);
+      if (A && Bn && A.li === Bn.li && Math.abs(A.s - Bn.s) > 0) {   // both corners on the same edge: walk along it
+        var l = Ls[A.li], mid = [], up = Bn.s > A.s;
+        if (up) { for (var j = Math.floor(A.s) + 1; j <= Math.floor(Bn.s) && j < l.length; j++) mid.push(l[j]); }
+        else { for (var j2 = Math.ceil(A.s) - 1; j2 >= Math.ceil(Bn.s) && j2 >= 0; j2--) mid.push(l[j2]); }
+        var direct = len([A.q, Bn.q]), along = len([A.q].concat(mid, [Bn.q]));
+        if (mid.length && mid.length < 400 && along <= direct * 3 + 30) mid.forEach(function (q) { out.push(q); });
+      }
+    }
+    out.push(out[0]); return out;
+  }
   function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (!x.shape || x.shape.length < 2) return;
     if (x.kind === 'trail' || x.kind === 'river') { var band = bandRing(x.shape), z = (x.zone || []).filter(function (r) { return r && r.length > 2; });
       if (z.length) z.forEach(function (r, i) { out.push({ s: x, ring: r, line: x.shape, band: band, zone: true, first: i === 0 }); });
       else out.push({ s: x, ring: band, line: x.shape, band: band, first: true }); }
-    else out.push({ s: x, ring: x.shape, line: null }); }); }); return out; }
+    else out.push({ s: x, ring: x.lines ? onEdges(x.shape, x.lines) : x.shape, line: null }); }); }); return out; }
   function openRow(key) {
     if (!window.L && (openRow.tries = (openRow.tries || 0) + 1) < 40) { setTimeout(function () { openRow(key); }, 250); return; }   // the map library is still loading
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
@@ -341,7 +366,7 @@
     /* the other park's own edge where it crosses the band: a gold copy clipped to the band */
     var bd = [].map.call(svg.querySelectorAll('path.ov-tclip.ov-band'), function (e) { return e.getAttribute('d') || ''; }).join(' ').trim();
     cb.innerHTML = ''; if (bd) { var bp = document.createElementNS('http://www.w3.org/2000/svg', 'path'); bp.setAttribute('d', bd); cb.appendChild(bp); }
-    var gold = svg.querySelector('path.ov-edgegold'); if (step > parks.length && bd && OVON) { if (!gold) { gold = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gold.setAttribute('class', 'ov-edgegold'); svg.querySelector('g').appendChild(gold); }
+    var gold = svg.querySelector('path.ov-edgegold'); if (step > parks.length && bd && OVON && !cur.rings.some(function (x) { return x.zone; })) {   /* a pass-5 zone is already the exact border: no screen-made gold edge from the saved copy */ if (!gold) { gold = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gold.setAttribute('class', 'ov-edgegold'); svg.querySelector('g').appendChild(gold); }
       gold.setAttribute('d', d); gold.setAttribute('fill', 'none'); gold.setAttribute('stroke', '#ffd34d'); gold.setAttribute('stroke-width', '4'); gold.setAttribute('stroke-dasharray', '14 10'); gold.setAttribute('clip-path', 'url(#ovClipB)'); gold.style.pointerEvents = 'none'; }
     else if (gold) gold.remove();
   }
@@ -653,5 +678,5 @@
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
     usMap();
   });
-  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; } };
+  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); } };
 })();
