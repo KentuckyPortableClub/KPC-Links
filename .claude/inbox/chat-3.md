@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 9:05 PM): MINNESOTA is READY too (chat 8 corrected: its file was gzipped) = add MN with the other Midwest states (IN IL MO WI MN ND SD). Iowa NOT yet.
 
 
 ## NEEDS BRANDON
