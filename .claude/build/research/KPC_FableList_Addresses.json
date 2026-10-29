@@ -1,0 +1,634 @@
+{
+ "US-10464": {
+  "st": "AK",
+  "name": "Chena Wayside State Recreation Site",
+  "agency_page": "https://dnr.alaska.gov/parks/aspunits/northern/chenariversrs.htm",
+  "http": 200,
+  "address": "550 West 7th Avenue Suite 1380 Anchorage, AK 99501",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: Alaska State Parks (DNR Division of Parks) HQ, Anchorage; not the site"
+ },
+ "US-11798": {
+  "st": "AK",
+  "name": "Tangle Lakes Archeological Reserve",
+  "agency_page": "https://www.blm.gov/programs/cultural-heritage-and-paleontology/archaeology/what-we-manage/alaska/tangle-lakes-archaeological-district",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-11834": {
+  "st": "AK",
+  "name": "Susitna Landing (Kashwitna) State Recreation Site",
+  "agency_page": "https://www.adfg.alaska.gov/index.cfm?adfg=fishingSportCampingAccess.main",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-11835": {
+  "st": "AK",
+  "name": "Little Susitna Public Use Facility State Recreation Site",
+  "agency_page": "https://www.adfg.alaska.gov/index.cfm?adfg=fishingSportCampingAccess.main",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-11846": {
+  "st": "AK",
+  "name": "Bing's Landing Campground and Day Use Area State Recreation Site",
+  "agency_page": "https://dnr.alaska.gov/parks/aspunits/kenai/bingslandingcamp.htm",
+  "http": 200,
+  "address": "550 West 7th Avenue Suite 1380 Anchorage, AK 99501",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: Alaska State Parks (DNR Division of Parks) HQ, Anchorage; not the site"
+ },
+ "US-12709": {
+  "st": "AK",
+  "name": "Funny River Campground State Recreation Site",
+  "agency_page": "https://dnr.alaska.gov/parks/aspunits/kenai/funnyriversrs.htm",
+  "http": 200,
+  "address": "550 West 7th Avenue Suite 1380 Anchorage, AK 99501",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: Alaska State Parks (DNR Division of Parks) HQ, Anchorage; not the site"
+ },
+ "US-12710": {
+  "st": "AK",
+  "name": "Izaak Walton Campground State Recreation Site",
+  "agency_page": "https://dnr.alaska.gov/parks/aspunits/kenai/izaakwalsrs.htm",
+  "http": 200,
+  "address": "550 West 7th Avenue Suite 1380 Anchorage, AK 99501",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: Alaska State Parks (DNR Division of Parks) HQ, Anchorage; not the site"
+ },
+ "US-12711": {
+  "st": "AK",
+  "name": "Morgan\u2019s Landing Campground State Recreation Site",
+  "agency_page": "https://dnr.alaska.gov/parks/aspunits/kenai/morgldcamp.htm",
+  "http": 200,
+  "address": "550 West 7th Avenue Suite 1380 Anchorage, AK 99501",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: Alaska State Parks (DNR Division of Parks) HQ, Anchorage; not the site"
+ },
+ "US-13462": {
+  "st": "AK",
+  "name": "Sportsman's Angler Access State Recreation Site",
+  "agency_page": "https://www.adfg.alaska.gov/index.cfm%3Fadfg%3Dfishingsportangleraccesssouthcentral.sportsmanslodge",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-11944": {
+  "st": "AZ",
+  "name": "Dankworth Pond State Park",
+  "agency_page": "https://azstateparks.com/dankworth-pond",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-3390": {
+  "st": "AZ",
+  "name": "River Island State Park",
+  "agency_page": "https://azstateparks.com/river-island",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-6071": {
+  "st": "AZ",
+  "name": "Little Black Mountain Petroglyph Site State Historic Site",
+  "agency_page": "https://www.blm.gov/visit/little-black-mountain-petroglyph-site",
+  "http": 200,
+  "address": "Arizona Strip Field Office (BLM), Arizona 86432",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: BLM Arizona Strip Field Office, not the site"
+ },
+ "US-10540": {
+  "st": "CO",
+  "name": "Bellevue-Watson State Fish Hatchery",
+  "agency_page": "https://cpw.state.co.us/hatchery/bellvue-watson",
+  "http": 200,
+  "address": "Address: 4936 West County Rd 52E Bellvue, CO 80512",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-6875": {
+  "st": "CT",
+  "name": "The Preserve Essex Land Trust State Park Preserve",
+  "agency_page": "https://portal.ct.gov/DEEP/State-Parks/Forests/The-Preserve",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-7529": {
+  "st": "CT",
+  "name": "Beckley Iron Furnace State Park",
+  "agency_page": "https://portal.ct.gov/DEEP/State-Parks/Parks/Beckley-Furnace-Industrial-Monument",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-7542": {
+  "st": "CT",
+  "name": "Satan's Kingdom State Recreation Area",
+  "agency_page": "https://portal.ct.gov/DEEP/State-Parks/Locate-Park-Forest/Other-State-Parks-and-Forests#SatansKingdom",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-2365": {
+  "st": "LA",
+  "name": "Jimmie Davis State Park",
+  "agency_page": "https://www.lastateparks.com/parks-preserves/jimmie-davis-state-park",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-2373": {
+  "st": "LA",
+  "name": "Poverty Point Reservoir State Park",
+  "agency_page": "https://www.lastateparks.com/parks-preserves/poverty-point-reservoir-state-park",
+  "http": 200,
+  "address": "Make a Reservation 1500 Poverty Point Parkway Delhi, LA 71232",
+  "other_addresses": [],
+  "gps": [
+   32.482759,
+   -91.494054
+  ],
+  "gps_source": "map link on the agency page",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)",
+  "gps_note": "GPS = the Google-maps directions link on the agency page (destination point), probably the park entrance"
+ },
+ "US-13564": {
+  "st": "MD",
+  "name": "Savage Highlands State Park",
+  "agency_page": "https://dnr.maryland.gov/publiclands/Pages/western/savagehighlands.aspx",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no usable address on the page (text parse was junk); retry"
+ },
+ "US-7768": {
+  "st": "MD",
+  "name": "Frederick City Watershed Cooperative Wildlife Management Area",
+  "agency_page": "https://dnr.maryland.gov/wildlife/pages/publiclands/western/fcw_cwma.aspx",
+  "http": 200,
+  "address": "14038 Blairs Valley Road, Clear Spring, MD 21722",
+  "other_addresses": [
+   "Maryland Department of Natural Resources 580 Taylor Ave. Annapolis, MD 21401"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: Maryland DNR Wildlife and Heritage western office, not the watershed area itself"
+ },
+ "US-7769": {
+  "st": "MD",
+  "name": "Heaters Island Wildlife Management Area",
+  "agency_page": "https://dnr.maryland.gov/wildlife/pages/publiclands/western/heatersisland.aspx",
+  "http": 200,
+  "address": "Maryland Department of Natural Resources 580 Taylor Ave. Annapolis, MD 21401",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE / HQ: Maryland DNR, 580 Taylor Ave, Annapolis (not the island)"
+ },
+ "US-9174": {
+  "st": "ME",
+  "name": "Mahoosuc Ecological Reserve",
+  "agency_page": "https://www.maine.gov/dacf/mnap/reservesys/mahoosucs.htm",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-5715": {
+  "st": "MO",
+  "name": "Roger Pryor Pioneer Backcountry State Park",
+  "agency_page": "https://mostateparks.com/backcountry/trails-roger-pryor-pioneer-backcountry",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-5716": {
+  "st": "MO",
+  "name": "Bruce R. Watkins Cultural Heritage Center State Park",
+  "agency_page": "http://www.brucewatkinscenter.com/",
+  "http": 200,
+  "address": "Location 3700 Dr. Martin Luther King Jr. Blvd. Kansas City, Missouri 64130",
+  "other_addresses": [
+   "Closed Sunday and Monday and on all major holidays. Address 3700 Dr. Martin Luther King Jr. Blvd. Kansas City, Missouri 64130"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-2642": {
+  "st": "NH",
+  "name": "Androscoggin Wayside State Park",
+  "agency_page": "https://www.nhstateparks.org/find-parks-trails/androscoggin-wayside-park",
+  "http": 200,
+  "address": "Androscoggin Wayside Park CONTACT 1607 Berlin Rd, Errol, NH 03579",
+  "other_addresses": [
+   "ct Us Right-to-Know (RSA 91-A) Requests \u00a9 2026 NH Department of Natural and Cultural Resources 172 Pembroke Road Concord, NH 03301"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-2654": {
+  "st": "NH",
+  "name": "Gardner Memorial Wayside State Park",
+  "agency_page": "https://www.nhstateparks.org/find-parks-trails/gardner-memorial-wayside-park",
+  "http": 200,
+  "address": "Gardner Memorial Wayside Park CONTACT 10 Route 4A, Springfield, NH 03284",
+  "other_addresses": [
+   "ct Us Right-to-Know (RSA 91-A) Requests \u00a9 2026 NH Department of Natural and Cultural Resources 172 Pembroke Road Concord, NH 03301"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-2685": {
+  "st": "NH",
+  "name": "Winslow State Park",
+  "agency_page": "https://www.nhstateparks.org/find-parks-trails/winslow-state-park",
+  "http": 200,
+  "address": "Winslow State Park CONTACT 475 Kearsarge Mountain Road, Wilmot, NH 03287",
+  "other_addresses": [
+   "ct Us Right-to-Know (RSA 91-A) Requests \u00a9 2026 NH Department of Natural and Cultural Resources 172 Pembroke Road Concord, NH 03301"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-8024": {
+  "st": "NH",
+  "name": "Taylor Saw Mill State Historic Site",
+  "agency_page": "https://www.nhstateparks.org/find-parks-trails/taylor-mill-historic-site",
+  "http": 200,
+  "address": "Taylor Mill Historic Site CONTACT 236 Island Pond Road, Derry, NH 03038",
+  "other_addresses": [
+   "ct Us Right-to-Know (RSA 91-A) Requests \u00a9 2026 NH Department of Natural and Cultural Resources 172 Pembroke Road Concord, NH 03301"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-2081": {
+  "st": "NY",
+  "name": "Iona Island Wildlife Management Area",
+  "agency_page": "https://www.dec.ny.gov/outdoor/92360.html",
+  "http": 200,
+  "address": "NYSDEC Hudson River Research Reserve 256 Norrie Point Way P.o. box 315 Staatsburg, NY 12580",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: NYSDEC Hudson River Research Reserve, 256 Norrie Point Way, Staatsburg (the reserve office, not Iona Island itself)"
+ },
+ "US-2151": {
+  "st": "NY",
+  "name": "Thompsons Lake State Park",
+  "agency_page": "https://parks.ny.gov/parks/99/details.aspx",
+  "http": 200,
+  "address": "General Information (518) 872-1674 68 Thompsons Lake Road East Berne, NY 12059",
+  "other_addresses": [],
+  "gps": [
+   42.65128434,
+   -74.05057019
+  ],
+  "gps_source": "map link on the agency page",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)",
+  "gps_note": "same: map link on parks.ny.gov"
+ },
+ "US-8082": {
+  "st": "NY",
+  "name": "Jamaica Bay State Wildlife Area",
+  "agency_page": "https://www.nps.gov/gate/learn/historyculture/jamaica-bay-wildlife-refuge.htm",
+  "http": 200,
+  "address": "Mailing Address: 210 New York Avenue Staten Island, NY 10305",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: National Park Service Gateway NRA headquarters mailing address, Staten Island (this unit is NPS land)"
+ },
+ "US-8084": {
+  "st": "NY",
+  "name": "Breezy Point Tip State Recreation Area",
+  "agency_page": "https://www.nps.gov/gate/planyourvisit/fishing.htm",
+  "http": 200,
+  "address": "Mailing Address: 210 New York Avenue Staten Island, NY 10305",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: National Park Service Gateway NRA headquarters mailing address, Staten Island (this unit is NPS land)"
+ },
+ "US-8088": {
+  "st": "NY",
+  "name": "Miller Field State Recreation Area",
+  "agency_page": "https://www.nps.gov/gate/learn/historyculture/miller-field.htm",
+  "http": 200,
+  "address": "Mailing Address: 210 New York Avenue Staten Island, NY 10305",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "NEARBY OFFICE: National Park Service Gateway NRA headquarters mailing address, Staten Island (this unit is NPS land)"
+ },
+ "US-8103": {
+  "st": "NY",
+  "name": "Cayuga Lake Wildlife Management Area",
+  "agency_page": "https://www.dec.ny.gov/docs/wildlife_pdf/cayugamap.pdf",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-9229": {
+  "st": "SC",
+  "name": "Wild Turkey Wildlife Management Area",
+  "agency_page": "https://www2.dnr.sc.gov/ManagedLands/ManagedLand/ManagedLand/116",
+  "http": 200,
+  "address": "South Carolina Department of Natural Resources P.O. Box 167 Columbia, SC 29201",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: SC Department of Natural Resources P.O. Box, Columbia (not the WMA)"
+ },
+ "US-9759": {
+  "st": "SC",
+  "name": "May Forest State Park",
+  "agency_page": "https://southcarolinaparks.com/may-forest",
+  "http": 200,
+  "address": "May Forest State Park, 424 Fort Johnson RD Charleston SC 29412",
+  "other_addresses": [
+   "DIRECTIONS 424 Fort Johnson RD Charleston, SC 29412"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-10354": {
+  "st": "LA",
+  "name": "Forts Randolph & Buhlow State Historic Site",
+  "agency_page": "https://www.lastateparks.com/historic-sites/forts-randolph-buhlow-state-historic-site",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-10447": {
+  "st": "LA",
+  "name": "Audubon State Historic Site",
+  "agency_page": "https://www.lastateparks.com/historic-sites/audubon-state-historic-site",
+  "http": 200,
+  "address": "Audubon State Historic Site 11788 Highway 965 St. Francisville, LA 70775",
+  "other_addresses": [],
+  "gps": [
+   30.800759,
+   -91.3066
+  ],
+  "gps_source": "map link on the agency page",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)",
+  "gps_note": "same: directions link on the agency page"
+ },
+ "US-2374": {
+  "st": "LA",
+  "name": "Saint Bernard State Park",
+  "agency_page": "https://www.lastateparks.com/parks-preserves/st-bernard-state-park",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-6388": {
+  "st": "MD",
+  "name": "Helen Avalynne Tawes Garden State Park",
+  "agency_page": "https://dnr.maryland.gov/publiclands/pages/southern/tawesgarden.aspx",
+  "http": 200,
+  "address": "Tawes Garden 580 Taylor Avenue Annapolis, Maryland 21401",
+  "other_addresses": [
+   "Maryland Department of Natural Resources 580 Taylor Ave. Annapolis, MD 21401"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address of the Tawes Garden at the Tawes State Office Building (also the Maryland DNR HQ); the garden is next to it"
+ },
+ "US-6389": {
+  "st": "MD",
+  "name": "Jefferson Patterson Park and Museum State Park",
+  "agency_page": "https://jefpat.maryland.gov/Pages/default.aspx",
+  "http": 200,
+  "address": "Jefferson Patterson Park & Museum 10515 Mackall Road St. Leonard, MD 20685",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-13547": {
+  "st": "MN",
+  "name": "Two Harbors Protected Area",
+  "agency_page": "https://www.dnr.state.mn.us/water_access/harbors/two_harbors.html",
+  "http": 200,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "no official address found on the page"
+ },
+ "US-10575": {
+  "st": "MO",
+  "name": "Walnut Woods State Conservation Area",
+  "agency_page": "https://mdc.mo.gov/discover-nature/places/walnut-woods-conservation-area",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-10576": {
+  "st": "MO",
+  "name": "Rush Creek State Conservation Area",
+  "agency_page": "https://mdc.mo.gov/discover-nature/places/rush-creek-conservation-area",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-4931": {
+  "st": "NH",
+  "name": "Max Israel State Forest",
+  "agency_page": "https://www.nh.gov/nhdfl/",
+  "http": 403,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 403), retry"
+ },
+ "US-2001": {
+  "st": "NY",
+  "name": "Adirondack State Park",
+  "agency_page": "https://dec.ny.gov/welcome-to-the-adirondacks",
+  "http": 200,
+  "address": "Office of Outdoor Recreation 625 Broadway Albany, NY 12233",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: DEC Office of Outdoor Recreation, Albany (not in the park)"
+ },
+ "US-8070": {
+  "st": "NY",
+  "name": "Catskill State Park",
+  "agency_page": "https://dec.ny.gov/welcome-to-the-catskills",
+  "http": 200,
+  "address": "Office of Outdoor Recreation 625 Broadway Albany, NY 12233",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "AGENCY OFFICE: DEC Office of Outdoor Recreation, Albany (not in the park)"
+ },
+ "US-13016": {
+  "st": "SC",
+  "name": "Pine Island State Park",
+  "agency_page": "https://southcarolinaparks.com/pine-island",
+  "http": 200,
+  "address": "Pine Island State Park, 150 Pine Island RD Columbia SC 29212",
+  "other_addresses": [
+   "DIRECTIONS 150 Pine Island RD Columbia, SC 29212"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-13198": {
+  "st": "SC",
+  "name": "Black River State Park",
+  "agency_page": "https://southcarolinaparks.com/black-river",
+  "http": 200,
+  "address": "Black River State Park, 6252 US Hwy 521 Salters SC 29590",
+  "other_addresses": [
+   "DIRECTIONS 6252 US Hwy 521 Salters, SC 29590"
+  ],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "street address from the park page (entrance/office not stated)"
+ },
+ "US-9652": {
+  "st": "CO",
+  "name": "Grenada State Wildlife Area",
+  "agency_page": "https://cpw.state.co.us/learn/Maps/GranadaDeadmanSWA_geo.pdf",
+  "http": 404,
+  "address": "",
+  "other_addresses": [],
+  "gps": null,
+  "gps_source": "",
+  "date": "2026-10-29",
+  "address_for": "page did not open (HTTP 404), retry"
+ }
+}
