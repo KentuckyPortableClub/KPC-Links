@@ -6843,6 +6843,14 @@
    ],
    "why": "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)",
    "when": "2026-10-29"
+  },
+  "US-6281": {
+   "no": [
+    "Loxahatchee River Park",
+    "fnl1808"
+   ],
+   "why": "Oct 29 5:50 AM (chat 8 missing pairs): the 1-acre county 'Loxahatchee River Park' is not the Wild and Scenic River; the river's own official line (data/trails) is used instead",
+   "when": "2026-10-29"
   }
  }
 }

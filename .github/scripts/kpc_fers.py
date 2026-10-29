@@ -2783,8 +2783,10 @@ def main():
             area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
             if PARKS: raise RuntimeError('small batch: the whole-area look-list is kept as it was')
             save_json(OUT / f'looked-{area}.json', {'about': 'What the 2-fer bot looked at in pass 1 (for the missing check).', 'date': today,
-                                                    'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
-                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks),
+                                                    'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and r not in LN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
+                                                    # Oct 29 (chat 8, missing pairs): a trail / river park is tested by its official LINE (LN), so it is
+                                                    # neither 'no official boundary' nor 'not in this run' (a multi-state trail's pin may sit elsewhere)
+                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(set(parks) | set(LN)),
                                                     # Oct 27 (HQ: the missing check's 1 km filter measures OUTLINE to OUTLINE): each park's box, so the
                                                     # check can measure every park, not only the ones in the PAD-US cache
                                                     'boxes': {r: [round(v, 4) for v in bbox_groups(G[r])] for r in G if G.get(r)}}, indent=None)
@@ -2901,7 +2903,8 @@ def main():
                     s['status'] = f'pass {PASS}'
                 else:
                     s['passes'][PASS - 1] = 0
-                    s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
+                    s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else
+                                                               ': the finer official outlines show no shared patch here (the first, coarse look overlapped by drawing error only)')
                 if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
                     s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
                 if PASS == 3 and m:

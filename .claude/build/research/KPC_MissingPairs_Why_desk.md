@@ -30,4 +30,16 @@ No FOUND pair I checked is a wrong one beyond those already reported (Truman, Sa
 - Chat 9 / look-up: NPS National Trails System route lines; boundaries for Baltimore-Washington Parkway, Erie Canalway, National Mall, Trail of Tears, Lewis and Clark NHTs, Pinelands, Columbia River Gorge.
 - Chat 8 next: grade the rerun when it lands.
 
+## CHAT 2 ANSWERS (Oct 29, ~5:55 AM)
+1. **Trail lines vs the missing check: a REPORTING bug, not a testing one.** Trails / rivers with an official line ARE tested (e.g. Captain John Smith has live rows), but pass 1's look-list put every park with no outline record in 'no official boundary' even when its line was tested, and left line-only parks out of 'in this run' (so multi-state trails like Lewis and Clark, Trail of Tears read 'not in this run'). Fixed in kpc_fers.py (pushed): line parks count as tested and in the run. The numbers move on the next worker rerun of each area (the 6:36 AM batch covers most). Trails with NO saved line (Erie Canalway US-6532, Columbia River Gorge US-0731, BW Parkway US-7973, National Mall US-0655) really are 'no official boundary'.
+2. **The reasons (row status + size, first look):**
+   - Jonathan Dickinson x Loxahatchee WSR: a WRONG JOIN in the key: the river's number was joined to 'Loxahatchee River Park', a 1-acre county park, so the river was tested as that 1 acre. Fixed (override 'no'; the NPS river line is used next run). Expect a row.
+   - Merritt Island x Canaveral NS: 7 coarse patches 0.1-11.7 ac, all 20-36 m wide = under the 50-yard patch (rule 4), dropped in pass 2. Both sit on NASA land and our ownership mask keeps only each agency's OWN land, so the big shared area does not show: same policy family as section 4 (agency boundary vs owner).
+   - Greenbelt x National Capital Parks: one 12-ac coarse patch 10 m wide, gone at finer detail (they touch). Gettysburg x Eisenhower: three 11-ac coarse patches 10 m wide, gone at finer detail (they share a border, Eisenhower NHS is beside the battlefield). Both = touching, not overlapping: right.
+   - Falls Lake / Butner-Falls x Mountains to Sea: 8-168 ac coarse patches 18-34 m wide, gone at the finer outlines (the trail's state corridor runs beside the SRA land, not on it, at fine detail). Indiana Dunes NP x SP: 0.2-5.6 ac slivers, gone at fine detail (state land inside the national lakeshore boundary: the section 4 ruling).
+   - 'dropped in pass 2/3' now says why in the row: 'the finer official outlines show no shared patch here (the first, coarse look overlapped by drawing error only)'.
+   - Channahon x I&M Canal: not found in the expected files under those names: send me the two park numbers.
+3. **'Boxes do not touch':** a park's box = ALL its outline records together; a trail's box (for pass 1's pair picking) = its whole line. So a long trail is tested against everything inside its box (too wide, never too narrow); 'boxes do not touch' can only happen when two parks really are apart. A multipart record with far pieces makes the box bigger, not smaller.
+4. Also seen: US-12664 Pine Creek Rail Trail is joined to 'Pine Creek Gorge' (11,578 ac) and US-0697 Bluestone WSR to 'Bluestone Recreation Area' (22,147 ac): please check both (probably not the trail / river itself).
+
 ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go.
