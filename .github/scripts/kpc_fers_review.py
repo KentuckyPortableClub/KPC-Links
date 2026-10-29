@@ -56,7 +56,9 @@ def main():
                          'size': szt, 'sort': round(sz, 1), 'reason': plain(stt)[:300], 'id': s.get('id'),
                          'sources': s.get('map_dates') or {}, 'checked': s.get('checked') or s.get('pass5') or d.get('pass5') or ''})
     e = load(DATA / f'expected-{TAG}.json') or {}
-    for x in e.get('DROPPED') or []:
+    for x in (e.get('DROPPED') or []) + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:
+        # Oct 28 (chat 8, Iowa): pairs POTA history ties together but whose official outlines are apart (box test) are listed too: a hint only
+        if not isinstance(x, dict): continue
         why = ' / '.join(x.get('why_expected') or [])
         if 'activated together' not in why: continue
         n = re.search(r'\((\d+)x', why)
