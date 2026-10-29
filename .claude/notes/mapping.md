@@ -645,3 +645,47 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 29 10:39 AM (Brandon GO): WETLAND MANAGEMENT DISTRICTS (POTA-numbered, e.g. US-0421 Arrowwood WMD) = outline made of the tracts FWS OWNS (fee) from FWS National Realty Boundaries; easement tracts = private land, dropped. Applies to every scattered-tract FWS park.
 - **Oct 29 11:12 AM (Brandon) CLOSURE POSTS:** 'Yes one week out after Ky closures are 100% fixed': Discord / Facebook park closing + reopening posts move to the new closures bot one week after KY closures are clean; the old kpc-park-alerts reader keeps posting until then. Cards move first (waiting room, Sat Oct 31).
 - Oct 29 11:25 AM (Brandon: 'Your call' → HQ: use): openly published official state GIS layers with no stated terms are used like the others, agency credited; stop if the agency objects or posts restrictive terms.
+
+## RULE SHEET G: ONE BOUNDARY PIPELINE (chat 2, Fable, Oct 29 2026 12:10 PM CDT; RULES FIRST; Brandon 12:03 PM 'maps need to be accurate and the process smooth and efficient … how do we fix it?' → 12:05 'Yes' to the plan; DRAFT for chat 8 to break, then Brandon rules the grey areas, then HQ records, THEN chat 2 builds)
+Why: today a wrong piece is caught five steps late (key → 2-fer line → hold → parcel check → three chats), names alone decide what is drawn, outlines are stored sharp but drawn rough, and every rerun is by hand. This sheet moves every check to the KEY (where the outline is made) and leaves the tools downstream nothing to guess.
+
+**1. What counts as a park's outline (a piece joins the park only if ALL hold):**
+- R-G1 OFFICIAL: the record comes from the managing agency's own map (or the federal/national layer for federal units; PAD-US only where the agency has no map). Never OSM, never a drawn guess.
+- R-G2 NAME AGREES: the record's name is the park's name, an agreed alias (overrides.json), or the park's name with the layer's type word dropped (rule sheet C). The DESIGNATION words must agree (a Provincial Park never joins a Conservation Reserve record; a Wildlife Refuge never joins a National Forest).
+- R-G3 LOCATION PROVES IT (the new rule, replaces 'name is enough'): the POTA pin is INSIDE the record, OR within 100 m of its edge, OR the record touches / lies within 2 km of a piece of the same park that already passed. A piece more than 2 km from every passed piece joins ONLY when the agency's own record carries the park's name AND a unit/tract field that ties it to the park (e.g. 'Daniel Boone NF, Redbird District'); otherwise it goes to the queue, not the map.
+- R-G4 WATER: a lake-surface record joins only right at the pin (as today).
+- R-G5 SPLIT PARKS: a park the agency splits into named units (Whitewater WMA: Main Branch Unit …) takes every unit whose name starts with the park's name within 30 km, once one unit holds the pin (alias_all, as today).
+
+**2. What does not:**
+- a same-named record far away with nothing tying it to the park (Little Sextons Creek WMA's 'far piece', the Lost Lakes of Washington);
+- a record that is only PART of the park when the park has its own record (Beall Woods Nature Preserve inside Beall Woods SP joins as a PIECE and is labelled so, never as the whole);
+- a bigger record that merely contains the pin (Coeur d'Alene Lake for Mica Bay Boater Park; a 298,000-ac BLM record for four small POTA parks; the Ouachita National Wildlife Refuge for the Ouachita National Forest);
+- ONE record for TWO POTA numbers (Kaskaskia + West Okaw units of Shelbyville): both get 'pin only' until unit lines exist; shared records never make a 'same land' pair by accident;
+- land POTA has retired (data/retired-refs.json): out of every file, read from that one list.
+
+**3. Sources, best first:** (1) the managing agency's own layer on the state/provincial open-data portal; (2) the agency's ArcGIS Online account; (3) the national layer (NPS legal boundary, USFS, FWS realty, BLM, CPCAD); (4) PAD-US / a zip download from the state clearing house; (5) nothing → PIN ONLY. A layer that needs a login or token is dropped (Alberta trails) and its parks fall to the next source.
+
+**4. What happens when unsure:** the piece does NOT go on the map. It goes to the WAITING ROOM with the evidence on ONE line (park, record name, pin distance, acres, owner, map link) and a yes/no question. One person answers once; the answer lands in overrides.json ('join' / 'no' / 'alias' with 'when' + 'why') and is never asked again. No chat-to-chat lists. The 110 held far rows + the 60 name-match 'not sure' rows are the first batch through it.
+
+**5. What people see:** every outline carries ONE grade saved with it, read by every tool (2-fer line, Am I in the Park, cards, kit, app packs): SURE = official record(s), pin inside, every piece passed R-G1..G5 · APPROXIMATE = a person picked the closest official land (bigger / other shape) or a piece joined by alias within 100 m · PIN ONLY = no outline. Cards say 'Official outline', 'Approximate outline', or 'Pin only (no official outline yet)'. The site draws EXACTLY the stored outline when zoomed in (no second rounding); a simplified copy is used only zoomed out. The short information notice stays on every map (notices.md).
+
+**6. The loop (smooth + efficient):**
+- Monthly (the 5th, after the POTA list refresh): per layer ONE tiny request ('changed since we saved?': edit date / feature count / ETag). Unchanged = reuse the saved outline, no download. Changed = re-read that layer, re-grade only its parks, re-run only their 2-fer area. Forced full read once a quarter.
+- One 'look at this' line per CHANGED area only (what joined, dropped, acres ±10%, grade changed, and why: 'agency edited its map'); unchanged areas = one line 'no change'.
+- No temporary workflows, no hand dispatches except 'full' by Brandon's word. Red run = one email, only when a save failed or a layer broke twice.
+- Acreage: exact union acres for every park; the big ones (> 60k points) are done one or two a night by a small job, never inside the rebuild.
+
+**7. Examples (incl. the hard ones):**
+1. Daniel Boone NF × Little Sextons Creek WMA: the WMA record's far piece 200 km off = R-G3 fails → queue, not map; the overlap on the WMA's own land near its pin stays a 2-fer (Brandon B13).
+2. Florida Keys NWR 235 pieces, Kodiak NWR 249, Payette NF 172: the pieces touch / chain within 2 km of a passed piece → ALL stay (never cut by distance alone; Brandon: 'NEVER delete').
+3. Fort Heiman tract (KY) of Fort Donelson: own feature with the unit field 'Fort Donelson National Battlefield tract' → joins US-3790; Fort Donelson keeps all 8 → 'same land, two park numbers' by the hand list, never by accident.
+4. Pfeiffer Big Sur SP × Los Padres NF: both SURE; PAD-US fee owner at the patch = Forest Service → layered → R4 2-fer. Julia Pfeiffer Burns / Limekiln: mixed owner → NOT SURE until the line decides.
+5. Beall Woods SP: own record missing in the layer; 'Beall Woods Nature Preserve' (275 ac, pin inside) joins as a PIECE → APPROXIMATE, card says so.
+6. Saddle Mountain SNA (OR): the state layer says 'Saddle Mountain', pin inside → alias → SURE.
+7. Ouachita NF: the bot offered the Ouachita National WILDLIFE REFUGE (pin 13 m from its edge) → R-G2 designation words disagree → no.
+8. Kaskaskia + West Okaw (IL): one 6,256-ac record for both POTA numbers → both PIN ONLY until the agency gives unit lines (not a fake 'same land' pair).
+9. Bonnechere PP / Cedar Creek (ON): joined a Conservation Reserve / CA record of the same name → R-G2 → no; the park's own record or pin only.
+10. Hog Lake (WA, US-12426): state layer 'Hog Lake' within 3 km, pin inside → alias → SURE. Lost Lake (WA, 40 of them): lake record joins only at the pin (R-G4).
+
+**GREY AREAS for chat 8 / Brandon:** (a) the 2 km chain distance for far pieces (too tight for Alaska refuges? too loose for city parks?); (b) should a PIECE-only join (Beall Woods) be APPROXIMATE or its own grade 'PART'; (c) the monthly date: the 5th vs right after POTA's own list refresh; (d) who answers the waiting-room questions (chat 8 only, or Brandon on a weekly list); (e) layers with no stated terms: HQ said use (Oct 29 11:27 AM) — record it here as final?
+**Build order after the rulings:** (1) key: R-G1..G5 + the grade saved per park (US, Canada, world); (2) the queue lines into the waiting room + overrides as the one decision file; (3) site draws the stored outline (chat 3: kpc-bounds.js / the finder); (4) retired list read by every file; (5) monthly change-check loop; (6) nightly big-park acreage job. Then the far-hold / parcel-check / alias-check bots are retired.
