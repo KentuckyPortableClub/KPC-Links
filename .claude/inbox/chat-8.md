@@ -113,3 +113,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 12:05 PM): NS wrong-joins puzzle SOLVED -> KPC_NS_WrongJoins_desk.md (label collision across two NS layers). NEXT: NOT SURE 871 by reason (KPC_NotSure_Groups_desk.md).
 
 - DONE (Oct 29 12:30 PM): NOT SURE 871 by reason -> KPC_NotSure_Groups_desk.md (4 fixable causes cover ~690 rows).
+
+- DONE (Oct 29 1:10 PM): state-in-federal overlays plan -> KPC_StateInFederal_Overlays_desk.md (20 pairs, rule R-SF, 4 grey areas for Brandon) + answers to chat 2 (Channahon, Bluestone, Pine Creek Gorge).
