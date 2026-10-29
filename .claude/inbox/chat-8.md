@@ -137,3 +137,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 9:20 AM): 8.12 layered-land list: KPC_LayeredLand_List_desk.md + layered.json (federal x state POTA pairs from the 2-fer files, KY/GA/TN/AR first). Owner/manager from PAD-US + agreement pages still to fill (needs a bot).
 - DONE (Oct 29 9:50 AM): KY statewide seasons 2026-27 added to US-KY-2026-27.json (12 seasons, turkey read confirmed); WMA exceptions not readable here -> bot.
 - DONE (Oct 29 10:05 AM): 2-fer check: no new READY lines; pca STOPPED (1 water row); nothing else changed since 8:10.
+- DONE (Oct 29 11:15 AM): SOURCE BOOK 2 for the nothing-near states -> KPC_SourceBook2_NothingNear_desk.md (BLM recreation polygons cover ~400 parks; MS State Parks + WMAs are MARIS downloads; ND forests probe; pin-only groups named). REPORT TO HQ: chat 9 probes (a-e), chat 2 reads layers in, chat 11 checks.
