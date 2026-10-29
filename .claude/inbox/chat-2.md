@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- RUNNING (Oct 29 1:55 PM, Brandon 1:45 PM 'Yes'): WWFF missing pins: KPC-Data temp workflow kpc-wwff-locate.yml -> data/wwff-locate/found.json + KPC_WWFF_Locate.md (official EEA registers only; held). Next: read the notice, spot-check 10 found pins on the official map, delete the workflow; the rest (China, Venezuela, islands, Antarctica) -> chat 9 for official registers.
 - FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-2 answered: 14 result(s), 8 read OK, 8 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-2.json
 - FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-1 answered: 16 result(s), 10 read OK, 10 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-1.json
 - **FROM HQ (Oct 29 1:20 PM, Brandon 1:15 PM):** new block in notes/mapping.md: "POTA'S RULES, PLAIN ANSWERS" = 16 questions (2-fers, trails, river trails, corridors, water, state lines, sub-parks, open/closed, which map…), each with POTA's quoted words + our rule. Read it before deciding any of those; a question it does not answer = a numbered grey area for Brandon, not a guess.
