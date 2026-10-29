@@ -917,3 +917,18 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 
 
 **FABLE BOOK ORDER (Brandon 5:28 PM: 'Once fable book been gone through opus gives it a shot and then fable final review ....then move on to Canada'): (1) chats 3 + 8 (+2/9/11) work every US state in the Fable file to 'STATE DONE'; (2) an OPUS pass on every row still 'pin, no source' / grey area (chat 10 on Opus, all files attached), same Rule G; (3) FABLE does the FINAL review of what is left (one session, KPC-Links + KPC-Data attached = H.1); (4) THEN Canada's list goes through the same steps. Canada addresses (chat 8) can be collected meanwhile; no Canada R-G7 tracing until the US is through step 3.**
+### GA (Oct 29 5:45 PM chat 3, step 0 = our docs first)
+| US-3724 | Roosevelt's Little White House SHS | OUR DOCS ok: brochure PDF gastateparks.org/.../LittleWhiteHouseBrochure_Chinese.pdf; pin inside F.D. Roosevelt SP | R-G7 step 3 from our docs | map-check queued (3-fable-ga-fl-maps) | chat 3 | Oct 29 |
+| US-7858 | Dames Ferry Campground SP | OUR DOCS ok: site map JPG gastateparks.org/.../dames-ferry-sitemap.jpg | R-G7 step 3 from our docs | map-check queued | chat 3 | Oct 29 |
+| US-12772 | Georgia National Fairgrounds SRA | georgia.gov agency page (no map) | step 3 -> 4b (Houston County parcel, GA Ag Exposition Authority) | page queued | chat 3 | Oct 29 |
+| US-4648 | Bartram Educational State Forest | gatrees.org state forests page; pin inside BARTRAM FOREST WMA (similar name, R-G8 check) | step 2/3 | page queued | chat 3 | Oct 29 |
+| US-4649 | Hitchiti State Forest | Georgia Forestry storymap; pin inside Oconee NF (different agency: never its outline) | step 3 -> 4b | page queued | chat 3 | Oct 29 |
+| US-7140 | Charlie Elliott WMA | georgiawildlife.com page; pin inside Charlie Elliott Wildlife Center / Clybel WMA / Marben PFA | step 2 (agency's own pieces) | page queued | chat 3 | Oct 29 |
+| US-7459 / 7460 | Lake Nottely / Blue Ridge Dam Recreation Parks | TVA pages (no map) | step 3 (TVA land layer) -> 4b | page queued (Blue Ridge) | chat 3 | Oct 29 |
+| US-7861 | Suwannee River Eco-Lodge SP | gastateparks.org/SuwanneeRiverEcoLodge; pin inside Stephen C. Foster SP | step 3 | page queued | chat 3 | Oct 29 |
+### FL
+| US-12121, 12123, 12125, 12130, 12132, 12134, 8719 | SFWMD conservation areas (Rough/Johnson Island, Oak Creek, Seaboard/Telex/Yates, Nubbin Slough, Chandler Slough, A-1 FEB, Horse Creek) | OUR DOCS ok: SFWMD map JPG/PDF per area (list in 3-fable-ga-fl-maps) | R-G7 step 3 from our docs | map-check queued | chat 3 | Oct 29 |
+| US-12124 | Harold A. Campbell Public Use / STA 3/4 | SFWMD page; docs: no working map | step 3 | page queued | chat 3 | Oct 29 |
+| US-8329 | Choctawhatchee & Holmes Creek SCA | OUR DOCS ok: nwfwater.com/lands/recreation (NW Florida Water Mgmt District; a hub page) | step 3 | map-check queued | chat 3 | Oct 29 |
+| US-3621 | Fort Foster SHS | floridastateparks.org page; pin inside Hillsborough River SP | step 3 | page queued | chat 3 | Oct 29 |
+
