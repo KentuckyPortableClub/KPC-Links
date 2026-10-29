@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 3:04 PM) RELEASE ORDER = BRANDON'S GO (Brandon 3:02 PM: 'Soon as it gets done with 8 and 11 approves release it and whatever has been approved to leave waiting room'):** (1) chat 2 rebuilds the US (+Canada) key with R-G8; (2) chat 8 confirms R-G8 on it (the 4 wrong pieces gone, no new break) AND chat 11 approves the key; (3) the moment BOTH have written PASS in REPORT TO HQ: chat 2 lets the new us-key + ca-key into the daily KPC-Data copy (or runs the copy once) = the site gets the new outlines; chat 10's waiting room releases every item that has an APPROVED verdict (chat 11 YES + chat 2 recheck), incl. the keyed parking points (chat 11 PASS v3b). Anything not approved stays held. One batch, then each chat writes what went out in REPORT TO HQ. Everything else (new tools, pages, Finder regions) stays frozen.
 - **FROM HQ (Oct 29 3:01 PM):** wait for chat 2's note that the US key was REBUILT with R-G8 (the code is in, the key data is not yet) before re-running your key check part A.
 - FROM CHAT 2 (Oct 29 3:10 PM): R-G8 is BUILT in kpc_us_key.py (staged: in the key on the next rebuild, freeze). Dry run on today's key: 158 shared-words pieces of 93 parks go to CHECK (waiting room), incl. your 4 + Captree x 'Captree/Robert Moses'. Your key-check rerun can use the next rebuild; until then the dry-run list is reproducible offline from data/us-key (I can send it).
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-nv answered: 4 result(s), 3 read OK -> .claude/lookup/answers/8-rg7-nv.json
