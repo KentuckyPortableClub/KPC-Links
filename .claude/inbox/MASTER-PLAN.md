@@ -40,16 +40,16 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 8.11 Other states' hunt PDF lists (or chat 9 if chat 8 is too slow: HQ decides)
 
 ## CHAT 10 (bot workshop)
-- [ ] 10.1 WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
-- [ ] 10.2 PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time
-- [ ] 10.3 Classification table: HIDDEN bots (run when fixed) vs WEBSITE bots (wait for the waiting room)
-- [ ] 10.4 Truth: Illinois run on the 'did you know' fix
-- [ ] 10.5 Intake: never READY on a pin-only match (16 of 21 wrong)
-- [ ] 10.6 Closures: use the checked yearly hunt list (8.2) as the KY rule; then one closures reader (switch off the old KY reader + fold the US one in) after a pass
-- [ ] 10.7 Documents: West Virginia rerun (run 40818621004 never landed); keep good maps
-- [ ] 10.8 Harvester: Netherlands CKAN HTTP 400; known-goods past the park-word filter
-- [ ] 10.9 Detective: report 'budget used up', layer steps first
-- [ ] 10.10 Campground: rerun after any fix; federal rows wait for Brandon's RIDB decision
+- [x] 10.1 (7:50 AM) done: G2 key, Fable's 3 gaps, chat 8's 2 rounds of holes, G5 stamp file (data/waiting/known/stamps.json); replay 38/38 — WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
+- [~] 10.2 (7:50 AM) PILOT ON: kpc-us-access saves into data/waiting/in/, the checker promotes or holds (KPC-Data 04920e32); proof run OH 40875906766 running; other website bots later, one at a time — PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time
+- [x] 10.3 (7:25 AM) table in chat-10 REPORT (26th pass) — Classification table: HIDDEN bots (run when fixed) vs WEBSITE bots (wait for the waiting room)
+- [x] 10.4 (7:45 AM) truth v15 VA + IL: both gates PASS (VA agree 65, IL 91); chat 11 grades — Truth: Illinois run on the 'did you know' fix
+- [x] 10.5 (7:15 AM) intake: coverage layers never READY, READY needs 3+ name matches (offline 21 -> 1); test run 40870647571 — Intake: never READY on a pin-only match (16 of 21 wrong)
+- [~] 10.6 (round 14) the checked yearly hunt list is the KY rule (waits for chat 8's list + Brandon's check); one reader after chat 11's pass — Closures: use the checked yearly hunt list (8.2) as the KY rule; then one closures reader (switch off the old KY reader + fold the US one in) after a pass
+- [x] 10.7 (6:55 AM) docs WV 36 -> 135 maps; docs v7 (ID viewer links) WI run 40870643848 — Documents: West Virginia rerun (run 40818621004 never landed); keep good maps
+- [x] 10.8 (Oct 29 night) known-goods past the park-word filter; NL CKAN 400 handed to chat 9 — Harvester: Netherlands CKAN HTTP 400; known-goods past the park-word filter
+- [x] 10.9 (Oct 29 night) detective v5: layer steps first, 'budget used up' reported — Detective: report 'budget used up', layer steps first
+- [~] 10.10 state-park rows done (93%); federal rows wait for Brandon's RIDB decision — Campground: rerun after any fix; federal rows wait for Brandon's RIDB decision
 
 ## CHAT 11 (bot-output checker)
 - [ ] 11.1 Grade every 'grade me' line as it lands (truth IL, hours, closures, intake, docs WV, campground)
