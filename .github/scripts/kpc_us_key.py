@@ -801,6 +801,8 @@ def pins():
 def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
+    try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
+    except Exception: pass  # noqa: BLE001
     got = load_cache(st) if CMODE in ('use', 'only') else None
     if got is None and CMODE == 'only':
         notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None

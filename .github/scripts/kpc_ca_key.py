@@ -433,6 +433,9 @@ def _nf(t):   # hand decisions match names whatever way the accents are stored (
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 P = json.load(open('data/parkinfo/CA.json'))['parks']
+# Oct 29 (chat 5 check-up, issue #17): park numbers POTA retired (data/retired-refs.json) leave the answer key
+try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
+except Exception: pass  # noqa: BLE001
 RID = {str(r['oid']): r for r in recs}
 # Oct 28 (tune + speed-up pass): the join below compared every park with every saved area (5,900 parks x 48,000 areas, ~13 min
 # of the run). A 1-degree grid of the areas' boxes (+0.6 degree, the widest search used) hands each park only the areas

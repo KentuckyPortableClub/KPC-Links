@@ -2688,8 +2688,8 @@
   },
   "US-11244": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
+   "when": "2026-10-29"
   },
   "US-12381": {
    "join": [
@@ -3412,8 +3412,11 @@
   },
   "US-4105": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "alias": [
+    "Washington County State Natural Area"
+   ]
   },
   "US-10561": {
    "join": [
@@ -3825,9 +3828,10 @@
   },
   "US-4263": {
    "join": [
-    "272354"
+    "272354",
+    "Menominee River State Recreation Area"
    ],
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 354 m from the edge, 164.1 ac; a piece where the park is bigger)",
    "approx": true,
    "fp": {
     "272354": [
@@ -3835,7 +3839,7 @@
      1
     ]
    },
-   "when": "2026-10-22"
+   "when": "2026-10-29"
   },
   "US-4264": {
    "join": [
@@ -6224,7 +6228,7 @@
    "alias": [
     "IAO VALLEY STATE MONUMENT"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IAO VALLEY STATE MONUMENT'; joins only with the POTA pin inside",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IAO VALLEY STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 892 m from the edge, 6.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29"
   },
   "US-6426": {
@@ -6251,9 +6255,10 @@
   },
   "US-0980": {
    "alias": [
-    "Beall Woods Land and Water Reserve"
+    "Beall Woods Land and Water Reserve",
+    "Beall Woods Nature Preserve"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Beall Woods Land and Water Reserve'; joins only with the POTA pin inside",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Beall Woods Land and Water Reserve'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 1290 m from the edge, 47.2 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29"
   },
   "US-6666": {
@@ -6299,7 +6304,7 @@
    "when": "2026-10-29"
   },
   "US-12378": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside · Oct 29: alias taken back: held: one unit of a many-unit WMA (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree: the outline = ALL the 'Whitewater WMA: …' units of the DNR layer",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whitewater WMA: Main Branch Unit'; joins only with the POTA pin inside · Oct 29: alias taken back: held: one unit of a many-unit WMA (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree: the outline = ALL the 'Whitewater WMA: …' units of the DNR layer · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29",
    "alias_all": [
     "Whitewater WMA"
@@ -6309,8 +6314,11 @@
    "alias": [
     "Horseshoe Bay WMA"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Horseshoe Bay WMA'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Horseshoe Bay WMA'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 354 m from the edge, 274.1 ac; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "join": [
+    "Horseshoe Bay WMA"
+   ]
   },
   "US-10527": {
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Judith Landing State Park'; joins only with the POTA pin inside · Oct 29: alias taken back: BLM site vs the state park (chat 8)",
@@ -6471,8 +6479,11 @@
    "alias": [
     "Puget Island"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Puget Island'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Puget Island'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 10 m from the edge, 0.7 ac; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "join": [
+    "Puget Island"
+   ]
   },
   "US-13401": {
    "alias": [
@@ -6485,8 +6496,11 @@
    "alias": [
     "Highway 4"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Highway 4'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Highway 4'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 0 m from the edge, 0.5 ac; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "join": [
+    "Highway 4"
+   ]
   },
   "US-5573": {
    "alias": [
@@ -6599,8 +6613,11 @@
    "alias": [
     "Hanauma Bay Nature Preserve"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hanauma Bay Nature Preserve' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hanauma Bay Nature Preserve' and the POTA pin is inside it; joins only with the pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 185 m from the edge, 96.6 ac; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "join": [
+    "HANAUMA BAY STATE UNDERWATER PARK"
+   ]
   },
   "US-11877": {
    "alias": [
@@ -6641,8 +6658,11 @@
    "alias": [
     "Earle R. Kelly (Dresden Bog) Wildlife Management Area"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Earle R. Kelly (Dresden Bog) Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Earle R. Kelly (Dresden Bog) Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 109 m from the edge, 16.1 ac; a piece where the park is bigger)",
+   "when": "2026-10-29",
+   "join": [
+    "Dresden Bog"
+   ]
   },
   "US-3348": {
    "alias": [
@@ -6719,8 +6739,17 @@
     "Charlotte Anne Finnell Neal Wildlife Management Area",
     "Charlotte Anne Finnell Neal WMA"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 493.8 ac)",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 493.8 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgtne95 (bot: pin inside)",
+   "when": "2026-10-29",
+   "join": [
+    "sgtne95"
+   ],
+   "fp": {
+    "sgtne95": [
+     "Charlotte Anne Finnell Neal WMA",
+     493.8
+    ]
+   }
   },
   "US-4419": {
    "alias": [
@@ -6733,7 +6762,7 @@
    "alias": [
     "Sandbar State Park"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29"
   },
   "US-3454": {
@@ -6748,8 +6777,17 @@
     "El Capitán State Beach",
     "El Capitán SB"
    ],
-   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('El Capitán State Beach'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2637.9 ac)",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('El Capitán State Beach'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2637.9 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgcab915 (bot: pin inside)",
+   "when": "2026-10-29",
+   "join": [
+    "sgcab915"
+   ],
+   "fp": {
+    "sgcab915": [
+     "El Capitán SB",
+     2637.9
+    ]
+   }
   },
   "US-6424": {
    "alias": [
@@ -6770,8 +6808,17 @@
     "Greycliff Prairie Dog Town State Park",
     "Greycliff Prairie Dog Town"
    ],
-   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Greycliff Prairie Dog Town State Park'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 97.1 ac)",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Greycliff Prairie Dog Town State Park'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 97.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgmta6574 (bot: pin inside)",
+   "when": "2026-10-29",
+   "join": [
+    "sgmta6574"
+   ],
+   "fp": {
+    "sgmta6574": [
+     "Greycliff Prairie Dog Town",
+     97.1
+    ]
+   }
   },
   "US-11849": {
    "alias": [
@@ -6799,14 +6846,14 @@
    "alias": [
     "IRON RANGE OFF HWY VEH"
    ],
-   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('IRON RANGE OFF HWY VEH'); joins only with the POTA pin inside",
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('IRON RANGE OFF HWY VEH'); joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29"
   },
   "US-9652": {
    "alias": [
     "Granada State Wildlife Area"
    ],
-   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Granada State Wildlife Area'; joins only with the POTA pin inside",
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Granada State Wildlife Area'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 850 m from the edge, 6094.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
    "when": "2026-10-29"
   },
   "US-9334": {
@@ -6902,14 +6949,32 @@
     "Ft. Toulouse Tract"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 254.3 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 254.3 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgalb56 (bot: pin inside)",
+   "join": [
+    "sgalb56"
+   ],
+   "fp": {
+    "sgalb56": [
+     "Ft. Toulouse Tract",
+     254.3
+    ]
+   }
   },
   "US-10681": {
    "alias": [
     "Massey Mill Pond"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgdea871 (bot: pin inside)",
+   "join": [
+    "sgdea871"
+   ],
+   "fp": {
+    "sgdea871": [
+     "Massey Mill Pond",
+     40.2
+    ]
+   }
   },
   "US-3857": {
    "alias": [
@@ -6923,14 +6988,32 @@
     "Triangle Land Conservancy - Johnston Mill Nature Preserve"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 292.5 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 292.5 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgnca8491 (bot: pin inside)",
+   "join": [
+    "sgnca8491"
+   ],
+   "fp": {
+    "sgnca8491": [
+     "Triangle Land Conservancy - Johnston Mill Nature Preserve",
+     292.5
+    ]
+   }
   },
   "US-7844": {
    "alias": [
     "Adams Nature Area"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1460.3 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1460.3 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgsda873 (bot: pin inside)",
+   "join": [
+    "sgsda873"
+   ],
+   "fp": {
+    "sgsda873": [
+     "Adams Nature Area",
+     1460.3
+    ]
+   }
   },
   "US-3950": {
    "alias": [
@@ -6972,14 +7055,32 @@
     "Rock Creek Recreation Area"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 14941.2 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 14941.2 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgwad3725 (bot: pin inside)",
+   "join": [
+    "sgwad3725"
+   ],
+   "fp": {
+    "sgwad3725": [
+     "Rock Creek Recreation Area",
+     14941.2
+    ]
+   }
   },
   "US-0661": {
    "alias": [
     "Gulf Islands National Seashore"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 64219.1 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 64219.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id fnl1182 (bot: pin inside)",
+   "join": [
+    "fnl1182"
+   ],
+   "fp": {
+    "fnl1182": [
+     "Gulf Islands National Seashore",
+     64219.1
+    ]
+   }
   },
   "US-4390": {
    "alias": [
@@ -6993,7 +7094,16 @@
     "Telford Recreation Area"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 10988.1 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 10988.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgwad1165 (bot: pin inside)",
+   "join": [
+    "sgwad1165"
+   ],
+   "fp": {
+    "sgwad1165": [
+     "Telford Recreation Area",
+     10988.1
+    ]
+   }
   },
   "US-5837": {
    "alias": [
@@ -7014,7 +7124,16 @@
     "Westerkamp Wildlife Managment Area"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 101.0 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 101.0 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgina5526 (bot: pin inside)",
+   "join": [
+    "sgina5526"
+   ],
+   "fp": {
+    "sgina5526": [
+     "Westerkamp Wildlife Managment Area",
+     101.0
+    ]
+   }
   },
   "US-4188": {
    "alias": [
@@ -7077,7 +7196,16 @@
     "South Fork Shoshone River-Houlihan/Bobcat"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57.3 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57.3 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgwyd10245 (bot: pin inside)",
+   "join": [
+    "sgwyd10245"
+   ],
+   "fp": {
+    "sgwyd10245": [
+     "South Fork Shoshone River-Houlihan/Bobcat",
+     57.3
+    ]
+   }
   },
   "US-10853": {
    "join": [
@@ -7091,7 +7219,124 @@
     "S. Scalp Creek Recreation Area"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 301.4 ac)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 301.4 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id 255353 (bot: pin inside)",
+   "join": [
+    "255353"
+   ],
+   "fp": {
+    "255353": [
+     "S. Scalp Creek Recreation Area",
+     301.4
+    ]
+   }
+  },
+  "US-8692": {
+   "alias": [
+    "LAMONT"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-8696": {
+   "alias": [
+    "OTTER SPRINGS"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-8701": {
+   "alias": [
+    "SHELLY"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-8711": {
+   "alias": [
+    "ADAMS"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-8712": {
+   "alias": [
+    "WHITE SPRINGS"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-3862": {
+   "join": [
+    "Nags Head Woods Ecological Preserve"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 271 m from the edge, 794.8 ac; a piece where the park is bigger)"
+  },
+  "US-4555": {
+   "alias": [
+    "Hanford Reach National Monument, McGee Ranch/Riverlands Unit"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-6473": {
+   "alias": [
+    "Chief Joseph Wildlife Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-11835": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-0990": {
+   "join": [
+    "Lake DePue State Fish and Wildlife Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 382 m from the edge, 2224.4 ac; a piece where the park is bigger)"
+  },
+  "US-5741": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-4931": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-7543": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 685 m from the edge, 1615.8 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-1458": {
+   "alias": [
+    "Kohler Park Dunes"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-9598": {
+   "alias": [
+    "Hardscrabble Zone 2 Motorized SRMA"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  },
+  "US-10969": {
+   "join": [
+    "Auroura"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 139 m from the edge, 297.5 ac; a piece where the park is bigger)"
+  },
+  "US-8689": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-2638": {
+   "when": "2026-10-29",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   }
  }
 }
