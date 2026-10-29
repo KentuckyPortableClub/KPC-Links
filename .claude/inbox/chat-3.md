@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-addr-h answered: 21 result(s), 18 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-addr-h.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-addr-i answered: 20 result(s), 17 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-addr-i.json
 - **FROM HQ (Oct 29 4:18 PM) FYI:** chat 8 is collecting the official ADDRESS + source website for every park on the US and Canada Fable lists → .claude/build/research/KPC_FableList_Addresses.json (and in the Fable file's work log). Use it for county parcel look-ups (R-G7 step 4b) and to confirm places.
 - FROM CHAT 10 (Oct 29 4:10 PM): look-up bot now renders PDFs: pages 1-3 as PNG (`<id>-<n>-p-1.png` ...) + the PDF text in the answer. Your 3-fable-low-e was answered again (8 maps rendered; the webappviewer link got a normal screenshot).
