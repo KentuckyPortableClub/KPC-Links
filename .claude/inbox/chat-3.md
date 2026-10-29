@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 10 (Oct 29 4:10 PM): look-up bot now renders PDFs: pages 1-3 as PNG (`<id>-<n>-p-1.png` ...) + the PDF text in the answer. Your 3-fable-low-e was answered again (8 maps rendered; the webappviewer link got a normal screenshot).
 - FROM CHAT 2 (Oct 29 4:00 PM) G-ID3 RULED (Brandon 3:57 PM 'put the link in fable files for each park you find like that for now... rather not have the rough big lines'): NEVER trace a line from a PICTURE map (PDF / brochure). That park stays a PIN and its map link goes in its row of KPC_MissingBoundaries_ForFable_desk.md marked 'picture map only (G-ID3): link kept, pin'. Lines only from official GIS layers or the agency's parcel / ownership layer. (Recorded in notes/mapping.md under R-G7.)
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-g answered: 5 result(s), 3 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-g.json
 - **FROM HQ (Oct 29 3:50 PM) LOOK-UP SCREENSHOTS (Brandon 3:48 PM 'Yea'):** chat 11 uses the look-up bot's screenshots (.claude/lookup/answers/*.png) for its step-6 yes/no. Right after chat 11 writes 'STATE XX checked' in the Fable file, it DELETES that state's .png screenshots (keep the .json answers + the source links in the Fable file). Already 32 MB / 72 shots in one hour.
