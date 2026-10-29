@@ -1011,3 +1011,35 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-1458 / 4242 | Kohler-Andrae SP / Fenley SRA | OUR DOCS ok: DNR 'maps' pages (parks/kohlerandrae/maps, parks/fenley/maps) | step 3 from our docs | queued | chat 3 | Oct 29 |
 | US-4260 / 4261 | Long Lake SRA / Mauthe Lake SRA | OUR DOCS ok: Kettle Moraine North Unit maps page; both inside KMSF-Northern Unit (SRA = this park only, never the whole forest, R-G5) | step 3 from our docs | queued | chat 3 | Oct 29 |
 | US-7467 | Marben State Fishing Lake (Marben PFA, GA) | PAD-US 195024 = one record for Charlie Elliott WC + Clybel WMA + Marben PFA (6,273 ac) | R-G7 step 2 -> 3 | PIN: the combined record is not the park's own line; look for GA DNR's Marben PFA boundary (WRD layer / PFA map) | 2 | Oct 29 |
+### Oct 29 6:50 PM chat 3: TX + WI READ (look-up TX / WI; R-G10 tags added; method notes P-2/P-3/P-4 followed: no more page-by-page reading for TX)
+**TEXAS (THC historic sites, agency batch P-4): every THC page gives an address and NO map or boundary link (only a generic National Register page). Tag `needs-parcel` for all 11: R-G7 step 4b by county parcel (P-3).**
+| park | address printed on the THC page (the site's own) | county for the parcel request | tag |
+|---|---|---|---|
+| US-10272 Bush Family Home | 1412 W Ohio Ave, Midland, TX 79701 | Midland | needs-parcel |
+| US-10273 Goodnight Ranch | none printed | Armstrong | needs-parcel |
+| US-10274 Palmito Ranch Battlefield | 43296 Palmito Hill Rd, Brownsville, TX 78521 | Cameron | needs-parcel |
+| US-10275 Presidio la Bahia | none printed | Goliad | needs-parcel |
+| US-10276 Star of the Republic Museum | 23400 Park Rd 12, Washington, TX 77880 (sits inside the Washington-on-the-Brazos site: that shape is never its outline, R-G8) | Washington | needs-parcel |
+| US-12109 Stephen F. Austin Memorial | 900 Oil Field Rd, West Columbia, TX 77486 | Brazoria | needs-parcel |
+| US-6538 Barrington Plantation | 23100 Barrington Ln, Washington, TX 77880 (same inside-Washington-on-the-Brazos note) | Washington | needs-parcel |
+| US-6560 French Legation | 802 San Marcos St, Austin, TX 78702 | Travis | needs-parcel |
+| US-6582 Mission Dolores | 701 S Broadway St, San Augustine, TX 75972 | San Augustine | needs-parcel |
+| US-6601 Sam Rayburn House | 890 W State Hwy 56, Bonham, TX 75418 | Fannin | needs-parcel |
+| US-6602 San Felipe de Austin | none printed | Austin | needs-parcel |
+GPS on pages: none. Counties are from POTA's pins (Midland, Armstrong, Cameron, Goliad, Washington x2, Brazoria, Travis, San Augustine, Fannin, Austin): one `parcel` request per county, later (P-3).
+**WISCONSIN (DNR; every WI page prints only DNR HQ: ⚠ 4822 Madison Yards Way, Madison, WI 53707 = an office, not the area; no GPS on pages):**
+| park | what the DNR page / viewer says | Rule G / tag |
+|---|---|---|
+| US-10184 Johnson SWA | the DNR page is now **'Deer Park Wildlife Area'**: 'Originally called Johnson Wildlife Area', 213 ac in two parcels (84 + 129 ac), St. Croix/Polk line | **RENAMED, official**: an alias for chat 2's key (Johnson -> Deer Park); R-G7 step 2 in the DNR Public Access Lands layer under 'Deer Park' (2 pieces); tag name-mismatch until the alias is in |
+| US-10195 Sette SWA | DNR page = **'New Richmond Wildlife Area'** (77 ac, 'Originally called Sette') | **RENAMED, official**: alias Sette -> New Richmond; step 2 in PAL under 'New Richmond'; our viewer link (ID=SETTE WILDLIFE AREA) opens the statewide map only (no outline at that name) |
+| US-10192 Pleasant Valley | DNR 'Pleasant Valley Wildlife Area' (page says 120 ac, southern St. Croix Co.) | step 2/3 in PAL (viewer link in our docs); name differs only by 'Fish and' (R-G1 alias) | 
+| US-10198 Swinging Gate | DNR 'Swinging Gate Fish and Wildlife Area', 156 ac | step 2/3 in PAL |
+| US-9829 Adell SWA | DNR 'Adell Wildlife Area' | step 2/3 in PAL |
+| US-10194 Schmit SWA | DNR page: 403 to the bot | step 3 (PAL) |
+| US-10644 Love and Strutt Creeks SFWA | DNR Fisheries page 'Love & Strutt Creeks' (class 1 trout streams); property map PDF https://p.widencdn.net/rwsfwq/4090lovestruttcreeks ; key matched 'Rem-Love Creek' | step 3: property map PDF to look at (R-G9 rules if a picture) ; R-G8 check on 'Rem-Love Creek' |
+| US-1458 Kohler-Andrae SP | DNR Maps page: park map, winter map, campground map, hunting and trapping map (PDFs on widnr.widen.net: kdznnsjffr, zbr6gkgtdw, 6fwxfqspcl) | step 3 from our docs: PDFs to SEE (a state park map usually draws the boundary) |
+| US-4242 Fenley SRA | DNR Maps page: Fenley_Map.pdf (embed.widencdn.net/pdf/download/widnr/5x2yotjcr1/Fenley_Map.pdf) | step 3 from our docs: PDF to SEE |
+| US-4260 Long Lake SRA / US-4261 Mauthe Lake SRA | Kettle Moraine State Forest - Northern Unit maps page: forest map + hunting map + trail maps (widnr.widen.net: nsvfvfttlc, rnhc7gwjvh) | step 3 from our docs: PDFs to SEE; the SRAs are parts of the forest (R-G5: each SRA only) |
+| US-11230 Hallie Marsh SWA | POTA link is a Google Drive file; not read | needs the DNR page; tag no-layer until read |
+Statewide: the PAL viewer (https://dnrmaps.wi.gov/H5/?Viewer=Public_Access_Lands) is a real polygon source (state portal, RESEARCH ORDER step 1): chat 9's P-2 point-in-polygon at the pins against the PAL layer should settle the 4 wildlife areas + the 2 renames at once; I did NOT read them one by one.
+
