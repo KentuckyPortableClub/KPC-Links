@@ -256,3 +256,4 @@ DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlin
 - DONE Oct 29 ~6 PM: addresses batch 2 (NE AL WY VT 45 parks): 6 found (Vermont), 39 need the real agency page first. See KPC_FableList_Addresses_desk.md.
 - DONE Oct 29 ~6:50 PM: P-3 first parcel answers (AR IN NC VT, 29 pins): 12 owned by the park's agency (trace candidates), 6 private-owner PIN DOUBTS, 7 no parcel, 4 blank owner. KPC_Parcels_P3_chat8.json + ByCounty desk. Next: county parcel layers for other states.
 - WORKING Oct 29 ~7 PM: P-3 round 2 filed (ID WV OR TX parcel guesses + ND/KS/ID/DE parcel pages).
+- DONE Oct 29 ~7:05 PM: P-3 round 2: WV 6 answered (5 State-of-WV parcels = trace candidates, Cedar Lakes = partner CHECK); ID layer has no owner; OR + TX layer guesses wrong (retry with real layers); DE state parcel layer confirmed (chat 3's). Waiting on Fable's BLM/NPS layer reads (his task in my inbox).
