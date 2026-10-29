@@ -12,7 +12,7 @@ import glob, json, math, os, pathlib, re, sys, time, urllib.parse, urllib.reques
 UA = {'User-Agent': 'KPC park-map bot (kentuckyportableclub.github.io; ham radio club)'}
 OUT = pathlib.Path('data/canada-bounds')
 CPCAD = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0'
-OFFS = [(0.00005, 5), (0.0001, 10), (0.0002, 20), (0.0004, 45)]
+OFFS = [(0.00005, 5), (0.0001, 10), (0.0002, 20), (0.0004, 45), (0.002, 220)]
 LIMIT = int(os.environ.get('LIMIT') or 0)
 DEADLINE = time.time() + float(os.environ.get('MINUTES') or 150) * 60
 LAST = {}
@@ -85,6 +85,10 @@ def bbox(rings):
 def refine(ref, feat, key, layers, off):
     """all rings for this park at this detail, or (None, why)."""
     m = (key.get(ref) or {}).get('m') or []
+    # ONE family per park (test run: CPCAD + 1-3 provincial copies of the same land made files 8x bigger): the CPCAD records
+    # when the key has any, else the provincial ones
+    if any(str(x[0]).isdigit() for x in m): m = [x for x in m if str(x[0]).isdigit()]
+    m = [x for x in m if ':n-' not in str(x[0])]   # records saved without a number cannot be asked for by id
     if m:
         groups = {}
         for x in m:
@@ -154,7 +158,7 @@ def main():
         if LIMIT and n >= LIMIT: break
         try: feat = json.load(open(f))
         except Exception: continue  # noqa: BLE001
-        if (feat.get('properties') or {}).get('detail_m'): continue
+        if (feat.get('properties') or {}).get('refine_v') == 2: continue
         n += 1
         ref = f.stem; before = f.stat().st_size
         rings, why, used = None, '', None
@@ -162,19 +166,19 @@ def main():
             rings, why = refine(ref, feat, key, layers, off)
             if rings is None: break
             geo = {'type': 'MultiPolygon', 'coordinates': polys(rings)}
-            if len(json.dumps(geo, separators=(',', ':'))) < 450_000: used = metres; break
+            if len(json.dumps(geo, separators=(',', ':'))) < 120_000: used = metres; break
         if rings is None or used is None:
             rep['kept_old'][ref] = why or 'over 450 KB at every detail'; continue
         old_rings = [r for poly in (feat.get('geometry') or {}).get('coordinates') or [] for r in poly] if (feat.get('geometry') or {}).get('type') == 'MultiPolygon' else (feat.get('geometry') or {}).get('coordinates') or []
         a0, a1 = area_ac(old_rings), area_ac([r for r in rings])
         if a0 and abs(a1 - a0) / a0 > .25: rep['acres_changed_over_25pct'].append([ref, round(a0), round(a1)])
         feat['geometry'] = {'type': 'MultiPolygon', 'coordinates': polys(rings)}
-        feat.setdefault('properties', {})['detail_m'] = used
+        feat.setdefault('properties', {})['detail_m'] = used; feat['properties']['refine_v'] = 2
         feat['properties']['refined'] = time.strftime('%Y-%m-%d') + ' (' + why + ')'
         f.write_text(json.dumps(feat, separators=(',', ':')))
         rep['done'] += 1; rep['bytes_before'] += before; rep['bytes_after'] += f.stat().st_size
         rep['detail_m'][str(used)] = rep['detail_m'].get(str(used), 0) + 1
-    left = sum(1 for f in files if not (json.load(open(f)).get('properties') or {}).get('detail_m'))
+    left = sum(1 for f in files if (json.load(open(f)).get('properties') or {}).get('refine_v') != 2)
     rep['left'] = left
     (OUT / 'refine-report.json').write_text(json.dumps(rep, indent=1))
     grow = rep['bytes_after'] / rep['bytes_before'] if rep['bytes_before'] else 0

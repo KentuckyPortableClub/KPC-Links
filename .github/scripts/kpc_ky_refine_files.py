@@ -4,7 +4,7 @@ ky-*.geojson files keep their corners ON the real edge but cut corners by ~8 m (
 four files that come from Kentucky's own state GIS is read again by its name (all live pieces with that name near the old
 shape) at ~5 m (server thinning 0.00005 deg, 6 decimals) and written back with the same properties. A feature whose read
 fails or whose area moves more than 25% keeps its old shape (listed). Writes ky-refine-report.json. Never fails."""
-import json, math, os, sys, time, urllib.parse, urllib.request
+import json, math, os, re, sys, time, urllib.parse, urllib.request
 
 UA = {'User-Agent': 'KPC park-map bot (kentuckyportableclub.github.io; ham radio club)'}
 KYGIS = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
@@ -77,6 +77,16 @@ def main():
                           'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326,
                           'maxAllowableOffset': 0.00005, 'geometryPrecision': 6, 'f': 'json'})
             rings = [r for ft in (j or {}).get('features') or [] for r in ((ft.get('geometry') or {}).get('rings') or []) if len(r) >= 4]
+            if not rings:   # the state layer may spell it differently ('John James Audubon SP'): the name's main words, near the old shape
+                core = [w for w in re.sub(r"[^A-Za-z ]", ' ', str(nm)).split() if w.lower() not in ('state', 'park', 'resort', 'historic', 'site', 'the', 'and', 'of', 'nature', 'preserve', 'area')][:3]
+                if core:
+                    wh = ' AND '.join(f"UPPER({fld}) LIKE '%{w.upper()}%'" for w in core)
+                    j = get(url, {'where': wh, 'geometry': f'{min(xs) - .02},{min(ys) - .02},{max(xs) + .02},{max(ys) + .02}', 'geometryType': 'esriGeometryEnvelope',
+                                  'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326,
+                                  'maxAllowableOffset': 0.00005, 'geometryPrecision': 6, 'f': 'json'})
+                    names = {(ft.get('attributes') or {}).get(fld) for ft in (j or {}).get('features') or []}
+                    if len(names) == 1:
+                        rings = [r for ft in (j or {}).get('features') or [] for r in ((ft.get('geometry') or {}).get('rings') or []) if len(r) >= 4]
             if not rings: kept += 1; why.append(f'{nm}: no live answer'); continue
             a0, a1 = area(old), area([[p for p in r] for r in rings])
             if a0 and abs(a1 - a0) / a0 > .25: kept += 1; why.append(f'{nm}: area {round(a0)} -> {round(a1)} ac, kept'); continue
