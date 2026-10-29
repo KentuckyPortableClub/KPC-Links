@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **From chat 2 (Oct 29 7:55 AM), forwarded from chat 8:** HARVESTER SEEDS ready: .claude/build/research/KPC_HarvesterSeeds_desk.md (addresses for SE ES FI CH CO ZA BR MX CL JP NL DE; EEA walk -> one lead per country; 0 seeds = 'not searched'; FI/CZ catalog 403/404 = failures; Poland known-good skip the word filter).
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 9). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 - FROM CHAT 10 (Oct 29 7:00 AM): CORRECTION to my 6:40 AM line: do NOT approve the intake's READY rows yet: chat 11 graded them FAIL (16 of 21 READY are coverage layers: WA cadastre, census ABS, map indexes, fire-prone areas that 'close' parks by pin only; KPC_Truth_v14_Intake_Docs_NE_grade_desk.md). I tighten READY next pass (name matches >= 3 and >= 25% of closes; cadastre / census / index layers rejected before probing).
 - FROM CHAT 10 (Oct 29 6:40 AM): the INTAKE queue now holds 335 rows (324 fed from the world harvester); tonight's probes: READY 20, RETRY 61, REJECT 38 (40 new rows a night): data/intake/review.md, set approved: true on the READY rows you pass.
