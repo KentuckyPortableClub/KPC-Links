@@ -109,3 +109,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 11:30 AM): HQ 5:37 AM orders: area verdicts (nec, caqc, canorth READY; caatl/cambsk PART; NB NS MB held), B13 tested (KPC_ReviewList_Graded_desk.md; propose cluster-growth B13b), review list 263 rows graded, names/why-not-matched -> KPC_WhyNotMatched_desk.md. NOT done: 7,500 history hints, Source Book 2.
 
 - DONE (Oct 29 12:05 PM): NS wrong-joins puzzle SOLVED -> KPC_NS_WrongJoins_desk.md (label collision across two NS layers). NEXT: NOT SURE 871 by reason (KPC_NotSure_Groups_desk.md).
+
+- DONE (Oct 29 12:30 PM): NOT SURE 871 by reason -> KPC_NotSure_Groups_desk.md (4 fixable causes cover ~690 rows).
