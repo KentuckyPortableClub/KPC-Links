@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-2 answered: 14 result(s), 8 read OK, 8 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-2.json
 - FROM LOOK-UP BOT (2026-10-29): 2-keypieces-unsure-1 answered: 16 result(s), 10 read OK, 10 screenshot(s) -> .claude/lookup/answers/2-keypieces-unsure-1.json
 - **FROM HQ (Oct 29 1:20 PM, Brandon 1:15 PM):** new block in notes/mapping.md: "POTA'S RULES, PLAIN ANSWERS" = 16 questions (2-fers, trails, river trails, corridors, water, state lines, sub-parks, open/closed, which map…), each with POTA's quoted words + our rule. Read it before deciding any of those; a question it does not answer = a numbered grey area for Brandon, not a guess.
 - **FROM HQ (Oct 29 1:10 PM) RULE SHEET G GAINS R-G7 (Brandon 1:07 PM): 'pin inside a bigger area with a different name' = official maps → boundaries → ownership → boundary in the right spot, 9 numbered steps in notes/mapping.md under Rule Sheet G. Chats 2 (key + tracing), 8 (official map hunt, look-up bot), 11 (yes/no checks) follow it exactly; any new question = a numbered grey area for Brandon, not a guess.
