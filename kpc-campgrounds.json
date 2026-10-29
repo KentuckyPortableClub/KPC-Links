@@ -95,7 +95,10 @@
      "extras": "Horse camp, flush toilets, hot showers",
      "phone": "(423) 286-7275",
      "source": "https://www.recreation.gov/camping/campgrounds/251468",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.64108,
+     "lo": -84.52364,
+     "point_src": "RIDB / recreation.gov facility 251468 'Bear Creek Campground - KY, Big South Fork' (the NPS page bear-creek-horse-camp.htm carries the same title 'Bear Creek Campground'; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "alum-ford-campground-ky",
@@ -1156,7 +1159,15 @@
      "season": "Year-round",
      "extras": "Cravens Bay, Nickell Branch, Birmingham Ferry, Smith Bay, Sugar Bay, Taylor Bay, Redd Hollow, Boswell Landing, Gatlin Point, Turkey Bay OHV; vault toilets, boat ramps, self-pay",
      "source": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "sub_points": [
+      {
+       "name": "Turkey Bay OHV Area",
+       "la": 36.75067,
+       "lo": -88.07156,
+       "point_src": "LBL's own Turkey Bay OHV page map pin (maps.app.goo.gl/cTMuxFoFpDxBXgSA6), checked 2026-10-29"
+      }
+     ]
     }
    ],
    "lodging": [
@@ -1379,7 +1390,11 @@
      "extras": "Restrooms/showers, dump station, store, playground; run by Meade County",
      "phone": "270-750-4257",
      "source": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 37.92468,
+     "lo": -86.03811,
+     "point_src": "KDFWR Otter Creek ORA page's own map pin (the ORA entrance/office; camp map: fw.ky.gov/Documents/ocoracampgroundmap.pdf), checked 2026-10-29",
+     "precision": "entrance"
     }
    ]
   },
@@ -1563,7 +1578,11 @@
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
      "phone": "(270) 547-6856",
      "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
-     "areaMap": "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf"
+     "areaMap": "https://fw.ky.gov/More/Documents/YellowbankWMA_ALL.pdf",
+     "la": 37.9932,
+     "lo": -86.5174,
+     "point_src": "KDFWR public-lands page 'Entrance GPS coordinates: N 37.9932, W -86.5174' (WMA ENTRANCE, not the camp spot), checked 2026-10-29",
+     "precision": "entrance"
     }
    ]
   },
@@ -1739,7 +1758,11 @@
      "extras": "Primitive tent sites; no hookups",
      "note": "Only secondary sources (Harlan County Trails, Wikipedia) describe it; not in the state parks reservation directory. Check the official website.",
      "source": "https://www.harlancountytrails.com/kingdom-come-state-park/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.98456,
+     "lo": -82.97055,
+     "point_src": "parks.ky.gov Kingdom Come page's own directions pin (502 Park Rd = the park entrance, not the primitive sites), checked 2026-10-29",
+     "precision": "entrance"
     }
    ],
    "added": true
@@ -1756,7 +1779,11 @@
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
      "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
-     "areaMap": "https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf"
+     "areaMap": "https://fw.ky.gov/More/Documents/Higginson-HenryWMA_ALL.pdf",
+     "la": 37.628,
+     "lo": -87.8286,
+     "point_src": "KDFWR public-lands page 'Entrance GPS coordinates: N 37.6280, W -87.8286' (WMA ENTRANCE, not the camp spot), checked 2026-10-29",
+     "precision": "entrance"
     }
    ],
    "added": true
@@ -1774,7 +1801,11 @@
      "checked": "2026-10-14",
      "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
      "note": "Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
-     "areaMap": "https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf"
+     "areaMap": "https://fw.ky.gov/More/Documents/West_Kentucky_WMA.pdf",
+     "la": 37.1332,
+     "lo": -88.8139,
+     "point_src": "KDFWR public-lands page 'Entrance GPS coordinates: N 37.1332, W -88.8139' (WMA ENTRANCE, not the camp spot), checked 2026-10-29",
+     "precision": "entrance"
     }
    ]
   },
@@ -1791,7 +1822,11 @@
      "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
      "note": "Only during turkey and deer seasons, 14-day limit. The same KDFWR page also says \"No ATV’s, camping, horseback riding, or rock climbing is allowed on the WMA.\" Check the official WMA map for camping locations and the KDFWR website for current regulations before you go.",
      "season": "Turkey and deer seasons only (14-day limit)",
-     "areaMap": "https://fw.ky.gov/More/Documents/RollingForkWMA_all.pdf"
+     "areaMap": "https://fw.ky.gov/More/Documents/RollingForkWMA_all.pdf",
+     "la": 37.5341,
+     "lo": -85.559,
+     "point_src": "KDFWR public-lands page 'Entrance GPS coordinates: N 37.5341, W -85.5590' (WMA ENTRANCE, not the camp spot), checked 2026-10-29",
+     "precision": "entrance"
     }
    ]
   }

@@ -25,6 +25,8 @@ jobs:
         env:
           CAND: ${{ inputs.cand }}
           PROBE_T: 180
+          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
+          RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
       - name: Save
         continue-on-error: true
         run: |

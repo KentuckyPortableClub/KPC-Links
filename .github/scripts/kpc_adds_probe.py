@@ -6,7 +6,7 @@ field, record count, samples, licence (service copyright + the ArcGIS Online ite
 category / manager field + values (so a mixed layer can be told apart). Searches ask ArcGIS Online who publishes a layer
 and name the publishing organisation (publisher test). Reads .claude/build/research/ADDS/round5.json, writes
 round5-tested.json next to it. Adds nothing to the live data. Never fails."""
-import json, os, pathlib, re, sys, time, urllib.parse, urllib.request
+import json, os, pathlib, re, sys, time, urllib.parse, urllib.request, urllib.error
 UA = {'User-Agent': 'KPC park mapping (kentuckyportableclub.github.io; ham radio club)'}
 CAND = pathlib.Path(os.environ.get('CAND') or '.claude/build/research/ADDS/round5.json')
 OUT = CAND.with_name(CAND.stem + '-tested.json')
@@ -183,9 +183,12 @@ def hub(x):
 
 def page(x):
     out = {k: x[k] for k in ('st', 'url', 'note') if k in x}
-    with urllib.request.urlopen(urllib.request.Request(x['url'], headers=UA), timeout=60) as r:
-        raw = r.read(); out['status'] = r.status; out['ctype'] = r.headers.get('Content-Type', '')
-        out['final_url'] = r.geturl()   # Oct 28: a short map link resolves to the agency's pinned coordinate
+    try:
+        with urllib.request.urlopen(urllib.request.Request(x['url'], headers=UA), timeout=60) as r:
+            raw = r.read(); out['status'] = r.status; out['ctype'] = r.headers.get('Content-Type', '')
+            out['final_url'] = r.geturl()   # Oct 28: a short map link resolves to the agency's pinned coordinate
+    except urllib.error.HTTPError as e:   # Oct 29: keep the server's own error text (NL CKAN 400)
+        out['error'] = f'HTTP {e.code}'; out['body'] = e.read()[:400].decode('utf-8', 'replace'); return out
     out['bytes'] = len(raw)
     if x.get('json'):
         j = json.loads(raw.decode('utf-8', 'replace'))
@@ -414,6 +417,40 @@ def _inside(la, lo, rings):
     return c
 
 
+def _interior(rings):
+    """a point surely inside the polygon: the ring's vertex average if inside, else the first inside point of a 25 x 25 grid"""
+    if not rings: return None
+    r = max(rings, key=len)
+    xs = [v[0] for v in r]; ys = [v[1] for v in r]
+    c = (round(sum(ys) / len(ys), 6), round(sum(xs) / len(xs), 6))
+    if _inside(c[0], c[1], rings): return c
+    for i in range(1, 25):
+        for j in range(1, 25):
+            la = min(ys) + (max(ys) - min(ys)) * i / 25; lo = min(xs) + (max(xs) - min(xs)) * j / 25
+            if _inside(la, lo, rings): return (round(la, 6), round(lo, 6))
+    return None
+
+
+def keyed(cfg):
+    """Oct 29 (Brandon's KEYED GOVERNMENT APIS rule): NPS API + RIDB with our keys (env), 2 s apart. Keeps only the named fields."""
+    out = []
+    for x in cfg.get('keyed') or []:
+        r = {'id': x.get('id'), 'url': x['url']}
+        try:
+            u = x['url'].replace('{NPS_API_KEY}', os.environ.get('NPS_API_KEY', ''))
+            h = dict(UA)
+            if 'ridb.recreation.gov' in u: h['apikey'] = os.environ.get('RIDB_API_KEY', '')
+            with urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=90) as f: j = json.loads(f.read().decode('utf-8', 'replace'))
+            rows = j.get(x.get('list', 'data')) or []
+            r['rows'] = [{k: z.get(k) for k in x['fields']} for z in rows][:x.get('n', 60)]
+            r['total'] = len(rows)
+        except Exception as e: r['error'] = str(e)[:160]
+        out.append(r)
+        notice(f"keyed {x.get('id')}: {r.get('total', 0)} rows {r.get('error', '')}")
+        time.sleep(2)
+    return out
+
+
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer'
 
 
@@ -425,6 +462,17 @@ def rivertest(cfg):
         r = {'test': x['note'], 'layer': x['layer'], 'control': None, 'water': [], 'notes': []}
         if x.get('control'):
             la, lo = x['control']; r['control'] = {'point': [la, lo], 'result': _hit(x['layer'], la, lo)}
+        if x.get('control_auto'):   # Oct 29 (v3): the control comes from INSIDE one of the layer's own polygons, never by hand
+            try:
+                c = x['control_auto']
+                q = get(c.get('url', x['layer']) + '/query', {'where': c['where'], 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'resultRecordCount': 3}, t=120)
+                pt = None
+                for f in q.get('features') or []:
+                    pt = _interior((f.get('geometry') or {}).get('rings') or [])
+                    if pt: r['control_from'] = {k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '') and re.search(r'name|tract|unit|int|own|status', k, re.I)}; break
+                if pt: r['control'] = {'point': list(pt), 'auto': True, 'result': _hit(x['layer'], *pt)}
+                else: r['notes'].append(f"control_auto: no polygon ({len(q.get('features') or [])} records)")
+            except Exception as e: r['notes'].append('control_auto: ' + str(e)[:100])
         pts = [tuple(p) for p in x.get('points') or []]
         if x.get('unit'):
             try:
@@ -556,6 +604,7 @@ def nearq(cfg):
 
 def main():
     cfg = json.load(open(CAND))
+    notice('commit ' + os.popen('git rev-parse --short HEAD').read().strip() + ' round ' + CAND)
     held = {}
     try:
         for st, v in json.load(open(HELD))['states'].items():
@@ -595,6 +644,9 @@ def main():
     if cfg.get('nearq'):
         try: res['nearq'] = nearq(cfg)
         except Exception as e: res['nearq'] = [{'error': str(e)[:140]}]
+    if cfg.get('keyed'):
+        try: res['keyed'] = keyed(cfg)
+        except Exception as e: res['keyed'] = [{'error': str(e)[:140]}]
     if cfg.get('pinhunt'):
         try: res['pinhunt'] = pinhunt(cfg)
         except Exception as e: res['pinhunt'] = [{'error': str(e)[:140]}]

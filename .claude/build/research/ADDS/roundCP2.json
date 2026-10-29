@@ -1,0 +1,464 @@
+{
+ "about": "Chat 9 round CP2 (Oct 29 8:40 AM): 9.1 last KY camp points via the keyed NPS API (Houchin Ferry etc.) + RIDB (LBL self-service camps); 9.3 river test v3 with AUTOMATIC control points from inside each layer's own polygons; chat 10's NL CKAN query shape; 9.5 PARKING / ACCESS layer search for thin areas (KS LA NM AZ AK MS HI + Canada MB NB NT NU PE NS YT NL + Parks Canada). ONE run. Results: roundCP2-tested.json.",
+ "keyed": [
+  {
+   "id": "nps-maca",
+   "url": "https://developer.nps.gov/api/v1/campgrounds?parkCode=maca&limit=50&api_key={NPS_API_KEY}",
+   "fields": [
+    "name",
+    "latitude",
+    "longitude",
+    "url",
+    "id"
+   ]
+  },
+  {
+   "id": "nps-biso",
+   "url": "https://developer.nps.gov/api/v1/campgrounds?parkCode=biso&limit=50&api_key={NPS_API_KEY}",
+   "fields": [
+    "name",
+    "latitude",
+    "longitude",
+    "url",
+    "id"
+   ]
+  },
+  {
+   "id": "nps-cuga",
+   "url": "https://developer.nps.gov/api/v1/campgrounds?parkCode=cuga&limit=50&api_key={NPS_API_KEY}",
+   "fields": [
+    "name",
+    "latitude",
+    "longitude",
+    "url",
+    "id"
+   ]
+  },
+  {
+   "id": "ridb-lbl",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Land%20Between%20the%20Lakes&limit=50",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ]
+  },
+  {
+   "id": "ridb-Fenton",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Fenton&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Cravens Bay",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Cravens%20Bay&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Nickell Branch",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Nickell%20Branch&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Birmingham Ferry",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Birmingham%20Ferry&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Smith Bay",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Smith%20Bay&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Sugar Bay",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Sugar%20Bay&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Taylor Bay",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Taylor%20Bay&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Redd Hollow",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Redd%20Hollow&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Boswell Landing",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Boswell%20Landing&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Gatlin Point",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Gatlin%20Point&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-Turkey Bay",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Turkey%20Bay&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityTypeDescription",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ],
+   "n": 10
+  },
+  {
+   "id": "ridb-breaks",
+   "url": "https://ridb.recreation.gov/api/v1/facilities?query=Breaks%20Interstate&limit=10",
+   "list": "RECDATA",
+   "fields": [
+    "FacilityID",
+    "FacilityName",
+    "FacilityLatitude",
+    "FacilityLongitude"
+   ]
+  },
+  {
+   "id": "nps-parking-maca",
+   "url": "https://developer.nps.gov/api/v1/parkinglots?parkCode=maca&limit=50&api_key={NPS_API_KEY}",
+   "fields": [
+    "name",
+    "latitude",
+    "longitude",
+    "id"
+   ]
+  }
+ ],
+ "rivertest": [
+  {
+   "note": "NPS tracts v3: New River Gorge, control from a NERI tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control_auto": {
+    "where": "ALPHA_TRACT LIKE 'NERI%'"
+   },
+   "unit": {
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE='NERI'"
+   },
+   "river": "New River"
+  },
+  {
+   "note": "NPS tracts v3: Big South Fork, control from a BISO tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control_auto": {
+    "where": "ALPHA_TRACT LIKE 'BISO%'"
+   },
+   "unit": {
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "where": "UNIT_CODE='BISO'"
+   },
+   "river": "Big South Fork Cumberland River"
+  },
+  {
+   "note": "FWS realty v3: Ohio River Islands, control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "river": "Ohio River"
+  },
+  {
+   "note": "FWS realty v3: Cache River (AR), control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "river": "Cache River"
+  },
+  {
+   "note": "FWS realty v3: Shiawassee control check (was NO HIT by hand)",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'SHIAWASSEE%'"
+   }
+  },
+  {
+   "note": "Ohio nolakes /5 v3: control from its own polygon, then mid-Mosquito Lake",
+   "layer": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+   "control_auto": {
+    "where": "1=1"
+   },
+   "points": [
+    [
+     41.3,
+     -80.76
+    ]
+   ]
+  }
+ ],
+ "pages": [
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?q=natuur&rows=3",
+   "json": true,
+   "note": "NL CKAN /data/api/3"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?q=nationaal%20park&rows=3",
+   "json": true,
+   "note": "NL two words"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/package_search?fq=title:natuur&rows=3",
+   "json": true,
+   "note": "NL fq"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/action/package_search?q=natuur&rows=3",
+   "json": true,
+   "note": "NL no /3"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/api/3/action/package_search?q=natuur&rows=3",
+   "json": true,
+   "note": "NL no /data"
+  },
+  {
+   "st": "NL",
+   "url": "https://data.overheid.nl/data/api/3/action/status_show",
+   "raw": true,
+   "look": "ckan_version|site_url|extensions",
+   "note": "NL status"
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20parking&rows=15",
+   "json": true,
+   "note": "9.5 Parks Canada parking"
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=%22Parks%20Canada%22%20facilities&rows=15",
+   "json": true,
+   "note": "9.5 Parks Canada facilities"
+  },
+  {
+   "st": "CA",
+   "url": "https://open.canada.ca/data/api/3/action/package_search?q=boat%20launch&rows=25",
+   "json": true,
+   "note": "9.5 boat launches (federal + provinces)"
+  },
+  {
+   "st": "NS",
+   "url": "https://data.novascotia.ca/api/catalog/v1?q=boat%20launch&limit=10",
+   "raw": true,
+   "look": "\"name\":\"[^\"]+\"|\"permalink\":\"[^\"]+\"",
+   "note": "9.5 NS"
+  },
+  {
+   "st": "NS",
+   "url": "https://data.novascotia.ca/api/catalog/v1?q=parking&limit=10",
+   "raw": true,
+   "look": "\"name\":\"[^\"]+\"|\"permalink\":\"[^\"]+\"",
+   "note": "9.5 NS"
+  },
+  {
+   "st": "PE",
+   "url": "https://data.princeedwardisland.ca/api/catalog/v1?q=boat&limit=10",
+   "raw": true,
+   "look": "\"name\":\"[^\"]+\"|\"permalink\":\"[^\"]+\"",
+   "note": "9.5 PE"
+  },
+  {
+   "st": "MS",
+   "url": "https://www.mdwfp.com/fishing-boating/boat-ramps/",
+   "look": "arcgis|FeatureServer|MapServer|kml|latitude|map",
+   "note": "9.5 MS boat ramps (MDWFP)"
+  }
+ ],
+ "orgs": [
+  {
+   "st": "MS",
+   "url": "https://gis.mississippi.edu/server/rest/services",
+   "match": "boat|ramp|access|recreat|park|wildlife|wma|trail",
+   "walk": true,
+   "note": "9.5 MS + chat 8 MS WMA/parks"
+  },
+  {
+   "st": "HI",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services",
+   "match": "boat|ramp|harbor|park|access|trail|recreat|forest",
+   "walk": true,
+   "note": "9.5 HI"
+  },
+  {
+   "st": "PE",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services",
+   "match": "boat|launch|wharf|parking|access|trail|park",
+   "walk": true,
+   "note": "9.5 PE"
+  },
+  {
+   "st": "CA",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/ArcGIS/rest/services",
+   "match": "parking|facilit|trail|launch|access|campground|day use",
+   "note": "9.5 Parks Canada AGOL account (guess)"
+  }
+ ],
+ "searches": [
+  {
+   "st": "KS",
+   "q": "(Kansas OR KDWP OR KDWPT) AND (\"boat ramp\" OR \"boat ramps\" OR parking OR \"public access\" OR \"walk-in\")",
+   "why": "9.5 KS"
+  },
+  {
+   "st": "LA",
+   "q": "(Louisiana OR LDWF) AND (\"boat launch\" OR \"boat launches\" OR \"boat ramp\" OR parking)",
+   "why": "9.5 LA"
+  },
+  {
+   "st": "NM",
+   "q": "(\"New Mexico\" OR NMDGF OR \"NM State Parks\") AND (\"boat ramp\" OR parking OR \"fishing access\" OR trailhead)",
+   "why": "9.5 NM"
+  },
+  {
+   "st": "AZ",
+   "q": "(Arizona OR AZGFD OR \"Arizona State Parks\") AND (\"boat ramp\" OR \"boating access\" OR parking OR trailhead)",
+   "why": "9.5 AZ"
+  },
+  {
+   "st": "AK",
+   "q": "(Alaska OR ADFG OR \"Alaska State Parks\" OR DNR) AND (\"boat launch\" OR parking OR \"public access\" OR trailhead)",
+   "why": "9.5 AK"
+  },
+  {
+   "st": "MS",
+   "q": "(Mississippi OR MDWFP) AND (\"boat ramp\" OR \"boat ramps\" OR \"boat launch\" OR parking)",
+   "why": "9.5 MS"
+  },
+  {
+   "st": "HI",
+   "q": "(Hawaii OR DLNR OR DOBOR) AND (\"boat ramp\" OR harbor OR parking OR trailhead)",
+   "why": "9.5 HI"
+  },
+  {
+   "st": "CA",
+   "q": "(\"Parks Canada\" OR \"Parcs Canada\") AND (parking OR facilities OR \"day use\" OR trailhead)",
+   "why": "9.5 Parks Canada"
+  },
+  {
+   "st": "MB",
+   "q": "Manitoba AND (\"boat launch\" OR \"boat launches\" OR parking OR \"provincial park\" facilities)",
+   "why": "9.5 MB"
+  },
+  {
+   "st": "NB",
+   "q": "(\"New Brunswick\" OR GeoNB) AND (\"boat launch\" OR parking OR \"provincial park\" OR trailhead)",
+   "why": "9.5 NB"
+  },
+  {
+   "st": "NL",
+   "q": "(Newfoundland OR Labrador) AND (\"boat launch\" OR parking OR \"provincial park\" OR trailhead)",
+   "why": "9.5 NL"
+  },
+  {
+   "st": "YT",
+   "q": "Yukon AND (\"boat launch\" OR campground OR \"recreation site\" OR parking)",
+   "why": "9.5 YT"
+  },
+  {
+   "st": "NT",
+   "q": "(\"Northwest Territories\" OR GNWT OR Nunavut) AND (\"boat launch\" OR campground OR \"territorial park\" OR parking)",
+   "why": "9.5 NT NU"
+  }
+ ]
+}
