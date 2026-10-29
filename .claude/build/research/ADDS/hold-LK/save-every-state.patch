@@ -1,0 +1,21 @@
+--- a/.github/scripts/kpc_adds_probe.py	2026-10-29 14:19:03.126725736 -0500
++++ b/.github/scripts/kpc_adds_probe.py	2026-10-29 14:48:52.582333032 -0500
+@@ -688,6 +688,8 @@
+                 except Exception as e: r['hits'].append({'layer': l['url'], 'error': str(e)[:60]})
+             out['parks'].append(r)
+         notice(f"lakehunt {st}: {len(rows)} parks, {len(lays)} layers, {sum(1 for p in out['parks'] if p['st'] == st and any(h.get('name') is not None and not h.get('error') for h in p['hits']))} with a department polygon at the pin")
++        try: OUT.with_name(OUT.stem + '-partial.json').write_text(json.dumps(out, ensure_ascii=False) + '\n')   # Oct 29: a save after every state, so a timeout loses at most one state
++        except Exception: pass
+     return out
+ 
+ 
+--- a/.github/workflows/kpc-adds-probe.yml	2026-10-29 14:19:03.129844390 -0500
++++ b/.github/workflows/kpc-adds-probe.yml	2026-10-29 14:48:52.582436021 -0500
+@@ -22,6 +22,7 @@
+         run: pip install -q playwright && python3 -m playwright install --with-deps chromium >/dev/null 2>&1 || true
+       - run: python3 .github/scripts/kpc_adds_probe.py || true
+         continue-on-error: true
++        timeout-minutes: 225   # Oct 29: ends the step BEFORE the 240 job limit so the Save step still runs
+         env:
+           CAND: ${{ inputs.cand }}
+           PROBE_T: 180
