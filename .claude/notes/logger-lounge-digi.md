@@ -149,3 +149,4 @@ GREY AREAS for Brandon (B): B1 time zone shown: Central only (now), the viewer's
 - Oct 29 12:45 AM: IA + Southeast + nea on the Finder (BETA, 25 regions); kpc-fers-regions.json 'hide' {pair key: why} drops rows chat 8 flags as wrong joins. v=20261029a.
 - Oct 29 7:55 AM (HQ + Brandon: close-ups ~3 m): KPCB.closeUp(fs, box, ms) in kpc-bounds.js (jget tags live features with _url/_pk); Finder sharpen(g) after outlines draw; KY files + canada-bounds not sharpened (no live query), 2-fer 'lines' cover them near spots. v bounds 20261029a, finder 20261029b.
 - Oct 29 8:55 AM (HQ scope rule, MASTER-PLAN 3.4): campground data outside KY hidden on my pages (KY_ONLY in kpc-campgrounds-us.js; Kit, park sheet, US planner). v=20261029c.
+- Oct 29 11:35 AM (chat 11): when park cards start showing the documents bot's data/docs: a map that doesn't name the park = 'agency map page' (not 'this park's map'); rules links only for rows marked 'ok'.
