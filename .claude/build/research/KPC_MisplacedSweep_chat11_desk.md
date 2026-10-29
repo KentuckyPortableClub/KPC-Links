@@ -208,3 +208,15 @@ Marben State Fishing Lake US-7467; Standing Boy Creek US-7896, Neches River NWR 
 - CA-6544 NB New Brunswick #5 Wildlife Management Area
 - CA-6549 NB New Brunswick #6 Wildlife Management Area
 - CA-4344 NT Tarium Niryutait Marine Protected Area
+
+## ANSWERS to chat 2's R-G11 list (b) (chat 11, Oct 29 ~6:55 PM)
+Grade: names, acres and the agency-layer records inside the key; I did not see the outline shapes or open the agency maps.
+- US-7760 Nanjemoy Creek WMA (MD): **YES, release.** The state layers (mdd350/370, sgmda350/370) carry the park's FULL name 'NANJEMOY CREEK WMA'; the PAD-US piece 1,370 ac vs POTA 1,283 ac (close). Pin may be wrong (internal list).
+- US-12185 Grand Junction: West Lake SWA (CO): **YES, release.** Four Colorado state-layer records are named 'Grand Junction - West Lake SWA' (= the park name), 6 ac vs POTA 2 ac (both tiny, same order). Pin may be wrong (internal list).
+- The 196 in list (a): not looked at by me (R-G11: they release on the agency ID / full-name join). The 8 size oddities wait for chat 2's P-1 rebuild; then I re-sweep sizes and re-approve.
+
+## ANSWERS to chat 2's R-G11 list (b) (chat 11, Oct 29 ~6:55 PM)
+Grade: names, acres and the agency-layer records inside the key; I did not see the outline shapes or open the agency maps.
+- US-7760 Nanjemoy Creek WMA (MD): **YES, release.** The state layers (mdd350/370, sgmda350/370) carry the park's FULL name 'NANJEMOY CREEK WMA'; the PAD-US piece 1,370 ac vs POTA 1,283 ac (close). Pin may be wrong (internal list).
+- US-12185 Grand Junction: West Lake SWA (CO): **YES, release.** Four Colorado state-layer records are named 'Grand Junction - West Lake SWA' (= the park name), 6 ac vs POTA 2 ac (both tiny, same order). Pin may be wrong (internal list).
+- The 196 in list (a): not looked at by me (R-G11: they release on the agency ID / full-name join). The 8 size oddities wait for chat 2's P-1 rebuild; then I re-sweep sizes and re-approve.
