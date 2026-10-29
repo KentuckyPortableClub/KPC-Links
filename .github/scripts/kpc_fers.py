@@ -235,6 +235,7 @@ def official_parks(PIN):
                 skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            if p.get('parts'): CLIP[ref] = p['parts']   # Oct 29 rule B12: only this park's own parts of a shared multipart record
             if AGENCY_LAND.search(PIN[ref][0]) and not re.search(r'wilderness|wild and scenic', PIN[ref][0], re.I): OWNED[ref] = 'usfs'   # rule 1b
             else:
                 k = agency_kind(m)
@@ -401,6 +402,19 @@ def name_ok(want, attrs):
     return False
 
 
+CLIP = {}   # {ref: {record id: [[w, s, e, n] part boxes]}} from the key (rule B12)
+
+
+def clip(ref, rid, rs):
+    """Rule B12 (Oct 29): keep only the rings whose middle sits in one of this park's own part boxes (a multipart record shared
+    by two far-apart parks). Holes ride along with their part. No clip on the record = every ring."""
+    boxes = (CLIP.get(ref) or {}).get(str(rid))
+    if not boxes or not rs: return rs
+    def mid(r): return ((min(p[0] for p in r) + max(p[0] for p in r)) / 2, (min(p[1] for p in r) + max(p[1] for p in r)) / 2)
+    out = [r for r in rs if len(r) > 2 and any(b[0] - .01 <= mid(r)[0] <= b[2] + .01 and b[1] - .01 <= mid(r)[1] <= b[3] + .01 for b in boxes)]
+    return out or rs
+
+
 def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
     be read is left out (dead certain: half a park is not the park)."""
@@ -453,7 +467,7 @@ def download(parks, refs, det, prec):
             if not cand: bad.add(ref); continue
             a, r = cand[0]
             use, why = fws_use(a) if FWS in urls else pad_use(a, ref) if PADUS in urls else (True, None)
-            if use: got.setdefault(ref, []).append(r)
+            if use: got.setdefault(ref, []).append(clip(ref, parks[ref]['ids'][int(rid)] if 'm' in parks[ref] else rid, r))
             else: LEFT.setdefault(ref, []).append(f'{parks[ref]["names"].get(rid) or rid}: {why}')   # rule 2: left out, not 'unreadable'
     for ref in bad: got.pop(ref, None)
     for ref in {i[0] for v in want.values() for i in v} - bad - set(got):
@@ -1108,6 +1122,14 @@ def pip_groups(gs, lon, lat):
     return False
 
 
+def same_part(gs, a, b):
+    """Fable Oct 29: ONE polygon part (one outer ring) holds both pins (lon, lat). PAD-US stores same-named far-apart places as one
+    multipart record (Lost Nation, Robert Moses), and each record is one group here, so a test per group or per record passes for
+    two different places; a test per RING does not."""
+    def _in(ring, lon, lat): return len(ring) > 2 and cv2.pointPolygonTest(np.asarray(ring, np.float32)[:, :2].reshape(-1, 1, 2), (float(lon), float(lat)), False) >= 0
+    return any(_in(r, *a) and _in(r, *b) for g in gs for r in g)
+
+
 def missing_list(PIN, parks, skip_why, G, LN, today):
     """Rule 12: a park with NO official boundary whose pin sits inside another park's official outline = a possible 2-fer
     we cannot test: 'Missing boundary: check the official map' (its own list, never the main one)."""
@@ -1692,6 +1714,10 @@ def same_outline(parks):
         for i, rid in enumerate(p['ids']):
             if rid is None: continue
             k = (p['m'][i][2], str(rid)) if 'm' in p else (p['st'][:2], str(rid))
+            # Oct 29 (chat 8: NS 161 'same land' rows): Canada ids are '<first 12 letters of the layer label>:<oid>', and two Nova
+            # Scotia layers both start 'Nova Scotia ', so ':731' is Boot Island in one layer and Seal Cove in the other: the record
+            # NAME must match too (saved_ca already reads geometry by id + name)
+            if p['st'].startswith('CA-') and 'm' not in p: k = k + (low(p['names'].get(str(rid))),)
             if k in seen and seen[k] != ref: out.append({'refs': sorted([seen[k], ref]), 'record': str(rid), 'name': p['names'].get(str(i) if 'm' in p else str(rid))})
             else: seen[k] = ref
     return out
@@ -2619,8 +2645,8 @@ def main():
             a, b = (x.get('refs') or [None, None])[:2]
             if a in PIN and b in PIN and b in G and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
                 dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
-                if dkm > 8 and not (pip_groups(G[b], PIN[a][2], PIN[a][1]) and pip_groups(G[b], PIN[b][2], PIN[b][1])):
-                    x['status'] = f'dropped: two park numbers joined to one record by name, pins {dkm:.0f} km apart and not both inside it (a wrong join in the key)'
+                if dkm > 8 and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
+                    x['status'] = f'dropped: two park numbers joined to one record by name, pins {dkm:.0f} km apart and not both inside the same part of it (a wrong join in the key)'
                     n['same land dropped: wrong join'] = n.get('same land dropped: wrong join', 0) + 1; continue
             ow = {owner_word(park_owner(r, parks)) for r in x['refs']} - {'', '?'}
             x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
@@ -2728,7 +2754,7 @@ def main():
             if all(isinstance(i, int) and (i in pad or i in SAVED_LEFT) for i in p['ids']):
                 for i in p['ids']:
                     if i in SAVED_LEFT: LEFT.setdefault(ref, []).append(f"{p['names'].get(str(i)) or i}: {SAVED_LEFT[i]}")
-                gs = [pad[i] for i in p['ids'] if i in pad]
+                gs = [clip(ref, i, pad[i]) for i in p['ids'] if i in pad]
                 if gs: G[ref] = gs; MAPDATE[ref] = 'saved PAD-US copy'
             else: need.append(ref)
         if REGION == 'ky':
@@ -2794,7 +2820,7 @@ def main():
                 # Oct 29 (chat 8's wrong-joins puzzle: Robert Moses Long Island + Thousand Islands, 503 km apart, 'same land'): two park
                 # numbers joined to one record by NAME alone. Pins more than 8 km apart = only when BOTH pins sit inside the shared outline
                 dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
-                if dkm > 8 and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and not (pip_groups(G[b], PIN[a][2], PIN[a][1]) and pip_groups(G[b], PIN[b][2], PIN[b][1])):
+                if dkm > 8 and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
                     SAME_FAR.append([a, b, round(dkm, 1), x.get('record')]); continue
                 la, lo = PIN[b][1], PIN[b][2]
                 best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)

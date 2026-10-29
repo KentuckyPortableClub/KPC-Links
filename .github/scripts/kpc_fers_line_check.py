@@ -8,7 +8,7 @@ fetcher + worker made for one area and writes data/fers/line-<tag>.json = the ve
   (5) no row is still 'waiting for pass N' or stuck at 'pass N' (a pass killed before its save).
 Else STOPPED + every reason. The verdict also COUNTS what is parked as NOT SURE (water not checked, ownership map did not answer,
 two owners…) so chat 8 sees how much is unresolved. TAG=<area tag>, STATES='US-MI', SINCE=YYYY-MM-DD (default: 36 h ago). Never fails."""
-import json, os, pathlib, re, sys, time
+import json, math, os, pathlib, re, sys, time
 OUT = pathlib.Path('data/fers')
 LIVE = ('candidate', 'very tight', 'water only')
 
@@ -85,6 +85,17 @@ def main():
             info.setdefault('water_weak', {})[st] = wnc
             why.append(f'water not checked: {st}: {wnc} rows (the USGS water map / files had no answer there): never READY with one')
         if stuck: why.append(f'{st}: {stuck} rows stuck at a pass status (a pass was killed before its save)')
+        # Oct 29 (Fable + chat 8): a LIVE 'same land' row whose two pins are over 30 km apart is a wrong join in the key (two
+        # places with one name in one multipart record): hold the state (parkinfo pins = the ones chat 8 grades with)
+        pins = {}
+        pf = 'CA' if st.startswith('CA-') else st   # Canada's pins are one file (parkinfo/CA.json)
+        for pi in (pathlib.Path(f'data/parkinfo/{pf}.json'), pathlib.Path(f'../kpc-data/data/parkinfo/{pf}.json')):
+            pins = {r: (v[5], v[6]) for r, v in ((load(pi) or {}).get('parks') or {}).items() if len(v) > 6 and v[5] is not None}
+            if pins: break
+        def _km(a, b): return math.hypot((pins[a][1] - pins[b][1]) * 111.32 * math.cos(math.radians(pins[a][0])), (pins[a][0] - pins[b][0]) * 110.57)
+        far = [s['id'] for s in spots if s.get('kind') == 'same land' and st_of(s).startswith(LIVE) and len(s.get('refs') or []) > 1
+               and all(r in pins for r in s['refs'][:2]) and _km(*s['refs'][:2]) > 30]
+        if far: why.append(f"{st}: {len(far)} live 'same land' rows with pins over 30 km apart (a wrong join in the key): {' '.join(far[:4])}")
     res = {'about': 'Assembly-line verdict for one area (fetcher -> worker -> checker). READY only when every pass finished in this run, nothing was cut short, the known answers + missing check pass.',
            'tag': tag, 'states': sts, 'since': since, 'date': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime()),
            'verdict': 'READY FOR CHAT 8' if not why else 'STOPPED', 'why': why, **info}

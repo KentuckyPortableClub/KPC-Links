@@ -107,6 +107,9 @@ def fs_owned(box, det, prec):
         LOG.append(f'Forest Service ownership: {str(e)[:80]}'); return None
 
 
+PAGING = {}   # {layer query url: supports resultOffset paging}
+
+
 def owned_land(kind, box, det, prec):
     """Land the agency owns / administers touching box, by 0.25-degree tile (cached). None = the map did not answer."""
     if kind == 'usfs': return fs_owned(box, det, prec)
@@ -125,17 +128,31 @@ def owned_land(kind, box, det, prec):
                         OWN_T['blm'] = (f'{BLMSMA}/{lid}/query', f"{af} = 'BLM'" if af else '1=1')
                     url, where = OWN_T['blm']
                 else: url, where = PADUS, PADQ[kind]
-                def read(url, where):
-                    gs, off = [], 0
+                def pages_ok(url):   # Fable Oct 29 (Utah 'code 400'): a MapServer layer may not page by resultOffset
+                    if url not in PAGING:
+                        try: PAGING[url] = bool(((get(url.rsplit('/query', 1)[0], {'f': 'json'}) or {}).get('advancedQueryCapabilities') or {}).get('supportsPagination', True))
+                        except Exception: PAGING[url] = True  # noqa: BLE001
+                    return PAGING[url]
+                def read(url, where, box_=None, depth=0):
+                    """One tile; when the layer will not page, or the answer is cut / refused (too heavy), split the tile in 4 (3 levels)."""
+                    bx = box_ or tb
+                    gs, off, paging = [], 0, pages_ok(url)
                     while True:
-                        jj = get(url, {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
-                                       'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
-                                       'maxAllowableOffset': det, 'geometryPrecision': prec, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'}, timeout=240)
-                        if 'error' in jj: raise RuntimeError(str(jj['error'])[:80])
+                        q = {'where': where, 'geometry': ','.join(map(str, bx)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                             'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
+                             'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'}
+                        if paging: q.update(resultOffset=off, resultRecordCount=500)
+                        jj = get(url, q, timeout=240)
+                        cut = 'error' in jj or (jj.get('exceededTransferLimit') and not paging)
+                        if cut and depth < 3:
+                            mx, my = (bx[0] + bx[2]) / 2, (bx[1] + bx[3]) / 2
+                            return [g for sb in ([bx[0], bx[1], mx, my], [mx, bx[1], bx[2], my], [bx[0], my, mx, bx[3]], [mx, my, bx[2], bx[3]])
+                                    for g in read(url, where, sb, depth + 1)]
+                        if 'error' in jj: raise RuntimeError(str(jj['error'])[:300])
                         if 'features' not in jj: raise RuntimeError('not a query answer')   # Oct 28: a layer description is never 'no land'
                         fs = jj.get('features') or []
                         gs += [esri_rings(x.get('geometry')) for x in fs if esri_rings(x.get('geometry'))]
-                        if not fs or not jj.get('exceededTransferLimit'): break
+                        if not fs or not jj.get('exceededTransferLimit') or not paging: break
                         off += len(fs)
                     return gs
                 if kind == 'nps':
@@ -146,7 +163,7 @@ def owned_land(kind, box, det, prec):
             out += OWN_T[k]
         return out
     except Exception as e:  # noqa: BLE001
-        LOG.append(f'{kind} owned land: {str(e)[:80]}'); return None
+        LOG.append(f'{kind} owned land: {str(e)[:300]}'); return None
 
 
 def tiles_cached(): return len(FSO['tile']) + sum(1 for k in OWN_T if isinstance(k, tuple))

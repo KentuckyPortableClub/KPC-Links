@@ -986,21 +986,32 @@ def run(st):
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
     rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
+    # Fable Oct 29: a MULTIPART record (Lost Nation = St. Lawrence + Allegany forests in one record) has a bbox that spans the
+    # state, so every pin looks 'near' it: measure to the nearest PART (ring) instead
+    rparts = {}
+    for a in recs:
+        rr = [r for r in rings(a.get('_g')) if len(r) > 2]
+        if len(rr) > 1: rparts[_oid(a)] = [[min(p[0] for p in r), min(p[1] for p in r), max(p[0] for p in r), max(p[1] for p in r)] for r in rr]
     pinx = {}
     for ref in parks:
         r = P.get(ref) or []
         la_, lo_ = (r[5], r[6]) if len(r) > 6 else (None, None)
         if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
         if la_ is not None: pinx[ref] = (la_, lo_)
-    def _dkm(ref, b):
+    def _dk1(ref, b):
         la_, lo_ = pinx[ref]
         return math.hypot(max(0, b[0] - lo_, lo_ - b[2]) * 111.32 * math.cos(math.radians(la_)), max(0, b[1] - la_, la_ - b[3]) * 110.57)
+    _cur = [None]
+    def _dkm(ref, b):   # b = the record's bbox; the distance is to its nearest part when the record has several
+        ps = rparts.get(_cur[0])
+        return min(_dk1(ref, q) for q in ps) if ps else _dk1(ref, b)
     claim = {}
     for ref, p in parks.items():
         for x in p.get('m') or []: claim.setdefault(str(x[0]), set()).add(ref)
     pruned = []
     for rid, refs in claim.items():
         if len(refs) < 2 or rid not in rb: continue
+        _cur[0] = rid
         close = {r for r in refs if r in pinx and _dkm(r, rb[rid]) <= 2}
         if not close: continue
         for r in refs - close:
@@ -1009,6 +1020,29 @@ def run(st):
             parks[r]['m'] = [x for x in parks[r]['m'] if str(x[0]) != rid]
             parks[r].setdefault('not_mine', []).append([rid, sorted(close)[0], round(_dkm(r, rb[rid]))]); pruned.append(f'{r} ({round(_dkm(r, rb[rid]))} km)')
     if pruned: notice(f'US key {st}', f"{len(pruned)} name-only joins dropped (the record belongs to a park next to it): {', '.join(pruned[:12])}")
+    # Fable + chat 8 Oct 29 (rule B12, part-level clipping): a multipart record still claimed by two or more parks whose pins sit
+    # near DIFFERENT parts (Robert Moses Long Island vs Thousand Islands): each park keeps only the parts within 2 km of its pin,
+    # written as part boxes in 'parts' {record id: [[w, s, e, n], ...]}; the 2-fer line reads only those parts
+    claim = {}
+    for ref, p in parks.items():
+        for x in p.get('m') or []: claim.setdefault(str(x[0]), set()).add(ref)
+    clipped = []
+    for rid, refs in claim.items():
+        ps = rparts.get(rid)
+        # only small multipart records (<= 6 parts: NY county-bracket forests, Robert Moses, Truman Home + Farm, San Juan Island
+        # camps); a 500-part national forest is not cut to the bit near a pin. Parts near the pins must not overlap, and the
+        # pins must be more than 15 km apart (the same distance as the prune above)
+        if len(refs) < 2 or not ps or len(ps) > 6 or any(r not in pinx for r in refs): continue
+        near = {r: [i for i, q in enumerate(ps) if _dk1(r, q) <= 2] for r in refs}
+        if any(not v for v in near.values()): continue
+        rl = sorted(refs)
+        if any(set(near[a_]) & set(near[b_]) or _dk1(a_, [pinx[b_][1], pinx[b_][0], pinx[b_][1], pinx[b_][0]]) <= 15
+               for k_, a_ in enumerate(rl) for b_ in rl[k_ + 1:]): continue
+        for r, v in near.items():
+            if len(v) == len(ps) or any(str(x[0]) == rid and str(x[3]).startswith('reviewed') for x in parks[r]['m']): continue
+            parks[r].setdefault('parts', {})[rid] = [[round(c, 4) for c in ps[i]] for i in v]
+            clipped.append(f'{r} ({len(v)} of {len(ps)} parts)')
+    if clipped: notice(f'US key {st}', f"{len(clipped)} parks given only their own parts of a shared multipart record: {', '.join(clipped[:12])}")
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
