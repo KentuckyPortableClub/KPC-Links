@@ -8,7 +8,7 @@ Anything unsure is NOT joined: it goes on the park's 'check' list with the reaso
   data/us-key/index.json  {updated, states:{XX:{parks, matched, check, none, nonum}}}
 STATES='TN IN' picks states (default: every state + DC except KY). PAD-US's firewall refuses long WHERE clauses, so we list each state with
 State_Nm='XX' only and filter here."""
-import json, math, os, re, sys, time, urllib.parse, urllib.request, pathlib
+import json, math, os, re, sys, time, unicodedata, urllib.parse, urllib.request, pathlib
 
 Q = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
