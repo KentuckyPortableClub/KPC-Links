@@ -1,5 +1,5 @@
 {
- "about": "RIVER-WATER TEST (chat 9, Oct 28 2026; chat 8's KPC_OwnLandLayers_Rivers_desk.md section 2): does an ownership layer HIT a point on the water inside its unit? One runner pass, 1 request / 2 s. A NO HIT only proves 'cuts the river out' if the point is truly inside the unit: points marked (chat 9) were picked from the river course and are approximate, and none was checked against the unit's outer boundary in this pass.",
+ "about": "RIVER-WATER TEST (chat 9, Oct 28 2026; chat 8's KPC_OwnLandLayers_Rivers_desk.md section 2): does an ownership layer HIT a point on the water inside its unit? One runner pass, 1 request / 2 s. A NO HIT only proves 'cuts the river out' if the point is truly inside the unit: points marked (chat 9) were picked from the river course and are approximate, and none was checked against the unit's outer boundary in this pass. v2 (Oct 28 night, chat 8 regrade): every layer got a CONTROL point on surely-owned dry land (must HIT or the query is wrong); river points taken from USGS NHD inside the unit polygon; each point asked two ways (plain x,y and JSON geometry, both inSR 4326).",
  "made": "2026-10-28",
  "rows": [
   {
@@ -183,5 +183,465 @@
   "FS Basic Ownership": "Red River gorge channel, Cumberland River in DBNF, Manistee River: all NO HIT = Basic Ownership appears to CUT rivers out (or the points fall on non-FS land): confirm with the proclamation boundary.",
   "Ohio DNR": "Mosquito Lake mid-lake: NO HIT on nolakes /5 + /7 (expected: 'no lakes') AND on ODNR_ODNR_Lands_External; ODNR_Lands_Dissolved could not be read (no polygon layer listed).",
   "Michigan DNR": "Lake Michigan at Warren Dunes = HIT (Warren Dunes State Park): the parks layer KEEPS the water. Manistee River point = NO HIT (expected: Forest Service land, not a state park)."
+ },
+ "version": 2,
+ "r2": [
+  {
+   "test": "NPS tracts: New River Gorge (New River) (control: Mammoth Cave visitor center, fee land)",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": {
+    "point": [
+     37.1866,
+     -86.1003
+    ],
+    "result": {
+     "plain": [
+      {
+       "TRACT_ID": "000263",
+       "ALPHA_TRACT": "MACA-000263",
+       "STATENAME": "KENTUCKY",
+       "STATUS": "Federal",
+       "Interest": "Federal Land (Less than Fee)"
+      }
+     ],
+     "json": [
+      {
+       "TRACT_ID": "000263",
+       "ALPHA_TRACT": "MACA-000263",
+       "STATENAME": "KENTUCKY",
+       "STATUS": "Federal",
+       "Interest": "Federal Land (Less than Fee)"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      38.077929,
+      -81.085527
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      37.961664,
+      -81.054038
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      37.831231,
+      -81.032548
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 7 rings",
+    "NHD 6: The read operation timed out",
+    "NHD layer 4: 293 river vertices",
+    "272 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "NPS tracts: Big South Fork (Big South Fork Cumberland River)",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      36.791085,
+      -84.529077
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.636923,
+      -84.537657
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.523716,
+      -84.650017
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 9 rings",
+    "NHD 6: HTTP Error 504: Gateway Time-out",
+    "NHD 5: HTTP Error 504: Gateway Time-out",
+    "NHD layer 4: 317 river vertices",
+    "316 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FS Basic Ownership: Red River gorge + Cumberland River in DBNF (control Zilpo area)",
+   "layer": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+   "control": {
+    "point": [
+     38.0709,
+     -83.4842
+    ],
+    "result": {
+     "plain": [
+      {
+       "ownerclassification": "USDA FOREST SERVICE",
+       "forestname": "Daniel Boone National Forest"
+      }
+     ],
+     "json": [
+      {
+       "ownerclassification": "USDA FOREST SERVICE",
+       "forestname": "Daniel Boone National Forest"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      37.82,
+      -83.63
+     ],
+     "result": {
+      "plain": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ],
+      "json": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      36.785,
+      -84.35
+     ],
+     "result": {
+      "plain": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ],
+      "json": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": []
+  },
+  {
+   "test": "FS Basic Ownership: Red River from NHD inside Daniel Boone NF",
+   "layer": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      37.829521,
+      -83.797795
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      37.8422,
+      -83.673666
+     ],
+     "result": {
+      "plain": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ],
+      "json": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      37.825875,
+      -83.643312
+     ],
+     "result": {
+      "plain": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ],
+      "json": [
+       {
+        "ownerclassification": "USDA FOREST SERVICE",
+        "forestname": "Daniel Boone National Forest"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 11 rings",
+    "NHD 6: The read operation timed out",
+    "NHD layer 4: 348 river vertices",
+    "82 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FWS realty: Ohio River Islands NWR (control: Shiawassee NWR dry land)",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     43.38,
+     -83.9
+    ],
+    "result": {
+     "plain": [],
+     "json": []
+    }
+   },
+   "water": [
+    {
+     "point": [
+      40.555592,
+      -80.643188
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      40.589689,
+      -80.661302
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      39.876941,
+      -80.79046
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 44 rings",
+    "NHD 6: The read operation timed out",
+    "NHD 5: The read operation timed out",
+    "NHD layer 4: 268 river vertices",
+    "12 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FWS realty: Cache River NWR (AR)",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      34.824732,
+      -91.329932
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.159508,
+      -91.276127
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.35234,
+      -91.186893
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50b",
+        "INTIDNO": "1051.50b",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50b",
+        "INTIDNO": "1051.50b",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 18 rings",
+    "NHD 6: The read operation timed out",
+    "NHD layer 4: 342 river vertices",
+    "340 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FWS realty: Detroit River International WR",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": null,
+   "water": [],
+   "notes": [
+    "unit polygon: 1 records, 3 rings",
+    "NHD 6: The read operation timed out",
+    "NHD 4: The read operation timed out",
+    "NHD 3: The read operation timed out",
+    "0 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "Ohio: Ohio_Conservation_Lands ODNR lands (layer 1) at Mosquito Lake mid-lake",
+   "layer": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "result": {
+      "plain": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP"
+       }
+      ],
+      "json": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": []
+  },
+  {
+   "test": "Ohio: nolakes /5 control on Mosquito Lake State Park dry land (approx)",
+   "layer": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+   "control": {
+    "point": [
+     41.3046,
+     -80.7735
+    ],
+    "result": {
+     "plain": [],
+     "json": []
+    }
+   },
+   "water": [],
+   "notes": []
+  }
+ ],
+ "summary_v2": {
+  "query forms": "Plain x,y and JSON geometry gave the SAME answer at every point, so the query form was not the problem.",
+  "FS Basic Ownership": "SOLID: control HIT; Red River gorge (37.82,-83.63) and Cumberland River (36.785,-84.35) now HIT FS land, and 2 of 3 NHD Red River points HIT (the miss is upstream, outside FS-owned tracts inside the proclamation line). The layer KEEPS rivers where FS owns the banks; R1 NO HITs were the old query.",
+  "NPS tracts": "Control HIT (Mammoth Cave). New River Gorge + Big South Fork: 0 of 6 NHD river points HIT, but no control was taken INSIDE those units, so it may be the tract layer lacking those units, not the river: NOT SOLID for NERI/BISO.",
+  "FWS realty": "NOT SOLID: the control (Shiawassee 43.38,-83.90) did NOT HIT, so the control point or the layer is suspect. Ohio River Islands 1 of 3 and Cache River 1 of 3 river points HIT (tract-by-tract ownership); Detroit River: NHD timed out, 0 points.",
+  "Ohio DNR": "Layer 1 (Ohio_Conservation_Lands) mid-Mosquito Lake HIT (Lease, Mosquito Lake SP) = keeps the lake surface (B6: never a land outline). nolakes /5 control NO HIT: control approximate, NOT SOLID.",
+  "next": "If needed: FWS control from inside a known fee tract polygon; NPS controls inside NERI/BISO; Ohio /5 control from inside a /5 polygon."
  }
 }
