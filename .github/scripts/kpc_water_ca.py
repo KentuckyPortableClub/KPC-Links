@@ -25,37 +25,60 @@ def fetch(url, timeout=600):
 
 
 def work_units():
-    """{work unit id: (minx, miny, maxx, maxy)} from NRCan's index shapefile (read with pyshp)."""
+    """{work unit id: (minx, miny, maxx, maxy)}: from NRCan's KMZ index first (small), else the shapefile index (big: ~250 MB)."""
+    out = {}
+    try:
+        z = zipfile.ZipFile(io.BytesIO(fetch(BASE + 'index/nhn_index_geobase.kmz', 900)))
+        kml = z.read(next(n for n in z.namelist() if n.lower().endswith('.kml'))).decode('utf-8', 'replace')
+        for pm in re.findall(r'<Placemark.*?</Placemark>', kml, re.S):
+            m = re.search(r'\b(\d{2}[A-Za-z]{2}\d{3})\b', pm)
+            cs = [tuple(map(float, c.split(',')[:2])) for blk in re.findall(r'<coordinates>(.*?)</coordinates>', pm, re.S) for c in blk.split() if c.count(',') >= 1]
+            if m and cs:
+                xs = [c[0] for c in cs]; ys = [c[1] for c in cs]; w = m.group(1).upper()
+                b = out.get(w)
+                out[w] = (min(xs), min(ys), max(xs), max(ys)) if not b else (min(b[0], min(xs)), min(b[1], min(ys)), max(b[2], max(xs)), max(b[3], max(ys)))
+        print(f'NHN index (KMZ): {len(out)} work units', flush=True)
+        if out: return out
+    except Exception as e: print(f'NHN KMZ index: {str(e)[:100]}', flush=True)  # noqa: BLE001
     import shapefile   # pyshp
-    z = zipfile.ZipFile(io.BytesIO(fetch(INDEX)))
+    data = None
+    for k in range(3):   # the shapefile index is ~250 MB: stream it to disk, retry a cut download
+        try:
+            p = os.path.join(tempfile.gettempdir(), 'nhn_index.zip')
+            with urllib.request.urlopen(urllib.request.Request(INDEX, headers=UA), timeout=1800) as r, open(p, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
+            data = zipfile.ZipFile(p); break
+        except Exception as e: print(f'NHN index try {k + 1}: {str(e)[:100]}', flush=True); time.sleep(20)  # noqa: BLE001
+    z = data
     shp = next(n for n in z.namelist() if n.lower().endswith('.shp'))
     stem = shp[:-4]
     r = shapefile.Reader(shp=io.BytesIO(z.read(shp)), dbf=io.BytesIO(z.read(stem + '.dbf')),
                          shx=io.BytesIO(z.read(stem + '.shx')) if stem + '.shx' in z.namelist() else None)
     names = [f[0] for f in r.fields[1:]]
-    out = {}
     for sr in r.iterShapeRecords():
         rec = dict(zip(names, sr.record))
         wid = next((str(v).strip() for v in rec.values() if re.fullmatch(r'\d{2}[A-Z]{2}\d{3}', str(v).strip().upper())), None)
         if not wid: continue
         bx = sr.shape.bbox
-        if bx and abs(bx[0]) > 180:   # not in degrees: the index is projected (should not happen for GeoBase), skip loudly
-            notice(f'index box for {wid} is not in degrees: {bx[:2]}'); continue
+        if bx and abs(bx[0]) > 180: continue
         out[wid.upper()] = tuple(bx)
-    print(f'NHN index: {len(out)} work units (fields: {", ".join(names[:8])})', flush=True)
+    print(f'NHN index (shapefile): {len(out)} work units (fields: {", ".join(names[:8])})', flush=True)
     return out
 
 
-def listing():
-    """{work unit id: file URL} from the GeoPackage directory listing."""
+def listing(need=()):
+    """{work unit id: GeoPackage URL}: NRCan files sit in gpkg_en/<first 2 digits>/nhn_rhn_<id>_gpkg_en.zip (the CA folder = whole-country
+    files); each needed unit's folder is listed once; when a listing fails, the usual name is tried as is."""
     files = {}
-    for sub in ('gpkg_en/CA/', 'gpkg_en/'):
-        try: html = fetch(BASE + sub, 120).decode('utf-8', 'replace')
-        except Exception as e: print(f'listing {sub}: {str(e)[:80]}', flush=True); continue  # noqa: BLE001
-        for href in re.findall(r'href="([^"]+\.zip)"', html, re.I):
-            m = re.search(r'(\d{2}[a-z]{2}\d{3})', href, re.I)
-            if m: files.setdefault(m.group(1).upper(), href if href.startswith('http') else BASE + sub + href.split('/')[-1])
-        if files: print(f'NHN listing {sub}: {len(files)} GeoPackage files, e.g. {next(iter(files.values()))}', flush=True); break
+    for d2 in sorted({w[:2] for w in need}):
+        sub = f'gpkg_en/{d2}/'
+        try:
+            html = fetch(BASE + sub, 120).decode('utf-8', 'replace')
+            for href in re.findall(r'href="([^"]+\.zip)"', html, re.I):
+                m = re.search(r'(\d{2}[a-z]{2}\d{3})', href, re.I)
+                if m: files.setdefault(m.group(1).upper(), href if href.startswith('http') else BASE + sub + href.split('/')[-1])
+        except Exception as e: print(f'listing {sub}: {str(e)[:80]}', flush=True)  # noqa: BLE001
+    for w in need: files.setdefault(w, f'{BASE}gpkg_en/{w[:2]}/nhn_rhn_{w.lower()}_gpkg_en.zip')
+    if files: print(f'NHN files: {len(files)}, e.g. {next(iter(files.values()))}', flush=True)
     return files
 
 
@@ -108,13 +131,14 @@ def main():
     notice(f"{' '.join(WB.STATES)}: {len(need)} water tiles under the rows, {len(have & need)} already saved, {len(miss)} to fill from the NHN files"
            + (' (' + '; '.join(f'{st} {len(t)}/{len(t & have)}' for st, t in per.items() if t) + ' needed/saved)' if per else ''))
     if not miss: return
-    try: wus, files = work_units(), listing()
-    except Exception as e: notice(f'the NHN index / listing did not answer ({str(e)[:100]}): nothing filled'); return  # noqa: BLE001
+    try: wus = work_units()
+    except Exception as e: notice(f'the NHN index did not answer ({str(e)[:100]}): nothing filled'); return  # noqa: BLE001
     cover = {}
     for t in miss:
         tb = (t[0] * .1, t[1] * .1, (t[0] + 1) * .1, (t[1] + 1) * .1)
         cover[t] = {w for w, b in wus.items() if not (b[2] < tb[0] or b[0] > tb[2] or b[3] < tb[1] or b[1] > tb[3])}
     todo = sorted({w for s in cover.values() for w in s})
+    files = listing(todo)
     nofile = [w for w in todo if w not in files]
     if len(todo) > MAX_WU: notice(f'{len(todo)} work units needed, only the first {MAX_WU} read this run'); todo = todo[:MAX_WU]
     out, used, failed, tmp = {}, set(), {}, tempfile.mkdtemp()
