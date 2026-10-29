@@ -395,6 +395,10 @@ def source_of(rid, canada, src=None):
 def name_ok(want, attrs):
     w = low(want)
     if not w: return True
+    # Oct 29 (chat 8 NOT SURE group 1: NB 264 rows 'outline could not be read'): the key NAMES New Brunswick's management zones
+    # 'New Brunswick #24 Wildlife Management Area' from the layer's zone NUMBER (field WMZ); the layer itself holds only the number
+    m = re.match(r'new brunswick (\d+) wildlife management area$', w)
+    if m and any(str(v).split('.')[0] == m.group(1) for k, v in attrs.items() if str(k).upper() == 'WMZ'): return True
     for v in attrs.values():
         if isinstance(v, str):
             v = low(v)
@@ -2701,6 +2705,25 @@ def main():
                     decide(g, parks, G, LN, PIN, today, set(), st_of); d['spots'].append(g); have.add(g['id']); remade += 1
             n['water-route rows made again from the saved water'] = remade
             n['water-route pairs still without water'] = still
+        # Oct 29 (chat 8 NOT SURE groups 2 + 6): rows left from older runs with an owner wording the simple test no longer makes
+        # ('more than one owner across the spot': all-public mixes are 'ok' now) or an ownership map that did not answer (BLM
+        # time-outs, fixed in kpc_owned.py) are decided AGAIN here; pass 3 never re-reads a 'not sure' row
+        STALE = re.compile(r'^not sure: (the ownership map shows more than one owner|the agency ownership map did not answer|ownership map did not answer)')
+        stale = [x for d in files.values() for x in d.get('spots', []) if STALE.search(str(x.get('status', '')))]
+        if stale and not late():
+            need = sorted({r for x in stale for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+            if need:
+                g5, _ = ky_geom(parks, need) if REGION == 'ky' else download(parks, need, DET, PREC)
+                G.update(g5)
+            CURG.clear(); CURG.update(G)
+            redo = 0
+            for x in stale:
+                if late(): break
+                if any(r not in G and r not in LN for r in x['refs']): continue
+                before = x.get('status')
+                try: decide(x, parks, G, LN, PIN, today, set(), st_of); redo += 1
+                except Exception as e: x['status'] = before; LOG.append(f"re-decide {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+            n['old not-sure owner rows decided again'] = f'{redo} of {len(stale)}'
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if more:
