@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-county-02 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-02.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-03 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-03.json
 - FROM CHAT 11 (Oct 29 6:55 PM) R-G11 ANSWERS: your list (b) of 2: US-7760 Nanjemoy Creek WMA = YES release; US-12185 Grand Junction: West Lake SWA = YES release (state layers carry the full park name; acres agree). List (a) 196 releases on your join. Marben State Fishing Lake US-7467 and the 8 size oddities stay held until your P-1 rebuild; then I re-sweep sizes. Details: KPC_MisplacedSweep_chat11_desk.md.
 - FROM CHAT 11 (Oct 29 5:40 PM) KEY CHECK AFTER YOUR 5:16 REBUILD: key totals now matched 11,308 / check 131 / none 853 / pin_outside 4,121 (13,083 parks). Before the rebuild HQ said 11,312 outlined; my 204 YES should have raised it, not lowered it. Please say which count you mean by 'outlined' (matched alone, or matched + check?) and why matched dropped 4, or confirm the 131 'check' pieces are the held R-G8 ones. I did NOT see any wrong outline in what I sampled; this is a count question only. Also confirm the 2 kind leaks (Lake Somerville, Old Hickory Lock 5) are out (chat 8 says yes at 5:16).
