@@ -1,126 +1,6 @@
 {
- "updated": "2026-10-28T11:19:53Z",
+ "updated": "2026-10-29T11:20:40Z",
  "week": [
-  {
-   "name": "A1Club AWT",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fzbkb",
-   "when": "1145Z-1300Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T11:45Z",
-     "2026-10-28T13:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fodvm",
-   "when": "1300Z-1400Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T13:00Z",
-     "2026-10-28T14:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g06fb",
-   "when": "1700Z-1759Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T17:00Z",
-     "2026-10-28T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 80",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g11ag",
-   "when": "1800Z-1859Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T18:00Z",
-     "2026-10-28T18:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fp8qq",
-   "when": "1900Z-2000Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T19:00Z",
-     "2026-10-28T20:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fa0yv",
-   "when": "2000Z-2100Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T20:00Z",
-     "2026-10-28T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fqbbm",
-   "when": "0300Z-0400Z, Oct 29",
-   "segs": [
-    [
-     "2026-10-29T03:00Z",
-     "2026-10-29T04:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003frdwi",
-   "when": "0700Z-0800Z, Oct 29",
-   "segs": [
-    [
-     "2026-10-29T07:00Z",
-     "2026-10-29T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "NCCC FT4 Sprint",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g36h1",
@@ -240,6 +120,20 @@
    "modes": [
     "PHONE"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Silent Key Memorial Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hrmbf",
+   "when": "0600Z-0859Z, Nov 1",
+   "segs": [
+    [
+     "2026-11-01T06:00Z",
+     "2026-11-01T08:59Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -434,27 +328,147 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.ukeicc.com",
-   "when": "",
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gx6jq",
+   "when": "0200Z-0330Z, Nov 4",
    "segs": [
     [
-     "2026-10-28T20:00Z",
-     "2026-10-28T21:01Z"
+     "2026-11-04T02:00Z",
+     "2026-11-04T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gqbox",
+   "when": "0230Z-0300Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T02:30Z",
+     "2026-11-04T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gr6nf",
+   "when": "1145Z-1300Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T11:45Z",
+     "2026-11-04T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gg18y",
+   "when": "1300Z-1400Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T13:00Z",
+     "2026-11-04T14:00Z"
     ]
    ],
    "modes": [
     "CW"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5",
-   "exch": "6-char grid"
+   "src": "WA7BNM"
   },
+  {
+   "name": "VHF-UHF FT8 Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9lwi",
+   "when": "1700Z-2100Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T17:00Z",
+     "2026-11-04T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gs1if",
+   "when": "1700Z-1759Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T17:00Z",
+     "2026-11-04T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gswdk",
+   "when": "1800Z-1859Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T18:00Z",
+     "2026-11-04T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ggw42",
+   "when": "1900Z-2000Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T19:00Z",
+     "2026-11-04T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "UKEICC 80m Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fa8on",
+   "when": "2000Z-2100Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-04T20:00Z",
+     "2026-11-04T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "Zombie Shuffle",
    "url": "https://www.zianet.com/qrp",
@@ -1290,7 +1304,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (29)",
-  "CORRAL": "ok (5)"
+  "WA7BNM": "ok (31)",
+  "CORRAL": "ok (4)"
  }
 }

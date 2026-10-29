@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T11:19:42Z",
+ "updated": "2026-10-29T11:20:30Z",
  "stations": [
   {
    "title": "2026 Frankenstein Halloween FunXpedition",
@@ -680,6 +680,21 @@
    "qsl": "QSL",
    "url": "https://www.qrz.com/db/K6W",
    "note": ", San Diego, CA. Wildlife Signals Society. 146.52 28.074 14.074. QSL. K2W Whale Migration Festival SES, c/o Gregory Chapelle WA6YLR, 13309 Trailhead Place, San Diego, CA 92129."
+  },
+  {
+   "title": "MRAC 110th Anniversary",
+   "start": "2027-01-09",
+   "end": "2027-01-09",
+   "times": "1600Z-2200Z",
+   "call": "",
+   "calls": [],
+   "where": "Milwaukee, WI",
+   "st": "WI",
+   "by": "Milwaukee Radio Amateurs' Club",
+   "freqs": "7.250 14.250 28.490",
+   "qsl": "Certificate",
+   "url": "https://www.w9rh.org/special-event-station-w9rh-110",
+   "note": ", Milwaukee, WI. Milwaukee Radio Amateurs' Club. 7.250 14.250 28.490. Certificate. Milwaukee Radio Amateurs' Club, P.O. Box 26938, Milwaukee, WI 53226. The Milwaukee Radio Amateur's Club is celebrating 110 years of service to amateur radio operators in the Greater Milwaukee area. Join our celebration and contact W9RH/110. All QSOs will be sent a commemorative certificate if requested by email. Vis"
   }
  ],
  "yearly": [
@@ -739,6 +754,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (40)"
+  "ARRL": "ok (41)"
  }
 }
