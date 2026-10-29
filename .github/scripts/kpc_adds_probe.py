@@ -431,26 +431,6 @@ def _interior(rings):
     return None
 
 
-def keyed(cfg):
-    """Oct 29 (Brandon's KEYED GOVERNMENT APIS rule): NPS API + RIDB with our keys (env), 2 s apart. Keeps only the named fields."""
-    out = []
-    for x in cfg.get('keyed') or []:
-        r = {'id': x.get('id'), 'url': x['url']}
-        try:
-            u = x['url'].replace('{NPS_API_KEY}', os.environ.get('NPS_API_KEY', ''))
-            h = dict(UA)
-            if 'ridb.recreation.gov' in u: h['apikey'] = os.environ.get('RIDB_API_KEY', '')
-            with urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=90) as f: j = json.loads(f.read().decode('utf-8', 'replace'))
-            rows = j.get(x.get('list', 'data')) or []
-            r['rows'] = [{k: z.get(k) for k in x['fields']} for z in rows][:x.get('n', 60)]
-            r['total'] = len(rows)
-        except Exception as e: r['error'] = str(e)[:160]
-        out.append(r)
-        notice(f"keyed {x.get('id')}: {r.get('total', 0)} rows {r.get('error', '')}")
-        time.sleep(2)
-    return out
-
-
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer'
 
 
@@ -604,7 +584,7 @@ def nearq(cfg):
 
 def main():
     cfg = json.load(open(CAND))
-    notice('commit ' + os.popen('git rev-parse --short HEAD').read().strip() + ' round ' + CAND)
+    notice('commit ' + os.popen('git rev-parse --short HEAD').read().strip() + ' round ' + str(CAND))
     held = {}
     try:
         for st, v in json.load(open(HELD))['states'].items():
@@ -644,9 +624,6 @@ def main():
     if cfg.get('nearq'):
         try: res['nearq'] = nearq(cfg)
         except Exception as e: res['nearq'] = [{'error': str(e)[:140]}]
-    if cfg.get('keyed'):
-        try: res['keyed'] = keyed(cfg)
-        except Exception as e: res['keyed'] = [{'error': str(e)[:140]}]
     if cfg.get('pinhunt'):
         try: res['pinhunt'] = pinhunt(cfg)
         except Exception as e: res['pinhunt'] = [{'error': str(e)[:140]}]

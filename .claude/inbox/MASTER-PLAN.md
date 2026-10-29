@@ -68,11 +68,11 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 11.5 (from 8.8) Review list data/fers/review-all.md: the 148 NOT SURE + 115 'water map weak' rows first, biggest first (LIVE / DROP / still NOT SURE + why / for members); POTA-history hints last
 
 ## CHAT 9 (data adds)
-- [~] 9.1 (Oct 29 8:45 AM: 14 of 18 rows placed: 8 from recreation.gov records, 4 WMA + Kingdom Come + Otter Creek from the agencies' own entrance pins (precision 'entrance'); Turkey Bay pin added; LBL self-service x10 + Fenton, Houchin Ferry, Breaks left: NPS API + RIDB look-up in run 40884335904) Campground points for Land Between the Lakes + KY state parks (Camp & Activate's 20 missing)
+- [~] 9.1 (Oct 29 8:45 AM: 14 of 18 rows placed: 8 from recreation.gov records, 4 WMA + Kingdom Come + Otter Creek from the agencies' own entrance pins (precision 'entrance'); Turkey Bay pin added; keyed NPS/RIDB look-up CANCELLED (not approved), 4 left: Houchin Ferry, Breaks, Fenton, LBL self-service x10; LBL self-service x10 + Fenton, Houchin Ferry, Breaks left: NPS API + RIDB look-up in run 40884335904) Campground points for Land Between the Lakes + KY state parks (Camp & Activate's 20 missing)
 - [x] 9.2 (Oct 29 5:10 AM: probe folder 1.2 MB to 16 KB, old rounds kept in git history; KPC-Data writes ~80 KB) Storage tidy of its own folders
 - [~] 9.3 (Oct 29 8:45 AM: v3 running, controls taken automatically from inside each layer's own polygons, run 40884335904) River-layer test v3 (Park Service / Fish & Wildlife control points)
 - [-] 9.4 DROPPED by SCOPE
-- [~] 9.5 (Oct 29 8:45 AM: first search running for KS LA NM AZ AK MS HI + Canada MB NB NT NU PE NS YT NL + Parks Canada (these have 0-50 access points); run 40884335904) PARKING / ACCESS points: find official parking / entrance / boat-ramp layers for US states still thin AND Canada (provinces + Parks Canada); feed them to the access bot (through the waiting room)
+- [~] 9.5 (Oct 29 9:55 AM: step 1 MISSING report done, .claude/build/research/PARKING_Missing_Report.md; step 2 waits on HQ GO; layer search re-sent) (Oct 29 8:45 AM: first search running for KS LA NM AZ AK MS HI + Canada MB NB NT NU PE NS YT NL + Parks Canada (these have 0-50 access points); run 40884335904) PARKING / ACCESS points: find official parking / entrance / boat-ramp layers for US states still thin AND Canada (provinces + Parks Canada); feed them to the access bot (through the waiting room)
 
 ## CHAT 4 (app) — waits for Brandon
 - [ ] 4.1 Rebuild the app park packs for the 13 states (after the access pilot)

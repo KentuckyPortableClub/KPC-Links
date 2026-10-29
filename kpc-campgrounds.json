@@ -82,7 +82,7 @@
      "checked": "2026-10-14",
      "la": 36.67806,
      "lo": -84.51889,
-     "point_src": "RIDB / recreation.gov facility 232505 'Blue Heron Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 232505 'Blue Heron Campground' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "bear-creek-horse-camp-ky",
@@ -98,7 +98,7 @@
      "checked": "2026-10-14",
      "la": 36.64108,
      "lo": -84.52364,
-     "point_src": "RIDB / recreation.gov facility 251468 'Bear Creek Campground - KY, Big South Fork' (the NPS page bear-creek-horse-camp.htm carries the same title 'Bear Creek Campground'; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 251468 'Bear Creek Campground - KY' from our existing data/campfed/US-KY.json (the NPS page bear-creek-horse-camp.htm is titled 'Bear Creek Campground'; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "alum-ford-campground-ky",
@@ -114,7 +114,7 @@
      "checked": "2026-10-14",
      "la": 36.76517,
      "lo": -84.54722,
-     "point_src": "RIDB / recreation.gov facility 10304520 'Alum Ford Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 10304520 'Alum Ford Campground' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "bandy-creek-campground-tn",
@@ -131,7 +131,7 @@
      "checked": "2026-10-14",
      "la": 36.48895,
      "lo": -84.69756,
-     "point_src": "RIDB / recreation.gov facility 232506 'Bandy Creek' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 232506 'Bandy Creek' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "station-camp-campground-tn",
@@ -148,7 +148,7 @@
      "checked": "2026-10-14",
      "la": 36.54691,
      "lo": -84.63617,
-     "point_src": "RIDB / recreation.gov facility 10004358 'Station Camp Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 10004358 'Station Camp Campground' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     }
    ],
    "lodging": [
@@ -376,7 +376,7 @@
      "checked": "2026-10-14",
      "la": 36.60446,
      "lo": -83.63254,
-     "point_src": "RIDB / recreation.gov facility 258617 'Wilderness Road Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 258617 'Wilderness Road Campground' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     }
    ]
   },
@@ -1244,7 +1244,7 @@
      "checked": "2026-10-14",
      "la": 37.19028,
      "lo": -86.09139,
-     "point_src": "RIDB / recreation.gov facility 232467 'Mammoth Cave Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 232467 'Mammoth Cave Campground' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "maple-springs-group-campground",
@@ -1260,7 +1260,7 @@
      "checked": "2026-10-14",
      "la": 37.20722,
      "lo": -86.13167,
-     "point_src": "RIDB / recreation.gov facility 232468 'Maple Springs' (the agency's own record; 5 decimals), checked 2026-10-29"
+     "point_src": "RIDB / recreation.gov facility 232468 'Maple Springs' from our existing data/campfed file (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "houchin-ferry-campground",
