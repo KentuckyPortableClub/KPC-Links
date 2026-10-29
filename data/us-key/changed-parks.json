@@ -1,10 +1,5 @@
 {
  "about": "Parks whose joined outline changed in the last US key rebuild (for the 2-fer small batches).",
  "date": "2026-10-29",
- "refs": [
-  "US-12378",
-  "US-5564",
-  "US-6468",
-  "US-8449"
- ]
+ "refs": []
 }
