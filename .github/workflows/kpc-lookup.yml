@@ -44,7 +44,7 @@ jobs:
           persist-credentials: false
       - name: Browser
         continue-on-error: true
-        run: pip install -q playwright pypdf && python3 -m playwright install --with-deps chromium >/dev/null 2>&1 || true
+        run: (sudo apt-get install -y -q poppler-utils >/dev/null 2>&1 || true); pip install -q playwright pypdf && python3 -m playwright install --with-deps chromium >/dev/null 2>&1 || true
       - name: Answer
         continue-on-error: true
         env:

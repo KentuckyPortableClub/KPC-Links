@@ -59,6 +59,30 @@ def browser():
     return _BR
 
 
+PDF_PAGES = 3
+
+
+def pdf_answer(r, body, shot_path):
+    """chat 3 (Oct 29 3:50 PM): a PDF comes back as text + pages 1-3 rendered to PNG (so a checker can SEE the boundary). Poppler
+    (pdftotext / pdftoppm), about 1600 px on the long side."""
+    import subprocess, tempfile
+    r['kind'] = 'pdf'; r['bytes'] = len(body)
+    with tempfile.TemporaryDirectory() as td:
+        f = pathlib.Path(td) / 'in.pdf'; f.write_bytes(body)
+        try:
+            info = subprocess.run(['pdfinfo', str(f)], capture_output=True, text=True, timeout=60).stdout
+            m = re.search(r'^Pages:\s+(\d+)', info, re.M); r['pages'] = int(m.group(1)) if m else None
+            r['text'] = subprocess.run(['pdftotext', '-f', '1', '-l', str(PDF_PAGES), '-layout', str(f), '-'], capture_output=True, text=True, timeout=120).stdout[:TEXT_MAX]
+            if shot_path:
+                base = str(shot_path)[:-4]
+                subprocess.run(['pdftoppm', '-f', '1', '-l', str(PDF_PAGES), '-png', '-scale-to', '1600', str(f), base + '-p'], capture_output=True, timeout=300)
+                shots = sorted(str(q) for q in pathlib.Path(base).parent.glob(pathlib.Path(base).name + '-p*.png'))
+                r['screenshots'] = shots; r['screenshot'] = shots[0] if shots else None
+        except Exception as e:  # noqa: BLE001
+            r['pdf_error'] = f'{type(e).__name__}: {str(e)[:120]}'
+    return r
+
+
 def read_page(u, shot_path=None):
     r = {'url': u}
     if not M: r['status'] = 'no manners module: not read'; return r
@@ -68,6 +92,11 @@ def read_page(u, shot_path=None):
     w = M.gap - (time.time() - M.last.get(h, 0))
     if w > 0: time.sleep(w)
     M.last[h] = time.time()
+    if re.search(r'\.pdf(?:$|[?#])|/download(?:$|[?#])', u, re.I):   # a PDF (or a /download link): read the bytes, render pages
+        st, hd, body, final = M.get(u, accept='application/pdf,*/*')
+        r['status'] = st; r['final_url'] = final; r['read_by'] = 'plain read'
+        if body[:5] == b'%PDF-' or 'pdf' in str(hd.get('content-type', '')).lower(): return pdf_answer(r, body, shot_path)
+        if isinstance(st, int) and st < 400 and body: r['text'] = page_text(body.decode('utf-8', 'replace'))[:TEXT_MAX]; return r
     ctx = browser()
     if ctx:
         try:
