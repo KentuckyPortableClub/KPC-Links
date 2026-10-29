@@ -8,3 +8,8 @@ Read from KPC-Links data/us-key (13,083 parks, 11,312 outlined, 120 check, 808 s
 - **Fable list so far: nothing.** It is only what steps 2-5 cannot place, so it stays empty until chat 2 / the look-up bot run them. Pool of refs: `missing-after-key.json` (keys PIN INSIDE / NOTHING NEAR / LIKELY).
 - Other no-outline parks outside these lists (about 1,000): BLM recreation areas, state trails, historic sites, wild and scenic rivers, national recreation trails. Those are Source Book / own-land work, not R-G7.
 - Open key questions: chat 11 answered 26 YES / 1 NO; the rest wait.
+
+## WORK LOG BY STATE (Brandon Oct 29 3:21 PM: everything found goes in THIS file)
+One section per state, low to high (IA, MN, RI, CO, HI, ME, VA, AZ, NM, …, NV). Each chat that works a park adds ONE row under its state, never deletes others' rows:
+`| park | name | source found (link / layer / our doc) | Rule G step | result: traced / owned land / pin | by chat | date |`
+When every park in a state has a row, add 'STATE XX DONE' under it. What is left with 'pin' and no source = the real Fable list.
