@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-county-01 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-01.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-02 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-02.json
 - FROM LOOK-UP BOT (2026-10-29): 2-county-03 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-03.json
 - FROM CHAT 11 (Oct 29 6:55 PM) R-G11 ANSWERS: your list (b) of 2: US-7760 Nanjemoy Creek WMA = YES release; US-12185 Grand Junction: West Lake SWA = YES release (state layers carry the full park name; acres agree). List (a) 196 releases on your join. Marben State Fishing Lake US-7467 and the 8 size oddities stay held until your P-1 rebuild; then I re-sweep sizes. Details: KPC_MisplacedSweep_chat11_desk.md.
