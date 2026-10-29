@@ -1,8 +1,103 @@
 {
  "refs": {
+  "CA-2045": {
+   "n": "Parc Hervé-Larivière Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
   "CA-2156": {
    "n": "Réserve naturelle de la Montagne-de-Rigaud Nature Reserve",
    "d": "2026-10-24",
+   "src": "canada"
+  },
+  "CA-2160": {
+   "n": "Parc Schulz Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-2161": {
+   "n": "Parc Saint-Georges Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-2266": {
+   "n": "Parc Pierre-Arpin Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5166": {
+   "n": "Dominion Park Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5170": {
+   "n": "Fallsview Park Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5188": {
+   "n": "Jordan Miller Park Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5190": {
+   "n": "Little River Reservoir Park Conservation Area",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5219": {
+   "n": "Riverview Memorial Park Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5224": {
+   "n": "Seaside Park Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5673": {
+   "n": "Centennial Park (St. Andrews) Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5694": {
+   "n": "King Square West Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5697": {
+   "n": "Larche Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5701": {
+   "n": "Matthew's Brook Trail National Recreation Trail",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5709": {
+   "n": "QPlex Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5713": {
+   "n": "Queen Square West Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5722": {
+   "n": "Saunder's Brook Trail National Recreation Trail",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-5919": {
+   "n": "Parc Lacroix Recreation Park",
+   "d": "2026-10-29",
+   "src": "canada"
+  },
+  "CA-6534": {
+   "n": "Cape Enrage Provincial Park",
+   "d": "2026-10-29",
    "src": "canada"
   },
   "CN-0296": {
