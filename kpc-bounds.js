@@ -144,7 +144,7 @@
   /* RULE SHEET G (Oct 29, chat 2 step 3): what a card says about the outline. o = {label: 'official'|'approx'|'none', pinOff} */
   function gradeText(o) {
     o = o || {}; const t = o.label === 'official' ? 'Official outline' : o.label === 'approx' ? 'Approximate outline' : 'Pin only (no official outline yet)';
-    return t + (o.pinOff ? '. POTA’s pin may be off for this park' : '');
+    return t;   /* Brandon Oct 29 2:22 PM: 'pin_may_be_wrong' is internal only: no note on cards */
   }
   /* RULE SHEET G: zoomed in close (zoom >= 13), a drawn outline is swapped for the agency's own ~3 m copy of the part on screen
      (closeUp, no second rounding); zoomed out, the lighter copy comes back. layer = the L.geoJSON drawn from fs (its own style

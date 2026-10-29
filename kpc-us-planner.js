@@ -404,14 +404,14 @@ async function showBoundary(s,btn){
     but a separate 'SHOW UNOFFICIAL OUTLINE' button (OpenStreetMap) as a last resort. */
  if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false,site=null,approx=false,approxWhy='',bnote='';
   try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;
-   if(k&&k.state==='ok'){fs=k.fs;approx=!!k.approx;approxWhy=k.why||'';bnote=(k.note||'')+(k.pinOff?(k.note?' ':'')+'POTA\u2019s pin may be off for this park.':'');const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none'){none=true;site=k.site}}catch(e){}
+   if(k&&k.state==='ok'){fs=k.fs;approx=!!k.approx;approxWhy=k.why||'';bnote=(k.note||'');const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none'){none=true;site=k.site}}catch(e){}
   if(!fs&&!none){try{const g=await KPCB.padusByName(s.n,s.la,s.lo);if(g&&g.length)fs=g}catch(e){}}
   if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:approx?'10 6':null,fillColor:'#f0c96b',fillOpacity:approx?.07:.15}}).addTo(map);
    if(KPCB.sharpLayer){if(window.__usSharp)window.__usSharp();window.__usSharp=KPCB.sharpLayer(map,bound,fs)}   /* RULE SHEET G: full detail when zoomed in */
    const nm=fs[0]._nm||s.n;btn.textContent=approx?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
-   if(approx){status(`<b>Approximate outline, not official:</b> ${esc(nm)}${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). We are not sure this is the park: ${esc(approxWhy)}. Check the park’s own map before you set up.${bnote&&/pin may be off/.test(bnote)?' POTA\u2019s pin may be off for this park.':''}`);return}
+   if(approx){status(`<b>Approximate outline, not official:</b> ${esc(nm)}${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). We are not sure this is the park: ${esc(approxWhy)}. Check the park’s own map before you set up.`);return}
    status(`Official outline: <b>${esc(nm)}</b>${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). POTA goes by the official boundary; check the park's own map too.${bnote?' <b>'+esc(bnote)+'</b>':''}`);return}
   btn.textContent='SORRY, NO BOUNDARY AVAILABLE AT THIS TIME';btn.disabled=false;boundRef='';
   const pop=btn.closest('.us-pop')||btn.parentNode;if(pop&&!pop.querySelector('[data-a="osm"]')){const o=document.createElement('button');o.type='button';o.dataset.a='osm';o.textContent='SHOW UNOFFICIAL OUTLINE';o.title='Last resort: OpenStreetMap, a volunteer map';o.onclick=ev=>{ev.preventDefault();osmBoundary(s,o)};btn.after(o)}

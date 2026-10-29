@@ -136,7 +136,7 @@
     if (cur !== p) return;
     p.pts = pts; p.fs = o.fs || [];
     $('afBnd').textContent = (p.fs.length ? (o.label === 'official' ? 'Official outline' + (o.src ? ' (' + o.src + ')' : '') + '.' : 'Approximate outline, not official' + (o.why ? ' (' + o.why + ')' : '') + '. Check the park’s own map.')
-      : 'Pin only (no official outline yet), so points are not checked against the line. Check the park’s own map.') + (o.pinOff ? ' POTA’s pin may be off for this park.' : '');   /* RULE SHEET G wording */
+      : 'Pin only (no official outline yet), so points are not checked against the line. Check the park’s own map.');   /* RULE SHEET G wording */
     pts.forEach(x => Object.assign(x, { w: where(x, p.fs) }));
     $('afMsg').textContent = '';
     draw(); mapDraw(true);

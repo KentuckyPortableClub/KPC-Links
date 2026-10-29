@@ -428,19 +428,6 @@
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   },
   {
-   "id": "NY",
-   "label": "New York",
-   "files": [
-    "US-NY"
-   ],
-   "missing": "missing-neb",
-   "missingSt": "NY",
-   "public": false,
-   "beta": true,
-   "showWaiting": true,
-   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
-  },
-  {
    "id": "CT",
    "label": "Connecticut",
    "files": [
@@ -517,6 +504,110 @@
    "beta": true,
    "showWaiting": true,
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA",
+   "label": "California",
+   "files": [
+    "US-CA"
+   ],
+   "missing": "missing-pacific",
+   "missingSt": "CA",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "CA-AB",
+   "label": "Alberta",
+   "files": [
+    "CA-AB"
+   ],
+   "missing": "missing-caabbc",
+   "missingSt": "CA-AB",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "MS",
+   "label": "Mississippi",
+   "files": [
+    "US-MS"
+   ],
+   "missing": "missing-southeast",
+   "missingSt": "MS",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "NE",
+   "label": "Nebraska",
+   "files": [
+    "US-NE"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "NE",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "ME",
+   "label": "Maine",
+   "files": [
+    "US-ME"
+   ],
+   "missing": "missing-nec",
+   "missingSt": "ME",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "NH",
+   "label": "New Hampshire",
+   "files": [
+    "US-NH"
+   ],
+   "missing": "missing-nec",
+   "missingSt": "NH",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "VT",
+   "label": "Vermont",
+   "files": [
+    "US-VT"
+   ],
+   "missing": "missing-nec",
+   "missingSt": "VT",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "MA",
+   "label": "Massachusetts",
+   "files": [
+    "US-MA"
+   ],
+   "missing": "missing-nec",
+   "missingSt": "MA",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   }
  ],
  "hide": {
@@ -542,6 +633,9 @@
   "US-2764+US-2766": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Lake Sakakawea SP x Little Missouri SP, 97 km)",
   "US-2764+US-5747": "chat 8 Oct 29 ~8:10 AM: to CHECK (small park, far pins); hidden until checked (Lake Sakakawea SP x Crow Flies High SRA, 96 km)",
   "US-2621+US-4015": "chat 8 Oct 29 ~8:10 AM: WRONG join (Platte River SP x Platte River Landing SP, sister names 40 km)",
-  "CA-1027+CA-2312": "chat 8 Oct 29 ~8:10 AM: to CHECK (QC, pins 228 km); hidden until checked"
+  "CA-1027+CA-2312": "chat 8 Oct 29 ~8:10 AM: to CHECK (QC, pins 228 km); hidden until checked",
+  "US-8928+US-8946": "chat 8 Oct 29 2:50 PM: hold (PA 231 x PA 251 State Game Lands, 114 km apart: multi-part join)",
+  "US-8933+US-9016": "chat 8 Oct 29 2:50 PM: hold (PA 236 x PA 326 State Game Lands, 125 km apart: multi-part join)",
+  "CA-0005+CA-0040": "chat 8 Oct 29 2:50 PM: CHECK (Banff x Jasper National Parks share a line; 507 ac looks like a drawing overlap)"
  }
 }
