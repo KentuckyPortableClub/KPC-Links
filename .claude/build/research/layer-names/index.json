@@ -1,0 +1,1282 @@
+{
+ "about": "Names in every layer the US key reads (chat 2 for chat 8, Oct 29): rows [name, lat, lon, acres (outline area), layer key]; lat/lon = the outline's mean point. Read only.",
+ "date": "2026-10-29",
+ "layers": {
+  "akht": {
+   "label": "NPS Ala Kahakai National Historic Trail corridor (official)",
+   "name_field": "TrailName",
+   "records": 1,
+   "status": "read"
+  },
+  "arw": {
+   "label": "Arkansas Game and Fish Commission WMAs",
+   "name_field": "fname",
+   "records": 143,
+   "status": "read"
+  },
+  "cow": {
+   "label": "Colorado Parks and Wildlife properties",
+   "name_field": "PropName",
+   "records": 920,
+   "status": "read"
+  },
+  "ctd": {
+   "label": "Connecticut DEEP property",
+   "name_field": "AV_LEGEND",
+   "records": 491,
+   "status": "read"
+  },
+  "fnl": {
+   "label": "Florida Natural Areas Inventory conservation lands",
+   "name_field": "MANAME",
+   "records": 3435,
+   "status": "read"
+  },
+  "fsod": {
+   "label": "Forest Service national designated areas (monuments, NRAs, scenic areas)",
+   "name_field": "fullname",
+   "records": 227,
+   "status": "read"
+  },
+  "fwsr": {
+   "label": "Forest Service Wild and Scenic River corridor (official boundary)",
+   "name_field": "designatedname",
+   "records": 261,
+   "status": "read"
+  },
+  "hab": {
+   "label": "BLM herd areas",
+   "name_field": "HA_NAME",
+   "records": 327,
+   "status": "read"
+  },
+  "hma": {
+   "label": "BLM herd management areas",
+   "name_field": "HMA_NAME",
+   "records": 181,
+   "status": "read"
+  },
+  "idw": {
+   "label": "Idaho Fish and Game WMAs",
+   "name_field": "Name",
+   "records": 31,
+   "status": "read"
+  },
+  "ind": {
+   "label": "Indiana DNR properties",
+   "name_field": "unitname",
+   "records": 654,
+   "status": "read"
+  },
+  "lar": {
+   "label": "Louisiana Dept. of Wildlife and Fisheries wildlife refuges",
+   "name_field": "NAME",
+   "records": 7,
+   "status": "read"
+  },
+  "law": {
+   "label": "Louisiana Dept. of Wildlife and Fisheries WMAs and refuges",
+   "name_field": "NAME",
+   "records": 59,
+   "status": "read"
+  },
+  "maw": {
+   "label": "MassWildlife lands",
+   "name_field": "SITE_NAME",
+   "records": 484,
+   "status": "read"
+  },
+  "mdd": {
+   "label": "Maryland DNR lands",
+   "name_field": "DNRName",
+   "records": 580,
+   "status": "read"
+  },
+  "mid": {
+   "label": "Michigan DNR project boundaries",
+   "name_field": "UnitName",
+   "records": 1000,
+   "status": "read"
+  },
+  "mol": {
+   "label": "Missouri Dept. of Conservation lands (MSDIS)",
+   "name_field": "Area_Name",
+   "records": 1063,
+   "status": "read"
+  },
+  "mszp": {
+   "status": "not a map query (zip or other)",
+   "label": "MARIS / Mississippi Dept. of Wildlife, Fisheries & Parks (state parks 2026, zip; general area, not a legal description)"
+  },
+  "nca": {
+   "label": "BLM national monuments / conservation areas",
+   "name_field": "NCA_NAME",
+   "records": 1078,
+   "status": "read"
+  },
+  "ncg": {
+   "label": "NC Wildlife Resources Commission game lands",
+   "name_field": "GML_HAB",
+   "records": 95,
+   "status": "read"
+  },
+  "ndw": {
+   "label": "North Dakota Game and Fish WMAs",
+   "name_field": "Unit_Name",
+   "records": 386,
+   "status": "read"
+  },
+  "nep": {
+   "label": "Nebraska Game and Parks areas",
+   "name_field": "AreaName",
+   "records": 74,
+   "status": "read"
+  },
+  "nhc": {
+   "label": "NH GRANIT conservation and public lands",
+   "name_field": "name",
+   "records": 13502,
+   "status": "read"
+  },
+  "odw": {
+   "label": "Oklahoma Dept. of Wildlife Conservation WMA map",
+   "name_field": "WMANAME",
+   "records": 105,
+   "status": "read"
+  },
+  "osp": {
+   "label": "Oregon State Parks",
+   "name_field": "NAME",
+   "records": 422,
+   "status": "read"
+  },
+  "rma": {
+   "label": "BLM recreation areas",
+   "name_field": "FET_NAME",
+   "records": 588,
+   "status": "read"
+  },
+  "rst": {
+   "label": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "name_field": "FET_NAME",
+   "records": 3478,
+   "status": "read"
+  },
+  "sgaka": {
+   "label": "Alaska State Parks (DNR) (park, state GIS table)",
+   "name_field": "PARKNAME",
+   "records": 157,
+   "status": "read"
+  },
+  "sgakb": {
+   "label": "Alaska Department of Natural Resources (preserve, state GIS table)",
+   "name_field": "LDA_NAME_1",
+   "records": 2318,
+   "status": "read"
+  },
+  "sgakc": {
+   "label": "Alaska DNR Division of Forestry (Alaska DNR AGOL org) (forest, state GIS table)",
+   "name_field": "forestname",
+   "records": 149,
+   "status": "read"
+  },
+  "sgakd": {
+   "label": "National Park Service (legal boundary) (park, state GIS table)",
+   "name_field": "UNIT_NAME",
+   "records": 437,
+   "status": "read"
+  },
+  "sgake": {
+   "label": "Alaska DNR State Parks (park boundaries) (park, state GIS table)",
+   "name_field": "PARKNAME",
+   "records": 157,
+   "status": "read"
+  },
+  "sgakf": {
+   "label": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources) (park, state GIS table)",
+   "name_field": "PARKNAME",
+   "records": 157,
+   "status": "read"
+  },
+  "sgala": {
+   "label": "Alabama State Parks (ADCNR) (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 21,
+   "status": "read"
+  },
+  "sgalb": {
+   "label": "Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table)",
+   "name_field": "DCNR_Name",
+   "records": 228,
+   "status": "read"
+  },
+  "sgalc": {
+   "label": "ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table)",
+   "name_field": "Name",
+   "records": 42,
+   "status": "read"
+  },
+  "sgald": {
+   "label": "ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table)",
+   "name_field": "Name",
+   "records": 20,
+   "status": "read"
+  },
+  "sgara": {
+   "label": "Arkansas Natural Heritage Commission (preserve, state GIS table)",
+   "name_field": "maname",
+   "records": 79,
+   "status": "read"
+  },
+  "sgarb": {
+   "label": "Arkansas State Parks (park, state GIS table)",
+   "name_field": "name",
+   "records": 52,
+   "status": "read"
+  },
+  "sgarc": {
+   "label": "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5) (land, state GIS table)",
+   "name_field": "fisheries_name",
+   "records": 271,
+   "status": "read"
+  },
+  "sgaza": {
+   "label": "Arizona State Parks & Trails (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 31,
+   "status": "read"
+  },
+  "sgazb": {
+   "label": "Arizona Game and Fish Department (AZGFD_GIS org) (wild, state GIS table)",
+   "name_field": "MasterName",
+   "records": 37,
+   "status": "read"
+  },
+  "sgazc": {
+   "label": "Arizona Game and Fish Department (AZGFD_GIS org) (land, state GIS table)",
+   "name_field": "Prop_name",
+   "records": 6,
+   "status": "read"
+  },
+  "sgazd": {
+   "label": "US Fish and Wildlife Service (approved boundary) (wild, state GIS table)",
+   "name_field": "ORGNAME",
+   "records": 759,
+   "status": "read"
+  },
+  "sgaze": {
+   "label": "Arizona State Parks and Trails (park boundaries) (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 32,
+   "status": "read"
+  },
+  "sgcaa": {
+   "label": "California Department of Fish & Wildlife (wild, state GIS table)",
+   "name_field": "PROP_NAME",
+   "records": 295,
+   "status": "read"
+  },
+  "sgcab": {
+   "label": "California State Parks (park, state GIS table)",
+   "name_field": "UNITNAME",
+   "records": 467,
+   "status": "read"
+  },
+  "sgcac": {
+   "label": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092) (wild, state GIS table)",
+   "name_field": "Name",
+   "records": 1862,
+   "status": "read"
+  },
+  "sgcoa": {
+   "label": "Colorado Parks & Wildlife (wild, state GIS table)",
+   "name_field": "PropName",
+   "records": 324,
+   "status": "read"
+  },
+  "sgcob": {
+   "label": "Colorado Parks & Wildlife (park, state GIS table)",
+   "name_field": "PropName",
+   "records": 48,
+   "status": "read"
+  },
+  "sgcoc": {
+   "label": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3) (wild, state GIS table)",
+   "name_field": "PropName",
+   "records": 920,
+   "status": "read"
+  },
+  "sgcod": {
+   "label": "Colorado Parks and Wildlife (credit: CPW GIS Unit, CPW Real Estate Unit) (land, state GIS table)",
+   "name_field": "PropName",
+   "records": 0,
+   "status": "did not answer / partly read"
+  },
+  "sgcta": {
+   "label": "Connecticut DEEP (land, state GIS table)",
+   "name_field": "PROPERTY",
+   "records": 491,
+   "status": "read"
+  },
+  "sgctb": {
+   "label": "CT DEEP (deepgis account) (land, state GIS table)",
+   "name_field": "OFFIC_NAME",
+   "records": 15505,
+   "status": "read"
+  },
+  "sgctc": {
+   "label": "CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table)",
+   "name_field": "HuntAName",
+   "records": 178,
+   "status": "read"
+  },
+  "sgdea": {
+   "label": "Delaware DNREC (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 1329,
+   "status": "read"
+  },
+  "sgdeb": {
+   "label": "Delaware Forest Service (forest, state GIS table)",
+   "name_field": "LABEL",
+   "records": 31,
+   "status": "read"
+  },
+  "sgdec": {
+   "label": "Delaware Fish & Wildlife (DNREC) (wild, state GIS table)",
+   "name_field": "AREA_NAME",
+   "records": 83,
+   "status": "read"
+  },
+  "sgded": {
+   "label": "Delaware nature preserves (DNREC) (preserve, state GIS table)",
+   "name_field": "NAME",
+   "records": 129,
+   "status": "read"
+  },
+  "sgdee": {
+   "label": "Delaware public protected lands (DNREC) (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 869,
+   "status": "read"
+  },
+  "sgfla": {
+   "label": "Florida State Parks (DEP) (park, state GIS table)",
+   "name_field": "SITE_NAME",
+   "records": 179,
+   "status": "read"
+  },
+  "sgflb": {
+   "label": "Florida Forest Service (forest, state GIS table)",
+   "name_field": "LABEL",
+   "records": 39,
+   "status": "read"
+  },
+  "sgflc": {
+   "label": "Florida Fish & Wildlife Conservation Commission (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 0,
+   "status": "did not answer / partly read"
+  },
+  "sgfld": {
+   "label": "Suwannee River Water Management District (land, state GIS table)",
+   "name_field": "TRACT_NAME",
+   "records": 1574,
+   "status": "read"
+  },
+  "sgfle": {
+   "label": "St. Johns River Water Management District (land, state GIS table)",
+   "name_field": "CONSERVATION_AREA",
+   "records": 133,
+   "status": "read"
+  },
+  "sgflf": {
+   "label": "Florida DEP Division of State Lands (land, state GIS table)",
+   "name_field": "PROJECT_NAME",
+   "records": 61000,
+   "status": "read"
+  },
+  "sgflg": {
+   "label": "FWC (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 284,
+   "status": "read"
+  },
+  "sggaa": {
+   "label": "Georgia DNR Wildlife Resources Division (wild, state GIS table)",
+   "name_field": "PropName",
+   "records": 203,
+   "status": "read"
+  },
+  "sggab": {
+   "label": "Georgia State Parks (DNR) (park, state GIS table)",
+   "name_field": "PropName",
+   "records": 60,
+   "status": "read"
+  },
+  "sggac": {
+   "label": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table)",
+   "name_field": "PropName",
+   "records": 222,
+   "status": "read"
+  },
+  "sghia": {
+   "label": "Hawaii Division of State Parks (DLNR) (park, state GIS table)",
+   "name_field": "name",
+   "records": 70,
+   "status": "read"
+  },
+  "sghib": {
+   "label": "Hawaii DLNR reserves (DOFAW) (wild, state GIS table)",
+   "name_field": "name",
+   "records": 381,
+   "status": "read"
+  },
+  "sghic": {
+   "label": "Hawaii State Parks (DLNR) (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 72,
+   "status": "read"
+  },
+  "sgiaa": {
+   "label": "Iowa DNR (wild, state GIS table)",
+   "name_field": "AREA_NAME",
+   "records": 1844,
+   "status": "read"
+  },
+  "sgiab": {
+   "label": "Iowa DNR (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 344,
+   "status": "read"
+  },
+  "sgiac": {
+   "label": "Iowa DNR (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 5414,
+   "status": "read"
+  },
+  "sgiad": {
+   "label": "Iowa DNR (credit: Iowa Department of Natural Resources) (land, state GIS table)",
+   "name_field": "NameUnit",
+   "records": 326,
+   "status": "read"
+  },
+  "sgida": {
+   "label": "Idaho Fish & Game (wild, state GIS table)",
+   "name_field": "Name",
+   "records": 31,
+   "status": "read"
+  },
+  "sgidb": {
+   "label": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame) (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 4996,
+   "status": "read"
+  },
+  "sgila": {
+   "label": "Illinois Department of Natural Resources (preserve, state GIS table)",
+   "name_field": "Site_Name",
+   "records": 3309,
+   "status": "read"
+  },
+  "sgilb": {
+   "label": "Illinois Department of Natural Resources (preserve, state GIS table)",
+   "name_field": "Site_Name",
+   "records": 1025,
+   "status": "read"
+  },
+  "sgilc": {
+   "label": "Illinois DNR (public conservation lands) (land, state GIS table)",
+   "name_field": "Site_Name",
+   "records": 0,
+   "status": "did not answer / partly read"
+  },
+  "sgina": {
+   "label": "Indiana DNR (land, state GIS table)",
+   "name_field": "unitname",
+   "records": 654,
+   "status": "read"
+  },
+  "sginb": {
+   "label": "Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office) (preserve, state GIS table)",
+   "name_field": "unitname",
+   "records": 196,
+   "status": "read"
+  },
+  "sgksa": {
+   "label": "Kansas Wildlife & Parks (state park areas, KDOT GIS) (park, state GIS table)",
+   "name_field": "Description",
+   "records": 88,
+   "status": "read"
+  },
+  "sgksb": {
+   "label": "KDWPT (owner jjones_KDWPT) (wild, state GIS table)",
+   "name_field": "Label_Name",
+   "records": 207,
+   "status": "read"
+  },
+  "sgksc": {
+   "label": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation) (land, state GIS table)",
+   "name_field": "Unit_Name",
+   "records": 993,
+   "status": "read"
+  },
+  "sglaa": {
+   "label": "Louisiana Department of Wildlife & Fisheries (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 59,
+   "status": "read"
+  },
+  "sglab": {
+   "label": "LDWF (owner LDWF_ArcGIS1), Sep 2025 edition (wild, state GIS table)",
+   "name_field": "Name_Short",
+   "records": 54,
+   "status": "read"
+  },
+  "sglac": {
+   "label": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024) (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 62,
+   "status": "read"
+  },
+  "sgmaa": {
+   "label": "MassGIS / Executive Office of Energy and Environmental Affai (land, state GIS table)",
+   "name_field": "SITE_NAME",
+   "records": 61000,
+   "status": "read"
+  },
+  "sgmab": {
+   "label": "Massachusetts DCR (DCRStateParks account, mass-eoeea org) (land, state GIS table)",
+   "name_field": "SITE_NAME",
+   "records": 437,
+   "status": "read"
+  },
+  "sgmac": {
+   "label": "National Park Service (property boundaries) (park, state GIS table)",
+   "name_field": "UNIT_NAME",
+   "records": 428,
+   "status": "read"
+  },
+  "sgmda": {
+   "label": "Maryland DNR (state parks, WMAs, forests, natural resource areas) (land, state GIS table)",
+   "name_field": "DNRName",
+   "records": 580,
+   "status": "read"
+  },
+  "sgmdb": {
+   "label": "Maryland DNR (Maryland Natural Areas) (preserve, state GIS table)",
+   "name_field": "AREA_NAME",
+   "records": 34,
+   "status": "read"
+  },
+  "sgmea": {
+   "label": "State of Maine conserved lands (Bureau of Parks and Lands / IFW) (land, state GIS table)",
+   "name_field": "PARCEL_NAME",
+   "records": 2688,
+   "status": "read"
+  },
+  "sgmia": {
+   "label": "Michigan DNR Parks & Recreation (park, state GIS table)",
+   "name_field": "Facility",
+   "records": 109,
+   "status": "read"
+  },
+  "sgmib": {
+   "label": "Michigan Department of Natural Resources (AGOL owner MichiganDNR) (wild, state GIS table)",
+   "name_field": "OfficialWLDProjectAreaName",
+   "records": 225,
+   "status": "read"
+  },
+  "sgmna": {
+   "label": "Minnesota DNR (wild, state GIS table)",
+   "name_field": "name",
+   "records": 1752,
+   "status": "read"
+  },
+  "sgmnb": {
+   "label": "Minnesota DNR (forest, state GIS table)",
+   "name_field": "name",
+   "records": 60,
+   "status": "read"
+  },
+  "sgmnc": {
+   "label": "Minnesota DNR (preserve, state GIS table)",
+   "name_field": "unit_name",
+   "records": 239,
+   "status": "read"
+  },
+  "sgmnd": {
+   "label": "Minnesota State Parks (DNR) (park, state GIS table)",
+   "name_field": "AREA_NAME",
+   "records": 84,
+   "status": "read"
+  },
+  "sgmne": {
+   "label": "Minnesota DNR (state land admin: parks and trails) (park, state GIS table)",
+   "name_field": "mgtprjname",
+   "records": 13490,
+   "status": "read"
+  },
+  "sgmoa": {
+   "label": "Missouri State Parks (DNR) (park, state GIS table)",
+   "name_field": "LOC_NAME",
+   "records": 207,
+   "status": "read"
+  },
+  "sgmob": {
+   "label": "Missouri Natural Areas (DNR) (preserve, state GIS table)",
+   "name_field": "NAME",
+   "records": 36,
+   "status": "read"
+  },
+  "sgmoc": {
+   "label": "Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table)",
+   "name_field": "Area_Name",
+   "records": 1049,
+   "status": "read"
+  },
+  "sgmod": {
+   "label": "Missouri Department of Conservation (credit) (preserve, state GIS table)",
+   "name_field": "Area_Name",
+   "records": 192,
+   "status": "read"
+  },
+  "sgmoe": {
+   "label": "Missouri DNR, Division of State Parks (credit) (wild, state GIS table)",
+   "name_field": "WA_NAME",
+   "records": 13,
+   "status": "read"
+  },
+  "sgmta": {
+   "label": "Montana Fish, Wildlife & Parks (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 55,
+   "status": "read"
+  },
+  "sgmtb": {
+   "label": "Montana Fish, Wildlife & Parks (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 70,
+   "status": "read"
+  },
+  "sgmtc": {
+   "label": "Montana Fish, Wildlife & Parks (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 333,
+   "status": "read"
+  },
+  "sgnca": {
+   "label": "NC Natural Heritage Program, NC Dept of Natural and Cultural (preserve, state GIS table)",
+   "name_field": "MA_NAME",
+   "records": 21523,
+   "status": "read"
+  },
+  "sgncb": {
+   "label": "NCWRC (owner ncwildlife.gov) (wild, state GIS table)",
+   "name_field": "GML_HAB",
+   "records": 95,
+   "status": "read"
+  },
+  "sgnda": {
+   "label": "North Dakota Game & Fish (wild, state GIS table)",
+   "name_field": "Unit_Name",
+   "records": 386,
+   "status": "read"
+  },
+  "sgndb": {
+   "label": "North Dakota Parks & Recreation (park, state GIS table)",
+   "name_field": "UNIT_NAME",
+   "records": 21,
+   "status": "read"
+  },
+  "sgndc": {
+   "label": "North Dakota Parks and Recreation Department (credit) (park, state GIS table)",
+   "name_field": "Name",
+   "records": 39,
+   "status": "read"
+  },
+  "sgnea": {
+   "label": "Nebraska Game and Parks Commission (wild, state GIS table)",
+   "name_field": "AreaName",
+   "records": 68,
+   "status": "read"
+  },
+  "sgneb": {
+   "label": "NGPC (owner NGPC.GISAdmin) (land, state GIS table)",
+   "name_field": "AreaName",
+   "records": 366,
+   "status": "read"
+  },
+  "sgnec": {
+   "label": "Nebraska Game and Parks Commission (park, state GIS table)",
+   "name_field": "AreaName",
+   "records": 74,
+   "status": "read"
+  },
+  "sgnha": {
+   "label": "NH GRANIT (land, state GIS table)",
+   "name_field": "name",
+   "records": 13502,
+   "status": "read"
+  },
+  "sgnhb": {
+   "label": "New Hampshire Fish and Game Department (NHFG AGOL org) (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 127,
+   "status": "read"
+  },
+  "sgnhc": {
+   "label": "NH GRANIT (recreation inventory areas) (land, state GIS table)",
+   "name_field": "site",
+   "records": 2718,
+   "status": "read"
+  },
+  "sgnja": {
+   "label": "New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table)",
+   "name_field": "FACILITY",
+   "records": 118,
+   "status": "read"
+  },
+  "sgnjb": {
+   "label": "New Jersey DEP (state-owned open space) (land, state GIS table)",
+   "name_field": "FEATURE_NAME",
+   "records": 373,
+   "status": "read"
+  },
+  "sgnma": {
+   "label": "New Mexico Department of Game & Fish (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 109,
+   "status": "read"
+  },
+  "sgnmb": {
+   "label": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org (park, state GIS table)",
+   "name_field": "Name",
+   "records": 35,
+   "status": "read"
+  },
+  "sgnva": {
+   "label": "Nevada Department of Wildlife (wild, state GIS table)",
+   "name_field": "LandName",
+   "records": 17,
+   "status": "read"
+  },
+  "sgnvb": {
+   "label": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table)",
+   "name_field": "name",
+   "records": 759,
+   "status": "read"
+  },
+  "sgnvc": {
+   "label": "Nevada Division of State Parks (AGOL org owner NDSP_1PARK; copyright Nevada Division of State Lands; UsingAgenc NDSP) (park, state GIS table)",
+   "name_field": "LandName",
+   "records": 1,
+   "status": "read"
+  },
+  "sgnvd": {
+   "label": "Nevada (SCORP recreation areas) (land, state GIS table)",
+   "name_field": "name",
+   "records": 756,
+   "status": "read"
+  },
+  "sgnve": {
+   "label": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks) (park, state GIS table)",
+   "name_field": "landname",
+   "records": 30,
+   "status": "read"
+  },
+  "sgnya": {
+   "label": "New York State DEC (land, state GIS table)",
+   "name_field": "FACILITY",
+   "records": 3238,
+   "status": "read"
+  },
+  "sgnyb": {
+   "label": "New York State Parks (park, state GIS table)",
+   "name_field": "Name",
+   "records": 857,
+   "status": "read"
+  },
+  "sgoha": {
+   "label": "Ohio DNR Division of Parks and Watercraft (park, state GIS table)",
+   "name_field": "LANDS_NAME",
+   "records": 201,
+   "status": "read"
+  },
+  "sgohb": {
+   "label": "Ohio DNR Division of Wildlife (wild, state GIS table)",
+   "name_field": "LANDS_NAME",
+   "records": 431,
+   "status": "read"
+  },
+  "sgohc": {
+   "label": "Ohio DNR Division of Forestry (forest, state GIS table)",
+   "name_field": "LANDS_NAME",
+   "records": 43,
+   "status": "read"
+  },
+  "sgohd": {
+   "label": "Ohio DNR Division of Natural Areas and Preserves (preserve, state GIS table)",
+   "name_field": "LANDS_NAME",
+   "records": 246,
+   "status": "read"
+  },
+  "sgohe": {
+   "label": "Ohio DNR (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 705,
+   "status": "read"
+  },
+  "sgohf": {
+   "label": "Ohio DNR, Office of Information Technology (credit) (land, state GIS table)",
+   "name_field": "Name_Label",
+   "records": 865,
+   "status": "read"
+  },
+  "sgohg": {
+   "label": "Ohio DNR (credit): city, county + NGO lands (land, state GIS table)",
+   "name_field": "FIRST_NAME",
+   "records": 623,
+   "status": "read"
+  },
+  "sgoka": {
+   "label": "Oklahoma State Parks (ODOT GIS) (park, state GIS table)",
+   "name_field": "PARK_NAME",
+   "records": 50,
+   "status": "read"
+  },
+  "sgokb": {
+   "label": "Oklahoma Department of Wildlife Conservation (ODOT GIS) (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 111,
+   "status": "read"
+  },
+  "sgokc": {
+   "label": "ODWC (owner ODWC_GIS) (wild, state GIS table)",
+   "name_field": "SHORTNAME",
+   "records": 105,
+   "status": "read"
+  },
+  "sgora": {
+   "label": "Oregon Parks & Recreation Department (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 422,
+   "status": "read"
+  },
+  "sgorb": {
+   "label": "Oregon Parks and Recreation Department (AGOL owner orstateparks) (park, state GIS table)",
+   "name_field": "FULL_NAME",
+   "records": 422,
+   "status": "read"
+  },
+  "sgorc": {
+   "label": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO) (wild, state GIS table)",
+   "name_field": "AreaName",
+   "records": 75,
+   "status": "read"
+  },
+  "sgord": {
+   "label": "State of Oregon (all state owned and managed lands) (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 10471,
+   "status": "read"
+  },
+  "sgore": {
+   "label": "State of Oregon (Oregon parklands) (park, state GIS table)",
+   "name_field": "PARK_NAME",
+   "records": 6345,
+   "status": "read"
+  },
+  "sgpaa": {
+   "label": "Pennsylvania DCNR Bureau of State Parks (park, state GIS table)",
+   "name_field": "PARK_NAME",
+   "records": 125,
+   "status": "read"
+  },
+  "sgpab": {
+   "label": "Pennsylvania State Parks (DCNR) (park, state GIS table)",
+   "name_field": "StParkName",
+   "records": 240,
+   "status": "read"
+  },
+  "sgpac": {
+   "label": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb) (wild, state GIS table)",
+   "name_field": "sgl_name",
+   "records": 319,
+   "status": "read"
+  },
+  "sgpad": {
+   "label": "PA DCNR Bureau of State Parks (credit) (preserve, state GIS table)",
+   "name_field": "NAME",
+   "records": 23,
+   "status": "read"
+  },
+  "sgria": {
+   "label": "Rhode Island DEM (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 1062,
+   "status": "read"
+  },
+  "sgrib": {
+   "label": "Rhode Island DEM (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 1057,
+   "status": "read"
+  },
+  "sgric": {
+   "label": "Rhode Island DEM (state conservation land) (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 1062,
+   "status": "read"
+  },
+  "sgsca": {
+   "label": "South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table)",
+   "name_field": "PropertyName",
+   "records": 211,
+   "status": "read"
+  },
+  "sgscb": {
+   "label": "South Carolina State Parks (PRT) (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 55,
+   "status": "read"
+  },
+  "sgscc": {
+   "label": "South Carolina DNR (heritage preserves) (preserve, state GIS table)",
+   "name_field": "PropertyName",
+   "records": 118,
+   "status": "read"
+  },
+  "sgscd": {
+   "label": "South Carolina Department of Natural Resources (credit: SCDNR) (land, state GIS table)",
+   "name_field": "PropertyName",
+   "records": 576,
+   "status": "read"
+  },
+  "sgsda": {
+   "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) (park, state GIS table)",
+   "name_field": "AreaName",
+   "records": 133,
+   "status": "read"
+  },
+  "sgsdb": {
+   "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) (land, state GIS table)",
+   "name_field": "AreaName",
+   "records": 882,
+   "status": "read"
+  },
+  "sgtna": {
+   "label": "Tennessee State Parks (TDEC) (park, state GIS table)",
+   "name_field": "PARK_NAME",
+   "records": 66,
+   "status": "read"
+  },
+  "sgtnb": {
+   "label": "Tennessee State Natural Areas (TDEC) (preserve, state GIS table)",
+   "name_field": "SITE_NAME",
+   "records": 93,
+   "status": "read"
+  },
+  "sgtnc": {
+   "label": "Tennessee Wildlife Resources Agency (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 224,
+   "status": "read"
+  },
+  "sgtnd": {
+   "label": "Tennessee Department of Agriculture, Division of Forestry (forest, state GIS table)",
+   "name_field": "StateForestName",
+   "records": 16,
+   "status": "read"
+  },
+  "sgtne": {
+   "label": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 605,
+   "status": "read"
+  },
+  "sgtnf": {
+   "label": "Tennessee Department of Environment and Conservation (TDEC public lands) (land, state GIS table)",
+   "name_field": "NAME_1",
+   "records": 182,
+   "status": "read"
+  },
+  "sgtng": {
+   "label": "Tennessee State Parks (TDEC state park boundaries) (park, state GIS table)",
+   "name_field": "PRIMARY_NAME__LONG_",
+   "records": 94,
+   "status": "read"
+  },
+  "sgtnh": {
+   "label": "Tennessee Natural Areas (TDEC, non-state-park natural areas) (preserve, state GIS table)",
+   "name_field": "NaturalAreaName",
+   "records": 45,
+   "status": "read"
+  },
+  "sgtni": {
+   "label": "Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 228,
+   "status": "read"
+  },
+  "sgtxa": {
+   "label": "Texas Parks & Wildlife Department (state parks) (park, state GIS table)",
+   "name_field": "ParkName",
+   "records": 116,
+   "status": "read"
+  },
+  "sgtxb": {
+   "label": "Texas Parks & Wildlife Department (public hunting lands) (wild, state GIS table)",
+   "name_field": "Name",
+   "records": 463,
+   "status": "read"
+  },
+  "sgtxc": {
+   "label": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD) (wild, state GIS table)",
+   "name_field": "LoName",
+   "records": 80,
+   "status": "read"
+  },
+  "sgtxd": {
+   "label": "Texas Parks and Wildlife (public conservation lands) (land, state GIS table)",
+   "name_field": "P_Loc_Nm",
+   "records": 11828,
+   "status": "read"
+  },
+  "sguta": {
+   "label": "Utah State Parks (park, state GIS table)",
+   "name_field": "name",
+   "records": 77,
+   "status": "read"
+  },
+  "sgutb": {
+   "label": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org) (land, state GIS table)",
+   "name_field": "Property_N",
+   "records": 266,
+   "status": "read"
+  },
+  "sgutc": {
+   "label": "Utah (National Historic Landmarks) (land, state GIS table)",
+   "name_field": "L_Name",
+   "records": 20,
+   "status": "read"
+  },
+  "sgvaa": {
+   "label": "Virginia Department of Forestry (forest, state GIS table)",
+   "name_field": "Name",
+   "records": 26,
+   "status": "read"
+  },
+  "sgvab": {
+   "label": "Virginia DCR Natural Heritage (preserve, state GIS table)",
+   "name_field": "MANAME",
+   "records": 69,
+   "status": "read"
+  },
+  "sgvac": {
+   "label": "Virginia State Parks (DCR) (park, state GIS table)",
+   "name_field": "LABEL",
+   "records": 39,
+   "status": "read"
+  },
+  "sgvad": {
+   "label": "Virginia DCR State Parks (tracts) (park, state GIS table)",
+   "name_field": "MANAME",
+   "records": 354,
+   "status": "read"
+  },
+  "sgvae": {
+   "label": "Virginia DCR (Virginia's conservation lands) (land, state GIS table)",
+   "name_field": "LABEL",
+   "records": 14666,
+   "status": "read"
+  },
+  "sgvaf": {
+   "label": "Virginia DCR (local parks 2023) (park, state GIS table)",
+   "name_field": "NAME",
+   "records": 4013,
+   "status": "read"
+  },
+  "sgvag": {
+   "label": "Virginia Department of Wildlife Resources (wild, state GIS table)",
+   "name_field": "WMA_NAME",
+   "records": 242,
+   "status": "read"
+  },
+  "sgvah": {
+   "label": "Virginia Dept. of Historic Resources (credit) (land, state GIS table)",
+   "name_field": "PropertyNames",
+   "records": 3168,
+   "status": "read"
+  },
+  "sgvta": {
+   "label": "Vermont Agency of Natural Resources (preserve, state GIS table)",
+   "name_field": "NAME",
+   "records": 515,
+   "status": "read"
+  },
+  "sgwaa": {
+   "label": "Washington State Parks (park, state GIS table)",
+   "name_field": "ParkName",
+   "records": 207,
+   "status": "read"
+  },
+  "sgwab": {
+   "label": "Washington Department of Fish and Wildlife (wild, state GIS table)",
+   "name_field": "ManagedPlaceName",
+   "records": 729,
+   "status": "read"
+  },
+  "sgwac": {
+   "label": "Washington State Department of Natural Resources (preserve, state GIS table)",
+   "name_field": "PARCEL_LABEL_NM",
+   "records": 18843,
+   "status": "read"
+  },
+  "sgwad": {
+   "label": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks) (land, state GIS table)",
+   "name_field": "NAME",
+   "records": 6413,
+   "status": "read"
+  },
+  "sgwae": {
+   "label": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices) (land, state GIS table)",
+   "name_field": "GNIS_Name",
+   "records": 61000,
+   "status": "read"
+  },
+  "sgwaf": {
+   "label": "Washington Dept. of Fish and Wildlife (credit: WDFW) (wild, state GIS table)",
+   "name_field": "WildlifeAreaUnitName",
+   "records": 218,
+   "status": "read"
+  },
+  "sgwag": {
+   "label": "Washington Dept. of Fish and Wildlife (credit: WDFW) (wild, state GIS table)",
+   "name_field": "WildlifeAreaName",
+   "records": 33,
+   "status": "read"
+  },
+  "sgwia": {
+   "label": "Wisconsin DNR (land, state GIS table)",
+   "name_field": "PROP_NAME",
+   "records": 1799,
+   "status": "read"
+  },
+  "sgwib": {
+   "label": "Wisconsin State Parks (DNR) (park, state GIS table)",
+   "name_field": "PROP_NAME",
+   "records": 81,
+   "status": "read"
+  },
+  "sgwic": {
+   "label": "Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table)",
+   "name_field": "SNA_NAME",
+   "records": 683,
+   "status": "read"
+  },
+  "sgwid": {
+   "label": "Wisconsin DNR Bureau of Facilities and Lands (land, state GIS table)",
+   "name_field": "PROP_NAME",
+   "records": 61000,
+   "status": "read"
+  },
+  "sgwva": {
+   "label": "West Virginia DNR (wild, state GIS table)",
+   "name_field": "NAME",
+   "records": 118,
+   "status": "read"
+  },
+  "sgwvb": {
+   "label": "West Virginia State Forests (DNR) (forest, state GIS table)",
+   "name_field": "Name",
+   "records": 8,
+   "status": "read"
+  },
+  "sgwvc": {
+   "label": "West Virginia State Parks (WVDOT boundaries server) (park, state GIS table)",
+   "name_field": "Loc_Nm",
+   "records": 36,
+   "status": "read"
+  },
+  "sgwya": {
+   "label": "Wyoming State Parks (park, state GIS table)",
+   "name_field": "Park_Name",
+   "records": 12,
+   "status": "read"
+  },
+  "sgwyb": {
+   "label": "Wyoming State Parks, Historic Sites & Trails (park, state GIS table)",
+   "name_field": "site_name",
+   "records": 56,
+   "status": "read"
+  },
+  "sgwyc": {
+   "label": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) (wild, state GIS table)",
+   "name_field": "WHMA_Name",
+   "records": 109,
+   "status": "read"
+  },
+  "sgwyd": {
+   "label": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) (wild, state GIS table)",
+   "name_field": "PAA_Name",
+   "records": 229,
+   "status": "read"
+  },
+  "tnd": {
+   "label": "TDEC public access lands",
+   "name_field": "NAME_1",
+   "records": 182,
+   "status": "read"
+  },
+  "utw": {
+   "label": "Utah DWR public access properties",
+   "name_field": "name",
+   "records": 346,
+   "status": "read"
+  },
+  "vta": {
+   "label": "Vermont ANR lands",
+   "name_field": "NAME",
+   "records": 484,
+   "status": "read"
+  },
+  "wbl": {
+   "label": "BLM wilderness",
+   "name_field": "NLCS_NAME",
+   "records": 306,
+   "status": "read"
+  },
+  "wdw": {
+   "label": "WDFW wildlife areas",
+   "name_field": "WLA_Name",
+   "records": 220,
+   "status": "read"
+  },
+  "wid": {
+   "label": "Wisconsin DNR managed properties",
+   "name_field": "PROP_NAME",
+   "records": 1799,
+   "status": "read"
+  },
+  "wld": {
+   "label": "National Wilderness Preservation System (Forest Service map)",
+   "name_field": "wildernessname",
+   "records": 452,
+   "status": "read"
+  },
+  "wsa": {
+   "label": "BLM wilderness study areas",
+   "name_field": "NLCS_NAME",
+   "records": 1093,
+   "status": "read"
+  },
+  "wsrc": {
+   "label": "NPS Wild and Scenic River corridor (official boundary)",
+   "name_field": "WSR_GNIS_NAME",
+   "records": 33,
+   "status": "read"
+  }
+ }
+}
