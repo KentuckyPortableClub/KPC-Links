@@ -73,7 +73,7 @@ def check(batch):
     while True:
         j = get({'geometry': mp, 'geometryType': 'esriGeometryMultipoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                  'outFields': 'Unit_Nm,Mang_Name,Pub_Access,Category', 'returnGeometry': 'true', 'outSR': 4326,
-                 'maxAllowableOffset': 0.0002, 'geometryPrecision': 5, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
+                 'maxAllowableOffset': 0.00003, 'geometryPrecision': 6, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
         fs = j.get('features') or []
         feats += fs
         if not j.get('exceededTransferLimit') or not fs:

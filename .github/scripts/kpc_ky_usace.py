@@ -44,7 +44,7 @@ def main():
     by = {r['OBJECTID']: r for r in recs}
     for i in range(0, len(ids), 40):
         j = get({'objectIds': ','.join(map(str, ids[i:i + 40])), 'outFields': 'OBJECTID', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'geojson',
-                 'maxAllowableOffset': 0.00015, 'geometryPrecision': 5})
+                 'maxAllowableOffset': 0.00003, 'geometryPrecision': 6})
         for f in j.get('features', []):
             a = by.get((f.get('properties') or {}).get('OBJECTID')) or {}
             if not f.get('geometry'):

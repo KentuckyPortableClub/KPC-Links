@@ -114,7 +114,7 @@ def wsr(name, la, lo, lim):
             WSRF, off = [], 0
             while True:
                 j = get(WSRL + '/query?' + urllib.parse.urlencode({'where': '1=1', 'outFields': 'wsr_river_name,wsr_river_shortname,agency', 'returnGeometry': 'true',
-                                                                   'outSR': 4326, 'maxAllowableOffset': 0.0003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}))
+                                                                   'outSR': 4326, 'maxAllowableOffset': 0.00003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}))
                 fs = j.get('features', [])
                 for f in fs:
                     a = f.get('attributes') or {}
@@ -348,7 +348,7 @@ def hand_lines(ref):
         off = 0
         for _ in range(10):
             j = get(part['url'] + '/query?' + urllib.parse.urlencode({'where': part.get('where') or '1=1', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
-                                                                    'maxAllowableOffset': 0.0003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}), t=90)
+                                                                    'maxAllowableOffset': 0.00003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}), t=90)
             if 'error' in j: raise Exception(str(j['error'])[:150])
             fs = j.get('features', [])
             for f in fs: out += [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]
@@ -442,7 +442,7 @@ for st, cand in jobs():
             k = tuple(map(tuple, l)); kr = tuple(reversed(k))
             if k in _seen or kr in _seen: continue
             _seen.add(k); _u.append(l)
-        lines = [dp(l, 0.0003) for l in _u]
+        lines = [dp(l, 0.00003) for l in _u]
         total = sum(seglen(l) for l in lines)
         if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         o = IDX.get(ref)
