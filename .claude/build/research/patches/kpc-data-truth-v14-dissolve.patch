@@ -1,0 +1,153 @@
+From e6eb388a37912aafa5a68afd173df3c3935f255d Mon Sep 17 00:00:00 2001
+From: Claude Fable <noreply@anthropic.com>
+Date: Thu, 29 Oct 2026 06:32:16 +0000
+Subject: [PATCH] Truth v14 (Fable, chat 8's VA / IL grade): one tract joined
+ from PAD-US fee + PAD-US designation + state layers was summed up to four
+ times (Seven Bends 4,264 ac for a 1,052-ac park: 36 VA + 33 IL 'off' rows
+ were our own double count). dissolve_pieces folds copies by acres (twins
+ across layers / 300+ ac in one layer; a record equal to the sum of smaller
+ ones absorbs them, 0.6%), 6 known cases in the gate; offline on the saved
+ files VA agree 6 -> 39, IL 28 -> 75. A documents-bot RULES page counts only
+ sentences naming the park (Clifty read Daniel Boone's 708,000)
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018yRfNXPHJVg9CRLjWfNAvi
+---
+ .github/scripts/kpc_truth_bot.py | 75 ++++++++++++++++++++++++++++----
+ 1 file changed, 66 insertions(+), 9 deletions(-)
+
+diff --git a/.github/scripts/kpc_truth_bot.py b/.github/scripts/kpc_truth_bot.py
+index aac3814a..54554914 100644
+--- a/.github/scripts/kpc_truth_bot.py
++++ b/.github/scripts/kpc_truth_bot.py
+@@ -37,7 +37,7 @@ Resumable: a park checked within REFRESH_DAYS (7) is skipped; MINUTES (55) per c
+ Env: AREAS='US-KY US-TN' (blank = the next unfinished areas in queue order) · MINUTES · LINKS (KPC-Links checkout, default
+      'links') · OUT (data/truth) · REFRESH_DAYS · TEST=1 (Kentucky gate: prints PASS/FAIL as a notice and writes state['test'])
+ """
+-import csv, json, math, os, pathlib, re, sys, time, urllib.parse
++import csv, itertools, json, math, os, pathlib, re, sys, time, urllib.parse
+ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ from kpc_manners import Manners, page_text, links_in, pdf_text, browser_text  # noqa: E402
+ 
+@@ -48,7 +48,8 @@ REFRESH_DAYS = int(os.environ.get('REFRESH_DAYS') or 7)
+ TOL = 0.15
+ PDF_FIRST = 400_000
+ TODAY = time.strftime('%Y-%m-%d')
+-VER = 13   # Oct 28 (chat 11's KY grade): '708, 879' parse + summed lakes, other-unit pages, history words + stale years, unsure carries a cause, own-page handover hints, quoted URLs, 10-row gate, same-agency label
++VER = 14   # Oct 29 (Fable, chat 8's VA/IL grade): copies of one tract across PAD-US fee / designation / state layers folded before summing (dissolve_pieces)
++# VER 13: Oct 28 (chat 11's KY grade): '708, 879' parse + summed lakes, other-unit pages, history words + stale years, unsure carries a cause, own-page handover hints, quoted URLs, 10-row gate, same-agency label
+ QUEUE = ['US-KY',
+          'US-TN', 'US-NC', 'US-VA', 'US-WV', 'US-GA', 'US-AL', 'US-SC', 'US-FL', 'US-MS',
+          'US-IN', 'US-IL', 'US-MO', 'US-WI', 'US-MN', 'US-IA', 'US-ND', 'US-SD',
+@@ -349,20 +350,61 @@ def ours_ky(ref, park, ak):
+             'src': ', '.join(sorted({KY_LAYERS.get(f, f) for f, s, p, g in feats})) or (tr[0][0] if tr else ''), 'pin': pin or 'not checked', 'manager': manager, 'unknown_pieces': 0}
+ 
+ 
++def piece_family(pid):
++    """Which layer a joined record came from: PAD-US rows carry a plain number, state-layer rows a letter code + number ('sgvad346')."""
++    if isinstance(pid, int): return 'padus'
++    m = re.match(r'([a-z]+)', str(pid)); return m.group(1) if m else str(pid)
++
++
++def dissolve_pieces(pieces, tol_twin=0.02, tol_sum=0.006, same_layer_min=300):
++    """v14 (chat 8's VA / IL grade, Oct 28 10:55 PM: 'ours = the SUM of PAD-US pieces that are copies of each other'). The key
++    joins every record whose name matches, so one tract shows up to four times (PAD-US fee + PAD-US designation + two state layers),
++    and Seven Bends read 4,264 acres for a 1,052-acre park. There is no geometry in the key file, so the copies are found by their
++    acres: (1) TWINS: two records with the same acres (within 2%) are one tract when they come from different layers, or from the same
++    layer at 300+ acres (two real 40-acre survey tracts in one WMA stay two); (2) PARTS: a record whose acres equal (within 0.6%) the
++    sum of two or more smaller records is the designation record over its fee tracts: the tracts are absorbed. Tested offline on the
++    saved VA + IL files: VA agree 6 -> 39 / off 67 -> 46, IL agree 28 -> 75 / off 78 -> 44; a looser 3% parts rule over-pruned Sky
++    Meadows (1,862 ac -> 1,243), so the tolerance stays tight. Returns (kept pieces, info)."""
++    live = sorted([p for p in pieces if isinstance(p[2], (int, float)) and p[2] > 0], key=lambda p: -p[2])
++    kept = []; copies = 0
++    for p in live:
++        twin = next((k for k in kept if abs(k[2] - p[2]) / max(k[2], 1) <= tol_twin and (piece_family(k[0]) != piece_family(p[0]) or p[2] >= same_layer_min)), None)
++        if twin: copies += 1; continue
++        kept.append(p)
++    parts = 0; changed = True
++    while changed and len(kept) > 2:
++        changed = False
++        for i, big in enumerate(kept):
++            smaller = kept[i + 1:]
++            if len(smaller) < 2 or len(smaller) > 12: continue
++            for n in range(2, min(len(smaller), 8) + 1):
++                hit = next((c for c in itertools.combinations(smaller, n) if abs(sum(x[2] for x in c) - big[2]) / big[2] <= tol_sum), None)
++                if hit:
++                    kept = [k for k in kept if k not in hit]; parts += len(hit); changed = True; break
++            if changed: break
++    return kept, {'before': round(sum(p[2] for p in live)), 'after': round(sum(p[2] for p in kept)), 'copies': copies, 'parts': parts, 'records': len(live), 'tracts': len(kept)}
++
++
+ def ours_key(rec):
+-    """US / Canada key record -> our outline summary (acres summed from the joined records; 0-acre records counted as unknown)."""
++    """US / Canada key record -> our outline summary (acres summed from the joined records AFTER copies of one tract are folded
++    (dissolve_pieces, v14); 0-acre records counted as unknown)."""
+     ms = rec.get('m') or []
+     if not ms: return None
+-    acres = 0.0; unknown = 0; pieces = []
++    unknown = 0; pieces = []
+     for r in ms:
+         a = r[2] if len(r) > 2 and isinstance(r[2], (int, float)) else 0
+-        if a and a > 0: acres += a
+-        else: unknown += 1
++        if not (a and a > 0): unknown += 1
+         pieces.append([r[0], r[1], a, (r[3] if len(r) > 3 else '')[:60]])
++    kept, dis = dissolve_pieces(pieces)
++    acres = sum(p[2] for p in kept)
+     far = rec.get('far')
+     pin = 'inside' if not far else 'just outside' if far == 'edge' else 'well outside' if far in ('well outside', 'outside') else str(far)
+     srcs = sorted({str(p[3]).split('·')[-1].strip() for p in pieces if '·' in str(p[3])}) or (['USGS PAD-US'] if any(isinstance(p[0], int) for p in pieces) else [])
+-    return {'acres': round(acres), 'pieces': pieces[:8], 'src': ', '.join(srcs)[:160], 'pin': pin, 'manager': '', 'unknown_pieces': unknown}
++    out = {'acres': round(acres), 'pieces': kept[:8], 'src': ', '.join(srcs)[:160], 'pin': pin, 'manager': '', 'unknown_pieces': unknown}
++    if dis['copies'] or dis['parts']:
++        out['dissolved'] = dis
++        out['note'] = f"{dis['records']} joined records = {dis['tracts']} tracts: {dis['copies']} copies of a tract (same acres, another layer) and {dis['parts']} fee tracts under a designation record folded; summed {dis['before']} -> {dis['after']} acres"
++    return out
+ 
+ 
+ # ---- official pages
+@@ -442,7 +484,8 @@ def candidate_pages(ref, park, web, docs, ky):
+         add(f"https://www.fws.gov/refuge/{own['fws']}/about-us", 'FWS refuge about page')
+         add(f"https://www.fws.gov/refuge/{own['fws']}", 'FWS refuge home page (v12: the about / visit pages 404 since Oct 29)')
+     OWN.clear(); OWN.update(own); OWN['core'] = name_core6(park['n'])
+-    return [(u, why, is_other_unit(u, own)) for u, why in out[:6]]
++    # v14 (Clifty read 708,000 ac from Daniel Boone's forest-wide rules page): a RULES page counts only sentences that name this park
++    return [(u, why, is_other_unit(u, own) or why.startswith('rules page')) for u, why in out[:6]]
+ 
+ 
+ ABOUT_RX = re.compile(r'\babout\b|history|overview|park info|general info|facts|at a glance|\bthe park\b|welcome', re.I)
+@@ -710,7 +753,7 @@ def run_area(area, state, web, docs_all, ky, ak, retired, bscore, news):
+     MULTI.clear(); MULTI.update({'area': area, 'state': STATE_NAMES.get(area[3:], 'zzz'), 'ky': area == 'US-KY'})
+     SHARED.clear()
+     for ref, p in parks.items():
+-        for u in {p.get('web') or '', (web.get(ref) or {}).get('web') or '', (docs.get(ref) or {}).get('page') or ''}:
++        for u in {p.get('web') or '', (web.get(ref) or {}).get('web') or '', (docs.get(ref) or {}).get('page') or '', ((docs.get(ref) or {}).get('rules') or {}).get('url') or ''}:   # v14: a rules page shared by 3+ parks is an agency page too
+             if u.startswith('http'): SHARED[u] = SHARED.get(u, 0) + 1
+     for ref in sorted(parks):
+         if late(): break
+@@ -894,8 +937,22 @@ SIZE_CASES = [   # v11 (chat 11, Oct 28 9 PM): real sentences from the VA / IL g
+ ]
+ 
+ 
++DISSOLVE_CASES = [   # v14 known answers (chat 8's grade, Oct 28 10:55 PM): joined records -> the tracts they really are
++    ('Seven Bends (PAD-US designation 1,065 over fee 673+307+85, two state layers copy the fee tracts)',
++     [[270667, 'x', 1065, ''], ['sgvad346', 'x', 675, ''], ['sgvae486272', 'x', 675, ''], [54653, 'x', 673, ''], [54652, 'x', 307, ''], ['sgvad347', 'x', 307, ''], ['sgvae486274', 'x', 307, ''], [54654, 'x', 85, ''], ['sgvad345', 'x', 85, ''], ['sgvae486266', 'x', 85, '']], 1065, 1065),
++    ('James River NWR (two PAD-US copies + the state layer in nine tracts)', [[3973, 'x', 4621, ''], [4919, 'x', 4621, ''], ['sgvae1', 'x', 3441, ''], ['sgvae2', 'x', 618, ''], ['sgvae3', 'x', 306, ''], ['sgvae4', 'x', 123, ''], ['sgvae5', 'x', 52, ''], ['sgvae6', 'x', 29, ''], ['sgvae7', 'x', 19, ''], ['sgvae8', 'x', 18, ''], ['sgvae9', 'x', 5, '']], 4621, 4700),
++    ('Illinois: every tract twice (fee + designation)', [[1, 'x', 1720, ''], [2, 'x', 1720, '']], 1720, 1720),
++    ('Sky Meadows: four layers, keep every real tract (a loose parts rule pruned it to 1,243)', [[54657, 'x', 1136, ''], [270670, 'x', 1130, ''], ['sgvad121', 'x', 1130, ''], ['sgvae486381', 'x', 1130, ''], [54658, 'x', 490, ''], [270671, 'x', 490, ''], ['sgvad10', 'x', 490, ''], ['sgvae486258', 'x', 490, ''], [54656, 'x', 245, ''], [270669, 'x', 245, ''], ['sgvad162', 'x', 113, ''], ['sgvae486619', 'x', 113, ''], ['sgvad160', 'x', 96, ''], ['sgvae486617', 'x', 96, '']], 1800, 2200),
++    ('two real 40-acre tracts in one WMA stay two (same layer, under 300 ac)', [[11, 'x', 40, ''], [12, 'x', 40, ''], [13, 'x', 640, '']], 720, 720),
++    ('one record = nothing to fold', [[5, 'x', 2000, '']], 2000, 2000),
++]
++
++
+ def size_cases():
+     bad = []
++    for name, pieces, lo, hi in DISSOLVE_CASES:
++        kept, info = dissolve_pieces(pieces)
++        if not lo <= info['after'] <= hi: bad.append(f"dissolve wrong ({info['after']} not in {lo}-{hi}): {name[:50]}")
+     for name, sent, want, acres in SIZE_CASES:
+         got = [s for s in sizes_in(sent, name) if abs(s['acres'] - acres) < 0.6]
+         ok = (not got) if want == 'none' else (not got or all(s['why'] in EXCLUDED for s in got)) if want == 'none_total' else (bool(got) and not any(s['total'] for s in got)) if want == 'not_total' else any(s['total'] for s in got)
+-- 
+2.43.0
+
