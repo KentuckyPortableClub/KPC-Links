@@ -1,6 +1,6 @@
 {
  "about": "RIVER-WATER TEST (chat 9, Oct 28 2026; chat 8's KPC_OwnLandLayers_Rivers_desk.md section 2): does an ownership layer HIT a point on the water inside its unit? One runner pass, 1 request / 2 s. A NO HIT only proves 'cuts the river out' if the point is truly inside the unit: points marked (chat 9) were picked from the river course and are approximate, and none was checked against the unit's outer boundary in this pass. v2 (Oct 28 night, chat 8 regrade): every layer got a CONTROL point on surely-owned dry land (must HIT or the query is wrong); river points taken from USGS NHD inside the unit polygon; each point asked two ways (plain x,y and JSON geometry, both inSR 4326).",
- "made": "2026-10-28",
+ "made": "2026-10-29",
  "rows": [
   {
    "test": "NPS tracts: Green River in Mammoth Cave (desk point + Houchin Ferry reach + Dennison Ferry reach, chat 9)",
@@ -184,7 +184,7 @@
   "Ohio DNR": "Mosquito Lake mid-lake: NO HIT on nolakes /5 + /7 (expected: 'no lakes') AND on ODNR_ODNR_Lands_External; ODNR_Lands_Dissolved could not be read (no polygon layer listed).",
   "Michigan DNR": "Lake Michigan at Warren Dunes = HIT (Warren Dunes State Park): the parks layer KEEPS the water. Manistee River point = NO HIT (expected: Forest Service land, not a state park)."
  },
- "version": 2,
+ "version": 3,
  "r2": [
   {
    "test": "NPS tracts: New River Gorge (New River) (control: Mammoth Cave visitor center, fee land)",
@@ -643,5 +643,457 @@
   "FWS realty": "NOT SOLID: the control (Shiawassee 43.38,-83.90) did NOT HIT, so the control point or the layer is suspect. Ohio River Islands 1 of 3 and Cache River 1 of 3 river points HIT (tract-by-tract ownership); Detroit River: NHD timed out, 0 points.",
   "Ohio DNR": "Layer 1 (Ohio_Conservation_Lands) mid-Mosquito Lake HIT (Lease, Mosquito Lake SP) = keeps the lake surface (B6: never a land outline). nolakes /5 control NO HIT: control approximate, NOT SOLID.",
   "next": "If needed: FWS control from inside a known fee tract polygon; NPS controls inside NERI/BISO; Ohio /5 control from inside a /5 polygon."
+ },
+ "r3": [
+  {
+   "test": "NPS tracts v3: New River Gorge, control from a NERI tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      37.855077,
+      -81.061075
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      37.873492,
+      -81.072775
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      38.065616,
+      -81.078313
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "control_auto: no polygon (0 records)",
+    "unit polygon: 1 records, 7 rings",
+    "NHD layer 6: 333 river vertices",
+    "329 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "NPS tracts v3: Big South Fork, control from a BISO tract polygon",
+   "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "control": null,
+   "water": [
+    {
+     "point": [
+      36.713506,
+      -84.536017
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.624344,
+      -84.584729
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      36.580952,
+      -84.643055
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "control_auto: no polygon (0 records)",
+    "unit polygon: 1 records, 9 rings",
+    "NHD layer 6: 349 river vertices",
+    "349 river vertices inside the unit polygon"
+   ]
+  },
+  {
+   "test": "FWS realty v3: Ohio River Islands, control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     38.686581,
+     -83.590818
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ],
+     "json": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      40.555592,
+      -80.643188
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      40.589689,
+      -80.661302
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      39.876941,
+      -80.79046
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 44 rings",
+    "NHD 6: The read operation timed out",
+    "NHD 5: HTTP Error 504: Gateway Time-out",
+    "NHD layer 4: 268 river vertices",
+    "12 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "152",
+    "INTIDNO": "1149C.152",
+    "IntReg": "1"
+   }
+  },
+  {
+   "test": "FWS realty v3: Cache River (AR), control from its own tract polygon",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     34.971193,
+     -91.316937
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ],
+     "json": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      35.469438,
+      -91.135797
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.631203,
+      -91.074672
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      34.973577,
+      -91.333309
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 18 rings",
+    "NHD layer 6: 355 river vertices",
+    "344 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+    "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+    "DIVNAME": "Cache River National Wildlife Refuge",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "45Au",
+    "INTIDNO": "1051.45Au",
+    "IntReg": "4"
+   }
+  },
+  {
+   "test": "FWS realty v3: Shiawassee control check (was NO HIT by hand)",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     43.377771,
+     -83.992004
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "CMPXNAME": "N/A",
+       "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "N/A",
+       "UNITNAME": "N/A",
+       "SUBUNAME": "N/A",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "114a",
+       "INTIDNO": "458.114a",
+       "RSL_TYPE": "NWR",
+       "IntReg": "3"
+      }
+     ],
+     "json": [
+      {
+       "CMPXNAME": "N/A",
+       "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "N/A",
+       "UNITNAME": "N/A",
+       "SUBUNAME": "N/A",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "114a",
+       "INTIDNO": "458.114a",
+       "RSL_TYPE": "NWR",
+       "IntReg": "3"
+      }
+     ]
+    }
+   },
+   "water": [],
+   "notes": [],
+   "control_from": {
+    "CMPXNAME": "N/A",
+    "ORGNAME": "SHIAWASSEE NATIONAL WILDLIFE REFUGE",
+    "DIVNAME": "N/A",
+    "UNITNAME": "N/A",
+    "SUBUNAME": "N/A",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "114a",
+    "INTIDNO": "458.114a",
+    "IntReg": "3"
+   }
+  },
+  {
+   "test": "Ohio nolakes /5 v3: control from its own polygon, then mid-Mosquito Lake",
+   "layer": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+   "control": {
+    "point": [
+     39.631672,
+     -82.874826
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "ALT_NAME": "A W MARION",
+       "PROP_TYPE": "CONS",
+       "OWN_TYPE": "Own",
+       "MARCS_Property_Type": "SP",
+       "Name_Label": "A W Marion SP",
+       "LANDS_NAME": "AWMarionSP",
+       "HUNTING_STATUS": "RESTRICTED"
+      }
+     ],
+     "json": [
+      {
+       "ALT_NAME": "A W MARION",
+       "PROP_TYPE": "CONS",
+       "OWN_TYPE": "Own",
+       "MARCS_Property_Type": "SP",
+       "Name_Label": "A W Marion SP",
+       "LANDS_NAME": "AWMarionSP",
+       "HUNTING_STATUS": "RESTRICTED"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      41.3,
+      -80.76
+     ],
+     "result": {
+      "plain": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "MARCS_Property_Type": "SP",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP",
+        "HUNTING_STATUS": "RESTRICTED"
+       }
+      ],
+      "json": [
+       {
+        "ALT_NAME": "MOSQUITO LAKE",
+        "PROP_TYPE": "PARK",
+        "OWN_TYPE": "Lease",
+        "MARCS_Property_Type": "SP",
+        "Name_Label": "Mosquito Lake SP",
+        "LANDS_NAME": "MosqtoLkSP",
+        "HUNTING_STATUS": "RESTRICTED"
+       }
+      ]
+     }
+    }
+   ],
+   "notes": [],
+   "control_from": {
+    "ALT_NAME": "A W MARION",
+    "OWN_TYPE": "Own",
+    "Name_Label": "A W Marion SP",
+    "LANDS_NAME": "AWMarionSP",
+    "HUNTING_STATUS": "RESTRICTED"
+   }
+  }
+ ],
+ "summary_v3": {
+  "how": "v3 (Oct 29): each control point taken AUTOMATICALLY from inside one of the layer's own polygons (never by hand); river points from USGS NHD inside the unit polygon.",
+  "FWS realty": "SOLID now: controls HIT at all three (Ohio River Islands tract 152, Cache River tract 45Au, Shiawassee tract 114a; the hand-picked Shiawassee point in v2 was simply off the tract). River points: Ohio River Islands 1 of 3, Cache River 1 of 3 HIT = the layer holds the channel only where the refuge owns that tract (tract by tract), not the whole river.",
+  "NPS tracts": "STILL UNKNOWN for New River Gorge + Big South Fork: no tract in the layer has an ALPHA_TRACT starting NERI or BISO (0 records), and 0 of 6 river points HIT. Most likely the tract layer does not carry those two units at all (it does carry Mammoth Cave). Next: ask the layer which UNIT codes it holds.",
+  "Ohio DNR nolakes /5": "Control HIT (A W Marion SP, own). Mid-Mosquito Lake also HITS /5 (Mosquito Lake SP, Lease): the 'nolakes' layer still holds that leased lake surface (B6: a lake surface is never a land outline).",
+  "FS Basic Ownership": "unchanged from v2: SOLID."
  }
 }
