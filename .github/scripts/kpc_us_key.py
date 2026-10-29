@@ -1332,8 +1332,20 @@ try:
     for _st, _d in _all.items():
         for _r, _p in (_d.get('parks') or {}).items():
             if _p.get('m'): _joined.setdefault(_r, []).append(_st)
+    # Oct 29 (HQ 2:08 PM, Brandon 2:07 PM 'yea 1 pin for several states'): a park across a state line has ONE POTA pin, in one
+    # state; in the other states' files the pin is 'outside' by definition. The pin is judged against the WHOLE park: when it
+    # sits inside the park's land in ANY state, the far / pin_may_be_wrong flags come off in the others (the pin is never moved).
+    _pin_in = {}
+    for _st, _d in _all.items():
+        for _r, _p in (_d.get('parks') or {}).items():
+            if _p.get('m') and not _p.get('far'): _pin_in.setdefault(_r, _st)
     for _st, _d in _all.items():
         _n = 0; _was = json.dumps(_d, sort_keys=True)
+        for _r, _p in (_d.get('parks') or {}).items():
+            if _p.get('far') and _r in _pin_in and _pin_in[_r] != _st:
+                _p.pop('far', None); _p.pop('pin_may_be_wrong', None); _p['pin_in_state'] = _pin_in[_r][3:]
+        _d.setdefault('counts', {})['pin_outside'] = sum(1 for _p in (_d.get('parks') or {}).values() if _p.get('far'))
+        _d['counts']['pin_well_outside'] = sum(1 for _p in (_d.get('parks') or {}).values() if _p.get('far') == 'well outside')
         for _r, _p in (_d.get('parks') or {}).items():
             _else = [x for x in _joined.get(_r, []) if x != _st]
             if not _p.get('m') and _else:
