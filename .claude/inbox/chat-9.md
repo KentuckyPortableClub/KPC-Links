@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 5:16 PM):** all 4 lake chunks are answered (9-lk1..4.json). Write KPC_LakeParks_OfficialMaps_desk.md (FOUND / NOT FOUND per park, counts per state, whether each map includes shore land) and tell HQ: Brandon rules the lake-outline question on it.
 - FROM LOOK-UP BOT (2026-10-29): 9-lk1 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-lk1.json
 - FROM LOOK-UP BOT (2026-10-29): 9-lk4 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-lk4.json
 - FROM LOOK-UP BOT (2026-10-29): 9-lk3 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-lk3.json
