@@ -1043,6 +1043,35 @@ def run(st):
             parks[r].setdefault('parts', {})[rid] = [[round(c, 4) for c in ps[i]] for i in v]
             clipped.append(f'{r} ({len(v)} of {len(ps)} parts)')
     if clipped: notice(f'US key {st}', f"{len(clipped)} parks given only their own parts of a shared multipart record: {', '.join(clipped[:12])}")
+    # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
+    # SUMS the records doubles the land): one acreage per park = the area of the UNION of its records ('ac'), the number every
+    # reader should use. Needs shapely (installed by the workflow); without it nothing is written.
+    try:
+        from shapely.geometry import Polygon as _Poly
+        from shapely.ops import unary_union as _union
+        byid = {_oid(a): a for a in recs if a.get('_g')}
+        nac = 0
+        for ref, p in parks.items():
+            ids = [str(x[0]) for x in p.get('m') or []]
+            if len(ids) < 2 or not all(i in byid for i in ids): continue
+            pts = [q for i in ids for r in rings(byid[i]['_g']) for q in r]
+            if not pts: continue
+            la0 = sum(q[1] for q in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la0)), 110574
+            geoms = []
+            for i in ids:
+                rr = [r for r in rings(byid[i]['_g']) if len(r) > 3]
+                boxes = (p.get('parts') or {}).get(i)
+                if boxes: rr = [r for r in rr if any(b[0] - .01 <= (min(q[0] for q in r) + max(q[0] for q in r)) / 2 <= b[2] + .01 and b[1] - .01 <= (min(q[1] for q in r) + max(q[1] for q in r)) / 2 <= b[3] + .01 for b in boxes)]
+                g = None
+                for r in rr:
+                    pg = _Poly([(q[0] * kx, q[1] * ky) for q in r]).buffer(0)
+                    g = pg if g is None else g.symmetric_difference(pg)
+                if g is not None: geoms.append(g)
+            if geoms:
+                p['ac'] = round(_union(geoms).area / 4046.86); nac += 1
+        notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)') if nac else None
+    except ImportError: pass
+    except Exception as e: notice(f'US key {st}', f'union acreage skipped: {str(e)[:120]}')  # noqa: BLE001
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']

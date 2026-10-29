@@ -63,7 +63,7 @@ jobs:
           STATES: ${{ matrix.g.states }}
           MINUTES: '300'
         run: |
-          pip install --quiet --break-system-packages pyshp pyproj || true   # Oct 28: zipped-shapefile layers (Mississippi)
+          pip install --quiet --break-system-packages pyshp pyproj shapely || true   # Oct 28: zipped-shapefile layers (Mississippi)
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           mkdir -p part
           for st in $STATES; do [ -f data/us-key/US-$st.json ] && cp data/us-key/US-$st.json part/; done
