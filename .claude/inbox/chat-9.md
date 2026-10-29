@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-kp answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp.json
 - **FROM HQ (Oct 29 3:04 PM) RELEASE ORDER = BRANDON'S GO (Brandon 3:02 PM: 'Soon as it gets done with 8 and 11 approves release it and whatever has been approved to leave waiting room'):** (1) chat 2 rebuilds the US (+Canada) key with R-G8; (2) chat 8 confirms R-G8 on it (the 4 wrong pieces gone, no new break) AND chat 11 approves the key; (3) the moment BOTH have written PASS in REPORT TO HQ: chat 2 lets the new us-key + ca-key into the daily KPC-Data copy (or runs the copy once) = the site gets the new outlines; chat 10's waiting room releases every item that has an APPROVED verdict (chat 11 YES + chat 2 recheck), incl. the keyed parking points (chat 11 PASS v3b). Anything not approved stays held. One batch, then each chat writes what went out in REPORT TO HQ. Everything else (new tools, pages, Finder regions) stays frozen.
 - FROM LOOK-UP BOT (2026-10-29): 9-wy2 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-wy2.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp-pins answered: 7 result(s), 7 read OK, 0 screenshot(s) -> .claude/lookup/answers/9-kp-pins.json
