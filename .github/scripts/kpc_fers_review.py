@@ -46,7 +46,8 @@ def main():
             stt = str(s.get('status', ''))
             if stt.startswith('merged'): continue
             kind = None
-            if stt.startswith('not sure'): kind = 'not sure'
+            if re.search(r'water not checked|water map did not answer', stt): kind = 'water map weak here (fix later: a better water source)'   # Brandon Oct 28 8:53 PM: keep running, list them
+            elif stt.startswith('not sure'): kind = 'not sure'
             elif stt.startswith('water only'): kind = 'water only (boat spot): is there really no land?'
             elif stt.startswith(('candidate', 'very tight')) and s.get('kind') == 'area' and s.get('river_slot'): kind = 'river slot between the two banks'
             if not kind: continue
@@ -55,11 +56,13 @@ def main():
                          'size': szt, 'sort': round(sz, 1), 'reason': plain(stt)[:300], 'id': s.get('id'),
                          'sources': s.get('map_dates') or {}, 'checked': s.get('checked') or s.get('pass5') or d.get('pass5') or ''})
     e = load(DATA / f'expected-{TAG}.json') or {}
-    for x in e.get('DROPPED') or []:
+    for x in (e.get('DROPPED') or []) + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:
+        # Oct 28 (chat 8, Iowa): pairs POTA history ties together but whose official outlines are apart (box test) are listed too: a hint only
+        if not isinstance(x, dict): continue
         why = ' / '.join(x.get('why_expected') or [])
         if 'activated together' not in why: continue
         n = re.search(r'\((\d+)x', why)
-        rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'POTA history says people activate these together, our outlines say no',
+        rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'HINT only (look here): POTA history shows people activating these together; logs have mistakes, it never decides',
                      'kind': 'pair', 'size': f"{n.group(1) if n else '?'} same-day activations", 'sort': float(n.group(1)) if n else 0,
                      'reason': x.get('reason', ''), 'id': '+'.join(x.get('refs') or []) + '@pota', 'sources': {'POTA history': why[:160]}, 'checked': e.get('date', '')})
     # one row per pair + what (the biggest)

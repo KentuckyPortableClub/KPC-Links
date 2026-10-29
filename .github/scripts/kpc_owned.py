@@ -26,7 +26,9 @@ NPSTR = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_
 NPSQ = "ESTATE = 'Fee' AND STATUS = 'Federal'"
 OWNER_KEY = {'usfs': 'FED:USFS', 'blm': 'FED:BLM', 'nps': 'FED:NPS', 'usace': 'FED:USACE', 'fws': 'FED:FWS', 'state': 'STATE'}
 PADQ = {'nps': "Category = 'Fee' AND Mang_Name = 'NPS'", 'usace': "Category = 'Fee' AND Mang_Name = 'USACE'",
-        'fws': "Category = 'Fee' AND Mang_Name = 'FWS'", 'state': "Category = 'Fee' AND Own_Type = 'STAT'"}
+        'fws': "Category = 'Fee' AND Mang_Name = 'FWS'", 'state': "Category = 'Fee' AND Own_Type = 'STAT'",
+        # Oct 28 (Brandon's simple test): every PUBLIC owner's fee land (federal, state, local, special district, TVA, Corps...)
+        'public': "Category = 'Fee' AND Own_Type IN ('FED','STAT','LOC','DIST','JNT')"}
 OWNMAP = {'usfs': 'Forest Service ownership map (Basic Ownership, 2015 data)', 'blm': 'BLM surface management map',
           'nps': "the Park Service's own land tracts (Land Resources Division; PAD-US fee records when it does not answer)", 'usace': 'PAD-US Corps of Engineers fee records', 'fws': 'PAD-US Fish and Wildlife fee records',
           'state': 'PAD-US state fee records'}
