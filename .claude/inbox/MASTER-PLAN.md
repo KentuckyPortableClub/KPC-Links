@@ -35,6 +35,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [~] 8.6 Known 2-fer pairs, 3-5 per state (G7): chat 8 already started it, stays with chat 8
 - [x] 8.7 State parks on federal land: report + rule R-SF (KPC_StateInFederal_Overlays_desk.md): 4 GREY AREAS for Brandon
 - [→] 8.8 MOVED to chat 11 (11.5)
+- [ ] 8.12 LAYERED-LAND LIST (Brandon Oct 29 7:48 AM: 'we need to track all these in case we have to review them'): one file .claude/build/research/KPC_LayeredLand_List_desk.md (+ data/fers/layered.json for the bots) of EVERY pair where the federal agency OWNS the land and the state MANAGES it (and the reverse), per pair: both POTA numbers + POTA's NAME and TYPE for each (does POTA call it a state WMA / state park or a federal unit?), owner + manager from PAD-US Own_/Mang_ fields at the patch, the agency evidence (lease / cooperative agreement page), live / not sure in the line, last checked. KY first (Redbird, Pioneer Weapons, Beaver Creek WMAs on Daniel Boone NF; Kentucky Lake WMA on TVA land; Corps-lake WMAs: Green River Lake, Grayson Lake, Paintsville Lake), then GA (Cohutta WMA on Chattahoochee NF), TN (Cherokee WMA on Cherokee NF), AR (WMAs on Ozark NF), then every state. Kept current: the line adds a row whenever it finds a new layered pair.
 - [ ] 8.9 Agency own-land records (real private tracts) + official water's-edge sources (no OpenStreetMap)
 - [ ] 8.10 Source Book 2 (Southeast next, then the rest); hunt sources per state
 - [ ] 8.11 Other states' hunt PDF lists (or chat 9 if chat 8 is too slow: HQ decides)
