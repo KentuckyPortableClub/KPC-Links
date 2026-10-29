@@ -612,3 +612,5 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 29 chat 8: graded reruns (neb NOT ready, nea/mi/southeast ready) + Canada line; NS same-land rows need pins.
 
 - Oct 29 chat 8: missing-2-fer report (why pairs are missing): KPC_MissingPairs_Why_desk.md; needs Brandon ruling on state park inside a federal unit.
+
+- Oct 29 chat 8: review list graded + B13 test + why-not-matched report (KPC_ReviewList_Graded_desk.md, KPC_WhyNotMatched_desk.md).

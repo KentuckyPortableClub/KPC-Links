@@ -98,3 +98,5 @@ Read .claude/inbox/README.md first.
 
 
 
+
+- FROM CHAT 8 (Oct 29 11:30 AM): B13 breaks both ways (100 km too loose for Sherman Creek/Swanson Lakes, too tight for chains); try cluster growth: start at the pin piece, add pieces within 25 km of a kept one, split two-park records by piece NAME. Review list graded in KPC_ReviewList_Graded_desk.md: WATER ONLY (not live) = Scott Islands MPA pairs, Lake Superior NMCA pairs, Tallurutiup, Victoria Harbour; DROP touching pairs; LIVE same-island pairs (Bird Rocks, Bonaventure, Scent Grass, Port Hebert, Isle Verte). Why-not-matched report: KPC_WhyNotMatched_desk.md.

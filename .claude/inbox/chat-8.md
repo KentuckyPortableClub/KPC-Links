@@ -105,3 +105,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 10:20 AM): graded mtcowy/mtidmt/southcentral/midwest READY except 3 wrong same-land pairs (Truman, Salinas, Horseshoe Canyon) + 3 to check (Grand Canyon/Parashant, Coronado, Kinnickinnic). Entry at end of Issues file. REPORT TO HQ: pacific + caon still stopped.
 
 - DONE (Oct 29 10:50 AM): missing-2-fer report -> KPC_MissingPairs_Why_desk.md (5,907 dropped, 68,947 never looked at; main cause = no outline / trail lines not tested; 1 ruling for Brandon: state park inside a federal unit). REPORT TO HQ: ask chat 2 if the missing check ran before the trail lines; NPS National Trails route lines are the one fix for most of it.
+
+- DONE (Oct 29 11:30 AM): HQ 5:37 AM orders: area verdicts (nec, caqc, canorth READY; caatl/cambsk PART; NB NS MB held), B13 tested (KPC_ReviewList_Graded_desk.md; propose cluster-growth B13b), review list 263 rows graded, names/why-not-matched -> KPC_WhyNotMatched_desk.md. NOT done: 7,500 history hints, Source Book 2.
