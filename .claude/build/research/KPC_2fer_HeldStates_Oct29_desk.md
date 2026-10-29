@@ -104,4 +104,24 @@ Utah (150 rows waiting), NV + AZ + NM, Pacific (CA OR WA AK HI), Ontario + Briti
 
 - CA-1182 Lesser Slave Lake Provincial Park + CA-3063 Lesser Slave Lake Wildland Provincial Park: 50 km apart
 
+## Outlines with pieces 100+ km from the pin (Fable / access bot list) — what happens to each
+
+Fixed by the part rule pushed 5 AM (two parks, one record, far-apart pieces; each keeps its own piece after the key rebuild): Robert Moses LI + TI, Lost Nation x2, Pine Hill x2, Black Creek x2, Beaver Creek (NY) x2, Bear Swamp x2, South Hill x2, Tracy Creek x2.
+
+NOT cut by a bot (one park, one record, pieces far apart): a rule here decides for people, so chat 8 + Brandon rule first. My read:
+| Park | Record | far pieces | farthest | my read |
+|---|---|---|---|---|
+| US-5461 Tillamook SF | 'Forest Development Fund (Board…)' 608 pieces | 270 | 430 km | WRONG JOIN: a statewide Board of Forestry record; keep only pieces inside Tillamook SF |
+| US-6347 Copan WMA (OK) | Copan WMA, 5 pieces | 2 | 322 km | wrong pieces (another place in the record) |
+| US-8785 / 8928 / 9016 PA SGL 086 / 231 / 326 | State Game Land record | 1 each | 286 / 116 / 128 km | wrong pieces (access bot saw it too) |
+| US-12811 Beaver Creek WMA (MN) | 7 pieces | 3 | 274 km | wrong pieces: other 'Beaver Creek' WMAs |
+| US-5973 Salt Creek (NE?) | 7 pieces | 5 | 216 km | wrong pieces |
+| US-12982 Irrigon Hatchery (OR) | 6 pieces | 4 | 208 km | wrong pieces |
+| US-6826 Oden Hatchery (MI) | 4 pieces | 2 | 129 km | wrong pieces |
+| US-12243 / 12244 Sherman Creek / Swanson Lakes (WA) | one shared WDFW record | 7 / 10 | 169 / 139 km | two different wildlife areas in one record: give each its own pieces |
+| US-12265 Sunnyside, US-12488 Columbia Basin (WA) | multi-unit WDFW records | 3 / 1 | 120 / 111 km | check: may be real units |
+| US-4594 Tanana Valley SF (AK), US-6303 Florida Keys WA, US-4822 Dorer Hardwood SF (MN), US-7680 Upper Mississippi CR, US-7276 Cherokee WMA | big spread-out parks | many | 131-393 km | REAL: these parks really are that spread out: keep |
+
+Proposed rule for the ruling (B13): a state-level park (not federal, not a trail / river / corridor) whose record has pieces 100+ km from its pin keeps only the pieces within 100 km, UNLESS the park is on a 'spread-out' list (Tanana Valley, Florida Keys, Dorer, Upper Mississippi, Cherokee…) checked on the agency map.
+
 ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go.
