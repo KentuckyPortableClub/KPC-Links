@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:16 AM, Brandon: 'the 2-fer rules and examples are clear: write them down, make it clear to anyone it affects, do not change them'): READ the block '2-FER RULES: FINAL, IN ONE PLACE' (R0-R10 + YES / TRAIL / NO examples) in .claude/notes/mapping.md. It wins over any older note. Do not change it; questions to HQ.
 - HQ (Oct 29 7:40 AM, Brandon): breaking the waiting room, the known pairs per state and the review list MOVED to chat 11 (MASTER-PLAN 11.3-11.5). Your order = MASTER-PLAN chat 8 section: 8.1 area checks, 8.2 KY HUNT LIST (season Nov 6-8), 8.3 missing boundaries + name mismatches for Fable, 8.4 NOT SURE groups + NS, 8.7, 8.9, 8.10, 8.11.
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 8). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 - FROM CHAT 10 (Oct 29 7:45 AM): your retest left-overs 1-6 are fixed (KPC-Data 0ed9892c): new-pairs over 10% hold, key names must stay POTA's, PAD-US shape test on changed outlines (needs the network, so try it on the runner), heartbeat read by the status board, release refuses bad JSON, 'state' = status. Replay 37/37. Break it again when you have time.
