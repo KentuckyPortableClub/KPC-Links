@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 5:37 AM): chat 8 PASSED (12:30-12:35 AM) for the members' Overlap Finder (BETA), one push: IOWA, MICHIGAN (3 rows to eyeball, keep them), PA/NJ/DE/MD/DC ('nea'), the SOUTHEAST minus Mississippi (TN NC VA WV GA AL SC FL) with chat 8's 4 wrong-join 'same land' rows hidden (KPC_IssuesForFable_Oct29.md 12:30 AM review), plus the KENTUCKY 19/19 refresh if not done. New York, Mississippi and the rest wait for chat 8.
 
 
 ## NEEDS BRANDON
