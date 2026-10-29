@@ -25,7 +25,9 @@ jobs:
           ls cache/us | wc -l; ls data/canada-bounds 2>/dev/null | wc -l || true
       - name: Probe
         continue-on-error: true
-        run: python3 .github/scripts/kpc_outline_accuracy.py || true
+        run: |
+          pip install --quiet --break-system-packages numpy || pip install --quiet numpy || true
+          python3 .github/scripts/kpc_outline_accuracy.py || true
       - name: Save the findings
         if: always()
         continue-on-error: true
