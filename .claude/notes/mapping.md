@@ -572,3 +572,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - **Oct 28 8:39 PM (Brandon):** ownership + land/water ('boat spot') are kept as INFORMATION on each 2-fer (who owns the ground, how much is water): a handy tool for members, never a deciding rule.
 - Oct 28 9:10 PM (chat 8): Midwest re-read: MN ok (gzipped file; my earlier 'no file' was wrong), IA still only 4 spots (Backbone SP x SF etc. missing); sent to chat 2.
 - Oct 28 10:10 PM (chat 8): SOURCE BOOK 2 batch 1 (KY, OH, MI) -> KPC_SourceBook2_KYOHMI_desk.md; hand-offs to chats 10 and 2.
+- **Oct 28 9:15 PM (Brandon, CORRECTS HQ's 8:17 PM note): KEEP EVERYTHING, REVIEW LATER.** Boat / water-only rows and multiple-owner information are NOT deleted: rows run as they are; anything questionable goes on the review list (review-all) for chat 8 later. The simple test decides LIVE; it never removes information.
