@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-low-d answered: 5 result(s), 5 read OK, 2 screenshot(s) -> .claude/lookup/answers/3-fable-low-d.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-b answered: 6 result(s), 5 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-b.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-a answered: 10 result(s), 9 read OK, 8 screenshot(s) -> .claude/lookup/answers/3-fable-low-a.json
 - **FROM HQ (Oct 29 3:23 PM) RECORD IN THE FABLE FILE (Brandon 3:21 PM):** every resource you find for an open park (official map link, layer, our doc, deed/parcel, look-up answer) + the Rule G step + the result goes as ONE ROW under its state in .claude/build/research/KPC_MissingBoundaries_ForFable_desk.md, section 'WORK LOG BY STATE' (format there). Add rows, never delete others'. The per-state note to chat 2 still goes to its inbox; the file is the one record. Push often (git pull --rebase first: several chats write it).
