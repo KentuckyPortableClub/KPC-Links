@@ -2145,6 +2145,47 @@ def slim(spots):
 def key_of(s): return '+'.join(s['refs']) + '@' + s['kind']
 
 
+def channel_rows(files, G, today):
+    """Brandon Oct 28 6:55 PM (mapping.md): a river channel counts as park land only where the agency's OWN record includes it;
+    else the channel inside BOTH parks' outlines is a WATER ONLY row (boat spot), never dropped. For each live area pair with an
+    agency-land park: (both outlines) minus (the agency's own land) = the slot; its USGS water part holding a 50-yard spot = the row."""
+    n = 0
+    for d in files.values():
+        have = {x.get('id') for x in d.get('spots', [])}
+        for x in list(d.get('spots', [])):
+            if x.get('kind') != 'area' or len(x.get('refs') or []) != 2 or not str(x.get('status', '')).startswith(('candidate', 'very tight')): continue
+            if not any(r in OWNED for r in x['refs']) or any(r not in G for r in x['refs']) or late(): continue
+            try:
+                sb = sbox(x); pad = .002; box = [sb[0] - pad, sb[1] - pad, sb[2] + pad, sb[3] + pad]
+                cell = CELL; F = Frame(box, cell, SHRINK * 2)
+                while F.W * F.H > MAXPX: cell *= 1.5; F = Frame(box, cell, SHRINK * 2)
+                outl = None; own = None
+                for r in x['refs']:
+                    m = F.area(G[r]); outl = m if outl is None else outl & m
+                    pm = pmask(F, r, G); own = pm if own is None else own & pm
+                slot = outl & (1 - own)
+                if not slot.any(): continue
+                wg = nhd_water(F.bounds())
+                if wg is None: continue   # no water map: nothing said (the land row stands)
+                ch = (slot & F.area(wg)).astype(np.uint8)
+                dd = dt(ch) * cell
+                if not (dd >= TIGHT_SHRINK + cell).any(): continue
+                r0, c0 = np.unravel_index(np.argmax(dd), dd.shape); ctr = F.ll(int(c0), int(r0))
+                rid = '+'.join(x['refs']) + '@area@channel@%.3f,%.3f' % (ctr[1], ctr[0])
+                if rid in have: continue
+                cs, _ = cv2.findContours(ch, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                big = max(cs, key=cv2.contourArea); ap = cv2.approxPolyDP(big, 1.5, True).reshape(-1, 2)
+                agency = ', '.join(OWNMAP.get(OWNED[r], OWNED[r]) for r in x['refs'] if r in OWNED)
+                row = {'refs': x['refs'], 'kind': 'area', 'id': rid, 'center': [ctr[1], ctr[0]], 'box': x.get('box'), 'shape': sharp_shape([F.ll(int(c), int(r)) for c, r in ap]),
+                       'acres': round(int(ch.sum()) * cell * cell / 4046.86, 1), 'wide_m': round(float(dd.max()) * 2, 1), 'passes': [1, 1, 1],
+                       'status': 'water only: boat or kayak', 'list': '🚤 Water only: boat or kayak', 'found': today, 'checked': today,
+                       'note': f"the river channel between the banks: inside both parks' outlines, but not on {agency} (ruling Oct 28: a boat spot, never dropped)",
+                       'names': x.get('names'), 'maps': x.get('maps'), 'channel_of': x.get('id')}
+                water_date(row); d['spots'].append(row); have.add(rid); n += 1
+            except Exception as e: LOG.append(f"channel {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+    return n
+
+
 def land_check(s, G):
     """Rules 9 + 10 on a US area spot: 'ok', 'water' (the 50-yard patch exists only on a lake / river surface), 'closed'
     (it exists only inside a PAD-US closed area)."""
@@ -2348,8 +2389,8 @@ def tidy_rows(spots, PIN, today):
     # (1) one row per pair (any size of refs) and kind, for every LIVE row (Oct 28 chat 8: de-dupe by sorted refs + kind)
     by = {}
     for x in spots:
-        if live(x) or str(x.get('status', '')).startswith('water only'): by.setdefault((tuple(sorted(x['refs'])), x.get('kind')), []).append(x)
-    for (pair, kind), ss in by.items():
+        if live(x) or str(x.get('status', '')).startswith('water only'): by.setdefault((tuple(sorted(x['refs'])), x.get('kind'), 'water' if str(x.get('status', '')).startswith('water only') else 'land'), []).append(x)
+    for (pair, kind, _w), ss in by.items():   # a water-only row (a river channel) never folds into the land row of the same pair
         if len(ss) < 2: continue
         if kind == 'area': ss.sort(key=lambda x: (-(x.get('wide_m') or 0), -(x.get('acres') or 0)))
         else: ss.sort(key=lambda x: -(x.get('len_m') or 0))
@@ -2568,6 +2609,7 @@ def main():
             G.update(g2)
         mark(f'geometry of {len(more)} more parks')
         n['spots given their boundary lines'] = add_lines(files, G, today)
+        n['river channels listed as water only (boat spots)'] = channel_rows(files, G, today)
         mark(f"boundary lines for {n['spots given their boundary lines']} spots")
         tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
