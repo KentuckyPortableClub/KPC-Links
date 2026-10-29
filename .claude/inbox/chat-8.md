@@ -93,3 +93,5 @@ Read .claude/inbox/README.md first.
 - REPORT TO HQ Oct 28: BoundaryGaps file ready; look-up rows for chat 9 (rivers, BOR, MS) and chat 2 (UT BLM name-match, NOAA).
 
 - DONE (Oct 29): graded reruns neb/nea/mi/southeast + Canada line pieces (see Issues file entry). REPORT TO HQ: neb needs rerun after the key rebuild; NS 161 same-land rows need pins to verify; Cape Scott x Scott Islands MPA should not be plain live.
+
+- DONE (Oct 29): clue search graded: 11 yes, 3 check, 4 no of the 18; 8 far ones worth a pin look, rest generic words (see ClueSearch desk file bottom).
