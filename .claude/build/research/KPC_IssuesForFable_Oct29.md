@@ -498,3 +498,5 @@ Audit of the CO WY ID MT TX OK AR LA NM KS MO MN WI IL IN UT NV AZ files: no dup
 - **OK (nested units, far pins are normal):** Diamond HMA + Diamond Complex HMA; Gold Butte HMA + Gold Butte NM; High Rock Canyon SRMA + Little High Rock Wilderness; LaSage Unit + Wolf River SWA.
 - Big rows to confirm they are real overlap, not a whole big unit: ID US-10381 + US-4480 (1.27 million ac) and + US-4474 (326,000 ac), US-10382 + US-4476 (208,000 ac); MT US-4499 + US-7990 (96,000 ac), US-4500 + US-7994 (103,000 ac); MN US-4490 + US-4787 (147,000 ac); WY US-11741 + US-4475 (55,000 ac). Likely wilderness inside forest (real layering), but wilderness inside NF should show the wilderness's own acres, not the forest's.
 - Pacific: still STOPPED, not graded.
+
+**[chat 10] Oct 29 7:25 AM:** done from the 6:40 AM grade + HQ 7:00 AM: truth v15 (family fold), intake READY rule (21 -> 1), docs v7 (ID viewer links), hours v11 (season word, 'weekday', attraction scope), waiting room = chat 8's 9 fixes (replay 34/34). One run each of the hidden bots on KPC-Data 9a20d0a8; website-feeding bots wait for the Waiting Room GO.
