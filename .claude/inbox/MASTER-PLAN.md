@@ -5,6 +5,9 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## WEBSITE FREEZE (Brandon Oct 29 12:27 PM): nothing added/changed on the website until Rule Sheet G is done. Focus: Rule Sheet G + side missions (shrink Fable's list, collect parking, collect documents). EXCEPTIONS (Brandon 12:28 PM): KY hunt notes/closures go live Sat Oct 31; bots already updating the site keep running.
 
+## FINAL FREEZE (Brandon 12:56 PM): only auto-update bots touch the site. Rule G + collected data are STAGED and go out in ONE MASS DUMP after the map rebuild (Brandon's GO).
+## FABLE'S LIST, HOW (HQ 12:58 PM): (1) chats 2/9/11 finish the side work (name matches, new state layers, lake parks); (2) Rule G key built (R-G1..G6 + official-record-at-any-distance often settles 'pin inside a bigger area'); (3) chat 8 re-runs its missing-boundaries list on the NEW key; (4) only what is left goes to ONE Fable session with KPC-Data attached (H.1).
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.
