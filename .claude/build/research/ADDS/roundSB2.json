@@ -1,0 +1,227 @@
+{
+ "about": "Chat 9 round SB2 (Oct 29 ~10:50 AM): chat 8 Source Book 2 (nothing-near states) rows a-e; HQ 10:43 AM: probe the 'pin only' groups too (historical markers / monuments, airstrips, scenic road areas, fish hatcheries, small state historic sites); task 9.5: read the access layers found in CP2 (Parks Canada facilities, Manitoba entry points, Ontario fishing access, LDWF, NMDGF, MARIS recreation facilities). No keyed calls. ONE run. Results: roundSB2-tested.json.",
+ "layers": [
+  {
+   "st": "WEST",
+   "kind": "park",
+   "ag": "BLM",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "note": "SB2 a: BLM recreation site polygons"
+  },
+  {
+   "st": "ND",
+   "kind": "forest",
+   "ag": "ND DMR",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/Public/ND_State_Forest/MapServer/0",
+   "note": "SB2 d (path guessed: see org walk)"
+  },
+  {
+   "st": "CA",
+   "kind": "point",
+   "ag": "Parks Canada",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer",
+   "note": "9.5 Parks Canada facilities (OGL-Canada)"
+  },
+  {
+   "st": "CA-MB",
+   "kind": "point",
+   "ag": "Manitoba",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0",
+   "note": "9.5 MB entry points (OpenMB)"
+  },
+  {
+   "st": "CA-ON",
+   "kind": "point",
+   "ag": "Ontario MNR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/15",
+   "note": "9.5 ON fishing access points (OGL-Ontario)"
+  },
+  {
+   "st": "NM",
+   "kind": "point",
+   "ag": "NMDGF",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer",
+   "note": "9.5 NM fishing access"
+  },
+  {
+   "st": "LA",
+   "kind": "point",
+   "ag": "LDWF",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/Boat_Launch_Mariana/FeatureServer",
+   "note": "9.5 LA boat launches"
+  },
+  {
+   "st": "MS",
+   "kind": "point",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/MapServer",
+   "note": "9.5 MS recreation facilities + SB2 fishing lakes"
+  },
+  {
+   "st": "MS",
+   "kind": "wild",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer",
+   "note": "SB2 c"
+  },
+  {
+   "st": "MS",
+   "kind": "refuge",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer",
+   "note": "SB2"
+  },
+  {
+   "st": "US",
+   "kind": "trail",
+   "ag": "NPS",
+   "url": "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0",
+   "note": "SB2 row 33"
+  }
+ ],
+ "orgs": [
+  {
+   "st": "NV",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services",
+   "match": "recreat|rma|site|airstrip|historic|special",
+   "note": "SB2 b"
+  },
+  {
+   "st": "UT",
+   "url": "https://gis.blm.gov/utarcgis/rest/services",
+   "match": "recreat|rma|site|airstrip|historic|special",
+   "note": "SB2 b"
+  },
+  {
+   "st": "WY",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services",
+   "match": "recreat|rma|site|airstrip|historic|special",
+   "note": "SB2 b"
+  },
+  {
+   "st": "ND",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services",
+   "match": "forest|park|historic|wildlife|recreat",
+   "note": "SB2 d"
+  },
+  {
+   "st": "LA",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services",
+   "match": "boat|launch|ramp|wma|refuge|access|park|parking",
+   "note": "9.5 LDWF account"
+  },
+  {
+   "st": "AR",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services",
+   "match": "park|recreat|wildlife|wma|boat|access|forest",
+   "note": "SB2 e"
+  },
+  {
+   "st": "AK",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services",
+   "match": "park|recreat|trail|access|boat|public|refuge",
+   "note": "SB2 e Alaska DNR"
+  },
+  {
+   "st": "WA",
+   "url": "https://gis.dnr.wa.gov/site3/rest/services",
+   "match": "forest|recreat|trail|access|trust|park",
+   "note": "SB2 e WA DNR state forests"
+  }
+ ],
+ "zipnames": [
+  {
+   "url": "https://maris.mississippi.edu/MARISdata/Cultural/MS_StateParks_2026.zip",
+   "note": "SB2 c MS state parks"
+  },
+  {
+   "url": "https://maris.mississippi.edu/MARISdata/Boundaries/MS_WildlifeManagementAreas_2019.zip",
+   "note": "SB2 c MS WMAs"
+  }
+ ],
+ "pages": [
+  {
+   "st": "MS",
+   "url": "https://maris.mississippi.edu/HTML/RESOURCES/Liability.html",
+   "look": "licen|use|redistribut|attribut|warrant|copyright|public domain",
+   "note": "MARIS terms"
+  },
+  {
+   "st": "ND",
+   "url": "https://gishubdata.nd.gov/sites/default/files/NDHUB.StateForest.csv",
+   "raw": true,
+   "look": "^[^\\n]{0,200}",
+   "note": "SB2 d csv head"
+  },
+  {
+   "st": "ID",
+   "url": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items?limit=50",
+   "raw": true,
+   "look": "\"title\":\"[^\"]+\"|\"url\":\"[^\"]+(FeatureServer|MapServer)[^\"]*\"",
+   "note": "SB2 e Idaho parks hub"
+  }
+ ],
+ "searches": [
+  {
+   "st": "NV",
+   "q": "(Nevada OR SHPO) AND (\"historical marker\" OR \"historical markers\" OR \"historic marker\")",
+   "why": "HQ 10:43 pin-only: NV State Historical Monuments"
+  },
+  {
+   "st": "US",
+   "q": "(\"backcountry airstrip\" OR \"backcountry airstrips\" OR airstrips) AND (BLM OR \"Bureau of Land Management\")",
+   "why": "HQ 10:43 pin-only: BLM airstrips"
+  },
+  {
+   "st": "US",
+   "q": "(\"fish hatchery\" OR \"fish hatcheries\") AND (\"Fish and Wildlife\" OR state OR boundary)",
+   "why": "HQ 10:43 pin-only: hatcheries"
+  },
+  {
+   "st": "NV",
+   "q": "Nevada AND (\"scenic byway\" OR \"scenic byways\" OR \"scenic area\" OR \"outstanding natural beauty\")",
+   "why": "HQ 10:43 pin-only: NV scenic road areas"
+  },
+  {
+   "st": "ND",
+   "q": "(\"North Dakota\" OR SHSND) AND (\"historic site\" OR \"historic sites\")",
+   "why": "HQ 10:43 pin-only: ND state historic sites"
+  },
+  {
+   "st": "OK",
+   "q": "(Oklahoma OR \"Oklahoma Historical Society\") AND (\"historic site\" OR \"historic sites\" OR museum)",
+   "why": "HQ 10:43 pin-only: OK historic sites"
+  },
+  {
+   "st": "ID",
+   "q": "(Idaho OR IDPR) AND (\"state park\" OR \"state parks\") AND boundar*",
+   "why": "SB2 e"
+  },
+  {
+   "st": "WA",
+   "q": "(Washington OR WADNR) AND (\"state forest\" OR \"state forests\" OR \"trust lands\")",
+   "why": "SB2 e"
+  }
+ ],
+ "namequery": [
+  {
+   "st": "WEST",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "fields": [],
+   "note": "SB2 a: unmatched western BLM names vs the polygon layer"
+  }
+ ],
+ "namequery_parks": {
+  "states": [
+   "NV",
+   "UT",
+   "ID",
+   "WY",
+   "OR",
+   "WA",
+   "AK"
+  ],
+  "type": "Recreation Management Area|Special Recreation|Historic|Interpretive|Airstrip",
+  "strip": "\\b(BLM|Special|Extensive|Recreation|Management|Area|SRMA|ERMA|RMA|Backcountry|Airstrip|Interpretive|Site|Historic)\\b"
+ }
+}

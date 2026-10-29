@@ -211,7 +211,9 @@ def namequery(cfg):
     names = []
     for st in P.get('states', []):
         try: pk = json.load(open(f'data/us-key/US-{st}.json'))['parks']
-        except Exception: continue
+        except Exception:   # Oct 29: the keys moved to KPC-Data
+            try: pk = get(f'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/main/data/us-key/US-{st}.json')['parks']
+            except Exception: continue
         for r, v in pk.items():
             if not v.get('m') and re.search(P['type'], v.get('t', '')):
                 core = ' '.join(re.sub(P['strip'], ' ', v.get('n', ''), flags=re.I).split())
@@ -582,6 +584,39 @@ def nearq(cfg):
     return out
 
 
+def zipnames(cfg):
+    """Oct 29 (chat 8 Source Book 2): download an agency ZIP (shapefile), list its files, read the .dbf fields, record count and the names."""
+    import io, zipfile, struct
+    out = []
+    for x in cfg.get('zipnames') or []:
+        r = {'url': x['url'], 'note': x.get('note')}
+        try:
+            with urllib.request.urlopen(urllib.request.Request(x['url'], headers=UA), timeout=120) as f: raw = f.read(60_000_000)
+            r['bytes'] = len(raw)
+            z = zipfile.ZipFile(io.BytesIO(raw)); r['files'] = z.namelist()[:30]
+            dbf = next((n for n in z.namelist() if n.lower().endswith('.dbf')), None)
+            if dbf:
+                b = z.read(dbf); n, hl, rl = struct.unpack('<IHH', b[4:12])
+                fields, off = [], 32
+                while b[off] != 0x0D:
+                    fields.append((b[off:off + 11].split(b'\0')[0].decode('latin-1'), b[off + 16])); off += 32
+                r['records'] = n; r['fields'] = [f for f, _ in fields]
+                nf = next((f for f, _ in fields if re.search(x.get('name', r'name|nm$|label|title'), f, re.I)), None)
+                names = []
+                if nf:
+                    pos = 1 + sum(l for f, l in fields[:[f for f, _ in fields].index(nf)]); ln = dict(fields)[nf]
+                    for i in range(min(n, 400)):
+                        rec = b[hl + i * rl: hl + (i + 1) * rl]
+                        names.append(rec[pos:pos + ln].decode('latin-1').strip())
+                r['nameField'] = nf; r['names'] = names
+            prj = next((n for n in z.namelist() if n.lower().endswith('.prj')), None)
+            if prj: r['prj'] = z.read(prj)[:160].decode('latin-1')
+        except Exception as e: r['error'] = str(e)[:160]
+        out.append(r)
+        notice(f"zip {x['url'][-50:]}: {r.get('records')} records, name field {r.get('nameField')} {r.get('error', '')}")
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     notice('commit ' + os.popen('git rev-parse --short HEAD').read().strip() + ' round ' + str(CAND))
@@ -624,6 +659,9 @@ def main():
     if cfg.get('nearq'):
         try: res['nearq'] = nearq(cfg)
         except Exception as e: res['nearq'] = [{'error': str(e)[:140]}]
+    if cfg.get('zipnames'):
+        try: res['zipnames'] = zipnames(cfg)
+        except Exception as e: res['zipnames'] = [{'error': str(e)[:140]}]
     if cfg.get('pinhunt'):
         try: res['pinhunt'] = pinhunt(cfg)
         except Exception as e: res['pinhunt'] = [{'error': str(e)[:140]}]
