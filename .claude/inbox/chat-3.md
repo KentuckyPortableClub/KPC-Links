@@ -7,6 +7,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 6:45 AM: chat 8's last two 'confirm both pins inside' pairs checked: MD US-1569+US-4764 (Elk Neck SP x SF) and MI US-6694+US-6729 (Gratiot-Saginaw x Connector): only one pin inside each = hidden. Nothing else waiting for chat 3 (NY, MS, Pacific, Canada not passed yet).
 - Oct 29 5:40 AM: HQ's 5:37 list was already on (IA, MI with its 3 rows kept, nea, Southeast, KY live) since 12:45-5:25 AM, plus CO WY ID MT AR LA OK TX KS NE from chat 8's 10:20 grade. Only change now: MISSISSIPPI taken OFF the Finder until chat 8 passes it (HQ: 'Mississippi waits'). Hidden rows: chat 8's 4 wrong joins + the 4 'pins not both inside' Southeast pairs + 6 from the 10:20 grade.
 - Oct 29 5:25 AM (chat 8's 10:20 grade: mtcowy, mtidmt, southcentral, midwest READY except listed pairs): added CO 17 / WY 45 / ID 46 / MT 23 / AR 12 / LA 3 / OK 32 / TX 12 / KS 21 / NE 17 pairs (35 regions). Hidden: chat 8's 3 WRONG (Truman, Salinas, Horseshoe Canyon) + its 3 CHECK pairs until someone checks them (Grand Canyon x Parashant, Coronado NMem x Coronado NF, Kinnickinnic SFWA x SP).
 - Oct 29 5:05 AM (chat 8's grade via Brandon): nea, mi, southeast reruns READY (already on, live). Checked chat 8's 4 'pins > 8 km' Southeast pairs: in NONE are both park pins inside the shared spots (TN US-3933+US-7578 0 of 2 inside, TN US-7580+US-7581 1 of 2, NC US-6893+US-6894 0 of 2, GA US-12417+US-7452 1 of 2) = hidden via `hide`. neb (NY CT RI) still NOT READY: not on the Finder.

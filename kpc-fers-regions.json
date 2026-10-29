@@ -454,6 +454,8 @@
   "US-5833+US-5846": "chat 8 Oct 29 10:20: wrong same land (Horseshoe Canyon North vs South units)",
   "US-0030+US-7887": "chat 8 Oct 29 10:20: to CHECK (Grand Canyon NP vs Parashant NM may only touch); hidden until checked",
   "US-0771+US-4429": "chat 8 Oct 29 10:20: to CHECK (Coronado NMem is not forest-owned land); hidden until checked",
-  "US-10186+US-1457": "chat 8 Oct 29 10:20: to CHECK (Kinnickinnic SFWA vs State Park, pins 22 km); hidden until checked"
+  "US-10186+US-1457": "chat 8 Oct 29 10:20: to CHECK (Kinnickinnic SFWA vs State Park, pins 22 km); hidden until checked",
+  "US-1569+US-4764": "chat 8 Oct 29 check + chat 3 test: 'same land' pins 13 km apart, only one pin inside the shared outline (Elk Neck State Park vs Elk Neck State Forest)",
+  "US-6694+US-6729": "chat 8 Oct 29 check + chat 3 test: 'same land' pins 9 km apart, only one pin inside the shared outline (Gratiot-Saginaw SGL vs Gratiot-Saginaw Connector SGL)"
  }
 }
