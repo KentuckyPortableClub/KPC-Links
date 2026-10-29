@@ -78,7 +78,11 @@ def hu4_products(tiles):
             m = re.search(r'NHDPLUS_H_(\d{4})_HU4', u)
             if m and u.lower().endswith('.zip'):
                 prods[m.group(1)] = {'url': u, 'date': (it.get('publicationDate') or it.get('dateCreated') or '')[:10]}
-                for t in ts: G.setdefault(t, set()).add(m.group(1))
+                bb = it.get('boundingBox') or {}
+                for t in ts:   # Oct 28: a tile needs only the HU4 files whose own box touches it (not every file of its 1-degree group)
+                    tb = (t[0] * .1 - .02, t[1] * .1 - .02, (t[0] + 1) * .1 + .02, (t[1] + 1) * .1 + .02)
+                    if bb and (bb.get('maxX', 999) < tb[0] or bb.get('minX', -999) > tb[2] or bb.get('maxY', 999) < tb[1] or bb.get('minY', -999) > tb[3]): continue
+                    G.setdefault(t, set()).add(m.group(1))
     return prods, G
 
 
@@ -157,7 +161,7 @@ def main():
     try: prods, cover = hu4_products(miss)
     except Exception as e: notice(f'the USGS product list did not answer ({str(e)[:80]}): nothing filled'); return  # noqa: BLE001
     if len(prods) > MAX_HU4: notice(f'{len(prods)} HU4 files needed, only the first {MAX_HU4} read this run'); prods = dict(sorted(prods.items())[:MAX_HU4])
-    out, used, tmp = {}, {}, tempfile.mkdtemp()
+    out, used, tmp, failed = {}, {}, tempfile.mkdtemp(), {}
     for hu, p in sorted(prods.items()):
         zp = os.path.join(tmp, f'{hu}.zip')
         try:
@@ -165,8 +169,8 @@ def main():
             with urllib.request.urlopen(urllib.request.Request(p['url'], headers=UA), timeout=1800) as r, open(zp, 'wb') as f: shutil.copyfileobj(r, f, 1 << 22)
             mb = os.path.getsize(zp) / 1048576
             n = read_hu4(zp, miss, out, tmp); used[hu] = p['date']
-            notice(f'HU4 {hu} ({mb:.0f} MB, {p["date"]}): {n} water pieces in {time.time() - t0:.0f} s')
-        except Exception as e: notice(f'HU4 {hu}: not read ({str(e)[:100]})')  # noqa: BLE001
+            print(f'HU4 {hu} ({mb:.0f} MB, {p["date"]}): {n} water pieces in {time.time() - t0:.0f} s', flush=True)
+        except Exception as e: failed[hu] = str(e)[:100]; print(f'HU4 {hu}: not read ({str(e)[:100]})', flush=True)  # noqa: BLE001
         finally:
             try: os.remove(zp)
             except Exception: pass  # noqa: BLE001
@@ -180,7 +184,9 @@ def main():
         p = STORE / f'{t[0]}_{t[1]}.json.gz'
         if p.exists(): continue   # never replace a live read
         p.write_bytes(gzip.compress(json.dumps({'d': f'USGS NHDPlus HR file {date}', 'f': out.get(t, [])}, separators=(',', ':')).encode(), 6)); n += 1
-    if skipped: notice(f'{skipped} tiles left empty-handed: a USGS file over them was not read (they stay NOT SURE when the live map is down)')
+    if skipped:
+        need = sorted({h for t in miss for h in (cover.get(t) or set()) if h not in used})
+        notice(f"{skipped} tiles not filled: {sum(1 for t in miss if not cover.get(t))} have no USGS file listed over them; files needed but not read: {', '.join(need) or 'none'} ({'; '.join(f'{k}: {v}' for k, v in list(failed.items())[:6])})")
     notice(f"{n} water tiles filled from {len(used)} USGS HU4 files ({', '.join(sorted(used))}), dated {date}")
 
 
