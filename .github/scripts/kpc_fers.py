@@ -2615,6 +2615,13 @@ def main():
         for x in same:   # chat 8 Ohio note 3 / KY note 2: 'same land' rows get the checked date, an owner line and a pin like the others
             if late(): break
             x['checked'] = today
+            # Oct 29 (chat 8's wrong joins): rows made before the pass-1 distance test are checked here too (a worker rerun fixes them)
+            a, b = (x.get('refs') or [None, None])[:2]
+            if a in PIN and b in PIN and b in G and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
+                dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
+                if dkm > 8 and not (pip_groups(G[b], PIN[a][2], PIN[a][1]) and pip_groups(G[b], PIN[b][2], PIN[b][1])):
+                    x['status'] = f'dropped: two park numbers joined to one record by name, pins {dkm:.0f} km apart and not both inside it (a wrong join in the key)'
+                    n['same land dropped: wrong join'] = n.get('same land dropped: wrong join', 0) + 1; continue
             ow = {owner_word(park_owner(r, parks)) for r in x['refs']} - {'', '?'}
             x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
