@@ -27,7 +27,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 3.3 LATER (GO needed): owners / % water info line on the card; 'help us check' for the review list
 
 ## CHAT 8 (research desk) — IN THIS ORDER (Brandon: 'stick to the plan'; 8.5, 8.6, 8.8 moved to chat 11)
-- [ ] 8.1 Area checks as they land (blocks chat 3): Midwest rerun, New England, CO/WY, ID/MT, Quebec, North, the READY states inside PART areas, and every rerun from 2.1/2.2
+- [~] 8.1 (Oct 29 ~8:10 AM: graded neb READY, southcentral READY except NE, SK/PE/NL/NT fine, NS/NB/MB wait for the Canada rerun; Pacific, mtsw, caon, caabbc stopped) Area checks as they land (blocks chat 3): Midwest rerun, New England, CO/WY, ID/MT, Quebec, North, the READY states inside PART areas, and every rerun from 2.1/2.2
 - [ ] 8.2 KENTUCKY HUNT-CLOSURE LIST from the yearly guide PDF (KDFWR hunting guide quota tables): data/closures/hunt-lists/US-KY-2026-27.json, expires end of Feb; Brandon checks it (season starts Nov 6-8)
 - [ ] 8.3 Missing boundaries + name-mismatch report (US + Canada) for FABLE to review
 - [x] 8.4 NOT SURE groups (871 by reason: 4 fixable causes ~690 rows, KPC_NotSure_Groups_desk.md) + Nova Scotia SOLVED (label collision across two NS layers, KPC_NS_WrongJoins_desk.md)
