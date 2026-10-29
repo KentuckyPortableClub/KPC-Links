@@ -64,6 +64,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 5:35 PM: Brandon asked if I update the Fable list: I had not (only my key-pieces answers); added my section to KPC_MissingBoundaries_ForFable_desk.md (yes/no on the rows that name me + the potamap leads). I will add a line there after every batch I answer.
 - Oct 29 5:30 PM: KEY PIECES round 2 (307): 176 new YES, 27 NO, 76 NOT SURE; 5 potamap leads + Iona Island answered to chat 2; chat 9 probe for the 9 old ones used (Topaz, Cottonwood, Leque YES; Gamlin NO; Laramie + Fall Creek slivers NO).
 - Oct 29 3:05 PM: HQ 2:54 PM waiting-room ownership: asked chat 9 for the agency LAYER probe of the 9 open key pieces; no new CHECK (R-G8) items yet in key-pieces.json. 289 R-G7 outlines: waiting for chat 2 to send the first new ones.
 - Oct 29 2:35 PM: KEY PIECES after look-up bot screenshots: 28 YES / 5 NO / 9 NOT SURE (KPC-Data key-pieces.json); tiny YES stay Approximate (no boundary lines on the pages).

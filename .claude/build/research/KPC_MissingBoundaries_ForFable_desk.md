@@ -239,3 +239,19 @@ LEAN (R0 'match POTA', R-G7 step 2 'ID or named by the agency record'): YES for 
 | US-4776 | Escanaba River State Forest | potamap lead (its PAD-US copy holds the pin): 'Escanaba State Forest Area' owner SDNR / manager SDNR | R-G2 / R-G8 | R-G2 name agrees (state forest area): CANDIDATE | 2 | Oct 29 |
 | US-10575 | Walnut Woods State Conservation Area | potamap lead (its PAD-US copy holds the pin): 'Walnut Woods Conservation Area' owner OTHS / manager OTHS | R-G2 / R-G8 | R-G2 name agrees; owner City of Liberty (R-G7 4b ties): CANDIDATE | 2 | Oct 29 |
 | US-10511 | Jessups Mill Pond State Game Land | potamap lead (its PAD-US copy holds the pin): 'Suggs Mill Pond Game Land' owner SFW / manager SFW | R-G2 / R-G8 | R-G2/R-G8: a different place with a shared word: NO | 2 | Oct 29 |
+
+### UPDATES from chat 11 (Oct 29 ~5:30 PM) — yes/no on the rows that name me; name + owner + size reasoning, I did not open the agency maps
+| ref | answer | why |
+|---|---|---|
+| AK US-10464 Chena Wayside SRS | YES | POTA's own link is the Chena River SRS page; the layer record is that park (27 ac) |
+| CT US-7529 Beckley Iron Furnace | YES | same site (Beckley Furnace Industrial Monument), DEEP owned |
+| CT US-6875 The Preserve | NOT SURE | name 'Preserve' alone; a DEEP page is not proof it is this park's land |
+| CT US-7542 Satan's Kingdom SRA | YES | the New Hartford Farmington River access is the recreation area |
+| MT US-11216 Big Springs, US-11219 Jocko River hatcheries | YES | FWP's own site-boundary line, exact names |
+| IL US-12640 Rauchfuss Hill SRA | YES | IDNR's own property line, exact name |
+| MA US-8422 Pope John Paul II Park | YES, Approximate | DCR shape says 'not authoritative' (R-G7 step 7 grade) |
+| potamap leads: US-6848 Polk, US-13409 Belmont, US-10575 Walnut Woods | YES | name variants of the same state site |
+| US-1458 Kohler-Andrae | YES as a piece | the Kohler half only |
+| US-4776 Escanaba River SF | NOT SURE | 'State Forest Area' is a management area |
+| US-2081 Iona Island | NO | WMA vs state park are different designations |
+Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questions 204 YES, 27 NO, 76 NOT SURE (list in chat 2's inbox); the NOT SURE ones are Fable-bound only if no agency layer or map answers them.
