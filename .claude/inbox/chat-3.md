@@ -2,11 +2,11 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- FROM CHAT 10 (Oct 29 9:35 AM, Brandon 9:25 AM: a REAL closure must be more noticeable than a hunt note): in kpc-closures.js give each item row a class from the item's class field (note vs part / whole / hunt) and style the real ones, e.g. `.kcl-i.kcl-real{border-left:5px solid #e8590c;padding-left:9px;background:#fff4e6;font-weight:600}`. Preview: .claude/build/research/KY_HuntCards_preview_Oct29.png. Takes effect when the cards read the closures super-bot (ONE CLOSURES READER, after chat 11's pass).
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 10:35 AM (chat 10): kpc-closures.js + Kit read the item's `class` first: note = '🦌 Quota hunt / hunt note' (season colours, class kcl-note); part = '⛔ PART CLOSED:', whole / hunt = '⛔ CLOSED TO THE PUBLIC:' (red-orange box, class kcl-real, listed first). Items with no class fall back to the wording test. Ready for the ONE CLOSURES READER.
 - Oct 29 10:20 AM: KY HUNTING SEASONS on the park cards. (1) data/ky-hunting.json + 'Turkey: fall archery' Sep 5 2026-Jan 18 2027 and 'Turkey: fall crossbow' Oct 1-18 + Nov 14-Dec 31 2026 (shotgun row kept). (2) kpc-closures.js now adds the 🦌 HUNTING SEASONS block (same rule as the Kit: WMAs, forests, wildlife refuges, rec areas, wild river / wilderness, or a KDFWR area page; from 7 days before a season until it ends; blaze-orange heading when a gun season is on) above CLOSURES & NOTICES for KY parks = Lounge park card, park sheet, Access Finder (members-only for now; the Kit already had it). (3) Quota-hunt items = '🦌 Quota hunt:' in the season colours; a REAL closure ('closed to public access' / closed:true from chat 10) = '⛔ CLOSED TO THE PUBLIC:' red-orange box, listed first; same on the Kit. Screenshot of both kinds: .claude/build/shots/ky-hunt-card-oct29.png (West Kentucky WMA with a test 'Tract 1 is closed to public access' row + Mammoth Cave, which gets no hunting block).
 - Oct 29 10:00 AM (chat 11): NEBRASKA taken OFF the Finder: chat 8 (~8:10 AM) still says NE HELD (Platte River SP x Platte River Landing wrong join); back on when chat 8 passes it. 40 regions.
 - Oct 29 9:55 AM (chat 11's scope check): kpc-closures.js html() returns nothing for non-KY parks (no closures panel / 'checked' line outside Kentucky, every page that uses it); wording: Campgrounds hero 'in and around Kentucky’s parks', Lounge tool card 'Kentucky’s parks', US planner lead + note no longer mention campgrounds / picnic shelters.

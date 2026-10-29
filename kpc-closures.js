@@ -49,8 +49,9 @@
   }
   /* a quota-hunt NOTE (the area stays open except to the drawn hunters' tracts / days) looks like the season lines; a REAL closure
      to the public gets the red-orange line (HQ Oct 29: today only West Kentucky WMA 'Tract 1 is closed to public access') */
-  const isNote = x => x.note === true || /note/i.test(x.kind || '') || (/hunt/i.test(x.kind || '') && /except drawn|quota hunt|drawn hunters/i.test(x.details || '') && !/closed to (all )?public access|closed to all access/i.test(x.details || ''));
-  const isReal = x => x.closed === true || /closed to (all )?public access|closed to all access/i.test(x.details || '');
+  /* chat 10 Oct 29: the closures bot's 'class' field decides first: note = a hunt note; part / whole / hunt = a REAL closure */
+  const isNote = x => x.class === 'note' || (!x.class && (x.note === true || /note/i.test(x.kind || '') || (/hunt/i.test(x.kind || '') && /except drawn|quota hunt|drawn hunters/i.test(x.details || '') && !/closed to (all )?public access|closed to all access/i.test(x.details || ''))));
+  const isReal = x => /^(part|whole|hunt)$/.test(x.class || '') || (!x.class && (x.closed === true || /closed to (all )?public access|closed to all access/i.test(x.details || '')));
 
   async function get(ref, st) {
     const [c, s] = await Promise.all([cond(), srcs()]);
@@ -81,7 +82,7 @@
     }
     const items = r.items.slice().sort((a, b) => (isReal(b) - isReal(a)));
     return hb + '<div class="kcl"><b class="kcl-h">⚠ CLOSURES &amp; NOTICES (' + r.items.length + ')</b>' + items.slice(0, 6).map(x =>
-      '<div class="kcl-i' + (isReal(x) ? ' real' : isNote(x) ? ' note' : '') + '"><b>' + (isReal(x) ? '⛔ CLOSED TO THE PUBLIC: ' : isNote(x) ? '🦌 ' + esc(/quota/i.test(x.details || '') ? 'Quota hunt' : (x.kind || 'Hunt note').replace(/closure/i, 'note')) + ':' : esc(x.kind || 'Notice') + ':') + '</b> ' + esc(x.details || '') +
+      '<div class="kcl-i' + (isReal(x) ? ' real kcl-real' : isNote(x) ? ' note kcl-note' : '') + '"><b>' + (isReal(x) ? (x.class === 'part' ? '⛔ PART CLOSED: ' : '⛔ CLOSED TO THE PUBLIC: ') : isNote(x) ? '🦌 ' + esc(/quota/i.test(x.details || '') ? 'Quota hunt' : (x.kind || 'Hunt note').replace(/closure/i, 'note')) + ':' : esc(x.kind || 'Notice') + ':') + '</b> ' + esc(x.details || '') +
       '<small>' + (x.seen ? 'Seen ' + esc(nice(x.seen)) : '') + (x.call && x.call !== 'KPC BOT' ? ' · reported by ' + esc(x.call) : '') +
       (x.link && !opts.print ? ' · <a href="' + esc(x.link) + '" target="_blank" rel="noopener">official notice ›</a>' : '') + '</small></div>').join('') +
       (r.items.length > 6 ? '<div class="kcl-i">+ ' + (r.items.length - 6) + ' more on the official page.</div>' : '') +
