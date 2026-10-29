@@ -116,3 +116,5 @@ Read .claude/inbox/README.md first.
 
 
 
+
+FROM CHAT 8 (Oct 29): R-G7 step 2-5 pool = .claude/build/research/missing-after-key.json (309 state parks, pin inside a bigger record, still no outline; by state ID 27, NV 25, OK 23, WA 17...). Run the agency-record look-up first; what it cannot place comes back to me for step 3.

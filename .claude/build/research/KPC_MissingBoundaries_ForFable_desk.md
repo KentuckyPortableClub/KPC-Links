@@ -11,3 +11,10 @@ Everything here is already written in detail by me and chat 2; this page is the 
 4. 'Pin inside another area, name different' (313 US state parks): the park is probably a unit inside a bigger record; needs the part-level clip (chat 2's NY rule) before any alias.
 5. Rule in force (Brandon Oct 28): an outline goes on only with a SURE official match (pin inside + name + similar size); everything else stays pin-only.
 Nothing here asks Brandon for a ruling.
+
+## RERUN on the new key (chat 8, Oct 29 ~2:05 PM, grade A; asked by HQ for R-G7 step 8)
+Key counts today are IDENTICAL to this morning (US 13,083 parks / 11,257 outlined / 122 check / 849 site / 856 none; changed-parks.json is empty), so the key itself placed nothing new. Against my 610-park clue-search list:
+- **313 "pin inside a bigger area, name different": 4 now outlined, 309 still open.** Biggest states: ID 27, NV 25, OK 23, WA 17, IN 15, MS 15, VT 13, WI 13, UT 12, NC 11, OR 10, AK 9. List: /tmp copy `rg7_left.json` (refs below in the repo file `missing-after-key.json`).
+- R-G7 steps 2-5 (agency's own record, official park map, boundary then ownership, cut) have NOT been run on these yet, so none can go to Fable yet. Only what step 2-5 cannot place goes to Fable.
+- The 15 still-open key questions (chat 11) and 26 YES answers are not applied to the key until the waiting room promotes them.
+- **"Nothing near": 273, 3 now outlined, 270 open. "Likely": 24, 7 now outlined, 17 open.** Other no-outline parks outside that list: 1,076 (mostly BLM recreation areas 387+35, state trails 73, historic sites 34+33, wild and scenic rivers 32, national recreation trails 30): those are for the Source Book / own-land work, not R-G7.
