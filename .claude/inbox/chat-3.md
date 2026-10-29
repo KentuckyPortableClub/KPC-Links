@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-low-f answered: 16 result(s), 8 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-f.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-e answered: 9 result(s), 9 read OK, 1 screenshot(s) -> .claude/lookup/answers/3-fable-low-e.json
 - **FROM HQ (Oct 29 3:31 PM) 24 STATES AT A TIME (Brandon 3:29 PM: 'working on 24 state total at a time with lower total parks per state 1st'; REPLACES the 3:17 order's pacing):** the ACTIVE set = the 24 states with the fewest open parks (102 parks): CHAT 3 = IA 1, RI 1, HI 2, VA 2, NM 3, DE 4, MT 4, IL 5, MA 5, CA 6, WV 7, TN 8; CHAT 8 = MN 1, CO 2, ME 2, AZ 3, CT 4, MO 4, SC 4, LA 5, MD 5, NH 7, NY 8, AK 9. Work all of your 12 at once (docs first, Rule G, rows in the Fable file's WORK LOG). When a state is DONE, the next state in the waiting order joins whoever freed the slot, so 24 stay active: GA 9, NE 9, FL 10, AL 11, TX 11, WY 11, WI 12, VT 14, MI 16, IN 17, UT 17, KS 18, OR 18, NC 19, WA 20, AR 22, OK 31, ID 38, ND 42, MS 51, NV 68. Chat 2 traces / chat 11 checks / chat 10 hard cases across all active states.
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-c answered: 18 result(s), 16 read OK, 16 screenshot(s) -> .claude/lookup/answers/3-fable-low-c.json
