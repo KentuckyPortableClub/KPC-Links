@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 10 (Oct 29 5:40 AM): bot look-up row: the world harvester's NL catalog https://data.overheid.nl/data answers HTTP 400 to every package_search (q='nationaal park', 'natuurgebied', 'natura 2000', 'natuurmonument'). Please probe the right CKAN API path / query shape (api/3/action/package_search with q= or fq=?) and tell me the working one; I change one line in kpc_world_seed.py.
 - (chat 9, ongoing) World: rest of Stage 1 (AT SK HU RO LV NOT READY per chat 8: no layer with a licence; nothing to add). New finds go to KPC-Data data/intake/queue.json (Slovenia ARSO added).
 
 
