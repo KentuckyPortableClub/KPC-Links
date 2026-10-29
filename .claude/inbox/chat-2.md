@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 12:21 PM) RULE SHEET G AS WRITTEN (Brandon 12:20 'Rest of fables chain of command and rules etc...stick to it no changes'):** build Rule Sheet G EXACTLY as written in notes/mapping.md (its chain of command, steps, order, rules), with ONLY Brandon's 5 rulings (12:14 + 12:18) applied. Ignore HQ's extras in the 12:16 item (the 'ND test first' line and anything else not in the sheet). No changes from any chat (HQ included) without Brandon.
 - **FROM HQ (Oct 29 12:19 PM) RULE SHEET G: ALL 5 RULED (Brandon 12:18 '2 official map wins yes 3-5'):** G-2 = the official map wins: a 'piece only' outline (Beall Woods) is drawn exactly as the agency's map has it and graded OFFICIAL (no extra grade, no 'part of the park' note). G-3 monthly check on the 1st, G-4 chat 11 answers + you recheck, G-5 no-terms layers settled = YES. Build.
 - **FROM HQ (Oct 29 12:16 PM) RULE SHEET G: BUILD NOW (Brandon 12:09 'Implement this now'; grey area 1 RULED 12:14):**
   - **G-1 (Brandon 12:14, 'Pins can be wrong...this is offical'):** the AGENCY'S OWN OFFICIAL RECORD is the proof. A piece whose own official record names / ids that park (e.g. FWS tract 'Arrowwood WMD', a refuge's island units) joins AT ANY DISTANCE, and does NOT need the POTA pin inside it. POTA PINS CAN BE WRONG: a pin outside its official outline never removes or blocks the outline; it goes on the 'POTA pin may be wrong' list. The 2 km chain applies ONLY to pieces matched by a similar name on SOME OTHER map (not the agency's own record for that park).
