@@ -328,6 +328,9 @@
   "US-6936+US-6937": "chat 8 Oct 29: wrong join (Pisgah SGL vs Pisgah WRC SGL, 81 km apart)",
   "US-2937+US-7580": "chat 8 Oct 29: wrong join (Cordell Hull Birthplace SP vs Cordell Hull WMA)",
   "US-2937+US-7581": "chat 8 Oct 29: wrong join (Cordell Hull Birthplace SP vs Cordell Hull WMA)",
-  "US-6893+US-6894": "chat 8 Oct 29: wrong join (Chowan vs Chowan Swamp SGL, 34 km apart)"
+  "US-6893+US-6894": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 34 km apart and NOT both inside the shared outline (Chowan vs Chowan Swamp SGL)",
+  "US-3933+US-7578": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 12 km apart and NOT both inside the shared outline (Cheatham WMA vs Cheatham Lake WMA)",
+  "US-7580+US-7581": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 13 km apart and NOT both inside the shared outline (Cordell Hull WMA vs Cordell Hull Waterfowl Refuge)",
+  "US-12417+US-7452": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 19 km apart and NOT both inside the shared outline (Rich Mountain Cartecay Tract vs Rich Mountain WMA)"
  }
 }
