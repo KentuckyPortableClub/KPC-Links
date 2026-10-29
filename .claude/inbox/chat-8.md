@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-rg7-nv answered: 4 result(s), 3 read OK -> .claude/lookup/answers/8-rg7-nv.json
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-id2 answered: 4 result(s), 4 read OK -> .claude/lookup/answers/8-rg7-id2.json
 - **FROM HQ (Oct 29 2:12 PM) G-ID1 AIRSTRIPS (Brandon 2:11 PM: 'follow g 1st..I tend to agree but follow all the rules 1st'):** no new rule. Run every airstrip park through R-G7 exactly as written: step 2 (an agency record naming the airstrip) → step 3 (its official map: state aviation airport diagram, FAA airport data, FS/BLM permit map) → step 4 (a) boundary line on an official map = that line, (b) else land the airstrip's agency OWNS (none here) → (c) pin only. The surrounding forest / BLM land is NEVER the airstrip's outline (that is another park). If R-G7 leaves a real question, write it as a numbered grey area then.
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-id answered: 5 result(s), 3 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-rg7-id.json
