@@ -2772,7 +2772,10 @@ def main():
         by = {}
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
-            by.setdefault(st_of(s['refs'][0]), []).append(s)
+            # Oct 29 (chat 8, nec: 22 Massachusetts Appalachian Trail rows sat in US-ME.json): a row is filed under the state of a
+            # park with its own outline (where the spot is), not the line's state, when that state is in this run
+            sts = [st_of(r) for r in s['refs'] if r in G] + [st_of(r) for r in s['refs']]
+            by.setdefault(next((x for x in sts if x and (not ONLY or x in ONLY or x[3:] in ONLY)), st_of(s['refs'][0])), []).append(s)
         if REGION != 'world':
             # Brandon Oct 26 2:03 PM ('Fort Heiman and Donelson, it is what it is: both'): two park numbers on ONE official outline
             # (the NPS folded Fort Heiman into Fort Donelson National Battlefield) are both valid there: a 'same land' spot on
