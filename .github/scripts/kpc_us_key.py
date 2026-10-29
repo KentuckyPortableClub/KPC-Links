@@ -1120,6 +1120,9 @@ def run(st):
         if d0 > .1 or not _shp: return d0
         pt = _GPt(lo_ * 111.32 * k, la_ * 110.57)
         return min((x.exterior.distance(pt) if hasattr(x, 'exterior') else x.distance(pt) for x in _scaled(a, la_)), default=d0)
+    # the key matches on a COARSE working copy (GEO_DETAIL, 0.01 deg ~ 1 km by default; the saved outlines are fine, rule R-G6):
+    # its edges can sit up to that far off, so the tests allow that much more before holding a piece
+    _slack = DETAIL * 111.0
     held_g, pin_wrong = [], []
     for ref, p in parks.items():
         m = p.get('m') or []
@@ -1135,14 +1138,14 @@ def run(st):
             left = list(weak)
             for x in list(left):   # the pin proves it
                 a = gs_.get(str(x[0]))
-                if a is not None and _pin_km(a, la_, lo_) <= .1: ok.append(x); left.remove(x)
+                if a is not None and _pin_km(a, la_, lo_) <= .1 + _slack: ok.append(x); left.remove(x)
             grew = True
             while left and grew:   # the chain: touches / within 2 km of a piece that passed
                 grew = False
                 for x in list(left):
                     a = gs_.get(str(x[0]))
                     if a is None: continue
-                    if any(gs_.get(str(y[0])) is not None and _gap_km(a, gs_[str(y[0])], la_) <= 2 for y in ok):
+                    if any(gs_.get(str(y[0])) is not None and _gap_km(a, gs_[str(y[0])], la_) <= 2 + 2 * _slack for y in ok):
                         ok.append(x); left.remove(x); grew = True
             if left:
                 p['m'] = sorted(ok, key=lambda x: -x[2])
