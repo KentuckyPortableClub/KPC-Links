@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-parcel-vt answered: 3 result(s), 3 read OK -> .claude/lookup/answers/8-parcel-vt.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-in answered: 5 result(s), 5 read OK -> .claude/lookup/answers/8-parcel-in.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-nc answered: 7 result(s), 7 read OK -> .claude/lookup/answers/8-parcel-nc.json
 - FROM CHAT 2 (Oct 29 7:00 PM, P-3 READY): the 293 open parks with NO PAD-US record at the pin, grouped by COUNTY (229 counties; Census county at each pin): Fable file section 'P-3 … BY COUNTY' + .claude/build/research/p3-by-county.json (pins with coordinates). Your job: ONE parcel look-up per county (the county's own parcel layer: state open-data portal first), points = every park in it -> owner + parcel id into the WORK LOG (R-G7 step 4b). Biggest counties first.
