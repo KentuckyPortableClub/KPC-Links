@@ -1,0 +1,28 @@
+name: KPC no-boundary hunt (temporary, by hand)
+# Oct 28 2026 (chat 2, Brandon 11:27 PM): one read-only look for slightly different names near the pins of state / wildlife /
+# preserve parks with no outline; writes .claude/build/research/nomatch-hunt.json. Never fails. Deleted after its one run.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data
+        continue-on-error: true
+        run: bash .github/scripts/kpc_overlay.sh
+      - name: Hunt
+        continue-on-error: true
+        env:
+          MINUTES: '150'
+        run: python3 .github/scripts/kpc_nomatch_hunt.py || true
+      - name: Save the findings
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/nomatch-hunt.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m 'No-boundary hunt findings (read only)'; for i in 1 2 3; do git pull --rebase --autostash && git push && break; sleep 9; done; } || true
