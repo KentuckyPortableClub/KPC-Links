@@ -23,9 +23,10 @@ Read .claude/inbox/README.md first.
 - **FROM HQ (Oct 29 3:11 PM) OVERLAP FINDER (Brandon 3:09 PM 'They in club room as beta no harm'):** keep showing the current old-key BETA areas for members. When the 2-fer rerun on the NEW key passes chat 8 + chat 11 per area, swap those areas in at the mass dump (no change before that: freeze).
 
 ## NEEDS BRANDON
-- G-MT1 (Montana): POTA's 'Brownes Lake State Fish and Wildlife Area' pin is in Montana FWP's 'Brownes Bridge Fishing Access Site' (an official boundary exists, different name). Same land, so use that line? I kept it a pin until you rule.
+- G-MT1 + G-MT2 (Montana, researched Oct 29 4:35 PM): POTA's 'Brownes Lake' park and 'Thoreau State Beach' both link to a Montana wildlife-agency page for a place with a different name (Brownes Bridge FAS, Thibodeau FAS) and the pin sits on that page's exact point. My lean: YES, use those two agency boundaries (details in the Fable file). Waiting on your ruling.
 
 ## DONE
+- Oct 29 4:40 PM: grey areas G-MT1 / G-MT2 researched (see Fable file): POTA's own link + the pin's coordinates match the agency's Brownes Bridge and Thibodeau pages; lean YES.
 - Oct 29 4:50 PM: PDF look-up E seen by eye: official lines found for MT Big Springs + Jocko hatcheries, IL Rauchfuss Hill + Copperhead Hollow (to trace), MA Pope John Paul II (ownership, approximate); NOT usable: MT Brownes (different name, grey area G-MT1), MT Thoreau (wrong site), IL North Point (marina drawing), IL Ray Norbut. Logged in the Fable file.
 - Oct 29 4:40 PM: Tennessee look-up G read: official TDEC state-park boundary polygons exist (may hold Cherokee Trail of Tears); natural areas are POINTS only; TWRA lakes no layer. Logged. Nothing on the site.
 - Oct 29 4:35 PM: look-up G filed (Tennessee state ArcGIS / open data: the tn.gov pages were 403). Waiting; PDF render fix asked of chat 10.
