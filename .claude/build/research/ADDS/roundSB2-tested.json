@@ -1,0 +1,2480 @@
+{
+ "about": "Chat 9 round SB2 (Oct 29 ~10:50 AM): chat 8 Source Book 2 (nothing-near states) rows a-e; HQ 10:43 AM: probe the 'pin only' groups too (historical markers / monuments, airstrips, scenic road areas, fish hatcheries, small state historic sites); task 9.5: read the access layers found in CP2 (Parks Canada facilities, Manitoba entry points, Ontario fishing access, LDWF, NMDGF, MARIS recreation facilities). No keyed calls. ONE run. Results: roundSB2-tested.json.",
+ "date": "2026-10-29",
+ "layers": [
+  {
+   "st": "WEST",
+   "kind": "park",
+   "ag": "BLM",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "note": "SB2 a: BLM recreation site polygons",
+   "answers": true,
+   "service": "BLM Natl Recreation Site Polygons",
+   "licence": "BLM Admin State",
+   "years_in_text": [],
+   "description": "This polygon feature class represents the spatial extent and boundaries of the BLM Recreation Sites. The general types of recreation polygon features targeted by this feature class include campgrounds, OHV designated areas, recreation management areas, natural/endangered areas, etc.",
+   "item_licence": "These data are provided by BLM \"as is\" and may contain errors or omissions. The User assumes the entire risk associated with its use of these data and bears all responsibility in determining whether these data are fit for the User's intended use. The information contained in these data is dynamic an",
+   "item_modified": "2026-10-13",
+   "item_owner": "blm_arcgis_hub_natl",
+   "item_org": "Bureau of Land Management",
+   "item_title": "BLM Natl Recreation Site Polygons",
+   "item_credits": "BLM Admin State",
+   "item_about": "This polygon feature class represents the spatial extent and boundaries of the BLM Recreation Sites. The general types of recreation polygon features targeted by this feature class include campgrounds, OHV designated areas, recreation management areas, natural/endangered areas, etc. The purpose of this polygon feature class is to show the spatial extent and boundaries for BLM Recreation Sites",
+   "layers": [
+    {
+     "id": null,
+     "name": "BLM Natl Recreation Site Polygons",
+     "geom": "Polygon",
+     "nameField": "FET_NAME",
+     "ownerField": "ADMIN_ST",
+     "typeField": "FET_SUBTYPE",
+     "fields": [
+      "FET_TYPE",
+      "FET_SUBTYPE",
+      "FET_NAME",
+      "ADM_UNIT_CD",
+      "ADMIN_ST",
+      "GIS_ACRES",
+      "DESCRIPTION",
+      "WEB_LINK",
+      "PHOTO_LINK",
+      "UNIT_NAME",
+      "SOURCE",
+      "WEB_DISPLAY",
+      "PHOTO_THUMB",
+      "GlobalID",
+      "Original_GlobalID",
+      "OBJECTID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-13",
+     "layer_copyright": "BLM Admin State",
+     "records": 3478,
+     "sample": [
+      "North Forks",
+      "Gunnison Gorge Wilderness",
+      "Red Cliffs Recreation Area",
+      "Sand Mountain Open OHV Area",
+      "Red Cliffs SRMA",
+      "Deep Creek",
+      "LaVerkin Creek",
+      "Joshua Tree National Natural Landmark"
+     ],
+     "owner_values": [
+      "AK",
+      "AZ",
+      "CA",
+      "CO",
+      "ID",
+      "MT",
+      "NM",
+      "NV",
+      "OR",
+      "UT",
+      "WY"
+     ],
+     "type_values": [
+      "Campground",
+      "Day Use Area",
+      "ERMA",
+      "Natural Area/Endangered Area",
+      "OHV Designated Area",
+      "SRMA"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "kind": "forest",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/Public/ND_State_Forest/MapServer/0",
+   "answers": false,
+   "error": "{'code': 404, 'message': 'Service Public/ND_State_Forest/MapServer not found ', 'details': []}"
+  },
+  {
+   "st": "CA",
+   "kind": "point",
+   "ag": "Parks Canada",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer",
+   "note": "9.5 Parks Canada facilities (OGL-Canada)",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "",
+   "item_modified": "2026-07-17",
+   "item_owner": "AGOL_Service_APCA",
+   "item_org": "Parks Canada / Parcs Canada",
+   "item_title": "vw_Facilities_Installations_Point_V2_FGP_Deprecated / Obsolète",
+   "item_credits": "",
+   "item_about": "Deprecated – This dataset will be removed in September 2026. Obsolète – Ce jeu de données sera retiré en septembre 2026. &nbsp; Polygon layer shows the locations of facilities. A \"facility\" is an area that contains one or more components. For example, a visitor centre facility might include two parking lots a playground, a separate building for washrooms, a kiosk for renting canoes, picnic tables and barbeques. Each component would be more precisely located in the layers Facilities_Components_Installations_Composants_Point and Facilities_Components_Installations_Composants_Poly. Couche Polygon",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Facilities_Installations_Point_FGP",
+     "geom": "Point",
+     "nameField": "Name_e",
+     "ownerField": "",
+     "typeField": "Facility_Type_Installation",
+     "fields": [
+      "OBJECTID",
+      "Name_e",
+      "Nom_f",
+      "Label_e",
+      "Etiquette_f",
+      "Min_Scale_Echelle",
+      "Max_Scale_Echelle",
+      "Asset_N_Bien",
+      "URL_e",
+      "URL_f",
+      "Facility_Type_Installation",
+      "Public_Access",
+      "Accessible"
+     ],
+     "last_edit": "2025-03-25",
+     "layer_copyright": "",
+     "records": 1481,
+     "sample": [
+      "Moose Meadows Trailhead",
+      "Rockbound Lake Trailhead",
+      "Banff Visitor Centre",
+      "Twin Lakes Trailhead",
+      "Tunnel Mountain Trailhead",
+      "Stoney Lookout Trailhead",
+      "Ya Ha Tinda Ranch",
+      "Boom Lake Trailhead "
+     ],
+     "type_values": [
+      "Airstrip//Bande d'atterrissage",
+      "Backcountry camping / shelter area//Camp",
+      "Boat launch facility//Rampe de mise à l'",
+      "Boat tie-up / anchorage Area//Ammarrage ",
+      "Bridge//pont",
+      "Climbing area//Zone d'escalade",
+      "Compound/operations station//Ateliers/st",
+      "Drinking water processing plant//Usine d",
+      "Dumping station//Station de vidange",
+      "Fire station//Caserne de pompiers",
+      "Firewood processing or storage area//Tra",
+      "Front-country camping area//Aire de camp",
+      "Garbage and recycling drop-off facility/",
+      "Garbage and recycling facility//Installa",
+      "Gas station//Station d'essence",
+      "Glacier skywalk//Passerelle des glaciers",
+      "Golf course//Parcours de golf",
+      "Gondola/tram//Nacelle",
+      "Horse facility//Installation pour cheval",
+      "Hospital//Hôpital",
+      "Hot pools//Piscine d'eaux thermales",
+      "Lighthouse property//Propriété du phare",
+      "Lock station//Poste d'éclusage",
+      "Marina//Marina",
+      "Park gate // Poste d’entrée du parc",
+      "Parks Canada offices//Bureaux de Parcs C",
+      "Picnic day-use area//Aire de pique-nique",
+      "Playground//Terrain de jeu",
+      "Police station//Poste de police",
+      "Restaurant area//Zone de restauration"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "CA-MB",
+   "kind": "point",
+   "ag": "Manitoba",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0",
+   "note": "9.5 MB entry points (OpenMB)",
+   "answers": true,
+   "service": "Entry_Points",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "Manitoba Open Data Licence",
+   "item_modified": "2024-09-03",
+   "item_owner": "Manitoba_Government",
+   "item_org": "Manitoba Maps",
+   "item_title": "Manitoba_Waterbody_Entry_Points",
+   "item_credits": "Manitoba Government",
+   "item_about": "Waterbody Entry Points contains point data primarily of boat launches in Manitoba, but it also includes overland routes and tunnel access to some waterbodies. Each data point has a description of the type of access as well as photos that detail signage and condition of the entry point. The waterbody entry points layer, along with related information, can be found at the Manitoba Lake Information For Anglers app. The project was initiated by Manitoba Wildlife and Fisheries Branch with funding from the Fish and Wildlife Enhancement Fund. Data is provided by Manitoba Wildlife and Fisheries Branch",
+   "layers": [
+    {
+     "id": null,
+     "name": "Entry_Points",
+     "geom": "Point",
+     "nameField": "WATERBODY_NAME",
+     "ownerField": "",
+     "typeField": "ENTRY_TYPE",
+     "fields": [
+      "OBJECTID",
+      "WATERBODY_ID",
+      "WATERBODY_NAME",
+      "ENTRY_TYPE",
+      "PHOTO_1",
+      "PHOTO_2",
+      "PHOTO_3",
+      "LONG_DD",
+      "LAT_DD"
+     ],
+     "last_edit": "2025-07-29",
+     "layer_copyright": "",
+     "records": 212,
+     "sample": [
+      "ARROW LAKE",
+      "ATHAPAPUSKOW LAKE",
+      "ATIK LAKE",
+      "BARBE LAKE",
+      "BARREN LAKE",
+      "BEAUTIFUL LAKE",
+      "BEAVER LAKE",
+      "BELL LAKE"
+     ],
+     "type_values": [
+      "Boat Launch",
+      "Overland Access",
+      "Overland Route",
+      "Tunnel"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "CA-ON",
+   "kind": "point",
+   "ag": "Ontario MNR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/15",
+   "note": "9.5 ON fishing access points (OGL-Ontario)",
+   "answers": true,
+   "service": "Fishing Access Point",
+   "licence": "https://www.ontario.ca/page/open-government-licence-ontario",
+   "years_in_text": [],
+   "description": "This data is subject to terms of use.",
+   "item_licence": "",
+   "item_credits": "",
+   "item_about": "Version: n/a Build: 2025-09-24 15:38:54",
+   "layers": [
+    {
+     "id": null,
+     "name": "Fishing Access Point",
+     "geom": "Point",
+     "nameField": "SITE_NAME",
+     "ownerField": "SITE_OWNERSHIP_TYPE",
+     "typeField": "FISHING_ACCESS_POINT_TYPE",
+     "fields": [
+      "OGF_ID",
+      "FISHING_ACCESS_POINT_TYPE",
+      "SITE_LAST_VERIFICATION_DATE",
+      "VERIFICATION_DATE_SOURCE",
+      "PARKING_PRESENCE_FLG",
+      "SITE_OWNERSHIP_TYPE",
+      "MATERIAL_TYPE",
+      "ACCESSIBILITY_FLG",
+      "USER_FEE_FLG",
+      "VISIBILITY_IND",
+      "SITE_NAME",
+      "SITE_PHOTO_URL",
+      "SITE_PHOTO_DATE",
+      "ADDITIONAL_INFORMATION_URL",
+      "GENERAL_COMMENTS",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 3731,
+     "sample": [
+      "Mcwhinney Lake Access",
+      "BE-13",
+      "None",
+      "None",
+      "None",
+      "North Barbara Lake",
+      "Boom Lake",
+      "Mash Lake Portage Route"
+     ],
+     "owner_values": [
+      "Unknown"
+     ],
+     "type_values": [
+      "Boat Launch"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "NM",
+   "kind": "point",
+   "ag": "NMDGF",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer",
+   "note": "9.5 NM fishing access",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "NMDGF provides spatial data as a courtesy for general location purposes only. NMDGF makes no warranty and assumes no responsibility or liability for the accuracy, timeliness, completeness, or suitability of this data for any particular use.",
+   "item_modified": "2025-12-08",
+   "item_owner": "keary.howley@dgf.nm.gov_nmdgf",
+   "item_org": "New Mexico Department of Game and Fish",
+   "item_title": "Fishing Access",
+   "item_credits": "",
+   "item_about": "New Mexico Fishing Access Points view layer which is part of the NM Fishing Waters Map. This layer provides information about fishing locations throughout New Mexico from various sources. It includes information on fish species available, facilities, accessibility, boat ramps, and general regulations. Anglers are encourage to check with the most current New Mexico Fishing Rules and Information Booklet for updated information on fishing regulations.&nbsp; New Mexico Fishing Access Points view layer which is part of the NM Fishing Waters Map. This layer provides information about fishing locatio",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Fishing Access",
+     "geom": "Point",
+     "nameField": "Name_Working",
+     "ownerField": "",
+     "typeField": "Access_Name",
+     "fields": [
+      "OBJECTID",
+      "FIMS_Code",
+      "Name_Working",
+      "Species1",
+      "Species2",
+      "Species3",
+      "Species4",
+      "Species5",
+      "Species6",
+      "Access_Name",
+      "Access_Type",
+      "Facilities",
+      "Restriction1",
+      "Restriction2",
+      "Restriction3",
+      "Notes",
+      "Review",
+      "GlobalID",
+      "Accessibility",
+      "Access_Type2",
+      "Conditions"
+     ],
+     "last_edit": "2025-05-29",
+     "layer_copyright": "",
+     "records": 476,
+     "sample": [
+      "Middle Ponil Creek",
+      "McCrystal Creek",
+      "Cañada Tio Grande",
+      "Rio de los Pinos",
+      "Little Tusas Creek",
+      "Rio Grande",
+      "Leandro Creek",
+      "Middle Ponil Creek"
+     ],
+     "type_values": [
+      "\"Big Hole\"",
+      "Abiquiu Tailwater",
+      "Alameda Bridge",
+      "Apache Canyon",
+      "Aztec Bridge",
+      "Aztec Park",
+      "Aztec Park Pond",
+      "BLM Tract",
+      "BOR Day Use Area",
+      "Barley Canyon",
+      "Battleship Rock",
+      "Belen",
+      "Berg Park/Animas River Park",
+      "Bert Clancy Fishing Access Area",
+      "Bill Evans Road",
+      "Black Jack Campground",
+      "Boat ramp Access Area",
+      "Borrego Mesa Trailhead",
+      "Buckman Crossing",
+      "Calle Abato",
+      "Canjilon Creek Campground",
+      "Carson National Forest",
+      "Catch and Release Pond",
+      "Catwalk",
+      "Central Recreational Area",
+      "Cieneguilla Day Use Area",
+      "Cliff Dwellings",
+      "Colin Neblett State Wildlife Area",
+      "Comales Campground",
+      "Coopers Ranch"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "LA",
+   "kind": "point",
+   "ag": "LDWF",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/Boat_Launch_Mariana/FeatureServer",
+   "note": "9.5 LA boat launches",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "",
+   "item_modified": "2025-10-31",
+   "item_owner": "LDWF_ArcGIS1",
+   "item_org": "",
+   "item_title": "Boat_Launch_Mariana",
+   "item_credits": "",
+   "item_about": "",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Boat_Launch",
+     "geom": "Point",
+     "nameField": "Website__j",
+     "ownerField": "",
+     "typeField": "Access",
+     "fields": [
+      "OBJECTID",
+      "Boat_Launc",
+      "Waterbody",
+      "Location",
+      "City",
+      "Latitude",
+      "Longitude",
+      "Phone",
+      "Website__j",
+      "Email",
+      "Hours",
+      "Fishing_Ty",
+      "Access",
+      "Ramp_and_P",
+      "Amenities",
+      "F15"
+     ],
+     "last_edit": "2024-03-20",
+     "layer_copyright": "",
+     "records": 719,
+     "sample": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "www.redriverwaterway.com/rec-areas.asp",
+      "www.cppj.net",
+      " "
+     ],
+     "type_values": [
+      " ",
+      "Not sure",
+      "Private",
+      "Private - Pay to launch",
+      "Private - fee",
+      "Private, pay",
+      "Private; $10 to launch",
+      "Private; $2 to launch",
+      "Private; $2.00 fee to launch",
+      "Private; $3 to launch",
+      "Private; $3.00 launch fee",
+      "Private; $5 to launch",
+      "Private; Miami Corporation Fishing Permi",
+      "Private; fee to launch",
+      "Private; launch fee",
+      "Private; membership only",
+      "Private; monthly membership",
+      "Private; pay to launch",
+      "Private; pay to launch at hotel",
+      "Private; pay to launch; Cypress/Black Ba",
+      "Private; pay to launch; yearly pass and ",
+      "Private; registered guests only",
+      "Private; residents and guests only",
+      "Private; yearly permit required from gas",
+      "Publi",
+      "Public",
+      "Public - State Park",
+      "Public - fee",
+      "Public on Federal Refuge",
+      "Public, 25 HP or less"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "MS",
+   "kind": "point",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/MapServer",
+   "note": "9.5 MS recreation facilities + SB2 fishing lakes",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MDWFP, MARIS",
+   "years_in_text": [],
+   "description": "Locations of facilities at MS State Parks with uses such as: RV Camp Sites (premium and standard), Primitive camping, cottages, battlefields, piers, boat ramps, and other types",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "found_ids": [],
+   "layers": []
+  },
+  {
+   "st": "MS",
+   "kind": "wild",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer",
+   "note": "SB2 c",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MS Dept. of Wildlife Fisheries & Parks",
+   "years_in_text": [
+    "2019"
+   ],
+   "description": "MS Wildlife Management Areas - 2019 as maintained by the MS Dept. of Wildlife Fisheries & Parks",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "found_ids": [],
+   "layers": []
+  },
+  {
+   "st": "MS",
+   "kind": "refuge",
+   "ag": "MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer",
+   "note": "SB2",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MS Dept. of Wildlife, Fisheries & Parks, MARIS",
+   "years_in_text": [
+    "1997"
+   ],
+   "description": "Boundaries of the National Wildlife Refuges in MS created in September 1997",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "found_ids": [],
+   "layers": []
+  },
+  {
+   "st": "US",
+   "kind": "trail",
+   "ag": "NPS",
+   "url": "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0",
+   "note": "SB2 row 33",
+   "answers": true,
+   "service": "Trails",
+   "licence": "Trail data are contributed, reviewed, and maintained by individual park units and regional GIS programs across the National Park Service. The National Geospatial Program coordinates service‑wide data standards, quality assurance, and publication of this public dataset.\nFor more information about NPS",
+   "years_in_text": [],
+   "description": "The National Park Service public Trails dataset provides geographic representations of publicly accessible trail routes across NPS units. These line features depict official visitor‑use trails, including hiking paths, walking routes, nature trails, multi‑use corridors, and other designated public routes commonly used for navigation, recreation planning, mapping, and interpretive information.This d",
+   "item_licence": "The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contained herein. These data and related graphics (i.e. GIF or JPG format files) are not legal documents and are not intended to be used as such. The information contained in these data is d",
+   "item_credits": "National Park Service, ngp_support@nps.gov",
+   "item_about": "This feature class contains lines representing formal and informal trails as well as routes within and across National Park Units. This dataset uses a set of core attributes designed by the NPS enterprise geospatial committee. National Park Service Public Trail Centerlines",
+   "layers": [
+    {
+     "id": null,
+     "name": "Trails",
+     "geom": "Polyline",
+     "nameField": "TRLNAME",
+     "ownerField": "",
+     "typeField": "TRLFEATTYPE",
+     "fields": [
+      "TRLFEATTYPE",
+      "OBJECTID",
+      "TRLNAME",
+      "TRLALTNAME",
+      "MAPLABEL",
+      "TRLSTATUS",
+      "TRLSURFACE",
+      "TRLTYPE",
+      "TRLCLASS",
+      "TRLUSE",
+      "PUBLICDISPLAY",
+      "DATAACCESS",
+      "ACCESSNOTES",
+      "ORIGINATOR",
+      "UNITCODE",
+      "UNITNAME",
+      "UNITTYPE",
+      "GROUPCODE",
+      "GROUPNAME",
+      "REGIONCODE",
+      "CREATEDATE",
+      "EDITDATE",
+      "LINETYPE",
+      "MAPMETHOD",
+      "MAPSOURCE",
+      "SOURCEDATE",
+      "XYACCURACY",
+      "GEOMETRYID",
+      "FEATUREID",
+      "FACLOCID",
+      "FACASSETID",
+      "IMLOCID",
+      "OBSERVABLE",
+      "ISEXTANT",
+      "OPENTOPUBLIC",
+      "ALTLANGNAME",
+      "ALTLANG",
+      "SEASONAL",
+      "SEASDESC",
+      "MAINTAINER"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Trail data are contributed, reviewed, and maintained by individual park units and regional GIS programs across the National Park Service. The National Geospatial Program coordinates service‑wide data ",
+     "records": 31377,
+     "sample": [
+      " ",
+      "None",
+      "Stony Man Horse Trail",
+      "Commemorative Walkway",
+      "None",
+      "Schuylkill River Trail acces",
+      "Ft. Moore Trail",
+      "Bridle Trail"
+     ],
+     "type_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "NV",
+   "q": "(Nevada OR SHPO) AND (\"historical marker\" OR \"historical markers\" OR \"historic marker\")",
+   "why": "HQ 10:43 pin-only: NV State Historical Monuments",
+   "found": [
+    {
+     "title": "20200518_SH_225_Discussion_Map",
+     "org": "",
+     "owner": "anhernandez@hntb.com_HNTBCorp",
+     "url": "https://services.arcgis.com/rD2ylXRs80UroD90/arcgis/rest/services/20200518_SH_225_Discussion_Map/FeatureServer",
+     "modified": "2025-04-07",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "q": "(\"backcountry airstrip\" OR \"backcountry airstrips\" OR airstrips) AND (BLM OR \"Bureau of Land Management\")",
+   "why": "HQ 10:43 pin-only: BLM airstrips",
+   "found": [
+    {
+     "title": "BLM ID BDO Canyonlands West TMP Airstrip Designations",
+     "org": "",
+     "owner": "cclay@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_ID_BDO_Canyonlands_West_TMP_Airstrip_Designations/FeatureServer",
+     "modified": "2023-11-16",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "BLM ID BDO Canyonlands East TMP Airstrip Designations",
+     "org": "",
+     "owner": "cclay@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_ID_BDO_Canyonlands_East_TMP_Airstrip_Designations/FeatureServer",
+     "modified": "2023-05-17",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "BLM ID BDO Grand View TMP Airstrip Designations",
+     "org": "",
+     "owner": "cclay@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_ID_BDO_Grand_View_TMP_Airstrip_Designations/FeatureServer",
+     "modified": "2024-02-20",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "BLM ID BDO Silver City TMP Airstrip Designations",
+     "org": "",
+     "owner": "cclay@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_ID_BDO_Silver_City_TMP_Airstrip_Designations/FeatureServer",
+     "modified": "2024-03-29",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "Potential Restoration Opportunities",
+     "org": "",
+     "owner": "ACCScience",
+     "url": "https://services7.arcgis.com/DlE4MSUhoXlyq64t/arcgis/rest/services/Potential_Restoration_Opportunities/FeatureServer",
+     "modified": "2025-02-03",
+     "licence": ""
+    },
+    {
+     "title": "PineCaliente_PublicWebMap_WFL1",
+     "org": "",
+     "owner": "John.Cook@hdrinc.com_HDR",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/PineCaliente_PublicWebMap_WFL1/FeatureServer",
+     "modified": "2026-02-06",
+     "licence": ""
+    },
+    {
+     "title": "PublicMeetingWebMap_WFL1",
+     "org": "",
+     "owner": "John.Cook@hdrinc.com_HDR",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/PublicMeetingWebMap_WFL1/FeatureServer",
+     "modified": "2026-02-09",
+     "licence": ""
+    },
+    {
+     "title": "CachilDehe_gdb (1)",
+     "org": "",
+     "owner": "hjensen_cicc",
+     "url": "https://services2.arcgis.com/R79Q6lbyIGSyKDtB/arcgis/rest/services/CachilDehe_gdb_(1)/FeatureServer",
+     "modified": "2026-06-23",
+     "licence": ""
+    },
+    {
+     "title": "BLM ID BDO Canyonlands East TMP Airstrip Designations (hosted)",
+     "org": "",
+     "owner": "cclay@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_ID_BDO_Canyonlands_East_TMP_Airstrip_Designations/FeatureServer",
+     "modified": "2023-03-20",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "q": "(\"fish hatchery\" OR \"fish hatcheries\") AND (\"Fish and Wildlife\" OR state OR boundary)",
+   "why": "HQ 10:43 pin-only: hatcheries",
+   "found": [
+    {
+     "title": "Creek Fire 2020 (Public)",
+     "org": "",
+     "owner": "CountyofMariposa",
+     "url": "https://services2.arcgis.com/wEula7SYiezXcdRv/arcgis/rest/services/Creek_Fire_FINAL/FeatureServer",
+     "modified": "2026-07-02",
+     "licence": "This is the most complete digital record of fire history in California. However it is still incomplete in many respects."
+    },
+    {
+     "title": "WMA_point",
+     "org": "",
+     "owner": "WRD.ADMIN",
+     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WMA_point/FeatureServer",
+     "modified": "2023-06-08",
+     "licence": ""
+    },
+    {
+     "title": "CDFW Owned and Operated Lands and Conservation Easements [ds3092]",
+     "org": "California Department of Fish and Wildlife",
+     "owner": "BIOS_Admin",
+     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer",
+     "modified": "2026-08-17",
+     "licence": "This dataset is not a surveyed product and is not a legal record of original survey measurements. They are representatio"
+    },
+    {
+     "title": "FWS National Realty Tracts Simplified",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer",
+     "modified": "2026-09-03",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the \ndat"
+    },
+    {
+     "title": "Foothills CWPP Feature Layers",
+     "org": "",
+     "owner": "cstarbird_dudek",
+     "url": "https://services.arcgis.com/12ZpLdNBJek66bmF/arcgis/rest/services/Foothills_CWPP_Feature_Layers/FeatureServer",
+     "modified": "2024-12-24",
+     "licence": ""
+    },
+    {
+     "title": "CDFW Fish Hatcheries",
+     "org": "",
+     "owner": "Galib.Ahmad@Wildlife.ca.gov_CDFW",
+     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/CDFW_Hatcheries/FeatureServer",
+     "modified": "2026-07-02",
+     "licence": "none"
+    },
+    {
+     "title": "FWS National Realty Boundaries",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the data"
+    },
+    {
+     "title": "NDGISHUB National Wildlife Refuges",
+     "org": "",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_National_Wildlife_Refuges/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": "Refuge boundary data were compiled for resource applications. It is inappropriate to use this data in legal situations, "
+    },
+    {
+     "title": "FWS National Realty Approved Acquisition Boundaries",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the \ndat"
+    },
+    {
+     "title": "Flagler County Address Points",
+     "org": "",
+     "owner": "GISAdmin_FCMAPS",
+     "url": "https://services3.arcgis.com/hSKL9bYjhP4rHxSD/arcgis/rest/services/Flagler_County_Address_Points/FeatureServer",
+     "modified": "2026-10-28",
+     "licence": "Addresses are provided   as is   and may not always reflect the latest available data. The issuance or change of address"
+    },
+    {
+     "title": "FWS Trails - Public View",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "blake_smith@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_HQ_Trails_Cycle_3_Public_View/FeatureServer",
+     "modified": "2026-10-05",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the data"
+    },
+    {
+     "title": "FWS National Wilderness Boundaries",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSWilderness/FeatureServer",
+     "modified": "2026-04-21",
+     "licence": "Although these data and information have been processed successfully on a computer system at the U.S. Fish and Wildlife "
+    },
+    {
+     "title": "Open Water for King County and Portions of Adjacent Counties",
+     "org": "King County",
+     "owner": "KingCounty",
+     "url": "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/WTRBDY_AREA_485/FeatureServer",
+     "modified": "2026-10-27",
+     "licence": "https://kingcounty.gov/en/dept/kcit/data-information-services/gis-center/about/terms-conditions-copyrights"
+    },
+    {
+     "title": "JoCoParks_WFL1_2_view",
+     "org": "",
+     "owner": "cnichols_joco",
+     "url": "https://services3.arcgis.com/qwqIu50nUr6wRrbz/arcgis/rest/services/JoCoParks_WFL1_2_view/FeatureServer",
+     "modified": "2023-04-19",
+     "licence": ""
+    },
+    {
+     "title": "CWPP Feature Layers",
+     "org": "",
+     "owner": "dudek_calabasas",
+     "url": "https://services3.arcgis.com/SpdLoVK6cxWCmNhU/arcgis/rest/services/Service_CWPP_Feature_Layers/FeatureServer",
+     "modified": "2025-12-18",
+     "licence": ""
+    },
+    {
+     "title": "ElDoradoCountyHistoricFirePolygons",
+     "org": "",
+     "owner": "edcgis",
+     "url": "https://services.arcgis.com/UHg8l1wC48WQyDSO/arcgis/rest/services/ElDoradoCountyHistoricFirePolygons/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "This is the most complete digital record of fire history in California. However, it is still incomplete in many respects"
+    },
+    {
+     "title": "USA Fish and Wildlife Service Lands",
+     "org": "",
+     "owner": "esri_landscape2",
+     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Fish_and_Wildlife_Service_Lands/FeatureServer",
+     "modified": "2026-06-17",
+     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "CDFW Owned and Operated Lands and Conservation Easements",
+     "org": "",
+     "owner": "cdfwgis",
+     "url": "https://map.dfg.ca.gov/arcgis/rest/services/Base/Base/FeatureServer/510",
+     "modified": "2024-03-09",
+     "licence": "This dataset is not a surveyed product and is not a legal record of original survey measurements. They are representatio"
+    },
+    {
+     "title": "FWS National Realty Centroids",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSCentroids/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the data"
+    },
+    {
+     "title": "USFWS National Realty Boundaries",
+     "org": "",
+     "owner": "NBAM_Org",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer",
+     "modified": "2024-03-13",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the data"
+    },
+    {
+     "title": "U.S. Fish and Wildlife Service National Realty Tracts",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "paul_hoeffler@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer",
+     "modified": "2026-10-09",
+     "licence": "Although these data and information have been processed successfully on a computer system at the U.S. Fish and Wildlife "
+    },
+    {
+     "title": "ConnecticutShellfishOnline2018",
+     "org": "",
+     "owner": "Michael.Zuber_CTDABA",
+     "url": "https://services7.arcgis.com/9fAJJI91yoj2y4Yi/arcgis/rest/services/ConnecticutShellfishOnline2018Draft/FeatureServer",
+     "modified": "2026-03-27",
+     "licence": ""
+    },
+    {
+     "title": "FWS Roads - Public View",
+     "org": "U.S. Fish & Wildlife Service",
+     "owner": "mery_casady@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_HQ_Roads_Public/FeatureServer",
+     "modified": "2025-09-08",
+     "licence": "The United States Fish and Wildlife Service (Service) shall not be held liable for improper or incorrect use of the data"
+    },
+    {
+     "title": "Morro Bay Jurisdictional Map 2022_Layers_Do Not Delete",
+     "org": "",
+     "owner": "MBestuary",
+     "url": "https://services8.arcgis.com/jFhEmvcfKjymyK4I/arcgis/rest/services/Morro_Bay_Jurisdictional_Map_2022_WFL1/FeatureServer",
+     "modified": "2022-09-13",
+     "licence": ""
+    },
+    {
+     "title": "SouthernCalifornia NF Rec & Fire: Historical Southern California Wildfire Bounda",
+     "org": "",
+     "owner": "USFS_PSWResearchStation",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/PastFIRE_Boundary/FeatureServer",
+     "modified": "2025-12-15",
+     "licence": "Data Disclaimer—The USDA Forest Service makes no warranty, expressed or&nbsp;       implied, including the warranties of"
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "q": "Nevada AND (\"scenic byway\" OR \"scenic byways\" OR \"scenic area\" OR \"outstanding natural beauty\")",
+   "why": "HQ 10:43 pin-only: NV scenic road areas",
+   "found": [
+    {
+     "title": "Protected Areas Exclusion (Solar)",
+     "org": "",
+     "owner": "GBlossom_CAEnergy",
+     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Solar/FeatureServer",
+     "modified": "2026-08-13",
+     "licence": "https://www.energy.ca.gov/conditions-of-use"
+    },
+    {
+     "title": "Protected Areas Exclusion (Wind)",
+     "org": "",
+     "owner": "GBlossom_CAEnergy",
+     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Wind/FeatureServer",
+     "modified": "2026-08-13",
+     "licence": "https://www.energy.ca.gov/conditions-of-use"
+    },
+    {
+     "title": "Protected Areas Exclusion (Geothermal)",
+     "org": "",
+     "owner": "GBlossom_CAEnergy",
+     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Geothermal/FeatureServer",
+     "modified": "2026-08-13",
+     "licence": "https://www.energy.ca.gov/conditions-of-use"
+    },
+    {
+     "title": "FederalLands_IndianReservations",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FederalLands_IndianReservations/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Ohio SR_161 to I_70 Connection Study Environmental Layers_WFL1",
+     "org": "",
+     "owner": "Devon.Burton@jacobs.com_Jacobs",
+     "url": "https://services9.arcgis.com/eNX73FDxjlKFtCtH/arcgis/rest/services/Ohio_SR_161_to_I_70_Connection_Study_Environmental_Layers_WFL1/FeatureServer",
+     "modified": "2024-05-03",
+     "licence": ""
+    },
+    {
+     "title": "GEO 330 Map Xiao luke",
+     "org": "",
+     "owner": "xiaoluke_msugis",
+     "url": "https://services.arcgis.com/uHAHKfH1Z5ye1Oe0/arcgis/rest/services/GEO_330_Map_Xiao_luke/FeatureServer",
+     "modified": "2024-09-24",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "q": "(\"North Dakota\" OR SHSND) AND (\"historic site\" OR \"historic sites\")",
+   "why": "HQ 10:43 pin-only: ND state historic sites",
+   "found": [
+    {
+     "title": "NDGISHUB National Parks",
+     "org": "",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_National_Parks/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": "The State of North Dakota has compiled this data according to conventional cartographic standards, using what is thought"
+    },
+    {
+     "title": "LECL Lewis and Clark NHT High Potential Historic Sites",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/HPHS/FeatureServer",
+     "modified": "2026-03-02",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "2023 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "Test_ND_Stark_County_WFL1",
+     "org": "",
+     "owner": "kthapa_undeerc",
+     "url": "https://services.arcgis.com/c4GSfpVyXP8bSaIw/arcgis/rest/services/Test_ND_Stark_County_WFL1/FeatureServer",
+     "modified": "2024-07-05",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+     "modified": "2024-04-28",
+     "licence": ""
+    },
+    {
+     "title": "FederalLands_IndianReservations",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FederalLands_IndianReservations/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Lewis and Clark Place Names_WFL1",
+     "org": "",
+     "owner": "p81j171_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Lewis_and_Clark_Place_Names_WFL1/FeatureServer",
+     "modified": "2024-12-06",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fixed_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fixed_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "IDARNG Fire Prevention Plan 2024_WFL1",
+     "org": "",
+     "owner": "jacob.t.mendiola.nfg_IDARNG",
+     "url": "https://services5.arcgis.com/FeaGMhyvOuOWv03n/arcgis/rest/services/IDARNG_Fire_Prevention_Plan_2024_WFL1/FeatureServer",
+     "modified": "2024-09-13",
+     "licence": ""
+    },
+    {
+     "title": "Aspect 2021_2023_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Aspect_2021_2023_WFL1/FeatureServer",
+     "modified": "2024-05-01",
+     "licence": ""
+    },
+    {
+     "title": "Colorado Dispatch Boundaries Merged",
+     "org": "",
+     "owner": "emy.keeling_CO_DFPC",
+     "url": "https://services7.arcgis.com/KaDI8JW2y384fmrZ/arcgis/rest/services/Colorado_Dispatch_Boundaries_Merged/FeatureServer",
+     "modified": "2024-11-15",
+     "licence": ""
+    },
+    {
+     "title": "National_Dispatch_Boundaries_LH",
+     "org": "",
+     "owner": "himes032_UMN",
+     "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/National_Dispatch_Boundaries_LH/FeatureServer",
+     "modified": "2024-10-17",
+     "licence": "The National Wildfire Coordinating Group (NWCG) makes no claims, promises, or guarantees about the accuracy, completenes"
+    },
+    {
+     "title": "Aspect 2021_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Aspect_2021_WFL1/FeatureServer",
+     "modified": "2024-04-30",
+     "licence": ""
+    },
+    {
+     "title": "Aspect 2023_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Aspect_2023_WFL1/FeatureServer",
+     "modified": "2024-05-01",
+     "licence": ""
+    },
+    {
+     "title": "LECL Pivotal Places",
+     "org": "",
+     "owner": "rmcooper@nps.gov_nps",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/PivotalPlaces/FeatureServer",
+     "modified": "2025-06-18",
+     "licence": "The National Park Service shall not be held liable for\nimproper or incorrect use of the data described and/or contained "
+    },
+    {
+     "title": "GIS204FinalProject",
+     "org": "",
+     "owner": "normanbetland",
+     "url": "https://services8.arcgis.com/gHHsN1i8OISt9wMD/arcgis/rest/services/GIS204FinalProject/FeatureServer",
+     "modified": "2017-12-09",
+     "licence": ""
+    },
+    {
+     "title": "Map",
+     "org": "",
+     "owner": "brent7677@gmail.com",
+     "url": "https://services6.arcgis.com/UJNRlDhOy5Bakkt0/arcgis/rest/services/Map/FeatureServer",
+     "modified": "2024-07-23",
+     "licence": ""
+    },
+    {
+     "title": "Nutrino Vendors Map",
+     "org": "",
+     "owner": "ad417_uakron",
+     "url": "https://services1.arcgis.com/YvJkKP3I2NydFmVT/arcgis/rest/services/Nutrino_Vendors_Map/FeatureServer",
+     "modified": "2026-09-14",
+     "licence": ""
+    },
+    {
+     "title": "NRCG_Zones - final20110603",
+     "org": "",
+     "owner": "dcopple_nifc",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/NRCG_Zones_-_final20110603/FeatureServer",
+     "modified": "2026-09-30",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "OK",
+   "q": "(Oklahoma OR \"Oklahoma Historical Society\") AND (\"historic site\" OR \"historic sites\" OR museum)",
+   "why": "HQ 10:43 pin-only: OK historic sites",
+   "found": [
+    {
+     "title": "OTA CIP",
+     "org": "",
+     "owner": "OKDOT_GIS",
+     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OTA_CIP/FeatureServer",
+     "modified": "2022-02-07",
+     "licence": ""
+    },
+    {
+     "title": "Route 66 Ghost Towns- Point Layer",
+     "org": "",
+     "owner": "KA_Abuelas",
+     "url": "https://services7.arcgis.com/k5Q2M1I9Bh7izLsT/arcgis/rest/services/Route_66_Ghost_Towns/FeatureServer",
+     "modified": "2024-08-01",
+     "licence": "This feature layer was developed for use by Latinos in Heritage Conservation for the Abuelas on the Road project, and is"
+    },
+    {
+     "title": "FederalLands_IndianReservations",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FederalLands_IndianReservations/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Buildings",
+     "org": "",
+     "owner": "ericdean_cherokee",
+     "url": "https://services3.arcgis.com/jmdMqrrIb2yaWJJ6/arcgis/rest/services/Buildings__Public_View_/FeatureServer",
+     "modified": "2026-09-24",
+     "licence": "Information on this data is from multiple sources and is to be used for graphic display and general  planning purposes o"
+    },
+    {
+     "title": "Home Owners_ Loan Corporation _HOLC_ Neighborhood Redlining Grade",
+     "org": "",
+     "owner": "abettercity",
+     "url": "https://services6.arcgis.com/LMKDj4cjQomUeIOg/arcgis/rest/services/Home_Owners__Loan_Corporation__HOLC__Neighborhood_Redlining_Grade/FeatureServer",
+     "modified": "2024-11-15",
+     "licence": "This work is licensed under the Esri Master License Agreement.     View Summary   |   View Terms of Use"
+    },
+    {
+     "title": "Ohio SR_161 to I_70 Connection Study Environmental Layers_WFL1",
+     "org": "",
+     "owner": "Devon.Burton@jacobs.com_Jacobs",
+     "url": "https://services9.arcgis.com/eNX73FDxjlKFtCtH/arcgis/rest/services/Ohio_SR_161_to_I_70_Connection_Study_Environmental_Layers_WFL1/FeatureServer",
+     "modified": "2024-05-03",
+     "licence": ""
+    },
+    {
+     "title": "Dallas Zoo Market Analysis_WFL1",
+     "org": "",
+     "owner": "zooadvisors",
+     "url": "https://services9.arcgis.com/dXxgdxy3qGTavh0e/arcgis/rest/services/Dallas_Zoo_Market_Analysis_WFL1/FeatureServer",
+     "modified": "2024-05-01",
+     "licence": ""
+    },
+    {
+     "title": "AECI Attractions",
+     "org": "",
+     "owner": "vpaschal",
+     "url": "https://services7.arcgis.com/MpvSft963loNBFrs/arcgis/rest/services/AECI_Attractions/FeatureServer",
+     "modified": "2024-01-12",
+     "licence": ""
+    },
+    {
+     "title": "TulsaCity_CouncilDistrics",
+     "org": "",
+     "owner": "ArcGisTCCL",
+     "url": "https://services6.arcgis.com/WgAKbn88isz8jMUp/arcgis/rest/services/TulsaCity_CouncilDistrics/FeatureServer",
+     "modified": "2015-07-29",
+     "licence": ""
+    },
+    {
+     "title": "iqtwwcprne_VIEW_vowxaiosfi",
+     "org": "",
+     "owner": "eashcroft_audubon",
+     "url": "https://services1.arcgis.com/lDFzr3JyGEn5Eymu/arcgis/rest/services/iqtwwcprne_VIEW_vowxaiosfi/FeatureServer",
+     "modified": "2026-06-15",
+     "licence": ""
+    },
+    {
+     "title": "nhecfyvuuf_VIEW_vowxaiosfi",
+     "org": "",
+     "owner": "eashcroft_audubon",
+     "url": "https://services1.arcgis.com/lDFzr3JyGEn5Eymu/arcgis/rest/services/nhecfyvuuf_VIEW_vowxaiosfi/FeatureServer",
+     "modified": "2026-06-18",
+     "licence": ""
+    },
+    {
+     "title": "Okla Lit Sites Info for Mapping_2025_10_06",
+     "org": "",
+     "owner": "krdyke",
+     "url": "https://services1.arcgis.com/jWQlP64OuwDh6GGX/arcgis/rest/services/Okla_Lit_Sites_Info_for_Mapping_2025_10_06/FeatureServer",
+     "modified": "2025-10-08",
+     "licence": ""
+    },
+    {
+     "title": "Gilcrease to Pine",
+     "org": "",
+     "owner": "drufitz",
+     "url": "https://services3.arcgis.com/W4CWueZCb0k79e8r/arcgis/rest/services/Gilcrease_to_Pine/FeatureServer",
+     "modified": "2021-10-13",
+     "licence": "Use subject to Esri  Terms of Use"
+    },
+    {
+     "title": "Pine to Gilcrease",
+     "org": "",
+     "owner": "drufitz",
+     "url": "https://services3.arcgis.com/W4CWueZCb0k79e8r/arcgis/rest/services/Pine_to_Gilcrease/FeatureServer",
+     "modified": "2021-10-13",
+     "licence": "Use subject to Esri  Terms of Use"
+    },
+    {
+     "title": "114 Charles PG SandSpring",
+     "org": "",
+     "owner": "drufitz",
+     "url": "https://services3.arcgis.com/W4CWueZCb0k79e8r/arcgis/rest/services/114_Charles_PG_SandSpring/FeatureServer",
+     "modified": "2021-11-22",
+     "licence": "Use subject to Esri  Terms of Use"
+    }
+   ]
+  },
+  {
+   "st": "ID",
+   "q": "(Idaho OR IDPR) AND (\"state park\" OR \"state parks\") AND boundar*",
+   "why": "SB2 e",
+   "found": []
+  },
+  {
+   "st": "WA",
+   "q": "(Washington OR WADNR) AND (\"state forest\" OR \"state forests\" OR \"trust lands\")",
+   "why": "SB2 e",
+   "found": [
+    {
+     "title": "Tribal Lands - archived",
+     "org": "",
+     "owner": "WAECY_Geoservices",
+     "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/ECY/FeatureServer/10",
+     "modified": "2026-08-19",
+     "licence": "Category 1 - Public Information. These data can be shared publicly.     The Washington State Department of Ecology (Ecol"
+    },
+    {
+     "title": "Oregon Public Lands",
+     "org": "",
+     "owner": "james.wilson38_portlandcc",
+     "url": "https://services8.arcgis.com/tblHe99qQFMcNzpC/arcgis/rest/services/Oregon_Public_Lands/FeatureServer",
+     "modified": "2021-05-30",
+     "licence": ""
+    },
+    {
+     "title": "2011 Protected Open Space Mapping Set",
+     "org": "",
+     "owner": "deepgis",
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer",
+     "modified": "2026-07-23",
+     "licence": "CC0"
+    },
+    {
+     "title": "USR_IRWM",
+     "org": "Sierra Water Workgroup",
+     "owner": "SNAlliance",
+     "url": "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/USR_IRWM/FeatureServer",
+     "modified": "2019-05-29",
+     "licence": "Feature Service is not intended for public use."
+    },
+    {
+     "title": "Census Tracts in 2020",
+     "org": "",
+     "owner": "DCGISopendata",
+     "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Demographic_WebMercator/MapServer/8",
+     "modified": "2025-04-28",
+     "licence": "This work is licensed under a    Creative Commons Attribution 4.0 International License   ."
+    },
+    {
+     "title": "CABY_POLYGONS",
+     "org": "",
+     "owner": "SNAlliance",
+     "url": "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/CABY_POLYGONS/FeatureServer",
+     "modified": "2017-04-03",
+     "licence": "Feature Service is not intended for public use but for that of the CABY IRWM Stakeholders."
+    },
+    {
+     "title": "Wildlife_Desert_Tortoise_Washington_County",
+     "org": "",
+     "owner": "UtahSITLA",
+     "url": "https://gis.trustlands.utah.gov/mapping/rest/services/Wildlife_Desert_Tortoise_Washington_County/FeatureServer",
+     "modified": "2026-06-20",
+     "licence": "Data represented on this map is for REFERENCE USE ONLY and is not suitable for legal, engineering, or surveying purposes"
+    },
+    {
+     "title": "Alaska Estimated Road Evacuation",
+     "org": "",
+     "owner": "RMA_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/AK_RGET_view/FeatureServer",
+     "modified": "2026-06-23",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "EnerGov_Additional",
+     "org": "",
+     "owner": "laikevin",
+     "url": "https://services1.arcgis.com/TaXHPwWfIMuzJ7Ov/arcgis/rest/services/EnerGov_Additional/FeatureServer",
+     "modified": "2026-10-25",
+     "licence": ""
+    },
+    {
+     "title": "Census Blocks in 2020",
+     "org": "",
+     "owner": "DCGISopendata",
+     "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Demographic_WebMercator/MapServer/0",
+     "modified": "2025-04-28",
+     "licence": "This work is licensed under a    Creative Commons Attribution 4.0 International License   ."
+    },
+    {
+     "title": "Managed Trails",
+     "org": "",
+     "owner": "jamie.vanemmerik_vdcr",
+     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer",
+     "modified": "2025-01-14",
+     "licence": ""
+    },
+    {
+     "title": "Department of Defense Managed Land",
+     "org": "",
+     "owner": "annariling_Wilderness",
+     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
+     "modified": "2022-01-14",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "Priority 1_WFL1",
+     "org": "",
+     "owner": "sm863134_csungis",
+     "url": "https://services6.arcgis.com/4XnW0LugjJEsZM3v/arcgis/rest/services/Priority_1_WFL1/FeatureServer",
+     "modified": "2023-09-19",
+     "licence": ""
+    },
+    {
+     "title": "EasternHemlockProject_NationalForests",
+     "org": "",
+     "owner": "mapping_AdvSciAdmin",
+     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
+     "modified": "2024-11-01",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "Notable Parks along Long Island Greenway Phase 1",
+     "org": "",
+     "owner": "pgahagan_NYC",
+     "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer",
+     "modified": "2022-02-28",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "RS-FRIS Combined Origin Year",
+     "org": "Washington State Department of Natural Resources",
+     "owner": "OpenData_wadnr",
+     "url": "https://gis.dnr.wa.gov/site2/rest/services/Forest_Management/RS_FRIS_Combined_Origin_Year/MapServer",
+     "modified": "2026-08-20",
+     "licence": "The Washington State Department of Natural Resources (DNR) provides these geographic data \"as is.\" DNR makes no guarante"
+    },
+    {
+     "title": "Census Tracts in 2010",
+     "org": "",
+     "owner": "DCGISopendata",
+     "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Demographic_WebMercator/MapServer/50",
+     "modified": "2025-04-28",
+     "licence": "This work is licensed under a    Creative Commons Attribution 4.0 International License   ."
+    },
+    {
+     "title": "2023 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "EFSEC Washington Land Use Conflict (public)",
+     "org": "",
+     "owner": "Jay.Silavisesrith@wsp.com_wspglobal",
+     "url": "https://services7.arcgis.com/TuQ8KXxdnKZCJwrs/arcgis/rest/services/EFSEC_Washington_Land_Use_Conflict/FeatureServer",
+     "modified": "2025-09-15",
+     "licence": ""
+    },
+    {
+     "title": "Dingell Exchange ROD 2024",
+     "org": "",
+     "owner": "kpazanin@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/Dingell_Exchange_ROD_2024/FeatureServer",
+     "modified": "2024-08-06",
+     "licence": "For data provided by BLM:  These data are provided by Bureau of Land Management (BLM) &quot;as is&quot; and might contai"
+    },
+    {
+     "title": "USFS_PCT_2011",
+     "org": "",
+     "owner": "medoneill",
+     "url": "https://services1.arcgis.com/HWZoxt6xpBMlkJEQ/arcgis/rest/services/USFS_PCT_2011/FeatureServer",
+     "modified": "2018-04-16",
+     "licence": "This data is supplied with no warranties, expressed or implied, concerning the accuracy, completeness, reliability, or s"
+    },
+    {
+     "title": "Thurston Government Lands",
+     "org": "",
+     "owner": "Thurston_GeoData",
+     "url": "https://tconline.co.thurston.wa.us/server/rest/services/ThurstonExt/Thurston_GovernmentLands/FeatureServer",
+     "modified": "2026-05-28",
+     "licence": "By accessing any  Data or Maps  (&quot;Data&quot;) posted by Thurston County, you agree to these Terms of Use (&quot;Ter"
+    },
+    {
+     "title": "2021 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+     "modified": "2024-04-28",
+     "licence": ""
+    },
+    {
+     "title": "Tribal Jurisdiction",
+     "org": "",
+     "owner": "SnocoGIS",
+     "url": "https://services6.arcgis.com/z6WYi9VRHfgwgtyW/arcgis/rest/services/Tribal_Jurisdiction/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "Terms of Use and Data Disclaimer      Use of any data acquired from this site is subject to the following limitations:  "
+    },
+    {
+     "title": "Wildlife Protection Overlay",
+     "org": "",
+     "owner": "boar0259_ui_uidaho",
+     "url": "https://services.arcgis.com/WLhB60Nqwp4NnHz3/arcgis/rest/services/Wildlife_Protection_Overlay/FeatureServer",
+     "modified": "2021-12-16",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    }
+   ]
+  }
+ ],
+ "orgs": [
+  {
+   "st": "NV",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services",
+   "note": "SB2 b",
+   "folders": [
+    "BLM_Nevada_Administrative_Units",
+    "BLM_Nevada_Areas_of_Critical_Concern",
+    "BLM_Nevada_California_Greater_Sage_Grouse_2025",
+    "BLM_Nevada_National_Landscape_Conservation_System",
+    "BLM_Nevada_Planning",
+    "BLM_Nevada_Public_Land_Survey_System",
+    "BLM_Nevada_Range_Management",
+    "BLM_Nevada_SNPLMA_Disposal_Boundary",
+    "BLM_Nevada_Surface_Management_Agency",
+    "BLM_Nevada_Wild_Horse_Burro",
+    "Utilities",
+    "VRI"
+   ],
+   "n_services": 48,
+   "matching": [
+    "BLM_Nevada_Public_Land_Survey_System/PLSS_Special_Survey (FeatureServer)",
+    "BLM_Nevada_Public_Land_Survey_System/PLSS_Special_Survey (MapServer)"
+   ]
+  },
+  {
+   "st": "UT",
+   "url": "https://gis.blm.gov/utarcgis/rest/services",
+   "note": "SB2 b",
+   "folders": [
+    "Lands",
+    "NLCS",
+    "Range",
+    "Recreation",
+    "Transportation",
+    "Utilities",
+    "Vegetation",
+    "Visuals"
+   ],
+   "n_services": 28,
+   "matching": [
+    "Recreation/BLM_UT_RecAreas (FeatureServer)",
+    "Recreation/BLM_UT_RecAreas (MapServer)"
+   ]
+  },
+  {
+   "st": "WY",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services",
+   "note": "SB2 b",
+   "folders": [
+    "cadastral",
+    "lands",
+    "recreation",
+    "special_designations",
+    "Utilities",
+    "whb"
+   ],
+   "n_services": 38,
+   "matching": [
+    "cadastral/BLM_WY_Public_Land_Survey_System_Special_Survey_HUB (FeatureServer)",
+    "cadastral/BLM_WY_Public_Land_Survey_System_Special_Survey_HUB (MapServer)",
+    "recreation/BLM_WY_Recreation_Areas_HUB (FeatureServer)",
+    "recreation/BLM_WY_Recreation_Areas_HUB (MapServer)",
+    "recreation/BLM_WY_Recreation_Features_HUB (FeatureServer)",
+    "recreation/BLM_WY_Recreation_Features_HUB (MapServer)",
+    "recreation/BLM_WY_ScenicBackways_HUB (FeatureServer)",
+    "recreation/BLM_WY_ScenicBackways_HUB (MapServer)",
+    "special_designations/BLM_WY_WildernessStudyAreas_HUB (FeatureServer)",
+    "special_designations/BLM_WY_WildernessStudyAreas_HUB (MapServer)"
+   ]
+  },
+  {
+   "st": "ND",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services",
+   "note": "SB2 d",
+   "folders": [
+    "Utilities"
+   ],
+   "n_services": 66,
+   "matching": [
+    "National_Parks (FeatureServer)",
+    "National_Parks (MapServer)",
+    "State_Forest (FeatureServer)",
+    "State_Forest (MapServer)",
+    "State_Parks (FeatureServer)",
+    "State_Parks (MapServer)",
+    "USFWSNationalWildlifeRefuges (FeatureServer)",
+    "USFWSNationalWildlifeRefuges (MapServer)",
+    "Wildlife_Management_Areas (FeatureServer)",
+    "Wildlife_Management_Areas (MapServer)"
+   ]
+  },
+  {
+   "st": "LA",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services",
+   "note": "9.5 LDWF account",
+   "folders": [],
+   "n_services": 197,
+   "matching": [
+    "01_20_12_20_(CY)_All_Data_All_WMA_All_Usage (FeatureServer)",
+    "01_20_12_20_(CY)_All_Data_All_WMA_All_Usage_1 (FeatureServer)",
+    "Boat_Launch_Mariana (FeatureServer)",
+    "Boat_Stalls_and_Storage_Units (FeatureServer)",
+    "LA_Boat_Launch_Marina (FeatureServer)",
+    "LA_National_Wildlife_Refuges (FeatureServer)",
+    "LDWF_Wildlife_Refuge (FeatureServer)",
+    "LDWF_WildlifeRefuge (FeatureServer)",
+    "LDWF_WMA (FeatureServer)",
+    "LDWF_WMA_Refuge (FeatureServer)",
+    "LDWF_WMAs_Refuges_Conservation_Areas_04262024 (FeatureServer)",
+    "LDWF_WMAs_Refuges_Conservation_Areas_04262024_lines (FeatureServer)",
+    "SR_AccessPts (FeatureServer)",
+    "StateParks (FeatureServer)",
+    "USACE_WMA (FeatureServer)",
+    "wma (FeatureServer)",
+    "WMA_2021 (FeatureServer)",
+    "LOE_BoatRamps01142025 (FeatureServer)",
+    "LOE_WildlifeRefuges02142025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines_02142025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines03262025 (FeatureServer)",
+    "LOE_LDWF_WMAs03262025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines04022025 (FeatureServer)",
+    "LOE_LDWF_WMAs04022025 (FeatureServer)",
+    "LOE_LDWF_WMAs04152025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines04152025 (FeatureServer)",
+    "BoatRamps05152025 (FeatureServer)",
+    "LOE_LDWF_WMAs07012025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Liness07012025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines07172025 (FeatureServer)",
+    "LOE_LDWF_WMAs07172025 (FeatureServer)",
+    "LOE_LDWF_WMAs08012025 (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines08012025 (FeatureServer)",
+    "LOE_LDWF_WMAs_09032025_WGS84_WMAS (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines_09032025_WGS84_WMAS (FeatureServer)",
+    "LOE_LDWF_WMAs_09052025_WGS84_WMAS (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines_09052025_WGS84_WMAS (FeatureServer)",
+    "LOE_LDWF_WMAs_09262025_WGS84_WMAS (FeatureServer)",
+    "LOE_LDWF_WMAs_Lines_09262025_WGS84_WMAS (FeatureServer)",
+    "WMA_Land_Change_Tracking_2026_Admin_view (FeatureServer)"
+   ]
+  },
+  {
+   "st": "AR",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services",
+   "note": "SB2 e",
+   "folders": [
+    "AGFC",
+    "Apps",
+    "DIS",
+    "FEATURESERVICES",
+    "ImageServices",
+    "Locator",
+    "Utilities"
+   ],
+   "n_services": 70,
+   "matching": []
+  },
+  {
+   "st": "AK",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services",
+   "note": "SB2 e Alaska DNR",
+   "folders": [
+    "AG",
+    "DEC",
+    "DPOR",
+    "GW",
+    "Hosted",
+    "Mapper",
+    "MentalHealth",
+    "MLW",
+    "OpenData",
+    "OPM",
+    "SSD",
+    "StandardMapProducts",
+    "Survey123",
+    "Utilities",
+    "Workflow"
+   ],
+   "n_services": 166,
+   "matching": [
+    "DPOR/Park_Boundary_Facility (FeatureServer)",
+    "DPOR/Park_Boundary_Facility (MapServer)",
+    "OpenData/Infrastructure_RS2477Trails (FeatureServer)",
+    "OpenData/Infrastructure_RS2477Trails (MapServer)",
+    "OpenData/Recreational_ParkBoundary (FeatureServer)",
+    "OpenData/Recreational_ParkBoundary (MapServer)"
+   ]
+  },
+  {
+   "st": "WA",
+   "url": "https://gis.dnr.wa.gov/site3/rest/services",
+   "note": "SB2 e WA DNR state forests",
+   "folders": [
+    "Aquatics",
+    "DNR_Aquatics",
+    "DNR_Resource_Protection",
+    "DNR_Transportation",
+    "Geology",
+    "Leasing",
+    "Mobile",
+    "Public_Agriculture",
+    "Public_Aquatics",
+    "Public_Boundaries",
+    "Public_Lidar",
+    "Public_salmonLink",
+    "Public_Transportation",
+    "Public_Wildfire",
+    "Utilities",
+    "Wildfire"
+   ],
+   "n_services": 97,
+   "matching": []
+  }
+ ],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "MS",
+   "url": "https://maris.mississippi.edu/HTML/RESOURCES/Liability.html",
+   "note": "MARIS terms",
+   "status": 200,
+   "ctype": "text/html",
+   "final_url": "https://maris.mississippi.edu/HTML/RESOURCES/Liability.html",
+   "bytes": 13145,
+   "links": [
+    "http://www.arcgis.com/home/group.html?id=7c4cfadd30c44634817a0ce3b50c1a4e#overview"
+   ],
+   "hits": [
+    "hange AGOL --> FAQ SEARCH --> --> MARIS --> --> Home About Data Maps Resources MARIS Website Privacy Statement This policy establishes how MARIS will use information we gather about you from your visit to our website. The privacy of our visitors is of utmost importance to MARIS. If you visit the MARIS ",
+    "nformation for statistical purposes. For example, we may count the number of visitors to the different sections of our site to help us make them more useful to visitors. Similar information is gathered for anonymous ftp, or for other comparable types of connections. To send us an E-mail: By sending us ",
+    "and private sector sources considered to be dependable, but the accuracy, completeness, and currency thereof are not guaranteed. The IHL/MTC makes no warranties, expressed or implied as to the accuracy, completeness, currency, reliability, or suitability for any particular purpose of information or data co",
+    "aphic database. Additionally, the State of Mississippi, the Board of Trustees for IHL or any employee thereof assume no liability associated with the use of these data, and assume no responsibility to maintain them in any manner or form. Contact Us 3825 Ridgewood Road, Jackson, MS 39211 (601)432-6354 o",
+    "802,161 Top 20 Web Map Services FY 2024 MS Redistricting 2022 MS County Boundaries 2015 MS Senate Districts 2022 MS Congressional Districts 2022 MS House Districts 2022 MS Senate Districts 2010 MS House Districts 2010 MS Voting Precincts Population and Housing 2020 MS CENSUS Incorporated Cities Populat",
+    "ricting 2022 MS County Boundaries 2015 MS Senate Districts 2022 MS Congressional Districts 2022 MS House Districts 2022 MS Senate Districts 2010 MS House Districts 2010 MS Voting Precincts Population and Housing 2020 MS CENSUS Incorporated Cities Population Housing 2020 MS TIGERRoads 2020 House Area Ch",
+    "10 MS House Districts 2010 MS Voting Precincts Population and Housing 2020 MS CENSUS Incorporated Cities Population Housing 2020 MS TIGERRoads 2020 House Area Change March 2023 Senate Area Change 2023 MARIS GeoData MS Local High Res Imagery by Region 2021 Mississippi Parcels 2023 WALTHALL PARCELS TALLA"
+   ]
+  },
+  {
+   "st": "ND",
+   "url": "https://gishubdata.nd.gov/sites/default/files/NDHUB.StateForest.csv",
+   "raw": true,
+   "look": "^[^\\n]{0,200}",
+   "note": "SB2 d csv head",
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "ID",
+   "url": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items?limit=50",
+   "note": "SB2 e Idaho parks hub",
+   "status": 200,
+   "ctype": "application/geo+json; charset=utf-8",
+   "final_url": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items?limit=50",
+   "bytes": 30880,
+   "links": [
+    "https://experience.arcgis.com/experience/97a42a2a73c944ba918042faf518c689",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items/443abdbb084c4fb49be7d9882cdec6fb",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items/5a08280a853b41b69115a3fc0abbd2bc",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items/8414607a5c17481f9a25a266b2cc0839",
+    "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/dataset/items/b61cb238af7849d2b139269939679ffe",
+    "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/IDPR_Parks_and_Facilities/FeatureServer",
+    "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer",
+    "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer"
+   ],
+   "hits": [
+    "\"title\":\"Idaho_Trails_Map_gdb\"",
+    "\"title\":\"This document as GeoJSON\"",
+    "\"title\":\"Dataset\"",
+    "\"title\":\"Idaho Recreation Trails\"",
+    "\"url\":\"https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer\"",
+    "\"title\":\"This document as GeoJSON\"",
+    "\"title\":\"Dataset\"",
+    "\"title\":\"Idaho Centennial Trail (Official Route)\"",
+    "\"url\":\"https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer\"",
+    "\"title\":\"This document as GeoJSON\"",
+    "\"title\":\"Dataset\"",
+    "\"title\":\"IDPR_Parks_and_Facilities\"",
+    "\"url\":\"https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/IDPR_Parks_and_Facilities/FeatureServer\"",
+    "\"title\":\"This document as GeoJSON\"",
+    "\"title\":\"Dataset\"",
+    "\"title\":\"This document as GeoJSON\"",
+    "\"title\":\"Dataset\""
+   ]
+  }
+ ],
+ "zipnames": [
+  {
+   "url": "https://maris.mississippi.edu/MARISdata/Cultural/MS_StateParks_2026.zip",
+   "note": "SB2 c MS state parks",
+   "bytes": 122967,
+   "files": [
+    "MS_StateParks_2026.cpg",
+    "MS_StateParks_2026.dbf",
+    "MS_StateParks_2026.prj",
+    "MS_StateParks_2026.sbn",
+    "MS_StateParks_2026.sbx",
+    "MS_StateParks_2026.shp",
+    "MS_StateParks_2026.shp.xml",
+    "MS_StateParks_2026.shx"
+   ],
+   "records": 62,
+   "fields": [
+    "OBJECTID",
+    "NAME",
+    "LABEL",
+    "ACRES",
+    "SHAPE_STAr",
+    "SHAPE_STLe",
+    "Comment"
+   ],
+   "nameField": "NAME",
+   "names": [
+    "JP COLEMAN TRACT 5",
+    "Casey Jones",
+    "Clarkco",
+    "Nanih Waiya",
+    "Sam Dale",
+    "Florewood River Plantation",
+    "Florewood River Plantation",
+    "Lake Lincoln",
+    "Winterville Mounds State Park",
+    "Clarkco",
+    "Nanih Waiya",
+    "Nanih Waiya",
+    "Tombigbee",
+    "Lefleur's Bluff",
+    "Hugh White",
+    "George P. Cossar",
+    "Paul B. Johnson",
+    "Paul B. Johnson",
+    "Golden Memorial",
+    "Hugh White",
+    "Hugh White",
+    "Hugh White",
+    "Clark Creek",
+    "Holmes County",
+    "JP COLEMAN  TRACT 4",
+    "JP COLEMAN  TRACT 5",
+    "JP COLEMAN  TRATC 6",
+    "JP COLEMAN  TRACT 7",
+    "JP COLEMAN  TRACT 8",
+    "JP COLEMAN  TRACT 10",
+    "JP COLEMAN  TRACT 11",
+    "JP COLEMAN  TRACT 12",
+    "Shepard State Park admin by City of Gautier",
+    "Percy Quin",
+    "Tishomingo",
+    "Natchez",
+    "Wall Doxey",
+    "Buccaneer",
+    "Tishomingo",
+    "Legion Lake",
+    "Roosevelt",
+    "Great River Road",
+    "Paul B. Johnson",
+    "JP COLEMAN MAIN MARINA",
+    "LAKE LOWNDES SP",
+    "Hugh White",
+    "John W. Kyle",
+    "John W. Kyle",
+    "Leroy Percy",
+    "Trace",
+    "JP COLEMAN MAIN TRACT",
+    "Lefleur's Bluff",
+    "Lake Lincoln",
+    "Buccaneer",
+    "JP COLEMAN MAIN TRACT",
+    "JP COLEMAN MAIN TRACT",
+    "JP COLEMAN MAIN TRACT",
+    "JP COLEMAN MAIN TRACT",
+    "JP COLEMAN MAIN TRACT",
+    "Roosevelt",
+    "Roosevelt",
+    "Roosevelt"
+   ],
+   "prj": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+  },
+  {
+   "url": "https://maris.mississippi.edu/MARISdata/Boundaries/MS_WildlifeManagementAreas_2019.zip",
+   "note": "SB2 c MS WMAs",
+   "bytes": 1029355,
+   "files": [
+    "MS_WildlifeManagementAreas_2019.CPG",
+    "MS_WildlifeManagementAreas_2019.dbf",
+    "MS_WildlifeManagementAreas_2019.pdf",
+    "MS_WildlifeManagementAreas_2019.prj",
+    "MS_WildlifeManagementAreas_2019.sbn",
+    "MS_WildlifeManagementAreas_2019.sbx",
+    "MS_WildlifeManagementAreas_2019.shp",
+    "MS_WildlifeManagementAreas_2019.shx",
+    "MS_WildlifeManagementAreas_2019.xml"
+   ],
+   "records": 318,
+   "fields": [
+    "ID",
+    "TYPE",
+    "ACREAGE",
+    "Name",
+    "SHAPE_STAr",
+    "SHAPE_STLe"
+   ],
+   "nameField": "Name",
+   "names": [
+    "MALMAISON WMA",
+    "MALMAISON WMA",
+    "PASCAGOULA WMA",
+    "SKY LAKE WMA",
+    "NATCHEZ STATE PARK",
+    "NATCHEZ STATE PARK",
+    "NATCHEZ STATE PARK",
+    "NATCHEZ STATE PARK",
+    "NATCHEZ STATE PARK",
+    "PEARL RIVER WMA",
+    "SUNFLOWER WMA",
+    "SUNFLOWER WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "TWIN OAKS WMA",
+    "TUSCUMBIA WMA",
+    "BLACK PRAIRIE WMA",
+    "YOCKANOOKANY WMA",
+    "JOHN W. STARR WMA",
+    "JOHN W. STARR WMA",
+    "JOHN W. STARR WMA",
+    "JOHN W. STARR WMA",
+    "JOHN W. STARR WMA",
+    "TRIM CANE WMA",
+    "MALMAISON WMA",
+    "HOWARD MILLER WMA",
+    "HOWARD MILLER WMA",
+    "HOWARD MILLER WMA",
+    "MAHANNAH WMA",
+    "SHIPLAND WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "TRIM CANE WMA",
+    "MUSCADINE FARMS WMA - STOCK AND WASHINGTON",
+    "MUSCADINE FARMS WMA",
+    "MUSCADINE FARMS WMA - POLUTKEN AREA 1",
+    "MUSCADINE FARMS WMA - POLUTKEN AREA 2",
+    "MUSCADINE FARMS WMA -DRIFTWOOD",
+    "STONEVILLE WMA",
+    "CHARLIE CAPPS WMA",
+    "CHARLIE CAPPS WMA",
+    "CHARLIE CAPPS WMA",
+    "CHARLIE CAPPS WMA",
+    "O'KEEFE WMA",
+    "O'KEEFE WMA",
+    "O'KEEFE WMA",
+    "O'KEEFE WMA",
+    "NATCHEZ STATE PARK",
+    "SARDIS WATERFOWL",
+    "SARDIS WATERFOWL",
+    "SARDIS WATERFOWL",
+    "GRAHAM WATERFOWL",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "UPPER SARDIS WMA",
+    "HELL CREEK WMA",
+    "CALHOUN COUNTY WMA",
+    "CALHOUN COUNTY WMA",
+    "SKY LAKE WMA",
+    "SKY LAKE WMA",
+    "SKY LAKE WMA",
+    "PEARL RIVER WMA",
+    "PEARL RIVER WMA",
+    "PEARL RIVER WMA",
+    "PEARL RIVER WMA",
+    "PEARL RIVER WMA",
+    "NANIH WAIYA WMA",
+    "CHICKASAW WMA",
+    "CHICKASAW WMA",
+    "CHICKASAW WMA",
+    "CHICKASAW WMA",
+    "OKATIBBEE WMA",
+    "OKATIBBEE WMA",
+    "OKATIBBEE WMA",
+    "OKATIBBEE WMA",
+    "OKATIBBEE WMA",
+    "OKATIBBEE WMA",
+    "SANDY CREEK WMA",
+    "CASTON CREEK WMA",
+    "CASTON CREEK WMA",
+    "OLD RIVER WMA",
+    "OLD RIVER WMA",
+    "THEODORE MARS WMA",
+    "LITTLE BILOXI WMA",
+    "LITTLE BILOXI WMA",
+    "LITTLE BILOXI WMA",
+    "LITTLE BILOXI WMA",
+    "LITTLE BILOXI WMA",
+    "RED CREEK WMA",
+    "LEAF RIVER WMA",
+    "LEAF RIVER WMA",
+    "LEAF RIVER WMA",
+    "CHICKASAWHAY WMA",
+    "CHICKASAWHAY WMA",
+    "CHICKASAWHAY WMA",
+    "CHICKASAWHAY WMA",
+    "MASON CREEK WMA",
+    "MASON CREEK WMA",
+    "CANEMOUNT WMA",
+    "CANEMOUNT WMA",
+    "CANEMOUNT WMA",
+    "CANEMOUNT WMA",
+    "BIENVILLE WMA",
+    "BIENVILLE WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "CANEY CREEK WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "TALLAHALA WMA",
+    "SUNFLOWER WMA",
+    "SUNFLOWER WMA",
+    "SUNFLOWER WMA",
+    "SUNFLOWER WMA",
+    "TWIN OAKS WMA",
+    "SUNFLOWER WMA",
+    "LAKE GEORGE WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "CHOCTAW WMA",
+    "CANAL SECTION WMA",
+    "CANAL SECTION WMA",
+    "CANAL SECTION WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "HELL CREEK WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "WARD BAYOU WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "MALMAISON WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "LEROY PERCY WMA",
+    "LEROY PERCY WMA",
+    "LEROY PERCY WMA",
+    "PASCAGOULA WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "WILLIAM (BILLY) C. DEVINEY  WMA",
+    "CHICKASAW WMA",
+    "McHENRY RANGE",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "WARD BAYOU WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "WARD BAYOU WMA",
+    "WOLF RIVER WMA",
+    "SKY LAKE WMA",
+    "LITTLE BILOXI WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "PASCAGOULA WMA",
+    "RIVERFRONT WMA",
+    "HOWARD MILLER WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "SUNFLOWER WMA",
+    "PEARL RIVER WMA",
+    "TURCOTTE RANGE",
+    "OLD RIVER WMA",
+    "RED CREEK WMA",
+    "MAHANNAH WMA",
+    "CANEMOUNT WMA",
+    "CHARLES RAY NIX WMA",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "TUSCUMBIA WMA",
+    "CHARLES RAY NIX WMA",
+    "CLOSED AREA",
+    "LEROY PERCY WMA",
+    "CHICKASAW WMA",
+    "CHICKASAW WMA",
+    "UPPER SARDIS WMA",
+    "CANAL SECTION WMA",
+    "MARION COUNTY WMA",
+    "CANAL SECTION WMA",
+    "CANAL SECTION WMA",
+    "CANAL SECTION WMA",
+    "CANAL SECTION WMA",
+    "DIVIDE SECTION WMA",
+    "COPIAH COUNTY WMA",
+    "MALMAISON WMA",
+    "MALMAISON WMA",
+    "MALMAISON WMA",
+    "NANIH WAIYA WMA",
+    "ENCROACHMENT",
+    "SANDY CREEK WMA",
+    "GEORGE P. COSSAR SP",
+    "PASCAGOULA WMA",
+    "CHARLES RAY NIX WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "JOHN BELL WILLIAMS WMA",
+    "PRIVATE",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "PHIL BRYANT",
+    "MUSCADINE FARMS WMA -DRIFTWOOD",
+    "PASCAGOULA WMA",
+    "PASCAGOULA WMA",
+    "COPIAH COUNTY WMA"
+   ],
+   "prj": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+  }
+ ],
+ "namequery": [
+  {
+   "st": "WEST",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "note": "SB2 a: unmatched western BLM names vs the polygon layer",
+   "fields": [
+    "FET_NAME",
+    "UNIT_NAME"
+   ],
+   "geom": "esriGeometryPolygon",
+   "tried": 627,
+   "found": 20,
+   "hits": [
+    [
+     "NV",
+     "US-13494",
+     "Lida BLM Backcountry Airstrip",
+     [
+      [
+       "Salida Trails SRMA",
+       null
+      ]
+     ]
+    ],
+    [
+     "UT",
+     "US-11211",
+     "Chimney Rock BLM Recreation Management Area",
+     [
+      [
+       "Chimney Rock Campground",
+       null
+      ]
+     ]
+    ],
+    [
+     "UT",
+     "US-11665",
+     "Horsethief BLM Recreation Management Area",
+     [
+      [
+       "Horsethief Recreation Area",
+       null
+      ]
+     ]
+    ],
+    [
+     "UT",
+     "US-5781",
+     "Big Bend BLM Recreation Management Area",
+     [
+      [
+       "Big Bend Campground",
+       null
+      ],
+      [
+       "Big Bend Campground",
+       null
+      ]
+     ]
+    ],
+    [
+     "UT",
+     "US-5826",
+     "Book Cliffs BLM Recreation Management Area",
+     [
+      [
+       "Book Cliffs Roadside Campsite",
+       null
+      ]
+     ]
+    ],
+    [
+     "UT",
+     "US-5976",
+     "Sand Mountain BLM Recreation Management Area",
+     [
+      [
+       "Sand Mountain Open OHV Area",
+       null
+      ],
+      [
+       "Sand Mountain",
+       null
+      ]
+     ]
+    ],
+    [
+     "ID",
+     "US-11260",
+     "North Fork Recreation Site BLM Recreation Management Area",
+     [
+      [
+       "North Forks",
+       null
+      ],
+      [
+       "North Fork Virgin River",
+       null
+      ]
+     ]
+    ],
+    [
+     "ID",
+     "US-11276",
+     "Cottonwood Recreation Site BLM Recreation Management Area",
+     [
+      [
+       "Wright - Cottonwood Creek Riparian Area ACEC",
+       null
+      ],
+      [
+       "Cottonwood Valley Trail System",
+       "Cottonwood Valley Trail System"
+      ]
+     ]
+    ],
+    [
+     "ID",
+     "US-11278",
+     "East Fork Recreation Site BLM Special Recreation Management Area",
+     [
+      [
+       "Whiskey Mountain/East Fork ERMA",
+       null
+      ],
+      [
+       "East Fork Blacktail",
+       null
+      ]
+     ]
+    ],
+    [
+     "ID",
+     "US-11316",
+     "Pipeline Recreation Site BLM Recreation Management Area",
+     [
+      [
+       "Pipeline River Access",
+       null
+      ],
+      [
+       "Campground - Pipeline",
+       "Pocatello Field Office"
+      ]
+     ]
+    ],
+    [
+     "ID",
+     "US-11328",
+     "Huckleberry Recreation Site BLM Recreation Management Area",
+     [
+      [
+       "Huckleberry Campground",
+       "Coeur d'Alene Field Office"
+      ]
+     ]
+    ],
+    [
+     "WY",
+     "US-10856",
+     "Dome Rock BLM Recreation Management Area",
+     [
+      [
+       "Dome Rock 14 Day Area",
+       null
+      ]
+     ]
+    ],
+    [
+     "OR",
+     "US-10008",
+     "Klamath Hills BLM Recreation Management Area",
+     [
+      [
+       "Lower Klamath Hills",
+       null
+      ]
+     ]
+    ],
+    [
+     "OR",
+     "US-10476",
+     "Monument BLM Recreation Management Area",
+     [
+      [
+       "Wildcat Equestrian Camp",
+       "Cascade-Siskiyou National Monument"
+      ],
+      [
+       "Hyatt Lake Campground",
+       "Cascade-Siskiyou National Monument"
+      ]
+     ]
+    ],
+    [
+     "OR",
+     "US-12462",
+     "New River BLM Special Recreation Management Area",
+     [
+      [
+       "Storm Ranch Day-Use Area",
+       "New River ACEC"
+      ]
+     ]
+    ],
+    [
+     "OR",
+     "US-12471",
+     "Lone Rock BLM Recreation Management Area",
+     [
+      [
+       "Lone Rock Drift Boat Launch",
+       null
+      ]
+     ]
+    ],
+    [
+     "OR",
+     "US-12475",
+     "Wolf Creek BLM Special Recreation Management Area",
+     [
+      [
+       "Wolf Creek Falls Trail",
+       null
+      ]
+     ]
+    ],
+    [
+     "WA",
+     "US-12255",
+     "Rock Creek BLM Recreation Management Area",
+     [
+      [
+       "Rock Creek Camp",
+       null
+      ],
+      [
+       "Rock Creek Day Use Area",
+       null
+      ]
+     ]
+    ],
+    [
+     "AK",
+     "US-11836",
+     "Fred Blixt Cabin BLM Recreation Management Area",
+     [
+      [
+       "White Mountains SRMA",
+       "White Mountains SRMA - Fred Blixt Cabin Site"
+      ]
+     ]
+    ],
+    [
+     "AK",
+     "US-11853",
+     "Cripple Creek Campground BLM Recreation Management Area",
+     [
+      [
+       "White Mountains SRMA",
+       "White Mountains SRMA - Cripple Creek Campground"
+      ]
+     ]
+    ]
+   ]
+  }
+ ]
+}
