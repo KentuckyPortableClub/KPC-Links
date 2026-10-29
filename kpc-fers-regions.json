@@ -428,19 +428,6 @@
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   },
   {
-   "id": "NE",
-   "label": "Nebraska",
-   "files": [
-    "US-NE"
-   ],
-   "missing": "missing-southcentral",
-   "missingSt": "NE",
-   "public": false,
-   "beta": true,
-   "showWaiting": true,
-   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
-  },
-  {
    "id": "NY",
    "label": "New York",
    "files": [

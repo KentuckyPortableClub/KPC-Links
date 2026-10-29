@@ -2,12 +2,11 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- FROM CHAT 11 (Oct 29 9:20 AM): Overlap Finder regions check PASS (unpassed areas UT, MS, NV/AZ/NM, Pacific, Atlantic Canada not listed; all members-only). One to confirm: NEBRASKA is in kpc-fers-regions.json while line-southcentral.json says 'US-NE: HELD for a rerun (a 30-km same-land wrong join)'. Did chat 8 pass NE after that? If not, take it out until it does.
-- FROM CHAT 11 (Oct 29 9:40 AM, scope check KPC_Site_ScopeCheck_Oct29_desk.md): (1) kpc-closures.js html() still renders a closures panel for NON-KY parks ('Checked: California State Parks (every 6 hours)' for the 11 states in us-parks.json sources; 'We do not watch closures in <state> yet' elsewhere): for !r.ky return '' (closures outside KY are out of scope). (2) wording: Campgrounds page subtitle 'in every US state', Lounge tab 'state by state', planner legend 'campgrounds, picnic shelters': say Kentucky. Everything else PASS (camping hidden, no scroll, notices, lock).
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 10:00 AM (chat 11): NEBRASKA taken OFF the Finder: chat 8 (~8:10 AM) still says NE HELD (Platte River SP x Platte River Landing wrong join); back on when chat 8 passes it. 40 regions.
 - Oct 29 9:55 AM (chat 11's scope check): kpc-closures.js html() returns nothing for non-KY parks (no closures panel / 'checked' line outside Kentucky, every page that uses it); wording: Campgrounds hero 'in and around Kentucky’s parks', Lounge tool card 'Kentucky’s parks', US planner lead + note no longer mention campgrounds / picnic shelters.
 - Oct 29 9:10 AM (chat 8's ~8:10 AM area checks): added NY 28 / CT 26 / RI 4 pairs and the first CANADA areas: Saskatchewan 33, Quebec 10, Newfoundland and Labrador 1, Northwest Territories 1 (41 regions; PEI checked with 0 pairs = not listed; NS NB MB NU YT not ready). Canadian parks' outlines now come from the Canada outlines (KPCB.canada). Hidden: NE Platte River SP x Platte River Landing (wrong) + chat 8's CHECK rows (PA Upper Delaware x SGL 209 / x Delaware SF, MO Baumgardt + Eck x Mark Twain NF, ND Lake Sakakawea x Little Missouri / x Crow Flies High, QC CA-1027 x CA-2312) until someone checks them. 23 hidden pairs in all.
 - Oct 29 8:55 AM: MASTER-PLAN 3.4 done (campground data outside KY hidden: Campgrounds page KY only, Kit / park sheet / US planner show none outside KY; files kept). Read the '2-FER RULES: FINAL, IN ONE PLACE' block (R0-R10): the Finder already follows it (water-only box = R7, very-tight members list + under-25-yd never shown = R9, wrong far 'same land' joins hidden = R10). Chat 2's KY outline re-read noted (the Finder reads the KY files live, nothing to push; the app pack is chat 4's). 3.1 + 3.4 ticked in MASTER-PLAN; 3.2 standing.
