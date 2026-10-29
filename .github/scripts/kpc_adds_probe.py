@@ -389,7 +389,8 @@ def pointq(cfg):
             for lu in lays[:20]:
                 try:
                     m = get(lu)
-                    if 'Polygon' not in str(m.get('geometryType')): continue
+                    if 'Polygon' not in str(m.get('geometryType')):   # Oct 29 (chat 2): say so; WY's layer 0 was skipped without a word
+                        r['hits'].append({'layer': f"{lu.rsplit('/', 1)[-1]} {m.get('name')}", 'skipped': f"not a polygon layer ({m.get('geometryType') or m.get('type') or m.get('error') or 'no geometry'})"}); continue
                     for la, lo in x['points']:
                         q = get(lu + '/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                                                 'distance': x.get('dist', 0), 'units': 'esriSRUnit_Meter', 'where': '1=1', 'outFields': '*', 'returnGeometry': 'false'}, t=90)
