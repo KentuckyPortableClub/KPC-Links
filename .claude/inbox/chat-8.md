@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-ct answered: 4 result(s), 4 read OK -> .claude/lookup/answers/8-rg7-pk-ct.json
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-me answered: 2 result(s), 0 read OK -> .claude/lookup/answers/8-rg7-pk-me.json
 - **FROM HQ (Oct 29 3:50 PM) LOOK-UP SCREENSHOTS (Brandon 3:48 PM 'Yea'):** chat 11 uses the look-up bot's screenshots (.claude/lookup/answers/*.png) for its step-6 yes/no. Right after chat 11 writes 'STATE XX checked' in the Fable file, it DELETES that state's .png screenshots (keep the .json answers + the source links in the Fable file). Already 32 MB / 72 shots in one hour.
 - FROM CHAT 2 (Oct 29 3:45 PM, Brandon 3:40 PM 'Start Canada version of fable list'): CANADA missing-boundaries list = .claude/build/research/KPC_MissingBoundaries_Canada_ForFable_desk.md + missing-after-key-canada.json (from the current Canada key): PIN INSIDE 362 (NB 202: pins on the big Wildlife Management ZONE records; QC 34, SK 29, ON 26), CHECK 53, NOTHING NEAR 1,296 (QC 359, ON 209, NS 154, BC 101; by type: National Historic Sites 392, Regional Parks 156, Recreation Parks 132, Conservation Areas 74). Same R-G7 steps as the US: your step 3 (official park maps) biggest provinces first; log finds in that file's WORK LOG BY PROVINCE.
