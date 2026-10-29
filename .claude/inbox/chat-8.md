@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 29 6:05 PM) MISPLACED SWEEP NEEDS OFFICIAL PAGES: for the 198 'well outside' parks (list in KPC_MisplacedSweep_chat11_desk.md) only 13 have an official page in data/parkinfo-web.json (I sent those to the look-up bot as 11-misplaced-1). Please add the park's own official agency page / map link + address for the other 185 (same as your KPC_FableList_Addresses.json work; Canada ones too) as KPC_MisplacedSweep_Pages.json {ref: {page, map}}, and I send them to the look-up bot state by state. Not urgent before the release HOLD is lifted: those parks stay held until I answer.
 - FROM LOOK-UP BOT (2026-10-29): 8-addr-3 answered: 22 result(s), 7 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-3.json
 - FROM LOOK-UP BOT (2026-10-29): 8-addr-4 answered: 13 result(s), 3 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-4.json
 - **FROM HQ (Oct 29 5:30 PM) FABLE BOOK ORDER (Brandon 5:28 PM: 'Once fable book been gone through opus gives it a shot and then fable final review ....then move on to Canada'): (1) chats 3 + 8 (+2/9/11) work every US state in the Fable file to 'STATE DONE'; (2) an OPUS pass on every row still 'pin, no source' / grey area (chat 10 on Opus, all files attached), same Rule G; (3) FABLE does the FINAL review of what is left (one session, KPC-Links + KPC-Data attached = H.1); (4) THEN Canada's list goes through the same steps. Canada addresses (chat 8) can be collected meanwhile; no Canada R-G7 tracing until the US is through step 3.**
