@@ -2841,6 +2841,10 @@ def main():
             for s in d.get('spots', []):
                 if not todo(s): continue
                 pk = tuple(sorted(s['refs'][:2]))
+                ub = [r for r in s['refs'] if r in bad]
+                if ub:   # Oct 29 (Mississippi: 24 rows waited for pass 2 run after run, their WMA layer will not read): a row whose
+                    # outline cannot be read is NOT SURE with the reason (review list), never 'waiting' forever
+                    s['status'] = f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)"; continue
                 if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
                     s['status'] = f'waiting for pass {PASS}'; continue
                 sb = sbox(s)
