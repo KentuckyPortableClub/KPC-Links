@@ -202,6 +202,8 @@ def read_hu4(zpath, tiles, out, tmp):
 
 
 def main():
+    STATES[:] = [s for s in STATES if not s.startswith('CA-')]   # Canada's water = kpc_water_ca.py (NRCan NHN), never the USGS files
+    if not STATES: return
     STORE.mkdir(parents=True, exist_ok=True)
     per = {}
     need = tiles_needed(per)

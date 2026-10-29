@@ -814,7 +814,7 @@ def _wlive2(i, jt):
     return got
 
 
-def nhd_water(box, rivers_only=False):
+def nhd_water(box, rivers_only=False, live=True):
     """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries).
     Oct 28 6:57 PM (HQ, Brandon: 'if we have the offline files WHY are we still trying to pull the water live, it keeps breaking
     the line'): (1) the SAVED tile (a live read saved earlier, or the USGS bulk files cut by kpc_water_bulk.py, fetched up front),
@@ -831,7 +831,7 @@ def nhd_water(box, rivers_only=False):
                     WATER_N['bulk file' if str(sv.get('d', '')).startswith('USGS NHDPlus HR file') else 'saved'] = WATER_N.get('bulk file' if str(sv.get('d', '')).startswith('USGS NHDPlus HR file') else 'saved', 0) + 1
                 else:
                     feats = None
-                    if NHD_DOWN['fails'] < 3:
+                    if live and NHD_DOWN['fails'] < 3:   # Canada (live=False): only the saved NHN tiles, never the USGS map
                         try: feats = _wlive(i, jt); WATER_N['live'] += 1; _wsave(i, jt, feats)
                         except Exception as e:  # noqa: BLE001
                             NHD_DOWN['fails'] += 1; LOG.append(f'NHD water (one try): {str(e)[:70]}')
@@ -1431,7 +1431,7 @@ def water_route_spots(lref, ls, oref, obox):
         if len(near) < 4: continue                                    # the route does not pass near this tile
         land = pmask(F, oref, CURG)
         if not land.any(): continue
-        wg = nhd_water(bb)
+        wg = nhd_water(bb, live=not str(oref).startswith('CA-'))
         if wg is None:   # never silent: the pair becomes a NOT SURE row
             WATER_FAIL.append((lref, oref))
             c = F.ll(F.W // 2, F.H // 2)
@@ -2201,7 +2201,7 @@ def channel_rows(files, G, today):
     return n
 
 
-def land_check(s, G):
+def land_check(s, G, live=True):
     """Rules 9 + 10 on a US area spot: 'ok', 'water' (the 50-yard patch exists only on a lake / river surface), 'closed'
     (it exists only inside a PAD-US closed area)."""
     sb = sbox(s); pad = .002
@@ -2224,7 +2224,7 @@ def land_check(s, G):
     except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
     open_ = ov & (1 - closed)
     if not (dt(open_) * cell >= need).any(): return 'closed' if closed.any() else 'ok'
-    wg = nhd_water(box)   # Oct 28 11 PM: the row's own box (the tiles the water job saves), not the frame's wider margin (a missing margin tile = 'not checked' with every needed tile saved)
+    wg = nhd_water(box, live=live)   # Oct 28 11 PM: the row's own box (the tiles the water job saves), not the frame's wider margin (a missing margin tile = 'not checked' with every needed tile saved)
     if wg is None: return 'not checked'
     water = F.area(wg)
     s.setdefault('info', {})['water_pct'] = round(100.0 * float((ov & water).sum()) / max(1.0, float(ov.sum())))
@@ -2247,6 +2247,8 @@ def water_date(s):
     """Rule 13: a spot whose water came from the saved copy says so, with that copy's date."""
     if WATER_MARK:
         m = min(WATER_MARK)
+        if m.startswith('NRCan NHN file'):   # Canada (kpc_water_ca.py)
+            s.setdefault('map_dates', {})['water'] = m + " (Natural Resources Canada's National Hydro Network, Open Government Licence - Canada)"; WATER_MARK.clear(); return
         s.setdefault('map_dates', {})['USGS water'] = ((m.replace('USGS NHD (second service) ', 'USGS NHD second service, read ') + ' (the main USGS water map did not answer)') if m.startswith('USGS NHD (second')
                                                        else (m + ' (the same NHDPlus HR water, from USGS\'s download files)') if m.startswith('USGS NHDPlus HR file')
                                                        else ('saved copy of the USGS map, read ' + m))
@@ -2300,9 +2302,13 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
         if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
         if lc == 'not checked': s['status'] = 'not sure: water not checked (the USGS water map did not answer): run pass 5'; s['names'] = {r: PIN[r][0] for r in refs}; return
-    if s['kind'] == 'area' and refs[0].startswith('CA-') and not CA_WATER:
-        # Oct 27 (Fable #9, pre-flight 6): no Canadian water map read yet = never guess that the patch is land
-        s['status'] = 'not sure: water not checked (no Canadian water map read yet)'; s['names'] = {r: PIN[r][0] for r in refs}; return
+    if s['kind'] == 'area' and refs[0].startswith('CA-'):
+        # Oct 28 11:19 PM (Brandon: Canada's water): the saved NRCan NHN tiles (kpc_water_ca.py); none saved = never guess it is land
+        try: lc = land_check(s, G, live=False)
+        except Exception as e: lc = 'not checked'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
+        if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
+        if lc == 'not checked': s['status'] = 'not sure: water not checked (no saved Canadian water tile here yet: run the Canada water job)'; s['names'] = {r: PIN[r][0] for r in refs}; return
     v, why = ownership_step(s, parks, PIN)
     s['ownership'] = why
     if v == 'drop': s['status'] = 'dropped: ' + why; return
@@ -2575,7 +2581,7 @@ def main():
     elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         mark('pass 5 start')
-        want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
+        want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith(('US-', 'CA-')) and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
         cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
         same = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'same land' and str(x.get('status', '')).startswith('candidate')]
         refs = sorted({r for x in cand + same for r in x['refs'] if r in parks and parks[r]['ids']})
@@ -2595,7 +2601,7 @@ def main():
             if late(): break
             if any(r not in G for r in x['refs']): continue
             WATER_MARK.clear()
-            try: lc = land_check(x, G)
+            try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
             except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
             water_date(x)
             n['checked'] += 1
@@ -2620,7 +2626,7 @@ def main():
             for x in again:
                 if late(): break
                 WATER_MARK.clear()
-                try: lc = land_check(x, G)
+                try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
                 except Exception as e: lc = 'not checked'; LOG.append(f"water again {x['id']}: {str(e)[:60]}")  # noqa: BLE001
                 water_date(x)
                 if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1; n['still not checked'] -= 1
