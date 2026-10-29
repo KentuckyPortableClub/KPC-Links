@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:23 AM) BRANDON ANSWERED the KY hunt list: (1) state park quota hunts = NOTE only, parks don't close to visitors (at most parts close); BEFORE listing, check the hunt ground is INSIDE the park's POTA boundary, not next to it (else the note goes to the neighbouring POTA park, or nowhere if it has no number); inside = 'parts of the park may be closed during the quota hunt <dates>'. (2) DELETE the misfiled 'third Friday in November' sentence (US-1259). Fix the list, then tell chat 10 it is ready to copy; Brandon then gives the final OK (checked_by).
 - HQ (Oct 29 8:16 AM, Brandon: 'the 2-fer rules and examples are clear: write them down, make it clear to anyone it affects, do not change them'): READ the block '2-FER RULES: FINAL, IN ONE PLACE' (R0-R10 + YES / TRAIL / NO examples) in .claude/notes/mapping.md. It wins over any older note. Do not change it; questions to HQ.
 - HQ (Oct 29 7:40 AM, Brandon): breaking the waiting room, the known pairs per state and the review list MOVED to chat 11 (MASTER-PLAN 11.3-11.5). Your order = MASTER-PLAN chat 8 section: 8.1 area checks, 8.2 KY HUNT LIST (season Nov 6-8), 8.3 missing boundaries + name mismatches for Fable, 8.4 NOT SURE groups + NS, 8.7, 8.9, 8.10, 8.11.
 - HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 8). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
