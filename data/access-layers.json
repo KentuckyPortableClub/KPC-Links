@@ -3211,6 +3211,45 @@
    "tested": "yes 2026-10-29 (chat 9 probe SB2)",
    "licence": "Manitoba Open Data Licence (OpenMB): carry the line 'Contains information licensed under the OpenMB Information and Data Use Licence'",
    "agency": "Government of Manitoba, Manitoba Waterbody Entry Points (2025-02-05)"
+  },
+  {
+   "prog": "park",
+   "st": "WY",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_Recreation_Features_HUB/MapServer/1",
+   "what": "points: BLM recreation features (trailheads, boat ramps, parking, camp areas)",
+   "typef": "FET_TYPE, FET_SUBTYPE",
+   "vals": "by place",
+   "area": "UNIT_NAME",
+   "count": "1429",
+   "tested": "yes 2026-10-29 (chat 9 probe SB3)",
+   "licence": "credit line only: 'Bureau of Land Management (BLM), Wyoming State Office' (BLM 'as is')",
+   "agency": "BLM Wyoming State Office, Recreation Features"
+  },
+  {
+   "prog": "park",
+   "st": "WY",
+   "url": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_Recreation_Areas_HUB/MapServer/0",
+   "what": "points: BLM general recreation sites (Boat_Ramp / Camping / Fishing flags)",
+   "typef": "Boat_Ramp, Camping",
+   "vals": "by place",
+   "area": "location only",
+   "count": "140",
+   "tested": "yes 2026-10-29 (chat 9 probe SB3)",
+   "licence": "credit line only: 'BLM Wyoming State Office'",
+   "agency": "BLM Wyoming State Office, General Recreation Sites"
+  },
+  {
+   "prog": "sp",
+   "st": "AK",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/0",
+   "what": "points: Alaska State Parks facilities (trailheads, launches, parking, campgrounds)",
+   "typef": "FCLTYTYPE",
+   "vals": "by place",
+   "area": "PARK_NAME",
+   "count": "87",
+   "tested": "yes 2026-10-29 (chat 9 probe SB3)",
+   "licence": "credit line only: 'Alaska Department of Natural Resources'",
+   "agency": "Alaska DNR Division of Parks & Outdoor Recreation, ASP Park Facilities"
   }
  ]
 }
