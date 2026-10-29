@@ -1,0 +1,2256 @@
+{
+ "about": "Chat 9 round C2 (Oct 29 ~11:55 AM): chat 2's request (Idaho IDPR polygons layer id + name field; record names near the pins of US-13023 Artesia Lake, US-4438 Buckland Station, US-8561 Missouri River SNA for aliases; new Ontario LIO address for the Trail Network segments + LIO_Open04/19) + chat 8 river v5 (NPS tract ALPHA values in WV / TN / KY) + SD GFP parks layer details. Results: roundC2-tested.json.",
+ "date": "2026-10-29",
+ "layers": [
+  {
+   "st": "ID",
+   "kind": "park",
+   "ag": "IDPR",
+   "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/IDPR_Parks_and_Facilities/FeatureServer",
+   "note": "chat 2 (1): polygon layer id + name field",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "",
+   "item_modified": "2019-06-11",
+   "item_owner": "Idaho_Department_of_Parks_and_Recreation",
+   "item_org": "State of Idaho",
+   "item_title": "IDPR_Parks_and_Facilities",
+   "item_credits": "",
+   "item_about": "",
+   "layers": [
+    {
+     "id": 0,
+     "name": "MAP_TOUR",
+     "geom": "Point",
+     "nameField": "name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "objectid",
+      "name",
+      "description",
+      "icon_color",
+      "pic_url",
+      "thumb_url"
+     ],
+     "last_edit": "2021-04-22",
+     "layer_copyright": "",
+     "records": 27,
+     "sample": [
+      "Round Lake State Park",
+      "Harriman State Park",
+      "Ashton-Tetonia Trail",
+      "Bear Lake State Park",
+      "Bruneau Dunes State Park",
+      "Castle Rocks State Park",
+      "City of Rocks National Reserve",
+      "Coeur d'Alene Parkway"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "CA-ON",
+   "kind": "trail",
+   "ag": "Ontario MNR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer",
+   "note": "chat 2 (3): LIO_Open04 on the new host (layer 19 + trail network segments)",
+   "answers": true,
+   "service": "service04",
+   "licence": "",
+   "years_in_text": [
+    "2023"
+   ],
+   "description": "Version: n/a Build: 2023-11-08 08:51:03",
+   "item_licence": "",
+   "item_credits": "",
+   "item_about": "Version: n/a Build: 2023-11-08 08:51:03",
+   "layers": [
+    {
+     "id": 5,
+     "name": "Drain Connection",
+     "geom": "Point",
+     "nameField": "SOURCE_NAME",
+     "ownerField": "OWNERSHIP_TYPE",
+     "typeField": "CONNECTION_TYPE",
+     "fields": [
+      "OGF_ID",
+      "CONNECTION_IDENT",
+      "CONNECTION_TYPE",
+      "OWNERSHIP_TYPE",
+      "CONNECTION_PURPOSE",
+      "CONSTRUCTION_MATERIAL",
+      "CONSTRUCTED_YEAR",
+      "DIAMETER_CM",
+      "UPPER_TIER_MUNICIPALITY",
+      "GEOGRAPHIC_TOWNSHIP_NAME",
+      "CONCESSION_IDENT",
+      "LOT_IDENT",
+      "DRAIN_CONNECTION_COMMENTS",
+      "EXTERNAL_REFERENCE",
+      "LOCATION_ACCURACY",
+      "SOURCE_DETAIL",
+      "SOURCE_NAME",
+      "SOURCE_DATE",
+      "SOURCE_ORIGINATOR",
+      "SOURCE_SCALE",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 1469,
+     "sample": [
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map",
+      "Hard Copy/Paper Map"
+     ],
+     "owner_values": [
+      "Municipal",
+      "Private"
+     ],
+     "type_values": [
+      "Catch Basin",
+      "Gravity Outlet"
+     ]
+    },
+    {
+     "id": 0,
+     "name": "Ontario Dam Inventory",
+     "geom": "Point",
+     "nameField": "DAM_NAME",
+     "ownerField": "DAM_OWNERSHIP",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "DAM_ID",
+      "DAM_NAME",
+      "DAM_OWNERSHIP",
+      "LOCATION_ACCURACY",
+      "GENERAL_COMMENTS",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 1892,
+     "sample": [
+      "None",
+      "None",
+      "Sheldrake Lake Dam",
+      "Wye Marsh Wildlife Area Dam",
+      "Gooseneck Lake Dam",
+      "Harris Lake Dam (Spillway #2)",
+      "Tasso Lake Dam",
+      "Hangingstone Lake Dam"
+     ],
+     "owner_values": [
+      "Conservation Authority",
+      "Private",
+      "Provincial"
+     ]
+    },
+    {
+     "id": 16,
+     "name": "ORWN Structure Point",
+     "geom": "Point",
+     "nameField": "TRACKNAME",
+     "ownerField": "ADMINAREA",
+     "typeField": "STRUCTYPE",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "STRUCID",
+      "STRUCTYPE",
+      "TRACKNID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1DIST",
+      "SUB1UNITDI",
+      "SUB1DISTY",
+      "SUBDI2NID",
+      "SUBDI2NAME",
+      "SUBD2DIST",
+      "SUB2UNITDI",
+      "SUB2DISTY",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE",
+      "ATTREVDATE",
+      "ATTACQTECH",
+      "ATTPROVIDE",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 357,
+     "sample": [
+      "None",
+      "None",
+      "Lakeshore East",
+      "Lakeshore East",
+      "Lakeshore East",
+      "Lakeshore East",
+      "Lakeshore East",
+      "None"
+     ],
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "Culvert"
+     ]
+    },
+    {
+     "id": 15,
+     "name": "ORWN Station",
+     "geom": "Point",
+     "nameField": "STENNAME",
+     "ownerField": "ADMINAREA",
+     "typeField": "STNTYPE",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "STENNAME",
+      "STFRNAME",
+      "STNTYPE",
+      "NUMPLATEFR",
+      "STNUSR1ENA",
+      "STNUSR1FNA",
+      "STNUSR1RMK",
+      "STNUSR2ENA",
+      "STNUSR2FNA",
+      "STNUSR2RMK",
+      "STNUSR3ENA",
+      "STNUSR3FNA",
+      "STNUSR3RMK",
+      "STNUSR4ENA",
+      "STNUSR4FNA",
+      "STNUSR4RMK",
+      "TRACKNID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1DIST",
+      "SUB1UNITDI",
+      "SUB1DISTY",
+      "SUBDI2NID",
+      "SUBDI2NAME",
+      "SUBD2DIST",
+      "SUB2UNITDI",
+      "SUB2DISTY",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 671,
+     "sample": [
+      "Jackfish",
+      "White",
+      "Barwick",
+      "Ostrom",
+      "Anita",
+      "Harvey",
+      "Reynolds",
+      "Brignall"
+     ],
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "Freight",
+      "Mixed",
+      "Passenger Station",
+      "Unknown"
+     ]
+    },
+    {
+     "id": 14,
+     "name": "ORWN Marker Post",
+     "geom": "Point",
+     "nameField": "TRACKNAME",
+     "ownerField": "ADMINAREA",
+     "typeField": "TRACKCLASS",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "TRACKNID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1DIST",
+      "SUB1UNITDI",
+      "SUB1DISTY",
+      "SUBDI2NID",
+      "SUBDI2NAME",
+      "SUBD2DIST",
+      "SUB2UNITDI",
+      "SUB2DISTY",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE",
+      "ATTREVDATE",
+      "ATTACQTECH",
+      "ATTPROVIDE",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 3867,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ],
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "Main"
+     ]
+    },
+    {
+     "id": 13,
+     "name": "ORWN Junction",
+     "geom": "Point",
+     "nameField": "",
+     "ownerField": "ADMINAREA",
+     "typeField": "SECURCLASS",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "BNDYTRIND",
+      "SUBDLIMIND",
+      "TRAJUNCTYP",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE",
+      "ATTREVDATE",
+      "ATTACQTECH",
+      "ATTPROVIDE",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 14981,
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "Unclassified"
+     ]
+    },
+    {
+     "id": 12,
+     "name": "ORWN Crossing",
+     "geom": "Point",
+     "nameField": "CROSSTYPNM",
+     "ownerField": "ADMINAREA",
+     "typeField": "ROADCLASS",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "CROSSINGID",
+      "LEVELCROSS",
+      "CROSSINTYP",
+      "WARNINGSYS",
+      "ROADCLASS",
+      "CROSSTYPNM",
+      "ROUTENUMBE",
+      "CROSACCES",
+      "TCID",
+      "TRACKNID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1DIST",
+      "SUB1UNITDI",
+      "SUB1DISTY",
+      "SUBDI2NID",
+      "SUBDI2NAME",
+      "SUBD2DIST",
+      "SUB2UNITDI",
+      "SUB2DISTY",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE",
+      "ATTREVDATE",
+      "ATTACQTECH",
+      "ATTPROVIDE",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 12718,
+     "sample": [
+      "Galt",
+      "North Toronto",
+      "North Toronto",
+      "North Toronto",
+      "North Toronto",
+      "North Toronto",
+      "North Toronto",
+      "North Toronto"
+     ],
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "None"
+     ]
+    },
+    {
+     "id": 20,
+     "name": "OTN Access Point",
+     "geom": "Point",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "LOCATION_ACCURACY",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 853
+    },
+    {
+     "id": 18,
+     "name": "ORWN Track",
+     "geom": "Polyline",
+     "nameField": "TRACKNAME",
+     "ownerField": "OWNERENA",
+     "typeField": "TRACKCLASS",
+     "fields": [
+      "OGF_ID",
+      "TRACKNID",
+      "TRACKSEGID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "REGULATOR",
+      "TRANSPTYPE",
+      "USETYPE",
+      "GAUGE",
+      "NUMTRACKS",
+      "ELECTRIC",
+      "STATUS",
+      "SPEEDFREIT",
+      "SPEEDPASSE",
+      "UNITOFSPEE",
+      "SOURCEID",
+      "OPERATOENA",
+      "OPERATOFNA",
+      "OPERATORMK",
+      "OPSUBSTART",
+      "OPSUBEND",
+      "OPSUBUDIS",
+      "OWNERENA",
+      "OWNERFNA",
+      "TRKUSR1ENA",
+      "TRKUSR1FNA",
+      "TRKUSR1RMK",
+      "TRKUSR2ENA",
+      "TRKUSR2FNA",
+      "TRKUSR2RMK",
+      "TRKUSR3ENA",
+      "TRKUSR3FNA",
+      "TRKUSR3RMK",
+      "TRKUSR4ENA",
+      "TRKUSR4FNA",
+      "TRKUSR4RMK",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1START",
+      "SUBD1END"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 19055,
+     "sample": [
+      "Parkdale",
+      "Welland",
+      "Parkdale",
+      "Parkdale",
+      "None",
+      "None",
+      "None",
+      "None"
+     ],
+     "owner_values": [
+      "Canadian National",
+      "Canadian Pacific",
+      "Genesee & Wyoming Canada Inc.",
+      "Ontario Northland Transportation Commiss",
+      "Trillium",
+      "Unknown"
+     ],
+     "type_values": [
+      "Main",
+      "Siding",
+      "Spur",
+      "Yard"
+     ]
+    },
+    {
+     "id": 17,
+     "name": "ORWN Structure Line",
+     "geom": "Polyline",
+     "nameField": "STRUENNAME",
+     "ownerField": "ADMINAREA",
+     "typeField": "STRUCTYPE",
+     "fields": [
+      "OGF_ID",
+      "NID",
+      "STRUCID",
+      "STRUENNAME",
+      "STRUFRNAME",
+      "STRUCTYPE",
+      "TRACKNID",
+      "TRACKNAME",
+      "TRACKCLASS",
+      "SUBDI1NID",
+      "SUBDI1NAME",
+      "SUBD1DIST",
+      "SUB1UNITDI",
+      "SUB1DISTY",
+      "SUBDI2NID",
+      "SUBDI2NAME",
+      "SUBD2DIST",
+      "SUB2UNITDI",
+      "SUB2DISTY",
+      "ADMINAREA",
+      "SPECVERS",
+      "SECURCLASS",
+      "GEOCREDATE",
+      "GEOREVDATE",
+      "GEOACQTECH",
+      "GEOACCURA",
+      "GEOPROVIDE",
+      "ATTCREDATE",
+      "ATTREVDATE",
+      "ATTACQTECH",
+      "ATTPROVIDE",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID",
+      "SHAPE.LEN"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 2561,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ],
+     "owner_values": [
+      "Ontario"
+     ],
+     "type_values": [
+      "Bridge",
+      "Tunnel"
+     ]
+    },
+    {
+     "id": 19,
+     "name": "OTN Trail Segment",
+     "geom": "Polyline",
+     "nameField": "TRAIL_NAME",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "TRAIL_NAME",
+      "TRAIL_ASSOCIATION",
+      "TRAIL_ASSOCIATION_WEBSITE",
+      "PERMITTED_USES",
+      "DESCRIPTION",
+      "ON_ROAD_FLG",
+      "TRAIL_LENGTH_KM",
+      "LOCATION_ACCURACY",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID",
+      "SHAPE.LEN"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 7274,
+     "sample": [
+      "White-tailed Deer Trail",
+      "Gill's Gultch Trail",
+      "Etobicoke Creek Trail, Missauga Section",
+      "Sprint Trails",
+      "Lions Park",
+      "Camp Trail",
+      "Yellow 10 km",
+      "City of Brampton Bicycle Lanes"
+     ]
+    },
+    {
+     "id": 7,
+     "name": "Ont Elevation Data Index",
+     "geom": "Polygon",
+     "nameField": "PRODUCT_NAME",
+     "ownerField": "DATA_OWNER",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "PRODUCT_NAME",
+      "PRODUCT_DESCRIPTION",
+      "START_YEAR",
+      "END_YEAR",
+      "DATA_FORMAT",
+      "DATA_OWNER",
+      "DATA_DISTRIBUTOR",
+      "LICENSE_RESTRICTION",
+      "ACCURACY_REFERENCE",
+      "SPATIAL_RESOLUTION",
+      "METADATA_LINK",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID",
+      "SHAPE.AREA",
+      "SHAPE.LEN"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 165,
+     "sample": [
+      "Bathymetry of Lake Superior",
+      "Bathymetry of Lake Ontario",
+      "Bathymetry of Lake Huron",
+      "Lake Ontario SHOALS Lidar",
+      "Bathymetry of Lake Michigan",
+      "South Nation Conservation 2018-19 Airbor",
+      "York Region - Lake Simcoe 2019 Lidar Dig",
+      "Greater Toronto Area Digital Elevation M"
+     ],
+     "owner_values": [
+      "Central Lake Ontario Conservation Author",
+      "City of Ottawa, City of Gatineau, Nation",
+      "District of Muskoka",
+      "MNR - Geospatial Ontario",
+      "MNR - Science and Research Branch",
+      "Municipality of Huron Shores",
+      "National Oceanic and Atmospheric Adminis",
+      "Natural Resources Canada",
+      "Ontario Ministry of Agriculture, Food an",
+      "South Nation Conservation Authority",
+      "U.S. Army Corps of Engineers JALBCTX"
+     ]
+    },
+    {
+     "id": 11,
+     "name": "UTM 100km Grid",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "UTM_ZONE",
+      "EASTING_LOWER_LEFT_CORNER",
+      "NORTHING_LOWER_LEFT_CORNER",
+      "MGRS_NAD83_IDENT",
+      "MGRS_NAD27_IDENT",
+      "ATLAS_NAD83_IDENT",
+      "ATLAS_NAD27_IDENT",
+      "PROVINCIAL_IND",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID",
+      "SHAPE.AREA",
+      "SHAPE.LEN"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 424
+    },
+    {
+     "id": 10,
+     "name": "UTM 10km Grid",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OGF_ID",
+      "UTM_ZONE",
+      "EASTING_LOWER_LEFT_CORNER",
+      "NORTHING_LOWER_LEFT_CORNER",
+      "OBM_MAPSHEET_NUMBER",
+      "FIRE_BASEMAP_IDENT",
+      "MGRS_NAD83_IDENT",
+      "MGRS_NAD27_IDENT",
+      "ATLAS_NAD83_IDENT",
+      "ATLAS_NAD27_IDENT",
+      "PROVINCIAL_IND",
+      "GEOMETRY_UPDATE_DATETIME",
+      "EFFECTIVE_DATETIME",
+      "SYSTEM_DATETIME",
+      "SHAPE",
+      "OBJECTID",
+      "SHAPE.AREA",
+      "SHAPE.LEN"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "https://www.ontario.ca/page/open-government-licence-ontario",
+     "records": 33928
+    }
+   ]
+  },
+  {
+   "st": "SD",
+   "kind": "park",
+   "ag": "SD GFP",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer",
+   "note": "SD GFP parks + recreation areas",
+   "answers": true,
+   "service": "SouthDakota_ParksAndRecreationAreas.aprx",
+   "licence": "SD GFP",
+   "years_in_text": [],
+   "description": "",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Parks and Recreation Areas",
+     "geom": "Polygon",
+     "nameField": "AreaName",
+     "ownerField": "",
+     "typeField": "ClassificationCode",
+     "fields": [
+      "ClassificationCode",
+      "AreaName",
+      "CreatedOn",
+      "CreatedBy",
+      "ModifiedOn",
+      "ModifiedBy",
+      "GlobalID",
+      "OBJECTID",
+      "Shape__Area",
+      "Shape__Length",
+      "Centroid"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 133,
+     "sample": [
+      "Wall Lake",
+      "Fisher Grove",
+      "Hugh Glass",
+      "Beaver Creek",
+      "Spearfish Canyon",
+      "Lake Poinsett",
+      "Amsden Dam",
+      "Spillway LFC"
+     ],
+     "type_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "CA-ON",
+   "q": "(\"Ontario Trail Network\" OR OTN) AND (segment OR segments OR trail)",
+   "why": "chat 2 (3): OTN segment layer's new address",
+   "found": [
+    {
+     "title": "Ontario Trail Network (OTN) Segment",
+     "org": "Ontario Ministry of Natural Resources and Forestry",
+     "owner": "OntarioProvincialMapping",
+     "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+     "modified": "2026-08-19",
+     "licence": "Open Government Licence – Ontario"
+    },
+    {
+     "title": "MNR_OTN",
+     "org": "",
+     "owner": "wpsgnet",
+     "url": "https://services1.arcgis.com/rC2NOGn7lIsp3hfc/arcgis/rest/services/MNR_OTN/FeatureServer",
+     "modified": "2020-12-09",
+     "licence": ""
+    },
+    {
+     "title": "Ontario Trail Network (OTN) Access Point",
+     "org": "Ontario Ministry of Natural Resources and Forestry",
+     "owner": "OntarioProvincialMapping",
+     "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/20",
+     "modified": "2026-08-13",
+     "licence": "Open Government Licence – Ontario"
+    },
+    {
+     "title": "EnergizeEssex_Indicators",
+     "org": "",
+     "owner": "Rayna.Carmichael@aecom.com_aecom",
+     "url": "https://services5.arcgis.com/OCY4MgI6bGqUzBPm/arcgis/rest/services/EnergizeEssex_Indicators/FeatureServer",
+     "modified": "2026-07-07",
+     "licence": ""
+    },
+    {
+     "title": "OTN Trails",
+     "org": "",
+     "owner": "Andreadouglass",
+     "url": "https://data.ogdencity.com/server/rest/services/OTN_Trails/FeatureServer",
+     "modified": "2025-01-27",
+     "licence": ""
+    },
+    {
+     "title": "Natural Impacts in Peterborough County_WFL1",
+     "org": "",
+     "owner": "jamesmarcaccio@trentu.ca_TrentUniversity",
+     "url": "https://services5.arcgis.com/Ndi1QSsLBM7IsTBy/arcgis/rest/services/Natural_Impacts_in_Peterborough_County_WFL1/FeatureServer",
+     "modified": "2026-03-31",
+     "licence": ""
+    },
+    {
+     "title": "LA_OTN_2km",
+     "org": "",
+     "owner": "LA_County_RB",
+     "url": "https://services.arcgis.com/YmmKxwNVvLQW5zcm/arcgis/rest/services/LA_OTN_2km/FeatureServer",
+     "modified": "2024-11-16",
+     "licence": ""
+    },
+    {
+     "title": "OTN Locations",
+     "org": "",
+     "owner": "Andreadouglass",
+     "url": "https://data.ogdencity.com/server/rest/services/OTN_Locations/FeatureServer",
+     "modified": "2026-07-07",
+     "licence": ""
+    },
+    {
+     "title": "HHLT_Watershed_Public_WFL1",
+     "org": "",
+     "owner": "ilincacarbureanu@trentu.ca_trentuniversity",
+     "url": "https://services5.arcgis.com/Ndi1QSsLBM7IsTBy/arcgis/rest/services/HHLT_Watershed_Public_WFL1/FeatureServer",
+     "modified": "2025-08-28",
+     "licence": ""
+    },
+    {
+     "title": "OTN Trailheads",
+     "org": "",
+     "owner": "Andreadouglass",
+     "url": "https://data.ogdencity.com/server/rest/services/OTN_Trailheads/FeatureServer",
+     "modified": "2025-02-03",
+     "licence": ""
+    },
+    {
+     "title": "Crowe Valley Watershed Update2_WFL1",
+     "org": "",
+     "owner": "ilincacarbureanu@trentu.ca_trentuniversity",
+     "url": "https://services5.arcgis.com/Ndi1QSsLBM7IsTBy/arcgis/rest/services/Crowe_Valley_Watershed_Update2_WFL1/FeatureServer",
+     "modified": "2025-08-28",
+     "licence": ""
+    },
+    {
+     "title": "Trans Canads Trail Stone Mills (View)",
+     "org": "",
+     "owner": "LA_County_RB",
+     "url": "https://services.arcgis.com/YmmKxwNVvLQW5zcm/arcgis/rest/services/Trans_Canads_Trail_Stone_Mills_View/FeatureServer",
+     "modified": "2024-11-28",
+     "licence": ""
+    },
+    {
+     "title": "Recreation",
+     "org": "",
+     "owner": "UCLG_Admin",
+     "url": "https://services3.arcgis.com/KQcdsE7S72bcD7R8/arcgis/rest/services/Recreation/FeatureServer",
+     "modified": "2026-01-20",
+     "licence": ""
+    },
+    {
+     "title": "Trail Networks Addington Highlands (View)",
+     "org": "",
+     "owner": "LA_County_RB",
+     "url": "https://services.arcgis.com/YmmKxwNVvLQW5zcm/arcgis/rest/services/LA_OTN_2km_Addington_Highlands_View/FeatureServer",
+     "modified": "2024-11-29",
+     "licence": ""
+    },
+    {
+     "title": "Cataraqui Trail Stone Mills (View)",
+     "org": "",
+     "owner": "LA_County_RB",
+     "url": "https://services.arcgis.com/YmmKxwNVvLQW5zcm/arcgis/rest/services/Cataraqui_Trail_Stone_Mills_View/FeatureServer",
+     "modified": "2024-11-28",
+     "licence": ""
+    },
+    {
+     "title": "WLECCV_Top25pct_Results_w_attributes",
+     "org": "",
+     "owner": "gannis@tnc.org_TNC",
+     "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/WLECCV_Top25pct_Terrestrial_w_attributes/FeatureServer",
+     "modified": "2020-12-04",
+     "licence": "This data contains a compilation of data merely for informational purposes. TNC shall not be held liable for improper or"
+    },
+    {
+     "title": "Segments tirés du Réseau des pistes et des sentiers de l’Ontario",
+     "org": "Ontario Ministry of Natural Resources and Forestry",
+     "owner": "OntarioProvincialMapping",
+     "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+     "modified": "2026-08-13",
+     "licence": "Licence du gouvernement ouvert – Ontario"
+    },
+    {
+     "title": "Points d’accès dans le Réseau des pistes et des sentiers de l’Ontario",
+     "org": "Ontario Ministry of Natural Resources and Forestry",
+     "owner": "OntarioProvincialMapping",
+     "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/20",
+     "modified": "2026-08-13",
+     "licence": "Licence du gouvernement ouvert – Ontario"
+    },
+    {
+     "title": "Trails_gen",
+     "org": "",
+     "owner": "gannis@tnc.org_TNC",
+     "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Trails_gen/FeatureServer",
+     "modified": "2020-12-04",
+     "licence": "This data contains a compilation of data merely for\ninformational purposes. TNC shall not be held liable for improper or"
+    },
+    {
+     "title": "Waterfront Trail Greater Napanee (View)",
+     "org": "",
+     "owner": "LA_County_RB",
+     "url": "https://services.arcgis.com/YmmKxwNVvLQW5zcm/arcgis/rest/services/Waterfront_Trail_Greater_Napanee_View/FeatureServer",
+     "modified": "2024-07-09",
+     "licence": ""
+    },
+    {
+     "title": "EE_CAN_ON_Waasigan_LandUse_OTN_Trail",
+     "org": "",
+     "owner": "dmbondy_GolderGlobalGIS",
+     "url": "https://services1.arcgis.com/HGtSnUkjNnIpVEaA/arcgis/rest/services/EE_CAN_ON_Waasigan_LandUse_OTN_Trail/FeatureServer",
+     "modified": "2025-10-22",
+     "licence": ""
+    },
+    {
+     "title": "EE_CAN_ON_Waasigan_LandUse_OTN_Trailhead",
+     "org": "",
+     "owner": "dmbondy_GolderGlobalGIS",
+     "url": "https://services1.arcgis.com/HGtSnUkjNnIpVEaA/arcgis/rest/services/EE_CAN_ON_Waasigan_LandUse_OTN_Trailhead/FeatureServer",
+     "modified": "2025-10-22",
+     "licence": ""
+    },
+    {
+     "title": "Frontenac Provincial Park Trail Network",
+     "org": "",
+     "owner": "16SGZ@queensu.ca_QueensUniversity",
+     "url": "https://services2.arcgis.com/NzAqpeLbvbvoP3qh/arcgis/rest/services/fppTrails/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": "Please see terms of use for the original data source  here . Please take caution and do not rely on this layer file for "
+    },
+    {
+     "title": "Toronto Trails Interactive Map_WFL1",
+     "org": "",
+     "owner": "neecaro1_utoronto",
+     "url": "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Toronto_Trails_Interactive_Map_WFL1/FeatureServer",
+     "modified": "2024-12-04",
+     "licence": ""
+    },
+    {
+     "title": "Haliburton Highlands Watersheds Public Student Draft_WFL1",
+     "org": "",
+     "owner": "ilincacarbureanu@trentu.ca_trentuniversity",
+     "url": "https://services5.arcgis.com/Ndi1QSsLBM7IsTBy/arcgis/rest/services/Haliburton_Highlands_Watersheds_Public_Student_Draft_WFL1/FeatureServer",
+     "modified": "2025-08-28",
+     "licence": ""
+    }
+   ]
+  }
+ ],
+ "orgs": [],
+ "hubs": [],
+ "pages": [],
+ "queries": [
+  {
+   "st": "WV",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "where": "STATENAME='WEST VIRGINIA'",
+   "note": "river v5: NPS tract ALPHA codes in WV (NERI?)",
+   "rows": [
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-106-04",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-106-05",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-115-09",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-114-01",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-105-05",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-105-02",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-106-07",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-109-27",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-104-07",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-109-01",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-02",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-03",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-05",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-05",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-08",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-23",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-106-06",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-107-02",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-107-01",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-106-09",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-106-15",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-108-07",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-04",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-07",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-104-01",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-104-05",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-105-07",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-106-13",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-106-14",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-20",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-21",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-22",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-102-23",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-25",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-103-29",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-104-02",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "HAFE",
+     "ALPHA_TRACT": "HAFE-104-04",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-101-01",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-111-20",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "GARI",
+     "ALPHA_TRACT": "GARI-111-18",
+     "STATUS": "Private",
+     "Interest": "Private"
+    }
+   ]
+  },
+  {
+   "st": "TN",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "where": "STATENAME='TENNESSEE' AND (ALPHA LIKE 'B%' OR ALPHA_TRACT LIKE '%BISO%' OR ALPHA_TRACT LIKE '%BSF%')",
+   "note": "river v5: BISO in TN",
+   "rows": []
+  },
+  {
+   "st": "KY",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "where": "STATENAME='KENTUCKY'",
+   "note": "river v5: ALPHA codes in KY (MACA control + BISO?)",
+   "rows": [
+    {
+     "ALPHA": "ABLI",
+     "ALPHA_TRACT": "ABLI-02-101",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "ABLI",
+     "ALPHA_TRACT": "ABLI-01-102",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "ABLI",
+     "ALPHA_TRACT": "ABLI-01-101",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-149",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-135",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-118",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-153",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-132",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-117",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-108",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CANE",
+     "ALPHA_TRACT": "CANE-01-102",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CANE",
+     "ALPHA_TRACT": "CANE-01-101",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CANE",
+     "ALPHA_TRACT": "CANE-01-100",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-157",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-150",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-122",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-136",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-119",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-107",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-160",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-152",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-131",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-115",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-148-1",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-123",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-134",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-167",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-148",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-133",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-102",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-151",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-149-1",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-110",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-142",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-159",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-101",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-137",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-114",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-112",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-111",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-138",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Less than Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-130",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-128",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-113",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-109",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-166",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "CUGA",
+     "ALPHA_TRACT": "CUGA-01-154",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-115",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-114",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-102C",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-113",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-105",
+     "STATUS": "Public",
+     "Interest": "Public"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-116",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-118",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-122",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-117",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-110",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-106",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-109",
+     "STATUS": "Private",
+     "Interest": "Private"
+    },
+    {
+     "ALPHA": "FODO",
+     "ALPHA_TRACT": "FODO-05-102A",
+     "STATUS": "Federal",
+     "Interest": "Federal Land (Fee)"
+    }
+   ]
+  }
+ ],
+ "pointq": [
+  {
+   "st": "NV",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
+   "note": "chat 2 (2): US-13023 Artesia Lake vs sgnva",
+   "hits": [
+    {
+     "layer": "0 Wildlife Management Areas Boundaries",
+     "point": [
+      38.9512,
+      -119.372
+     ],
+     "attrs": {
+      "LandID": 936,
+      "DSLFile": "WL-104-0",
+      "LandName": "Alkali Lake WMA",
+      "County": "LY",
+      "UsingAgenc": "NDOW",
+      "City": "Smith",
+      "Recommenda": "Retain for agency operations, BLM cooperative agreement. No expiration.",
+      "PortLandSt": "Other Lease/Agreement",
+      "EarliestAc": 587174400000,
+      "WMA_CODE": "AWMA",
+      "WMA_NAME1": "Alkali Lake",
+      "LEGALACRES": 3447.8,
+      "LEASEACRES": 0,
+      "OWNACRES": 0,
+      "WTHDRWNACR": 3447.8,
+      "REMARKS": "BOR Withdrawal",
+      "STATUS": "Designated",
+      "GIS_ACRES": 3573.500073860288,
+      "GIS_PERIM": 13.387351077933312
+     }
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
+   "note": "chat 2 (2): US-4438 Buckland Station vs sgnvb",
+   "hits": [
+    {
+     "layer": "0 SCORPRecAreas_Master",
+     "point": [
+      39.2944,
+      -119.251
+     ],
+     "attrs": {
+      "jurisdict": "State",
+      "ownership": "Nevada State Parks",
+      "name": "Fort Churchill Historic State Monument",
+      "id": 0,
+      "acres": 5283.32919054
+     }
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
+   "note": "chat 2 (2): US-4438 vs sgnvd",
+   "hits": [
+    {
+     "layer": "0 SCORPRecAreas",
+     "point": [
+      39.2944,
+      -119.251
+     ],
+     "attrs": {
+      "fid0": 21,
+      "jurisdict": "State",
+      "ownership": "Nevada State Parks",
+      "name": "Fort Churchill Historic State Monument",
+      "id": 0,
+      "acres": 5282.79298796
+     }
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1",
+   "note": "chat 2 (2): US-4438 vs sgnve",
+   "hits": [
+    {
+     "layer": "1 NDSP_State_Park_Bondaries",
+     "point": [
+      39.2944,
+      -119.251
+     ],
+     "attrs": {
+      "userestric": "Yes",
+      "city": "S of Silver Springs",
+      "latitude": 39.31305261,
+      "county": "LY",
+      "lastyeartr": 0,
+      "usingagenc": "NDSP",
+      "landname": "Fort Churchill State Historic Park",
+      "landid": 274,
+      "acres_text": "5283.32958",
+      "meetsagenc": "Yes",
+      "longitude": -119.17650328,
+      "address": "Ft. Churchill Road",
+      "performing": "Yes",
+      "reagion": "Western Region",
+      "recommenda": "Retain for agency operations.  Restricted by LWCF Section 6(f)3.  US Fish and Wildlife Service permit.",
+      "portlandst": "State-Owned/Fee Title/Escheat and R&PP Lease and Other Lease/Agreement",
+      "earliestac": -3019766400000,
+      "dslfile": "PARKS-8-0",
+      "acres": 5283.32958295,
+      "issovereig": 0
+     }
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+   "note": "chat 2 (2): US-8561 Missouri River SNA vs sgndb",
+   "hits": [
+    {
+     "layer": "0 State Parks",
+     "point": [
+      46.8359,
+      -100.865
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0",
+   "note": "chat 2 (2): US-8561 vs sgndc",
+   "hits": [
+    {
+     "layer": "0 NDPRD_Properties",
+     "point": [
+      46.8359,
+      -100.865
+     ],
+     "attrs": {
+      "FID": 20,
+      "FID_1": 38,
+      "Name": "Trolley Tracks",
+      "Acres": 108.3,
+      "NAME_1": "Morton",
+      "Ownership": "Fee Title",
+      "OwnerName": "NDPRD",
+      "Own_Add": "1600 East Century Ave.",
+      "Own_City": "Bismarck, ND",
+      "Own_ZIP": 58503,
+      "LandAq_Yr": 0,
+      "Leg_Dist": 0,
+      "Bndry_Type": "Park Extent"
+     }
+    }
+   ]
+  }
+ ],
+ "distinct": [
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "values": {
+    "ALPHA": [
+     "ABLI",
+     "ADAM",
+     "AFBG",
+     "AGFO",
+     "ALAG",
+     "ALFL",
+     "ALKA",
+     "ALPO",
+     "AMCH",
+     "AMIS",
+     "ANDE",
+     "ANIA",
+     "ANJO",
+     "ANTI",
+     "APCO",
+     "APIS",
+     "APPA",
+     "ARCH",
+     "ARHO",
+     "ARPO",
+     "ASIS",
+     "AZRU",
+     "BADL",
+     "BAND",
+     "BELA",
+     "BEOL",
+     "BEPA",
+     "BIBE",
+     "BICA",
+     "BICR",
+     "BICY",
+     "BIHO",
+     "BISC",
+     "BITH",
+     "BLCA",
+     "BLRI",
+     "BLRV",
+     "BLSC",
+     "BLUE",
+     "BOAF",
+     "BOHA",
+     "BOST",
+     "BOWA",
+     "BRCA",
+     "BRCR",
+     "BRVB",
+     "BUFF",
+     "BUIS",
+     "CABR",
+     "CACH",
+     "CACL",
+     "CACO",
+     "CAGR",
+     "CAHA",
+     "CAJO",
+     "CAKR",
+     "CAMO",
+     "CANA",
+     "CANE",
+     "CANY",
+     "CARE",
+     "CARI",
+     "CARL",
+     "CASA",
+     "CATO",
+     "CAVE",
+     "CAVO",
+     "CAWO",
+     "CEBE",
+     "CEBR",
+     "CECH",
+     "CHAM",
+     "CHAT",
+     "CHCH",
+     "CHCU",
+     "CHIC",
+     "CHIR",
+     "CHIS",
+     "CHOH",
+     "CHPI",
+     "CHRI",
+     "CHSC",
+     "CHYO",
+     "CIBS",
+     "CIRO",
+     "CLBA",
+     "COGA",
+     "COLM",
+     "COLO",
+     "CONG",
+     "CORO",
+     "COWP",
+     "CRLA",
+     "CRMO",
+     "CRMP",
+     "CUGA",
+     "CUIS",
+     "CURE",
+     "CUVA",
+     "DAAV",
+     "DDEM",
+     "DENA",
+     "DEPO",
+     "DESO",
+     "DETO",
+     "DEVA",
+     "DINO",
+     "DRTO",
+     "EDAL",
+     "EDIS",
+     "EFMO",
+     "EISE",
+     "ELMA",
+     "ELMO",
+     "ELRO",
+     "EUON",
+     "EVER",
+     "FEHA",
+     "FILA",
+     "FLFO",
+     "FLNI",
+     "FOBO",
+     "FOBU",
+     "FOCA",
+     "FODA",
+     "FODO",
+     "FOFR",
+     "FOLA",
+     "FOLS",
+     "FOMA",
+     "FOMC",
+     "FOMR",
+     "FONE",
+     "FOPO",
+     "FOPU",
+     "FORA",
+     "FOSC",
+     "FOSM",
+     "FOST",
+     "FOSU",
+     "FOTH",
+     "FOUN",
+     "FOUS",
+     "FOVA",
+     "FOWA",
+     "FRDE",
+     "FRDO",
+     "FRHI",
+     "FRLA",
+     "FRPE",
+     "FRRI",
+     "FRSP",
+     "FRST",
+     "GAAR",
+     "GARI",
+     "GATE",
+     "GEGR",
+     "GERO",
+     "GETT",
+     "GEWA",
+     "GICL",
+     "GLAC",
+     "GLBA",
+     "GLCA",
+     "GOGA",
+     "GOIS",
+     "GOSP",
+     "GRBA",
+     "GRCA",
+     "GREE",
+     "GRKO",
+     "GRPO",
+     "GRSA",
+     "GRSM",
+     "GRTE",
+     "GUCO",
+     "GUIS",
+     "GUMO",
+     "GWCA",
+     "GWMP",
+     "HAFE",
+     "HAFO",
+     "HAGR",
+     "HALE",
+     "HAMP",
+     "HART",
+     "HATU",
+     "HAVO",
+     "HEHO",
+     "HOBE",
+     "HOCU",
+     "HOFR",
+     "HOFU",
+     "HOME",
+     "HONO",
+     "HOSP",
+     "HOVE",
+     "HSTR",
+     "HUTR",
+     "IATR",
+     "INDE",
+     "INDU",
+     "ISRO",
+     "JAGA",
+     "JAZZ",
+     "JECA",
+     "JEFF",
+     "JEFM",
+     "JELA",
+     "JICA",
+     "JODA",
+     "JODR",
+     "JOFI",
+     "JOFL",
+     "JOMU",
+     "JOTR",
+     "KAHO",
+     "KALA",
+     "KATM",
+     "KAWW",
+     "KEFJ",
+     "KEMO",
+     "KEWE",
+     "KICA",
+     "KIMO",
+     "KLGO",
+     "KNRI",
+     "KOVA",
+     "KOWA",
+     "LABE",
+     "LACH",
+     "LACL",
+     "LAKE",
+     "LAMR",
+     "LAVO",
+     "LECL",
+     "LIBI",
+     "LIBO",
+     "LIHO",
+     "LINC",
+     "LIRI",
+     "LONG",
+     "LOSA",
+     "LOWE",
+     "LYBA",
+     "LYJO",
+     "MABE",
+     "MABI",
+     "MACA",
+     "MALL",
+     "MALU",
+     "MANA",
+     "MANZ",
+     "MAPR",
+     "MAVA",
+     "MAWA",
+     "MEMY",
+     "MEVE",
+     "MIIN",
+     "MIMA",
+     "MIMI",
+     "MISP",
+     "MISS",
+     "MLKM",
+     "MNRR",
+     "MOCA",
+     "MOCR",
+     "MOJA",
+     "MONO",
+     "MORA",
+     "MORR",
+     "MORU",
+     "MUWO",
+     "NABR",
+     "NACA",
+     "NATC",
+     "NATR",
+     "NAVA",
+     "NEBE",
+     "NEPH",
+     "NICO",
+     "NIOB",
+     "NISI",
+     "NOAT",
+     "NOCA",
+     "NOCO",
+     "NPSA",
+     "OBRI",
+     "OCMU",
+     "OLYM",
+     "ORCA",
+     "ORPI",
+     "OZAR",
+     "PAAL",
+     "PAAV",
+     "PAGR",
+     "PAIS",
+     "PECO",
+     "PEFO",
+     "PERI",
+     "PERL",
+     "PETE",
+     "PETR",
+     "PEVI",
+     "PIMA",
+     "PINN",
+     "PIPE",
+     "PIRO",
+     "PISC",
+     "PISP",
+     "POCH",
+     "PORE",
+     "PRWI",
+     "PUHE",
+     "PUHO",
+     "PULL",
+     "RABR",
+     "REDW",
+     "REER",
+     "RICH",
+     "RIGR",
+     "RIRA",
+     "ROCR",
+     "ROLA",
+     "ROMO",
+     "RORI",
+     "ROWI",
+     "RRBH",
+     "RUCA",
+     "SAAN",
+     "SACN",
+     "SACR",
+     "SAFR",
+     "SAGA",
+     "SAGU",
+     "SAHI",
+     "SAIR",
+     "SAMA",
+     "SAMO",
+     "SAND",
+     "SAPA",
+     "SAPU",
+     "SARA",
+     "SARI",
+     "SCBL",
+     "SEMO",
+     "SEQU",
+     "SHEN",
+     "SHIL",
+     "SITK",
+     "SLBE",
+     "SPAR",
+     "SPRA",
+     "STEA",
+     "STGE",
+     "STLI",
+     "STON",
+     "STRI",
+     "SUCR",
+     "TAPR",
+     "THIS",
+     "THKO",
+     "THRB",
+     "THRI",
+     "THRO",
+     "THST",
+     "TICA",
+     "TILL",
+     "TONT",
+     "TUAI",
+     "TUIN",
+     "TULE",
+     "TUMA",
+     "TUPE",
+     "TUSK",
+     "TUZI",
+     "ULSG",
+     "UPDE",
+     "VAFO",
+     "VALL",
+     "VAMA",
+     "VICK",
+     "VICR",
+     "VIIS",
+     "VIVE",
+     "VOYA",
+     "WABA",
+     "WACA",
+     "WACO",
+     "WAMO",
+     "WAPA",
+     "WEFA",
+     "WHHO",
+     "WHIS",
+     "WHMI",
+     "WHSA",
+     "WICA",
+     "WICL",
+     "WICR",
+     "WIHO",
+     "WORI",
+     "WOTR",
+     "WRBR",
+     "WRST",
+     "WUPA",
+     "WWII",
+     "WWIM",
+     "YELL",
+     "YOSE",
+     "YUCH",
+     "YUHO",
+     "ZION"
+    ]
+   }
+  }
+ ]
+}
