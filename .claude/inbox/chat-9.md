@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-kp2-fl answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-fl.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-ar answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-ar.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-al answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-al.json
 - **FROM HQ FABLE'S METHOD (Oct 29 6:20 PM, Brandon 6:14 PM GO; notes/mapping.md 'RULE SHEET G, FABLE'S METHOD NOTES' = R-G9 picture maps (Approximate only, 4 conditions, tool later), R-G10 'why not' tag, R-G11 pin-outside split, P-1 size units, P-2 polygons before pages, P-3 address+parcel by county, P-4 batch by agency, P-5 city/county parks). Read it once; then: YOU:** (1) P-2: ONE look-up request per state: point-in-polygon at the pin of EVERY open Fable-list park in that state against every layer in state-gis.json for that state + the national layers (BLM rec, FWS realty, NPS tracts, USACE); hits (layer, name, acres, owner) as rows in the Fable file; 45 states, biggest first is fine (they run side by side). (2) The 76 OPEN key pieces: one batch layer probe at each pin, result to chat 11. (3) P-4: when chat 3 / 8 name an agency, one probe for all its parks. Canada layer hunt stays prep.
