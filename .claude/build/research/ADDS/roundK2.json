@@ -1,9 +1,0 @@
-{
- "about": "Chat 9 round K2 (Green River SNA): point queries (within 1 km) at Boiling Springs 37.30642,-85.719109 and Brandon's sign 37.2948,-85.832497 on the KY Natural Areas, KyGovMaps State Natural Areas (2026-09-17) and Heritage Land Conservation Fund layers. Results: roundK2-tested.json.",
- "pointq": [
-  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM/MapServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 1000, "note": "OKNP natural areas"},
-  {"st": "KY", "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_StateNaturalAreas_WM_gdb/FeatureServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 1000, "note": "KyGovMaps State Natural Areas (2026-09-17)"},
-  {"st": "KY", "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Heritage_Land_Conservation_Fund_WGS84WM/MapServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 1000, "note": "HLCF-funded tracts (Timber Lane bought FY2019 with HLCF?)"},
-  {"st": "KY", "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_KyHeritageLandConservationFund_WM_gdb/FeatureServer", "points": [[37.30642, -85.719109], [37.2948, -85.832497]], "dist": 1000, "note": "KyGovMaps HLCF copy (2026-09-17)"}
- ]
-}

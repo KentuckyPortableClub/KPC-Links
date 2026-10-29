@@ -79,7 +79,10 @@
      "extras": "Flush toilets, hot showers, bear lockers",
      "phone": "(423) 286-7275",
      "source": "https://www.recreation.gov/camping/campgrounds/232505",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.67806,
+     "lo": -84.51889,
+     "point_src": "RIDB / recreation.gov facility 232505 'Blue Heron Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "bear-creek-horse-camp-ky",
@@ -105,7 +108,10 @@
      "phone": "423-569-9778",
      "note": "Reservable (site-specific, up to 6 months ahead) but no booking link on the NPS page.",
      "source": "https://home.nps.gov/biso/planyourvisit/alumfordcampground.htm",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.76517,
+     "lo": -84.54722,
+     "point_src": "RIDB / recreation.gov facility 10304520 'Alum Ford Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "bandy-creek-campground-tn",
@@ -119,7 +125,10 @@
      "phone": "(423) 286-7275",
      "note": "Tennessee side of the park.",
      "source": "https://www.recreation.gov/camping/campgrounds/232506",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.48895,
+     "lo": -84.69756,
+     "point_src": "RIDB / recreation.gov facility 232506 'Bandy Creek' (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "station-camp-campground-tn",
@@ -133,7 +142,10 @@
      "phone": "(423) 286-7275",
      "note": "Tennessee side of the park.",
      "source": "https://www.recreation.gov/camping/campgrounds/10004358",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.54691,
+     "lo": -84.63617,
+     "point_src": "RIDB / recreation.gov facility 10004358 'Station Camp Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
     }
    ],
    "lodging": [
@@ -358,7 +370,10 @@
      "phone": "606-248-2817",
      "note": "Campground is on the Virginia side (Ewing, VA), inside the park.",
      "source": "https://www.recreation.gov/camping/campgrounds/258617",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 36.60446,
+     "lo": -83.63254,
+     "point_src": "RIDB / recreation.gov facility 258617 'Wilderness Road Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
     }
    ]
   },
@@ -1215,7 +1230,10 @@
      "extras": "Pay showers and laundry at camp store, dump/fill station, 5-min walk to visitor center",
      "phone": "270-758-2424",
      "source": "https://home.nps.gov/maca/planyourvisit/camping.htm",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 37.19028,
+     "lo": -86.09139,
+     "point_src": "RIDB / recreation.gov facility 232467 'Mammoth Cave Campground' (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "maple-springs-group-campground",
@@ -1228,7 +1246,10 @@
      "extras": "Group sites, vault toilets, dump station; across Green River ferry",
      "phone": "270-758-2180",
      "source": "https://home.nps.gov/maca/planyourvisit/camping.htm",
-     "checked": "2026-10-14"
+     "checked": "2026-10-14",
+     "la": 37.20722,
+     "lo": -86.13167,
+     "point_src": "RIDB / recreation.gov facility 232468 'Maple Springs' (the agency's own record; 5 decimals), checked 2026-10-29"
     },
     {
      "id": "houchin-ferry-campground",
