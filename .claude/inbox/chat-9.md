@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-kp2-ut answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-ut.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-ri answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-ri.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-oh answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-oh.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-ny answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-ny.json
