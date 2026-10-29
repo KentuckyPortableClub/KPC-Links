@@ -25,7 +25,7 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 ### CO
 | park | name | source found | Rule G step | result | by chat | date |
 |---|---|---|---|---|---|---|
-| US-9652 | Grenada SWA | our parkinfo: POTA link = cpw.state.co.us GranadaDeadmanSWA_geo.pdf (opened 200); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-9652 | Grenada SWA | our parkinfo: POTA link = cpw.state.co.us GranadaDeadmanSWA_geo.pdf (opened 200); map-check filed | 3 (map found) | TRACE: map read: Granada AND Deadman SWAs (Prowers Co., CPW 3/5/2018), legend shows "SWA Boundary"; disclaimer: mapped lines may not match legal holdings (note: one map, two SWAs, trace only Granada) | 8 | Oct 29 |
 | US-10540 | Bellevue-Watson Fish Hatchery | cpw.state.co.us/hatchery/bellvue-watson (opened; page, no map); Watson Lake SWA geo PDF likely | 3 | pin until map seen | 8 | Oct 29 |
 
 ### ME
@@ -60,7 +60,7 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 ### SC
 | park | name | source found | Rule G step | result | by chat | date |
 |---|---|---|---|---|---|---|
-| US-9229 | Wild Turkey WMA | SCDNR WMA map PDF wmamap5 (opened 200; WMA unconfirmed); SCDNR ManagedLand/116 page; map-check filed | 3 | to confirm which WMA the PDF is | 8 | Oct 29 |
+| US-9229 | Wild Turkey WMA | SCDNR WMA map PDF wmamap5 (opened 200; WMA unconfirmed); SCDNR ManagedLand/116 page; map-check filed | 3 | CORRECTION: wmamap5 is NOT Wild Turkey (it shows Draper/McConnells/Ross/Kirsh, Rock Hill Blackjacks, Worth Mountain, Delta); need the other map number for Wild Turkey (SCDNR ManagedLand/116 page) | 8 | Oct 29 |
 | US-9759 | May Forest SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13016 | Pine Island SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13198 | Black River SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
@@ -123,12 +123,31 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 - NM US-11797 Los Luceros: nmhistoricsites page opened, no map link. HI US-10925: dlnr forestry reserves page is 404 (both Hawaii DLNR URLs dead); needs a search for the working page.
 
 **ACTIVE SET (Brandon 3:29 PM: 24 states at a time, fewest parks first):** IA 1, MN 1, RI 1, CO 2, HI 2, ME 2, VA 2, AZ 3, NM 3, CT 4, DE 4, MO 4, MT 4, SC 4, IL 5, LA 5, MA 5, MD 5, CA 6, NH 7, WV 7, NY 8, TN 8, AK 9 (102 parks). Next in line: GA 9, NE 9, FL 10, AL 11, TX 11, WY 11, WI 12, VT 14, MI 16, IN 17, UT 17, KS 18, OR 18, NC 19, WA 20, AR 22, OK 31, ID 38, ND 42, MS 51, NV 68.
-### Oct 29 3:40 PM chat 3 update (look-up C + D read)
-- IA US-9334: FWS Iowa WMD map page has a 'Boundaries' layer ('boundary map layer compiled by USFWS', 75 WPAs). Teal Basins WPA is a FWS WPA, so the outline source = FWS WPA boundaries (key already holds 'Teal Basins WPA' 151 ac: R-G8 type/agency check, then it is chat 2's join). Result: map found (agency boundary layer).
-- RI US-10545: RIDEM layer 21 has NO record named Hillsdale (query returned none). Pin sits in 'Beaver River - deCoppett' (1,825 ac). R-G7 step 3 not met -> step 4b (RIDEM-owned parcel, Richmond; the 45-acre parcel from the DEM press release). Still pin.
-- MT per-site official FWP maps (to confirm lines): US-11216 .../visitmaps/htc/39753636.pdf ; US-11219 .../htc/39753949.pdf ; US-12827 .../visitmaps/fas/39753504.pdf ; US-12925 .../fas/39753904.pdf. Screenshots asked (low-e).
-- IL US-13298 North Point: site map PDF https://dnr.illinois.gov/content/dam/soi/en/web/dnr/parks/documents/northpointmarinasitemap.pdf ; US-10788 Ray Norbut: IDNR web app find=Ray Norbut (webmap aca55c3d...) + page #site-maps; US-12640/4118 hunter map PDFs (our docs) and US-10661 Shawnee 'maps-guides' + GIS page https://www.fs.usda.gov/r09/shawnee/data-tools/gis (step 2: USFS layers may name Oakwood Bottoms). Screenshots asked (low-e).
-- MA US-2436 / 8385 / 8387 / 8388: mass.gov pages carry NO map link; step 2 = MassGIS Protected and Recreational OpenSpace layer (state open-data portal, first in RESEARCH ORDER) -> next request. US-8422: Neponset Greenway map doc https://www.mass.gov/doc/neponset-river-greenway-map-tnf/download (screenshot asked).
-- DE: destateparks.com pages return 403 to the bot (US-4367, US-9885); DNREC Dupont Nature Center page opened, no map. Next: Delaware open data portal (FirstMap) layers. VA / HI / NM: see 3:55 update; PDFs still need a text/picture reading (low-d gave 2 screenshots only).
-- NM US-2719 Angel Fire: site has only a contact page; no map. Pin until parcel step.
 
+### NY
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-2081 | Iona Island WMA | NY DEC layers: gisservices.dec.ny.gov dil_land_activities MapServer/2 "Wildlife Management Areas" and reference MapServer/2 "DEC Lands"; our doc: map page does not name park | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-8103 | Cayuga Lake WMA | our parkinfo: POTA link = dec.ny.gov cayugamap.pdf (own map); DEC WMA layer | 3 (map found) / 2 | to trace | 8 | Oct 29 |
+| US-2151 | Thompsons Lake SP | our doc: no map; OPRHP park (parks.ny.gov); state park boundary layer not yet found (only OPRHP regions) | 2 | pin (no source yet) | 8 | Oct 29 |
+| US-8082 | Jamaica Bay "State" Wildlife Area | our doc: nps.gov/gate maps page (Gateway NRA is NPS land, not state); NPS boundary | 3 -> 4b | NPS land: use NPS Gateway boundary | 8 | Oct 29 |
+| US-8084 | Breezy Point Tip "State" Rec Area | our doc: same NPS Gateway maps page | 3 -> 4b | NPS land | 8 | Oct 29 |
+| US-8088 | Miller Field "State" Rec Area | our doc: same NPS Gateway maps page | 3 -> 4b | NPS land | 8 | Oct 29 |
+| US-2001 | Adirondack Park | our doc: dec.ny.gov adkmaponly.pdf (the Blue Line map); DEC lands layers DECLANDS_ADK | 3 / GREY G-NY1 | see grey area | 8 | Oct 29 |
+| US-8070 | Catskill Park | our doc: no working map; DEC Lands layer | 3 / GREY G-NY1 | see grey area | 8 | Oct 29 |
+
+### AK
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-10464 | Chena Wayside SRS | AK DNR Open Data: arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer layer 2 "ASP Park Boundary" (also DPOR/Park_Boundary_Facility); no doc entry for AK | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-11846 | Bing's Landing SRS | AK DNR Open Data: arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer layer 2 "ASP Park Boundary" (also DPOR/Park_Boundary_Facility); no doc entry for AK | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-12709 | Funny River Campground SRS | AK DNR Open Data: arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer layer 2 "ASP Park Boundary" (also DPOR/Park_Boundary_Facility); no doc entry for AK | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-12710 | Izaak Walton Campground SRS | AK DNR Open Data: arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer layer 2 "ASP Park Boundary" (also DPOR/Park_Boundary_Facility); no doc entry for AK | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-12711 | Morgan's Landing SRS | AK DNR Open Data: arcgis.dnr.alaska.gov OpenData/Recreational_ParkBoundary MapServer layer 2 "ASP Park Boundary" (also DPOR/Park_Boundary_Facility); no doc entry for AK | 2 (agency layer) | to check layer | 8 | Oct 29 |
+| US-11834 | Susitna Landing SRS | ADF&G access site (Alaska Dept of Fish and Game, not DNR parks); ASP layer may not hold it | 2/3 | to check layer; else pin | 8 | Oct 29 |
+| US-11835 | Little Susitna Public Use Facility SRS | ADF&G facility (same as above) | 2/3 | to check layer; else pin | 8 | Oct 29 |
+| US-13462 | Sportsman's Angler Access SRS | ADF&G fishing access (same) | 2/3 | to check layer; else pin | 8 | Oct 29 |
+| US-11798 | Tangle Lakes Archeological Reserve | BLM page (cultural heritage); BLM land | 3 -> 4b | BLM land: BLM layer | 8 | Oct 29 |
+
+### GREY AREA G-NY1 (chat 8, for Brandon via HQ): Adirondack Park and Catskill Park
+POTA numbers both as parks. Their legal "Blue Line" encloses state-owned Forest Preserve AND a lot of private land and towns (about half of the Adirondack Park is private). R0 says the park is where the designation legally applies, but POTA activation needs PUBLIC land. Lean (same as our national-forest rule, agency-owned land): the outline is the state-owned Forest Preserve land inside the Blue Line (DEC Lands layer), not the Blue Line itself; the Blue Line map stays as the reference. Needs Brandon's yes before it is drawn. Until then both stay pins.
