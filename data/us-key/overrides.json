@@ -6863,6 +6863,14 @@
    ],
    "why": "Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not Bluestone State Park (overlaps bigger than the 2,155-ac park, chat 8)",
    "when": "2026-10-29"
+  },
+  "US-7887": {
+   "no": [
+    "3443",
+    "Grand Canyon National Park"
+   ],
+   "why": "Oct 29 8:50 AM: Grand Canyon-Parashant NM is NOT the national park: the 'Grand Canyon National Park' record (3443) was a name-only join (the monument keeps its own BLM/NPS record)",
+   "when": "2026-10-29"
   }
  }
 }

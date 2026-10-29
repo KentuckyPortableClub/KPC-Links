@@ -2658,6 +2658,11 @@ def main():
             x['checked'] = today
             # Oct 29 (chat 8's wrong joins): rows made before the pass-1 distance test are checked here too (a worker rerun fixes them)
             a, b = (x.get('refs') or [None, None])[:2]
+            # Oct 29 (Nebraska: Platte River SP x Platte River Landing SP stayed live after the key took the Landing's wrong join
+            # away): a park that no longer has an outline in the key cannot share one: the old row drops
+            if REGION != 'ky' and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and any(r not in parks or not parks[r].get('ids') for r in (a, b) if r):
+                x['status'] = 'dropped: one of the two park numbers is no longer joined to this outline in the answer key (the old join was wrong)'
+                n['same land dropped: join gone from the key'] = n.get('same land dropped: join gone from the key', 0) + 1; continue
             if a in PIN and b in PIN and b in G and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
                 dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
                 if dkm > 8 and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
