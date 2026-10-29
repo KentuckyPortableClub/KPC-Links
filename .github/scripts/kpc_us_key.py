@@ -1043,6 +1043,36 @@ def run(st):
             parks[r].setdefault('parts', {})[rid] = [[round(c, 4) for c in ps[i]] for i in v]
             clipped.append(f'{r} ({len(v)} of {len(ps)} parts)')
     if clipped: notice(f'US key {st}', f"{len(clipped)} parks given only their own parts of a shared multipart record: {', '.join(clipped[:12])}")
+    # Oct 29 (HQ plan 2.7, Brandon 8:07 AM: 'if it is a tract that belongs to the park NEVER delete it'; only pieces PROVEN not
+    # the park's land go): a park joined to BOTH a PAD-US record and its own state agency's layer. A PAD-US piece more than 50 km
+    # from the pin that NO record of the agency's own layer for that park comes near (1 km) is not the park's land by the agency's
+    # own map (PAD-US lumps same-named places: Copan WMA, PA State Game Land 086) = that PAD-US piece is left out ('parts').
+    # A park with no state-layer record is never cut (nothing to prove it with).
+    bb_all = {}
+    for a in recs:
+        rr_ = [r for r in rings(a.get('_g')) if len(r) > 2]
+        if rr_: bb_all[_oid(a)] = [[min(q[0] for q in r), min(q[1] for q in r), max(q[0] for q in r), max(q[1] for q in r)] for r in rr_]
+    def _near(b1, b2, km=1.0):
+        la_ = (b1[1] + b1[3]) / 2; dx = max(0, b2[0] - b1[2], b1[0] - b2[2]) * 111.32 * math.cos(math.radians(la_)); dy = max(0, b2[1] - b1[3], b1[1] - b2[3]) * 110.57
+        return math.hypot(dx, dy) <= km
+    proven = []
+    for ref, p in parks.items():
+        if ref not in pinx: continue
+        ms = p.get('m') or []
+        pad = [str(x[0]) for x in ms if str(x[0]).isdigit() and str(x[0]) in bb_all and len(bb_all[str(x[0])]) > 1]
+        own = [b for x in ms if not str(x[0]).isdigit() and str(x[0]) in bb_all for b in bb_all[str(x[0])]]
+        if not pad or not own: continue
+        for rid in pad:
+            ps = bb_all[rid]
+            keep = [i for i, q in enumerate(ps) if _dk1(ref, q) <= 50 or any(_near(q, o) for o in own)]
+            if len(keep) == len(ps) or not keep: continue
+            old = (p.get('parts') or {}).get(rid)
+            boxes = [[round(c, 4) for c in ps[i]] for i in keep]
+            if old: boxes = [b for b in boxes if any(_near(b, o, .05) for o in old)] or old
+            p.setdefault('parts', {})[rid] = boxes
+            p.setdefault('cut_pieces', []).append([rid, len(ps) - len(keep), "PAD-US pieces 50+ km from the pin that the agency's own map does not have"])
+            proven.append(f'{ref} ({len(ps) - len(keep)} of {len(ps)})')
+    if proven: notice(f'US key {st}', f"{len(proven)} parks lose PAD-US pieces the agency's own map does not have (50+ km from the pin): {', '.join(proven[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
     # SUMS the records doubles the land): one acreage per park = the area of the UNION of its records ('ac'), the number every
     # reader should use. Needs shapely (installed by the workflow); without it nothing is written.
