@@ -93,6 +93,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] F.3 chat 8: Canada regrade after chat 2's rerun
 - [ ] F.4 Fable gets only: the 313 'pin inside a bigger area' state parks (part-level clip method)
 
+- [ ] F.5 (Brandon 11:17 AM) chat 9 research bot: official department maps for every lake-type POTA park FIRST → then Brandon decides the lake-outline rule
+
 ## HQ
 - [ ] H.1 Fable review of chat 8's missing-boundaries/name report WAITS (Brandon 9:46 AM): first plan step 1 boundary fixes pushed (chat 2: far pieces, Virginia, Canada 3 m) → HQ tells Brandon → chat 8 RECHECKS its list (fixes may clear rows) → then Fable, with KPC-Data attached
 - [ ] H.2 Status reports from this file on request; Sunday members' update; Sunday storage check
