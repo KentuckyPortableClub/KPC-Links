@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 11:10 AM) CHECK-UP: 21 PROBLEMS (from chat 11's 11:15 report):** the daily health run lists 21 problems on the check-up page: links 20, refs 6, site 2, guard 1. Sort them: real ones fixed (or sent to the owning chat), false alarms noted so the guard stops raising them. One line back in REPORT TO HQ: real / false / fixed.
 
 ## NEEDS BRANDON
 
