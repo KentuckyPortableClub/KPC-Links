@@ -61,7 +61,7 @@
       g.patches.sort(function (a, b) { return size(b) - size(a); });
       g.n = g.refs.length; g.best = g.patches[0];
       ROWS.push(g); });
-    MISS = MEMBER ? ((missing && missing.parks) || []) : [];
+    MISS = MEMBER ? ((missing && missing.parks) || []).filter(function (m) { return !REG || !REG.missingSt || m.st === REG.missingSt; }) : [];   // a shared file (missing-midwest) lists several states
   }
   function size(s) { return (s.kind === 'trail' || s.kind === 'river') ? (s.len_m || 0) / 1000 : (s.wide_m || 0); }
   function tierOf(s) { if (s.kind === 'trail' || s.kind === 'river') return 'trail'; var w = (s.wide_m || 0) * YD; return /small/.test(s.small || '') || (w && w < 100) ? 'small' : 'big'; }
@@ -270,6 +270,18 @@
     setTimeout(function () { if (b.isValid()) map.fitBounds(b.pad(0.08), { maxZoom: 18 }); }, cur.key === key ? 0 : 400);
     scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' });
   }
+  /* Oct 28 (chat 2, Brandon OK: 'Mammoth Cave x Green River WR looked tangled'): only the pieces of each park's land NEAR the overlap are
+     drawn (a polygon whose box touches the overlap's box + a margin); far-off owned-land pieces are left off the map */
+  function near(g, fs) {
+    var bb = [180, 90, -180, -90]; patchRings(g).forEach(function (x) { x.ring.forEach(function (q) { bb[0] = Math.min(bb[0], q[0]); bb[1] = Math.min(bb[1], q[1]); bb[2] = Math.max(bb[2], q[0]); bb[3] = Math.max(bb[3], q[1]); }); });
+    if (bb[0] > bb[2]) return fs;
+    var pad = Math.max(0.03, 0.75 * Math.max(bb[2] - bb[0], bb[3] - bb[1])), B = [bb[0] - pad, bb[1] - pad, bb[2] + pad, bb[3] + pad];
+    var hits = function (poly) { var x0 = 180, y0 = 90, x1 = -180, y1 = -90; (poly[0] || []).forEach(function (q) { x0 = Math.min(x0, q[0]); y0 = Math.min(y0, q[1]); x1 = Math.max(x1, q[0]); y1 = Math.max(y1, q[1]); }); return !(x1 < B[0] || x0 > B[2] || y1 < B[1] || y0 > B[3]); };
+    return fs.map(function (f) { var G = f.geometry;
+      if (G.type === 'MultiPolygon') { var k = G.coordinates.filter(hits); return k.length ? Object.assign({}, f, { geometry: { type: 'MultiPolygon', coordinates: k } }) : null; }
+      if (G.type === 'Polygon') return hits(G.coordinates) ? f : null;
+      return f; }).filter(Boolean);
+  }
   function loadOutlines(g) {
     var B = window.KPCB; if (!B) return Promise.resolve();
     return Promise.all(parks.map(function (p) {
@@ -277,7 +289,7 @@
       if (trailPatch) { p.line = true; return null; }   // a line park: its zone is the 100-ft band, drawn from the patch itself
       var ky = /^US-/.test(p.ref) && (g.st === 'KY' || /KY/.test(g.st));
       var pr = ky && B.kyFor ? B.kyFor(p.ref) : B.usOutline ? B.usOutline(p.ref, nm(g, p.ref), g.best.center[0], g.best.center[1], [String(g.st || '').replace(/^US-/, '')]).then(function (o) { return o && o.fs; }) : Promise.resolve(null);
-      return Promise.resolve(pr).then(function (fs) { p.fs = (fs || []).filter(function (f) { return f && f.geometry; }); }).catch(function () { p.fs = []; });
+      return Promise.resolve(pr).then(function (fs) { p.fsAll = (fs || []).filter(function (f) { return f && f.geometry; }); p.fs = near(g, p.fsAll); }).catch(function () { p.fs = []; p.fsAll = []; });
     }));
   }
   /* Brandon Oct 27 2:22 PM: 'slow down the animation': each park fades in over ~1.6 s, 3 s apart, then the overlap patch fades in */
@@ -293,7 +305,7 @@
   function veil(p) {
     var B = window.KPCB, rings = [];
     if (p.line) cur.rings.forEach(function (x) { if (x.line && x.first) rings.push(x.band || x.ring); });
-    else (p.fs || []).forEach(function (f) { try { (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) { poly.forEach(function (r) { rings.push(r); }); }); } catch (e) {} });
+    else (p.fsAll || p.fs || []).forEach(function (f) { try { (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) { poly.forEach(function (r) { rings.push(r); }); }); } catch (e) {} });
     if (!rings.length) return null;
     var c = map.getCenter(), box = [[c.lat - 3, c.lng - 4], [c.lat - 3, c.lng + 4], [c.lat + 3, c.lng + 4], [c.lat + 3, c.lng - 4]];
     return L.polygon([box].concat(rings.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); })), { stroke: false, fillColor: '#000', fillOpacity: veilOp(), interactive: false, fillRule: 'evenodd' });
@@ -357,7 +369,7 @@
       if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
       else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
       else if (look === 3) gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 5, fillColor: '#ffd34d', fillOpacity: 0.85, className: 'ov-glow' + fc, interactive: act }).bindPopup(patchPop(x.s)));
-      else { gAll.addLayer(L.polygon(ll, { color: '#111', weight: 7, opacity: 0.85, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#ffd34d', weight: 4, dashArray: '14 10', fill: true, fillOpacity: 0, className: 'ov-march' + fc, interactive: act }).bindPopup(patchPop(x.s))); }
+      else { gAll.addLayer(L.polygon(ll, { color: '#111', weight: 7, opacity: 0.85, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#ffd34d', weight: 4, dashArray: '14 10', fill: true, fillColor: '#ffd34d', fillOpacity: 0.2, className: 'ov-march' + fc, interactive: act }).bindPopup(patchPop(x.s))); }
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
       if (c) gAll.addLayer(L.marker(c, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
@@ -377,7 +389,7 @@
     return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a href="#" onclick="var t=\'' + lat.toFixed(6) + ', ' + lon.toFixed(6) + '\';try{navigator.clipboard.writeText(t);this.textContent=\'COPIED: \'+t}catch(e){prompt(\'Copy the GPS:\',t)}return false">📋 COPY GPS</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
   }
   function landAt(lat, lon) {
-    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var inN = parks.filter(function (q, i) { return ins[i]; }), outN = parks.filter(function (q, i) { return ins[i] === false; }), unk = ins.some(function (x) { return x === null; });
     var t = !inN.length ? '<b style="color:#7a1d0e">⛔ Not park land on our maps.</b><br>None of these parks owns or manages this spot: it is private property or another owner\'s land' + (unk ? '' : ', even if it sits inside a park\'s outer line') + '. Do not set up here.'
       : !outN.length ? '<b style="color:#1d5a3a">✅ Inside both outlines by our maps.</b><br>' + inN.map(function (q) { return esc(q.ref); }).join(' + ')
@@ -412,7 +424,7 @@
   function status(p, acc, isPin) {
     if (!cur) return; var lat = p[0], lon = p[1], g = $('ovGps'), cls = 'out', t = '', body = '', who = isPin ? 'the pin' : 'you', look = isPin ? ' looks' : ' look';
     var inPatch = null, dPatch = 1e12; cur.rings.forEach(function (x) { var inn = pip(lon, lat, x.ring), d = edgeM(lon, lat, x.ring, true); if (inn && !inPatch) inPatch = x; dPatch = Math.min(dPatch, d); });
-    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var known = ins.filter(function (x) { return x !== null; }).length, k = ins.filter(Boolean).length, accM = acc / YD;
     if (inPatch) {
       if (accM > dPatch) { cls = 'edge'; t = '⚠️ TOO CLOSE TO THE EDGE TO TELL'; body = 'GPS is good to about ±' + Math.round(acc) + ' yards and the edge of the lit patch is ' + Math.round(dPatch * YD) + ' yards away. Step farther in; we never guess.'; }

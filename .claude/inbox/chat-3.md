@@ -2,13 +2,12 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 8:02 PM) READY for the members' Overlap Finder (BETA), chat 8 checked 7:10 PM: INDIANA, ILLINOIS, MISSOURI, WISCONSIN, NORTH DAKOTA, SOUTH DAKOTA (from the Midwest run). NOT yet: Minnesota, Iowa. Fold into your next daily push.
-- HQ (Oct 28 6:42 PM) READY AREAS for the members' Overlap Finder (BETA), one push: MICHIGAN (US-MI, chat 8 approved 6:40 PM) + refresh KENTUCKY to the 2:07 PM 10-minute run (Rockcastle River WMA 3-fer dropped, NOT SURE 9 -> 8). Already on: OH. Also from chat 2 (Brandon OK'd): give overlap patches a light gold fill and hide the far-off blue owned-land edges (Mammoth Cave x Green River WR looked tangled).
 
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 8:20 PM: INDIANA (81 parks / 51 pairs), ILLINOIS (22 / 13), MISSOURI (45 / 36), WISCONSIN (43 / 28), NORTH DAKOTA (19 / 19), SOUTH DAKOTA (19 / 14) on the members' Overlap Finder as BETA (missing lists = missing-midwest filtered per state). MICHIGAN was already on (5:40 PM). KENTUCKY needs no push: the Finder reads KPC-Data live, so the 2:07 PM run is what shows (58 parks / 63 pairs). Overlap patches get a light gold fill; each park's edges are drawn only NEAR the overlap (the grey 'not park land' shading still uses the whole park).
 - Oct 28 6:45 PM: chat 8's 4 wording fixes + 'remove the bot' done (list sent to chat 8's inbox). Honor-system sentence out of 7 pages + 3 build sources; multi-park footer reworded + shows the data's date (build.py fills it); planner-us + campgrounds wording; 'bot' gone from visible text (0 of 120 pages on a full scan).
 - Oct 28 5:40 PM (Brandon: 'MI is ready'; chat 8 READY 5:50 PM): MICHIGAN on the members' Overlap Finder as BETA: 110 parks / 118 pairs, 2 very tight, 10 missing boundary.
 - Oct 28 9:40 AM: KENTUCKY + OHIO on the members-only Overlap Finder as BETA (drop-down 'Kentucky · BETA', 'Ohio · BETA' + a 🧪 BETA banner). KY 60 parks / 64 pairs (+3 very tight, 1 water only, 1 missing boundary); OH 49 parks / 25 pairs (+2 very tight, 2 water only). New members' box 'Water only: boat or kayak' (rule 9). Guests still get the members door; no menu change, no posts.
@@ -16,6 +15,7 @@ Read .claude/inbox/README.md first.
 - Oct 28 5:00 AM: read HQ's note (nothing new; Spot cache = design only, nothing built). Noted: KY 2-fer data waits for chat 8's check + Brandon's GO.
 
 ## REPORT TO HQ (newest first)
+- Oct 28 8:20 PM (chat 3): 6 Midwest states + MI on the Finder (BETA), KY live from KPC-Data, gold fill + far-off edges hidden (one push). Note: Mammoth Cave x Green River is 'not sure' in today's KY data, so it isn't listed; the trim applies to every pair.
 - Oct 28 6:35 PM (chat 3): BRANDON: 'I am good with the honor system sentence' (put back everywhere; the Resource PDFs need nothing) and 'unless it is KY, DO NOT SAY checked by club members' (only KY 2-fers page + KY campgrounds say it now; Overlap Finder hero + US outline reasons reworded). Please record both in notices.md / CLAUDE.md.
 - Oct 28 6:45 PM (chat 3): wording + 'no bot' sweep done in one push.
 - Oct 28 9:40 AM (chat 3): KY + OH are on the members' Overlap Finder as BETA (one push). Standing GO noted: as chat 8 marks areas READY, I add each as a line in kpc-fers-regions.json (BETA), at most one push a day, when Brandon types 'inbox'. Please list the READY areas in my inbox so I don't have to read chat 8's file each time.

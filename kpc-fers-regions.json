@@ -1,5 +1,5 @@
 {
- "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final. beta:true = a BETA tag in the drop-down + the banner (members testing); Brandon Oct 28 9:20 AM: KY + OH on as BETA, and every area chat 8 marks READY goes on too (members only, BETA, one push a day at most).",
+ "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final. beta:true = a BETA tag in the drop-down + the banner (members testing); Brandon Oct 28 9:20 AM: KY + OH on as BETA, and every area chat 8 marks READY goes on too (members only, BETA, one push a day at most). missing + missingSt = a shared missing file (e.g. missing-midwest) filtered to this state.",
  "base": "../KPC-Data/data/fers/",
  "regions": [
   {
@@ -33,6 +33,84 @@
     "US-MI"
    ],
    "missing": "missing-mi",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "IN",
+   "label": "Indiana",
+   "files": [
+    "US-IN"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "IN",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "IL",
+   "label": "Illinois",
+   "files": [
+    "US-IL"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "IL",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "MO",
+   "label": "Missouri",
+   "files": [
+    "US-MO"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "MO",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "WI",
+   "label": "Wisconsin",
+   "files": [
+    "US-WI"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "WI",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "ND",
+   "label": "North Dakota",
+   "files": [
+    "US-ND"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "ND",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "SD",
+   "label": "South Dakota",
+   "files": [
+    "US-SD"
+   ],
+   "missing": "missing-midwest",
+   "missingSt": "SD",
    "public": false,
    "beta": true,
    "showWaiting": true,
