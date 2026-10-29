@@ -24,11 +24,12 @@ OUT = pathlib.Path('data/access'); OUT.mkdir(parents=True, exist_ok=True)
 CACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 FAR_NAME_KM = 100
+FAR_OUTLINE = {}   # state -> parks whose OUTLINE held a point 100+ km from the pin (for chat 2's key check)
 LINEPARK = re.compile(r'trail|river|parkway|byway|scenic|greenway|canal|route|corridor', re.I)
 NEAR_M = 300          # a point this close to the park's land counts as the park's
 NAME_KM = 40          # a name match must also be this close to the park's pin (same-named areas elsewhere)
 CAP = 40              # points kept per park
-VERSION = 'v2-oct28'  # bump when the tying rules change: every state is rebuilt once
+VERSION = 'v3-oct28'  # bump when the tying rules change: every state is rebuilt once
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', ' ')[:900]), flush=True)
@@ -356,8 +357,13 @@ def run(st, layers, old=None):
         for q in pts:
             # Oct 28 (chat 11's check): a point tied by NAME more than 100 km from its park's pin is a name mix-up (two Robert Moses parks,
             # Copan WMA, Beaver Creek WMA): dropped. Points sitting on the park's own land ('place') and line parks (trails, rivers) stay.
-            if pla is not None and not line and (len(q) < 4 or q[3] != 'place') and km(pla, plo, q[0], q[1]) > FAR_NAME_KM:
-                far_dropped += 1; continue
+            # Oct 28 9:30 PM (HQ: 178 points still 100-274 km away): ALL 178 were tagged 'place' (on the park's own land) because the
+            # park's outline in our key holds a piece far from its pin (an outline mix-up, e.g. two Beaver Creek WMAs): the 'place' tag
+            # no longer saves a point more than 100 km from the pin; the park is listed so chat 2 can check its outline.
+            if pla is not None and not line and km(pla, plo, q[0], q[1]) > FAR_NAME_KM:
+                far_dropped += 1
+                if len(q) > 3 and q[3] == 'place': FAR_OUTLINE.setdefault(st, set()).add(ref)
+                continue
             if any(km(q[0], q[1], k[0], k[1]) < .06 for k in keep): continue
             keep.append(q)
             if len(keep) >= CAP: break
@@ -373,7 +379,7 @@ def run(st, layers, old=None):
                                                    'parks': out})
     c = {'parks_with_points': len(out), 'points': sum(len(v) for v in out.values()), 'wildlife_parks': sum(1 for r, x in parks.items() if WILD.search(x[1])), 'outlines': len(OL)}
     if not failed and not stopped: c['sig'] = sig     # only a complete build may be reused next time
-    notice(f'Access {st}', f"{c['parks_with_points']} parks got {c['points']} points" + (f'; {dropped} far-off joined records not used' if dropped else '') + (f'; {far_dropped} name-tied points over {FAR_NAME_KM} km from their park dropped' if far_dropped else '') + '; ' + ' | '.join(log)[:700])
+    notice(f'Access {st}', f"{c['parks_with_points']} parks got {c['points']} points" + (f'; {dropped} far-off joined records not used' if dropped else '') + (f'; {far_dropped} points over {FAR_NAME_KM} km from their park pin dropped' if far_dropped else '') + (f"; outline holds land 100+ km from the pin (chat 2): {', '.join(sorted(FAR_OUTLINE.get(st, [])))}" if FAR_OUTLINE.get(st) else '') + '; ' + ' | '.join(log)[:700])
     return c
 
 

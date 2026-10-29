@@ -145,3 +145,34 @@ for st in STATES:
     total += len(camps)
     if st in ('LA', 'DE', 'TN', 'KY') or len(camps) < 3: print(f'US-{st}: {sum(c[7]=="c" for c in camps)} campgrounds + {sum(c[7]=="s" for c in camps)} picnic shelters')
 note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states' + (f'; {kept} state file(s) kept from last time' if kept else ''))
+# Oct 28 9:30 PM (HQ: the 6-state rerun left 132 ids in two files): the dedupe above only sees the states read THIS run, so a
+# partial run (or a file kept from last month) left doubles behind. FINAL SWEEP over EVERY saved state file: one campground,
+# one file = the state its pin is in (else the first file); then COUNT what is left and say it (the self-check HQ asked for).
+import glob as _glob
+try:
+    _shapes = [(b['a'], [pl[0] for pl in b['p']]) for b in json.load(open('kpc-us-states.json'))]
+except Exception: _shapes = []  # noqa: BLE001
+def _pin_state(la, lo):
+    for a, rings in _shapes:
+        if any(inside(lo, la, r) for r in rings): return a
+    return ''
+_files = {f[-7:-5]: f for f in _glob.glob(f'{OUT}/US-*.json')}
+_data, _where = {}, {}
+for st, fn in _files.items():
+    try: _data[st] = json.load(open(fn))
+    except Exception: continue  # noqa: BLE001
+    for c in _data[st].get('camps') or []: _where.setdefault(c[0], []).append(st)
+_drop, _changed = 0, set()
+for fid, sts in _where.items():
+    if len(sts) < 2: continue
+    c = next(c for c in _data[sts[0]]['camps'] if c[0] == fid)
+    home = _pin_state(c[2], c[3]); keep = home if home in sts else sorted(sts)[0]
+    for st in sts:
+        if st == keep: continue
+        _data[st]['camps'] = [c2 for c2 in _data[st]['camps'] if c2[0] != fid]; _drop += 1; _changed.add(st)
+for st in _changed: json.dump(_data[st], open(_files[st], 'w'), separators=(',', ':'))
+_cnt = {}
+for st in _data:
+    for c in _data[st].get('camps') or []: _cnt[c[0]] = _cnt.get(c[0], 0) + 1
+_left = sum(1 for n in _cnt.values() if n > 1)
+note('Federal camps one-file check', f'{_drop} doubled campground listings removed from {len(_changed)} state files; ids still in two files: {_left}')
