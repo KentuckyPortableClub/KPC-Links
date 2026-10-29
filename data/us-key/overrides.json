@@ -6501,6 +6501,71 @@
    ],
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whiskey Basin'; joins only with the POTA pin inside",
    "when": "2026-10-29"
+  },
+  "US-1072": {
+   "no": [
+    "Bull Shoals Recreation Area"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Bull Shoals Recreation Area': the Corps lake around the park, not the state park",
+   "when": "2026-10-29"
+  },
+  "US-1091": {
+   "no": [
+    "Dardanelle Recreation Area"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park",
+   "when": "2026-10-29"
+  },
+  "US-3563": {
+   "no": [
+    "Santa Monica Mountains National Recreation Area"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Santa Monica Mountains National Recreation Area': a different, much bigger federal area",
+   "when": "2026-10-29"
+  },
+  "US-6390": {
+   "no": [
+    "South Mountain State Park",
+    "South Mountain Sp"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'South Mountain State Park': a different Maryland state park (the battlefield is its own park)",
+   "when": "2026-10-29"
+  },
+  "US-2764": {
+   "no": [
+    "Sakakawea Recreation Area"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Sakakawea Recreation Area': the whole Corps lake (478,000 ac), not the state park",
+   "when": "2026-10-29"
+  },
+  "US-3879": {
+   "no": [
+    "Hartwell Recreation Area"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Hartwell Recreation Area': the Corps lake around the park, not the state park",
+   "when": "2026-10-29"
+  },
+  "US-4923": {
+   "no": [
+    "Pine River State Forest"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Pine River State Forest': a different state forest (Little Pine River is its own)",
+   "when": "2026-10-29"
+  },
+  "US-9208": {
+   "no": [
+    "Santee Coastal Reserve Wildlife Management Area",
+    "Santee Coastal Reserve WMA"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Santee Coastal Reserve Wildlife Management Area': a different WMA",
+   "when": "2026-10-29"
+  },
+  "US-11718": {
+   "no": [
+    "Bear River Divide"
+   ],
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Bear River Divide': a different, much bigger area (229,000 ac)",
+   "when": "2026-10-29"
   }
  }
 }
