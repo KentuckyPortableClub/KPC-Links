@@ -392,6 +392,72 @@ def pointq(cfg):
     return out
 
 
+def _hit(url, la, lo):
+    """Point query two ways (plain 'x,y' and JSON geometry with its spatial reference); returns (hits, how)."""
+    out = {}
+    for how, g in (('plain', f'{lo},{la}'), ('json', json.dumps({'x': lo, 'y': la, 'spatialReference': {'wkid': 4326}}))):
+        try:
+            q = get(url + '/query', {'geometry': g, 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'outSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                                     'where': '1=1', 'outFields': '*', 'returnGeometry': 'false'}, t=90)
+            out[how] = [{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '', ' ') and re.search(r'own|int|status|tract|name|unit|facil|type|lands|prop', k, re.I)} for f in q.get('features') or []][:4]
+        except Exception as e: out[how] = 'error ' + str(e)[:80]
+        time.sleep(2)
+    return out
+
+
+def _inside(la, lo, rings):
+    c = False
+    for r in rings:
+        for i in range(len(r) - 1):
+            (x1, y1), (x2, y2) = r[i][:2], r[i + 1][:2]
+            if (y1 > la) != (y2 > la) and lo < (x2 - x1) * (la - y1) / ((y2 - y1) or 1e-12) + x1: c = not c
+    return c
+
+
+NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer'
+
+
+def rivertest(cfg):
+    """Oct 28 (chat 8's regrade): CONTROL point first (dry owned land: must HIT, else the query is wrong), then river points taken
+    from the USGS NHD flowline of the named river INSIDE the unit's own boundary polygon (never picked by hand)."""
+    res = []
+    for x in cfg.get('rivertest') or []:
+        r = {'test': x['note'], 'layer': x['layer'], 'control': None, 'water': [], 'notes': []}
+        if x.get('control'):
+            la, lo = x['control']; r['control'] = {'point': [la, lo], 'result': _hit(x['layer'], la, lo)}
+        pts = [tuple(p) for p in x.get('points') or []]
+        if x.get('unit'):
+            try:
+                u = x['unit']
+                q = get(u['url'] + '/query', {'where': u['where'], 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'resultRecordCount': 5}, t=120)
+                rings = [rg for f in q.get('features') or [] for rg in (f.get('geometry') or {}).get('rings') or []]
+                xs = [p[0] for rg in rings for p in rg]; ys = [p[1] for rg in rings for p in rg]
+                r['notes'].append(f"unit polygon: {len(q.get('features') or [])} records, {len(rings)} rings")
+                if rings and x.get('river'):
+                    env = f'{min(xs)},{min(ys)},{max(xs)},{max(ys)}'
+                    got = []
+                    for lid in (6, 5, 4, 3, 2):
+                        try:
+                            fq = get(f'{NHD}/{lid}/query', {'where': f"GNIS_NAME = '{x['river']}'", 'geometry': env, 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                                         'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'GNIS_NAME', 'returnGeometry': 'true', 'outSR': 4326, 'resultRecordCount': 50}, t=120)
+                            for f in fq.get('features') or []:
+                                for path in (f.get('geometry') or {}).get('paths') or []:
+                                    for v in path[::max(1, len(path) // 6)]: got.append((round(v[1], 6), round(v[0], 6)))
+                            if got: r['notes'].append(f'NHD layer {lid}: {len(got)} river vertices'); break
+                        except Exception as e: r['notes'].append(f'NHD {lid}: {str(e)[:60]}')
+                        time.sleep(2)
+                    ins = [p for p in got if _inside(p[0], p[1], rings)]
+                    r['notes'].append(f'{len(ins)} river vertices inside the unit polygon')
+                    step = max(1, len(ins) // 3)
+                    pts += ins[::step][:3]
+            except Exception as e: r['notes'].append('unit: ' + str(e)[:100])
+        for la, lo in pts[:4]:
+            r['water'].append({'point': [la, lo], 'result': _hit(x['layer'], la, lo)})
+        res.append(r)
+        notice('river test ' + x['note'][:40] + ': control ' + ('HIT' if r['control'] and any(v for v in r['control']['result'].values() if isinstance(v, list)) else 'NO HIT/none'))
+    return res
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -429,6 +495,7 @@ def main():
         notice('NRHP: ' + json.dumps((res['nrhp'] or {}).get('count') or res['nrhp'].get('error'))[:500])
     if cfg.get('queries'): res['queries'] = queries(cfg)
     if cfg.get('pointq'): res['pointq'] = pointq(cfg)
+    if cfg.get('rivertest'): res['rivertest'] = rivertest(cfg)
     if cfg.get('browse'):
         try: res['browse'] = browse(cfg)
         except Exception as e: res['browse'] = [{'error': str(e)[:140]}]
