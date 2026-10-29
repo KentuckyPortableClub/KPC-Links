@@ -1,0 +1,4126 @@
+{
+ "about": "PROPOSED known 2-fer pairs (chat 8, Oct 29): live candidate pairs that members really activated together (POTA same-session history, 2+ times). Format = data/waiting/known/fers.json keys. Grade C: needs a human look at the official maps before merge.",
+ "US-AK": {
+  "keys": [
+   {
+    "key": "US-4447+US-7884@area@60.45,-149.16",
+    "alias_ids": [
+     "US-4447+US-7884@area@60.475,-149.109"
+    ],
+    "pair": [
+     "US-4447",
+     "US-7884"
+    ],
+    "kind": "area",
+    "names": [
+     "Chugach National Forest National Forest",
+     "Kenai Mountains-Turnagain Arm National H"
+    ],
+    "acres": 1075516.7,
+    "why": "members logged both parks in one session (107 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1075516.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4570+US-7884@trail@60.62,-149.06",
+    "alias_ids": [
+     "US-4570+US-7884@trail@60.624,-149.063"
+    ],
+    "pair": [
+     "US-4570",
+     "US-7884"
+    ],
+    "kind": "trail",
+    "names": [
+     "Iditarod National Historic Trail Nationa",
+     "Kenai Mountains-Turnagain Arm National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (106 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0029+US-12607@same land@58.85,-136.46",
+    "alias_ids": [
+     "US-0029+US-12607@same land@58.852,-136.464"
+    ],
+    "pair": [
+     "US-0029",
+     "US-12607"
+    ],
+    "kind": "same land",
+    "names": [
+     "Glacier Bay National Preserve National P",
+     "Glacier Bay National Park National Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4447+US-4570@trail@60.62,-149.06",
+    "alias_ids": [
+     "US-4447+US-4570@trail@60.625,-149.063"
+    ],
+    "pair": [
+     "US-4447",
+     "US-4570"
+    ],
+    "kind": "trail",
+    "names": [
+     "Chugach National Forest National Forest",
+     "Iditarod National Historic Trail Nationa"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (70 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1637+US-4570@trail@61.16,-149.13",
+    "alias_ids": [
+     "US-1637+US-4570@trail@61.160,-149.127"
+    ],
+    "pair": [
+     "US-1637",
+     "US-4570"
+    ],
+    "kind": "trail",
+    "names": [
+     "Chugach State Park State Park",
+     "Iditarod National Historic Trail Nationa"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-AL": {
+  "keys": [
+   {
+    "key": "US-1037+US-4450@area@33.46,-85.82",
+    "alias_ids": [
+     "US-1037+US-4450@area@33.464,-85.825"
+    ],
+    "pair": [
+     "US-1037",
+     "US-4450"
+    ],
+    "kind": "area",
+    "names": [
+     "Cheaha Resort State Park State Park",
+     "Talladega National Forest National Fores"
+    ],
+    "acres": 801.0,
+    "why": "members logged both parks in one session (133 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 801.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3690+US-4596@same land@31.13,-86.22",
+    "alias_ids": [
+     "US-3690+US-4596@same land@31.131,-86.218"
+    ],
+    "pair": [
+     "US-3690",
+     "US-4596"
+    ],
+    "kind": "same land",
+    "names": [
+     "Geneva State Forest Wildlife Management ",
+     "Geneva State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (47 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3689+US-4560@trail@34.70,-88.04",
+    "alias_ids": [
+     "US-3689+US-4560@trail@34.702,-88.040"
+    ],
+    "pair": [
+     "US-3689",
+     "US-4560"
+    ],
+    "kind": "trail",
+    "names": [
+     "Freedom Hills Wildlife Management Area W",
+     "Natchez Trace Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10396+US-4452@area@34.36,-87.43",
+    "alias_ids": [
+     "US-10396+US-4452@area@34.354,-87.434"
+    ],
+    "pair": [
+     "US-10396",
+     "US-4452"
+    ],
+    "kind": "area",
+    "names": [
+     "Black Warrior Wildlife Management Area W",
+     "William B. Bankhead National Forest Nati"
+    ],
+    "acres": 91039.6,
+    "why": "members logged both parks in one session (124 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 91039.6 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4449+US-9912@area@31.12,-86.59",
+    "alias_ids": [
+     "US-4449+US-9912@area@31.122,-86.586"
+    ],
+    "pair": [
+     "US-4449",
+     "US-9912"
+    ],
+    "kind": "area",
+    "names": [
+     "Conecuh National Forest National Forest",
+     "Blue Spring Wildlife Management Area Wil"
+    ],
+    "acres": 24595.5,
+    "why": "members logged both parks in one session (105 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 24595.5 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-AR": {
+  "keys": [
+   {
+    "key": "US-4424+US-8321@trail@34.69,-93.80",
+    "alias_ids": [
+     "US-4424+US-8321@trail@34.676,-94.328"
+    ],
+    "pair": [
+     "US-4424",
+     "US-8321"
+    ],
+    "kind": "trail",
+    "names": [
+     "Ouachita National Forest National Forest",
+     "Talimena Scenic Byway State Trail State "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (113 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1118+US-4426@area@33.69,-93.09",
+    "alias_ids": [
+     "US-1118+US-4426@area@33.687,-93.086"
+    ],
+    "pair": [
+     "US-1118",
+     "US-4426"
+    ],
+    "kind": "area",
+    "names": [
+     "White Oak Lake State Park State Park",
+     "Poison Springs State Forest State Forest"
+    ],
+    "acres": 35.8,
+    "why": "members logged both parks in one session (57 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 35.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0171+US-11713@same land@33.97,-91.15",
+    "alias_ids": [
+     "US-0171+US-11713@same land@33.971,-91.148"
+    ],
+    "pair": [
+     "US-0171",
+     "US-11713"
+    ],
+    "kind": "same land",
+    "names": [
+     "White River National Wildlife Refuge Nat",
+     "Dale Bumpers White River National Wildli"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (7 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10258+US-4424@trail@34.70,-93.71",
+    "alias_ids": [
+     "US-10258+US-4424@trail@34.705,-93.711"
+    ],
+    "pair": [
+     "US-10258",
+     "US-4424"
+    ],
+    "kind": "trail",
+    "names": [
+     "Ouachita National Recreation Trail Natio",
+     "Ouachita National Forest National Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (84 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1104+US-4425@area@35.17,-93.62",
+    "alias_ids": [
+     "US-1104+US-4425@area@35.169,-93.624"
+    ],
+    "pair": [
+     "US-1104",
+     "US-4425"
+    ],
+    "kind": "area",
+    "names": [
+     "Mount Magazine State Park State Park",
+     "Ozark-St. Francis National Forest Nation"
+    ],
+    "acres": 2162.5,
+    "why": "members logged both parks in one session (38 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2162.5 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-AZ": {
+  "keys": [
+   {
+    "key": "US-4432+US-4557@trail@33.18,-111.14",
+    "alias_ids": [
+     "US-4432+US-4557@trail@33.179,-111.138"
+    ],
+    "pair": [
+     "US-4432",
+     "US-4557"
+    ],
+    "kind": "trail",
+    "names": [
+     "Tonto National Forest National Forest",
+     "Arizona Trail National Scenic Trail Nati"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (105 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0030+US-4430@area@36.32,-111.89",
+    "alias_ids": [
+     "US-0030+US-4430@area@36.301,-112.008"
+    ],
+    "pair": [
+     "US-0030",
+     "US-4430"
+    ],
+    "kind": "area",
+    "names": [
+     "Grand Canyon National Park National Park",
+     "Kaibab National Forest National Forest"
+    ],
+    "acres": 281.3,
+    "why": "members logged both parks in one session (59 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 281.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-11123+US-4432@trail@34.41,-111.35",
+    "alias_ids": [
+     "US-11123+US-4432@trail@34.384,-111.378"
+    ],
+    "pair": [
+     "US-11123",
+     "US-4432"
+    ],
+    "kind": "trail",
+    "names": [
+     "Highline National Recreation Trail Natio",
+     "Tonto National Forest National Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (90 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4429+US-4557@trail@32.27,-110.55",
+    "alias_ids": [
+     "US-4429+US-4557@trail@32.274,-110.554"
+    ],
+    "pair": [
+     "US-4429",
+     "US-4557"
+    ],
+    "kind": "trail",
+    "names": [
+     "Coronado National Forest National Forest",
+     "Arizona Trail National Scenic Trail Nati"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (88 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4571+US-9757@trail@33.09,-112.19",
+    "alias_ids": [
+     "US-4571+US-9757@trail@33.087,-112.188"
+    ],
+    "pair": [
+     "US-4571",
+     "US-9757"
+    ],
+    "kind": "trail",
+    "names": [
+     "Juan Bautista de Anza National Historic ",
+     "Butterfield Overland National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (74 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-CA": {
+  "keys": [
+   {
+    "key": "US-4453+US-4544@area@34.32,-117.82",
+    "alias_ids": [
+     "US-4453+US-4544@area@34.324,-117.894"
+    ],
+    "pair": [
+     "US-4453",
+     "US-4544"
+    ],
+    "kind": "area",
+    "names": [
+     "Angeles National Forest National Forest",
+     "San Gabriel Mountains National Monument "
+    ],
+    "acres": 447615.8,
+    "why": "members logged both parks in one session (253 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 447615.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3580+US-3581@same land@32.92,-117.24",
+    "alias_ids": [
+     "US-3580+US-3581@same land@32.917,-117.244"
+    ],
+    "pair": [
+     "US-3580",
+     "US-3581"
+    ],
+    "kind": "same land",
+    "names": [
+     "Torrey Pines State Beach State Beach",
+     "Torrey Pines Reserve State Conservation "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (49 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1145+US-4469@area@39.30,-120.28",
+    "alias_ids": [
+     "US-1145+US-4469@area@39.309,-120.254"
+    ],
+    "pair": [
+     "US-1145",
+     "US-4469"
+    ],
+    "kind": "area",
+    "names": [
+     "Donner Memorial State Park State Park",
+     "Tahoe National Forest National Forest"
+    ],
+    "acres": 46.7,
+    "why": "members logged both parks in one session (79 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 46.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3394+US-3427@area@37.89,-122.32",
+    "alias_ids": [
+     "US-3394+US-3427@area@37.893,-122.320"
+    ],
+    "pair": [
+     "US-3394",
+     "US-3427"
+    ],
+    "kind": "area",
+    "names": [
+     "Albany State Marine Reserve State Marine",
+     "McLaughlin Eastshore State Park State Pa"
+    ],
+    "acres": 184.6,
+    "why": "members logged both parks in one session (57 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 184.6 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3569+US-4463@area@34.30,-117.30",
+    "alias_ids": [
+     "US-3569+US-4463@area@34.278,-117.312"
+    ],
+    "pair": [
+     "US-3569",
+     "US-4463"
+    ],
+    "kind": "area",
+    "names": [
+     "Silverwood Lake State Recreation Area St",
+     "San Bernardino National Forest National "
+    ],
+    "acres": 13.4,
+    "why": "members logged both parks in one session (46 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 13.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-CO": {
+  "keys": [
+   {
+    "key": "US-0059+US-4406@area@40.55,-105.70",
+    "alias_ids": [
+     "US-0059+US-4406@area@40.548,-105.715"
+    ],
+    "pair": [
+     "US-0059",
+     "US-4406"
+    ],
+    "kind": "area",
+    "names": [
+     "Rocky Mountain National Park National Pa",
+     "Roosevelt National Forest National Fores"
+    ],
+    "acres": 20.1,
+    "why": "members logged both parks in one session (21 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 20.1 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0033+US-8295@same land@37.81,-105.62",
+    "alias_ids": [
+     "US-0033+US-8295@same land@37.806,-105.615"
+    ],
+    "pair": [
+     "US-0033",
+     "US-8295"
+    ],
+    "kind": "same land",
+    "names": [
+     "Great Sand Dunes National Park National ",
+     "Great Sand Dunes National Preserve Natio"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (15 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12173+US-4409@trail@38.48,-108.34",
+    "alias_ids": [
+     "US-12173+US-4409@trail@38.481,-108.344"
+    ],
+    "pair": [
+     "US-12173",
+     "US-4409"
+    ],
+    "kind": "trail",
+    "names": [
+     "Tabeguache BLM Historic Trail BLM Histor",
+     "Uncompahgre National Forest National For"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (2 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-11902+US-4410@area@39.44,-106.30",
+    "alias_ids": [
+     "US-11902+US-4410@area@39.455,-106.290"
+    ],
+    "pair": [
+     "US-11902",
+     "US-4410"
+    ],
+    "kind": "area",
+    "names": [
+     "Camp Hale National Monument National Mon",
+     "White River National Forest National For"
+    ],
+    "acres": 27474.2,
+    "why": "members logged both parks in one session (17 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 27474.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4407+US-9590@area@39.22,-106.42",
+    "alias_ids": [
+     "US-4407+US-9590@area@39.221,-106.432"
+    ],
+    "pair": [
+     "US-4407",
+     "US-9590"
+    ],
+    "kind": "area",
+    "names": [
+     "San Isabel National Forest National Fore",
+     "Leadville National Fish Hatchery Nationa"
+    ],
+    "acres": 2562.4,
+    "why": "members logged both parks in one session (11 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2562.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-CT": {
+  "keys": [
+   {
+    "key": "US-0881+US-1662@river@41.48,-72.34",
+    "alias_ids": [
+     "US-0881+US-1662@river@41.480,-72.341"
+    ],
+    "pair": [
+     "US-0881",
+     "US-1662"
+    ],
+    "kind": "river",
+    "names": [
+     "Eightmile National Wild and Scenic River",
+     "Devil's Hopyard State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (84 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-7528+US-7541@area@41.56,-72.45",
+    "alias_ids": [
+     "US-7528+US-7541@area@41.564,-72.452"
+    ],
+    "pair": [
+     "US-7528",
+     "US-7541"
+    ],
+    "kind": "area",
+    "names": [
+     "Air Line State Trail State Trail",
+     "Salmon River State Forest State Forest"
+    ],
+    "acres": 148.5,
+    "why": "members logged both parks in one session (76 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 148.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1660+US-7541@same land@41.56,-72.45",
+    "alias_ids": [
+     "US-1660+US-7541@same land@41.555,-72.451"
+    ],
+    "pair": [
+     "US-1660",
+     "US-7541"
+    ],
+    "kind": "same land",
+    "names": [
+     "Day Pond State Park State Park",
+     "Salmon River State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (34 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0882+US-6869@river@41.93,-73.00",
+    "alias_ids": [
+     "US-0882+US-6869@river@41.939,-73.004"
+    ],
+    "pair": [
+     "US-0882",
+     "US-6869"
+    ],
+    "kind": "river",
+    "names": [
+     "Farmington National Wild and Scenic Rive",
+     "Peoples State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (67 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1681+US-7548@area@41.61,-71.91",
+    "alias_ids": [
+     "US-1681+US-7548@area@41.609,-71.913"
+    ],
+    "pair": [
+     "US-1681",
+     "US-7548"
+    ],
+    "kind": "area",
+    "names": [
+     "Hopeville Pond State Park State Park",
+     "Pachaug State Forest State Forest"
+    ],
+    "acres": 9.2,
+    "why": "members logged both parks in one session (33 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 9.2 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-DC": {
+  "keys": [
+   {
+    "key": "US-0784+US-4567@river@38.88,-77.05",
+    "alias_ids": [
+     "US-0784+US-4567@river@38.879,-77.052"
+    ],
+    "pair": [
+     "US-0784",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "Lyndon Baines Johnson Memorial Grove on ",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (907 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0795+US-0796@same land@38.89,-77.04",
+    "alias_ids": [
+     "US-0795+US-0796@same land@38.890,-77.040"
+    ],
+    "pair": [
+     "US-0795",
+     "US-0796"
+    ],
+    "kind": "same land",
+    "names": [
+     "World War I National Memorial National M",
+     "World War II National Memorial National "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (12 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0791+US-4567@river@38.90,-77.06",
+    "alias_ids": [
+     "US-0791+US-4567@river@38.896,-77.060"
+    ],
+    "pair": [
+     "US-0791",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "Theodore Roosevelt Island National Memor",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (74 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0656+US-4567@river@38.99,-77.05",
+    "alias_ids": [
+     "US-0656+US-4567@river@38.985,-77.047"
+    ],
+    "pair": [
+     "US-0656",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "Rock Creek Park Park",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (29 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0776+US-4567@river@38.88,-77.04",
+    "alias_ids": [
+     "US-0776+US-4567@river@38.884,-77.043"
+    ],
+    "pair": [
+     "US-0776",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "Franklin Delano Roosevelt National Memor",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-DE": {
+  "keys": [
+   {
+    "key": "US-0898+US-1743@area@39.72,-75.74",
+    "alias_ids": [
+     "US-0898+US-1743@area@39.722,-75.735"
+    ],
+    "pair": [
+     "US-0898",
+     "US-1743"
+    ],
+    "kind": "area",
+    "names": [
+     "White Clay Creek National Wild and Sceni",
+     "White Clay Creek State Park State Park"
+    ],
+    "acres": 938.4,
+    "why": "members logged both parks in one session (180 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 938.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1731+US-4582@trail@39.77,-75.49",
+    "alias_ids": [
+     "US-1731+US-4582@trail@39.775,-75.494"
+    ],
+    "pair": [
+     "US-1731",
+     "US-4582"
+    ],
+    "kind": "trail",
+    "names": [
+     "Bellevue State Park State Park",
+     "Washington-Rochambeau Revolutionary Rout"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (95 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4567+US-5727@river@38.60,-75.66",
+    "alias_ids": [
+     "US-4567+US-5727@river@38.600,-75.658"
+    ],
+    "pair": [
+     "US-4567",
+     "US-5727"
+    ],
+    "kind": "river",
+    "names": [
+     "Captain John Smith Chesapeake National H",
+     "Nanticoke State Wildlife Area State Wild"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (40 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-11812+US-1742@same land@38.52,-75.47",
+    "alias_ids": [
+     "US-11812+US-1742@same land@38.524,-75.468"
+    ],
+    "pair": [
+     "US-11812",
+     "US-1742"
+    ],
+    "kind": "same land",
+    "names": [
+     "Trap Pond State Fishing Lake State Fishi",
+     "Trap Pond State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (25 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1730+US-9878@trail@39.77,-75.56",
+    "alias_ids": [
+     "US-1730+US-9878@trail@39.767,-75.557"
+    ],
+    "pair": [
+     "US-1730",
+     "US-9878"
+    ],
+    "kind": "trail",
+    "names": [
+     "Alapocas Run State Park State Park",
+     "Northern Delaware Greenway National Recr"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (89 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-FL": {
+  "keys": [
+   {
+    "key": "US-3627+US-4559@trail@28.28,-81.85",
+    "alias_ids": [
+     "US-3627+US-4559@trail@28.281,-81.846"
+    ],
+    "pair": [
+     "US-3627",
+     "US-4559"
+    ],
+    "kind": "trail",
+    "names": [
+     "General James A. Van Fleet State Trail S",
+     "Florida Trail National Scenic Trail Nati"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (659 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0896+US-3634@river@28.85,-81.39",
+    "alias_ids": [
+     "US-0896+US-3634@river@28.846,-81.393"
+    ],
+    "pair": [
+     "US-0896",
+     "US-3634"
+    ],
+    "kind": "river",
+    "names": [
+     "Wekiva National Wild and Scenic River Na",
+     "Lower Wekiva River Preserve State Park S"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (234 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0231+US-1914@area@27.87,-80.45",
+    "alias_ids": [
+     "US-0231+US-1914@area@27.876,-80.456"
+    ],
+    "pair": [
+     "US-0231",
+     "US-1914"
+    ],
+    "kind": "area",
+    "names": [
+     "Archie Carr National Wildlife Refuge Nat",
+     "Sebastian Inlet State Park State Park"
+    ],
+    "acres": 1.5,
+    "why": "members logged both parks in one session (223 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3663+US-6744@same land@27.59,-82.57",
+    "alias_ids": [
+     "US-3663+US-6744@same land@27.592,-82.571"
+    ],
+    "pair": [
+     "US-3663",
+     "US-6744"
+    ],
+    "kind": "same land",
+    "names": [
+     "Terra Ceia Preserve State Park State Par",
+     "Terra Ceia Preserve Frog Creek State Con"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (104 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4559+US-4646@trail@28.70,-82.40",
+    "alias_ids": [
+     "US-4559+US-4646@trail@28.699,-82.386"
+    ],
+    "pair": [
+     "US-4559",
+     "US-4646"
+    ],
+    "kind": "trail",
+    "names": [
+     "Florida Trail National Scenic Trail Nati",
+     "Withlacoochee State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (645 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-GA": {
+  "keys": [
+   {
+    "key": "US-4473+US-7138@area@34.70,-83.89",
+    "alias_ids": [
+     "US-4473+US-7138@area@34.703,-83.887"
+    ],
+    "pair": [
+     "US-4473",
+     "US-7138"
+    ],
+    "kind": "area",
+    "names": [
+     "Chattahoochee-Oconee National Forest Nat",
+     "Chestatee Wildlife Management Area Wildl"
+    ],
+    "acres": 21750.2,
+    "why": "members logged both parks in one session (375 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 21750.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3746+US-4651@same land@31.12,-82.28",
+    "alias_ids": [
+     "US-3746+US-4651@same land@31.122,-82.279"
+    ],
+    "pair": [
+     "US-3746",
+     "US-4651"
+    ],
+    "kind": "same land",
+    "names": [
+     "Dixon Memorial Wildlife Management Area ",
+     "Dixon Memorial State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (330 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2188+US-3746@area@31.14,-82.21",
+    "alias_ids": [
+     "US-2188+US-3746@area@31.140,-82.209"
+    ],
+    "pair": [
+     "US-2188",
+     "US-3746"
+    ],
+    "kind": "area",
+    "names": [
+     "Laura S. Walker State Park State Park",
+     "Dixon Memorial Wildlife Management Area "
+    ],
+    "acres": 31.7,
+    "why": "members logged both parks in one session (317 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 31.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0662+US-7860@area@34.14,-84.09",
+    "alias_ids": [
+     "US-0662+US-7860@area@34.140,-84.092"
+    ],
+    "pair": [
+     "US-0662",
+     "US-7860"
+    ],
+    "kind": "area",
+    "names": [
+     "Chattahoochee River National Recreation ",
+     "Buford Trout Hatchery State Fish Hatcher"
+    ],
+    "acres": 3.8,
+    "why": "members logged both parks in one session (314 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 3.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2188+US-4651@area@31.14,-82.21",
+    "alias_ids": [
+     "US-2188+US-4651@area@31.139,-82.209"
+    ],
+    "pair": [
+     "US-2188",
+     "US-4651"
+    ],
+    "kind": "area",
+    "names": [
+     "Laura S. Walker State Park State Park",
+     "Dixon Memorial State Forest State Forest"
+    ],
+    "acres": 21.0,
+    "why": "members logged both parks in one session (313 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 21.0 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-HI": {
+  "keys": [
+   {
+    "key": "US-2214+US-4565@area@19.78,-156.03",
+    "alias_ids": [
+     "US-2214+US-4565@area@19.777,-156.029"
+    ],
+    "pair": [
+     "US-2214",
+     "US-4565"
+    ],
+    "kind": "area",
+    "names": [
+     "Kekaha Kai State Park State Park",
+     "Ala Kahakai National Historic Trail Nati"
+    ],
+    "acres": 1708.9,
+    "why": "members logged both parks in one session (45 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1708.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10912+US-2222@trail@21.32,-157.82",
+    "alias_ids": [
+     "US-10912+US-2222@trail@21.318,-157.820"
+    ],
+    "pair": [
+     "US-10912",
+     "US-2222"
+    ],
+    "kind": "trail",
+    "names": [
+     "'Ualaka'a State Trail State Trail",
+     "Pu'u 'Ualakaa State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (24 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2223+US-6409@same land@21.96,-159.67",
+    "alias_ids": [
+     "US-2223+US-6409@same land@21.955,-159.670"
+    ],
+    "pair": [
+     "US-2223",
+     "US-6409"
+    ],
+    "kind": "same land",
+    "names": [
+     "Waimea Canyon State Park State Park",
+     "Waimea State Recreation Area State Recre"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10906+US-2222@area@21.32,-157.82",
+    "alias_ids": [
+     "US-10906+US-2222@area@21.314,-157.822"
+    ],
+    "pair": [
+     "US-10906",
+     "US-2222"
+    ],
+    "kind": "area",
+    "names": [
+     "Round Top Forest Reserve Forest Reserve",
+     "Pu'u 'Ualakaa State Park State Park"
+    ],
+    "acres": 28.5,
+    "why": "members logged both parks in one session (26 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 28.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10906+US-10912@trail@21.32,-157.82",
+    "alias_ids": [
+     "US-10906+US-10912@trail@21.318,-157.820"
+    ],
+    "pair": [
+     "US-10906",
+     "US-10912"
+    ],
+    "kind": "trail",
+    "names": [
+     "Round Top Forest Reserve Forest Reserve",
+     "'Ualaka'a State Trail State Trail"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (23 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-IA": {
+  "keys": [
+   {
+    "key": "US-2294+US-4573@trail@40.69,-91.98",
+    "alias_ids": [
+     "US-2294+US-4573@trail@40.694,-91.982"
+    ],
+    "pair": [
+     "US-2294",
+     "US-4573"
+    ],
+    "kind": "trail",
+    "names": [
+     "Lacey-Keosauqua State Park State Park",
+     "Mormon Pioneer National Historic Trail N"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (17 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10174+US-5736@area@43.47,-95.12",
+    "alias_ids": [
+     "US-10174+US-5736@area@43.468,-95.123"
+    ],
+    "pair": [
+     "US-10174",
+     "US-5736"
+    ],
+    "kind": "area",
+    "names": [
+     "Marble Beach State Recreation Area State",
+     "Templar State Recreation Area State Recr"
+    ],
+    "acres": 39.8,
+    "why": "members logged both parks in one session (11 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 39.8 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-ID": {
+  "keys": [
+   {
+    "key": "US-4481+US-7362@area@44.06,-115.00",
+    "alias_ids": [
+     "US-4481+US-7362@area@43.927,-115.090"
+    ],
+    "pair": [
+     "US-4481",
+     "US-7362"
+    ],
+    "kind": "area",
+    "names": [
+     "Sawtooth National Forest National Forest",
+     "Sawtooth National Recreation Area Nation"
+    ],
+    "acres": 724783.0,
+    "why": "members logged both parks in one session (59 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 724783.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4478+US-4574@trail@45.69,-116.42",
+    "alias_ids": [
+     "US-4478+US-4574@trail@45.692,-116.419"
+    ],
+    "pair": [
+     "US-4478",
+     "US-4574"
+    ],
+    "kind": "trail",
+    "names": [
+     "Nez Perce National Forest National Fores",
+     "Nez Perce National Historic Trail Nation"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10429+US-4478@river@46.11,-115.57",
+    "alias_ids": [
+     "US-10429+US-4478@river@46.092,-115.110"
+    ],
+    "pair": [
+     "US-10429",
+     "US-4478"
+    ],
+    "kind": "river",
+    "names": [
+     "Middle Fork Clearwater River National Wi",
+     "Nez Perce National Forest National Fores"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (3 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2234+US-5603@area@47.96,-116.55",
+    "alias_ids": [
+     "US-2234+US-5603@area@47.958,-116.564"
+    ],
+    "pair": [
+     "US-2234",
+     "US-5603"
+    ],
+    "kind": "area",
+    "names": [
+     "Farragut State Park State Park",
+     "Farragut Wildlife Management Area Wildli"
+    ],
+    "acres": 5.8,
+    "why": "members logged both parks in one session (29 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 5.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4478+US-7994@area@46.20,-115.09",
+    "alias_ids": [
+     "US-4478+US-7994@area@45.714,-114.978"
+    ],
+    "pair": [
+     "US-4478",
+     "US-7994"
+    ],
+    "kind": "area",
+    "names": [
+     "Nez Perce National Forest National Fores",
+     "Selway-Bitterroot Wilderness Area Wilder"
+    ],
+    "acres": 539567.7,
+    "why": "members logged both parks in one session (21 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 539567.7 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-IL": {
+  "keys": [
+   {
+    "key": "US-1032+US-10660@area@41.36,-88.42",
+    "alias_ids": [
+     "US-1032+US-10660@area@41.355,-88.419"
+    ],
+    "pair": [
+     "US-1032",
+     "US-10660"
+    ],
+    "kind": "area",
+    "names": [
+     "William G. Stratton State Park State Par",
+     "Illinois and Michigan Canal State Trail "
+    ],
+    "acres": 14.7,
+    "why": "members logged both parks in one session (67 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 14.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1023+US-10786@same land@39.88,-90.93",
+    "alias_ids": [
+     "US-1023+US-10786@same land@39.884,-90.926"
+    ],
+    "pair": [
+     "US-1023",
+     "US-10786"
+    ],
+    "kind": "same land",
+    "names": [
+     "Siloam Springs State Park State Park",
+     "Siloam Springs Buckhorn Unit State Park "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (12 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4159+US-4482@area@37.37,-89.36",
+    "alias_ids": [
+     "US-4159+US-4482@area@37.376,-89.355"
+    ],
+    "pair": [
+     "US-4159",
+     "US-4482"
+    ],
+    "kind": "area",
+    "names": [
+     "Union County State Fish and Wildlife Are",
+     "Shawnee National Forest National Forest"
+    ],
+    "acres": 78.0,
+    "why": "members logged both parks in one session (21 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 78.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12368+US-4132@area@41.00,-87.55",
+    "alias_ids": [
+     "US-12368+US-4132@area@41.001,-87.554"
+    ],
+    "pair": [
+     "US-12368",
+     "US-4132"
+    ],
+    "kind": "area",
+    "names": [
+     "Hooper Branch Savanna State Nature Prese",
+     "Iroquois County State Wildlife Area Stat"
+    ],
+    "acres": 553.5,
+    "why": "members logged both parks in one session (17 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 553.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0282+US-0996@area@37.60,-89.16",
+    "alias_ids": [
+     "US-0282+US-0996@area@37.605,-89.156"
+    ],
+    "pair": [
+     "US-0282",
+     "US-0996"
+    ],
+    "kind": "area",
+    "names": [
+     "Crab Orchard National Wildlife Refuge Na",
+     "Giant City State Park State Park"
+    ],
+    "acres": 95.4,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 95.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-IN": {
+  "keys": [
+   {
+    "key": "US-10247+US-2256@area@39.87,-86.03",
+    "alias_ids": [
+     "US-10247+US-2256@area@39.865,-86.028"
+    ],
+    "pair": [
+     "US-10247",
+     "US-2256"
+    ],
+    "kind": "area",
+    "names": [
+     "Lawrence Creek State Nature Preserve Sta",
+     "Fort Harrison State Park State Park"
+    ],
+    "acres": 234.0,
+    "why": "members logged both parks in one session (1351 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 234.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2264+US-4182@same land@41.71,-85.01",
+    "alias_ids": [
+     "US-2264+US-4182@same land@41.707,-85.007"
+    ],
+    "pair": [
+     "US-2264",
+     "US-4182"
+    ],
+    "kind": "same land",
+    "names": [
+     "Pokagon State Park State Park",
+     "Trine at Pokagon State Recreation Area S"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (104 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10254+US-4215@area@39.33,-86.41",
+    "alias_ids": [
+     "US-10254+US-4215@area@39.330,-86.415"
+    ],
+    "pair": [
+     "US-10254",
+     "US-4215"
+    ],
+    "kind": "area",
+    "names": [
+     "Scout Ridge State Nature Preserve State ",
+     "Morgan-Monroe State Forest State Forest"
+    ],
+    "acres": 15.7,
+    "why": "members logged both parks in one session (192 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 15.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2258+US-4195@area@41.66,-87.04",
+    "alias_ids": [
+     "US-2258+US-4195@area@41.668,-87.024"
+    ],
+    "pair": [
+     "US-2258",
+     "US-4195"
+    ],
+    "kind": "area",
+    "names": [
+     "Indiana Dunes State Park State Park",
+     "Dunes State Nature Preserve State Nature"
+    ],
+    "acres": 1592.0,
+    "why": "members logged both parks in one session (187 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1592.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4164+US-5691@area@39.74,-87.08",
+    "alias_ids": [
+     "US-4164+US-5691@area@39.743,-87.076"
+    ],
+    "pair": [
+     "US-4164",
+     "US-5691"
+    ],
+    "kind": "area",
+    "names": [
+     "Cecil M. Harden Lake State Recreation Ar",
+     "Raccoon Lake State Recreation Area State"
+    ],
+    "acres": 94.9,
+    "why": "members logged both parks in one session (175 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 94.9 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-KS": {
+  "keys": [
+   {
+    "key": "US-2336+US-7925@same land@37.91,-96.77",
+    "alias_ids": [
+     "US-2336+US-7925@same land@37.914,-96.768"
+    ],
+    "pair": [
+     "US-2336",
+     "US-7925"
+    ],
+    "kind": "same land",
+    "names": [
+     "El Dorado State Park State Park",
+     "El Dorado State Wildlife Area State Wild"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (92 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2342+US-7944@area@38.65,-98.06",
+    "alias_ids": [
+     "US-2342+US-7944@area@38.654,-98.062"
+    ],
+    "pair": [
+     "US-2342",
+     "US-7944"
+    ],
+    "kind": "area",
+    "names": [
+     "Kanopolis Lake State Park State Park",
+     "Smoky Hill State Wildlife Area State Wil"
+    ],
+    "acres": 5243.1,
+    "why": "members logged both parks in one session (54 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 5243.1 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2352+US-7434@same land@38.67,-100.92",
+    "alias_ids": [
+     "US-2352+US-7434@same land@38.675,-100.919"
+    ],
+    "pair": [
+     "US-2352",
+     "US-7434"
+    ],
+    "kind": "same land",
+    "names": [
+     "Historic Lake Scott State Park State Par",
+     "Scott State Fishing Lake State Fishing L"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (35 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2333+US-7402@same land@37.64,-94.81",
+    "alias_ids": [
+     "US-2333+US-7402@same land@37.636,-94.812"
+    ],
+    "pair": [
+     "US-2333",
+     "US-7402"
+    ],
+    "kind": "same land",
+    "names": [
+     "Crawford State Park State Park",
+     "Crawford State Fishing Lake State Fishin"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (34 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-7406+US-7939@same land@37.42,-94.76",
+    "alias_ids": [
+     "US-7406+US-7939@same land@37.419,-94.758"
+    ],
+    "pair": [
+     "US-7406",
+     "US-7939"
+    ],
+    "kind": "same land",
+    "names": [
+     "Mined Land State Fishing Lake State Fish",
+     "Mined Land State Wildlife Area State Wil"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (33 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-LA": {
+  "keys": [
+   {
+    "key": "US-0296+US-4082@area@30.48,-91.70",
+    "alias_ids": [
+     "US-0296+US-4082@area@30.483,-91.698"
+    ],
+    "pair": [
+     "US-0296",
+     "US-4082"
+    ],
+    "kind": "area",
+    "names": [
+     "Atchafalaya National Wildlife Refuge Nat",
+     "Sherburne Wildlife Management Area Wildl"
+    ],
+    "acres": 15711.4,
+    "why": "members logged both parks in one session (84 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 15711.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2358+US-4047@area@32.91,-91.83",
+    "alias_ids": [
+     "US-2358+US-4047@area@32.905,-91.834"
+    ],
+    "pair": [
+     "US-2358",
+     "US-4047"
+    ],
+    "kind": "area",
+    "names": [
+     "Chemin-A-Haut State Park State Park",
+     "Ben Lilly Conservation Area Conservation"
+    ],
+    "acres": 10.2,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 10.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10563+US-4486@area@31.04,-93.15",
+    "alias_ids": [
+     "US-10563+US-4486@area@31.043,-93.150"
+    ],
+    "pair": [
+     "US-10563",
+     "US-4486"
+    ],
+    "kind": "area",
+    "names": [
+     "Fort Johnson-Vernon Wildlife Management ",
+     "Kisatchie National Forest National Fores"
+    ],
+    "acres": 40555.2,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 40555.2 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MA": {
+  "keys": [
+   {
+    "key": "US-0891+US-2430@river@41.81,-71.12",
+    "alias_ids": [
+     "US-0891+US-2430@river@41.809,-71.118"
+    ],
+    "pair": [
+     "US-0891",
+     "US-2430"
+    ],
+    "kind": "river",
+    "names": [
+     "Taunton National Wild and Scenic River N",
+     "Dighton Rock State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (165 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0672+US-11638@area@41.89,-69.97",
+    "alias_ids": [
+     "US-0672+US-11638@area@41.887,-69.972"
+    ],
+    "pair": [
+     "US-0672",
+     "US-11638"
+    ],
+    "kind": "area",
+    "names": [
+     "Cape Cod National Seashore National Seas",
+     "Marconi Wildlife Management Area Wildlif"
+    ],
+    "acres": 1260.8,
+    "why": "members logged both parks in one session (55 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1260.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4556+US-5635@trail@42.68,-73.17",
+    "alias_ids": [
+     "US-4556+US-5635@trail@42.590,-73.175"
+    ],
+    "pair": [
+     "US-4556",
+     "US-5635"
+    ],
+    "kind": "trail",
+    "names": [
+     "Appalachian Trail National Scenic Trail ",
+     "Mount Greylock State Reserve State Reser"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (55 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4556+US-4717@trail@42.33,-73.16",
+    "alias_ids": [
+     "US-4556+US-4717@trail@42.333,-73.162"
+    ],
+    "pair": [
+     "US-4556",
+     "US-4717"
+    ],
+    "kind": "trail",
+    "names": [
+     "Appalachian Trail National Scenic Trail ",
+     "October Mountain State Forest State Fore"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (34 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0327+US-8014@river@42.55,-71.61",
+    "alias_ids": [
+     "US-0327+US-8014@river@42.565,-71.609"
+    ],
+    "pair": [
+     "US-0327",
+     "US-8014"
+    ],
+    "kind": "river",
+    "names": [
+     "Oxbow National Wildlife Refuge National ",
+     "Nashua, Squannacook, and Nissitissit Nat"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (32 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MD": {
+  "keys": [
+   {
+    "key": "US-0654+US-4567@river@38.92,-76.94",
+    "alias_ids": [
+     "US-0654+US-4567@river@38.919,-76.940"
+    ],
+    "pair": [
+     "US-0654",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "National Capital Parks Park Park",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (1066 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1598+US-6390@same land@39.50,-77.62",
+    "alias_ids": [
+     "US-1598+US-6390@same land@39.497,-77.623"
+    ],
+    "pair": [
+     "US-1598",
+     "US-6390"
+    ],
+    "kind": "same land",
+    "names": [
+     "South Mountain State Park State Park",
+     "South Mountain State Battlefield State P"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (168 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1598+US-1604@area@39.50,-77.62",
+    "alias_ids": [
+     "US-1598+US-1604@area@39.495,-77.621"
+    ],
+    "pair": [
+     "US-1598",
+     "US-1604"
+    ],
+    "kind": "area",
+    "names": [
+     "South Mountain State Park State Park",
+     "Washington Monument State Park State Par"
+    ],
+    "acres": 14.3,
+    "why": "members logged both parks in one session (142 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 14.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1577+US-4582@trail@39.41,-76.41",
+    "alias_ids": [
+     "US-1577+US-4582@trail@39.414,-76.407"
+    ],
+    "pair": [
+     "US-1577",
+     "US-4582"
+    ],
+    "kind": "trail",
+    "names": [
+     "Gunpowder Falls State Park State Park",
+     "Washington-Rochambeau Revolutionary Rout"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0928+US-4567@river@39.26,-76.58",
+    "alias_ids": [
+     "US-0928+US-4567@river@39.263,-76.578"
+    ],
+    "pair": [
+     "US-0928",
+     "US-4567"
+    ],
+    "kind": "river",
+    "names": [
+     "Fort McHenry National Monument National ",
+     "Captain John Smith Chesapeake National H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (775 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-ME": {
+  "keys": [
+   {
+    "key": "US-4556+US-8435@trail@45.11,-70.35",
+    "alias_ids": [
+     "US-4556+US-8435@trail@45.111,-70.353"
+    ],
+    "pair": [
+     "US-4556",
+     "US-8435"
+    ],
+    "kind": "trail",
+    "names": [
+     "Appalachian Trail National Scenic Trail ",
+     "Bigelow State Preserve State Preserve"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (14 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2381+US-4556@trail@45.86,-69.03",
+    "alias_ids": [
+     "US-2381+US-4556@trail@45.856,-69.032"
+    ],
+    "pair": [
+     "US-2381",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "Baxter State Park State Park",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MI": {
+  "keys": [
+   {
+    "key": "US-1522+US-6823@same land@42.33,-83.03",
+    "alias_ids": [
+     "US-1522+US-6823@same land@42.333,-83.027"
+    ],
+    "pair": [
+     "US-1522",
+     "US-6823"
+    ],
+    "kind": "same land",
+    "names": [
+     "Milliken State Park State Park",
+     "William G. Milliken State Harbor State H"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (353 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3304+US-6619@area@43.00,-86.00",
+    "alias_ids": [
+     "US-3304+US-6619@area@43.000,-85.997"
+    ],
+    "pair": [
+     "US-3304",
+     "US-6619"
+    ],
+    "kind": "area",
+    "names": [
+     "Bass River State Recreation Area State R",
+     "Bakale Wildlife Management Area Wildlife"
+    ],
+    "acres": 191.9,
+    "why": "members logged both parks in one session (310 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 191.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-13184+US-1522@trail@42.33,-83.03",
+    "alias_ids": [
+     "US-13184+US-1522@trail@42.334,-83.027"
+    ],
+    "pair": [
+     "US-13184",
+     "US-1522"
+    ],
+    "kind": "trail",
+    "names": [
+     "Iron Belle State Trail State Trail",
+     "Milliken State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (139 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12786+US-4488@river@44.64,-83.92",
+    "alias_ids": [
+     "US-12786+US-4488@river@44.637,-83.927"
+    ],
+    "pair": [
+     "US-12786",
+     "US-4488"
+    ],
+    "kind": "river",
+    "names": [
+     "Au Sable National Wild and Scenic River ",
+     "Huron National Forest National Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3334+US-6621@area@42.62,-85.46",
+    "alias_ids": [
+     "US-3334+US-6621@area@42.622,-85.459"
+    ],
+    "pair": [
+     "US-3334",
+     "US-6621"
+    ],
+    "kind": "area",
+    "names": [
+     "Yankee Springs State Recreation Area Sta",
+     "Barry State Game Land State Game Land"
+    ],
+    "acres": 41.3,
+    "why": "members logged both parks in one session (202 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 41.3 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MN": {
+  "keys": [
+   {
+    "key": "US-0364+US-9384@trail@44.75,-93.61",
+    "alias_ids": [
+     "US-0364+US-9384@trail@44.747,-93.613"
+    ],
+    "pair": [
+     "US-0364",
+     "US-9384"
+    ],
+    "kind": "trail",
+    "names": [
+     "Minnesota Valley National Wildlife Refug",
+     "Minnesota Valley State Trail State Trail"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (719 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0364+US-7145@area@44.72,-93.60",
+    "alias_ids": [
+     "US-0364+US-7145@area@44.716,-93.613"
+    ],
+    "pair": [
+     "US-0364",
+     "US-7145"
+    ],
+    "kind": "area",
+    "names": [
+     "Minnesota Valley National Wildlife Refug",
+     "Minnesota Valley State Recreation Area S"
+    ],
+    "acres": 218.7,
+    "why": "members logged both parks in one session (158 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 218.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2506+US-7148@same land@47.83,-92.24",
+    "alias_ids": [
+     "US-2506+US-7148@same land@47.829,-92.244"
+    ],
+    "pair": [
+     "US-2506",
+     "US-7148"
+    ],
+    "kind": "same land",
+    "names": [
+     "Lake Vermilion State Park State Park",
+     "Lake Vermilion Soudan Iron Mine State Pa"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (28 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-7145+US-9384@trail@44.75,-93.61",
+    "alias_ids": [
+     "US-7145+US-9384@trail@44.751,-93.608"
+    ],
+    "pair": [
+     "US-7145",
+     "US-9384"
+    ],
+    "kind": "trail",
+    "names": [
+     "Minnesota Valley State Recreation Area S",
+     "Minnesota Valley State Trail State Trail"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (579 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2524+US-8095@trail@47.19,-91.39",
+    "alias_ids": [
+     "US-2524+US-8095@trail@47.194,-91.386"
+    ],
+    "pair": [
+     "US-2524",
+     "US-8095"
+    ],
+    "kind": "trail",
+    "names": [
+     "Split Rock Lighthouse State Park State P",
+     "Gitchi Gami State Trail State Trail"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (227 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MO": {
+  "keys": [
+   {
+    "key": "US-7664+US-7665@area@39.55,-91.17",
+    "alias_ids": [
+     "US-7664+US-7665@area@39.554,-91.167"
+    ],
+    "pair": [
+     "US-7664",
+     "US-7665"
+    ],
+    "kind": "area",
+    "names": [
+     "Dupont Reservation Conservation Reserve ",
+     "Ted Shanks Conservation Reserve Conserva"
+    ],
+    "acres": 53.2,
+    "why": "members logged both parks in one session (76 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 53.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1795+US-3368@same land@39.41,-94.26",
+    "alias_ids": [
+     "US-1795+US-3368@same land@39.413,-94.261"
+    ],
+    "pair": [
+     "US-1795",
+     "US-3368"
+    ],
+    "kind": "same land",
+    "names": [
+     "Watkins Mill State Park State Park",
+     "Watkins Woolen Mill State Historic Site "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (67 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-7836+US-8252@trail@37.57,-90.70",
+    "alias_ids": [
+     "US-7836+US-8252@trail@37.549,-90.691"
+    ],
+    "pair": [
+     "US-7836",
+     "US-8252"
+    ],
+    "kind": "trail",
+    "names": [
+     "Ozark State Trail State Trail",
+     "Ketcherside Mountain State Conservation "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-8510+US-8511@area@36.67,-93.29",
+    "alias_ids": [
+     "US-8510+US-8511@area@36.667,-93.294"
+    ],
+    "pair": [
+     "US-8510",
+     "US-8511"
+    ],
+    "kind": "area",
+    "names": [
+     "Ruth and Paul Henning Conservation Area ",
+     "White River Balds Natural Area State Con"
+    ],
+    "acres": 362.7,
+    "why": "members logged both parks in one session (70 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 362.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1772+US-3356@same land@39.49,-91.79",
+    "alias_ids": [
+     "US-1772+US-3356@same land@39.493,-91.786"
+    ],
+    "pair": [
+     "US-1772",
+     "US-3356"
+    ],
+    "kind": "same land",
+    "names": [
+     "Mark Twain State Park State Park",
+     "Mark Twain Birthplace State Historic Sit"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (37 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MS": {
+  "keys": [
+   {
+    "key": "US-0642+US-4560@trail@34.06,-88.87",
+    "alias_ids": [
+     "US-0642+US-4560@trail@32.531,-89.966"
+    ],
+    "pair": [
+     "US-0642",
+     "US-4560"
+    ],
+    "kind": "trail",
+    "names": [
+     "Natchez Trace Parkway National Parkway N",
+     "Natchez Trace Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (405 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0642+US-7113@area@32.53,-89.96",
+    "alias_ids": [
+     "US-0642+US-7113@area@32.526,-89.969"
+    ],
+    "pair": [
+     "US-0642",
+     "US-7113"
+    ],
+    "kind": "area",
+    "names": [
+     "Natchez Trace Parkway National Parkway N",
+     "Pearl River Wildlife Management Area Wil"
+    ],
+    "acres": 42.7,
+    "why": "members logged both parks in one session (10 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 42.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2552+US-4560@trail@34.61,-88.19",
+    "alias_ids": [
+     "US-2552+US-4560@trail@34.610,-88.194"
+    ],
+    "pair": [
+     "US-2552",
+     "US-4560"
+    ],
+    "kind": "trail",
+    "names": [
+     "Tishomingo State Park State Park",
+     "Natchez Trace Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (11 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0642+US-4498@area@34.07,-88.87",
+    "alias_ids": [
+     "US-0642+US-4498@area@34.040,-88.884"
+    ],
+    "pair": [
+     "US-0642",
+     "US-4498"
+    ],
+    "kind": "area",
+    "names": [
+     "Natchez Trace Parkway National Parkway N",
+     "Tombigbee National Forest National Fores"
+    ],
+    "acres": 62.0,
+    "why": "members logged both parks in one session (9 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 62.0 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-MT": {
+  "keys": [
+   {
+    "key": "US-4500+US-7994@area@46.01,-114.37",
+    "alias_ids": [
+     "US-4500+US-7994@area@45.790,-114.546"
+    ],
+    "pair": [
+     "US-4500",
+     "US-7994"
+    ],
+    "kind": "area",
+    "names": [
+     "Bitterroot National Forest National Fore",
+     "Selway-Bitterroot Wilderness Area Wilder"
+    ],
+    "acres": 102942.0,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 102942.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4507+US-4574@trail@46.79,-114.40",
+    "alias_ids": [
+     "US-4507+US-4574@trail@46.785,-114.400"
+    ],
+    "pair": [
+     "US-4507",
+     "US-4574"
+    ],
+    "kind": "trail",
+    "names": [
+     "Lolo National Forest National Forest",
+     "Nez Perce National Historic Trail Nation"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12646+US-12918@same land@47.57,-104.22",
+    "alias_ids": [
+     "US-12646+US-12918@same land@47.575,-104.223"
+    ],
+    "pair": [
+     "US-12646",
+     "US-12918"
+    ],
+    "kind": "same land",
+    "names": [
+     "Seven Sisters Wildlife Management Area W",
+     "Seven Sisters State Fish and Wildlife Ar"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0028+US-4502@area@48.65,-114.16",
+    "alias_ids": [
+     "US-0028+US-4502@area@48.646,-114.160"
+    ],
+    "pair": [
+     "US-0028",
+     "US-4502"
+    ],
+    "kind": "area",
+    "names": [
+     "Glacier National Park National Park",
+     "Flathead National Forest National Forest"
+    ],
+    "acres": 140.3,
+    "why": "members logged both parks in one session (15 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 140.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0701+US-4574@trail@45.64,-113.66",
+    "alias_ids": [
+     "US-0701+US-4574@trail@45.643,-113.653"
+    ],
+    "pair": [
+     "US-0701",
+     "US-4574"
+    ],
+    "kind": "trail",
+    "names": [
+     "Big Hole National Battlefield National B",
+     "Nez Perce National Historic Trail Nation"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (9 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NC": {
+  "keys": [
+   {
+    "key": "US-4509+US-6927@area@35.05,-83.48",
+    "alias_ids": [
+     "US-4509+US-6927@area@35.047,-83.482"
+    ],
+    "pair": [
+     "US-4509",
+     "US-6927"
+    ],
+    "kind": "area",
+    "names": [
+     "Nantahala National Forest National Fores",
+     "Nantahala State Game Land State Game Lan"
+    ],
+    "acres": 349698.8,
+    "why": "members logged both parks in one session (1421 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 349698.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4510+US-4577@trail@35.84,-81.94",
+    "alias_ids": [
+     "US-4510+US-4577@trail@35.805,-81.937"
+    ],
+    "pair": [
+     "US-4510",
+     "US-4577"
+    ],
+    "kind": "trail",
+    "names": [
+     "Pisgah National Forest National Forest",
+     "Overmountain Victory National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (84 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3852+US-6889@same land@35.25,-75.58",
+    "alias_ids": [
+     "US-3852+US-6889@same land@35.252,-75.584"
+    ],
+    "pair": [
+     "US-3852",
+     "US-6889"
+    ],
+    "kind": "same land",
+    "names": [
+     "Buxton Woods State Reserve State Reserve",
+     "Buxton Woods State Game Land State Game "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (77 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4511+US-6962@area@35.33,-80.04",
+    "alias_ids": [
+     "US-4511+US-6962@area@35.331,-80.035"
+    ],
+    "pair": [
+     "US-4511",
+     "US-6962"
+    ],
+    "kind": "area",
+    "names": [
+     "Uwharrie National Forest National Forest",
+     "Uwharrie State Game Land State Game Land"
+    ],
+    "acres": 22146.2,
+    "why": "members logged both parks in one session (487 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 22146.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4510+US-6936@area@35.36,-82.73",
+    "alias_ids": [
+     "US-4510+US-6936@area@35.303,-82.776"
+    ],
+    "pair": [
+     "US-4510",
+     "US-6936"
+    ],
+    "kind": "area",
+    "names": [
+     "Pisgah National Forest National Forest",
+     "Pisgah State Game Land State Game Land"
+    ],
+    "acres": 116436.7,
+    "why": "members logged both parks in one session (207 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 116436.7 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-ND": {
+  "keys": [
+   {
+    "key": "US-0065+US-7485@area@47.55,-103.38",
+    "alias_ids": [
+     "US-0065+US-7485@area@47.559,-103.375"
+    ],
+    "pair": [
+     "US-0065",
+     "US-7485"
+    ],
+    "kind": "area",
+    "names": [
+     "Theodore Roosevelt National Park Nationa",
+     "Little Missouri National Grassland Natio"
+    ],
+    "acres": 88.8,
+    "why": "members logged both parks in one session (59 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 88.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0422+US-8566@same land@47.64,-101.22",
+    "alias_ids": [
+     "US-0422+US-8566@same land@47.638,-101.218"
+    ],
+    "pair": [
+     "US-0422",
+     "US-8566"
+    ],
+    "kind": "same land",
+    "names": [
+     "Audubon National Wildlife Refuge Nationa",
+     "Audubon Wildlife Management Area Wildlif"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0422+US-2764@area@47.62,-101.15",
+    "alias_ids": [
+     "US-0422+US-2764@area@47.624,-101.155"
+    ],
+    "pair": [
+     "US-0422",
+     "US-2764"
+    ],
+    "kind": "area",
+    "names": [
+     "Audubon National Wildlife Refuge Nationa",
+     "Lake Sakakawea State Park State Park"
+    ],
+    "acres": 2251.3,
+    "why": "members logged both parks in one session (6 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2251.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2764+US-7701@area@47.62,-101.30",
+    "alias_ids": [
+     "US-2764+US-7701@area@47.626,-101.299"
+    ],
+    "pair": [
+     "US-2764",
+     "US-7701"
+    ],
+    "kind": "area",
+    "names": [
+     "Lake Sakakawea State Park State Park",
+     "Custer Mine Wildlife Management Area Wil"
+    ],
+    "acres": 5.0,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 5.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2764+US-8566@area@47.62,-101.15",
+    "alias_ids": [
+     "US-2764+US-8566@area@47.624,-101.155"
+    ],
+    "pair": [
+     "US-2764",
+     "US-8566"
+    ],
+    "kind": "area",
+    "names": [
+     "Lake Sakakawea State Park State Park",
+     "Audubon Wildlife Management Area Wildlif"
+    ],
+    "acres": 2262.1,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2262.1 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NE": {
+  "keys": [
+   {
+    "key": "US-2613+US-3371@area@42.71,-103.01",
+    "alias_ids": [
+     "US-2613+US-3371@area@42.713,-103.008"
+    ],
+    "pair": [
+     "US-2613",
+     "US-3371"
+    ],
+    "kind": "area",
+    "names": [
+     "Chadron State Park State Park",
+     "Nebraska National Forest National Forest"
+    ],
+    "acres": 2.5,
+    "why": "members logged both parks in one session (26 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2617+US-5628@same land@40.66,-99.00",
+    "alias_ids": [
+     "US-2617+US-5628@same land@40.661,-98.995"
+    ],
+    "pair": [
+     "US-2617",
+     "US-5628"
+    ],
+    "kind": "same land",
+    "names": [
+     "Fort Kearny State Historical Park State ",
+     "Fort Kearny State Recreation Area State "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0445+US-5655@area@41.95,-103.49",
+    "alias_ids": [
+     "US-0445+US-5655@area@41.946,-103.519"
+    ],
+    "pair": [
+     "US-0445",
+     "US-5655"
+    ],
+    "kind": "area",
+    "names": [
+     "North Platte National Wildlife Refuge Na",
+     "Lake Minatare State Recreation Area Stat"
+    ],
+    "acres": 89.2,
+    "why": "members logged both parks in one session (10 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 89.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12362+US-2612@same land@41.16,-100.79",
+    "alias_ids": [
+     "US-12362+US-2612@same land@41.164,-100.794"
+    ],
+    "pair": [
+     "US-12362",
+     "US-2612"
+    ],
+    "kind": "same land",
+    "names": [
+     "Buffalo Bill State Recreation Area State",
+     "Buffalo Bill Ranch State Historical Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (10 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2623+US-9366@same land@40.11,-97.06",
+    "alias_ids": [
+     "US-2623+US-9366@same land@40.111,-97.065"
+    ],
+    "pair": [
+     "US-2623",
+     "US-9366"
+    ],
+    "kind": "same land",
+    "names": [
+     "Rock Creek Station State Historical Park",
+     "Rock Creek Station State Recreation Area"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (10 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NH": {
+  "keys": [
+   {
+    "key": "US-4512+US-4556@trail@43.97,-71.94",
+    "alias_ids": [
+     "US-4512+US-4556@trail@43.969,-71.936"
+    ],
+    "pair": [
+     "US-4512",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "White Mountain National Forest National ",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (91 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2667+US-4512@area@44.27,-71.31",
+    "alias_ids": [
+     "US-2667+US-4512@area@44.272,-71.305"
+    ],
+    "pair": [
+     "US-2667",
+     "US-4512"
+    ],
+    "kind": "area",
+    "names": [
+     "Mount Washington State Park State Park",
+     "White Mountain National Forest National "
+    ],
+    "acres": 7.8,
+    "why": "members logged both parks in one session (33 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 7.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4923+US-4944@same land@43.67,-71.08",
+    "alias_ids": [
+     "US-4923+US-4944@same land@43.671,-71.078"
+    ],
+    "pair": [
+     "US-4923",
+     "US-4944"
+    ],
+    "kind": "same land",
+    "names": [
+     "Little Pine River State Forest State For",
+     "Pine River State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (3 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2667+US-4556@trail@44.27,-71.31",
+    "alias_ids": [
+     "US-2667+US-4556@trail@44.270,-71.306"
+    ],
+    "pair": [
+     "US-2667",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "Mount Washington State Park State Park",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (25 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2653+US-4512@area@44.17,-71.71",
+    "alias_ids": [
+     "US-2653+US-4512@area@44.176,-71.715"
+    ],
+    "pair": [
+     "US-2653",
+     "US-4512"
+    ],
+    "kind": "area",
+    "names": [
+     "Franconia Notch State Park State Park",
+     "White Mountain National Forest National "
+    ],
+    "acres": 16.3,
+    "why": "members logged both parks in one session (20 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 16.3 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NJ": {
+  "keys": [
+   {
+    "key": "US-1613+US-4582@trail@40.44,-74.61",
+    "alias_ids": [
+     "US-1613+US-4582@trail@40.440,-74.611"
+    ],
+    "pair": [
+     "US-1613",
+     "US-4582"
+    ],
+    "kind": "trail",
+    "names": [
+     "Delaware and Raritan Canal State Park St",
+     "Washington-Rochambeau Revolutionary Rout"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (239 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0888+US-1608@area@40.87,-74.81",
+    "alias_ids": [
+     "US-0888+US-1608@area@40.873,-74.808"
+    ],
+    "pair": [
+     "US-0888",
+     "US-1608"
+    ],
+    "kind": "area",
+    "names": [
+     "Musconetcong River National Wild and Sce",
+     "Allamuchy Mountain State Park State Park"
+    ],
+    "acres": 95.4,
+    "why": "members logged both parks in one session (118 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 95.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0888+US-1631@area@40.87,-74.81",
+    "alias_ids": [
+     "US-0888+US-1631@area@40.872,-74.806"
+    ],
+    "pair": [
+     "US-0888",
+     "US-1631"
+    ],
+    "kind": "area",
+    "names": [
+     "Musconetcong River National Wild and Sce",
+     "Stephens State Park State Park"
+    ],
+    "acres": 329.2,
+    "why": "members logged both parks in one session (72 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 329.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0746+US-4582@trail@40.76,-74.51",
+    "alias_ids": [
+     "US-0746+US-4582@trail@40.762,-74.517"
+    ],
+    "pair": [
+     "US-0746",
+     "US-4582"
+    ],
+    "kind": "trail",
+    "names": [
+     "Morristown National Historical Park Nati",
+     "Washington-Rochambeau Revolutionary Rout"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (67 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1619+US-4999@area@41.23,-74.68",
+    "alias_ids": [
+     "US-1619+US-4999@area@41.231,-74.683"
+    ],
+    "pair": [
+     "US-1619",
+     "US-4999"
+    ],
+    "kind": "area",
+    "names": [
+     "High Point State Park State Park",
+     "Stokes State Forest State Forest"
+    ],
+    "acres": 5.6,
+    "why": "members logged both parks in one session (34 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 5.6 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NM": {
+  "keys": [
+   {
+    "key": "US-11822+US-8227@same land@35.83,-106.72",
+    "alias_ids": [
+     "US-11822+US-8227@same land@35.825,-106.716"
+    ],
+    "pair": [
+     "US-11822",
+     "US-8227"
+    ],
+    "kind": "same land",
+    "names": [
+     "Jemez Historic Site Historic Site",
+     "Jemez National Recreation Area National "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (7 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4558+US-4575@trail@36.19,-106.74",
+    "alias_ids": [
+     "US-4558+US-4575@trail@36.193,-106.743"
+    ],
+    "pair": [
+     "US-4558",
+     "US-4575"
+    ],
+    "kind": "trail",
+    "names": [
+     "Continental Divide Trail National Scenic",
+     "Old Spanish National Historic Trail Nati"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (3 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NV": {
+  "keys": [
+   {
+    "key": "US-4566+US-4578@trail@42.46,-107.52",
+    "alias_ids": [
+     "US-4566+US-4578@trail@42.460,-107.524"
+    ],
+    "pair": [
+     "US-4566",
+     "US-4578"
+    ],
+    "kind": "trail",
+    "names": [
+     "California National Historic Trail Natio",
+     "Pony Express National Historic Trail Nat"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (941 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0676+US-2637@area@36.41,-114.43",
+    "alias_ids": [
+     "US-0676+US-2637@area@36.411,-114.433"
+    ],
+    "pair": [
+     "US-0676",
+     "US-2637"
+    ],
+    "kind": "area",
+    "names": [
+     "Lake Mead National Recreation Area Natio",
+     "Valley of Fire State Park State Park"
+    ],
+    "acres": 1034.8,
+    "why": "members logged both parks in one session (25 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1034.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2633+US-3389@same land@39.16,-119.89",
+    "alias_ids": [
+     "US-2633+US-3389@same land@39.165,-119.895"
+    ],
+    "pair": [
+     "US-2633",
+     "US-3389"
+    ],
+    "kind": "same land",
+    "names": [
+     "Lake Tahoe State Park State Park",
+     "Spooner Lake and Backcountry State Park "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4391+US-4566@trail@38.75,-119.18",
+    "alias_ids": [
+     "US-4391+US-4566@trail@38.755,-119.180"
+    ],
+    "pair": [
+     "US-4391",
+     "US-4566"
+    ],
+    "kind": "trail",
+    "names": [
+     "Humboldt-Toiyabe National Forest Nationa",
+     "California National Historic Trail Natio"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (281 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4391+US-4578@trail@39.52,-117.02",
+    "alias_ids": [
+     "US-4391+US-4578@trail@39.519,-117.018"
+    ],
+    "pair": [
+     "US-4391",
+     "US-4578"
+    ],
+    "kind": "trail",
+    "names": [
+     "Humboldt-Toiyabe National Forest Nationa",
+     "Pony Express National Historic Trail Nat"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (221 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-NY": {
+  "keys": [
+   {
+    "key": "US-0680+US-8068@area@40.65,-73.86",
+    "alias_ids": [
+     "US-0680+US-8068@area@40.647,-73.863"
+    ],
+    "pair": [
+     "US-0680",
+     "US-8068"
+    ],
+    "kind": "area",
+    "names": [
+     "Gateway National Recreation Area Nationa",
+     "Shirley Chisholm State Park State Park"
+    ],
+    "acres": 396.5,
+    "why": "members logged both parks in one session (123 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 396.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2028+US-2128@area@40.62,-73.30",
+    "alias_ids": [
+     "US-2028+US-2128@area@40.624,-73.301"
+    ],
+    "pair": [
+     "US-2028",
+     "US-2128"
+    ],
+    "kind": "area",
+    "names": [
+     "Captree State Park State Park",
+     "Robert Moses (Long Island) State Park St"
+    ],
+    "acres": 932.0,
+    "why": "members logged both parks in one session (40 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 932.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2079+US-5161@area@41.37,-73.94",
+    "alias_ids": [
+     "US-2079+US-5161@area@41.366,-73.936"
+    ],
+    "pair": [
+     "US-2079",
+     "US-5161"
+    ],
+    "kind": "area",
+    "names": [
+     "Hudson Highlands State Park State Park",
+     "Castle Rock Unique Area Unique Area"
+    ],
+    "acres": 130.9,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 130.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2034+US-9082@area@43.27,-76.92",
+    "alias_ids": [
+     "US-2034+US-9082@area@43.271,-76.918"
+    ],
+    "pair": [
+     "US-2034",
+     "US-9082"
+    ],
+    "kind": "area",
+    "names": [
+     "Chimney Bluffs State Park State Park",
+     "Lake Shore Marshes Wildlife Management A"
+    ],
+    "acres": 144.3,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 144.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2028+US-2061@area@40.62,-73.31",
+    "alias_ids": [
+     "US-2028+US-2061@area@40.623,-73.312"
+    ],
+    "pair": [
+     "US-2028",
+     "US-2061"
+    ],
+    "kind": "area",
+    "names": [
+     "Captree State Park State Park",
+     "Gilgo State Park State Park"
+    ],
+    "acres": 18.4,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 18.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-OK": {
+  "keys": [
+   {
+    "key": "US-2801+US-8640@area@35.94,-98.42",
+    "alias_ids": [
+     "US-2801+US-8640@area@35.944,-98.422"
+    ],
+    "pair": [
+     "US-2801",
+     "US-8640"
+    ],
+    "kind": "area",
+    "names": [
+     "Roman Nose State Park State Park",
+     "Lake Watonga State Fishing Lake State Fi"
+    ],
+    "acres": 226.3,
+    "why": "members logged both parks in one session (103 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 226.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-6366+US-8321@trail@34.71,-94.68",
+    "alias_ids": [
+     "US-6366+US-8321@trail@34.678,-94.475"
+    ],
+    "pair": [
+     "US-6366",
+     "US-8321"
+    ],
+    "kind": "trail",
+    "names": [
+     "Ouachita Leflore Unit Wildlife Managemen",
+     "Talimena Scenic Byway State Trail State "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0489+US-2783@area@36.75,-98.13",
+    "alias_ids": [
+     "US-0489+US-2783@area@36.747,-98.133"
+    ],
+    "pair": [
+     "US-0489",
+     "US-2783"
+    ],
+    "kind": "area",
+    "names": [
+     "Salt Plains National Wildlife Refuge Nat",
+     "Salt Plains State Park State Park"
+    ],
+    "acres": 12.5,
+    "why": "members logged both parks in one session (47 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 12.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2782+US-6362@area@34.74,-99.01",
+    "alias_ids": [
+     "US-2782+US-6362@area@34.744,-99.009"
+    ],
+    "pair": [
+     "US-2782",
+     "US-6362"
+    ],
+    "kind": "area",
+    "names": [
+     "Great Plains State Park State Park",
+     "Mountain Park Wildlife Management Area W"
+    ],
+    "acres": 697.8,
+    "why": "members logged both parks in one session (47 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 697.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10305+US-2773@area@36.85,-102.88",
+    "alias_ids": [
+     "US-10305+US-2773@area@36.851,-102.878"
+    ],
+    "pair": [
+     "US-10305",
+     "US-2773"
+    ],
+    "kind": "area",
+    "names": [
+     "Lake Carl Etling Conservation Area Conse",
+     "Black Mesa State Park State Park"
+    ],
+    "acres": 716.2,
+    "why": "members logged both parks in one session (24 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 716.2 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-OR": {
+  "keys": [
+   {
+    "key": "US-9142+US-9553@area@45.63,-120.91",
+    "alias_ids": [
+     "US-9142+US-9553@area@45.630,-120.915"
+    ],
+    "pair": [
+     "US-9142",
+     "US-9553"
+    ],
+    "kind": "area",
+    "names": [
+     "Deschutes River State Recreation Area St",
+     "Heritage Landing - Deschutes State Recre"
+    ],
+    "acres": 119.9,
+    "why": "members logged both parks in one session (62 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 119.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4381+US-4562@trail@45.66,-121.89",
+    "alias_ids": [
+     "US-4381+US-4562@trail@45.542,-121.838"
+    ],
+    "pair": [
+     "US-4381",
+     "US-4562"
+    ],
+    "kind": "trail",
+    "names": [
+     "Mount Hood National Forest National Fore",
+     "Pacific Crest Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (56 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10249+US-4381@river@45.30,-121.70",
+    "alias_ids": [
+     "US-10249+US-4381@river@45.220,-121.792"
+    ],
+    "pair": [
+     "US-10249",
+     "US-4381"
+    ],
+    "kind": "river",
+    "names": [
+     "Salmon River National Wild and Scenic Ri",
+     "Mount Hood National Forest National Fore"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (26 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-9992+US-9993@same land@45.30,-123.49",
+    "alias_ids": [
+     "US-9992+US-9993@same land@45.303,-123.488"
+    ],
+    "pair": [
+     "US-9992",
+     "US-9993"
+    ],
+    "kind": "same land",
+    "names": [
+     "Nestucca River National Wild and Scenic ",
+     "Nestucca River OHV BLM Recreation Manage"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (14 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2829+US-9568@area@46.17,-123.98",
+    "alias_ids": [
+     "US-2829+US-9568@area@46.174,-123.978"
+    ],
+    "pair": [
+     "US-2829",
+     "US-9568"
+    ],
+    "kind": "area",
+    "names": [
+     "Fort Stevens State Park State Park",
+     "Ocean Shore State Recreation Area State "
+    ],
+    "acres": 4.6,
+    "why": "members logged both parks in one session (54 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 4.6 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-PA": {
+  "keys": [
+   {
+    "key": "US-8745+US-8854@area@40.24,-76.30",
+    "alias_ids": [
+     "US-8745+US-8854@area@40.241,-76.304"
+    ],
+    "pair": [
+     "US-8745",
+     "US-8854"
+    ],
+    "kind": "area",
+    "names": [
+     "PA 046 State Game Land State Game Land",
+     "PA 156 State Game Land State Game Land"
+    ],
+    "acres": 285.8,
+    "why": "members logged both parks in one session (40 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 285.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12664+US-5478@trail@41.74,-77.43",
+    "alias_ids": [
+     "US-12664+US-5478@trail@41.750,-77.424"
+    ],
+    "pair": [
+     "US-12664",
+     "US-5478"
+    ],
+    "kind": "trail",
+    "names": [
+     "Pine Creek Rail Trail State Trail State ",
+     "Tioga State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0684+US-8755@river@40.51,-75.15",
+    "alias_ids": [
+     "US-0684+US-8755@river@40.514,-75.153"
+    ],
+    "pair": [
+     "US-0684",
+     "US-8755"
+    ],
+    "kind": "river",
+    "names": [
+     "Lower Delaware National Wild and Scenic ",
+     "PA 056 State Game Land State Game Land"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (7 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0619+US-12234@area@41.83,-79.26",
+    "alias_ids": [
+     "US-0619+US-12234@area@41.833,-79.264"
+    ],
+    "pair": [
+     "US-0619",
+     "US-12234"
+    ],
+    "kind": "area",
+    "names": [
+     "Allegheny National Forest National Fores",
+     "Allegheny National Wild & Scenic River N"
+    ],
+    "acres": 593.5,
+    "why": "members logged both parks in one session (28 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 593.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0798+US-8895@area@40.43,-78.51",
+    "alias_ids": [
+     "US-0798+US-8895@area@40.429,-78.508"
+    ],
+    "pair": [
+     "US-0798",
+     "US-8895"
+    ],
+    "kind": "area",
+    "names": [
+     "Allegheny Portage Railroad National Hist",
+     "PA 198 State Game Land State Game Land"
+    ],
+    "acres": 18.0,
+    "why": "members logged both parks in one session (13 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 18.0 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-RI": {
+  "keys": [
+   {
+    "key": "US-2878+US-5483@same land@41.90,-71.44",
+    "alias_ids": [
+     "US-2878+US-5483@same land@41.898,-71.439"
+    ],
+    "pair": [
+     "US-2878",
+     "US-5483"
+    ],
+    "kind": "same land",
+    "names": [
+     "Lincoln Woods State Park State Park",
+     "Lincoln Woods State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (88 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0515+US-7865@area@41.35,-71.65",
+    "alias_ids": [
+     "US-0515+US-7865@area@41.354,-71.650"
+    ],
+    "pair": [
+     "US-0515",
+     "US-7865"
+    ],
+    "kind": "area",
+    "names": [
+     "Ninigret National Wildlife Refuge Nation",
+     "East State Beach State Beach"
+    ],
+    "acres": 4.3,
+    "why": "members logged both parks in one session (20 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 4.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2869+US-7971@area@41.94,-71.44",
+    "alias_ids": [
+     "US-2869+US-7971@area@41.941,-71.440"
+    ],
+    "pair": [
+     "US-2869",
+     "US-7971"
+    ],
+    "kind": "area",
+    "names": [
+     "Blackstone River State Park State Park",
+     "Blackstone River Valley National Histori"
+    ],
+    "acres": 75.4,
+    "why": "members logged both parks in one session (20 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 75.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-SC": {
+  "keys": [
+   {
+    "key": "US-0720+US-4577@trail@35.15,-81.39",
+    "alias_ids": [
+     "US-0720+US-4577@trail@35.150,-81.391"
+    ],
+    "pair": [
+     "US-0720",
+     "US-4577"
+    ],
+    "kind": "trail",
+    "names": [
+     "Kings Mountain National Military Park Na",
+     "Overmountain Victory National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (711 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0720+US-2902@area@35.14,-81.36",
+    "alias_ids": [
+     "US-0720+US-2902@area@35.117,-81.411"
+    ],
+    "pair": [
+     "US-0720",
+     "US-2902"
+    ],
+    "kind": "area",
+    "names": [
+     "Kings Mountain National Military Park Na",
+     "Kings Mountain State Park State Park"
+    ],
+    "acres": 118.4,
+    "why": "members logged both parks in one session (435 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 118.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-9202+US-9208@same land@33.19,-79.38",
+    "alias_ids": [
+     "US-9202+US-9208@same land@33.194,-79.376"
+    ],
+    "pair": [
+     "US-9202",
+     "US-9208"
+    ],
+    "kind": "same land",
+    "names": [
+     "Santee Coastal Reserve Wildlife Manageme",
+     "Santee-Delta Wildlife Management Area Wi"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (28 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0702+US-4577@trail@35.14,-81.81",
+    "alias_ids": [
+     "US-0702+US-4577@trail@35.135,-81.812"
+    ],
+    "pair": [
+     "US-0702",
+     "US-4577"
+    ],
+    "kind": "trail",
+    "names": [
+     "Cowpens National Battlefield National Ba",
+     "Overmountain Victory National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (319 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2908+US-4523@area@34.87,-83.09",
+    "alias_ids": [
+     "US-2908+US-4523@area@34.872,-83.087"
+    ],
+    "pair": [
+     "US-2908",
+     "US-4523"
+    ],
+    "kind": "area",
+    "names": [
+     "Oconee State Park State Park",
+     "Sumter National Forest National Forest"
+    ],
+    "acres": 11.3,
+    "why": "members logged both parks in one session (82 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 11.3 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-SD": {
+  "keys": [
+   {
+    "key": "US-0675+US-8174@area@42.77,-98.03",
+    "alias_ids": [
+     "US-0675+US-8174@area@42.772,-98.025"
+    ],
+    "pair": [
+     "US-0675",
+     "US-8174"
+    ],
+    "kind": "area",
+    "names": [
+     "Missouri National Recreational River Nat",
+     "Lewis and Clark State Recreation Area St"
+    ],
+    "acres": 4521.3,
+    "why": "members logged both parks in one session (119 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 4521.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10331+US-8155@same land@43.30,-103.44",
+    "alias_ids": [
+     "US-10331+US-8155@same land@43.304,-103.441"
+    ],
+    "pair": [
+     "US-10331",
+     "US-8155"
+    ],
+    "kind": "same land",
+    "names": [
+     "Bailey State Recreation Area State Recre",
+     "Angostura State Recreation Area State Re"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (7 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0068+US-2917@area@43.64,-103.45",
+    "alias_ids": [
+     "US-0068+US-2917@area@43.629,-103.397"
+    ],
+    "pair": [
+     "US-0068",
+     "US-2917"
+    ],
+    "kind": "area",
+    "names": [
+     "Wind Cave National Park National Park",
+     "Custer State Park State Park"
+    ],
+    "acres": 47.2,
+    "why": "members logged both parks in one session (40 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 47.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0675+US-8187@area@43.05,-98.55",
+    "alias_ids": [
+     "US-0675+US-8187@area@43.051,-98.553"
+    ],
+    "pair": [
+     "US-0675",
+     "US-8187"
+    ],
+    "kind": "area",
+    "names": [
+     "Missouri National Recreational River Nat",
+     "Randall Creek State Recreation Area Stat"
+    ],
+    "acres": 184.1,
+    "why": "members logged both parks in one session (26 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 184.1 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-8174+US-8185@area@42.87,-97.48",
+    "alias_ids": [
+     "US-8174+US-8185@area@42.873,-97.484"
+    ],
+    "pair": [
+     "US-8174",
+     "US-8185"
+    ],
+    "kind": "area",
+    "names": [
+     "Lewis and Clark State Recreation Area St",
+     "Pierson Ranch State Recreation Area Stat"
+    ],
+    "acres": 69.1,
+    "why": "members logged both parks in one session (23 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 69.1 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-TN": {
+  "keys": [
+   {
+    "key": "US-2979+US-4577@trail@36.34,-82.26",
+    "alias_ids": [
+     "US-2979+US-4577@trail@36.341,-82.255"
+    ],
+    "pair": [
+     "US-2979",
+     "US-4577"
+    ],
+    "kind": "trail",
+    "names": [
+     "Sycamore Shoals State Park State Park",
+     "Overmountain Victory National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (249 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2935+US-3924@same land@36.10,-86.38",
+    "alias_ids": [
+     "US-2935+US-3924@same land@36.095,-86.385"
+    ],
+    "pair": [
+     "US-2935",
+     "US-3924"
+    ],
+    "kind": "same land",
+    "names": [
+     "Cedars of Lebanon State Park State Park",
+     "Cedars of Lebanon State Forest State For"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (202 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2956+US-6240@area@36.10,-86.53",
+    "alias_ids": [
+     "US-2956+US-6240@area@36.103,-86.534"
+    ],
+    "pair": [
+     "US-2956",
+     "US-6240"
+    ],
+    "kind": "area",
+    "names": [
+     "Long Hunter State Park State Park",
+     "Couchville Cedar Glade State Natural Are"
+    ],
+    "acres": 138.5,
+    "why": "members logged both parks in one session (110 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 138.5 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2978+US-5501@same land@36.46,-85.41",
+    "alias_ids": [
+     "US-2978+US-5501@same land@36.464,-85.412"
+    ],
+    "pair": [
+     "US-2978",
+     "US-5501"
+    ],
+    "kind": "same land",
+    "names": [
+     "Standing Stone State Park State Park",
+     "Standing Stone State Forest State Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (125 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0686+US-5500@area@36.47,-84.70",
+    "alias_ids": [
+     "US-0686+US-5500@area@36.467,-84.700"
+    ],
+    "pair": [
+     "US-0686",
+     "US-5500"
+    ],
+    "kind": "area",
+    "names": [
+     "Big South Fork National Recreation Area ",
+     "Scott State Forest State Forest"
+    ],
+    "acres": 10.0,
+    "why": "members logged both parks in one session (100 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 10.0 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-TX": {
+  "keys": [
+   {
+    "key": "US-10509+US-4417@same land@30.63,-95.53",
+    "alias_ids": [
+     "US-10509+US-4417@same land@30.633,-95.530"
+    ],
+    "pair": [
+     "US-10509",
+     "US-4417"
+    ],
+    "kind": "same land",
+    "names": [
+     "Sam Houston National Forest Wildlife Man",
+     "Sam Houston National Forest National For"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (574 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-2986+US-2993@area@30.10,-97.22",
+    "alias_ids": [
+     "US-2986+US-2993@area@30.096,-97.220"
+    ],
+    "pair": [
+     "US-2986",
+     "US-2993"
+    ],
+    "kind": "area",
+    "names": [
+     "Bastrop State Park State Park",
+     "Buescher State Park State Park"
+    ],
+    "acres": 4.2,
+    "why": "members logged both parks in one session (86 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 4.2 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0006+US-6597@river@29.00,-103.28",
+    "alias_ids": [
+     "US-0006+US-6597@river@28.999,-103.286"
+    ],
+    "pair": [
+     "US-0006",
+     "US-6597"
+    ],
+    "kind": "river",
+    "names": [
+     "Big Bend National Park National Park",
+     "Rio Grande National Wild and Scenic Rive"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (39 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3015+US-3502@same land@28.64,-97.44",
+    "alias_ids": [
+     "US-3015+US-3502@same land@28.645,-97.439"
+    ],
+    "pair": [
+     "US-3015",
+     "US-3502"
+    ],
+    "kind": "same land",
+    "names": [
+     "Goliad State Park State Park",
+     "Goliad State Historic Site State Histori"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (115 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-6581+US-7483@same land@35.21,-100.87",
+    "alias_ids": [
+     "US-6581+US-7483@same land@35.213,-100.873"
+    ],
+    "pair": [
+     "US-6581",
+     "US-7483"
+    ],
+    "kind": "same land",
+    "names": [
+     "McClellan Creek National Nature Reserve ",
+     "McClellan Creek National Grassland Natio"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (103 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-UT": {
+  "keys": [
+   {
+    "key": "US-0072+US-0895@area@37.30,-113.07",
+    "alias_ids": [
+     "US-0072+US-0895@area@37.436,-113.182"
+    ],
+    "pair": [
+     "US-0072",
+     "US-0895"
+    ],
+    "kind": "area",
+    "names": [
+     "Zion National Park National Park",
+     "Virgin National Wild and Scenic River Na"
+    ],
+    "acres": 17279.3,
+    "why": "members logged both parks in one session (52 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 17279.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-6063+US-6077@same land@37.17,-113.58",
+    "alias_ids": [
+     "US-6063+US-6077@same land@37.173,-113.583"
+    ],
+    "pair": [
+     "US-6063",
+     "US-6077"
+    ],
+    "kind": "same land",
+    "names": [
+     "Red Cliffs BLM Recreation Management Are",
+     "Red Cliffs BLM National Conservation Are"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (29 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10965+US-4395@trail@37.95,-111.69",
+    "alias_ids": [
+     "US-10965+US-4395@trail@37.951,-111.685"
+    ],
+    "pair": [
+     "US-10965",
+     "US-4395"
+    ],
+    "kind": "trail",
+    "names": [
+     "Great Western Trail BLM Historic Trail B",
+     "Dixie National Forest National Forest"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10560+US-3067@area@40.46,-111.47",
+    "alias_ids": [
+     "US-10560+US-3067@area@40.460,-111.473"
+    ],
+    "pair": [
+     "US-10560",
+     "US-3067"
+    ],
+    "kind": "area",
+    "names": [
+     "Wallsburg State Wildlife Management Area",
+     "Deer Creek State Park State Park"
+    ],
+    "acres": 59.0,
+    "why": "members logged both parks in one session (11 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 59.0 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-11739+US-6033@same land@37.78,-113.18",
+    "alias_ids": [
+     "US-11739+US-6033@same land@37.777,-113.183"
+    ],
+    "pair": [
+     "US-11739",
+     "US-6033"
+    ],
+    "kind": "same land",
+    "names": [
+     "Three Peaks RC Track BLM Special Recreat",
+     "Three Peaks BLM Recreation Management Ar"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (6 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-VA": {
+  "keys": [
+   {
+    "key": "US-4564+US-4581@trail@38.85,-77.05",
+    "alias_ids": [
+     "US-4564+US-4581@trail@38.854,-77.047"
+    ],
+    "pair": [
+     "US-4564",
+     "US-4581"
+    ],
+    "kind": "trail",
+    "names": [
+     "Potomac Heritage Trail National Scenic T",
+     "Star-Spangled Banner National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (1542 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0670+US-4581@river@38.79,-77.04",
+    "alias_ids": [
+     "US-0670+US-4581@river@38.792,-77.040"
+    ],
+    "pair": [
+     "US-0670",
+     "US-4581"
+    ],
+    "kind": "river",
+    "names": [
+     "George Washington Memorial Parkway Memor",
+     "Star-Spangled Banner National Historic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (1182 activation(s) with both parks, POTA history 'same_session') and the line has it live (river, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1302+US-5503@area@37.41,-78.64",
+    "alias_ids": [
+     "US-1302+US-5503@area@37.405,-78.643"
+    ],
+    "pair": [
+     "US-1302",
+     "US-5503"
+    ],
+    "kind": "area",
+    "names": [
+     "Holliday Lake State Park State Park",
+     "Appomattox-Buckingham State Forest State"
+    ],
+    "acres": 453.9,
+    "why": "members logged both parks in one session (92 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 453.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-9940+US-9941@same land@37.33,-80.33",
+    "alias_ids": [
+     "US-9940+US-9941@same land@37.329,-80.326"
+    ],
+    "pair": [
+     "US-9940",
+     "US-9941"
+    ],
+    "kind": "same land",
+    "names": [
+     "Brush Mountain Wilderness Area Wildernes",
+     "Brush Mountain East Wilderness Area Wild"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (4 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0670+US-4564@trail@38.74,-77.05",
+    "alias_ids": [
+     "US-0670+US-4564@trail@38.740,-77.049"
+    ],
+    "pair": [
+     "US-0670",
+     "US-4564"
+    ],
+    "kind": "trail",
+    "names": [
+     "George Washington Memorial Parkway Memor",
+     "Potomac Heritage Trail National Scenic T"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (1351 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-VT": {
+  "keys": [
+   {
+    "key": "US-4527+US-4556@trail@43.32,-72.97",
+    "alias_ids": [
+     "US-4527+US-4556@trail@43.232,-72.938"
+    ],
+    "pair": [
+     "US-4527",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "Green Mountain National Forest National ",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (78 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3115+US-4556@trail@43.67,-72.82",
+    "alias_ids": [
+     "US-3115+US-4556@trail@43.674,-72.809"
+    ],
+    "pair": [
+     "US-3115",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "Gifford Woods State Park State Park",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (18 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4239+US-4556@trail@43.67,-72.84",
+    "alias_ids": [
+     "US-4239+US-4556@trail@43.675,-72.839"
+    ],
+    "pair": [
+     "US-4239",
+     "US-4556"
+    ],
+    "kind": "trail",
+    "names": [
+     "North Country Trail National Scenic Trai",
+     "Appalachian Trail National Scenic Trail "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (17 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4556+US-5541@trail@43.62,-72.82",
+    "alias_ids": [
+     "US-4556+US-5541@trail@43.616,-72.821"
+    ],
+    "pair": [
+     "US-4556",
+     "US-5541"
+    ],
+    "kind": "trail",
+    "names": [
+     "Appalachian Trail National Scenic Trail ",
+     "Calvin Coolidge State Forest State Fores"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (5 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4239+US-4527@trail@43.81,-72.94",
+    "alias_ids": [
+     "US-4239+US-4527@trail@43.813,-72.941"
+    ],
+    "pair": [
+     "US-4239",
+     "US-4527"
+    ],
+    "kind": "trail",
+    "names": [
+     "North Country Trail National Scenic Trai",
+     "Green Mountain National Forest National "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (3 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-WA": {
+  "keys": [
+   {
+    "key": "US-4530+US-4562@trail@48.20,-120.95",
+    "alias_ids": [
+     "US-4530+US-4562@trail@48.168,-121.136"
+    ],
+    "pair": [
+     "US-4530",
+     "US-4562"
+    ],
+    "kind": "trail",
+    "names": [
+     "Mount Baker-Snoqualmie National Forest N",
+     "Pacific Crest Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (36 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3170+US-5640@area@46.29,-124.07",
+    "alias_ids": [
+     "US-3170+US-5640@area@46.286,-124.067"
+    ],
+    "pair": [
+     "US-3170",
+     "US-5640"
+    ],
+    "kind": "area",
+    "names": [
+     "Cape Disappointment State Park State Par",
+     "Lewis and Clark National Historical Park"
+    ],
+    "acres": 1358.4,
+    "why": "members logged both parks in one session (27 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1358.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-12846+US-3173@same land@45.67,-121.09",
+    "alias_ids": [
+     "US-12846+US-3173@same land@45.669,-121.087"
+    ],
+    "pair": [
+     "US-12846",
+     "US-3173"
+    ],
+    "kind": "same land",
+    "names": [
+     "Columbia Hills State Natural Area State ",
+     "Columbia Hills State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (1 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-3289+US-3290@area@46.90,-124.12",
+    "alias_ids": [
+     "US-3289+US-3290@area@46.903,-124.123"
+    ],
+    "pair": [
+     "US-3289",
+     "US-3290"
+    ],
+    "kind": "area",
+    "names": [
+     "Westhaven State Park State Park",
+     "Westport Light State Park State Park"
+    ],
+    "acres": 22.9,
+    "why": "members logged both parks in one session (25 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 22.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4531+US-4562@trail@48.73,-120.68",
+    "alias_ids": [
+     "US-4531+US-4562@trail@48.733,-120.677"
+    ],
+    "pair": [
+     "US-4531",
+     "US-4562"
+    ],
+    "kind": "trail",
+    "names": [
+     "Okanogan-Wenatchee National Forest Natio",
+     "Pacific Crest Trail National Scenic Trai"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (25 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-WI": {
+  "keys": [
+   {
+    "key": "US-4238+US-8363@area@43.35,-89.60",
+    "alias_ids": [
+     "US-4238+US-8363@area@43.347,-89.602"
+    ],
+    "pair": [
+     "US-4238",
+     "US-8363"
+    ],
+    "kind": "area",
+    "names": [
+     "Ice Age National Scenic Trail National S",
+     "Gibraltar Rock State Natural Area State "
+    ],
+    "acres": 33.7,
+    "why": "members logged both parks in one session (69 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 33.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4243+US-9794@trail@43.37,-89.74",
+    "alias_ids": [
+     "US-4243+US-9794@trail@43.373,-89.736"
+    ],
+    "pair": [
+     "US-4243",
+     "US-9794"
+    ],
+    "kind": "trail",
+    "names": [
+     "Sauk Prairie State Recreation Area State",
+     "Great Sauk State Trail State Trail"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (51 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1483+US-4347@same land@42.78,-89.97",
+    "alias_ids": [
+     "US-1483+US-4347@same land@42.781,-89.971"
+    ],
+    "pair": [
+     "US-1483",
+     "US-4347"
+    ],
+    "kind": "same land",
+    "names": [
+     "Yellowstone Lake State Park State Park",
+     "Yellowstone State Wildlife Area State Wi"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (28 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0673+US-4350@area@45.57,-92.88",
+    "alias_ids": [
+     "US-0673+US-4350@area@45.569,-92.848"
+    ],
+    "pair": [
+     "US-0673",
+     "US-4350"
+    ],
+    "kind": "area",
+    "names": [
+     "Saint Croix National Wild and Scenic Riv",
+     "Governor Knowles State Forest State Fore"
+    ],
+    "acres": 21.9,
+    "why": "members logged both parks in one session (41 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 21.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-10200+US-1481@same land@45.01,-92.67",
+    "alias_ids": [
+     "US-10200+US-1481@same land@45.013,-92.672"
+    ],
+    "pair": [
+     "US-10200",
+     "US-1481"
+    ],
+    "kind": "same land",
+    "names": [
+     "Willow River State Wildlife Area State W",
+     "Willow River State Park State Park"
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (23 activation(s) with both parks, POTA history 'same_session') and the line has it live (same land, None ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-WV": {
+  "keys": [
+   {
+    "key": "US-1800+US-7046@area@38.29,-82.38",
+    "alias_ids": [
+     "US-1800+US-7046@area@38.295,-82.379"
+    ],
+    "pair": [
+     "US-1800",
+     "US-7046"
+    ],
+    "kind": "area",
+    "names": [
+     "Beech Fork State Park State Park",
+     "Beech Fork Lake Wildlife Management Area"
+    ],
+    "acres": 7806.3,
+    "why": "members logged both parks in one session (88 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 7806.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1818+US-9741@trail@39.23,-81.11",
+    "alias_ids": [
+     "US-1818+US-9741@trail@39.227,-81.120"
+    ],
+    "pair": [
+     "US-1818",
+     "US-9741"
+    ],
+    "kind": "trail",
+    "names": [
+     "North Bend State Park State Park",
+     "North Bend Rail Trail State Trail State "
+    ],
+    "acres": null,
+    "why": "members logged both parks in one session (11 activation(s) with both parks, POTA history 'same_session') and the line has it live (trail, None ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-1817+US-7040@area@37.62,-80.35",
+    "alias_ids": [
+     "US-1817+US-7040@area@37.622,-80.351"
+    ],
+    "pair": [
+     "US-1817",
+     "US-7040"
+    ],
+    "kind": "area",
+    "names": [
+     "Moncove Lake State Park State Park",
+     "Moncove Lake Wildlife Management Area Wi"
+    ],
+    "acres": 79.7,
+    "why": "members logged both parks in one session (47 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 79.7 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0697+US-1804@area@37.59,-80.96",
+    "alias_ids": [
+     "US-0697+US-1804@area@37.590,-80.964"
+    ],
+    "pair": [
+     "US-0697",
+     "US-1804"
+    ],
+    "kind": "area",
+    "names": [
+     "Bluestone National Wild and Scenic River",
+     "Bluestone State Park State Park"
+    ],
+    "acres": 2989.1,
+    "why": "members logged both parks in one session (26 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 2989.1 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0697+US-1820@area@37.55,-81.01",
+    "alias_ids": [
+     "US-0697+US-1820@area@37.545,-81.006"
+    ],
+    "pair": [
+     "US-0697",
+     "US-1820"
+    ],
+    "kind": "area",
+    "names": [
+     "Bluestone National Wild and Scenic River",
+     "Pipestem Resort State Park State Park"
+    ],
+    "acres": 1221.5,
+    "why": "members logged both parks in one session (23 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 1221.5 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ },
+ "US-WY": {
+  "keys": [
+   {
+    "key": "US-0031+US-0613@area@43.62,-110.64",
+    "alias_ids": [
+     "US-0031+US-0613@area@43.619,-110.643"
+    ],
+    "pair": [
+     "US-0031",
+     "US-0613"
+    ],
+    "kind": "area",
+    "names": [
+     "Grand Teton National Park National Park",
+     "National Elk National Wildlife Refuge Na"
+    ],
+    "acres": 28.4,
+    "why": "members logged both parks in one session (24 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 28.4 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-4535+US-6227@area@43.85,-110.20",
+    "alias_ids": [
+     "US-4535+US-6227@area@43.812,-110.290"
+    ],
+    "pair": [
+     "US-4535",
+     "US-6227"
+    ],
+    "kind": "area",
+    "names": [
+     "Bridger-Teton National Forest National F",
+     "Snake River National Wild & Scenic River"
+    ],
+    "acres": 29889.9,
+    "why": "members logged both parks in one session (23 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 29889.9 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0031+US-6227@area@43.84,-110.43",
+    "alias_ids": [
+     "US-0031+US-6227@area@43.837,-110.430"
+    ],
+    "pair": [
+     "US-0031",
+     "US-6227"
+    ],
+    "kind": "area",
+    "names": [
+     "Grand Teton National Park National Park",
+     "Snake River National Wild & Scenic River"
+    ],
+    "acres": 11037.8,
+    "why": "members logged both parks in one session (19 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 11037.8 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-0613+US-10815@area@43.54,-110.74",
+    "alias_ids": [
+     "US-0613+US-10815@area@43.536,-110.735"
+    ],
+    "pair": [
+     "US-0613",
+     "US-10815"
+    ],
+    "kind": "area",
+    "names": [
+     "National Elk National Wildlife Refuge Na",
+     "Jackson National Fish Hatchery National "
+    ],
+    "acres": 33.3,
+    "why": "members logged both parks in one session (16 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 33.3 ac); independent hint, NOT an official-map check"
+   },
+   {
+    "key": "US-6170+US-6173@area@44.94,-108.23",
+    "alias_ids": [
+     "US-6170+US-6173@area@44.939,-108.234"
+    ],
+    "pair": [
+     "US-6170",
+     "US-6173"
+    ],
+    "kind": "area",
+    "names": [
+     "Yellowtail State Wildlife Area State Wil",
+     "Bighorn Canyon National Recreation Area "
+    ],
+    "acres": 271.4,
+    "why": "members logged both parks in one session (12 activation(s) with both parks, POTA history 'same_session') and the line has it live (area, 271.4 ac); independent hint, NOT an official-map check"
+   }
+  ]
+ }
+}

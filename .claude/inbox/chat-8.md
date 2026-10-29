@@ -147,3 +147,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 11:20 AM): river-water test v3 graded: FWS/FS/Ohio AGREE, NPS tracts not proven (check distinct unit codes) -> KPC_RiverWaterTest_v3_grade_desk.md, chat 9 told.
 - DONE (Oct 29 11:30 AM): chat 9 probe (a)-(e) read; Source Book 2 file corrected (BLM national layer is mostly sites; UT/WY RMA layers exist, NV only survey layers; MS + ND confirmed). Waiting on rounds SB3 + F.
 - DONE (Oct 29 12:00 PM): behind-list caught up: SB2 file has chat 9 rounds F + F2; F.3 Canada regrade not possible yet (files still pre-fix). Next: 8.6 known 2-fer pairs.
+- DONE (Oct 29 12:30 PM): 8.6 known 2-fer pairs: 231 PROPOSED in 49 states (live + members logged both parks in one session) -> KPC_KnownPairs_Proposed_desk.md + known-fers-proposed.json; needs an official-map spot check (chat 11) before the waiting room uses them.
