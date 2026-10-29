@@ -9179,6 +9179,20 @@
   },
   "US-2081": {
    "why": "Oct 29: 'Iona Island State Park' is not this WMA (chat 11 NO)"
+  },
+  "US-3030": {
+   "no": [
+    "Somerville Recreation Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 6:05 PM: a lake-wide area (Corps land), not the state park (chat 8 R-G8 caveat)"
+  },
+  "US-7610": {
+   "no": [
+    "Old Hickory Lock 5 Refuge"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 6:05 PM: a bird refuge on the lake, not the WMA (chat 8 R-G8 caveat)"
   }
  }
 }

@@ -891,6 +891,14 @@
     "read": "2026-10-27",
     "note": "228 areas; OWNERSHIP + OWNCODE = rule 14 (federal-owned WMAs are SE-1: NOT SURE)",
     "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3"
+   },
+   {
+    "kind": "park",
+    "ag": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
+    "nm": "PRIMARY_NAME__LONG_",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
+    "host": "agol",
+    "note": "chat 3 find + look-up 2-tn-parks-b, Oct 29: 70 parks, edited 2026-10-29"
    }
   ],
   "TX": [
