@@ -975,6 +975,33 @@ def run(st):
         outline_dates(parks[ref], recs)
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
+    # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
+    # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
+    # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
+    rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
+    pinx = {}
+    for ref in parks:
+        r = P.get(ref) or []
+        la_, lo_ = (r[5], r[6]) if len(r) > 6 else (None, None)
+        if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+        if la_ is not None: pinx[ref] = (la_, lo_)
+    def _dkm(ref, b):
+        la_, lo_ = pinx[ref]
+        return math.hypot(max(0, b[0] - lo_, lo_ - b[2]) * 111.32 * math.cos(math.radians(la_)), max(0, b[1] - la_, la_ - b[3]) * 110.57)
+    claim = {}
+    for ref, p in parks.items():
+        for x in p.get('m') or []: claim.setdefault(str(x[0]), set()).add(ref)
+    pruned = []
+    for rid, refs in claim.items():
+        if len(refs) < 2 or rid not in rb: continue
+        close = {r for r in refs if r in pinx and _dkm(r, rb[rid]) <= 2}
+        if not close: continue
+        for r in refs - close:
+            if r not in pinx or _dkm(r, rb[rid]) <= 15: continue
+            if any(str(x[0]) == rid and str(x[3]).startswith('reviewed') for x in parks[r]['m']): continue
+            parks[r]['m'] = [x for x in parks[r]['m'] if str(x[0]) != rid]
+            parks[r].setdefault('not_mine', []).append([rid, sorted(close)[0], round(_dkm(r, rb[rid]))]); pruned.append(f'{r} ({round(_dkm(r, rb[rid]))} km)')
+    if pruned: notice(f'US key {st}', f"{len(pruned)} name-only joins dropped (the record belongs to a park next to it): {', '.join(pruned[:12])}")
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
