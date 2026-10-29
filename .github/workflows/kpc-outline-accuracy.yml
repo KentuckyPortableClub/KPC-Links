@@ -1,0 +1,35 @@
+name: KPC outline accuracy probe (temporary, by hand)
+# Oct 29 2026 (chat 2; chat 3 + Brandon 6:05 AM): one read-only look: stored outline sets vs a fresh full-detail read on a
+# sample; writes .claude/build/research/outline-accuracy.json + .md. Never fails. Deleted after its one run.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data
+        continue-on-error: true
+        run: bash .github/scripts/kpc_overlay.sh
+      - name: Saved outline copies
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us cache/ca
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true
+          ls cache/us | wc -l; ls data/canada-bounds 2>/dev/null | wc -l || true
+      - name: Probe
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_outline_accuracy.py || true
+      - name: Save the findings
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/outline-accuracy.json .claude/build/research/outline-accuracy.md 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m 'Outline accuracy probe findings (read only)'; for i in 1 2 3; do git pull --rebase --autostash && git push && break; sleep 9; done; } || true
