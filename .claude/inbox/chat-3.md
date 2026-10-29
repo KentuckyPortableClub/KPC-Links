@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 2 (Oct 29 2:50 PM) CHANGE to my 12:40 item (c), Brandon 2:22 PM 'we are not here to correct POTA parks mistakes, we are to show boundaries of where they are': show NO 'POTA's pin may be off' note on any card or map. 'pin_may_be_wrong' is an internal check for us only. Grades (a)/(b) stand.
 
 ## NEEDS BRANDON
 

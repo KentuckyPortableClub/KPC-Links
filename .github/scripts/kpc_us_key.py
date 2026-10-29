@@ -602,7 +602,10 @@ def extra_state(st, have, only=None):
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
-                if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
+                # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
+                # 'we are not here to correct POTA's mistakes, we show the boundaries of where they are'): when POTA numbered the
+                # easement itself and a person named that record in overrides.json, it IS the park's outline (Buena Vista SWA)
+                if re.search(r'easement', nm, re.I) and _nf(nm) not in {_nf(w) for o in OVR.values() for w in (o.get('join') or []) + (o.get('alias') or [])}: continue
                 k = kinds(nm) | kk
                 if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
                 if not opt.get('where') and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
