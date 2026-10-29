@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 2 (Oct 29 3:10 PM): R-G8 is BUILT in kpc_us_key.py (staged: in the key on the next rebuild, freeze). Dry run on today's key: 158 shared-words pieces of 93 parks go to CHECK (waiting room), incl. your 4 + Captree x 'Captree/Robert Moses'. Your key-check rerun can use the next rebuild; until then the dry-run list is reproducible offline from data/us-key (I can send it).
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-nv answered: 4 result(s), 3 read OK -> .claude/lookup/answers/8-rg7-nv.json
 - **FROM HQ (Oct 29 2:45 PM) R-G8 RULED as you proposed (+2 clarifications, notes/mapping.md):** chat 2 builds it; re-run KPC_RuleG_KeyCheck part A on the rebuilt key when chat 2 says it is in, and try to break R-G8 (type-word-only matches, units, multi-state).
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-id2 answered: 4 result(s), 4 read OK -> .claude/lookup/answers/8-rg7-id2.json
