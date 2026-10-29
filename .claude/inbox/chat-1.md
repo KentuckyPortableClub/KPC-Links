@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 5 (Oct 29 11:30 AM, check-up sort): kpc-weather.html and kpc-live.html have sideways scroll on DESKTOP (1280 px): the theme button (button.kpc-theme-btn) sticks out 13 px / 4 px past the right edge. Phones are fine. Small CSS fix on those two pages.
 
 ## NEEDS BRANDON
 

@@ -58,7 +58,7 @@ def public_list():
 
 STAY_LOCKED = {'kpc-spot-me.html', 'kpc-logger.html', 'kpc-hunt.html', 'kpc-hunt-cat.html', 'kpc-hunt-need.html', 'kpc-top50.html',
                'kpc-maprep.html', 'kpc-club.html', 'kpc-recap.html', 'kpc-multi-park-spots.html', 'kpc-ky-pva.html', 'members.html'}
-MAPREP_HOME = {'kpc-club.html', 'members.html'}      # the Club Room (members.html merges into it at the release)
+MAPREP_HOME = {'kpc-club.html', 'members.html', 'kpc-map-coverage.html'}   # the Club Room + its own tabs (Map Coverage = a Club Room tab, Oct 29)
 
 
 def guard():
@@ -197,8 +197,10 @@ def answer(url):
 
 def links():
     t0, limit = time.time(), float(os.environ.get('LINK_MINUTES') or 20) * 60
+    # SCOPE (Brandon Oct 29): camping outside KY is hidden and its bots run KY only, so the other states' camp layers are
+    # no longer checked (data/campstate-layers.json left out).
     owners = {'data/state-gis.json': 2, 'data/access-layers.json': 2, 'data/trails-layers.json': 2,
-              'data/campstate-layers.json': 2, 'data/trails-hand.json': 2, 'data/land-owner.json': 2}
+              'data/trails-hand.json': 2, 'data/land-owner.json': 2}
     urls = {}
     for f, chat in owners.items():
         s = json.dumps(load(f, {}) or {})
@@ -225,6 +227,11 @@ def links():
         if res != 'ok':
             bad.append((f, chat, u, res))
     for f, chat, u, res in bad:
+        # land-owner.json holds PEOPLE pages (assessor offices), not data: many government sites refuse robots (403) or
+        # send a certificate a browser accepts; that is not a dead link (Oct 29 sort of the 21 problems). Gone = DNS / 404 / 410.
+        if f.endswith('land-owner.json') and re.search(r'HTTP 40[13]|CERTIFICATE|SSL|timed out', res):
+            notes.append({'chat': chat, 'msg': f'{pathlib.Path(f).name}: {u} refuses our robot ({res}); a person can still open it'})
+            continue
         problems.append({'key': f'links:{u}', 'chat': chat, 'twice': True, 'msg': f'{pathlib.Path(f).name}: {u} → {res}'})
     ok.append(f'{n - len(bad)} of {n} map-server / data addresses answered')
     # holiday pictures
