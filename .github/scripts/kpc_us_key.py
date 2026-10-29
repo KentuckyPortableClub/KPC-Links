@@ -1082,6 +1082,75 @@ def run(st):
             m.append([rec['OBJECTID'], rec['Unit_Nm'], round(rec['GIS_Acres'] or 0), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
         parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
     if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts')
+    # RULE SHEET G (one boundary pipeline; Brandon Oct 29 12:09 PM 'implement this now', rulings 12:14 + 12:18; notes/mapping.md):
+    # G-1 the AGENCY'S OWN RECORD that names the park is the proof and joins at ANY distance (pins can be wrong). A piece matched
+    # only by SIMILAR words ('words', 'name (designation code ignored)') must prove its place: the POTA pin inside it or within
+    # 100 m, or the piece within 2 km of a piece that already passed; otherwise it is HELD (moved to 'c', never drawn).
+    # A pin well outside its official outline never blocks the outline: the park goes on the 'POTA pin may be wrong' list.
+    # Every park gets ONE grade 'g': official / approximate / pin (G-2: a piece-only outline drawn as the agency has it = official).
+    WEAK = ('words', 'name (designation code ignored)')
+    try:
+        from shapely.geometry import Polygon as _GP, Point as _GPt
+        _shp = True
+    except Exception: _shp = False  # noqa: BLE001
+    gs_ = {_oid(a): a for a in recs}
+    def _scaled(a, lat0):
+        k = math.cos(math.radians(lat0))
+        out_ = []
+        for r in rings(a.get('_g')):
+            if len(r) > 3:
+                try: out_.append(_GP([(x * 111.32 * k, y * 110.57) for x, y in r]).buffer(0))
+                except Exception: pass  # noqa: BLE001
+        return out_
+    def _gap_km(a, b, lat0):
+        ba, bb_ = a.get('_bb'), b.get('_bb')
+        if not ba or not bb_: return 1e9
+        k = math.cos(math.radians(lat0))
+        bx = max(0, ba[0] - bb_[2], bb_[0] - ba[2]) * 111.32 * k; by = max(0, ba[1] - bb_[3], bb_[1] - ba[3]) * 110.57
+        d0 = math.hypot(bx, by)
+        if d0 > 2 or not _shp: return d0
+        pa, pb = _scaled(a, lat0), _scaled(b, lat0)
+        return min((x.distance(y) for x in pa for y in pb), default=d0)
+    def _pin_km(a, la_, lo_):
+        if inside(la_, lo_, a.get('_g')): return 0
+        b = a.get('_bb')
+        if not b: return 1e9
+        k = math.cos(math.radians(la_))
+        d0 = math.hypot(max(0, b[0] - lo_, lo_ - b[2]) * 111.32 * k, max(0, b[1] - la_, la_ - b[3]) * 110.57)
+        if d0 > .1 or not _shp: return d0
+        pt = _GPt(lo_ * 111.32 * k, la_ * 110.57)
+        return min((x.exterior.distance(pt) if hasattr(x, 'exterior') else x.distance(pt) for x in _scaled(a, la_)), default=d0)
+    held_g, pin_wrong = [], []
+    for ref, p in parks.items():
+        m = p.get('m') or []
+        r = P.get(ref) or []
+        la_, lo_ = (r[5], r[6]) if len(r) > 6 else (None, None)
+        if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+        weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK]
+        if weak and la_ is not None:
+            ok = [x for x in m if x not in weak]
+            left = list(weak)
+            for x in list(left):   # the pin proves it
+                a = gs_.get(str(x[0]))
+                if a is not None and _pin_km(a, la_, lo_) <= .1: ok.append(x); left.remove(x)
+            grew = True
+            while left and grew:   # the chain: touches / within 2 km of a piece that passed
+                grew = False
+                for x in list(left):
+                    a = gs_.get(str(x[0]))
+                    if a is None: continue
+                    if any(gs_.get(str(y[0])) is not None and _gap_km(a, gs_[str(y[0])], la_) <= 2 for y in ok):
+                        ok.append(x); left.remove(x); grew = True
+            if left:
+                p['m'] = sorted(ok, key=lambda x: -x[2])
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece'] for x in left]
+                held_g.append(f'{ref} ({len(left)})')
+        m = p.get('m') or []
+        if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
+            pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
+        p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK for x in m) else 'official')
+    if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
+    if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
     # SUMS the records doubles the land): one acreage per park = the area of the UNION of its records ('ac'), the number every
     # reader should use. Needs shapely (installed by the workflow); without it nothing is written.
