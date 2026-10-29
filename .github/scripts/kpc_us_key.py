@@ -600,16 +600,23 @@ def extra_state(st, have, only=None):
         except Exception as e:  # noqa: BLE001
             notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         off, n = 0, 0
+        order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
+        seen_ids = set()
         while True:
             q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2')) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
+                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2')) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
+                 **({'orderByFields': oidf} if order else {})}
             try:
                 j, pg = fetch_geo(url, q)
             except Exception as e:  # noqa: BLE001
+                if order and off == 0:   # a server that cannot sort: read it the old way
+                    order = False; continue
                 notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
             fs = j.get('features', [])
             for f in fs:
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
+                if a.get(oidf.lower()) in seen_ids: continue
+                seen_ids.add(a.get(oidf.lower()))
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
                 # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
