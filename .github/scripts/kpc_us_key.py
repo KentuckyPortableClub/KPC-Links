@@ -1047,6 +1047,36 @@ def run(st):
     # spread-out parks (Florida Keys WA 20 of 235 pieces, Tanana Valley SF 63 of 92, US-0150 242 of 249) because a state layer
     # can be partial. Brandon: 'if it is a tract that belongs to the park NEVER delete it'. Far pieces are now only HELD + checked
     # in the 2-fer line (kpc_fers_far_hold.py / kpc_fers_far_check.py), never cut from an outline by distance.
+    # Oct 29 (HQ 10:40 AM, Brandon 10:39 AM GO: 'wetland districts = owned tracts only'): a Wetland Management District (and any
+    # scattered-tract FWS park the same way) = ALL the tracts the Fish and Wildlife Service OWNS in fee in that district, from its
+    # own realty layer (INTTYPE1 = 'F'), one multi-part outline; EASEMENT tracts (private farmland) are never part of it
+    wmd = [ref for ref, p in parks.items() if re.search(r'wetland management district', p.get('n') or '', re.I) and not p.get('m')]
+    nwmd = 0
+    for ref in wmd:
+        core = re.sub(r'\s*(wpa\s+)?wetland management district.*$', '', parks[ref]['n'], flags=re.I).strip().upper().replace("'", "''")
+        if not core: continue
+        q = {'where': f"UPPER(ORGNAME) LIKE '%{core}%' AND (UPPER(ORGNAME) LIKE '%WETLAND%' OR UPPER(ORGNAME) LIKE '%WMD%') AND INTTYPE1 = 'F'",
+             'outFields': 'OBJECTID,ORGNAME,INTTYPE1,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
+        fs, off_, bad_ = [], 0, False
+        while True:
+            try: j, _pg = fetch_geo(FWS, dict(q, resultOffset=off_))
+            except Exception as e: notice(f'US key {st}', f'{ref} wetland district tracts not read ({str(e)[:60]})'); bad_ = True; break  # noqa: BLE001
+            got_ = (j or {}).get('features') or []
+            fs += [f for f in got_ if (f.get('geometry') or {}).get('rings')]
+            if not got_ or (not (j or {}).get('exceededTransferLimit') and len(got_) < _pg): break
+            off_ += len(got_); time.sleep(.5)
+        if bad_: continue
+        if not fs: continue
+        m = []
+        for f in fs:
+            a = f.get('attributes') or {}; g = f.get('geometry') or {}
+            rec = {'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': (a.get('ORGNAME') or '').title(), 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED',
+                   'Mang_Name': 'FWS', 'Loc_Mang': 'U.S. Fish & Wildlife Service (own realty map, fee tracts)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0,
+                   'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': {'nwr'}}
+            recs.append(rec)
+            m.append([rec['OBJECTID'], rec['Unit_Nm'], round(rec['GIS_Acres'] or 0), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
+        parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
+    if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts')
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
     # SUMS the records doubles the land): one acreage per park = the area of the UNION of its records ('ac'), the number every
     # reader should use. Needs shapely (installed by the workflow); without it nothing is written.
