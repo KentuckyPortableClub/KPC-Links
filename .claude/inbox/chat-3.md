@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 3:11 PM) OVERLAP FINDER (Brandon 3:09 PM 'They in club room as beta no harm'):** keep showing the current old-key BETA areas for members. When the 2-fer rerun on the NEW key passes chat 8 + chat 11 per area, swap those areas in at the mass dump (no change before that: freeze).
 
 ## NEEDS BRANDON
 

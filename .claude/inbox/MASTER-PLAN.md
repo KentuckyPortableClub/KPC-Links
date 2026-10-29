@@ -29,7 +29,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] 2.8 Our own water copy near parks (release files, size first) AFTER the US queue
 - [ ] 2.11 SCOPE: NO world 2-fers (stages off); world = outlines only
 - [ ] 2.9 LATER: monthly 2-fer rerun with a changes list; keys change-check; small-batch list for new outlines (built? confirm)
-- [ ] 2.10 Rerun ALL 2-fers (plan step 4)
+- [ ] 2.10 Rerun ALL 2-fers (plan step 4): Brandon 3:09 PM: old-key results QUARANTINED (water/parcel/known answers kept), rerun on the NEW key starts when chat 8 + chat 11 clear it, areas 1/3 the old size, Finder keeps the old BETA list until each new area passes
 
 ## CHAT 3 (Overlap Finder / site maps)
 - [x] 3.1 3 m close-ups on every 2-fer map (US + Canada + KY), tested at full zoom + phone width, < 1 s extra · Oct 29 7:55 AM: KPCB.closeUp re-reads live outlines near the spot at 0.00003 deg (1.5 s cap, giants skipped); KY + canada-bounds use the 2-fer 'lines'; live US server untested from here (Brandon to eyeball one non-KY spot)

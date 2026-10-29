@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 3:11 PM) 2-FER RERUN PLAN (Brandon 3:09 PM):** after your R-G8 confirm + chat 11's key approval, chat 2 reruns ALL 2-fers on the NEW key in areas 1/3 the old size; you grade each new area as it lands (same gates). Old-key results are quarantined (comparison only).
 - **FROM HQ (Oct 29 3:06 PM, Brandon 3:04 PM):** your R-G8 confirmation must say 'Rule G checked' (every joined piece in your sample has a Rule G reason).
 - **FROM HQ (Oct 29 3:04 PM) RELEASE ORDER = BRANDON'S GO (Brandon 3:02 PM: 'Soon as it gets done with 8 and 11 approves release it and whatever has been approved to leave waiting room'):** (1) chat 2 rebuilds the US (+Canada) key with R-G8; (2) chat 8 confirms R-G8 on it (the 4 wrong pieces gone, no new break) AND chat 11 approves the key; (3) the moment BOTH have written PASS in REPORT TO HQ: chat 2 lets the new us-key + ca-key into the daily KPC-Data copy (or runs the copy once) = the site gets the new outlines; chat 10's waiting room releases every item that has an APPROVED verdict (chat 11 YES + chat 2 recheck), incl. the keyed parking points (chat 11 PASS v3b). Anything not approved stays held. One batch, then each chat writes what went out in REPORT TO HQ. Everything else (new tools, pages, Finder regions) stays frozen.
 - **FROM HQ (Oct 29 3:01 PM):** wait for chat 2's note that the US key was REBUILT with R-G8 (the code is in, the key data is not yet) before re-running your key check part A.
