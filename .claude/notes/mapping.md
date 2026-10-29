@@ -733,3 +733,4 @@ Why: today a wrong piece is caught five steps late (key → 2-fer line → hold 
 - Bot: kpc_wwff_locate.py (KPC-Data temp workflow kpc-wwff-locate.yml, deleted after) -> KPC-Data data/wwff-locate/found.json + KPC_WWFF_Locate.md.
 
 - Oct 29 2:08 PM (Brandon): POTA pins STAY where POTA puts them: never moved, removed or hidden. 'POTA pin may be wrong' is only a note/list; a multi-state park's one pin is not flagged in the other states.
+- Oct 29 2:11 PM (Brandon, G-ID1 airstrips): follow Rule G first: R-G7 steps 2-4 as written (official map line → owned land → pin); the surrounding federal land is never the airstrip's outline.
