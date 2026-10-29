@@ -1,0 +1,753 @@
+{
+ "US-AK|Fairbanks North Star Borough|02090": [
+  "US-10464"
+ ],
+ "US-AZ|La Paz County|04012": [
+  "US-3390"
+ ],
+ "US-CT|Lower Connecticut River Valley Planning Region|09130": [
+  "US-6875"
+ ],
+ "US-DE|Sussex County|10005": [
+  "US-9885"
+ ],
+ "US-ID|Owyhee County|16073": [
+  "US-12226"
+ ],
+ "US-IL|Pope County|17151": [
+  "US-12640"
+ ],
+ "US-IL|Jersey County|17083": [
+  "US-4118"
+ ],
+ "US-IN|Putnam County|18133": [
+  "US-5685"
+ ],
+ "US-MA|Essex County|25009": [
+  "US-2436"
+ ],
+ "US-MA|Norfolk County|25021": [
+  "US-8385"
+ ],
+ "US-MA|Suffolk County|25025": [
+  "US-8387"
+ ],
+ "US-MD|Garrett County|24023": [
+  "US-13564"
+ ],
+ "US-MO|Shannon County|29203": [
+  "US-5715"
+ ],
+ "US-NH|Coos County|33007": [
+  "US-2642"
+ ],
+ "US-NH|Rockingham County|33015": [
+  "US-8024"
+ ],
+ "US-OR|Benton County|41003": [
+  "US-12986"
+ ],
+ "US-OR|Lane County|41039": [
+  "US-13096",
+  "US-13097"
+ ],
+ "US-SC|Union County|45087": [
+  "US-9229"
+ ],
+ "US-TN|Grundy County|47061": [
+  "US-3941"
+ ],
+ "US-TN|Franklin County|47051": [
+  "US-6247"
+ ],
+ "US-VT|Washington County|50023": [
+  "US-3129"
+ ],
+ "US-WA|Kitsap County|53035": [
+  "US-13516"
+ ],
+ "US-WI|Grant County|55043": [
+  "US-4242"
+ ],
+ "US-AL|Butler County|01013": [
+  "US-12311",
+  "US-9918"
+ ],
+ "US-AL|Chilton County|01021": [
+  "US-12517"
+ ],
+ "US-AL|Morgan County|01103": [
+  "US-12962"
+ ],
+ "US-AL|Dallas County|01047": [
+  "US-13473"
+ ],
+ "US-AL|Bibb County|01007": [
+  "US-13533"
+ ],
+ "US-AL|Washington County|01129": [
+  "US-13558"
+ ],
+ "US-AL|Limestone County|01083": [
+  "US-6457"
+ ],
+ "US-AL|Sumter County|01119": [
+  "US-6459"
+ ],
+ "US-AR|Clark County|05019": [
+  "US-11214"
+ ],
+ "US-AR|Arkansas County|05001": [
+  "US-11355"
+ ],
+ "US-AR|Newton County|05101": [
+  "US-11356"
+ ],
+ "US-AR|Randolph County|05121": [
+  "US-11394"
+ ],
+ "US-AR|Ouachita County|05103": [
+  "US-11874"
+ ],
+ "US-AR|Sebastian County|05131": [
+  "US-11960"
+ ],
+ "US-AR|Cleburne County|05023": [
+  "US-12093"
+ ],
+ "US-AR|Lonoke County|05085": [
+  "US-12753"
+ ],
+ "US-AR|Garland County|05051": [
+  "US-12754"
+ ],
+ "US-AR|Benton County|05007": [
+  "US-12762"
+ ],
+ "US-AR|Fulton County|05049": [
+  "US-12764"
+ ],
+ "US-AR|Nevada County|05099": [
+  "US-7437"
+ ],
+ "US-AR|Perry County|05105": [
+  "US-7444"
+ ],
+ "US-AR|Conway County|05029": [
+  "US-7522"
+ ],
+ "US-CA|Tehama County|06103": [
+  "US-12616"
+ ],
+ "US-CA|San Mateo County|06081": [
+  "US-7375"
+ ],
+ "US-DE|Kent County|10001": [
+  "US-4367"
+ ],
+ "US-FL|Okeechobee County|12093": [
+  "US-12125"
+ ],
+ "US-GA|Houston County|13153": [
+  "US-12772"
+ ],
+ "US-GA|Union County|13291": [
+  "US-7459"
+ ],
+ "US-GA|Fannin County|13111": [
+  "US-7460"
+ ],
+ "US-GA|Monroe County|13207": [
+  "US-7858"
+ ],
+ "US-ID|Bonneville County|16019": [
+  "US-12230"
+ ],
+ "US-ID|Lemhi County|16059": [
+  "US-13485"
+ ],
+ "US-ID|Teton County|16081": [
+  "US-4584"
+ ],
+ "US-ID|Blaine County|16013": [
+  "US-7813",
+  "US-7830"
+ ],
+ "US-ID|Valley County|16085": [
+  "US-7818"
+ ],
+ "US-ID|Adams County|16003": [
+  "US-7825"
+ ],
+ "US-ID|Boundary County|16021": [
+  "US-7827"
+ ],
+ "US-ID|Idaho County|16049": [
+  "US-7829"
+ ],
+ "US-ID|Elmore County|16039": [
+  "US-7831"
+ ],
+ "US-ID|Custer County|16037": [
+  "US-7832"
+ ],
+ "US-IN|Spencer County|18147": [
+  "US-4667"
+ ],
+ "US-IN|Posey County|18129": [
+  "US-6972"
+ ],
+ "US-IN|Jefferson County|18077": [
+  "US-6973"
+ ],
+ "US-IN|Wayne County|18177": [
+  "US-6974"
+ ],
+ "US-KS|Miami County|20121": [
+  "US-5718"
+ ],
+ "US-KS|Doniphan County|20043": [
+  "US-7386",
+  "US-9189"
+ ],
+ "US-KS|Linn County|20107": [
+  "US-7866",
+  "US-9190"
+ ],
+ "US-KS|Douglas County|20045": [
+  "US-9177"
+ ],
+ "US-KS|Wyandotte County|20209": [
+  "US-9179"
+ ],
+ "US-KS|Washington County|20201": [
+  "US-9180"
+ ],
+ "US-KS|Morris County|20127": [
+  "US-9181"
+ ],
+ "US-KS|Republic County|20157": [
+  "US-9182"
+ ],
+ "US-KS|Lyon County|20111": [
+  "US-9183"
+ ],
+ "US-KS|Sheridan County|20179": [
+  "US-9184"
+ ],
+ "US-KS|Riley County|20161": [
+  "US-9186"
+ ],
+ "US-KS|Barton County|20009": [
+  "US-9191"
+ ],
+ "US-LA|Rapides Parish|22079": [
+  "US-10354"
+ ],
+ "US-LA|West Feliciana Parish|22125": [
+  "US-10447"
+ ],
+ "US-LA|St. Bernard Parish|22087": [
+  "US-2374"
+ ],
+ "US-MA|Franklin County|25011": [
+  "US-8388"
+ ],
+ "US-MD|Anne Arundel County|24003": [
+  "US-6388"
+ ],
+ "US-MD|Calvert County|24009": [
+  "US-6389"
+ ],
+ "US-MI|Crawford County|26039": [
+  "US-4774"
+ ],
+ "US-MI|Menominee County|26109": [
+  "US-4776",
+  "US-6808"
+ ],
+ "US-MI|Emmet County|26047": [
+  "US-4778"
+ ],
+ "US-MI|Keweenaw County|26083": [
+  "US-6809",
+  "US-6814"
+ ],
+ "US-MI|Presque Isle County|26141": [
+  "US-6813"
+ ],
+ "US-MI|Sanilac County|26151": [
+  "US-6815"
+ ],
+ "US-MI|Luce County|26095": [
+  "US-6817"
+ ],
+ "US-MI|Cheboygan County|26031": [
+  "US-6821"
+ ],
+ "US-MI|Chippewa County|26033": [
+  "US-6822"
+ ],
+ "US-MN|Lake County|27075": [
+  "US-13547"
+ ],
+ "US-MO|Clay County|29047": [
+  "US-10575",
+  "US-10576"
+ ],
+ "US-MS|Noxubee County|28103": [
+  "US-11881"
+ ],
+ "US-MS|Adams County|28001": [
+  "US-11882"
+ ],
+ "US-MS|Jasper County|28061": [
+  "US-12193",
+  "US-7115"
+ ],
+ "US-MS|Lee County|28081": [
+  "US-12194",
+  "US-12195"
+ ],
+ "US-MS|Tippah County|28139": [
+  "US-12196"
+ ],
+ "US-MS|Monroe County|28095": [
+  "US-12197",
+  "US-7133"
+ ],
+ "US-MS|Neshoba County|28099": [
+  "US-12198"
+ ],
+ "US-MS|Lauderdale County|28075": [
+  "US-12199",
+  "US-8516"
+ ],
+ "US-MS|Simpson County|28127": [
+  "US-12200"
+ ],
+ "US-MS|Smith County|28129": [
+  "US-12201"
+ ],
+ "US-MS|Jones County|28067": [
+  "US-12202",
+  "US-8514"
+ ],
+ "US-MS|Lawrence County|28077": [
+  "US-12203"
+ ],
+ "US-MS|Covington County|28031": [
+  "US-12205",
+  "US-8515"
+ ],
+ "US-MS|Jefferson Davis County|28065": [
+  "US-12206"
+ ],
+ "US-MS|Walthall County|28147": [
+  "US-12207"
+ ],
+ "US-MS|Bolivar County|28011": [
+  "US-7072"
+ ],
+ "US-MS|Lafayette County|28071": [
+  "US-7098",
+  "US-7128"
+ ],
+ "US-MS|Franklin County|28037": [
+  "US-7120"
+ ],
+ "US-MS|Tate County|28137": [
+  "US-7124"
+ ],
+ "US-MS|Yalobusha County|28161": [
+  "US-7125"
+ ],
+ "US-MS|Grenada County|28043": [
+  "US-7126"
+ ],
+ "US-MS|Lowndes County|28087": [
+  "US-7129"
+ ],
+ "US-MS|Tishomingo County|28141": [
+  "US-7131"
+ ],
+ "US-MS|Chickasaw County|28017": [
+  "US-7629"
+ ],
+ "US-MS|Clarke County|28023": [
+  "US-8513"
+ ],
+ "US-MS|Stone County|28131": [
+  "US-8517"
+ ],
+ "US-MS|Wayne County|28153": [
+  "US-8518"
+ ],
+ "US-MS|Newton County|28101": [
+  "US-8519"
+ ],
+ "US-MS|Harrison County|28047": [
+  "US-9849"
+ ],
+ "US-MT|Fergus County|30027": [
+  "US-11216"
+ ],
+ "US-NC|Davidson County|37057": [
+  "US-10259"
+ ],
+ "US-NC|Clay County|37043": [
+  "US-10398"
+ ],
+ "US-NC|Orange County|37135": [
+  "US-3851"
+ ],
+ "US-NC|Lenoir County|37107": [
+  "US-6837"
+ ],
+ "US-NC|Rowan County|37159": [
+  "US-6847"
+ ],
+ "US-NC|Wake County|37183": [
+  "US-6852"
+ ],
+ "US-NC|Vance County|37181": [
+  "US-6963"
+ ],
+ "US-ND|Barnes County|38003": [
+  "US-12782",
+  "US-12783",
+  "US-8558"
+ ],
+ "US-ND|Stutsman County|38093": [
+  "US-12784"
+ ],
+ "US-ND|Divide County|38023": [
+  "US-5639"
+ ],
+ "US-ND|McHenry County|38049": [
+  "US-5743",
+  "US-8534"
+ ],
+ "US-ND|Ransom County|38073": [
+  "US-5746"
+ ],
+ "US-ND|Richland County|38077": [
+  "US-5748"
+ ],
+ "US-ND|Rolette County|38079": [
+  "US-7143"
+ ],
+ "US-ND|Morton County|38059": [
+  "US-8524",
+  "US-8540",
+  "US-8561"
+ ],
+ "US-ND|Griggs County|38039": [
+  "US-8526",
+  "US-8546",
+  "US-8547",
+  "US-8552",
+  "US-8555"
+ ],
+ "US-ND|Sargent County|38081": [
+  "US-8527"
+ ],
+ "US-ND|Burleigh County|38015": [
+  "US-8528",
+  "US-8535",
+  "US-8549"
+ ],
+ "US-ND|Grant County|38037": [
+  "US-8531"
+ ],
+ "US-ND|Billings County|38007": [
+  "US-8532"
+ ],
+ "US-ND|Williams County|38105": [
+  "US-8536",
+  "US-8550"
+ ],
+ "US-ND|Mercer County|38057": [
+  "US-8537"
+ ],
+ "US-ND|Bowman County|38011": [
+  "US-8538"
+ ],
+ "US-ND|McLean County|38055": [
+  "US-8539"
+ ],
+ "US-ND|Pembina County|38067": [
+  "US-8542",
+  "US-8553",
+  "US-8554"
+ ],
+ "US-ND|Dickey County|38021": [
+  "US-8543",
+  "US-8560"
+ ],
+ "US-ND|Dunn County|38025": [
+  "US-8545"
+ ],
+ "US-ND|Cass County|38017": [
+  "US-8548"
+ ],
+ "US-ND|Emmons County|38029": [
+  "US-8559"
+ ],
+ "US-NE|Antelope County|31003": [
+  "US-3374"
+ ],
+ "US-NE|Webster County|31181": [
+  "US-3492"
+ ],
+ "US-NE|Douglas County|31055": [
+  "US-4010",
+  "US-4012",
+  "US-4013"
+ ],
+ "US-NE|Jefferson County|31095": [
+  "US-4025"
+ ],
+ "US-NE|Fillmore County|31059": [
+  "US-4027"
+ ],
+ "US-NH|Merrimack County|33013": [
+  "US-4931"
+ ],
+ "US-NH|Essex County|50009": [
+  "US-4936"
+ ],
+ "US-NH|Windham County|50025": [
+  "US-4980"
+ ],
+ "US-NM|Rio Arriba County|35039": [
+  "US-11797"
+ ],
+ "US-NM|De Baca County|35011": [
+  "US-11821"
+ ],
+ "US-NV|White Pine County|32033": [
+  "US-13242",
+  "US-13249"
+ ],
+ "US-NV|Carson City|32510": [
+  "US-13274"
+ ],
+ "US-NV|Elko County|32007": [
+  "US-13276",
+  "US-13304",
+  "US-13305",
+  "US-13477",
+  "US-13479"
+ ],
+ "US-NV|Clark County|32003": [
+  "US-13278",
+  "US-13301",
+  "US-13453"
+ ],
+ "US-NV|Lander County|32015": [
+  "US-13280"
+ ],
+ "US-NV|Douglas County|32005": [
+  "US-13283",
+  "US-13405"
+ ],
+ "US-NV|Nye County|32023": [
+  "US-13285",
+  "US-13448"
+ ],
+ "US-NV|Humboldt County|32013": [
+  "US-13289",
+  "US-13325",
+  "US-13414"
+ ],
+ "US-NV|Churchill County|32001": [
+  "US-13290",
+  "US-13450",
+  "US-13470"
+ ],
+ "US-NV|Washoe County|32031": [
+  "US-13291",
+  "US-13303",
+  "US-13306",
+  "US-13322",
+  "US-13368",
+  "US-13454",
+  "US-13319"
+ ],
+ "US-NV|Storey County|32029": [
+  "US-13320",
+  "US-13323",
+  "US-13469"
+ ],
+ "US-NV|Eureka County|32011": [
+  "US-13321"
+ ],
+ "US-NV|Lincoln County|32017": [
+  "US-13363",
+  "US-13451",
+  "US-13464",
+  "US-13467",
+  "US-13478"
+ ],
+ "US-NV|Lyon County|32019": [
+  "US-13367",
+  "US-13407",
+  "US-13413"
+ ],
+ "US-NV|Pershing County|32027": [
+  "US-13411"
+ ],
+ "US-NY|Hamilton County|36041": [
+  "US-2001"
+ ],
+ "US-NY|Ulster County|36111": [
+  "US-8070"
+ ],
+ "US-OK|Garfield County|40047": [
+  "US-10951"
+ ],
+ "US-OK|Alfalfa County|40003": [
+  "US-11245",
+  "US-8647"
+ ],
+ "US-OK|Logan County|40083": [
+  "US-11837",
+  "US-8645"
+ ],
+ "US-OK|Noble County|40103": [
+  "US-8641"
+ ],
+ "US-OK|Oklahoma County|40109": [
+  "US-8643"
+ ],
+ "US-OR|Linn County|41043": [
+  "US-10610"
+ ],
+ "US-OR|Jackson County|41029": [
+  "US-10613"
+ ],
+ "US-OR|Lincoln County|41041": [
+  "US-12977"
+ ],
+ "US-OR|Tillamook County|41057": [
+  "US-12980"
+ ],
+ "US-OR|Douglas County|41019": [
+  "US-12990"
+ ],
+ "US-OR|Curry County|41015": [
+  "US-12993"
+ ],
+ "US-OR|Clatsop County|41007": [
+  "US-12994"
+ ],
+ "US-OR|Malheur County|41045": [
+  "US-13070"
+ ],
+ "US-SC|Lexington County|45063": [
+  "US-13016"
+ ],
+ "US-SC|Williamsburg County|45089": [
+  "US-13198"
+ ],
+ "US-TN|Cannon County|47015": [
+  "US-11869"
+ ],
+ "US-TN|Carroll County|47017": [
+  "US-13514"
+ ],
+ "US-TN|Wilson County|47189": [
+  "US-6273"
+ ],
+ "US-TX|Midland County|48329": [
+  "US-10272"
+ ],
+ "US-TX|Armstrong County|48011": [
+  "US-10273"
+ ],
+ "US-TX|Goliad County|48175": [
+  "US-10275"
+ ],
+ "US-TX|Brazoria County|48039": [
+  "US-12109"
+ ],
+ "US-TX|Travis County|48453": [
+  "US-6560"
+ ],
+ "US-TX|San Augustine County|48405": [
+  "US-6582"
+ ],
+ "US-TX|Fannin County|48147": [
+  "US-6601"
+ ],
+ "US-TX|Austin County|48015": [
+  "US-6602"
+ ],
+ "US-UT|Iron County|49021": [
+  "US-12069"
+ ],
+ "US-UT|Cache County|49005": [
+  "US-12998"
+ ],
+ "US-UT|Weber County|49057": [
+  "US-13590",
+  "US-13591",
+  "US-5844"
+ ],
+ "US-UT|Garfield County|49017": [
+  "US-13596"
+ ],
+ "US-VA|Staunton city|51790": [
+  "US-9931"
+ ],
+ "US-VT|Berkshire County|25003": [
+  "US-10300"
+ ],
+ "US-WA|King County|53033": [
+  "US-10711"
+ ],
+ "US-WA|Stevens County|53065": [
+  "US-12567",
+  "US-5570"
+ ],
+ "US-WA|Cowlitz County|53015": [
+  "US-13391"
+ ],
+ "US-WV|Randolph County|54083": [
+  "US-12052"
+ ],
+ "US-WV|Pocahontas County|54075": [
+  "US-12053"
+ ],
+ "US-WV|Morgan County|54065": [
+  "US-12054"
+ ],
+ "US-WV|Grant County|54023": [
+  "US-12055"
+ ],
+ "US-WV|Kanawha County|54039": [
+  "US-9739"
+ ],
+ "US-WV|Jackson County|54035": [
+  "US-9915"
+ ],
+ "US-WY|Sheridan County|56033": [
+  "US-10817"
+ ],
+ "US-WY|Natrona County|56025": [
+  "US-10821"
+ ],
+ "US-WY|Fremont County|56013": [
+  "US-10823"
+ ],
+ "US-WY|Big Horn County|56003": [
+  "US-10825"
+ ],
+ "US-WY|Park County|56029": [
+  "US-12720"
+ ],
+ "US-CO|Prowers County|08099": [
+  "US-9652"
+ ]
+}
