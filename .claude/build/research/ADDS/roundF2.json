@@ -1,0 +1,367 @@
+{
+ "about": "Chat 9 round F2 (Oct 29 ~11:20 AM): hard kinds step 3 (county / state parcel layers at the pin: Nevada statewide county parcels for the NV markers, ND statewide parcels for the ND historic sites; owner fields), BLM transportation + back country byway LINE layers (airstrips, scenic roads), NPS boundary retry for the OK sites, + RIVER TEST v4 (chat 8 11:20 AM grade; round F ran before it was added): NPS tract layer's distinct unit codes / names, FWS Ohio River Islands + Cache River with 20 river points each. Results: roundF2-tested.json.",
+ "samples": {
+  "NV markers": [
+   [
+    "US-13274",
+    "Empire & Carson River Mills State Historical Monument",
+    "State Historical Monument",
+    39.1873,
+    -119.706,
+    "NV"
+   ],
+   [
+    "US-13275",
+    "Pioneer Memorial Park State Historical Monument",
+    "State Historical Monument",
+    40.9787,
+    -117.742,
+    "NV"
+   ],
+   [
+    "US-13276",
+    "West End of Hastings Cutoff State Historical Monument",
+    "State Historical Monument",
+    40.7661,
+    -115.92,
+    "NV"
+   ]
+  ],
+  "BLM airstrips": [
+   [
+    "US-13494",
+    "Lida BLM Backcountry Airstrip",
+    "BLM Backcountry Airstrip",
+    37.4568,
+    -117.508,
+    "NV"
+   ],
+   [
+    "US-13496",
+    "Ione, NV BLM Backcountry Airstrip",
+    "BLM Backcountry Airstrip",
+    38.9466,
+    -117.601,
+    "NV"
+   ],
+   [
+    "US-13497",
+    "Middlegate Station BLM Backcountry Airstrip",
+    "BLM Backcountry Airstrip",
+    39.2873,
+    -118.035,
+    "NV"
+   ]
+  ],
+  "scenic road areas": [
+   [
+    "US-13207",
+    "Blue Mass Scenic Area BLM Recreation Management Area",
+    "BLM Recreation Management Area",
+    39.7349,
+    -114.22,
+    "NV"
+   ],
+   [
+    "US-13259",
+    "Great Basin Highway Scenic Byway Scenic Site",
+    "Scenic Site",
+    39.0275,
+    -114.574,
+    "NV"
+   ],
+   [
+    "US-13260",
+    "Angel Lake Road Area of Outstanding Natural Beauty",
+    "Area of Outstanding Natural Beauty",
+    41.1038,
+    -114.99,
+    "NV"
+   ]
+  ],
+  "fish hatcheries": [
+   [
+    "US-10815",
+    "Jackson National Fish Hatchery",
+    "National Fish Hatchery",
+    43.5398,
+    -110.735,
+    "WY"
+   ],
+   [
+    "US-12976",
+    "Fall River State Fish Hatchery",
+    "State Fish Hatchery",
+    43.7983,
+    -121.575,
+    "OR"
+   ],
+   [
+    "US-12994",
+    "Klaskanine State Fish Hatchery",
+    "State Fish Hatchery",
+    46.0899,
+    -123.718,
+    "OR"
+   ]
+  ],
+  "state historic sites ND": [
+   [
+    "US-12782",
+    "Camp Arnold State Historic Site",
+    "State Historic Site",
+    46.9933,
+    -97.7911,
+    "ND"
+   ],
+   [
+    "US-12783",
+    "Camp Corning State Historic Site",
+    "State Historic Site",
+    47.212,
+    -98.0677,
+    "ND"
+   ],
+   [
+    "US-12784",
+    "Camp Grant State Historic Site",
+    "State Historic Site",
+    47.1829,
+    -99.3719,
+    "ND"
+   ]
+  ],
+  "state historic sites OK": [
+   [
+    "US-0822",
+    "Fort Smith National Historic Site",
+    "National Historic Site",
+    35.3865,
+    -94.4305,
+    "OK"
+   ],
+   [
+    "US-0872",
+    "Washita Battlefield National Historic Site",
+    "National Historic Site",
+    35.6175,
+    -99.7001,
+    "OK"
+   ],
+   [
+    "US-10951",
+    "Cherokee Strip Regional Heritage Center Historic Site",
+    "Historic Site",
+    36.3913,
+    -97.8728,
+    "OK"
+   ]
+  ],
+  "BLM historic/interpretive": [
+   [
+    "US-10965",
+    "Great Western Trail BLM Historic Trail",
+    "BLM Historic Trail",
+    38.2514,
+    -111.614,
+    "UT"
+   ],
+   [
+    "US-11110",
+    "Sego Canyon Rock Art BLM Interpretive Site",
+    "BLM Interpretive Site",
+    39.0181,
+    -109.71,
+    "UT"
+   ],
+   [
+    "US-11118",
+    "Antelope Springs CCC Camp BLM Historic Preservation Site",
+    "BLM Historic Preservation Site",
+    39.3833,
+    -113.3,
+    "UT"
+   ]
+  ],
+  "state fishing lakes": [
+   [
+    "US-12193",
+    "Lake Claude Bennett State Fishing Lake",
+    "State Fishing Lake",
+    32.1009,
+    -89.0345,
+    "MS"
+   ],
+   [
+    "US-12194",
+    "Lake Lamar Bruce State Fishing Lake",
+    "State Fishing Lake",
+    34.391,
+    -88.6695,
+    "MS"
+   ],
+   [
+    "US-12195",
+    "Elvis Presley State Fishing Lake",
+    "State Fishing Lake",
+    34.303,
+    -88.6497,
+    "MS"
+   ]
+  ]
+ },
+ "layers": [
+  {
+   "st": "US",
+   "kind": "tracts",
+   "ag": "NPS",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "v4: the tract layer's fields"
+  },
+  {
+   "st": "US",
+   "kind": "road",
+   "ag": "BLM",
+   "url": "https://gis.blm.gov/arcgis/rest/services/transportation/BLM_Natl_GTLF_Public_Display/MapServer",
+   "note": "F2 airstrips (aviation lines?)"
+  },
+  {
+   "st": "US",
+   "kind": "road",
+   "ag": "BLM",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BackCountryBywayRoutes/FeatureServer",
+   "note": "F2 scenic roads: BLM back country byways"
+  },
+  {
+   "st": "NV",
+   "kind": "parcel",
+   "ag": "NDWR",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/BaseLayers/County_Parcels_in_Nevada/MapServer",
+   "note": "F2 step 3: Nevada county parcels"
+  },
+  {
+   "st": "ND",
+   "kind": "parcel",
+   "ag": "ND GIS Hub",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer",
+   "note": "F2 step 3: ND parcels"
+  }
+ ],
+ "distinct": [
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "PARKNAME",
+    "PARK_CODE",
+    "STATENAME",
+    "STATUS",
+    "Interest"
+   ],
+   "n": 2000
+  }
+ ],
+ "pointq": [
+  {
+   "st": "NV",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/BaseLayers/County_Parcels_in_Nevada/MapServer",
+   "points": [
+    [
+     39.1873,
+     -119.706
+    ],
+    [
+     40.9787,
+     -117.742
+    ],
+    [
+     40.7661,
+     -115.92
+    ],
+    [
+     39.7349,
+     -114.22
+    ],
+    [
+     39.0275,
+     -114.574
+    ],
+    [
+     41.1038,
+     -114.99
+    ]
+   ],
+   "dist": 15,
+   "note": "F2 step 3: NV parcels at the marker / scenic-road pins (owner field)"
+  },
+  {
+   "st": "ND",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer",
+   "points": [
+    [
+     46.9933,
+     -97.7911
+    ],
+    [
+     47.212,
+     -98.0677
+    ],
+    [
+     47.1829,
+     -99.3719
+    ]
+   ],
+   "dist": 15,
+   "note": "F2 step 3: ND parcels at the historic-site pins (owner field)"
+  },
+  {
+   "st": "OK",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+   "points": [
+    [
+     35.3865,
+     -94.4305
+    ],
+    [
+     35.6175,
+     -99.7001
+    ],
+    [
+     36.3913,
+     -97.8728
+    ]
+   ],
+   "dist": 30,
+   "note": "F2: NPS boundaries retry (OK)"
+  }
+ ],
+ "rivertest": [
+  {
+   "note": "FWS realty v4: Ohio River Islands, 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "river": "Ohio River",
+   "npts": 20
+  },
+  {
+   "note": "FWS realty v4: Cache River (AR), 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "river": "Cache River",
+   "npts": 20
+  }
+ ]
+}
