@@ -15,10 +15,10 @@ jobs:
       - name: Trace
         env:
           MINUTES: '100'
-          DEBUG_REFS: 'US-0661 US-12271 US-12255 US-4555 US-3862 US-10681 US-8692'
+          DEBUG_REFS: 'US-12271 US-12255 US-4555 US-3862 US-10681 US-8692'
         run: |
           pip install --quiet --break-system-packages pyshp pyproj shapely || true
-          for st in WA NC FL DE; do STATES=$st python3 .github/scripts/kpc_us_key.py > key-$st.log 2>&1 || true; done
+          for st in WA NC DE FL; do STATES=$st python3 .github/scripts/kpc_us_key.py > key-$st.log 2>&1 || true; done
           python3 - <<'PY' || true
           import glob, re
           for f in sorted(glob.glob('key-*.log')):

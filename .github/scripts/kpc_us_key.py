@@ -502,6 +502,20 @@ SZ_US = [('mszw', 'https://maris.mississippi.edu/MARISdata/Boundaries/MS_Wildlif
 ZIPC = {}
 
 
+def _dup(have, key, bb):
+    """Oct 29 (chat 2 trace): a state record is a COPY of a PAD-US record only when the same name + kind sits on the SAME
+    ground (boxes overlap). Before, a same-name record ANYWHERE in the state hid it (WA Rock Creek / Telford Recreation Area,
+    Hanford McGee Ranch, NC Nags Head Woods never reached the matcher)."""
+    if not isinstance(have, dict): return key in have
+    return key in have and (bb is None or any(b is None or not (bb[2] < b[0] or bb[0] > b[2] or bb[3] < b[1] or bb[1] > b[3]) for b in have[key]))
+
+
+def _have(recs):
+    d = {}
+    for a in recs: d.setdefault((norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])), []).append(a.get('_bb'))
+    return d
+
+
 def zip_state(st, have):
     """Records from the zipped-shapefile layers for this state ([] when none, or when pyshp / pyproj are missing)."""
     out = []
@@ -546,7 +560,7 @@ def zip_state(st, have):
                         xs, ys = tr.transform([q[0] for q in ring], [q[1] for q in ring])
                         rs.append([[round(x, 6), round(y, 6)] for x, y in zip(xs, ys)])
                     g = {'rings': rs}; k = kinds(nm) | kk
-                    if (norm(nm), frozenset(k)) in have: continue
+                    if _dup(have, (norm(nm), frozenset(k)), bbox(g)): continue
                     ZIPGEO.setdefault(pre, {})[f'{pre}{i}'] = [nm, [[q for q in r2[::max(1, len(r2) // 400)]] + [r2[-1]] for r2 in rs if len(r2) > 3]]
                     out.append({'OBJECTID': f'{pre}{i}', 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(), 'Loc_Mang': label,
                                 'Des_Tp': '', 'GIS_Acres': _num(a.get(af) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
@@ -591,7 +605,7 @@ def extra_state(st, have, only=None):
                 if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
                 k = kinds(nm) | kk
                 if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
-                if (norm(nm), frozenset(k)) in have and not opt.get('where'): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
+                if not opt.get('where') and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
                 g = f.get('geometry') or {}
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
@@ -819,7 +833,7 @@ def run(st):
             present = {re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) for a in recs}
             missing = {x[0] for x in XS if (len(x) <= 7 or x[7] is None or st in x[7]) and x[0] not in present}
             if missing:
-                add = extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs}, only=missing)
+                add = extra_state(st, _have(recs), only=missing)
                 if add:
                     recs += add
                     notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} newer layer(s)')
@@ -827,7 +841,7 @@ def run(st):
     else:
         recs, seen = pad_state(st)
         recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
-        recs += extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs})
+        recs += extra_state(st, _have(recs))
         used_detail = DETAIL
         old = load_cache(st) if st in FAILED_READ else None
         # only when this read actually came back SHORT (a source that fails every time is already missing from the

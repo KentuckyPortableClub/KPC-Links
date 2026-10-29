@@ -6999,9 +6999,10 @@
     "Massey Mill Pond"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgdea871 (bot: pin inside)",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgdea871 (bot: pin inside) · Oct 29 2:45 PM: name join, Delaware's own record of that name (pin 0 ac piece outside; chat 2 trace)",
    "join": [
-    "sgdea871"
+    "sgdea871",
+    "Massey Mill Pond"
    ],
    "fp": {
     "sgdea871": [
@@ -7269,7 +7270,11 @@
     "LAMONT"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · Oct 29 2:45 PM: name join, the park's two named tracts on the water district's own layer (pin sits between them; chat 11 YES)",
+   "join": [
+    "LAMONT",
+    "MOUNT GILEAD"
+   ]
   },
   "US-8696": {
    "alias": [
