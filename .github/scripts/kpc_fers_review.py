@@ -50,10 +50,12 @@ def main():
             elif stt.startswith('not sure'): kind = 'not sure'
             elif stt.startswith('water only'): kind = 'water only (boat spot): is there really no land?'
             elif stt.startswith(('candidate', 'very tight')) and s.get('kind') == 'area' and s.get('river_slot'): kind = 'river slot between the two banks'
+            elif stt.startswith(('candidate', 'very tight')) and s.get('mixed_owners'): kind = 'more than one owner on the patch (all public): live, look later'
+            elif stt.startswith(('candidate', 'very tight')) and (s.get('private_part') or s.get('unknown_part')): kind = 'part of the patch private or owner unknown: live, look later'
             if not kind: continue
             sz, szt = size_of(s)
             rows.append({'area': TAG, 'state': st, 'refs': s.get('refs'), 'names': s.get('names') or {}, 'what': kind, 'kind': s.get('kind'),
-                         'size': szt, 'sort': round(sz, 1), 'reason': plain(stt)[:300], 'id': s.get('id'),
+                         'size': szt, 'sort': round(sz, 1), 'reason': (plain(stt) + ''.join(' · ' + str(s.get(k)) for k in ('mixed_owners', 'private_part', 'unknown_part') if s.get(k)))[:300], 'id': s.get('id'),
                          'sources': s.get('map_dates') or {}, 'checked': s.get('checked') or s.get('pass5') or d.get('pass5') or ''})
     e = load(DATA / f'expected-{TAG}.json') or {}
     for x in (e.get('DROPPED') or []) + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:

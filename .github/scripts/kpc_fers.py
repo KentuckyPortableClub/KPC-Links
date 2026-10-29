@@ -995,6 +995,7 @@ def ownership_step(s, parks, PIN):
     if not any(r in OWNED for r in refs) and real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
         # every park here is held by a known PUBLIC owner (one or several; a trail / designation layers on it): public ground, no lookup
         s['ground'] = sorted({owner_word(o) for o in real.values()})
+        if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
         return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
     canada = refs[0].startswith('CA-')
     seen, corps = [], []
@@ -1025,6 +1026,8 @@ def ownership_step(s, parks, PIN):
     unk = [h for h in seen if not h]
     s['ground'] = sorted({owner_word(o) for h in seen for o in h if o != 'PRIVATE'} | ({'private'} if prv else set()))
     if corps: s['corps_land'] = sorted({n for ua in corps for n, _ in ua})[:3]
+    pubo = {o for h in pub for o in h}
+    if len(pubo) > 1: s['mixed_owners'] = sorted(pubo)   # Brandon Oct 28 9:17 PM: KEEP the multiple-owner information (review list)
     if prv: s['private_part'] = f'private land at {len(prv)} of {len(seen)} points of the patch (PAD-US): that piece is cut out and counts only for its own park'
     if unk: s['unknown_part'] = f'no owner on the maps at {len(unk)} of {len(seen)} points of the patch: only that piece is not sure'
     if pub: return 'ok', 'public land' + (' (' + ' + '.join(s['ground']) + ')' if s['ground'] else '') + (f": on Corps of Engineers land ({', '.join(s['corps_land'])})" if corps else '')
@@ -2170,7 +2173,11 @@ def channel_rows(files, G, today):
                 outl = None; own = None
                 for r in x['refs']:
                     m = F.area(G[r]); outl = m if outl is None else outl & m
-                    pm = pmask(F, r, G); own = pm if own is None else own & pm
+                    # the agency's OWN land only (as before tonight: the simple test's public-land + water keep is not used here)
+                    if r in OWNED:
+                        ol = owned_land(OWNED[r], F.bounds()); pm = m & F.area(ol) if ol else m
+                    else: pm = m
+                    own = pm if own is None else own & pm
                 slot = outl & (1 - own)
                 if not slot.any(): continue
                 wg = nhd_water(F.bounds())
@@ -2258,7 +2265,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['members_line'] = 'saved outline, not read live today'   # chat 8 KY note 4
     notes = sorted({n for r in refs for n in ACC.get(r, ())} | {"check the agency's closures and seasons before you go"})   # pre-flight fix 14
     s['notes'] = notes
-    for k in ('list', 'ownership', 'ground', 'private_part', 'unknown_part', 'corps_land', 'owner_src', 'info', 'known'): s.pop(k, None)
+    for k in ('list', 'ownership', 'ground', 'private_part', 'unknown_part', 'corps_land', 'owner_src', 'info', 'known', 'mixed_owners'): s.pop(k, None)
     pk = tuple(sorted(refs))
     if pk in KNOWN_LIVE:   # Brandon Oct 28 8:35 PM: a permanent known answer (he activates it in person): the whole overlap, live
         s['known'] = KNOWN_LIVE[pk]; s['ownership'] = 'known answer: ' + KNOWN_LIVE[pk]
@@ -2631,12 +2638,9 @@ def main():
             G.update(g2)
         mark(f'geometry of {len(more)} more parks')
         n['spots given their boundary lines'] = add_lines(files, G, today)
-        # Brandon Oct 28 8:17 PM ('stop making up rules'): NO river-channel boat rows; the channel is part of the 2-fer when both
-        # official boundaries hold it. channel_rows() is kept (HQ 8:40 PM: the land / water split may become a member tool) but not run;
-        # rows it made before are taken out here
-        for d in files.values():
-            k0 = len(d.get('spots', [])); d['spots'] = [x for x in d.get('spots', []) if '@channel@' not in str(x.get('id', ''))]
-            if len(d['spots']) != k0: n['river channel boat rows taken out (ruling Oct 28 8:17 PM)'] = n.get('river channel boat rows taken out (ruling Oct 28 8:17 PM)', 0) + k0 - len(d['spots'])
+        # Brandon Oct 28 9:17 PM (overrides HQ's 8:17 PM removal): the boat / water-only rows STAY ('we run them like they are, we're
+        # making a list to review later'); they go on the review list, nothing is deleted
+        n['river channels listed as water only (boat spots)'] = channel_rows(files, G, today)
         mark(f"boundary lines for {n['spots given their boundary lines']} spots")
         tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
@@ -2753,7 +2757,11 @@ def main():
             if counts.get('stopped for time') and st not in by and st in old: continue
             sp = by.get(st, [])
             if PARKS:   # small batch: the new rows for the pairs touching PARKS + every other old row unchanged
-                sp = [x for x in sp if PARKS & set(x['refs'])] + [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or [])]
+                sp = [x for x in sp if PARKS & set(x['refs'])]
+                kinds = {(tuple(sorted(x['refs'])), x['kind']) for x in sp}
+                # Oct 28 9:15 PM (KY known answer 18/19: the Kentucky Lake shore rows vanished): an old row of a PARKS pair is carried
+                # over when the batch made no row of that pair + kind (line / river / water-route rows are not all remade by a batch)
+                sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
                 if not sp and st not in old: continue
             save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
     else:
