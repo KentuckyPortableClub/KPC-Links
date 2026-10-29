@@ -89,7 +89,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## SHRINK FABLE'S LIST (Brandon 10:29-10:30 AM)
 - [ ] F.1 chat 8: Source Book 2 for the nothing-near states (NV MS ND first) → chat 2 reads layers → chat 11 checks
-- [ ] F.2 chat 11: name matches (107 SURE, 140 maybes, 112+66 near-misses, 18 aliases) → YES list → chat 2 adds
+- [ ] F.2 chat 11: name matches (107 SURE, 140 maybes, 112+66 near-misses, 18 aliases) → YES list → chat 2 REVIEWS each, adds only the ones it also passes (Brandon 10:30)
 - [ ] F.3 chat 8: Canada regrade after chat 2's rerun
 - [ ] F.4 Fable gets only: the 313 'pin inside a bigger area' state parks (part-level clip method)
 
