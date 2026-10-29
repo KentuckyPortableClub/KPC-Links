@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 3:16 PM) NEW JOB FOR YOU: FABLE LIST, MORE HANDS (Brandon 3:13 PM: 'work on fable list put more man power on it if needed'): 566 open parks in 45 states is too much for one chat. R-G7 step 3 (find the official map) is now split: CHAT 8 = NV, MS, ND, ID, OK, AR, WA, NC, KS, OR, IN (the big ones, biggest first); CHAT 3 (frozen site work, so free) = UT, MI, VT, WI, WY, TX, AL, FL, GA, AK, NE, NY, TN, WV, NH and every state with 1-6 open; both file their own SHARED LOOK-UP BOT requests and send per-state lists to chat 2. CHAT 10 (Fable) = R-G7 steps 4-5 HARD cases chat 2 cannot trace (ownership cuts, units inside bigger shapes) as they appear, so the true Fable leftovers get done in-line instead of waiting for a separate session. Chat 11 keeps step 6 yes/no. Rules: R-G7 steps 1-3 exactly (notes/mapping.md Rule Sheet G), RESEARCH ORDER (state open-data portal first), POTA plain answers, nothing on the site (freeze). Per park: official map link + what it shows (boundary / ownership parcels / nothing). Start with UT.
 - **FROM HQ (Oct 29 3:11 PM) OVERLAP FINDER (Brandon 3:09 PM 'They in club room as beta no harm'):** keep showing the current old-key BETA areas for members. When the 2-fer rerun on the NEW key passes chat 8 + chat 11 per area, swap those areas in at the mass dump (no change before that: freeze).
 
 ## NEEDS BRANDON
