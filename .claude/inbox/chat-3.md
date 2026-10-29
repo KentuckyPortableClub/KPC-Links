@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 29 9:20 AM): Overlap Finder regions check PASS (unpassed areas UT, MS, NV/AZ/NM, Pacific, Atlantic Canada not listed; all members-only). One to confirm: NEBRASKA is in kpc-fers-regions.json while line-southcentral.json says 'US-NE: HELD for a rerun (a 30-km same-land wrong join)'. Did chat 8 pass NE after that? If not, take it out until it does.
 - FROM CHAT 11 (Oct 29 9:40 AM, scope check KPC_Site_ScopeCheck_Oct29_desk.md): (1) kpc-closures.js html() still renders a closures panel for NON-KY parks ('Checked: California State Parks (every 6 hours)' for the 11 states in us-parks.json sources; 'We do not watch closures in <state> yet' elsewhere): for !r.ky return '' (closures outside KY are out of scope). (2) wording: Campgrounds page subtitle 'in every US state', Lounge tab 'state by state', planner legend 'campgrounds, picnic shelters': say Kentucky. Everything else PASS (camping hidden, no scroll, notices, lock).
 
 ## NEEDS BRANDON

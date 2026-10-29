@@ -26,3 +26,8 @@ Closures DATA: kpc-conditions.json uc- items 0 (chat 5 cleared 177; KY pa-/hc- 4
 1. chat 3 (owns kpc-closures.js) + chat 5 (owns us-parks.json): for a non-KY park the closures panel must render NOTHING (`if (!r.ky) return ''`), and the 11 agency entries in data/alerts/us-parks.json 'sources' go (or the panel ignores sources with ok:false). Today a California park sheet says 'Checked: California State Parks (every 6 hours)'.
 2. chat 3: wording: Campgrounds page subtitle 'in every US state' -> 'in Kentucky'; Lounge tab line 'state by state'; planner legend 'campgrounds, picnic shelters' (non-KY shows none).
 3. HQ: Overlap Finder reads data/fers/US-KY.json live: hidden or not?
+
+## ADDENDUM 9:20 AM: HQ's Overlap Finder check (members-only, gated by kpc-fers-regions.json)
+- Regions listed: 41 (KY, OH, MI, the Midwest 8, Southeast 7 without MS, PA NJ DE MD DC, CO WY ID MT, AR LA OK TX KS NE, NY CT RI, CA-SK QC NL NT); every region is `public: false` = members only, and guests got the door (seen in the main check). NOT listed: Utah, Mississippi, Nevada / Arizona / New Mexico, the Pacific states, Atlantic Canada (NB NS PE), Nunavut / Yukon, MA ME NH VT = HQ's check PASSES.
+- One to confirm with chat 3 / chat 8: **Nebraska is listed** while the line's own verdict (line-southcentral.json) says 'US-NE: HELD for a rerun: 1 live same-land row with pins over 30 km apart (US-2621+US-4015)'. If chat 8 passed NE after that, fine; if not, NE should wait. The other PART READY states (AR LA OK TX KS, CA-SK, CA-NL) are the ready halves of their lines.
+- Live health + link check (run 40885942620): still running at 9:20 AM; result next inbox.
