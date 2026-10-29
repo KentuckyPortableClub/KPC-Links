@@ -160,6 +160,34 @@
    "where": "statewide",
    "link": "https://fw.ky.gov/Hunt/Pages/Waterfowl-Hunting.aspx",
    "orange": 0
+  },
+  {
+   "name": "Turkey: fall archery",
+   "seg": [
+    [
+     "2026-09-05",
+     "2027-01-18"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Turkey.aspx",
+   "orange": 0
+  },
+  {
+   "name": "Turkey: fall crossbow",
+   "seg": [
+    [
+     "2026-10-01",
+     "2026-10-18"
+    ],
+    [
+     "2026-11-14",
+     "2026-12-31"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Turkey.aspx",
+   "orange": 0
   }
  ],
  "wma": {
