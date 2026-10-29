@@ -2742,6 +2742,14 @@ def main():
         mark(f'geometry of {len(tw)} trail-pair parks')
         n['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
         mark(f"zones for {n['trail stretches given their true zone']} trail stretches")
+        # Oct 29 (chat 10 + Brandon 7:23 AM 'some live 2fers were wrong'): a live spot more than 100 km from a STATE-LEVEL park's
+        # pin = that park's outline holds a far piece / a wrong join: held as NOT SURE (kpc_fers_far_hold.py; rule B13 pending)
+        if REGION not in ('ky', 'world'):
+            try:
+                import kpc_fers_far_hold as FH
+                FP = {r: (v[1], v[2], str(v[0]), str(v[4])) for r, v in PIN.items() if v[1] is not None and v[2] is not None and (v[1] or v[2])}
+                n['live rows held: spot far from a state park pin (rule B13)'] = sum(FH.hold_spots(d.get('spots', []), FP) for d in files.values())
+            except Exception as e: LOG.append(f'far-spot hold: {str(e)[:80]}')  # noqa: BLE001
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
