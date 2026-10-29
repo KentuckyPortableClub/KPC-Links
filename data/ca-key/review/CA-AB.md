@@ -1,11 +1,10 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **392 of 459** joined (same name + same kind). **3** to check, **43** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **393 of 459** joined (same name + same kind). **2** to check, **43** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 - **CA-4772** Athabasca Pass National Historic Site (National Historic Site) → Athabasca Pass Trail (~0 ac, same name, different kind of place); Jasper National Park Of Canada (~2,688,008 ac, the POTA pin is inside it (different name))
-- **CA-6125** Porcupine Hills Public Land Use Zone Other Conservation Area (Other Conservation Area) → Porcupine Hills (~0 ac, similar name)
 - **CA-6134** Athabasca Ranch Public Land Use Zone Recreation Park (Recreation Park) → Athabasca Ranch (~0 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)

@@ -1,6 +1,6 @@
 # Canada QC: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **426 of 838** joined (same name + same kind). **14** to check, **364** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **426 of 833** joined (same name + same kind). **14** to check, **359** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -135,7 +135,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2034 Parc Lineaire Le P'tit Train du Nord Recreation Park (Recreation Park)
 - CA-2039 Ile aux Fraises Migratory Bird Sanctuary (Bird Sanctuary)
 - CA-2042 Ile Blanche Migratory Bird Sanctuary (Bird Sanctuary)
-- CA-2045 Parc Hervé-Larivière Recreation Park (Recreation Park)
 - CA-2046 Parc Parent Recreation Park (Recreation Park)
 - CA-2048 Parc Prevost Recreation Park (Recreation Park)
 - CA-2049 Parc Val-des-Monts Recreation Park (Recreation Park)
@@ -173,8 +172,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2154 Parc Melançon Recreation Park (Recreation Park)
 - CA-2155 Parc Michael-Desbiens Recreation Park (Recreation Park)
 - CA-2159 Parc nature du Lac-Jerome Recreation Park (Recreation Park)
-- CA-2160 Parc Schulz Recreation Park (Recreation Park)
-- CA-2161 Parc Saint-Georges Recreation Park (Recreation Park)
 - CA-2171 Oxford Park (Regional) Nature Reserve (Nature Reserve)
 - CA-2172 Parc Christopher Recreation Park (Recreation Park)
 - CA-2174 Parc du Mont-Comi (Regional) Nature Reserve (Nature Reserve)
@@ -194,7 +191,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2251 Lac Beattie Nature Park (Nature Park)
 - CA-2261 Thomas-Sterry-Hunt International Ecological Reserve (Ecological Reserve)
 - CA-2264 Parc Léry-MacDonald Recreation Park (Recreation Park)
-- CA-2266 Parc Pierre-Arpin Recreation Park (Recreation Park)
 - CA-2269 Parc Pierre-Dalcourt Recreation Park (Recreation Park)
 - CA-2271 Parc de la biche Recreation Park (Recreation Park)
 - CA-2274 Tyre Macfa Natrue Reserve Nature Reserve (Nature Reserve)
@@ -397,7 +393,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5916 Parc École Prévost Recreation Park (Recreation Park)
 - CA-5917 Parc J.-Georges-Dunnigan Recreation Park (Recreation Park)
 - CA-5918 Parc Jacques-Locas Recreation Park (Recreation Park)
-- CA-5919 Parc Lacroix Recreation Park (Recreation Park)
 - CA-5920 Parc Maurice-Tessier Recreation Park (Recreation Park)
 - CA-5921 Parc Sandra Recreation Park (Recreation Park)
 - CA-5922 Parc Théobald-Paquette Recreation Park (Recreation Park)
