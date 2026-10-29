@@ -512,7 +512,7 @@ def zip_state(st, have):
             from pyproj import CRS, Transformer
             if url not in ZIPC:
                 with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
-            z = ZIPC[url]; n = 0
+            z = ZIPC[url]; n = 0; bad_shp = 0
             for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
                 b = sp[:-4]
                 prj = next((q for q in z.namelist() if q.lower() == (b + '.prj').lower()), None)
@@ -523,7 +523,13 @@ def zip_state(st, have):
                 af = next((f for f in fn if f in afs or f.lower() in {x.lower() for x in afs}), None)
                 tf = next((f for f in fn if f.lower() == str(opt.get('type', '')).lower()), None)
                 if not nf: notice(f'US key {st}', f'{label}: no name field in {fn}'); continue
-                for i, (shp, rec) in enumerate(zip(rd.shapes(), rd.records())):
+                bad_shp = 0
+                def _each():   # Oct 29: one empty shape ('Polygon requires non-empty points', Mississippi WMAs) used to drop the WHOLE layer
+                    nonlocal bad_shp
+                    for i2 in range(len(rd)):
+                        try: yield i2, rd.shape(i2), rd.record(i2)
+                        except Exception: bad_shp += 1  # noqa: BLE001
+                for i, shp, rec in _each():
                     a = dict(zip(fn, list(rec))); nm = str(a.get(nf) or '').strip()
                     if not nm or not shp.points: continue
                     for pat, rp in opt.get('sub') or []: nm = re.sub(pat, rp, nm, flags=re.I)
@@ -545,6 +551,7 @@ def zip_state(st, have):
                     out.append({'OBJECTID': f'{pre}{i}', 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(), 'Loc_Mang': label,
                                 'Des_Tp': '', 'GIS_Acres': _num(a.get(af) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
                     n += 1
+            if bad_shp: notice(f'US key {st}', f'{label}: {bad_shp} empty / broken shapes skipped (the rest read)')
             XCOUNT[pre] = XCOUNT.get(pre, 0) + n
             LAYERS_ZIP[pre] = [url, nf, label]
         except Exception as e: notice(f'US key {st}', f'{label} not read ({str(e)[:120]})')  # noqa: BLE001
@@ -856,6 +863,14 @@ def run(st):
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):   # Oct 25: an id in 'no' is never re-added by a same-name join
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
+        # Oct 29 (chat 8's name-mismatch list, Brandon 'help the boundaries'): 'alias' = another name the official layer uses for this
+        # park. An alias joins ONLY with the sure-match test: same name as the alias AND the POTA pin inside that record's outline
+        if not m and la is not None and ov.get('alias'):
+            for al in ov['alias']:
+                for a in recs:
+                    nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+                    if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and near(la, lo, a['_bb'], .05) and inside(la, lo, a['_g']):
+                        m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f'alias name (pin inside): {al}'])
         site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
