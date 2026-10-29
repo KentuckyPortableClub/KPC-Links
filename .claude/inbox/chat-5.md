@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 11:45 AM, Brandon 11:43 AM 'Yes'):** the OLD reader's closure posts (kpc_park_alerts.py Discord/Facebook) and the automatic WMA heads-up (kpc_club_posts.py) are OFF UNTIL THE SWITCH (date set to 2099, not Nov 5). Closure posts come back ONLY from the new closures bot, one week after KY closures are fully fixed (chat 10 builds the posting there; Brandon's GO on the day). HQ hand-makes the Wednesday heads-ups for Brandon's GO meanwhile (first Nov 4).
 
 ## NEEDS BRANDON
 

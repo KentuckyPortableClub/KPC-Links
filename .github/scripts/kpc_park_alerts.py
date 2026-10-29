@@ -493,7 +493,10 @@ def post_staff(title, text):
 # PAUSE (Brandon Oct 29 10:18 AM: 'Park closure social media announcements turn off for one week till it is working
 # properly'): no Discord / Facebook closure posts before this date. Alerts are still read, saved and marked as seen,
 # so nothing floods out when the pause ends; the private staff room still gets the unmatched ones.
-POSTS_PAUSED_UNTIL = '2026-11-05'
+# Brandon Oct 29 11:43 AM: OFF UNTIL THE SWITCH: the old reader never posts again; closure posts come back only from
+# the new closures bot (KPC-Data), one week after Kentucky closures are fully fixed (chat 10). Meanwhile HQ hand-makes
+# the Wednesday heads-ups for Brandon's GO.
+POSTS_PAUSED_UNTIL = '2099-01-01'
 
 
 def paused():
