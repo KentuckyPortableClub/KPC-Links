@@ -464,6 +464,12 @@ for pv, parks_in in sorted(by.items()):
                 for r in NEAR:
                     if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
+        # Oct 29 (chat 2 + chat 8, as in the US key): 'alias' = another name the official layer uses; joins ONLY with the pin inside it
+        if not m and la is not None and ov.get('alias'):
+            for al in ov['alias']:
+                for r in NEAR:
+                    if (_nf(r['n']) == _nf(al) or _nf(r['nf']) == _nf(al)) and near(la, lo, r['_bb'], .05) and inside(la, lo, r['_g']):
+                        m.append([r['oid'], r['n'] or r['nf'], acres(r), f'alias name (pin inside): {al}'])
         site = []
         if not m and la is not None:
             for r in NEAR:

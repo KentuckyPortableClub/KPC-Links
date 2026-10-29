@@ -2050,6 +2050,111 @@
     "Zec du Lac-de-la-Boiteuse"
    ],
    "why": "Oct 25 round 5 hand check"
+  },
+  "CA-6208": {
+   "alias": [
+    "Ausable River Cut CA"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Ausable River Cut CA'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5645": {
+   "alias": [
+    "Ball's Mill C.A."
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Ball's Mill C.A.'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5666": {
+   "alias": [
+    "Bighead River"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Bighead River'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5659": {
+   "alias": [
+    "Bognor Marsh"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Bognor Marsh'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5648": {
+   "alias": [
+    "Garden Hill C.A."
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Garden Hill C.A.'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5663": {
+   "alias": [
+    "Hepworth"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Hepworth'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5664": {
+   "alias": [
+    "Massie Hills"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Massie Hills'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-6012": {
+   "alias": [
+    "Morrison Dam CA"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Morrison Dam CA'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5649": {
+   "alias": [
+    "Richardson's Lookout C.A."
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Richardson's Lookout C.A.'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5641": {
+   "alias": [
+    "Sylvan Glen C.A."
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Sylvan Glen C.A.'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5665": {
+   "alias": [
+    "The Glen"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'The Glen'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-5650": {
+   "alias": [
+    "Thurne Parks C.A."
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Thurne Parks C.A.'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-6596": {
+   "alias": [
+    "SOURIS BEACH"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'SOURIS BEACH'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-6111": {
+   "alias": [
+    "Swiss Air Memorial"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Swiss Air Memorial'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "CA-0964": {
+   "alias": [
+    "Site archéologique Cartier-Roberval"
+   ],
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Site archéologique Cartier-Roberval'; joins only with the POTA pin inside",
+   "when": "2026-10-29"
   }
  }
 }
