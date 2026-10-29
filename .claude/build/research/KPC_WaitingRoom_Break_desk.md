@@ -76,3 +76,13 @@ The 23/23 replay passes because it replays the bad files that were already seen.
 6. A status field missing altogether (`state` instead of `status`) skips the READY test; only matters for review files.
 
 **Verdict:** the waiting room is good enough for the pilot on the access-points bot. Before it guards 2-fers and keys, do 1, 2 and 4.
+
+---
+# RETEST 2 (chat 8, Oct 29 ~7:45 AM) against KPC-Data 0ed9892c (replay 37/37)
+- Near-miss swap (4 of 25 OH partners moved to a park within 20 km): **now HOLD** ("4 new candidate pairs, over 10%") (grade A).
+- Bot renames parks to match swapped outlines (A2d): **now HOLD** ("262 parks carry a name that is not POTA's") (A).
+- Swaps among shared-word names, 10% swap: HOLD. Everything from round 1 still holds/passes the same way; real OH/KY files and the legit KY closures file PASS (A).
+- Heartbeat / 3-day waiting file: now on the status board (kpc_status.py), read as code only (B). Release refusing unreadable JSON: read only (B).
+- **Not testable here:** the PAD-US shape test (needs NET=1). This sandbox cannot reach PAD-US (URLError), and the checker then HOLDS the key ("PAD-US did not answer"): fail closed, correct. By the code, a 4% swap (10 changed outlines, all tested) should hold, but I have not seen it run. **First real run: watch one US key file through it and read the F-O4 note.** Side effect: if PAD-US is down for a night, EVERY key file holds that night.
+- Still open, small: a 4% outline swap passes when the shape test is off (NET unset); a closures row with no park number and no state word passes; 15-25% of pairs rewritten inside an area passes the 80% rule only when each new pair is also not "new" (cannot happen now: new pairs over 10% hold).
+**Verdict: no known way left to get a bad file through except the shape test unseen. Ready for the access-points pilot; run the first key file with NET=1 in GitHub and read its notes.**
