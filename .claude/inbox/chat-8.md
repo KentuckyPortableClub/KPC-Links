@@ -216,3 +216,4 @@ DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlin
 - DONE Oct 29 ~5:00 PM: Brandon 'G rules are the rules': withdrew my 3 grey areas. Airstrips (ID 20) + roadside markers (NV 55) = R-G7 4(c) pin only; Adirondack + Catskill = 4(a) Blue Line is the outline. Nothing waits on Brandon.
 - Oct 29 ~5:05 PM: filed look-up 8-rg7-lay2 (ME, AK, NY, CT layers). Nothing else of mine pending.
 - Oct 29 ~5:15 PM: layers confirmed official by reading their metadata (AK ASP Park Boundary = park units, ACREAGE; NY DEC Lands = WMAs/state forests/Forest Preserve; CT DEEP Property = land DEEP owns in fee, CC0, updated Aug 2026, FeatureServer link; ME Conservation Lands = parcel names + eco reserve flag). Filed 4 point-in-polygon look-ups (8-rg7-pk-ak/ny/ct/me) at the park pins.
+- Oct 29 ~5:25 PM: PDF screenshots are live: re-filed my 5 PDF maps as 8-rg7-maps2 (CO Grenada, AZ River Island, AZ Dankworth, MD Heaters Island).
