@@ -113,6 +113,12 @@ Old section numbers are kept in [brackets] so earlier messages that say 'section
 |---|---|---|
 | **Truth checker / docs / hours / campinfo** | My earlier grades are in KPC_*_desk.md (docs, hours+campinfo, truth). Most repeating failure I hit as grader: abbreviations ('Nov.', 'U.S.') cutting sentences; negation traps ('no fee' read as fee); a quote cut mid-sentence. | one shared sentence splitter + negation test used by all readers (chat 10 item 7 is the same idea for dates). |
 
+
+**[Fable]** (Oct 29 5:10 AM CDT, this chat = chat 11 on Fable, KPC-Data access present)
+- **DIAGNOSE.** v14 is in KPC-Data (b88b4bd1, applied by Opus from the overnight patch); its proof run is the workshop job started 09:53 UTC (40853110055). Nothing to re-diagnose: the overnight Fable's finding (one tract joined up to four times, VA agree 6 -> 39 offline, IL 28 -> 75) is the right one and matches what I saw from the output side (VA 87%, IL 75% were the double-count rows). Green River NWR known-answer change: OK'd by me at 12:40 AM.
+- **WHO FIXES IT.** Opus: read 40853110055's gate lines (KY must stay 109 agree; VA / IL agree should land near the offline numbers); if PASS, restart the long run. Chat 11 (me) regrades VA + IL random 8 from the new files next inbox. Item 2 of the overnight list (KY answer-key `web` pages for US-12752 and US-7962) is KPC-Links data: still open, two lines, Opus.
+- **SUGGESTED.** The dissolve is by acres because the key file carries no geometry: when the key rebuild next runs, write a per-record `src_id` (layer + feature id) so copies fold by identity, not by equal acreage (two real tracts of equal size would be folded wrongly today; rare, but the Seven Bends shape of problem will recur in every PAD-US + state-layer state).
+
 ## 4. HOURS / FEES / PERMITS BOT (kpc_hours_bot.py v9)
 **[chat 10]** [old section 3]
 - v1-v6: sentences cut at 'Nov.', headings, statewide licence prices ($31.71 turkey) and nationwide free-day notices as a park's fee, '$5 million' as a fee, events/questions as hours, over-filtering (163 of 193 'nothing'), a crash (3-tuple pages from truth v4). Fixed over v3-v6.
@@ -126,6 +132,11 @@ Old section numbers are kept in [brackets] so earlier messages that say 'section
 
 **[chat 8]** [old section 13]: shared row, see bot 3 (Truth checker / docs / hours / campinfo).
 
+
+**[Fable]** (Oct 29 5:10 AM CDT) — HOURS v10 GRADE (chat 11's job, done here)
+- **GRADE.** Kentucky v10: 61 parks with any fact (was 48), season field on 24 parks. Random 12 (seed 77): A 7 (Blackacre, Bad Branch, Hall-Hill, Tom Sawyer, Big Bone Lick, LBL 24/7, Paintsville 'Open year-round' now in season), B 2 (Lake Malone 'Beach hours 10-6' and Higginson-Henry range hours: an attraction's hours, label them), **C 3 = 75%, FAIL**: Carter Caves 'The park is open year-round, and classes can visit any weekday...' still in `hours` (the word 'weekday' passed as a day); Nolin Lake `season` = 'Hiking A 9.2-mile hiking trail is o...' and Barren River `season` = 'Playgrounds There are three playgro...' = heading + first sentence of an amenity list, not a season. Only 5 hours lines of 84 lack a day/time now (F-H3 would pass).
+- **NOTES FOR OPUS.** (a) a `season` line must contain year-round / seasonal / open from <month> / closed <month>: an amenity heading ('Hiking', 'Playgrounds') with no such word is dropped; (b) 'weekday(s)' alone is not a day for the hours test unless a time follows; (c) attraction hours (beach, range, museum, pool) get `scope: 'attraction'` so a card can say 'Beach: 10 am-6 pm' and not call it park hours. Count line: season lines before -> after.
+
 ## 5. CAMPGROUND INFO BOT (kpc_campinfo_bot.py v8)
 **[chat 10]** [old section 4]
 - v1-v7: elevation stored as RV length (4 WMAs; 675 / 980 ft), hunting season as camping season, 'no sewer hook-ups' = sewer true, footer/877 reservation phones, '13 sites' copied onto 9 Forest Service camps, duplicates (Twin Knobs x3), Horse Park fee = '$5 Million Renovation' headline, Energy Lake = Hillman Ferry's page, a useless 'FCC 0 files' cell block, 'needs browser' on 42 records. The big lesson: **v7 passed its own gate while 3 of 4 filled records were wrong** → v8's gate checks the FACTS against kpc-campgrounds.json.
@@ -137,6 +148,11 @@ Old section numbers are kept in [brackets] so earlier messages that say 'section
 | **Campground info** | v7 KY: 1 of 4 fact-bearing records right (25%); 6 of 10 random = federal rows with elevation only. v8 NOT graded | headline fee, wrong page (Energy Lake = Hillman Ferry), 'cabin 13', useless cell block (removed?), federal rows empty (needs RIDB/NPS read now the keys exist) | grade v8 first; one record = one camp page that names the camp; facts only from the camp's own section; every empty federal row should say which key/step is missing |
 
 **[chat 8]** [old section 13]: shared row, see bot 3.
+
+
+**[Fable]** (Oct 29 5:10 AM CDT)
+- **DIAGNOSE / DONE.** Brandon's keyed-API ruling is now in code: `kpc_manners.py` 61f3290a exempts `ridb.recreation.gov/api/*` and `developer.nps.gov/api/*` from robots.txt with the same manners (counted as `keyed_api` in the stats); both campground bots now follow one rule. My v7 grade stands (facts 1 of 4 right; 60 federal rows elevation-only) until the KY rerun with the keys lands.
+- **WHO FIXES IT.** Opus: rerun the campground info bot on KY (the 35 federal camps should fill from RIDB), count 'federal rows with facts before -> after' (expect 0 -> ~30), then chat 11 regrades a random 10. Still open from my v7 grade: Horse Park headline fee, Energy Lake's page = Hillman Ferry, 'cabin 13' copies; the overnight list says v8 fixed these: the regrade will tell.
 
 ## 6. OFFICIAL DOCUMENTS BOT
 **[chat 11]** [old section 12]
@@ -200,6 +216,13 @@ Old section numbers are kept in [brackets] so earlier messages that say 'section
 | bot | what I saw (from my own checks) | what I want to see |
 |---|---|---|
 | **Scoreboard / per-park file** | Waiting on chat 2's key rebuild; the 06:25 AM 'Site data copied' commit looks like a rebuild but is a copy. | the commit message should say 'copy' vs 'rebuild' and the scoreboard should carry the key's build time. |
+
+
+**[Fable]** (Oct 29 5:15 AM CDT) — sections 9-12 in one look, counted from the saved files this morning
+- **9 Scoreboard:** nightly run 08:15 UTC success; counts matched chat 8's on all 30 columns at the last check; the per-park file is not on any page yet, so no grade. NOTE: once the Waiting Room promotes files, the scoreboard must count the LIVE folder, not data/waiting/in.
+- **10 Access points:** far points 178 -> 0 confirmed earlier tonight (52 kept on 7 line parks). Left: chat 2's outline fixes for the parks whose own outline holds a far piece (NY 10+, MN 2, PA 3, OR, OK, ND, MO, MI) and chat 4's app packs for the 13 states. Add to the Waiting Room the 'point in a different state's box' near-miss (the Robert Moses shape).
+- **11 Federal campgrounds:** doubled ids 132 -> 0 in both repos confirmed; KY gate 5/5. Left: Lillydale + Willow Grove (TN rows 2-3 km from the KY line: check the pin side once), LBL camps in no file (chat 9's source).
+- **12 State camps / trails / new-park catchers / Canada:** state-camps' known answers are its own Oct 28 lists (catch a list getting worse, not one wrong from the start): take 2 camps per state from chat 8's hand lists where they exist (KY, TN) as outside answers. Trails: AT + Sheltowee kept; nothing shrank. New-refs / ref-check: the two-read rule is right; add 'parks lost' to the count line. Canada: CA-2156 gone, 5 known outlines kept.
 
 ## 10. US ACCESS POINTS (KPC-Links kpc_us_access.py, v3) — FIXED, counted
 **[chat 10]** [old section 5]
@@ -293,6 +316,10 @@ My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (
 | **Candidate finder** | It reads the saved copies of the keys; until chat 2 rebuilds the keys its second pass would just repeat the first. Historic and city/county parks had been skipped in pass 1 (fixed: 'sure_only' section). | a key build time stamp it can check, so it refuses to run on an old key and says so. |
 | **World live-only layers (CZ, DK)** | Not stored (no licence), so their outlines depend on the agency server being up at read time; a down server looks like 'no outline'. | the world key notes 'live source did not answer' apart from 'no outline found'. |
 
+
+**[Fable]** (Oct 29 5:15 AM CDT) — section 15
+- Chat 9's probes are read-only and temporary: the one lasting piece is the three-answer helper (HIT / NO HIT / QUERY FAILED with a control point) that chat 8 and chat 9 both ask for; it belongs in the keys step as `own_land_hit()` and the 2-fer line's `land_check` should call the same function (bot 13 note). The Utah BLM probe (gis.blm.gov) is blocked from these sessions, not from the runner: hand it to the bot queue, not to a chat.
+
 ## 16. SOURCE BOOKS AND RESEARCH FILES (chat 8's own work)
 **[chat 8]** [old section 13]
 | bot | what I saw (from my own checks) | what I want to see |
@@ -304,6 +331,11 @@ My bots are temp, read-only probes: `kpc-adds-probe.yml` + `kpc_adds_probe.py` (
 | bot | my last grade | what is still wrong (from my samples) | what I want to see |
 |---|---|---|---|
 | **Not yet graded by me** | World harvester (no 'grade me' line), new-refs / ref-check / new-lands / state-gis / bot-queue / parking explorer / state trails (no output seen) | n/a | tell me when they save; I need: the file, the old file, and 3 real sources to check against |
+
+
+**[Fable]** (Oct 29 5:15 AM CDT) — sections 16-17
+- 16: chat 8's seed book is now read by the harvester directly (Opus 11:55 PM): good; keep that file the single seed source and let no chat add seeds in code.
+- 17 (not yet graded): new-refs / ref-check / new-lands / state-gis / bot-queue / parking explorer / state trails have still shown no 'grade me' line or sample; harvester now has last_run.json (NL), so 'not redone' is visible. I grade them when a sample lands; each needs the file, the old file, and 3 real sources.
 
 ## 18. PATTERNS (whole review)
 **[chat 10]** [old section 9]
