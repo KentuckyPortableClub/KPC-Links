@@ -6306,20 +6306,6 @@
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Julian Price Park Wetlands Registered Heritage Area'; joins only with the POTA pin inside",
    "when": "2026-10-29"
   },
-  "US-3857": {
-   "alias": [
-    "Triangle Land Conservancy - Horton Grove Preserve"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Triangle Land Conservancy - Horton Grove Preserve'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
-  },
-  "US-3859": {
-   "alias": [
-    "Triangle Land Conservancy - Johnston Mill Nature Preserve"
-   ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Triangle Land Conservancy - Johnston Mill Nature Preserve'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
-  },
   "US-3861": {
    "alias": [
     "Durham County - Little River Park"
@@ -6635,13 +6621,6 @@
     "Felix Valle House State Historic Site"
    ],
    "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Felix Valle House State Historic Site' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
-  },
-  "US-3863": {
-   "alias": [
-    "The Conservation Fund - Palmetto-Peartree Preserve"
-   ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'The Conservation Fund - Palmetto-Peartree Preserve' and the POTA pin is inside it; joins only with the pin inside",
    "when": "2026-10-29"
   },
   "US-4036": {
