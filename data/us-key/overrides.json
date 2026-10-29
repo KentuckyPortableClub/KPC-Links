@@ -3972,8 +3972,17 @@
   },
   "US-5707": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:30 PM: the agency's own page states 969 ac, the record has 933.7 ac (chat 9 page check): same land, joined by record id",
+   "when": "2026-10-29",
+   "join": [
+    "sgmoc683"
+   ],
+   "fp": {
+    "sgmoc683": [
+     "Lost Valley Fish Hatchery",
+     933.7
+    ]
+   }
   },
   "US-6472": {
    "join": [
@@ -6178,11 +6187,20 @@
    "when": "2026-10-29"
   },
   "US-11025": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside · Oct 29: alias taken back: held: chat 8 asks a person to check (is the tract the whole area?)",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside · Oct 29: alias taken back: held: chat 8 asks a person to check (is the tract the whole area?) · Oct 29 2:30 PM: the agency's own page states 4,735 ac, the record has 4716.0 ac (chat 9 page check): same land, joined by record id",
    "when": "2026-10-29",
    "alias_held": [
     "Uchee Creek Confluence"
-   ]
+   ],
+   "join": [
+    "sgalb151"
+   ],
+   "fp": {
+    "sgalb151": [
+     "Uchee Creek Confluence",
+     4716.0
+    ]
+   }
   },
   "US-11027": {
    "alias": [
