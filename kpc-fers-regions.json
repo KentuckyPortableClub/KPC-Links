@@ -322,6 +322,136 @@
    "showWaiting": true,
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map.",
    "missingSt": "DC"
+  },
+  {
+   "id": "CO",
+   "label": "Colorado",
+   "files": [
+    "US-CO"
+   ],
+   "missing": "missing-mtcowy",
+   "missingSt": "CO",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "WY",
+   "label": "Wyoming",
+   "files": [
+    "US-WY"
+   ],
+   "missing": "missing-mtcowy",
+   "missingSt": "WY",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "ID",
+   "label": "Idaho",
+   "files": [
+    "US-ID"
+   ],
+   "missing": "missing-mtidmt",
+   "missingSt": "ID",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "MT",
+   "label": "Montana",
+   "files": [
+    "US-MT"
+   ],
+   "missing": "missing-mtidmt",
+   "missingSt": "MT",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "AR",
+   "label": "Arkansas",
+   "files": [
+    "US-AR"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "AR",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "LA",
+   "label": "Louisiana",
+   "files": [
+    "US-LA"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "LA",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "OK",
+   "label": "Oklahoma",
+   "files": [
+    "US-OK"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "OK",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "TX",
+   "label": "Texas",
+   "files": [
+    "US-TX"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "TX",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "KS",
+   "label": "Kansas",
+   "files": [
+    "US-KS"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "KS",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "NE",
+   "label": "Nebraska",
+   "files": [
+    "US-NE"
+   ],
+   "missing": "missing-southcentral",
+   "missingSt": "NE",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   }
  ],
  "hide": {
@@ -331,6 +461,12 @@
   "US-6893+US-6894": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 34 km apart and NOT both inside the shared outline (Chowan vs Chowan Swamp SGL)",
   "US-3933+US-7578": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 12 km apart and NOT both inside the shared outline (Cheatham WMA vs Cheatham Lake WMA)",
   "US-7580+US-7581": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 13 km apart and NOT both inside the shared outline (Cordell Hull WMA vs Cordell Hull Waterfowl Refuge)",
-  "US-12417+US-7452": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 19 km apart and NOT both inside the shared outline (Rich Mountain Cartecay Tract vs Rich Mountain WMA)"
+  "US-12417+US-7452": "chat 8 Oct 29 5 AM check + chat 3 test: 'same land' pins 19 km apart and NOT both inside the shared outline (Rich Mountain Cartecay Tract vs Rich Mountain WMA)",
+  "US-0831+US-11015": "chat 8 Oct 29 10:20: wrong same land (Truman Family Farm vs Truman Home NHS, two sites 23 km apart)",
+  "US-11813+US-11814": "chat 8 Oct 29 10:20: wrong same land (Salinas Abo vs Quarai, separate units)",
+  "US-5833+US-5846": "chat 8 Oct 29 10:20: wrong same land (Horseshoe Canyon North vs South units)",
+  "US-0030+US-7887": "chat 8 Oct 29 10:20: to CHECK (Grand Canyon NP vs Parashant NM may only touch); hidden until checked",
+  "US-0771+US-4429": "chat 8 Oct 29 10:20: to CHECK (Coronado NMem is not forest-owned land); hidden until checked",
+  "US-10186+US-1457": "chat 8 Oct 29 10:20: to CHECK (Kinnickinnic SFWA vs State Park, pins 22 km); hidden until checked"
  }
 }
