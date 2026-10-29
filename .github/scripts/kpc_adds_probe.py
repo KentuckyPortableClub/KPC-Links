@@ -19,7 +19,14 @@ NAMEW = re.compile(r'name|nm$|label|title|site|unit|prop', re.I)
 def notice(m): print('::notice title=Adds probe::' + str(m).replace('\n', ' ')[:900], flush=True)
 
 
+_LAST = {}
+
+
 def get(u, p=None, t=int(os.environ.get("PROBE_T") or 90)):
+    h = urllib.parse.urlparse(u).netloc   # Oct 29: kpc_manners pace, 1 request / 2 s per host
+    w = 2.0 - (time.time() - _LAST.get(h, 0))
+    if w > 0: time.sleep(w)
+    _LAST[h] = time.time()
     q = dict(p or {}); q.setdefault('f', 'json')
     err = None
     for i in range(2):
@@ -617,6 +624,73 @@ def zipnames(cfg):
     return out
 
 
+STN = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware',
+       'FL': 'Florida', 'GA': 'Georgia', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana',
+       'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana',
+       'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina',
+       'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
+       'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia',
+       'WI': 'Wisconsin', 'WY': 'Wyoming'}
+
+
+def lakehunt(cfg):
+    """Oct 29 (HQ 11:18 AM, Brandon 11:17): for every US park whose park IS a lake, look for the managing DEPARTMENT's own
+    boundary / property polygon at the park's pin: (1) the state department layers we already know (data/state-gis.json),
+    (2) up to 3 new department layers per state from an ArcGIS search (fishing lakes / wildlife areas / property).
+    Per hit: layer, the polygon's name, its acres, and the USGS lake polygon's acres at the pin, so 'includes shore land'
+    = polygon acres clearly bigger than the lake. ArcGIS REST only; read only; never fails."""
+    L = cfg['lakehunt']
+    sg = json.load(open('data/state-gis.json'))['states']
+    out = {'parks': [], 'layers': {}}
+    by = {}
+    for r in L['parks']: by.setdefault(r[0], []).append(r)
+    for st, rows in sorted(by.items()):
+        lays = [{'url': l['url'], 'nm': l.get('nm') or '', 'from': 'state-gis (known)', 'ag': l.get('ag', '')} for l in sg.get(st, [])
+                if l.get('kind') in ('park', 'wild', 'land', 'preserve', 'forest') and re.search(r'/\d+$', l['url'])][:5]
+        try:
+            j = get('https://www.arcgis.com/sharing/rest/search', {'q': f'({STN.get(st, st)}) AND ("fishing lake" OR "fishing lakes" OR "state lakes" OR "public fishing" OR "wildlife area" OR "wildlife management area" OR "department lands" OR "property boundaries") AND (type:"Feature Service" OR type:"Map Service")', 'num': 12, 'sortField': 'numviews', 'sortOrder': 'desc'})
+            for it in (j.get('results') or [])[:12]:
+                u = (it.get('url') or '').rstrip('/')
+                if not u or any(u in x['url'] for x in lays): continue
+                try:
+                    m = get(u)
+                    for l in (m.get('layers') or [])[:6]:
+                        if 'olygon' in str(l.get('geometryType') or '') or not l.get('geometryType'):
+                            lays.append({'url': f"{u}/{l['id']}", 'nm': '', 'from': f"search: {it.get('title', '')[:60]} (owner {it.get('owner')})",
+                                         'licence': re.sub(r'<[^>]+>', ' ', it.get('licenseInfo') or '').strip()[:120]})
+                except Exception: pass
+                if sum(1 for x in lays if x['from'].startswith('search')) >= 3: break
+        except Exception as e: out['layers'][st + ' search error'] = str(e)[:100]
+        lays = lays[:7]
+        out['layers'][st] = lays
+        for st_, ref, name, la, lo in rows:
+            r = {'st': st, 'ref': ref, 'n': name, 'pin': [la, lo], 'hits': []}
+            if la is None: r['note'] = 'no pin'; out['parks'].append(r); continue
+            try:
+                q = get(f'{NHD}/12/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                                            'distance': 150, 'units': 'esriSRUnit_Meter', 'where': '1=1', 'outFields': 'GNIS_NAME,AREASQKM', 'returnGeometry': 'false'}, t=60)
+                w = [(f['attributes'].get('GNIS_NAME') or f['attributes'].get('gnis_name'), f['attributes'].get('AREASQKM') or f['attributes'].get('areasqkm')) for f in q.get('features') or []]
+                w = [x for x in w if x[1]]
+                if w: big = max(w, key=lambda x: x[1] or 0); r['lake'] = {'name': big[0], 'acres': round(float(big[1]) * 247.105, 1)}
+            except Exception as e: r['lake_error'] = str(e)[:60]
+            for l in lays:
+                try:
+                    q = get(l['url'] + '/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                                                  'distance': 150, 'units': 'esriSRUnit_Meter', 'where': '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                                                  'maxAllowableOffset': 0.0005, 'resultRecordCount': 3}, t=60)
+                    for f in (q.get('features') or [])[:3]:
+                        a = f.get('attributes') or {}
+                        nm = a.get(l['nm']) if l['nm'] else next((v for k, v in a.items() if isinstance(v, str) and re.search(r'name|label|unit|area|site|prop', k, re.I) and len(v) > 3), '')
+                        rings = (f.get('geometry') or {}).get('rings') or []
+                        ac = _acres(rings, la) if rings else None
+                        r['hits'].append({'layer': l['url'], 'from': l['from'], 'name': str(nm)[:80], 'acres': ac,
+                                          'shore': (None if not ac or not r.get('lake') else ac > 1.15 * r['lake']['acres'])})
+                except Exception as e: r['hits'].append({'layer': l['url'], 'error': str(e)[:60]})
+            out['parks'].append(r)
+        notice(f"lakehunt {st}: {len(rows)} parks, {len(lays)} layers, {sum(1 for p in out['parks'] if p['st'] == st and any(h.get('name') is not None and not h.get('error') for h in p['hits']))} with a department polygon at the pin")
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     notice('commit ' + os.popen('git rev-parse --short HEAD').read().strip() + ' round ' + str(CAND))
@@ -668,6 +742,9 @@ def main():
                 except Exception as e: r['values'][f] = 'error ' + str(e)[:80]
                 time.sleep(2)
             res['distinct'].append(r)
+    if cfg.get('lakehunt'):
+        try: res['lakehunt'] = lakehunt(cfg)
+        except Exception as e: res['lakehunt'] = {'error': str(e)[:140]}
     if cfg.get('zipnames'):
         try: res['zipnames'] = zipnames(cfg)
         except Exception as e: res['zipnames'] = [{'error': str(e)[:140]}]
