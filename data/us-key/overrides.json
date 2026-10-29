@@ -4013,8 +4013,17 @@
   },
   "US-9753": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1:50 PM: rule G-1 held piece 'Rock Island Trail' = YES (chat 11, rechecked by chat 2)",
+   "when": "2026-10-29",
+   "join": [
+    "sgmoa1631"
+   ],
+   "fp": {
+    "sgmoa1631": [
+     "Rock Island Trail",
+     172
+    ]
+   }
   },
   "US-10297": {
    "join": [
@@ -4349,10 +4358,17 @@
    "join": [
     "nhc10259",
     "nhc10571",
-    "nhc10572"
+    "nhc10572",
+    "sgnha10571"
    ],
-   "why": "same place, another name (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "same place, another name (hand review Oct 22 (waiting list)) · Oct 29 1:50 PM: rule G-1 held piece 'Frost Farm Historical Site' = YES (chat 11, rechecked by chat 2)",
+   "when": "2026-10-29",
+   "fp": {
+    "sgnha10571": [
+     "Frost Farm Historical Site",
+     0
+    ]
+   }
   },
   "US-0677": {
    "none": true,
@@ -7337,6 +7353,263 @@
   "US-2638": {
    "when": "2026-10-29",
    "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  },
+  "US-4383": {
+   "join": [
+    "2919",
+    "2920"
+   ],
+   "fp": {
+    "2919": [
+     "Siskiyou National Forest",
+     31543
+    ],
+    "2920": [
+     "Siskiyou National Forest",
+     1058444
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-3656": {
+   "join": [
+    "fnl2768",
+    "sgfla102"
+   ],
+   "fp": {
+    "fnl2768": [
+     "South Fork State Park",
+     1129
+    ],
+    "sgfla102": [
+     "South Fork State Park",
+     1129
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-7456": {
+   "join": [
+    "195096"
+   ],
+   "fp": {
+    "195096": [
+     "Dahlonega Museum Historic Site",
+     1
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Dahlonega Museum Historic Site' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-0450": {
+   "join": [
+    "5382",
+    "4425"
+   ],
+   "fp": {
+    "5382": [
+     "Umbagog National Wildlife Refuge",
+     11239
+    ],
+    "4425": [
+     "Umbagog National Wildlife Refuge",
+     11219
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-11698": {
+   "join": [
+    "207775"
+   ],
+   "fp": {
+    "207775": [
+     "Seminary Fen State Scientific and Natural Area",
+     73
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Seminary Fen State Scientific and Natural Area' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-3359": {
+   "join": [
+    "210078"
+   ],
+   "fp": {
+    "210078": [
+     "Jefferson Landing State Historic Site",
+     3
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Jefferson Landing State Historic Site' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-8299": {
+   "no": [
+    "232525"
+   ],
+   "why": "Oct 29: 'Erie Canal' is not this park (chat 11 + chat 2)"
+  },
+  "US-2873": {
+   "join": [
+    "57170"
+   ],
+   "fp": {
+    "57170": [
+     "Fisherman's",
+     80
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Fisherman's' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-5484": {
+   "join": [
+    "57173"
+   ],
+   "fp": {
+    "57173": [
+     "George Washington",
+     0
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'George Washington' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-2955": {
+   "join": [
+    "256171"
+   ],
+   "fp": {
+    "256171": [
+     "Cumberland Trail",
+     11893
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Cumberland Trail' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-2976": {
+   "join": [
+    "255586"
+   ],
+   "fp": {
+    "255586": [
+     "Alvin C York",
+     336
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Alvin C York' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-6545": {
+   "join": [
+    "sgtxc91"
+   ],
+   "fp": {
+    "sgtxc91": [
+     "Candy Abshier WMA",
+     0
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Candy Abshier WMA' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-11092": {
+   "join": [
+    "sgutb151"
+   ],
+   "fp": {
+    "sgutb151": [
+     "Midway Hatchery",
+     0
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Midway Hatchery' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-12145": {
+   "join": [
+    "rma10016",
+    "rst10016"
+   ],
+   "fp": {
+    "rma10016": [
+     "Docs Beach Staging Area",
+     4
+    ],
+    "rst10016": [
+     "Docs Beach Staging Area",
+     4
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-3064": {
+   "join": [
+    "sguta116",
+    "sguta164"
+   ],
+   "fp": {
+    "sguta116": [
+     "Stagecoach Inn",
+     0
+    ],
+    "sguta164": [
+     "Stagecoach Inn",
+     0
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Stagecoach Inn' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Stagecoach Inn' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-5955": {
+   "join": [
+    "263937"
+   ],
+   "fp": {
+    "263937": [
+     "Farmington Bay State Wildlife Area",
+     3555
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Farmington Bay State Wildlife Area' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-10409": {
+   "join": [
+    "271460"
+   ],
+   "fp": {
+    "271460": [
+     "Jackson House",
+     1
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Jackson House' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-12830": {
+   "join": [
+    "271501",
+    "sgwaa128"
+   ],
+   "fp": {
+    "271501": [
+     "Old Ruby",
+     7
+    ],
+    "sgwaa128": [
+     "Old Ruby",
+     7
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2)"
   }
  }
 }
