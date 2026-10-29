@@ -516,3 +516,12 @@ Method: every 'live' row (candidate / very tight / water only) with pins over 30
 
 ## Review Oct 29 ~12:00 PM (chat 8): F.3 Canada regrade: NOT YET
 CA-NS / CA-NB / CA-MB files were rewritten at 15:59 UTC but are still the pre-fix rows: CA-NS 102 live, 83 of them 'same land' with pins 100-486 km apart (R-CA1 not in); CA-NB 13 live, 4 far same-land; CA-MB 11 live, 8 far. The lines caatl / cambsk still read PART READY with NS NB MB held (10:13 UTC); caon / caabbc STOPPED (water not checked). Nothing to regrade until the full Canada key rebuild + line rerun lands; I will grade NS NB MB first, then ON AB BC.
+
+## Review Oct 29 ~1:40 PM (chat 8, "anything 2-fer you can check")
+Grade A = I ran the waiting-room grader on the live KPC-Data files; names/pins read from the key.
+- **caatl READY (16:56 UTC):** NB, NS, PE, NL all ready, 20 pairs dropped, no held states.
+  - **CA-NS:** 220 rows, 11 live, 0 far-pin rows, 0 duplicate ids. The old 83 same-land rows 100-486 km apart are gone; R-CA1 fix confirmed. All 11 live pairs have matching names/areas (Cape Breton Highlands x Polletts Cove, Port L'Hebert x Port Hebert MBS x Nature Reserve, Tusket River x Tusket Ecological, Louisbourg x Wolfe's Landing...). Stillwaters x Louisbourg is already "water only" (kept out).
+  - **CA-NB:** 747 rows, 14 live, 0 far, 0 duplicate ids. 395 rows NOT SURE ("official outline could not be read"): that is a missing-boundary list, not a 2-fer problem. Live pairs read sensibly (Fundy NP x Fundy Biosphere; Canaan Bog x Canaan River WMA 24,708 ac; Lepreau River WMA x 4 protected areas).
+- **oh READY (13:13 UTC):** US-OH 29 live. One far "area" row to look at: Wayne NF x Dean State Forest (US-4521 + US-5438), pins 89 km apart, 3.3 ac. Probably a forest pin, not a wrong join; chat 11 can spot-check it.
+- **cambsk PART READY:** SK ready; MB held for 2 "water not checked" rows. MB has 3 far "area" rows to check: Grass River PP x Palsa Hazel Eco Reserve 58 km (4,487 ac); Riding Mountain Biosphere x Parkland WMA 58 km (79.8 ac); Riding Mountain NP x Parkland WMA 48 km (79.8 ac). The two Riding Mountain rows look like a wrong join (Parkland WMA is not at the park).
+- **Still stopped (not mine to fix):** pnw (OR: 6 water rows), ut (1 water row), mtsw (pass 1 for time), pca, caon, caabbc.
