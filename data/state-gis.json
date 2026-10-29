@@ -1061,8 +1061,8 @@
     "nm": "NAME",
     "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1",
     "host": "agency",
-    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 54",
-    "where": "OWNER='State Government'"
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 54 · Oct 29 chat 2: plus the 3 federal parcels POTA numbers by these names (BLM Rock Creek + Telford recreation areas, Hanford Reach McGee Ranch/Riverlands unit), which the state-owned filter hid",
+    "where": "OWNER='State Government' OR (OWNER='Federal Government' AND NAME IN ('Rock Creek Recreation Area','Telford Recreation Area','Hanford Reach National Monument, McGee Ranch/Riverlands Unit'))"
    },
    {
     "kind": "land",

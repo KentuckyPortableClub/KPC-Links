@@ -516,6 +516,16 @@ def _have(recs):
     return d
 
 
+def _fine(r):
+    """R-G6 (Brandon Oct 29 12:36 PM): a saved ring simplified by at most ~3 m (0.00003 deg), never 'every Nth point'."""
+    try:
+        from shapely.geometry import LinearRing
+        s = LinearRing(r).simplify(0.00003, preserve_topology=False)
+        c = [[round(x, 6), round(y, 6)] for x, y in s.coords]
+        return c if len(c) > 3 else r
+    except Exception: return r  # noqa: BLE001
+
+
 def zip_state(st, have):
     """Records from the zipped-shapefile layers for this state ([] when none, or when pyshp / pyproj are missing)."""
     out = []
@@ -561,7 +571,7 @@ def zip_state(st, have):
                         rs.append([[round(x, 6), round(y, 6)] for x, y in zip(xs, ys)])
                     g = {'rings': rs}; k = kinds(nm) | kk
                     if _dup(have, (norm(nm), frozenset(k)), bbox(g)): continue
-                    ZIPGEO.setdefault(pre, {})[f'{pre}{i}'] = [nm, [[q for q in r2[::max(1, len(r2) // 400)]] + [r2[-1]] for r2 in rs if len(r2) > 3]]
+                    ZIPGEO.setdefault(pre, {})[f'{pre}{i}'] = [nm, [_fine(r2) for r2 in rs if len(r2) > 3]]   # R-G6 fine lines: 3 m, not 'every Nth point'
                     out.append({'OBJECTID': f'{pre}{i}', 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(), 'Loc_Mang': label,
                                 'Des_Tp': '', 'GIS_Acres': _num(a.get(af) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
                     n += 1

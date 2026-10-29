@@ -747,10 +747,18 @@
   },
   "US-13570": {
    "join": [
-    "Gladwin Game Unit and Field Trial Area of State Forest"
+    "Gladwin Game Unit and Field Trial Area of State Forest",
+    "sgmib88"
    ],
-   "why": "Oct 18 review: same place, official name written differently",
-   "when": "2026-10-18"
+   "why": "Oct 18 review: same place, official name written differently · Oct 29 3:05 PM: held piece 'Gladwin State Game Area' = YES (chat 11 agency page, chat 2 recheck)",
+   "when": "2026-10-29",
+   "fp": {
+    "sgmib88": [
+     "Gladwin State Game Area",
+     1354
+    ]
+   },
+   "approx": 1
   },
   "US-3330": {
    "join": [
@@ -5815,16 +5823,17 @@
     "56687"
    ],
    "no": [
-    "North Point State Park"
+    "North Point State Park",
+    "56688"
    ],
-   "why": "Oct 25 round 5 hand check (outside research bot)",
+   "why": "Oct 25 round 5 hand check (outside research bot) · Oct 29 3:05 PM: 'North Point Sp' is not this park (chat 11 agency page)",
    "fp": {
     "56687": [
      "North Point Sb",
      9
     ]
    },
-   "when": "2026-10-25"
+   "when": "2026-10-29"
   },
   "US-4162": {
    "join": [
@@ -7636,6 +7645,34 @@
    },
    "when": "2026-10-29",
    "why": "Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2)"
+  },
+  "US-6861": {
+   "no": [
+    "52998",
+    "sgctb2112"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page) · Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page)"
+  },
+  "US-7565": {
+   "join": [
+    "sgtni131"
+   ],
+   "fp": {
+    "sgtni131": [
+     "Woods Reservoir Refuge",
+     810
+    ]
+   },
+   "when": "2026-10-29",
+   "why": "Oct 29 3:05 PM: held piece 'Woods Reservoir Refuge' = YES (chat 11 agency page, chat 2 recheck)"
+  },
+  "US-12068": {
+   "no": [
+    "272833"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 3:05 PM: 'Rib River Fishery Area' is not this park (chat 11 agency page)"
   }
  }
 }
