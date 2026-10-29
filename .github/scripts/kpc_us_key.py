@@ -783,6 +783,11 @@ except Exception: OVR = {}  # noqa: BLE001
 def _oid(a): return str(a['OBJECTID'])
 
 
+DBG = set((os.environ.get('DEBUG_REFS') or '').split())   # Oct 29 (chat 2): trace these parks through every step (a debug run saves nothing)
+def dbg(ref, stage, x):
+    if ref in DBG: print(f"::notice title=TRACE {ref} {stage}::{str(x)[:900]}", flush=True)
+
+
 PIN = {}
 def pins():
     # 20 state park files have no lat/lon (older format): fall back to the site index, then locations.json
@@ -880,6 +885,12 @@ def run(st):
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and near(la, lo, a['_bb'], .05) and inside(la, lo, a['_g']):
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f'alias name (pin inside): {al}'])
+        if ref in DBG:
+            wants = list(ov.get('join', [])) + list(ov.get('alias', []))
+            seen_ = [[_oid(a), a.get('Unit_Nm') or a.get('Loc_Nm'), round(a.get('GIS_Acres') or 0), near(la, lo, a['_bb'], .6) if la is not None else None,
+                      inside(la, lo, a['_g']) if la is not None and a.get('_g') else None] for a in recs
+                     if _oid(a) in [str(w) for w in wants] or _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') in {_nf(w) for w in wants}]
+            dbg(ref, 'A after joins+overrides', {'pin': [la, lo], 'm': [x[:4] for x in m], 'wants': wants, 'records with that id/name [id,name,ac,within0.6,pin inside]': seen_[:8], 'n_recs': len(recs)})
         site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
@@ -987,6 +998,7 @@ def run(st):
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
+    for r_ in DBG & set(parks): dbg(r_, 'B after the park loop', {k: parks[r_].get(k) for k in ('m', 'c', 'far', 'a')})
     rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
     # Fable Oct 29: a MULTIPART record (Lost Nation = St. Lawrence + Allegany forests in one record) has a bbox that spans the
     # state, so every pin looks 'near' it: measure to the nearest PART (ring) instead
@@ -1022,6 +1034,7 @@ def run(st):
             parks[r]['m'] = [x for x in parks[r]['m'] if str(x[0]) != rid]
             parks[r].setdefault('not_mine', []).append([rid, sorted(close)[0], round(_dkm(r, rb[rid]))]); pruned.append(f'{r} ({round(_dkm(r, rb[rid]))} km)')
     if pruned: notice(f'US key {st}', f"{len(pruned)} name-only joins dropped (the record belongs to a park next to it): {', '.join(pruned[:12])}")
+    for r_ in DBG & set(parks): dbg(r_, 'C after the name-only prune', {k: parks[r_].get(k) for k in ('m', 'not_mine')})
     # Fable + chat 8 Oct 29 (rule B12, part-level clipping): a multipart record still claimed by two or more parks whose pins sit
     # near DIFFERENT parts (Robert Moses Long Island vs Thousand Islands): each park keeps only the parts within 2 km of its pin,
     # written as part boxes in 'parts' {record id: [[w, s, e, n], ...]}; the 2-fer line reads only those parts
@@ -1082,6 +1095,7 @@ def run(st):
             m.append([rec['OBJECTID'], rec['Unit_Nm'], round(rec['GIS_Acres'] or 0), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
         parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
     if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts')
+    for r_ in DBG & set(parks): dbg(r_, 'D before rule G', {k: parks[r_].get(k) for k in ('m', 'parts')})
     # RULE SHEET G (one boundary pipeline; Brandon Oct 29 12:09 PM 'implement this now', rulings 12:14 + 12:18; notes/mapping.md):
     # G-1 the AGENCY'S OWN RECORD that names the park is the proof and joins at ANY distance (pins can be wrong). A piece matched
     # only by SIMILAR words ('words', 'name (designation code ignored)') must prove its place: the POTA pin inside it or within
@@ -1261,6 +1275,7 @@ def run(st):
     L += ['## Nothing found in PAD-US', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')] + ['']
     L += ['## Biggest federal / state places with no POTA park joined (first 60)', ''] + [f"- {x[1]} · {x[2]} · {x[3]} · ~{x[4]:,} ac" for x in nonum[:60]]
     save_text(R / f'US-{st}.md', '\n'.join(L) + '\n')
+    for r_ in DBG & set(parks): dbg(r_, 'E saved', {k: parks[r_].get(k) for k in ('m', 'c', 'g', 'kept', 'far')})
     save_json(OUT / f'US-{st}.json', out)
     return counts
 

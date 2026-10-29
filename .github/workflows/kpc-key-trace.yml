@@ -1,0 +1,24 @@
+name: KPC key trace (temporary, chat 2)
+# One debug run: the US key for a few states with DEBUG_REFS traced step by step. Saves NOTHING (freeze). Never fails. Deleted after.
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data
+        run: bash .github/scripts/kpc_overlay.sh || true
+      - name: Trace
+        env:
+          STATES: 'WA NC FL DE'
+          MINUTES: '100'
+          DEBUG_REFS: 'US-0661 US-12271 US-12255 US-4555 US-3862 US-10681 US-8692'
+        run: |
+          pip install --quiet --break-system-packages pyshp pyproj shapely || true
+          python3 .github/scripts/kpc_us_key.py > key.log 2>&1 || true
+          grep -h "TRACE" key.log | head -80 || true
+          grep -h "::notice" key.log | grep -v TRACE | grep -i "not read\|answer\|error" | head -10 || true
