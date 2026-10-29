@@ -151,6 +151,27 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 
 ### GREY AREA G-NY1 (chat 8, for Brandon via HQ): Adirondack Park and Catskill Park
 POTA numbers both as parks. Their legal "Blue Line" encloses state-owned Forest Preserve AND a lot of private land and towns (about half of the Adirondack Park is private). R0 says the park is where the designation legally applies, but POTA activation needs PUBLIC land. Lean (same as our national-forest rule, agency-owned land): the outline is the state-owned Forest Preserve land inside the Blue Line (DEC Lands layer), not the Blue Line itself; the Blue Line map stays as the reference. Needs Brandon's yes before it is drawn. Until then both stay pins.
+### CA (Oct 29 3:45 PM chat 3, step 0 = our docs: none has a map)
+| US-11336 | Rainbow Basin Natural Area | https://www.blm.gov/visit/rainbow-basin-natural-area ; pin inside Barstow Field Office | R-G7 step 3 (BLM natural area = BLM layer, step 2) | pending (3-fable-low-f) | chat 3 | Oct 29 |
+| US-12616 | Black Butte Lake Park | https://www.spk.usace.army.mil/Black-Butte-Lake (USACE) | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+| US-2638 | Van Sickle Bi-State Park | POTA link = Nevada State Parks Lake Tahoe NV page (the park sits in NV and CA) | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+| US-3578 | Tijuana Estuary Reserve SCA | https://www.parks.ca.gov/?page_id=669 ; pin inside Tijuana Slough NWR | R-G7 step 3 (check R-G8: reserve vs NWR) | pending (low-f) | chat 3 | Oct 29 |
+| US-6448 | William Randolph Hearst Memorial State Beach | https://www.parks.ca.gov/?page_id=589 ; pin inside Hearst San Simeon SP | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+| US-7375 | Cowell Ranch State Beach | https://www.coastsidestateparks.org/cowell-ranch-state-beach | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+### WV
+| US-12052/12053/12055/12056 | Bowden / Edray / Petersburg / Apple Grove State Fish Hatcheries | https://wvdnr.gov/fishing/fish-stocking (our docs: no working map) | R-G7 step 3 -> 4b (state-owned parcel) | pending (low-f) | chat 3 | Oct 29 |
+| US-12054 | Ridge State Fish Hatchery | OUR DOCS ok: https://wvdnr.gov/lands-waters/wildlife-management-areas/ (a generic WMA page: not its map) | R-G7 step 3 | pending | chat 3 | Oct 29 |
+| US-9739 | Forks of the Coal SNA | OUR DOCS ok: https://wvdnr.gov/claudia-workman-wildlife-education-center/ | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+| US-9915 | Cedar Lakes SRA | OUR DOCS ok: https://www.cedarlakes.com/info/maps/ (campus map) | R-G7 step 3/4a if a boundary shows | pending (low-f) | chat 3 | Oct 29 |
+### TN
+| US-11869 | Jim Cummings Park | our docs link = a history marker site (hmdb): NOT a map | R-G7 step 4b (city/county parcel, Woodbury) | no source yet | chat 3 | Oct 29 |
+| US-12775 / 13514 | Davy Crockett SFL / Lake Halford SFL | TWRA lake pages (our docs: no map) | R-G7 step 3 -> 4b | pending (low-f) | chat 3 | Oct 29 |
+| US-13364 | Cherokee Trail of Tears SP | https://tnstateparks.com/parks/cherokee-trail-of-tears ; pin inside Hiwassee Refuge | R-G7 step 3 | pending (low-f) | chat 3 | Oct 29 |
+| US-3941 / 6237 / 6247 / 6273 | Grundy Forest / Harry Lee Carter / Hawkins Cove / Vine Cedar Glade State Natural Areas | TN Natural Areas pages (tn.gov/environment/...); Grundy + Carter sit inside Fiery Gizzard / South Cumberland SP | R-G7 step 3 (TDEC natural-areas layer, step 2) | pending (low-f) | chat 3 | Oct 29 |
+### Oct 29 3:50 PM chat 3 update (look-up E read)
+- MT 4 FWP PDFs, IL North Point + Rauchfuss + Copperhead PDFs, MA Neponset PDF: the bot returns PDFs as raw bytes and cannot screenshot them, so I could NOT see whether a boundary line is drawn. They stay 'map link found, line not confirmed' (pin until seen).
+- IL Ray Norbut: the IDNR web app opened (satellite, no outline drawn on load, no park label): not a usable boundary yet.
+- ASK for the look-up bot (sent to chat 10): render a PDF page to a PNG so a chat can look at it. Until then the PDFs are not confirmed.
 
 ### UPDATES to the work log, Oct 29 ~4:50 PM (chat 8; rows above stay, these add sources)
 | st | park(s) | new source | Rule G step | result |
