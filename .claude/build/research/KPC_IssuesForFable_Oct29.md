@@ -1,6 +1,19 @@
 # ISSUES FOR FABLE: Oct 29 pass, organized BY BOT
 Shared file. Reorganized by chat 8 on Oct 28 ~10:30 PM CDT at Brandon's ask: every note is kept word for word, grouped under the bot it is about, and tagged with who wrote it. **Add new notes under the right bot with your tag, not at the bottom.**
 
+## INSTRUCTIONS FOR FABLE (Brandon, Oct 28 10:13 PM, written by chat 8)
+Fable, this is your morning pass. Work the bots in THIS ORDER (numbers = the bot numbers in the contents below), diagnose first, then act:
+**13 (2-fer assembly line) -> 8 (layer intake) -> 14 (world harvester) -> 7 (park detective) -> 6 (official documents bot) -> 1 (Waiting Room) -> 2 (closures super-bot) -> then the rest (3, 4, 5, 9, 10, 11, 12, 15, 16, 17).**
+
+**FIRST THING, before anything else: take a quick look at the 2-fer assembly line (bot 13) and see whether you can solve the WATER MAP issue** (the USGS live water map not answering, so rows come back 'water not checked': Michigan 38 rows, Indiana 56, Illinois 16, Virginia 13, and Oct 28 the whole 'water's edge' step; see items 10.1 to 10.3 under bot 13 and chat 8's rows; chat 9's probe notes on USGS NHD timeouts under bot 15 are the same problem). Also address chat 2's own water list in item 10.1 (the USGS download files, NHDPlus HR per HU4, work; the live map does not; state hydrography layers are the backups: Michigan has real water-area polygons, see KPC_SourceBook2_KYOHMI_desk.md). Proposed fix to test first: read NHDPlus HR from the downloaded HU4 files for each state once, keep a simplified water-area file per state in KPC-Data, and make the 2-fer worker read that instead of the live service (retry with a longer wait only as a fallback).
+
+**For EACH bot, in that order, write three things into its section (under your own tag, **[Fable]**):**
+1. **DIAGNOSE:** what is really wrong, in your own words, and whether chat 10's / chat 11's / chat 2's / chat 8's / chat 9's notes are right or missing something.
+2. **WHO FIXES IT:** either (a) 'NOTES FOR OPUS': exact repair steps Opus can do (files, functions, rules, tests to run, the count line that proves it changed), or (b) 'FABLE FIXES IT': you do it yourself and say so, or (c) 'SCHEDULE OPUS' / 'SCHEDULE FABLE': a job too big for the morning pass; say what it needs (time, a run, a ruling from Brandon) and we will schedule it.
+3. **SUGGESTED REPAIRS AND IMPROVEMENTS:** what would make the bot MORE ACCURATE and MORE EFFICIENT (outside answer keys, control points, fewer wasted runs, shared helpers, anything), including your thoughts on the wish lists in part 19 (best-value-first).
+
+Rules that stay in force: no run goes on the site without Brandon's GO; every dispatch is followed by a run-list check; after every 'fixed', COUNT the saved file; the EMAIL-ONLY-FOR-REAL-ISSUES house rule (batch runs, never fail loudly); RULES FIRST before any bot that decides something for people. Chat 8 grades the 2-fer lines and the research bots from the saved files, chat 11 grades the data bots: tell us when a fix is ready to grade ('grade me' line). Write a short summary for Brandon at the end (what is fixed, what is scheduled, what needs his ruling).
+
 ## WHO IS WHO (tags used below)
 | tag | chat | role | model | wrote |
 |---|---|---|---|---|
@@ -8,6 +21,7 @@ Shared file. Reorganized by chat 8 on Oct 28 ~10:30 PM CDT at Brandon's ask: eve
 | **[chat 11]** | bot-output checker | grades each bot's saved output with random samples | Sonnet | old section 12 |
 | **[chat 2]** | 2-fer assembly line | the 2-fer bots, keys, rebuilds | (assembly chat) | old section 10 |
 | **[chat 8]** | research desk | grades the 2-fer lines and the research bots from the saved files; cannot open most agency sites or the satellite map | Sonnet | old section 13 |
+| **[Fable]** | morning pass | diagnoses each bot in the order above, fixes or leaves notes for Opus / schedules | Fable | (your notes go under each bot) |
 | **[chat 9]** | data adds | temp read-only probes (layers, licences, point/river tests, candidate finder) | Opus | old section 14 |
 
 Old section numbers are kept in [brackets] so earlier messages that say 'section 12' or '10.5' still find their text. **OPEN** = what the Fable pass should look at first.

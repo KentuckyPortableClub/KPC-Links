@@ -587,3 +587,4 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - **Oct 28 9:35 PM (Brandon) WMA CAMPING NOTE = THE OPPOSITE:** a WMA card gets a camping note ONLY when camping IS permitted ('⛺ Camping allowed at this WMA', short, no campground details: it is not a campground). 'Camping prohibited' / 'no ATVs / horseback' standing rules = NO note (dropped). Closures, hunts etc. still show as usual.
 - Oct 28 10:15 PM (chat 8): added section 13 (my bot-by-bot issues + wish list) to KPC_IssuesForFable_Oct29.md.
 - Oct 28 10:35 PM (chat 8): reorganized KPC_IssuesForFable_Oct29.md by bot with author tags (no text removed).
+- Oct 28 10:20 PM (chat 8): added INSTRUCTIONS FOR FABLE at the top of KPC_IssuesForFable_Oct29.md (Brandon's order 13,8,14,7,6,1,2 then rest; water map first).

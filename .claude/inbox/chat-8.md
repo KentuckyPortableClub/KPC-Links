@@ -28,6 +28,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 10:20 PM: INSTRUCTIONS FOR FABLE written at the top of KPC_IssuesForFable_Oct29.md (Brandon): order 13, 8, 14, 7, 6, 1, 2, then the rest; water map first; diagnose, notes for Opus or schedule, repairs + efficiency thoughts.
 - Oct 28 10:35 PM: KPC_IssuesForFable_Oct29.md reorganized BY BOT with author tags (chat 10 / 11 / 2 / 8 / 9), nothing removed, old section numbers kept in [brackets]; add future notes under the right bot with your tag.
 - Oct 28 10:15 PM: wrote section 13 (chat 8: known issues bot by bot + wish list) into KPC_IssuesForFable_Oct29.md (Brandon's ask).
 - Oct 28 10:10 PM: SOURCE BOOK 2 batch 1 (KY OH MI) written + handed off. Next batches (Southeast, Midwest, Northeast, ...) continue; HQ items for water's-edge backups and hunt closures are folded into this book (items 1, 4).
