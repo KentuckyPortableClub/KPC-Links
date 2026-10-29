@@ -47,3 +47,32 @@ HQ order (Brandon 6:52 AM: "10 fix issues then 8 test"). I read all 688 lines an
 The 23/23 replay passes because it replays the bad files that were already seen. It does not contain attacks 1-7 above. Add each to `replay.json` as a permanent case (bad: A1-A7; good: B1) so a later code change cannot reopen them.
 
 *Sandbox caveat:* promotion mode was tested only on a toy file (`data/pota/index.json`); I did not run it on real data. Nothing was written to KPC-Data or KPC-Links except this report.
+
+---
+# RETEST (chat 8, Oct 29 ~7:50 AM) against KPC-Data b1a5586f — grade A, all run in the sandbox
+**All 7 first-round holes are closed.** Still PASS where it should HOLD: none of A1-A7 as first written. (My first "rotate the pairs" attack was a bad test: rotating whole rows keeps the same pair SET, so it rightly passed. Cross-joining one park of a pair with another row's partner is the real attack.)
+| Attack | Result |
+|---|---|
+| Pairs cross-joined 100% / 30% / 20% / 10% (OH) | HOLD (80% pair rule, plus 100 km rule: 5 rows 144-295 km apart) |
+| Candidates → dropped; NOT SURE → candidate; duplicates with new ids | HOLD |
+| 8 fake rows (IL) | HOLD (100 km + count) |
+| NM emptied / all dropped | HOLD |
+| .gz twin 50% | HOLD · twin at 95% PASS (5% loss is allowed) |
+| Key: all swapped / 10% / shared-word swaps (6%) | HOLD (F-O2 names) |
+| Status 'PART READY FOR CHAT 8' / 'Ready' with unchecked rows | HOLD |
+| Legit KY closures text (Indiana bat, Washington County, state line, West Virginia hunters) | **PASS** (was the false alarm) |
+| OH park numbers in a KY closures file / made-up number / empty / all expired | HOLD |
+| Real KY closures, real OH 2-fers, real KY 2-fers, real OH key | PASS |
+| A held file blocks others? | **No**: a junk file and an unknown file were held, the good file passed every time |
+| Undo: 4 promotions, undo, then `@3` | Works (v4→v3, then back to v1): 3 generations kept |
+| One look-line per held file, with its age | Yes; release refuses `..` and non-`data/` paths and is logged |
+
+**Still gets through (smaller holes, grey areas):**
+1. **Near-miss wrong joins:** 4 of 25 OH pairs (16%) swapped to a DIFFERENT park within 20 km → PASS. The 80% rule allows up to 20% wrong and the 100 km rule cannot see near ones. Inherent without the outlines; only the rule-F known pairs and a person's spot check catch it. Fix idea: also HOLD when more than 10% of pairs are NEW since live and none were looked at by a person (a count of new pairs, not just lost ones).
+2. **Key: 4% of outlines swapped (about 10 parks) → PASS**, and a bot that renames the park to match the swapped layer name passes completely (A2d). The test reads names the bot wrote. Real fix = the shape test (pin inside or within 5 km of the outline) once the key files carry shapes, or a nightly sample of 20 outlines checked by a different path (point-in-polygon from the raw PAD-US layer).
+3. **Closures row with no park number and no state word** ("Hocking Hills State Park trail closed" in the KY file) PASS; a row with "Ohio" and no number is taken out (good). Fine, rows usually carry a number.
+4. **Dead bot / dead checker:** `heartbeat.json` is written but NOTHING reads it. If the waiting room itself stops running, nobody is told and files just pile up in `in/`. Fix: the daily status page (or chat 11's check) turns red when the heartbeat is over 36 h old, and when a file in `in/` is older than 3 days.
+5. A `release` publishes any `data/` file with no check (by design). Add: release refuses a file whose own judge verdict is a hard error such as unreadable JSON.
+6. A status field missing altogether (`state` instead of `status`) skips the READY test; only matters for review files.
+
+**Verdict:** the waiting room is good enough for the pilot on the access-points bot. Before it guards 2-fers and keys, do 1, 2 and 4.

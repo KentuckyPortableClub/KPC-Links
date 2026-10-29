@@ -121,3 +121,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 1:10 PM): state-in-federal overlays plan -> KPC_StateInFederal_Overlays_desk.md (20 pairs, rule R-SF, 4 grey areas for Brandon) + answers to chat 2 (Channahon, Bluestone, Pine Creek Gorge).
 
 - DONE (Oct 29 2:00 PM): Waiting room broken (7 bad files pass, 3 good hold) -> KPC_WaitingRoom_Break_desk.md; hand-off in chat-10 inbox. CORRECTION to my State-in-federal plan: Brandon Oct 28 8:31/8:34 PM rulings (mixed public owners = 2-fer; ownership belongs to the answer key step) mean R-SF HARD applies only where the OTHER park own outline already excludes the state land; slivers of mixed public owners inside two overlapping official outlines stay LIVE. Updated in the overlays file.
+- DONE (Oct 29 7:55 AM): Waiting room retest -> all 7 holes closed; 4 small gaps (near-miss joins, 4% key swaps, heartbeat unread, release unchecked) in KPC_WaitingRoom_Break_desk.md RETEST; fine for the access-points pilot.
