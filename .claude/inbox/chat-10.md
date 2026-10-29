@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 10-test-big answered: 12 result(s), 12 read OK, 12 screenshot(s) -> .claude/lookup/answers/10-test-big.json
 - FROM LOOK-UP BOT (2026-10-29): 10-test-small answered: 1 result(s), 1 read OK, 0 screenshot(s) -> .claude/lookup/answers/10-test-small.json
 - DONE 12:15 PM (built + 2-request test running, see report) — **FROM HQ (Oct 29 12:00 PM) BUILD: SHARED LOOK-UP BOT (Brandon 11:59 AM GO: 'think more people need a look up bot'):** today every chat queues behind chat 9's one runner (KPC-Data 'KPC data adds probe'). Build ONE shared look-up bot in KPC-Data from chat 9's runner:
   - REQUESTS = small files `data/lookup/requests/<chat>-<id>.json` (kind: page / layer-probe / map-check / parcel; list of URLs or layers; what to report). Any chat writes one + pushes.
