@@ -3,7 +3,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## SCOPE (Brandon Oct 29 8:36 AM, see CLAUDE.md 'SCOPE'): KY = everything; rest of US + Canada = boundaries, official docs/maps, 2-fers, parking/access points, trails; world = boundaries + docs/maps only; OUTSIDE KY no hours / fees / closures / camping.
 
-## WEBSITE FREEZE (Brandon Oct 29 12:27 PM): nothing added/changed on the website until Rule Sheet G is done. Focus: Rule Sheet G + side missions (shrink Fable's list, collect parking, collect documents).
+## WEBSITE FREEZE (Brandon Oct 29 12:27 PM): nothing added/changed on the website until Rule Sheet G is done. Focus: Rule Sheet G + side missions (shrink Fable's list, collect parking, collect documents). EXCEPTIONS (Brandon 12:28 PM): KY hunt notes/closures go live Sat Oct 31; bots already updating the site keep running.
 
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
