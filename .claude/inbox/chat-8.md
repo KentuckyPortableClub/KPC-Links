@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-addr-2 answered: 24 result(s), 18 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-2.json
 - FROM LOOK-UP BOT (2026-10-29): 8-addr-1 answered: 25 result(s), 21 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-addr-1.json
 - **FROM HQ (Oct 29 4:18 PM) ADDRESS FOR EVERY PARK ON THE FABLE LISTS (Brandon 4:16 PM: 'look up every address in fable list and Canada fable list record address and what offical website it came from...this may help a lot'):**
   - WHO: every open park on the US Fable list (missing-after-key.json: PIN INSIDE + NOTHING NEAR + LIKELY, 566) AND the Canada list (the Canada parks with no outline on the current ca-key; count them first and say how many).
