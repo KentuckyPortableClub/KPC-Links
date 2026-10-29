@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 8-parcel-id answered: 12 result(s), 12 read OK -> .claude/lookup/answers/8-parcel-id.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-tx answered: 8 result(s), 0 read OK -> .claude/lookup/answers/8-parcel-tx.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-or answered: 11 result(s), 0 read OK -> .claude/lookup/answers/8-parcel-or.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-pages answered: 4 result(s), 3 read OK, 0 screenshot(s) -> .claude/lookup/answers/8-parcel-pages.json
