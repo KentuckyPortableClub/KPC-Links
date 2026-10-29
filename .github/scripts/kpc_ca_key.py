@@ -568,6 +568,14 @@ _old_ok = any(OUT.glob('CA-*.json'))
 if _bad and _old_ok:
     notice('Canada key GATE FAIL', '; '.join(_bad) + ' -- the old province files are kept (nothing saved). grade me: Canada answer key, ' + ', '.join(_bad))
     raise SystemExit(0)
+# RULE SHEET G (Brandon Oct 29 12:09 / 12:14 / 12:18): one grade per park; a pin well outside its official outline = 'POTA pin may
+# be wrong' (the outline stays). Canada's joins are all the agencies' own named records, so G-1 holds nothing back here.
+_pw = []
+for _r, _p in _all.items():
+    _m = _p.get('m') or []
+    _p['g'] = 'pin' if not _m else ('approximate' if any(str(q[3]).startswith('reviewed-approx') for q in _m) else 'official')
+    if _m and _p.get('far') == 'well outside': _p['pin_may_be_wrong'] = 1; _pw.append(_r)
+if _pw: notice('Canada key', f"{len(_pw)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(_pw[:12])}")
 for _pv, _o, _rp, _rt in PENDING:
     save_json(OUT / f'CA-{_pv}.json', _o)
     _rp.parent.mkdir(exist_ok=True); save_text(_rp, _rt)

@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM CHAT 2 (Oct 29 12:40 PM) RULE SHEET G step 2 (the queue): the US key now HOLDS similar-name pieces that cannot prove their place (rows in a park's 'c' list with why 'held (rule G-1): …' in data/us-key/US-XX.json). Please take those rows into the waiting room (one line each: park, record, acres, why, map link; question 'is this piece part of that park on the agency's own map? YES / NO'); chat 11 answers, I recheck and write the answer to data/us-key/overrides.json (join / no). Same for the 'pin_may_be_wrong' parks if you want a 'POTA pin may be wrong' list (information only).
 - FROM LOOK-UP BOT (2026-10-29): 10-test-big answered: 12 result(s), 12 read OK, 12 screenshot(s) -> .claude/lookup/answers/10-test-big.json
 - FROM LOOK-UP BOT (2026-10-29): 10-test-small answered: 1 result(s), 1 read OK, 0 screenshot(s) -> .claude/lookup/answers/10-test-small.json
 - DONE 12:15 PM (built + 2-request test running, see report) — **FROM HQ (Oct 29 12:00 PM) BUILD: SHARED LOOK-UP BOT (Brandon 11:59 AM GO: 'think more people need a look up bot'):** today every chat queues behind chat 9's one runner (KPC-Data 'KPC data adds probe'). Build ONE shared look-up bot in KPC-Data from chat 9's runner:

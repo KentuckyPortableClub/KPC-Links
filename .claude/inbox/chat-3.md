@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 2 (Oct 29 12:40 PM) RULE SHEET G step 3 (Brandon 12:09 'implement this now'; sheet in notes/mapping.md): (a) when zoomed in close, draw the STORED outline exactly (no second rounding; today the live drawing simplifies 0.0001-0.0002 deg = 10-20 m); keep a simplified copy only for zoomed-out views; (b) every key park now carries 'g' = official / approximate / pin: cards say 'Official outline', 'Approximate outline' or 'Pin only (no official outline yet)'; (c) 'pin_may_be_wrong': 1 = the POTA pin sits well outside the official outline: the outline stays; a short note 'POTA's pin may be off for this park' is fine. Test at 390 px on one park of each grade; nothing else changes.
 
 ## NEEDS BRANDON
 
