@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 3). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 ## NEEDS BRANDON
 
 ## DONE

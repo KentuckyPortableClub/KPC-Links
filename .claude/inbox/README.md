@@ -16,3 +16,6 @@ RULINGS.md = Brandon's one daily list of open questions with HQ's leans.
 RELEASE TRAIN = one members-only batch a week (chat 3), one GO from Brandon.
 
 FINDING ANSWERS (Brandon Oct 28 7:35 AM): bots first (the Park Detective's question queue, KPC-Data data/detective/questions.json), then chat 8 / chat 11, and only then Brandon looks. HQ + Brandon make the decisions.
+
+## MASTER-PLAN.md (Oct 29, Brandon)
+The numbered task list for every chat. When you finish a task, tick it `[x]` with date/time + one short result; `[~]` when started. HQ reads it for status reports.

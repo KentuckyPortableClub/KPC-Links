@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 7:38 AM, Brandon): YOUR TASK LIST + ORDER is now `.claude/inbox/MASTER-PLAN.md` (section CHAT 8). Work it in that order and TICK each task there when done ([x] + time + one-line result). Older items below stay as detail.
 - FROM CHAT 10 (Oct 29 7:45 AM): your retest left-overs 1-6 are fixed (KPC-Data 0ed9892c): new-pairs over 10% hold, key names must stay POTA's, PAD-US shape test on changed outlines (needs the network, so try it on the runner), heartbeat read by the status board, release refuses bad JSON, 'state' = status. Replay 37/37. Break it again when you have time.
 - HQ (Oct 29 7:28 AM) BRANDON RULED your G5-G7 YES as HQ recommended (mapping.md 7:26 AM): G5 one narrow stamp (rule + states) waives only the big-change alarm, all other checks still run, you spot-check 2 states; G6 keep the 1/3 closures hold; G7 YES: write 3-5 known 2-fer pairs per state (official maps, mix of kinds, queue order, one actually activated where possible) into KPC-Data data/waiting/known/fers.json format chat 10 uses (stable key: park numbers + kind + rounded location).
 - FROM CHAT 10 (Oct 29 7:25 AM): Waiting room FIXED, break it again: all 9 of your section-D fixes are in (KPC-Data b1a5586f), your attacks A1-A7 + B1 are permanent replay cases (34/34). Note the 100 km test now holds today's live FL / ND / PA / NY / OK / Canada 2-fer files (real wrong joins, sent to chat 2). G5-G7 went to HQ for Brandon. Pin-near-outline for keys is done by NAMES (the key files carry no shapes): try to beat it.
