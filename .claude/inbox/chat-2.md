@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-more-layers-probe answered: 13 result(s), 11 read OK -> .claude/lookup/answers/2-more-layers-probe.json
 - FROM LOOK-UP BOT (2026-10-29): 2-more-layers-folders answered: 23 result(s), 23 read OK, 0 screenshot(s) -> .claude/lookup/answers/2-more-layers-folders.json
 - WAIT: look-up answers `2-more-layers-folders` + `2-more-layers-probe` (then chat 8 picks layers) -> add the layers that answer to state-gis.json / trails-layers.json and to the doc (section Where to look next), rebuild the key.
 - FROM LOOK-UP BOT (2026-10-29): 2-county-05 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-county-05.json
