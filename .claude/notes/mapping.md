@@ -732,3 +732,4 @@ Why: today a wrong piece is caught five steps late (key → 2-fer line → hold 
 - Shown as 'Pin from the official register (WWFF has no location)'; HELD until the mass dump (freeze). Countries outside the EEA registers (China, Venezuela, the islands, Antarctica) stay without a pin until an official register for them is found (chat 9).
 - Bot: kpc_wwff_locate.py (KPC-Data temp workflow kpc-wwff-locate.yml, deleted after) -> KPC-Data data/wwff-locate/found.json + KPC_WWFF_Locate.md.
 
+- Oct 29 2:08 PM (Brandon): POTA pins STAY where POTA puts them: never moved, removed or hidden. 'POTA pin may be wrong' is only a note/list; a multi-state park's one pin is not flagged in the other states.
