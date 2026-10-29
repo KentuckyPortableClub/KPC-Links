@@ -1,0 +1,28 @@
+name: KPC layer names dump (temporary, by hand)
+# Oct 28 2026 (chat 2, Brandon 11:27 PM): one read-only dump of the names in every layer the US key reads (chat 8: match the parks with no outline by hand);
+# writes .claude/build/research/layer-names/. Never fails. Deleted after its one run.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data
+        continue-on-error: true
+        run: bash .github/scripts/kpc_overlay.sh
+      - name: Dump the names
+        continue-on-error: true
+        env:
+          MINUTES: '150'
+        run: python3 .github/scripts/kpc_layer_names.py || true
+      - name: Save the findings
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/layer-names 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m 'Layer names dump for chat 8 (read only)'; for i in 1 2 3; do git pull --rebase --autostash && git push && break; sleep 9; done; } || true
