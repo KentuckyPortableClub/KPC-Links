@@ -2,7 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 29 7:18 AM) BRANDON OK'd: draw 2-fer CLOSE-UPS at ~3 m EVERYWHERE (US + Canada + KY): when the Overlap Finder / maps zoom to a 2-fer spot, ask the map server for the two parks' outlines at maxAllowableOffset ~0.00003° just for that small box (kpc-bounds.js today uses 0.0001-0.0002° = 11-22 m); zoomed-out whole parks stay as they are; KY's saved files stay as they are. Test at full zoom on satellite on Mammoth Cave x Green River + one Daniel Boone corridor + one non-KY spot; phone-width check; extra load under ~1 s.
+- HQ (Oct 29 7:18 AM) BRANDON OK'd: draw 2-fer CLOSE-UPS at ~3 m EVERYWHERE (US + Canada + KY): when the Overlap Finder / maps zoom to a 2-fer spot, ask the map server for the two parks' outlines at maxAllowableOffset ~0.00003° just for that small box (kpc-bounds.js today uses 0.0001-0.0002° = 11-22 m); zoomed-out whole parks stay as they are; KY's saved files stay as they are. Test at full zoom on satellite on Mammoth Cave x Green River Wild River + Daniel Boone National Forest x a Kentucky Wild River corridor (Red River or Rockcastle River) + one non-KY spot; phone-width check; extra load under ~1 s.
 - **FROM CHAT 2 (Oct 29 7:05 AM): STORED OUTLINES CHECKED (your border-thinning ask), sample vs a fresh full-detail read:**
 
 | Stored set (who reads it) | parks | corners OFF the real edge (95%) | real corners CUT (median / 95%) | verdict |
