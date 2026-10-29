@@ -9,6 +9,7 @@ Read from KPC-Links data/us-key (13,083 parks, 11,312 outlined, 120 check, 808 s
 - Other no-outline parks outside these lists (about 1,000): BLM recreation areas, state trails, historic sites, wild and scenic rivers, national recreation trails. Those are Source Book / own-land work, not R-G7.
 - Open key questions: chat 11 answered 26 YES / 1 NO; the rest wait.
 
+- **ALL MAP LAYERS IN ONE DOC FOR FABLE (Brandon Oct 29 6:38 PM: 'list all layers we have found map files in for fable I am going ask him something'):** Claude doc 'Map Layers We Found' https://claude.ai/artifact/18gK6GCcZUCBmW5vKGaJnY = US national (37) + US state (189) + Canada (70 + sweep extras) + world (49) + trails (31) + access points (250) + the 6 picture-map parks + dead layers. Master files: data/state-gis.json, data/us-key/layers.json, data/ca-key/layers.json, data/world-gis-sources.json, data/trails-layers.json, data/access-layers.json.
 - **PICTURE MAPS FOR FABLE (Brandon 3:58 PM: 'fable might figure out something from it'):** rows marked 'picture map only (G-ID3)' keep the map link on purpose: Fable may find a way to use them (e.g. matching the picture to parcels or roads) without drawing a rough line. Search this file for G-ID3.
 
 
