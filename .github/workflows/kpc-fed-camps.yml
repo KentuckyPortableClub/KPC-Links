@@ -1,8 +1,7 @@
 name: KPC federal campgrounds (all states)
 # Monthly (Oct 26, HQ: all states, monthly, never fails): Recreation.gov (RIDB) campgrounds on federal land for the park cards. Needs secret RIDB_API_KEY.
 on:
-  schedule:
-    - cron: '17 9 12 * *'
+  # schedule: - cron: '17 9 12 * *'   # OFF Oct 29 (Brandon 9:34 AM): no recurring Recreation.gov calls; outside KY camping is hidden (SCOPE)
   workflow_dispatch:
     inputs:
       states:

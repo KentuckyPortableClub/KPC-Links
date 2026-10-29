@@ -32,8 +32,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 160
         env:
-          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
-          RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
+          NPS_API_KEY: ${{ github.event_name == 'workflow_dispatch' && secrets.NPS_API_KEY || '' }}   # Oct 29 (Brandon 9:34 AM): no recurring keyed calls
+          RIDB_API_KEY: ${{ github.event_name == 'workflow_dispatch' && secrets.RIDB_API_KEY || '' }}   # Oct 29 (Brandon 9:34 AM): no recurring keyed calls
           MINUTES: '150'
           ONLY: ${{ inputs.only }}
         run: python3 .github/scripts/kpc_link_harvest.py || true
