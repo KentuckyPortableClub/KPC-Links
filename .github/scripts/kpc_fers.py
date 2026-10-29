@@ -2224,7 +2224,7 @@ def land_check(s, G):
     except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
     open_ = ov & (1 - closed)
     if not (dt(open_) * cell >= need).any(): return 'closed' if closed.any() else 'ok'
-    wg = nhd_water(F.bounds())
+    wg = nhd_water(box)   # Oct 28 11 PM: the row's own box (the tiles the water job saves), not the frame's wider margin (a missing margin tile = 'not checked' with every needed tile saved)
     if wg is None: return 'not checked'
     water = F.area(wg)
     s.setdefault('info', {})['water_pct'] = round(100.0 * float((ov & water).sum()) / max(1.0, float(ov.sum())))
@@ -2631,6 +2631,36 @@ def main():
             n['re-checked at the end'] = len(again)
         n['water retries (won / tries)'] = f"{WATER_RETRY['won']} / {WATER_RETRY['tries']}"
         mark(f'water re-check of {len(cand)} spots + {len(same)} same-land rows')
+        # Oct 28 11 PM (Fable's 'store not read' check found DE 43, VA 13, PA 1 rows): a water-route row made while the water was missing
+        # is a PLACEHOLDER (water_unchecked) that no later pass made again; once its tiles are saved it is made again HERE and decided
+        ph = [(st, x) for st, d in files.items() for x in d.get('spots', []) if x.get('water_unchecked')]
+        if ph and not late():
+            need = sorted({r for _, x in ph for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+            if need:
+                g4, _ = ky_geom(parks, need) if REGION == 'ky' else download(parks, need, DET, PREC)
+                G.update(g4)
+            CURG.clear(); CURG.update(G)
+            done, remade, still = set(), 0, 0
+            for st, x in ph:
+                if late(): break
+                pr = tuple(x['refs']); d = files[st]
+                if pr in done:
+                    if x in d['spots']: d['spots'].remove(x)
+                    continue
+                lref = next((r for r in x['refs'] if r in LN and r not in G), None); oref = next((r for r in x['refs'] if r in G), None)
+                if not lref or not oref: continue
+                try: got = water_route_spots(lref, LN[lref]['lines'], oref, bbox_groups(G[oref]))
+                except Exception as e: LOG.append(f"water route again {x.get('id')}: {str(e)[:60]}"); continue  # noqa: BLE001
+                if any(g.get('water_unchecked') for g in got): still += 1; continue
+                done.add(pr)
+                if x in d['spots']: d['spots'].remove(x)
+                have = {q.get('id') for q in d['spots']}
+                for g in got:
+                    g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center']); g.update({'passes': [1, 1, 1], 'found': today})
+                    if g['id'] in have: continue
+                    decide(g, parks, G, LN, PIN, today, set(), st_of); d['spots'].append(g); have.add(g['id']); remade += 1
+            n['water-route rows made again from the saved water'] = remade
+            n['water-route pairs still without water'] = still
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if more:

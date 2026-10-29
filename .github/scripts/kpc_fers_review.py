@@ -63,6 +63,10 @@ def main():
         if not isinstance(x, dict): continue
         why = ' / '.join(x.get('why_expected') or [])
         if 'activated together' not in why: continue
+        if 'boxes do not touch' in str(x.get('reason', '')):   # far-apart pairs: only strong hints (one session logged both, 10+ days), or the list drowns (8,000+ rows)
+            nn = re.search(r'\((\d+)x', why)
+            if 'one session logged both' not in why or not nn or int(nn.group(1)) < 10: continue
+        elif not (m5 := re.search(r'\((\d+)x', why)) or int(m5.group(1)) < 5: continue   # a hint needs 5+ same-day activations (logs have mistakes)
         n = re.search(r'\((\d+)x', why)
         rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'HINT only (look here): POTA history shows people activating these together; logs have mistakes, it never decides',
                      'kind': 'pair', 'size': f"{n.group(1) if n else '?'} same-day activations", 'sort': float(n.group(1)) if n else 0,
@@ -93,7 +97,10 @@ def combine():
     L = ['# Needs a human look (all areas, biggest first per area)', '', "Written by the 2-fer line's checker. Chat 8 works it after the US queue. Nothing here is shown to anyone.", '']
     for a, v in sorted(allr['areas'].items()):
         L += [f"## {a} ({len(v['rows'])} rows, {v['date']})", '', '| what | parks | size | reason | sources |', '|---|---|---|---|---|']
-        for r in v['rows'][:400]:
+        hints = [r for r in v['rows'] if str(r.get('what', '')).startswith('HINT')]
+        main_rows = [r for r in v['rows'] if not str(r.get('what', '')).startswith('HINT')]
+        if hints: L.insert(len(L) - 2, f"{len(main_rows)} rows to look at + {len(hints)} POTA-history hints (only the 30 strongest shown here; all in review-all.json)")
+        for r in (main_rows + hints[:30])[:400]:
             pk = ' + '.join(f"{x} {r['names'].get(x, '')}".strip() for x in (r['refs'] or []))
             L.append(f"| {r['what']} | {pk[:120]} | {r['size']} | {str(r['reason'])[:160]} | {'; '.join(f'{k}: {v2}' for k, v2 in (r['sources'] or {}).items())[:120]} |")
         L.append('')
