@@ -1,0 +1,4254 @@
+{
+ "about": "Chat 9 round F (chat 8 Oct 29 11:00 AM, Brandon 10:42 'nothing is written off'): the HARD kinds, 3 sample parks each (NV markers: US-13274, US-13275, US-13276; BLM airstrips: US-13494, US-13496, US-13497; scenic road areas: US-13207, US-13259, US-13260; fish hatcheries: US-10815, US-12976, US-12994; state historic sites ND: US-12782, US-12783, US-12784; state historic sites OK: US-0822, US-0872, US-10951; BLM historic/interpretive: US-10965, US-11110, US-11118; state fishing lakes: US-12193, US-12194, US-12195). Leads in order: (1) agency property layer, (2) federal surface-ownership at the pin, (3) county parcels with the agency as owner; record which answered. Results: roundF-tested.json.",
+ "date": "2026-10-29",
+ "layers": [],
+ "searches": [
+  {
+   "st": "NV",
+   "q": "(\"Nevada Division of State Lands\" OR \"State of Nevada\") AND (parcels OR \"state lands\" OR \"state-owned\")",
+   "why": "F NV markers step 1",
+   "found": [
+    {
+     "title": "National IA Frequency Zones Federal Public",
+     "org": "National Interagency Fire Center",
+     "owner": "DMP_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/DMP_National_IA_Frequency_Zones_Federal_Public/FeatureServer",
+     "modified": "2026-07-08",
+     "licence": "The Data Management Program (DMP) and the National Wildfire Coordinating\n Group (NWCG) make no claims, promises, or guar"
+    },
+    {
+     "title": "Mason Valley WMA",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Mason_Valley_WMA/FeatureServer",
+     "modified": "2022-07-01",
+     "licence": ""
+    },
+    {
+     "title": "DSA Infrastructure Geospatial Map 05_WFL1",
+     "org": "",
+     "owner": "Brad_Banta",
+     "url": "https://services3.arcgis.com/8FwI1b4BjNb9W0br/arcgis/rest/services/DSA_Infrastructure_Geospatial_Map_05_WFL1/FeatureServer",
+     "modified": "2026-03-11",
+     "licence": ""
+    },
+    {
+     "title": "BLM_Natl_Solar_Mapper",
+     "org": "",
+     "owner": "cherbertson@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+     "modified": "2025-05-28",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "BLM NV PLSS CADNSDI Version 2 Points",
+     "org": "",
+     "owner": "blm_arcgis_hub_nv",
+     "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Public_Land_Survey_System/PLSS_Point/FeatureServer",
+     "modified": "2025-07-08",
+     "licence": "These data are provided by Bureau of Land Management (BLM) \"as is\" and may contain errors or omissions. The User assumes"
+    },
+    {
+     "title": "rw_rightofway_clv",
+     "org": "",
+     "owner": "OfficeOfGIS_LasVegas",
+     "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/RightofWay/FeatureServer",
+     "modified": "2024-09-10",
+     "licence": "The City of Las Vegas makes no warranty, representation or guarantee of any kind regarding either any maps or other info"
+    },
+    {
+     "title": "2023 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fires_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+     "modified": "2024-04-28",
+     "licence": ""
+    },
+    {
+     "title": "Nevada Eligible Tribal Lands",
+     "org": "",
+     "owner": "kucinski.gis@gmail.com",
+     "url": "https://services8.arcgis.com/6zoy8FhqGf9FaeLx/arcgis/rest/services/Nevada_Eligible_Tribal_Lands/FeatureServer",
+     "modified": "2023-03-08",
+     "licence": ""
+    },
+    {
+     "title": "State_of_Nevada_District_Boundaries",
+     "org": "",
+     "owner": "OpenData_NDOT",
+     "url": "https://services1.arcgis.com/9Y4hSlLf13E9S0Eo/arcgis/rest/services/State_of_Nevada_District_Boundaries/FeatureServer",
+     "modified": "2025-02-21",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fixed_WFL1",
+     "org": "",
+     "owner": "f59c141_sscmsu",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fixed_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "rw_rightofway_transfer",
+     "org": "",
+     "owner": "OfficeOfGIS_LasVegas",
+     "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/rw_rightofway_transfer/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "Due to continuous development activity this data is for reference only. No liability is assumed for the accuracy of the "
+    },
+    {
+     "title": "RightofWay_Studies",
+     "org": "",
+     "owner": "OfficeOfGIS_LasVegas",
+     "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/RightofWay_Studies/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "This data is for display purposes only and does not represent a survey. No liability is assumed for the accuracy of the "
+    },
+    {
+     "title": "Parcels",
+     "org": "",
+     "owner": "friedlandere_cityofreno",
+     "url": "https://services5.arcgis.com/RjM4BJrv5ZkqP4XC/arcgis/rest/services/Parcels/FeatureServer",
+     "modified": "2021-08-11",
+     "licence": ""
+    },
+    {
+     "title": "Nevada_Hospital_Survey",
+     "org": "",
+     "owner": "FEMA_Region9_GIS",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Nevada_Hospital_Survey_20200331/FeatureServer",
+     "modified": "2020-10-19",
+     "licence": ""
+    },
+    {
+     "title": "2026 State of Nevada THIRA SPR Survey",
+     "org": "",
+     "owner": "thira_spr2026",
+     "url": "https://services7.arcgis.com/qjIrGIE5NKVpj296/arcgis/rest/services/service_8643715b154f44c1aff07e0b51c8388e/FeatureServer",
+     "modified": "2026-06-22",
+     "licence": "This dataset contains official THIRA/SPR information and is intended for use by authorized Nevada OEM personnel and part"
+    },
+    {
+     "title": "Wildlife Management Areas",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": "This data is considered public information and is available for download without restrictions. No warranty is made by th"
+    },
+    {
+     "title": "Wildlife Management Area Point Features",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Point_Features/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": ""
+    },
+    {
+     "title": "Wildlife Management Area Polygon Features",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Polygon_Features/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": ""
+    },
+    {
+     "title": "Wildlife Management Area Line Features",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Line_Features/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": ""
+    },
+    {
+     "title": "CityRealEstateAssetsAnno",
+     "org": "",
+     "owner": "OfficeOfGIS_LasVegas",
+     "url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/CityRealEstateAssets_ANNOT/FeatureServer",
+     "modified": "2025-05-15",
+     "licence": "The City of Las Vegas makes no warranty, representation or guarantee of any kind regarding either any maps or other info"
+    },
+    {
+     "title": "Heat Index In Disadvantaged Communities_WFL1",
+     "org": "",
+     "owner": "John.Ellis@ClarkCountyNV.gov",
+     "url": "https://services2.arcgis.com/MLoS3Qx4BXmDoTIY/arcgis/rest/services/Heat_Index_In_Disadvantaged_Communities_WFL1/FeatureServer",
+     "modified": "2024-04-08",
+     "licence": ""
+    },
+    {
+     "title": "Boundary_Aligment_Map",
+     "org": "",
+     "owner": "amcclary_TRPA",
+     "url": "https://services5.arcgis.com/fXXSUzHD5JjcOt1v/arcgis/rest/services/Boundary_Aligment_Map/FeatureServer",
+     "modified": "2026-01-13",
+     "licence": "CC BY-NC"
+    },
+    {
+     "title": "Key Ranches Elko Parcels_WFL1",
+     "org": "",
+     "owner": "galactigirl",
+     "url": "https://services6.arcgis.com/EbELcBLzgHe42KBM/arcgis/rest/services/Key_Ranches_Elko_Parcels_WFL1/FeatureServer",
+     "modified": "2026-07-14",
+     "licence": ""
+    },
+    {
+     "title": "WMA POI",
+     "org": "",
+     "owner": "NDOW_DEV",
+     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/WMA_POI/FeatureServer",
+     "modified": "2022-06-15",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "q": "(\"Carson City\" OR Humboldt OR Elko OR Washoe) AND (parcel OR parcels) AND Nevada",
+   "why": "F NV markers step 3 county parcels",
+   "found": [
+    {
+     "title": "Camp Like A Pro Mono County_WFL1",
+     "org": "",
+     "owner": "emiller@mono.ca.gov_MonoMammoth",
+     "url": "https://services.arcgis.com/rQj5FcfuWPllzwY8/arcgis/rest/services/Camp_Like_A_Pro_Mono_County_WFL1/FeatureServer",
+     "modified": "2025-06-05",
+     "licence": ""
+    },
+    {
+     "title": "Parcels Nevada",
+     "org": "",
+     "owner": "ssnider_NDWR",
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/BaseLayers/County_Parcels_in_Nevada/MapServer",
+     "modified": "2024-05-21",
+     "licence": ""
+    },
+    {
+     "title": "Tahoe Parcel Data",
+     "org": "Tahoe Regional Planning Agency",
+     "owner": "TRPA_ADMIN",
+     "url": "https://maps.trpa.org/server/rest/services/DataDownloader_Parcels/MapServer",
+     "modified": "2026-07-22",
+     "licence": "CC BY-NC"
+    },
+    {
+     "title": "Truckee River Decree Claim Boundaries",
+     "org": "",
+     "owner": "tvergin_NDWR",
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/NDWR/Decrees_Truckee_River/FeatureServer",
+     "modified": "2024-06-25",
+     "licence": "CC0 1.0 Universal   https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+     "title": "WhittellForest_Parcels",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/WhittellForest_Parcels/FeatureServer",
+     "modified": "2020-06-24",
+     "licence": "Please cite as Dilts, T.E. (2020) Whittell Forest and Management Area, Parcels Streaming Web GIS Service. University of "
+    },
+    {
+     "title": "Parcels",
+     "org": "",
+     "owner": "friedlandere_cityofreno",
+     "url": "https://services5.arcgis.com/RjM4BJrv5ZkqP4XC/arcgis/rest/services/Parcels/FeatureServer",
+     "modified": "2021-08-11",
+     "licence": ""
+    },
+    {
+     "title": "Carson River Decree Claim Boundaries",
+     "org": "",
+     "owner": "tvergin_NDWR",
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/NDWR/Decrees_Carson_River/FeatureServer",
+     "modified": "2024-06-25",
+     "licence": "CC0 1.0 Universal    https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+     "title": "Carson City Facilities",
+     "org": "",
+     "owner": "GIS_Admin_CC",
+     "url": "https://services5.arcgis.com/C0ejqMIMxJZHALms/arcgis/rest/services/Carson_City_Facilities/FeatureServer",
+     "modified": "2024-02-29",
+     "licence": ""
+    },
+    {
+     "title": "Little Valley Research Station",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/Little_Valley_Research_Station/FeatureServer",
+     "modified": "2024-09-24",
+     "licence": ""
+    },
+    {
+     "title": "LittleValleyResearchStationParcel",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/LittleValleyResearchStationParcel/FeatureServer",
+     "modified": "2024-09-24",
+     "licence": ""
+    },
+    {
+     "title": "RCRWebmap_WS1984_WFL1",
+     "org": "",
+     "owner": "Christine_Davis_CalTrout",
+     "url": "https://services3.arcgis.com/6GmrBMeBBW4YPl5U/arcgis/rest/services/RCRWebmap_WS1984_WFL1/FeatureServer",
+     "modified": "2026-04-01",
+     "licence": ""
+    },
+    {
+     "title": "Ownership",
+     "org": "",
+     "owner": "GIS_Admin_CC",
+     "url": "https://services5.arcgis.com/C0ejqMIMxJZHALms/arcgis/rest/services/Ownership/FeatureServer",
+     "modified": "2024-02-28",
+     "licence": ""
+    },
+    {
+     "title": "SourceWaterProtection_Viewer",
+     "org": "",
+     "owner": "tsmith_tmrpa",
+     "url": "https://services5.arcgis.com/XmfH3Eftwp0aKxvz/arcgis/rest/services/SourceWaterProtection_Viewer/FeatureServer",
+     "modified": "2025-12-23",
+     "licence": ""
+    },
+    {
+     "title": "UNR_NAES_PropertyBoundaries",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/UNR_NAES_PropertyBoundaries/FeatureServer",
+     "modified": "2023-08-14",
+     "licence": ""
+    },
+    {
+     "title": "Boundary_Aligment_Map",
+     "org": "",
+     "owner": "amcclary_TRPA",
+     "url": "https://services5.arcgis.com/fXXSUzHD5JjcOt1v/arcgis/rest/services/Boundary_Aligment_Map/FeatureServer",
+     "modified": "2026-01-13",
+     "licence": "CC BY-NC"
+    },
+    {
+     "title": "Key Ranches Elko Parcels_WFL1",
+     "org": "",
+     "owner": "galactigirl",
+     "url": "https://services6.arcgis.com/EbELcBLzgHe42KBM/arcgis/rest/services/Key_Ranches_Elko_Parcels_WFL1/FeatureServer",
+     "modified": "2026-07-14",
+     "licence": ""
+    },
+    {
+     "title": "NDWR Decrees Truckee River",
+     "org": "",
+     "owner": "dcnradmin",
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/NDWR/Decrees_Truckee_River/FeatureServer",
+     "modified": "2026-06-09",
+     "licence": ""
+    },
+    {
+     "title": "NDWR Decrees Carson River",
+     "org": "",
+     "owner": "dcnradmin",
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/NDWR/Decrees_Carson_River/FeatureServer",
+     "modified": "2026-06-09",
+     "licence": ""
+    },
+    {
+     "title": "UNR_NAES_Parcels",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/UNR_NAES_Parcels/FeatureServer",
+     "modified": "2023-08-14",
+     "licence": ""
+    },
+    {
+     "title": "Zoning",
+     "org": "",
+     "owner": "GIS_Admin_CC",
+     "url": "https://services5.arcgis.com/C0ejqMIMxJZHALms/arcgis/rest/services/Zoning/FeatureServer",
+     "modified": "2024-03-15",
+     "licence": "The scale and configuration of all information shown hereon are approximate only and are not intended for design or surv"
+    },
+    {
+     "title": "UNR_NAES_PropertyCentroids",
+     "org": "",
+     "owner": "tomdilts",
+     "url": "https://services3.arcgis.com/QCH1Le0vwRIyplqB/arcgis/rest/services/UNR_NAES_PropertyCentroids/FeatureServer",
+     "modified": "2023-08-14",
+     "licence": ""
+    },
+    {
+     "title": "Boundary_Aligment_Map_Proposed",
+     "org": "",
+     "owner": "amcclary_TRPA",
+     "url": "https://services5.arcgis.com/fXXSUzHD5JjcOt1v/arcgis/rest/services/Boundary_Aligment_Map_Proposed/FeatureServer",
+     "modified": "2026-01-13",
+     "licence": "CC BY-NC"
+    },
+    {
+     "title": "WashoeTribeParcels20161123",
+     "org": "",
+     "owner": "GIS_AlpineCo",
+     "url": "https://services1.arcgis.com/9z9tEfqo0TExR9C8/arcgis/rest/services/WashoeTribeParcels20161123/FeatureServer",
+     "modified": "2022-10-14",
+     "licence": ""
+    },
+    {
+     "title": "Reno_Parcels",
+     "org": "",
+     "owner": "gronemans_cityofreno",
+     "url": "https://services5.arcgis.com/RjM4BJrv5ZkqP4XC/arcgis/rest/services/Reno_Parcels/FeatureServer",
+     "modified": "2026-06-30",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "q": "(BLM OR \"Bureau of Land Management\") AND (aviation OR airstrip OR airport OR \"landing strip\")",
+   "why": "F airstrips",
+   "found": [
+    {
+     "title": "Wildfire History by Age",
+     "org": "",
+     "owner": "pdoherty_napsg",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/InterAgencyFirePerimeterHistory_All_Years_View/FeatureServer",
+     "modified": "2022-07-07",
+     "licence": "This dataset is provided &quot;as is&quot; without warranty of any kind, including, but not limited to, the implied warr"
+    },
+    {
+     "title": "Creek Fire 2020 (Public)",
+     "org": "",
+     "owner": "CountyofMariposa",
+     "url": "https://services2.arcgis.com/wEula7SYiezXcdRv/arcgis/rest/services/Creek_Fire_FINAL/FeatureServer",
+     "modified": "2026-07-02",
+     "licence": "This is the most complete digital record of fire history in California. However it is still incomplete in many respects."
+    },
+    {
+     "title": "BLM Natl Rights-of-Way Planning Tool Energy Designations Group Feature Layer",
+     "org": "",
+     "owner": "jgiesen@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/Energy_Designations/FeatureServer",
+     "modified": "2025-06-30",
+     "licence": "These\ndatasets are static copies of data from external sources for use in the web\nmap, therefore the published data may "
+    },
+    {
+     "title": "Predictive Service Area  (PSA) Boundaries Public",
+     "org": "National Interagency Fire Center",
+     "owner": "DMP_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/DMP_Predictive_Service_Area__PSA_Boundaries_Public/FeatureServer",
+     "modified": "2026-07-17",
+     "licence": "The National Wildfire Coordinating Group (NWCG) makes no claims, \npromises, or guarantees about the accuracy, completene"
+    },
+    {
+     "title": "FEC_System",
+     "org": "",
+     "owner": "clnovotny",
+     "url": "https://services2.arcgis.com/B3FuYHZpRXI3e6dB/arcgis/rest/services/FEC_System/FeatureServer",
+     "modified": "2026-10-01",
+     "licence": ""
+    },
+    {
+     "title": "Road Segment",
+     "org": "",
+     "owner": "TDOT_GIS",
+     "url": "https://services2.arcgis.com/nf3p7v7Zy4fTOh6M/arcgis/rest/services/Road_Segment/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": "Classified for Public use, Open Data.    “All data presented here is for informational purposes only. Every effort is ma"
+    },
+    {
+     "title": "Spatial Incident Review Database (beta) from the Lessons Learned Center PublicVi",
+     "org": "",
+     "owner": "FLA.Owner_nifc",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/HistomapPublicView/FeatureServer",
+     "modified": "2026-07-20",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "National IA Frequency Zones Federal Public",
+     "org": "National Interagency Fire Center",
+     "owner": "DMP_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/DMP_National_IA_Frequency_Zones_Federal_Public/FeatureServer",
+     "modified": "2026-07-08",
+     "licence": "The Data Management Program (DMP) and the National Wildfire Coordinating\n Group (NWCG) make no claims, promises, or guar"
+    },
+    {
+     "title": "Foothills CWPP Feature Layers",
+     "org": "",
+     "owner": "cstarbird_dudek",
+     "url": "https://services.arcgis.com/12ZpLdNBJek66bmF/arcgis/rest/services/Foothills_CWPP_Feature_Layers/FeatureServer",
+     "modified": "2024-12-24",
+     "licence": ""
+    },
+    {
+     "title": "Mine Site Layout",
+     "org": "",
+     "owner": "Joe.Polacek@stantec.com_stantec",
+     "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/Fig2_4_2_SGP_MineSite_Layout_20220407/FeatureServer",
+     "modified": "2022-10-10",
+     "licence": ""
+    },
+    {
+     "title": "COSBAccela",
+     "org": "",
+     "owner": "SanBenitoCounty",
+     "url": "https://services2.arcgis.com/NjMFCzThTMQy3AJa/arcgis/rest/services/COSBAccela/FeatureServer",
+     "modified": "2026-08-25",
+     "licence": ""
+    },
+    {
+     "title": "CEFA Hourly Observed Feature Layer",
+     "org": "",
+     "owner": "WFTIIC_DM",
+     "url": "https://services.arcgis.com/BLN4oKB0N1YSgvY8/arcgis/rest/services/CEFA_Hourly_Forecast_Public_View/FeatureServer",
+     "modified": "2023-10-26",
+     "licence": ""
+    },
+    {
+     "title": "TRIP Map Data 2024",
+     "org": "",
+     "owner": "ThriveRegionalPartnership",
+     "url": "https://services3.arcgis.com/xpR2E2r2KmCE5hF3/arcgis/rest/services/TRIP2024_WFL1/FeatureServer",
+     "modified": "2025-09-18",
+     "licence": ""
+    },
+    {
+     "title": "TRIP Datasets",
+     "org": "",
+     "owner": "tgiarrusso",
+     "url": "https://services2.arcgis.com/I9cUOJUZvdGAJncI/arcgis/rest/services/GCFHData/FeatureServer",
+     "modified": "2023-10-10",
+     "licence": ""
+    },
+    {
+     "title": "BLM Campgrounds",
+     "org": "",
+     "owner": "RMA_Authoritative",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer",
+     "modified": "2026-02-07",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "Farmlands",
+     "org": "",
+     "owner": "sc_prmdgis",
+     "url": "https://services1.arcgis.com/P5Mv5GY5S66M8Z1Q/arcgis/rest/services/Farmlands/FeatureServer",
+     "modified": "2026-08-19",
+     "licence": "Permit Sonoma provides GIS information as a public service. Permit Sonoma makes no warranty, representation, or guarante"
+    },
+    {
+     "title": "CWPP Feature Layers",
+     "org": "",
+     "owner": "dudek_calabasas",
+     "url": "https://services3.arcgis.com/SpdLoVK6cxWCmNhU/arcgis/rest/services/Service_CWPP_Feature_Layers/FeatureServer",
+     "modified": "2025-12-18",
+     "licence": ""
+    },
+    {
+     "title": "PPRP_DIST_MIL_DATA",
+     "org": "",
+     "owner": "shannon.long@erm.com_ERM",
+     "url": "https://services1.arcgis.com/Sh1QwLSVKYk2AYjx/arcgis/rest/services/PPRP_DIST_MIL_DATA_v2/FeatureServer",
+     "modified": "2022-06-16",
+     "licence": ""
+    },
+    {
+     "title": "BLM ID AerialHazards v2",
+     "org": "",
+     "owner": "bweihausen_nifc",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/BLM_ID_AerialHazards_v2/FeatureServer",
+     "modified": "2023-03-22",
+     "licence": "For Fire Use Only -    These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or om"
+    },
+    {
+     "title": "ElDoradoCountyHistoricFirePolygons",
+     "org": "",
+     "owner": "edcgis",
+     "url": "https://services.arcgis.com/UHg8l1wC48WQyDSO/arcgis/rest/services/ElDoradoCountyHistoricFirePolygons/FeatureServer",
+     "modified": "2026-09-17",
+     "licence": "This is the most complete digital record of fire history in California. However, it is still incomplete in many respects"
+    },
+    {
+     "title": "BLM ID Surface Management Agency",
+     "org": "",
+     "owner": "ggoodwin@blm.gov_BLM_EGIS",
+     "url": "https://gis.blm.gov/idarcgis/rest/services/realty/BLM_ID_Surface_Management_Agency/FeatureServer",
+     "modified": "2024-03-05",
+     "licence": "This data should not be used as a replacement for the BLM Master Title Plats and other official records! This Surface Ma"
+    },
+    {
+     "title": "NMSZ_HSIP2015_Layers_2018",
+     "org": "",
+     "owner": "FEMA_Region7_GIS",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/NMSZ_HSIP2015_Layers_2018/FeatureServer",
+     "modified": "2022-11-30",
+     "licence": ""
+    },
+    {
+     "title": "BLM AZ Gila-San Simon Travel Management Plan Public Web Map Data Layers",
+     "org": "",
+     "owner": "rluu@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_AZ_Gila_San_Simon_Travel_Management_Plan_Web_Map_Data_Layers_view/FeatureServer",
+     "modified": "2023-12-27",
+     "licence": "Access Constraint:          None. These data are considered public domain.                 Use Constraint:          Thes"
+    },
+    {
+     "title": "USR_IRWM",
+     "org": "Sierra Water Workgroup",
+     "owner": "SNAlliance",
+     "url": "https://services6.arcgis.com/MtSzpOZ2FMytnchL/arcgis/rest/services/USR_IRWM/FeatureServer",
+     "modified": "2019-05-29",
+     "licence": "Feature Service is not intended for public use."
+    },
+    {
+     "title": "TRAILHEAD_NEW",
+     "org": "",
+     "owner": "lwilliams@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/TRAILHEAD_NEW/FeatureServer",
+     "modified": "2026-04-15",
+     "licence": "These data are provided by BLM \"as is\" and may contain errors or omissions. The User assumes the entire risk associated "
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "q": "(\"scenic byway\" OR \"scenic byways\" OR \"back country byway\") AND (\"Forest Service\" OR BLM OR NDOT)",
+   "why": "F scenic roads",
+   "found": [
+    {
+     "title": "Appalachian Ohio Asset Data",
+     "org": "",
+     "owner": "taeil",
+     "url": "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/Appalachian_Ohio_Asset_Data/FeatureServer",
+     "modified": "2022-11-09",
+     "licence": ""
+    },
+    {
+     "title": " BLM Natl Rights-of-Way Planning Tool Other Designated Areas Group Feature Layer",
+     "org": "",
+     "owner": "jgiesen@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/Other_Designated_Areas_Group/FeatureServer",
+     "modified": "2019-11-22",
+     "licence": "These\ndatasets are static copies of data from external sources for use in the web\nmap, therefore the published data may "
+    },
+    {
+     "title": "Missouri Breaks National Back Country Byway Routes",
+     "org": "",
+     "owner": "akirkaldie@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BackCountryBywayRoutes/FeatureServer",
+     "modified": "2025-07-02",
+     "licence": "For public use.  Not responsible for updating road conditions. Road conditions at any time are the responsibility of the"
+    },
+    {
+     "title": "Appalachian Ohio Asset Map",
+     "org": "",
+     "owner": "taeil",
+     "url": "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/Appalachia_Ohio_Asset_Map/FeatureServer",
+     "modified": "2023-05-02",
+     "licence": ""
+    },
+    {
+     "title": "Hickenlooper Map V_8_WFL1",
+     "org": "",
+     "owner": "WildWorkshop",
+     "url": "https://services5.arcgis.com/enGOFVOIYC8OyheQ/arcgis/rest/services/Hickenlooper_Map_V_8_WFL1/FeatureServer",
+     "modified": "2026-02-24",
+     "licence": ""
+    },
+    {
+     "title": "Ohio Environmental Permitting Layers",
+     "org": "",
+     "owner": "pshea_TilsonTech",
+     "url": "https://services8.arcgis.com/18kyfXBs3NuIG8eD/arcgis/rest/services/Ohio_Environmental_Permitting_Layers/FeatureServer",
+     "modified": "2026-04-23",
+     "licence": ""
+    },
+    {
+     "title": "Coconino CWPP Socioeconomic Resources",
+     "org": "",
+     "owner": "SWCA_User",
+     "url": "https://services1.arcgis.com/Rlvx5g8pKeK13apH/arcgis/rest/services/Coconino_CWPP_Socioeconomic_Resources/FeatureServer",
+     "modified": "2026-01-29",
+     "licence": ""
+    },
+    {
+     "title": "USFS Management Prescriptions",
+     "org": "",
+     "owner": "DPMC_GIS",
+     "url": "https://services6.arcgis.com/cGI8zn9Oo7U9dF6z/arcgis/rest/services/USFS_Management_Prescriptions/FeatureServer",
+     "modified": "2023-11-16",
+     "licence": ""
+    },
+    {
+     "title": "GMUG_Proposed_Final_Plan_Oct_2023",
+     "org": "",
+     "owner": "TWSAdmin",
+     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/GMUG_Proposed_Final_Plan_Oct_2023/FeatureServer",
+     "modified": "2023-10-06",
+     "licence": ""
+    },
+    {
+     "title": "BLM OR Ground Transportation GTRN Back Country Byways Line Hub",
+     "org": "",
+     "owner": "blm_arcgis_hub_or",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_OR_Ground_Transportation_GTRN_Back_Country_Byways_Line_Hub/FeatureServer",
+     "modified": "2026-10-21",
+     "licence": "These data are provided by Bureau of Land Management (BLM) \"as is\" and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "GPI Louisiana Decision Support Tool Natural Environment Input Datasets",
+     "org": "",
+     "owner": "CM_float_gpi",
+     "url": "https://services1.arcgis.com/yWU5mm2MiovfH9MW/arcgis/rest/services/GPI_EJ_Modeling_Natural_Environment_Input_Datasets/FeatureServer",
+     "modified": "2024-07-10",
+     "licence": ""
+    },
+    {
+     "title": "America_s Scenic Highways and Byways_WFL1",
+     "org": "",
+     "owner": "awyattsmith0615",
+     "url": "https://services7.arcgis.com/yiuFazTjHE8F5gzQ/arcgis/rest/services/America_s_Scenic_Highways_and_Byways_WFL1/FeatureServer",
+     "modified": "2024-04-02",
+     "licence": ""
+    },
+    {
+     "title": "RSFO_Alternatives_gdb",
+     "org": "",
+     "owner": "MarkScottHenderson",
+     "url": "https://services8.arcgis.com/13m38CrqNPNkFP5X/arcgis/rest/services/RSFO_Alternatives_gdb/FeatureServer",
+     "modified": "2023-12-09",
+     "licence": ""
+    },
+    {
+     "title": "North Fork WRAP Decision Support Layers",
+     "org": "",
+     "owner": "hwalte@denverwater.org_DW",
+     "url": "https://services.arcgis.com/czCXlxn6hYtK4vdg/arcgis/rest/services/North_Fork_WRAP_Decision_Support_Layers/FeatureServer",
+     "modified": "2026-01-15",
+     "licence": ""
+    },
+    {
+     "title": "HydroVIEW_2_2024_WFL1",
+     "org": "",
+     "owner": "Water_OHIOU",
+     "url": "https://services5.arcgis.com/t4xYDjfDFWC8eyBj/arcgis/rest/services/HydroVIEW_2_2024_WFL1/FeatureServer",
+     "modified": "2024-10-21",
+     "licence": ""
+    },
+    {
+     "title": "EFSEC Washington Visual Input",
+     "org": "",
+     "owner": "Jay.Silavisesrith@wsp.com_wspglobal",
+     "url": "https://services7.arcgis.com/TuQ8KXxdnKZCJwrs/arcgis/rest/services/EFSEC_Washington_Visual_Input/FeatureServer",
+     "modified": "2025-09-29",
+     "licence": ""
+    },
+    {
+     "title": "USFS_Data",
+     "org": "",
+     "owner": "MatrixGeneral",
+     "url": "https://services.arcgis.com/pgpW6qJ4VMq85bSI/arcgis/rest/services/USFS_Data/FeatureServer",
+     "modified": "2025-07-02",
+     "licence": ""
+    },
+    {
+     "title": "Montana Special Highway Designations",
+     "org": "Montana Department of Transportation",
+     "owner": "MDT_Admin",
+     "url": "https://app.mdt.mt.gov/arcgis/rest/services/Standard/SPECIAL_HIGHWAY_DESIGNATIONS/MapServer/1",
+     "modified": "2019-03-22",
+     "licence": "This service is provided &quot;as-is&quot; without warranty of any kind.  The Montana Department of Transportation makes"
+    },
+    {
+     "title": "BLM Partner Freedom 250 Recreation Sites",
+     "org": "",
+     "owner": "rluu@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Partner_Freedom_250_Recreation_Sites/FeatureServer",
+     "modified": "2026-04-30",
+     "licence": "Access Constraint:   None. These data are considered public domain.  &nbsp;   Use Constraint:   These data are provided "
+    },
+    {
+     "title": "Organ Mountains Wilderness Trails",
+     "org": "",
+     "owner": "earlbell",
+     "url": "https://services3.arcgis.com/4Jzv4UlfvaK6Z7LW/arcgis/rest/services/Organ_Mountains_Wilderness_Trails/FeatureServer",
+     "modified": "2022-09-23",
+     "licence": ""
+    },
+    {
+     "title": "GCLMPO_Geodatabase_2020_shapefiles_Server",
+     "org": "",
+     "owner": "GCLMPO",
+     "url": "https://services3.arcgis.com/u6Nvh8zpOQRNNRJi/arcgis/rest/services/GCLMPO_Geodatabase_2020_shapefiles_Server/FeatureServer",
+     "modified": "2020-05-27",
+     "licence": ""
+    },
+    {
+     "title": "BLM Arizona Freedom 250 Routes",
+     "org": "",
+     "owner": "rluu@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Arizona_Freedom_250_Routes/FeatureServer",
+     "modified": "2026-02-11",
+     "licence": "Access Constraint:   None. These data are considered public domain.  &nbsp;   Use Constraint:   These data are provided "
+    },
+    {
+     "title": "CTP Highway Changes 2025_WFL1",
+     "org": "",
+     "owner": "GCLMPO",
+     "url": "https://services3.arcgis.com/u6Nvh8zpOQRNNRJi/arcgis/rest/services/CTP_Highway_Changes_2025_WFL1/FeatureServer",
+     "modified": "2025-02-14",
+     "licence": ""
+    },
+    {
+     "title": "Dona Ana Mountain",
+     "org": "",
+     "owner": "earlbell",
+     "url": "https://services3.arcgis.com/4Jzv4UlfvaK6Z7LW/arcgis/rest/services/Dona_Ana_Mountain/FeatureServer",
+     "modified": "2023-01-29",
+     "licence": ""
+    },
+    {
+     "title": "Tortugas",
+     "org": "",
+     "owner": "earlbell",
+     "url": "https://services3.arcgis.com/4Jzv4UlfvaK6Z7LW/arcgis/rest/services/Tortugas/FeatureServer",
+     "modified": "2023-01-29",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "WY",
+   "q": "(\"Wyoming Game and Fish\" OR WGFD) AND (hatchery OR \"public access\" OR lands OR property)",
+   "why": "F hatcheries WY",
+   "found": [
+    {
+     "title": "Greater Sage Grouse Habitat",
+     "org": "",
+     "owner": "USFSMapsandApps",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/GSTC_GRSGHabitat_01/FeatureServer",
+     "modified": "2021-02-19",
+     "licence": ""
+    },
+    {
+     "title": "SeniorGameWardenDistricts",
+     "org": "",
+     "owner": "WildlifeAssistants@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/SeniorGameWardenDistricts/FeatureServer",
+     "modified": "2025-10-22",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "InstreamFlow_XstreamAngler_PublicView",
+     "org": "",
+     "owner": "DJensen@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/InstreamFlow_XstreamAngler_PublicView/FeatureServer",
+     "modified": "2024-12-20",
+     "licence": ""
+    },
+    {
+     "title": "WildlifeBiologistDistrictBiologists",
+     "org": "",
+     "owner": "WildlifeAssistants@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeBiologistDistrictBiologists/FeatureServer",
+     "modified": "2025-10-22",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerCorridor",
+     "org": "",
+     "owner": "westernpriorities",
+     "url": "https://services9.arcgis.com/9zsULJeyrUBZlYEV/arcgis/rest/services/MuleDeerCorridor/FeatureServer",
+     "modified": "2020-04-10",
+     "licence": "This data set should never be used at a scale larger than 1:100,000. When applicable, published written boundary descrip"
+    },
+    {
+     "title": "Elk_Crucial_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Elk_Crucial_Range/FeatureServer",
+     "modified": "2021-11-23",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "EV2020_Restrictions_HS_20191024",
+     "org": "",
+     "owner": "Yuying.Li@hdrinc.com_HDR",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/EV2020_Restrictions_HS_20191024/FeatureServer",
+     "modified": "2019-10-25",
+     "licence": ""
+    },
+    {
+     "title": "Antelope_Crucial_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Antelope_Crucial_Range/FeatureServer",
+     "modified": "2021-11-02",
+     "licence": ""
+    },
+    {
+     "title": "MuleDeerCrucialRange",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerCrucialRange/FeatureServer",
+     "modified": "2021-10-07",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "BLM_Natl_Solar_Mapper",
+     "org": "",
+     "owner": "cherbertson@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+     "modified": "2025-05-28",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "MuleDeerMigrationSubletteHighUseCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationSubletteHighUseCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationSubletteWGFDCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationSubletteWGFDCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationBaggsWGFDCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationBaggsWGFDCorridor/FeatureServer",
+     "modified": "2024-08-30",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "WildlifeHabitatManagementAreaBoundaries",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeHabitatManagementAreaBoundaries/FeatureServer",
+     "modified": "2025-07-14",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "Elk_Seasonal_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Elk_Seasonal_Range/FeatureServer",
+     "modified": "2021-11-23",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationBaggsHighUseCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationBaggsHighUseCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationPlatteValleyHighUseCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationPlatteValleyHighUseCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationPlatteValleyWGFDCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationPlatteValleyWGFDCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "MuleDeerMigrationBaggsMediumUseCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationBaggsMediumUseCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "AntelopeMigrationIdentifiedSubletteWGFDCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/AntelopeMigrationIdentifiedSubletteWGFDCorridor/FeatureServer",
+     "modified": "2026-07-17",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "Antelope_Seasonal_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Antelope_Seasonal_Range/FeatureServer",
+     "modified": "2021-11-02",
+     "licence": ""
+    },
+    {
+     "title": "Moose_Crucial_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Moose_Crucial_Range/FeatureServer",
+     "modified": "2021-11-29",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "Bighorn_Sheep_Crucial_Range",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Bighorn_Sheep_Crucial_Range/FeatureServer",
+     "modified": "2025-12-04",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    },
+    {
+     "title": "BLM Natl WesternUS GRSG Biologically Significant Units October 2017 Update",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_WesternUS_GRSG_Biologically_Significant_Units_October_2017_Update/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "MuleDeerMigrationSubletteMediumUseCorridor",
+     "org": "",
+     "owner": "WyomingGameAndFish@wgfd",
+     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/MuleDeerMigrationSubletteMediumUseCorridor/FeatureServer",
+     "modified": "2024-07-16",
+     "licence": "The State of Wyoming and Wyoming Game and Fish Department provide this data and any related materials \"as is\", without w"
+    }
+   ]
+  },
+  {
+   "st": "OR",
+   "q": "(ODFW OR \"Oregon Department of Fish and Wildlife\") AND (hatchery OR hatcheries OR property OR lands)",
+   "why": "F hatcheries OR",
+   "found": [
+    {
+     "title": "StreamNet StoryMap Layers",
+     "org": "",
+     "owner": "ODFW_AGO",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Rivers/FeatureServer",
+     "modified": "2019-09-27",
+     "licence": "Please credit ODFW."
+    },
+    {
+     "title": "15_arcgis_online_huntmap",
+     "org": "",
+     "owner": "harneycounty",
+     "url": "https://services3.arcgis.com/e3KSI9Py4B7m3xu6/arcgis/rest/services/15_arcgis_online_huntmap/FeatureServer",
+     "modified": "2020-10-05",
+     "licence": ""
+    },
+    {
+     "title": "06_arcgis_online_Land_Use",
+     "org": "",
+     "owner": "harneycounty",
+     "url": "https://services3.arcgis.com/e3KSI9Py4B7m3xu6/arcgis/rest/services/06_arcgis_online_Land_Use/FeatureServer",
+     "modified": "2026-04-29",
+     "licence": ""
+    },
+    {
+     "title": "Trails and Recreation Layer View for TMK website",
+     "org": "",
+     "owner": "TCVA_ARCGIS",
+     "url": "https://services5.arcgis.com/6o8eeGJT1G7WaCl9/arcgis/rest/services/Trails_and_Recreation_Layer_View_for_TMK_website/FeatureServer",
+     "modified": "2025-02-19",
+     "licence": ""
+    },
+    {
+     "title": "Priority Wildlife Connectivity Areas",
+     "org": "",
+     "owner": "rachel.wheat_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Priority_Wildlife_Connectivity_Areas/FeatureServer",
+     "modified": "2025-10-01",
+     "licence": "These data are a product of the Oregon Connectivity Assessment and Mapping Project (OCAMP), developed to model habitat p"
+    },
+    {
+     "title": "Primarily Natural Resources",
+     "org": "",
+     "owner": "sarah.idczak_DEQ",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer",
+     "modified": "2021-09-13",
+     "licence": "The Nature Conservancy makes no warranty as to the currency, completeness, accuracy or utility of any specific data. Thi"
+    },
+    {
+     "title": "WMU_AandH_TMA_PubLand view",
+     "org": "",
+     "owner": "bex.gottlieb_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/WMU_AandH_TMA_PubLand_view/FeatureServer",
+     "modified": "2024-08-19",
+     "licence": ""
+    },
+    {
+     "title": "Essential Salmon Habitat",
+     "org": "",
+     "owner": "JCGIS_Owner",
+     "url": "https://jcportal.jacksoncountyor.gov/server/rest/services/Environmental/Essential_Salmon_Habitat/FeatureServer",
+     "modified": "2025-03-12",
+     "licence": ""
+    },
+    {
+     "title": "Nehalem 6th Field HUC Joins_WFL1",
+     "org": "",
+     "owner": "ian.maher_portlandcc",
+     "url": "https://services8.arcgis.com/tblHe99qQFMcNzpC/arcgis/rest/services/Nehalem_6th_Field_HUC_Joins_WFL1/FeatureServer",
+     "modified": "2024-11-05",
+     "licence": ""
+    },
+    {
+     "title": "2026 Conservation Opportunity Areas (COAs)",
+     "org": "",
+     "owner": "eszter.collier_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/COAs_2026/FeatureServer",
+     "modified": "2026-07-23",
+     "licence": "COAs were developed to guide voluntary conservation actions in Oregon. Land use or other activities within these areas w"
+    },
+    {
+     "title": "Key Habitats Hexagon Grid 20251031",
+     "org": "",
+     "owner": "eszter.collier_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Key_Habitats_Hexagon_Grid_20251031/FeatureServer",
+     "modified": "2025-11-03",
+     "licence": "The Oregon Crucial Habitat dataset is not a substitute for site-specific consultation with land and resource management "
+    },
+    {
+     "title": "Wildlife Areas for Compass V2",
+     "org": "",
+     "owner": "eszter.collier_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Wildlife_Areas/FeatureServer",
+     "modified": "2025-10-27",
+     "licence": "No changes may be made to this dataset without ODFW permission.    This spatial data layer was developed based on a vari"
+    },
+    {
+     "title": "Fish Passage Barriers ODFW for Compass V2",
+     "org": "",
+     "owner": "eszter.collier_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Fish_Passage_Barriers_ODFW_for_Compass_V2/FeatureServer",
+     "modified": "2025-10-28",
+     "licence": "Notification of any errors would be appreciated please email: Rebecca.L.Gottlieb@odfw.oregon.gov. The Oregon Department "
+    },
+    {
+     "title": "Threats View",
+     "org": "",
+     "owner": "alan_yanahan@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Threats_View/FeatureServer",
+     "modified": "2021-09-23",
+     "licence": "These data layers are meant to be used for conversation and dialogue. They are draft data layers. Many of the data layer"
+    },
+    {
+     "title": "Grande Ronde _ Imnaha Basin Habitat Data_WFL1",
+     "org": "",
+     "owner": "alex@grmw.org0",
+     "url": "https://services3.arcgis.com/OXQOnvnrZqcEnhNx/arcgis/rest/services/Grande_Ronde___Imnaha_Basin_Habitat_Data_WFL1/FeatureServer",
+     "modified": "2025-12-10",
+     "licence": ""
+    },
+    {
+     "title": "Federally Protected Species - Designated Critical Habitat",
+     "org": "",
+     "owner": "idahofishandgame",
+     "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer",
+     "modified": "2025-10-03",
+     "licence": "The data represented in this file are true and accurate\nto the best of our knowledge but are considered a best represent"
+    },
+    {
+     "title": "RPB_ORNCAsubregion_jurisdiction",
+     "org": "",
+     "owner": "OceanDataPortal",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/RPB_ORNCAsubregion_jurisdiction/FeatureServer",
+     "modified": "2018-06-13",
+     "licence": ""
+    },
+    {
+     "title": "Essential Salmon Habitat in Oregon (2015)",
+     "org": "",
+     "owner": "lindsjor@oregonstate.edu_OSUGISci",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_ESH_State_15/FeatureServer",
+     "modified": "2021-04-11",
+     "licence": "Care was taken in the creation of these themes, but they are provided \"as is\". The Oregon Dept. of Fish and Wildlife can"
+    },
+    {
+     "title": "Socioeconomic Resources",
+     "org": "",
+     "owner": "sarah.idczak_DEQ",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Socioeconomic_Resources/FeatureServer",
+     "modified": "2026-06-29",
+     "licence": ""
+    },
+    {
+     "title": "West Coast USA Eelgrass Maximum Observed Extent",
+     "org": "Pacific States Marine Fisheries Commission",
+     "owner": "PSMFC_GIS",
+     "url": "https://gis.psmfc.org/server/rest/services/PMEP/PMEP_West_Coast_USA_Eelgrass_Maximum_Observed_Extent/MapServer",
+     "modified": "2026-04-03",
+     "licence": "This product is for informational purposes only and is not intended for navigational, legal, engineering, or surveying p"
+    },
+    {
+     "title": "New WA Zone Affected Areas Only",
+     "org": "",
+     "owner": "InesCu",
+     "url": "https://services1.arcgis.com/znO8Hz1SuVVohYhZ/arcgis/rest/services/New_WA_Zone_Affected_Areas_Only/FeatureServer",
+     "modified": "2023-03-08",
+     "licence": ""
+    },
+    {
+     "title": "BLM Natl WesternUS GRSG Biologically Significant Units October 2017 Update",
+     "org": "",
+     "owner": "blm_arcgis_hub_natl",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_WesternUS_GRSG_Biologically_Significant_Units_October_2017_Update/FeatureServer",
+     "modified": "2022-06-28",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "ah_tma_nwr_point",
+     "org": "",
+     "owner": "alexander.vencill_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ah_tma_nwr_point/FeatureServer",
+     "modified": "2026-10-21",
+     "licence": "No limitation"
+    },
+    {
+     "title": "Restoration Projects - Oregon Watershed Restoration Inventory (OWRI) 1995-2022",
+     "org": "",
+     "owner": "Oregon_Explorer_OSU",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/project_owri_2024/FeatureServer",
+     "modified": "2025-03-05",
+     "licence": "CC BY"
+    },
+    {
+     "title": "ORHAM_accesshab",
+     "org": "",
+     "owner": "alexander.vencill_ODFW",
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ORHAM_accesshab_test/FeatureServer",
+     "modified": "2026-10-21",
+     "licence": "No limitation"
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "q": "(\"North Dakota\" AND (\"state-owned\" OR \"state owned\" OR \"Trust Lands\" OR parcels))",
+   "why": "F ND historic sites step 1/3",
+   "found": [
+    {
+     "title": "Regrid USA Nationwide Parcel Boundaries",
+     "org": "Regrid",
+     "owner": "data_regrid",
+     "url": "https://tiles.arcgis.com/tiles/KzeiCaQsMoeCfoCq/arcgis/rest/services/Regrid_Nationwide_Parcel_Boundaries_v1/MapServer",
+     "modified": "2026-07-28",
+     "licence": "All of Regrid's datasets, including the data layer published on ArcGIS Living Atlas and the data purchased on the Regrid"
+    },
+    {
+     "title": "NDGISHUB Parcels",
+     "org": "State of North Dakota",
+     "owner": "NDGISHub",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer",
+     "modified": "2026-10-26",
+     "licence": "Not for navigation. The State of North Dakota has compiled this data according to conventional cartographic standards, u"
+    },
+    {
+     "title": "PSEG_MPRP_public_comment_basedata",
+     "org": "",
+     "owner": "grant.stevens@stantec.com_stantec",
+     "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/public_comment_basedata/FeatureServer",
+     "modified": "2024-06-28",
+     "licence": ""
+    },
+    {
+     "title": "Tax_Parcels_Burleigh_County_ND",
+     "org": "",
+     "owner": "BurleighCounty",
+     "url": "https://services2.arcgis.com/8r0lsT7QHelkANsD/arcgis/rest/services/Tax_Parcels_Burleigh_County_ND/FeatureServer",
+     "modified": "2026-05-04",
+     "licence": ""
+    },
+    {
+     "title": "Road_List_Burleigh_County_ND",
+     "org": "",
+     "owner": "BurleighCounty",
+     "url": "https://services2.arcgis.com/8r0lsT7QHelkANsD/arcgis/rest/services/Road_List_Burleigh_County_ND/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": "This data is for representation only and does not represent a survey. No liability is assumed as to the accuracy of the "
+    },
+    {
+     "title": "Public Parcels",
+     "org": "",
+     "owner": "BismarckGIS",
+     "url": "https://services1.arcgis.com/XxHmL09eFqJWI0gE/arcgis/rest/services/ParcelsPublic/FeatureServer",
+     "modified": "2026-07-01",
+     "licence": ""
+    },
+    {
+     "title": "Address_Points_Burleigh_County_ND",
+     "org": "",
+     "owner": "BurleighCounty",
+     "url": "https://services2.arcgis.com/8r0lsT7QHelkANsD/arcgis/rest/services/Address_Points_Burleigh_County_ND/FeatureServer",
+     "modified": "2026-05-04",
+     "licence": "This data is for representation only and does not represent a survey. No liability is assumed as to the accuracy of the "
+    },
+    {
+     "title": "NDGISHUB Army Corps Lands",
+     "org": "",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Army_Corps_Lands/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": "This data set may be used as fit for purposes of the US Army Corps of Engineers. Users should be aware that this dataset"
+    },
+    {
+     "title": "NDGISHUB State Parks",
+     "org": "State of North Dakota",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer",
+     "modified": "2026-06-22",
+     "licence": "This data is for reference purposes only. The North Dakota Parks and Recreation Department does not guarantee this map i"
+    },
+    {
+     "title": "NDGISHUB BLM Surface and Mineral Lands",
+     "org": "",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_BLM_Surface_and_Mineral_Lands/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": "None. No warranty is made by the BLM for the use of the data for purposes not intended by the BLM. Spatial information m"
+    },
+    {
+     "title": "NDGISHUB State Forest",
+     "org": "State of North Dakota",
+     "owner": "NDGISHDP-GNF",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": "The State of North Dakota has compiled this data according to conventional cartographic standards, using what is thought"
+    },
+    {
+     "title": "Parcel_Map_Notes_submit",
+     "org": "",
+     "owner": "NDGISHub",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/Parcel_Map_Notes_submit/FeatureServer",
+     "modified": "2024-09-03",
+     "licence": "Not for navigation. The State of North Dakota has compiled this data according to conventional cartographic standards, u"
+    },
+    {
+     "title": "FracTrackerNationalWells_Part1_012022",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FracTrackerNationalWells_Part1_012022/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": "Please   contact FracTracker Alliance   for inquires regarding data use"
+    },
+    {
+     "title": "NDGISHUB Surface Trust Lands",
+     "org": "State of North Dakota",
+     "owner": "NDGISHub",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUBSurfaceTrustLands/FeatureServer",
+     "modified": "2025-12-15",
+     "licence": "The North Dakota Department of Trust Lands has compiled this data according to conventional cartographic standards, usin"
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "NDGISHUB Mineral Trust Lands",
+     "org": "State of North Dakota",
+     "owner": "NDGISHub",
+     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUBMineralTrustLands/FeatureServer",
+     "modified": "2025-11-04",
+     "licence": "The North Dakota Department of Trust Lands has compiled this data according to conventional cartographic standards, usin"
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "USACE Lands for Permitting",
+     "org": "",
+     "owner": "NBAM_Org",
+     "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/USACE_Land_Permitting_Layer/FeatureServer",
+     "modified": "2023-09-15",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    },
+    {
+     "title": "DoD Lands for Permitting",
+     "org": "",
+     "owner": "NBAM_Org",
+     "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/DoD_Lands_for_Permitting/FeatureServer",
+     "modified": "2023-09-15",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    },
+    {
+     "title": "USBR Lands for Permitting",
+     "org": "",
+     "owner": "NBAM_Org",
+     "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/USBR_Land_for_Permitting/FeatureServer",
+     "modified": "2023-09-15",
+     "licence": "Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warra"
+    },
+    {
+     "title": "USFS Northern Region Ownership - Public Cartographic Product",
+     "org": "",
+     "owner": "USFSRegion01",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/R01PADUSOwnership_PublicCartographicVIEW/FeatureServer",
+     "modified": "2025-03-13",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "Protected Areas Database of the United States (PAD-US)",
+     "org": "",
+     "owner": "lindsjor@oregonstate.edu_OSUGISci",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+     "modified": "2021-04-11",
+     "licence": "Publicly available — PAD-US is published by the Federal government; it is open and free to use for all public and commer"
+    },
+    {
+     "title": "BLM_Lands",
+     "org": "",
+     "owner": "bhanceCLLC",
+     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
+     "modified": "2023-04-17",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "BLM Natl WesternUS GRSG ROD Habitat Mgmt Areas August 2022",
+     "org": "",
+     "owner": "zndavis@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_WesternUS_GRSG_ROD_Habitat_Mgmt_Areas_August_2022/FeatureServer",
+     "modified": "2022-10-05",
+     "licence": "These data are provided by Bureau of Land Management (BLM) 'as is' and might contain errors or omissions. The User assum"
+    }
+   ]
+  },
+  {
+   "st": "OK",
+   "q": "(Oklahoma AND (\"state-owned\" OR \"state owned\" OR OMES OR \"Commissioners of the Land Office\"))",
+   "why": "F OK historic sites step 1",
+   "found": [
+    {
+     "title": "National IA Frequency Zones Federal Public",
+     "org": "National Interagency Fire Center",
+     "owner": "DMP_Authoritative",
+     "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/DMP_National_IA_Frequency_Zones_Federal_Public/FeatureServer",
+     "modified": "2026-07-08",
+     "licence": "The Data Management Program (DMP) and the National Wildfire Coordinating\n Group (NWCG) make no claims, promises, or guar"
+    },
+    {
+     "title": "Caroline_Conservation_Easements",
+     "org": "",
+     "owner": "jamie_cvg",
+     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provides the persistent reference that should "
+    },
+    {
+     "title": "Canadian County Parcel Data (Public)",
+     "org": "",
+     "owner": "CanadianCounty",
+     "url": "https://services2.arcgis.com/0NjdXxmJp53hZWPd/arcgis/rest/services/ParcelDataService_2_view/FeatureServer",
+     "modified": "2026-04-17",
+     "licence": "This data was created and assembled by the Canadian County Assessor's Office for your informational, planning reference "
+    },
+    {
+     "title": "Land Ownership",
+     "org": "",
+     "owner": "Geothermal0",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
+     "modified": "2023-05-23",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Protected area with sustainable use of natural resources (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "R03_SurfaceOwnership_DEPRECATED",
+     "org": "",
+     "owner": "USFSRegion03",
+     "url": "https://services1.arcgis.com/gGHDlz6USftL5Pau/arcgis/rest/services/R03_SurfaceOwnership/FeatureServer",
+     "modified": "2026-10-06",
+     "licence": "The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness"
+    },
+    {
+     "title": "Combined Opportunity Area Conserved Lands_WFL1",
+     "org": "",
+     "owner": "northolympiclandtrust",
+     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
+     "modified": "2023-03-03",
+     "licence": ""
+    },
+    {
+     "title": "Protected Areas Database of the United States (PAD-US)",
+     "org": "",
+     "owner": "lindsjor@oregonstate.edu_OSUGISci",
+     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
+     "modified": "2021-04-11",
+     "licence": "Publicly available — PAD-US is published by the Federal government; it is open and free to use for all public and commer"
+    },
+    {
+     "title": "BLM_Lands",
+     "org": "",
+     "owner": "bhanceCLLC",
+     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
+     "modified": "2023-04-17",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "National park (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Oklahoma CLO Lease Data",
+     "org": "",
+     "owner": "nwood_pugonline",
+     "url": "https://gis.clo.ok.gov/arcgis/rest/services/Public/OKLeaseData_ExternalProd/MapServer",
+     "modified": "2022-04-05",
+     "licence": ""
+    },
+    {
+     "title": "Illinois River Watershed Map_WFL1",
+     "org": "",
+     "owner": "tb058_UAGEOS",
+     "url": "https://services6.arcgis.com/LhLoEHpKCLq0Db4Z/arcgis/rest/services/Illinois_River_Watershed_Map_WFL1/FeatureServer",
+     "modified": "2024-03-27",
+     "licence": ""
+    },
+    {
+     "title": "US_states_with_secession_dates",
+     "org": "ArcGIS StoryMaps",
+     "owner": "StoryMaps",
+     "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/US_states_with_secession_dates/FeatureServer",
+     "modified": "2020-07-24",
+     "licence": "All persons are granted a limited license to use data and documentation from IPUMS NHGIS, subject to the following condi"
+    },
+    {
+     "title": "Department of Defense Managed Land",
+     "org": "",
+     "owner": "annariling_Wilderness",
+     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
+     "modified": "2022-01-14",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "USGS_PAD14_NationalRecreationArea_20160501",
+     "org": "",
+     "owner": "OA_Admin",
+     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/USGS_PAD14_NationalRecreationArea_20160501/FeatureServer",
+     "modified": "2023-03-30",
+     "licence": "It is strongly recommended that these data are directly acquired from the U.S. Geological Survey Gap Analysis Program we"
+    },
+    {
+     "title": "Mine Waste_WFL1",
+     "org": "",
+     "owner": "Davis_lnkinder",
+     "url": "https://services1.arcgis.com/cTNi34MxOdcfum3A/arcgis/rest/services/Mine_Waste_WFL1/FeatureServer",
+     "modified": "2023-08-31",
+     "licence": ""
+    },
+    {
+     "title": "CMZ_lu_zoning",
+     "org": "",
+     "owner": "okplanning",
+     "url": "https://services3.arcgis.com/TFLAwDKfjaMZrV1v/arcgis/rest/services/CMZ_lu_zoning/FeatureServer",
+     "modified": "2019-10-25",
+     "licence": ""
+    },
+    {
+     "title": "Protected Areas Database",
+     "org": "",
+     "owner": "jill_ory@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer",
+     "modified": "2023-09-22",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "PADUS3 SGI Boundary",
+     "org": "",
+     "owner": "chip.morgan@segrasslands.org",
+     "url": "https://services.arcgis.com/XaWc1MuAt1v6Ook0/arcgis/rest/services/PADUS3_SGI_Boundary/FeatureServer",
+     "modified": "2024-03-03",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "EasternHemlockProject_NationalForests",
+     "org": "",
+     "owner": "mapping_AdvSciAdmin",
+     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
+     "modified": "2024-11-01",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "Notable Parks along Long Island Greenway Phase 1",
+     "org": "",
+     "owner": "pgahagan_NYC",
+     "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer",
+     "modified": "2022-02-28",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    },
+    {
+     "title": "Wilderness areas (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Wilderness_areas_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "1DA for IA Public Submissions_form",
+     "org": "",
+     "owner": "oemgis.admin",
+     "url": "https://services7.arcgis.com/JG0hnxGKFePcHZhj/arcgis/rest/services/service_954ce7392162437292b2c1d1646e34e8_form/FeatureServer",
+     "modified": "2026-04-28",
+     "licence": "The Oklahoma Department of Emergency Management (OEM) GIS data is derived from a variety of sources. The digital data an"
+    },
+    {
+     "title": "Other Conservation Area (PADUS)",
+     "org": "",
+     "owner": "sviars@americanrivers.org_Amrivers",
+     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Other_Conservation_Area_(PADUS)/FeatureServer",
+     "modified": "2025-08-18",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0 provides the persistent reference that sho"
+    },
+    {
+     "title": "Wildlife Protection Overlay",
+     "org": "",
+     "owner": "boar0259_ui_uidaho",
+     "url": "https://services.arcgis.com/WLhB60Nqwp4NnHz3/arcgis/rest/services/Wildlife_Protection_Overlay/FeatureServer",
+     "modified": "2021-12-16",
+     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 provides the persistent reference that sho"
+    }
+   ]
+  },
+  {
+   "st": "MS",
+   "q": "(MDWFP OR Mississippi) AND (\"state lake\" OR \"state lakes\" OR \"fishing lake\" OR \"fishing lakes\")",
+   "why": "F MS fishing lakes step 1",
+   "found": [
+    {
+     "title": "MetroEastStoryMapFinal",
+     "org": "",
+     "owner": "USACE_MVS_PS",
+     "url": "https://services6.arcgis.com/27cTpg5KhGu0zyjv/arcgis/rest/services/MetroEastStoryMapFinal/FeatureServer",
+     "modified": "2021-02-25",
+     "licence": ""
+    }
+   ]
+  }
+ ],
+ "orgs": [
+  {
+   "st": "US",
+   "url": "https://gis.blm.gov/arcgis/rest/services/transportation",
+   "note": "F airstrips + byways: BLM national transportation folder",
+   "folders": [],
+   "n_services": 1,
+   "matching": [
+    "transportation/BLM_Natl_GTLF_Public_Display (MapServer)"
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW",
+   "note": "F scenic roads: USFS EDW list",
+   "folders": [],
+   "n_services": 144,
+   "matching": [
+    "EDW/EDW_ColoradoRoadlessAreas2012_01 (MapServer)",
+    "EDW/EDW_InventoriedRoadlessAreas2001_01 (MapServer)",
+    "EDW/EDW_InventoriedRoadlessAreas2001IdCo_01 (MapServer)",
+    "EDW/EDW_InventoriedRoadlessAreas2008Id_01 (MapServer)",
+    "EDW/EDW_RoadBasic_01 (MapServer)",
+    "EDW/EDW_TrailNFSPublish_01 (MapServer)",
+    "EDW/EDW_TrailNFSPublishWithDataStatus_01 (MapServer)",
+    "EDW/EDW_WildScenicRiver_01 (MapServer)",
+    "EDW/EDW_WildScenicRiverActiveStudyRivers_01 (MapServer)",
+    "EDW/EDW_WildScenicRiverEligibleSuitable_01 (MapServer)",
+    "EDW/EDW_WildScenicRiverSegments_01 (MapServer)",
+    "EDW/EDW_WildScenicRiverStatus_01 (MapServer)"
+   ]
+  }
+ ],
+ "hubs": [],
+ "pages": [],
+ "pointq": [
+  {
+   "st": "WEST",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_LimitedScale/MapServer",
+   "note": "F step 2: BLM Surface Management Agency at the pin (NV markers, airstrips, scenic roads, BLM historic sites)",
+   "hits": [
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "attrs": {
+      "SMA_ID": 2386,
+      "ADMIN_DEPT_CODE": "ST",
+      "ADMIN_AGENCY_CODE": "ST",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "1 Surface Management Agency",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "4 Alaska Native Allotment",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "5 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "6 Department Of Defense (DOD)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "7 Bureau of Land Management (BLM)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "8 National Park Service (NPS)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "9 US Forest Service (USFS)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "10 US Fish and Wildlife (USFW)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "11 Bureau of Reclamation (USBR)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "12 Bureau of Indian Affairs (BIA)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "13 Other Federal",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "attrs": {
+      "SMA_ID": 2386,
+      "ADMIN_DEPT_CODE": "ST",
+      "ADMIN_AGENCY_CODE": "ST",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "14 State",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "15 Local",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "attrs": {
+      "SMA_ID": 2388,
+      "ADMIN_DEPT_CODE": "PVT",
+      "ADMIN_AGENCY_CODE": "PVT",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "16 Private or Unknown",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "19 Alaska Native Allotment",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "20 Alaska Native Lands (Patented or Interim Conveyed)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "21 Department Of Defense (DOD)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management NV",
+      "ADMIN_ST": "NV"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "22 Bureau of Land Management (BLM)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "attrs": {
+      "SMA_ID": 2,
+      "ADMIN_DEPT_CODE": "DOI",
+      "ADMIN_AGENCY_CODE": "BLM",
+      "ADMIN_UNIT_NAME": "Bureau of Land Management",
+      "ADMIN_UNIT_TYPE": "Bureau of Land Management UT",
+      "ADMIN_ST": "UT"
+     }
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "23 National Park Service (NPS)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "24 US Forest Service (USFS)",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "WEST",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "note": "F step 1: BLM recreation site polygons",
+   "hits": [
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      37.4568,
+      -117.508
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      38.9466,
+      -117.601
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.2873,
+      -118.035
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      38.2514,
+      -111.614
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.0181,
+      -109.71
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "2 BLM Natl Recreation Site Polygons",
+     "point": [
+      39.3833,
+      -113.3
+     ],
+     "attrs": {
+      "FET_TYPE": 4,
+      "FET_SUBTYPE": "SRMA",
+      "FET_NAME": "Swasey Mountain",
+      "ADM_UNIT_CD": "UTW02000",
+      "ADMIN_ST": "UT",
+      "GIS_ACRES": 33505.91350738,
+      "WEB_DISPLAY": "YES"
+     }
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "note": "F step 1/2: FWS realty tracts (national hatcheries; ND WMDs)",
+   "hits": [
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      43.5398,
+      -110.735
+     ],
+     "attrs": {
+      "ORGNAME": "NATIONAL ELK REFUGE",
+      "ORGCODE": 61550,
+      "IFWS": "74",
+      "LIT": "NER",
+      "GISACRES": 633.64256864,
+      "DOCACRES": 626.12,
+      "SURACRES": 0,
+      "STATUS": 0,
+      "INTTYPE1": "O",
+      "INTTYPE2": "N/A",
+      "TRACTNO": "11",
+      "INTIDNO": "74.11",
+      "RSL_TYPE": "NWR",
+      "FWSREGION": "6",
+      "CreatedDate": 1693428252000,
+      "ModifiedDate": 1732737347000,
+      "IntReg": "7",
+      "ACQUISITION_DATE": -1009497600000,
+      "CostCenter": "FF06RNER00",
+      "FUNDING_AUTHORITY": "OTHER FUNDING"
+     }
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      43.7983,
+      -121.575
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      46.0899,
+      -123.718
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      46.9933,
+      -97.7911
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      47.212,
+      -98.0677
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      47.1829,
+      -99.3719
+     ],
+     "attrs": {
+      "CMPXNAME": "CHASE LAKE PRAIRIE PROJECT WETLAND MANAGEMENT DISTRICT",
+      "ORGNAME": "STUTSMAN COUNTY WATERFOWL PRODUCTION AREA",
+      "ORGCODE": 62515,
+      "IFWS": "540",
+      "LIT": "WSM",
+      "GISACRES": 0,
+      "DOCACRES": 33,
+      "SURACRES": 0,
+      "STATUS": 0,
+      "INTTYPE1": "E",
+      "INTTYPE2": "X",
+      "TRACTNO": "760X",
+      "INTIDNO": "540.760X",
+      "RELICODE": "S1",
+      "RSL_TYPE": "WPA",
+      "FWSREGION": "6",
+      "CreatedDate": 1693423821000,
+      "ModifiedDate": 1753464950000,
+      "IntReg": "5",
+      "ACQUISITION_DATE": 1479168000000,
+      "CostCenter": "FF06RECL00",
+      "FUNDING_AUTHORITY": "MIGRATORY BIRD CONSERVATION FUND"
+     }
+    },
+    {
+     "layer": "0 FWSInterest",
+     "point": [
+      47.1829,
+      -99.3719
+     ],
+     "attrs": {
+      "CMPXNAME": "CHASE LAKE PRAIRIE PROJECT WETLAND MANAGEMENT DISTRICT",
+      "ORGNAME": "STUTSMAN COUNTY WATERFOWL PRODUCTION AREA",
+      "ORGCODE": 62515,
+      "IFWS": "540",
+      "LIT": "WSM",
+      "GISACRES": 0,
+      "DOCACRES": 178,
+      "SURACRES": 0,
+      "STATUS": 0,
+      "INTTYPE1": "E",
+      "INTTYPE2": "X",
+      "TRACTNO": "14X,1",
+      "INTIDNO": "540.14X,1",
+      "RELICODE": "S1",
+      "RSL_TYPE": "WPA",
+      "FWSREGION": "6",
+      "CreatedDate": 1693423821000,
+      "ModifiedDate": 1753464950000,
+      "IntReg": "5",
+      "ACQUISITION_DATE": -124156800000,
+      "CostCenter": "FF06RECL00",
+      "FUNDING_AUTHORITY": "MIGRATORY BIRD CONSERVATION FUND"
+     }
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+   "note": "F: FWS approved boundaries (hatcheries)",
+   "hits": [
+    {
+     "layer": "0 FWSApproved",
+     "point": [
+      43.5398,
+      -110.735
+     ],
+     "attrs": {
+      "CostCenter": "FF06RNER00",
+      "ORGNAME": "NATIONAL ELK REFUGE",
+      "ORGCODE": 61550,
+      "IFWS": "74",
+      "LIT": "NER",
+      "GISACRES": 24834.07988652,
+      "DOCACRES": 0,
+      "MAXACRES": 0,
+      "APPTYPE": 0,
+      "RSL_TYPE": "NWR",
+      "FWSREGION": "6",
+      "LABELNAME": "National Elk Refuge",
+      "CreatedDate": 1491171791000,
+      "ModifiedDate": 1753135941000,
+      "IntReg": "7"
+     }
+    },
+    {
+     "layer": "0 FWSApproved",
+     "point": [
+      43.7983,
+      -121.575
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 FWSApproved",
+     "point": [
+      46.0899,
+      -123.718
+     ],
+     "nohit": true
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+   "note": "F: NPS boundaries (OK national historic sites in the sample)",
+   "hits": [
+    {
+     "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "error": "{'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'details': ['24204: The "
+    }
+   ]
+  },
+  {
+   "st": "MS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_RecreationalFacilities_2017/MapServer",
+   "note": "F step 1: MARIS recreation facilities near the fishing lakes",
+   "hits": []
+  },
+  {
+   "st": "MS",
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/12",
+   "note": "F last step: the lake water polygon (NHD waterbody)",
+   "hits": [
+    {
+     "layer": "12 Waterbody - Large Scale",
+     "point": [
+      32.1009,
+      -89.0345
+     ],
+     "attrs": {
+      "PERMANENT_IDENTIFIER": "148143405",
+      "FDATE": 1477526400000,
+      "RESOLUTION": 2,
+      "GNIS_ID": "00668527",
+      "GNIS_NAME": "Lake Claude Bennett",
+      "AREASQKM": 0.29932611000000003,
+      "REACHCODE": "03170002002005",
+      "FTYPE": 390,
+      "FCODE": 39004,
+      "VISIBILITYFILTER": 5000000
+     }
+    },
+    {
+     "layer": "12 Waterbody - Large Scale",
+     "point": [
+      34.391,
+      -88.6695
+     ],
+     "attrs": {
+      "PERMANENT_IDENTIFIER": "122027857",
+      "FDATE": 1607472000000,
+      "RESOLUTION": 2,
+      "GNIS_ID": "00672276",
+      "GNIS_NAME": "Lake Lamar Bruce",
+      "AREASQKM": 1.2834949100000002,
+      "ELEVATION": 107,
+      "REACHCODE": "03160102014544",
+      "FTYPE": 390,
+      "FCODE": 39009,
+      "VISIBILITYFILTER": 5000000
+     }
+    },
+    {
+     "layer": "12 Waterbody - Large Scale",
+     "point": [
+      34.391,
+      -88.6695
+     ],
+     "attrs": {
+      "PERMANENT_IDENTIFIER": "{5c1bccdf-bc84-4b9c-aebc-d3290a8cc49f}",
+      "FDATE": 1607472000000,
+      "RESOLUTION": 2,
+      "GNIS_ID": "00672276",
+      "GNIS_NAME": "Lake Lamar Bruce",
+      "AREASQKM": 0.010277650000000001,
+      "ELEVATION": 107,
+      "REACHCODE": "03160102014545",
+      "FTYPE": 390,
+      "FCODE": 39009,
+      "VISIBILITYFILTER": 5000000
+     }
+    },
+    {
+     "layer": "12 Waterbody - Large Scale",
+     "point": [
+      34.303,
+      -88.6497
+     ],
+     "attrs": {
+      "PERMANENT_IDENTIFIER": "122029387",
+      "FDATE": 1607472000000,
+      "RESOLUTION": 2,
+      "AREASQKM": 1.3320328700000001,
+      "REACHCODE": "03160102001387",
+      "FTYPE": 390,
+      "FCODE": 39004,
+      "VISIBILITYFILTER": 5000000
+     }
+    },
+    {
+     "layer": "12 Waterbody - Large Scale",
+     "point": [
+      34.303,
+      -88.6497
+     ],
+     "attrs": {
+      "PERMANENT_IDENTIFIER": "122029391",
+      "FDATE": 1607472000000,
+      "RESOLUTION": 2,
+      "AREASQKM": 0.00203893,
+      "REACHCODE": "03160102004358",
+      "FTYPE": 390,
+      "FCODE": 39004,
+      "VISIBILITYFILTER": 5000000
+     }
+    }
+   ]
+  }
+ ]
+}
