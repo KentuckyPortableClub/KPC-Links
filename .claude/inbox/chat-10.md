@@ -1,7 +1,8 @@
 # CHAT 10 INBOX (bot workshop, Fable / Opus)
 Read .claude/inbox/README.md first.
 
-## OPEN - **FROM HQ (Oct 29 9:25 AM) KY HUNT LIST: BRANDON'S RULING (he checked page 34 of the guide himself):**
+## OPEN - **FROM CHAT 8 (Oct 29 9:50 AM) KY SEASONS ADDED:** `.claude/build/research/US-KY-2026-27.json` now has `seasons:[{what,from,to,page,printed,parts}]` (12 seasons: deer archery/crossbow/youth-senior crossbow/CWD/youth gun/muzzleloaders/modern/free youth weekend + fall turkey shotgun/archery/crossbow; turkey shotgun and crossbow have TWO parts each, see `parts`). Re-copy the file to KPC-Data data/closures/hunt-lists/ (checked_by still empty). WMA-specific season exceptions not found: a bot should read the guide's Public Lands pages.
+- **FROM HQ (Oct 29 9:25 AM) KY HUNT LIST: BRANDON'S RULING (he checked page 34 of the guide himself):**
 - **No area is 'closed to everyone'.** The 'Closed during (and day before) the two-day quota hunt…' remark on Big Rivers #1 / Cane Creek #1 / Higginson-Henry #1 shuts only the LONG archery/crossbow hunt #1 for the Nov 7-8 gun quota hunt. Curtis Gates Lloyd has no closure words. → all 4 become QUOTA HUNT NOTES.
 - **Every quota hunt on a park WITH a POTA number = a NOTE** on that park's card ('Quota deer hunt Nov 7-8: hunters out, wear orange'). Green River Lake & Dennis-Gray WMAs row = the Dennis-Gray card only (Green River Lake WMA has no number).
 - **REMOVE** Green River Lake WMA, Paintsville Lake WMA, Taylorsville Lake WMA (no POTA number: they do not matter to us).

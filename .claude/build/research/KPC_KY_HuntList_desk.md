@@ -16,3 +16,21 @@ List: `data/closures/hunt-lists/US-KY-2026-27.json` content is below (KPC-Data i
 - **State park hunts = NOTE only** (the park stays open; at most parts close). The 10 rows (Dale Hollow x2, Greenbo, Green River Lake SP x2, Kenlake x2, Kincaid x2, Lake Barkley x2) carry the wording "Parts of the park may be closed during the quota hunt <dates>." and `inside_park: NOT VERIFIED`: **held back until the hunt ground is checked against the park's POTA boundary.** I could not do that from here: the guide and the State Parks hunt info sheet (kyparks, 2022-23) only say "contact the park"; the maps are not on a page this chat can open. **Hand-off:** chat 10 / a GitHub bot reads each park's quota-hunt map (the park's page under parks.ky.gov, or a request to the park) and tests the hunt area against our park outline (data/ky-*.geojson). Inside = the wording goes live; next to it = the note moves to the neighbour (a WMA with a number) or nowhere. Lake Barkley is NOT in the State Parks' own hunt sheet at all (only the guide lists it): check that one first.
 - **Misfiled sentence deleted from the list:** the 'third Friday in November' line was never in my list (I only flagged it); chat 10 must remove it from US-KY.json (US-1259, Nov 20-23).
 - The list is otherwise unchanged: 4 closed areas, wildlife area notes.
+
+## STATEWIDE SEASONS 2026-27 (chat 8, Oct 29 ~9:50 AM) — into `US-KY-2026-27.json` as `seasons`
+Source: KDFWR hunting guide, https://fw.ky.gov/Hunt/Documents/huntingguideentire.pdf (deer p.10, fall turkey p.22), read twice through a page reader; two gaps filled from the KDFWR seasons planner page. Grade B.
+| Season | Dates as printed |
+|---|---|
+| Deer archery | Sept 5, 2026 - Jan 18, 2027 (guide p.10 shows 'Sept. 5, 2026 -'; the end is from the seasons planner) |
+| Youth/senior crossbow | Sept 5, 2026 - Jan 18, 2027 (planner; guide shows '...Jan. 18, 2027 *'; for residents 65+ and youth under 16) |
+| Crossbow | Sept 19, 2026 - Jan 18, 2027 |
+| CWD antlerless (Zone 1-3 counties in the CWD zone) | Sept 25-28, 2026 |
+| Youth-only modern firearms | Oct 10-18, 2026 |
+| Early muzzleloader | Oct 17-18, 2026 |
+| Modern firearms | Nov 14-29, 2026 |
+| Late muzzleloader | Dec 12-20, 2026 |
+| Free Youth Weekend (the 'holiday youth' season) | Dec 26-27, 2026 |
+| Fall turkey: shotgun | Oct 24-30 and Dec 5-11, 2026 |
+| Fall turkey: archery | Sept 5, 2026 - Jan 18, 2027 |
+| Fall turkey: crossbow | Oct 1-18 and Nov 14 - Dec 31, 2026 |
+**Brandon's turkey read CONFIRMED** (all three match). Notes: (1) the guide's p.11 box says proposed rules may add antlerless seasons and open some WMAs; they are pending, so check fw.ky.gov in the fall. (2) WMA-specific season exceptions: none found in what I can read; the Public Lands page still shows 2025-26 (not used). The guide's Public Lands section was cut off in the reader: a bot should read pages with per-WMA season text. (3) Only the QUOTA hunts close an area (see the list above); a statewide season never closes a WMA to the public.

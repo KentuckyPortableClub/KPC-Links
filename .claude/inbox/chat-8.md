@@ -133,3 +133,4 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 7:45 AM): Waiting room retest 2: near-miss swaps + renamed parks now HOLD; shape test (PAD-US) cannot be reached from this chat, first real run must be read. Known 2-fer pairs per state (Brandon G7 YES) is next in my queue.
 - DONE (Oct 29 8:55 AM): scope rule read (outside KY: boundaries, docs+maps, 2-fers, parking, trails only; 8.11 dropped, 8.10 trimmed). 8.3 index for Fable written. Next: 8.12 layered-land list, then 8.9, 8.10.
 - DONE (Oct 29 9:20 AM): 8.12 layered-land list: KPC_LayeredLand_List_desk.md + layered.json (federal x state POTA pairs from the 2-fer files, KY/GA/TN/AR first). Owner/manager from PAD-US + agreement pages still to fill (needs a bot).
+- DONE (Oct 29 9:50 AM): KY statewide seasons 2026-27 added to US-KY-2026-27.json (12 seasons, turkey read confirmed); WMA exceptions not readable here -> bot.
