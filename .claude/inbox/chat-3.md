@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 9:30 AM) KY HUNTING SEASONS ON EVERY KY PARK CARD (Brandon 9:23 AM):** the dates already live in data/ky-hunting.json and kpc-kit.js shows them ('today or starting within a week'). (1) Add the 2 missing fall turkey rows (KDFWR Turkey page; Brandon's read): **archery Sep 5 2026-Jan 18 2027**, **crossbow Oct 1-18 + Nov 14-Dec 31 2026** (rename 'Turkey: fall shotgun' stays, Oct 24-30 + Dec 5-11). (2) Show the same season lines on the LOUNGE park cards / park sheet (KY WMAs, state forests, NFs, wildlife refuges, rec areas where hunting is allowed), same window: from 7 days before a season until it ends. (3) Quota-hunt NOTES (chat 10 sends them through kpc-conditions as notes) look like the season lines; a REAL closure (only West Kentucky WMA 'Tract 1 is closed to public access' Nov 21-24 for now) gets a more noticeable red/orange line. KY only. Members-only beta train as usual; one screenshot of each kind to HQ.
 
 ## NEEDS BRANDON
 
