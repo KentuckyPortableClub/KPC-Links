@@ -2728,7 +2728,10 @@ def main():
         if REGION == 'ky':   # Oct 27: a trail that crosses Kentucky brings pairs in other states; keep only spots IN Kentucky
             try:
                 KYC = [c['r'] for c in json.load(open('kpc-ky-counties.json'))]
-                spots = [s for s in spots if pip_groups(KYC, s['center'][1], s['center'][0])]
+                # Oct 28 10:45 PM: the CENTER alone dropped the Kentucky Lake shore rows at Fort Heiman (center 30 m south of the coarse
+                # state line in kpc-ky-counties.json): a spot is kept when its center OR any point of its shape is in Kentucky
+                spots = [s for s in spots if pip_groups(KYC, s['center'][1], s['center'][0])
+                         or any(pip_groups(KYC, p[0], p[1]) for p in (s.get('shape') or [])[::max(1, len(s.get('shape') or []) // 40)])]
             except Exception as e: LOG.append(f'Kentucky outline: {str(e)[:60]}')  # noqa: BLE001
         by = {}
         for s in spots:

@@ -36,23 +36,60 @@ def sbox(s):
     return [min(p[0] for p in sh), min(p[1] for p in sh), max(p[0] for p in sh), max(p[1] for p in sh)]
 
 
-def tiles_needed():
+def row_tiles(s):
+    b = sbox(s)
+    if not b: return set()
+    pad = .002 if s.get('kind') == 'area' else .003
+    return {(i, j) for i in range(int(math.floor((b[0] - pad) / .1)), int(math.floor((b[2] + pad) / .1)) + 1)
+            for j in range(int(math.floor((b[1] - pad) / .1)), int(math.floor((b[3] + pad) / .1)) + 1)}
+
+
+NOTCHK = re.compile(r'water not checked|water map did not answer')
+
+
+def load_state(st):
+    f = DATA / f'{st}.json'
+    try:
+        if f.exists(): return json.load(open(f))
+        g = pathlib.Path(str(f) + '.gz')
+        if g.exists(): return json.loads(gzip.decompress(g.read_bytes()))
+    except Exception: pass  # noqa: BLE001
+    return None
+
+
+def tiles_needed(per=None):
+    """Tiles under every area spot, water-route row and 'water not checked' row; per = {state: tiles} filled when given."""
     T = set()
     for st in STATES:
-        f = DATA / f'{st}.json'
-        if not f.exists(): continue
-        d = json.load(open(f))
+        d = load_state(st)
+        if not d: continue
+        mine = set()
         for s in d.get('spots') or []:
             stt = str(s.get('status', ''))
             if stt.startswith(('dropped', 'merged')): continue
-            if s.get('kind') != 'area' and not s.get('water_route'): continue
-            b = sbox(s)
-            if not b: continue
-            pad = .002 if s.get('kind') == 'area' else .003
-            for i in range(int(math.floor((b[0] - pad) / .1)), int(math.floor((b[2] + pad) / .1)) + 1):
-                for j in range(int(math.floor((b[1] - pad) / .1)), int(math.floor((b[3] + pad) / .1)) + 1):
-                    T.add((i, j))
+            if s.get('kind') != 'area' and not s.get('water_route') and not NOTCHK.search(stt): continue
+            mine |= row_tiles(s)
+        T |= mine
+        if per is not None: per[st] = mine
     return T
+
+
+def report():
+    """Fable Oct 28 10:34 PM: per state 'tiles needed / saved / rows not checked'; a 'not checked' row whose tiles are ALL saved
+    means the line did not read the store = the bug to chase (printed loud)."""
+    have = {tuple(int(v) for v in p.name.split('.')[0].split('_')) for p in STORE.glob('*_*.json.gz')}
+    per = {}; tiles_needed(per); lines, bugs = [], 0
+    for st in STATES:
+        d = load_state(st) or {}
+        nc = [s for s in d.get('spots') or [] if NOTCHK.search(str(s.get('status', '')))]
+        notread = [s for s in nc if row_tiles(s) and row_tiles(s) <= have]
+        bugs += len(notread)
+        need = per.get(st, set())
+        lines.append(f"{st}: tiles needed {len(need)} / saved {len(need & have)} / rows not checked {len(nc)}"
+                     + (f" / {len(notread)} with ALL tiles saved = STORE NOT READ ({', '.join(str(s.get('id'))[:40] for s in notread[:3])})" if notread else ''))
+        print('water report ' + lines[-1], flush=True)
+    notice('water report: ' + ' · '.join(lines)[:850])
+    if bugs: print(f'::warning title=2-fer water::{bugs} rows say "water not checked" although every tile they need is saved: the line is not reading the water store', flush=True)
 
 
 def get_json(url, params, tries=3):
@@ -166,10 +203,12 @@ def read_hu4(zpath, tiles, out, tmp):
 
 def main():
     STORE.mkdir(parents=True, exist_ok=True)
-    need = tiles_needed()
+    per = {}
+    need = tiles_needed(per)
     have = {tuple(int(v) for v in p.name.split('.')[0].split('_')) for p in STORE.glob('*_*.json.gz')}
     miss = sorted(need - have)
-    notice(f"{' '.join(STATES)}: {len(need)} water tiles under the spots, {len(have & need)} already saved, {len(miss)} to fill from the USGS files")
+    notice(f"{' '.join(STATES)}: {len(need)} water tiles under the spots, {len(have & need)} already saved, {len(miss)} to fill from the USGS files"
+           + (' (' + '; '.join(f'{st} {len(t)}/{len(t & have)}' for st, t in per.items() if t) + ' needed/saved)' if len(per) > 1 else ''))
     if not miss: return
     try: prods, cover = hu4_products(miss)
     except Exception as e: notice(f'the USGS product list did not answer ({str(e)[:80]}): nothing filled'); return  # noqa: BLE001
@@ -211,6 +250,6 @@ def main():
 
 
 if __name__ == '__main__':
-    try: main()
+    try: report() if os.environ.get('REPORT') else main()
     except Exception as e: notice(f'stopped: {str(e)[:200]}')  # noqa: BLE001
     sys.exit(0)
