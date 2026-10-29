@@ -1,15 +1,13 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **320 of 489** joined (same name + same kind). **6** to check, **154** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **322 of 489** joined (same name + same kind). **4** to check, **154** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-0881** Annapolis Basin Look Off Provincial Park (Provincial Park) → Annapolis Basin Lookoff Provincial Park (~0 ac, similar name); Annapolis Basin Lookoff Provincial Park (~0 ac, similar name)
 - **CA-4842** Marconi National Historic Site (National Historic Site) → Marconi Wireless Station (~0 ac, similar name)
 - **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~0 ac, same name, different kind of place)
 - **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
 - **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~0 ac, similar name)
-- **CA-6437** Tidnish Dock Site Historic Site (Historic Site) → Tidnish Dock Provincial Park (~0 ac, same name, different kind of place); Tidnish Dock Provincial Park (~0 ac, same name, different kind of place)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

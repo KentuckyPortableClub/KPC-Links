@@ -1,11 +1,9 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **927 of 1180** joined (same name + same kind). **18** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **930 of 1180** joined (same name + same kind). **15** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-1299** Bannockburn Conservation Reserve (Conservation Reserve) → Bannockburn CA (~0 ac, same name, different kind of place); Bannockburn CA (Smith Tract) (~0 ac, same name, different kind of place)
-- **CA-1519** Milne Dam Conservation Park (Conservation Park) → Milne Park (~0 ac, similar name); Milne Park (~0 ac, similar name); Milne Park (~0 ac, similar name); Milne Park (~0 ac, similar name); Milne Park (~0 ac, similar name); Milne Park (~0 ac, similar name)
 - **CA-5118** Selwyn Beach Conservation Reserve (Conservation Reserve) → Selwyn Conservation Area (~0 ac, similar name)
 - **CA-5631** Cavan Swamp Wildlife Area (Wildlife Area) → Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Hooton Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Mount Pleasant Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Mount Pleasant Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name)
 - **CA-5641** Sylvan Glen Conservation Area (Conservation Area) → Sylvan Glen C.A. (~0 ac, same name, different kind of place)
@@ -14,7 +12,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-5650** Thurne Parks Conservation Area (Conservation Area) → Thurne Parks C.A. (~0 ac, same name, different kind of place)
 - **CA-5653** Pottawatomi and Jones Falls Conservation Area (Conservation Area) → Pottawatomi (~0 ac, similar name); Pottawatomi (~0 ac, similar name)
 - **CA-5659** Bognor-Marsh Management Area (Management Area) → Bognor Marsh (~0 ac, similar name); Bognor Marsh (~0 ac, similar name); Bognor Marsh (~0 ac, similar name); Bognor Marsh (~0 ac, similar name)
-- **CA-5661** Feversham Gorge – Madeleine Graydon Memorial Conservation Area (Conservation Area) → Feversham (~0 ac, similar name); Madeleine Graydon (~0 ac, similar name)
 - **CA-5663** Hepworth Management Area (Management Area) → Hepworth (~0 ac, similar name)
 - **CA-5664** Massie Hills Management Area (Management Area) → Massie Hills (~0 ac, similar name); Massie Hills (~0 ac, similar name)
 - **CA-5666** Bighead River Management Area (Management Area) → Bighead River (~0 ac, similar name)
