@@ -689,6 +689,8 @@ def lakehunt(cfg):
                 except Exception as e: r['hits'].append({'layer': l['url'], 'error': str(e)[:60]})
             out['parks'].append(r)
         notice(f"lakehunt {st}: {len(rows)} parks, {len(lays)} layers, {sum(1 for p in out['parks'] if p['st'] == st and any(h.get('name') is not None and not h.get('error') for h in p['hits']))} with a department polygon at the pin")
+        try: OUT.with_name(OUT.stem + '-partial.json').write_text(json.dumps(out, ensure_ascii=False) + '\n')   # Oct 29: a save after every state, so a timeout loses at most one state
+        except Exception: pass
     return out
 
 
