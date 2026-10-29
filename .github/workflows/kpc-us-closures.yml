@@ -1,11 +1,10 @@
 name: KPC US closures into park cards (merge)
+# OFF since Oct 29 (Brandon's SCOPE: no closures outside Kentucky): timer removed, by hand only.
 # Oct 27 (storage plan Stage 2, step B5; chat 5): the closure watcher itself MOVED to KPC-Data (its kpc-us-closures.yml,
 # 23 past 1/7/13/19 UTC) and writes data/alerts/us-parks.json there. This small job, 30 min later, copies those 'uc-' items
 # into kpc-conditions.json here (the small file the park cards, Kit, planners and the app read). Commits only when the
 # closures really changed. Posts nothing. Never fails. No secrets.
 on:
-  schedule:
-    - cron: '53 1,7,13,19 * * *'
   workflow_dispatch:
 permissions:
   contents: write

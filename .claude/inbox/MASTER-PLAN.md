@@ -57,7 +57,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [~] 10.10 state-park rows done (93%); federal rows wait for Brandon's RIDB decision — Campground: rerun after any fix; federal rows wait for Brandon's RIDB decision
 
 ## CHAT 5 (bots / Discord / Facebook)
-- [ ] 5.1 SCOPE: turn OFF closures on park cards OUTSIDE Kentucky (US park closures bot + the Georgia source): stop the non-KY closure sources, clear their items from the live closures file so cards outside KY show none; Kentucky's stay
+- [x] 5.1 (DONE Oct 29 8:50 AM, chat 5: both timers off, script stops unless FORCE_RUN, 177 uc- items cleared; KY pa-/hc- 40 kept) SCOPE: turn OFF closures on park cards OUTSIDE Kentucky (US park closures bot + the Georgia source): stop the non-KY closure sources, clear their items from the live closures file so cards outside KY show none; Kentucky's stay
 
 ## CHAT 11 (bot-output checker)
 - [ ] 11.1 Grade every 'grade me' line as it lands (truth IL, hours, closures, intake, docs WV, campground) — 8:30 AM: truth v15 VA PASS / IL FAIL (new junk class), hours v11 FAIL (kept rows), intake 8 READY (3 junk) FAIL; docs WV v6/v7 + campground still owed; ongoing

@@ -11,6 +11,7 @@ location, only within NEAR_KM of the park's pin. Writes:
 A source that fails keeps its last items (a failed read is not 'reopened'). Only writes when something changed.
 Never fails (exit 0). Run by .github/workflows/kpc-us-closures.yml every 6 hours. `--merge` = only redo the
 kpc-conditions.json merge from data/alerts/us-parks.json (the workflow uses it when a push has to be retried)."""
+import os
 import csv, datetime as dt, email.utils, html, io, json, pathlib, re, sys, time, types, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from kpc_save import save_json, source_clock
@@ -458,9 +459,16 @@ def merge():
         print(f'kpc-conditions.json: {sum(1 for c in items if c["id"].startswith("uc-"))} US closure entries')
 
 
+# SCOPE (Brandon Oct 29): closures OUTSIDE Kentucky are OFF (every source here is outside KY). The timers are removed;
+# a by-hand run stops here unless FORCE_RUN=1. Its old items were cleared from us-parks.json and kpc-conditions.json.
+SCOPE_OFF = True
+
+
 def main():
     if '--merge' in sys.argv:
         merge(); return
+    if SCOPE_OFF and os.environ.get('FORCE_RUN') != '1':
+        print('::notice title=US closures::OFF: closures outside Kentucky are out of scope (Brandon Oct 29)'); return
     K = _key()
     try: was = json.load(open(OUT, encoding='utf-8'))
     except Exception: was = {}  # noqa: E722
