@@ -185,3 +185,9 @@ Point-in-polygon look-ups filed at the park pins: 8-rg7-pk-ak (8 parks), -ny (3)
 | US-7769 | Heaters Island WMA | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
 | US-2685 | Winslow SP | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
 | US-8103 | Cayuga Lake WMA | the map found in the row above | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+### Oct 29 4:05 PM chat 3 update (look-up G: Tennessee open data)
+- TN state GIS servers (tdeconline.tn.gov, tnmap.tn.gov) are closed to the bot (403 / services directory off). The ArcGIS Online search worked.
+- Official TDEC items found (owner TDEC Bureau of Conservation): 'Tennessee State Park Boundaries (Public View)' (polygons: US-13364 Cherokee Trail of Tears SP may be named in it, step 2) and 'TN State Natural Area Points' (POINTS only, no polygons: Grundy Forest, Harry Lee Carter, Hawkins Cove, Vine Cedar Glade stay pins unless a polygon layer turns up). Others: 'TN State Parks Boundaries' / 'TDEC - State Park Boundaries (mobile/web)' (author a TDEC staffer's account), 'Tennessee State and Federal Lands_WFL1' (a third-party layer, not official).
+- No hit for the two TWRA state fishing lakes (US-12775, US-13514): no boundary layer found; stay pins (step 4b parcel later).
+- NEXT (chat 2 / the key bot): read 'Tennessee State Park Boundaries (Public View)' for names matching the 8 TN parks (step 2). I could not open the layer's URL from here.
+
