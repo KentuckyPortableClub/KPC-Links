@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 8:02 PM) READY for the members' Overlap Finder (BETA), chat 8 checked 7:10 PM: INDIANA, ILLINOIS, MISSOURI, WISCONSIN, NORTH DAKOTA, SOUTH DAKOTA (from the Midwest run). NOT yet: Minnesota, Iowa. Fold into your next daily push.
 - HQ (Oct 28 6:42 PM) READY AREAS for the members' Overlap Finder (BETA), one push: MICHIGAN (US-MI, chat 8 approved 6:40 PM) + refresh KENTUCKY to the 2:07 PM 10-minute run (Rockcastle River WMA 3-fer dropped, NOT SURE 9 -> 8). Already on: OH. Also from chat 2 (Brandon OK'd): give overlap patches a light gold fill and hide the far-off blue owned-land edges (Mammoth Cave x Green River WR looked tangled).
 
 
