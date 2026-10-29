@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 3-fable-low-c answered: 18 result(s), 16 read OK, 16 screenshot(s) -> .claude/lookup/answers/3-fable-low-c.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-d answered: 5 result(s), 5 read OK, 2 screenshot(s) -> .claude/lookup/answers/3-fable-low-d.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-b answered: 6 result(s), 5 read OK, 0 screenshot(s) -> .claude/lookup/answers/3-fable-low-b.json
 - FROM LOOK-UP BOT (2026-10-29): 3-fable-low-a answered: 10 result(s), 9 read OK, 8 screenshot(s) -> .claude/lookup/answers/3-fable-low-a.json
