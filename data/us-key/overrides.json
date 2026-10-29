@@ -6566,6 +6566,167 @@
    ],
    "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Bear River Divide': a different, much bigger area (229,000 ac)",
    "when": "2026-10-29"
+  },
+  "US-1039": {
+   "alias": [
+    "DeSoto State Park"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'DeSoto State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-1174": {
+   "alias": [
+    "Montaña de Oro State Park"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Montaña de Oro State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-7693": {
+   "alias": [
+    "Hanauma Bay Nature Preserve"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hanauma Bay Nature Preserve' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-11877": {
+   "alias": [
+    "Lasoya Wildlife Management Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Lasoya Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-10431": {
+   "alias": [
+    "Cabinet Gorge Hatchery"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Cabinet Gorge Hatchery' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-11089": {
+   "alias": [
+    "Ted Trueblood Wildlife Habitat Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Ted Trueblood Wildlife Habitat Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-2236": {
+   "alias": [
+    "Hells Gate State Park"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hells Gate State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-2238": {
+   "alias": [
+    "Heyburn State Park"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Heyburn State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-8459": {
+   "alias": [
+    "Earle R. Kelly (Dresden Bog) Wildlife Management Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Earle R. Kelly (Dresden Bog) Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-3348": {
+   "alias": [
+    "Felix Valle House State Historic Site"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Felix Valle House State Historic Site' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-3863": {
+   "alias": [
+    "The Conservation Fund - Palmetto-Peartree Preserve"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'The Conservation Fund - Palmetto-Peartree Preserve' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-4036": {
+   "alias": [
+    "Walnut Creek Recreation Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Walnut Creek Recreation Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-5656": {
+   "alias": [
+    "Flanagan Lake & Recreation Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Flanagan Lake & Recreation Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-11823": {
+   "alias": [
+    "Coronado Historic Site"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Coronado Historic Site' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-12373": {
+   "alias": [
+    "Lake Tahoe-Nevada State Park (Sand Harbor)"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Lake Tahoe-Nevada State Park (Sand Harbor)' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-11222": {
+   "alias": [
+    "Stinchcomb Wildlife Refuge"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Stinchcomb Wildlife Refuge' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-0621": {
+   "alias": [
+    "Todd Nature Reserve"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Todd Nature Reserve' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-0622": {
+   "alias": [
+    "Bear Run Nature Reserve"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Bear Run Nature Reserve' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-0623": {
+   "alias": [
+    "Powdermill Nature Reserve"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Powdermill Nature Reserve' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-10376": {
+   "alias": [
+    "Lebeau Recreation Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Lebeau Recreation Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-7577": {
+   "alias": [
+    "Charlotte Anne Finnell Neal Wildlife Management Area"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-4419": {
+   "alias": [
+    "I.D. FairChild State Forest"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'I.D. FairChild State Forest' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
+  },
+  "US-3140": {
+   "alias": [
+    "Sandbar State Park"
+   ],
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside",
+   "when": "2026-10-29"
   }
  }
 }
