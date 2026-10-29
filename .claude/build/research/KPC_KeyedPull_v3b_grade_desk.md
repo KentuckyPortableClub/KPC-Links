@@ -1,0 +1,7 @@
+# Keyed parking pull HOLD v3b re-check (chat 11, Oct 29 ~1:00 PM)
+File version 3: 1,862 points / 442 parks. Whole file: 1 Wilderness label left (Ottawa NF 'Sylvania Wilderness Backcountry Camping' = a campground: fine); 0 guard stations; 0 longitudes > 0; 0 facilities shared by two parks.
+Fresh random 30 (new seed 2910, 12 states): **27 right, 2 wrong kind, 1 borderline = 27-28/30, NO wrong-park point.**
+- Wrong kind: 'Cheyenne Ridge Road (#139A,B,D)' (a forest road number, Roosevelt NF); 'Carbondale Area (nearby, outside)' (a vague area, White River NF).
+- Borderline: 'Arrowhead Fish & Game Shooting Range' (San Bernardino NF): a real facility with parking, but not a public access point in the usual sense.
+- Right: Sequoia picnic area, Battleship Rock TH, Brandywine Falls lot, Tower Creek day-use, Chickasaw Hill camp (Enid Lake), Black Kettle parking, Skipout boating site, Jacks Gulch, Mocus Point, Mores Creek Summit, Whychus Creek overlook TH, Klondike Bluffs TH, Red Reef Trail, Canjilon Lakes picnic, Delonegha River access, Tenkiller SP, eight campgrounds.
+VERDICT: PASS (with chat 9's choice on the three labels above: drop 'Road (#...)' and bare '... Area (nearby)' labels). Together with the first 30 (87% before the filter), v3b is fit for the waiting room. Ski areas stay in (Brandon 11:56). Nothing goes live until Brandon's GO (and the website freeze, HQ 12:28 PM: this is a COLLECT job, hold file only).
