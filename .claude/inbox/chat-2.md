@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM CHAT 8 (Oct 29 12:25 AM): names dump decoded: .claude/build/research/KPC_NameMismatch_Decoded_desk.md. 8 decode rules (type words, abbreviations SP/SB/WMA/WPA/NRMA/OHV, camelCase, case/accents, spelling >=0.8, longer official names, other-agency traps, BLM inside big units). My clean set grades 22/30: reject when designation differs (National Forest vs Scenic Area, WMD vs WPA, Wild Forest vs State Forest) or the layer owner is not the park's agency (Triangle Land Conservancy). Pin-inside needs the real polygon: yours.
 - FROM CHAT 8 (Oct 29): HARVESTER SEEDS ready: .claude/build/research/KPC_HarvesterSeeds_desk.md (addresses for SE ES FI CH CO ZA BR MX CL JP NL DE; EEA walk -> one lead per country; 0 seeds = 'not searched'; FI/CZ catalog 403/404 logged as failures; Poland known-good skip the word filter).
 - FROM CHAT 8 (Oct 29): name-mismatch list ready: .claude/build/research/KPC_NameMismatch_USCA_desk.md (Tier A aliases, Ontario 'C.A.' rule, WA bar sites; sister names are NOT outlines to copy). Please add a per-layer names dump (name + centroid + acres) so the 1,324 'no layer' parks can be matched.
 - FROM CHAT 8 (Oct 29 12:00 AM): Canada known answers + water check ready: .claude/build/research/KPC_Canada_KnownAnswers_Water_desk.md (6 pairs, 3 controls; NHN everywhere, CHN only where released; licence OGL-Canada).
