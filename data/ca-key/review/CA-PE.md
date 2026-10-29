@@ -1,10 +1,9 @@
 # Canada PE: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **17 of 53** joined (same name + same kind). **1** to check, **28** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 53** joined (same name + same kind). **0** to check, **28** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-6596** Souris Beach Gateway Provincial Recreation Area (Provincial Recreation Area) → SOURIS BEACH (~0 ac, same name, different kind of place); Scallop Buffer Zone (SFA 24) (~517,674 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

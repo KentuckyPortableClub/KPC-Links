@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **924 of 1180** joined (same name + same kind). **21** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **927 of 1180** joined (same name + same kind). **18** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -10,7 +10,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-5631** Cavan Swamp Wildlife Area (Wildlife Area) → Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Hooton Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Mount Pleasant Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Mount Pleasant Block (~0 ac, similar name); Cavan Swamp Wildlife Area - Preston Block (~0 ac, similar name)
 - **CA-5641** Sylvan Glen Conservation Area (Conservation Area) → Sylvan Glen C.A. (~0 ac, same name, different kind of place)
 - **CA-5645** Ball's Mill Conservation Area (Conservation Area) → Ball's Mill C.A. (~0 ac, same name, different kind of place); Ball's Mill C.A. (~0 ac, same name, different kind of place)
-- **CA-5648** Garden Hill Conservation Area (Conservation Area) → Garden Hill C.A. (~0 ac, same name, different kind of place)
 - **CA-5649** Richardson's Lookout Conservation Area (Conservation Area) → Richardson's Lookout C.A. (~0 ac, same name, different kind of place)
 - **CA-5650** Thurne Parks Conservation Area (Conservation Area) → Thurne Parks C.A. (~0 ac, same name, different kind of place)
 - **CA-5653** Pottawatomi and Jones Falls Conservation Area (Conservation Area) → Pottawatomi (~0 ac, similar name); Pottawatomi (~0 ac, similar name)
@@ -18,10 +17,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-5661** Feversham Gorge – Madeleine Graydon Memorial Conservation Area (Conservation Area) → Feversham (~0 ac, similar name); Madeleine Graydon (~0 ac, similar name)
 - **CA-5663** Hepworth Management Area (Management Area) → Hepworth (~0 ac, similar name)
 - **CA-5664** Massie Hills Management Area (Management Area) → Massie Hills (~0 ac, similar name); Massie Hills (~0 ac, similar name)
-- **CA-5665** The Glen Management Area (Management Area) → The Glen (~0 ac, similar name); The Glen (~0 ac, similar name); The Glen (~0 ac, similar name); The Glen (~0 ac, similar name); The Glen (~0 ac, similar name); The Glen (~0 ac, similar name)
 - **CA-5666** Bighead River Management Area (Management Area) → Bighead River (~0 ac, similar name)
 - **CA-6012** Morrison Dam Conservation Area (Conservation Area) → Morrison Dam CA (~0 ac, same name, different kind of place); Morrison Dam CA (~0 ac, same name, different kind of place)
-- **CA-6208** Ausable River Cut Conservation Area (Conservation Area) → Ausable River Cut CA (~0 ac, same name, different kind of place)
 - **CA-6350** Old Hay Bay Church National Historic Site (National Historic Site) → Hay Bay (~0 ac, similar name)
 - **CA-6617** H. R. Frink Conservation Area (Conservation Area) → H.R. Frink Conservation Area (~510 ac, similar name)
 - **CA-6619** Depot Lakes Conservation Area (Conservation Area) → Depot Lakes Conservation Area North Conservation Reserve (~2,229 ac, similar name); Depot Lakes Conservation Area South Conservation Reserve (~1,336 ac, similar name)
