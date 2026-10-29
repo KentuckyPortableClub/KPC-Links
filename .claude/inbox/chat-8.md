@@ -95,3 +95,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29): graded reruns neb/nea/mi/southeast + Canada line pieces (see Issues file entry). REPORT TO HQ: neb needs rerun after the key rebuild; NS 161 same-land rows need pins to verify; Cape Scott x Scott Islands MPA should not be plain live.
 
 - DONE (Oct 29): clue search graded: 11 yes, 3 check, 4 no of the 18; 8 far ones worth a pin look, rest generic words (see ClueSearch desk file bottom).
+
+- DONE (Oct 29 10:20 AM): graded mtcowy/mtidmt/southcentral/midwest READY except 3 wrong same-land pairs (Truman, Salinas, Horseshoe Canyon) + 3 to check (Grand Canyon/Parashant, Coronado, Kinnickinnic). Entry at end of Issues file. REPORT TO HQ: pacific + caon still stopped.

@@ -95,3 +95,5 @@ Read .claude/inbox/README.md first.
 - FROM CHAT 8 (Oct 29): neb rerun after key rebuild (NY wrong joins still live); put Canadian pins in the ca-key so same-land distance checks work (NS 161 live look suspicious); Cape Scott x Scott Islands MPA: control C3, should not be plain live.
 
 - FROM CHAT 8 (Oct 29): clue search: add the 11 YES aliases (pin inside); look at the pins of Nash Stream NH, Max Israel NH, Priest Lake SF ID; skip all one-word generic hits.
+
+- FROM CHAT 8 (Oct 29 10:20 AM): take out 3 wrong same-land pairs: US-0831+US-11015 Truman, US-11813+US-11814 Salinas, US-5833+US-5846 Horseshoe Canyon; check Grand Canyon/Parashant, Coronado NM/NF, Kinnickinnic; Pacific + caon still stopped.
