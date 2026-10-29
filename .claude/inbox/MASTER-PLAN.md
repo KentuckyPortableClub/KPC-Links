@@ -82,7 +82,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] B.1 Decide RIDB / NPS keyed APIs (allow / block both / leave as is)
 - [x] B.2 GO given Oct 29 7:42 AM: waiting room ON for the access/parking pilot
 - [x] B.3 Check the KY hunt list (8.2): Oct 29 9:23 AM: no closed areas, all quota hunts = notes, Tract 1 closed noticeable, state-park notice OK, no-number WMAs out; + season dates on cards (chat 3: ky-hunting.json already has them, + 2 turkey rows)
-- [ ] B.4 Check the Park Service key result on the check-up page
+- [x] B.4 Check the Park Service key result on the check-up page (Oct 29 9:30 AM: NPS key WORKS: closures source nps-ky ok today, 8 notices read, 5 kept; KY only)
 - [-] B.5 Permission emails: PARKED (Brandon Oct 29: not now)
 
 ## HQ
