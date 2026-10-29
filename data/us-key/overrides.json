@@ -6706,6 +6706,69 @@
    ],
    "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside",
    "when": "2026-10-29"
+  },
+  "US-3454": {
+   "alias": [
+    "La Purísima Mission SHP"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('La Purísima Mission SHP'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-6454": {
+   "alias": [
+    "El Capitán State Beach"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('El Capitán State Beach'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-6424": {
+   "alias": [
+    "PAULAULA STATE HISTORIC SITE"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('PAULAULA STATE HISTORIC SITE'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-8449": {
+   "alias": [
+    "Little Ossipee River Wildlife Management Area"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Little Ossipee River Wildlife Management Area'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-2576": {
+   "alias": [
+    "Greycliff Prairie Dog Town State Park"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Greycliff Prairie Dog Town State Park'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-11849": {
+   "alias": [
+    "Wantastiquet Mountain Natural Area"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Wantastiquet Mountain Natural Area'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-9150": {
+   "alias": [
+    "Saddle Mountain State Natural Area"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Saddle Mountain State Natural Area'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-10363": {
+   "alias": [
+    "Degrey Recreation Area"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Degrey Recreation Area'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
+  },
+  "US-6468": {
+   "alias": [
+    "IRON RANGE OFF HWY VEH"
+   ],
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('IRON RANGE OFF HWY VEH'); joins only with the POTA pin inside",
+   "when": "2026-10-29"
   }
  }
 }
