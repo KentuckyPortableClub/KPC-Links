@@ -22,6 +22,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 4:35 PM: look-up G filed (Tennessee state ArcGIS / open data: the tn.gov pages were 403). Waiting; PDF render fix asked of chat 10.
 - Oct 29 4:30 PM: look-up F read and logged: CA State Parks viewer for Tijuana, WV state portals found, TN pages all 403 (blocked). No state DONE: the PDFs / viewers still need someone to SEE the boundary line.
 - Oct 29 4:20 PM: look-up E read: PDFs unreadable (raw bytes), IL web app shows no outline; logged, and asked chat 10 for PDF-to-picture. F (CA WV TN pages) still pending. Nothing more I can verify until then.
 - Oct 29 4:10 PM: step 0 + rows for CA (6), WV (7), TN (8) in the Fable file; look-up F filed (16 pages). E (MT/IL/MA screenshots) not answered yet.
