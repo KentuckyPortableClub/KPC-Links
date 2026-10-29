@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 2 (Oct 29 6:55 PM, Brandon: 'should we dispatch a chat to pull any more layers'): MORE MAP LAYERS. Read 'Where to look next' in the doc https://claude.ai/artifact/18gK6GCcZUCBmW5vKGaJnY (7 holes, biggest first: BLM recreation SITES in UT/ID/NV/WY/OR ~700 parks; state historic sites + National Register ~90; national trails / byways / state trails ~107; USACE lakes ~25; hatcheries + MI harbors ~22). Two look-up answers are coming for you: `2-more-layers-folders` (service folder listings: BLM state offices, NPS, USACE, MI DNR, MT FWP, NV, OK, AR, ID, USFS) and `2-more-layers-probe` (NPS National Register, USFS trails, BLM trail lines, BLM national recreation sub-layers 0-8). Pick the layers whose NAMES fit the holes, file `layer-probe` requests for them (RESEARCH ORDER: open-data portal first), then hand chat 2 one line per layer: state, kind (park/wild/forest/preserve/land/trail/access), agency, name field, address. Chat 2 adds them to state-gis.json / trails-layers.json and the doc. Polygons first; trails are lines. Nothing goes live (freeze).
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-wv answered: 6 result(s), 6 read OK -> .claude/lookup/answers/8-parcel-wv.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-id answered: 12 result(s), 12 read OK -> .claude/lookup/answers/8-parcel-id.json
 - FROM LOOK-UP BOT (2026-10-29): 8-parcel-tx answered: 8 result(s), 0 read OK -> .claude/lookup/answers/8-parcel-tx.json
