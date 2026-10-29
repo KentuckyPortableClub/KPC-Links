@@ -1,0 +1,220 @@
+{
+ "US-11214": {
+  "st": "AR",
+  "name": "Highway 7 Rec Area State Fish and Wildlife Area",
+  "owner": "MARANATHA AGRICULTURE LLC",
+  "parcel": "01-01948-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-11355": {
+  "st": "AR",
+  "name": "Cook\u2019s Lake Nature Center Nature Recreation Area",
+  "owner": "ARKANSAS GAME AND FISH FOUNDATION",
+  "parcel": "001-00422-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-11356": {
+  "st": "AR",
+  "name": "Ponca Nature Center Nature Recreation Area",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-11394": {
+  "st": "AR",
+  "name": "Muddy Creek WMA Wildlife Management Area",
+  "owner": "EIGSTI MARCUS & ELIDA",
+  "parcel": "001-02735-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-11874": {
+  "st": "AR",
+  "name": "Tates Bluff Rec area State Recreation Area",
+  "owner": "BACON FAMILY TRUST",
+  "parcel": "005-00008-000R",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-11960": {
+  "st": "AR",
+  "name": "Janet Huckabee Arkansas River Valley Nature Center State Natural Reserve",
+  "owner": "ARKANSAS STATE GAME & FISH COMISSIO",
+  "parcel": "40001-0000-00503-00",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-12093": {
+  "st": "AR",
+  "name": "Sugarloaf Mountain State Recreation Area",
+  "owner": "ARKANSAS STATE UNIVERSITY-",
+  "parcel": "300-03200-001",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-12753": {
+  "st": "AR",
+  "name": "Joe Hogan State Conservation Area",
+  "owner": "ARKANSAS GAME & FISH COMMISSN",
+  "parcel": "001-05752-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-12754": {
+  "st": "AR",
+  "name": "Andrew H. Hulsey State Fish Hatchery",
+  "owner": "ARKANSAS GAME &FISH COMMISSION",
+  "parcel": "100-09512-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-12762": {
+  "st": "AR",
+  "name": "Charlie Craig State Fish Hatchery",
+  "owner": "ARK GAME & FISH COMM",
+  "parcel": "06-00037-040",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-12764": {
+  "st": "AR",
+  "name": "Jim Hinkle Spring River State Fish Hatchery",
+  "owner": "ARKANSAS STATE GAME & FISH COMMISSION",
+  "parcel": "001-01013-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-7437": {
+  "st": "AR",
+  "name": "Little Missouri River Access State Recreation Area",
+  "owner": "ROCK N EAGLES NEST LLC",
+  "parcel": "001-05266-000",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-7444": {
+  "st": "AR",
+  "name": "Nimrood Lake River Road State Recreation Area",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-7522": {
+  "st": "AR",
+  "name": "Cherokee State Recreation Area",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-5685": {
+  "st": "IN",
+  "name": "Lieber State Recreation Area",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-4667": {
+  "st": "IN",
+  "name": "Spencer County State Forest",
+  "owner": "",
+  "parcel": "740602100002000011",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-6972": {
+  "st": "IN",
+  "name": "Historic New Harmony State Historic Site",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-6973": {
+  "st": "IN",
+  "name": "Lanier Mansion State Historic Site",
+  "owner": "",
+  "parcel": "390826300013000007",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-6974": {
+  "st": "IN",
+  "name": "Levi Coffin House State Historic Site",
+  "owner": "",
+  "parcel": "890701130110000023",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-10259": {
+  "st": "NC",
+  "name": "NC Vietnam Veteran's Memorial Historic Site",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-10398": {
+  "st": "NC",
+  "name": "Chatuge Dam Trail Recreation Park",
+  "owner": "",
+  "parcel": "",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-3851": {
+  "st": "NC",
+  "name": "Brumley Forest State Nature Preserve",
+  "result": "no parcel at pin",
+  "why_not": "needs-parcel (county layer has no parcel here)"
+ },
+ "US-6837": {
+  "st": "NC",
+  "name": "CSS Neuse Civil War Interpretive Center State Historic Site",
+  "owner": "STATE OF NORTH CAROLINA",
+  "parcel": "4525-32-3783",
+  "acres": 0.23106879,
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-6847": {
+  "st": "NC",
+  "name": "NC Transportation Museum State Historic Site",
+  "owner": "NORTH CAROLINA STATE OF",
+  "parcel": "032 173",
+  "acres": 58.8,
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-6852": {
+  "st": "NC",
+  "name": "State Capitol State Historic Site",
+  "owner": "NORTH CAROLINA STATE OF THE",
+  "parcel": "1703790137",
+  "acres": 6.20321031,
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-6963": {
+  "st": "NC",
+  "name": "Nutbush Wildlife Management Area",
+  "owner": "WAKE FOREST LAND ASSOCIATES II",
+  "parcel": "0334 01007",
+  "acres": 2.75159396,
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-3129": {
+  "st": "VT",
+  "name": "Little River State Park",
+  "owner": "VERMONT STATE OF",
+  "parcel": "696-221-11904",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-4936": {
+  "st": "VT",
+  "name": "Nash Stream Forest State Forest",
+  "owner": "STATE OF VERMONT",
+  "parcel": "105-033-10158",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-4980": {
+  "st": "VT",
+  "name": "White Farm State Forest",
+  "owner": "NARROW BROOK FARM LLC",
+  "parcel": "249-079-10028",
+  "acres": "",
+  "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ }
+}

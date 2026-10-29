@@ -42,3 +42,11 @@ Source: chat 2's 2-county-01..06 answers (Census county at each pin). Full list 
 - state FIPS 54: 6 counties: Randolph 1, Pocahontas 1, Morgan 1, Grant 1, Kanawha 1, Jackson 1
 - state FIPS 55: 1 counties: Grant 1
 - state FIPS 56: 5 counties: Sheridan 1, Natrona 1, Fremont 1, Big Horn 1, Park 1
+
+## P-3 parcel answers, first 4 states (Oct 29 ~6:50 PM). Data: KPC_Parcels_P3_chat8.json (ref, owner, parcel id, acres, why-not)
+All four statewide layers worked (AR, IN, NC, VT); 29 pins asked.
+- **Owner = the park's own agency (R-G7 4b: the parcel is the candidate outline, chat 11 yes/no first):** AR Janet Huckabee Nature Center US-11960, Joe Hogan US-12753, Hulsey Hatchery US-12754, Craig Hatchery US-12762, Hinkle Hatchery US-12764 (all Game & Fish Commission); AR Cook's Lake US-11355 (Game & Fish FOUNDATION, a partner, ask); AR Sugarloaf Mtn US-12093 (Arkansas State University, a university, check); NC CSS Neuse US-6837 (0.23 ac), NC Transportation Museum US-6847 (58.8 ac), State Capitol US-6852 (6.2 ac) (State of NC); VT Little River US-3129 and Nash Stream US-4936 (State of Vermont).
+- **PIN DOUBT (the owner is a private person or company, so the pin may sit on the wrong land; R-G11 pin-outside split):** AR Highway 7 US-11214 (Maranatha Agriculture LLC), Muddy Creek WMA US-11394 (a family), Tates Bluff US-11874 (Bacon Family Trust), Little Missouri River Access US-7437 (Rock N Eagles Nest LLC); NC Nutbush WMA US-6963 (Wake Forest Land Associates, 2.75 ac); VT White Farm US-4980 (Narrow Brook Farm LLC).
+- **No parcel at the pin (7):** AR Ponca Nature Center, Nimrood Lake River Road, Cherokee SRA; IN Lieber SRA, New Harmony; NC Vietnam Veterans Memorial, Brumley Forest. why-not = needs-parcel, try the county's own layer.
+- **Blank owner field (6):** IN Spencer County SF, Lanier Mansion, Levi Coffin House; NC Chatuge Dam Trail: the layer gives a parcel id but no owner; need the county tax lookup.
+- Indiana's layer gives parcels with no owner; owner needs the county.
