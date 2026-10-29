@@ -14,11 +14,17 @@ jobs:
         run: bash .github/scripts/kpc_overlay.sh || true
       - name: Trace
         env:
-          STATES: 'WA NC FL DE'
           MINUTES: '100'
           DEBUG_REFS: 'US-0661 US-12271 US-12255 US-4555 US-3862 US-10681 US-8692'
         run: |
           pip install --quiet --break-system-packages pyshp pyproj shapely || true
-          python3 .github/scripts/kpc_us_key.py > key.log 2>&1 || true
-          grep -h "TRACE" key.log | head -80 || true
-          grep -h "::notice" key.log | grep -v TRACE | grep -i "not read\|answer\|error" | head -10 || true
+          for st in WA NC FL DE; do STATES=$st python3 .github/scripts/kpc_us_key.py > key-$st.log 2>&1 || true; done
+          python3 - <<'PY' || true
+          import glob, re
+          for f in sorted(glob.glob('key-*.log')):
+              L = open(f, errors='replace').read().splitlines()
+              keep = [re.sub(r'^::notice title=', '', l) for l in L if 'TRACE' in l or re.search(r'sg[a-z]{3}: \d+|not read|layer not found|did not answer', l)]
+              msg = ' || '.join(keep)
+              for i in range(0, min(len(msg), 24000), 6000):
+                  print(f"::notice title={f} part {i // 6000 + 1}::" + msg[i:i + 6000].replace('\n', ' '))
+          PY
