@@ -148,6 +148,10 @@ def build(area, files, tag='', sts=()):
         if all(p in tested for p in pairs):
             e['reason'] = 'looked: no shared ground on the official outlines (no patch 25 yards across; not within 100 ft of a trail / river line)'
             e['rule'] = 'rule 4 / rule 5'; out['DROPPED'].append(e); continue
+        unread = [r for r in refs if r in set(looked.get('unread') or [])]
+        if unread:
+            e['reason'] = 'not tested: the official outline of ' + ', '.join(unread) + ' could not be read in pass 1 (one of its map records did not answer; the next run tries again)'
+            out['NEVER LOOKED AT'].append(e); continue
         e['reason'] = 'not tested: the outlines\' boxes do not touch (the parks are apart on the official maps)' if inrun >= rs else 'unknown'
         out['NEVER LOOKED AT'].append(e)
     bad = [e for e in out['NEVER LOOKED AT'] if e.get('reason') == 'unknown'] + [e for e in out['DROPPED'] if not e.get('reason')]

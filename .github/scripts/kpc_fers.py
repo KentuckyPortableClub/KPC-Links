@@ -2810,6 +2810,9 @@ def main():
                                                     # Oct 29 (chat 8, missing pairs): a trail / river park is tested by its official LINE (LN), so it is
                                                     # neither 'no official boundary' nor 'not in this run' (a multi-state trail's pin may sit elsewhere)
                                                     'near100': near_pairs(G, pairs, spots), 'parks': sorted(set(parks) | set(LN)),
+                                                    # Oct 29 (chat 8: Colton Point / Leonard Harrison x Tioga SF said 'boxes do not touch'):
+                                                    # parks whose official outline could not be READ in pass 1 (one record of theirs did not answer)
+                                                    'unread': sorted(r for r in parks if r not in G and r not in LN and r not in SKIPWHY and r not in LEFT),
                                                     # Oct 27 (HQ: the missing check's 1 km filter measures OUTLINE to OUTLINE): each park's box, so the
                                                     # check can measure every park, not only the ones in the PAD-US cache
                                                     'boxes': {r: [round(v, 4) for v in bbox_groups(G[r])] for r in G if G.get(r)}}, indent=None)

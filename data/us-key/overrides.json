@@ -5604,7 +5604,7 @@
    "join": [
     "2441"
    ],
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not the Bluestone National Scenic River (chat 8); the river's own record + line stay",
    "approx": true,
    "fp": {
     "2441": [
@@ -5612,7 +5612,11 @@
      22147
     ]
    },
-   "when": "2026-10-22"
+   "when": "2026-10-29",
+   "no": [
+    "2441",
+    "Bluestone Recreation Area"
+   ]
   },
   "US-10795": {
    "none": true,
@@ -6850,6 +6854,14 @@
     "fnl1808"
    ],
    "why": "Oct 29 5:50 AM (chat 8 missing pairs): the 1-acre county 'Loxahatchee River Park' is not the Wild and Scenic River; the river's own official line (data/trails) is used instead",
+   "when": "2026-10-29"
+  },
+  "US-1804": {
+   "no": [
+    "2441",
+    "Bluestone Recreation Area"
+   ],
+   "why": "Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not Bluestone State Park (overlaps bigger than the 2,155-ac park, chat 8)",
    "when": "2026-10-29"
   }
  }
