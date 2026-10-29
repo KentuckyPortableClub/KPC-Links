@@ -158,3 +158,5 @@ Read .claude/inbox/README.md first.
 - DONE (Oct 29 12:30 PM): 8.6 known 2-fer pairs: 231 PROPOSED in 49 states (live + members logged both parks in one session) -> KPC_KnownPairs_Proposed_desk.md + known-fers-proposed.json; needs an official-map spot check (chat 11) before the waiting room uses them.
 
 DONE (Oct 29 ~1:40 PM): 2-fer check. caatl READY (NS 11 live / NB 14 live, 0 far), OH READY (1 far row), MB 3 far rows to check. In KPC_IssuesForFable_Oct29.md.
+
+DONE (Oct 29 ~1:50 PM): reviewed chat 11's 26 YES / 1 NO key-piece answers: all plausible, grade C, 7 tiny pieces keep 'approximate'. See KPC_IssuesForFable_Oct29.md.

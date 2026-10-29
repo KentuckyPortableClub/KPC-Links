@@ -525,3 +525,10 @@ Grade A = I ran the waiting-room grader on the live KPC-Data files; names/pins r
 - **oh READY (13:13 UTC):** US-OH 29 live. One far "area" row to look at: Wayne NF x Dean State Forest (US-4521 + US-5438), pins 89 km apart, 3.3 ac. Probably a forest pin, not a wrong join; chat 11 can spot-check it.
 - **cambsk PART READY:** SK ready; MB held for 2 "water not checked" rows. MB has 3 far "area" rows to check: Grass River PP x Palsa Hazel Eco Reserve 58 km (4,487 ac); Riding Mountain Biosphere x Parkland WMA 58 km (79.8 ac); Riding Mountain NP x Parkland WMA 48 km (79.8 ac). The two Riding Mountain rows look like a wrong join (Parkland WMA is not at the park).
 - **Still stopped (not mine to fix):** pnw (OR: 6 water rows), ut (1 water row), mtsw (pass 1 for time), pca, caon, caabbc.
+
+## Review Oct 29 ~1:50 PM: the new key-piece answers (chat 8, "break new key?")
+Read key-pieces.json (42 held pieces): 26 YES, 1 NO, 15 still open. Grade C: every "how" says "by name, kind and size ... I could not open the agency map", so none is an A.
+- **Look right:** Siskiyou NF into Rogue River-Siskiyou NF (2004 merger, both records); Umbagog NWR (2 records, ME + NH); Cumberland Trail, Alvin C. York, Fishermen's Memorial, Candy Abshier (spelling variants); Erie Canal = NO (whole canal vs Old Erie Canal SHP) is the right call.
+- **Weakest YES (pieces of 0-4 ac, size can't confirm):** Frost Farm (0), George Washington Memorial (0), Stagecoach Inn "inside Camp Floyd" (0), Midway Hatchery (0), Docs Beach (4), Old Ruby (7), Jackson House (1). Name agrees, so OK to outline; keep them labelled "approximate" until a bot confirms from the agency map.
+- **Housekeeping:** 8 pieces appear twice (same ref and name, two record ids), harmless but worth merging. Break test: no way to make a YES pass an outline that fails the layer-name test (c_key F-O2 still runs after answers).
+- **Needs Brandon:** nothing.
