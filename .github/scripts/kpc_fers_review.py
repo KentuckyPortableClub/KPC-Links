@@ -46,7 +46,8 @@ def main():
             stt = str(s.get('status', ''))
             if stt.startswith('merged'): continue
             kind = None
-            if stt.startswith('not sure'): kind = 'not sure'
+            if re.search(r'water not checked|water map did not answer', stt): kind = 'water map weak here (fix later: a better water source)'   # Brandon Oct 28 8:53 PM: keep running, list them
+            elif stt.startswith('not sure'): kind = 'not sure'
             elif stt.startswith('water only'): kind = 'water only (boat spot): is there really no land?'
             elif stt.startswith(('candidate', 'very tight')) and s.get('kind') == 'area' and s.get('river_slot'): kind = 'river slot between the two banks'
             if not kind: continue
@@ -59,7 +60,7 @@ def main():
         why = ' / '.join(x.get('why_expected') or [])
         if 'activated together' not in why: continue
         n = re.search(r'\((\d+)x', why)
-        rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'POTA history says people activate these together, our outlines say no',
+        rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'HINT only (look here): POTA history shows people activating these together; logs have mistakes, it never decides',
                      'kind': 'pair', 'size': f"{n.group(1) if n else '?'} same-day activations", 'sort': float(n.group(1)) if n else 0,
                      'reason': x.get('reason', ''), 'id': '+'.join(x.get('refs') or []) + '@pota', 'sources': {'POTA history': why[:160]}, 'checked': e.get('date', '')})
     # one row per pair + what (the biggest)

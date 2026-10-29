@@ -14,7 +14,19 @@ LIVE = ('candidate', 'very tight', 'water only')
 
 
 def load(p):
-    try: return json.load(open(p))
+    for q in (str(p), str(p) + '.gz'):   # Oct 28 (chat 8, Midwest): big files are kept gzipped (US-MN.json.gz)
+        try:
+            if q.endswith('.gz'):
+                import gzip
+                return json.loads(gzip.decompress(open(q, 'rb').read()))
+            return json.load(open(q))
+        except Exception: pass  # noqa: BLE001
+    return None
+
+
+def outlined(st):
+    """How many of the state's parks have an official outline in the answer key (the near-empty test)."""
+    try: return sum(1 for p in json.load(open(f'data/us-key/{st}.json'))['parks'].values() if p.get('m'))
     except Exception: return None  # noqa: BLE001
 
 
@@ -50,6 +62,10 @@ def main():
         for p in ('pass1', 'pass2', 'pass3', 'pass5'):
             if str(d.get(p, '')) < since: why.append(f"{st}: {p} not run in this run (stamp {d.get(p) or 'none'}, run started {since})")
         spots = d.get('spots') or []
+        info.setdefault('files', {})[st] = f'data/fers/{st}.json' + ('' if (OUT / f'{st}.json').exists() else '.gz')
+        # Oct 28 (HQ + chat 8: Minnesota / Iowa): a near-empty result next to many outlined parks is never READY by itself
+        no = outlined(st)
+        if no and no >= 30 and len(spots) < max(2, no // 100): why.append(f'{st}: only {len(spots)} rows from {no} outlined parks (near-empty: check the run)')
         st_of = lambda s: str(s.get('status', ''))
         wait = sum(1 for s in spots if st_of(s).startswith('waiting'))
         stuck = sum(1 for s in spots if re.fullmatch(r'pass [1-5]', st_of(s)))
@@ -63,7 +79,8 @@ def main():
         if wait: why.append(f'{st}: {wait} rows still waiting for a pass (out of time: run the worker again)')
         # Oct 28 (HQ + chat 8, Michigan): a row the USGS water map never answered for is not a result: never READY with one
         wnc = sum(1 for s in spots if re.search(r'water not checked|water map did not answer', st_of(s)))
-        if wnc: why.append(f'water service: {st}: {wnc} rows not checked because the USGS water map did not answer (run the worker again)')
+        # Brandon Oct 28 8:53 PM ('keep running'): no longer a stop; those rows go on the review list as 'water map weak here'
+        if wnc: info.setdefault('water_weak', {})[st] = wnc
         if stuck: why.append(f'{st}: {stuck} rows stuck at a pass status (a pass was killed before its save)')
     res = {'about': 'Assembly-line verdict for one area (fetcher -> worker -> checker). READY only when every pass finished in this run, nothing was cut short, the known answers + missing check pass.',
            'tag': tag, 'states': sts, 'since': since, 'date': time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime()),

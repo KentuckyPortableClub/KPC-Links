@@ -23,6 +23,8 @@ def main():
             refs = sorted(set([t['ref']] + p['refs']))
             what = p.get('how') or ''
             (req if re.search(r'within 100 ft of the water|of (the )?(trail|route).*inside|mi of trail inside', what, re.I) else info).append((refs, what))
+    # Brandon Oct 28 8:35 PM: pairs he activates in person are PERMANENT known answers (live, the whole overlap)
+    req += [(['US-0050', 'US-10105'], 'Mammoth Cave x Green River Wild River: Brandon activates it in person (live, river included)')]
     seen, found, missing, notes = set(), 0, [], []
     for refs, what in req:
         k = tuple(refs)
