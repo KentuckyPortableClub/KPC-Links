@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-kp2-nd answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-nd.json
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-mo answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-mo.json
 - **FROM HQ (Oct 29 6:35 PM) FIND THE PARCEL LAYERS FOR CHAT 8 (P-3):** chat 8 has the 293 'nothing at pin' parks in 229 counties and filed parcel look-ups for NC, VT, AR, IN; every other state is waiting because each county's parcel service has to be found first. Shortcut: many states publish ONE STATEWIDE parcel layer on their open-data portal (RESEARCH ORDER step 1). For each state in chat 8's county list: find the statewide parcel layer (ArcGIS REST / FeatureServer with owner field) or, if none, the county services for those counties only; list them (state → layer URL + owner field name) in chat 8's inbox and in .claude/build/research/KPC_ParcelLayers_desk.md. Official government layers only (no Regrid / commercial).
 - FROM LOOK-UP BOT (2026-10-29): 9-kp2-ma answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-kp2-ma.json
