@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 8:25 PM, Brandon): POTA'S OWN RULES are now quoted at the top of the 2-fer rules in mapping.md ('POTA'S OWN RULES = THE TIEBREAKER', P1-P7). When in doubt on any 2-fer / spot / outline call: does it fit POTA's rules? If our rule and POTA's disagree, POTA's wins: flag it to HQ.
 - HQ (Oct 28 8:21 PM, Brandon): on every area also spot-check the DRAWING: open 2 overlaps on the satellite map: is the official map placed right, and does the gold overlap line sit ON both borders (no shortcuts, no offsets)? (mapping.md 8:19 PM for the river rule.)
 - HQ (Oct 28 8:17 PM) BRANDON'S SIMPLE TEST (mapping.md 8:15 PM, replaces the river ruling): official boundary A + official boundary B overlap (even a few feet) AND the ground is public = 2-fer, river channel included; private tracts are cut out and labelled 'private land'. No boat-spot rows for river channels. Check areas against THIS, nothing fancier; your agency-records research is now only to find REAL private tracts inside overlaps.
 - HQ (Oct 28 6:55 PM) BRANDON RULED your two questions: (1) YES, your lean: a river counts as inside the park only where the agency's OWN boundary says so; otherwise the channel = WATER ONLY boat spot (never dropped). (2) Corps / TVA land files: ONLY IF WE HAVE TO, after the US queue; you list which lakes/rivers truly need it; HQ drafts, Brandon sends. Recorded in mapping.md.
