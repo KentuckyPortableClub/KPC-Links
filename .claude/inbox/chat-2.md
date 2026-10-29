@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM LOOK-UP BOT (2026-10-29): 2-padpin-03 answered: 50 result(s), 50 read OK -> .claude/lookup/answers/2-padpin-03.json
 - **FROM HQ (Oct 29 4:25 PM) PAD-US PIN CHECK + POTAMAP CROSS-CHECK (Brandon 4:23 PM: 'Go but make sure g rules are followed etc'):**
   1. OFFLINE, no new downloads: for each of the 566 open US Fable-list parks (missing-after-key.json), list every PAD-US feature AT the POTA pin (point-in-polygon on our saved PAD-US copy) with its name, designation type, OWNER (Own_Name), MANAGER (Mang_Name), acres, PAD-US id. Write one row per park into the Fable file WORK LOG ('PAD-US at pin: …') = the owner for R-G7 step 4b.
   2. ONE read of potamap.us's PUBLIC GitHub (cwhelchel/potamap.ol): its POTA ref → PAD-US feature assignments. For our open parks only, list where potamap assigned a PAD-US shape we did not: LEAD ONLY.
