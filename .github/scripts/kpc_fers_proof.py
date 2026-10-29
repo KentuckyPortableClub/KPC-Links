@@ -45,7 +45,9 @@ def make_side(side, ref, work, bundle, data):
             q = d / f; q.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(ROOT / f, q)
     sh(['bash', '.github/scripts/kpc_overlay.sh', str(data)], cwd=d, quiet=True)
     with tarfile.open(bundle) as t:
-        t.extractall(d, members=[m for m in t.getmembers() if m.name.startswith(('bundle/http', 'bundle/water', 'data/fers'))])
+        mem = [m for m in t.getmembers() if m.name.startswith(('bundle/http', 'bundle/water', 'data/fers'))]
+        try: t.extractall(d, members=mem, filter='data')
+        except TypeError: t.extractall(d, members=mem)
     for f in (d / 'data/fers').glob('reuse-*'): f.unlink()   # every pair computed fresh on both sides
     return d
 
