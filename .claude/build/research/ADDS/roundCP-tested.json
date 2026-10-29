@@ -1,0 +1,1835 @@
+{
+ "about": "Chat 9 round CP (Brandon Oct 29 4:55 AM): the missing KY camp points (LBL self-service + Fenton, Houchin Ferry, Bear Creek Horse Camp check, KDFWR WMA camps, Breaks, Kingdom Come, Otter Creek) by a real browser read of the agencies' own pages, + chat 8's BoundaryGaps look-ups (river layers R1 R2 R5 R7 at the Green River + Ohio River at Louisville; BOR Reclamation_Boundary at 5 reservoirs; Mississippi WMA / park layers). ONE run. Results: roundCP-tested.json.",
+ "date": "2026-10-29",
+ "layers": [
+  {
+   "st": "US",
+   "kind": "river",
+   "ag": "USFS",
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer",
+   "note": "chat 8 R2",
+   "answers": true,
+   "service": "EDW_WildScenicRiverSegments_01",
+   "licence": "US Forest Service Enterprise Map Services Program",
+   "years_in_text": [],
+   "description": "A map service on the www that depicts the river corridors of each Wild and Scenic River designated by Congress or the Secretary of the Interior for the United States and Puerto Rico. This GIS data layer was created from a mulit-agency effort by the US Forest Service, National Park Service, Bureau of Land Managment, and the US Fish and Wildlife Servce. The spatial data were referenced to the latest",
+   "item_licence": "",
+   "item_credits": "US Forest Service Enterprise Map Services Program",
+   "item_about": "A map service on the www that depicts the river corridors of each Wild and Scenic River designated by Congress or the Secretary of the Interior for the United States and Puerto Rico. This GIS data layer was created from a mulit-agency effort by the US Forest Service, National Park Service, Bureau of Land Managment, and the US Fish and Wildlife Servce. The spatial data were referenced to the latest High Resolution National Hydrological Data Layer (NHD 1:24,000 Scale or better), published by Unite",
+   "layers": [
+    {
+     "id": 0,
+     "name": "National Wild and Scenic River Line",
+     "geom": "Polyline",
+     "nameField": "wsr_river_name",
+     "ownerField": "management_plan",
+     "typeField": "classification_source_document",
+     "fields": [
+      "objectid",
+      "river_id",
+      "wsr_river_name",
+      "wsr_river_shortname",
+      "state",
+      "management_plan",
+      "classification_source_document",
+      "orv_source_document",
+      "managing_entities",
+      "public_law_name",
+      "public_law_number",
+      "enacted_date",
+      "agency",
+      "weblink",
+      "localwebsite",
+      "rivercategory",
+      "photolink",
+      "photocredit",
+      "shape",
+      "st_length(shape)"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Managing Agencies United States Forest Service (USFS), National Park Service (NPS), Bureau of Land Management (BLM), Fish and Wildlife Services (FWS)",
+     "records": 249,
+     "sample": [
+      "Pecos Wild and Scenic River",
+      "Smith Wild and Scenic River",
+      "Smith Wild and Scenic River",
+      "Smith Wild and Scenic River",
+      "Smith Wild and Scenic River",
+      "Smith Wild and Scenic River",
+      "Rapid Wild and Scenic River",
+      "Clarks Fork Wild and Scenic River"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 1,
+     "name": "National Wild and Scenic River Line Segment",
+     "geom": "Polyline",
+     "nameField": "wsr_river_name",
+     "ownerField": "agency",
+     "typeField": "classification",
+     "fields": [
+      "objectid",
+      "river_id",
+      "segment_id",
+      "wsr_river_name",
+      "wsr_river_shortname",
+      "gnis_name",
+      "classification",
+      "segment_miles",
+      "total_miles",
+      "beginning_point_narrative",
+      "ending_point_narrative",
+      "agency",
+      "orv_culture",
+      "orv_fish",
+      "orv_geologic",
+      "orv_historic",
+      "orv_recreational",
+      "orv_scenic",
+      "orv_wildlife",
+      "state",
+      "orv_other",
+      "orv_id",
+      "orv_list",
+      "segment_acres",
+      "administrative_unit",
+      "county",
+      "shape",
+      "st_length(shape)"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Managing Agencies United States Forest Service (USFS), National Park Service (NPS), Bureau of Land Management (BLM), Fish and Wildlife Services (FWS)",
+     "records": 1051,
+     "sample": [
+      "Whitewater Wild and Scenic River",
+      "Whitewater Wild and Scenic River",
+      "Alagnak Wild and Scenic River",
+      "Alatna Wild and Scenic River",
+      "Aniakchak Wild and Scenic River",
+      "Aniakchak Wild and Scenic River",
+      "Aniakchak Wild and Scenic River",
+      "Aniakchak Wild and Scenic River"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "kind": "river",
+   "ag": "NPS",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Nationwide_Rivers_Inventory_Official/FeatureServer/0",
+   "note": "chat 8 R5",
+   "answers": true,
+   "service": "HYDRO_NationwideRiversInventory_ln",
+   "licence": "U.S. Department of the Interior, National Park Service. 2024. Nationwide Rivers Inventory (NRI): National Park Service data release, https://irma.nps.gov/DataStore/Reference/Profile/2305275",
+   "years_in_text": [
+    "1990",
+    "1993",
+    "2016",
+    "2024"
+   ],
+   "description": "The Nationwide Rivers Inventory (NRI) is a listing of free-flowing river segments in the United States and Puerto Rico that are believed to possess one or more \"outstandingly remarkable\" natural or cultural values judged to be at least regionally significant. Hence, NRI river segments are potential candidates for inclusion in the National Wild and Scenic River System. Under the Wild and Scenic Riv",
+   "item_licence": "The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contained herein. These data and related graphics are not legal documents and are not intended to be used as such. The information contained in these data is dynamic and may change over time",
+   "item_modified": "2025-03-19",
+   "item_owner": "cor_nps",
+   "item_org": "National Park Service",
+   "item_title": "Nationwide Rivers Inventory Official",
+   "item_credits": "NPS",
+   "item_about": "The Nationwide Rivers Inventory (NRI) is a listing of free-flowing river segments in the United States and Puerto Rico that are believed to possess one or more &quot;outstandingly remarkable&quot; natural or cultural values judged to be at least regionally significant. Hence, NRI river segments are potential candidates for inclusion in the National Wild and Scenic River System. Under the Wild and Scenic Rivers Act section 5(d)(1), a 1979 Presidential Memorandum, and 1980 Council on Environmental Quality (CEQ) guidance, all federal agencies must seek to avoid or mitigate adverse impacts to NRI ",
+   "layers": [
+    {
+     "id": null,
+     "name": "HYDRO_NationwideRiversInventory_ln",
+     "geom": "Polyline",
+     "nameField": "GNIS_Name",
+     "ownerField": "Management_Area_Name",
+     "typeField": "Classification",
+     "fields": [
+      "OBJECTID",
+      "NRI_ID",
+      "River",
+      "Reach",
+      "Original_Miles",
+      "GIS_Miles",
+      "Classification",
+      "Management_Area_Name",
+      "GNIS_Name",
+      "WSR_Study",
+      "Revision",
+      "Addition_Deletion",
+      "Notes",
+      "MAP_METHOD",
+      "MAP_SOURCE",
+      "PUBLICDISPLAY",
+      "DATAACCESS",
+      "SOURCE_DATE",
+      "SOURCE_AGENCY_ID",
+      "DATA_SOURCE",
+      "DATA_SOURCE_NOTES",
+      "Description",
+      "Study_Type",
+      "In_Eligible_Suitable",
+      "CREATE_USER",
+      "CREATE_DATE",
+      "EDIT_USER",
+      "EDIT_DATE",
+      "State1",
+      "State2",
+      "State3",
+      "County",
+      "ORV",
+      "Management_Entity_Fed1",
+      "Management_Entity_Fed2",
+      "Management_Entity_Fed3",
+      "Management_Entity_Other1",
+      "Management_Entity_Other2",
+      "Watershed_Name6",
+      "HUC_Code6"
+     ],
+     "last_edit": "2025-02-06",
+     "layer_copyright": "U.S. Department of the Interior, National Park Service. 2024. Nationwide Rivers Inventory (NRI): National Park Service data release, https://irma.nps.gov/DataStore/Reference/Profile/2305275",
+     "records": 4496,
+     "sample": [
+      "None",
+      "Alecks Creek",
+      "Alexander Creek",
+      "None",
+      "Alsek River",
+      "American Creek",
+      "Anaktuvuk River",
+      "Anan Creek"
+     ],
+     "owner_values": [
+      "Absaroka-Beartooth Wilderness",
+      "Agate Fossil Beds National Monument",
+      "Agua Fria National Monument",
+      "Allegheny National Forest",
+      "Amistad National Recreation Area",
+      "Angeles National Forest",
+      "Aniakchak National Monument and Preserve",
+      "Antietam National Battlefield",
+      "Apache National Forest",
+      "Apache-Sitgreaves National Forest",
+      "Apalachicola National Forest",
+      "Appalachian National Scenic Trail",
+      "Appalachian National Scenic Trail. ",
+      "Appomattox Court House National Historic",
+      "Arapaho-Roosevelt National Forest",
+      "Arches National Park",
+      "Arctic National Wildlife Refuge",
+      "Arizona Strip District",
+      "Ashley National Forest",
+      "Badlands National Park",
+      "Bears Ears National Monument",
+      "Beaverhead National Forest",
+      "Beltrami Wildlife Management Area",
+      "Bent's Old Fort National Historic Site",
+      "Bering Land Bridge National Preserve",
+      "Berryessa Snow Mountain National Monumen",
+      "Bienville National Forest",
+      "Big Bend National Park",
+      "Big South Fork National River and Recrea",
+      "Big Stone National Wildlife Refuge"
+     ],
+     "type_values": [
+      "Recreational",
+      "Scenic",
+      "Scenic, Recreational",
+      "Wild",
+      "Wild, Recreational",
+      "Wild, Scenic",
+      "Wild, Scenic, Recreational"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "kind": "water",
+   "ag": "USGS",
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer",
+   "note": "chat 8 R7",
+   "answers": true,
+   "service": "NHDPlus_HR",
+   "licence": "USGS TNM – National Hydrography Dataset Plus High Resolution (NHDPlus HR). Data refreshed October, 2022.",
+   "years_in_text": [],
+   "description": "The USGS NHDPlus High Resolution service, NHDPlus_HR, a part of The National Map, is a comprehensive set of digital spatial data comprising a nationally seamless network of stream reaches, elevation-based catchment areas, flow surfaces, and value-added attributes that enhance stream network navigation, analysis, and data display. NHDPlus High Resolution (NHDPlus HR) is a scalable geospatial hydrog",
+   "item_licence": "",
+   "item_credits": "USGS TNM – National Hydrography Dataset Plus High Resolution (NHDPlus HR). Data refreshed October, 2022.",
+   "item_about": "The USGS NHDPlus High Resolution service, NHDPlus_HR, a part of The National Map, is a comprehensive set of digital spatial data comprising a nationally seamless network of stream reaches, elevation-based catchment areas, flow surfaces, and value-added attributes that enhance stream network navigation, analysis, and data display. NHDPlus High Resolution (NHDPlus HR) is a scalable geospatial hydrography framework built from the high resolution National Hydrography Dataset, nationally complete Wat",
+   "layers": [
+    {
+     "id": 0,
+     "name": "NHDPlusGage",
+     "geom": "Point",
+     "nameField": "station_nm",
+     "ownerField": "sourceagency",
+     "typeField": "featuretype",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "hydroaddressid",
+      "addressdate",
+      "featuretype",
+      "onnetwork",
+      "sourceid",
+      "sourceagency",
+      "sourcedataset",
+      "sourcefeatureurl",
+      "catchment",
+      "hu",
+      "reachcode",
+      "measure",
+      "reachsmdate",
+      "nhdplusid",
+      "vpuid",
+      "station_nm",
+      "state_cd",
+      "state",
+      "latsite",
+      "lonsite",
+      "dasqmi",
+      "referencegage",
+      "class",
+      "classmod"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 5065,
+     "sample": [
+      "MCALPINE CR BELOW MCMULLEN CR NR PINEVIL",
+      "CHAMOKANE CREEK BELOW FALLS NEAR LONG LA",
+      "LAS VEGAS WASH OVERFLOW AT LAKE LAS VEGA",
+      "WEST BRANCH SWIFT RIVER NEAR SHUTESBURY,",
+      "ISSAQUAH CREEK NEAR MOUTH NEAR ISSAQUAH,",
+      "BLUE R NR STANLEY, KS",
+      "BUCKATUNNA CREEK NR DENHAM, MS",
+      "ANTIETAM CREEK NEAR WAYNESBORO, PA"
+     ],
+     "owner_values": [
+      "United States Geological Survey (USGS)"
+     ],
+     "type_values": [
+      "57001",
+      "57003"
+     ]
+    },
+    {
+     "id": 1,
+     "name": "NHDPlusSink",
+     "geom": "Point",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "statusflag",
+     "fields": [
+      "OBJECTID",
+      "SHAPE",
+      "nhdplusid",
+      "gridcode",
+      "purpcode",
+      "featureid",
+      "sourcefc",
+      "rpuid",
+      "statusflag",
+      "catchment",
+      "burn",
+      "vpuid"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 1194760,
+     "type_values": [
+      "N"
+     ]
+    },
+    {
+     "id": 2,
+     "name": "NHDPoint",
+     "geom": "Point",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "reachcode",
+      "ftype",
+      "fcode",
+      "nhdplusid",
+      "vpuid"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 484774,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    },
+    {
+     "id": 3,
+     "name": "NetworkNHDFlowline",
+     "geom": "Polyline",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "statusflag",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "lengthkm",
+      "reachcode",
+      "flowdir",
+      "wbarea_permanent_identifier",
+      "ftype",
+      "fcode",
+      "mainpath",
+      "innetwork",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "streamleve",
+      "streamorde",
+      "streamcalc",
+      "fromnode",
+      "tonode",
+      "hydroseq",
+      "levelpathi",
+      "pathlength",
+      "terminalpa",
+      "arbolatesu",
+      "divergence",
+      "startflag",
+      "terminalfl",
+      "uplevelpat",
+      "uphydroseq",
+      "dnlevel",
+      "dnlevelpat",
+      "dnhydroseq",
+      "dnminorhyd",
+      "dndraincou",
+      "frommeas",
+      "tomeas"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 24958332,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "Cumbo Branch",
+      "None",
+      "None"
+     ],
+     "type_values": [
+      "A"
+     ]
+    },
+    {
+     "id": 4,
+     "name": "NonNetworkNHDFlowline",
+     "geom": "Polyline",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_Identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "lengthkm",
+      "reachcode",
+      "flowdir",
+      "wbarea_permanent_identifier",
+      "ftype",
+      "fcode",
+      "mainpath",
+      "innetwork",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "Shape_Length"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 543614,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    },
+    {
+     "id": 5,
+     "name": "FlowDirection",
+     "geom": "Polyline",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "statusflag",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "lengthkm",
+      "reachcode",
+      "flowdir",
+      "wbarea_permanent_identifier",
+      "ftype",
+      "fcode",
+      "mainpath",
+      "innetwork",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "streamleve",
+      "streamorde",
+      "streamcalc",
+      "fromnode",
+      "tonode",
+      "hydroseq",
+      "levelpathi",
+      "pathlength",
+      "terminalpa",
+      "arbolatesu",
+      "divergence",
+      "startflag",
+      "terminalfl",
+      "uplevelpat",
+      "uphydroseq",
+      "dnlevel",
+      "dnlevelpat",
+      "dnhydroseq",
+      "dnminorhyd",
+      "dndraincou",
+      "frommeas",
+      "tomeas"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 24958332,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "Cumbo Branch",
+      "None",
+      "None"
+     ],
+     "type_values": [
+      "A"
+     ]
+    },
+    {
+     "id": 6,
+     "name": "NHDPlusWall",
+     "geom": "Polyline",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "SHAPE",
+      "nhdplusid",
+      "wallsource",
+      "vpuid",
+      "burn",
+      "SHAPE_Length"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 385027
+    },
+    {
+     "id": 7,
+     "name": "NHDLine",
+     "geom": "Polyline",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "lengthkm",
+      "ftype",
+      "fcode",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "Shape_Length"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 156887,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    },
+    {
+     "id": 8,
+     "name": "NHDArea",
+     "geom": "Polygon",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "areasqkm",
+      "elevation",
+      "ftype",
+      "fcode",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "onoffnet",
+      "purpcode",
+      "burn",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 166109,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    },
+    {
+     "id": 9,
+     "name": "NHDWaterbody",
+     "geom": "Polygon",
+     "nameField": "gnis_name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "permanent_identifier",
+      "fdate",
+      "resolution",
+      "gnis_id",
+      "gnis_name",
+      "areasqkm",
+      "elevation",
+      "reachcode",
+      "ftype",
+      "fcode",
+      "visibilityfilter",
+      "nhdplusid",
+      "vpuid",
+      "onoffnet",
+      "purpcode",
+      "burn",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 7031586,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    },
+    {
+     "id": 10,
+     "name": "NHDPlusCatchment",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "nhdplusid",
+      "sourcefc",
+      "gridcode",
+      "areasqkm",
+      "vpuid",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 25541804
+    },
+    {
+     "id": 11,
+     "name": "NHDPlusBoundaryUnit",
+     "geom": "Polygon",
+     "nameField": "vpuname",
+     "ownerField": "",
+     "typeField": "unittype",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "drainageid",
+      "drainseqno",
+      "vpuid",
+      "vpuname",
+      "vpuseqno",
+      "unittype",
+      "rpuid",
+      "areasqkm",
+      "prodpath",
+      "nhdpseqno",
+      "nhdplushrpublicationdate",
+      "nhdplushrschemaversion",
+      "nhdplushrsoftwareversion",
+      "nhdplushrupdatepurpose",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 283,
+     "sample": [
+      "Chena River",
+      "Prince William Sound",
+      "Central Nevada Desert Basins",
+      "Kongakut River-Beaufort Lagoon",
+      "Black Rock Desert-Humboldt",
+      "Central Lahontan",
+      "Tolovana River",
+      "Sonora"
+     ],
+     "type_values": [
+      "VPU"
+     ]
+    },
+    {
+     "id": 12,
+     "name": "WBDHU12",
+     "geom": "Polygon",
+     "nameField": "name",
+     "ownerField": "",
+     "typeField": "hutype",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "tnmid",
+      "metasourceid",
+      "sourcedatadesc",
+      "sourceoriginator",
+      "sourcefeatureid",
+      "loaddate",
+      "referencegnis_ids",
+      "areaacres",
+      "areasqkm",
+      "states",
+      "huc12",
+      "name",
+      "hutype",
+      "humod",
+      "tohuc",
+      "noncontributingareaacres",
+      "noncontributingareasqkm",
+      "nhdplusid",
+      "vpuid",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 89843,
+     "sample": [
+      "Huntersfield Creek-Schoharie Creek",
+      "Upper Kishacoquillas Creek",
+      "Sucker Brook-Schroon River",
+      "Headwaters Egeria Creek",
+      "Delta Reservoir-Mohawk River",
+      "Cascade Creek-Susquehanna River",
+      "Agawamuck Creek",
+      "Bear Trap Brook-Cedar River"
+     ],
+     "type_values": [
+      "S"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "kind": "land",
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer",
+   "answers": false,
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  }
+ ],
+ "searches": [
+  {
+   "st": "MS",
+   "q": "Mississippi AND (\"wildlife management area\" OR WMA OR \"state park\") AND (boundary OR boundaries)",
+   "why": "chat 8 MS",
+   "found": [
+    {
+     "title": "PAULIE",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+     "modified": "2026-10-29",
+     "licence": "The Geographic Information System (GIS) Data to which this notice is attached are made available pursuant to the Minneso"
+    },
+    {
+     "title": "TylerEPL",
+     "org": "",
+     "owner": "CityofSaintPaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": ""
+    },
+    {
+     "title": "mississippi_headwaters_priority_areas_12_1_23",
+     "org": "",
+     "owner": "brinks31",
+     "url": "https://services7.arcgis.com/26j4Vi9jWPFXTsxU/arcgis/rest/services/Lake_wshd_priorities_base_12_1_23/FeatureServer",
+     "modified": "2024-11-27",
+     "licence": ""
+    },
+    {
+     "title": "Grand Isle Coastal Permits and Jurisdictions _ Draft 4_WFL1",
+     "org": "",
+     "owner": "FEMA_HQ_Recovery_GDAC",
+     "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Grand_Isle_Coastal_Permits_and_Jurisdictions___Draft_4_WFL1/FeatureServer",
+     "modified": "2022-03-22",
+     "licence": ""
+    },
+    {
+     "title": "TH 25 PEL Existing Conditions_WFL1",
+     "org": "",
+     "owner": "aaronpa_BMI",
+     "url": "https://services2.arcgis.com/ZkOsbg84o8DsPPaP/arcgis/rest/services/TH_25_PEL_Existing_Conditions_WFL1/FeatureServer",
+     "modified": "2024-01-18",
+     "licence": ""
+    },
+    {
+     "title": "FederalLands_IndianReservations",
+     "org": "",
+     "owner": "maps_ft",
+     "url": "https://services.arcgis.com/jDGuO8tYggdCCnUJ/arcgis/rest/services/FederalLands_IndianReservations/FeatureServer",
+     "modified": "2025-06-20",
+     "licence": ""
+    },
+    {
+     "title": "WFL2_Basemap_Items",
+     "org": "",
+     "owner": "Rachel_CCE",
+     "url": "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer",
+     "modified": "2024-10-28",
+     "licence": ""
+    },
+    {
+     "title": "MAV State Managed Lands (WMAs)",
+     "org": "",
+     "owner": "blaine_elliott@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/MAV_state_managed_lands_2021/FeatureServer",
+     "modified": "2024-09-30",
+     "licence": "The Digital Object Identifier (https://doi.org/10.5066/P955KPLE for PAD-US 2.0, https://doi.org/10.5066/P92QM3NT for PAD"
+    },
+    {
+     "title": "WGCPO State Managed Lands (WMAs)",
+     "org": "",
+     "owner": "blaine_elliott@fws.gov_fws",
+     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/WGCPO_STATE_WILDLIFE_MANAGEMENT_AREAS_2015/FeatureServer",
+     "modified": "2024-09-30",
+     "licence": "The Digital Object Identifier (https://doi.org/10.5066/P955KPLE for PAD-US 2.0, https://doi.org/10.5066/P92QM3NT for PAD"
+    },
+    {
+     "title": "State_Parks",
+     "org": "",
+     "owner": "logburn@unca.edu_unca",
+     "url": "https://services1.arcgis.com/PwLrOgCfU0cYShcG/arcgis/rest/services/State_Parks/FeatureServer",
+     "modified": "2025-11-13",
+     "licence": ""
+    },
+    {
+     "title": "HOMOCHITTO NATIONAL FOREST WILD CAMPS_WFL1",
+     "org": "",
+     "owner": "Owenss_promo",
+     "url": "https://services3.arcgis.com/xxKKavhytNgFUeV5/arcgis/rest/services/HOMOCHITTO_NATIONAL_FOREST_WILD_CAMPS_WFL1/FeatureServer",
+     "modified": "2026-10-12",
+     "licence": ""
+    },
+    {
+     "title": "MRCCA_ConfluenceArea",
+     "org": "",
+     "owner": "Bob.Spaulding@ci.stpaul.mn.us_stpaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/MRCCA_ConfluenceArea/FeatureServer",
+     "modified": "2021-08-24",
+     "licence": ""
+    },
+    {
+     "title": "MRCCA_GorgeArea",
+     "org": "",
+     "owner": "Bob.Spaulding@ci.stpaul.mn.us_stpaul",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/MRCCA_GorgeArea/FeatureServer",
+     "modified": "2021-08-24",
+     "licence": ""
+    },
+    {
+     "title": "State_Parks",
+     "org": "",
+     "owner": "EF_staff",
+     "url": "https://services2.arcgis.com/mzukOs9wABhl5gyA/arcgis/rest/services/State_Parks/FeatureServer",
+     "modified": "2026-05-06",
+     "licence": ""
+    },
+    {
+     "title": "Landcover Tangipahoa Data_WFL1",
+     "org": "",
+     "owner": "USACE_MVS_PS",
+     "url": "https://services6.arcgis.com/27cTpg5KhGu0zyjv/arcgis/rest/services/Landcover_Tangipahoa_Data_WFL1/FeatureServer",
+     "modified": "2023-02-10",
+     "licence": ""
+    },
+    {
+     "title": "Mississippi",
+     "org": "",
+     "owner": "BG59031@tn.gov_TDEC",
+     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Mississippi/FeatureServer",
+     "modified": "2026-03-16",
+     "licence": ""
+    },
+    {
+     "title": "Tangipahoa Landcover",
+     "org": "",
+     "owner": "USACE_MVS_PS",
+     "url": "https://services6.arcgis.com/27cTpg5KhGu0zyjv/arcgis/rest/services/Tangipahoa_Landcover/FeatureServer",
+     "modified": "2023-02-10",
+     "licence": ""
+    },
+    {
+     "title": "KDFWR Aquatic Waterways",
+     "org": "",
+     "owner": "kdfwr@1kfwis",
+     "url": "https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/arcgis/rest/services/KDFWR_Aquatic_Waterways/FeatureServer",
+     "modified": "2025-12-11",
+     "licence": ""
+    }
+   ]
+  }
+ ],
+ "orgs": [],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "US",
+   "url": "https://catalog.data.gov/api/3/action/package_search?q=%22wild%20and%20scenic%20river%22%20segments&rows=10",
+   "look": "",
+   "json": true,
+   "note": "chat 8 R1",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "st": "MS",
+   "url": "https://www.maris.state.ms.us/HTML/DATA/data_Statewide.html",
+   "look": "wildlife|WMA|park|recreation|public land|conservation",
+   "note": "chat 8 MS",
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "MS",
+   "url": "https://www.mdwfp.com/wildlife-hunting/wildlife-management-areas/",
+   "look": "arcgis|shapefile|kml|geojson|FeatureServer|MapServer|boundary|map",
+   "note": "chat 8 MS",
+   "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>"
+  }
+ ],
+ "nearq": [
+  {
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+   "at": "Green River at Mammoth Cave",
+   "pt": [
+    37.1717,
+    -86.1167
+   ],
+   "rows": []
+  },
+  {
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+   "at": "Ohio River at Louisville",
+   "pt": [
+    38.27,
+    -85.76
+   ],
+   "rows": []
+  },
+  {
+   "url": "https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+   "at": "Red River (KY WSR, control)",
+   "pt": [
+    37.81,
+    -83.7
+   ],
+   "rows": []
+  },
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Nationwide_Rivers_Inventory_Official/FeatureServer/0",
+   "at": "Green River at Mammoth Cave",
+   "pt": [
+    37.1717,
+    -86.1167
+   ],
+   "rows": [
+    {
+     "NRI_ID": "KY.green.gree.s1",
+     "River": "Green River",
+     "Reach": "Greensburg to Lock No. 6 on the eastern edge of Mammoth Cave National Park",
+     "Original_Miles": 101,
+     "GIS_Miles": 99.99843057831745,
+     "Management_Area_Name": "Mammoth Cave National Park",
+     "GNIS_Name": "Green River",
+     "Notes": "Modified reach description to make more clear.",
+     "MAP_METHOD": "Derived",
+     "MAP_SOURCE": "High Definition National Hydrography Dataset - USGS",
+     "PUBLICDISPLAY": "Public Map Display",
+     "DATAACCESS": "Unrestricted",
+     "SOURCE_DATE": 1422748800000,
+     "DATA_SOURCE": "National Park Service",
+     "DATA_SOURCE_NOTES": "Loaded from https://nps.maps.arcgis.com/home/item.html?id=5903872a99ac40d99b9e136f0d0bb9ed#overview which is/was a temporary editing layer",
+     "Description": "Designated Kentucky Wild River; habitat for numerous rare or endangered species; abundance and variety of wildlife; most productive muskellunge fishery in State.",
+     "In_Eligible_Suitable": "No",
+     "CREATE_USER": "cor_nps",
+     "CREATE_DATE": 1731693648551,
+     "EDIT_USER": "cor_nps",
+     "EDIT_DATE": 1731693648551,
+     "State1": "Kentucky",
+     "County": "Edmonson, Hart, Green",
+     "ORV": "Cultural, Fish, Geologic, Historic, Recreational, Scenic, Wildlife",
+     "Management_Entity_Fed1": "National Park Service",
+     "Watershed_Name6": "Green",
+     "HUC_Code6": "051100",
+     "Watershed_Name8": "Upper Green",
+     "HUC_Code8": "05110001",
+     "YR_Listed": "1982",
+     "YR_Updated": "1982",
+     "YrListed_YrUpdated": "1982",
+     "PrjID": "kygre0101a0"
+    }
+   ]
+  },
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Nationwide_Rivers_Inventory_Official/FeatureServer/0",
+   "at": "Ohio River at Louisville",
+   "pt": [
+    38.27,
+    -85.76
+   ],
+   "rows": []
+  },
+  {
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6",
+   "at": "Green River at Mammoth Cave",
+   "pt": [
+    37.1717,
+    -86.1167
+   ],
+   "rows": [
+    {
+     "permanent_identifier": "{2D833EFC-AFAB-467F-9F98-6A4F81E0C410}",
+     "fdate": 1469577600000,
+     "resolution": 2,
+     "lengthkm": 0.014579320000000002,
+     "reachcode": "05110001025353",
+     "flowdir": 1,
+     "ftype": 460,
+     "fcode": 46006,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    },
+    {
+     "permanent_identifier": "{8CF18404-3246-4DF3-86D5-2B5F1A8DEF99}",
+     "fdate": 1469577600000,
+     "resolution": 2,
+     "gnis_id": "00491545",
+     "gnis_name": "Echo River",
+     "lengthkm": 0.00504892,
+     "reachcode": "05110001006982",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "120007598",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    },
+    {
+     "permanent_identifier": "34787396",
+     "fdate": 1342137600000,
+     "resolution": 2,
+     "lengthkm": 0.5095909700000001,
+     "reachcode": "05110001006942",
+     "flowdir": 1,
+     "ftype": 460,
+     "fcode": 46003,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 24000
+    },
+    {
+     "permanent_identifier": "{EBBA67BF-0D39-43A5-A2F0-9CB8BE185084}",
+     "fdate": 1469577600000,
+     "resolution": 2,
+     "lengthkm": 0.01101266,
+     "reachcode": "05110001025353",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "120007598",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    },
+    {
+     "permanent_identifier": "34789889",
+     "fdate": 1511222400000,
+     "resolution": 2,
+     "gnis_id": "00493284",
+     "gnis_name": "Green River",
+     "lengthkm": 1.3723818300000001,
+     "reachcode": "05110001000020",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "120007598",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    },
+    {
+     "permanent_identifier": "34787466",
+     "fdate": 1469577600000,
+     "resolution": 2,
+     "gnis_id": "00491545",
+     "gnis_name": "Echo River",
+     "lengthkm": 0.34703666000000005,
+     "reachcode": "05110001006982",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "120007598",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    },
+    {
+     "permanent_identifier": "34787821",
+     "fdate": 1600041600000,
+     "resolution": 2,
+     "lengthkm": 1.0415959700000001,
+     "reachcode": "05110001007056",
+     "flowdir": 1,
+     "ftype": 460,
+     "fcode": 46003,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 100000
+    },
+    {
+     "permanent_identifier": "34787426",
+     "fdate": 1469577600000,
+     "resolution": 2,
+     "gnis_id": "00491545",
+     "gnis_name": "Echo River",
+     "lengthkm": 0.02643009,
+     "reachcode": "05110001006982",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "120007598",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 5000000
+    }
+   ]
+  },
+  {
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/6",
+   "at": "Ohio River at Louisville",
+   "pt": [
+    38.27,
+    -85.76
+   ],
+   "rows": [
+    {
+     "permanent_identifier": "{34e96e94-a10c-423a-ae02-d8dbf96358db}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.63619589,
+     "reachcode": "05140101040463",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "162148014",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    },
+    {
+     "permanent_identifier": "{229022c0-625e-483f-be7e-5eef2ed2d2c3}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.11098217,
+     "reachcode": "05140101040155",
+     "flowdir": 1,
+     "ftype": 468,
+     "fcode": 46800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    },
+    {
+     "permanent_identifier": "{3b33812d-628c-437d-9cf7-bb8e6024a5c3}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.21869543000000002,
+     "reachcode": "05140101031169",
+     "flowdir": 1,
+     "ftype": 428,
+     "fcode": 42803,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 250000
+    },
+    {
+     "permanent_identifier": "{21179876-8a2a-4fdb-a72f-f22f25150184}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.12882347,
+     "reachcode": "05140101030478",
+     "flowdir": 1,
+     "ftype": 428,
+     "fcode": 42803,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    },
+    {
+     "permanent_identifier": "{2e7909f0-ef97-45b8-b551-5610e5d2610e}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.059040430000000005,
+     "reachcode": "05140101040091",
+     "flowdir": 1,
+     "ftype": 468,
+     "fcode": 46800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    },
+    {
+     "permanent_identifier": "{5c3ff977-b317-42e8-91c7-e4f74d5a7e48}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.58100499,
+     "reachcode": "05140101040465",
+     "flowdir": 1,
+     "wbarea_permanent_identifier": "162148014",
+     "ftype": 558,
+     "fcode": 55800,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 24000
+    },
+    {
+     "permanent_identifier": "{2e9eae00-95ea-4a2f-b8ed-755002eac00c}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.09559516,
+     "reachcode": "05140101031218",
+     "flowdir": 1,
+     "ftype": 428,
+     "fcode": 42803,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    },
+    {
+     "permanent_identifier": "{975d8395-8b01-4216-8939-57bd3668f1e5}",
+     "fdate": 1442966400000,
+     "resolution": 2,
+     "lengthkm": 0.08901536000000002,
+     "reachcode": "05140101030478",
+     "flowdir": 1,
+     "ftype": 334,
+     "fcode": 33400,
+     "innetwork": 1,
+     "mainpath": 0,
+     "visibilityfilter": 0
+    }
+   ]
+  },
+  {
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+   "at": "Green River at Mammoth Cave (area)",
+   "pt": [
+    37.1717,
+    -86.1167
+   ],
+   "rows": [
+    {
+     "PERMANENT_IDENTIFIER": "120007598",
+     "FDATE": 1671667200000,
+     "RESOLUTION": 2,
+     "AREASQKM": 18.27631666,
+     "FTYPE": 460,
+     "FCODE": 46006,
+     "VISIBILITYFILTER": 5000000
+    }
+   ]
+  },
+  {
+   "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer/9",
+   "at": "Ohio River at Louisville (area)",
+   "pt": [
+    38.27,
+    -85.76
+   ],
+   "rows": [
+    {
+     "PERMANENT_IDENTIFIER": "162148014",
+     "FDATE": 1571788800000,
+     "RESOLUTION": 2,
+     "AREASQKM": 90.67969222,
+     "FTYPE": 460,
+     "FCODE": 46006,
+     "VISIBILITYFILTER": 5000000
+    },
+    {
+     "PERMANENT_IDENTIFIER": "{80d6199f-5b23-4043-8184-c31260b0815f}",
+     "FDATE": 1571788800000,
+     "RESOLUTION": 2,
+     "AREASQKM": 0.61292324,
+     "FTYPE": 336,
+     "FCODE": 33600,
+     "VISIBILITYFILTER": 5000000
+    }
+   ]
+  },
+  {
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0",
+   "at": "Flaming Gorge",
+   "pt": [
+    41.05,
+    -109.55
+   ],
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  },
+  {
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0",
+   "at": "Lake Powell (Wahweap)",
+   "pt": [
+    36.995,
+    -111.49
+   ],
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  },
+  {
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0",
+   "at": "Lake Mead (Hoover Dam)",
+   "pt": [
+    36.0156,
+    -114.7378
+   ],
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  },
+  {
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0",
+   "at": "Fort Peck (Corps lake: expect none)",
+   "pt": [
+    48.0,
+    -106.42
+   ],
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  },
+  {
+   "url": "https://services.arcgis.com/4OV0eRKiLAYkbH2J/ArcGIS/rest/services/Reclamation_Boundary/FeatureServer/0",
+   "at": "Lake Havasu (Parker Dam)",
+   "pt": [
+    34.296,
+    -114.139
+   ],
+   "error": "{'code': 499, 'message': 'Token Required', 'messageCode': 'GWM_0003', 'details': ['Token Required']}"
+  }
+ ],
+ "pinhunt": [
+  {
+   "url": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+   "final": "https://www.landbetweenthelakes.us/facility/self-service-camping/",
+   "title": "Self-Service Camping - Land Between the Lakes National Recreation Area",
+   "pins": [],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [],
+   "follow": [
+    {
+     "name": "Turkey Bay",
+     "text": "Turkey Bay Off-Highway Vehicle (OHV) Area",
+     "url": "https://www.landbetweenthelakes.us/visit/turkey-bay-off-highway-vehicle-ohv-area/",
+     "final": "https://www.landbetweenthelakes.us/visit/turkey-bay-off-highway-vehicle-ohv-area/",
+     "title": "Turkey Bay Off-Highway Vehicle (OHV) Area - Land Between the Lakes National Recreation Area",
+     "pins": [],
+     "maplinks": [
+      "https://maps.app.goo.gl/cTMuxFoFpDxBXgSA6"
+     ],
+     "frames": [],
+     "text_hits": [],
+     "resolved": [
+      {
+       "link": "https://maps.app.goo.gl/cTMuxFoFpDxBXgSA6",
+       "final": "https://www.google.com/maps/place/36%C2%B045'02.4%22N+88%C2%B004'17.6%22W/@36.7506667,-88.0715556,17z/data=!3m1!4b1!4m4!3m3!8m2!3d36.7506667!4d-88.0715556?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw",
+       "pins": [
+        [
+         36.750667,
+         -88.071556
+        ],
+        [
+         36.750667,
+         -88.071547
+        ],
+        [
+         36.750671,
+         -88.074128
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Cravens",
+     "text": "Seasonal Camping Information – Cravens & Taylor Bay",
+     "url": "https://www.landbetweenthelakes.us/facility/seasonal-camping/",
+     "final": "https://www.landbetweenthelakes.us/facility/seasonal-camping/",
+     "title": "Seasonal Camping - Land Between the Lakes National Recreation Area",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    }
+   ],
+   "id": "lbl-self-service"
+  },
+  {
+   "url": "https://www.landbetweenthelakes.us/camping/",
+   "final": "https://www.landbetweenthelakes.us/wp-content/uploads/2025/05/Camping-scaled.jpg",
+   "title": "Camping-scaled.jpg (2560×1920)",
+   "pins": [],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [],
+   "follow": [],
+   "id": "lbl-camping"
+  },
+  {
+   "url": "https://home.nps.gov/maca/planyourvisit/houchinferrycg.htm",
+   "final": "https://home.nps.gov/maca/planyourvisit/houchinferrycg.htm",
+   "title": "Houchin Ferry Campground - Mammoth Cave National Park (U.S. National Park Service)",
+   "pins": [],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [
+    "CONTACT INFORMATION & DIRECTIONS"
+   ],
+   "id": "houchin-ferry"
+  },
+  {
+   "url": "https://home.nps.gov/biso/planyourvisit/bear-creek-horse-camp.htm",
+   "final": "https://home.nps.gov/biso/planyourvisit/bear-creek-horse-camp.htm",
+   "title": "Bear Creek Campground - Big South Fork National River & Recreation Area (U.S. National Park Service)",
+   "pins": [],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [],
+   "id": "bear-creek-horse"
+  },
+  {
+   "url": "https://www.recreation.gov/camping/campgrounds/251468",
+   "final": "https://www.recreation.gov/camping/campgrounds/251468",
+   "title": "Bear Creek Campground - KY, Big South Fork National River & Recreation Area - Recreation.gov",
+   "pins": [
+    [
+     36.641075,
+     -84.523644
+    ]
+   ],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [
+    "Directions",
+    "<p>For detailed directions, please visit: <a href=\"http://www.nps.gov/biso/planyourvisit/directions.htm\" rel=\"nofollow\">http:/",
+    "/www.nps.gov/biso/planyourvisit/directions.htm</a> </p>"
+   ],
+   "id": "ridb-251468"
+  },
+  {
+   "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
+   "final": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192",
+   "title": "Public Land Search | KDFWR",
+   "pins": [],
+   "maplinks": [
+    "https://maps.google.com/?q=37.9932+-86.5174+(Yellowbank+WMA)&t=m&z=12&f=l"
+   ],
+   "frames": [],
+   "text_hits": [
+    "GET DIRECTIONS",
+    "Entrance GPS coordinates: Latitude N 37.9932, Longitude W -86.5174",
+    "Directions & Description"
+   ],
+   "id": "yellowbank"
+  },
+  {
+   "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
+   "final": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132",
+   "title": "Public Land Search | KDFWR",
+   "pins": [],
+   "maplinks": [
+    "https://maps.google.com/?q=37.6280+-87.8286+(Higginson-Henry+WMA)&t=m&z=12&f=l"
+   ],
+   "frames": [],
+   "text_hits": [
+    "GET DIRECTIONS",
+    "Entrance GPS coordinates: Latitude N 37.6280, Longitude W -87.8286",
+    "Directions & Description"
+   ],
+   "id": "higginson-henry"
+  },
+  {
+   "url": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
+   "final": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=137",
+   "title": "Public Land Search | KDFWR",
+   "pins": [],
+   "maplinks": [
+    "https://maps.google.com/?q=37.1332+-88.8139+(West+Kentucky+WMA)&t=m&z=12&f=l"
+   ],
+   "frames": [],
+   "text_hits": [
+    "GET DIRECTIONS",
+    "Entrance GPS coordinates: Latitude N 37.1332, Longitude W -88.8139",
+    "Directions & Description"
+   ],
+   "id": "west-kentucky"
+  },
+  {
+   "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
+   "final": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
+   "title": "Public Land Search | KDFWR",
+   "pins": [],
+   "maplinks": [
+    "https://maps.google.com/?q=37.5341+-85.5590+(Rolling+Fork+WMA)&t=m&z=12&f=l"
+   ],
+   "frames": [],
+   "text_hits": [
+    "GET DIRECTIONS",
+    "Entrance GPS coordinates: Latitude N 37.5341, Longitude W -85.5590",
+    "Directions & Description"
+   ],
+   "id": "rolling-fork"
+  },
+  {
+   "url": "https://www.breakspark.com/campground",
+   "final": "https://www.breakspark.com/campground",
+   "title": "Campground | Discover and Book Your Stay Now — Breaks Interstate Park",
+   "pins": [],
+   "maplinks": [],
+   "frames": [],
+   "text_hits": [],
+   "follow": [
+    {
+     "name": "Map",
+     "text": "Park Maps",
+     "url": "https://www.breakspark.com/parkmap",
+     "final": "https://www.breakspark.com/parkmap",
+     "title": "Park Maps | Explore, Discover, Visit Today — Breaks Interstate Park",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Campground",
+     "text": "Breaks Campground Bear Regulations",
+     "url": "https://www.breakspark.com/s/Bear-Campground-Website.jpg",
+     "final": "https://static1.squarespace.com/static/5ffc880b881a23003d6af63b/t/62d58c00ccf45a1b415fb722/1658162178536/Bear+Campground+Website.jpg",
+     "title": "Bear+Campground+Website.jpg (3000×3000)",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Campground",
+     "text": "View Campground Map here",
+     "url": "https://www.breakspark.com/s/BreaksCampground-Map-Optimized.jpg",
+     "final": "https://static1.squarespace.com/static/5ffc880b881a23003d6af63b/t/63f7ff18cbca392b5ba7870a/1677197081685/BreaksCampground-Map-Optimized.jpg",
+     "title": "BreaksCampground-Map-Optimized.jpg (4000×3027)",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    }
+   ],
+   "id": "breaks"
+  },
+  {
+   "url": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park",
+   "final": "https://parks.ky.gov/explore/kingdom-come-state-park-7817",
+   "title": "Explore | Kingdom Come State Park",
+   "pins": [
+    [
+     36.984556,
+     -82.970551
+    ],
+    [
+     36.994231,
+     -82.978528
+    ]
+   ],
+   "maplinks": [
+    "https://www.google.com/maps/dir/Current+Location/36.9845562645,-82.9705513377"
+   ],
+   "frames": [],
+   "text_hits": [],
+   "follow": [
+    {
+     "name": "Map",
+     "text": "502 Park Rd., Cumberland, KY 40823",
+     "url": "https://www.google.com/maps/dir/Current+Location/36.9845562645,-82.9705513377",
+     "final": "https://www.google.com/maps/dir/Raleigh-Durham+(Fayetteville)+NC/36.9845563,-82.9705513/@36.2696707,-83.2743343,7z/data=!3m1!4b1!4m8!4m7!1m5!1m1!1s0x89ac426871f62a3d:0x24626cca42a989ef!2m2!1d-78.29317",
+     "title": "Raleigh-Durham (Fayetteville) NC to 502 Park Rd, Cumberland, KY 40823 - Google Maps",
+     "pins": [
+      [
+       36.269671,
+       -83.274334
+      ],
+      [
+       35.722408,
+       -78.417075
+      ],
+      [
+       36.984556,
+       -82.970551
+      ]
+     ],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": [
+      "Send directions to your phone",
+      "ntinue your trip, tap the notification on your phone to get directions"
+     ]
+    },
+    {
+     "name": "Camping",
+     "text": "Camping",
+     "url": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#camping",
+     "final": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#camping",
+     "title": "Explore | Kingdom Come State Park",
+     "pins": [
+      [
+       36.984556,
+       -82.970551
+      ],
+      [
+       36.994231,
+       -82.978528
+      ]
+     ],
+     "maplinks": [
+      "https://www.google.com/maps/dir/Current+Location/36.9845562645,-82.9705513377"
+     ],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Map",
+     "text": "Maps",
+     "url": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#maps",
+     "final": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#maps",
+     "title": "Explore | Kingdom Come State Park",
+     "pins": [
+      [
+       36.984556,
+       -82.970551
+      ],
+      [
+       36.994231,
+       -82.978528
+      ]
+     ],
+     "maplinks": [
+      "https://www.google.com/maps/dir/Current+Location/36.9845562645,-82.9705513377"
+     ],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Map",
+     "text": "Park Map",
+     "url": "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapd99a2476-e940-431e-9e02-1589dfccd4aa.pdf?sfvrsn=9acbaaa8_2",
+     "error": "Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.kentuckytourism.com/media/docs/default-source/listing-documents/park-mapd99a2476-e940-4"
+    },
+    {
+     "name": "Map",
+     "text": "Interactive Map",
+     "url": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#outerspatial-map",
+     "final": "https://parks.ky.gov/explore/kingdom-come-state-park-7817#outerspatial-map",
+     "title": "Explore | Kingdom Come State Park",
+     "pins": [
+      [
+       36.984556,
+       -82.970551
+      ],
+      [
+       36.994231,
+       -82.978528
+      ]
+     ],
+     "maplinks": [
+      "https://www.google.com/maps/dir/Current+Location/36.9845562645,-82.9705513377"
+     ],
+     "frames": [],
+     "text_hits": []
+    }
+   ],
+   "id": "kingdom-come"
+  },
+  {
+   "url": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
+   "final": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
+   "title": "Otter Creek Outdoor Recreation Area - Kentucky Department of Fish & Wildlife",
+   "pins": [
+    [
+     37.924681,
+     -86.03811
+    ],
+    [
+     37.924684,
+     -86.038109
+    ]
+   ],
+   "maplinks": [
+    "https://maps.google.com/?q=37.924680522,-86.038109568+(Otter+Creek+Outdoor+Recreation+Area)&mrt=yp&t=m&f=l&ie=UTF8&ll=37.924684,-86.038109&spn=0.004062,0.006866&z=17&iwloc=A&source=embed"
+   ],
+   "frames": [
+    "https://www.google.com/maps/embed?origin=mfe&pb=!1m13!1m8!1m3!1d3147.2458696985259!2d-86.038109!3d37.924684!3m2!1i1024!2i768!4f13.1!2m1!1s37.924680522,-86.038109568!5e0!6i17"
+   ],
+   "text_hits": [
+    "Directions to Otter Creek Outdoor Recreation Area from:"
+   ],
+   "follow": [
+    {
+     "name": "Meade",
+     "text": "ottercreekcamp@meadeky.gov",
+     "url": "mailto:ottercreekcamp@meadeky.gov",
+     "error": "Page.goto: net::ERR_ABORTED at mailto:ottercreekcamp@meadeky.gov\nCall log:\n  - navigating to \"mailto:ottercreekcamp@meadeky.gov\", waiting until \"load\"\n"
+    },
+    {
+     "name": "Camp",
+     "text": "FIREFLY RESERVATIONS",
+     "url": "https://app.fireflyreservations.com/Reserve/Property/OtterCreekORACampground1?holdExpired=False",
+     "final": "https://app.fireflyreservations.com/Reserve/Property/OtterCreekORACampground1?holdExpired=False",
+     "title": "Reserve | Otter Creek Campground",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Camp",
+     "text": "Campground Map",
+     "url": "https://fw.ky.gov/Documents/ocoracampgroundmap.pdf",
+     "error": "Page.goto: Download is starting\nCall log:\n  - navigating to \"https://fw.ky.gov/Documents/ocoracampgroundmap.pdf\", waiting until \"load\"\n"
+    },
+    {
+     "name": "Otter Creek",
+     "text": "the property was transferred to Meade County Fiscal Court",
+     "url": "https://fw.ky.gov/News/Pages/Meade-County-announces-historic-transfer-of-Otter-Creek-Outdoor-Recreation-Area.aspx",
+     "final": "https://fw.ky.gov/News/Pages/Meade-County-announces-historic-transfer-of-Otter-Creek-Outdoor-Recreation-Area.aspx",
+     "title": "Meade County announces historic transfer of Otter Creek Outdoor Recreation Area - Kentucky Department of Fish & Wildlife",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    },
+    {
+     "name": "Camp",
+     "text": "Summer Camps",
+     "url": "https://fw.ky.gov/Education/Pages/Summer-Camps.aspx",
+     "final": "https://fw.ky.gov/Education/Pages/Summer-Camps.aspx",
+     "title": "General Camp Information - Kentucky Department of Fish & Wildlife",
+     "pins": [],
+     "maplinks": [],
+     "frames": [],
+     "text_hits": []
+    }
+   ],
+   "id": "otter-creek"
+  }
+ ]
+}
