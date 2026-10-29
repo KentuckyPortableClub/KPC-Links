@@ -606,3 +606,5 @@ Why (Brandon Oct 28): "the bots pass themselves all the time, so the checker bot
 - Oct 29 (chat 8): names dump decoded (8 rules; SURE 107 of 900 US no-outline parks; clean set 22/30): KPC_NameMismatch_Decoded_desk.md.
 
 - Oct 29 (chat 8): wrong same-outline joins solved (name-only join, no distance test; 189 pairs): KPC_WrongJoins_Solved_desk.md.
+
+- Oct 29 (chat 8): reviewed the no-boundary name hunt (aliases 36/43 keep; LIKELY 12/24 yes; Canada 15/29 yes): KPC_NoBoundaryHunt_Review_desk.md.
