@@ -956,4 +956,4 @@ Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questi
 | US-11230 | Hallie Marsh SWA | POTA link is a Google Drive file (not an official page); key matched a statewide habitat record | step 3 | needs the DNR page | chat 3 | Oct 29 |
 | US-1458 / 4242 | Kohler-Andrae SP / Fenley SRA | OUR DOCS ok: DNR 'maps' pages (parks/kohlerandrae/maps, parks/fenley/maps) | step 3 from our docs | queued | chat 3 | Oct 29 |
 | US-4260 / 4261 | Long Lake SRA / Mauthe Lake SRA | OUR DOCS ok: Kettle Moraine North Unit maps page; both inside KMSF-Northern Unit (SRA = this park only, never the whole forest, R-G5) | step 3 from our docs | queued | chat 3 | Oct 29 |
-
+| US-7467 | Marben State Fishing Lake (Marben PFA, GA) | PAD-US 195024 = one record for Charlie Elliott WC + Clybel WMA + Marben PFA (6,273 ac) | R-G7 step 2 -> 3 | PIN: the combined record is not the park's own line; look for GA DNR's Marben PFA boundary (WRD layer / PFA map) | 2 | Oct 29 |

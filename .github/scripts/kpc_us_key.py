@@ -502,6 +502,19 @@ SZ_US = [('mszw', 'https://maris.mississippi.edu/MARISdata/Boundaries/MS_Wildlif
 ZIPC = {}
 
 
+def _sane_ac(ac, bb):
+    """Oct 29 (chat 11's sweep: Standing Boy Creek SP '68,840,167 acres' = square FEET): a state layer's 'acres' field is checked
+    against the record's own box: a number bigger than the box can hold is converted (square feet, square metres, hectares)
+    when that makes it fit, else left out (0 = no size on file)."""
+    if not ac or not bb: return ac or 0
+    k = math.cos(math.radians((bb[1] + bb[3]) / 2))
+    box = max((bb[2] - bb[0]) * 111.32 * k, .01) * max((bb[3] - bb[1]) * 110.57, .01) * 247.105 * 1.6   # km2 -> acres, with room for the coarse copy
+    if ac <= box: return ac
+    for div in (43560.0, 4046.86):        # square feet, square metres
+        if ac / div <= box: return round(ac / div, 1)
+    return 0
+
+
 def _dup(have, key, bb):
     """Oct 29 (chat 2 trace): a state record is a COPY of a PAD-US record only when the same name + kind sits on the SAME
     ground (boxes overlap). Before, a same-name record ANYWHERE in the state hid it (WA Rock Creek / Telford Recreation Area,
@@ -629,7 +642,7 @@ def extra_state(st, have, only=None):
                 g = f.get('geometry') or {}
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
-                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _num(a.get(af.lower()) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
+                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
                             **({'Water': 1} if opt.get('water') else {})})
                 n += 1
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
