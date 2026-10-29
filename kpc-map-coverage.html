@@ -249,6 +249,8 @@ body.field .page-jump-nav{display:none!important}
   {key:'size',label:'SIZE CHECK',get:function(p){return({agree:'Agrees',off:'Off',unsure:'Unsure'})[p.sz]||'Unknown'}},
   {key:'fer',label:'2-FER CHECKED',get:function(p){return p.fer==='y'?'Yes':p.fer==='p'?'Partial':'No'}}
  ];
+ var KY_ONLY=['hours','fees','campground']; /* SCOPE rule (Oct 29): hours/fees/closures/camping are KY only — these columns hide for every other state/province (data is still fetched, just not shown). */
+ function applicableCols(isKY){return isKY?COLS:COLS.filter(function(c){return KY_ONLY.indexOf(c.key)<0});}
  function phoneDefaultCols(){return['map'];}
  function visibleCols(){
   var saved=null; try{saved=JSON.parse(localStorage.getItem('kpcMcCols')||'null');}catch(e){}
@@ -260,7 +262,7 @@ body.field .page-jump-nav{display:none!important}
  function renderColPicker(){
   var vis=visibleCols();
   var box=document.getElementById('mcCols');
-  box.innerHTML=COLS.map(function(c){
+  box.innerHTML=applicableCols(window.__mcIsKY).map(function(c){
    return '<button type="button" class="chip" data-col="'+c.key+'" aria-pressed="'+(vis.indexOf(c.key)>=0)+'">'+c.label+'</button>';
   }).join('');
   Array.prototype.forEach.call(box.querySelectorAll('[data-col]'),function(b){
@@ -284,7 +286,7 @@ body.field .page-jump-nav{display:none!important}
  }
  function renderDrillTable(list){
   window.__mcDrillList=list;
-  var cols=COLS.filter(function(c){return visibleCols().indexOf(c.key)>=0});
+  var cols=applicableCols(window.__mcIsKY).filter(function(c){return visibleCols().indexOf(c.key)>=0});
   document.querySelector('#mcDrillTable thead').innerHTML='<tr><th>PARK</th><th>GAP</th>'+
    cols.map(function(c){return '<th>'+c.label+'</th>'}).join('')+'<th></th></tr>';
   var tb=document.querySelector('#mcDrillTable tbody');
@@ -303,6 +305,7 @@ body.field .page-jump-nav{display:none!important}
   var parts=code.split('-'),country=parts[0],st=parts[1];
   var s=window.__mcData.states.find(function(x){return x.country===country&&x.code===st});
   if(!s)return;
+  window.__mcIsKY=(country==='US'&&st==='KY');
   document.getElementById('mcState').style.display='none';
   document.getElementById('mcDrill').style.display='';
   document.getElementById('mcDrillTitle').textContent=s.name+' ('+s.country+'-'+s.code+') — missing parks';
