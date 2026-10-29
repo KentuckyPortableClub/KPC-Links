@@ -1,0 +1,1863 @@
+{
+ "about": "Chat 9 round F2 (Oct 29 ~11:20 AM): hard kinds step 3 (county / state parcel layers at the pin: Nevada statewide county parcels for the NV markers, ND statewide parcels for the ND historic sites; owner fields), BLM transportation + back country byway LINE layers (airstrips, scenic roads), NPS boundary retry for the OK sites, + RIVER TEST v4 (chat 8 11:20 AM grade; round F ran before it was added): NPS tract layer's distinct unit codes / names, FWS Ohio River Islands + Cache River with 20 river points each. Results: roundF2-tested.json.",
+ "date": "2026-10-29",
+ "layers": [
+  {
+   "st": "US",
+   "kind": "tracts",
+   "ag": "NPS",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "v4: the tract layer's fields",
+   "answers": true,
+   "service": "nps_tracts",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "Property ownership data is compiled from deeds, plats, surveys, and other source data. These are not engineering quality drawings and should be used for administrative purposes only. The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contain",
+   "item_modified": "2026-10-21",
+   "item_owner": "karndt@nps.gov_nps",
+   "item_org": "National Park Service",
+   "item_title": "NPS Land Resources Division Tract and Boundary Service",
+   "item_credits": "National Park Service Land Resources Division",
+   "item_about": "This service depicts National Park Service tract and boundary data that was created by the Land Resources Division. NPS Director's Order #25 states: &quot;Land status maps will be prepared to identify the ownership of the lands within the authorized boundaries of the park unit. These maps, showing ownership and acreage, are the 'official record' of the acreage of Federal and non-federal lands within the park boundaries. While these maps are the official record of the lands and acreage within the unit's authorized boundaries, they are not of survey quality and not intended to be used for survey",
+   "layers": [
+    {
+     "id": null,
+     "name": "nps_tracts",
+     "geom": "Polygon",
+     "nameField": "STATENAME",
+     "ownerField": "",
+     "typeField": "STATUS",
+     "fields": [
+      "OBJECTID",
+      "TRACT_ID",
+      "ALPHA",
+      "ALPHA_TRACT",
+      "STATENAME",
+      "AREA_TRACT",
+      "ESTATE",
+      "STATUS",
+      "REGION",
+      "Interest",
+      "GlobalID",
+      "AreaID",
+      "NPS_DATEUP",
+      "ConveyDate",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-21",
+     "layer_copyright": "",
+     "records": 129719,
+     "sample": [
+      "VIRGINIA",
+      "VIRGINIA",
+      "VIRGINIA",
+      "VIRGINIA",
+      "VIRGINIA",
+      "VIRGINIA",
+      "VIRGINIA",
+      "MARYLAND"
+     ],
+     "type_values": [
+      "Federal",
+      "Other Federal",
+      "Private",
+      "Public"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "kind": "road",
+   "ag": "BLM",
+   "url": "https://gis.blm.gov/arcgis/rest/services/transportation/BLM_Natl_GTLF_Public_Display/MapServer",
+   "note": "F2 airstrips (aviation lines?)",
+   "answers": true,
+   "service": "BLM National Ground Transportation Linear Features Public Display",
+   "licence": "Compiled by the Bureau of Land Management (BLM), Headquarters (HQ)",
+   "years_in_text": [],
+   "description": "This Service represents the Ground Transportation Linear Features dataset that contains elements (roads and trails) of BLM’s transportation network that are managed or designated for public use. Examples include roads and trails that are managed for off-highway vehicle (OHV) (motorized) use, mountain bike (mechanized) use, and hiker/equestrian (non-motorized/non-mechanized) use. Roads and trails d",
+   "item_licence": "PUBLIC. BLM.  These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or omissions. The User assumes the entire risk associated with its use of these data and bears all responsibility in determining whether these data are fit for the User’s intended use. The infor",
+   "item_credits": "Compiled by the Bureau of Land Management (BLM), Headquarters (HQ)",
+   "item_about": "This Service represents the Ground Transportation Linear Features dataset that contains elements (roads and trails) of BLM’s transportation network that are managed or designated for public use. Examples include roads and trails that are managed for off-highway vehicle (OHV) (motorized) use, mountain bike (mechanized) use, and hiker/equestrian (non-motorized/non-mechanized) use. Roads and trails depicted in this dataset may be additionally limited by time and/or season. Features in this dataset ",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Roads Managed for Public Motorized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "OBJECTID",
+      "FLTP_CODE",
+      "DSTRBTE_EXTRNL_CODE",
+      "ADMIN_ST",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "OBSRVE_SRFCE_TYPE",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "ROUTE_PRMRY_NM",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "TMA_ID",
+      "TMP_ID",
+      "FAMS_ID",
+      "EXSTNG_AUTH_CODE",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID",
+      "Original_GlobalID",
+      "Shape",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 110437,
+     "sample": [
+      "BLM 5971",
+      "BLM 6181",
+      "None",
+      "Kerr Gulch",
+      "BLM 6126C",
+      "None",
+      "BLM 6020A",
+      "BLM 5670"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 1,
+     "name": "Roads Managed for Limited Public Motorized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "OBJECTID",
+      "FLTP_CODE",
+      "DSTRBTE_EXTRNL_CODE",
+      "ADMIN_ST",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "OBSRVE_SRFCE_TYPE",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "ROUTE_PRMRY_NM",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "TMA_ID",
+      "TMP_ID",
+      "FAMS_ID",
+      "EXSTNG_AUTH_CODE",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID",
+      "Original_GlobalID",
+      "Shape",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 25917,
+     "sample": [
+      "Paxson Lake Campground Road",
+      "Fort Egbert to Eagle Campground Road",
+      "Paxson Lake Campground Road",
+      "Dump Road",
+      "Fortymile Bridge Wayside",
+      "Valdez Creek Road",
+      "West Fork Campground Upper Loop",
+      "Tiger Mine Road"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 2,
+     "name": "Trails Managed for Public Motorized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "OBJECTID",
+      "FLTP_CODE",
+      "DSTRBTE_EXTRNL_CODE",
+      "ADMIN_ST",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "OBSRVE_SRFCE_TYPE",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "ROUTE_PRMRY_NM",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "TMA_ID",
+      "TMP_ID",
+      "FAMS_ID",
+      "EXSTNG_AUTH_CODE",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID",
+      "Original_GlobalID",
+      "Shape",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 1925,
+     "sample": [
+      "109 Mile North",
+      "Greyling Creek Trail (74.2)",
+      "BLM T6108A",
+      "BLM T6036",
+      "BLM T6062",
+      "BLM T6041A",
+      "BLM T6051D",
+      "BLM T6041"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 3,
+     "name": "Trails Managed for Limited Public Motorized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "ROUTE_PRMRY_NM",
+      "ADMIN_ST",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "EXSTNG_AUTH_CODE",
+      "FAMS_ID",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "OBSRVE_SRFCE_TYPE",
+      "DSTRBTE_EXTRNL_CODE",
+      "OBJECTID",
+      "Shape",
+      "Shape.STLength()",
+      "FLTP_CODE",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "TMA_ID",
+      "TMP_ID",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 5291,
+     "sample": [
+      "Suslositna - Bear Valley",
+      "Middle Fork",
+      "Swede Lake",
+      "Alphabet Hills",
+      "Alphabet Hills",
+      "Alphabet Hills",
+      "Mankomen Lake",
+      "Round Top Mountain"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 4,
+     "name": "Trails Managed for Public Non-Motorized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "ROUTE_PRMRY_NM",
+      "ADMIN_ST",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "EXSTNG_AUTH_CODE",
+      "FAMS_ID",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "OBSRVE_SRFCE_TYPE",
+      "OBJECTID",
+      "DSTRBTE_EXTRNL_CODE",
+      "Shape",
+      "Shape.STLength()",
+      "FLTP_CODE",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "TMA_ID",
+      "TMP_ID",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 3044,
+     "sample": [
+      "Old Rondy Trail",
+      "Salmon Run Trail",
+      "Campbell Airstrip Trail ",
+      "Coyote Spur Trail",
+      "Viewpoint Trail",
+      "Viewpoint Trail",
+      "Lynx Trail",
+      "Coyote Trail"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 5,
+     "name": "Trails Managed for Public Non-Mechanized Use",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "ROUTE_PRMRY_NM",
+      "ADMIN_ST",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "EXSTNG_AUTH_CODE",
+      "FAMS_ID",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "OBSRVE_SRFCE_TYPE",
+      "OBJECTID",
+      "DSTRBTE_EXTRNL_CODE",
+      "Shape",
+      "Shape.STLength()",
+      "FLTP_CODE",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "TMA_ID",
+      "TMP_ID",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT",
+      "GlobalID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 2318,
+     "sample": [
+      "Old Dump Road",
+      "Old Dump Road",
+      "Arctic Interagency Vistor Center to Pipe",
+      "Arctic Interagency Vistor Center to Pana",
+      "Arctic Interagency Vistor Center to Pipe",
+      "Arctic Interagency Vistor Center to Cold",
+      "Old Dump Road",
+      "Bear Creek"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 6,
+     "name": "Trails Not Assessed for Public",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "ROUTE_PRMRY_NM",
+      "ADMIN_ST",
+      "PLAN_ASSET_CLASS",
+      "PLAN_MODE_TRNSPRT",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "EXSTNG_AUTH_CODE",
+      "FAMS_ID",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "OBSRVE_SRFCE_TYPE",
+      "OBJECTID",
+      "DSTRBTE_EXTRNL_CODE",
+      "Shape",
+      "Shape.STLength()",
+      "FLTP_CODE",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "TMA_ID",
+      "TMP_ID",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 5038,
+     "sample": [
+      "Iditarod National Historic Trail",
+      "Willow to Nome Winter Trail",
+      "Willow to Nome Winter Trail",
+      "Iditarod National Historic Trail",
+      "Willow to Nome Winter Trail",
+      "Willow to Nome Winter Trail",
+      "Iditarod National Historic Trail",
+      "Iditarod National Historic Trail"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 7,
+     "name": "Trails Managed for Public",
+     "geom": "Polyline",
+     "nameField": "ROUTE_PRMRY_NM",
+     "ownerField": "ADMIN_ST",
+     "typeField": "PLAN_ASSET_CLASS",
+     "fields": [
+      "ROUTE_PRMRY_NM",
+      "ADMIN_ST",
+      "PLAN_ASSET_CLASS",
+      "PLAN_OHV_ROUTE_DSGNTN",
+      "OHV_ROUTE_DSGNTN_LIM",
+      "OHV_DSGNTN_LIM_EXPLAIN",
+      "PLAN_MODE_TRNSPRT",
+      "PLAN_ALLOW_MODE_TRNSPRT",
+      "PLAN_ADD_MODE_TRNSPRT_RSTRT_CD",
+      "ROUTE_SPCL_DSGNTN_TYPE",
+      "ROUTE_SCNDRY_SPCL_DSGNTN_NM",
+      "PLAN_ROUTE_DSGNTN_AUTH",
+      "EXSTNG_AUTH_CODE",
+      "FAMS_ID",
+      "OBSRVE_ROUTE_USE_CLASS",
+      "OBSRVE_SRFCE_TYPE",
+      "OBJECTID",
+      "DSTRBTE_EXTRNL_CODE",
+      "Shape",
+      "Shape.STLength()",
+      "FLTP_CODE",
+      "NEPA_DOC_NUM",
+      "ROUTE_PLAN_ID",
+      "PLAN_PRMRY_ROUTE_MNGT_OBJTV",
+      "PLAN_ACCESS_RSTRCT",
+      "PLAN_SEASON_RSTRCT_CODE",
+      "TMA_ID",
+      "TMP_ID",
+      "GIS_MILES",
+      "BLM_MILES",
+      "COORD_SRC_TYPE",
+      "COORD_SRC2",
+      "DEF_FET_TYPE",
+      "DEF_FET2",
+      "ACCURACY_FT"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Bureau of Land Management, BLM, Headquarters (HQ)",
+     "records": 19520,
+     "sample": [
+      "Suslositna - Bear Valley",
+      "Middle Fork",
+      "Mosquito Fork Dredge Overlook Trail",
+      "Swede Lake",
+      "Alphabet Hills",
+      "Alphabet Hills",
+      "Alphabet Hills",
+      "Mankomen Lake"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    }
+   ]
+  },
+  {
+   "st": "US",
+   "kind": "road",
+   "ag": "BLM",
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BackCountryBywayRoutes/FeatureServer",
+   "note": "F2 scenic roads: BLM back country byways",
+   "answers": true,
+   "service": "",
+   "licence": "BLM, MT State Library",
+   "years_in_text": [],
+   "description": "Transportation routes that contribute to the Missouri Breaks National Back Country Byway.",
+   "item_licence": "For public use.  Not responsible for updating road conditions. Road conditions at any time are the responsibility of the map viewer to ascertain safety and drivability.  Contact the BLM, state or county offices for road conditions.",
+   "item_modified": "2025-07-02",
+   "item_owner": "akirkaldie@blm.gov_BLM_EGIS",
+   "item_org": "Bureau of Land Management",
+   "item_title": "Missouri Breaks National Back Country Byway Routes",
+   "item_credits": "BLM, MT State Library, Larry Shoemaker, BLM",
+   "item_about": "This service includes the Missouri Breaks National Back Country Byway roads broken into several segmented travel routes for use in a story map. This story map describes 3 user routes that can access the Byway. Roads were extracted from the Montana State Library Transportation Framework and attributed with route descriptions for Byway drivers. Transportation routes that contribute to the Missouri Breaks National Back Country Byway. Attributes were added to describe Byway road descriptions.",
+   "layers": [
+    {
+     "id": 0,
+     "name": "MBNatlBackCountryByway_Routes",
+     "geom": "Polyline",
+     "nameField": "Route_Name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "lngth_km",
+      "SectionNam",
+      "Note",
+      "Route_Name",
+      "Miles",
+      "Route_Num",
+      "Shape__Length"
+     ],
+     "last_edit": "2021-02-26",
+     "layer_copyright": "",
+     "records": 9,
+     "sample": [
+      "Knox Ridge Rd",
+      "Knox Ridge Rd",
+      "Knox Ridge Rd",
+      "Knox Ridge Rd",
+      "Two Calf Trail",
+      "DY-Trail",
+      "DY-Trail",
+      "Lower Two Calf Rd"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "NV",
+   "kind": "parcel",
+   "ag": "NDWR",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/BaseLayers/County_Parcels_in_Nevada/MapServer",
+   "note": "F2 step 3: Nevada county parcels",
+   "answers": true,
+   "service": "County Parcels in Nevada",
+   "licence": "Nevada State Demographer",
+   "years_in_text": [
+    "2024",
+    "2025"
+   ],
+   "description": "These parcel datasets were provided by the Nevada State Demographer and standardized by the Division of Water Resources to have consistent fields. Not all counties provide a site city or site address. Web links to the county assessor webpage are available for individual parcels to access more detailed information. The GIS data for county parcels cannot be shared outside the department as directed ",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": 0,
+     "name": "County Parcels",
+     "geom": "Polygon",
+     "nameField": "SiteCity",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "APN",
+      "SiteCity",
+      "Website",
+      "Acres",
+      "County",
+      "SourceDate",
+      "PIN",
+      "Shape",
+      "Shape.STArea()",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Nevada State Demographer",
+     "records": 1394188,
+     "sample": [
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None",
+      "None"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "kind": "parcel",
+   "ag": "ND GIS Hub",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer",
+   "note": "F2 step 3: ND parcels",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "Not for navigation. The State of North Dakota has compiled this data according to conventional cartographic standards, using what is thought to be the most reliable information available.  This data is intended to make results of research available at the earliest possible date, but is not intended ",
+   "item_modified": "2026-10-26",
+   "item_owner": "NDGISHub",
+   "item_org": "State of North Dakota",
+   "item_title": "NDGISHUB Parcels",
+   "item_credits": "Counties of North Dakota and their contractors, North Dakota Information Technology, AppGeo",
+   "item_about": "The Statewide Parcel Project was funded by the 66th Legislative Assembly, appropriating funds through House Bill 1021. During the 2019-2021 Biennium, AppGeo aggregated parcel boundary and tax roll data from 51 counties and developed parcel boundary data for Adams and Benson counties. Beginning in the 2021-2023 Biennium the parcel dataset will be maintained on a regular basis using funding provided by the 67th Legislative Assembly and leveraging the existing North Dakota GIS Hub infrastructure. Data maintenance will consist of parcel boundary and tax roll data being submitted by counties and th",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Parcels",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "Ownership",
+     "typeField": "FeatureType",
+     "fields": [
+      "OBJECTID",
+      "GISID",
+      "UniqueGISID",
+      "CountyName",
+      "CountyFIPS",
+      "Lot",
+      "Block",
+      "SubdivisionPlat",
+      "Section",
+      "Township",
+      "Range",
+      "SectionNumber",
+      "TownshipNumber",
+      "RangeNumber",
+      "TownshipName",
+      "CalculatedAcres",
+      "FeatureType",
+      "Ownership",
+      "SourceID",
+      "SourceType",
+      "SourceDate",
+      "AutomationMethod",
+      "AutomationType",
+      "AutomationComment",
+      "LastUpdateDate",
+      "Editor",
+      "DateImported",
+      "GlobalID",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2026-10-26",
+     "layer_copyright": "",
+     "records": 742012,
+     "owner_values": [
+      " ",
+      "30-A LLC",
+      "4-STAR FARMS IN",
+      "4G FARMS LLP",
+      "58TH STREET PRO",
+      "7TH HEAVEN RESO",
+      "<NA>",
+      "AADALEN SCANDAN",
+      "AAFEDT BRUCE L ",
+      "AAFEDT TERRY TR",
+      "AAFEDT THOMAS A",
+      "AAKER CHARLES L",
+      "AALAND ANDREW K",
+      "AALAND DANIEL J",
+      "AALAND MELINDA ",
+      "AASAND HALF DOZ",
+      "AASAND JAMES D ",
+      "AASAND LIVING T",
+      "ABC DAYCARE",
+      "ACKER BENJAMIN ",
+      "ACKERT GARY A &",
+      "ADAMS CITY",
+      "ADAMS RURAL FIR",
+      "ADAMS TWP",
+      "ADAMS VILLAGE P",
+      "ADAMS WHITNEY G",
+      "ADAMSEN CRAIG &",
+      "ADAMSEN ELOISE ",
+      "AGASSIZ RAIL SE",
+      "AGUAYO PAUL E"
+     ],
+     "type_values": [
+      "<NA>",
+      "County ROW",
+      "Municipal ROW",
+      "Parcel",
+      "Private ROW",
+      "Railroad ROW",
+      "State ROW",
+      "Unknown",
+      "Unknown ROW",
+      "Water"
+     ]
+    }
+   ]
+  }
+ ],
+ "searches": [],
+ "orgs": [],
+ "hubs": [],
+ "pages": [],
+ "pointq": [
+  {
+   "st": "NV",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/BaseLayers/County_Parcels_in_Nevada/MapServer",
+   "note": "F2 step 3: NV parcels at the marker / scenic-road pins (owner field)",
+   "hits": [
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      39.1873,
+      -119.706
+     ],
+     "attrs": {
+      "APN": "837150",
+      "Website": "https://carsoncitynv.devnetwedge.com/parcel/view/00837150/2026",
+      "Acres": 2.22708315,
+      "County": "Carson City",
+      "SourceDate": 1767225600000,
+      "PIN": "00837150"
+     }
+    },
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      40.9787,
+      -117.742
+     ],
+     "nohit": true
+    },
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      40.7661,
+      -115.92
+     ],
+     "attrs": {
+      "APN": "5500006",
+      "Website": "https://elko-search.gsacorp.io/parcel/005500006",
+      "Acres": 7846.18891103,
+      "County": "Elko",
+      "SourceDate": 1767225600000,
+      "PIN": "005500006"
+     }
+    },
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      39.7349,
+      -114.22
+     ],
+     "attrs": {
+      "APN": "846003",
+      "Website": "https://whitepinenv.devnetwedge.com/parcel/view/00846003/2026",
+      "Acres": 19969.00282831,
+      "County": "White Pine",
+      "SourceDate": 1767225600000,
+      "PIN": "00846003"
+     }
+    },
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      39.0275,
+      -114.574
+     ],
+     "attrs": {
+      "APN": "1228001",
+      "Website": "https://whitepinenv.devnetwedge.com/parcel/view/01228001/2026",
+      "Acres": 23130.26121391,
+      "County": "White Pine",
+      "SourceDate": 1767225600000,
+      "PIN": "01228001"
+     }
+    },
+    {
+     "layer": "0 County Parcels",
+     "point": [
+      41.1038,
+      -114.99
+     ],
+     "attrs": {
+      "APN": "2810001",
+      "Website": "https://elko-search.gsacorp.io/parcel/002810001",
+      "Acres": 12.82016474,
+      "County": "Elko",
+      "SourceDate": 1767225600000,
+      "PIN": "002810001"
+     }
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer",
+   "note": "F2 step 3: ND parcels at the historic-site pins (owner field)",
+   "hits": [
+    {
+     "layer": "0 Parcels",
+     "point": [
+      46.9933,
+      -97.7911
+     ],
+     "attrs": {
+      "GISID": "42-3210110",
+      "UniqueGISID": "38003-42-3210110",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "32",
+      "Township": "141",
+      "Range": "056",
+      "SectionNumber": 32,
+      "TownshipNumber": 141,
+      "RangeNumber": 56,
+      "CalculatedAcres": 0.10025139,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      46.9933,
+      -97.7911
+     ],
+     "attrs": {
+      "GISID": "Hwy32S29SE",
+      "UniqueGISID": "38003-Hwy32S29SE",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "29",
+      "Township": "141",
+      "Range": "056",
+      "SectionNumber": 29,
+      "TownshipNumber": 141,
+      "RangeNumber": 56,
+      "CalculatedAcres": 6.47954513,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      46.9933,
+      -97.7911
+     ],
+     "attrs": {
+      "GISID": "Hwy32S32NE",
+      "UniqueGISID": "38003-Hwy32S32NE",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "32",
+      "Township": "141",
+      "Range": "056",
+      "SectionNumber": 32,
+      "TownshipNumber": 141,
+      "RangeNumber": 56,
+      "CalculatedAcres": 6.36950458,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      46.9933,
+      -97.7911
+     ],
+     "attrs": {
+      "GISID": "42-3210100",
+      "UniqueGISID": "38003-42-3210100",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "32",
+      "Township": "141",
+      "Range": "056",
+      "SectionNumber": 32,
+      "TownshipNumber": 141,
+      "RangeNumber": 56,
+      "CalculatedAcres": 153.0162924,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.212,
+      -98.0677
+     ],
+     "attrs": {
+      "GISID": "33-1810100",
+      "UniqueGISID": "38003-33-1810100",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "18",
+      "Township": "143",
+      "Range": "058",
+      "SectionNumber": 18,
+      "TownshipNumber": 143,
+      "RangeNumber": 58,
+      "CalculatedAcres": 80.08382268,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.212,
+      -98.0677
+     ],
+     "attrs": {
+      "GISID": "33-0830300",
+      "UniqueGISID": "38003-33-0830300",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "08",
+      "Township": "143",
+      "Range": "058",
+      "SectionNumber": 8,
+      "TownshipNumber": 143,
+      "RangeNumber": 58,
+      "CalculatedAcres": 161.33866837,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.212,
+      -98.0677
+     ],
+     "attrs": {
+      "GISID": "33-1720210",
+      "UniqueGISID": "38003-33-1720210",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "17",
+      "Township": "143",
+      "Range": "058",
+      "SectionNumber": 17,
+      "TownshipNumber": 143,
+      "RangeNumber": 58,
+      "CalculatedAcres": 121.07573082,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.212,
+      -98.0677
+     ],
+     "attrs": {
+      "GISID": "33-0740410",
+      "UniqueGISID": "38003-33-0740410",
+      "CountyName": "Barnes",
+      "CountyFIPS": "38003",
+      "Section": "07",
+      "Township": "143",
+      "Range": "058",
+      "SectionNumber": 7,
+      "TownshipNumber": 143,
+      "RangeNumber": 58,
+      "CalculatedAcres": 119.50917603,
+      "DateImported": 1790035200000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.1829,
+      -99.3719
+     ],
+     "attrs": {
+      "GISID": "192520000",
+      "UniqueGISID": "38093-192520000",
+      "CountyName": "Stutsman",
+      "CountyFIPS": "38093",
+      "Section": "25",
+      "Township": "143",
+      "Range": "069",
+      "SectionNumber": 25,
+      "TownshipNumber": 143,
+      "RangeNumber": 69,
+      "TownshipName": "GERBER TWP",
+      "CalculatedAcres": 159.32303218,
+      "DateImported": 1767657600000
+     }
+    },
+    {
+     "layer": "0 Parcels",
+     "point": [
+      47.1829,
+      -99.3719
+     ],
+     "attrs": {
+      "GISID": "192430000",
+      "UniqueGISID": "38093-192430000",
+      "CountyName": "Stutsman",
+      "CountyFIPS": "38093",
+      "Section": "24",
+      "Township": "143",
+      "Range": "069",
+      "SectionNumber": 24,
+      "TownshipNumber": 143,
+      "RangeNumber": 69,
+      "TownshipName": "GERBER TWP",
+      "CalculatedAcres": 158.83646736,
+      "DateImported": 1767657600000
+     }
+    }
+   ]
+  },
+  {
+   "st": "OK",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+   "note": "F2: NPS boundaries retry (OK)",
+   "hits": [
+    {
+     "layer": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "error": "{'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'details': ['24204: The "
+    }
+   ]
+  }
+ ],
+ "rivertest": [
+  {
+   "test": "FWS realty v4: Ohio River Islands, 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     38.686581,
+     -83.590818
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ],
+     "json": [
+      {
+       "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "152",
+       "INTIDNO": "1149C.152",
+       "RSL_TYPE": "NWR",
+       "IntReg": "1"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      40.13765,
+      -80.706371
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      40.136068,
+      -80.706768
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      40.134329,
+      -80.707037
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "170",
+        "INTIDNO": "1149B.170",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      39.363405,
+      -81.51863
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "11-I",
+        "INTIDNO": "1149B.11-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "11-I",
+        "INTIDNO": "1149B.11-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      39.877318,
+      -80.789906
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      39.873596,
+      -80.788682
+     ],
+     "result": {
+      "plain": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ],
+      "json": [
+       {
+        "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "110b-I",
+        "INTIDNO": "1149B.110b-I",
+        "RSL_TYPE": "NWR",
+        "IntReg": "1"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      39.270892,
+      -81.594199
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 44 rings",
+    "NHD layer 6: 271 river vertices",
+    "7 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "ORGNAME": "OHIO RIVER ISLANDS NATIONAL WILDLIFE REFUGE",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "152",
+    "INTIDNO": "1149C.152",
+    "IntReg": "1"
+   }
+  },
+  {
+   "test": "FWS realty v4: Cache River (AR), 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control": {
+    "point": [
+     34.971193,
+     -91.316937
+    ],
+    "auto": true,
+    "result": {
+     "plain": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ],
+     "json": [
+      {
+       "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+       "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+       "DIVNAME": "Cache River National Wildlife Refuge",
+       "STATUS": 0,
+       "INTTYPE1": "O",
+       "INTTYPE2": "N/A",
+       "TRACTNO": "45Au",
+       "INTIDNO": "1051.45Au",
+       "RSL_TYPE": "NWR",
+       "IntReg": "4"
+      }
+     ]
+    }
+   },
+   "water": [
+    {
+     "point": [
+      35.469438,
+      -91.135797
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50",
+        "INTIDNO": "1051.50",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.480484,
+      -91.127697
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.363704,
+      -91.171829
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "107",
+        "INTIDNO": "1051.107",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "107",
+        "INTIDNO": "1051.107",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      34.921122,
+      -91.375289
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.152934,
+      -91.285159
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.10593,
+      -91.304229
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.627812,
+      -91.084218
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.628889,
+      -91.077848
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.087219,
+      -91.298481
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.426464,
+      -91.145703
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "109",
+        "INTIDNO": "1051.109",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "109",
+        "INTIDNO": "1051.109",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.56225,
+      -91.140393
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      34.735114,
+      -91.311093
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.36684,
+      -91.175681
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50a",
+        "INTIDNO": "1051.50a",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "50a",
+        "INTIDNO": "1051.50a",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.521281,
+      -91.129911
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.598174,
+      -91.121462
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.240654,
+      -91.248269
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "45d",
+        "INTIDNO": "1051.45d",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "45d",
+        "INTIDNO": "1051.45d",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      34.913999,
+      -91.376989
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      35.436387,
+      -91.141063
+     ],
+     "result": {
+      "plain": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "82",
+        "INTIDNO": "1051.82",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ],
+      "json": [
+       {
+        "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+        "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+        "DIVNAME": "Cache River National Wildlife Refuge",
+        "STATUS": 0,
+        "INTTYPE1": "O",
+        "INTTYPE2": "N/A",
+        "TRACTNO": "82",
+        "INTIDNO": "1051.82",
+        "RSL_TYPE": "NWR",
+        "IntReg": "4"
+       }
+      ]
+     }
+    },
+    {
+     "point": [
+      35.337163,
+      -91.210475
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    },
+    {
+     "point": [
+      34.820389,
+      -91.335842
+     ],
+     "result": {
+      "plain": [],
+      "json": []
+     }
+    }
+   ],
+   "notes": [
+    "unit polygon: 1 records, 18 rings",
+    "NHD layer 6: 355 river vertices",
+    "344 river vertices inside the unit polygon"
+   ],
+   "control_from": {
+    "CMPXNAME": "Central Arkansas National Wildlife Refuge Complex",
+    "ORGNAME": "CACHE RIVER NATIONAL WILDLIFE REFUGE",
+    "DIVNAME": "Cache River National Wildlife Refuge",
+    "STATUS": 0,
+    "INTTYPE1": "O",
+    "INTTYPE2": "N/A",
+    "TRACTNO": "45Au",
+    "INTIDNO": "1051.45Au",
+    "IntReg": "4"
+   }
+  }
+ ],
+ "distinct": [
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "values": {
+    "UNIT_CODE": "error {'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'det",
+    "UNIT_NAME": "error {'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'det",
+    "PARKNAME": "error {'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'det",
+    "PARK_CODE": "error {'code': 400, 'message': 'Cannot perform query. Invalid query parameters.', 'det",
+    "STATENAME": [
+     "ALABAMA",
+     "ALASKA",
+     "AMERICAN SAMOA",
+     "ARIZONA",
+     "ARKANSAS",
+     "CALIFORNIA",
+     "COLORADO",
+     "CONNECTICUT",
+     "DELAWARE",
+     "DISTRICT OF COLUMBIA",
+     "FLORIDA",
+     "GEORGIA",
+     "GUAM",
+     "HAWAII",
+     "IDAHO",
+     "ILLINOIS",
+     "INDIANA",
+     "IOWA",
+     "KANSAS",
+     "KENTUCKY",
+     "LOUISIANA",
+     "MAINE",
+     "MARYLAND",
+     "MASSACHUSETTS",
+     "MICHIGAN",
+     "MINNESOTA",
+     "MISSISSIPPI",
+     "MISSOURI",
+     "MONTANA",
+     "NEBRASKA",
+     "NEVADA",
+     "NEW HAMPSHIRE",
+     "NEW JERSEY",
+     "NEW MEXICO",
+     "NEW YORK",
+     "NORTH CAROLINA",
+     "NORTH DAKOTA",
+     "OHIO",
+     "OKLAHOMA",
+     "OREGON",
+     "PENNSYLVANIA",
+     "RHODE ISLAND",
+     "SOUTH CAROLINA",
+     "SOUTH DAKOTA",
+     "TENNESSEE",
+     "TEXAS",
+     "UTAH",
+     "VERMONT",
+     "VIRGIN ISLANDS",
+     "VIRGINIA",
+     "WASHINGTON",
+     "WEST VIRGINIA",
+     "WISCONSIN",
+     "WYOMING"
+    ],
+    "STATUS": [
+     "Federal",
+     "Other Federal",
+     "Private",
+     "Public"
+    ],
+    "Interest": [
+     "Federal Land (Fee)",
+     "Federal Land (Less than Fee)",
+     "Other Federal Land",
+     "Private",
+     "Public"
+    ]
+   }
+  }
+ ]
+}
