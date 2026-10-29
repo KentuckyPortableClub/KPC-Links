@@ -255,3 +255,55 @@ LEAN (R0 'match POTA', R-G7 step 2 'ID or named by the agency record'): YES for 
 | US-4776 Escanaba River SF | NOT SURE | 'State Forest Area' is a management area |
 | US-2081 Iona Island | NO | WMA vs state park are different designations |
 Key-pieces file (KPC-Data data/waiting/questions/key-pieces.json): of 307 questions 204 YES, 27 NO, 76 NOT SURE (list in chat 2's inbox); the NOT SURE ones are Fable-bound only if no agency layer or map answers them.
+
+### Oct 29 5:10 PM chat 3: ADDRESS + OFFICIAL SITE + GPS for my 12 states (Brandon 5:06 PM). 'POTA pin' = POTA's own point; 'site GPS' = a point the official page itself shows; blank = not read yet (look-up H/I filed)
+| park | name | official site (POTA's link) | street address (from the page) | site GPS | POTA pin |
+|---|---|---|---|---|---|
+| US-9334 IA | Teal Basins State Waterfowl Management Area | https://www.arcgis.com/apps/webappviewer/index.html?id=f9161b90cddb4fcfb35a96901882a4b7&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CTEAL%20BASINS%20WPA | Iowa DNR WMA dir: 6200 Park Ave, Des Moines (office, not the area) | to read | 43.2137, -93.4424 |
+| US-10545 RI | Hillsdale Preserve Management Area | https://dem.ri.gov/press-releases/dem-forest-restoration-project-aims-future-proof-45-acre-parcel-richmond-effects | to read | to read | 41.522, -71.6411 |
+| US-10923 HI | Artillery District of Honolulu Historic Site | https://npgallery.nps.gov/AssetDetail/NRIS/64000142 | to read | to read | 21.279, -157.834 |
+| US-10925 HI | HI State Game Reserve | https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/ | to read | to read | 21.5168, -158.144 |
+| US-9931 VA | Frontier Culture Museum State Historic Site | https://www.frontiermuseum.org/ | 1290 Richmond Rd, Staunton, VA 24401 | Google link 38.1313, -79.0450 | 38.1256, -79.0503 |
+| US-9961 VA | Dyke Marsh Wildlife Reserve | https://www.nps.gov/gwmp/planyourvisit/dykemarsh.htm | to read | to read | 38.7674, -77.05 |
+| US-11797 NM | Los Luceros Historic Site | https://nmhistoricsites.org/los-luceros | 253 County Road 41, Alcalde, NM 87511 | to read | 36.1156, -106.035 |
+| US-11821 NM | Bosque Redondo Memorial/Fort Sumner Historic Site | https://nmhistoricsites.org/bosque-redondo | to read | to read | 34.4018, -104.193 |
+| US-2719 NM | Angel Fire Vietnam Veterans Memorial Park | https://www.vietnamveteransmemorial.org/ | to read | to read | 36.4414, -105.295 |
+| US-10687 DE | Trussum Pond State Fishing Lake | https://experience.arcgis.com/experience/d59b72d092604ae2943da0f8e71387fc/page/Pond-Maps/?data_id=dataSource_1-1850bf342a5-layer-10%3A30&views=Trussom-Pond | to read | to read | 38.5256, -75.5104 |
+| US-4367 DE | First State Heritage State Park | https://destateparks.com/History/FirstStateHeritage | to read | to read | 39.1584, -75.5203 |
+| US-9885 DE | Indian River Life-Saving Station State Historic Site | https://destateparks.com/Centers/IRLifesavingStation | to read | to read | 38.6338, -75.0671 |
+| US-9886 DE | Dupont Nature Center State Conservation Area | https://dnrec.alpha.delaware.gov/fish-wildlife/education-outreach/dupont-nature-center/ | to read | to read | 38.9476, -75.3151 |
+| US-11216 MT | Big Springs Trout State Fish Hatchery | https://myfwp.mt.gov/fwpPub/landsMgmt/siteDetail.action?lmsId=39753636 | to read | to read | 47.0021, -109.344 |
+| US-11219 MT | Jacko River Trout State Fish Hatchery | https://myfwp.mt.gov/fwpPub/landsMgmt/siteDetail.action?lmsId=39753949 | to read | to read | 47.1672, -114.083 |
+| US-12827 MT | Brownes Lake State Fish and Wildlife Area | https://myfwp.mt.gov/fishMT/fas/39753504 | to read | 45.54671, -112.6923 (FWP page map link) | 45.5467, -112.692 |
+| US-12925 MT | Thoreau State Beach | https://myfwp.mt.gov/fishMT/fas/39753904 | to read | 46.95252, -113.61191 (FWP page map link) | 46.9525, -113.612 |
+| US-10661 IL | Oakwood Bottoms USFS Recreation Area | https://www.fs.usda.gov/r09/shawnee/recreation/oakwood-bottoms-turkey-bayou-campground | to read | to read | 37.6734, -89.4495 |
+| US-10788 IL | Ray Norbut East Hannibal Unit State Fish and Wildlife Area | https://huntillinois.org/sites/ray-norbut-sfwa/ | to read | 39.68485, -90.64865 (huntillinois page) | 39.7265, -91.3486 |
+| US-12640 IL | Rauchfuss Hill State Recreation Area | https://huntillinois.org/sites/rauchfuss-hill-sra/ | to read | to read | 37.375, -88.4848 |
+| US-13298 IL | North Point Marina State Recreation Area | https://dnr.illinois.gov/parks/park.northpointmarina.html | to read | 42.482, -87.806 (IDNR page) | 42.481, -87.806 |
+| US-4118 IL | Copperhead Hollow State Wildlife Area | https://huntillinois.org/sites/copperhead-hollow-sfwa | c/o Pere Marquette SP, 13112 Visitor Center Lane, Grafton, IL 62037 | to read | 39.0805, -90.5104 |
+| US-2436 MA | Greycourt State Park | https://www.mass.gov/locations/lawrence-heritage-state-park | 1 Jackson St, Lawrence, MA 01840 (this is Lawrence Heritage SP page; Greycourt not named) | to read | 42.7294, -71.1839 |
+| US-8385 MA | Farnham-Connolly State Park | https://www.mass.gov/locations/farnham-connolly-state-park | 705 Neponset St, Canton, MA 02021 (Google link on mass.gov page) | to read | 42.1675, -71.1674 |
+| US-8387 MA | Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area | https://www.mass.gov/locations/francis-d-martini-memorial-shell-park-and-moynihan-recreation-area | 1015 Truman Parkway, Boston, MA 02136 | to read | 42.2448, -71.1265 |
+| US-8388 MA | Great Falls Discovery Center State Recreation Area | https://www.mass.gov/locations/great-falls-discovery-center | 2 Avenue A, Turners Falls, MA 01376 (Google link on page) | to read | 42.6102, -72.5576 |
+| US-8422 MA | Pope John Paul II Park State Reserve | https://www.mass.gov/locations/pope-john-paul-ii-park-reservation | to read | to read | 42.284, -71.0429 |
+| US-11336 CA | Rainbow Basin Natural Area | https://www.blm.gov/visit/rainbow-basin-natural-area | to read | to read | 35.0312, -117.033 |
+| US-12616 CA | Black Butte Lake Park | https://www.spk.usace.army.mil/Black-Butte-Lake | to read | to read | 39.8121, -122.338 |
+| US-2638 CA | Van Sickle Bi State Park | http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-3 | NV State Parks page: 30 Lake Pkwy, South Lake Tahoe, NV 96150 (Lake Tahoe Nevada SP office) | to read | 38.9549, -119.94 |
+| US-3578 CA | Tijuana Estuary Reserve State Conservation Area | https://www.parks.ca.gov/?page_id=669 | 301 Caspian Way, Imperial Beach, CA 91932 | to read | 32.555, -117.122 |
+| US-6448 CA | William Randolph Hearst Memorial State Beach | https://www.parks.ca.gov/?page_id=589 | 750 Hearst Castle Rd, San Simeon, CA 93452 (Hearst San Simeon SP) | to read | 35.6438, -121.187 |
+| US-7375 CA | Cowell Ranch State Beach | https://www.coastsidestateparks.org/cowell-ranch-state-beach | 1 New Years Creek Rd, Pescadero, CA 94060 (Coastside page) | to read | 37.4222, -122.426 |
+| US-12052 WV | Bowden State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.9097, -79.7142 |
+| US-12053 WV | Edray State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.2703, -80.1056 |
+| US-12054 WV | Ridge State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 39.4636, -78.3113 |
+| US-12055 WV | Petersburg State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.9871, -79.172 |
+| US-12056 WV | Apple Grove State Fish Hatchery | https://wvdnr.gov/fishing/fish-stocking | to read | to read | 38.6863, -82.1769 |
+| US-9739 WV | Forks of the Coal State Natural Area | https://wvdnr.gov/claudia-l-workman-wildlife-education-center-at-forks-of-coal-state-natural-area/ | 301 Forks of Coal Way, Alum Creek, WV 25003 | to read | 38.2672, -81.7948 |
+| US-9915 WV | Cedar Lakes State Recreation Area | http://www.cedarlakes.com | 82 FFA Drive, Ripley, WV 25271 | to read | 38.7952, -81.6849 |
+| US-11869 TN | Jim Cummings Park | https://www.hmdb.org/m.asp?m=60422 | to read | to read | 35.8119, -86.0287 |
+| US-12775 TN | Davy Crockett State Fishing Lake | https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/davy-crockett-lake.html | to read | to read | 35.828, -88.9893 |
+| US-13364 TN | Cherokee Trail of Tears State Park | https://tnstateparks.com/parks/cherokee-trail-of-tears | to read | to read | 35.407, -85.006 |
+| US-13514 TN | Lake Halford State Fishing Lake | https://www.tn.gov/twra/fishing/where-to-fish/west-tennessee-r1/lake-halford.html | to read | to read | 35.934, -88.461 |
+| US-3941 TN | Grundy Forest State Natural Area | https://www.tn.gov/environment/program-areas/na-natural-areas/natural-areas-east-region/east-region-/na-na-grundy-forest.html | to read | to read | 35.2525, -85.7472 |
+| US-6237 TN | Mr. and Mrs. Harry Lee Carter State Natural Area | https://www.tn.gov/content/tn/environment/natural-areas/what-we-do/sna/cu/harry-lee-carter.html | to read | to read | 35.0927, -85.9223 |
+| US-6247 TN | Hawkins Cove State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cu/hawkins-cove.html | to read | to read | 35.1773, -85.9598 |
+| US-6273 TN | Vine Cedar Glade State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cb/vine-cedar-glade.html | to read | to read | 36.0346, -86.3535 |
