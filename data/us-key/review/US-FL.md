@@ -1,6 +1,6 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **440 of 460** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **440 of 460** parks joined to official land (same name + same kind of place). **6** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,18 +14,18 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-12121 Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area) → on Kissimmee Chain of Lakes Area Wildlife Management Area (~0 ac); Kissimmee Chain of Lakes (~29,709 ac)
+- US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area) → on Kissimmee River Public Use Area (~24,820 ac)
 - US-12124 Harold A. Campbell Public Use and STA 3/4 State Conservation Area (State Conservation Area) → on Stormwater Treatment Areas (~47,574 ac)
+- US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area) → on Lake Okeechobee Water Retention Phosphorous Removal Project (~2,037 ac); Lake Okeechobee Water Retention Phosphorus Removal Project (~2,401 ac)
 - US-12132 Chandler Slough State Conservation Area (State Conservation Area) → on Kissimmee River Public Use Area (~0 ac); Kissimmee River Public Use Area (~24,820 ac)
+- US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area) → on Everglades Agricultural Area (~51,975 ac)
 - US-3621 Fort Foster State Historic Site (State Historic Site) → on Hillsborough River State Park (~3,319 ac); Hillsborough River State Park (~3,319 ac)
-- US-8719 Horse Creek State Conservation Area (State Conservation Area) → on Upper Lake Marion Creek Watershed (~290 ac); Lake Marion Creek Horseshoe Scrub Tract (~290 ac)
+- US-8719 Horse Creek State Conservation Area (State Conservation Area) → on Lake Marion Creek Wildlife Management Area (~0 ac); Upper Lake Marion Creek Watershed (~290 ac)
 
 ## Nothing found in PAD-US
 
 - US-0896 Wekiva National Wild and Scenic River (National Wild and Scenic River)
-- US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area)
 - US-12125 Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area (State Conservation Area)
-- US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area)
-- US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area)
 - US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
 - US-7374 Wysong Park State Conservation Area (State Conservation Area)
 - US-8329 Choctawhatchee & Holmes Creek State Conservation Area (State Conservation Area)
@@ -51,31 +51,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Choctawhatchee River Water Management Area · WPA · Northwest Florida Water Management District · ~62,693 ac
 - Everglades Agricultural Area · WPA · South Florida Water Management District · ~51,975 ac
 - Miccosukee Indian Water Conservation Area ·  · Florida Natural Areas Inventory conservation lands · ~46,200 ac
-- Levy County Forest/Sandhills ·  · Florida DEP Division of State Lands (land, state GIS table) · ~42,520 ac
-- Levy County Forest/Sandhills ·  · Florida DEP Division of State Lands (land, state GIS table) · ~42,520 ac
 - Guana Tolomato Matanzas National Estuarine Research Reserve · SCA · FL Dept. of Environmental Protection, Office of Coastal and Aquatic Managed Areas · ~41,218 ac
 - Southern Glades · WPA · South Florida Water Management District · ~32,453 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
 - CALIFORNIA SWAMP ·  · Suwannee River Water Management District (land, state GIS table) · ~32,033 ac
 - Bright Hour Watershed ·  · Florida Natural Areas Inventory conservation lands · ~31,989 ac
 - Tyndall Air Force Base ·  · Florida Natural Areas Inventory conservation lands · ~29,946 ac
@@ -93,3 +70,26 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Upper Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~23,368 ac
 - Duette Preserve ·  · Florida Natural Areas Inventory conservation lands · ~21,907 ac
 - Lake Apopka Restoration Area · LCA · St. Johns River Water Management District · ~20,024 ac
+- East Coast Buffer ·  · Florida Natural Areas Inventory conservation lands · ~19,269 ac
+- Lyme Timber II - Block 4 ·  · Florida Natural Areas Inventory conservation lands · ~19,252 ac
+- Open Space · LOTH · SOUTHWEST FLORIDA WATER MANAGEMENT DISTRICT · ~18,062 ac
+- Raiford Wildlife Management Area · PCON · PRIDE Enterprises, Inc. · ~17,793 ac
+- Seminole Recreation Area · REC · Mobile · ~17,724 ac
+- Model Lands Basin · WPA · South Florida Water Management District · ~17,187 ac
+- Kissimmee River ·  · Florida Natural Areas Inventory conservation lands · ~16,863 ac
+- BAILEY BROTHERS ·  · Suwannee River Water Management District (land, state GIS table) · ~16,475 ac
+- Lower Hillsborough Flood Detention Area · LRMA · Southwest Florida Water Management District · ~16,099 ac
+- Lower Hillsborough Wilderness Preserve ·  · Florida Natural Areas Inventory conservation lands · ~16,047 ac
+- Cape Canaveral Space Force Station ·  · Florida Natural Areas Inventory conservation lands · ~15,438 ac
+- Yucca Pens Unit · SCA · FL Fish and Wildlife Conservation Commission · ~15,044 ac
+- Timucuan Preserve Federally Managed Lands ·  · Florida Natural Areas Inventory conservation lands · ~14,532 ac
+- Juniper Prairie Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,298 ac
+- Big Gum Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,835 ac
+- Corkscrew Swamp Sanctuary ·  · Florida Natural Areas Inventory conservation lands · ~13,166 ac
+- Everglades Mitigation Bank ·  · Florida Natural Areas Inventory conservation lands · ~13,151 ac
+- Upper Lakes Basin Watershed · WPA · South Florida Water Management District · ~12,997 ac
+- Loxahatchee Slough Natural Area ·  · Florida Natural Areas Inventory conservation lands · ~12,975 ac
+- Lower Green Swamp Nature Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,823 ac
+- Grassy Waters Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,800 ac
+- SUWANNEE SWAMP ·  · Suwannee River Water Management District (land, state GIS table) · ~12,789 ac
+- Telogia Creek Wildlife Management Area ·  · Florida Natural Areas Inventory conservation lands · ~12,384 ac

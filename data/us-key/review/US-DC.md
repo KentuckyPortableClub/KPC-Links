@@ -1,6 +1,6 @@
 # DC: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **23 of 35** parks joined to official land (same name + same kind of place). **1** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **23 of 35** parks joined to official land (same name + same kind of place). **1** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,16 +10,16 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-0657 President's Park (White House) Park (Park) → on National Capital Parks (~3,908 ac)
 - US-13597 George Mason National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
-- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail) → on Chesapeake and Ohio Canal National Historical Park (~323 ac)
+- US-13621 Desert Shield and Desert Storm National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
+- US-7891 African American Civil War National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
 
 ## Nothing found in PAD-US
 
 - US-0015 Chesapeake and Ohio Canal National Historical Park (National Historical Park)
-- US-13621 Desert Shield and Desert Storm National Memorial (National Memorial)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
+- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-7891 African American Civil War National Memorial (National Memorial)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 

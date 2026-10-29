@@ -1,16 +1,14 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **174 of 181** parks joined to official land (same name + same kind of place). **1** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **176 of 181** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-9334** Teal Basins State Waterfowl Management Area (State Waterfowl Management Area) → TEAL BASINS WPA (~151 ac, similar name); Teal Basins WPA (~151 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0270 Iowa Wetland Management District (Wetland Management District) → on Union Slough National Wildlife Refuge (~2,498 ac); Union Slough National Wildlife Refuge (~2,834 ac)
 - US-11305 Wapsipinicon River Water State Trail (State Trail) → on Gambril Access (~5 ac); Gambril Access (~5 ac)
-- US-11877 La Soya Wildlife Area (Wildlife Area) → on Lasoya Wildlife Management Area (~78 ac); LASOYA WILDLIFE AREA (~78 ac)
 
 ## Nothing found in PAD-US
 

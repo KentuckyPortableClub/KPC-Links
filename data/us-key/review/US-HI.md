@@ -1,28 +1,24 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **85 of 102** parks joined to official land (same name + same kind of place). **4** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **89 of 102** parks joined to official land (same name + same kind of place). **1** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10920** Kawainui Marsh Wildlife Reserve (Wildlife Reserve) → KAWAINUI MARSH WILDLIFE SANCTUARY (~797 ac, same name, different kind of place); KAWAINUI MARSH STATE PARK RESERVE (~47 ac, same name, different kind of place); KAWAINUI MARSH STATE PARK RESERVE (~47 ac, same name, different kind of place); Kawainui Marsh State Park Reserve (~47 ac, same name, different kind of place); KAWAINUI MARSH STATE PARK RESERVE (~21 ac, same name, different kind of place); KAWAINUI MARSH STATE PARK RESERVE (~21 ac, same name, different kind of place)
 - **US-6410** Iao Valley State Preserve (State Preserve) → IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name)
-- **US-6426** Iolani Palace State Preserve (State Preserve) → IOLANI PALACE STATE MONUMENT (~11 ac, similar name); IOLANI PALACE STATE MONUMENT (~11 ac, similar name); IOLANI PALACE STATE MONUMENT (~11 ac, similar name)
-- **US-6431** Royal Mausoleum State Preserve (State Preserve) → ROYAL MAUSOLEUM STATE MONUMENT (~3 ac, similar name); ROYAL MAUSOLEUM STATE MONUMENT (~3 ac, similar name); ROYAL MAUSOLEUM STATE MONUMENT (~3 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0971 World War II Valor in the Pacific National Monument (National Monument) → on PEARL HARBOR NATIONAL MEMORIAL (~22 ac)
+- US-10912 'Ualaka'a State Trail (State Trail) → on HONOLULU WATERSHED FOREST RESERVE (~10,503 ac)
 - US-10915 Nakoa State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac); AHUPUAA O KAHANA STATE PARK (~5,218 ac)
 - US-10916 Kapaʻeleʻele State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac); AHUPUAA O KAHANA STATE PARK (~5,218 ac)
 - US-10917 ʻAiea Loop State Trail (State Trail) → on Keaiwa Heiau State Recreation Area (~385 ac); KEAIWA HEIAU STATE RECREATION AREA (~385 ac)
-- US-10919 Na Ala Hele State Trail (State Trail) → on IOLANI PALACE STATE MONUMENT (~11 ac)
+- US-10919 Na Ala Hele State Trail (State Trail) → on State Department of Land State Resource Management Area (~249,706 ac)
 - US-10925 HI State Game Reserve (Game Reserve) → on KAALA NATURAL AREA RESERVE (~1,086 ac); Kaala Natural Area Reserve (~1,087 ac)
-- US-6424 Pāʻulaʻula State Historic Site (State Historic Site) → on Russian Fort Elizabeth State Historical Park (~19 ac); RUSSIAN FORT ELIZABETH STATE HISTORICAL PARK (~19 ac)
 
 ## Nothing found in PAD-US
 
 - US-0119 Hawaiian Islands National Wildlife Refuge (National Wildlife Refuge)
-- US-10912 'Ualaka'a State Trail (State Trail)
 - US-10921 Hawaii Capital National Historic District (National Historic District)
 - US-10922 Marconi Wireless Telegraphy Station Kahuku National Historic Site (National Historic Site)
 - US-10923 Artillery District of Honolulu Historic Site (Historic Site)

@@ -1,17 +1,16 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **145 of 157** parks joined to official land (same name + same kind of place). **2** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **146 of 157** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-6875** The Preserve Essex Land Trust State Park Preserve (State Park Preserve) → Preserve State Forest (~889 ac, similar name)
-- **US-7547** Captain George Comer Memorial State Park (State Park) → Captain Comer Memorial (~3 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~0 ac); Devils Hopyard State Park (~891 ac)
-- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac)
-- US-7529 Beckley Iron Furnace State Park (State Park) → on Housatonic State Forest (~11,284 ac)
+- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~0 ac); Devils Hopyard State Park (~260 ac)
+- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac); Other (~16 ac)
+- US-7529 Beckley Iron Furnace State Park (State Park) → on Industrial Monument Historic Preserve (~0 ac); Industrial Monument Historic Preserve (~1 ac)
 - US-7542 Satan's Kingdom State Recreation Area (State Recreation Area) → on Farmington River Water Access (~8 ac); Water Access (~12 ac)
 
 ## Nothing found in PAD-US
