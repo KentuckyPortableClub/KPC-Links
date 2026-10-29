@@ -1050,12 +1050,14 @@ def run(st):
         from shapely.geometry import Polygon as _Poly
         from shapely.ops import unary_union as _union
         byid = {_oid(a): a for a in recs if a.get('_g')}
-        nac = 0
+        nac, t_ac, skipped = 0, time.time(), 0
         for ref, p in parks.items():
             ids = [str(x[0]) for x in p.get('m') or []]
             if len(ids) < 2 or not all(i in byid for i in ids): continue
+            if time.time() - t_ac > 90: skipped += 1; continue   # Oct 29: a time budget per state (the first run sat 2 h on Alaska)
             pts = [q for i in ids for r in rings(byid[i]['_g']) for q in r]
-            if not pts: continue
+            nr = sum(len(rings(byid[i]['_g'])) for i in ids)
+            if not pts or len(pts) > 60000 or nr > 400: skipped += 1; continue   # huge refuges / forests: too heavy, left without 'ac'
             la0 = sum(q[1] for q in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la0)), 110574
             geoms = []
             for i in ids:
@@ -1063,13 +1065,16 @@ def run(st):
                 boxes = (p.get('parts') or {}).get(i)
                 if boxes: rr = [r for r in rr if any(b[0] - .01 <= (min(q[0] for q in r) + max(q[0] for q in r)) / 2 <= b[2] + .01 and b[1] - .01 <= (min(q[1] for q in r) + max(q[1] for q in r)) / 2 <= b[3] + .01 for b in boxes)]
                 g = None
-                for r in rr:
-                    pg = _Poly([(q[0] * kx, q[1] * ky) for q in r]).buffer(0)
-                    g = pg if g is None else g.symmetric_difference(pg)
+                if len(rr) > 40:   # many rings: union them all (holes are rare in big multi-part records)
+                    g = _union([_Poly([(q[0] * kx, q[1] * ky) for q in r]).buffer(0) for r in rr])
+                else:
+                    for r in rr:
+                        pg = _Poly([(q[0] * kx, q[1] * ky) for q in r]).buffer(0)
+                        g = pg if g is None else g.symmetric_difference(pg)
                 if g is not None: geoms.append(g)
             if geoms:
                 p['ac'] = round(_union(geoms).area / 4046.86); nac += 1
-        notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)') if nac else None
+        notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)' + (f'; {skipped} too big or out of time (no ac)' if skipped else '')) if nac or skipped else None
     except ImportError: pass
     except Exception as e: notice(f'US key {st}', f'union acreage skipped: {str(e)[:120]}')  # noqa: BLE001
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
