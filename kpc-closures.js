@@ -38,6 +38,7 @@
   async function html(ref, st, opts) {
     opts = opts || {};
     const r = await get(ref, st);
+    if (!r.ky) return '';   /* Brandon Oct 29 scope rule (chat 11 check): closures are shown for Kentucky parks only */
     const watch = r.ky ? 'Kentucky State Parks alerts and KPC member reports' : r.cover.length ? r.cover.map(x => x.agency).join(', ') : '';
     const covLine = r.ky || r.cover.length
       ? 'Checked: ' + esc(watch) + (r.ky ? '' : ' (every 6 hours)') + '. Other managers are not watched, so check the official page too.'
