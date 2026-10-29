@@ -532,3 +532,14 @@ Read key-pieces.json (42 held pieces): 26 YES, 1 NO, 15 still open. Grade C: eve
 - **Weakest YES (pieces of 0-4 ac, size can't confirm):** Frost Farm (0), George Washington Memorial (0), Stagecoach Inn "inside Camp Floyd" (0), Midway Hatchery (0), Docs Beach (4), Old Ruby (7), Jackson House (1). Name agrees, so OK to outline; keep them labelled "approximate" until a bot confirms from the agency map.
 - **Housekeeping:** 8 pieces appear twice (same ref and name, two record ids), harmless but worth merging. Break test: no way to make a YES pass an outline that fails the layer-name test (c_key F-O2 still runs after answers).
 - **Needs Brandon:** nothing.
+
+## Grades Oct 29 ~2:50 PM (chat 8): the finished areas waiting for me. Grade A: ran the grader on the live files, read the far-pin rows by name.
+| Area | Verdict | Why |
+|---|---|---|
+| **pca = California** | **PASS** | 95 live, 0 duplicate ids, 19/19 known answers. The far-pin rows are big park x national forest pairs (Kings Canyon x Sequoia/Inyo/Sierra NF, Los Padres NF x Big Sur state parks): the pins sit at each park's centre, the overlap is real. |
+| **caabbc, Alberta only** | **PASS AB** (BC stays held for water) | 41 live, 0 dup. One CHECK: Banff x Jasper National Park, 507 ac. Two adjoining national parks should share a line, not 507 ac; a drawing overlap in the key? |
+| **southeast incl. Mississippi** | **PASS** | MS: 9 live, 0 dup, 6 NOT SURE; the far rows are the Natchez Trace and its trail (linear), Noxubee NWR x Tombigbee NF 6.1 ac is a forest pin. |
+| **southcentral, Nebraska** | **PASS NE** | 15 live, 0 dup. The held flag points at US-2621+US-4015 (Platte River SP x Landing), which is status DROPPED in the file now: chat 2 should rerun so the line clears it. CHECK: Niobrara SP x Lewis and Clark Lake SRA, 563 ac, 41 km (the lake's upper end reaches Niobrara: probably real). |
+| **nec = ME NH VT MA** | **PASS** | 4 / 28 / 9 / 87 live, 0 dup; the far rows are the Appalachian Trail (linear). Same as my Oct 28 read. |
+| **nea = PA NJ DE MD DC** | **PASS, 2 CHECKS** | PA State Game Land PA 231 x PA 251 (729 ac, 114 km) and PA 236 x PA 326 (41 ac, 125 km): two different numbered tracts 100+ km apart cannot overlap; probably a multi-part join. Hold those two rows. Rest is forest x game-land pairs. |
+| **neb = NY CT RI** | **FAIL for NY; CT + RI PASS** | WRONG JOINS: US-4374 "Robert Moses (Thousand Islands)" has its pin at 44.99,-74.86 (northern NY) but is paired with Captree, Gilgo and Fire Island-area parks on Long Island (40.6,-73.2), 500 km away: rows US-2028+US-4374 (931 ac), US-2061+US-4374 (30 ac), the 3-fer (13.7 ac) are all wrong (same-name outline join, the bug from Oct 28). Also US-8096 x US-8097 "South Hill (Oneida County)" x "South Hill (Delaware and Otsego)" 1,326 ac, 95 km apart: two different forests with the same name. |

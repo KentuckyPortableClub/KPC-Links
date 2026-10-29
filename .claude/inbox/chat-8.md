@@ -175,3 +175,5 @@ DONE (Oct 29 ~2:05 PM): reran missing-boundaries on the new key: key counts unch
 DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlined, 289 left; step 2 = 63, step 3 = 226); Rule G key check part A: 4 FAIL (Sequoia+Giant Sequoia NM, Clearwater+Nezperce, Revheim Bay+Indian Creek, Kodiak Office), 5 CHECK, proposed R-G8. Files KPC_MissingBoundaries_ForFable_desk.md, KPC_RuleG_KeyCheck_desk.md.
 
 - DONE Oct 29 ~2:20 PM: R-G7 step 3 Idaho (27): found IDL state forests layer, Lava Hot Springs 80-ac tract, IDFG WMA page; look-up request 8-rg7-id filed; 20 airstrips = grey area G-ID1 (no land owned by ITD). File KPC_RG7_Step3_ID_desk.md. NEXT: NV 25, OK 23, WA 17...
+
+- DONE Oct 29 ~2:50 PM: graded the areas waiting: PASS pca (CA), AB, southeast incl. MS, NE, nec, nea (2 PA rows held), CT, RI. FAIL NY (Robert Moses x Long Island 500 km, South Hill pair). See KPC_IssuesForFable_Oct29.md.
