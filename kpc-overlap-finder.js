@@ -273,7 +273,7 @@
     if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: mz, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: mz, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
-    loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
+    loadOutlines(g).then(function () { if (cur !== g) return; animate(); sharpen(g); });
     draw();
   }
   /* Brandon Oct 27 6:11 PM: 'add in the same button if it has several overlaps look at next section': ◀ 1 OF 3 ▶ steps through each
@@ -301,6 +301,19 @@
   }
   /* Oct 28 (chat 2, Brandon OK: 'Mammoth Cave x Green River WR looked tangled'): only the pieces of each park's land NEAR the overlap are
      drawn (a polygon whose box touches the overlap's box + a margin); far-off owned-land pieces are left off the map */
+  /* HQ + Brandon Oct 29 7:18 AM: close-ups at ~3 m. Once the outlines are drawn, the parks' records near this spot are asked again at
+     ~3 m detail for the spot's small box (KPCB.closeUp, 1.5 s limit) and swapped in; nothing waits on it, a slow server = no change */
+  function spotBox(g) { var bb = [180, 90, -180, -90]; patchRings(g).forEach(function (x) { x.ring.forEach(function (q) { bb[0] = Math.min(bb[0], q[0]); bb[1] = Math.min(bb[1], q[1]); bb[2] = Math.max(bb[2], q[0]); bb[3] = Math.max(bb[3], q[1]); }); });
+    if (bb[0] > bb[2]) return null; var pad = Math.max(0.01, 0.3 * Math.max(bb[2] - bb[0], bb[3] - bb[1])); return [bb[0] - pad, bb[1] - pad, bb[2] + pad, bb[3] + pad]; }
+  function sharpen(g) {
+    var B = window.KPCB; if (!B || !B.closeUp) return; var box = spotBox(g); if (!box) return; var t0 = Date.now();
+    Promise.all(parks.map(function (p) { return p.fsAll && p.fsAll.length ? B.closeUp(p.fsAll, box, 1500).then(function (fs) { return [p, fs]; }) : null; })).then(function (r) {
+      if (cur !== g) return; var n = 0;
+      r.forEach(function (x) { if (!x) return; var sharp = x[1].filter(function (f) { return f._sharp; }).length; if (!sharp) return; n += sharp; x[0].fsAll = x[1]; x[0].fs = near(g, x[1]); });
+      SHARP = { n: n, ms: Date.now() - t0 }; if (n) draw();
+    }).catch(function () {});
+  }
+  var SHARP = null;
   function near(g, fs) {
     var bb = [180, 90, -180, -90]; patchRings(g).forEach(function (x) { x.ring.forEach(function (q) { bb[0] = Math.min(bb[0], q[0]); bb[1] = Math.min(bb[1], q[1]); bb[2] = Math.max(bb[2], q[0]); bb[3] = Math.max(bb[3], q[1]); }); });
     if (bb[0] > bb[2]) return fs;
@@ -682,5 +695,5 @@
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
     usMap();
   });
-  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); } };
+  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); }, sharp: function () { return SHARP; } };
 })();

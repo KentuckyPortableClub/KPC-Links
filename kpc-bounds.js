@@ -9,7 +9,7 @@
   const PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query';
   const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  async function jget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await fetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
+  async function jget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await fetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json(); if (j && Array.isArray(j.features) && /maxAllowableOffset=/.test(u)) j.features.forEach(f => { if (f && !f._url) { f._url = u; f._pk = JSON.stringify(f.properties || {}); } }); return j; } finally { clearTimeout(t); } }
   /* Storage plan Step B (Oct 27): the answer-key / outline folders below live on KentuckyPortableClub/KPC-Data now.
      dfetch/dget try that address first and fall back to this site's own copy, same as window.KPC.dataUrl (used
      directly where we only need the Response; dget adds jget's abort-timeout + JSON parsing on top of it). */
@@ -120,6 +120,26 @@
       if (inn || (e && e.km < .025)) out.push(Object.assign(landInfo(f), { f, onLine: !inn })); }
     const area = x => (x.f._bb[2] - x.f._bb[0]) * (x.f._bb[3] - x.f._bb[1]);
     return out.sort((a, b) => area(a) - area(b));
+  }
+  /* HQ + Brandon Oct 29 7:18 AM: CLOSE-UPS at ~3 m. Outlines read live are thinned by the map server (maxAllowableOffset 0.0001-0.0002 deg
+     = 11-22 m). closeUp(fs, box) asks the SAME server again for the same records, only those touching the small box [w, s, e, n],
+     at maxAllowableOffset 0.00003 deg (~3 m), geometryPrecision 6, and returns fs with those records swapped for the sharp copies.
+     Records with no remembered query (Kentucky's saved files) and very big records (box over ~0.6 sq deg, e.g. a whole national
+     forest: too heavy to load sharp) stay as they are; the 2-fer data's own full-detail 'lines' cover those near a spot.
+     ms = time limit (default 1.5 s): a slow server just means the normal outline stays. */
+  async function closeUp(fs, box, ms) {
+    fs = fs || []; if (!box) return fs;
+    const big = f => { const b = f._bb || bbox(f.geometry); return (b[2] - b[0]) * (b[3] - b[1]) > 0.6; };
+    const groups = {}; fs.forEach(f => { if (f && f._url && !big(f)) (groups[f._url] = groups[f._url] || []).push(f); });
+    const urls = Object.keys(groups); if (!urls.length) return fs;
+    const env = box.map(v => (+v).toFixed(6)).join(',');
+    const sharp = await Promise.all(urls.map(u => { const q = new URL(u); const P = q.searchParams;
+      P.set('maxAllowableOffset', '0.00003'); P.set('geometryPrecision', '6'); P.set('geometry', env); P.set('geometryType', 'esriGeometryEnvelope'); P.set('spatialRel', 'esriSpatialRelIntersects'); P.set('inSR', '4326');
+      return jget(q.toString(), null, ms || 1500).then(j => (j && j.features) || []).catch(() => null); }));
+    const swap = new Map(); sharp.forEach((list, i) => { if (!list) return; list.forEach(n => { if (n && n.geometry) swap.set(urls[i] + '|' + JSON.stringify(n.properties || {}), n); }); });
+    if (!swap.size) return fs;
+    return fs.map(f => { const n = f && f._url && swap.get(f._url + '|' + f._pk); if (!n) return f;
+      const g = Object.assign({}, f, { geometry: n.geometry, _sharp: true }); g._bb = bbox(n.geometry); return g; });
   }
   /* KY features that belong to one POTA ref */
   async function kyFor(ref) { const F = await ky(); const N = nameIndex(); return N.has(ref) ? N.get(ref) : F.filter(f => kyRefs(f).some(r => r.ref === ref)); }
@@ -433,5 +453,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { closeUp, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

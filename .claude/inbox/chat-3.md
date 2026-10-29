@@ -2,23 +2,10 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 29 7:18 AM) BRANDON OK'd: draw 2-fer CLOSE-UPS at ~3 m EVERYWHERE (US + Canada + KY): when the Overlap Finder / maps zoom to a 2-fer spot, ask the map server for the two parks' outlines at maxAllowableOffset ~0.00003° just for that small box (kpc-bounds.js today uses 0.0001-0.0002° = 11-22 m); zoomed-out whole parks stay as they are; KY's saved files stay as they are. Test at full zoom on satellite on Mammoth Cave x Green River Wild River + Daniel Boone National Forest x a Kentucky Wild River corridor (Red River or Rockcastle River) + one non-KY spot; phone-width check; extra load under ~1 s.
-- **FROM CHAT 2 (Oct 29 7:05 AM): STORED OUTLINES CHECKED (your border-thinning ask), sample vs a fresh full-detail read:**
-
-| Stored set (who reads it) | parks | corners OFF the real edge (95%) | real corners CUT (median / 95%) | verdict |
-|---|---|---|---|---|
-| Kentucky files ky-*.geojson (site + KY 2-fers + app pack) | 16 | 0.6 m (on the edge) | 2.7 / 8.4 m (one 217 m: Tygarts) | edge-keeping, but cuts corners ~8-10 m: over 5 m |
-| Kentucky app pack (3 m Douglas-Peucker of the KY files) | 12 | 0.6 m | 7.7 m (Knobs SF row = a test mismatch) | same as the KY files (+≤3 m) |
-| US key saved copy cache/us (2-fer pass 1 coarse look only) | 20 | 0.6 m | 36.6 / 78 m | coarse BY DESIGN; passes 2-3 re-read finer; not drawn by the site |
-| Canada key saved copy CA-ALL (2-fer pass 1 + saved builds) | 20 | 46-61 m (drifted) | 348 / 1,643 m | coordinates rounded to 3 decimals (~100 m) + 0.02 deg thinning |
-| Canada outlines the SITE draws data/canada-bounds | 12 | 47 m median (drifted) | 252 / 5,042 m | thinned 0.0004 deg (~44 m), big parks 0.002-0.006 deg (200-650 m): WORST set |
-
-  Also: the site draws US + Canada key outlines LIVE with maxAllowableOffset 0.0001-0.0002 deg (kpc-bounds.js) = server thinning up to ~11-22 m, which alone explains chat 3's 8-20 m. Suggest 0.00003 (~3 m) near 2-fer spots (chat 3's page). Proposed (chat 2, needs HQ's OK for storage): re-read data/canada-bounds at 0.00003 deg with geometryPrecision 6 (edge-keeping Douglas-Peucker at 3 m on our side for big parks), re-thin the KY files the same way from a full read, keep the coarse key copies coarse (pass 1 only). Full table: .claude/build/research/outline-accuracy.md.
-
-
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 29 7:55 AM: 2-fer CLOSE-UPS at ~3 m. kpc-bounds.js remembers each live outline's query; new KPCB.closeUp(fs, box, ms) asks the same server again for the same records touching the spot's small box at maxAllowableOffset 0.00003 + geometryPrecision 6 and swaps them in (1.5 s limit: slow = the normal outline stays; records bigger than ~0.6 sq deg, e.g. a whole national forest, are skipped). The Overlap Finder calls it after the outlines draw (nothing waits). Tested: request carries the 3 m settings + the box, swap works, big record skipped, a 2.5 s server falls back at 1.5 s, KY Mammoth Cave x Green River unchanged (KY saved files have no live query: its 2-fer row's own full-detail `lines` are drawn instead, as for 28 of 30 KY area spots), 390 px no sideways scroll. NOT tested: a live US server from here (blocked) = please look at a non-KY spot on satellite. Chat 2's outline table read (it is theirs to act on).
 - Oct 29 6:45 AM: chat 8's last two 'confirm both pins inside' pairs checked: MD US-1569+US-4764 (Elk Neck SP x SF) and MI US-6694+US-6729 (Gratiot-Saginaw x Connector): only one pin inside each = hidden. Nothing else waiting for chat 3 (NY, MS, Pacific, Canada not passed yet).
 - Oct 29 5:40 AM: HQ's 5:37 list was already on (IA, MI with its 3 rows kept, nea, Southeast, KY live) since 12:45-5:25 AM, plus CO WY ID MT AR LA OK TX KS NE from chat 8's 10:20 grade. Only change now: MISSISSIPPI taken OFF the Finder until chat 8 passes it (HQ: 'Mississippi waits'). Hidden rows: chat 8's 4 wrong joins + the 4 'pins not both inside' Southeast pairs + 6 from the 10:20 grade.
 - Oct 29 5:25 AM (chat 8's 10:20 grade: mtcowy, mtidmt, southcentral, midwest READY except listed pairs): added CO 17 / WY 45 / ID 46 / MT 23 / AR 12 / LA 3 / OK 32 / TX 12 / KS 21 / NE 17 pairs (35 regions). Hidden: chat 8's 3 WRONG (Truman, Salinas, Horseshoe Canyon) + its 3 CHECK pairs until someone checks them (Grand Canyon x Parashant, Coronado NMem x Coronado NF, Kinnickinnic SFWA x SP).
@@ -35,6 +22,7 @@ Read .claude/inbox/README.md first.
 - Oct 28 5:00 AM: read HQ's note (nothing new; Spot cache = design only, nothing built). Noted: KY 2-fer data waits for chat 8's check + Brandon's GO.
 
 ## REPORT TO HQ (newest first)
+- Oct 29 7:55 AM (chat 3): close-ups at ~3 m live on the Overlap Finder for live-read US / Canada-key / world outlines near each spot. Gaps: (1) Kentucky saved files and data/canada-bounds have no live query to sharpen: near a spot the 2-fer `lines` cover it (most area spots have them; OH 6 of 25, NE 8/16, TX 5/11 do not); chat 2's re-thin plan (canada-bounds at 0.00003, KY files from a full read) is what fixes the rest. (2) Whole national forests (> 0.6 sq deg) are not re-read sharp (too heavy): `lines` again. Load could not be measured from here (servers blocked): Brandon please check one non-KY spot.
 - Oct 29 5:25 AM (chat 3): 10 more states on the Finder (BETA). Chat 8's 3 CHECK pairs are hidden until checked: say 'show' for any that turn out real. Chat 8's 'big rows' (ID/MT/MN/WY wilderness-in-forest 55,000-1.27 M ac) are shown; they should carry the wilderness's own acres (chat 2).
 - Oct 29 5:05 AM (chat 3): 4 Southeast 'same land' pairs hidden (pins not both inside the shared outline). Chat 2: please drop them in the data (or fix the joins) so the `hide` list can go. Note: Brandon's relay called 'neb' Nebraska: it is NY/CT/RI; Nebraska is in southcentral (not graded yet).
 - Oct 29 12:45 AM (chat 3): IA + Southeast (9) + nea (5) on the Finder as BETA, chat 8's 4 'drop' rows hidden (kpc-fers-regions.json `hide`, remove each when the data drops it). STILL SHOWN, chat 8 only said 'look at': MI US-13570+US-6683, US-1499+US-6689, US-6694+US-6729; MD US-0335+US-1601, US-1569+US-4764, US-1586+US-4365, US-1591+US-7760; TN US-12663+US-2952; GA US-12417+US-7452 ('same land' rows with pins far apart). If Brandon/chat 2 rule them out, tell me and I add them to `hide` (one line each).
