@@ -53,7 +53,7 @@ def item(iid):
 
 def distinct(lu, f, n=40):
     q = get(lu + '/query', {'where': '1=1', 'outFields': f, 'returnGeometry': 'false', 'returnDistinctValues': 'true', 'resultRecordCount': n}, t=120)
-    return sorted({str((ft.get('attributes') or {}).get(f))[:40] for ft in q.get('features') or [] if (ft.get('attributes') or {}).get(f) not in (None, '')})[:30]
+    return sorted({str((ft.get('attributes') or {}).get(f))[:40] for ft in q.get('features') or [] if (ft.get('attributes') or {}).get(f) not in (None, '')})[:max(30, n if n > 40 else 30)]
 
 
 def layer(x):
@@ -478,10 +478,10 @@ def rivertest(cfg):
                         time.sleep(2)
                     ins = [p for p in got if _inside(p[0], p[1], rings)]
                     r['notes'].append(f'{len(ins)} river vertices inside the unit polygon')
-                    step = max(1, len(ins) // 3)
-                    pts += ins[::step][:3]
+                    k = x.get('npts', 3); step = max(1, len(ins) // k)
+                    pts += ins[::step][:k]
             except Exception as e: r['notes'].append('unit: ' + str(e)[:100])
-        for la, lo in pts[:4]:
+        for la, lo in pts[:x.get('npts', 3) + 1]:
             r['water'].append({'point': [la, lo], 'result': _hit(x['layer'], la, lo)})
         res.append(r)
         notice('river test ' + x['note'][:40] + ': control ' + ('HIT' if r['control'] and any(v for v in r['control']['result'].values() if isinstance(v, list)) else 'NO HIT/none'))
@@ -659,6 +659,15 @@ def main():
     if cfg.get('nearq'):
         try: res['nearq'] = nearq(cfg)
         except Exception as e: res['nearq'] = [{'error': str(e)[:140]}]
+    if cfg.get('distinct'):   # Oct 29 (chat 8 v3 grade): what unit codes / names a layer really holds
+        res['distinct'] = []
+        for x in cfg['distinct']:
+            r = {'url': x['url'], 'values': {}}
+            for f in x['fields']:
+                try: r['values'][f] = distinct(x['url'], f, x.get('n', 2000))
+                except Exception as e: r['values'][f] = 'error ' + str(e)[:80]
+                time.sleep(2)
+            res['distinct'].append(r)
     if cfg.get('zipnames'):
         try: res['zipnames'] = zipnames(cfg)
         except Exception as e: res['zipnames'] = [{'error': str(e)[:140]}]

@@ -1,5 +1,5 @@
 {
- "about": "Chat 9 round F (chat 8 Oct 29 11:00 AM, Brandon 10:42 'nothing is written off'): the HARD kinds, 3 sample parks each (NV markers: US-13274, US-13275, US-13276; BLM airstrips: US-13494, US-13496, US-13497; scenic road areas: US-13207, US-13259, US-13260; fish hatcheries: US-10815, US-12976, US-12994; state historic sites ND: US-12782, US-12783, US-12784; state historic sites OK: US-0822, US-0872, US-10951; BLM historic/interpretive: US-10965, US-11110, US-11118; state fishing lakes: US-12193, US-12194, US-12195). Leads in order: (1) agency property layer, (2) federal surface-ownership at the pin, (3) county parcels with the agency as owner; record which answered. Results: roundF-tested.json.",
+ "about": "Chat 9 round F (chat 8 Oct 29 11:00 AM, Brandon 10:42 'nothing is written off'): the HARD kinds, 3 sample parks each (NV markers: US-13274, US-13275, US-13276; BLM airstrips: US-13494, US-13496, US-13497; scenic road areas: US-13207, US-13259, US-13260; fish hatcheries: US-10815, US-12976, US-12994; state historic sites ND: US-12782, US-12783, US-12784; state historic sites OK: US-0822, US-0872, US-10951; BLM historic/interpretive: US-10965, US-11110, US-11118; state fishing lakes: US-12193, US-12194, US-12195). Leads in order: (1) agency property layer, (2) federal surface-ownership at the pin, (3) county parcels with the agency as owner; record which answered. Results: roundF-tested.json. + RIVER TEST v4 (chat 8 11:20 AM grade): the NPS tract layer's distinct unit codes / names (fields listed first), and FWS Ohio River Islands + Cache River with 20 NHD river points each.",
  "samples": {
   "NV markers": [
    [
@@ -495,6 +495,58 @@
    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW",
    "match": "byway|scenic|road|trail",
    "note": "F scenic roads: USFS EDW list"
+  }
+ ],
+ "layers": [
+  {
+   "st": "US",
+   "kind": "tracts",
+   "ag": "NPS",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "note": "v4: list the tract layer's fields"
+  }
+ ],
+ "distinct": [
+  {
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1",
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "PARKNAME",
+    "PARK_CODE",
+    "STATENAME",
+    "STATUS",
+    "Interest"
+   ],
+   "n": 2000
+  }
+ ],
+ "rivertest": [
+  {
+   "note": "FWS realty v4: Ohio River Islands, 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'OHIO RIVER ISLANDS%'"
+   },
+   "river": "Ohio River",
+   "npts": 20
+  },
+  {
+   "note": "FWS realty v4: Cache River (AR), 20 river points",
+   "layer": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWS_National_Realty_Tracts_View_Test/FeatureServer/0",
+   "control_auto": {
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "unit": {
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/ArcGIS/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+    "where": "ORGNAME LIKE 'CACHE RIVER%'"
+   },
+   "river": "Cache River",
+   "npts": 20
   }
  ]
 }
