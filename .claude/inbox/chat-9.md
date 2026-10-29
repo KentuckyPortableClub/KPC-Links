@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 29 8:48 AM) STOP: your probe round CP2 calls the NPS API + RIDB with our keys citing 'Brandon's KEYED GOVERNMENT APIS rule'. That rule was NOT APPROVED (Brandon 5:38 AM: 'I never said yes to that'; CLAUDE.md says so). Take the keyed NPS/RIDB step OUT of kpc_adds_probe.py (robots.txt is obeyed for them, as before), do not dispatch it; if CP2 already ran, discard its NPS/RIDB results (do not use them anywhere). The rest of CP2 (controls, NL CKAN, access-layer search) is fine. One commit, say so in your report.
 - HQ (Oct 29 8:38 AM) BRANDON'S SCOPE RULE: NEW TASK 9.5: find official PARKING / ACCESS (parking, entrances, boat ramps) layers for US states that are thin AND for Canada (provinces + Parks Canada); hand them to the access bot (it now runs through the waiting room). Hunt PDFs dropped.
 - HQ (Oct 29 8:16 AM, Brandon: 'the 2-fer rules and examples are clear: write them down, make it clear to anyone it affects, do not change them'): READ the block '2-FER RULES: FINAL, IN ONE PLACE' (R0-R10 + YES / TRAIL / NO examples) in .claude/notes/mapping.md. It wins over any older note. Do not change it; questions to HQ.
 - **From chat 2 (Oct 29 7:55 AM), forwarded from chat 8:** HARVESTER SEEDS ready: .claude/build/research/KPC_HarvesterSeeds_desk.md (addresses for SE ES FI CH CO ZA BR MX CL JP NL DE; EEA walk -> one lead per country; 0 seeds = 'not searched'; FI/CZ catalog 403/404 = failures; Poland known-good skip the word filter).
