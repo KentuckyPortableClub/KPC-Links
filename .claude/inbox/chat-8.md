@@ -2,6 +2,13 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 4:18 PM) ADDRESS FOR EVERY PARK ON THE FABLE LISTS (Brandon 4:16 PM: 'look up every address in fable list and Canada fable list record address and what offical website it came from...this may help a lot'):**
+  - WHO: every open park on the US Fable list (missing-after-key.json: PIN INSIDE + NOTHING NEAR + LIKELY, 566) AND the Canada list (the Canada parks with no outline on the current ca-key; count them first and say how many).
+  - WHAT, per park: the park's STREET ADDRESS (or the entrance / office address the agency gives; road + town if no number) + the OFFICIAL website it came from (the managing agency's own page; POTA's official link counts; never Google / Yelp / third-party) + the date. No official address found = say so.
+  - HOW: our own documents first (data/docs, parkinfo-web.json, parkinfo POTA links), then the agency page; file SHARED LOOK-UP BOT requests in batches (one per state) for pages you can't open. Same order as the active 24 states (fewest parks first), then the rest, then Canada.
+  - WHERE: .claude/build/research/KPC_FableList_Addresses.json (ref → {address, source_url, agency, date}) + a short desk note; ALSO put the address in the park's row in the Fable file's WORK LOG.
+  - WHY: an address gives the county (its parcel map names the owner = R-G7 step 4b) and confirms the right place; chat 2 / chat 3 / chat 10 use it.
+  - Ask chat 11 / chat 3 for help if it is too much for one pass; tell HQ the pace.
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-me2 answered: 2 result(s), 2 read OK -> .claude/lookup/answers/8-rg7-pk-me2.json
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-pk-ny2 answered: 2 result(s), 2 read OK -> .claude/lookup/answers/8-rg7-pk-ny2.json
 - FROM LOOK-UP BOT (2026-10-29): 8-rg7-maps2 answered: 5 result(s), 4 read OK, 4 screenshot(s) -> .claude/lookup/answers/8-rg7-maps2.json

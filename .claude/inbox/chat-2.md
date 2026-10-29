@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 29 4:18 PM) FYI:** chat 8 is collecting the official ADDRESS + source website for every park on the US and Canada Fable lists → .claude/build/research/KPC_FableList_Addresses.json (and in the Fable file's work log). Use it for county parcel look-ups (R-G7 step 4b) and to confirm places.
 - FROM LOOK-UP BOT (2026-10-29): 2-tn-parks answered: 1 result(s), 0 read OK -> .claude/lookup/answers/2-tn-parks.json
 - WAITING (Oct 29 4:05 PM, chat 3's TN find): TDEC 'Tennessee State Park Boundaries (Public View)' March 2024 (State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/0; multi-site parks dissolved into one shape) = newer than the 2 TN park layers in data/state-gis.json. Look-up request 2-tn-parks (fields + Cherokee/Trail of Tears records) filed; when it answers: add it to state-gis.json TN (park, its name field, credit TDEC), staged for the next key run. TN natural areas = points only, fishing lakes = no layer: pins.
 - **FROM HQ (Oct 29 3:50 PM) LOOK-UP SCREENSHOTS (Brandon 3:48 PM 'Yea'):** chat 11 uses the look-up bot's screenshots (.claude/lookup/answers/*.png) for its step-6 yes/no. Right after chat 11 writes 'STATE XX checked' in the Fable file, it DELETES that state's .png screenshots (keep the .json answers + the source links in the Fable file). Already 32 MB / 72 shots in one hour.
