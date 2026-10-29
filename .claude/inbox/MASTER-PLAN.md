@@ -45,6 +45,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [-] 8.11 DROPPED by SCOPE (no closures outside KY)
 
 ## CHAT 10 (bot workshop)
+- [ ] 10.W (Brandon 9:46 AM) WIRING PACE: next bot is wired after 3 CLEAN DAYS of the one before (pilot clean → Sat Oct 31), still one at a time: KY closures first, then documents, hours, campground info
 - [x] 10.1 (7:50 AM) done: G2 key, Fable's 3 gaps, chat 8's 2 rounds of holes, G5 stamp file (data/waiting/known/stamps.json); replay 38/38 — WAITING ROOM: G2 stable key, Fable's 3 gaps (30-km same land, .gz seen, no compact rewrite), G5 stamp file; replay still catches every flaw → 'ready to break' line to chat 8
 - [~] 10.2 (7:50 AM) PILOT ON: kpc-us-access saves into data/waiting/in/, the checker promotes or holds (KPC-Data 04920e32); proof run OH 40875906766 PASSED and went live (7:55 AM); other website bots later, one at a time — PILOT the waiting room on the access/parking bot (Brandon's GO), then wire the other website bots one at a time
 - [x] 10.3 (7:25 AM) table in chat-10 REPORT (26th pass) — Classification table: HIDDEN bots (run when fixed) vs WEBSITE bots (wait for the waiting room)
@@ -86,5 +87,5 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [-] B.5 Permission emails: PARKED (Brandon Oct 29: not now)
 
 ## HQ
-- [ ] H.1 Next scheduled Fable session: attach KPC-Data (last night's could not save there)
+- [ ] H.1 Fable review of chat 8's missing-boundaries/name report WAITS (Brandon 9:46 AM): first plan step 1 boundary fixes pushed (chat 2: far pieces, Virginia, Canada 3 m) → HQ tells Brandon → chat 8 RECHECKS its list (fixes may clear rows) → then Fable, with KPC-Data attached
 - [ ] H.2 Status reports from this file on request; Sunday members' update; Sunday storage check
