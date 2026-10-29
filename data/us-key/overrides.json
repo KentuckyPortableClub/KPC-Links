@@ -3744,8 +3744,11 @@
    "join": [
     "mdd3177"
    ],
-   "why": "same place, another name (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "same place, another name (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2045.2 ac)",
+   "when": "2026-10-29",
+   "alias": [
+    "MONOCACY NRMA"
+   ]
   },
   "US-7782": {
    "join": [
@@ -3768,8 +3771,11 @@
   },
   "US-9171": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 59 m from the edge; 3883.4 ac)",
+   "when": "2026-10-29",
+   "join": [
+    "St John Ponds"
+   ]
   },
   "US-11392": {
    "join": [
@@ -4482,13 +4488,19 @@
   },
   "US-12060": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 499.5 ac)",
+   "when": "2026-10-29",
+   "alias": [
+    "Crystal Lake Wild Forest"
+   ]
   },
   "US-5308": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 3520.0 ac)",
+   "when": "2026-10-29",
+   "alias": [
+    "Split Rock Wild Forest"
+   ]
   },
   "US-8063": {
    "join": [
@@ -4884,8 +4896,11 @@
   },
   "US-11003": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1037.9 ac)",
+   "when": "2026-10-29",
+   "alias": [
+    "Glenwood"
+   ]
   },
   "US-11090": {
    "none": true,
@@ -6316,15 +6331,22 @@
     "Durham County - Little River Park",
     "Little River Regional Park"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Durham County - Little River Park'; joins only with the POTA pin inside · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Durham County - Little River Park'; joins only with the POTA pin inside · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 255.4 ac) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 65 m from the edge; 131.0 ac)",
+   "when": "2026-10-29",
+   "join": [
+    "Durham County - Little River Park",
+    "Orange County Open Space - Little River Regional Park"
+   ]
   },
   "US-12372": {
    "alias": [
     "Cave Rock Lake Tahoe-Nevada State Park"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Cave Rock Lake Tahoe-Nevada State Park'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Cave Rock Lake Tahoe-Nevada State Park'; joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin 22 m from the edge; 3.2 ac)",
+   "when": "2026-10-29",
+   "join": [
+    "Lake Tahoe-Nevada State Park (Cave Rock)"
+   ]
   },
   "US-11715": {
    "alias": [
@@ -6694,9 +6716,10 @@
   },
   "US-7577": {
    "alias": [
-    "Charlotte Anne Finnell Neal Wildlife Management Area"
+    "Charlotte Anne Finnell Neal Wildlife Management Area",
+    "Charlotte Anne Finnell Neal WMA"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside",
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 493.8 ac)",
    "when": "2026-10-29"
   },
   "US-4419": {
@@ -6722,9 +6745,10 @@
   },
   "US-6454": {
    "alias": [
-    "El Capitán State Beach"
+    "El Capitán State Beach",
+    "El Capitán SB"
    ],
-   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('El Capitán State Beach'); joins only with the POTA pin inside",
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('El Capitán State Beach'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2637.9 ac)",
    "when": "2026-10-29"
   },
   "US-6424": {
@@ -6743,9 +6767,10 @@
   },
   "US-2576": {
    "alias": [
-    "Greycliff Prairie Dog Town State Park"
+    "Greycliff Prairie Dog Town State Park",
+    "Greycliff Prairie Dog Town"
    ],
-   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Greycliff Prairie Dog Town State Park'); joins only with the POTA pin inside",
+   "why": "alias from the no-boundary hunt's LIKELY list (Oct 29): only spelling / accents differ ('Greycliff Prairie Dog Town State Park'); joins only with the POTA pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 97.1 ac)",
    "when": "2026-10-29"
   },
   "US-11849": {
@@ -6871,6 +6896,202 @@
    ],
    "why": "Oct 29 8:50 AM: Grand Canyon-Parashant NM is NOT the national park: the 'Grand Canyon National Park' record (3443) was a name-only join (the monument keeps its own BLM/NPS record)",
    "when": "2026-10-29"
+  },
+  "US-13081": {
+   "alias": [
+    "Ft. Toulouse Tract"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 254.3 ac)"
+  },
+  "US-10681": {
+   "alias": [
+    "Massey Mill Pond"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac)"
+  },
+  "US-3857": {
+   "alias": [
+    "Triangle Land Conservancy - Horton Grove Preserve"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 707.8 ac)"
+  },
+  "US-3859": {
+   "alias": [
+    "Triangle Land Conservancy - Johnston Mill Nature Preserve"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 292.5 ac)"
+  },
+  "US-7844": {
+   "alias": [
+    "Adams Nature Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1460.3 ac)"
+  },
+  "US-3950": {
+   "alias": [
+    "LAKE LAUDERDALE WATERFOWL REFUGE"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 649.8 ac)"
+  },
+  "US-6608": {
+   "join": [
+    "Gene Howe WMA-W.A. (Pat) Murphy"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin 1 m from the edge; 874.0 ac)"
+  },
+  "US-13516": {
+   "alias": [
+    "Horseshoe Lake"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1.6 ac)"
+  },
+  "US-3157": {
+   "alias": [
+    "Bay View State Park"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 65.3 ac)"
+  },
+  "US-12115": {
+   "alias": [
+    "Sattitla Highlands National Monument"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 229620.3 ac)"
+  },
+  "US-12255": {
+   "alias": [
+    "Rock Creek Recreation Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 14941.2 ac)"
+  },
+  "US-0661": {
+   "alias": [
+    "Gulf Islands National Seashore"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 64219.1 ac)"
+  },
+  "US-4390": {
+   "alias": [
+    "Newberry National Volcanic Monument"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57031.9 ac)"
+  },
+  "US-12271": {
+   "alias": [
+    "Telford Recreation Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 10988.1 ac)"
+  },
+  "US-5837": {
+   "alias": [
+    "Labyrinth Canyon"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 59799.9 ac)"
+  },
+  "US-11873": {
+   "join": [
+    "Iron Forks Lake"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin 8 m from the edge; 304.1 ac)"
+  },
+  "US-13101": {
+   "alias": [
+    "Westerkamp Wildlife Managment Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 101.0 ac)"
+  },
+  "US-4188": {
+   "alias": [
+    "Bryan (Eunice Hamilton) Nature Preserve"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
+  },
+  "US-6395": {
+   "alias": [
+    "SASSAFRASS NRMA"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1173.2 ac)"
+  },
+  "US-10477": {
+   "alias": [
+    "Virtue Flat OHV Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 4572.6 ac)"
+  },
+  "US-12143": {
+   "alias": [
+    "Red Wash (AKA Devils Playground)"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1892.1 ac)"
+  },
+  "US-6019": {
+   "alias": [
+    "Onagui"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 505466.7 ac)"
+  },
+  "US-6042": {
+   "alias": [
+    "Knolls ORV"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40073.9 ac)"
+  },
+  "US-4250": {
+   "alias": [
+    "Capital Springs Centennial SP And RA"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 40.2 ac)"
+  },
+  "US-10828": {
+   "alias": [
+    "Quebec 01 MAF"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 5.8 ac)"
+  },
+  "US-10845": {
+   "alias": [
+    "South Fork Shoshone River-Houlihan/Bobcat"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57.3 ac)"
+  },
+  "US-10853": {
+   "join": [
+    "South Fork Shoshone River-Cody Canal"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin 14 m from the edge; 71.1 ac)"
+  },
+  "US-10319": {
+   "alias": [
+    "S. Scalp Creek Recreation Area"
+   ],
+   "when": "2026-10-29",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 301.4 ac)"
   }
  }
 }
