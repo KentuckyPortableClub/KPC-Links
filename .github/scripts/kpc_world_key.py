@@ -127,6 +127,16 @@ SRC['AU'] = SRC['AU'] + [('VIC DEECA state forests', 'arcgis', 'https://enterpri
                          ('WA DBCA state forests (legislated lands)', 'arcgis', 'https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15', ["leg_category='State Forest'"])]
 SRC['PL'] = SRC['PL'] + [('Śląskie ORSIP nature and landscape complexes (GDOŚ register)', 'arcgis', 'https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5')]
 SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10)', 'a10n', 'https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip')]
+# Oct 30 (chat 2, Brandon 9:48 'Yes'): approved world layers (chat 11 YES / chat 10 AUTO-2), wired by kpc_key_layers.py (BOT W)
+# into data/world-key/extra-layers.json {CC: [{label, url, where?}]}; ArcGIS layers only, a URL already listed above is skipped.
+try:
+    for _cc, _ls in (json.load(open('data/world-key/extra-layers.json')).get('countries') or {}).items():
+        _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
+        for _l in _ls:
+            _u = str(_l.get('url') or '').rstrip('/')
+            if _u and _u.lower() not in _have: SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
+except FileNotFoundError: pass
+except Exception as _e: print(f'::notice title=World key::extra-layers.json not read: {_e}', flush=True)  # noqa: BLE001
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 

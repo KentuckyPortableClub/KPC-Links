@@ -3,6 +3,7 @@ name: KPC world answer key
 on:
   schedule:
     - cron: '17 11 3 * *'   # monthly
+    - cron: '7 10 * * *'    # nightly, ONLY the countries BOT W wired a new approved layer for (data/world-key/answers-countries.txt)
   workflow_dispatch:
     inputs:
       pin_join:
@@ -19,20 +20,32 @@ jobs:
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v5
+      - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
+        env:
+          SCHED: ${{ github.event.schedule }}
+        run: |
+          if [ "$SCHED" = "7 10 * * *" ]; then
+            L=$(cat data/world-key/answers-countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
+            if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layers for: $L"; fi
+          fi
       - name: Read the moved data from KPC-Data (Step B, read only)
+        if: ${{ env.SKIP != '1' }}
         run: bash .github/scripts/kpc_overlay.sh
       - name: Build
+        if: ${{ env.SKIP != '1' }}
         env:
           COUNTRIES: ${{ inputs.countries }}
           PIN_JOIN: ${{ inputs.pin_join }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
+          [ -n "$NIGHT_LIST" ] && COUNTRIES="$NIGHT_LIST"
           ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU}"
           for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || echo "::notice title=World key $c::stopped with an error (see the traceback above)"; done
       - name: Save
-        if: always()
+        if: ${{ always() && env.SKIP != '1' }}
         run: |
+          if [ -n "$NIGHT_LIST" ]; then : > data/world-key/answers-countries.txt; git add data/world-key/answers-countries.txt; fi   # tonight's list done
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/world-key

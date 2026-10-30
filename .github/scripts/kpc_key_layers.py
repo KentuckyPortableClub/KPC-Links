@@ -43,7 +43,10 @@ def main():
     D = data_dir()
     if D is None: print('::notice title=Layer wiring::no KPC-Data checkout: nothing wired'); return
     src = [p for p in (D / 'data/waiting/questions/layers.json', D / 'data/intake/queue.json', D / 'data/intake/ready.json') if p.exists()]
-    rows = [r for p in src for r in rows_of(load(p, {}))]
+    rows = []
+    for p in src:
+        for r in rows_of(load(p, {})):
+            r['_intake'] = 'intake' in str(p); rows.append(r)
     # Oct 30 9:45 AM (chat 10 AUTO-2): an intake READY row with approved: true counts as a YES; its name field is in probe.name_field
     for r in rows:
         if r.get('approved') is True and not r.get('answer'): r['answer'] = 'YES'; r['checked_by'] = r.get('approved_by') or 'auto (AUTO-2)'
@@ -55,14 +58,24 @@ def main():
     for f in ('data/us-key/layers.json', 'data/ca-key/layers.json', '.github/scripts/kpc_canada_bounds.py', '.github/scripts/kpc_us_key.py'):
         try: known += open(f).read().lower()
         except Exception: pass  # noqa: BLE001
-    added, skipped, states = [], [], set()
+    WX = load('data/world-key/extra-layers.json', {}); WC = WX.setdefault('countries', {})
+    wknown = (open('.github/scripts/kpc_world_key.py').read().lower() if os.path.exists('.github/scripts/kpc_world_key.py') else '')
+    added, skipped, states, provs, ccs = [], [], set(), set(), set()
     for r in rows:
         if str(r.get('answer') or '').strip().upper() != 'YES': continue
         url = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
+        area = str(r.get('area') or '').strip().upper()
+        # Oct 30 (Brandon 9:48 'Yes'): an intake row whose area is a bare country code (GB, AU, NZ…) is a WORLD layer
+        if r.get('_intake') and re.fullmatch(r'[A-Z]{2}', area) and not r.get('st'):
+            if not re.search(r'/(MapServer|FeatureServer)/\d+$', url, re.I): skipped.append(f"{area} not a layer URL: {url[:80]}"); continue
+            if url.lower().split('://')[-1] in wknown or any(str(x.get('url')).rstrip('/').lower() == url.lower() for x in WC.get(area, [])): continue
+            WC.setdefault(area, []).append({'label': str(r.get('title') or r.get('publisher') or area + ' official layer')[:80], 'url': url,
+                                            'name_field': str(r.get('name_field') or ''), 'credit': str((r.get('terms') or {}).get('credit') or '')[:200],
+                                            'note': f"wired by kpc_key_layers.py {dt.date.today()}: {r.get('checked_by') or 'chat 11'} YES"})
+            added.append(f'{area} (world) {url[-50:]}'); ccs.add(area); continue
         st = st_of(r)
-        if not st or (st not in US and not str(r.get('area') or r.get('st') or '').upper().startswith('CA')):
-            if str(r.get('area') or '').upper()[:2] not in US: skipped.append(f"{r.get('area') or r.get('ref')} world layer: the world key reads it, not state-gis"); continue
-            skipped.append(f"{r.get('ref')} no state"); continue
+        if area.startswith('US-') and st not in US: st = ''
+        if not st: skipped.append(f"{r.get('ref') or area} no state"); continue
         if not re.search(r'/(MapServer|FeatureServer)/\d+$', url, re.I): skipped.append(f"{st} not a layer URL: {url[:80]}"); continue
         if url.lower() in have: continue
         if url.lower().split('://')[-1] in known: skipped.append(f"{st} already read by the key: {url[-50:]}"); continue
@@ -73,12 +86,16 @@ def main():
                                      'host': 'agency', 'lic': str(r.get('licence') or r.get('lic') or 'see layer'),
                                      'note': f"wired by kpc_key_layers.py {dt.date.today()}: chat 11 YES ({r.get('checked_by') or 'chat 11'}); park {r.get('ref') or '-'}"})
         have.add(url.lower()); added.append(f'{st} {url[-50:]}')
-        if st in US: states.add(st)
+        if st in US and not area.startswith('CA-'): states.add(st)
+        else: provs.add(st)
     if added:
         json.dump(sg, open('data/state-gis.json', 'w'), indent=1, ensure_ascii=False)
-        p = pathlib.Path('data/us-key/answers-states.txt')
-        old = set(p.read_text().split()) if p.exists() else set()
-        p.write_text(' '.join(sorted(old | states)) + '\n')
+        # each key's 'rebuild tonight' list: US states (BOT B), Canada provinces (nightly Canada run), world countries (nightly world run)
+        for f, new in (('data/us-key/answers-states.txt', states), ('data/ca-key/answers-provinces.txt', provs), ('data/world-key/answers-countries.txt', ccs)):
+            if not new: continue
+            p = pathlib.Path(f); old = set(p.read_text().split()) if p.exists() else set()
+            p.write_text(' '.join(sorted(old | new)) + '\n')
+        if ccs: json.dump(WX, open('data/world-key/extra-layers.json', 'w'), indent=1, ensure_ascii=False)
     print(f"::notice title=Layer wiring::{len(added)} layer(s) wired" + (f": {'; '.join(added[:6])}" if added else '') +
           (f"; skipped {len(skipped)}: {'; '.join(skipped[:4])}" if skipped else ''))
 

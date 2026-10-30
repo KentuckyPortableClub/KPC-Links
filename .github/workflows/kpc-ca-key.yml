@@ -3,6 +3,7 @@ name: KPC Canada answer key
 on:
   schedule:
     - cron: '43 10 2 * *'   # monthly
+    - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
   workflow_dispatch:
     inputs:
       saved:
@@ -21,11 +22,21 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5
+      - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
+        env:
+          SCHED: ${{ github.event.schedule }}
+        run: |
+          if [ "$SCHED" = "49 9 * * *" ]; then
+            L=$(cat data/ca-key/answers-provinces.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
+            if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::new approved layers for: $L"; fi
+          fi
       - name: Read the moved data from KPC-Data (Step B, read only)
+        if: ${{ env.SKIP != '1' }}
         run: bash .github/scripts/kpc_overlay.sh
       - name: Build the Canada answer key
+        if: ${{ env.SKIP != '1' }}
         env:
-          GEO_CACHE_MODE: ${{ inputs.saved && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ (inputs.saved || github.event.schedule == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
           GH_TOKEN: ${{ github.token }}
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         run: |
@@ -37,7 +48,7 @@ jobs:
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true
       - name: Keep the saved copy current (a full read that finished)
-        if: ${{ !inputs.saved }}
+        if: ${{ env.SKIP != '1' && !inputs.saved && github.event.schedule != '49 9 * * *' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -45,18 +56,21 @@ jobs:
           # Oct 27: the release copy was from Oct 22, so a 'saved' build lost 169 joins (undone). Upload after every good full read.
           if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || true; fi
       - name: Save outline files for joined parks that have none (never overwrites)
+        if: ${{ env.SKIP != '1' }}
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
       - name: Review issue
+        if: ${{ env.SKIP != '1' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_ca_key_issue.py
       - name: Save
-        if: always()
+        if: ${{ always() && env.SKIP != '1' }}
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
         # Only this bot's own status file (the others belong to other bots; kpc_state_links.json is KPC-Data's)
         env:
           STRICT: '1'
         run: |
+          if [ -n "$NIGHT_LIST" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done
           bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds
