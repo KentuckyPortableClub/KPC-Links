@@ -7572,7 +7572,7 @@
     ]
    },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'George Washington' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'George Washington' = YES (chat 11, rechecked by chat 2) · Oct 29 7:35 PM chat 11: held R-G8 piece YES"
   },
   "US-2955": {
    "join": [
@@ -7935,7 +7935,7 @@
      3071
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Sangchris Lake State Resource Area' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Sangchris Lake State Resource Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES",
    "when": "2026-10-29"
   },
   "US-10237": {
@@ -8198,7 +8198,7 @@
      79
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES",
    "when": "2026-10-29"
   },
   "US-5713": {
@@ -9287,11 +9287,11 @@
    "when": "2026-10-29"
   },
   "US-11981": {
-   "no": [
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: only the Buenos Aires NWR / Arivaca land, a different unit · 7:35 PM chat 11: YES 'Arivaca Land and Lake' 208 ac (the earlier NO was the Buenos Aires NWR only)",
+   "when": "2026-10-29",
+   "join": [
     "167506"
-   ],
-   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: only the Buenos Aires NWR / Arivaca land, a different unit",
-   "when": "2026-10-29"
+   ]
   },
   "US-6409": {
    "no": [
