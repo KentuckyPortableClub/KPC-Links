@@ -5,15 +5,6 @@
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "AZ GA LA MS NM RI VT"
-   },
-   "why": "US outlines, live refresh: AZ GA LA MS NM RI VT",
-   "every": 14,
-   "next": "2026-10-30T06:00+00:00"
-  },
-  {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
     "states": "CA HI MA MT NV SC WA"
    },
    "why": "US outlines, live refresh: CA HI MA MT NV SC WA",
@@ -81,6 +72,15 @@
    "why": "US outlines, live refresh: AR FL KS MO NJ PA VA",
    "every": 14,
    "next": "2026-11-11T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AZ GA LA MS NM RI VT"
+   },
+   "why": "US outlines, live refresh: AZ GA LA MS NM RI VT",
+   "every": 14,
+   "next": "2026-11-13T06:04+00:00"
   }
  ]
 }
