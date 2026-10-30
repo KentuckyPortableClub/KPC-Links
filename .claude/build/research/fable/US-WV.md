@@ -1,4 +1,5 @@
 # Fable book: US-WV (27 rows, 14 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. chat 9 parcels: Bowden, Edray, Ridge hatcheries + Forks of the Coal = 4b candidates (owner = agency) WAITING chat 11 yes/no, then chat 2 trace. WV portals listed in the desk file.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-WV.md
 
 | park | name | source found | Rule G step | result | by chat | date |

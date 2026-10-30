@@ -1,4 +1,5 @@
 # Fable book: US-GA (27 rows, 11 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Dames Ferry + Little White House maps show no boundary (pin). Blue Ridge/Nottely (TVA) + Fort Foster pages not read yet.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-GA.md
 
 | park | name | source found | Rule G step | result | by chat | date |

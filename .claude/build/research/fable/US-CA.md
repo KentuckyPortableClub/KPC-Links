@@ -1,4 +1,5 @@
 # Fable book: US-CA (17 rows, 10 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. step 0 + address rows done; Tijuana via CA State Parks viewer; Hearst San Simeon address = nearby office. WAITING P-2 reading.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-CA.md
 
 | park | name | source found | Rule G step | result | by chat | date |

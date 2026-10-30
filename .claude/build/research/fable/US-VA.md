@@ -1,4 +1,5 @@
 # Fable book: US-VA (6 rows, 4 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Frontier Culture Museum (US-9931) + Dyke Marsh (US-9961): address/GPS done; Dyke Marsh NPS map PDF found (picture, link kept); WAITING P-2 reading / NPS legal boundary check.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-VA.md
 
 | park | name | source found | Rule G step | result | by chat | date |

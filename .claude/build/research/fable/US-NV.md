@@ -1,4 +1,7 @@
 # Fable book: US-NV (207 rows, 69 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (68; most POTA links are 4x4/tourist sites, not official). NV State Parks layer found -> WAITING chat 9 pin test; NDOW WMA layer not found.
+LAYER | Nevada_State_Parks_Boundaries | https://www.arcgis.com/sharing/rest/content/items/78c4374b9fff4c1b95d7df2cdf918491?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | Surface Management Agency (ownership fallback, step 4b) | https://www.arcgis.com/sharing/rest/content/items/477120345045499b988d0f3734b18faa?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-NV.md
 
 | park | name | source found | Rule G step | result | by chat | date |

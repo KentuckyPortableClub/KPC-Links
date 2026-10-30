@@ -1,4 +1,5 @@
 # Fable book: US-IL (20 rows, 10 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Rauchfuss Hill + Copperhead Hollow: official lines in IDNR PDFs (picture maps: pin, link kept). Ray Norbut: pin ~40 km off its map = grey area to raise. North Point = marina drawing (not usable).
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-IL.md
 
 | park | name | source found | Rule G step | result | by chat | date |

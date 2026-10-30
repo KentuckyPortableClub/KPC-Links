@@ -1,4 +1,5 @@
 # Fable book: US-TX (34 rows, 23 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. 11 THC historic sites: step 0 + page look-up read; rows + why-not tags in the desk file. WAITING P-2 reading.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-TX.md
 
 | park | name | source found | Rule G step | result | by chat | date |

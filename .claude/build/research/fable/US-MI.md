@@ -1,4 +1,11 @@
 # Fable book: US-MI (38 rows, 19 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (16). MI DNR layers found (LAYER lines below) -> WAITING chat 9 pin-in-polygon test (state forests vs Forest Management Units; harbors vs DNR Managed Sites). Harbor pages 404 (no addresses yet).
+LAYER | Michigan DNR Forest Management Units | https://www.arcgis.com/sharing/rest/content/items/448967a78d3a4555beaf01f9758a44d9?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | DNR Managed Sites (harbors?) | https://www.arcgis.com/sharing/rest/content/items/a46f4574972e4e98975ae6980220ad10?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | Michigan DNR Wildlife Management Units | https://www.arcgis.com/sharing/rest/content/items/52d906e14ef24af9ae4e7273cf140478?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | DNRManagementBoundariesOPENDATA | https://www.arcgis.com/sharing/rest/content/items/876d19a2df964cee99b90a762d822061?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | Michigan DNR Project Boundaries | https://www.arcgis.com/sharing/rest/content/items/ca1937dd369049f2b700504dd4cca11e?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | DNRLOTSParcelsOPENDATA (parcels, step 4b) | https://www.arcgis.com/sharing/rest/content/items/01fdcbcb99d74265aa6a9147a5fdc7f9?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-MI.md
 
 | park | name | source found | Rule G step | result | by chat | date |

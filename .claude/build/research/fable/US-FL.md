@@ -1,4 +1,5 @@
 # Fable book: US-FL (25 rows, 11 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. 7 parks (US-12121, 12123, 12125, 12132, 12130, 12134, 8719): official SFWMD map outlines -> WAITING chat 2 trace (from GIS, not the picture). Choctawhatchee + STA 3/4: no park map yet.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-FL.md
 
 | park | name | source found | Rule G step | result | by chat | date |

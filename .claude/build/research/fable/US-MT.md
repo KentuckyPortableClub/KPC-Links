@@ -1,4 +1,5 @@
 # Fable book: US-MT (16 rows, 9 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Big Springs + Jocko hatcheries: official FWP PDF lines found (picture maps, G-ID3: pin, link kept). Brownes Bridge + Thibodeau = grey areas G-MT1 / G-MT2 (lean YES) WAITING Brandon/HQ ruling.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-MT.md
 
 | park | name | source found | Rule G step | result | by chat | date |

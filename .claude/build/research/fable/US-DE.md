@@ -1,4 +1,5 @@
 # Fable book: US-DE (17 rows, 8 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. step 0 done; DE State Parks pages blocked (403) -> WAITING a bot look-up of the park pages.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-DE.md
 
 | park | name | source found | Rule G step | result | by chat | date |

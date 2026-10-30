@@ -1,4 +1,5 @@
 # Fable book: US-HI (6 rows, 4 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Artillery District (US-10923): P-2 no polygon at pin; NRHP 64000142 record + map found; WAITING NRHP map read / parcel. Address/GPS table in the desk file.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-HI.md
 
 | park | name | source found | Rule G step | result | by chat | date |

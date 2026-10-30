@@ -1,4 +1,6 @@
 # Fable book: US-UT (51 rows, 17 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (17). Only 'Utah Parks Local' (city/county) found; no state-park or DWR WMA layer yet. Butch Cassidy GPS 38.144603,-112.304386. WAITING chat 9 pin test + agency layer search.
+LAYER | Utah Parks Local (city/county parks only) | https://www.arcgis.com/sharing/rest/content/items/818536733987486b8082e4c5dec0a1dd?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-UT.md
 
 | park | name | source found | Rule G step | result | by chat | date |

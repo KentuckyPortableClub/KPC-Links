@@ -1,4 +1,5 @@
 # Fable book: US-RI (4 rows, 2 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Hillsdale (US-10545): pin only inside deCoppet Preserve 1,825 ac (container, no shared name) -> needs Richmond RI town parcel (45 ac, DEM); parcel look-up NOT filed (format unknown to chat 3).
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-RI.md
 
 | park | name | source found | Rule G step | result | by chat | date |

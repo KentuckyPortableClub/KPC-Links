@@ -1,4 +1,9 @@
 # Fable book: US-WA (61 rows, 20 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (20; 18 link to WA DNR). DNR forest pages = trail PDFs only (picture); DNR 'Go! Map' (dnr.wa.gov/go) is the lead. Layers below -> WAITING chat 9 pin test.
+LAYER | Parks Administrative Boundaries (WA State Parks) | https://www.arcgis.com/sharing/rest/content/items/ca1e60b4384f491383adf6b37b4f1a94?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | Wildlife Areas (WDFW) | https://www.arcgis.com/sharing/rest/content/items/54642c30a0f842f2b8603976b5625678?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | Water Access Sites - Boundaries (WDFW) | https://www.arcgis.com/sharing/rest/content/items/88b13ca5a1e3417fbe528152fc7aff04?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
+LAYER | WA RCO Public Lands Inventory 2019 (all state lands; best lead for DNR sites) | https://www.arcgis.com/sharing/rest/content/items/d296b58b0eae485fba2c55ab90e5908d?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-WA.md
 
 | park | name | source found | Rule G step | result | by chat | date |

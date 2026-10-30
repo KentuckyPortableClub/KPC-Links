@@ -1,4 +1,5 @@
 # Fable book: US-ND (126 rows, 42 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (42): no usable map in our docs (36 none, 6 generic pages). WAITING P-2 reading + page look-ups.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-ND.md
 
 | park | name | source found | Rule G step | result | by chat | date |

@@ -1,4 +1,6 @@
 # Fable book: US-OR (54 rows, 18 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (18). 7 ODFW hatchery addresses found (Klaskanine address conflict: Astoria vs Clatskanie); no hatchery layer -> needs-parcel by county. Oregon State Parks layer found -> WAITING chat 9 pin test. ODF forest maps = picture maps.
+LAYER | Oregon State Parks (boundaries, GEOHub) | https://www.arcgis.com/sharing/rest/content/items/c1d937bae66e41068721f4474a8811a6?f=json | found by chat 3 Oct 29-30 | not yet tested against the pins
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-OR.md
 
 | park | name | source found | Rule G step | result | by chat | date |

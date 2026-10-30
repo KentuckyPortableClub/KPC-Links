@@ -1,4 +1,5 @@
 # Fable book: US-IA (4 rows, 2 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Teal Basins (US-9334) name+pin match to 'Teal Basins WPA' 151 ac (USFWS) -> WAITING chat 2 trace -> chat 11 yes/no. Other IA rows: step 0 + P-2 done.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-IA.md
 
 | park | name | source found | Rule G step | result | by chat | date |

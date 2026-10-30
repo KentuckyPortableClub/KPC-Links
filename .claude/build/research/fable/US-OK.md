@@ -1,4 +1,5 @@
 # Fable book: US-OK (93 rows, 31 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. Step 0 done (31): 16 have a usable map in our docs (names the park), 15 none. WAITING P-2 reading.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-OK.md
 
 | park | name | source found | Rule G step | result | by chat | date |

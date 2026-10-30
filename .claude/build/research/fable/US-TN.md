@@ -1,4 +1,5 @@
 # Fable book: US-TN (24 rows, 16 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. TDEC state-park boundary polygons exist (may hold Cherokee Trail of Tears); natural areas are points only; TWRA lakes no layer. tn.gov pages 403. WAITING P-2 reading.
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-TN.md
 
 | park | name | source found | Rule G step | result | by chat | date |

@@ -1,4 +1,5 @@
 # Fable book: US-WI (44 rows, 27 parks)
+HANDOFF (chat 3, Oct 30): Fable work moves to CHAT 8. 10 parks have WI DNR maps in our docs; 4 Widen PDFs (Kohler-Andrae, Fenley, KMSF North, Love & Strutt) seen by Brandon = named picture maps (pin, link kept; save-map request when chat 10's tool exists). Johnson->Deer Park, Sette->New Richmond renames sent to chat 2. NEXT: test the 12 pins against WI DNR LF_DNR_MGD_PROPERTY + LF_DNR_PUBLIC_LAND (HQ Oct 29 9:12 PM).
 ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-WI.md
 
 | park | name | source found | Rule G step | result | by chat | date |
