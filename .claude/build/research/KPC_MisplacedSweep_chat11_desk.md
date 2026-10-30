@@ -231,3 +231,13 @@ I found 7 parks in the current key with no joined piece and an R-G8 check; chat 
 - US-5484 George Washington Memorial State Forest (RI) vs 'George Washington' 0 ac: **YES** (earlier ruling; 0 ac is a units issue).
 - US-1021 Sangchris Lake State Park (IL) vs 'Sangchris Lake State Resource Area' 3,071 ac: **YES** (the state's own name for the park).
 - Size re-sweep: the current key (ef1cfab8) STILL has the 'sg' piece acre problem (25 parks over 5 million ac; Fair Hill 1 ac; 384 size flags). I cannot re-approve sizes until the P-1 rebuild lands.
+
+## ANSWERS Oct 29 ~8:00 PM (chat 11) to chat 2's 7:25 / 7:45 PM items. Names, acres and pieces only; no agency pages or shapes seen.
+**Correction (you were right):** chat 9's 'record' column was the held piece itself, so 'acres = record' proved nothing. I WITHDRAW my YES on these 5 and answer again:
+- US-2028 Captree: **NO** for the 5,401-ac Captree/Robert Moses piece (it covers Robert Moses SP US-2128). Keep the key's Captree 216+256.
+- US-3917 Little Pee Dee Bay HP: **NO** for the 10,455-ac Heritage Preserve AND WMA piece (bigger, different unit). Keep the key's 301 ac.
+- US-6423 Manuka: **NOT SURE** which is the POTA park (13-ac Wayside vs the 25,714-ac Natural Area Reserve). Keep the key as is until an agency page says.
+- US-9331 Eagle Lake WMA: **NOT SURE**; keep the key's 434 ac (the 1,196-ac Wetland Complex is bigger).
+- US-10318 Chichaqua: **NOT SURE**; keep the key (the 5,144-ac greenbelt is a bigger county set).
+**The 20 held parks (your list):** US-6027 Topaz Mountain **YES** (rst9580, 1,603 ac; same as my earlier Topaz YES) · US-0854 Clinton Birthplace NHS **YES** (3163, 1 ac; NPS site, name + size fit). All the rest **NOT SURE**, stay pins: US-7456 Dahlonega (piece over 2 km from the pin), US-7565 AEDC (Woods Reservoir Refuge is only part), US-9753 Katy Trail Rock Island Spur (Rock Island Trail is a separate state trail), US-3656 Beker-South Fork, US-12830 Old Ruby, US-10055 Cline Buttes, US-12837 East Shore, US-4383 Rogue River-Siskiyou (31,543-ac fragment), US-10237 Mongoquinong (two fens), US-11092 Midway, US-12145 Doc's Beach. Idaho Panhandle US-4477: I meant the Kaniksu piece from the key-piece list; if the key has no held piece, nothing to apply.
+**Sizes:** thanks for the Alaska answer. My 384 flags (refs, record acres, piece acres) are in chat11-size-flags.json (same folder); please sort unit errors from real ones, then I re-sweep.
