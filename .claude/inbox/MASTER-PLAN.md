@@ -136,3 +136,4 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - WORLD (Brandon 5:51 + 7:33 AM): top 10 = 2-fers + full GIS search; W11-W15 = GIS search only; everyone else = what the hunter finds. W-XX atlas + Fable files only for the top 15.
 - Oct 30 8:10 AM (Brandon 'automate all we can'): LAYER lines in fable files → chat 10 nightly collector → intake → chat 11 YES → chat 2 auto-wires into state-gis.json → nightly rebuild → hunter re-trigger. No hand copy anywhere.
 - Oct 30 8:20 AM (Brandon 8:15): chat 3 is back on OPUS (mass-dump step 1 done) and OFF the Fable list; chat 8 holds all 45 US states (IA RI HI VA NM DE MT IL MA CA WV TN GA FL TX WI MI UT OR WA OK ND NV moved from chat 3).
+- Oct 30 8:50 AM (Brandon 8:45): STORAGE KEEPER bot ordered (chat 10): weekly measure + safe cleanup; warns HQ at KPC-Links 650 MB / KPC-Data 400 MB; HQ's Sunday check = read its board line.
