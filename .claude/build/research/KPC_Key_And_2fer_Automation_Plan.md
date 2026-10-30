@@ -10,7 +10,8 @@ Written by Fable, Oct 29 2026 11:05 PM, on Brandon's order ("Write instructions 
   chat 11's own answers via the ledger, 15 from layers / code). Tested on tonight's held build vs live: +51 outlined / 1 lost / 368
   piece changes / 37 grade changes, 74 KB. The copy now also runs at 01:41 UTC (8:41 PM CDT) so a day's rebuild reaches chat 11 the
   same night. KPC-Data e929c853.
-- BOT D = chat 10 (asked 11:20 PM: nightly release-approved timer + 2-fer trigger after a key release).
+- BOT B TEST PASSED: run 41002310689 (RI DE) green in 2 minutes; only US-DE.json, index.json, changed-parks.json changed, the other 48 state files untouched.
+- BOT D DONE (chat 10, KPC-Data 8b77a3b6): nightly release-approved 11:13 UTC, a YES is used once, a released key writes data/waiting/released-key.json and dispatches kpc-fers-pending.yml (force) = BOT E. ALL SIX PIECES DONE Oct 29 11:30 PM.
 - BOT E DONE: `kpc-fers-pending.yml` now remembers the LIVE key's pieces per park (`data/fers/key-seen.json`, first run only
   remembers) and queues every park whose LIVE outline changed, its own state as one area (1/3-size), only for states in
   `data/fers/new-key-states.json` (waves 1 + 2 = 15 states; chat 2 adds each new wave's states); a key change runs at once (no 5-park
