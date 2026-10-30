@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 30 6:47 AM) HOLD: NO CHANGES TO THE GIS HUNTER OR THE WORLD FINDER FOR AT LEAST A WEEK (Brandon 6:45 AM: 'both was tuned by Fable this morning, no changes, let it go for at least a week' → until Fri Nov 6).** CANCEL items 1 (hunter step B additions) and 2 (INSPIRE CSW + page reader) of HQ's 6:55 AM audit order: write them down as 'after Nov 6, if the week's numbers say so'. Items 3 (detective 'gaps' off) and 4 (discovery rerun or retire) do not touch those two bots and stay. Let both run as tuned and keep their weekly numbers (questions asked, YES rate, new layers) for the review.
 - **FROM HQ (Oct 30 6:55 AM) FABLE AUDIT, SPEED-UPS + AUTOMATION (Brandon 6:32 AM: 'figure out ways to speed things up and automate, look at all Fable's notes and files and make sure we are doing them'; HQ audited all 14 Fable docs against the repos): YOURS:**
   1. **GIS hunter step B is thin:** add, in Fable's order: state open-data portals / ArcGIS Hub search, walking the agency's own ArcGIS server folders, grouping by agency (P-4) with an agencies.json cache, and the county-parcel step (P-3). Official hosts only; tiers T-1..T-6 on every hit.
   2. **World finder:** build the INSPIRE CSW finder (one pattern, 32 EU/EEA countries + UK) and the agency-page reader (finder 5); then continue stage 1 past the 5 countries started.
