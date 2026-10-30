@@ -42,18 +42,30 @@ def st_of(r):
 def main():
     D = data_dir()
     if D is None: print('::notice title=Layer wiring::no KPC-Data checkout: nothing wired'); return
-    src = [p for p in (D / 'data/waiting/questions/layers.json', D / 'data/intake/queue.json') if p.exists()]
+    src = [p for p in (D / 'data/waiting/questions/layers.json', D / 'data/intake/queue.json', D / 'data/intake/ready.json') if p.exists()]
     rows = [r for p in src for r in rows_of(load(p, {}))]
+    # Oct 30 9:45 AM (chat 10 AUTO-2): an intake READY row with approved: true counts as a YES; its name field is in probe.name_field
+    for r in rows:
+        if r.get('approved') is True and not r.get('answer'): r['answer'] = 'YES'; r['checked_by'] = r.get('approved_by') or 'auto (AUTO-2)'
+        if not r.get('name_field') and isinstance(r.get('probe'), dict): r['name_field'] = r['probe'].get('name_field') or r['probe'].get('nameField') or ''
     sg = load('data/state-gis.json', {}); S = sg.setdefault('states', {})
     have = {str(x.get('url', '')).rstrip('/').lower() for v in S.values() for x in v}
+    # a layer the keys already read another way (US layers.json, the Canada builder's own EXTRA list) is never added twice
+    known = ''
+    for f in ('data/us-key/layers.json', 'data/ca-key/layers.json', '.github/scripts/kpc_canada_bounds.py', '.github/scripts/kpc_us_key.py'):
+        try: known += open(f).read().lower()
+        except Exception: pass  # noqa: BLE001
     added, skipped, states = [], [], set()
     for r in rows:
         if str(r.get('answer') or '').strip().upper() != 'YES': continue
         url = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
         st = st_of(r)
-        if not st: skipped.append(f"{r.get('ref')} no state"); continue
+        if not st or (st not in US and not str(r.get('area') or r.get('st') or '').upper().startswith('CA')):
+            if str(r.get('area') or '').upper()[:2] not in US: skipped.append(f"{r.get('area') or r.get('ref')} world layer: the world key reads it, not state-gis"); continue
+            skipped.append(f"{r.get('ref')} no state"); continue
         if not re.search(r'/(MapServer|FeatureServer)/\d+$', url, re.I): skipped.append(f"{st} not a layer URL: {url[:80]}"); continue
         if url.lower() in have: continue
+        if url.lower().split('://')[-1] in known: skipped.append(f"{st} already read by the key: {url[-50:]}"); continue
         nm = str(r.get('name_field') or r.get('nm') or '').replace('name field:', '').strip()
         if not nm: skipped.append(f"{st} {url[-40:]} no name field"); continue
         kind = str(r.get('kind') or '').lower(); kind = kind if kind in KINDS else 'land'
