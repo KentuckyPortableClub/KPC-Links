@@ -28,6 +28,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .github/scripts/kpc_light_guard.py kpc-park-notes.json kpc-park-notes-us.json || true   # Oct 30 (Brandon 6:07 AM GO, HQ step C): shrank by half / a row twice = keep the saved copy + a line to chat 11
+          git add .claude/inbox/chat-11.md 2>/dev/null || true
           git add kpc-park-notes.json kpc-park-notes-form.json photos/notes 2>/dev/null || git add kpc-park-notes.json photos/notes
           if [ -e kpc-park-notes-us.json ]; then git add kpc-park-notes-us.json; fi
           if [ -e data/kpc-checks-notes.json ]; then git add data/kpc-checks-notes.json; fi

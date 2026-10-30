@@ -26,6 +26,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .github/scripts/kpc_light_guard.py kpc-special-events.json kpc-contests.json || true   # Oct 30 (Brandon 6:07 AM GO, HQ step C): shrank by half / a row twice = keep the saved copy + a line to chat 11
+          git add .claude/inbox/chat-11.md 2>/dev/null || true
           git add kpc-special-events.json kpc-contests.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update special event stations and contests'
