@@ -133,4 +133,4 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 ## RESEARCH LAYOUT + AUTOMATION (Oct 30 7:40 AM, Brandon 7:31 'do it all')
 - DONE: Fable book split = fable/US-XX.md (45) + CA-XX.md (13), one row per park; Agency Atlas seeded (agency-atlas/US-XX, CA-XX; W-XX for world as touched).
 - ORDERED: chat 2 BOT F reads 'STATE XX DONE' from the per-state file + new parks' states into the nightly rebuild; chat 10 look-up answer reuse (7 days) + new-park pipeline (hunter as tuned, no logic change before Nov 6); chat 9 writes probes into the atlas.
-- WORLD: GIS finding = in scope (boundaries + docs/maps). World 2-FERS (top 10 countries) = OUT of the Oct 29 8:33 AM scope: waiting on Brandon's yes before any work.
+- WORLD (Brandon 5:51 + 7:33 AM): top 10 = 2-fers + full GIS search; W11-W15 = GIS search only; everyone else = what the hunter finds. W-XX atlas + Fable files only for the top 15.
