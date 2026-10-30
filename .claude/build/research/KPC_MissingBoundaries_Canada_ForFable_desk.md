@@ -172,8 +172,6 @@ Read from KPC-Links data/ca-key (the current Canada key): 5,899 parks, 4,188 out
 ## RULES + LAYERS TO START (Fable, Oct 29 7:05 PM)
 Rule Sheet G applies unchanged; Canada reading rules R-GC1..R-GC8 and the starter layer list (✓ wired / ◯ to probe) are in notes/mapping.md under 'RULE SHEET G, CANADA'. Order: layer probing + wiring now (prep); R-G7 hand tracing after the US book is through the Opus + Fable passes (Brandon 5:28 PM).
 
-## WORK LOG BY PROVINCE
-Same row format as the US file: `| park | name | source found | Rule G step | result | by chat | date |`, one section per province, low to high: NU 14, PE 35, NT 51, AB 66, NL 67, SK 110, MB 89, YT 85, BC 129, NS 167, NB 243, ON 248, QC 407.
 
 ### chat 9 Canada P-2 rows, Oct 29 19:34 (HQ 7:05 PM; PREP only, no tracing; 9 of 51 requests answered so far)
 `| park | name | source found | Rule G step | result | by chat | date |`
@@ -941,3 +939,17 @@ Same row format as the US file: `| park | name | source found | Rule G step | re
 | CA-5791 | Sir Andrew MacPhail Homestead National Historic Site | look-up 9-cap2-pe-1 (PE key layers in data/ca-key/layers.json + CPCAD / federal) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 4 layers read (PE key layers + CPCAD); stays pin / no-layer | chat 9 | 2026-10-29 |
 | CA-6172 | Seacow Head Lighthouse National Heritage Site | look-up 9-cap2-pe-1 (PE key layers in data/ca-key/layers.json + CPCAD / federal) | R-G7 step 2 (point at the pin) | P-2 hit(s): Scallop Buffer Zone (SFA 22) ? ac [Protected and conserved area, Government of Canada]. LEAD only (a polygon at the pin is not a name match); pin unchanged | chat 9 | 2026-10-29 |
 
+## GIS LAYERS WE PULLED (Brandon Oct 29 8:17 PM: 'make sure there are places for them to leave what GIS layers we pulled'; EVERY agent adds one row per layer it probes, wires or finds dead; never delete others' rows)
+`| province / federal | layer name (agency) | URL (REST / WFS / download) | name field(s) EN / FR | licence line | status: wired ✓ / probed OK / probed DEAD / private (dropped) / to probe | which parks it covers (count or refs) | by chat | date |`
+| BC | Local and Regional Greenspaces (BC Map Hub) | https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39 | (see chat 9 lp1) | BC open licence | wired ✓ (staged) | regional + municipal parks | 2 / 9 | Oct 29 |
+| MB | Manitoba Provincial Forests v6 (Manitoba Maps) | https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer | (see chat 9 lp1) | OpenMB licence | wired ✓ (staged) | provincial forests | 2 / 9 | Oct 29 |
+(the 15 layers already in the key are listed in notes/mapping.md 'CANADA MAP LAYERS TO START' (✓); add a row here when you touch one)
+
+## WHY-NOT TAGS (R-G10 / R-GC8; chat 2 fills from data/ca-key/why-not.json after the Canada Rule G rebuild)
+One line per province: tag → count → refs (no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt).
+
+## ADDRESSES (chat 8 + chat 3; same rules as the US: official page only, note when the address / GPS is an office, not the park)
+`| park | name | address | GPS | official page | is it the park? (yes / office / town) | by chat | date |`
+
+## NOTES FROM AGENTS (anything that does not fit a row: a province's quirks, a dead host, a naming pattern, a question for Fable)
+`- <date> <chat>: <one or two lines>`
