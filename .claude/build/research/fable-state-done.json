@@ -83,5 +83,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "5 corrections found: US-10389 Hiwassee Dam Recreation Park and US-10399 Apalachia Reservoir Recreation Park both moved to TRACE CANDIDATE (exact or near-exact name matches to TVA dam/lake polygons, Reservoir/Lake treated as interchangeable kind words). US-10511 Jessups Mill Pond SGL recategorized no-layer to name-mismatch (a polygon exists, already explicitly ruled a different place). US-6837/US-6847/US-6852 (CSS Neuse, NC Transportation Museum, State Capitol SHS) flagged as already past needs-parcel -- parcel found, owner State of NC, awaiting chat 11 yes/no, not actually stuck. US-6963 Nutbush WMA moved from name-mismatch to pin-doubt (parcel at pin is privately owned by Wake Forest Land Associates II -- the pin itself may be mislocated). 8 of 26 open refs have no research trail, not re-verified."
+  },
+  "US-AR": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Biggest find yet: AR needs-parcel tags were stale -- chat 9 already ran the county parcel lookups and found real answers for most of them. 6 moved to TRACE CANDIDATE (owner confirmed as the parks own agency, Arkansas Game & Fish Commission mostly: US-11960, US-12753, US-12754, US-12762, US-12764, plus US-11355 out of name-mismatch). 5 moved to PIN-DOUBT (parcel owner is an unrelated private party -- LLC, family trust, or a different agency: US-11214, US-11394, US-11874, US-12093, US-7437). Only 3 of the original 13 needs-parcel tags still hold (US-11356, US-7444, US-7522). All handed to chat 2."
   }
 }

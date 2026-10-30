@@ -871,3 +871,29 @@ Read the full `fable/US-NC.md` detail (18 of NC's 26 tagged open parks have a re
 The remaining checked refs (US-10259, US-10263, US-10388, US-10398, US-12414, US-12662, US-3851, US-8010, US-8011, US-8226) confirmed correct as tagged. 8 of NC's 26 open refs (US-11238, US-12119, US-12371, US-13002, US-3863, US-10406, US-12320, US-3862, US-4577, US-8005) have no research trail in this file -- not individually re-verified, trusted absent contrary evidence.
 
 STATE NC DONE (with 3 trace candidates, 1 category fix, 1 pin-doubt upgrade, and a status-gap flag on 3 already-progressed parks)
+
+### AR — closing out (chat 8, Oct 30 2026)
+**Real finding, the biggest yet: roughly half of AR's "needs-parcel" tag is stale -- chat 9's parcel-level (P-3) lookups already ran and found real answers for most of them, but the summary tag was never updated to match.** Read the full `fable/US-AR.md` detail (every row that has an "AR"-suffixed follow-up row got an actual county-parcel answer, not just "needs-parcel" left standing):
+
+**5 move from needs-parcel to TRACE CANDIDATE** -- all Arkansas Game & Fish Commission-owned fish hatcheries/conservation areas where the county parcel search found the parcel owner IS the park's own agency, already marked "4b candidate: owner = the park's agency; chat 11 yes/no, then trace":
+- US-11960 Janet Huckabee Arkansas River Valley Nature Center (owner: Arkansas State Game & Fish Commission)
+- US-12753 Joe Hogan State Conservation Area (owner: Arkansas Game & Fish Commission)
+- US-12754 Andrew H. Hulsey State Fish Hatchery (owner: Arkansas Game & Fish Commission)
+- US-12762 Charlie Craig State Fish Hatchery (owner: Ark Game & Fish Comm)
+- US-12764 Jim Hinkle Spring River State Fish Hatchery (owner: Arkansas State Game & Fish Commission)
+
+**1 more moves the same way, out of name-mismatch rather than needs-parcel:**
+- US-11355 Cook's Lake Nature Center Nature Recreation Area (owner: Arkansas Game and Fish Foundation) -- same "4b candidate... chat 11 yes/no, then trace" status.
+
+**5 move from needs-parcel to PIN-DOUBT** -- the county parcel search found the pin sitting on land owned by an unrelated private party, not the park's agency, flagged by chat 9 as "pin-doubt / partner owner: not the park agency (R-G11); check pin":
+- US-11214 Highway 7 Rec Area (parcel owner: Maranatha Agriculture LLC)
+- US-11394 Muddy Creek WMA (parcel owner: Eigsti Marcus & Elida, a private couple)
+- US-11874 Tates Bluff Rec Area (parcel owner: Bacon Family Trust)
+- US-12093 Sugarloaf Mountain SRA (parcel owner: Arkansas State University -- a different state agency than the park's own, so not a match)
+- US-7437 Little Missouri River Access SRA (parcel owner: Rock N Eagles Nest LLC)
+
+**All 6 trace candidates and all 5 pin-doubts are handed to chat 2.** Only 3 of the original 13 needs-parcel tags hold up as still genuinely needs-parcel (US-11356 Ponca Nature Center, US-7444 Nimrood Lake River Road SRA, US-7522 Cherokee SRA -- all confirmed "no parcel at the pin" with no further progress).
+
+The rest of the file's refs (US-13229, US-7442, US-7525, US-12078, and the 26 no-layer + remaining name-mismatch refs without a parcel follow-up row) confirmed correct as tagged. The refs with no research trail in this file at all (most of the no-layer 26, since this file only details a subset) were not individually re-verified -- trusted absent contrary evidence.
+
+STATE AR DONE (with 6 trace candidates and 5 pin-doubts corrected out of needs-parcel/name-mismatch)
