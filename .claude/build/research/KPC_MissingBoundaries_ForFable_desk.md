@@ -364,6 +364,9 @@ STATE CT DONE
 | US-5716 | Bruce R. Watkins Cultural Heritage Center SP | our doc: no map | 3 -> 4b | Jackson County parcel | 8 | Oct 29 |
 | US-10575 | Walnut Woods CA | MDC news (opened): donated to City of Liberty Parks & Rec; our doc: no map | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
 | US-10576 | Rush Creek CA | MDC news (opened): donated to City of Liberty Parks & Rec | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
+| US-10575 / US-10576 | Walnut Woods CA / Rush Creek CA | Oct 30 chat 8: found MDC's own "Conservation Area Boundaries" polygon layer (still live, may still carry these two tracts even after the Sept 2025 City-of-Liberty donation -- MDC's own news release and third-party park listings still call them "Walnut Woods/Rush Creek Conservation Area, Liberty") at `https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5`; also found MDC's own boundary map PDFs for them (`mdc.mo.gov/.../7834map.pdf`, `.../8608map.pdf` -- need to match ref to map #). Not point-tested yet -- handing both the layer + the 2 pins to chat 9 for P-2. | 8 | Oct 30 |
+| US-5716 | Bruce R. Watkins Cultural Heritage Center SP | Oct 30 chat 8: found Missouri DNR's own state-lands boundary layer `https://gis.dnr.mo.gov/host/rest/services/boundary/modnr_land/MapServer` (official, state parks are DNR-owned) -- not point-tested yet, handing to chat 9 for P-2. | 8 | Oct 30 |
+| US-5715 | Roger Pryor Pioneer Backcountry SP | Oct 30 chat 8: same MoDNR state-lands layer as above is the candidate; also mostateparks trail-map PDFs exist but those are G-ID3 picture maps, link-kept only, never traced. Handing to chat 9 for P-2 against the DNR layer first. | 8 | Oct 30 |
 
 ### SC
 | park | name | source found | Rule G step | result | by chat | date |
