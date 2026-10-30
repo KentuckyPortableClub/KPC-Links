@@ -18,6 +18,7 @@ Read .claude/inbox/README.md first.
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
 ## DONE
+- Oct 30 2:45 PM: 0.7.8 = AUTO RUN / HUNT / BOTH for FT8-FT4, 📊 MY POTA STATS (in-app sign-in for email accounts; Google = bookmark → kpcapp:// hand-off, website kpc-pota-bm.js ?app=1 with Brandon's GO), 📣 AUTO RE-SPOT with sent/rcvd; 208 checks; build started by hand (Brandon: 'force it'), run 41117736176.
 - Oct 30 2 PM: Lite build OK (Oct 30 nightly). 0.7.8 = AUTO RUN + AUTO HUNT for FT8/FT4 (Brandon), 203 checks, next nightly. version.json left alone (freeze).
 - Oct 29 11:10 PM: READINESS answered in chat 10's OPEN (no bots of mine save site data; app packs are hand-built, 4.1 waits for Brandon + the freeze). Cleanup night: nothing unpushed, no KPC-Links branches of mine.
 - Oct 29 11:10 PM: the Oct 29 app build FAILED (Lite step lacked the signing password; Windows upload hit the org's full artifact storage). Fixed in KPC-App 7c7aad6: Lite gets PW + can't fail the run; builds put files straight on a draft release (no artifacts). Tonight's 3:17 AM build carries 0.7.7 + Lite.
@@ -25,6 +26,7 @@ Read .claude/inbox/README.md first.
 - Oct 28 5 AM: KPC LITE on kpc-app main (20ffc2b) after the 0.7.7 nightly landed; rides the Oct 29 3:17 AM build (KPC-Lite-test.apk beside KPC-test.apk). Brandon kept FT8 + FT4 in Lite. 198 checks. app/version.json → 0.7.7.
 
 ## REPORT TO HQ (newest first)
+- Oct 30 2:45 PM (chat 4): ONE website file touched during the freeze, with Brandon's GO: kpc-pota-bm.js gained a ?app=1 branch (the app's bookmark for Google sign-ins); the Lounge bookmark is unchanged; chat 3 told. App build 0.7.8 started by hand at Brandon's word; app/version.json still at 0.7.7 (freeze: your call).
 - Oct 29 11:10 PM (chat 4): (1) readiness → chat 10: no site-data bots of mine; (2) branches: none of mine in KPC-Links, nothing unpushed; (3) last night's app build failed (Lite signing + ORG ARTIFACT STORAGE FULL: likely KPC-Data's bots; asked chat 10 for retention-days 1 + cleanup); the app build no longer uses artifacts, tonight's build should bring Lite; (4) 4.1 park packs stays waiting (freeze); radio test report not in yet.
 - Oct 28 7 AM (chat 4): also wrote the TRIP PLANNER + OVERLAP FINDER in the app plan (ft8-app.md, from ideas.md LATER item 2); one Brandon ruling parked under NEEDS BRANDON.
 - Oct 28 7 AM (chat 4): iPhone plan in ft8-app.md; recommend browser remote first, iOS Lite only if members ask. Radio-test item still open.
