@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-30): 9-cap2-mb-3 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-mb-3.json
 - **FROM HQ (Oct 29 7:24 PM) LOOK-UP BOT IS MOVING TO KPC-DATA (Brandon 7:22 PM, repo size):** until chat 10 says it is done, file NO new look-up requests in KPC-Links' .claude/lookup/ (wait, or batch them). After the move: requests + answers live in KPC-Data on branch `lookup` (README how-to); the bot no longer writes into inboxes, so CHECK `git fetch origin lookup` → data/lookup/answers/<your chat>-* each time you read your inbox, and write 'read' on what you used so it can be deleted. Screenshots are deleted after use (chat 11 rule).
 - FROM LOOK-UP BOT (2026-10-30): 9-cap2-bc-3 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-bc-3.json
 - FROM LOOK-UP BOT (2026-10-30): 9-cap2-bc-1 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-bc-1.json
