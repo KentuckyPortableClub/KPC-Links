@@ -1,167 +1,172 @@
 {
-  "US-CO": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Both open parks resolved: US-9652 Granada & Deadman SWA traced from CPW's official geo PDF; US-10540 Bellevue-Watson Fish Hatchery confirmed as a name-mismatch (Watson Lake SWA is a different place, R-G8/P-2 already ruled NO) -- stays a pin."
-  },
-  "US-ME": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Both open parks resolved: US-8287 Capitol State Park (T-1 match on 'CAPITAL PARK' GIS hit + NRHP parcel boundary, trace candidate handed to chat 2) and US-9174 Mahoosuc Ecological Reserve (T-1 match on PAD-US 'Mahoosucs', trace candidate handed to chat 2)."
-  },
-  "US-AZ": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 3 open parks resolved: US-6071 Little Black Mountain Petroglyph Site confirmed no-layer (pin stays, chat 9's P-2 already tested 7 layers); US-11944 Dankworth Pond + US-3390 River Island confirmed picture-map-only (G-ID3, pins stay, maps saved to picture-maps branch)."
-  },
-  "US-CT": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 4 open parks resolved: US-7529 Beckley Iron Furnace SP (real name is Beckley Furnace Industrial Monument, T-1 match, trace candidate) and US-6875 The Preserve (T-1 match to Preserve State Forest, DEEP-owned not land-trust, trace candidate) handed to chat 2; US-7542 Satan's Kingdom SRA and US-6860 Ferry Landing SP confirmed no-layer, stay pins."
-  },
-  "US-SC": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 4 open parks resolved: May Forest/Pine Island/Black River SP confirmed no-layer (too new to be mapped yet, stay pins); Wild Turkey WMA confirmed no-layer (no REST service found for SCDNR's managed-lands viewer), stays a pin."
-  },
-  "US-LA": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 5 open parks confirmed no-layer, stay pins (no Louisiana state-parks GIS boundary layer found). One lead handed to chat 9 for a P-2 test: NOAA's 2014 ESI Parks-Managed Areas polygons (coastal LA, may or may not cover any of these 5)."
-  },
-  "US-MD": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 5 open parks resolved: US-13564 Savage Highlands SP confirmed name-mismatch (shares only 'Savage' with the P-2 hit Savage River SF, different place); US-7768 Frederick City Watershed WMA confirmed no-layer (PAD-US Frederick Municipal Forest hit is ownership evidence only, no shared proper word with the WMA); US-7769 Heaters Island WMA already picture-map-only (G-ID3, saved to the picture-maps branch); US-6388 Tawes Garden SP and US-6389 Jefferson Patterson Park & Museum SP stay needs-parcel, both handed to chat 9 as P-3 county parcel requests (Anne Arundel / Calvert)."
-  },
-  "US-NH": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 7 open parks confirmed via existing why-not tags: US-2642/US-2654/US-8024 name-mismatch, US-2685 picture-map-only (already a pin), US-4931/US-4936/US-4980 needs-parcel. Max Israel SF (Merrimack County) parcel request handed to chat 9; Nash Stream + White Farm have a likely wrong county FIPS code in the existing parcel-county list (VT-range codes on NH parks) -- flagged to chat 9/chat 3 to fix before those two parcel requests go out."
-  },
   "US-AK": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "Whole open AK list already carried why-not tags (name-mismatch 33, no-layer 12) from an earlier pass. Re-verified 8 against a fresh ASP Park Boundary point-test: Chena Wayside SRS + 4 Kenai campgrounds confirmed name-mismatch (container/different-named hits); Susitna Landing confirmed no-layer; corrected US-11835 Little Susitna and US-13462 Sportsman Angler Access from name-mismatch to no-layer (no polygon exists at either pin, so there was nothing to mismatch against). Remaining 37 tags not individually re-verified, trusted absent contrary evidence."
   },
-  "US-MN": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "All 4 harbor/marina pins resolved via look-up 8-mn-dnrunits (DNR Management Units layer, point test): Knife River + Twin Points already correctly no-layer; Two Harbors stays needs-parcel; corrected McQuade from name-mismatch to no-layer (no polygon exists at its pin, nothing to mismatch against -- same pattern as AK). MN Fable list fully resolved: 11 name-mismatch, 12 no-layer, 1 needs-parcel."
-  },
-  "US-NE": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Whole open NE list already carried why-not tags from an earlier pass (1 name-mismatch, 7 needs-parcel, 7 no-layer, 1 pin-doubt). The 7 needs-parcel already had counties assigned (Antelope, Douglas x3, Fillmore, Jefferson, Webster) -- handed to chat 9 as P-3 requests rather than re-derived. US-4011 and US-4015 not individually re-verified, trusted absent contrary evidence."
-  },
   "US-AL": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "Whole open AL list already carried why-not tags from an earlier pass (9 name-mismatch, 9 needs-parcel, 3 no-layer). The 9 needs-parcel already had counties assigned (Bibb, Butler x2, Chilton, Dallas, Limestone, Morgan, Sumter, Washington) -- handed to chat 9 as P-3 requests. Name-mismatch/no-layer tags not individually re-verified, trusted absent contrary evidence."
   },
-  "US-WY": {
-    "date": "2026-10-30",
+  "US-AR": {
     "by": "chat 8",
-    "note": "Whole open WY list already carried why-not tags from an earlier pass (57 name-mismatch, 4 needs-parcel, 24 no-layer). The 4 needs-parcel already had counties assigned (Sheridan, Natrona, Fremont, Park, all state fish hatcheries/reservoirs) -- handed to chat 9 as P-3 requests. Noted a stale Big Horn County parcel-list row for US-10825, which is already correctly tagged name-mismatch (not a 5th needs-parcel park). The 57 name-mismatch + 24 no-layer tags not individually re-verified, trusted absent contrary evidence."
+    "date": "2026-10-30",
+    "note": "Biggest find yet: AR needs-parcel tags were stale -- chat 9 already ran the county parcel lookups and found real answers for most of them. 6 moved to TRACE CANDIDATE (owner confirmed as the parks own agency, Arkansas Game & Fish Commission mostly: US-11960, US-12753, US-12754, US-12762, US-12764, plus US-11355 out of name-mismatch). 5 moved to PIN-DOUBT (parcel owner is an unrelated private party -- LLC, family trust, or a different agency: US-11214, US-11394, US-11874, US-12093, US-7437). Only 3 of the original 13 needs-parcel tags still hold (US-11356, US-7444, US-7522). All handed to chat 2."
   },
-  "US-VT": {
-    "date": "2026-10-30",
+  "US-AZ": {
     "by": "chat 8",
-    "note": "Whole open VT list already carried why-not tags from an earlier pass (11 name-mismatch, 1 needs-parcel, 3 no-layer). Found the same county/FIPS mix-up as NH: US-10300 Kesick Swamp SWMA is listed under Berkshire County FIPS 25003, which is Massachusetts code/county, not Vermont -- likely should be Bennington County VT (pin is in VTs SW corner near the MA border). Not filed with chat 9 due to the wrong county; flagged to chat 9/chat 3 to fix first."
+    "date": "2026-10-30",
+    "note": "All 3 open parks resolved: US-6071 Little Black Mountain Petroglyph Site confirmed no-layer (pin stays, chat 9's P-2 already tested 7 layers); US-11944 Dankworth Pond + US-3390 River Island confirmed picture-map-only (G-ID3, pins stay, maps saved to picture-maps branch)."
+  },
+  "US-CA": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "5 open parks: Rainbow Basin + Black Butte Lake = no-layer (BLM district office / USACE lake, both too broad/no service). Cowell Ranch + Hearst Memorial State Beach (R-G8 already ruled different bigger park) = name-mismatch. Tijuana Estuary Reserve: confirmed R-G2 NO on the NWR alias but flagged Border Field SP as a real joint-management partner worth a closer ownership look."
+  },
+  "US-CO": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Both open parks resolved: US-9652 Granada & Deadman SWA traced from CPW's official geo PDF; US-10540 Bellevue-Watson Fish Hatchery confirmed as a name-mismatch (Watson Lake SWA is a different place, R-G8/P-2 already ruled NO) -- stays a pin."
+  },
+  "US-CT": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "All 4 open parks resolved: US-7529 Beckley Iron Furnace SP (real name is Beckley Furnace Industrial Monument, T-1 match, trace candidate) and US-6875 The Preserve (T-1 match to Preserve State Forest, DEEP-owned not land-trust, trace candidate) handed to chat 2; US-7542 Satan's Kingdom SRA and US-6860 Ferry Landing SP confirmed no-layer, stay pins."
+  },
+  "US-DE": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "4 open, all confirmed: Trussum Pond's pond-map app shows water only (B6), name-mismatch stands (Trap Pond SP). First State Heritage + Indian River Life-Saving Station still 403 blocked, existing tags stand. DuPont Nature Center = name-mismatch (false *name flag on kind words only)."
+  },
+  "US-FL": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "10 open parks. 7 SFWMD conservation areas already queued for chat 2's trace (chat 3's own-docs GIS maps). 1 new trace candidate: Harold A. Campbell/STA 3/4 shares the specific proper identifier 'STA 3/4' with its P-2 hit. Fort Foster SHS = name-mismatch (Hillsborough River SP container). Choctawhatchee & Holmes Creek SCA: confirmed chat 2's existing R-G8 NO stands even against a *name-flagged WMA hit; map-check stays queued."
+  },
+  "US-GA": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "9 open parks. 2 real trace candidates: Bartram Educational State Forest (shares 'Bartram' with BARTRAM FOREST WMA P-2 hit) and Charlie Elliott WMA (its own PAD-US record is literally named 'Charlie Elliott Wildlife Center Clybel W'). Marben State Fishing Lake needs its own sub-layer inside that same combined record. Georgia National Fairgrounds = needs-parcel (Houston Co). Lake Nottely/Blue Ridge Dam (TVA) = no-layer, a TVA RLMP picture-map lead flagged. Little White House, Dames Ferry, Suwannee Eco-Lodge, Hitchiti SF = confirmed no-layer/name-mismatch."
+  },
+  "US-HI": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "2 open: Artillery District of Honolulu (NRHP thematic-resource nomination, no live GIS, no-layer); HI State Game Reserve (dead dlnr.hawaii.gov link, generic park name, flagged for chat 2 to check POTA's own detail page). Both no-layer."
+  },
+  "US-IA": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Confirmed chat 3's handoff: only open park US-9334 Teal Basins WPA is a T-1 name+pin match (151 ac, USFWS), container confusion with the larger Cerro Gordo County WPA resolved. Handed to chat 2 for trace. STATE IA DONE (1/1)."
+  },
+  "US-ID": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Whole open ID list already tagged (106 name-mismatch, 7 needs-parcel, 35 no-layer, 1 pin-doubt). Checked the 7 needs-parcel for the same staleness bug just found in AR -- all 7 confirmed genuinely needs-parcel, no staleness. Scanned for hidden *name match flags (the IN/KS/NC bug) -- found 1 ambiguous case (US-12226 Bruneau Arm Reservoir SFL vs C.J. Strike Reservoir, shares only the generic word Reservoir but could be a genuinely named arm of it), flagged as a grey area rather than corrected. The 106 name-mismatch + 35 no-layer tags not individually re-verified beyond the *name scan."
+  },
+  "US-IL": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "5 open parks: found exact PDF URLs for Rauchfuss Hill + Copperhead Hollow in our own docs, filed save-map requests (picture-map-only). Oakwood Bottoms = no-layer (whole-forest ownership too broad). North Point Marina = name-mismatch. Ray Norbut East Hannibal: chat 3 found its pin ~40km off its own official map -- raised as a numbered grey area to HQ rather than guessed."
   },
   "US-IN": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "Found a real mistagging: 5 parks (US-5682 Moores Creek, US-5684 Allens Creek, US-5686 Fairfax, US-5688 Salt Creek, US-7842 Red Bridge, all state recreation areas inside USACE reservoirs) are tagged name-mismatch but chat 9 own P-2 hits carry a *name exact-match flag -- corrected to TRACE CANDIDATE, handed to chat 2. US-5685 Lieber also name-matches but has no usable parcel, moved to needs-parcel. Remaining name-mismatch tags confirmed correct (no name-matching hit). Flagged a 3-park count gap (22 open, only 19 tagged anywhere found) to chat 2 rather than guessing."
   },
   "US-KS": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "Found 4 corrections among the 18 tagged parks with a research trail: US-2334 Cross Timbers SP (confirmed by KS statute 32-838a as a 2002 rename of Toronto State Park -- same physical place) and US-9187 John Brown Museum SHS (T-1 exact match to PAD-US John Brown Memorial Park) both moved from no-layer to TRACE CANDIDATE, handed to chat 2. US-7943 Sandsage Bison Range SWA and US-9185 First Territorial Capitol SHS both had a wrongly-named polygon at the pin (Finney Game Refuge, Fort Riley) -- moved from no-layer to name-mismatch (category fix, no new trace). The 14 needs-parcel tags confirmed correct. 4 other tagged refs (US-13456, US-2350, US-7393, US-7405) have no research trail in the file, not individually re-verified."
   },
-  "US-NC": {
-    "date": "2026-10-30",
+  "US-LA": {
     "by": "chat 8",
-    "note": "5 corrections found: US-10389 Hiwassee Dam Recreation Park and US-10399 Apalachia Reservoir Recreation Park both moved to TRACE CANDIDATE (exact or near-exact name matches to TVA dam/lake polygons, Reservoir/Lake treated as interchangeable kind words). US-10511 Jessups Mill Pond SGL recategorized no-layer to name-mismatch (a polygon exists, already explicitly ruled a different place). US-6837/US-6847/US-6852 (CSS Neuse, NC Transportation Museum, State Capitol SHS) flagged as already past needs-parcel -- parcel found, owner State of NC, awaiting chat 11 yes/no, not actually stuck. US-6963 Nutbush WMA moved from name-mismatch to pin-doubt (parcel at pin is privately owned by Wake Forest Land Associates II -- the pin itself may be mislocated). 8 of 26 open refs have no research trail, not re-verified."
-  },
-  "US-AR": {
     "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Biggest find yet: AR needs-parcel tags were stale -- chat 9 already ran the county parcel lookups and found real answers for most of them. 6 moved to TRACE CANDIDATE (owner confirmed as the parks own agency, Arkansas Game & Fish Commission mostly: US-11960, US-12753, US-12754, US-12762, US-12764, plus US-11355 out of name-mismatch). 5 moved to PIN-DOUBT (parcel owner is an unrelated private party -- LLC, family trust, or a different agency: US-11214, US-11394, US-11874, US-12093, US-7437). Only 3 of the original 13 needs-parcel tags still hold (US-11356, US-7444, US-7522). All handed to chat 2."
-  },
-  "US-ID": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Whole open ID list already tagged (106 name-mismatch, 7 needs-parcel, 35 no-layer, 1 pin-doubt). Checked the 7 needs-parcel for the same staleness bug just found in AR -- all 7 confirmed genuinely needs-parcel, no staleness. Scanned for hidden *name match flags (the IN/KS/NC bug) -- found 1 ambiguous case (US-12226 Bruneau Arm Reservoir SFL vs C.J. Strike Reservoir, shares only the generic word Reservoir but could be a genuinely named arm of it), flagged as a grey area rather than corrected. The 106 name-mismatch + 35 no-layer tags not individually re-verified beyond the *name scan."
-  },
-  "US-MS": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Found that chat 9s P-2 pass for MS only checked 3 federal layers, no MS state layer existed yet. Found Mississippis own MARIS clearinghouse (maris.mississippi.edu) hosts MS_WMABoundaries_2019, a MDWFP shapefile covering WMAs + Dog Hunting Areas + State Parks together, no use limitations stated. Downloadable shapefile not a live REST service, so needs downloading and testing rather than a point-test. Could plausibly resolve most of MS 35 needs-parcel + 3 no-layer parks in one pass -- handed to chat 9/chat 2 as a priority re-test before individual parcel work. This is my 22nd and final assigned Fable state."
-  },
-  "US-IA": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Confirmed chat 3's handoff: only open park US-9334 Teal Basins WPA is a T-1 name+pin match (151 ac, USFWS), container confusion with the larger Cerro Gordo County WPA resolved. Handed to chat 2 for trace. STATE IA DONE (1/1)."
-  },
-  "US-RI": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "Only open park US-10545 Hillsdale: pin sits in deCoppet Preserve (container, no name match); RIDEM's own page names a 45-ac Richmond parcel. Found RIGIS's statewide RIDEM Tax_Parcels layer (one layer covers the whole state, no county split needed) and filed the parcel look-up 8-parcel-ri. STATE RI DONE (1/1: needs-parcel, filed)."
-  },
-  "US-WV": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "7 open parks: Bowden/Edray/Ridge/Forks of the Coal already correct 4b candidates (owner=agency, awaiting chat 11 then trace); Cedar Lakes correct pin-doubt. Found WV's statewide WVGIS parcel layer; filed parcel look-up for the 2 remaining (Petersburg, Apple Grove)."
-  },
-  "US-IL": {
-    "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "5 open parks: found exact PDF URLs for Rauchfuss Hill + Copperhead Hollow in our own docs, filed save-map requests (picture-map-only). Oakwood Bottoms = no-layer (whole-forest ownership too broad). North Point Marina = name-mismatch. Ray Norbut East Hannibal: chat 3 found its pin ~40km off its own official map -- raised as a numbered grey area to HQ rather than guessed."
+    "note": "All 5 open parks confirmed no-layer, stay pins (no Louisiana state-parks GIS boundary layer found). One lead handed to chat 9 for a P-2 test: NOAA's 2014 ESI Parks-Managed Areas polygons (coastal LA, may or may not cover any of these 5)."
   },
   "US-MA": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "5 open parks, all along the Neponset corridor: Greycourt/Farnham-Connolly/Martini-Moynihan/Great Falls Discovery Center = name-mismatch (no shared proper word with nearby DCR records); Greycourt's own POTA website link points to the wrong park (Lawrence Heritage SP), flagged for chat 2's website-name alias pass. Pope John Paul II Park = approximate candidate (same DCR ownership umbrella), handed to chat 2."
   },
-  "US-CA": {
-    "date": "2026-10-30",
+  "US-MD": {
     "by": "chat 8",
-    "note": "5 open parks: Rainbow Basin + Black Butte Lake = no-layer (BLM district office / USACE lake, both too broad/no service). Cowell Ranch + Hearst Memorial State Beach (R-G8 already ruled different bigger park) = name-mismatch. Tijuana Estuary Reserve: confirmed R-G2 NO on the NWR alias but flagged Border Field SP as a real joint-management partner worth a closer ownership look."
+    "date": "2026-10-30",
+    "note": "All 5 open parks resolved: US-13564 Savage Highlands SP confirmed name-mismatch (shares only 'Savage' with the P-2 hit Savage River SF, different place); US-7768 Frederick City Watershed WMA confirmed no-layer (PAD-US Frederick Municipal Forest hit is ownership evidence only, no shared proper word with the WMA); US-7769 Heaters Island WMA already picture-map-only (G-ID3, saved to the picture-maps branch); US-6388 Tawes Garden SP and US-6389 Jefferson Patterson Park & Museum SP stay needs-parcel, both handed to chat 9 as P-3 county parcel requests (Anne Arundel / Calvert)."
   },
-  "US-HI": {
-    "date": "2026-10-30",
+  "US-ME": {
     "by": "chat 8",
-    "note": "2 open: Artillery District of Honolulu (NRHP thematic-resource nomination, no live GIS, no-layer); HI State Game Reserve (dead dlnr.hawaii.gov link, generic park name, flagged for chat 2 to check POTA's own detail page). Both no-layer."
+    "date": "2026-10-30",
+    "note": "Both open parks resolved: US-8287 Capitol State Park (T-1 match on 'CAPITAL PARK' GIS hit + NRHP parcel boundary, trace candidate handed to chat 2) and US-9174 Mahoosuc Ecological Reserve (T-1 match on PAD-US 'Mahoosucs', trace candidate handed to chat 2)."
   },
-  "US-VA": {
-    "date": "2026-10-30",
+  "US-MN": {
     "by": "chat 8",
-    "note": "2 open: Frontier Culture Museum = no-layer (confirmed, museum campus). Dyke Marsh = picture-map-only per chat 3 (NPS PDF), exact link handed to chat 10 for save-map filing."
+    "date": "2026-10-30",
+    "note": "All 4 harbor/marina pins resolved via look-up 8-mn-dnrunits (DNR Management Units layer, point test): Knife River + Twin Points already correctly no-layer; Two Harbors stays needs-parcel; corrected McQuade from name-mismatch to no-layer (no polygon exists at its pin, nothing to mismatch against -- same pattern as AK). MN Fable list fully resolved: 11 name-mismatch, 12 no-layer, 1 needs-parcel."
   },
-  "US-NM": {
-    "date": "2026-10-30",
+  "US-MS": {
     "by": "chat 8",
-    "note": "3 open: Angel Fire VVM's own PAD-US record is named 'VVM - Main Site' -- a real abbreviation match, moved to TRACE CANDIDATE. Los Luceros + Bosque Redondo/Fort Sumner stay no-layer (no hit at either pin)."
-  },
-  "US-DE": {
     "date": "2026-10-30",
-    "by": "chat 8",
-    "note": "4 open, all confirmed: Trussum Pond's pond-map app shows water only (B6), name-mismatch stands (Trap Pond SP). First State Heritage + Indian River Life-Saving Station still 403 blocked, existing tags stand. DuPont Nature Center = name-mismatch (false *name flag on kind words only)."
+    "note": "Found that chat 9s P-2 pass for MS only checked 3 federal layers, no MS state layer existed yet. Found Mississippis own MARIS clearinghouse (maris.mississippi.edu) hosts MS_WMABoundaries_2019, a MDWFP shapefile covering WMAs + Dog Hunting Areas + State Parks together, no use limitations stated. Downloadable shapefile not a live REST service, so needs downloading and testing rather than a point-test. Could plausibly resolve most of MS 35 needs-parcel + 3 no-layer parks in one pass -- handed to chat 9/chat 2 as a priority re-test before individual parcel work. This is my 22nd and final assigned Fable state."
   },
   "US-MT": {
-    "date": "2026-10-30",
     "by": "chat 8",
+    "date": "2026-10-30",
     "note": "4 open: confirmed Brownes Lake (really 'Brownes Bridge FAS') and Thoreau State Beach (really 'Thibodeau FAS') are real name mismatches, chat 3's G-MT1/G-MT2 grey areas stand pending Brandon. Big Springs + Jocko River hatcheries: picture-map leads confirmed on their FWP pages (Additional Files section), exact PDF links handed to chat 10 for save-map filing."
   },
-  "US-GA": {
-    "date": "2026-10-30",
+  "US-NC": {
     "by": "chat 8",
-    "note": "9 open parks. 2 real trace candidates: Bartram Educational State Forest (shares 'Bartram' with BARTRAM FOREST WMA P-2 hit) and Charlie Elliott WMA (its own PAD-US record is literally named 'Charlie Elliott Wildlife Center Clybel W'). Marben State Fishing Lake needs its own sub-layer inside that same combined record. Georgia National Fairgrounds = needs-parcel (Houston Co). Lake Nottely/Blue Ridge Dam (TVA) = no-layer, a TVA RLMP picture-map lead flagged. Little White House, Dames Ferry, Suwannee Eco-Lodge, Hitchiti SF = confirmed no-layer/name-mismatch."
+    "date": "2026-10-30",
+    "note": "5 corrections found: US-10389 Hiwassee Dam Recreation Park and US-10399 Apalachia Reservoir Recreation Park both moved to TRACE CANDIDATE (exact or near-exact name matches to TVA dam/lake polygons, Reservoir/Lake treated as interchangeable kind words). US-10511 Jessups Mill Pond SGL recategorized no-layer to name-mismatch (a polygon exists, already explicitly ruled a different place). US-6837/US-6847/US-6852 (CSS Neuse, NC Transportation Museum, State Capitol SHS) flagged as already past needs-parcel -- parcel found, owner State of NC, awaiting chat 11 yes/no, not actually stuck. US-6963 Nutbush WMA moved from name-mismatch to pin-doubt (parcel at pin is privately owned by Wake Forest Land Associates II -- the pin itself may be mislocated). 8 of 26 open refs have no research trail, not re-verified."
   },
-  "US-FL": {
-    "date": "2026-10-30",
+  "US-NE": {
     "by": "chat 8",
-    "note": "10 open parks. 7 SFWMD conservation areas already queued for chat 2's trace (chat 3's own-docs GIS maps). 1 new trace candidate: Harold A. Campbell/STA 3/4 shares the specific proper identifier 'STA 3/4' with its P-2 hit. Fort Foster SHS = name-mismatch (Hillsborough River SP container). Choctawhatchee & Holmes Creek SCA: confirmed chat 2's existing R-G8 NO stands even against a *name-flagged WMA hit; map-check stays queued."
+    "date": "2026-10-30",
+    "note": "Whole open NE list already carried why-not tags from an earlier pass (1 name-mismatch, 7 needs-parcel, 7 no-layer, 1 pin-doubt). The 7 needs-parcel already had counties assigned (Antelope, Douglas x3, Fillmore, Jefferson, Webster) -- handed to chat 9 as P-3 requests rather than re-derived. US-4011 and US-4015 not individually re-verified, trusted absent contrary evidence."
+  },
+  "US-NH": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "All 7 open parks confirmed via existing why-not tags: US-2642/US-2654/US-8024 name-mismatch, US-2685 picture-map-only (already a pin), US-4931/US-4936/US-4980 needs-parcel. Max Israel SF (Merrimack County) parcel request handed to chat 9; Nash Stream + White Farm have a likely wrong county FIPS code in the existing parcel-county list (VT-range codes on NH parks) -- flagged to chat 9/chat 3 to fix before those two parcel requests go out."
+  },
+  "US-NM": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "3 open: Angel Fire VVM's own PAD-US record is named 'VVM - Main Site' -- a real abbreviation match, moved to TRACE CANDIDATE. Los Luceros + Bosque Redondo/Fort Sumner stay no-layer (no hit at either pin)."
+  },
+  "US-RI": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Only open park US-10545 Hillsdale: pin sits in deCoppet Preserve (container, no name match); RIDEM's own page names a 45-ac Richmond parcel. Found RIGIS's statewide RIDEM Tax_Parcels layer (one layer covers the whole state, no county split needed) and filed the parcel look-up 8-parcel-ri. STATE RI DONE (1/1: needs-parcel, filed)."
+  },
+  "US-SC": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "All 4 open parks resolved: May Forest/Pine Island/Black River SP confirmed no-layer (too new to be mapped yet, stay pins); Wild Turkey WMA confirmed no-layer (no REST service found for SCDNR's managed-lands viewer), stays a pin."
+  },
+  "US-TX": {
+    "by": 8,
+    "date": "2026-10-30",
+    "note": "11 THC historic sites; statewide parcel look-up filed (StratMap) covering all, needs-parcel pending"
+  },
+  "US-VA": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "2 open: Frontier Culture Museum = no-layer (confirmed, museum campus). Dyke Marsh = picture-map-only per chat 3 (NPS PDF), exact link handed to chat 10 for save-map filing."
+  },
+  "US-VT": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Whole open VT list already carried why-not tags from an earlier pass (11 name-mismatch, 1 needs-parcel, 3 no-layer). Found the same county/FIPS mix-up as NH: US-10300 Kesick Swamp SWMA is listed under Berkshire County FIPS 25003, which is Massachusetts code/county, not Vermont -- likely should be Bennington County VT (pin is in VTs SW corner near the MA border). Not filed with chat 9 due to the wrong county; flagged to chat 9/chat 3 to fix first."
+  },
+  "US-WV": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "7 open parks: Bowden/Edray/Ridge/Forks of the Coal already correct 4b candidates (owner=agency, awaiting chat 11 then trace); Cedar Lakes correct pin-doubt. Found WV's statewide WVGIS parcel layer; filed parcel look-up for the 2 remaining (Petersburg, Apple Grove)."
+  },
+  "US-WY": {
+    "by": "chat 8",
+    "date": "2026-10-30",
+    "note": "Whole open WY list already carried why-not tags from an earlier pass (57 name-mismatch, 4 needs-parcel, 24 no-layer). The 4 needs-parcel already had counties assigned (Sheridan, Natrona, Fremont, Park, all state fish hatcheries/reservoirs) -- handed to chat 9 as P-3 requests. Noted a stale Big Horn County parcel-list row for US-10825, which is already correctly tagged name-mismatch (not a 5th needs-parcel park). The 57 name-mismatch + 24 no-layer tags not individually re-verified, trusted absent contrary evidence."
   }
 }

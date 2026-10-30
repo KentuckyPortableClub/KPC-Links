@@ -25,3 +25,6 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
+
+## Parcel / ownership maps (statewide or by county)
+- Chat 8 (Oct 30): statewide parcel compile = **2019_Texas_Parcels_StratMap** FeatureServer, same server root as the park layers above: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/2019_Texas_Parcels_StratMap/FeatureServer/0 (Texas has no live statewide parcel feed -- StratMap is a one-time TxGIO/TNRIS compile from county appraisal districts, so coverage/currency varies by county; filed a parcel look-up for the 11 THC historic sites against it, `8-parcel-tx-thc`).
