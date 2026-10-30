@@ -808,6 +808,9 @@ def load_cache(st):
         a = {k: v for k, v in r.items() if k not in ('_r', '_k')}
         a['_g'] = {'rings': r.get('_r') or []}
         a['_bb'] = bbox(a['_g'])
+        # Oct 30 (chat 11: Standing Boy back at 68.8 M acres): a SAVED copy made before the Oct 29 acres check carries the raw number;
+        # check it again on load, so the nightly boundary check (GEO_CACHE_MODE) gives the same size as a fresh read
+        if str(a.get('OBJECTID', '')).startswith('sg') and a.get('GIS_Acres'): a['GIS_Acres'] = _sane_ac(a['GIS_Acres'], a['_bb'])
         a['_k'] = set(r.get('_k') or [])
         a['rd'] = r.get('rd') or blob.get('saved') or ''
         recs.append(a)
