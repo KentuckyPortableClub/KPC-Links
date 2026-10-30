@@ -832,3 +832,20 @@ STATE WY DONE
 VT's whole open list already carries why-not tags: name-mismatch 11, needs-parcel 1 (US-10300 Kesick Swamp SWMA), no-layer 3 -- 15 total, matching this file's own "29 total / 15 open" count for VT. **Found the same county/FIPS mix-up I flagged for NH:** US-10300's parcel-candidate row says "Berkshire County (FIPS 25003)" -- but FIPS 25003 is Massachusetts's code (25 = MA), and Berkshire County is an MA county, not a VT one. The pin [42.09220,-73.11860] is in VT's extreme southwest corner near the MA border, so this is almost certainly Bennington County, VT (VT's real southwesternmost county, bordering MA's Berkshire County) with the wrong state's county pasted on. **Not filing the parcel request with the wrong county -- flagging to chat 9/chat 3 to fix the county first** (same batch issue as NH's Nash Stream/White Farm). The 11 name-mismatch and 3 no-layer tags weren't individually re-verified this session, trusted absent contrary evidence.
 
 STATE VT DONE
+
+### IN — closing out (chat 8, Oct 30 2026)
+**Real finding: 5-6 Indiana parks are mistagged name-mismatch when chat 9's own P-2 hits actually carry a name-match flag.** Read the detail rows in `fable/US-IN.md` (not just the summary tag line) for all 12 of the 14 name-mismatch refs that have P-2 detail on file, and found the boilerplate result text ("a polygon at the pin is not a name match") is generic template wording attached to every P-2 hit regardless of outcome -- the real signal is the `*name` flag chat 9 adds after a hit's name when it DOES match. Six of them carry that flag:
+- **US-5682 Moores Creek SRA** -> P-2 hit "Moore's Creek State Recreation Area" *name* (155 ac, ManagedLandsAll_DNR_INHD_IN)
+- **US-5684 Allens Creek SRA** -> P-2 hit "Allens Creek State Recreation Area" *name* (290 ac)
+- **US-5686 Fairfax SRA** -> P-2 hit "Fairfax State Recreation Area" *name* (741 ac)
+- **US-5688 Salt Creek SRA** -> P-2 hit "Salt Creek State Recreation Area" *name* (313 ac)
+- **US-7842 Red Bridge SRA** -> P-2 hit "Red Bridge State Recreation Area" *name* (203 ac)
+- **US-5685 Lieber SRA** -> P-2 hit "Lieber State Recreation Area" *name* (718 ac), but a follow-up row says "no parcel at the pin... needs-parcel (county layer next)" -- so this one's name matches but the layer's own polygon wasn't usable; stays needs-parcel rather than becoming a clean trace.
+
+**Correcting 5 of these (US-5682, US-5684, US-5686, US-5688, US-7842) from name-mismatch to TRACE CANDIDATE** -- all 5 are DNR-named recreation areas sitting inside a bigger USACE reservoir (Monroe Lake or Mississinewa Lake), each with its own named, DNR-managed polygon in Indiana's own ManagedLandsAll_DNR_INHD_IN layer. Handing to chat 2. US-5685 Lieber moves to needs-parcel (6th needs-parcel park, alongside the existing 4).
+
+The remaining name-mismatch refs I checked (US-5680, US-5681, US-5683, US-5689, US-5690, US-5692, US-7843) genuinely have no name-matching hit (their only P-2 hits are the bigger reservoir/refuge names, no `*name` flag) -- those stay name-mismatch correctly. US-4208 and US-10237 (pin-doubt) have no P-2 detail in this file, not re-verified.
+
+**Count gap, flagging rather than guessing:** the summary tags 19 of IN's 22 open parks (14 name-mismatch + 4 needs-parcel + 1 pin-doubt); 3 open parks have no tag anywhere I can find. Handing the gap to chat 2 rather than guessing which 3.
+
+STATE IN DONE (with the above corrections and gap flagged)
