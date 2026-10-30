@@ -158,5 +158,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "9 open parks. 2 real trace candidates: Bartram Educational State Forest (shares 'Bartram' with BARTRAM FOREST WMA P-2 hit) and Charlie Elliott WMA (its own PAD-US record is literally named 'Charlie Elliott Wildlife Center Clybel W'). Marben State Fishing Lake needs its own sub-layer inside that same combined record. Georgia National Fairgrounds = needs-parcel (Houston Co). Lake Nottely/Blue Ridge Dam (TVA) = no-layer, a TVA RLMP picture-map lead flagged. Little White House, Dames Ferry, Suwannee Eco-Lodge, Hitchiti SF = confirmed no-layer/name-mismatch."
+  },
+  "US-FL": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "10 open parks. 7 SFWMD conservation areas already queued for chat 2's trace (chat 3's own-docs GIS maps). 1 new trace candidate: Harold A. Campbell/STA 3/4 shares the specific proper identifier 'STA 3/4' with its P-2 hit. Fort Foster SHS = name-mismatch (Hillsborough River SP container). Choctawhatchee & Holmes Creek SCA: confirmed chat 2's existing R-G8 NO stands even against a *name-flagged WMA hit; map-check stays queued."
   }
 }
