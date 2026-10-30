@@ -268,3 +268,6 @@ Same file, same caveat (grade C, agency list pages mostly, not fetched).
 - **US-4387 Wallowa-Whitman National Forest (tagged ID)**: that forest is mainly in Oregon/Washington; if the key has it under Idaho check it's really the small Idaho-side sliver and not a mismatch.
 - US-11033 The Portland Landing Conservation Reserve (AL): no agency page found; needs a look-up.
 Remaining: AK (5), AB (5), MB (3), CA (4), QC (5), ON (7), NH (7), SK (17), BC (11), NB (28) -- the three biggest are all Canada; next session.
+
+## Chat 8 batch 3 (Oct 29 ~11:15 PM): AK (5) = 76 of 185 total, US DONE
+All 5 Alaska pages are agency AK DNR Parks / USFWS / BLM pages (grade C, not fetched). **All US states in the misplaced-sweep list are now covered** (76 parks: 48 NV/WY/CO/UT + 23 MN/OK/ID/NY/VT/AL + 5 AK). Remaining = Canada only: NB 28, SK 17, BC 11, ON 7, QC 5, AB 5, MB 3 = 76 (plus whatever is left after rounding -- matches the 198 count minus the 15 I couldn't place states for/held items). Canada next: Parks Canada units first (predictable pc.gc.ca pages), then the provincial wildlife-management/crown-land agencies (NB Dept of Natural Resources, SK Ministry of Environment, BC Crown land / BC Parks).

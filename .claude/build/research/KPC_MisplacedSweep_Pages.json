@@ -368,5 +368,30 @@
   "page": "https://www.outdooralabama.com/wildlife-management-areas/pike-county-pocosin-wma",
   "map": "",
   "note": "Alabama WFF WMA"
+ },
+ "US-0150": {
+  "page": "https://www.fws.gov/refuge/kodiak",
+  "map": "",
+  "note": "USFWS refuge, Alaska (chat 8's point-in-polygon work already matched the Chena River SRS in this batch earlier)"
+ },
+ "US-10281": {
+  "page": "https://www.blm.gov/visit/white-mountains-nra",
+  "map": "https://gis.blm.gov/akarcgis/rest/services",
+  "note": "BLM Alaska White Mountains NRA"
+ },
+ "US-6332": {
+  "page": "https://dnr.alaska.gov/parks/aspunits/matsu/hatcherpasssna.htm",
+  "map": "",
+  "note": "AK DNR Parks"
+ },
+ "US-7191": {
+  "page": "https://dnr.alaska.gov/parks/aspunits/kenai/anchorriversrs.htm",
+  "map": "",
+  "note": "AK DNR Parks"
+ },
+ "US-7242": {
+  "page": "https://dnr.alaska.gov/parks/aspunits/southeast/portagecovesrs.htm",
+  "map": "",
+  "note": "AK DNR Parks"
  }
 }
