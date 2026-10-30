@@ -1,0 +1,257 @@
+{
+ "US-10844": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "BLM Diamond HMA, no street address (BLM land unit)"
+ },
+ "US-11913": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "Bad Lands Wilderness"
+ },
+ "US-13017": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Augusta Mountains HMA"
+ },
+ "US-13018": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Black Rock Range East/West HMA"
+ },
+ "US-13024": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Callaghan HMA"
+ },
+ "US-13034": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Goshute HMA"
+ },
+ "US-13039": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "Owyhee River Wilderness"
+ },
+ "US-13048": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Rocky Hills HMA"
+ },
+ "US-13128": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Jackson Mountains HMA"
+ },
+ "US-13130": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Lava Beds HMA"
+ },
+ "US-13132": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Seven Mile HMA"
+ },
+ "US-13134": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Rock Creek HMA"
+ },
+ "US-13138": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Wassuk HMA"
+ },
+ "US-13139": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Muddy Mountains HMA"
+ },
+ "US-13145": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/MapServer",
+  "note": "Warm Springs Canyon HMA"
+ },
+ "US-13194": {
+  "page": "https://www.blm.gov/visit/egan-crest-trailhead",
+  "map": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0",
+  "note": "Egan Crest Trailhead rec site (chat 8's BLM-site polygon find)"
+ },
+ "US-9246": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "East Fork High Rock Canyon Wilderness"
+ },
+ "US-9247": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "Eldorado Wilderness"
+ },
+ "US-9258": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "Ireteba Peaks Wilderness"
+ },
+ "US-9273": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/nevada",
+  "map": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_Wilderness/MapServer",
+  "note": "North Jackson Mountains Wilderness"
+ },
+ "US-10816": {
+  "page": "https://wgfd.wyo.gov/Fishing-and-Boating/Fish-Hatcheries",
+  "map": "",
+  "note": "Saratoga NFH is actually a federal USFWS hatchery, not state; verify agency"
+ },
+ "US-10890": {
+  "page": "https://www.blm.gov/visit/sinks-canyon",
+  "map": "",
+  "note": "Sinks Canyon BLM rec site (note: Sinks Canyon STATE PARK is WY state, this BLM unit is adjacent -- name collision risk, flag for chat 2"
+ },
+ "US-6135": {
+  "page": "https://wgfd.wyo.gov/habitat/habitat-and-access-programs",
+  "map": "",
+  "note": "Pennock Mountain WHMA"
+ },
+ "US-6197": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/wyoming",
+  "map": "https://gis.blm.gov/wyarcgis/rest/services",
+  "note": "Popo Agie Wilderness is actually USFS (Shoshone NF), not BLM -- check agency"
+ },
+ "US-6202": {
+  "page": "https://www.fs.usda.gov/detail/shoshone/specialplaces/?cid=fsbdev3_027975",
+  "map": "",
+  "note": "North Absaroka Wilderness is USFS (Shoshone NF), not BLM -- check agency"
+ },
+ "US-6204": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/wyoming",
+  "map": "https://gis.blm.gov/wyarcgis/rest/services/recreation/BLM_WY_Recreation_Areas_HUB/MapServer/0",
+  "note": "Little Colorado HMA"
+ },
+ "US-6218": {
+  "page": "https://www.blm.gov/visit/boulder-lake",
+  "map": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0",
+  "note": "Boulder Lake rec site"
+ },
+ "US-0185": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Hugo SWA, CPW list page (per-SWA slug not confirmed)"
+ },
+ "US-12185": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "West Lake SWA, Grand Junction"
+ },
+ "US-1249": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/Vega",
+  "map": "",
+  "note": "Vega State Park (this is a real state PARK, not SWA -- should not be in SWA group; flag for chat 2"
+ },
+ "US-9594": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/colorado/gunnison-gorge-nca",
+  "map": "https://gis.blm.gov/coarcgis/rest/services",
+  "note": "Gunnison Gorge NCA"
+ },
+ "US-9605": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Alma SWA"
+ },
+ "US-9620": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Bodo SWA"
+ },
+ "US-9622": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Bosque Del Oso SWA"
+ },
+ "US-9631": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Coalbed Canyon SWA"
+ },
+ "US-9632": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Cochetopa SWA"
+ },
+ "US-9635": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Colorow Mountain SWA"
+ },
+ "US-9638": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Dan Noble SWA"
+ },
+ "US-9639": {
+  "page": "https://cpw.state.co.us/placestogo/Parks/StateWildlifeAreas",
+  "map": "",
+  "note": "Deadman SWA (same CPW georeferenced PDF as Grenada per chat 8's earlier find)"
+ },
+ "US-10972": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah/nca/grand-staircase-escalante",
+  "map": "https://gis.blm.gov/utarcgis/rest/services",
+  "note": "Beartrap Canyon WSR"
+ },
+ "US-11007": {
+  "page": "https://www.blm.gov/visit/white-river",
+  "map": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/0",
+  "note": "White River rec area"
+ },
+ "US-11115": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah",
+  "map": "https://gis.blm.gov/utarcgis/rest/services",
+  "note": "North Fork Virgin River WSR"
+ },
+ "US-11748": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah/nca/cedar-mesa",
+  "map": "https://gis.blm.gov/utarcgis/rest/services",
+  "note": "Cedar Mesa SRMA"
+ },
+ "US-5758": {
+  "page": "https://www.blm.gov/visit/dolores-river",
+  "map": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/0",
+  "note": "Dolores River rec area"
+ },
+ "US-5782": {
+  "page": "https://www.blm.gov/visit/indian-creek",
+  "map": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/0",
+  "note": "Indian Creek SRMA"
+ },
+ "US-5789": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah",
+  "map": "",
+  "note": "Behind the Rocks Wilderness"
+ },
+ "US-5828": {
+  "page": "https://www.blm.gov/visit/dark-canyon",
+  "map": "",
+  "note": "Dark Canyon SRMA"
+ },
+ "US-5833": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah",
+  "map": "",
+  "note": "Horseshoe Canyon (North) Wilderness"
+ },
+ "US-5869": {
+  "page": "https://www.blm.gov/visit/nine-mile-canyon",
+  "map": "",
+  "note": "9 Mile Canyon rec area"
+ },
+ "US-5897": {
+  "page": "https://www.blm.gov/programs/national-conservation-lands/utah",
+  "map": "",
+  "note": "Lower Last Chance Wilderness"
+ },
+ "US-6007": {
+  "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/utah",
+  "map": "https://gis.blm.gov/utarcgis/rest/services",
+  "note": "Cedar Mountain HMA"
+ }
+}
