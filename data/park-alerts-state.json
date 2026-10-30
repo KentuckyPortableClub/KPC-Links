@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28 18:28",
+ "updated": "2026-10-30 15:39",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -820,6 +820,20 @@
    "missing": 0,
    "announced": true,
    "refs": []
+  },
+  "lbl-x-wildlife-refuges-will-be-closed-from-nov": {
+   "who": "Land Between the Lakes",
+   "title": "Wildlife Refuges will be closed from November 1, 2026 through March 15, 2027, seasonal wildlife refuge closures include:",
+   "text": "Wildlife Refuges will be closed from November 1, 2026 through March 15, 2027, seasonal wildlife refuge closures include:",
+   "link": "https://www.landbetweenthelakes.us/alerts/",
+   "routine": false,
+   "refs": [
+    "US-3792"
+   ],
+   "first": "2026-10-30",
+   "runs": 1,
+   "missing": 0,
+   "announced": false
   }
  },
  "burn_queue": [],
