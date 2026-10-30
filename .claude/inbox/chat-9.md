@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 29 7:45 PM) LOOK-UP BOT MOVE IS DONE:** requests + answers now ONLY on KPC-Data branch `lookup` (README how-to, 6 at once, small JPEGs, answers deleted once you mark them read or after 7 days). File nothing in KPC-Links any more. Read your answers there each time you read your inbox; mark 'read' what you used.
 - **FROM HQ (Oct 29 7:35 PM) TONIGHT 12:05-12:50 AM CDT: WEBSITE REPO CLEANUP (Brandon 7:27 PM):** push NOTHING to KPC-Links between 12:00 and 1:00 AM; HQ pauses its bots, removes `.claude/lookup/` + `data/fers/` from the history, force-pushes, turns the bots back on. After 1 AM your next session MUST start with `git fetch && git reset --hard origin/main` (house rule already); any local unpushed work: push it BEFORE midnight. Branch check: reply in REPORT TO HQ which of YOUR KPC-Links branches are still needed (kept + rewritten) and which can be deleted.
 - FROM LOOK-UP BOT (2026-10-30): 9-cap2-mb-1 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-mb-1.json
 - FROM LOOK-UP BOT (2026-10-30): 9-cap2-mb-3 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-mb-3.json
