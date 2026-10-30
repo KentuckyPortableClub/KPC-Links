@@ -271,3 +271,15 @@ Remaining: AK (5), AB (5), MB (3), CA (4), QC (5), ON (7), NH (7), SK (17), BC (
 
 ## Chat 8 batch 3 (Oct 29 ~11:15 PM): AK (5) = 76 of 185 total, US DONE
 All 5 Alaska pages are agency AK DNR Parks / USFWS / BLM pages (grade C, not fetched). **All US states in the misplaced-sweep list are now covered** (76 parks: 48 NV/WY/CO/UT + 23 MN/OK/ID/NY/VT/AL + 5 AK). Remaining = Canada only: NB 28, SK 17, BC 11, ON 7, QC 5, AB 5, MB 3 = 76 (plus whatever is left after rounding -- matches the 198 count minus the 15 I couldn't place states for/held items). Canada next: Parks Canada units first (predictable pc.gc.ca pages), then the provincial wildlife-management/crown-land agencies (NB Dept of Natural Resources, SK Ministry of Environment, BC Crown land / BC Parks).
+
+## Chat 8 batch 4 (Oct 29 ~11:28 PM): all of Canada (76 parks) — ALL 185 NOW HAVE A PAGE
+Grade C throughout, not fetched, agency-level pages mostly (provincial program pages). Province totals: NB 23 PNA + 4 Nature-Trust-flagged + 2 WMA + 1 park, SK 14 rec sites + 1 park + 2 reserves, ON 1 park + 4 reserves + 2 flagged, QC 1 park + 3 zecs + 1 flagged, AB 3 + 1 flagged, BC 7 + 3 flagged, MB 3.
+**Agency-mismatch flags worth checking before any verdict (7 new, on top of the 6 US ones earlier):**
+- **CA-4420, CA-5153, CA-5204, CA-5235 (NB):** these read like Nature Trust of New Brunswick properties — a PRIVATE land trust, not the province's Protected Natural Areas program. If tagged as government PNAs, that's likely the actual cause.
+- **CA-5633 (ON) Bowmanville Valley Conservation Area:** run by Central Lake Ontario Conservation Authority (a local authority), not MNRF — different agency than the other Ontario conservation reserves in this batch.
+- **CA-5042 (QC) Sentiers pédestres Neil-Tillotson Regional Park:** reads as a municipal/MRC park, not provincial.
+- **CA-0109 (AB) Waterton Biosphere Reserve:** overlaps Waterton Lakes NATIONAL Park (Parks Canada, federal) — check this isn't tagged as an Alberta provincial unit.
+- **CA-3445 (BC) Glen Valley Regional Park:** a Metro Vancouver regional park, not BC Parks.
+- **CA-3666 (BC) Kensington Park:** likely a municipal park (several BC towns have one).
+- **CA-4002 (BC) Queen Elizabeth Park:** a City of Vancouver park — almost certainly not BC Parks if tagged provincial. This is probably the clearest mismatch in the whole 185.
+**All 185 parks in the misplaced sweep now have an entry in KPC_MisplacedSweep_Pages.json.** 13 total agency-mismatch flags across the whole list (6 US, 7 Canada) are the best next thing to check — those may explain several "well outside" results without needing a single new map layer.

@@ -393,5 +393,385 @@
   "page": "https://dnr.alaska.gov/parks/aspunits/southeast/portagecovesrs.htm",
   "map": "",
   "note": "AK DNR Parks"
+ },
+ "CA-0770": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Clark Point Natural Area), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4350": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Allardville PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4356": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Bass River PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4357": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Becaguimec Stream PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4360": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Belleville PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4362": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Belone Brook PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4365": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Big Falls PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4367": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Big Rocky Brook PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4380": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Cains River PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4382": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Carr Falls Brook PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4434": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Lower North Branch Little SW Miramichi PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4435": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (MacFarlane Brook PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4443": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (McCluskey Brook PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4453": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Miscou Grande Plaine PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4457": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Mount Denys PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4459": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Mount Tom PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4470": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (North Branch Burnt Church River PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4472": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (North Pole Stream PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4486": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Pocowogamis Stream PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4496": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Quisibis River PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-4508": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/protected_natural_areas.html",
+  "map": "",
+  "note": "NB Protected Natural Area (Shikatehawk Stream PNA), NB Dept of Natural Resources & Energy Development"
+ },
+ "CA-6544": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/wildlife/content/wildlife_management_areas.html",
+  "map": "",
+  "note": "NB WMA #5"
+ },
+ "CA-6549": {
+  "page": "https://www2.gnb.ca/content/gnb/en/departments/erd/natural_resources/content/wildlife/content/wildlife_management_areas.html",
+  "map": "",
+  "note": "NB WMA #6"
+ },
+ "CA-6103": {
+  "page": "https://parcsnbparks.ca/",
+  "map": "",
+  "note": "North Lake Provincial Park, NB Parks"
+ },
+ "CA-4420": {
+  "page": "https://naturetrust.nb.ca/properties/",
+  "map": "",
+  "note": "FLAG: Kingston Family Nature Preserve looks like a Nature Trust of New Brunswick property (a PRIVATE land trust), not a government Protected Natural Area -- check the agency tag; may explain the mismatch"
+ },
+ "CA-5153": {
+  "page": "https://naturetrust.nb.ca/properties/",
+  "map": "",
+  "note": "FLAG: Butternut Island Nature Reserve looks like a Nature Trust of New Brunswick property (a PRIVATE land trust), not a government Protected Natural Area -- check the agency tag; may explain the mismatch"
+ },
+ "CA-5204": {
+  "page": "https://naturetrust.nb.ca/properties/",
+  "map": "",
+  "note": "FLAG: Nashwaaksis Stream Nature Park looks like a Nature Trust of New Brunswick property (a PRIVATE land trust), not a government Protected Natural Area -- check the agency tag; may explain the mismatch"
+ },
+ "CA-5235": {
+  "page": "https://naturetrust.nb.ca/properties/",
+  "map": "",
+  "note": "FLAG: Warren Kent Coleman Nature Reserve looks like a Nature Trust of New Brunswick property (a PRIVATE land trust), not a government Protected Natural Area -- check the agency tag; may explain the mismatch"
+ },
+ "CA-2550": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Arena), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2581": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Bittern Lake), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2582": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Bluebell), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2633": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Dore Lake), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2658": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Foam Lake), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2679": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Gull Lake), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2687": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Hazlet Regional Park), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2713": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Laurier), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2778": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Nokomis), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2816": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Raymore), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2826": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Riverhurst Ferry), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2846": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Shell Lake), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2860": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (St. Walburg), Ministry of Parks, Culture and Sport"
+ },
+ "CA-2919": {
+  "page": "https://www.saskparks.net/RegionalParksAndRecreationSites",
+  "map": "",
+  "note": "Saskatchewan recreation site (Wreford), Ministry of Parks, Culture and Sport"
+ },
+ "CA-0625": {
+  "page": "https://www.saskparks.net/StVictorPetroglyphs",
+  "map": "",
+  "note": "SK provincial park"
+ },
+ "CA-2547": {
+  "page": "https://www.saskatchewan.ca/residents/environment-public-health-and-safety/protected-areas",
+  "map": "",
+  "note": "Amisk Lake Ecological Reserve, Sask Ministry of Environment"
+ },
+ "CA-2554": {
+  "page": "https://www.saskatchewan.ca/residents/environment-public-health-and-safety/protected-areas",
+  "map": "",
+  "note": "Backes Island Wildlife Refuge, Sask Ministry of Environment"
+ },
+ "CA-0366": {
+  "page": "https://www.ontarioparks.com/",
+  "map": "",
+  "note": "River Aux Sables Provincial Park, Ontario Parks"
+ },
+ "CA-1336": {
+  "page": "https://www.ontario.ca/page/conservation-reserves",
+  "map": "",
+  "note": "Ontario Conservation Reserve (Cache Bay Wetland), MNRF"
+ },
+ "CA-5111": {
+  "page": "https://www.ontario.ca/page/conservation-reserves",
+  "map": "",
+  "note": "Ontario Conservation Reserve (Oak Ridges Corridor), MNRF"
+ },
+ "CA-6154": {
+  "page": "https://www.ontario.ca/page/conservation-reserves",
+  "map": "",
+  "note": "Ontario Conservation Reserve (Big Creek), MNRF"
+ },
+ "CA-6629": {
+  "page": "https://www.ontario.ca/page/conservation-reserves",
+  "map": "",
+  "note": "Ontario Conservation Reserve (Whitefish River), MNRF"
+ },
+ "CA-5633": {
+  "page": "https://cloca.com/",
+  "map": "",
+  "note": "FLAG: Bowmanville Valley Conservation Area is run by a local Conservation Authority (Central Lake Ontario CA), not MNRF provincial land -- different agency than the other ON conservation reserves"
+ },
+ "CA-6620": {
+  "page": "https://www.ontario.ca/page/conservation-reserves",
+  "map": "",
+  "note": "Deerock Lake Conservation Area, MNRF (or a district Conservation Authority -- verify)"
+ },
+ "CA-0129": {
+  "page": "https://www.sepaq.com/pq/",
+  "map": "",
+  "note": "Ulittaniujalik National Park, Parcs Qu\u00e9bec/SEPAQ"
+ },
+ "CA-2301": {
+  "page": "https://zecquebec.com/",
+  "map": "",
+  "note": "Zec Collin, Qu\u00e9bec MFFP controlled-harvest zone"
+ },
+ "CA-2324": {
+  "page": "https://zecquebec.com/",
+  "map": "",
+  "note": "Zec Mars-Moulin, Qu\u00e9bec MFFP controlled-harvest zone"
+ },
+ "CA-2370": {
+  "page": "https://zecquebec.com/",
+  "map": "",
+  "note": "Zec Wessonneau, Qu\u00e9bec MFFP controlled-harvest zone"
+ },
+ "CA-5042": {
+  "page": "",
+  "map": "",
+  "note": "FLAG: Sentiers p\u00e9destres Neil-Tillotson Regional Park is likely a municipal/regional (MRC) park, not a provincial one -- check agency"
+ },
+ "CA-0109": {
+  "page": "https://parks.canada.ca/pn-np/ab/waterton",
+  "map": "",
+  "note": "FLAG: Waterton Biosphere Reserve overlaps Waterton Lakes NATIONAL Park (Parks Canada, federal) -- if tagged Alberta provincial, check agency"
+ },
+ "CA-1164": {
+  "page": "https://www.albertaparks.ca/",
+  "map": "",
+  "note": "Beaver Lake Provincial Recreation Area, Alberta Parks"
+ },
+ "CA-1197": {
+  "page": "https://www.albertaparks.ca/",
+  "map": "",
+  "note": "Victoria Settlement Provincial Park (historic site), Alberta Parks"
+ },
+ "CA-3085": {
+  "page": "https://www.albertaparks.ca/",
+  "map": "",
+  "note": "Mystery Lake Natural Area, Alberta Environment & Parks"
+ },
+ "CA-6112": {
+  "page": "https://www.albertaparks.ca/",
+  "map": "",
+  "note": "Kananaskis Country, Alberta Parks/Environment & Parks"
+ },
+ "CA-2439": {
+  "page": "https://www.gov.mb.ca/sd/wildlife/wma/index.html",
+  "map": "",
+  "note": "Manitoba WMA (Langruth), MB Dept of Natural Resources"
+ },
+ "CA-2441": {
+  "page": "https://www.gov.mb.ca/sd/wildlife/wma/index.html",
+  "map": "",
+  "note": "Manitoba WMA (Lee Lake), MB Dept of Natural Resources"
+ },
+ "CA-2506": {
+  "page": "https://www.gov.mb.ca/sd/wildlife/wma/index.html",
+  "map": "",
+  "note": "Manitoba WMA (Saskeram), MB Dept of Natural Resources"
+ },
+ "CA-3408": {
+  "page": "https://bcparks.ca/",
+  "map": "",
+  "note": "Denetiah Corridor Protected Area, BC Parks"
+ },
+ "CA-3900": {
+  "page": "https://bcparks.ca/",
+  "map": "",
+  "note": "Nisga'a Memorial Lava Bed Corridor Protected Area, BC Parks"
+ },
+ "CA-3905": {
+  "page": "https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/ecological-reserves",
+  "map": "",
+  "note": "Nooseseck Conservation Area, BC"
+ },
+ "CA-3937": {
+  "page": "https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/ecological-reserves",
+  "map": "",
+  "note": "Pa-aat Conservation Area, BC"
+ },
+ "CA-4094": {
+  "page": "https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/ecological-reserves",
+  "map": "",
+  "note": "Skagit River Cottonwoods Ecological Reserve, BC"
+ },
+ "CA-4189": {
+  "page": "https://bcparks.ca/",
+  "map": "",
+  "note": "Telegraph Trail Park, BC Parks"
+ },
+ "CA-5345": {
+  "page": "https://bcparks.ca/",
+  "map": "",
+  "note": "Swalwell Recreation Park, BC"
+ },
+ "CA-6131": {
+  "page": "https://parks.canada.ca/",
+  "map": "",
+  "note": "Cowichan River NATIONAL Heritage Area -- check if this is Parks Canada or BC designation"
+ },
+ "CA-3445": {
+  "page": "https://metrovancouver.org/services/parks/parks-greenways-reserves",
+  "map": "",
+  "note": "FLAG: Glen Valley Regional Park is a Metro Vancouver regional park, not a BC Parks provincial park"
+ },
+ "CA-3666": {
+  "page": "",
+  "map": "",
+  "note": "FLAG: Kensington Park -- likely a municipal park (several BC towns have one); not provincial, check agency"
+ },
+ "CA-4002": {
+  "page": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+  "map": "",
+  "note": "FLAG: Queen Elizabeth Park is a City of Vancouver park, NOT a BC Parks provincial park -- almost certainly the wrong agency if tagged provincial"
  }
 }
