@@ -27,8 +27,9 @@ Sorted by what it unlocks. HQ records answers in the owning topic file and moves
 - CA-4 Dispersed-camping zones = a park note, never a row. LEAN yes.
 - CA-5 During hunt dates hide 'activate both', keep 'inside' with the closure. LEAN yes.
 - CA-6 Lists per state first; a 'top 50' only after the first run is graded. LEAN yes.
-### Later (not now)
-- Q3 UK charity land (National Trust etc.) as public land: at the UK GO.
+### UK GO is now (chat 8's scout, Oct 30 ~6:10 AM; KPC_WorldScout_AU_GB_desk.md)
+- Q3 UK charity land (National Trust etc.) as public land: at the UK GO. **Now live.** LEAN no — charity-owned (National Trust, Woodland Trust etc.) is private land with generous public access, same shape as W-3's right-to-roam exception: generous access ≠ public ownership. Keep those parks as NOT SURE / pin-only unless the agency itself also lists it, same as any other private land.
+- **Q4 (new) Scotland's public-land source: "open-access land" fails our own W-3 rule.** Scotland's Land Reform (Scotland) Act 2003 gives a right to roam almost everywhere, any owner, so an "open access" layer there isn't a public-land marker — it would make nearly all of Scotland "public" under our rule, which W-3 was written to prevent. LEAN: use Forestry and Land Scotland's National Forest Estate Legal Boundary instead (FLS is a government agency; this is actual public ownership, same idea as a US state-forest layer) + NatureScot reserves for the smaller cases. Needs a yes before chat 2 wires Scotland in; England (CRoW Act open-access layer) is unaffected and can start now.
 
 ## ANSWERED
 
