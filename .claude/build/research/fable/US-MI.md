@@ -1,0 +1,43 @@
+# Fable book: US-MI (38 rows, 19 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-MI.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-12802 | | PAD-US at pin: Ottawa National Forest (NF, owner USFS/FED, manager USFS, 994695 ac, Fee, PAD id 3074) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12802 | Norwich State Game Land | pin inside Ottawa National Forest; POTA link = USFS Box folder | pin-doubt |
+| US-12802 | Norwich State Game Land | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-4774 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4774 | Au Sable State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 2997536 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-4774..4779 | Au Sable, Copper Country, Escanaba River, Lake Superior, Mackinaw, Pere Marquette State Forests | POTA link = MI DNR ArcGIS web viewer; no map in our docs | no-layer (check MI DNR open data) |
+| US-4775 | | PAD-US at pin: Crystal Falls State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 300717 ac, Fee, PAD id 71307) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4775 | Copper Country State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Grouse Enhanced Management Site 5305 ac [Wildlife Property Boundary]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-4776 | Escanaba River State Forest | potamap lead (its PAD-US copy holds the pin): 'Escanaba State Forest Area' owner SDNR / manager SDNR | R-G2 / R-G8 | R-G2 name agrees (state forest area): CANDIDATE | 2 | Oct 29 |
+| US-4776 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4776 | Escanaba River State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-4776 Escanaba River SF | NOT SURE | 'State Forest Area' is a management area |
+| US-4777 | | PAD-US at pin: Newberry State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 348461 ac, Fee, PAD id 71314) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4777 | Lake Superior State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-4778 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4778 | Mackinaw State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-4779 | | PAD-US at pin: Cadillac State Forest Area (SCA, owner SDNR/STAT, manager SDNR, 221994 ac, Fee, PAD id 71306) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4779 | Pere Marquette State Forest | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-6728 | | PAD-US at pin: Sleeping Bear Dunes National Lakeshore (NLS, owner NPS/FED, manager NPS, 56717 ac, Fee, PAD id 3320) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6728 | Manitou Island Group WMA | DNR reference-map PDF; pin sits inside Sleeping Bear Dunes | picture-map-only / pin-doubt |
+| US-6728 | Manitou Island Group Wildlife Management Area | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6808 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6808 | Cedar River State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]; N/A 2102171 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6808, 6809, 6813, 6814, 6815, 6817, 6821, 6822 | eight state harbors | DNR harbor guide pages | needs-parcel |
+| US-6809 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6809 | Copper Harbor State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-6813 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6813 | Hammond Bay State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]; N/A 2997536 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6814 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6814 | Lac LaBelle State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-6815 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6815 | Lexington State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-6817 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6817 | Little Lake State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-6821 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6821 | Straits State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6822 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6822 | Whitefish Point State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |

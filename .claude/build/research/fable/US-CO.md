@@ -1,0 +1,14 @@
+# Fable book: US-CO (9 rows, 2 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-CO.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-10540 | Bellevue-Watson Fish Hatchery | cpw.state.co.us/hatchery/bellvue-watson (opened; page, no map); Watson Lake SWA geo PDF likely | 3 | pin until map seen | 8 | Oct 29 |
+| US-10540 | Bellevue-Watson Fish Hatchery | Oct 30 chat 8: found + opened the official CPW geo PDF (`https://cpw.state.co.us/learn/Maps/WatsonLakeSWA_geo.pdf`, legend "SWA Boundary", updated 7/7/2021) — same Watson Lake SWA chat 2 (R-G8: NO, shared word only) and chat 9 (P-2: name-mismatch, LEAD only) already ruled is NOT this park. The PDF adds nothing new to overturn that; it's the same place under a different name. **CO is now resolved both ways: US-9652 traced, US-10540 confirmed pin (name-mismatch stands).** | 8 | Oct 30 |
+| US-10540 | Bellevue-Watson State Fish Hatchery | potamap lead (its PAD-US copy holds the pin): 'Watson Lake SFU' owner SFW / manager SFW | R-G2 / R-G8 | R-G2/R-G8: a different place with a shared word: NO | 2 | Oct 29 |
+| US-10540 | | PAD-US at pin: Watson Lake SFU (SOTH, owner SFW/STAT, manager SFW, 142 ac, Fee, PAD id 189331) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10540 | Bellevue-Watson State Fish Hatchery | look-up 9-p2-co (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Watson Lake SWA 153 ac [State Wildlife Areas] *name; Watson Lake SWA ? ac [CPW State Wildlife Areas And] *name; Watson Lake SWA 149 ac [CPW Managed Properties (publ] *name. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-9652 | Grenada SWA | our parkinfo: POTA link = cpw.state.co.us GranadaDeadmanSWA_geo.pdf (opened 200); map-check filed | 3 (map found) | TRACE: map read: Granada AND Deadman SWAs (Prowers Co., CPW 3/5/2018), legend shows "SWA Boundary"; disclaimer: mapped lines may not match legal holdings (note: one map, two SWAs, trace only Granada) | 8 | Oct 29 |
+| US-9652 | Grenada SWA | CPW GranadaDeadmanSWA_geo.pdf | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-9652 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9652 | Grenada State Wildlife Area | look-up 9-p2-co (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 6 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |

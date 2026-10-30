@@ -1,0 +1,22 @@
+# Fable book: US-CA (17 rows, 10 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-CA.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-11336 | | PAD-US at pin: Barstow Field Office (PUB, owner BLM/FED, manager BLM, 2723972 ac, Fee, PAD id 2179) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11336 | Rainbow Basin Natural Area | look-up 9-p2-ca (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 6 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-11336 CA | Rainbow Basin Natural Area | https://www.blm.gov/visit/rainbow-basin-natural-area | to read | to read | 35.0312, -117.033 |
+| US-12616 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-12616 | Black Butte Lake Park | look-up 9-p2-ca (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 6 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-12616 CA | Black Butte Lake Park | https://www.spk.usace.army.mil/Black-Butte-Lake | to read | to read | 39.8121, -122.338 |
+| US-3578 | Tijuana Estuary Reserve State Conservati | potamap lead (its PAD-US copy holds the pin): 'Tijuana Slough National Wildlife Refuge' owner FWS / manager FWS | R-G2 / R-G8 | R-G2: national refuge vs state reserve: NO | 2 | Oct 29 |
+| US-3578 | | PAD-US at pin: Imperial Beach Navy Outlying Field (MIL, owner DESG/DESG, manager DOD, 1205 ac, Proclamation, PAD id 608); Tijuana Slough National Wildlife Refuge (NWR, owner FWS/FED, manager FWS, 1059 ac, Fee, PAD id 4397) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3578 | Tijuana Estuary Reserve State Conservation Area | look-up 9-p2-ca (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): SAN DIEGO NWR COMPLEX 1478 ac [FWSApproved]; Border Field SP 1493 ac [ParkBoundaries]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-3578 CA | Tijuana Estuary Reserve State Conservation Area | https://www.parks.ca.gov/?page_id=669 | ⚠ PARK OFFICE (Border Field/Tijuana Estuary visitor area as printed): 301 Caspian Way, Imperial Beach, CA 91932 | to read | 32.555, -117.122 |
+| US-6448 | William Randolph Hearst Memorial State B | potamap lead (its PAD-US copy holds the pin): 'Hearst San Simeon State Park' owner SPR / manager SPR | R-G2 / R-G8 | R-G8: a bigger, different park (Hearst San Simeon SP): NO | 2 | Oct 29 |
+| US-6448 | | PAD-US at pin: Hearst San Simeon State Park (SP, owner SPR/STAT, manager SPR, 7 ac, Fee, PAD id 183989) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6448 | William Randolph Hearst Memorial State Beach | look-up 9-p2-ca (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Hearst San Simeon SP 1690 ac [ParkBoundaries] *name; Hearst San Simeon SP 608 ac [ParkBoundaries] *name. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6448 CA | William Randolph Hearst Memorial State Beach | https://www.parks.ca.gov/?page_id=589 | ⚠ NEARBY OFFICE / parent park: Hearst San Simeon SP, 750 Hearst Castle Rd, San Simeon, CA 93452 | to read | 35.6438, -121.187 |
+| US-7375 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-7375 | Cowell Ranch State Beach | look-up 9-p2-ca (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Half Moon Bay SB 207 ac [ParkBoundaries]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-7375 CA | Cowell Ranch State Beach | https://www.coastsidestateparks.org/cowell-ranch-state-beach | 1 New Years Creek Rd, Pescadero, CA 94060 (Coastside page) | to read | 37.4222, -122.426 |

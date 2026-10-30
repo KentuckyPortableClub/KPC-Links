@@ -1,0 +1,22 @@
+# Fable book: US-DE (17 rows, 8 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-DE.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-10687 | Trussum Pond State Fishing Lake | POTA link = DNREC pond maps web app (experience.arcgis.com ...Pond-Maps); our docs: no map | R-G7 step 3 (a pond map, check it shows land) | to check, then 4b | chat 3 | Oct 29 |
+| US-10687 | Trussum Pond State Fishing Lake | potamap lead (its PAD-US copy holds the pin): 'Trap Pond State Park' owner SPR / manager UNK | R-G2 / R-G8 | R-G2/R-G8: a different place with a shared word: NO | 2 | Oct 29 |
+| US-10687 | | PAD-US at pin: Trap Pond State Park (SP, owner SPR/STAT, manager UNK, 2118 ac, Fee, PAD id 60712) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10687 | Trussum Pond State Fishing Lake | look-up 9-p2-de (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Trap Pond State Park ? ac [Public Protected Lands, DPR] *name; Trap Pond State Park 2 ac [DNREC Managed Lands, State of Delaware] *name; Trap Pond State Park 75 ac [DNREC Managed Lands, State of Delaware] *name. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-10687 DE | Trussum Pond State Fishing Lake | https://experience.arcgis.com/experience/d59b72d092604ae2943da0f8e71387fc/page/Pond-Maps/?data_id=dataSource_1-1850bf342a5-layer-10%3A30&views=Trussom-Pond | to read | to read | 38.5256, -75.5104 |
+| US-4367 | First State Heritage Park | https://destateparks.com/History/FirstStateHeritage ; docs: none; nothing near | R-G7 step 3 -> 4b (Dover, state-owned parcels) | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-4367 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-4367 | First State Heritage State Park | look-up 9-p2-de (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Legislative Green Park 3 ac [DNREC Managed Lands, State of Delaware]; Legislative Green Park ? ac [Public Protected Lands, Municipal]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-4367 DE | First State Heritage State Park | https://destateparks.com/History/FirstStateHeritage | to read | to read | 39.1584, -75.5203 |
+| US-9885 | Indian River Life-Saving Station SHS | https://destateparks.com/Centers/IRLifesavingStation ; pin inside Delaware Seashore SP | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-9885 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9885 | Indian River Life-Saving Station State Historic Site | look-up 9-p2-de (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Delaware Seashore State Park 1732 ac [DNREC Managed Lands, State of Delaware]; Delaware Seashore State Park ? ac [Public Protected Lands, DPR]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-9885 DE | Indian River Life-Saving Station State Historic Site | https://destateparks.com/Centers/IRLifesavingStation | to read | to read | 38.6338, -75.0671 |
+| US-9886 | Dupont Nature Center State Conservation Area | DNREC page; pin inside Milford Neck Wildlife Area | R-G7 step 3 -> 4b | pending (3-fable-low-c) | chat 3 | Oct 29 |
+| US-9886 | | PAD-US at pin: Mispillion Marine Reserve (SOTH, owner SFW/STAT, manager SFW, 200 ac, Fee, PAD id 76230) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9886 | Dupont Nature Center State Conservation Area | look-up 9-p2-de (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Milford Neck Nature Preserve 268 ac [Nature Preserves, DNREC (F&W)] *name. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-9886 DE | Dupont Nature Center State Conservation Area | https://dnrec.alpha.delaware.gov/fish-wildlife/education-outreach/dupont-nature-center/ | to read | to read | 38.9476, -75.3151 |

@@ -1,0 +1,18 @@
+# Fable book: US-AZ (13 rows, 4 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-AZ.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-11944 | Dankworth Pond SP | AZ State Parks park map PDF (usedirect DAPO_Park Map_8-2023); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-11944 | Dankworth Pond SP | AZ State Parks park map PDF (DAPO_Park Map_8-2023) | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-11944 | | PAD-US at pin: Roper Lake State Park (SP, owner JNT/JNT, manager SPR, 81 ac, Fee, PAD id 167331) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-11944 | Dankworth Pond State Park | look-up 9-p2-az (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Roper Lake State Park 336 ac [AZ_State_Parks_Boundary]; Roper Lake State Park 336 ac [ASPT_Cartographic_Boundaries]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-11944 / US-3390 | Dankworth Pond SP / River Island SP | Oct 30 chat 8: both are G-ID3 picture maps (PDF, no coordinates) -- already saved to KPC-Data's picture-maps branch via save-map (replacement links found on arizona-content.usedirect.com after azstateparks.com blocked the bot). **Confirmed: picture-map-only, link kept, stays a pin per G-ID3 (never traced).** | 8 | Oct 30 |
+| US-3390 | River Island SP | AZ State Parks park map PDF Park Map-RIIS (opened 200); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
+| US-3390 | River Island SP | AZ State Parks park map PDF (Park Map-RIIS) | G-ID3 (Brandon 3:57 PM) | picture map only: link kept, PIN (no line traced from a picture); a GIS / parcel layer would allow a line | 2 | Oct 29 |
+| US-3390 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-3390 | River Island State Park | look-up 9-p2-az (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Buckskin Mountain State Park 944 ac [ASPT_Cartographic_Boundaries]; Buckskin Mountain State Park 949 ac [AZ_State_Parks_Boundary]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-6071 | Little Black Mountain Petroglyph Site | BLM page (opened 200): BLM Arizona Strip site, not state land; BLM surface layer | 3 -> 4b | BLM land: trace from BLM layer | 8 | Oct 29 |
+| US-6071 | Little Black Mountain Petroglyph Site | Oct 30 chat 8: chat 9's P-2 already tested this pin against BLM rec polygons (incl. the national BLM_Natl_Recs_poly layer) + state/FWS/NPS layers (row 1343) -- no polygon within 100 m in any of the 7 layers read. **Confirmed: no-layer, stays a pin.** | 8 | Oct 30 |
+| US-6071 | | PAD-US at pin: Arizona Strip Field Office (PUB, owner BLM/FED, manager BLM, 2766023 ac, Fee, PAD id 1879) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-6071 | Little Black Mountain Petroglyph Site State Historic Site | look-up 9-p2-az (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 7 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |

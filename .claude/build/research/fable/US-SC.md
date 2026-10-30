@@ -1,0 +1,19 @@
+# Fable book: US-SC (14 rows, 5 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-SC.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-13016 | Pine Island SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13016 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13016 | Pine Island State Park | look-up 9-p2-sc (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 7 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-13198 | Black River SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-13198 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-13198 | Black River State Park | look-up 9-p2-sc (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 7 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-9229 | Wild Turkey WMA | SCDNR WMA map PDF wmamap5 (opened 200; WMA unconfirmed); SCDNR ManagedLand/116 page; map-check filed | 3 | CORRECTION: wmamap5 is NOT Wild Turkey (it shows Draper/McConnells/Ross/Kirsh, Rock Hill Blackjacks, Worth Mountain, Delta); need the other map number for Wild Turkey (SCDNR ManagedLand/116 page) | 8 | Oct 29 |
+| US-9229 | Wild Turkey WMA | Oct 30 chat 8: searched for SCDNR's managed-lands boundary REST service (the mlands project viewer at dnr.sc.gov/mlands/projectMLviewer.html looks like the source of the per-WMA map PDFs) but found no modern REST/FeatureServer endpoint for it -- only SCDNR's base-map layers (SC_Outline, SC_County). **Stays a pin (no-layer); the right WMA map number (not wmamap5) is still unfound.** | 8 | Oct 30 |
+| US-9229 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9229 | Wild Turkey Wildlife Management Area | look-up 9-p2-sc (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): No official SCDNR property name 479 ac [SCDNR Public Properties View, JOHN HANCOCK LIFE INS COM]; Unnamed Game Zone 2 18523 ac [SCDNR Properties Public Diss]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-9759 | May Forest SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-9759 | | PAD-US at pin: Fort Johnson Marine Resources Center (SRMA, owner SDNR/STAT, manager SDNR, 98 ac, Fee, PAD id 254177) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-9759 | May Forest State Park | look-up 9-p2-sc (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 7 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-9759 / US-13016 / US-13198 | May Forest / Pine Island / Black River SP | Oct 30 chat 8: all 3 are among SC's newest state parks (SC just opened its 50th; Pine Island is former SCE&G land transferred 2023-24, Black River is a brand-new riverine park network opened 2026) -- no GIS boundary layer found yet for any of them, only news coverage of their creation. **Confirmed no-layer for now (too new to be mapped), stays a pin; worth a recheck in a few months once SCPRT publishes their boundaries.** | 8 | Oct 30 |

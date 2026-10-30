@@ -1,0 +1,21 @@
+# Fable book: US-MO (16 rows, 5 parks)
+ONE ROW PER PARK from now on: update the park's row in place (add to its cells), don't add a new row. Read the Agency Atlas first: .claude/build/research/agency-atlas/US-MO.md
+
+| park | name | source found | Rule G step | result | by chat | date |
+|---|---|---|---|---|---|---|
+| US-10575 | Walnut Woods CA | MDC news (opened): donated to City of Liberty Parks & Rec; our doc: no map | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
+| US-10575 | Walnut Woods State Conservation Area | potamap lead (its PAD-US copy holds the pin): 'Walnut Woods Conservation Area' owner OTHS / manager OTHS | R-G2 / R-G8 | R-G2 name agrees; owner City of Liberty (R-G7 4b ties): CANDIDATE | 2 | Oct 29 |
+| US-10575 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10575 | Walnut Woods State Conservation Area | look-up 9-p2-mo (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 8 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-10575 / US-10576 | Walnut Woods CA / Rush Creek CA | Oct 30 chat 8: found MDC's own "Conservation Area Boundaries" polygon layer (still live, may still carry these two tracts even after the Sept 2025 City-of-Liberty donation -- MDC's own news release and third-party park listings still call them "Walnut Woods/Rush Creek Conservation Area, Liberty") at `https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5`; also found MDC's own boundary map PDFs for them (`mdc.mo.gov/.../7834map.pdf`, `.../8608map.pdf` -- need to match ref to map #). Not point-tested yet -- handing both the layer + the 2 pins to chat 9 for P-2. | 8 | Oct 30 |
+| US-10576 | Rush Creek CA | MDC news (opened): donated to City of Liberty Parks & Rec | 4b | owner = City of Liberty: Clay County parcel | 8 | Oct 29 |
+| US-10576 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-10576 | Rush Creek State Conservation Area | look-up 9-p2-mo (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 8 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+| US-5715 | Roger Pryor Pioneer Backcountry SP | our doc: park page, no working map; mostateparks trail map PDFs | 3 | pin until map seen | 8 | Oct 29 |
+| US-5715 | Roger Pryor Pioneer Backcountry SP | Oct 30 chat 8: same MoDNR state-lands layer as above is the candidate; also mostateparks trail-map PDFs exist but those are G-ID3 picture maps, link-kept only, never traced. Handing to chat 9 for P-2 against the DNR layer first. | 8 | Oct 30 |
+| US-5715 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5715 | Roger Pryor Pioneer Backcountry State Park | look-up 9-p2-mo (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Echo Bluff State Park 453 ac [Missouri Department of Natur]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-5716 | Bruce R. Watkins Cultural Heritage Center SP | our doc: no map | 3 -> 4b | Jackson County parcel | 8 | Oct 29 |
+| US-5716 | Bruce R. Watkins Cultural Heritage Center SP | Oct 30 chat 8: found Missouri DNR's own state-lands boundary layer `https://gis.dnr.mo.gov/host/rest/services/boundary/modnr_land/MapServer` (official, state parks are DNR-owned) -- not point-tested yet, handing to chat 9 for P-2. | 8 | Oct 30 |
+| US-5716 | | PAD-US at pin: Community 298 (LP, owner CITY/LOC, manager CITY, 15 ac, Fee, PAD id 107399) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
+| US-5716 | Bruce R. Watkins Cultural Heritage Center State Park | look-up 9-p2-mo (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 8 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |

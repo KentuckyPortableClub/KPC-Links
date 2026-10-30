@@ -1,0 +1,2 @@
+# Agency Atlas (HQ Oct 30 7:35 AM; Brandon 7:31 AM 'do it all')
+One file per US state (US-XX.md), Canadian province (CA-XX.md) and, as the world finder reaches them, country (W-XX.md, ISO code). It records WHERE each agency keeps its official maps, so nobody rediscovers it park by park (Fable habit #4). Every chat and bot reads the file for its area FIRST and adds one dated line per new find. World files start when the world finder or chat 9 / chat 8 first touch a country.
