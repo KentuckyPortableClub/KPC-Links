@@ -311,6 +311,7 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 | US-13546 | Twin Points Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13548 | Knife River Marine Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13549 | McQuade Marine Protected Area | our doc: DNR harbor page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| all 4 | — | Oct 30 chat 8: opened the DNR harbor pages directly (not blocked for me, only for the look-up bot's headless browser): each gives only a "Map it" Google Maps link + one approximate GPS point, no boundary, no acreage — these are small-craft harbor/marina access sites (breakwaters), not conservation land with a legal boundary. Found MN's statewide boundary layer `DNR Management Units` (polygon, layer 3) at `https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_managed_areas/FeatureServer/3` (gisdata.mn.gov, official) — filed a point test (8-mn-dnrunits) at all 4 approximate GPS points to confirm either way. Expect: no polygon at a harbor structure (why-not tag `no-layer`, pin stays) — but worth the one free test since the layer is real and official. | 8 | Oct 30 |
 
 ### CO
 | park | name | source found | Rule G step | result | by chat | date |
