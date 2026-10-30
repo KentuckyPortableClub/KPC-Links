@@ -258,6 +258,9 @@ def official_parks(PIN):
     return parks, skip
 
 
+AREA_BOX = []   # Oct 30: the run's area (box of its own park pins, padded ~20 km); a spot outside it is another area's
+
+
 def trail_lines():
     """{ref: [[[lon, lat], ...], ...]} official trail / river lines saved by the trails bot."""
     out = {}
@@ -2616,6 +2619,7 @@ def main():
         # line passes through the area (the box of the area's own park pins, padded ~20 km); its rows are filed under the area's state.
         _in = [PIN[r] for r, p in parks.items() if (p['st'] in ONLY or p['st'][3:] in ONLY) and r in PIN and PIN[r][1] is not None]
         _ab = [min(v[2] for v in _in) - .2, min(v[1] for v in _in) - .2, max(v[2] for v in _in) + .2, max(v[1] for v in _in) + .2] if _in else None
+        AREA_BOX[:] = _ab or []
         def _crosses(r):
             if not _ab or r not in LN or (parks.get(r) or {}).get('ids'): return False
             return any(_ab[0] <= q[0] <= _ab[2] and _ab[1] <= q[1] <= _ab[3] for l in LN[r]['lines'] for q in l[::5] + l[-1:])
@@ -2879,6 +2883,10 @@ def main():
                          or any(pip_groups(KYC, p[0], p[1]) for p in (s.get('shape') or [])[::max(1, len(s.get('shape') or []) // 40)])]
             except Exception as e: LOG.append(f'Kentucky outline: {str(e)[:60]}')  # noqa: BLE001
         by = {}
+        if AREA_BOX:   # Oct 30 (chat 2): two LINE parks meet anywhere along their whole length (the Appalachian Trail x Virginia trails
+            n0 = len(spots)   # landed in US-ME.json): only spots inside this run's own area are this run's rows
+            spots = [s for s in spots if AREA_BOX[1] <= s['center'][0] <= AREA_BOX[3] and AREA_BOX[0] <= s['center'][1] <= AREA_BOX[2]]
+            if n0 != len(spots): LOG.append(f'{n0 - len(spots)} spots outside this area left for their own area')
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
             # Oct 29 (chat 8, nec: 22 Massachusetts Appalachian Trail rows sat in US-ME.json): a row is filed under the state of a
