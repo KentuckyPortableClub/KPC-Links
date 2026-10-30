@@ -23,5 +23,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "All 4 open parks resolved: May Forest/Pine Island/Black River SP confirmed no-layer (too new to be mapped yet, stay pins); Wild Turkey WMA confirmed no-layer (no REST service found for SCDNR's managed-lands viewer), stays a pin."
+  },
+  "US-LA": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "All 5 open parks confirmed no-layer, stay pins (no Louisiana state-parks GIS boundary layer found). One lead handed to chat 9 for a P-2 test: NOAA's 2014 ESI Parks-Managed Areas polygons (coastal LA, may or may not cover any of these 5)."
   }
 }

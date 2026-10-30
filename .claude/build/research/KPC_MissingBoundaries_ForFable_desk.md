@@ -388,6 +388,9 @@ STATE SC DONE
 | US-10354 | Forts Randolph & Buhlow SHS | our doc: no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-10447 | Audubon SHS | our doc: only a brochure-request page | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-2374 | Saint Bernard SP | our doc: no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| all 5 | — | Oct 30 chat 8: searched again for a Louisiana state-parks GIS boundary layer (LDOTD/SONRIS/data.gov) -- no dedicated state-parks layer found, confirming the Oct 29 search. One lead worth a follow-up (not confirmed, not Louisiana's own state-parks office): NOAA's "Louisiana and Lower Mississippi River 2014 ESI PARKS-MANAGED AREAS Polygons" (catalog.data.gov) -- a coastal sensitivity-index dataset that may carry some LA park polygons, but it's coastal-only so likely misses the 3 inland parks (Jimmie Davis, Poverty Point Reservoir, Forts Randolph & Buhlow) and may or may not reach Saint Bernard/Audubon. **Confirmed no-layer for now, stays a pin**; handing the ESI lead to chat 9 for a P-2 test rather than guessing which parks it covers. | 8 | Oct 30 |
+
+STATE LA DONE
 
 ### MD
 | park | name | source found | Rule G step | result | by chat | date |
