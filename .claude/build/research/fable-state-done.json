@@ -78,5 +78,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Found 4 corrections among the 18 tagged parks with a research trail: US-2334 Cross Timbers SP (confirmed by KS statute 32-838a as a 2002 rename of Toronto State Park -- same physical place) and US-9187 John Brown Museum SHS (T-1 exact match to PAD-US John Brown Memorial Park) both moved from no-layer to TRACE CANDIDATE, handed to chat 2. US-7943 Sandsage Bison Range SWA and US-9185 First Territorial Capitol SHS both had a wrongly-named polygon at the pin (Finney Game Refuge, Fort Riley) -- moved from no-layer to name-mismatch (category fix, no new trace). The 14 needs-parcel tags confirmed correct. 4 other tagged refs (US-13456, US-2350, US-7393, US-7405) have no research trail in the file, not individually re-verified."
+  },
+  "US-NC": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "5 corrections found: US-10389 Hiwassee Dam Recreation Park and US-10399 Apalachia Reservoir Recreation Park both moved to TRACE CANDIDATE (exact or near-exact name matches to TVA dam/lake polygons, Reservoir/Lake treated as interchangeable kind words). US-10511 Jessups Mill Pond SGL recategorized no-layer to name-mismatch (a polygon exists, already explicitly ruled a different place). US-6837/US-6847/US-6852 (CSS Neuse, NC Transportation Museum, State Capitol SHS) flagged as already past needs-parcel -- parcel found, owner State of NC, awaiting chat 11 yes/no, not actually stuck. US-6963 Nutbush WMA moved from name-mismatch to pin-doubt (parcel at pin is privately owned by Wake Forest Land Associates II -- the pin itself may be mislocated). 8 of 26 open refs have no research trail, not re-verified."
   }
 }
