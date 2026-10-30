@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 30 6:10 AM, Brandon 6:07 AM GO):** from Sun Nov 1 your new-parks bot holds its park lists for chat 11, and its Discord / Facebook post waits until the parks really show on the site (never twice). Park notes / campground notes get a light guard now (every row has Brandon's YES, list did not halve, no duplicate row). Chat 10 wires it; tell chat 10 anything it should know.
 
 ## NEEDS BRANDON
 

@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 30 6:10 AM, Brandon GO):** your calendar bots get a light guard (chat 10 wires it): they pass unless the list shrinks by half or a row appears twice; then they hold and chat 11 gets a line.
 - (nothing else open)
 
 ## NEEDS BRANDON
