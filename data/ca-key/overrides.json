@@ -2193,6 +2193,13 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 13 m from the edge; a piece where the park is bigger)"
+  },
+  "CA-2503": {
+   "no": [
+    "Manitoba pro:22"
+   ],
+   "why": "Oct 30 4:45 AM chat 11 ca-key sample: joined to the WHOLE Sandilands Provincial Forest, not the WMA: kept out",
+   "when": "2026-10-30"
   }
  }
 }

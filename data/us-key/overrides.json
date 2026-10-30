@@ -1096,10 +1096,12 @@
   },
   "US-10476": {
    "no": [
-    "sgore5132"
+    "sgore5132",
+    "sgord10426",
+    "sgord10427"
    ],
-   "when": "2026-10-29",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Monument Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-10-30",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Monument Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · Oct 30 4:45 AM chat 11 KEY check: 'Monument GS' 1 ac is the wrong kind and size: pin"
   },
   "US-10477": {
    "alias": [

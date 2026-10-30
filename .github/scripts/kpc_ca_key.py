@@ -165,6 +165,7 @@ def in_ring(x, y, r):
         j = i
     return ins
 def inside(la, lo, g): return sum(1 for r in rings(g) if in_ring(lo, la, r)) % 2 == 1
+LOCALSRC = re.compile(r'local and regional|greenspace|municipal parks', re.I)
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
@@ -483,6 +484,9 @@ for pv, parks_in in sorted(by.items()):
             if PRIV.search(r['n'] + ' ' + str(r['ow'])): continue      # private stewardship land is never joined (only listed to check)
             ex = bool(kp) != bool(r['_k'])      # only one name says what kind of place it is: the names must match exactly
             if ex and la is not None and not near(la, lo, r['_bb'], .1): continue   # and be close by (many lakes share a name)
+            # Oct 30 4:45 AM (chat 11's ca-key sample, R-G3 location): city / regional greenspace layers repeat the same plain names
+            # town after town (Memorial Park, Lions Park, Cariboo Park): a piece from such a layer joins only AT the pin (~1 km box)
+            if la is not None and LOCALSRC.search(str(r.get('src') or '')) and not near(la, lo, r['_bb'], .01): continue
             if (same_name(name, r['n'], ex) or (r['nf'] and same_name(name, r['nf'], ex))) and same_kind(kp, r['_k']):
                 m.append([r['oid'], r['n'] or r['nf'], acres(r), 'name' if not r.get('src') else 'name · ' + r['src']])
         ov = OVR.get(ref) or {}
