@@ -54,4 +54,5 @@
   3. OVERLAP: the list from the 2-fer rule-sheet output only (never our own guess), FULL 2-fer notice on the screen, SHORT on every card, the info notice line; tap = map + 'activate both' (fills MY PARK with both). NEEDS BRANDON: the overlap list is members-only on the website; the app is public: show it in the app or not?
   4. Hunters Lounge parts already in the app: SPOTS (filters like the Lounge) + MY POTA FILES (new to me); the rest (VIP, leaderboard) stays on the website.
   5. Order (ideas.md): website 'Add to Home Screen' first (chat 1, cheap) → these screens → iPhone.
+- **Oct 30 2 PM (chat 4, Opus): the Oct 30 nightly WORKED: test-build = KPC-test.apk + KPC-Lite-test.apk + KPC-Setup-0.7.7.exe.** Brandon: 'auto ft4-8 option … with longer cq' → 0.7.8 on kpc-app main (15b43ea): 🔁 AUTO RUN + 🎯 AUTO HUNT on the FT8/FT4 screen (details kpc-app CLAUDE.md 0.7.8); rides the next nightly. app/version.json NOT bumped (website freeze): HQ's call.
 

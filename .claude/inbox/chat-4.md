@@ -18,6 +18,7 @@ Read .claude/inbox/README.md first.
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
 ## DONE
+- Oct 30 2 PM: Lite build OK (Oct 30 nightly). 0.7.8 = AUTO RUN + AUTO HUNT for FT8/FT4 (Brandon), 203 checks, next nightly. version.json left alone (freeze).
 - Oct 29 11:10 PM: READINESS answered in chat 10's OPEN (no bots of mine save site data; app packs are hand-built, 4.1 waits for Brandon + the freeze). Cleanup night: nothing unpushed, no KPC-Links branches of mine.
 - Oct 29 11:10 PM: the Oct 29 app build FAILED (Lite step lacked the signing password; Windows upload hit the org's full artifact storage). Fixed in KPC-App 7c7aad6: Lite gets PW + can't fail the run; builds put files straight on a draft release (no artifacts). Tonight's 3:17 AM build carries 0.7.7 + Lite.
 - Oct 28 7 AM: iPhone plan written (5 points, ft8-app.md 'IPHONE PLAN'): browser remote first (HTTPS via Tailscale cert), real iOS app = Swift plugins + $99/yr + macOS runner, no USB CAT on iOS. Nothing built.
