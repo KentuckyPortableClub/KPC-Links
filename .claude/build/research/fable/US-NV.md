@@ -219,3 +219,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 - NV State Parks (Nevada_State_Parks_Boundaries/FeatureServer/0): 0 of 68 pins inside a polygon, 0 with a name match; LAYER ERROR (layer index wrong?): {'code': 400, 'message': '', 'details': ['The requested layer (layerId: 0) was n
 - NV Surface Mgmt Agency (Surface_Management_Agency/FeatureServer/0): 0 of 68 pins inside a polygon, 0 with a name match
 NOTE: NV State Parks FeatureServer/0 does not exist (wrong layer index); NV SMA and Utah Parks Local gave 0 hits, layer index/geometry being checked (roots filed). WA State Parks FeatureServer/0 also not found. Re-test follows.
+
+RETEST (chat 9, Oct 30): NV State Parks is FeatureServer/1 (not /0): 1 of 68 pins inside (Fort Churchill Historic State Park, name match). 
+LAYER | US-NV Fort Churchill | NV State Parks | https://services5.arcgis.com/bQMB4G4scQKPv0h5/arcgis/rest/services/Nevada_State_Parks_Boundaries/FeatureServer/1 | name field: see layer | pin test: 1 name match; layer holds few parks

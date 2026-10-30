@@ -150,3 +150,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | CA-6369 | Cape Mudge Lighthouse National Historic Site | look-up 9-cap2-bc-4 (BC key layers in data/ca-key/layers.json + CPCAD / federal) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (BC key layers + CPCAD); stays pin / no-layer | chat 9 | 2026-10-29 |
 | CA-6398 | Craigflower Manor House National Historic Sit | National Historic Site | Craigflower Manor | 0 |
 | CA-6398 | Craigflower Manor House National Historic Site | look-up 9-cap2-bc-1 (BC key layers in data/ca-key/layers.json + CPCAD / federal) | R-G7 step 2 (point at the pin) | P-2 hit(s): Victoria Harbour Migratory Bird Sanctuary ? ac [Protected and conserved area, Government of Canada; Gov]. LEAD only (a polygon at the pin is not a name match); pin unchanged | chat 9 | 2026-10-29 |
+
+## chat 9 LAYER lines (Canada dive, Oct 30 10:15 AM, HQ 9:30 AM): name-agreeing P-2 hits, tested at 100 m; T-2 SURE = same proper words, T-3 LIKELY = one name inside the other. Leads for the nightly collector; pins unchanged.
+LAYER | CA-3591 | cpcad | https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0 | name field: NAME_E | T-3 LIKELY: park 'Hawthorne Park' = record 'Hawthorne Rotary Park'; P-2 test Oct 30 chat 9; pin unchanged
