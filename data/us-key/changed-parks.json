@@ -1,5 +1,37 @@
 {
  "about": "Parks whose joined outline changed in the last US key rebuild (for the 2-fer small batches).",
  "date": "2026-10-30",
- "refs": []
+ "refs": [
+  "US-2251",
+  "US-2252",
+  "US-2253",
+  "US-2254",
+  "US-2255",
+  "US-2256",
+  "US-2257",
+  "US-2258",
+  "US-2259",
+  "US-2260",
+  "US-2261",
+  "US-2262",
+  "US-2263",
+  "US-2264",
+  "US-2265",
+  "US-2266",
+  "US-2267",
+  "US-2268",
+  "US-2269",
+  "US-2270",
+  "US-2271",
+  "US-2272",
+  "US-2273",
+  "US-2275",
+  "US-4162",
+  "US-4163",
+  "US-4164",
+  "US-4166",
+  "US-4167",
+  "US-4176",
+  "US-4182"
+ ]
 }
