@@ -21,7 +21,7 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 - (add)
 
 ## Parcel / ownership maps (statewide or by county)
-- (add)
+- Chat 8 (Oct 30): **statewide, one layer for the whole state** (RI is small enough RIGIS runs it as one, not by county): RIDEM Tax_Parcels, https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0 (RIGIS). Used for US-10545 Hillsdale (Richmond).
 
 ## Blocks bots / dead / private (don't retry)
 - (add)

@@ -98,5 +98,15 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Found that chat 9s P-2 pass for MS only checked 3 federal layers, no MS state layer existed yet. Found Mississippis own MARIS clearinghouse (maris.mississippi.edu) hosts MS_WMABoundaries_2019, a MDWFP shapefile covering WMAs + Dog Hunting Areas + State Parks together, no use limitations stated. Downloadable shapefile not a live REST service, so needs downloading and testing rather than a point-test. Could plausibly resolve most of MS 35 needs-parcel + 3 no-layer parks in one pass -- handed to chat 9/chat 2 as a priority re-test before individual parcel work. This is my 22nd and final assigned Fable state."
+  },
+  "US-IA": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Confirmed chat 3's handoff: only open park US-9334 Teal Basins WPA is a T-1 name+pin match (151 ac, USFWS), container confusion with the larger Cerro Gordo County WPA resolved. Handed to chat 2 for trace. STATE IA DONE (1/1)."
+  },
+  "US-RI": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Only open park US-10545 Hillsdale: pin sits in deCoppet Preserve (container, no name match); RIDEM's own page names a 45-ac Richmond parcel. Found RIGIS's statewide RIDEM Tax_Parcels layer (one layer covers the whole state, no county split needed) and filed the parcel look-up 8-parcel-ri. STATE RI DONE (1/1: needs-parcel, filed)."
   }
 }
