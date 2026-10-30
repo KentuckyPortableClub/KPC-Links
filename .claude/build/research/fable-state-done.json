@@ -67,7 +67,7 @@
   "US-IL": {
     "by": "chat 8",
     "date": "2026-10-30",
-    "note": "5 open parks: found exact PDF URLs for Rauchfuss Hill + Copperhead Hollow in our own docs, filed save-map requests (picture-map-only). Oakwood Bottoms = no-layer (whole-forest ownership too broad). North Point Marina = name-mismatch. Ray Norbut East Hannibal: chat 3 found its pin ~40km off its own official map -- raised as a numbered grey area to HQ rather than guessed."
+    "note": "5 open parks, all resolved: Rauchfuss Hill + Copperhead Hollow picture-map-only (save-map filed); Oakwood Bottoms no-layer (whole-forest ownership too broad); North Point Marina name-mismatch; Ray Norbut East Hannibal Unit -- confirmed real (chat 11 + HQ, Oct 30: the '40km off' compared the wrong two points; pin is ~400m from the unit's own page, not 60km from the main SFWA site), owner IL DNR at the pin, no proper-name layer hit -- name-mismatch/no-layer, pin stays."
   },
   "US-IN": {
     "by": "chat 8",
