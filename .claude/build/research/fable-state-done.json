@@ -128,5 +128,30 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "5 open parks: Rainbow Basin + Black Butte Lake = no-layer (BLM district office / USACE lake, both too broad/no service). Cowell Ranch + Hearst Memorial State Beach (R-G8 already ruled different bigger park) = name-mismatch. Tijuana Estuary Reserve: confirmed R-G2 NO on the NWR alias but flagged Border Field SP as a real joint-management partner worth a closer ownership look."
+  },
+  "US-HI": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "2 open: Artillery District of Honolulu (NRHP thematic-resource nomination, no live GIS, no-layer); HI State Game Reserve (dead dlnr.hawaii.gov link, generic park name, flagged for chat 2 to check POTA's own detail page). Both no-layer."
+  },
+  "US-VA": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "2 open: Frontier Culture Museum = no-layer (confirmed, museum campus). Dyke Marsh = picture-map-only per chat 3 (NPS PDF), exact link handed to chat 10 for save-map filing."
+  },
+  "US-NM": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "3 open: Angel Fire VVM's own PAD-US record is named 'VVM - Main Site' -- a real abbreviation match, moved to TRACE CANDIDATE. Los Luceros + Bosque Redondo/Fort Sumner stay no-layer (no hit at either pin)."
+  },
+  "US-DE": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "4 open, all confirmed: Trussum Pond's pond-map app shows water only (B6), name-mismatch stands (Trap Pond SP). First State Heritage + Indian River Life-Saving Station still 403 blocked, existing tags stand. DuPont Nature Center = name-mismatch (false *name flag on kind words only)."
+  },
+  "US-MT": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "4 open: confirmed Brownes Lake (really 'Brownes Bridge FAS') and Thoreau State Beach (really 'Thibodeau FAS') are real name mismatches, chat 3's G-MT1/G-MT2 grey areas stand pending Brandon. Big Springs + Jocko River hatcheries: picture-map leads confirmed on their FWP pages (Additional Files section), exact PDF links handed to chat 10 for save-map filing."
   }
 }

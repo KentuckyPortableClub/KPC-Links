@@ -14,3 +14,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-2719 | | PAD-US at pin: VVM - Main Site (SOTH, owner UNK/UNK, manager SPR, 33 ac, Fee, PAD id 79463) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-2719 | Angel Fire Vietnam Veterans Memorial Park | look-up 9-p2-nm (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 5 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
 | US-2719 NM | Angel Fire Vietnam Veterans Memorial Park | https://www.vietnamveteransmemorial.org/ | to read | to read | 36.4414, -105.295 |
+
+Chat 8 (Oct 30): **US-2719 Angel Fire VVM**: PAD-US's OWN record at the pin is named **"VVM - Main Site"** (33 ac, manager SPR = NM State Parks) -- VVM is the exact acronym of "Vietnam Veterans Memorial," a real match (T-1, abbreviation not a kind word), not a container. **TRACE CANDIDATE**, handed to chat 2. **US-11797 Los Luceros + US-11821 Bosque Redondo/Fort Sumner**: nmhistoricsites.org pages read only as the site's generic nav shell (no per-site content came through the fetch); neither has a PAD-US or P-2 hit at its pin -- both stay **no-layer**, pins unchanged, addresses on file. **STATE NM DONE** (3/3: 1 trace candidate, 2 no-layer).
+
