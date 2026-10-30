@@ -1,0 +1,57 @@
+name: KPC research helpers (park packets daily, atlas crawler weekly; notes only)
+# Oct 30 2026 (chat 10; HQ 7:50 AM, Brandon 7:43 AM 'any other helper that make chat 8 work easier'). Fills chat 8's sheets:
+# PARK PACKETS in .claude/build/research/fable/<area>.md (pin, county, agency guess, website, what was tried) and the atlas crawler's
+# layer lists in .claude/build/research/agency-atlas/<area>.md. Decides nothing; nothing to the waiting room; the GIS hunter is untouched.
+# Only .claude/** changes = no site rebuild. Never goes red (EMAIL rule).
+on:
+  schedule:
+    - cron: '23 13 * * *'   # packets every day (atlas too on Sundays)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'packets | atlas | both'
+        default: 'both'
+      areas:
+        description: 'Areas to do (e.g. "US-DE"); blank = all'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-research-helpers
+  cancel-in-progress: false
+jobs:
+  helpers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v5
+      - name: KPC-Data (read-only: hunter + documents results, park pins, manners)
+        uses: actions/checkout@v5
+        with:
+          repository: KentuckyPortableClub/KPC-Data
+          path: kpcdata
+          persist-credentials: false
+          sparse-checkout: |
+            .github/scripts
+            data/gis-hunter
+            data/docs
+            data/parkinfo
+            data/parkinfo-web.json
+            data/canada.json
+      - name: Fill the sheets
+        continue-on-error: true
+        env:
+          DATA: kpcdata
+        run: |
+          M="${{ inputs.mode }}"; [ -z "$M" ] && { M=packets; [ "$(date -u +%u)" = 7 ] && M=both; }
+          if [ "$M" = packets ] || [ "$M" = both ]; then timeout 150m python3 .github/scripts/kpc_research_helpers.py packets ${{ inputs.areas }} || true; fi
+          if [ "$M" = atlas ] || [ "$M" = both ]; then timeout 120m python3 .github/scripts/kpc_research_helpers.py atlas ${{ inputs.areas }} || true; fi
+      - name: Save (notes only)
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/fable .claude/build/research/agency-atlas 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -qm 'Research helpers: park packets / atlas layer lists (notes only)'
+          for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*5)); done
+          true
