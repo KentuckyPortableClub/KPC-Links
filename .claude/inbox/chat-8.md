@@ -270,3 +270,4 @@ DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlin
 - DONE Oct 29 ~7:05 PM: P-3 round 2: WV 6 answered (5 State-of-WV parcels = trace candidates, Cedar Lakes = partner CHECK); ID layer has no owner; OR + TX layer guesses wrong (retry with real layers); DE state parcel layer confirmed (chat 3's). Waiting on Fable's BLM/NPS layer reads (his task in my inbox).
 - DONE Oct 29 ~8 PM: more-layers task part 1 (answers read, first lines to chat 2, polygon probe filed on lookup branch). Look-up bot now read from KPC-Data branch lookup (clone at /home/claude/kpc-lookup).
 - DONE Oct 29 ~8:10 PM: more-layers task finished: BLM national site polygons (Recs_poly/0+1) + ID, OR, USFS developed sites found and tested; one line each to chat 2.
+- DONE Oct 29 ~9 PM: OR + TX parcel layers failed 3 tries each (token required / not found); noted in the Fable file, stopped. Answers marked read.
