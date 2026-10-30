@@ -784,3 +784,4 @@ Chat 2 builds it; chat 8 re-runs its key check after; a new grey area = a number
 - NT: ◯ NWT Centre for Geomatics territorial parks + protected areas (geomatics.gov.nt.ca ArcGIS REST) · CPCAD for Thaidene Nëné etc.
 - NU: ◯ Nunavut Parks (CPCAD); territorial GIS is thin → most stay pins (`no-layer`).
 - First pass order (P-2): one point-in-polygon probe per province of EVERY no-outline park against the ✓ layers + CPCAD, so the 362 'pin inside' and 53 'check' get their candidate record and tag before any page is read.
+- **Oct 29 9:40 PM (Fable) GIS HUNTER design:** `.claude/build/research/KPC_GisHunter_Design_Fable.md` = how Opus builds the bot that searches the US + Canada Fable lists for official layers (inside Rule G: R-G7 steps 2-3, P-2 polygons first, P-4 per agency, P-5 county GIS; candidates → key-pieces.json, layers → intake queue, rows → WORK LOG; no tracing / key edits).
