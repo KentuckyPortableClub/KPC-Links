@@ -25,9 +25,10 @@ const ky = fetch('kpc-ky-data.json').then(r => r.json()).then(d => {
 }).catch(() => { msg('Could not load the Kentucky summit list.'); });
 async function loadAll() {
   if (allLoaded) return;
-  msg('Loading every U.S. summit… (one time, about 5 MB)');
+  msg('Loading every U.S. summit… (one time, about 3 MB)');
   try {
-    const rows = await (await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('locations.json') : fetch('locations.json'))).json();
+    const getJ = async n => { const r = await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl(n) : fetch(n)); if (!r.ok) throw 0; return r.json(); };
+    const rows = await getJ('locations-sota.json').catch(() => getJ('locations.json'));
     const have = new Set(SUM.map(s => s.c));
     rows.forEach(r => { if (r[0] === 'SOTA' && !have.has(r[1])) SUM.push({ c: r[1], n: r[2], la: r[3], lo: r[4], m: r[6] ? +r[6] : null, pts: r[7] ? +String(r[7]).replace(/\D/g, '') || null : null }); });
     allLoaded = true; msg(`${SUM.length.toLocaleString()} summits ready.`); $('azAll').hidden = true;

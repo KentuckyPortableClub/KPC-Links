@@ -67,7 +67,7 @@
       const tiles = (dir) => { const K = new Set(), dla = R / 111, dlo = R / (111 * Math.cos(la * Math.PI / 180)); for (const a of [la - dla, la, la + dla]) for (const o of [lo - dlo, lo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o)); return Promise.all([...K].map(k => dfetch(dir + k + '.json').then(r => r.ok ? r.json() : []).catch(() => []))).then(x => x.flat()); };
       /* POTA tiles skip the US + Canada (those parks are in the state lists): ask POTA's own map for them, and with no
          signal fall back to our US search list */
-      const usca = () => (B() && B().potaNear ? B().potaNear(la, lo, 0.4).then(L => L.map(p => [p.ref, p.name, p.la, p.lo])) : Promise.reject()).catch(() => (search.loc || (search.loc = j('locations.json', 30000).catch(() => []))).then(L => L.filter(r => r[0] === 'POTA' && Math.abs(r[3] - la) < 0.5 && Math.abs(r[4] - lo) < 0.7).map(r => [r[1], r[2], r[3], r[4]])));
+      const usca = () => (B() && B().potaNear ? B().potaNear(la, lo, 0.4).then(L => L.map(p => [p.ref, p.name, p.la, p.lo])) : Promise.reject()).catch(() => (search.loc || (search.loc = j('locations-pota.json', 30000).then(L => (L && L.length) ? L : Promise.reject()).catch(() => j('locations.json', 30000)).catch(() => []))).then(L => L.filter(r => r[0] === 'POTA' && Math.abs(r[3] - la) < 0.5 && Math.abs(r[4] - lo) < 0.7).map(r => [r[1], r[2], r[3], r[4]])));
       const [P0, P1, W, S] = await Promise.all([tiles('data/pota/t/'), usca(), tiles('data/wwff/t/'), tiles('data/sota/t/')]);
       const P = P0.concat(P1.filter(r => !P0.some(x => x[0] === r[0])));
       const all = [].concat(P.map(r => ({ prog: 'POTA', ref: r[0], name: r[1], la: r[2], lo: r[3] })), W.map(r => ({ prog: 'WWFF', ref: r[0], name: r[1], la: r[2], lo: r[3] })),
