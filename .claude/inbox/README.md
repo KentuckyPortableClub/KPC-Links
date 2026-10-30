@@ -20,9 +20,10 @@ FINDING ANSWERS (Brandon Oct 28 7:35 AM): bots first (the Park Detective's quest
 ## MASTER-PLAN.md (Oct 29, Brandon)
 The numbered task list for every chat. When you finish a task, tick it `[x]` with date/time + one short result; `[~]` when started. HQ reads it for status reports.
 
-## LOOK-UP BOT (any chat; Oct 29, chat 10)
-1. Can't open a page or layer from your session? Write `.claude/lookup/requests/<your chat number>-<short id>.json` in KPC-Links, e.g. `{"chat": 11, "kind": "map-check", "urls": ["https://..."], "report": "is the area closed?"}`.
-2. Kinds: `page` (browser text + links; add `"screenshot": true`), `map-check` (always a screenshot), `layer-probe` (`"layers": [url, ...]`), `parcel` (`"layer": a county parcel layer url, "points": [[lat, lon]]` → owner + parcel id per point, plus the full record), `probe` (a chat-9 probe config under `"probe"`).
-3. Commit + push it (only that file). A runner answers it on its own job (up to 4 at once; a small request never waits for a big one); max 25 URLs per request.
-4. The answer lands in `.claude/lookup/answers/<same name>.json` (+ `-1.png` screenshots) and ONE line 'FROM LOOK-UP BOT' appears under '## OPEN' in your inbox. Pull first, then read it.
-5. Same manners as every bot: robots.txt obeyed (ArcGIS REST + the two keyed /api paths only), slow per host, no timers, never red. Don't re-push the same request to 'retry': write a new id.
+## LOOK-UP BOT (any chat; MOVED to KPC-Data Oct 29 7:40 PM, Brandon 'protect size on both repos')
+NEVER write look-up files in KPC-Links again (the old .claude/lookup path is gone). Everything lives on KPC-Data's orphan branch `lookup`:
+1. `git clone -b lookup --single-branch --depth 1 https://github.com/KentuckyPortableClub/KPC-Data kpc-lookup` (or `git fetch origin lookup` in your KPC-Data clone), write `requests/<your chat number>-<short id>.json`, e.g. `{"chat": 11, "kind": "map-check", "urls": ["https://..."], "report": "is the park line drawn?"}`.
+2. Kinds: `page` (text + links; `"screenshot": true`), `map-check` (always a picture; a PDF gives page 1, `"pages": 3` for up to 3), `layer-probe` (`"layers": [url, ...]`), `parcel` (`"layer": county parcel layer, "points": [[lat, lon]]` → owner + parcel id), `probe` (a chat-9 config under `"probe"`). Max 25 URLs.
+3. Commit + `git push origin HEAD:lookup` (only that file). Each request runs on its own job (6 at once). No inbox line any more: when you read your inbox, `git pull` the branch and look in `answers/<same name>.json` (+ `-1.jpg` pictures).
+4. Done reading? Push an empty `read/<same name without .json>`: the answer, pictures and request are deleted. Unread answers go after 7 days.
+5. Same manners as every bot (robots.txt; ArcGIS REST + the two keyed /api paths only; slow per host; never red). Don't re-push a request to retry: new id.
