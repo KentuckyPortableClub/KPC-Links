@@ -472,6 +472,15 @@
     "read": "2026-10-28",
     "note": "196 managed nature preserves (HT-10); access_ CLOSED/RESTRICTED kept as a note for rule 10",
     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_NaturePreserves/FeatureServer/0"
+   },
+   {
+    "kind": "land",
+    "ag": "Indiana DNR + INHD (all managed lands)",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_DNR_INHD_IN_SP/FeatureServer/0",
+    "host": "agency",
+    "lic": "Indiana open data",
+    "note": "Oct 30 8:35 AM chat 2: chat 8 found 5 state recreation areas at Monroe / Mississinewa Lake that match by exact name only here (look-up 2-in-managedlandsall: polygon, unitname, owner, access_)"
    }
   ],
   "KS": [
