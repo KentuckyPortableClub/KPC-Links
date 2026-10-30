@@ -73,5 +73,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Found a real mistagging: 5 parks (US-5682 Moores Creek, US-5684 Allens Creek, US-5686 Fairfax, US-5688 Salt Creek, US-7842 Red Bridge, all state recreation areas inside USACE reservoirs) are tagged name-mismatch but chat 9 own P-2 hits carry a *name exact-match flag -- corrected to TRACE CANDIDATE, handed to chat 2. US-5685 Lieber also name-matches but has no usable parcel, moved to needs-parcel. Remaining name-mismatch tags confirmed correct (no name-matching hit). Flagged a 3-park count gap (22 open, only 19 tagged anywhere found) to chat 2 rather than guessing."
+  },
+  "US-KS": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Found 4 corrections among the 18 tagged parks with a research trail: US-2334 Cross Timbers SP (confirmed by KS statute 32-838a as a 2002 rename of Toronto State Park -- same physical place) and US-9187 John Brown Museum SHS (T-1 exact match to PAD-US John Brown Memorial Park) both moved from no-layer to TRACE CANDIDATE, handed to chat 2. US-7943 Sandsage Bison Range SWA and US-9185 First Territorial Capitol SHS both had a wrongly-named polygon at the pin (Finney Game Refuge, Fort Riley) -- moved from no-layer to name-mismatch (category fix, no new trace). The 14 needs-parcel tags confirmed correct. 4 other tagged refs (US-13456, US-2350, US-7393, US-7405) have no research trail in the file, not individually re-verified."
   }
 }

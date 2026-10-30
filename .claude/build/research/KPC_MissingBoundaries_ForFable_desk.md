@@ -849,3 +849,13 @@ The remaining name-mismatch refs I checked (US-5680, US-5681, US-5683, US-5689, 
 **Count gap, flagging rather than guessing:** the summary tags 19 of IN's 22 open parks (14 name-mismatch + 4 needs-parcel + 1 pin-doubt); 3 open parks have no tag anywhere I can find. Handing the gap to chat 2 rather than guessing which 3.
 
 STATE IN DONE (with the above corrections and gap flagged)
+
+### KS — closing out (chat 8, Oct 30 2026)
+Read the full `fable/US-KS.md` detail (18 of KS's 22 tagged open parks are there; the other 4 -- US-13456, US-2350, US-7393, US-7405 -- have no research trail in this file, not individually re-verified). Found 4 real corrections among the 18:
+- **US-2334 Cross Timbers SP**: tagged no-layer, but there IS a polygon at the pin -- "Toronto State Park" (Kansas protected_areas layer). Checked why the name looked different: **Kansas statute 32-838a confirms Toronto State Park (Woodson Co.) was officially renamed Cross Timbers State Park at Toronto Lake** -- same physical park, the GIS layer just still carries the pre-2002 name. **Correcting to TRACE CANDIDATE**, handed to chat 2.
+- **US-9187 John Brown Museum SHS**: tagged no-layer, but PAD-US has "John Brown Memorial Park" (45 ac, city-owned) at the pin. T-1: strip kind words ("Museum State Historic Site" / "Memorial Park") and the remaining proper words match exactly -- "John Brown" = "John Brown". **Correcting to TRACE CANDIDATE**, handed to chat 2.
+- **US-7943 Sandsage Bison Range SWA**: tagged no-layer, but there's a polygon at the pin ("Finney Game Refuge") -- no shared proper word with "Sandsage Bison Range," a genuine different name. **Re-tagging from no-layer to name-mismatch** (a polygon exists, it's just the wrong one -- the category, not the pin status, was wrong).
+- **US-9185 First Territorial Capitol SHS**: same pattern -- polygon at the pin ("Fort Riley," a huge Army post) but no shared proper word. **Re-tagging from no-layer to name-mismatch.**
+- The 14 needs-parcel tags all check out: every one shows "no polygon at the pin in 6 layers read" in the file, genuinely no layer exists.
+
+STATE KS DONE (with 2 trace candidates corrected out of no-layer, 2 category fixes from no-layer to name-mismatch, and 4 untraceable tags trusted as-is)
