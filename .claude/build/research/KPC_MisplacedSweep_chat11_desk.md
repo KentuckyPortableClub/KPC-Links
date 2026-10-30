@@ -290,3 +290,11 @@ Method: diffed the new key against the site key 13fe65e1: 622 parks changed piec
 - **HOLD 2:** US-5484 George Washington Memorial SF (RI): the piece is 0 ac and the pin is 'well outside' it: my earlier YES was for a tiny piece; keep it a pin until the agency map is seen. US-10464 Chena Wayside SRS (AK): joined to 'Chena River SRS' (27 ac) by a website-name alias, but the GIS hunter's same record got my NO (different site); hold as a pin.
 - Other changes: 59 flags, nearly all layered pairs on the same land (SNA inside SWA, BLM Wilderness + SRMA, Trap Pond SP/SFL, Topaz Mountain SRMA/Rockhound Area): 'same land, two numbers' = allowed. 'Pin well outside' on White Mountains, Anchor River, Egan Crest, White River BLM, N Fork Virgin River, Dark Canyon, Boulder Lake, Kettle Moraine, Hank Aaron Trail: names agree, so they release on the R-G11 rule (internal pin-may-be-wrong list).
 **ANSWER: KEY YES except US-5484 and US-10464 (keep both as pins).**
+
+## SIZE RE-SWEEP, LIVE US KEY (Oct 30 (live key 2ad6f971e, 09:41)) - chat 11
+- Flags (piece acres under 1/5 or over 5x the record): **329** (was 384). 276 same as before, 53 new; 11 are 20x or worse. By state: OH 66, OR 60, NE 25, VA 17, IN 15, WA 14, PA 14, TN 13, RI 13, MD 12.
+- Alaska: 15 pieces over 5M acres = real giants, fine.
+- **BAD: US-7896 Standing Boy Creek State Park (GA) shows 68,841,748 acres on an official outline. Wrong units. Should be a pin or fixed.**
+- Worst small-piece flags (piece far smaller than the park): US-6387 Fair Hill NRMA MD (4,144 vs 1), US-3213 Lake Chelan WA (29,630 vs 286), US-1596 Seneca Creek MD, US-1601 Susquehanna SP MD, US-0335 Susquehanna NWR MD, US-11158 Richmond WMA UT, US-13441/13419 WA fishing lakes.
+- Worst big-piece flags: US-5646 Lake McConaughy SRA NE (6,155 vs 111,139, probably the whole lake), US-11997 Big Spring SNP IN, US-5678 Verdon Lake NE, US-9517 Willow Point OH, US-7847 Caesar Creek Gorge OH.
+- Names/acres only; no maps seen. Full list: chat11-size-flags.json (rewritten below).
