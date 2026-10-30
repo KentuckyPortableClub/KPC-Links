@@ -253,5 +253,120 @@
   "page": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/utah",
   "map": "https://gis.blm.gov/utarcgis/rest/services",
   "note": "Cedar Mountain HMA"
+ },
+ "US-0361": {
+  "page": "https://www.fws.gov/refuge/hamden-slough",
+  "map": "",
+  "note": "USFWS refuge (MN)"
+ },
+ "US-11023": {
+  "page": "https://www.dnr.state.mn.us/snas/egret_island/index.html",
+  "map": "",
+  "note": "MN DNR Scientific & Natural Area"
+ },
+ "US-12152": {
+  "page": "https://www.dnr.state.mn.us/wmas/index.html",
+  "map": "",
+  "note": "MN DNR WMA list page (Canosia; per-unit slug not confirmed)"
+ },
+ "US-13354": {
+  "page": "https://www.dnr.state.mn.us/wmas/index.html",
+  "map": "",
+  "note": "MN DNR WMA list page (Pelican Lake)"
+ },
+ "US-9387": {
+  "page": "https://www.dnr.state.mn.us/state_trails/luce_line/index.html",
+  "map": "",
+  "note": "MN DNR Luce Line State Trail"
+ },
+ "US-12027": {
+  "page": "https://www.wildlifedepartment.com/hunting/wma-lakes/altus-lugert",
+  "map": "",
+  "note": "Oklahoma Dept of Wildlife Conservation fishing lake"
+ },
+ "US-12028": {
+  "page": "https://www.wildlifedepartment.com/hunting/wma-lakes/barren-fork",
+  "map": "",
+  "note": "ODWC WMA"
+ },
+ "US-6361": {
+  "page": "https://www.wildlifedepartment.com/hunting/wma-lakes/mcgee-creek",
+  "map": "",
+  "note": "ODWC WMA"
+ },
+ "US-7682": {
+  "page": "https://www.wildlifedepartment.com/hunting/wma-lakes/vanderwork",
+  "map": "",
+  "note": "ODWC fishing lake"
+ },
+ "US-8140": {
+  "page": "https://www.wildlifedepartment.com/hunting/wma-lakes/sherrer",
+  "map": "",
+  "note": "ODWC WMA"
+ },
+ "US-13296": {
+  "page": "https://www.blm.gov/visit/upper-salmon-river",
+  "map": "https://gis.blm.gov/idarcgis/rest/services",
+  "note": "BLM Idaho rec site"
+ },
+ "US-4387": {
+  "page": "https://www.fs.usda.gov/wallowa-whitman",
+  "map": "",
+  "note": "FLAG: Wallowa-Whitman NF is mainly OR/WA, not ID -- if the key tags this ref as Idaho, check it is the small Idaho-side portion, not a mismatch"
+ },
+ "US-5616": {
+  "page": "https://idfg.idaho.gov/wma/red-river",
+  "map": "",
+  "note": "Idaho Fish & Game WMA"
+ },
+ "US-0456": {
+  "page": "https://www.fws.gov/refuge/wallkill-river",
+  "map": "",
+  "note": "USFWS refuge (NY/NJ)"
+ },
+ "US-10292": {
+  "page": "https://www.dec.ny.gov/lands/90789.html",
+  "map": "",
+  "note": "NY DEC Forest Preserve unit (Adirondack); exact page unverified"
+ },
+ "US-10293": {
+  "page": "https://www.dec.ny.gov/lands/90789.html",
+  "map": "",
+  "note": "NY DEC Forest Preserve unit; exact page unverified"
+ },
+ "US-9037": {
+  "page": "https://www.dec.ny.gov/outdoor/24580.html",
+  "map": "",
+  "note": "NY DEC WMA list page"
+ },
+ "US-5532": {
+  "page": "https://fpr.vermont.gov/forest/vermont-state-forests",
+  "map": "",
+  "note": "VT FPR state forest list (Hapgood)"
+ },
+ "US-5538": {
+  "page": "https://fpr.vermont.gov/forest/vermont-state-forests",
+  "map": "",
+  "note": "VT FPR state forest list (Lower Clarendon Gorge)"
+ },
+ "US-5553": {
+  "page": "https://fpr.vermont.gov/camels-hump-state-park",
+  "map": "",
+  "note": "Camel's Hump SF/SP, VT FPR"
+ },
+ "US-11033": {
+  "page": "",
+  "map": "",
+  "note": "The Portland Landing Conservation Reserve (AL): no agency page found yet, needs a look-up"
+ },
+ "US-12996": {
+  "page": "",
+  "map": "",
+  "note": "FLAG: 'Fowl River Access Site BLM Recreation Management Area' in Alabama -- BLM holds almost no land east of the Mississippi River; this is very likely NOT a BLM unit (possibly Alabama DCNR or USACE Mobile District access site). Check the agency tag before anything else."
+ },
+ "US-3701": {
+  "page": "https://www.outdooralabama.com/wildlife-management-areas/pike-county-pocosin-wma",
+  "map": "",
+  "note": "Alabama WFF WMA"
  }
 }

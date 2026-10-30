@@ -260,3 +260,11 @@ File: `KPC_MisplacedSweep_Pages.json` {ref: {page, map, note}}. Most BLM units h
 - **US-10890 Sinks Canyon (WY)**: there is both a Wyoming STATE PARK named Sinks Canyon and a BLM recreation site of a similar name nearby; worth checking which one the pin/outline actually belongs to.
 - **US-10816 Saratoga National Fish Hatchery (WY)**: this is a federal USFWS hatchery, not a Wyoming state one; the Wyoming Game & Fish hatchery page I had on file is the wrong agency.
 Next batch: OK (5), ID (3 more), AL (3), NY (4), MN (5), VT (3), then the Canada groups (NB 28, SK 17, BC 11, ON 7, QC 5, AB 5, MB 3) once US is through.
+
+## Chat 8 batch 2 (Oct 29 ~11:05 PM): MN (5) + OK (5) + ID (3) + NY (4) + VT (3) + AL (3) = 23 more (71 of 185 total)
+Same file, same caveat (grade C, agency list pages mostly, not fetched).
+**Two more flags:**
+- **US-12996 Fowl River Access Site "BLM Recreation Management Area" (AL)**: BLM holds almost no land east of the Mississippi. This is very likely tagged to the wrong agency in the key (probably Alabama DCNR or a Corps of Engineers Mobile District access site). Worth checking before anything else on this one.
+- **US-4387 Wallowa-Whitman National Forest (tagged ID)**: that forest is mainly in Oregon/Washington; if the key has it under Idaho check it's really the small Idaho-side sliver and not a mismatch.
+- US-11033 The Portland Landing Conservation Reserve (AL): no agency page found; needs a look-up.
+Remaining: AK (5), AB (5), MB (3), CA (4), QC (5), ON (7), NH (7), SK (17), BC (11), NB (28) -- the three biggest are all Canada; next session.
