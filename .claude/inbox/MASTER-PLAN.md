@@ -124,6 +124,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] F.5 (Brandon 11:17 AM) chat 9 research bot: official department maps for every lake-type POTA park FIRST → then Brandon decides the lake-outline rule
 
 ## HQ
+- [ ] H.4 MASS DUMP CHECKLIST, step 1 (Brandon Oct 30 7:11 AM 'remind me when it's that time'): before chat 3 swaps the Finder / pages / locations split, HQ tells Brandon: 'switch chat 3 to OPUS now'.
 - [ ] H.3 (cleanup DONE Oct 30 12 AM; FOLLOW-UP: chat 4 reports the ORG Actions ARTIFACT storage is FULL (app build failed): find which workflows upload artifacts without retention-days 1, set it, and clear old artifacts) STORAGE IS HQ'S JOB (Brandon Oct 29 7:22 PM): watch KPC-Links (687 MB) + KPC-Data (268 MB) sizes; check right after chat 10's look-up move, then every Sunday; stop any chat / bot that writes bulk files to KPC-Links; squash KPC-Data's `lookup` branch when it passes 150 MB.
 - [ ] H.1 Fable review of chat 8's missing-boundaries/name report WAITS (Brandon 9:46 AM): first plan step 1 boundary fixes pushed (chat 2: far pieces, Virginia, Canada 3 m) → HQ tells Brandon → chat 8 RECHECKS its list (fixes may clear rows) → then Fable, with KPC-Data attached
 - [ ] H.2 Status reports from this file on request; Sunday members' update; Sunday storage check
