@@ -1,0 +1,7 @@
+{
+"about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
+"changed": {
+"data/us-key/answers-applied.json": "2026-10-29",
+"data/us-key/overrides.json": "2026-10-29"
+}
+}
