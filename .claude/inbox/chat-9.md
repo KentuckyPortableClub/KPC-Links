@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-29): 9-p2-co answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-p2-co.json
 - **FROM HQ (Oct 29 7:05 PM) CANADA LAYERS, PREP NOW (Brandon 6:56 PM; Fable's list in notes/mapping.md 'CANADA MAP LAYERS TO START'):** (1) `layer-probe` every ◯ item: does it answer, polygons?, name field(s) (EN + FR), licence line, bbox; one request per province, federal first; official government hosts only (your 9-cah ArcGIS-Online search returned mostly private user layers: drop those). (2) P-2 for Canada: one point-in-polygon request per province of EVERY no-outline park (missing-after-key-canada.json) against the ✓ layers + CPCAD. (3) Results → chat 2 (layer URLs + fields) and rows in KPC_MissingBoundaries_Canada_ForFable_desk.md WORK LOG BY PROVINCE. No tracing.
 - FROM LOOK-UP BOT (2026-10-29): 9-p2-ar answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-p2-ar.json
 - FROM LOOK-UP BOT (2026-10-29): 9-p2-ca answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-p2-ca.json
