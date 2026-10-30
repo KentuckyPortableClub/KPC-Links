@@ -1,4 +1,6 @@
 # KPC CHAT INBOXES (HQ, Brandon GO Oct 28 4:46 AM)
+**RULES: read `.claude/RULES-NOW.md` (62 KB, the rules in force copied word for word), NOT all of notes/mapping.md (390 KB). New rulings still go in mapping.md, then `python3 .claude/build/rules_now.py` (HQ / chat 2).**
+
 **RESEARCH LAYOUT (Oct 30): Fable book = `.claude/build/research/fable/US-XX.md | CA-XX.md` (one file per area, one row per park, updated in place); Agency Atlas = `.claude/build/research/agency-atlas/` (read your area's file FIRST, add one dated line per find).**
 
 **EVERY TIME YOU READ YOUR INBOX (Brandon Oct 29 10:49 PM: 'remind them daily of Fable's workflow to make it run better'): skim `.claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md` (the twelve habits): saved copies first, network last · IDs beat names · polygons before pages · batch by agency / county, never by park · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · quarantine, never delete; stage, never ship · bulk off the website repo · write the ruling once · feed the look-up bot batched requests (official hosts only).**
