@@ -117,6 +117,9 @@
  "ON-ORCA Oton": [
   "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
  ],
+ "ON-RVCA Ride": [
+  "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+ ],
  "ON-SVCA Grey": [
   "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
  ],

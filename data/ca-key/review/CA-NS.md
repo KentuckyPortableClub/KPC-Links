@@ -4,22 +4,22 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## To check (not joined)
 
-- **CA-4842** Marconi National Historic Site (National Historic Site) → Marconi Wireless Station (~0 ac, similar name)
-- **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~0 ac, same name, different kind of place)
-- **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
-- **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~0 ac, similar name)
+- **CA-4842** Marconi National Historic Site (National Historic Site) → Marconi Wireless Station (~2 ac, similar name)
+- **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~32 ac, same name, different kind of place)
+- **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~515,482 ac, the POTA pin is inside it (different name))
+- **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~18 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~0 ac)
-- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~0 ac)
-- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~0 ac); St. Margarets Bay Islands Nature Reserve (~0 ac)
-- CA-4830 Charles Fort National Historic Site (National Historic Site) → on Fort Anne (~0 ac)
-- CA-5798 Annapolis County Court House National Historic Site (National Historic Site) → on Fort Anne (~0 ac)
-- CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~0 ac); Cape Breton Highlands National Park Of Canada (~0 ac)
-- CA-5819 Halifax WWII Coastal Defences National Historic Site (National Historic Site) → on York Redoubt (~0 ac)
-- CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~0 ac); Peter's Island Conservation Lands (~0 ac)
-- CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~0 ac); Bowers Meadows Wilderness Area (~0 ac)
+- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~1,835 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
+- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~2,129 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
+- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~50 ac); St. Margarets Bay Islands Nature Reserve (~137 ac)
+- CA-4830 Charles Fort National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
+- CA-5798 Annapolis County Court House National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
+- CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~4 ac); Cape Breton Highlands National Park Of Canada (~80 ac)
+- CA-5819 Halifax WWII Coastal Defences National Historic Site (National Historic Site) → on York Redoubt (~100 ac)
+- CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~3 ac); Peter's Island Conservation Lands (~3 ac)
+- CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~79 ac); Bowers Meadows Wilderness Area (~79 ac)
 
 ## Nothing found in CPCAD
 

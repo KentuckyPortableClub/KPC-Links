@@ -7,13 +7,13 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0856 Mark Arendz Provincial Park (Provincial Park) → on BROOKVALE (~0 ac)
-- CA-0862 Jacques Cartier Provincial Park (Provincial Park) → on PARK (~0 ac)
-- CA-0865 Linkletter Provincial Park (Provincial Park) → on PARK (~0 ac)
-- CA-0869 Northumberland Provincial Park (Provincial Park) → on PROV PARK (~0 ac)
-- CA-6373 Fisherman's Haven Provincial Park (Provincial Park) → on TIGNISH SHORE (~0 ac)
+- CA-0856 Mark Arendz Provincial Park (Provincial Park) → on BROOKVALE (~79 ac)
+- CA-0862 Jacques Cartier Provincial Park (Provincial Park) → on PARK (~16 ac)
+- CA-0865 Linkletter Provincial Park (Provincial Park) → on PARK (~50 ac)
+- CA-0869 Northumberland Provincial Park (Provincial Park) → on PROV PARK (~54 ac)
+- CA-6373 Fisherman's Haven Provincial Park (Provincial Park) → on TIGNISH SHORE (~2 ac)
 - CA-6439 Holman's Island National Nature Reserve (National Nature Reserve) → on Privately Protected Area (NCC 142051) (~100 ac)
-- CA-6594 Pinette Provincial Park (Provincial Park) → on PARK (~0 ac)
+- CA-6594 Pinette Provincial Park (Provincial Park) → on PARK (~19 ac)
 
 ## Nothing found in CPCAD
 

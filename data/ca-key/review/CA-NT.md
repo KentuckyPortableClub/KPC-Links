@@ -7,7 +7,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0752 Cameron Falls Trail Territorial Park (Territorial Park) → on Hidden Lake Territorial Park (~0 ac)
+- CA-0752 Cameron Falls Trail Territorial Park (Territorial Park) → on Hidden Lake Territorial Park (~6,035 ac)
 - CA-4347 Whooping Crane Summer Range Ramsar Site (Ramsar Site) → on Wood Buffalo National Park Of Canada (~2,257,603 ac)
 - CA-5474 Fort Reliance National Historic Site (National Historic Site) → on Thaidene Nene National Park Reserve Of Canada (~3,476,767 ac)
 - CA-5477 Kittigazuit Archaeological Sites National Historic Site (National Historic Site) → on Tarium Niryutait Marine Protected Area (~114,795 ac)

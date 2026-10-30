@@ -7,8 +7,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0831 Inuujarvik Territorial Park (Territorial Park) → on Inuujaarvik Territorial Park (~0 ac)
-- CA-4590 Soper Heritage River National Heritage Area (National Heritage Area) → on Katannilik Territorial Park (~0 ac); Katannilik Territorial Park (~361,253 ac)
+- CA-0831 Inuujarvik Territorial Park (Territorial Park) → on Inuujaarvik Territorial Park (~1 ac)
+- CA-4590 Soper Heritage River National Heritage Area (National Heritage Area) → on Katannilik Territorial Park (~356,644 ac); Katannilik Territorial Park (~361,253 ac)
 
 ## Nothing found in CPCAD
 
