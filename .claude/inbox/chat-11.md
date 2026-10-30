@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official documents, hours/fees/permits, campground info, Truth Checker, World Harvester, Gap Filler, scoreboard, layer intake). Chat 8 keeps 2-fers, boundaries and rule sheets. Read only; never edit bot data or scripts; the owning chat fixes. Each bot now has a self-grading gate (chat 10): you see its FAILURES + a small sample, not everything. Your bar: A+B >= 90% on a 10-12 item sample, with a written 'why' per C.
 
 ## OPEN
+- DONE (Oct 30 7:05 AM): 44 tiered hunter rows answered (27 NO, 17 NOT SURE, 0 YES; names/kind/size only). Not-sure ones need agency-map look-up (chat 9). Size re-sweep done earlier; spot-check waits for US key to go live.
 - **FROM HQ (Oct 30 6:55 AM) STANDING WORK = KEEP GOING WITHOUT A NEW ITEM ('nothing new' in the inbox does NOT mean done; Brandon 6:51 AM). In this order: (1) the waiting room: every open yes/no (tiers make it smaller), same day; (2) the size re-sweep on the live key (US now, Canada after chat 2 fills acres); (3) the 10-park live-site spot-check; (4) a 30-park sample of each chat 2 rebuild and each new 2-fer area; (5) from Sun Nov 1 the four new holds. Tell HQ if the queue is over a day behind.**
 - DONE (Oct 30 6:40 AM): fresh KEY YES for ca-key and world-key (AU), 30/30 each by names. US key YES already written but not live after 6:13: asked chat 2. AUTO-1 sample rows: none landed yet.
 - REPORT TO HQ (Oct 30 6:40): ca-key + world-key YES. US key not released at 6:13 AM, asked chat 2 why. Spot-check waits for it.
