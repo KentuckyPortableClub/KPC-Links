@@ -9193,6 +9193,147 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 6:05 PM: a bird refuge on the lake, not the WMA (chat 8 R-G8 caveat)"
+  },
+  "US-10231": {
+   "join": [
+    "sginb4338"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Limberlost Swamp Wetlands Preserve 883 ac (park's own name)",
+   "when": "2026-10-29"
+  },
+  "US-11780": {
+   "join": [
+    "rst13971"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Datil Well 671 ac (the recreation area, not only the campground)",
+   "when": "2026-10-29"
+  },
+  "US-2313": {
+   "join": [
+    "sgiab104232"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Pilot Knob State Preserve 129 ac (inside the park)",
+   "when": "2026-10-29"
+  },
+  "US-9423": {
+   "join": [
+    "sgohd250"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Miller Nature Sanctuary SNP 87 ac",
+   "when": "2026-10-29"
+  },
+  "US-13150": {
+   "join": [
+    "76252",
+    "sgnjb21",
+    "229129",
+    "229128"
+   ],
+   "no": [
+    "229130"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Belvidere Fishing Access (Harmony = a different site)",
+   "when": "2026-10-29"
+  },
+  "US-11042": {
+   "join": [
+    "210788"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Kahrs-Boger 106 ac, same land",
+   "when": "2026-10-29"
+  },
+  "US-6446": {
+   "no": [
+    "183659"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES the SRA 331 ac; the 7-ac fishing access stays out",
+   "when": "2026-10-29"
+  },
+  "US-5592": {
+   "no": [
+    "199587"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES the WMA; the 5-ac access site stays out",
+   "when": "2026-10-29"
+  },
+  "US-5615": {
+   "no": [
+    "199664",
+    "199663"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES the WMA; the access sites stay out",
+   "when": "2026-10-29"
+  },
+  "US-11781": {
+   "no": [
+    "70954"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES the SHS; Bishop Hill Park stays out",
+   "when": "2026-10-29"
+  },
+  "US-7873": {
+   "no": [
+    "sgmoc664",
+    "mol3"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Agency CA; Agency Access stays out",
+   "when": "2026-10-29"
+  },
+  "US-6245": {
+   "no": [
+    "sgtnc188"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Ghost River SNA; the 7,420-ac Wolf River combined record stays out",
+   "when": "2026-10-29"
+  },
+  "US-11981": {
+   "no": [
+    "167506"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: only the Buenos Aires NWR / Arivaca land, a different unit",
+   "when": "2026-10-29"
+  },
+  "US-6409": {
+   "no": [
+    "195416",
+    "sghia49",
+    "sghic49"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 1-ac Waimea pier is not the SRA (now a pin)",
+   "when": "2026-10-29"
+  },
+  "US-8102": {
+   "no": [
+    "236947",
+    "sgnya62178"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: Catharine Valley Trail / fishing access is a different place",
+   "when": "2026-10-29"
+  },
+  "US-12151": {
+   "no": [
+    "rma9670",
+    "rma9765",
+    "rma9791",
+    "rma9805",
+    "rma9962"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: campsites / hang-glider launch, not the park",
+   "when": "2026-10-29"
+  },
+  "US-0694": {
+   "no": [
+    "271431"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 46-ac state park is a piece; the POTA park is the national reserve",
+   "when": "2026-10-29"
+  },
+  "US-6160": {
+   "no": [
+    "hab87"
+   ],
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: 1.9-million-ac field-office area / Chain Lakes herd area",
+   "when": "2026-10-29"
   }
  }
 }
