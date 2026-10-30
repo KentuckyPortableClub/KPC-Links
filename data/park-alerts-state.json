@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30 15:39",
+ "updated": "2026-10-30 18:36",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -831,9 +831,9 @@
     "US-3792"
    ],
    "first": "2026-10-30",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false
+   "announced": true
   }
  },
  "burn_queue": [],
