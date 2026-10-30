@@ -480,7 +480,8 @@
     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_DNR_INHD_IN_SP/FeatureServer/0",
     "host": "agency",
     "lic": "Indiana open data",
-    "note": "Oct 30 9:00 AM chat 2: put BACK. The traced build (run 41065824040) proved the 5 state recreation areas are NOT in ManagedLands_DNR_Open; only this service has them (chat 8 + look-up 2-in-managedlandsall)."
+    "note": "Oct 30 9:00 AM chat 2: put BACK. The traced build (run 41065824040) proved the 5 state recreation areas are NOT in ManagedLands_DNR_Open; only this service has them (chat 8 + look-up 2-in-managedlandsall). 9:35 AM: unitname alone does not carry the SRA names (trace run 41067678846, 1986 records, none named so): read subunit as the second name.",
+    "nm2": "subunit"
    }
   ],
   "KS": [
