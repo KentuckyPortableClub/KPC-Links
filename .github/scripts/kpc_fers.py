@@ -2609,7 +2609,19 @@ def main():
             st = 'KY' if kyl else PIN[ref][5]
             parks[ref] = {'st': st if st.startswith('CA-') else 'US-' + st, 'ids': [], 'names': {}}
     st_of = lambda r: parks[r]['st'] if r in parks else ''
-    if ONLY: parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY}
+    if ONLY:
+        # Oct 30 (chat 2, from the wave-2 recheck: IA lost both Mormon Pioneer NHT pairs, NM every Old Spanish NHT pair): a LINE park
+        # (a national trail crossing many states) is filed under ONE state by POTA, so a one-state area dropped it whenever that
+        # state was not the area. Since the areas were cut to 1/3 size this hit IA / NM / ME / MN. A line park now stays when its
+        # line passes through the area (the box of the area's own park pins, padded ~20 km); its rows are filed under the area's state.
+        _in = [PIN[r] for r, p in parks.items() if (p['st'] in ONLY or p['st'][3:] in ONLY) and r in PIN and PIN[r][1] is not None]
+        _ab = [min(v[2] for v in _in) - .2, min(v[1] for v in _in) - .2, max(v[2] for v in _in) + .2, max(v[1] for v in _in) + .2] if _in else None
+        def _crosses(r):
+            if not _ab or r not in LN or (parks.get(r) or {}).get('ids'): return False
+            return any(_ab[0] <= q[0] <= _ab[2] and _ab[1] <= q[1] <= _ab[3] for l in LN[r]['lines'] for q in l[::5] + l[-1:])
+        _x = [r for r, p in parks.items() if not (p['st'] in ONLY or p['st'][3:] in ONLY) and _crosses(r)]
+        parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY or r in _x}
+        if _x: LOG.append(f'{len(_x)} line parks filed under another state but crossing this area kept: ' + ', '.join(_x[:8]))
     counts = {'pass': PASS, 'cell_m': CELL, 'official parks': len(parks), 'left out': skip, 'pairs tested': 0, 'with official lines': sum(1 for r in LN if r in parks)}
     today = time.strftime('%Y-%m-%d')
     old = {}
