@@ -1,13 +1,12 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **78 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **79 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10681 Masseys Millpond State Fishing Lake (State Fishing Lake) → on Massey Mill Pond (~0 ac); Masseys Pond (~38 ac)
 - US-10687 Trussum Pond State Fishing Lake (State Fishing Lake) → on Trap Pond State Park (~0 ac); James Branch Nature Preserve (~259 ac)
 - US-9877 Junction and Breakwater National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~964 ac)
 - US-9878 Northern Delaware Greenway National Recreation Trail (National Recreation Trail) → on Alapocas Run State Park (~0 ac); Alapocas Run State Park (~143 ac)

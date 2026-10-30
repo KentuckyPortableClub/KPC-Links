@@ -1,9 +1,10 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **220 of 237** parks joined to official land (same name + same kind of place). **1** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **219 of 237** parks joined to official land (same name + same kind of place). **2** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-7467** Marben State Fishing Lake (State Fishing Lake) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name); CLYBEL WMA (~6,581 ac, the POTA pin is inside it (different name)); CLYBEL WMA (~6,275 ac, the POTA pin is inside it (different name))
 - **US-9758** Chattooga National Wild and Scenic River (National Wild and Scenic River) → Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~10,971 ac, similar name); Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~4,651 ac, similar name); Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~906 ac, similar name); Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)

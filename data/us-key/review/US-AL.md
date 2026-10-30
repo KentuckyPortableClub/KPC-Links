@@ -1,12 +1,11 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **129 of 155** parks joined to official land (same name + same kind of place). **3** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **134 of 155** parks joined to official land (same name + same kind of place). **2** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11025** Uchee Creek Conservation Area (Conservation Area) → Uchee Creek Confluence (~0 ac, similar name)
 - **US-11027** Big Canoe Creek Nature Reserve (Nature Reserve) → Big Canoe Creek (~382 ac, same name, different kind of place); Big Canoe Creek - Epps Addition (~40 ac, same name, different kind of place)
-- **US-13081** Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area) → Ft. Toulouse Tract (~254 ac, similar name); Fort Toulouse National Historic Park (~256 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -14,11 +13,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-12409 TVA Cave Mountain Small Wild Area National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
 - US-12410 TVA Flint Creek Access National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
 - US-12411 TVA Second Creek Access Area National Park (National Park) → on Joe Wheeler State Park (~0 ac); Joe Wheeler State Park (~2,144 ac)
-- US-13003 TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Little Bear Creek Reservoir Retained Land (~1,138 ac)
-- US-13004 TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area) → on Cedar Creek Reservoir Retained Land (~2,716 ac)
-- US-13005 TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Bear Creek Reservoir Retained Land (~2,327 ac)
 - US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area) → on Joe Wheeler State Park (~0 ac); Wheeler Reservoir Retained Land (~16,536 ac)
-- US-13311 TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → on Upper Bear Creek Reservoir Retained Land (~3,216 ac)
 
 ## Nothing found in PAD-US
 
@@ -61,10 +56,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Coon Gulf Tract ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~3,960 ac
 - Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
-- Upper Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~3,216 ac
 - W. L. Holland Wildlife Management Area · SCA · ADCNR, Division of Wildlife and Freshwater Fisheries · ~2,836 ac
-- Cedar Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,716 ac
-- Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~2,327 ac
 - Davidson Creek ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~2,123 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · Alabama Department of Conservation and Natural Resources · ~2,055 ac
 - Dutch Bend Tract ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~2,010 ac
@@ -76,7 +68,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Frey Tract · SOTH · ADCNR, State Lands Division · ~1,308 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · Alabama Department of Conservation and Natural Resources · ~1,306 ac
 - Jacinto Port Tract ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~1,156 ac
-- Little Bear Creek Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~1,138 ac
 - M. Barnett Lawley Forever Wild Field Trial Area · SREC · ADCNR, State Lands Division · ~1,000 ac
 - Flat Creek Phase III ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~998 ac
 - Lillian Swamp - West Tract Addition ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~894 ac
@@ -99,3 +90,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Pea River · MIT · Alabama Department of Transportation · ~595 ac
 - Red Hills Flat Creek Phase V ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~593 ac
 - Autauga - CR 112 ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~580 ac
+- Autauga WMA - Phase II Addition ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~574 ac
+- Town Creek · MIT · Alabama Department of Transportation · ~570 ac
+- Brown/Schutt Addition ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~570 ac
+- Upper Wolf Bay Savanna and Marsh ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~568 ac

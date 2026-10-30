@@ -1,9 +1,10 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **89 of 102** parks joined to official land (same name + same kind of place). **1** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **89 of 102** parks joined to official land (same name + same kind of place). **2** to check by hand, **4** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-6409** Waimea State Recreation Area (State Recreation Area) → Waimea Canyon State Park (~1,845 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece); WAIMEA CANYON STATE PARK (~1,802 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece); WAIMEA CANYON STATE PARK (~1,802 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece)
 - **US-6410** Iao Valley State Preserve (State Preserve) → IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -22,7 +23,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-10921 Hawaii Capital National Historic District (National Historic District)
 - US-10922 Marconi Wireless Telegraphy Station Kahuku National Historic Site (National Historic Site)
 - US-10923 Artillery District of Honolulu Historic Site (Historic Site)
-- US-7693 Hanauma Bay Nature Reserve (Nature Reserve)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

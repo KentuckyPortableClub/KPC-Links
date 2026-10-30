@@ -1,15 +1,12 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **440 of 460** parks joined to official land (same name + same kind of place). **6** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **443 of 460** parks joined to official land (same name + same kind of place). **3** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Cypress Creek and Loxahatchee River Management Area (~4,438 ac, similar name); Loxahatchee River Park (~1 ac, same name, different kind of place); Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name)); Jonathan Dickinson State Park (~10,442 ac, the POTA pin is inside it (different name))
 - **US-8689** Little Creek, McAlpin Landing State Conservation Area (State Conservation Area) → MCALPIN LANDING (~676 ac, similar name); MCALPIN LANDING (~149 ac, similar name); MCALPIN LANDING (~139 ac, similar name); MCALPIN LANDING (~82 ac, similar name); MCALPIN LANDING (~12 ac, similar name); MCALPIN LANDING (~3 ac, similar name)
-- **US-8692** Lamont, Mt. Gilead State Conservation Area (State Conservation Area) → LAMONT (~311 ac, similar name); LAMONT (~293 ac, similar name); MOUNT GILEAD (~157 ac, similar name); MOUNT GILEAD (~77 ac, similar name); MOUNT GILEAD (~74 ac, similar name); MOUNT GILEAD (~66 ac, similar name)
-- **US-8696** Purvis Landing, Otter Springs, Shingle Lndg State Conservation Area (State Conservation Area) → OTTER SPRINGS (~511 ac, similar name); SHINGLE LANDING (~433 ac, similar name); PURVIS LANDING (~165 ac, similar name); PURVIS LANDING (~82 ac, similar name); PURVIS LANDING (~80 ac, similar name); OTTER SPRINGS CAMPGROUND (~57 ac, similar name)
-- **US-8701** Shelly, Duck Pond, Hartsfield State Conservation Area (State Conservation Area) → SHELLY (~596 ac, similar name); SHELLY (~173 ac, similar name); SHELLY (~43 ac, similar name); Upper Aucilla Conservation Area (~2,818 ac, the POTA pin is inside it (different name))
 - **US-8711** Owens Spring, Walker, Adams State Conservation Area (State Conservation Area) → ADAMS (~494 ac, similar name); OWENS SPRING (~387 ac, similar name); WALKER (~191 ac, similar name); ADAMS (~109 ac, similar name); ADAMS (~105 ac, similar name); ADAMS (~86 ac, similar name)
-- **US-8712** White Springs, Little Shoals, Gar Pond State Conservation Area (State Conservation Area) → GAR POND (~376 ac, similar name); WHITE SPRINGS (~215 ac, similar name); GAR POND (~146 ac, similar name); LITTLE SHOALS (~123 ac, similar name); GAR POND (~120 ac, similar name); LITTLE SHOALS (~109 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

@@ -1,6 +1,6 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **250 of 306** parks joined to official land (same name + same kind of place). **4** to check by hand, **40** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **251 of 306** parks joined to official land (same name + same kind of place). **4** to check by hand, **40** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-11354 Fred Berry Crooked Creek Nature Center State Natural Site (State Natural Site) → on Kelly's Slab (~378 ac)
-- US-11873 Iron Fork Reservoir State Fishing Lake (State Fishing Lake) → on Ouachita National Forest (~1,430,575 ac)
 - US-12078 Peppers Pond State Recreation Site (State Recreation Site) → on Lake Conway WMA (~0 ac); Camp Robinson Wildlife Demonstration Area (~4,211 ac)
 - US-13229 Arkansas River Water Trail Recreation Park (Recreation Park) → on J.P. Hammerschmidt Recreation Area (~4,491 ac)
 - US-13461 Upper Illinois River Water Trail State Trail (State Trail) → on Wedington WMA (~0 ac); Ozark National Forest (~1,132,752 ac)
