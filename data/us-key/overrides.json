@@ -10955,6 +10955,14 @@
    ],
    "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
    "when": "2026-10-30"
+  },
+  "US-7916": {
+   "no": [
+    "sghib321",
+    "sghib322"
+   ],
+   "why": "2026-10-30 10:40 chat 2 (G-4 on HI 2-fers): Pearl Harbor National MEMORIAL was joined to two wildlife REFUGE units (Honouliuli, Waiawa); the memorial keeps only its own piece",
+   "when": "2026-10-30"
   }
  }
 }

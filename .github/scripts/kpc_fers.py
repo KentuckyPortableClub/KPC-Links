@@ -2439,6 +2439,17 @@ def tidy_rows(spots, PIN, today):
     lie on its patch = ONE patch: the pairs fold into the n-fer row; (2) 'same land' rows carry the checked date and both map
     links like every other row."""
     live = lambda x: str(x.get('status', '')).startswith(('candidate', 'very tight'))
+    # (0) Oct 30 (chat 8's PRIORITY BUG: 'merged into one row: <its own id>', 643 extra rows in 32 states, MA one pair 113x): a rerun
+    #     added the same row (same id) again, and the merge below then stubbed the copies into themselves, more every run. ONE row
+    #     per id: a live row first, then not sure / water only, then anything else; self-stubs and copies are removed.
+    _rank = lambda x: (0 if live(x) else 1 if str(x.get('status', '')).startswith(('not sure', 'water only')) else
+                       3 if str(x.get('status', '')) .startswith('merged into one row: ' + str(x.get('id'))) else 2)
+    _best = {}
+    for x in spots:
+        k = x.get('id')
+        if k is None: continue
+        if k not in _best or _rank(x) < _rank(_best[k]): _best[k] = x
+    spots[:] = [x for x in spots if x.get('id') is None or _best.get(x.get('id')) is x]
     # (5) n-fers first. RULE 11 (HQ + chat 8, Oct 28 7:55 AM): the n-fer patch is the ground ALL the parks share, listed once;
     # every PAIR's own overlap OUTSIDE it stays its own 2-fer row (never absorbed: Clifty x Daniel Boone, 12,364 ac, was hidden
     # inside a 592-ac 3-fer row). A pair row folds into the n-fer only when its patch IS the shared patch (same place, not bigger).
