@@ -318,6 +318,9 @@ When every park in a state has a row, add 'STATE XX DONE' under it. What is left
 |---|---|---|---|---|---|---|
 | US-9652 | Grenada SWA | our parkinfo: POTA link = cpw.state.co.us GranadaDeadmanSWA_geo.pdf (opened 200); map-check filed | 3 (map found) | TRACE: map read: Granada AND Deadman SWAs (Prowers Co., CPW 3/5/2018), legend shows "SWA Boundary"; disclaimer: mapped lines may not match legal holdings (note: one map, two SWAs, trace only Granada) | 8 | Oct 29 |
 | US-10540 | Bellevue-Watson Fish Hatchery | cpw.state.co.us/hatchery/bellvue-watson (opened; page, no map); Watson Lake SWA geo PDF likely | 3 | pin until map seen | 8 | Oct 29 |
+| US-10540 | Bellevue-Watson Fish Hatchery | Oct 30 chat 8: found + opened the official CPW geo PDF (`https://cpw.state.co.us/learn/Maps/WatsonLakeSWA_geo.pdf`, legend "SWA Boundary", updated 7/7/2021) — same Watson Lake SWA chat 2 (R-G8: NO, shared word only) and chat 9 (P-2: name-mismatch, LEAD only) already ruled is NOT this park. The PDF adds nothing new to overturn that; it's the same place under a different name. **CO is now resolved both ways: US-9652 traced, US-10540 confirmed pin (name-mismatch stands).** | 8 | Oct 30 |
+
+STATE CO DONE
 
 ### ME
 | park | name | source found | Rule G step | result | by chat | date |
