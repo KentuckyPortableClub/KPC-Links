@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 30 8:20 AM): chat 3 left layer matches for MI, UT, NV, WA that were never tested against the POTA pins: run your pin-in-polygon check on them (chat 3's rows in fable/US-MI/UT/NV/WA.md) and write the result in each row (+ `LAYER |` lines for the ones that pass).**
 - **FROM HQ (Oct 30 8:10 AM): same as chat 8: any layer you find for a park goes in its Fable row as `LAYER | <park ref> | <agency> | <layer URL (…/MapServer/N or FeatureServer/N, or a download link)> | name field: <FIELD> | <one-line note>`; the nightly collector takes it from there.**
 - **DAILY HABITS (Oct 30, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
 - **FROM HQ (Oct 30 7:45 AM) WORLD PRIORITY (Brandon 7:33): top 10 countries (world-stages.md W1-W10, Australia then UK first) = 2-fers + full GIS search; W11-W15 = outlines + documents only; every other country = only what the GIS hunter / world finder finds by itself (no hand research). Atlas `agency-atlas/W-<ISO>.md` + `fable/W-<ISO>.md` only for the top 15.**
