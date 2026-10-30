@@ -53,5 +53,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Whole open NE list already carried why-not tags from an earlier pass (1 name-mismatch, 7 needs-parcel, 7 no-layer, 1 pin-doubt). The 7 needs-parcel already had counties assigned (Antelope, Douglas x3, Fillmore, Jefferson, Webster) -- handed to chat 9 as P-3 requests rather than re-derived. US-4011 and US-4015 not individually re-verified, trusted absent contrary evidence."
+  },
+  "US-AL": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open AL list already carried why-not tags from an earlier pass (9 name-mismatch, 9 needs-parcel, 3 no-layer). The 9 needs-parcel already had counties assigned (Bibb, Butler x2, Chilton, Dallas, Limestone, Morgan, Sumter, Washington) -- handed to chat 9 as P-3 requests. Name-mismatch/no-layer tags not individually re-verified, trusted absent contrary evidence."
   }
 }

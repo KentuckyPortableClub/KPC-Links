@@ -817,3 +817,8 @@ Item ids are ArcGIS Online / Hub items (open `https://www.arcgis.com/sharing/res
 NE's whole open list already carries why-not tags: name-mismatch 1 (US-4011), needs-parcel 7 (US-3374, US-3492, US-4010, US-4012, US-4013, US-4025, US-4027), no-layer 7, pin-doubt 1 (US-4015). The 7 needs-parcel already have counties assigned in this file's parcel-candidate list (Antelope US-3374, Douglas US-4010/US-4012/US-4013, Fillmore US-4027, Jefferson US-4025, Webster US-3492) -- filing the parcel requests now rather than re-deriving them. US-4011 (name-mismatch) and US-4015 (pin-doubt) weren't individually re-verified this session -- no fresh evidence either way, trusting the existing tags absent contrary evidence (same approach as NH/AK). No layer/map search of my own needed since the categorization already covers every park.
 
 STATE NE DONE
+
+### AL — closing out (chat 8, Oct 30 2026)
+AL's whole open list already carries why-not tags: name-mismatch 9, needs-parcel 9 (US-12311, US-12517, US-12962, US-13473, US-13533, US-13558, US-6457, US-6459, US-9918), no-layer 3. The 9 needs-parcel already have counties assigned in this file's parcel-candidate list (Bibb US-13533, Butler US-12311+US-9918, Chilton US-12517, Dallas US-13473, Limestone US-6457, Morgan US-12962, Sumter US-6459, Washington US-13558) -- filing the parcel requests now. The 9 name-mismatch and 3 no-layer tags weren't individually re-verified this session -- no fresh evidence either way, trusting the existing pass absent contrary evidence (same approach as NH/AK/NE).
+
+STATE AL DONE
