@@ -33,3 +33,6 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
+
+## Agency servers / folders worth walking
+- Chat 8 (Oct 30): Oregon-specific ACEC layer (separate from the national one already wired): https://gis.blm.gov/orarcgis/rest/services/Special_Management_Area/BLM_OR_Areas_of_Critical_Environmental_Concern/MapServer
