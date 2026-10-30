@@ -15,6 +15,8 @@ Read .claude/inbox/README.md first.
 - TO DO (later): iPhone: browser phone remote first (plan in ft8-app.md 'IPHONE PLAN').
 - TO DO (later, Brandon Oct 30 2:51 PM): CLOUD (Google Drive backup + log sync), APPLE, GO PUBLIC with a download page on the website: notes in ft8-app.md 'LATER (Brandon Oct 30 2:51 PM …)'.
 
+- TO DO NEXT TIME (Brandon Oct 30 6:21 PM: 'lets add the options like that we had on the full logger later'): give KPC Lite the full logger's log options it now lacks, starting with ☁ UPLOADS (QRZ / eQSL / Wavelog: drop the kpc-uploads.js loader skip in index.html + the data-lite="off" on #stUp / #stUpT, a Lite test that UPLOADS shows); then check what else of the logger Lite hides (park packs = NEXT PARK / AM I IN THE PARK) and ask Brandon which to bring in.
+
 ## NEEDS BRANDON
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
