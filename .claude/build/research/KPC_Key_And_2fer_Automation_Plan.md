@@ -29,6 +29,15 @@ wiring (10:30 PM) the roles flipped: KPC-Links `data/us-key` = the latest BUILD 
 `cp kpcdata/data/us-key/$st.json data/us-key/ 2>/dev/null || true` (KPC-Data copy wins). Same thinking everywhere: a bot that
 reads "the key" reads KPC-Data's copy; only the key BUILDER reads KPC-Links.
 
+## BOT A — BUILT by Fable Oct 29 11:35 PM (Brandon 11:12 PM 'Do a'). `.github/scripts/kpc_key_answers.py`; runs first in kpc-us-key.yml's plan job.
+Tests passed: replay of Oct 29's answers on the pre-hand overrides = the SAME join lists as the hand work (0 differences after two data
+slips were fixed: a 'sgwabNone' hand typo on US-13383, and chat 11's later NOT SURE written into 17 key-pieces rows it had left as YES);
+second run applies 0; the 208 gis-hunter NO rows now sit in 'no' lists as bookkeeping (none was a joined piece). First real run done
+locally (ledger seeded, 483 rows), so the workflow's first run rebuilds nothing until chat 11 writes new answers.
+BOT B is half done with it: the plan job now reads answers-states.txt (blank `states` = only the touched states; 'all' or the monthly
+cron = every state; nothing new = the run ends green with 'nothing to rebuild', build + join skipped). Opus: run its test (a real
+2-state answers run under 8 min, other state files byte-identical) on the next batch of chat 11 answers.
+Dry run by hand: `DATA=../kpc-data python3 -I .github/scripts/kpc_key_answers.py --dry` from the KPC-Links root.
 ## BOT A: the answers writer  (`.github/scripts/kpc_key_answers.py`, KPC-Links)
 What it does: turns every chat 11 answer into the key's rules file, exactly as chat 2 did by hand on Oct 29 (10:55 PM: 67 YES → 64
 joins / 56 parks; 7:20 PM: the 40 probe verdicts; 8:20 PM: the release check).

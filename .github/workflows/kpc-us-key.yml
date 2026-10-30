@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       states:
-        description: 'States (blank = all but KY), e.g. TN IN OH'
+        description: "States, e.g. TN IN OH; blank = the states chat 11's new answers touch (BOT A), or 'all' = all but KY"
         default: ''
       jobs:
         description: 'Jobs at once (1-3)'
@@ -28,6 +28,17 @@ jobs:
       groups: ${{ steps.p.outputs.groups }}
     steps:
       - uses: actions/checkout@v5
+      - name: BOT A, the answers writer (Fable Oct 29 11:15 PM; plan KPC_Key_And_2fer_Automation_Plan.md)
+        # chat 11's YES / NO rows in KPC-Data data/waiting/questions/*.json -> data/us-key/overrides.json (join / no / alias) +
+        # the ledger answers-applied.json + answers-states.txt (the states to rebuild). Saved first, so the build jobs read it.
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata 2>/dev/null \
+            && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true
+          DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || true
+          rm -rf kpcdata
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt 2>/dev/null || true
+          git commit -qm "Key: chat 11's answers applied (BOT A)" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done || true
       - id: p
         env:
           STATES: ${{ inputs.states }}
@@ -36,7 +47,14 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
-          st = [x for x in (os.environ.get('STATES') or '').upper().replace(',', ' ').split() if x != 'KY'] or ALL
+          want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
+          if want == ['ALL'] or (not want and os.environ.get('GITHUB_EVENT_NAME') == 'schedule'): st = ALL      # 'all' / the monthly cron = every state
+          elif want: st = [x for x in want if x != 'KY']
+          else:                                                                                               # BOT B: only the states new answers touched
+              try: st = [x for x in open('data/us-key/answers-states.txt').read().split() if x != 'KY']
+              except Exception: st = []
+              if not st:
+                  print('groups=[]'); print('::notice title=US key plan::no new answers and no states given: nothing to rebuild'); raise SystemExit(0)
           n = max(1, min(3, int(os.environ.get('NJOBS') or 3), len(st)))
           try: sec = {k: (v.get('seconds') or 60) for k, v in json.load(open('data/us-key/index.json'))['states'].items()}
           except Exception: sec = {}
@@ -48,6 +66,7 @@ jobs:
           PY
   build:
     needs: plan
+    if: ${{ needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 330
     strategy:
@@ -77,7 +96,7 @@ jobs:
           retention-days: 3
   join:
     needs: build
-    if: ${{ always() && needs.build.result != 'cancelled' }}
+    if: ${{ always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

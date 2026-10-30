@@ -1,0 +1,2417 @@
+{
+ "gis-hunter:US-0042:166719": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0620:249818": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0620:74542": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0621:249819": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0621:74544": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0622:250668": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0622:75757": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0623:249881": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0623:74602": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0655:3538": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0778:sgakd935": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0877:1368": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0878:3294": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0878:sgakd1197": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0879:3315": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0879:sgakd1218": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0889:3310": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0889:sgakd1214": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0896:191780": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0896:sgfla101": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-0971:sgakd1176": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10008:2064": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10023:sgakh1835": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10025:sgakg10853": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10025:sgakh1935": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10258:3000": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10263:sgnca3872": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10399:sgnca6597": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10400:sgakh608": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10406:sgnca3491": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10431:199838": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10464:sgake122": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10464:sgakf122": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10476:sgore5132": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10486:sgakh1816": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10488:sgakg11345": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10644:272794": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10644:wid709260": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10661:sgila1712": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10687:sgdea325": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10751:sgmda319": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10788:sgila1150": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10829:292662": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10862:sgakg10710": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10863:sgakg11346": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10883:273814": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10883:sgakh390": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10893:273736": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-10987:sgakh1544": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11018:863": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11089:199756": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11090:263950": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11117:sgakg10819": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11176:sgakg10818": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11176:sgakh1537": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11193:sgakh1540": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11218:2572": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11222:116910": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11231:56574": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11231:sgmda334": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11238:sgnca6597": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11244:sgakb1814": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11260:sgidc810": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11282:sgakh1194": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11308:2306": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11308:sgakg13878": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11308:sgidc850": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11310:sgakg13901": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11310:sgidc845": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11328:sgakg13910": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11328:sgidc856": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11336:sgakh498": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11580:sgakh568": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11671:2758": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11671:sgokb113": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11671:sgokc9": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11763:sgakh1521": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11778:1595": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11778:312": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11800:sgakg11370": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11807:sgakg14029": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11807:sgakh1693": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11823:80742": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11830:sgakb304": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11831:sgakb304": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11832:sgakb304": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11833:sgakh1734": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11835:165808": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11835:sgakb346": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11864:1585": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11981:167506": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12119:sgnca215": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12145:sgakg10016": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12150:sgakg10818": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12150:sgakh1537": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12210:sgakg13749": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12210:sgidc804": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12212:sgakg13893": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12212:sgidc830": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12220:sgakg13897": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12220:sgidc838": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12230:sgakg13921": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12230:sgakh1123": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12230:sgidc877": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12320:sgnca13377": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12320:sgncb96": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12349:1937": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12371:sgnca215": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12377:sgmnd75": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12403:271379": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12414:sgnca215": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12462:sgakh1917": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12475:sgakg13530": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12640:sgila1214": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12662:sgnca5870": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12827:211523": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12957:sgakg10841": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12978:2939": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-12988:sgore2418": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13003:1811": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13004:1807": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13005:1806": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13065:sgakh1837": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13083:1818": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13083:sgala9": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13169:3074": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13207:sgakh1248": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13222:sgakh1243": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13228:2035": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13228:sgnvf4419": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13239:230595": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13241:3508": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13248:4282": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13248:5239": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13267:876": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13285:2042": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13295:sgakg13921": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13295:sgakh1123": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13295:sgidc877": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13298:sgila1422": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13311:1816": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13334:sgakh497": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13370:sgakg10826": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13410:804": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13482:230144": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13482:sgnvb563": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13499:sgakh648": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13522:2039": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13564:sgmda132": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13564:sgmda406": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13577:1935": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13577:sgakg13897": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-13577:sgidc838": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2081:sgnyb487": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2151:sgnyb594": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2200:4183": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2200:5138": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2236:199787": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2238:199938": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-2334:sgksa577": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3100:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3118:sgvta445": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3121:sgvta447": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3122:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3135:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3139:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3142:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3144:sgvta13": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3145:sgvta15": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3149:sgvta13": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3150:sgvta13": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3578:4397": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3578:sgazd715": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3621:sgfla51": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3724:sggab4": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3791:201861": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-3863:214405": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4036:118464": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4118:sgila1404": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4153:sgila1080": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4154:sgila1080": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4438:sgnve6": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4555:1797": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4568:203098": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4839:210771": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-4839:sgmoc233": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5572:2916": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5656:117508": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5715:sgmoa1589": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5761:264277": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5797:2103": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5797:sgakg10817": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5800:sgakg14460": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5809:sgakg10818": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5809:sgakh1537": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5819:sgakg9386": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5835:268643": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5866:sgakg9856": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5866:sgakh1519": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5866:sgutd57": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5895:2107": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5945:sgakh1506": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5981:sgakg9937": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-5998:sgakh1528": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6068:sgakg9145": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6071:sgakh85": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6084:sgakh1521": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6162:sgakh429": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6186:sgakh398": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6193:sgakh1592": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6199:sgakh1595": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6342:109": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6431:sghib302": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6462:225338": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6666:3609": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6713:4442": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6713:5399": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-6713:sgmib120": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7208:sgake37": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7208:sgakf37": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7209:sgake37": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7209:sgakf37": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7383:2756": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7383:sgazc6": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7393:2482": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7393:sgksc18": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7393:sgksc78": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7405:2481": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7405:sgksc63": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7405:sgksc98": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7471:2529": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7547:sgcta4215": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7821:sgakg13893": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7821:sgidc830": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7854:71478": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7854:sgmib145": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-7876:sgakh1668": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8010:sgnca6215": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8011:sgnca5877": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8021:56874": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8021:sgnha3007": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8021:sgnhc791": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8061:sgakd928": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8064:sgnyb540": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8081:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8082:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8083:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8084:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8085:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8086:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8087:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8088:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8089:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8090:sgakd920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8204:sgvah1599328": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8644:1586": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8663:138321": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9334:3710": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9334:4644": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9334:sgiaa544": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9334:sgiac106299": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9384:sgmnd2": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9384:sgmne11006": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9683:sgakd1244": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9897:3195": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9897:sgvae490554": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9897:sgvah1770920": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9900:sgvah778424": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-9983:sgakh1815": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "key-pieces:US-0063:fsod24": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0150:fws448": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0171:3765": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0171:4704": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0180:226907": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0180:226909": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0180:226910": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0180:226911": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0329:4343": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0450:4425": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-0450:5382": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-0854:3163": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-0883:fwsr198": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10018:241251": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1021:70911": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10349:255133": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10409:271460": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-10414:sgscc102": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10414:sgscc103": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10414:sgscc91": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10414:sgscc92": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10414:sgscc93": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10496:rma11233": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10496:rst11233": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10605:241553": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10605:sgorb27": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10609:241528": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-10790:sgwyc14160": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-11032:166161": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1106:166829": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-11698:207775": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-11908:rst10927": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12068:sgwia709181": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12068:sgwid19695105": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12068:wid709181": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12298:rst13894": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12417:194396": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12417:sggaa9": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12417:sggac745": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12545:sgwab1371": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12545:sgwaf1371": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12549:sgwab1371": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12549:sgwaf1371": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12728:sgwyd10124": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12736:215830": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12736:216188": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12812:sgmna1461": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-12841:rst12757": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-13038:hma150": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-13161:210560": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-13570:mid783": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-13570:sgmib88": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29, look-up bot screenshot"
+ },
+ "key-pieces:US-13619:sgmna1073": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-13619:sgmna1761": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1449:78258": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1449:78259": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1523:sgmia53": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1550:sgmia24": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1660:52976": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1744:52035": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1791:sgmoa1475": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1836:sgfla34": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-1951:sgoha210": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2057:sgnyb442": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2057:sgnyb443": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2634:sgnve1": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2634:sgnve28": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2739:sgnca21239": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-2873:57170": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-2955:256171": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-2976:255586": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-3064:sguta116": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-3064:sguta164": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-3359:210078": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-3699:166137": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-3699:166139": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-3889:sgscc46": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-3889:sgscc47": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-3889:sgscc48": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4344:273010": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4344:sgwia710027": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4344:sgwid19720470": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4344:wid710027": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwia710112": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwia710773": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwid19665531": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwid19665541": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwid19665542": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwid19665543": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:sgwid19665544": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:wid710112": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4352:wid710773": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4383:2920": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-4476:2675": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4477:2663": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4767:9291": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-4839:210771": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-5484:57173": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-5713:sgmoa1626": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-5955:263937": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-6027:rst9580": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6402:sghia47": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6402:sghic47": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6545:sgtxc91": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-6660:71455": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6675:71462": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6675:sgmib79": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6712:mid499": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6763:71484": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6804:sgmib224": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6893:sgncb17": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-6978:200679": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw497": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw498": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw500": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw501": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw502": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw516": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw517": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw518": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7084:mszw519": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7191:sgaka81": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7191:sgake81": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7191:sgakf81": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7252:157452": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7548:52843": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7548:52844": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7548:52845": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7548:52846": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7548:52847": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7735:56479": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7761:56565": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7794:54447": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-7899:194359": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8023:nhc10571": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-8023:sgnha10571": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29"
+ },
+ "key-pieces:US-8056:216668": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8188:255303": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8386:59167": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8386:59168": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8386:59169": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8386:59170": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-8386:59171": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9408:sgohd84": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9549:241419": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9557:sgore12456": {
+  "answer": "NO",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9559:241504": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9570:sgorb410": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9854:272628": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9854:sgwia709871": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9854:wid709871": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:272671": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:78189": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwia709887": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669508": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669509": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669510": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669511": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669512": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669513": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669514": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669515": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669516": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669517": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669518": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669519": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669520": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669521": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669522": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669523": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669524": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669525": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669526": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669527": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669528": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669531": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669532": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669533": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669534": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669535": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669536": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669537": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669538": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669539": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669541": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669543": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669544": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669545": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669546": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669547": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669548": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669549": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669550": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669551": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669552": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669553": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669554": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669557": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669558": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669559": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19669560": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19692142": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19692143": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19697877": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19697878": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19697879": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19697880": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19700172": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19700173": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19717437": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19718515": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19718516": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:sgwid19727151": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ },
+ "key-pieces:US-9855:wid709887": {
+  "answer": "YES",
+  "applied": "2026-10-29 23:15",
+  "checked_by": "chat 11 (Sonnet), Oct 29 evening"
+ }
+}
