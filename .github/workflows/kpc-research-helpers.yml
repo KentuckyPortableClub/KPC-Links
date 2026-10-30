@@ -4,6 +4,9 @@ name: KPC research helpers (park packets daily, atlas crawler weekly; notes only
 # layer lists in .claude/build/research/agency-atlas/<area>.md. Decides nothing; nothing to the waiting room; the GIS hunter is untouched.
 # Only .claude/** changes = no site rebuild. Never goes red (EMAIL rule).
 on:
+  push:   # Oct 30 (Brandon 10:36 AM 'auto start when it has work to do'): a new server root written in an atlas file = crawl just the new ones
+    branches: [main]
+    paths: ['.claude/build/research/agency-atlas/**']
   schedule:
     - cron: '23 13 * * *'   # packets + solve every day (atlas + link check too on Sundays)
     - cron: '23 5 * * *'    # 12:23 AM CDT: inbox tidy + the daily habits line (HQ Oct 30 8:45 AM (5) + (7))
@@ -48,11 +51,12 @@ jobs:
           DATA: kpcdata
         run: |
           M="${{ inputs.mode }}"
-          if [ -z "$M" ]; then if [ "$(date -u +%H)" = 05 ]; then M=inbox; elif [ "$(date -u +%u)" = 7 ]; then M=weekly; else M=daily; fi; fi
+          if [ -z "$M" ]; then if [ "${{ github.event_name }}" = push ]; then M=atlas-new; elif [ "$(date -u +%H)" = 05 ]; then M=inbox; elif [ "$(date -u +%u)" = 7 ]; then M=weekly; else M=daily; fi; fi
           R=".github/scripts/kpc_research_helpers.py"
           case "$M" in daily|weekly|solve) timeout 20m python3 $R solve ${{ inputs.areas }} || true ;; esac
           case "$M" in daily|weekly|packets|both) timeout 120m python3 $R packets ${{ inputs.areas }} || true ;; esac
           case "$M" in weekly|atlas|both) timeout 90m python3 $R atlas ${{ inputs.areas }} || true ;; esac
+          case "$M" in atlas-new) timeout 90m python3 $R atlas-new || true ;; esac
           case "$M" in weekly|links) timeout 250m python3 $R links || true ;; esac
           case "$M" in inbox) python3 $R inbox ${{ inputs.areas }} || true ;; esac
           case "$M" in weekly|storage)   # Oct 30 (HQ 8:50 AM): the storage keeper's KPC-Links half: clean this repo + a warning line for HQ

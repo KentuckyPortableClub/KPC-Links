@@ -215,14 +215,29 @@ def crawl(root, cap_services=30, cap_layers=40):
     return out
 
 
-def atlas(areas):
+def old_section(text):
+    """The crawler's last lists, per root: {root: [lines]} (so a push-run only crawls roots it has not seen yet)."""
+    m = re.search(r'\n## Layers on these servers \(atlas crawler[^\n]*\n(.*?)(?=\n## |\Z)', text, re.S)
+    out, cur = {}, None
+    for l in (m.group(1).split('\n') if m else []):
+        h = re.match(r'- \*\*(\S+?)\*\*:', l) or re.match(r'- (\S+): did not answer', l)
+        if h: cur = h.group(1); out[cur] = [l]
+        elif cur and l.startswith('  - '): out[cur].append(l)
+    return out
+
+
+def atlas(areas, only_new=False):
     n = 0
     for f in sorted(AT.glob('*.md')):
         area = f.stem
         if areas and area not in areas: continue
         text = f.read_text(encoding='utf-8')
+        old = old_section(text)
+        roots = roots_in(text)[:12]
+        if only_new and not [r for r in roots if r not in old]: continue   # nothing new on this page: no work
         lines = []
-        for root in roots_in(text)[:8]:
+        for root in roots:
+            if only_new and root in old: lines += old[root]; continue
             res = crawl(root)
             if res is None: lines.append(f'- {root}: did not answer (or robots / resting)'); continue
             lines.append(f'- **{root}**: {len(res)} polygon layer(s) with park / boundary / recreation / wildlife / forest / lands words' + ('' if res else ' (none)'))
@@ -372,6 +387,6 @@ def links(areas):
 
 if __name__ == '__main__':
     mode, areas = (sys.argv[1] if len(sys.argv) > 1 else 'packets'), set(sys.argv[2:])
-    try: {'packets': packets, 'atlas': atlas, 'solve': solve, 'inbox': inbox, 'links': links}[mode](areas)
+    try: {'packets': packets, 'atlas': atlas, 'atlas-new': lambda a: atlas(a, only_new=True), 'solve': solve, 'inbox': inbox, 'links': links}[mode](areas)
     except Exception as e: print(f'::notice title=Research helpers::{mode} stopped ({type(e).__name__}: {e})')  # noqa: BLE001
     sys.exit(0)
