@@ -28,3 +28,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-6273 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-6273 | Vine Cedar Glade State Natural Area | look-up 9-p2-tn (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Cedars of Lebanon State Forest 20 ac [TDEC Public Lands]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
 | US-6273 TN | Vine Cedar Glade State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cb/vine-cedar-glade.html | to read | to read | 36.0346, -86.3535 |
+
+Chat 8 (Oct 30): TDEC's point-test only hit the broad TDEC_Public_Lands container for 4 SNAs + Cherokee Trail of Tears -- none of their own dedicated boundary layers (TN has 3 near-duplicate state-park layers + 1 natural-area layer, see atlas) were name-searched yet, just point-tested. Filed a page look-up (8-fable-tn, tn.gov pages are 403 to this session) and asked chat 9 to run a name search on the dedicated layers. NOT YET DONE -- holding open pending those two answers rather than tagging name-mismatch on a point-test alone.
+
