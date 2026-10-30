@@ -156,3 +156,24 @@ per change, never rerun-to-see; every bot step ends `|| true` except the save; n
 - Chat 2 (Opus): reads BOT C's summary and writes the one-line recheck; handles prose verdicts and anything a bot lists as SKIP;
   decides when a code / layer / rule change needs a full rebuild; builds the drawn preview page when Brandon asks.
 - Chat 8: grades 2-fer areas. Brandon: the release word and any Rule G grey area.
+
+## BOT F: start each state's FIRST new-key 2-fer run by itself  (Fable, Oct 29 11:30 PM; Brandon: 'Instructions?')
+Today chat 2 reads the Fable file, decides a state is done, dispatches its first run and adds it to data/fers/new-key-states.json.
+The Fable file has no fixed marker (3 loose 'DONE' mentions), so a bot cannot read it. Give it one marker, one place:
+1. THE MARKER: KPC-Links `.claude/build/research/fable-state-done.json` = `{"US-XX": {"date": "2026-10-30", "by": "chat 3", "note":
+   "last open park placed / ruled"}}`. The chat that finishes a state's LAST open Fable-list park (chat 3 or chat 8) writes that
+   state's line (HQ's order already says 'STATE XX DONE': this is the same word, in a file a bot can read). Nothing else counts.
+   States with 0 open parks from the start are already in new-key-states.json (waves 1 + 2); the marker is only for the rest.
+2. THE BOT: one more step in KPC-Data `kpc-fers-pending.yml` (it already runs daily 10:23 UTC and after every key release):
+   for each state in the marker file that is NOT yet in `data/fers/new-key-states.json` and not in a `hold` list
+   (`US-AK` until chat 3's file-size fix lands; `US-KY` never: own key, already run): dispatch `kpc-fers-line.yml` with
+   `states=US-XX`, `tag=<xx>`, `stage=all`, NO `parks` filter (a first run = the whole state), then add the state to
+   new-key-states.json and push. At most 3 states per run and never while the full queue (`kpc-fers-lines.yml`) is in progress
+   (the step already checks that). One dispatch per state, step ends `|| true`, no email.
+3. ORDER: fewest open parks first is automatic (a state is marked done when it reaches 0); if several are marked at once, start the
+   ones with the fewest parks (data/parkinfo/US-XX.json count) first, the rest next run.
+4. AFTER the first run: the state is in new-key-states.json, so BOT E reruns it by itself whenever its live outlines change.
+5. TEST (one state): write the marker for one small done state (e.g. US-IA, 1 open park, once chat 3/8 confirms it), run
+   kpc-fers-pending.yml by hand with force=yes: it must start exactly one Iowa line, add US-IA to new-key-states.json, and a second
+   run must start nothing. Then it is trusted.
+What stays human: deciding a state's last park (Rule G, chats 3 / 8 / 11); Alaska's hold; the Canada line (after the Canada key rebuild).
