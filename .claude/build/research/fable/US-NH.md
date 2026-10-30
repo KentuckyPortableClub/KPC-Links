@@ -27,3 +27,5 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-8024 | Taylor Saw Mill SHS | our doc: dropped shared file; consnh | 2 | to check state layer | 8 | Oct 29 |
 | US-8024 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-8024 | Taylor Saw Mill State Historic Site | look-up 9-p2-nh (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): 150400701 ? ac [Recreation Inventory: Areas]; Ballard State Forest ? ac [CL: Solid]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+| US-13626 | Sugar River State Trail | new park (POTA, found 2026-10-28); pin 43.3667, -72.1791 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-10-28 |
+| US-13625 | Ammonoosuc State Trail | new park (POTA, found 2026-10-28); pin 44.2128, -71.9098 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-10-28 |
