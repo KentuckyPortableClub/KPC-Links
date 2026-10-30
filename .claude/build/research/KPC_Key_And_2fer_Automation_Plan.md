@@ -20,6 +20,7 @@ chat 11 answers in data/waiting/questions/*.json          (human, as now)
 ```
 Result: the gap from "chat 11 answered" to "live + 2-fers redone" drops from 3-4 of Brandon's inbox rounds to one.
 
+## Step 0 — DONE by Fable Oct 29 11:08 PM (KPC-Data 4b30eb0f). Brandon 11:07 PM: 'You do step 0...opus do the rest'. The rest = Opus, on Brandon's GO.
 ## Step 0 (do first, 5 minutes): the 2-fer checker must read the LIVE key again
 On Oct 29 7:05 PM chat 2 changed KPC-Data `.github/workflows/kpc-fers-line.yml` (checker job, "The worker's bundle" step) to keep the
 KPC-Links `data/us-key/$st.json` over the KPC-Data copy, because KPC-Data's copy was then the frozen OLD key. Since chat 10's
