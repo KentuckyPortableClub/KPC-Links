@@ -1,6 +1,5 @@
 {
  "open": [
-  "guard:maprep:M-527b (members page)",
   "links:https://assessment.cot.tn.gov/TPAD",
   "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
   "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
@@ -22,7 +21,7 @@
   "site:wide:kpc-live.html:desktop",
   "site:wide:kpc-weather.html:desktop"
  ],
- "checked": "2026-10-29T14:10+00:00",
+ "checked": "2026-10-30T10:29+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -266,22 +265,22 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2761
+   "b": 2905
   },
   "L:data/ky-answer-key.json": {
    "b": 31176
   },
   "L:data/us-key": {
-   "b": 10352850
+   "b": 11360512
   },
   "L:data/ca-key": {
-   "b": 1695030
+   "b": 1812731
   },
   "L:data/world-key": {
    "b": 13230413
   },
   "L:data/pota": {
-   "b": 5661497
+   "b": 5661927
   },
   "L:data/canada.json": {
    "b": 2494063
@@ -296,10 +295,10 @@
    "b": 529287
   },
   "L:data/state-gis.json": {
-   "b": 78347
+   "b": 92215
   },
   "L:data/boundary-score.json": {
-   "b": 962382
+   "b": 969349
   },
   "L:data/campfed": {
    "b": 643240
@@ -333,38 +332,37 @@
    "b": 1032925
   },
   "D:data/sota-land": {
-   "b": 1696741
+   "b": 1697496
   },
   "D:data/parkinfo": {
    "b": 15110394
   },
   "D:data/trails": {
-   "b": 6146736
+   "b": 7915560
   },
   "D:data/access": {
-   "b": 3787277
+   "b": 5213226
   },
   "D:data/wwff": {
    "b": 11660561
   },
   "D:data/review/scoreboard.json": {
-   "b": 130930
+   "b": 130916
   },
   "D:data/truth": {
-   "b": 7338151
+   "b": 7473624
   },
   "D:data/alerts/eu.json": {
-   "b": 75345,
-   "since": "2026-10-29"
+   "b": 72167
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 231105
+   "b": 277144
   },
   "D:data/intake": {
-   "b": 1049737
+   "b": 6459751
   },
   "D:data/detective": {
    "b": 53730
