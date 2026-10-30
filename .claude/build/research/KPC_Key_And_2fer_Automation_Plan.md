@@ -2,6 +2,21 @@
 Written by Fable, Oct 29 2026 11:05 PM, on Brandon's order ("Write instructions to opus on how to automate the key building and
 2fer line. Make it accurate, efficient and fast."). Brandon 10:58 PM: "Hang on" = do NOT start building until he says go.
 
+## STATUS (Oct 29 11:25 PM, Opus; Brandon 11:18 PM 'build it!')
+- Step 0 DONE (Fable). BOT A DONE (Fable). BOT B wired with A (blank states = touched states only); timing test = KPC-Links run
+  41002310689 (states 'RI DE'): pass = green, under 8 min, the other 48 state files byte-identical (md5 list taken before: /tmp only).
+- BOT C DONE: KPC-Data `.github/scripts/kpc_key_summary.py`, run inside `kpc-copy-from-links.yml` right after the waiting room's divert;
+  writes `data/waiting/preview/us-key-changes.json` (+ ca-key) = totals, per area, gained / lost / grade changes, SAMPLE of 30 (15 from
+  chat 11's own answers via the ledger, 15 from layers / code). Tested on tonight's held build vs live: +51 outlined / 1 lost / 368
+  piece changes / 37 grade changes, 74 KB. The copy now also runs at 01:41 UTC (8:41 PM CDT) so a day's rebuild reaches chat 11 the
+  same night. KPC-Data e929c853.
+- BOT D = chat 10 (asked 11:20 PM: nightly release-approved timer + 2-fer trigger after a key release).
+- BOT E DONE: `kpc-fers-pending.yml` now remembers the LIVE key's pieces per park (`data/fers/key-seen.json`, first run only
+  remembers) and queues every park whose LIVE outline changed, its own state as one area (1/3-size), only for states in
+  `data/fers/new-key-states.json` (waves 1 + 2 = 15 states; chat 2 adds each new wave's states); a key change runs at once (no 5-park
+  wait); also triggered when the waiting-room workflow completes. Tested offline with a fake dispatcher: an Ohio change started
+  exactly one Ohio area run, a Texas change (not yet in a wave) started nothing.
+
 ## The one rule
 A bot MOVES decisions; it never MAKES one. Chat 11's YES / NO on a map piece and Brandon's word on a release stay human.
 Everything between those two points (copying answers into the key, rebuilding, comparing, holding, copying live, rerunning
