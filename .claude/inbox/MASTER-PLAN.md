@@ -20,6 +20,12 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## CANADA (Fable, Oct 29 7:05 PM, Brandon 6:56 PM): Rule Sheet G, Canada (R-GC1..R-GC8) + starter layer list in mapping.md; chat 9 probes + P-2, chat 2 wires + Rule G pieces into the Canada key (staged); tracing waits for the US passes.
 
+## TONIGHT: WEBSITE REPO CLEANUP (Brandon 7:27 PM 'Yes tonight'; HQ runs it; storage = HQ's job)
+- WINDOW: 12:05-12:50 AM CDT (05:05-05:50 UTC) = the quietest hour in the bot schedule (no 6-hourly / nightly job; only the every-15/30/hour bots: hunters, band alerts, POTA Discord, bot queue, FB comments, Discord watch / relay, boards).
+- BEFORE: chat 10's look-up move to KPC-Data DONE (the folder stops growing); chats push NOTHING to KPC-Links 12:00-1:00 AM.
+- STEPS (HQ): (1) disable every KPC-Links workflow (gh workflow disable; list saved) and wait for running ones to finish; (2) full mirror clone; (3) git filter-repo removes ONLY `.claude/lookup/` and `data/fers/` (moved to KPC-Data Oct 27) from ALL history; (4) delete the 13 MERGED branches + the stale Oct 14-21 probe branches (zz-*, probe, probe2, claude-shot, claude-trail-fetch, note-email-topics) after chat 2/9 confirm; KEEP main, bot-state, stage-g, stage-shapes, chat2-fable-parts, chat2-ky-refine, chat9-world, key-speed, namematch-test, owned-land-ky, stepb, note-world-tool (rewritten, not deleted); (5) force-push all kept refs; (6) re-enable exactly the saved list; (7) check the site deploys + one bot run; (8) sizes before/after to Brandon. GitHub may take days to show the smaller size (its own clean-up).
+- EXPECTED: about 130 MB out of history (look-up 68 MB + old 2-fer results 63 MB) + whatever the dropped branches held.
+
 ## THE PLAN (Brandon, in order)
 1. Boundary accuracy: chats 2 + 3 (3 m close-ups everywhere, Canada re-saved at 3 m, wrong joins fixed).
 2. Waiting room finished → chat 8 breaks it → Brandon's GO → PILOT = access/parking bot → wire the other website bots ONE AT A TIME → start the rest of the bots, repair as needed.
