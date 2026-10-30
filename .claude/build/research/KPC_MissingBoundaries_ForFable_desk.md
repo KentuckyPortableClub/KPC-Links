@@ -423,9 +423,15 @@ STATE LA DONE
 
 STATE MD DONE
 
-### NH
-| park | name | source found | Rule G step | result | by chat | date |
-|---|---|---|---|---|---|---|
+### NH — closing out (chat 8, Oct 30 2026)
+My 7 open parks (Androscoggin Wayside SP US-2642, Gardner Memorial Wayside SP US-2654, Winslow SP US-2685, Taylor Saw Mill SHS US-8024, Max Israel SF US-4931, Nash Stream Forest SF US-4936, White Farm SF US-4980) already carry final why-not tags from the summary line above (line 102): **name-mismatch** (US-2642, US-2654, US-8024 -- plus US-13626, not one of mine), **picture-map-only** (US-2685, matches last session's "map found -> to trace" note, since re-read as G-ID3: a map PDF with no coordinates, link kept, stays a pin), **needs-parcel** (US-4931, US-4936, US-4980). The per-park detail rows this file had on Oct 29 (NHDOT_BOUNDARIES_Parks_Forest / GRANIT consnh leads, the state-reservation-maps page bot) are gone from the file now -- consolidated into this tag summary by whoever last touched it (not me), so I'm trusting that pass rather than re-deriving it from scratch.
+- US-4931 Max Israel SF -- county Merrimack (FIPS 33013), pin [43.27220,-71.74590]. Needs-parcel: handing to chat 9 as a P-3 request.
+- US-4936 Nash Stream Forest SF -- county Essex? the county list says "FIPS 50009" labelled Essex, but 50009 is Vermont's code range (33xxx is NH); pin [44.72710,-71.69010] is in NH's North Country (Coos County in reality, not Essex). **Flagging this as a county-list data error for chat 9/chat 3 to fix before filing the parcel request** -- the FIPS code looks miscoded, not the park.
+- US-4980 White Farm SF -- same issue: county list says "Windham, FIPS 50025" but Windham is a VT/CT county name, not NH's; pin [43.18900,-72.55950] sits on NH's western border (Cheshire or Sullivan County territory, not Windham). **Same flag: FIPS code needs a fix before the parcel request goes out.**
+**NH summary: 4 confirmed (3 name-mismatch, 1 picture-map-only), 3 needs-parcel but 2 of those 3 have a wrong county/FIPS code in the existing list that needs fixing first (Max Israel's Merrimack/33013 looks right; Nash Stream's and White Farm's codes look like VT counties pasted onto NH parks).** Handing the FIPS-code question to chat 9 rather than guessing the real county; Max Israel's parcel request can go out as-is.
+
+STATE NH DONE
+
 ### NM (add)
 ### DE
 ### MT
