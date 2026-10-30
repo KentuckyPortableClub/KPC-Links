@@ -274,3 +274,4 @@ DONE (Oct 29 ~2:30 PM): missing-boundaries rerun on the REAL key (313: 24 outlin
 - DONE Oct 29 ~9 PM: OR + TX parcel layers failed 3 tries each (token required / not found); noted in the Fable file, stopped. Answers marked read.
 - DONE Oct 29 ~9:50 PM: graded NEW-KEY wave 1 (KY DC NJ OH SD PASS with checks; PA HOLD for State Game Land ruling + water re-read). KPC_2fer_NewKey_Wave1_Grades_desk.md
 - DONE Oct 29 ~10:20 PM (Fable): WORLD AGENCY table for 42 countries + rule W-9 (Protected Planet = name only) + the Sonnet search recipe: WORLD/world_agencies.json + KPC_World_Agencies_desk.md; chat 9 inboxed; look-up 8-pp-agencies filed.
+- DONE Oct 29 ~10:10 PM: harvester seeds round 2 (8 never-seeded countries) written for chat 10; world-agency look-up (8-pp-agencies) still pending.
