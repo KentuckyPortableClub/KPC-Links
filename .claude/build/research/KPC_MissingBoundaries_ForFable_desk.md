@@ -327,6 +327,10 @@ STATE CO DONE
 |---|---|---|---|---|---|---|
 | US-9174 | Mahoosuc Ecological Reserve | our doc: maine.gov/dacf/mnap page, no map; BPL site 403 to bot | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-8287 | Capitol State Park | NRHP 89000252 nomination PDF opened (200), written boundary; POTA link is AllTrails | 3 -> 4a | to read + trace | 8 | Oct 29 |
+| US-8287 | Capitol State Park | Oct 30 chat 8: T-1 check on chat 9's P-2 hit (row 1810, "CAPITAL PARK" in Maine_Conserved_Lands) -- "Capitol"/"Capital" is a one-letter spelling variant of the same proper word (Augusta's park is historically spelled both ways), same place as the NRHP nomination's "City of Augusta tax map 32, lot 24." **TRACE candidate: GIS polygon + written parcel boundary agree.** Handing to chat 2 to draw. | 8 | Oct 30 |
+| US-9174 | Mahoosuc Ecological Reserve | Oct 30 chat 8: T-1 check on the PAD-US record (row 710, "Mahoosucs" 3367 ac, owner SPR/STAT, manager SPR = Maine BPL State Parks) -- "Mahoosuc(s)" is the same proper word (plural folded per T-1); "Ecological Reserve" is the kind word that differs, but the Reserve is BPL's own designation layered on BPL's "Mahoosucs" Public Reserved Land unit, same owner, same tract. **TRACE candidate.** (Earlier parcel answer: one piece of it is the "Frederick Owen Wight" 239 ac BPL-fee parcel under PROJECT Mahoosucs -- consistent with a merged multi-parcel unit, same as how other BPL Public Reserved Lands are built.) Handing to chat 2 to draw. | 8 | Oct 30 |
+
+STATE ME DONE
 
 ### AZ
 | park | name | source found | Rule G step | result | by chat | date |
@@ -334,6 +338,10 @@ STATE CO DONE
 | US-11944 | Dankworth Pond SP | AZ State Parks park map PDF (usedirect DAPO_Park Map_8-2023); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
 | US-3390 | River Island SP | AZ State Parks park map PDF Park Map-RIIS (opened 200); map-check filed | 3 (map found) | to trace | 8 | Oct 29 |
 | US-6071 | Little Black Mountain Petroglyph Site | BLM page (opened 200): BLM Arizona Strip site, not state land; BLM surface layer | 3 -> 4b | BLM land: trace from BLM layer | 8 | Oct 29 |
+| US-6071 | Little Black Mountain Petroglyph Site | Oct 30 chat 8: chat 9's P-2 already tested this pin against BLM rec polygons (incl. the national BLM_Natl_Recs_poly layer) + state/FWS/NPS layers (row 1343) -- no polygon within 100 m in any of the 7 layers read. **Confirmed: no-layer, stays a pin.** | 8 | Oct 30 |
+| US-11944 / US-3390 | Dankworth Pond SP / River Island SP | Oct 30 chat 8: both are G-ID3 picture maps (PDF, no coordinates) -- already saved to KPC-Data's picture-maps branch via save-map (replacement links found on arizona-content.usedirect.com after azstateparks.com blocked the bot). **Confirmed: picture-map-only, link kept, stays a pin per G-ID3 (never traced).** | 8 | Oct 30 |
+
+STATE AZ DONE
 
 ### CT
 | park | name | source found | Rule G step | result | by chat | date |

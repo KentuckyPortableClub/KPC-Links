@@ -3,5 +3,15 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Both open parks resolved: US-9652 Granada & Deadman SWA traced from CPW's official geo PDF; US-10540 Bellevue-Watson Fish Hatchery confirmed as a name-mismatch (Watson Lake SWA is a different place, R-G8/P-2 already ruled NO) -- stays a pin."
+  },
+  "US-ME": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Both open parks resolved: US-8287 Capitol State Park (T-1 match on 'CAPITAL PARK' GIS hit + NRHP parcel boundary, trace candidate handed to chat 2) and US-9174 Mahoosuc Ecological Reserve (T-1 match on PAD-US 'Mahoosucs', trace candidate handed to chat 2)."
+  },
+  "US-AZ": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "All 3 open parks resolved: US-6071 Little Black Mountain Petroglyph Site confirmed no-layer (pin stays, chat 9's P-2 already tested 7 layers); US-11944 Dankworth Pond + US-3390 River Island confirmed picture-map-only (G-ID3, pins stay, maps saved to picture-maps branch)."
   }
 }
