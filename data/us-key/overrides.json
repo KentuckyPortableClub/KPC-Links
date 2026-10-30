@@ -6256,20 +6256,15 @@
    "when": "2026-10-29"
   },
   "US-11025": {
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside · Oct 29: alias taken back: held: chat 8 asks a person to check (is the tract the whole area?) · Oct 29 2:30 PM: the agency's own page states 4,735 ac, the record has 4716.0 ac (chat 9 page check): same land, joined by record id",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Uchee Creek Confluence'; joins only with the POTA pin inside · Oct 29: alias taken back: held: chat 8 asks a person to check (is the tract the whole area?) · Oct 29 2:30 PM: the agency's own page states 4,735 ac, the record has 4716.0 ac (chat 9 page check): same land, joined by record id · Oct 29 8:20 PM chat 11 release check: NO: 'Uchee Creek Confluence' (pin 0.7 km outside): stays a pin",
    "when": "2026-10-29",
    "alias_held": [
     "Uchee Creek Confluence"
    ],
-   "join": [
-    "sgalb151"
-   ],
-   "fp": {
-    "sgalb151": [
-     "Uchee Creek Confluence",
-     4716.0
-    ]
-   }
+   "no": [
+    "sgalb151",
+    "Uchee Creek Confluence"
+   ]
   },
   "US-11027": {
    "alias": [
@@ -6345,8 +6340,12 @@
    "alias": [
     "ROYAL MAUSOLEUM STATE MONUMENT"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'ROYAL MAUSOLEUM STATE MONUMENT'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'ROYAL MAUSOLEUM STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 8:20 PM chat 11 release check: keep the old line (Royal Mausoleum State Monument is the same site)",
+   "when": "2026-10-29",
+   "join": [
+    "sghib302",
+    "ROYAL MAUSOLEUM STATE MONUMENT"
+   ]
   },
   "US-0280": {
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
@@ -7501,7 +7500,8 @@
   "US-0450": {
    "join": [
     "5382",
-    "4425"
+    "4425",
+    "Lake Umbagog National Wildlife Refuge"
    ],
    "fp": {
     "5382": [
@@ -7514,7 +7514,7 @@
     ]
    },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 8:20 PM chat 11 release check: keep the old lines (the NH refuge parcels are the same refuge)"
   },
   "US-11698": {
    "join": [
@@ -7821,7 +7821,7 @@
      1
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'President William Jefferson Clinton Birthplace Home National Historic Site' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'President William Jefferson Clinton Birthplace Home National Historic Site' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back (Clinton Birthplace NHS)",
    "when": "2026-10-29"
   },
   "US-1106": {
@@ -7922,7 +7922,7 @@
      898213
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line)",
    "when": "2026-10-29"
   },
   "US-1021": {
@@ -8639,7 +8639,7 @@
      1603
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Topaz Mountain' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Topaz Mountain' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back (Topaz Mountain)",
    "when": "2026-10-29"
   },
   "US-7794": {
