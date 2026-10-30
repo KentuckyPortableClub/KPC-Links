@@ -424,7 +424,24 @@ if CMODE != 'only' and not any(str(r.get('oid', '')).startswith('NB WMZ:') for r
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 
-def acres(r): return round((r['ha'] or 0) * 2.47105)
+def _shape_acres(g):
+    """Oct 30 (HQ morning queue 1, chat 11: every Canada piece showed 0 acres): area from the outline itself when the layer gives none.
+    Rings in lon/lat degrees: shoelace on an equal-area local projection (x scaled by cos(latitude)); holes subtract by winding."""
+    import math
+    tot = 0.0
+    for r in rings(g):
+        if len(r) < 3: continue
+        lat0 = math.radians(sum(p[1] for p in r) / len(r)); kx = 111320.0 * math.cos(lat0); ky = 110540.0
+        a = 0.0
+        for i in range(len(r)):
+            x1, y1 = r[i - 1][0] * kx, r[i - 1][1] * ky; x2, y2 = r[i][0] * kx, r[i][1] * ky
+            a += x1 * y2 - x2 * y1
+        tot += a / 2.0
+    return abs(tot) / 4046.8564224
+def acres(r):
+    if r.get('ha'): return round(r['ha'] * 2.47105)
+    try: return round(_shape_acres(r.get('_g')))
+    except Exception: return 0  # noqa: BLE001
 
 
 # Oct 18 review: sites (lighthouse, bridge, trail, campground…) have no outline of their own; reviewed parks in data/ca-key/overrides.json
