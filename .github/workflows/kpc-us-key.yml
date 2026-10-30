@@ -34,11 +34,12 @@ jobs:
         # the ledger answers-applied.json + answers-states.txt (the states to rebuild). Saved first, so the build jobs read it.
         run: |
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata 2>/dev/null \
-            && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true
+            && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions data/intake 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true
           DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || true
+          DATA=kpcdata python3 .github/scripts/kpc_key_layers.py || true   # BOT W (HQ Oct 30 8:10 AM): chat 11's YES layers -> state-gis.json + that state rebuilds tonight
           rm -rf kpcdata
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt 2>/dev/null || true
+          git add data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json 2>/dev/null || true
           git commit -qm "Key: chat 11's answers applied (BOT A)" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done || true
       - id: p
         env:
