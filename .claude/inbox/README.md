@@ -44,3 +44,11 @@ Found an official layer for a park? Write ONE line anywhere in that area's Fable
 `LAYER | <park ref> | <agency> | <layer URL (…/MapServer/N or …/FeatureServer/N, or a download link)> | name field: <FIELD> | <one-line note>`
 The daily copy run (KPC-Data, ~5:41 AM / 8:41 PM CDT) pin-tests it (Rule G: pin inside, name, size) and makes a chat 11 question + queues the layer for the intake. A line that fails gets its reason in KPC-Data data/intake/collector.json. Write each line once; it is read once.
 
+## PARCEL LOOK-UP (who owns the land at a pin; Oct 30, HQ 8:20 AM)
+1. Find the county's parcel map in the Agency Atlas (agency-atlas/<area>.md 'Parcel / ownership maps') or the county GIS site: you need its ArcGIS REST parcel LAYER (…/MapServer/N or …/FeatureServer/N). A viewer page alone is not enough: open it in the look-up bot (`page`) and take the layer link from its answer.
+2. File `{"chat": 8, "kind": "parcel", "layer": "<parcel layer URL>", "points": [[lat, lon], ...], "report": "US-XXXX owner at the pin"}` on the `lookup` branch (up to 50 points; the POTA pin first).
+3. The answer gives per point `owner` + `parcel_id` (+ the full record). Owner = the agency (e.g. 'State of Rhode Island DEM') = public land for R-G7 step 4b; write owner, parcel id and the parcel layer URL in the park's Fable row. A private owner = tag `private` (R-G10). Example: Richmond, RI (chat 3).
+
+## STATUS BOARD FIRST (Oct 30, HQ 8:45 AM (6))
+Every bot writes its one-line result to the KPC-Data status board (data/status/board.json). Read the board first; open run logs / annotations ONLY when the board says FAILED or a line is missing. That saves usage.
+

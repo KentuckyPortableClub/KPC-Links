@@ -66,13 +66,38 @@ def get_json(u, params=None):
 
 
 # ------------------------------------------------------------------------------------------------ packets
+REF = r'(?:US|CA|[A-Z0-9]{1,4})-\d{4,5}'
+
+
 def refs_in(text):
-    return list(dict.fromkeys(m.group(1) for m in re.finditer(r'^\|\s*((?:US|CA)-\d{4,5})\b', text, re.M)))
+    return list(dict.fromkeys(m.group(1) for m in re.finditer(r'^\|\s*(' + REF + r')\b', text, re.M)))
+
+
+_WP = None
+def world_pins():
+    global _WP
+    if _WP is None:
+        _WP = {}
+        for f in glob.glob(str(DATA / 'data' / 'pota' / 't' / '*.json')):
+            for row in load(f, []) or []:
+                if isinstance(row, list) and len(row) >= 4: _WP[row[0]] = [row[1], '', '', '', '', row[2], row[3]]
+    return _WP
+
+
+def key_file(area):
+    if area.startswith('US-'): return f'data/us-key/{area}.json'
+    if area.startswith('CA-'): return f'data/ca-key/{area}.json'
+    return f'data/world-key/{area[2:] if area.startswith("W-") else area}.json'
 
 
 def official(area):
-    k = 'us-key' if area.startswith('US-') else 'ca-key'
-    return {r for r, v in ((load(f'data/{k}/{area}.json', {}) or {}).get('parks') or {}).items() if isinstance(v, dict) and v.get('g') == 'official'}
+    return {r for r, v in ((load(key_file(area), {}) or {}).get('parks') or {}).items() if isinstance(v, dict) and v.get('g') == 'official' or (isinstance(v, dict) and v.get('m') and area.startswith('W-'))}
+
+
+def source_of(area, r):
+    v = ((load(key_file(area), {}) or {}).get('parks') or {}).get(r) or {}
+    s = v.get('src') or [m[3] for m in v.get('m') or [] if isinstance(m, list) and len(m) > 3][:1]
+    return ', '.join(s if isinstance(s, list) else [str(s)])[:60] or 'the key'
 
 
 def agency_guess(name, area):
@@ -133,6 +158,7 @@ def packets(areas):
         if area.startswith('CA-'):
             for row in (load(DATA / 'data' / 'canada.json', {}) or {}).get('rows') or []:
                 if row and row[0] == 'POTA': P[row[1]] = [row[2], '', '', '', '', row[3], row[4]]
+        if area.startswith('W-'): P = world_pins()
         lines = []
         for r in refs_in(text):
             if r in off: continue
@@ -208,8 +234,144 @@ def atlas(areas):
     print(f'::notice title=Research helpers::atlas: {n} files updated' + (f"; manners {M.stat}" if M else ''))
 
 
+# ------------------------------------------------------------------------------------------------ solve (HQ 8:45 AM (1))
+FINAL = re.compile(r'\bFINAL\b|picture-map-only|why-not:\s*private|\bprivate land\b', re.I)
+
+
+def solve(areas):
+    n_rows = n_done = 0
+    for f in sorted(FB.glob('*.md')):
+        area = f.stem
+        if areas and area not in areas: continue
+        text = f.read_text(encoding='utf-8')
+        off = official(area)
+        refs = refs_in(text)
+        lines = text.split('\n'); marked = set()
+        for i, l in enumerate(lines):
+            m = re.match(r'^\|\s*(' + REF + r')\b', l)
+            if not m or m.group(1) not in off or m.group(1) in marked or 'SOLVED' in l: continue
+            if any(m.group(1) in x and 'SOLVED' in x for x in lines): marked.add(m.group(1)); continue
+            lines[i] = l.rstrip().rstrip('|').rstrip() + f' · SOLVED {TODAY} (outline: {source_of(area, m.group(1))}) |'
+            marked.add(m.group(1)); n_rows += 1
+        text2 = '\n'.join(lines)
+        if refs and not re.search(r'^STATE [A-Z0-9-]+ DONE', text2, re.M):
+            def final(r): return r in off or any(r in l and FINAL.search(l) for l in lines)
+            if all(final(r) for r in refs):
+                text2 = text2.rstrip('\n') + f'\n\nSTATE {area} DONE (bot, {TODAY}: all {len(refs)} parks solved or tagged final)\n'; n_done += 1
+        if text2 != text: f.write_text(text2, encoding='utf-8')
+    print(f'::notice title=Research helpers::solve: {n_rows} rows marked SOLVED, {n_done} files marked DONE')
+
+
+# ------------------------------------------------------------------------------------------------ inbox tidy + daily habits (HQ 8:45 AM (5) + (7))
+IB = pathlib.Path('.claude/inbox')
+HABITS = ("- **DAILY HABITS ({d}):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · "
+          "polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · "
+          "stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only. Read the KPC-Data status board (data/status) "
+          "first: open run logs / annotations only when the board says FAILED.")
+MON = {m: i for i, m in enumerate(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 1)}
+CLOSED = re.compile(r'^- (?:\(\w\) )?(?:DONE|NOTED|ANSWERED|MOVED|BUILT|RELEASED|CLOSED)\b|^- \*\*DAILY HABITS|^- (?:Oct|Nov|Dec|Sep) \d{1,2}\b[^:]{0,40}:', re.I)   # done / answered items + old history lines ('- Oct 28 7:15 AM: ...')
+
+
+def newest_date(block):
+    ds = []
+    for m in re.finditer(r'\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w* (\d{1,2})\b', block):
+        try: ds.append(dt.date(dt.date.today().year, MON[m.group(1)], int(m.group(2))))
+        except ValueError: pass
+    for m in re.finditer(r'\b(20\d\d)-(\d\d)-(\d\d)\b', block):
+        try: ds.append(dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))))
+        except ValueError: pass
+    ds = [d for d in ds if d <= dt.date.today() + dt.timedelta(days=1)]
+    return max(ds) if ds else None
+
+
+def blocks(body):
+    out, cur = [], []
+    for l in body.split('\n'):
+        if l.startswith('- ') and cur: out.append('\n'.join(cur)); cur = []
+        cur.append(l)
+    if cur: out.append('\n'.join(cur))
+    return out
+
+
+def inbox(only):
+    today = dt.date.today(); cut = today - dt.timedelta(days=2)   # older than 24 h, counted in whole days
+    moved_all = 0
+    for f in sorted(IB.glob('chat-*.md')):
+        if only and f.stem not in only: continue
+        text = f.read_text(encoding='utf-8'); before = len(text)
+        parts = re.split(r'(?m)^(?=## )', text)
+        keep, arch = [], []
+        for sec in parts:
+            head = sec.split('\n', 1)[0]
+            if head.startswith('## OPEN -'):   # an item glued to a heading (old edit slip): read it as more OPEN items
+                sec = '## OPEN (continued)\n- ' + head[len('## OPEN -'):].strip() + '\n' + (sec.split('\n', 1)[1] if '\n' in sec else ''); head = '## OPEN (continued)'
+            if not head.startswith('## '): keep.append(sec); continue
+            title, body = head, (sec.split('\n', 1)[1] if '\n' in sec else '')
+            bs = blocks(body)
+            lead = [b for b in bs if not b.startswith('- ')]
+            items = [b for b in bs if b.startswith('- ')]
+            if head.startswith('## OPEN'):
+                first = head == '## OPEN'
+                stay = []
+                for b in items:
+                    d = newest_date(b.split('\n', 1)[0])
+                    if b.startswith('- **DAILY HABITS'): continue   # rewritten below
+                    if CLOSED.search(b) and d and d <= cut: arch.append((title, b))
+                    else: stay.append(b)
+                if first: stay.insert(0, HABITS.format(d=today.strftime('%b %-d, %Y')))
+                items = stay
+            elif head.startswith('## DONE'):
+                stay = []
+                for b in items:
+                    d = newest_date(b.split('\n', 1)[0])
+                    (arch.append((title, b)) if d and d <= cut else stay.append(b))
+                items = stay
+            elif head.startswith('## REPORT TO HQ'):
+                arch += [(title, b) for b in items[10:]]; items = items[:10]
+            keep.append('\n'.join([title] + lead + items).rstrip('\n') + '\n\n')
+        if not arch and HABITS.format(d=today.strftime('%b %-d, %Y')) in text: continue
+        new = ''.join(keep).rstrip('\n') + '\n'
+        if arch:
+            (IB / 'archive').mkdir(exist_ok=True)
+            af = IB / 'archive' / f'{f.stem}-{today:%Y-%m}.md'
+            old = af.read_text(encoding='utf-8') if af.exists() else f'# {f.stem} archive {today:%Y-%m} (moved by the nightly inbox tidy; nothing deleted)\n'
+            af.write_text(old.rstrip('\n') + f'\n\n## moved {today}\n' + '\n'.join(f'[{t[3:]}] {b}' for t, b in arch) + '\n', encoding='utf-8')
+        f.write_text(new, encoding='utf-8'); moved_all += len(arch)
+        print(f'::notice title=Inbox tidy::{f.stem}: {len(arch)} items moved, {before // 1024} -> {len(new) // 1024} KB')
+    print(f'::notice title=Inbox tidy::{moved_all} items moved in all')
+
+
+# ------------------------------------------------------------------------------------------------ weekly link check (HQ 8:45 AM (4))
+def links(areas):
+    urls = {}
+    for f in glob.glob(str(DATA / 'data' / 'docs' / 'US-*.json')):
+        for r, v in ((load(f, {}) or {}).get('parks') or {}).items():
+            for k in ('map', 'rules'):
+                u = ((v.get(k) or {}).get('url') or '')
+                if u.startswith('http'): urls.setdefault(u, []).append(f'{r} {k}')
+    for f in list(FB.glob('*.md')) + list(AT.glob('*.md')):
+        for u in re.findall(r'https?://[^\s|)<>\]]+', f.read_text(encoding='utf-8')):
+            u = u.rstrip('.,;')
+            if '/rest/services' in u and not re.search(r'/(MapServer|FeatureServer)(/\d+)?$', u): continue
+            urls.setdefault(u, []).append(f.stem)
+    dead, n, t0 = [], 0, time.time()
+    for u, where in sorted(urls.items()):
+        if time.time() - t0 > 4 * 3600 or not M: break
+        n += 1
+        try:
+            st, hd, body, final = M.get(u)
+        except Exception as e: st = type(e).__name__  # noqa: BLE001
+        if st in (404, 410) or (isinstance(st, str) and re.search(r'NameResolution|gaierror|URLError', st)):
+            dead.append((u, st, where))
+    L = [f'# Dead official links (weekly link check, {TODAY}; chat 8 reads this; no email, no comment)', '',
+         f'{n} links checked (of {len(urls)}), {len(dead)} dead (404 / 410 / host gone). 403 / timeouts are NOT listed (often bot blocks).', '',
+         '| link | answer | where we keep it |', '|---|---|---|'] + [f"| {u} | {st} | {', '.join(sorted(set(w))[:4])} |" for u, st, w in dead]
+    (RES / 'dead-links.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    print(f'::notice title=Research helpers::links: {n} checked, {len(dead)} dead -> .claude/build/research/dead-links.md')
+
+
 if __name__ == '__main__':
     mode, areas = (sys.argv[1] if len(sys.argv) > 1 else 'packets'), set(sys.argv[2:])
-    try: {'packets': packets, 'atlas': atlas}[mode](areas)
+    try: {'packets': packets, 'atlas': atlas, 'solve': solve, 'inbox': inbox, 'links': links}[mode](areas)
     except Exception as e: print(f'::notice title=Research helpers::{mode} stopped ({type(e).__name__}: {e})')  # noqa: BLE001
     sys.exit(0)
