@@ -48,5 +48,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "All 4 harbor/marina pins resolved via look-up 8-mn-dnrunits (DNR Management Units layer, point test): Knife River + Twin Points already correctly no-layer; Two Harbors stays needs-parcel; corrected McQuade from name-mismatch to no-layer (no polygon exists at its pin, nothing to mismatch against -- same pattern as AK). MN Fable list fully resolved: 11 name-mismatch, 12 no-layer, 1 needs-parcel."
+  },
+  "US-NE": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open NE list already carried why-not tags from an earlier pass (1 name-mismatch, 7 needs-parcel, 7 no-layer, 1 pin-doubt). The 7 needs-parcel already had counties assigned (Antelope, Douglas x3, Fillmore, Jefferson, Webster) -- handed to chat 9 as P-3 requests rather than re-derived. US-4011 and US-4015 not individually re-verified, trusted absent contrary evidence."
   }
 }
