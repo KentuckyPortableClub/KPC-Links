@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v5
-      - name: KPC-Data (read-only: hunter + documents results, park pins, manners)
+      - name: "KPC-Data (read-only, hunter + documents results, park pins, manners)"
         uses: actions/checkout@v5
         with:
           repository: KentuckyPortableClub/KPC-Data
@@ -46,7 +46,7 @@ jobs:
           M="${{ inputs.mode }}"; [ -z "$M" ] && { M=packets; [ "$(date -u +%u)" = 7 ] && M=both; }
           if [ "$M" = packets ] || [ "$M" = both ]; then timeout 150m python3 .github/scripts/kpc_research_helpers.py packets ${{ inputs.areas }} || true; fi
           if [ "$M" = atlas ] || [ "$M" = both ]; then timeout 120m python3 .github/scripts/kpc_research_helpers.py atlas ${{ inputs.areas }} || true; fi
-      - name: Save (notes only)
+      - name: Save, notes only
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
