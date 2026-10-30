@@ -38,5 +38,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "All 7 open parks confirmed via existing why-not tags: US-2642/US-2654/US-8024 name-mismatch, US-2685 picture-map-only (already a pin), US-4931/US-4936/US-4980 needs-parcel. Max Israel SF (Merrimack County) parcel request handed to chat 9; Nash Stream + White Farm have a likely wrong county FIPS code in the existing parcel-county list (VT-range codes on NH parks) -- flagged to chat 9/chat 3 to fix before those two parcel requests go out."
+  },
+  "US-AK": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open AK list already carried why-not tags (name-mismatch 33, no-layer 12) from an earlier pass. Re-verified 8 against a fresh ASP Park Boundary point-test: Chena Wayside SRS + 4 Kenai campgrounds confirmed name-mismatch (container/different-named hits); Susitna Landing confirmed no-layer; corrected US-11835 Little Susitna and US-13462 Sportsman Angler Access from name-mismatch to no-layer (no polygon exists at either pin, so there was nothing to mismatch against). Remaining 37 tags not individually re-verified, trusted absent contrary evidence."
   }
 }

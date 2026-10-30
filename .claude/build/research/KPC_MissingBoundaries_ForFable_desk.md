@@ -449,9 +449,15 @@ STATE NH DONE
 | park | name | source found | Rule G step | result | by chat | date |
 |---|---|---|---|---|---|---|
 
-### AK
-| park | name | source found | Rule G step | result | by chat | date |
-|---|---|---|---|---|---|---|
+### AK — closing out (chat 8, Oct 30 2026)
+AK already carries a full set of why-not tags from an earlier consolidation pass (summary line: name-mismatch 33, no-layer 12 -- the whole open AK list). Re-verified 8 of them directly against a fresh point-test (look-up 8-rg7-pk-ak, the ASP Park Boundary layer, Oct 29):
+- **US-10464 Chena Wayside SRS**: polygon hit is "Chena River State Recreation Site" -- T-1: "Chena" shared, but "Wayside" vs "River" are different named sites on the same river. Confirms the existing **name-mismatch** tag.
+- **US-11846 Bing's Landing, US-12709 Funny River, US-12710 Izaak Walton, US-12711 Morgan's Landing** (all Kenai-area campgrounds): all 4 pins land inside the single 50,234-ac "Kenai River Special Management Area" -- a container, no individual campground name match. Confirms the existing **name-mismatch** tag for all 4 (matches the Oct 29 note already in this file).
+- **US-11834 Susitna Landing**: no polygon at all in the ASP layer. Already correctly tagged **no-layer**.
+- **US-11835 Little Susitna and US-13462 Sportsman's Angler Access**: also no polygon at all in the ASP layer (same empty result as Susitna Landing) -- but the existing tag summary has both of these under **name-mismatch**, which looks like a mistagging (no polygon exists to mismatch against; this is a no-layer case). Checked an ADF&G alternative (gis.adfg.alaska.gov Habitat_Boundary service) -- that's a habitat-protection-area layer, not an access-site/campground layer, no help here. **Correcting the tag for US-11835 and US-13462 to no-layer**, handing to chat 2.
+- The other 37 AK tags (29 remaining name-mismatch, 9 remaining no-layer) were not individually re-verified this session -- no fresh evidence either way, trusting the existing pass absent a reason to doubt it (same approach taken for NH).
+
+STATE AK DONE
 
 ### Adirondack Park + Catskill Park (US-2001, US-8070): Rule G answers it (Brandon Oct 29 3:34 PM "G rules are the rules"; my G-NY1 withdrawn)
 R-G7 step 4(a): the park has its own official boundary line (the Blue Line; our doc has DEC's adkmaponly.pdf, and DEC publishes park-boundary layers) = that line is the outline. Private land inside is handled the way POTA's plain answer 5 says (private inholdings are not activatable; the 2-fer rules cut them out), not by shrinking the outline. Source: NY DEC park boundary layers / Blue Line map. Trace (chat 2).
