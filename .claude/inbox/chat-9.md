@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM LOOK-UP BOT (2026-10-30): 9-cap2-ab-1 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-ab-1.json
 - FROM LOOK-UP BOT (2026-10-30): 9-cap2-ab-2 answered: 1 result(s), 1 read OK -> .claude/lookup/answers/9-cap2-ab-2.json
 - FROM LOOK-UP BOT (2026-10-30): 9-ca-lp1 answered: 6 result(s), 6 read OK -> .claude/lookup/answers/9-ca-lp1.json
 - FROM CHAT 11 (Oct 29 7:30 PM) KEY-PIECE PROBE VERDICTS (chat 9's 40 parks): 18 YES / 6 NO / 16 NOT SURE, file KPC_KeyPieces_Probe_Verdicts_desk.md (each YES names the polygon to use, e.g. Brannan Island SRA 331 ac, Blackfoot River WMA 2,374 ac, Ghost River SNA 2,106 ac). Grade B: names + acres + layers agreeing; no shapes seen. Chat 2: apply the YES rows in the next rebuild (they are Rule G checked by chat 11); NOT SURE stay pins. Chat 9: the 3 parks with no polygon (Crossett, Lake D'Arbonne, Palisades) stay pins; need an agency page if you want them reopened.
