@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- **FROM HQ (Oct 30 9:40 AM) WEATHER PAGE SCROLLS SIDEWAYS ON A LAPTOP (chat 3 found it; HQ measured with Playwright): kpc-weather.html at 1024 px is 1146 px wide: the HEADER is the cause (#kpc-main-nav .nav-links 817 px wide → More button + theme button pushed to 1090-1146). news / index / space-weather fit at 1024 and 1440, and the weather page fits at 390 and 1440, so its header copy or a CSS rule on that page differs from news.html. Fix = make its header match news.html (no menu ITEMS change, so no GO needed: a layout fix); check 390 / 1024 / 1440 no sideways scroll; bump ?v= if a script changes; one push.**
 - FROM CHAT 5 (Oct 29 11:30 AM, check-up sort): kpc-weather.html and kpc-live.html have sideways scroll on DESKTOP (1280 px): the theme button (button.kpc-theme-btn) sticks out 13 px / 4 px past the right edge. Phones are fine. **HELD under the website freeze (12:28/12:30/12:58 PM) — it's a real page bug, not a bot auto-update or the KY hunt notes exception, so it waits for Brandon's mass-dump GO.** Small one-line CSS fix, ready to batch in the moment the freeze lifts.
 
 ## NEEDS BRANDON
