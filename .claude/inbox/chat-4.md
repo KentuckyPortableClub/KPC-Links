@@ -17,6 +17,13 @@ Read .claude/inbox/README.md first.
 
 - TO DO NEXT TIME (Brandon Oct 30 6:21 PM: 'lets add the options like that we had on the full logger later'): give KPC Lite the full logger's log options it now lacks, starting with ☁ UPLOADS (QRZ / eQSL / Wavelog: drop the kpc-uploads.js loader skip in index.html + the data-lite="off" on #stUp / #stUpT, a Lite test that UPLOADS shows); then check what else of the logger Lite hides (park packs = NEXT PARK / AM I IN THE PARK) and ask Brandon which to bring in.
 
+- TO DO NEXT TIME (Brandon Oct 30 6:57 PM, his Lite + auto test):
+  1. AUTO HUNT calls a station ONLY in the slot right after it sends CQ (never while it is working someone else / mid-QSO); keep the option to hunt ANYONE calling CQ (not only parks) = `S.huntAny`, make it a clear choice on the screen/⚙.
+  2. METERS NOT WORKING ON LITE ANDROID: find why (KPCMeters polls KPCCat.meters(); on Android it never polls while transmitting; check the Lite bar shows + CAT answers; get a builders' report from his tablet).
+  3. AUTO RUN / AUTO HUNT / AUTO BOTH run time: 5 minutes to 8 hours (now 10-60 min or until STOP).
+  4. 'Stop calling after no answer' (the plain CQ, now default 2 min): choices 2 to 10 minutes.
+  5. Make sure the TIME CORRECTION (clock check / ⏱ CALIBRATE, S.clkOff) is on and used by FT8/FT4 in the full app AND Lite, and by the auto modes.
+
 ## NEEDS BRANDON
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
