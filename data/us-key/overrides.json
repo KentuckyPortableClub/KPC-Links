@@ -10918,6 +10918,43 @@
    ],
    "why": "Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): name only; could be the separate Pine Forest Wilderness; pin · Oct 30 1:30 AM: the rebuild then offered 'Pine Forest Creeks RMZ' (words only): kept out too, chat 11 asked for a pin · Oct 30 1:45 AM: then 'Pine Forest Range' (BLM wilderness, the mix-up chat 11 warned of): kept out too",
    "when": "2026-10-30"
+  },
+  "US-5682": {
+   "join": [
+    "Moore's Creek State Recreation Area",
+    "Moores Creek State Recreation Area"
+   ],
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "when": "2026-10-30"
+  },
+  "US-5684": {
+   "join": [
+    "Allens Creek State Recreation Area"
+   ],
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "when": "2026-10-30"
+  },
+  "US-5686": {
+   "join": [
+    "Fairfax State Recreation Area"
+   ],
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "when": "2026-10-30"
+  },
+  "US-5688": {
+   "join": [
+    "Salt Creek State Recreation Area"
+   ],
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "when": "2026-10-30"
+  },
+  "US-7842": {
+   "join": [
+    "Red  Bridge State Recreation Area",
+    "Red Bridge State Recreation Area"
+   ],
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "when": "2026-10-30"
   }
  }
 }
