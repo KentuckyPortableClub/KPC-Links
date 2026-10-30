@@ -134,3 +134,4 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - DONE: Fable book split = fable/US-XX.md (45) + CA-XX.md (13), one row per park; Agency Atlas seeded (agency-atlas/US-XX, CA-XX; W-XX for world as touched).
 - ORDERED: chat 2 BOT F reads 'STATE XX DONE' from the per-state file + new parks' states into the nightly rebuild; chat 10 look-up answer reuse (7 days) + new-park pipeline (hunter as tuned, no logic change before Nov 6); chat 9 writes probes into the atlas.
 - WORLD (Brandon 5:51 + 7:33 AM): top 10 = 2-fers + full GIS search; W11-W15 = GIS search only; everyone else = what the hunter finds. W-XX atlas + Fable files only for the top 15.
+- Oct 30 8:10 AM (Brandon 'automate all we can'): LAYER lines in fable files → chat 10 nightly collector → intake → chat 11 YES → chat 2 auto-wires into state-gis.json → nightly rebuild → hunter re-trigger. No hand copy anywhere.
