@@ -2261,3 +2261,10 @@ Oregon (11 parks: Alsea, South Santiam, Cole Rivers, Salmon River, Trask River, 
 ### chat 9 NAME-MISMATCH website names (HQ 8:45 PM), Oct 29 21:08
 223 open Fable-list parks tagged name-mismatch were read from their POTA official link (text only): SAME NAME 82, PARTLY 53, DIFFERENT 39, DEAD / BLOCKED 49. The full list (ref | POTA name | WEBSITE NAME | heading | verdict | page | map / GIS / boundary links) is .claude/build/research/KPC_NameMismatch_WebsiteNames_desk.md; the other 643 tagged parks are being read now (65 more look-ups). Use a DIFFERENT / PARTLY website name as an alias under Rule G; a page title is not a boundary.
 
+
+### UT OR WA NV — official layers found through the state portals' Hub search (chat 3, Oct 29 10:50 PM)
+Item ids are ArcGIS Online / Hub items (open `https://www.arcgis.com/sharing/rest/content/items/<id>?f=json` for the service URL). Not yet tested against the pins (P-2: chat 9 polygon test next).
+- **UT** (UGRC/SGID, opendata.gis.utah.gov): *Utah Parks Local* 818536733987486b8082e4c5dec0a1dd (city/county parks — may fit Old Iron Town? no, that is a state park). No state-park or DWR WMA polygon layer came up; try SGID 'Utah State Parks'/'DWR Wildlife Management Areas' by name next.
+- **OR** (geohub.oregon.gov): *Oregon State Parks* c1d937bae66e41068721f4474a8811a6 (state park boundaries: for Bob Creek Wayside etc.); *Wildlife Management Units* 8bfaa3a4e10e49dd9b0cc95693977e37 (hunting units, NOT hatchery/wildlife-area outlines — not usable for hatcheries). Hatcheries: no layer yet (likely needs-parcel).
+- **WA** (geo.wa.gov): *Parks Administrative Boundaries* ca1e60b4384f491383adf6b37b4f1a94 (State Parks); *Wildlife Areas* 54642c30a0f842f2b8603976b5625678 (WDFW); *Water Access Sites - Boundaries* 88b13ca5a1e3417fbe528152fc7aff04 (WDFW boat launches). DNR state forests / recreation sites (Marckworth, Naneum Ridge, Raging River, Dragoon Creek...) still to find (WA DNR's own portal).
+- **NV**: *Nevada_State_Parks_Boundaries* 78c4374b9fff4c1b95d7df2cdf918491 (state parks; NDOW wildlife areas still to find).
