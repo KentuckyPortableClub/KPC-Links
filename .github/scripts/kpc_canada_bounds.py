@@ -111,6 +111,7 @@ EXTRA = [
     # Oct 29 (Fable's Canada layer list, R-GC1/R-GC4; probed by chat 9, look-up 9-ca-lp1: polygon + name field confirmed)
     ('BC local and regional greenspaces (BC Map Hub; Open Government Licence - British Columbia)', 'arcgis', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39', ['PARK_NAME'], (-139.2, 48.2, -114.0, 60.1)),
     ('Manitoba provincial forests (Government of Manitoba; contains information licensed under the OpenMB Information and Data Use Licence)', 'arcgis', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer', ['PROV_FOREST_NAME'], (-102.2, 48.9, -88.9, 60.1)),
+    ('Alberta public land recreation areas (Government of Alberta; Copyright Government of Alberta)', 'arcgis', 'https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14', ['PLREC_NAME'], (-120.1, 48.9, -109.9, 60.1)),
     ('BC recreation sites (BC Geographic Warehouse)', 'wfs', 'WHSE_FOREST_TENURE.FTEN_RECREATION_POLY_SVW', ['PROJECT_NAME', 'SITE_NAME'], (-139.2, 48.2, -114.0, 60.1)),
 ]
 BCWFS = 'https://openmaps.gov.bc.ca/geo/pub/wfs'
