@@ -71,7 +71,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
- const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft'}):null;
+ const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7}):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
@@ -117,7 +117,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  /* WHAT LAND IS HERE? (Oct 18, Brandon: 'review the US data… see what you can do with it'): zoomed in to county level, a tap on land
     (not on a dot or trail line) asks USGS PAD-US what official land is right there, and the answer key says which park it is */
  let hereL=null,dotTap=0;dots.on('click',()=>{dotTap=Date.now()});map.on('click',e=>landHere(e));
- async function landHere(e){if(dropMode||!window.KPCB||!KPCB.usLandAt||map.getZoom()<10||Date.now()-dotTap<500)return;
+ async function landHere(e){if(dropMode||!window.KPCB||!KPCB.usLandAt||map.getZoom()<9||Date.now()-dotTap<500)return;
   {let near=false;const cp=e.containerPoint;if(cp)dots.eachLayer(l=>{if(!near&&l.getLatLng){const q=map.latLngToContainerPoint(l.getLatLng());if(Math.abs(q.x-cp.x)<12&&Math.abs(q.y-cp.y)<12)near=true}});if(near)return}   /* a tap on (or right next to) a dot is for the dot's card */const t=e.originalEvent&&e.originalEvent.target;
   if(t&&t.closest&&(t.closest('.leaflet-interactive')||t.closest('.leaflet-popup')||t.closest('.leaflet-control')))return;
   const ll=e.latlng,E=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -130,7 +130,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   const pk=a=>a.parks.map(r=>`<a href="#" data-here="${E(r.ref)}" style="color:#7a5410;font-weight:800">${E(r.ref)}</a> ${E(r.n)}`).join('<br>');
   const top=A[0],line=`<b>${E(top.name)}</b>${top.parks.length?' · <span style="color:#1f6b3a;font-weight:800">'+E(top.parks.map(r=>r.ref).join(', '))+'</span>':(top.by?' · '+E(top.by):'')}${A.length>1?' · +'+(A.length-1)+' more here':''}`;
   const full=()=>'<div style="font:900 11px Arial;letter-spacing:1.4px;color:#7a5410">WHAT LAND IS HERE?</div>'+A.map(a=>`<div style="margin:7px 0 0;font:700 14px/1.25 Georgia,serif">${E(a.name)}</div><div style="font-size:12px;color:#5b5243">${[a.by&&'Run by '+a.by,a.access,a.acres?a.acres.toLocaleString()+' acres':''].filter(Boolean).map(E).join(' · ')}</div>${a.parks.length?'<div style="font-size:12.5px;margin-top:3px">🌲 '+pk(a)+'</div>':''}`).join('<hr style="border:0;border-top:1px dashed #e2d6bb;margin:7px 0 0">')+'<p style="font-size:11.5px;color:#6b6252;margin:8px 0 0">Official land from USGS PAD-US. Outlines are guides: the official map decides.</p>';
-  const pop=L.popup({maxWidth:300,maxHeight:300}).setLatLng(ll).setContent(`<div style="font:13px/1.35 Arial">${line} <a href="#" data-more="1" style="font-weight:800;color:#7a5410;white-space:nowrap">more ›</a></div>`).openOn(map);
+  const pop=L.popup(popOpts()).setLatLng(ll).setContent(`<div style="font:13px/1.35 Arial">${line} <a href="#" data-more="1" style="font-weight:800;color:#7a5410;white-space:nowrap">more ›</a></div>`).openOn(map);
   const wire=()=>{const el=pop.getElement();if(!el)return;const mo=el.querySelector('[data-more]');if(mo)mo.onclick=ev=>{ev.preventDefault();ev.stopPropagation();setTimeout(()=>{pop.setContent(full());wire()},0)};
    el.querySelectorAll('[data-here]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const s2=BYREF[b.dataset.here.toUpperCase()];map.closePopup();if(!s2)return;let hit=0;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s2)hit=1});hit?openSpot(s2):Promise.resolve(go(s2.la,s2.lo,s2.n)).then(()=>openSpot(s2))})};
   wire();map.once('popupclose',()=>{if(hereL){map.removeLayer(hereL);hereL=null}})}dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
@@ -160,7 +160,7 @@ function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
 function popup(s){const l=links(s),d=center?KPC.miles(center[0],center[1],s.la,s.lo):null;
  const what=s.p==='POTA'?'POTA park':s.p==='SOTA'?`SOTA summit${s.m?' • '+s.m.toLocaleString()+' m ('+Math.round(s.m*3.28084).toLocaleString()+' ft)':''}${s.pts?' • '+s.pts+' pts':''}`:s.p==='WWFF'?'WWFF reference':'Your pin';
- const div=`<div class="us-pop"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>
+ const div=`<div class="us-pop"><div class="us-top"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>${s.p==='POTA'?'<div class="us-grade"></div>':''}</div>
 ${kmBadge(s)?'<div style="margin:4px 0">'+kmBadge(s)+'</div>':''}<div class="pinfo"></div><div class="live"></div>
 <div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p==='POTA'||s.p==='WWFF'?`<a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">📍 AM I IN THE PARK?</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?`<a href="${/iPhone|iPad|iPod/.test(navigator.userAgent)?'https://maps.apple.com/?q=parking&sll='+s.la+','+s.lo+'&z=14':'https://www.google.com/maps/search/parking/@'+s.la+','+s.lo+',14z'}" target="_blank" rel="noopener">🅿 LOOK FOR PARKING</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
  return div}
@@ -170,7 +170,7 @@ const PINFO={};
 function stateAt(la,lo){const inR=(r)=>{let c=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1];if((yi>la)!==(yj>la)&&lo<(xj-xi)*(la-yi)/(yj-yi)+xi)c=!c}return c};
  const b=BORD.find(b=>b.p.some(pl=>inR(pl[0])));return b?b.a:''}
 const ACT={Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike',Backpacking:'backpacking',Hiking:'hiking'};
-const CFED={},AGN={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife',TVA:'TVA',BOR:'Reclamation'};
+const UKEY={},CFED={},AGN={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife',TVA:'TVA',BOR:'Reclamation'};
 const SOTAI={};let KFFROWS=null;const WWROWS={};
 const PROV={AB:'Alberta',BC:'British Columbia',MB:'Manitoba',NB:'New Brunswick',NL:'Newfoundland and Labrador',NS:'Nova Scotia',NT:'Northwest Territories',NU:'Nunavut',ON:'Ontario',PE:'Prince Edward Island',QC:'Québec',SK:'Saskatchewan',YT:'Yukon'};
 const hd=t=>`<div class="meta" style="margin:8px 0 3px;font-weight:800;letter-spacing:.5px">${t}</div>`;
@@ -199,6 +199,8 @@ async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS
  return h}
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
+ /* Oct 30 (Brandon via chat 11): the outline grade sits in the card's pinned top (Official / Approximate / Pin only), when the key knows the park */
+ if(P==='POTA'&&/^US-/.test(s.c)&&window.KPCB&&KPCB.gradeText){const gEl=el.closest('.us-pop')&&el.closest('.us-pop').querySelector('.us-grade');(async()=>{for(const st of sts){if(!(st in UKEY))UKEY[st]=dfetch('data/us-key/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);const k=await UKEY[st],e=k&&k.parks&&k.parks[s.c];if(e&&e.g&&gEl){const lab=e.g==='official'?'official':e.g==='approximate'?'approx':'pin';gEl.textContent=KPCB.gradeText({label:lab,pinOff:!!e.pin_may_be_wrong});gEl.dataset.g=lab;return}}})().catch(()=>{})}   /* the key file only (no outline read) */
  const pre=String(s.c).split('-')[0];
  /* Canada + the rest of North America (Brandon Oct 17): data/parkinfo/<PREFIX>.json, same fields + the province / area */
  if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=dfetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
@@ -268,7 +270,7 @@ let VIEW=[];const VZ=7,VCAP=2500;
 const dotSty=s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};return {radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}};
 const PORD={SOTA:0,WWFF:1,KFF:1,POTA:2};
 /* phones: the card opens BELOW the top map buttons (zoom, layers) and above the bottom ones, full width; computers: beside them */
-const popOpts=()=>innerWidth<520?{maxWidth:Math.min(280,innerWidth-110),kpcClear:true,autoPanPaddingTopLeft:L.point(10,74),autoPanPaddingBottomRight:L.point(10,110)}:{maxWidth:300,autoPanPaddingTopLeft:L.point(56,12),autoPanPaddingBottomRight:L.point(56,12)};
+const popOpts=()=>innerWidth<520?{maxWidth:Math.min(280,innerWidth-120),kpcClear:true,autoPanPaddingTopLeft:L.point(10,74),autoPanPaddingBottomRight:L.point(10,110)}:{maxWidth:300,autoPanPaddingTopLeft:L.point(56,12),autoPanPaddingBottomRight:L.point(56,12)};
 function drawDots(){if(!map)return;
  const op=map._popup&&map.hasLayer(map._popup)&&map._popup._kpc?map._popup:null;let keep=null;
  dots.eachLayer(l=>{if(op&&l.getPopup&&l.getPopup()===op)keep=l;else dots.removeLayer(l)});

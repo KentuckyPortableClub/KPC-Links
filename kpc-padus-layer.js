@@ -112,11 +112,11 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     x.fill('nonzero'); x.lineWidth = 2; x.stroke(); x.restore();
   }
   window.KPCPad = function (map, opts) {
-    opts = opts || {};
+    opts = opts || {}; const MINZ_ = opts.minz || MINZ;   /* Oct 30: a page may ask for outlines sooner (US Trip Planner = 7) */
     let fails = 0, ok = 0, statusEl = null;
     const tellStatus = () => {
       if (!statusEl) return;
-      statusEl.textContent = map.getZoom() < MINZ ? 'Zoom in closer (county level) to see the boundaries.'
+      statusEl.textContent = map.getZoom() < MINZ_ ? 'Zoom in closer (county level) to see the boundaries.'
         : fails > 3 && !ok ? 'The official boundary map is not answering right now. Try again later.' : '';
     };
     const Pad = L.GridLayer.extend({
@@ -125,7 +125,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
            the map buttons. The repainting happens on an off-screen canvas. */
         const S = 512, t = document.createElement('canvas'); t.width = t.height = S;
         const out = document.createElement('img'); out.alt = ''; out.setAttribute('role', 'presentation');
-        if (c.z < MINZ) { setTimeout(() => done(null, out), 0); return out; }
+        if (c.z < MINZ_) { setTimeout(() => done(null, out), 0); return out; }
         const finish = () => {
           const give = u => { out.onload = () => { if (u.startsWith('blob:')) setTimeout(() => URL.revokeObjectURL(u), 1000); done(null, out); }; out.onerror = () => done(null, out); out.src = u; };
           try { if (t.toBlob) t.toBlob(b => b ? give(URL.createObjectURL(b)) : done(null, out), 'image/png'); else give(t.toDataURL('image/png')); } catch (e) { done(null, out); }
