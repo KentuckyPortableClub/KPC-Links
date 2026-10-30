@@ -5,7 +5,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 
 ## WEBSITE FREEZE (Brandon Oct 29 12:27 PM): nothing added/changed on the website until Rule Sheet G is done. Focus: Rule Sheet G + side missions (shrink Fable's list, collect parking, collect documents). EXCEPTIONS (Brandon 12:28 PM): KY hunt notes/closures go live Sat Oct 31; bots already updating the site keep running.
 
-## FINAL FREEZE (Brandon 12:56 PM): only auto-update bots touch the site. Rule G + collected data are STAGED and go out in ONE MASS DUMP after the map rebuild (Brandon's GO).
+## FREEZE EASED (Brandon Oct 30 9:14 AM: 'release the hold on anything you think we should'): staged work now goes out IN SMALL STEPS, each tested, instead of one mass dump. Still held: posts (closure posts off), menu / new public pages (HOLD RULE: Brandon's GO), GIS hunter + world finder changes (Nov 6), the old-key Overlap Finder batch (stage-g = RETIRED, replaced by the new-key rerun).
+## (eased Oct 30 9:14 AM) FINAL FREEZE (Brandon 12:56 PM): only auto-update bots touch the site. Rule G + collected data are STAGED and go out in ONE MASS DUMP after the map rebuild (Brandon's GO).
 ## FABLE'S LIST, HOW (HQ 12:58 PM): (1) chats 2/9/11 finish the side work (name matches, new state layers, lake parks); (2) Rule G key built (R-G1..G6 + official-record-at-any-distance often settles 'pin inside a bigger area'); (3) chat 8 re-runs its missing-boundaries list on the NEW key; (4) only what is left goes to ONE Fable session with KPC-Data attached (H.1).
 
 ## RELEASE GO GIVEN (Brandon 7:48 PM 'release the mckraken'). ## RELEASE (Brandon 3:02 PM): R-G8 key rebuild → chat 8 confirms + chat 11 approves → new keys to the site + every APPROVED waiting-room item (incl. parking points) in one batch; the rest stays held/frozen.
