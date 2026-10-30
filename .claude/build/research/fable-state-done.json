@@ -108,5 +108,25 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Only open park US-10545 Hillsdale: pin sits in deCoppet Preserve (container, no name match); RIDEM's own page names a 45-ac Richmond parcel. Found RIGIS's statewide RIDEM Tax_Parcels layer (one layer covers the whole state, no county split needed) and filed the parcel look-up 8-parcel-ri. STATE RI DONE (1/1: needs-parcel, filed)."
+  },
+  "US-WV": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "7 open parks: Bowden/Edray/Ridge/Forks of the Coal already correct 4b candidates (owner=agency, awaiting chat 11 then trace); Cedar Lakes correct pin-doubt. Found WV's statewide WVGIS parcel layer; filed parcel look-up for the 2 remaining (Petersburg, Apple Grove)."
+  },
+  "US-IL": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "5 open parks: found exact PDF URLs for Rauchfuss Hill + Copperhead Hollow in our own docs, filed save-map requests (picture-map-only). Oakwood Bottoms = no-layer (whole-forest ownership too broad). North Point Marina = name-mismatch. Ray Norbut East Hannibal: chat 3 found its pin ~40km off its own official map -- raised as a numbered grey area to HQ rather than guessed."
+  },
+  "US-MA": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "5 open parks, all along the Neponset corridor: Greycourt/Farnham-Connolly/Martini-Moynihan/Great Falls Discovery Center = name-mismatch (no shared proper word with nearby DCR records); Greycourt's own POTA website link points to the wrong park (Lawrence Heritage SP), flagged for chat 2's website-name alias pass. Pope John Paul II Park = approximate candidate (same DCR ownership umbrella), handed to chat 2."
+  },
+  "US-CA": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "5 open parks: Rainbow Basin + Black Butte Lake = no-layer (BLM district office / USACE lake, both too broad/no service). Cowell Ranch + Hearst Memorial State Beach (R-G8 already ruled different bigger park) = name-mismatch. Tijuana Estuary Reserve: confirmed R-G2 NO on the NWR alias but flagged Border Field SP as a real joint-management partner worth a closer ownership look."
   }
 }
