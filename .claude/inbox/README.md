@@ -37,3 +37,8 @@ NEVER write look-up files in KPC-Links again (the old .claude/lookup path is gon
 ## WAITING ROOM MORNING LIST (Oct 30)
 - **Chat 11: when you open your inbox, also read KPC-Data `data/waiting/today.md`** (everything held, oldest first, why; open questions per file; approvals not yet used). The nightly run (11:13 UTC) rewrites it and lets out what you approved.
 
+## LAYER LINES (Oct 30; any chat, mostly chat 8)
+Found an official layer for a park? Write ONE line anywhere in that area's Fable file (.claude/build/research/fable/<area>.md):
+`LAYER | <park ref> | <agency> | <layer URL (…/MapServer/N or …/FeatureServer/N, or a download link)> | name field: <FIELD> | <one-line note>`
+The daily copy run (KPC-Data, ~5:41 AM / 8:41 PM CDT) pin-tests it (Rule G: pin inside, name, size) and makes a chat 11 question + queues the layer for the intake. A line that fails gets its reason in KPC-Data data/intake/collector.json. Write each line once; it is read once.
+
