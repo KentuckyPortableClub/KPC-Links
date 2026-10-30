@@ -21,3 +21,9 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
+
+## Parcel / ownership maps (statewide or by county)
+- Chat 8 (Oct 30): MI DNR's dedicated harbors layer is **BAS_Harbors** (Boating Access Sites and Harbors), https://gisp.mcgi.state.mi.us/maps/rest/services/DNR/BAS_Harbors/MapServer -- layer 1 "Harbors" is **POINT only** (name field NAME), no polygon anywhere in this service (layers 0/4 are also points, 2/3 are watercraft-control lines/polygons for rivers, not harbor land). Confirms DNR's 8 state harbors have no boundary layer at all, just a marker -- can check/correct pin position against it but never trace an outline from it.
+
+## Blocks bots / dead / private (don't retry)
+- (add)

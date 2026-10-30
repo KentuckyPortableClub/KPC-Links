@@ -99,6 +99,11 @@
     "date": "2026-10-30",
     "note": "Both open parks resolved: US-8287 Capitol State Park (T-1 match on 'CAPITAL PARK' GIS hit + NRHP parcel boundary, trace candidate handed to chat 2) and US-9174 Mahoosuc Ecological Reserve (T-1 match on PAD-US 'Mahoosucs', trace candidate handed to chat 2)."
   },
+  "US-MI": {
+    "by": 8,
+    "date": "2026-10-30",
+    "note": "1 trace candidate (Escanaba River), 5 confirmed name-mismatch (no shared word with FMU), 8 harbors confirmed no-polygon-exists, 2 layer probes to chat 9"
+  },
   "US-MN": {
     "by": "chat 8",
     "date": "2026-10-30",
