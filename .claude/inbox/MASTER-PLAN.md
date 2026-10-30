@@ -115,6 +115,7 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] F.5 (Brandon 11:17 AM) chat 9 research bot: official department maps for every lake-type POTA park FIRST → then Brandon decides the lake-outline rule
 
 ## HQ
+- [ ] H.3 STORAGE IS HQ'S JOB (Brandon Oct 29 7:22 PM): watch KPC-Links (687 MB) + KPC-Data (268 MB) sizes; check right after chat 10's look-up move, then every Sunday; stop any chat / bot that writes bulk files to KPC-Links; squash KPC-Data's `lookup` branch when it passes 150 MB.
 - [ ] H.1 Fable review of chat 8's missing-boundaries/name report WAITS (Brandon 9:46 AM): first plan step 1 boundary fixes pushed (chat 2: far pieces, Virginia, Canada 3 m) → HQ tells Brandon → chat 8 RECHECKS its list (fixes may clear rows) → then Fable, with KPC-Data attached
 - [ ] H.2 Status reports from this file on request; Sunday members' update; Sunday storage check
 - chat 8 (Oct 29 1:40 PM): F.3 Canada regrade NS + NB READY and clean; MB has 3 far rows to check (see KPC_IssuesForFable_Oct29.md).
