@@ -2744,8 +2744,17 @@
   },
   "US-11244": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)",
-   "when": "2026-10-29"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgakb1814"
+   ],
+   "fp": {
+    "sgakb1814": [
+     "KNIK RIVER",
+     260098
+    ]
+   }
   },
   "US-12381": {
    "join": [
@@ -2954,8 +2963,17 @@
   },
   "US-7383": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgazc6"
+   ],
+   "fp": {
+    "sgazc6": [
+     "Tonto Creek Hatchery",
+     62
+    ]
+   }
   },
   "US-11584": {
    "none": true,
@@ -3947,8 +3965,17 @@
   },
   "US-7854": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgmib145"
+   ],
+   "fp": {
+    "sgmib145": [
+     "Molasses River Flooding No.2 State Wildlife Management Area & part of Lame Duck GEMS (SWMA)",
+     1533
+    ]
+   }
   },
   "US-12395": {
    "none": true,
@@ -4419,8 +4446,27 @@
   },
   "US-8021": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgnha3007",
+    "sgnhc791",
+    "56874"
+   ],
+   "fp": {
+    "sgnha3007": [
+     "Governor Wentworth Historical Site",
+     96
+    ],
+    "sgnhc791": [
+     "Governor Wentworth Historic Farm",
+     99
+    ],
+    "56874": [
+     "Governor Wentworth Historical Site",
+     94
+    ]
+   }
   },
   "US-8023": {
    "join": [
@@ -4700,8 +4746,17 @@
   },
   "US-10025": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))",
-   "when": "2026-10-22"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgakh1935"
+   ],
+   "fp": {
+    "sgakh1935": [
+     "Lost Forest-Sand Dunes-Fossil Lake",
+     26485
+    ]
+   }
   },
   "US-10357": {
    "join": [
@@ -6303,8 +6358,17 @@
    "alias": [
     "Captain Comer Memorial"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Captain Comer Memorial'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Captain Comer Memorial'; joins only with the POTA pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgcta4215"
+   ],
+   "fp": {
+    "sgcta4215": [
+     "Captain Comer Memorial",
+     2
+    ]
+   }
   },
   "US-10920": {
    "alias": [
@@ -6331,12 +6395,18 @@
    "alias": [
     "ROYAL MAUSOLEUM STATE MONUMENT"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'ROYAL MAUSOLEUM STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 8:20 PM chat 11 release check: keep the old line (Royal Mausoleum State Monument is the same site)",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'ROYAL MAUSOLEUM STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 8:20 PM chat 11 release check: keep the old line (Royal Mausoleum State Monument is the same site) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
    "when": "2026-10-29",
    "join": [
     "sghib302",
     "ROYAL MAUSOLEUM STATE MONUMENT"
-   ]
+   ],
+   "fp": {
+    "sghib302": [
+     "ROYAL MAUSOLEUM STATE MONUMENT",
+     2
+    ]
+   }
   },
   "US-0280": {
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)",
@@ -6358,15 +6428,43 @@
    "alias": [
     "Edger Waterfowl Production Area"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Edger Waterfowl Production Area'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Edger Waterfowl Production Area'; joins only with the POTA pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "3609"
+   ],
+   "fp": {
+    "3609": [
+     "Barry County Waterfowl Production Area",
+     153
+    ]
+   }
   },
   "US-6713": {
    "alias": [
     "Kinney Waterfowl Production Area"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Kinney Waterfowl Production Area'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Kinney Waterfowl Production Area'; joins only with the POTA pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgmib120",
+    "4442",
+    "5399"
+   ],
+   "fp": {
+    "sgmib120": [
+     "Kinney Waterfowl Production Area",
+     77
+    ],
+    "4442": [
+     "Van Buren County Waterfowl Production Area",
+     80
+    ],
+    "5399": [
+     "Van Buren County Waterfowl Production Area",
+     76
+    ]
+   }
   },
   "US-6726": {
    "alias": [
@@ -6516,8 +6614,17 @@
    "alias": [
     "Big Eddy"
    ],
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Big Eddy'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Big Eddy'; joins only with the POTA pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgwabNone"
+   ],
+   "fp": {
+    "sgwabNone": [
+     "Big Eddy",
+     5
+    ]
+   }
   },
   "US-13384": {
    "alias": [
@@ -6723,29 +6830,65 @@
    "alias": [
     "Cabinet Gorge Hatchery"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Cabinet Gorge Hatchery' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Cabinet Gorge Hatchery' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "199838"
+   ],
+   "fp": {
+    "199838": [
+     "Cabinet Gorge Hatchery",
+     14
+    ]
+   }
   },
   "US-11089": {
    "alias": [
     "Ted Trueblood Wildlife Habitat Area"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Ted Trueblood Wildlife Habitat Area' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Ted Trueblood Wildlife Habitat Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "199756"
+   ],
+   "fp": {
+    "199756": [
+     "Ted Trueblood Wildlife Habitat Area",
+     293
+    ]
+   }
   },
   "US-2236": {
    "alias": [
     "Hells Gate State Park"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hells Gate State Park' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Hells Gate State Park' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "199787"
+   ],
+   "fp": {
+    "199787": [
+     "Hells Gate State Park",
+     974
+    ]
+   }
   },
   "US-2238": {
    "alias": [
     "Heyburn State Park"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Heyburn State Park' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Heyburn State Park' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "199938"
+   ],
+   "fp": {
+    "199938": [
+     "Heyburn State Park",
+     7998
+    ]
+   }
   },
   "US-8459": {
    "alias": [
@@ -6768,22 +6911,49 @@
    "alias": [
     "Walnut Creek Recreation Area"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Walnut Creek Recreation Area' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Walnut Creek Recreation Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "118464"
+   ],
+   "fp": {
+    "118464": [
+     "Walnut Creek Recreation Area",
+     359
+    ]
+   }
   },
   "US-5656": {
    "alias": [
     "Flanagan Lake & Recreation Area"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Flanagan Lake & Recreation Area' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Flanagan Lake & Recreation Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "117508"
+   ],
+   "fp": {
+    "117508": [
+     "Flanagan Lake & Recreation Area",
+     646
+    ]
+   }
   },
   "US-11823": {
    "alias": [
     "Coronado Historic Site"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Coronado Historic Site' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Coronado Historic Site' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "80742"
+   ],
+   "fp": {
+    "80742": [
+     "Coronado Historic Site",
+     106
+    ]
+   }
   },
   "US-12373": {
    "alias": [
@@ -6796,15 +6966,38 @@
    "alias": [
     "Stinchcomb Wildlife Refuge"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Stinchcomb Wildlife Refuge' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Stinchcomb Wildlife Refuge' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "116910"
+   ],
+   "fp": {
+    "116910": [
+     "Stinchcomb Wildlife Refuge",
+     926
+    ]
+   }
   },
   "US-0621": {
    "alias": [
     "Todd Nature Reserve"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Todd Nature Reserve' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Todd Nature Reserve' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "74544",
+    "249819"
+   ],
+   "fp": {
+    "74544": [
+     "Todd Nature Reserve",
+     176
+    ],
+    "249819": [
+     "Todd Nature Reserve",
+     174
+    ]
+   }
   },
   "US-0622": {
    "alias": [
@@ -6817,8 +7010,22 @@
    "alias": [
     "Powdermill Nature Reserve"
    ],
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Powdermill Nature Reserve' and the POTA pin is inside it; joins only with the pin inside",
-   "when": "2026-10-29"
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Powdermill Nature Reserve' and the POTA pin is inside it; joins only with the pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "74602",
+    "249881"
+   ],
+   "fp": {
+    "74602": [
+     "Powdermill Nature Reserve",
+     1712
+    ],
+    "249881": [
+     "Powdermill Nature Reserve",
+     1972
+    ]
+   }
   },
   "US-10376": {
    "alias": [
@@ -6953,8 +7160,22 @@
    "alias": [
     "TEAL BASINS WPA"
    ],
-   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'TEAL BASINS WPA'; joins only with the POTA pin inside",
-   "when": "2026-10-29"
+   "why": "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'TEAL BASINS WPA'; joins only with the POTA pin inside · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgiaa544",
+    "sgiac106299"
+   ],
+   "fp": {
+    "sgiaa544": [
+     "TEAL BASINS WPA",
+     139
+    ],
+    "sgiac106299": [
+     "Teal Basins WPA",
+     139
+    ]
+   }
   },
   "US-13236": {
    "alias": [
@@ -7582,7 +7803,16 @@
   },
   "US-12145": {
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "join": [
+    "sgakg10016"
+   ],
+   "fp": {
+    "sgakg10016": [
+     "Docs Beach Staging Area",
+     2
+    ]
+   }
   },
   "US-3064": {
    "join": [
@@ -8093,15 +8323,20 @@
   },
   "US-4839": {
    "join": [
-    "210771"
+    "210771",
+    "sgmoc233"
    ],
    "fp": {
     "210771": [
      "Davis (Lester R.) Memorial Forest",
      79
+    ],
+    "sgmoc233": [
+     "Davis (The Lester R) Mem Forest",
+     79
     ]
    },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
    "when": "2026-10-29"
   },
   "US-5713": {
@@ -9162,11 +9397,17 @@
    "when": "2026-10-29"
   },
   "US-11981": {
-   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: only the Buenos Aires NWR / Arivaca land, a different unit · 7:35 PM chat 11: YES 'Arivaca Land and Lake' 208 ac (the earlier NO was the Buenos Aires NWR only)",
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: only the Buenos Aires NWR / Arivaca land, a different unit · 7:35 PM chat 11: YES 'Arivaca Land and Lake' 208 ac (the earlier NO was the Buenos Aires NWR only) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
    "when": "2026-10-29",
    "join": [
     "167506"
-   ]
+   ],
+   "fp": {
+    "167506": [
+     "Arivaca Land and Lake",
+     182
+    ]
+   }
   },
   "US-6409": {
    "no": [
@@ -9228,8 +9469,17 @@
    "alias": [
     "Upper Bear Creek Reservoir"
    ],
-   "why": "Oct 29 9:30 PM: the park's own website name 'Upper Bear Creek Reservoir' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it",
-   "when": "2026-10-29"
+   "why": "Oct 29 9:30 PM: the park's own website name 'Upper Bear Creek Reservoir' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "1816"
+   ],
+   "fp": {
+    "1816": [
+     "Upper Bear Creek Reservoir Retained Land",
+     3289
+    ]
+   }
   },
   "US-10540": {
    "alias": [
@@ -9284,8 +9534,17 @@
    "alias": [
     "Warner Wetlands"
    ],
-   "why": "Oct 29 9:30 PM: the park's own website name 'Warner Wetlands' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it",
-   "when": "2026-10-29"
+   "why": "Oct 29 9:30 PM: the park's own website name 'Warner Wetlands' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgakh1816"
+   ],
+   "fp": {
+    "sgakh1816": [
+     "Warner Wetlands",
+     51722
+    ]
+   }
   },
   "US-13097": {
    "alias": [
@@ -9298,8 +9557,17 @@
    "alias": [
     "Valley of the Giants"
    ],
-   "why": "Oct 29 9:30 PM: the park's own website name 'Valley of the Giants' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it",
-   "when": "2026-10-29"
+   "why": "Oct 29 9:30 PM: the park's own website name 'Valley of the Giants' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29",
+   "join": [
+    "sgakh1815"
+   ],
+   "fp": {
+    "sgakh1815": [
+     "Valley of the Giants",
+     1583
+    ]
+   }
   },
   "US-6538": {
    "alias": [
@@ -9341,6 +9609,398 @@
     "Love & Strutt Creeks"
    ],
    "why": "Oct 29 9:30 PM: the park's own website name 'Love & Strutt Creeks' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it",
+   "when": "2026-10-29"
+  },
+  "US-6462": {
+   "join": [
+    "225338"
+   ],
+   "fp": {
+    "225338": [
+     "Garret Mountain Reservation",
+     150
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-9683": {
+   "join": [
+    "sgakd1244"
+   ],
+   "fp": {
+    "sgakd1244": [
+     "Amache National Historic Site",
+     470
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6071": {
+   "join": [
+    "sgakh85"
+   ],
+   "fp": {
+    "sgakh85": [
+     "Little Black Mountain",
+     240
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11807": {
+   "join": [
+    "sgakg14029",
+    "sgakh1693"
+   ],
+   "fp": {
+    "sgakg14029": [
+     "Simón Canyon (Recreation Area)",
+     3888
+    ],
+    "sgakh1693": [
+     "Simon Canyon",
+     3969
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-7876": {
+   "join": [
+    "sgakh1668"
+   ],
+   "fp": {
+    "sgakh1668": [
+     "Three Rivers Petroglyph",
+     1029
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0042": {
+   "join": [
+    "166719"
+   ],
+   "fp": {
+    "166719": [
+     "Historic Fort Gaines",
+     9
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13003": {
+   "join": [
+    "1811"
+   ],
+   "fp": {
+    "1811": [
+     "Little Bear Creek Reservoir Retained Land",
+     1106
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13004": {
+   "join": [
+    "1807"
+   ],
+   "fp": {
+    "1807": [
+     "Cedar Creek Reservoir Retained Land",
+     2687
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13005": {
+   "join": [
+    "1806"
+   ],
+   "fp": {
+    "1806": [
+     "Bear Creek Reservoir Retained Land",
+     2547
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-0778": {
+   "join": [
+    "sgakd935"
+   ],
+   "fp": {
+    "sgakd935": [
+     "Hamilton Grange National Memorial",
+     1
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10400": {
+   "join": [
+    "sgakh608"
+   ],
+   "fp": {
+    "sgakh608": [
+     "Trona Pinnacles",
+     4033
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11336": {
+   "join": [
+    "sgakh498"
+   ],
+   "fp": {
+    "sgakh498": [
+     "Rainbow Basin/Owl Canyon",
+     4090
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11580": {
+   "join": [
+    "sgakh568"
+   ],
+   "fp": {
+    "sgakh568": [
+     "Red Hills",
+     9889
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13334": {
+   "join": [
+    "sgakh497"
+   ],
+   "fp": {
+    "sgakh497": [
+     "Sacramento River Bend",
+     20274
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-3863": {
+   "join": [
+    "214405"
+   ],
+   "fp": {
+    "214405": [
+     "The Conservation Fund - Palmetto-Peartree Preserve",
+     11043
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-8663": {
+   "join": [
+    "138321"
+   ],
+   "fp": {
+    "138321": [
+     "Plymouth Park",
+     201
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10023": {
+   "join": [
+    "sgakh1835"
+   ],
+   "fp": {
+    "sgakh1835": [
+     "Wood River Wetland",
+     3106
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-12462": {
+   "join": [
+    "sgakh1917"
+   ],
+   "fp": {
+    "sgakh1917": [
+     "New River",
+     1175
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13065": {
+   "join": [
+    "sgakh1837"
+   ],
+   "fp": {
+    "sgakh1837": [
+     "Leslie Gulch",
+     11529
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10829": {
+   "join": [
+    "292662"
+   ],
+   "fp": {
+    "292662": [
+     "Fetterman Battlefield",
+     471
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-6162": {
+   "join": [
+    "sgakh429"
+   ],
+   "fp": {
+    "sgakh429": [
+     "Red Gulch Dinosaur Tracksite ACEC",
+     1783
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11282": {
+   "join": [
+    "sgakh1194"
+   ],
+   "fp": {
+    "sgakh1194": [
+     "Summit Creek ",
+     122
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11310": {
+   "join": [
+    "sgakg13901",
+    "sgidc845"
+   ],
+   "fp": {
+    "sgakg13901": [
+     "Campground - Goodenough",
+     278
+    ],
+    "sgidc845": [
+     "Campground - Goodenough",
+     278
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-11328": {
+   "join": [
+    "sgakg13910",
+    "sgidc856"
+   ],
+   "fp": {
+    "sgakg13910": [
+     "Huckleberry Campground",
+     138
+    ],
+    "sgidc856": [
+     "Huckleberry Campground",
+     138
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13207": {
+   "join": [
+    "sgakh1248"
+   ],
+   "fp": {
+    "sgakh1248": [
+     "Blue Mass Scenic Area",
+     944
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-13222": {
+   "join": [
+    "sgakh1243"
+   ],
+   "fp": {
+    "sgakh1243": [
+     "Shooting Gallery",
+     15486
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-10987": {
+   "join": [
+    "sgakh1544"
+   ],
+   "fp": {
+    "sgakh1544": [
+     "Fossil Mountain",
+     679
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-5945": {
+   "join": [
+    "sgakh1506"
+   ],
+   "fp": {
+    "sgakh1506": [
+     "Valley of the Gods",
+     22602
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
+   "when": "2026-10-29"
+  },
+  "US-5998": {
+   "join": [
+    "sgakh1528"
+   ],
+   "fp": {
+    "sgakh1528": [
+     "Horseshoe Springs",
+     761
+    ]
+   },
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size)",
    "when": "2026-10-29"
   }
  }
