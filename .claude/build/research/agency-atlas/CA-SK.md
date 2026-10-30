@@ -6,6 +6,7 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Agency servers
 - (add)
+- (chat 9, Oct 30) Planning MapServer https://gis.saskatchewan.ca/arcgis/rest/services/Planning/MapServer layer 3 Migratory Bird Sanctuary, layer 2 National Wildlife Area (polygons, PUBLICNM, MGMT_JUR).
 
 ## Park pages
 - (add)

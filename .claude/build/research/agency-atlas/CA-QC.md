@@ -6,6 +6,7 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Agency servers
 - (add)
+- (chat 9, Oct 30) MRNF Territoires récréatifs REST: https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer — polygons, licence line 'Ministère de l'Énergie et des Ressources naturelles'; layers 0 Aire faunique communautaire, 3 Parc marin, 4 Parc national du Canada, 5 Parc national du Québec, 6 Parc régional, 8 Pourvoirie à droits exclusifs, 9 Refuge d'oiseaux migrateurs, 10 Refuge faunique, 11 Réserve faunique, 12 Réserve nationale de faune, 13 Réserve écologique. Only field found: CODE_ADMINISTRATIF (no name field read: next). TFS (ZEC) = downloads only on donneesquebec.ca.
 
 ## Park pages
 - (add)

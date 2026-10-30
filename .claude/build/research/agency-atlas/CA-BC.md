@@ -6,6 +6,7 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Agency servers
 - (add)
+- (chat 9, Oct 30) TANTALIS Management Areas layer 8 (WMAs): https://delivery.maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_tantalis/MapServer/8 — MANAGEMENT_AREA_NAME; (c) Government of British Columbia. BC Wildlife Management Units (wildlife_management/23) are hunting units: not parks.
 
 ## Park pages
 - (add)
