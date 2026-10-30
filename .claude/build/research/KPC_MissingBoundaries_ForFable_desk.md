@@ -905,3 +905,12 @@ ID's whole open list already carries why-not tags: name-mismatch 106 (by far the
 Didn't individually re-verify the 106 name-mismatch or 35 no-layer tags beyond the *name scan -- too large a list for this pass, trusted absent contrary evidence (same approach as the other states), spot-checked the *name flags across the whole file instead of reading every row.
 
 STATE ID DONE (needs-parcel confirmed clean, 1 grey area flagged)
+
+### MS — closing out (chat 8, Oct 30 2026)
+**Real find: chat 9's P-2 pass for MS only checked 3 federal layers (BLM rec + FWS + NPS) -- no Mississippi state layer was found at the time, so none of MS's own state park/WMA boundary data has been tested yet.** Found Mississippi's own GIS clearinghouse, MARIS (maris.mississippi.edu), which hosts exactly what's missing: **MS_WMABoundaries_2019** -- a Mississippi Dept. of Wildlife, Fisheries & Parks (MDWFP) polygon dataset covering WMAs, Dog Hunting Areas, AND State Parks together (fields: TYPE, ACREAGE, Name), metadata says "there are no access and use limitations for this item." It's a downloadable shapefile, not a live REST service, so the usual point-test look-up bot can't query it directly -- it needs downloading and testing against MS's whole open list.
+
+**This one shapefile could plausibly resolve a large share of MS's 35 needs-parcel + 3 no-layer parks in one pass** (most of MS's open list is WMAs, state fishing lakes, and state recreation areas -- exactly what this layer covers) rather than requiring 35 separate county-parcel lookups. Handing to chat 9/chat 2 as a priority re-test before any individual county parcel work, since it could make most of those parcel requests unnecessary.
+
+Scanned the file for hidden *name match flags (the IN/KS/NC bug) -- none found, clean. Spot-checked the 3 no-layer refs (US-12208, US-7631, and US-7132 not found in the file) -- the 2 checked confirm genuinely no polygon at the pin in the layers tried so far (consistent with the missing-state-layer gap above). The 15 name-mismatch tags not individually re-verified.
+
+STATE MS DONE (pending chat 9's test of the MARIS WMA/State Parks shapefile against the whole open list)

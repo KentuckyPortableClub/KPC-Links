@@ -93,5 +93,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Whole open ID list already tagged (106 name-mismatch, 7 needs-parcel, 35 no-layer, 1 pin-doubt). Checked the 7 needs-parcel for the same staleness bug just found in AR -- all 7 confirmed genuinely needs-parcel, no staleness. Scanned for hidden *name match flags (the IN/KS/NC bug) -- found 1 ambiguous case (US-12226 Bruneau Arm Reservoir SFL vs C.J. Strike Reservoir, shares only the generic word Reservoir but could be a genuinely named arm of it), flagged as a grey area rather than corrected. The 106 name-mismatch + 35 no-layer tags not individually re-verified beyond the *name scan."
+  },
+  "US-MS": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Found that chat 9s P-2 pass for MS only checked 3 federal layers, no MS state layer existed yet. Found Mississippis own MARIS clearinghouse (maris.mississippi.edu) hosts MS_WMABoundaries_2019, a MDWFP shapefile covering WMAs + Dog Hunting Areas + State Parks together, no use limitations stated. Downloadable shapefile not a live REST service, so needs downloading and testing rather than a point-test. Could plausibly resolve most of MS 35 needs-parcel + 3 no-layer parks in one pass -- handed to chat 9/chat 2 as a priority re-test before individual parcel work. This is my 22nd and final assigned Fable state."
   }
 }
