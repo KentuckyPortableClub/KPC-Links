@@ -1,0 +1,150 @@
+# NOT SURE look-ups for chat 11 (chat 9, Oct 29 ~10:50 PM CDT). Facts only; chat 11 decides.
+Source: agency record read by the look-up bot (attributes only) + POTA park record. "piece acres" = acres of the piece on the NOT SURE list; "record" = what the agency record itself says.
+POTA parktypeId is POTA's numeric kind (e.g. 123 = WMA/state land types vary), shown for reference only.
+
+- US-10540 [gis-hunter] POTA: Bellevue-Watson | piece: Watson Lake SFU (10 ac) | PropName=Watson Lake SFU; acres=11.66697326
+- US-10540 [gis-hunter] POTA: Bellevue-Watson | piece: Watson Lake SFU (112 ac) | Des_Tp=SOTH; kind=Fee; acres=142; mgr=SFW; loc=Colorado Parks & Wildlife
+- US-1021 [gis-hunter] POTA: Sangchris Lake | piece: Sangchris Lake State Resource Area (851 ac) | Site_Name=Sangchris Lake State Resource Area; mgr=Other Easement; shapearea=34104075
+- US-10391 [gis-hunter] POTA: Kishwaukee River | piece: Kishwaukee River State Natural Area (582 ac) | Site_Name=Kishwaukee River State Natural Area; mgr=Fee Simple; shapearea=23590137
+- US-10391 [gis-hunter] POTA: Kishwaukee River | piece: Kishwaukee River State Natural Area (553 ac) | Des_Tp=UNK; kind=Fee; acres=546; mgr=OTHS; loc=Other State Land
+- US-7768 [gis-hunter] POTA: Frederick City Watershed Cooperative | piece: Frederick Municipal Forest (5158 ac) | Des_Tp=LOTH; kind=Fee; acres=5186; mgr=CITY; loc=Municipality
+- US-3375 [gis-hunter] POTA: Stolley | piece: Stolley Park (36 ac) | Des_Tp=LP; kind=Fee; acres=39; mgr=CITY; loc=City of Grand Island
+- US-4648 [gis-hunter] POTA: Bartram Educational | piece: BARTRAM FOREST WMA (1332 ac) | PropName=BARTRAM FOREST WMA; acres=1346.228; mgr=GFC
+- US-4648 [gis-hunter] POTA: Bartram Educational | piece: BARTRAM FOREST WMA (859 ac) | PropName=BARTRAM FOREST WMA; acres=873.5325; mgr=GFC
+- US-4648 [gis-hunter] POTA: Bartram Educational | piece: Bartram Forest Wildlife Management Area (2029 ac) | Des_Tp=SCA; kind=Fee; acres=2063; mgr=SDNR; loc=Georgia Forestry Commission
+- US-7140 [gis-hunter] POTA: Charlie Elliot | piece: Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (6219 ac) | Des_Tp=SCA; kind=Fee; acres=6273; mgr=SDNR; loc=Georgia Department of Natural 
+- US-12162 [gis-hunter] POTA: Sears Point | piece: Sears Point Core (3663 ac) | ACEC_NAME=Sears Point Core; acres=3680.07802491
+- US-4208 [gis-hunter] POTA: J. E. Roush Lake | piece: J. Edward Roush Recreation Area (8372 ac) | Des_Tp=REC; kind=Fee; acres=8533; mgr=UNK; loc=Unknown
+- US-9897 [gis-hunter] POTA: Jamestowne | piece: Jamestown Island (Historic), Jamestown Island Historic District (Historic Jamestowne) (Descriptive), Jamestown National  (1566 ac) | PropertyNames=Jamestown Island (Historic), Jamestown Island Hist
+- US-8618 [gis-hunter] POTA: White Ridge | piece: White Ridge Bike Trails (2864 ac) | FET_NAME=White Ridge Bike Trails; kind=4; acres=2834.44036487
+- US-9187 [gis-hunter] POTA: John Brown Museum | piece: John Brown Memorial Park (42 ac) | Des_Tp=LP; kind=Fee; acres=45; mgr=CITY; loc=City of Oswatomie
+- US-11584 [gis-hunter] POTA: Panoche Hills | piece: Panoche/Coalinga (54843 ac) | ACEC_NAME=Panoche/Coalinga; acres=55209.60894279
+- US-6448 [gis-hunter] POTA: William Randolph Hearst Memorial | piece: Hearst San Simeon SP (1684 ac) | UNITNAME=Hearst San Simeon SP; acres=1689.65662506
+- US-6448 [gis-hunter] POTA: William Randolph Hearst Memorial | piece: Hearst San Simeon State Park (3 ac) | Des_Tp=SP; kind=Fee; acres=7; mgr=SPR; loc=California Department of Parks
+- US-3862 [gis-hunter] POTA: Nags Head Woods Ecological | piece: Town of Nags Head Open Space (310 ac) | LABEL=Nags Head OS; kind=Fee; acres=284.75; mgr=Town of Nags Head
+- US-3862 [gis-hunter] POTA: Nags Head Woods Ecological | piece: Nags Head Woods and Jockey's Ridge - National Natural Landmark (1980 ac) | LABEL=NNL; kind=Other; acres=1950.8; mgr=US National Park Service
+- US-3862 [gis-hunter] POTA: Nags Head Woods Ecological | piece: Nags Head Woods (Town of Nags Head) Registered Heritage Area (298 ac) | LABEL=Nags Head Woods RHA; kind=Other; acres=283.21; mgr=NC DNCR, Natural Heritage Prog
+- US-3862 [gis-hunter] POTA: Nags Head Woods Ecological | piece: Town of Nags Head Open Space (306 ac) | Des_Tp=LOTH; kind=Fee; acres=356; mgr=CITY; loc=City Land
+- US-3862 [gis-hunter] POTA: Nags Head Woods Ecological | piece: Nags Head Woods (Town of Nags Head) Registered Heritage Area (280 ac) | Des_Tp=SOTH; kind=Other; acres=283; mgr=CITY; loc=City Land
+- US-0694 [gis-hunter] POTA: Ebey's Landing Reserve | piece: Ebey's Landing National Historical Reserve (1086 ac) | Des_Tp=NCA; kind=Fee; acres=1093; mgr=NPS; loc=NPS
+- US-12315 [gis-hunter] POTA: Dragoon Creek | piece:  (159 ac) | mgr=58706
+- US-13516 [gis-hunter] POTA: Horseshoe -Kitsap- | piece: Horseshoe Lake (1 ac) | NO RECORD (not read)
+- US-4555 [gis-hunter] POTA: Hanford Reach | piece: Hanford Reach National Monument, McGee Ranch/Riverlands Unit (10151 ac) | NAME=Hanford Reach National Monument, McGee Ranch/River; mgr=Federal Government
+- US-5565 [gis-hunter] POTA: Ahtanum | piece:  (645 ac) | mgr=58706
+- US-5568 [gis-hunter] POTA: Elbe Hills-Tahoma | piece:  (161 ac) | mgr=58706
+- US-5569 [gis-hunter] POTA: Green Mountain-Tahuya | piece:  (612 ac) | mgr=58706
+- US-5571 [gis-hunter] POTA: Loomis-Loup Loup | piece:  (495 ac) | mgr=58706
+- US-5576 [gis-hunter] POTA: Yacolt Burn | piece:  (630 ac) | mgr=58706
+- US-6796 [gis-hunter] POTA: Tobico Marsh | piece: Tobico Marsh Unit of Bay City State Park (2044 ac) | OfficialWLDProjectAreaName=Tobico Marsh Unit of Bay City State Park; acres=2088.02692836
+- US-11165 [gis-hunter] POTA: Chalk Bluff Battlefield Park | piece: Chalk Bluff Natural Area (48 ac) | maname=Chalk Bluff Natural Area; shapearea=224316
+- US-11165 [gis-hunter] POTA: Chalk Bluff Battlefield Park | piece: Chalk Bluff Natural Area (49 ac) | Des_Tp=SCA; kind=Fee; acres=55; mgr=OTHS; loc=State Natural Heritage Program
+- US-11352 [gis-hunter] POTA: Rattlesnake Ridge | piece: Rattlesnake Ridge Natural Area (397 ac) | maname=Rattlesnake Ridge Natural Area; shapearea=1482080
+- US-10008 [gis-hunter] POTA: Klamath Hills | piece: Lower Klamath Hills (1577 ac) | RMA_NAME=Lower Klamath Hills; kind=ERMA; acres=1595.63151069
+- US-6184 [gis-hunter] POTA: The Pinnacles Geologic Site | piece: Pinnacles ACEC (1388 ac) | ACEC_NAME=Pinnacles ACEC; acres=1344.2068384
+- US-6185 [gis-hunter] POTA: South Pass Historic Landmark | piece: South Pass Historic Landscape ACEC (53117 ac) | ACEC_NAME=South Pass Historic Landscape ACEC; acres=53773.37755489
+- US-12210 [gis-hunter] POTA: Jump Creek Falls BLM | piece: Jump Creek Canyon  (588 ac) | ACEC_NAME=Jump Creek Canyon ; acres=613.37749777
+- US-5759 [gis-hunter] POTA: John Jarvie | piece: Jarvie Ranch Historic Site (9 ac) | FET_NAME=Jarvie Ranch Historic Site; kind=2; acres=16.19691083
+- US-6078 [gis-hunter] POTA: Fort Pearce BLM | piece: Warner Ridge / Fort Pearce (4283 ac) | ACEC_NAME=Warner Ridge / Fort Pearce; acres=4286.052075
+- US-11026 [key-pieces] POTA: The Indian Mountain | piece: Indian Mountain Complex (515 ac) | Des_Tp=SREC; kind=Fee; acres=515; mgr=OTHS; loc=Alabama Forever Wild Land Trus
+- US-11026 [key-pieces] POTA: The Indian Mountain | piece: Indian Mountain Complex (80 ac) | Des_Tp=SREC; kind=Fee; acres=80; mgr=OTHS; loc=Alabama Forever Wild Land Trus
+- US-7277 [key-pieces] POTA: Crossett Experimental Forest | piece: Crossett Experimental Area (1685 ac) | Des_Tp=NF; kind=Fee; acres=1685; mgr=USFS; loc=USDA FOREST SERVICE
+- US-7356 [key-pieces] POTA: St. Francis National Forest | piece: Stumpy Point Purchase Unit (1519 ac) | Des_Tp=NF; kind=Fee; acres=1519; mgr=USFS; loc=USDA FOREST SERVICE
+- US-11981 [key-pieces] POTA: Arivaca Lake | piece: Arivaca Land and Lake (208 ac) | Des_Tp=SREC; kind=Fee; acres=208; mgr=SFW; loc=Arizona Game and Fish Departme
+- US-6446 [key-pieces] POTA: Brannan Island | piece: Brannan Island Fishing Access (7 ac) | Des_Tp=SREC; kind=Fee; acres=7; mgr=SFW; loc=California Department of Fish 
+- US-7389 [key-pieces] POTA: Cypress Creek Preserve | piece: Cypress Creek Nature Preserve (2684 ac) | no record link on the list
+- US-6409 [key-pieces] POTA: Waimea | piece: Waimea Canyon State Park (1845 ac) | Des_Tp=SP; kind=Fee; acres=1845; mgr=SPR; loc=State Park & Recreation
+- US-6409 [key-pieces] POTA: Waimea | piece: WAIMEA CANYON STATE PARK (1802 ac) | no record link on the list
+- US-6409 [key-pieces] POTA: Waimea | piece: WAIMEA CANYON STATE PARK (1802 ac) | no record link on the list
+- US-6409 [key-pieces] POTA: Waimea | piece: WAIMEA STATE RECREATION PIER (1 ac) | no record link on the list
+- US-6409 [key-pieces] POTA: Waimea | piece: WAIMEA STATE RECREATION PIER (1 ac) | no record link on the list
+- US-6423 [key-pieces] POTA: Manuka | piece: Manuka State Wayside (13 ac) | Des_Tp=SP; kind=Fee; acres=13; mgr=SPR; loc=State Park & Recreation
+- US-10318 [key-pieces] POTA: Chichaqua | piece: CHICHAQUA BOTTOMS GREENBELT (5144 ac) | no record link on the list
+- US-2313 [key-pieces] POTA: Pilot Knob | piece: Pilot Knob State Preserve (129 ac) | no record link on the list
+- US-2313 [key-pieces] POTA: Pilot Knob | piece: Pilot Knob State Preserve (104 ac) | no record link on the list
+- US-2313 [key-pieces] POTA: Pilot Knob | piece: Pilot Knob State Preserve (11 ac) | no record link on the list
+- US-9331 [key-pieces] POTA: Eagle Lake | piece: EAGLE LAKE WETLAND COMPLEX (1196 ac) | no record link on the list
+- US-5592 [key-pieces] POTA: Blackfoot River | piece: Blackfoot River Park Access Site (5 ac) | Des_Tp=SREC; kind=Fee; acres=5; mgr=SFW; loc=Idaho Department of Fish and G
+- US-5615 [key-pieces] POTA: Portneuf | piece: Portneuf (Upper) Access Site (69 ac) | Des_Tp=SREC; kind=Fee; acres=69; mgr=SFW; loc=Idaho Department of Fish and G
+- US-5615 [key-pieces] POTA: Portneuf | piece: Portneuf (Lower) Access Site (53 ac) | Des_Tp=SREC; kind=Fee; acres=53; mgr=SFW; loc=Idaho Department of Fish and G
+- US-11781 [key-pieces] POTA: Bishop Hill | piece: Bishop Hill Park (7 ac) | Des_Tp=SP; kind=Fee; acres=7; mgr=OTHS; loc=State of Illinois
+- US-13310 [key-pieces] POTA: Foley Sand Prairie | piece: Sand Prairie State Habitat Area (314 ac) | no record link on the list
+- US-10231 [key-pieces] POTA: Limberlost Swamp | piece: Limberlost Swamp Wetlands Preserve (883 ac) | no record link on the list
+- US-10231 [key-pieces] POTA: Limberlost Swamp | piece: Limberlost Swamp Wetlands Preserve (135 ac) | no record link on the list
+- US-2369 [key-pieces] POTA: Lake D'Arbonne | piece: Old Lake D'arbonne State Park (90 ac) | Des_Tp=SP; kind=Fee; acres=90; mgr=SPR; loc=State Park & Recreation
+- US-11491 [key-pieces] POTA: Westfield | piece: Westfield Watershed WCE (None ac) | no record link on the list
+- US-11571 [key-pieces] POTA: Ware River | piece: Ware River Access - Barre (None ac) | no record link on the list
+- US-7979 [key-pieces] POTA: Fort Popham | piece: Fort Baldwin -Popham Colony (36 ac) | Des_Tp=SHCA; kind=Fee; acres=36; mgr=SPR; loc=Maine Bureau of Parks and Land
+- US-11042 [key-pieces] POTA: Kahrs-Boger | piece: Kahrs-Boger Park (106 ac) | Des_Tp=SP; kind=Fee; acres=106; mgr=SDC; loc=Unknown
+- US-7873 [key-pieces] POTA: Agency | piece: Agency Access (1 ac) | no record link on the list
+- US-7873 [key-pieces] POTA: Agency | piece: Agency Access (None ac) | no record link on the list
+- US-8607 [key-pieces] POTA: Sweet Briar Lake | piece: Sweetbriar Lake (875 ac) | Des_Tp=SREC; kind=Fee; acres=875; mgr=SFW; loc=State Fish and Wildlife
+- US-13150 [key-pieces] POTA: Belvidere Access | piece: Belvidere Fishing Access (None ac) | Des_Tp=SREC; kind=Fee; acres=0; mgr=SDC; loc=New Jersey Department of Envir
+- US-11780 [key-pieces] POTA: Datil Well Campground | piece: Datil Well (671 ac) | no record link on the list
+- US-2028 [key-pieces] POTA: Captree | piece: Captree/Robert Moses State Park (5403 ac) | Des_Tp=SP; kind=Fee; acres=5403; mgr=SPR; loc=NYS Office of Parks, Recreatio
+- US-2028 [key-pieces] POTA: Captree | piece: Captree/Robert Moses (5401 ac) | no record link on the list
+- US-5154 [key-pieces] POTA: Cameron Mills | piece: Cameron State Forest (1967 ac) | no record link on the list
+- US-5154 [key-pieces] POTA: Cameron Mills | piece: Cameron State Forest (1966 ac) | Des_Tp=SCA; kind=Fee; acres=1966; mgr=SDC; loc=NYS Department of Environmenta
+- US-8102 [key-pieces] POTA: Catharine Creek | piece: Catharine Creek Fishing Access (3 ac) | Des_Tp=SREC; kind=Fee; acres=3; mgr=SDC; loc=NYS Department of Environmenta
+- US-8102 [key-pieces] POTA: Catharine Creek | piece: Catharine Creek Fishing Access (3 ac) | no record link on the list
+- US-8319 [key-pieces] POTA: Palisades Interstate | piece: Palisades (35 ac) | no record link on the list
+- US-9095 [key-pieces] POTA: Indian River | piece: Indian River Fishing Access (None ac) | Des_Tp=SREC; kind=Fee; acres=0; mgr=SDC; loc=NYS Department of Environmenta
+- US-9095 [key-pieces] POTA: Indian River | piece: Indian River Fishing Access (None ac) | no record link on the list
+- US-9423 [key-pieces] POTA: Miller Nature Sanctuary | piece: RFGrrMrStNP (87 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (71 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (26 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (17 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (13 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (6 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (4 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (2 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (1 ac) | no record link on the list
+- US-10358 [key-pieces] POTA: Shotgun Creek | piece: Shotgun Creek Backcountry Byway (None ac) | no record link on the list
+- US-7865 [key-pieces] POTA: East | piece: East Beach (None ac) | Des_Tp=SP; kind=Fee; acres=0; mgr=SDNR; loc=RI Department of Environmental
+- US-3917 [key-pieces] POTA: Little Pee Dee Bay | piece: Little Pee Dee Heritage Preserve and Wildlife Management Area (10455 ac) | no record link on the list
+- US-3917 [key-pieces] POTA: Little Pee Dee Bay | piece: Little Pee Dee Heritage Preserve / Wildlife Management Area (10168 ac) | Des_Tp=SCA; kind=Fee; acres=10168; mgr=SDNR; loc=South Carolina Department of N
+- US-3917 [key-pieces] POTA: Little Pee Dee Bay | piece: Little Pee Dee Heritage Preserve / Wildlife Management Area - Twin Bays Tract (218 ac) | Des_Tp=SCA; kind=Fee; acres=218; mgr=SDNR; loc=South Carolina Department of N
+- US-6245 [key-pieces] POTA: Ghost River | piece: Wolf River & Ghost River SNA & WMA (7420 ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 1 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 8 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 6 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 3 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 9 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 5 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 1 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 8 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 6 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 3 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 9 (None ac) | no record link on the list
+- US-12151 [key-pieces] POTA: Point of Pines | piece: Point of Pines Campsite 5 (None ac) | no record link on the list
+- US-0694 [key-pieces] POTA: Ebey's Landing Reserve | piece: Ebey's Landing (46 ac) | Des_Tp=SP; kind=Fee; acres=46; mgr=SPR; loc=Washington State Parks and Rec
+- US-12551 [key-pieces] POTA: Samish | piece: Samish River (None ac) | no record link on the list
+- US-12551 [key-pieces] POTA: Samish | piece: Samish River (None ac) | no record link on the list
+- US-9831 [key-pieces] POTA: Allenton Marsh | piece: Allenton Wildlife Area (None ac) | no record link on the list
+- US-6160 [key-pieces] POTA: Stewart Creek | piece: Stewart Creek/Chain Lakes (215105 ac) | no record link on the list
+- US-11026 [probe-40] POTA: The Indian Mountain | piece:  (None ac) | no record link on the list
+- US-7277 [probe-40] POTA: Crossett Experimental Forest | piece:  (None ac) | no record link on the list
+- US-7356 [probe-40] POTA: St. Francis National Forest | piece:  (None ac) | no record link on the list
+- US-7389 [probe-40] POTA: Cypress Creek Preserve | piece:  (None ac) | no record link on the list
+- US-13310 [probe-40] POTA: Foley Sand Prairie | piece:  (None ac) | no record link on the list
+- US-2369 [probe-40] POTA: Lake D'Arbonne | piece:  (None ac) | no record link on the list
+- US-11491 [probe-40] POTA: Westfield | piece:  (None ac) | no record link on the list
+- US-11571 [probe-40] POTA: Ware River | piece:  (None ac) | no record link on the list
+- US-7979 [probe-40] POTA: Fort Popham | piece:  (None ac) | no record link on the list
+- US-5154 [probe-40] POTA: Cameron Mills | piece:  (None ac) | no record link on the list
+- US-8319 [probe-40] POTA: Palisades Interstate | piece:  (None ac) | no record link on the list
+- US-9095 [probe-40] POTA: Indian River | piece:  (None ac) | no record link on the list
+- US-10358 [probe-40] POTA: Shotgun Creek | piece:  (None ac) | no record link on the list
+- US-7865 [probe-40] POTA: East | piece:  (None ac) | no record link on the list
+- US-12551 [probe-40] POTA: Samish | piece:  (None ac) | no record link on the list
+- US-9831 [probe-40] POTA: Allenton Marsh | piece:  (None ac) | no record link on the list
+- US-7456 [held-20] POTA: Dahlonega Gold Museum | piece:  (None ac) | no record link on the list
+- US-7565 [held-20] POTA: AEDC and Woods Reservoir | piece:  (None ac) | no record link on the list
+- US-9753 [held-20] POTA: Katy Trail Rock Island Spur | piece:  (None ac) | no record link on the list
+- US-3656 [held-20] POTA: Beker - South Fork | piece:  (None ac) | no record link on the list
+- US-12830 [held-20] POTA: Old Ruby State Park | piece:  (None ac) | no record link on the list
+- US-10055 [held-20] POTA: Cline Buttes OHV | piece:  (None ac) | no record link on the list
+- US-12837 [held-20] POTA: East Shore | piece:  (None ac) | no record link on the list
+- US-4383 [held-20] POTA: Rogue River-Siskiyou | piece:  (None ac) | no record link on the list
+- US-10237 [held-20] POTA: Mongoquinong | piece:  (None ac) | no record link on the list
+- US-11092 [held-20] POTA: Midway Utah | piece:  (None ac) | no record link on the list
+- US-12145 [held-20] POTA: Doc's Beach OHV Staging Area | piece:  (None ac) | no record link on the list
