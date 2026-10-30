@@ -28,5 +28,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "All 5 open parks confirmed no-layer, stay pins (no Louisiana state-parks GIS boundary layer found). One lead handed to chat 9 for a P-2 test: NOAA's 2014 ESI Parks-Managed Areas polygons (coastal LA, may or may not cover any of these 5)."
+  },
+  "US-MD": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "All 5 open parks resolved: US-13564 Savage Highlands SP confirmed name-mismatch (shares only 'Savage' with the P-2 hit Savage River SF, different place); US-7768 Frederick City Watershed WMA confirmed no-layer (PAD-US Frederick Municipal Forest hit is ownership evidence only, no shared proper word with the WMA); US-7769 Heaters Island WMA already picture-map-only (G-ID3, saved to the picture-maps branch); US-6388 Tawes Garden SP and US-6389 Jefferson Patterson Park & Museum SP stay needs-parcel, both handed to chat 9 as P-3 county parcel requests (Anne Arundel / Calvert)."
   }
 }
