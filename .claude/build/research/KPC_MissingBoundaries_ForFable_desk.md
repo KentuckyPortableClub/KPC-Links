@@ -822,3 +822,8 @@ STATE NE DONE
 AL's whole open list already carries why-not tags: name-mismatch 9, needs-parcel 9 (US-12311, US-12517, US-12962, US-13473, US-13533, US-13558, US-6457, US-6459, US-9918), no-layer 3. The 9 needs-parcel already have counties assigned in this file's parcel-candidate list (Bibb US-13533, Butler US-12311+US-9918, Chilton US-12517, Dallas US-13473, Limestone US-6457, Morgan US-12962, Sumter US-6459, Washington US-13558) -- filing the parcel requests now. The 9 name-mismatch and 3 no-layer tags weren't individually re-verified this session -- no fresh evidence either way, trusting the existing pass absent contrary evidence (same approach as NH/AK/NE).
 
 STATE AL DONE
+
+### WY — closing out (chat 8, Oct 30 2026)
+WY's whole open list already carries why-not tags: name-mismatch 57, needs-parcel 4 (US-10817 Story SFH, US-10821 Dan Speas SFH, US-10823 Dubois SFH, US-12720 Ralston Reservoir), no-layer 24. The 4 needs-parcel already have counties assigned (Sheridan US-10817, Natrona US-10821, Fremont US-10823, Park US-12720) -- filing those now. (Note: this file's parcel-candidate list also shows a Big Horn County row for US-10825 Tillett Springs SFH, but US-10825 is already tagged name-mismatch in the 57-count list, which takes precedence -- that county row looks like a leftover from before the tag was set, not a 5th needs-parcel park.) The 57 name-mismatch and 24 no-layer tags weren't individually re-verified this session (that's a huge list, likely Wyoming's fish-hatchery/WHMA naming conventions driving most of the name-mismatch count) -- trusting the existing pass absent contrary evidence, same as NH/AK/NE/AL.
+
+STATE WY DONE

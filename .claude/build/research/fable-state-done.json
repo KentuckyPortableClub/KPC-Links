@@ -58,5 +58,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Whole open AL list already carried why-not tags from an earlier pass (9 name-mismatch, 9 needs-parcel, 3 no-layer). The 9 needs-parcel already had counties assigned (Bibb, Butler x2, Chilton, Dallas, Limestone, Morgan, Sumter, Washington) -- handed to chat 9 as P-3 requests. Name-mismatch/no-layer tags not individually re-verified, trusted absent contrary evidence."
+  },
+  "US-WY": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open WY list already carried why-not tags from an earlier pass (57 name-mismatch, 4 needs-parcel, 24 no-layer). The 4 needs-parcel already had counties assigned (Sheridan, Natrona, Fremont, Park, all state fish hatcheries/reservoirs) -- handed to chat 9 as P-3 requests. Noted a stale Big Horn County parcel-list row for US-10825, which is already correctly tagged name-mismatch (not a 5th needs-parcel park). The 57 name-mismatch + 24 no-layer tags not individually re-verified, trusted absent contrary evidence."
   }
 }
