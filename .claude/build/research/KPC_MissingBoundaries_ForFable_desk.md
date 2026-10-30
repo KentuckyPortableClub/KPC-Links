@@ -2268,3 +2268,9 @@ Item ids are ArcGIS Online / Hub items (open `https://www.arcgis.com/sharing/res
 - **OR** (geohub.oregon.gov): *Oregon State Parks* c1d937bae66e41068721f4474a8811a6 (state park boundaries: for Bob Creek Wayside etc.); *Wildlife Management Units* 8bfaa3a4e10e49dd9b0cc95693977e37 (hunting units, NOT hatchery/wildlife-area outlines — not usable for hatcheries). Hatcheries: no layer yet (likely needs-parcel).
 - **WA** (geo.wa.gov): *Parks Administrative Boundaries* ca1e60b4384f491383adf6b37b4f1a94 (State Parks); *Wildlife Areas* 54642c30a0f842f2b8603976b5625678 (WDFW); *Water Access Sites - Boundaries* 88b13ca5a1e3417fbe528152fc7aff04 (WDFW boat launches). DNR state forests / recreation sites (Marckworth, Naneum Ridge, Raging River, Dragoon Creek...) still to find (WA DNR's own portal).
 - **NV**: *Nevada_State_Parks_Boundaries* 78c4374b9fff4c1b95d7df2cdf918491 (state parks; NDOW wildlife areas still to find).
+
+### UT OR WA NV — portal round 3 (chat 3, Oct 30 4:35 AM)
+- WA: **WA RCO Public Lands Inventory 2019** d296b58b0eae485fba2c55ab90e5908d (statewide public lands incl. WA DNR/WDFW/State Parks units: best candidate for the 8 WA DNR sites; use for the P-2 polygon test).
+- UT: no state-park or DWR WMA polygon layer in the UGRC portal (only 'Utah Parks Local' = city/county parks, BLM field offices/monuments). Next: the agencies' own ArcGIS orgs (Utah State Parks, Utah DWR) by owner name, then the DWR 'Utah Wildlife Management Areas' page Maps section.
+- NV: no NDOW WMA layer found; 'Surface Management Agency' (BLM/state ownership) is the fallback for state land ownership (step 4b). OR: nothing for ODFW hatcheries/wildlife areas in GEOHub: tag needs-parcel unless ODFW publishes its own.
+- Lesson: portal keyword search is hit-and-miss; search by agency OWNER account next (e.g. owner:UtahStateParks, owner:ODFW, owner:NDOW).
