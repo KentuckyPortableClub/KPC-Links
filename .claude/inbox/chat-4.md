@@ -13,6 +13,7 @@ Read .claude/inbox/README.md first.
 
 - TO DO (Brandon Oct 28 7:07 AM: 'this is to do...make notes'): TRIP PLANNER + OVERLAP FINDER as screens in the app (plan in ft8-app.md 'TRIP PLANNER + OVERLAP FINDER IN THE APP'). After his radio test fixes; members-only or not is decided when it's built (Brandon 7:09 AM).
 - TO DO (later): iPhone: browser phone remote first (plan in ft8-app.md 'IPHONE PLAN').
+- TO DO (later, Brandon Oct 30 2:51 PM): CLOUD (Google Drive backup + log sync), APPLE, GO PUBLIC with a download page on the website: notes in ft8-app.md 'LATER (Brandon Oct 30 2:51 PM …)'.
 
 ## NEEDS BRANDON
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
