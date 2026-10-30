@@ -1,6 +1,6 @@
 # Canada MB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **219 of 308** joined (same name + same kind). **0** to check, **84** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **220 of 308** joined (same name + same kind). **0** to check, **83** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -41,7 +41,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2478 Pimachiowin Aki (Pauingassi) Wildlife Management Area (Wildlife Management Area)
 - CA-2486 Pimitotah (Bloodvein) Wildlife Management Area (Wildlife Management Area)
 - CA-2496 Provencher Park Recreation Park (Recreation Park)
-- CA-2503 Sandilands Provincial Forest Wildlife Management Area (Wildlife Management Area)
 - CA-2527 Vimy Ridge Memorial Park Recreation Park (Recreation Park)
 - CA-2529 Wallace Lake Wildlife Management Area (Wildlife Management Area)
 - CA-4799 Forts Rouge, Garry and Gibraltar National Historic Site (National Historic Site)

@@ -5,6 +5,12 @@
  "Alberta Park": [
   "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0"
  ],
+ "Alberta publ": [
+  "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14"
+ ],
+ "BC local and": [
+  "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39"
+ ],
  "BC recreatio": [
   "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
  ],
@@ -16,6 +22,9 @@
  ],
  "Manitoba Par": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
+ ],
+ "Manitoba pro": [
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1"
  ],
  "Manitoba wil": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0",
@@ -107,9 +116,6 @@
  ],
  "ON-ORCA Oton": [
   "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
- ],
- "ON-RVCA Ride": [
-  "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
  ],
  "ON-SVCA Grey": [
   "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"

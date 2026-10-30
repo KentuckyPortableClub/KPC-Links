@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **932 of 1180** joined (same name + same kind). **13** to check, **209** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **930 of 1180** joined (same name + same kind). **13** to check, **210** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -33,6 +33,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1559 Old Brunswick House Wilderness Area (Wilderness Area) → on MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac); Missinaibi Provincial Park (Waterway Class) (~286,914 ac)
 - CA-1566 Outer Barn Island Wilderness Area (Wilderness Area) → on LAKE NIPIGON CONSERVATION RESERVE (~0 ac)
 - CA-1599 South Point Trail (Rondeau) Provincial Park (Provincial Park) → on RONDEAU PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac); Rondeau Provincial Park (Natural Environment Class) (~8,041 ac)
+- CA-1638 W.A. Taylor Conservation Reserve (Conservation Reserve) → on Rideau Canal National Historic Site (~49,352 ac)
 - CA-1707 Whitefish Falls Wilderness Area (Wilderness Area) → on MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac); Missinaibi Provincial Park (Waterway Class) (~286,914 ac)
 - CA-4857 Beausoleil Island National Historic Site (National Historic Site) → on Georgian Bay Islands National Park of Canada (~0 ac); Georgian Bay Islands National Park Of Canada (~3,459 ac)
 - CA-4874 Merrickville Blockhouse National Historic Site (National Historic Site) → on Rideau Canal National Historic Site (~49,352 ac)
@@ -212,6 +213,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5945 Cooper Marsh Conservation Area (Conservation Area)
 - CA-5952 North Shore Recreation Park (Recreation Park)
 - CA-5954 Maplelawn & Gardens National Historic Site (National Historic Site)
+- CA-5957 Portland Bay Conservation Area (Conservation Area)
 - CA-5958 Hampton Park Conservation Area (Conservation Area)
 - CA-5960 William T. Foster Woods National Park (National Park)
 - CA-5981 Allen Park Conservation Area (Conservation Area)
