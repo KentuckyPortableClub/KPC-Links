@@ -42,3 +42,8 @@ Only the groups the finders tag `no-layer` reach chat 8, as ONE list per country
 
 ## 8. Today's harvester
 No run is in progress (the 24-country refill finished). Do not start another; the redesign replaces it. Its code (`get`, `official`, `probe_layer`, `walk_service`, `wfs_capabilities`, `ogc_collections`, `agol_search`, `catalog`, the seed-book reader) is reused inside the finder, so nothing is thrown away.
+
+## 9. Opus's reading before building (Oct 29 9:55 PM)
+- **Step A already exists for the 28 world-key countries:** `KPC-Links data/world-key/<CC>.json` keeps, per open park, the records whose polygon holds the POTA pin (`c`: 'the POTA pin is inside it (different name)' / 'similar name'). So the finder does NOT re-query those layers: it turns the key's `c` rows into chat 11 candidates (same gis-hunter.json format, area CC), with the R-G8 / shared-words rule deciding 'name match' vs 'name mismatch'. GB alone: 3,786 open parks, most with a `c` row from the 21 Natural England / NatureScot / NRW layers.
+- **Step B is the new work:** countries with NO world key (RU, CN, KR, NZ, TH, BR, CO, MX, TR, CL, AR, ZA … from data/pota/index.json) and, inside keyed countries, the agency groups with no `c` and no `m`. Build order: gap queue + key-`c` candidates (fast win) → AGOL org search in the local language + Hub/CKAN conventions → INSPIRE CSW → page reader.
+- Starts after the GIS hunter's US + Canada runs are in hand (Fable's order); W-1 NO, W-2 YES (labelled) as Brandon ruled 9:47 PM.
