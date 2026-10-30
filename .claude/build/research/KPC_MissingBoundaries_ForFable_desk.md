@@ -1402,3 +1402,56 @@ Requests filed on KPC-Data `lookup`: 3-mi-harbors, 3-mi-layers (+ 3-wi-pdfs for 
 | US-6728 | Manitou Island Group WMA | DNR reference-map PDF; pin sits inside Sleeping Bear Dunes | picture-map-only / pin-doubt |
 | US-6808, 6809, 6813, 6814, 6815, 6817, 6821, 6822 | eight state harbors | DNR harbor guide pages | needs-parcel |
 Next: read the two answers, fill address/GPS/result per park.
+
+
+### PARCEL ANSWERS, P-3 (chat 8, Oct 29 ~8 PM): owner at the pin, state-wide parcel layers (AR IN NC VT WV ID). Never a traced line; 4b candidates go to chat 11 first.
+| ref | name | owner at pin | parcel id / acres | why-not tag / next |
+|---|---|---|---|---|
+| US-11214 AR | Highway 7 Rec Area State Fish and Wildlife Area | MARANATHA AGRICULTURE LLC | 01-01948-000  ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-11355 AR | Cook’s Lake Nature Center Nature Recreation Area | ARKANSAS GAME AND FISH FOUNDATION | 001-00422-000  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-11356 AR | Ponca Nature Center Nature Recreation Area | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-11394 AR | Muddy Creek WMA Wildlife Management Area | EIGSTI MARCUS & ELIDA | 001-02735-000  ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-11874 AR | Tates Bluff Rec area State Recreation Area | BACON FAMILY TRUST | 005-00008-000R  ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-11960 AR | Janet Huckabee Arkansas River Valley Nature Center State Natural Reserve | ARKANSAS STATE GAME & FISH COMISSIO | 40001-0000-00503-00  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12093 AR | Sugarloaf Mountain State Recreation Area | ARKANSAS STATE UNIVERSITY- | 300-03200-001  ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-12753 AR | Joe Hogan State Conservation Area | ARKANSAS GAME & FISH COMMISSN | 001-05752-000  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12754 AR | Andrew H. Hulsey State Fish Hatchery | ARKANSAS GAME &FISH COMMISSION | 100-09512-000  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12762 AR | Charlie Craig State Fish Hatchery | ARK GAME & FISH COMM | 06-00037-040  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12764 AR | Jim Hinkle Spring River State Fish Hatchery | ARKANSAS STATE GAME & FISH COMMISSION | 001-01013-000  ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-7437 AR | Little Missouri River Access State Recreation Area | ROCK N EAGLES NEST LLC | 001-05266-000  ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-7444 AR | Nimrood Lake River Road State Recreation Area | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-7522 AR | Cherokee State Recreation Area | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-5685 IN | Lieber State Recreation Area | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-4667 IN | Spencer County State Forest | (no owner field) | 740602100002000011  ac | needs-parcel (layer has no owner: county assessor) |
+| US-6972 IN | Historic New Harmony State Historic Site | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-6973 IN | Lanier Mansion State Historic Site | (no owner field) | 390826300013000007  ac | needs-parcel (layer has no owner: county assessor) |
+| US-6974 IN | Levi Coffin House State Historic Site | (no owner field) | 890701130110000023  ac | needs-parcel (layer has no owner: county assessor) |
+| US-10259 NC | NC Vietnam Veteran's Memorial Historic Site | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-10398 NC | Chatuge Dam Trail Recreation Park | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-3851 NC | Brumley Forest State Nature Preserve | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-6837 NC | CSS Neuse Civil War Interpretive Center State Historic Site | STATE OF NORTH CAROLINA | 4525-32-3783 0.2 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-6847 NC | NC Transportation Museum State Historic Site | NORTH CAROLINA STATE OF | 032 173 58.8 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-6852 NC | State Capitol State Historic Site | NORTH CAROLINA STATE OF THE | 1703790137 6.2 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-6963 NC | Nutbush Wildlife Management Area | WAKE FOREST LAND ASSOCIATES II | 0334 01007 2.8 ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-3129 VT | Little River State Park | (no owner field) | 696-221-11904  ac | needs-parcel (layer has no owner: county assessor) |
+| US-4936 VT | Nash Stream Forest State Forest | (no owner field) | 105-033-10158  ac | needs-parcel (layer has no owner: county assessor) |
+| US-4980 VT | White Farm State Forest | (no owner field) | 249-079-10028  ac | needs-parcel (layer has no owner: county assessor) |
+| US-12052 WV | Bowden State Fish Hatchery | STATE OF WEST VIRGINIA | 42020107001600000000 36.8 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12053 WV | Edray State Fish Hatchery | STATE OF WEST VIRGINIA DEPT OF NATURAL RESOURCES | 38030051002200000000 4.2 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12054 WV | Ridge State Fish Hatchery | WEST VIRGINIA FISH HATCHERY | 33080011001400000000 31.0 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-12055 WV | Petersburg State Fish Hatchery | WV STATE DEPT OF NATURAL RESOURCES | 12030448002200030000 9.4 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-9739 WV | Forks of the Coal State Natural Area | WEST VIRGINIA DIVSISION OF NATURAL RESOURCES | 20280015006400010000 23.4 ac | 4b candidate: owner = the park's agency; chat 11 yes/no, then trace |
+| US-9915 WV | Cedar Lakes State Recreation Area | F F A & F H A CAMP | 18040018005700000000 243.8 ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+| US-12226 ID | Bruneau Arm Reservoir State Fishing Lake | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-12230 ID | South Fork Snake River Access State Fish and Wildlife Area | no parcel at the pin |  | needs-parcel (county layer next) |
+| US-13485 ID | Twin Peaks Ranch State Park | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-4584 ID | Ashton-Tetonia Trail State Park | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7813 ID | Cox's Well Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7830 ID | Smiley Creek Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7818 ID | Johnson Creek Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7825 ID | New Meadows Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7827 ID | Porthill/Eckhart Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7829 ID | Slate Creek Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7831 ID | Smith Prairie Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+| US-7832 ID | Stanley Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
+OR + TX layer guesses failed (retry with the real layers). Source for all: the state's own parcel service via the look-up bot (answers 8-parcel-*).
