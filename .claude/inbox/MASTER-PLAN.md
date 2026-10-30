@@ -129,3 +129,8 @@ Every chat: when you FINISH a task below, change its `[ ]` to `[x]` and add the 
 - [ ] H.1 Fable review of chat 8's missing-boundaries/name report WAITS (Brandon 9:46 AM): first plan step 1 boundary fixes pushed (chat 2: far pieces, Virginia, Canada 3 m) → HQ tells Brandon → chat 8 RECHECKS its list (fixes may clear rows) → then Fable, with KPC-Data attached
 - [ ] H.2 Status reports from this file on request; Sunday members' update; Sunday storage check
 - chat 8 (Oct 29 1:40 PM): F.3 Canada regrade NS + NB READY and clean; MB has 3 far rows to check (see KPC_IssuesForFable_Oct29.md).
+
+## RESEARCH LAYOUT + AUTOMATION (Oct 30 7:40 AM, Brandon 7:31 'do it all')
+- DONE: Fable book split = fable/US-XX.md (45) + CA-XX.md (13), one row per park; Agency Atlas seeded (agency-atlas/US-XX, CA-XX; W-XX for world as touched).
+- ORDERED: chat 2 BOT F reads 'STATE XX DONE' from the per-state file + new parks' states into the nightly rebuild; chat 10 look-up answer reuse (7 days) + new-park pipeline (hunter as tuned, no logic change before Nov 6); chat 9 writes probes into the atlas.
+- WORLD: GIS finding = in scope (boundaries + docs/maps). World 2-FERS (top 10 countries) = OUT of the Oct 29 8:33 AM scope: waiting on Brandon's yes before any work.
