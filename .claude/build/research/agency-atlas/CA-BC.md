@@ -16,3 +16,5 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Blocks bots / dead
 - (add)
+
+- (chat 9, Oct 30) BC Data Catalogue search API (catalogue.data.gov.bc.ca/api/3) answers 'robots.txt says no': we obey; use the bcgw services (maps.gov.bc.ca / delivery.maps.gov.bc.ca REST) directly.

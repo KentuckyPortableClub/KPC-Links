@@ -16,3 +16,5 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Blocks bots / dead
 - (add)
+
+- (chat 9, Oct 30) Saskatchewan GeoHub (geohub.saskatchewan.ca) lists: Saskatchewan Parks Boundaries, PCS Regional Parks, ParksAsTitled MapServer/6 (https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6; probe filed), ParksAsLegislated/4 (already used).

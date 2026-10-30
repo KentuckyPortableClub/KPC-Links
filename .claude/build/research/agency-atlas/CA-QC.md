@@ -16,3 +16,5 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Blocks bots / dead
 - (add)
+
+- (chat 9, Oct 30) Données Québec search API answers 'robots.txt says no' to the bot: we obey; use the MRNF REST (TRQ_WMS) and dataset pages instead.

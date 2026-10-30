@@ -15,3 +15,5 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 
 ## Blocks bots / dead
 - (add)
+
+- (chat 9, Oct 30) Nova Scotia Open Data (data.novascotia.ca Socrata): 'Parks Properties' (id enfh-gkve): columns/geometry read filed.
