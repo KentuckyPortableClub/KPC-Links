@@ -350,6 +350,12 @@ STATE AZ DONE
 | US-6875 | The Preserve (Essex Land Trust) | our doc: DEEP page, no map; land trust owns | 3 -> 4b | land-trust parcel; take-back candidate | 8 | Oct 29 |
 | US-7529 | Beckley Iron Furnace SP | our doc: DEEP page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-7542 | Satan's Kingdom SRA | our doc: no map on DEEP page | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-7529 | Beckley Iron Furnace SP | Oct 30 chat 8: this park's REAL official name is "Beckley Furnace Industrial Monument" (ctparks.com / portal.ct.gov/DEEP confirmed) -- our point-in-polygon hit "[DEEP] Industrial Monument Historic Preserve" (2.9 ac) is the SAME proper designation, T-1 match. **TRACE candidate.** | 8 | Oct 30 |
+| US-6875 | The Preserve (Essex Land Trust) | Oct 30 chat 8: my Oct 29 land-trust note was wrong -- "Preserve State Forest" (889 ac, DEEP) is the same proper word ("Preserve") under DEEP ownership, not a land trust. **TRACE candidate.** | 8 | Oct 30 |
+| US-7542 | Satan's Kingdom SRA | Oct 30 chat 8: the point-in-polygon hit "Farmington River Water Access" (12.3 ac) shares NO proper word with "Satan's Kingdom" -- it's a nearby access point on the same river, not this park, per T-1. **Confirmed no-layer, stays a pin.** | 8 | Oct 30 |
+| US-6860 | Ferry Landing SP | Oct 30 chat 8: no point-in-polygon hit at all (checked earlier this week). **Confirmed no-layer, stays a pin.** | 8 | Oct 30 |
+
+STATE CT DONE
 
 ### MO
 | park | name | source found | Rule G step | result | by chat | date |
