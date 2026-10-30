@@ -1028,6 +1028,17 @@ for cc in COUNTRIES:
         cnt['saved_outlines'] = sum(len(d) for d in shards.values())
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')
+    # W-2 USE UNTIL BETTER (Brandon Oct 30 12:22 PM via HQ): an EU compilation record (EEA Natura 2000 / CDDA) IS the park's outline
+    # until the country's own agency layer gives one: grade APPROXIMATE, labelled 'EU compilation of national data', never Official.
+    # When the park also has a piece from the agency's own layer, the EU pieces are dropped (the official one replaces them).
+    _eu = lambda q: str(q[2]).startswith('EEA')
+    n_eu = n_rep = 0
+    for _p in parks.values():
+        _m = _p.get('m') or []
+        if not _m or not any(_eu(q) for q in _m): continue
+        if all(_eu(q) for q in _m): _p['g'] = 'approx'; _p['gsrc'] = 'EU compilation of national data'; n_eu += 1
+        else: _p['m'] = [q for q in _m if not _eu(q)]; n_rep += 1
+    if n_eu or n_rep: notice(f'World key {cc}', f'W-2: {n_eu} parks outlined from the EU compilation (Approximate); {n_rep} had an agency outline that replaced it')
     save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks})
     L = [f'# {cc}: POTA parks vs official land', '', f"Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: {', '.join(s[0] for s in SRC[cc])}. "
          f"**{cnt['matched']} of {cnt['parks']}** joined (same name + same kind), **{cnt['check']}** to check, **{cnt['none']}** nothing found. Nothing below is joined.", '', '## To check (not joined)', '']
