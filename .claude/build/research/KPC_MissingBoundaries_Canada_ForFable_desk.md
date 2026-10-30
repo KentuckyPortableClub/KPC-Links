@@ -168,6 +168,150 @@ Read from KPC-Links data/ca-key (the current Canada key): 5,899 parks, 4,188 out
 
 ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go.
 
+### GIS hunter, Oct 30 2026 (chat 10; candidate rows only: pin inside an official record; chat 11 answers YES / NO in KPC-Data data/waiting/questions/gis-hunter.json; leads + 'nothing' rows stay in KPC-Data data/gis-hunter/CA-XX.json)
+
+| ref | park | step | what was found | result | date | by |
+|---|---|---|---|---|---|---|
+| CA-2969 | Castle Falls Natural Area | R-G7 step 2 | Alberta Park: 'Castle' (record 467, ~62,396 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2991 | Crane Meadow Provincial Recreation Area | R-G7 step 2 | AB-PLUZ Gove: 'Sibbald Snow Vehicle' (record 36, ~23,893 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-3018 | Eyrie Gap Provincial Recreation Area | R-G7 step 2 | AB-PLUZ Gove: 'The Kananaskis Country' (record 32, ~115,344 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-3076 | McLean Pond Natural Area | R-G7 step 2 | AB-PLUZ Gove: 'McLean Creek Off-Highway Vehicle' (record 35, ~49,571 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-3111 | Prairie Coulees Natural Area | R-G7 step 2 | Alberta Park: 'Hargrave Coulees' (record 477, ~4,478 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-3157 | Waterton-Glacier International Peace Park | R-G7 step 2 | Alberta Park: 'Waterton Lakes' (record 433, ~122,332 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4771 | Abbot Pass Refuge Cabin National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: '' (record 3, ~1,693,702 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4773 | Banff Park Museum National Historic Site | R-G7 step 2 | Alberta Park: 'Banff' (record 435, ~1,681,469 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4776 | First Oil Well in Western Canada National Historic Site | R-G7 step 2 | Alberta Park: 'Waterton Lakes' (record 433, ~122,332 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4779 | Jasper House National Historic Site | R-G7 step 2 | Alberta Park: 'Jasper' (record 436, ~2,753,259 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4780 | Jasper Park Information Centre National Historic Site | R-G7 step 2 | Alberta Park: 'Jasper' (record 436, ~2,753,259 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5377 | Nordegg National Historic Site | R-G7 step 2 | AB-PLUZ Gove: 'Kiska/Willson' (record 50, ~200,529 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6075 | Banff Springs Hotel National Historic Site | R-G7 step 2 | Alberta Park: 'Banff' (record 435, ~1,681,469 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-6126 | Livingston Public Land Use Zone Recreation Park | R-G7 step 2 | AB-PLUZ Gove: 'Livingstone' (record 30, ~302,055 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6134 | Athabasca Ranch Public Land Use Zone Recreation Park | R-G7 step 2 | AB-PLUZ Gove: 'Athabasca Ranch' (record 57, ~9,886 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-3199 | Barkerville Historic Town and Park National Historic Site | R-G7 step 2 | BC-HP Govern: '8f66e0f3-a791-476b-87a7-eabcc313fad9' (record 6120928, ~1,590 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-3739 | Lighthouse Park | R-G7 step 2 | BC-HP Govern: '14387c09-1022-4a68-befc-c358f4b36010' (record 6117457, ~2 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5326 | Hatley Park National Historic Site | R-G7 step 2 | BC-HP Govern: 'a08b281a-e511-415f-9e06-f362ee8b649f' (record 6121423, ~537 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2390 | Cape Tatnam Wildlife Management Area | R-G7 step 2 | CPCAD / Parks Canada: 'Kaskatamagan Wildlife Management Area' (record 17879, ~615,122 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2464 | Narcisse Provincial Park | R-G7 step 2 | CPCAD / Parks Canada: 'Narcisse Wildlife Management Area' (record 17838, ~317 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5465 | Tall Grass Prairie Preserve Natural Area | R-G7 step 2 | CPCAD / Parks Canada: 'Loewen - MHHC' (record 18025, ~332 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0778 | Ile-Aux-Foins (Hay Island) Recreation Park | R-G7 step 2 | CPCAD / Parks Canada: 'Miramichi Bay Closure' (record 21919, ~359,542 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0785 | Mary's Point Ramsar Site | R-G7 step 2 | CPCAD / Parks Canada: 'Shepody National Wildlife Area' (record 22296, ~2,575 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4438 | Martial Brook Protected Area | R-G7 step 2 | CPCAD / Parks Canada: 'Magaguadavic River' (record 3177, ~5,145 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4444 | McCoy Brook Protected Area | R-G7 step 2 | CPCAD / Parks Canada: '4021400' (record 3663, ~1,808 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5202 | Ministers Island Pre-contact Sites National Historic Site | R-G7 step 2 | NB-PP Govern: 'Minister's Island' (record 20, ~495 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5203 | Miscou Island Lighthouse National Historic Site | R-G7 step 2 | NB-PP Govern: 'Miscou' (record 21, ~12 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-6444 | Point Escuminac Lighttower Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Miramichi Bay Closure' (record 21919, ~359,542 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6471 | Nicolas Denys National Historic Site | R-G7 step 2 | NB WMZ: '' (record None, ~773,951 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6480 | Northern Uplands Ecological Area | R-G7 step 2 | CPCAD / Parks Canada: '4015800' (record 3607, ~2,160 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6481 | New Brunswick Highlands Ecological Area | R-G7 step 2 | CPCAD / Parks Canada: '4021700' (record 3666, ~880 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6482 | Grand Lake Lowlands Ecological Area | R-G7 step 2 | NB WMZ: '' (record None, ~739,407 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6522 | Stickney Area Veterans National Memorial | R-G7 step 2 | NB WMZ: '' (record None, ~1,021,917 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6584 | Grand Barachois Nature Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Privately Protected Area (NCC 120214)' (record 6669, ~1 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4820 | Kitjigattalik - Ramah Chert Quarries National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Torngat Mountains National Park Of Canada' (record 22046, ~2,393,495 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6166 | Cape St. Mary's Lighthouse National Heritage Site | R-G7 step 2 | CPCAD / Parks Canada: 'Cape St. Mary's Ecological Reserve' (record 29, ~2,760 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-0465 | Lawrencetown Beach Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 10648, ~1 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0478 | Scots Bay Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 11827, ~0 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0892 | Burnt Island Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 4471, ~5 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0903 | Cookville Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 17391, ~2 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1799 | McCormacks Beach Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 10344, ~16 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1848 | Shubie Park Recreation Park | R-G7 step 2 | Nova Scotia ~1: '' (record 8053, ~4 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1867 | Spry Bay Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 3312, ~0 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1904 | Blind Bay Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 8346, ~217 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5446 | Ross Ferry Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 5092, ~3 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6178 | Cape George Lighthouse National Heritage Site | R-G7 step 2 | Nova Scotia ~1: '' (record 772, ~64 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6189 | Peter Island Lighthouse National Heritage Site | R-G7 step 2 | Nova Scotia : 'Peter's Island Conservation Lands' (record 570, ~3 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-6191 | Pictou Island South Lighthouse National Heritage Site | R-G7 step 2 | CPCAD / Parks Canada: 'Scallop Buffer Zone (SFA 24)' (record 21926, ~509,393 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6375 | Louisbourg Lighthouse (The Tower) Historic Site | R-G7 step 2 | NS-NHS Nova : 'Fortress of Louisbourg' (record 4, ~14,420 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-6483 | Roxbury Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 8802, ~16 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6553 | Portobello Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 10434, ~4 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6559 | Hirtles Beach Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 12370, ~11 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6560 | Kingsburg Beach Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 12801, ~1 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6565 | Bulls Head Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 13895, ~5 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6567 | Roseway Beach Provincial Park | R-G7 step 2 | CPCAD / Parks Canada: 'Bowers Meadows Wilderness Area' (record 1495, ~108 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6570 | Mahoney Beach Provincial Park | R-G7 step 2 | Nova Scotia ~1: '' (record 1005, ~20 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0752 | Cameron Falls Trail Territorial Park | R-G7 step 2 | NT GNWT Envi: 'Hidden Lake Territorial Park' (record 40304, ~6,854 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5477 | Kittigazuit Archaeological Sites National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Tarium Niryutait Marine Protected Area' (record 21896, ~112,996 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0831 | Inuujarvik Territorial Park | R-G7 step 2 | NU-TP Crown-: 'Inuujaarvik Territorial Park' (record 648, ~2 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-0063 | Niagara Escarpment Biosphere Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Limehouse Conservation Area' (record 17049, ~164 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0195 | Morning Glory Provincial Nature Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Duclos Point Provincial Park (Nature Reserve Class)' (record 16436, ~257 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0234 | Ipperwash Dunes & Swales Nature Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Privately Protected Area (NCC 141947)' (record 5992, ~42 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1300 | Barron Canyon Conservation Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Algonquin Provincial Park (Natural Environment Class)' (record 16243, ~634,979 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1305 | Bat Cave Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Cavern Lake Provincial Park (Nature Reserve Class)' (record 16396, ~433 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1312 | Beverly Swamp Conservation Area | R-G7 step 2 | CPCAD / Parks Canada: 'Beverley Swamp Natural Area' (record 16998, ~1,687 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1340 | Cape Henrietta-Maria Conservation Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Polar Bear Provincial Park' (record 16422, ~5,651,279 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1349 | Remic Rapids and Bate Island Conservation Park | R-G7 step 2 | CPCAD / Parks Canada: 'Champlain Bridge And Lemieux Islands' (record 22410, ~2 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1394 | Fairy Point Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Missinaibi Provincial Park (Waterway Class)' (record 16387, ~282,828 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1408 | Ganley Harbour Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Lake Superior Highlands Conservation Reserve' (record 17732, ~131,732 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1439 | Hilliardton Marsh Conservation Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Blanche River Conservation Reserve' (record 15890, ~13,619 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1467 | Kishkebus Lake Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Bon Echo Provincial Park (Natural Environment Class)' (record 16510, ~20,378 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1559 | Old Brunswick House Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Missinaibi Provincial Park (Waterway Class)' (record 16387, ~282,828 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1566 | Outer Barn Island Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Lake Nipigon Conservation Reserve' (record 15937, ~424,654 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1599 | South Point Trail (Rondeau) Provincial Park | R-G7 step 2 | CPCAD / Parks Canada: 'Rondeau Provincial Park (Natural Environment Class)' (record 16468, ~8,047 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1651 | Summit Muskeg Preserve Conservation Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Dundas Valley Conservation Area' (record 16999, ~2,914 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1707 | Whitefish Falls Wilderness Area | R-G7 step 2 | CPCAD / Parks Canada: 'Missinaibi Provincial Park (Waterway Class)' (record 16387, ~282,828 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4857 | Beausoleil Island National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Georgian Bay Islands National Park Of Canada' (record 21992, ~3,010 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5099 | Forested Dunes Nature Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Privately Protected Area (NCC 140618)' (record 5736, ~143 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5118 | Selwyn Beach Conservation Reserve | R-G7 step 2 | ON-ORCA Oton: '' (record 12, ~76 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5352 | Backus Woods Forest Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Privately Protected Area (NCC 141091)' (record 5936, ~332 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5364 | Griffin House National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Dundas Valley Conservation Area' (record 16999, ~2,914 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5507 | Fort Norfolk National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Turkey Point Provincial Park (Recreational Class)' (record 16483, ~720 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5557 | East Duffins Headwaters Conservation Area | R-G7 step 2 | CPCAD / Parks Canada: 'Glen Major Forest' (record 17364, ~850 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5636 | Hazel Bird Nature Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Privately Protected Area (NCC 141284)' (record 5966, ~99 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5646 | Ganaraska Millennium Conservation Area | R-G7 step 2 | ON-GANA Gana: 'Conservation Area' (record None, ~47 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5981 | Allen Park Conservation Area | R-G7 step 2 | ON-SVCA Grey: 'Allan Park Management Unit' (record 814, ~269 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6181 | Cedar Island Cathcart Tower National Heritage Site | R-G7 step 2 | CPCAD / Parks Canada: 'Thousand Islands National Park Of Canada' (record 22041, ~5,635 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6199 | Smiths Falls Bascule Bridge National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Rideau Canal National Historic Site' (record 22063, ~51,227 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6514 | Battle of Crysler's Farm National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Upper Canada Migratory Bird Sanctuary' (record 22313, ~6,451 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6617 | H. R. Frink Conservation Area | R-G7 step 2 | CPCAD / Parks Canada: 'H.R. Frink Conservation Area' (record 17102, ~499 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-6619 | Depot Lakes Conservation Area | R-G7 step 2 | CPCAD / Parks Canada: 'Depot Lakes Conservation Area South Conservation Reserve' (record 17153, ~1,177 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-0856 | Mark Arendz Provincial Park | R-G7 step 2 | PE-PP Govern: 'BROOKVALE' (record 13, ~55 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0862 | Jacques Cartier Provincial Park | R-G7 step 2 | PE-PP Govern: 'PARK' (record 27, ~16 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0863 | Kings Castle Provincial Park | R-G7 step 2 | PE-PP Govern: 'PARK' (record 28, ~11 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0865 | Linkletter Provincial Park | R-G7 step 2 | PE-PP Govern: 'PARK' (record 19, ~32 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0869 | Northumberland Provincial Park | R-G7 step 2 | PE-PP Govern: 'PROV PARK' (record 14, ~82 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0874 | Red Point Provincial Park | R-G7 step 2 | PE-PP Govern: 'PROV' (record 15, ~81 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0880 | Wood Islands Provincial Park | R-G7 step 2 | PE-PP Govern: 'PROV PARK' (record 22, ~34 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6594 | Pinette Provincial Park | R-G7 step 2 | PE-PP Govern: 'PARK' (record 32, ~18 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0511 | Mount Royal Regional Park | R-G7 step 2 | Québec prote: '' (record 57, ~488 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-0960 | Morgan Arboretum Forest Reserve | R-G7 step 2 | CPCAD / Parks Canada: 'Senneville Bird Sanctuary' (record 22291, ~1,352 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-0985 | Parc écologique Jean-Paul-Forand du Mont-Shefford Ecological Reserve | R-G7 step 2 | Québec prote: '' (record 3647, ~287 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1005 | Parc régional de la Forêt Ouareau Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional de la Forêt Ouareau' (record None, ~39,238 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1006 | Parc régional Montagne du Diable Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional de la Montagne du Diable' (record None, ~23,928 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1011 | Parc régional du Massif du Sud Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional du Massif du Sud' (record None, ~27,980 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1012 | Parc régional du Mont-Ham Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional du Mont-Ham' (record None, ~4,920 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-1922 | Banc-des-AmÃ©ricains Marine Nature Reserve | R-G7 step 2 | Québec prote: '' (record 4832, ~244,846 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4963 | Parc regional de la Chute-a-Bull Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional de la Chute-à-Bull' (record None, ~454 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4966 | Parc regional de la Seigneurie-du-Lac-Matapedia Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional de la Seigneurie du Lac Matapédia' (record None, ~41,900 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4972 | Parc regional Kiamika Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional du réservoir Kiamika' (record None, ~33,980 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4999 | Archipel des Sept Iles Regional Park | R-G7 step 2 | Québec prote: '' (record 5512, ~16,278 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5044 | Parc ecoforestier de Johnville Regional Park | R-G7 step 2 | Québec prote: '' (record 622, ~421 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5051 | Parc du Marecage-des-Scots Regional Park | R-G7 step 2 | Québec Parc ~3: 'Parc régional du Marécage des Scots' (record None, ~8,115 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5052 | Parc Nature de Pointe-aux-Outardes Regional Park | R-G7 step 2 | Québec prote: '' (record 5534, ~235 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5054 | Foret Montmorency Regional Park | R-G7 step 2 | Québec Réser: 'Réserve faunique des Laurentides' (record None, ~1,930,983 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-1156 | Thomas Lake Regional Park | R-G7 step 2 | Saskatchewan~6: 'Thomson Lake Regional Park' (record 91, ~447 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2560 | Battle Creek Recreation Site | R-G7 step 2 | SK-PT Govern: 'FORT WALSH NATIONAL HISTORIC PARK' (record 113, ~1,616 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2720 | Little Armit River Recreation Site | R-G7 step 2 | SK-ALL Gover: 'Armit River Recreation Site' (record 3246, ~124 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2727 | Lower Armit River Recreation Site | R-G7 step 2 | SK-ALL Gover: 'Armit River Recreation Site' (record 3246, ~124 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2775 | Nisbet Trails Recreation Site | R-G7 step 2 | CPCAD / Parks Canada: 'Nisbet South' (record 18231, ~19,845 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2779 | North Armit River Recreation Site | R-G7 step 2 | SK-ALL Gover: 'Armit River Recreation Site' (record 3246, ~124 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2793 | Patterson Lake Recreation Site | R-G7 step 2 | CPCAD / Parks Canada: 'Misaw Lake Special Management Area' (record 18242, ~583,030 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2857 | Statue of Queen Elizabeth II riding Burmese Regional Park Recreation Site | R-G7 step 2 | CPCAD / Parks Canada: 'Wascana' (record 18195, ~2,668 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-2897 | Wascana Trails Recreation Site | R-G7 step 2 | SK-ALL Gover: 'Wascana Valley Natural Area Recreation Site' (record 3392, ~306 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-2912 | Willow Bunch Recreation Site | R-G7 step 2 | Saskatchewan~6: 'Jean Louis Legare Regional Park' (record 36, ~249 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4926 | Batoche National Historic Site | R-G7 step 2 | SK-PT Govern: 'BATOCHE NATIONAL HISTORIC PARK' (record 39, ~749 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-4928 | Cypress Hills Massacre National Historic Site | R-G7 step 2 | SK-PT Govern: 'FORT WALSH NATIONAL HISTORIC PARK' (record 113, ~1,616 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-4933 | Fort Walsh National Historic Site | R-G7 step 2 | SK-PT Govern: 'FORT WALSH NATIONAL HISTORIC PARK' (record 113, ~1,616 ac, pin inside) | candidate: name match | 2026-10-30 | gis-hunter |
+| CA-5139 | Saskatchewan Legislative Building and Grounds National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Wascana' (record 18195, ~2,668 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6061 | Forestry Farm Park and Zoo National Historic Site | R-G7 step 2 | CPCAD / Parks Canada: 'Sutherland Migratory Bird Sanctuary' (record 22308, ~297 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-5737 | Big Creek Recreation Park | R-G7 step 2 | Yukon campgr: '' (record 18, ~4 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6259 | Dezadeash Lake Campground Territorial Park | R-G7 step 2 | Yukon parks : 'Kluane' (record 22, ~5,408,636 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6263 | Tarfu Lake Campground Recreation Site | R-G7 step 2 | Yukon parks : 'Agay Mene' (record 25, ~177,339 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6265 | Tagish Bridge Recreation Site | R-G7 step 2 | Yukon campgr: '' (record 14, ~0 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6268 | Snafu Lake Campground Recreation Site | R-G7 step 2 | Yukon parks : 'Agay Mene' (record 25, ~177,339 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6275 | Moose Creek Campground Recreation Site | R-G7 step 2 | Yukon campgr: '' (record 8, ~243 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6276 | Million Dollar Falls Campground Territorial Park | R-G7 step 2 | Yukon parks : 'Kluane' (record 23, ~835,553 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+| CA-6282 | Kathleen Lake Campground and Rec. Site National Park | R-G7 step 2 | Yukon parks : 'Kluane' (record 22, ~5,408,636 ac, pin inside) | candidate: name mismatch | 2026-10-30 | gis-hunter |
+(138 candidate rows. Note for chat 11: 'name match' can be ONE shared word, e.g. Castle Falls Natural Area vs Alberta's 'Castle' record of 62,396 ac: check the size too.)
+
 
 ## RULES + LAYERS TO START (Fable, Oct 29 7:05 PM)
 Rule Sheet G applies unchanged; Canada reading rules R-GC1..R-GC8 and the starter layer list (✓ wired / ◯ to probe) are in notes/mapping.md under 'RULE SHEET G, CANADA'. Order: layer probing + wiring now (prep); R-G7 hand tracing after the US book is through the Opus + Fable passes (Brandon 5:28 PM).
@@ -950,6 +1094,7 @@ Rule Sheet G applies unchanged; Canada reading rules R-GC1..R-GC8 and the starte
 | federal | Parks Canada org services root (services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services) | https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services | n/a | n/a | to probe: a FOLDER root gave no layer list; need the exact service URLs | NHS 392 (Parks Canada places are points) | 9 | Oct 29 |
 | YT | GeoYukon folder root | https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon | n/a | n/a | to probe: root gave no layers; GY_ParksProtectedAreas layers 0 / 3 already in the key | YT recreation sites 26 + recreation parks 16 + historic sites 12 | 9 | Oct 29 |
 | NT | GNWT folder root | https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT | n/a | n/a | to probe: root gave no layers (Environment_LCC/MapServer/195 already in the key) | NT 47 nothing-near | 9 | Oct 29 |
+| all | GIS hunter step A, Oct 30: every Canada key layer (data/ca-key/layers.json) + CPCAD + Parks Canada, one multipoint query per 120 pins | (see data/gis-hunter/CA-XX.json) | layer's name field | as in the key | probed OK (used) | 13 provinces / 1,711 open parks: 138 candidates | 10 | Oct 30 |
 (the 15 layers already in the key are listed in notes/mapping.md 'CANADA MAP LAYERS TO START' (✓); add a row here when you touch one)
 
 ## WHY-NOT TAGS (R-G10 / R-GC8; chat 2 fills from data/ca-key/why-not.json after the Canada Rule G rebuild)
