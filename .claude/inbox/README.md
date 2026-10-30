@@ -31,6 +31,7 @@ NEVER write look-up files in KPC-Links again (the old .claude/lookup path is gon
 3. Commit + `git push origin HEAD:lookup` (only that file). Each request runs on its own job (6 at once). No inbox line any more: when you read your inbox, `git pull` the branch and look in `answers/<same name>.json` (+ `-1.jpg` pictures).
 4. Done reading? Push an empty `read/<same name without .json>`: the answer, pictures and request are deleted. Unread answers go after 7 days.
 5. Same manners as every bot (robots.txt; ArcGIS REST + the two keyed /api paths only; slow per host; never red). Don't re-push a request to retry: new id.
+5b. A request whose URL(s) + kind were answered in the last 7 days gets that answer again ('reused': no new fetch); add "fresh": true to force a new read.
 6. PICTURE MAPS (house rule Oct 29 11:10 PM): found an official PDF / picture map for a park with NO GIS outline? File kind `save-map`: `{"chat": 3, "kind": "save-map", "ref": "US-9652", "name": "Grenada State Wildlife Area", "agency": "CPW", "url": "<the PDF / picture, or the park page that links it>", "pages": 1, "hint": "granada"}`. It lands small on KPC-Data's branch `picture-maps` (maps/<ref>_<name>.jpg + index.json) and is deleted once the park gets an official outline. Never trace from it.
 
 ## WAITING ROOM MORNING LIST (Oct 30)

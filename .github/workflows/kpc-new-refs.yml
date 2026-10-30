@@ -40,6 +40,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .github/scripts/kpc_new_fable_rows.py || true   # Oct 30 (HQ 7:40 AM (b)): a new US / CA park with no outline gets its Fable-book row
+          git add .claude/build/research/fable 2>/dev/null || true
           git add data/new-refs kpc-new-refs.json kpc-announcements.json locations.json locations-ky.json
           git add data/retired-refs.json 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
