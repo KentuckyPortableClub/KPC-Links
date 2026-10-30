@@ -1086,15 +1086,13 @@
    "why": "Oct 18 review: same place, official name written differently"
   },
   "US-10464": {
-   "alias": [
-    "Chena River State Recreation Site"
-   ],
    "no": [
     "sgake122",
-    "sgakf122"
+    "sgakf122",
+    "sgaka122"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 9:30 PM: the park's own website name 'Chena River State Recreation Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Chena River State Recreation Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Chena River State Recreation Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-10-30",
+   "why": "Oct 29 9:30 PM: the park's own website name 'Chena River State Recreation Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Chena River State Recreation Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Chena River State Recreation Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): joined to a different site (Chena River SRS); pin"
   },
   "US-10476": {
    "no": [
@@ -3794,17 +3792,14 @@
    "why": "Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-12841": {
-   "fp": {
-    "rst12757": [
-     "Fawn Creek Campground",
-     3
-    ]
-   },
-   "join": [
+   "when": "2026-10-30",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Fawn Creek Campground' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Fawn Creek Campground' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): a 3-acre campground, not the recreation area; pin",
+   "no": [
+    "rma11245",
+    "rst11245",
+    "sgakg11245",
     "rst12757"
-   ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Fawn Creek Campground' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Fawn Creek Campground' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   ]
   },
   "US-12843": {
    "approx": true,
@@ -6579,17 +6574,11 @@
    "why": "Oct 18 review: same place, official name written differently"
   },
   "US-4383": {
-   "fp": {
-    "2920": [
-     "Siskiyou National Forest",
-     1058444
-    ]
-   },
-   "join": [
+   "when": "2026-10-30",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin · 2026-10-29 23:15: key-pieces row YES 'Siskiyou National Forest' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): only the old Siskiyou NF (~60% of the forest); pin",
+   "no": [
     "2920"
-   ],
-   "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin · 2026-10-29 23:15: key-pieces row YES 'Siskiyou National Forest' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers)"
+   ]
   },
   "US-4390": {
    "alias": [
@@ -6916,17 +6905,11 @@
    "why": "Oct 25 round 5 hand check (outside research bot)"
   },
   "US-5484": {
-   "fp": {
-    "57173": [
-     "George Washington",
-     0
-    ]
-   },
-   "join": [
+   "when": "2026-10-30",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'George Washington' = YES (chat 11, rechecked by chat 2) · Oct 29 7:35 PM chat 11: held R-G8 piece YES · 2026-10-29 23:15: key-pieces row YES 'George Washington' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): 0-acre piece, pin well outside; pin",
+   "no": [
     "57173"
-   ],
-   "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'George Washington' = YES (chat 11, rechecked by chat 2) · Oct 29 7:35 PM chat 11: held R-G8 piece YES · 2026-10-29 23:15: key-pieces row YES 'George Washington' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers)"
+   ]
   },
   "US-5530": {
    "join": [
@@ -10924,6 +10907,13 @@
    ],
    "when": "2026-10-18",
    "why": "Oct 18 review: same place, official name written differently"
+  },
+  "US-13181": {
+   "no": [
+    "sgakh1214"
+   ],
+   "why": "Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): name only; could be the separate Pine Forest Wilderness; pin",
+   "when": "2026-10-30"
   }
  }
 }
