@@ -4081,17 +4081,8 @@
   },
   "US-9753": {
    "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1:50 PM: rule G-1 held piece 'Rock Island Trail' = YES (chat 11, rechecked by chat 2)",
-   "when": "2026-10-29",
-   "join": [
-    "sgmoa1631"
-   ],
-   "fp": {
-    "sgmoa1631": [
-     "Rock Island Trail",
-     172
-    ]
-   }
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1:50 PM: rule G-1 held piece 'Rock Island Trail' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin",
+   "when": "2026-10-29"
   },
   "US-10297": {
    "join": [
@@ -7450,52 +7441,24 @@
   },
   "US-4383": {
    "join": [
-    "2919",
     "2920"
    ],
    "fp": {
-    "2919": [
-     "Siskiyou National Forest",
-     31543
-    ],
     "2920": [
      "Siskiyou National Forest",
      1058444
     ]
    },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Siskiyou National Forest' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-3656": {
-   "join": [
-    "fnl2768",
-    "sgfla102"
-   ],
-   "fp": {
-    "fnl2768": [
-     "South Fork State Park",
-     1129
-    ],
-    "sgfla102": [
-     "South Fork State Park",
-     1129
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'South Fork State Park' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-7456": {
-   "join": [
-    "195096"
-   ],
-   "fp": {
-    "195096": [
-     "Dahlonega Museum Historic Site",
-     1
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Dahlonega Museum Historic Site' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Dahlonega Museum Historic Site' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-0450": {
    "join": [
@@ -7614,35 +7577,12 @@
    "why": "Oct 29 1:50 PM: rule G-1 held piece 'Candy Abshier WMA' = YES (chat 11, rechecked by chat 2)"
   },
   "US-11092": {
-   "join": [
-    "sgutb151"
-   ],
-   "fp": {
-    "sgutb151": [
-     "Midway Hatchery",
-     0
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Midway Hatchery' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Midway Hatchery' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-12145": {
-   "join": [
-    "rma10016",
-    "rst10016"
-   ],
-   "fp": {
-    "rma10016": [
-     "Docs Beach Staging Area",
-     4
-    ],
-    "rst10016": [
-     "Docs Beach Staging Area",
-     4
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Docs Beach Staging Area' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-3064": {
    "join": [
@@ -7689,22 +7629,8 @@
    "why": "Oct 29 1:50 PM: rule G-1 held piece 'Jackson House' = YES (chat 11, rechecked by chat 2)"
   },
   "US-12830": {
-   "join": [
-    "271501",
-    "sgwaa128"
-   ],
-   "fp": {
-    "271501": [
-     "Old Ruby",
-     7
-    ],
-    "sgwaa128": [
-     "Old Ruby",
-     7
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Old Ruby' = YES (chat 11, rechecked by chat 2) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-6861": {
    "no": [
@@ -7715,17 +7641,8 @@
    "why": "Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page) · Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page)"
   },
   "US-7565": {
-   "join": [
-    "sgtni131"
-   ],
-   "fp": {
-    "sgtni131": [
-     "Woods Reservoir Refuge",
-     810
-    ]
-   },
    "when": "2026-10-29",
-   "why": "Oct 29 3:05 PM: held piece 'Woods Reservoir Refuge' = YES (chat 11 agency page, chat 2 recheck)"
+   "why": "Oct 29 3:05 PM: held piece 'Woods Reservoir Refuge' = YES (chat 11 agency page, chat 2 recheck) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
   },
   "US-12068": {
    "no": [
@@ -7939,21 +7856,7 @@
    "when": "2026-10-29"
   },
   "US-10237": {
-   "join": [
-    "200897",
-    "200896"
-   ],
-   "fp": {
-    "200897": [
-     "Mongoquinong Nature Preserve Sawmill Fen",
-     38
-    ],
-    "200896": [
-     "Mongoquinong Nature Preserve Buckbean Fen",
-     37
-    ]
-   },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Sawmill Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Buckbean Fen' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Sawmill Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Buckbean Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin",
    "when": "2026-10-29"
   },
   "US-6978": {
@@ -8423,21 +8326,7 @@
    "when": "2026-10-29"
   },
   "US-10055": {
-   "join": [
-    "rma11016",
-    "rst11016"
-   ],
-   "fp": {
-    "rma11016": [
-     "Cline Buttes OHV Area - Play Area",
-     62
-    ],
-    "rst11016": [
-     "Cline Buttes OHV Area - Play Area",
-     62
-    ]
-   },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Cline Buttes OHV Area - Play Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin",
    "when": "2026-10-29"
   },
   "US-10496": {
@@ -8490,21 +8379,7 @@
    "when": "2026-10-29"
   },
   "US-12837": {
-   "join": [
-    "rma11252",
-    "rst11252"
-   ],
-   "fp": {
-    "rma11252": [
-     "East Shore Campground",
-     2
-    ],
-    "rst11252": [
-     "East Shore Campground",
-     2
-    ]
-   },
-   "why": "Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size)",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'East Shore Campground' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin",
    "when": "2026-10-29"
   },
   "US-12841": {

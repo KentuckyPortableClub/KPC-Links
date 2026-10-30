@@ -915,8 +915,13 @@ def run(st):
                                  and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):   # Oct 25: an id in 'no' is never re-added by a same-name join
-                        m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
+                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)):   # Oct 25: an id in 'no' is never re-added by a same-name join
+                        _how = 'reviewed-approx' if ov.get('approx') else 'reviewed'
+                        _was = next((x for x in m if str(x[0]) == _oid(a)), None)
+                        # Oct 29 8:25 PM (release check): a piece the name test had ALREADY joined kept its plain 'name'/'words'
+                        # tag, so Rule G (G-1 / R-G8) still held it although a person said YES. A hand join now marks it reviewed.
+                        if _was is not None: _was[3] = _how
+                        else: m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _how])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
         # Oct 29 (chat 8's name-mismatch list, Brandon 'help the boundaries'): 'alias' = another name the official layer uses for this
         # park. An alias joins ONLY with the sure-match test: same name as the alias AND the POTA pin inside that record's outline
         # 'alias_all' = a name PREFIX for a park the layer splits into units (Whitewater WMA: Main Branch Unit, …): when one of
