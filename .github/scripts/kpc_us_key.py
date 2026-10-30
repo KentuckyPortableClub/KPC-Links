@@ -110,7 +110,9 @@ KINDS = [('wma', r'wildlife management area|\bwma\b|\bswa\b|wildlife area|game l
          ('nps', r'national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway)'),
          ('wild', r'wilderness(?! study)'), ('wsa', r'wilderness study area|\bwsa\b'),
          ('hma', r'herd (management )?area|\bhma\b'),
-         ('rma', r'recreation management area|\bs?rma\b|\berma\b|campground|recreation site|day use area')]
+         ('rma', r'recreation management area|\bs?rma\b|\berma\b|campground|recreation site|day use area'),
+         # Oct 29 9:15 PM (HQ recon, R-G8 kind of place): an airstrip is never a trailhead (US-13523 Kingston Airport vs 'Kingston Trailhead')
+         ('air', r'airport|airstrip|air ?field|landing strip'), ('trh', r'trail ?head')]
 def kinds(s):
     s = str(s or '').lower(); return {k for k, r in KINDS if re.search(r, s)}
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
@@ -215,7 +217,7 @@ def _same(a, b):
     return len(s) > 5 and l.startswith(s) and l[len(s):len(s) + 1] == ' ' and len(s) / len(l) >= 0.6   # whole words only (World War I is not World War II)
 
 
-US_COMPAT = [{'wild', 'wsa'}, {'ca', 'snp'}]   # POTA lists many BLM study areas as 'BLM Wilderness Area'
+US_COMPAT = [{'wild', 'wsa'}, {'ca', 'snp'}, {'rma', 'trh'}]   # POTA lists many BLM study areas as 'BLM Wilderness Area'
 def same_kind(ka, kb): return not ka or not kb or bool(ka & kb) or any(ka & c and kb & c and (ka | kb) & c == c for c in US_COMPAT)
 
 
