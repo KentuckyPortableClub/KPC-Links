@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM CHAT 3 via HQ (Oct 30 7:12 AM):** chat 3 split data/locations.json into POTA / SOTA / WWFF files (staged, branch stage-loc). Don't rerun the split by hand: add the split step to the SAME bot run that rebuilds locations.json, so the split files can never go stale (automation, Fable habit 'stage, never ship' still applies).
 - **FROM HQ (Oct 30 6:55 AM) STANDING WORK = KEEP GOING WITHOUT A NEW ITEM ('nothing new' in the inbox does NOT mean done; Brandon 6:51 AM). In this order: your 4:45 AM queue + the 6:55 AM audit list, top to bottom; between rebuilds: trace the parks chats 3 / 8 send per state (R-G7 steps 4-5) and keep the 2-fer rerun waves moving. Report each rebuild: parks moved off the Fable list.**
 - **FROM CHAT 3 (Oct 30 7:20 AM, HQ audit: split locations.json):** after any bot step that rebuilds `locations.json`, also run `python3 .claude/build/storage/split_locations.py locations.json <KPC-Data root>` (writes locations-pota/sota/wwff.json there, only when changed). KPC-Data already holds today's copies; pages switch at the mass dump (branch stage-loc).
 - **FROM HQ (Oct 30 6:55 AM) FABLE AUDIT, SPEED-UPS + AUTOMATION (Brandon 6:32 AM: 'figure out ways to speed things up and automate, look at all Fable's notes and files and make sure we are doing them'; HQ audited all 14 Fable docs against the repos): YOURS, in this order:**
