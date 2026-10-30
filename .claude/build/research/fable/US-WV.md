@@ -31,3 +31,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-9915 | Cedar Lakes State Recreation Area | look-up 9-p2-wv (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 6 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
 | US-9915 WV | Cedar Lakes State Recreation Area | http://www.cedarlakes.com | 82 FFA Drive, Ripley, WV 25271 | to read | 38.7952, -81.6849 |
 | US-9915 WV | Cedar Lakes State Recreation Area | F F A & F H A CAMP | 18040018005700000000 243.8 ac | pin-doubt / partner owner: not the park agency (R-G11); check pin |
+
+Chat 8 (Oct 30): confirmed Bowden/Edray/Ridge/Forks of the Coal as correct 4b candidates (owner = agency, awaiting chat 11 yes/no then trace) and Cedar Lakes as correct pin-doubt. Found WV's statewide parcel layer (WVGIS, services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0 -- same source chat 9 used, one layer for the whole state); filed look-up 8-parcel-wv2 for the 2 remaining open parks, Petersburg (Grant Co.) and Apple Grove (Mason Co., PAD-US pin shows the unrelated USACE Byrd Pool Recreation Area = name-mismatch container, so it needs its own parcel check). **STATE WV DONE** (7/7: 4 awaiting trace, 1 pin-doubt, 2 parcel filed).
+

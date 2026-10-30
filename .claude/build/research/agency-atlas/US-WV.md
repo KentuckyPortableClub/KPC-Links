@@ -19,7 +19,7 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 - (add)
 
 ## Parcel / ownership maps (statewide or by county)
-- (add)
+- Chat 8 (Oct 30): **statewide, one layer** (WVGIS, the state university GIS consortium runs it for the whole state, no county split needed): WV_Parcels, https://services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer/0. 20-digit parcel ids (e.g. 42020107001600000000). Same source chat 9 used for the Bowden/Edray/Ridge/Forks of the Coal owner checks.
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
