@@ -183,20 +183,34 @@ jobs:
           line = (f"- FROM THE KEY BOT ({time.strftime('%b %d %H:%M UTC')}): a new US key build is ready for your check: +{g} outlined / -{l} lost / "
                   f"{ch} pieces changed vs the live key (states: {' '.join(sts[:20])}{' …' if len(sts) > 20 else ''}). The 30-park sample is in KPC-Data "
                   "data/waiting/preview/us-key-changes.json after the next copy (01:41 / 10:41 UTC). Write a fresh KEY YES / KEY NO item in data/waiting/approved.json.")
-          p = '.claude/inbox/chat-11.md'; s = open(p).read()
-          s = s.replace('## OPEN', '## OPEN\n' + line, 1); open(p, 'w').write(s)
+          open('/tmp/botc-line.txt', 'w').write(line)   # Oct 30: written to chat 11's inbox AFTER the key is saved (an inbox edit conflict lost two saves)
           print('::notice title=BOT C::' + line[:200])
           PY
           rm -rf live
       - name: Save
         if: always()
         run: |
+          # Oct 30 (chat 2): two runs' keys were LOST: 'git pull --rebase' hit a conflict in chat 11's inbox (other chats edit it all day),
+          # all 4 tries failed and the step still ended green. Now: the key alone first (a failed rebase is aborted and retried, and a
+          # save that never lands goes red = a real issue), then the BOT C line on a fresh copy of the inbox.
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/us-key 2>/dev/null || true
-          git add .claude/inbox/chat-11.md 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           if ! git diff --cached --quiet; then
-            git commit -m 'US answer key'
-            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+            git commit -qm 'US answer key'
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              if git pull -q --rebase --autostash && git push -q; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true; sleep $((i*9))
+            done
+            if [ "$ok" != 1 ]; then echo "::error title=US key save::the new key could NOT be saved after 6 tries"; exit 1; fi
+          fi
+          if [ -s /tmp/botc-line.txt ]; then
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              python3 -c "p='.claude/inbox/chat-11.md'; s=open(p).read(); l=open('/tmp/botc-line.txt').read(); open(p,'w').write(s.replace('## OPEN','## OPEN\n'+l,1))"
+              git commit -qam 'BOT C: key check line for chat 11' && git push -q && break
+              sleep $((i*7))
+            done || true
           fi
