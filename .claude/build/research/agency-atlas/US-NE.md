@@ -20,7 +20,7 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 - (add)
 
 ## Parcel / ownership maps (statewide or by county)
-- (add)
+- **Statewide parcels (GISCAT)** · https://giscat.ne.gov/enterprise/rest/services/StatewideParcelsExternal/MapServer/0 -- no owner-name field; has Ownership_Type, Property_Parcel_Type, Classification_Code, Parcel_URL (likely links to the county assessor's own page with the owner name). My own point query through WebFetch returned the empty form page, not a result; hand parcel look-ups on this layer to the look-up bot. (chat 8, Oct 30)
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
