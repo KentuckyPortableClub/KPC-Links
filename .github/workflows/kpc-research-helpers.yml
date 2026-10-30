@@ -10,13 +10,15 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'packets | atlas | both | solve | inbox | links | daily | weekly'
+        description: 'packets | atlas | both | solve | inbox | links | storage | daily | weekly'
         default: 'both'
       areas:
         description: 'Areas to do (e.g. "US-DE"); blank = all'
         default: ''
 permissions:
   contents: write
+  actions: write
+  pull-requests: read
 concurrency:
   group: kpc-research-helpers
   cancel-in-progress: false
@@ -53,6 +55,12 @@ jobs:
           case "$M" in weekly|atlas|both) timeout 90m python3 $R atlas ${{ inputs.areas }} || true ;; esac
           case "$M" in weekly|links) timeout 250m python3 $R links || true ;; esac
           case "$M" in inbox) python3 $R inbox ${{ inputs.areas }} || true ;; esac
+          case "$M" in weekly|storage)   # Oct 30 (HQ 8:50 AM): the storage keeper's KPC-Links half: clean this repo + a warning line for HQ
+            K=kpcdata/.github/scripts/kpc_storage_keeper.py
+            GH_TOKEN=${{ github.token }} REPO=${{ github.repository }} python3 $K clean || true
+            GH_TOKEN=${{ github.token }} REPO=${{ github.repository }} HIST=/tmp/storage.json python3 $K measure > /tmp/m.txt || true
+            LINE="$(grep '^LINE=' /tmp/m.txt | cut -d= -f2-)" python3 $K warn || true ;;
+          esac
       - name: Save, notes only
         continue-on-error: true
         run: |
