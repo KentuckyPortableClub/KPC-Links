@@ -18,5 +18,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "All 4 open parks resolved: US-7529 Beckley Iron Furnace SP (real name is Beckley Furnace Industrial Monument, T-1 match, trace candidate) and US-6875 The Preserve (T-1 match to Preserve State Forest, DEEP-owned not land-trust, trace candidate) handed to chat 2; US-7542 Satan's Kingdom SRA and US-6860 Ferry Landing SP confirmed no-layer, stay pins."
+  },
+  "US-SC": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "All 4 open parks resolved: May Forest/Pine Island/Black River SP confirmed no-layer (too new to be mapped yet, stay pins); Wild Turkey WMA confirmed no-layer (no REST service found for SCDNR's managed-lands viewer), stays a pin."
   }
 }

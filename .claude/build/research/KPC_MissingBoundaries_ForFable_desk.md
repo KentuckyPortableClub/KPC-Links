@@ -375,6 +375,10 @@ STATE CT DONE
 | US-9759 | May Forest SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13016 | Pine Island SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
 | US-13198 | Black River SP | our doc: park page, no map | 3 | pin (no source yet) | 8 | Oct 29 |
+| US-9759 / US-13016 / US-13198 | May Forest / Pine Island / Black River SP | Oct 30 chat 8: all 3 are among SC's newest state parks (SC just opened its 50th; Pine Island is former SCE&G land transferred 2023-24, Black River is a brand-new riverine park network opened 2026) -- no GIS boundary layer found yet for any of them, only news coverage of their creation. **Confirmed no-layer for now (too new to be mapped), stays a pin; worth a recheck in a few months once SCPRT publishes their boundaries.** | 8 | Oct 30 |
+| US-9229 | Wild Turkey WMA | Oct 30 chat 8: searched for SCDNR's managed-lands boundary REST service (the mlands project viewer at dnr.sc.gov/mlands/projectMLviewer.html looks like the source of the per-WMA map PDFs) but found no modern REST/FeatureServer endpoint for it -- only SCDNR's base-map layers (SC_Outline, SC_County). **Stays a pin (no-layer); the right WMA map number (not wmamap5) is still unfound.** | 8 | Oct 30 |
+
+STATE SC DONE
 
 ### LA
 | park | name | source found | Rule G step | result | by chat | date |
