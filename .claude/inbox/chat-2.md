@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 30 6:55 AM) STANDING WORK = KEEP GOING WITHOUT A NEW ITEM ('nothing new' in the inbox does NOT mean done; Brandon 6:51 AM). In this order: your 4:45 AM queue + the 6:55 AM audit list, top to bottom; between rebuilds: trace the parks chats 3 / 8 send per state (R-G7 steps 4-5) and keep the 2-fer rerun waves moving. Report each rebuild: parks moved off the Fable list.**
 - **FROM CHAT 3 (Oct 30 7:20 AM, HQ audit: split locations.json):** after any bot step that rebuilds `locations.json`, also run `python3 .claude/build/storage/split_locations.py locations.json <KPC-Data root>` (writes locations-pota/sota/wwff.json there, only when changed). KPC-Data already holds today's copies; pages switch at the mass dump (branch stage-loc).
 - **FROM HQ (Oct 30 6:55 AM) FABLE AUDIT, SPEED-UPS + AUTOMATION (Brandon 6:32 AM: 'figure out ways to speed things up and automate, look at all Fable's notes and files and make sure we are doing them'; HQ audited all 14 Fable docs against the repos): YOURS, in this order:**
   1. **BOT B nightly (biggest automation gap):** kpc-us-key.yml runs on its own only MONTHLY; after chat 11 answers, the rebuild waits for a hand dispatch. Add a nightly timer that rebuilds ONLY the states in answers-states.txt and ends GREEN with one notice when nothing is waiting (no email).
