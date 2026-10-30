@@ -71,8 +71,11 @@ page = f"""<title>New Park Key Preview</title>
 @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{ --bg:#141a17; --paper:#1c2420; --ink:#e3ebe6; --muted:#9aaba2; --line:#2e3a34; --new:#5fc79f; --newfill:rgba(95,199,159,.18); --old:#e08a63; --pin:#e3ebe6; color-scheme:dark }} }}
 :root[data-theme="dark"] {{ --bg:#141a17; --paper:#1c2420; --ink:#e3ebe6; --muted:#9aaba2; --line:#2e3a34; --new:#5fc79f; --newfill:rgba(95,199,159,.18); --old:#e08a63; --pin:#e3ebe6; color-scheme:dark }}
 body {{ background:var(--bg); color:var(--ink); font:15px/1.5 var(--f-body); padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); padding-block:28px 48px }}
-main {{ max-width:1120px; margin:0 auto; display:grid; gap:28px }}
-h1 {{ font:700 2.4rem/1.05 var(--f-display); letter-spacing:.01em; margin:0; text-wrap:balance }}
+main {{ max-width:1120px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr); gap:28px }}
+main > * {{ min-width:0 }}
+.ledger {{ overflow-x:auto; max-width:100% }}
+.ledger table {{ min-width:520px }}
+h1 {{ font:700 clamp(1.8rem,7vw,2.4rem)/1.05 var(--f-display); letter-spacing:.01em; margin:0; text-wrap:balance }}
 h2 {{ font:700 1.35rem/1.2 var(--f-display); letter-spacing:.04em; text-transform:uppercase; margin:0 0 10px }}
 .lede {{ color:var(--muted); max-width:68ch; margin:6px 0 0 }}
 .strip {{ display:flex; flex-wrap:wrap; gap:10px }}
