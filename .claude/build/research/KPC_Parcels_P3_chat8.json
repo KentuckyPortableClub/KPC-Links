@@ -9,7 +9,7 @@
  },
  "US-11355": {
   "st": "AR",
-  "name": "Cook\u2019s Lake Nature Center Nature Recreation Area",
+  "name": "Cook’s Lake Nature Center Nature Recreation Area",
   "owner": "ARKANSAS GAME AND FISH FOUNDATION",
   "parcel": "001-00422-000",
   "acres": "",
@@ -216,5 +216,167 @@
   "parcel": "249-079-10028",
   "acres": "",
   "why_not": "needs-parcel -> owner read; trace only if owner = the park agency and chat 11 says yes"
+ },
+ "US-13291": {
+  "st": "NV",
+  "name": "Chinese in Nevada-#29 State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13303": {
+  "st": "NV",
+  "name": "Derby Diversion Dam State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13306": {
+  "st": "NV",
+  "name": "Reno Nevada State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13319": {
+  "st": "NV",
+  "name": "Truckee River - West State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13322": {
+  "st": "NV",
+  "name": "Grand Army Of The Republic Memorial Tree State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13368": {
+  "st": "NV",
+  "name": "Franktown Nevada State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-13454": {
+  "st": "NV",
+  "name": "Steamboat Springs Nevada State Historical Monument",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+ },
+ "US-8526": {
+  "st": "ND",
+  "name": "Camp Atchison State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-griggs.json on lookup branch (Oct 30)"
+ },
+ "US-8546": {
+  "st": "ND",
+  "name": "Lake Jessie State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-griggs.json on lookup branch (Oct 30)"
+ },
+ "US-8547": {
+  "st": "ND",
+  "name": "Lake Johnson State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-griggs.json on lookup branch (Oct 30)"
+ },
+ "US-8552": {
+  "st": "ND",
+  "name": "November 33 Launch Facility State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-griggs.json on lookup branch (Oct 30)"
+ },
+ "US-8555": {
+  "st": "ND",
+  "name": "Oscar-Zero Missile Alert Facility State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-griggs.json on lookup branch (Oct 30)"
+ },
+ "US-12782": {
+  "st": "ND",
+  "name": "Camp Arnold State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-12783": {
+  "st": "ND",
+  "name": "Camp Corning State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8558": {
+  "st": "ND",
+  "name": "Wadeson Cabin State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8524": {
+  "st": "ND",
+  "name": "Bismarck-Deadwood Stage Trail State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8540": {
+  "st": "ND",
+  "name": "Fort Rice State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8561": {
+  "st": "ND",
+  "name": "Missouri River State Natural Area",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8528": {
+  "st": "ND",
+  "name": "Camp Hancock State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8535": {
+  "st": "ND",
+  "name": "Double Ditch Indian Village State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8549": {
+  "st": "ND",
+  "name": "Menoken Indian Village State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8542": {
+  "st": "ND",
+  "name": "Gingras Trading Post State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8553": {
+  "st": "ND",
+  "name": "Oak Lawn Church State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-8554": {
+  "st": "ND",
+  "name": "Pembina State Museum State Historic Site",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-nd-rest.json on lookup branch (Oct 30)"
+ },
+ "US-4010": {
+  "st": "NE",
+  "name": "Heron Haven State Park",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
+ },
+ "US-4012": {
+  "st": "NE",
+  "name": "Elkhorn Crossing State Park",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
+ },
+ "US-4013": {
+  "st": "NE",
+  "name": "Prairie View State Recreation Area",
+  "result": "pending-lookup",
+  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
  }
 }
