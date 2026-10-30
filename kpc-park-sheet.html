@@ -191,14 +191,15 @@ async function extras(p){
  const [kyN,usN]=await Promise.all([once('kpc-park-notes.json'),once('kpc-park-notes-us.json')]);
  X.tips=[].concat((kyN&&kyN.notes)||[],(usN&&usN.notes)||[]).filter(t=>t.ref===p.c).slice(-3).reverse();
  if(p.ky){const C=await once('kpc-campgrounds.json');const cg=((C&&C.parks)||[]).find(x=>x.pota===p.c);X.stay=cg?[].concat(cg.campgrounds||[],cg.lodging||[]).slice(0,5).map(c=>({n:c.name,d:[c.sites,c.season].filter(Boolean).join(' · ')})):[]}
- else{if(p.us!==false&&(p.prog||'POTA')==='POTA')tasks.push((async()=>{const st=p.st;if(!st)return;const [I,F,A]=await Promise.all([once('data/parkinfo/US-'+st+'.json'),(st==='KY'?once('data/campfed/US-'+st+'.json'):null)/* Oct 29 scope rule: no campground data outside KY */,once('data/access/US-'+st+'.json')]);
+ else{if(p.us!==false&&(p.prog||'POTA')==='POTA')tasks.push((async()=>{const st=p.st;if(!st)return;const [I,F,A]=await Promise.all([once('data/parkinfo/US-'+st+'.json'),once('data/campfed/US-'+st+'.json')/* Oct 30: camping outside KY shown again */,once('data/access/US-'+st+'.json')]);
    /* Oct 25 (HQ hand-off): official parking / entrance / gate / ramp points outside Kentucky (chat 2's data/access, same as the Kit) */
    if(!(p.ap||[]).length){const ap=A&&A.parks&&A.parks[p.c];if(ap&&ap.length)p.ap=ap}
    const r=I&&I.parks&&I.parks[p.c];if(r){X.how=String(r[3]||'').split(',').map(x=>({Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike'}[x.trim()]||x.trim().toLowerCase())).filter(Boolean);X.stateSite=I.stateSite;if(!p.web)p.web=r[1]}
    const near=((F&&F.camps)||[]).map(c=>({c,mi:KPC.miles(p.la,p.lo,c[2],c[3])})).filter(o=>o.mi<=10).sort((a,b)=>a.mi-b.mi);
    const AG={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife'};
    X.stay=near.filter(o=>o.c[7]!=='s').slice(0,4).map(o=>({n:o.c[1],d:`${o.mi.toFixed(1)} mi · ${AG[o.c[4]]||o.c[4]||''} · ${o.c[5]?'reserve on Recreation.gov':'first come'}`}));
-   X.shel=near.filter(o=>o.c[7]==='s').slice(0,3).map(o=>({n:o.c[1],d:`${o.mi.toFixed(1)} mi`}))})());
+   X.shel=near.filter(o=>o.c[7]==='s').slice(0,3).map(o=>({n:o.c[1],d:`${o.mi.toFixed(1)} mi`}));
+   const cm=F&&/^(\d{4})-(\d{2})-(\d{2})/.exec(F.updated||'');if(cm&&!p.ky)X.chk=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+cm[2]-1]+' '+(+cm[3])+', '+cm[1]})());
   if(window.KPCB)tasks.push(Promise.all([KPCB.wwffNear(p.la,p.lo,12).catch(()=>[]),KPCB.sotaNear(p.la,p.lo,3.2).catch(()=>[])]).then(([w,so])=>{
    const m=w.map(x=>Object.assign({sc:sim(p.n,x.name)},x)).filter(x=>x.sc>=.6||(x.d<.4&&x.sc>0)).sort((a,b)=>b.sc-a.sc||a.d-b.d)[0];X.wwff=m?[m.ref+' '+m.name]:[];
    X.sota=so.slice(0,4).map(x=>`${x.ref} ${x.name} (${Number(x.ft).toLocaleString()} ft, ${(x.d/1.609).toFixed(1)} mi)`)}))}
@@ -218,7 +219,7 @@ async function make(){$('msg').textContent='Making the sheet…';const p=await f
  const radio=(X.nwr||[]).length?X.nwr.map(t=>`${esc(t.freq)} MHz · ${esc(t.call)} ${esc(t.site)}${t.cov?'':' (nearest)'}`).join('<br>'):p.us===false?'— (NOAA Weather Radio is US only)':'check weather.gov/nwr';
  const extrasL=p.ky?(p.tf&&p.tf.length?[`Possible 2-fer: ${p.tf.map(esc).join(', ')} — stand inside both boundaries.`]:[]).concat(p.kff&&p.kff.length?[`WWFF: ${p.kff.map(esc).join(', ')}`]:[]).concat(p.sota&&p.sota.length?[`SOTA summits inside: ${p.sota.map(esc).join(', ')}`]:[])
   :(X.wwff||[]).map(w=>`WWFF: ${esc(w)} (same place; one activation can count for both)`).concat((X.sota||[]).length?[`SOTA summits within 2 miles: ${X.sota.map(esc).join('; ')} (count for POTA only when the summit is inside the park)`]:[]);
- const stay=(X.stay||[]).length?`<ul class="ps-list">${X.stay.map(c=>`<li><b>${esc(c.n)}</b>${c.d?' — '+esc(c.d):''}</li>`).join('')}</ul>`:`<p style="font-size:13px;margin:0">${p.ky?'No campground or cabins listed inside this park.':'Campground details are shown for Kentucky parks only for now.'}</p>`;
+ const chkL=X.chk?`<p style="font-size:12px;margin:4px 0 0">Camping info last checked ${esc(X.chk)}. Check the agency before you go.</p>`:'';const stay0=(X.stay||[]).length?`<ul class="ps-list">${X.stay.map(c=>`<li><b>${esc(c.n)}</b>${c.d?' — '+esc(c.d):''}</li>`).join('')}</ul>`:`<p style="font-size:13px;margin:0">${'No campground or cabins listed inside this park.'}</p>`;const stay=stay0+chkL;
  const shel=(X.shel||[]).length?`<p style="font-size:13px;margin:6px 0 0"><b>Picnic shelters nearby (good for activating):</b> ${X.shel.map(c=>esc(c.n)+' ('+esc(c.d)+')').join('; ')}</p>`:'';
  const tips=(X.tips||[]).length?`<div class="ps-h">Tips from other operators</div><ul class="ps-list">${X.tips.map(t=>`<li>${esc(String(t.text).slice(0,220))}${String(t.text).length>220?'…':''} <span style="color:#666">— ${esc(t.call||'')}${t.date?', '+esc(t.date):''}</span></li>`).join('')}</ul>`:'';
  const page1=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • PARK SHEET</div><div class="ps-name">${esc(p.n)}</div><div class="ps-sub">${esc(where)}${p.t?' • '+esc(p.t):''}${(X.how||[]).length?' • activate by '+esc(X.how.join(', ')):''}</div></div><div class="ps-ref"><b>${p.c}</b><span>${PG} reference${p.ft?' · '+Number(p.ft).toLocaleString()+' ft':''}</span></div></div>

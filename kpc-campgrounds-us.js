@@ -213,6 +213,12 @@
     var lo = S.loose.filter(function (x) { return x.src === 'member'; });
     $('cguLoose').innerHTML = lo.length ? '<h2>Member picks in ' + esc(ST[S.st]) + '</h2><p class="cg-note">Added by members, not tied to a park on this list yet.</p>' + lo.map(function (x) { return placeHtml({ x: x }, null); }).join('') : '';
   }
+  /* Oct 30 (HQ 11:12 AM): outside KY say when the camping files were last read (the oldest 'updated' of the files used) */
+  function chkDate(files) {
+    var d = files.map(function (x) { return x && /^\d{4}-\d{2}-\d{2}/.test(x.updated || '') ? x.updated.slice(0, 10) : ''; }).filter(Boolean).sort()[0];
+    if (!d) return '';
+    var m = d.split('-'); return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[1] - 1] + ' ' + (+m[2]) + ', ' + m[0];
+  }
   function head() {
     var add = formLink('', true), o = SRC[S.st] || {};
     var links = ext(o.parks, 'STATE PARKS ↗', 'gold') + (o.reserve_ok !== false ? ext(o.reserve, 'STATE PARK RESERVATIONS ↗', 'gold') : '');
@@ -221,7 +227,7 @@
         S.hasManual ? 'State park campgrounds from ' + esc(ST[S.st]) + '’s own map points where the state publishes them (tagged OFFICIAL GPS); other parks are listed park by park from the state’s official listing (not checked site by site: confirm on the state’s page). Also federal campgrounds (recreation.gov) ' :
         'State park campgrounds for ' + esc(ST[S.st]) + ' are not listed here yet: use the state’s own pages below. Listed now: federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) ') +
       'and places members have added. Forest Service and Park Service campgrounds sit under their own forest or park; the rest are matched by distance from each park’s map pin.' +
-      '<span id="cguClosCov"></span>' + (links ? '<div class="cg-btns">' + links + '</div>' : '') +
+      '<span class="cgu-clos"><b>Camping info last checked ' + esc(S.chk || 'recently') + '.</b> Check the agency’s page before you go.</span>' + (links ? '<div class="cg-btns">' + links + '</div>' : '') +
       (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD A CAMPGROUND OR CABIN WE ARE MISSING</a></div>' : '');
   }
 
@@ -246,8 +252,8 @@
       return Promise.all([getJSON('data/parkinfo/US-' + st + '.json'), getJSON('data/campfed/US-' + st + '.json'), has ? getJSON('data/campstate/US-' + st + '.json') : null, null, hm ? getJSON('data/campstate-manual/US-' + st + '.json') : null]);
     }).then(function (a) {
       if (cur !== want) return;
-      build(st, a[0], a[1], a[2], a[4]); shown = PAGE; $('cguPark').value = '';
-      attach(+$('cguRad').value); parkSelect(); head(); closCover(); draw();
+      build(st, a[0], a[1], a[2], a[4]); S.chk = chkDate([a[1], a[2], a[4]]); shown = PAGE; $('cguPark').value = '';
+      attach(+$('cguRad').value); parkSelect(); head(); draw();   /* Oct 30: no closures line outside KY (scope rule) */
     });
   }
 
@@ -262,7 +268,7 @@
      right under the hero, a 'Campgrounds & cabins in <state> · change state ▾' heading, and 📍 NEAR ME (the visitor's state from the GPS). */
   /* HQ + Brandon Oct 29 8:38 AM (scope rule, MASTER-PLAN 3.4): campground data outside Kentucky is HIDDEN (files kept). KY_ONLY = true
      shows Kentucky only: no state picker, no NEAR ME, ?state= ignored. Set it to false to bring the other states back. */
-  var KY_ONLY = true;
+  var KY_ONLY = false;   /* Brandon Oct 30 11:05 + 11:10 AM: camping for every US state shown again (camping only; hours / fees / closures outside KY stay hidden) */
   var hero = document.querySelector('main .hero') || document.querySelector('.hero');
   var bar = '<section class="cgp" id="cgPick" data-keep-light aria-label="Pick a state"><div class="cg-wrap">' +
     '<h2 class="cgp-h">Campgrounds &amp; cabins in <b id="cgpName">Kentucky</b> <button type="button" class="cgp-chg" id="cgpChange">· change state ▾</button></h2>' +

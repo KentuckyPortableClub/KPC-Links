@@ -166,13 +166,13 @@
     const N = await jload('kpc-park-notes-us.json'), tips = ((N && N.notes) || []).filter(n => n.ref === P.c).slice(0, 3), te = $('kitUSNotes');
     if (te && cur === P && tips.length) te.innerHTML = '<h4>Latest tips from operators</h4>' + tips.map(n => `<div class="kit-note">${esc(n.text)}<span>${esc(n.type || 'Tip')} · ${esc(n.call || '')} · ${esc(n.date || '')}</span></div>`).join('');
     const fe = $('kitFed'); if (!fe) return;
-    const camps = []; if (st) { const c = await jload('data/campfed/US-' + st + '.json'); ((c && c.camps) || []).forEach(x => { const d = B.km(P.la, P.lo, x[2], x[3]); if (d <= 16.1) camps.push({ x, d }); }); }
+    let chk = ''; const camps = []; if (st) { const c = await jload('data/campfed/US-' + st + '.json'); const m = c && /^(\d{4})-(\d{2})-(\d{2})/.exec(c.updated || ''); if (m) chk = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1]; ((c && c.camps) || []).forEach(x => { const d = B.km(P.la, P.lo, x[2], x[3]); if (d <= 16.1) camps.push({ x, d }); }); }
     camps.sort((a, b) => a.d - b.d);
     const AG = { FS: 'Forest Service', NPS: 'National Park Service', USACE: 'Army Corps', BLM: 'BLM', FWS: 'Fish & Wildlife', BOR: 'Reclamation' };
     const row = o => `<div class="kit-row"><b>${esc(o.x[1])}</b> <em>${esc(B.dist(o.d))} away</em><span>${esc([AG[o.x[4]] || o.x[4], o.x[5] ? 'can reserve' : 'first come'].filter(Boolean).join(' · '))}</span><span class="kit-l"><a href="${esc(o.x[6])}" target="_blank" rel="noopener">RECREATION.GOV ↗</a></span></div>`;
     const cg = camps.filter(o => o.x[7] !== 's').slice(0, 4), sh = camps.filter(o => o.x[7] === 's').slice(0, 3);
     if (cur !== P) return;
-    fe.innerHTML = (cg.length ? '<h4>Federal campgrounds within 10 miles</h4>' + cg.map(row).join('') : '<p class="kit-small">No federal campgrounds on Recreation.gov within 10 miles.</p>') + (sh.length && P.prog !== 'SOTA' ? '<h4>Picnic shelters nearby (good for activating)</h4>' + sh.map(row).join('') : '');
+    fe.innerHTML = (cg.length ? '<h4>Federal campgrounds within 10 miles</h4>' + cg.map(row).join('') : '<p class="kit-small">No federal campgrounds on Recreation.gov within 10 miles.</p>') + (sh.length && P.prog !== 'SOTA' ? '<h4>Picnic shelters nearby (good for activating)</h4>' + sh.map(row).join('') : '') + (chk ? '<p class="kit-small">Camping info last checked ' + esc(chk) + '. Check the agency before you go.</p>' : '');
   }
   function drawMulti(P, L) {
     if (cur !== P) return;
@@ -190,7 +190,7 @@
   function stay(P) {
     const card = (c, far) => `<div class="kit-row"><b>${esc(c.name)}</b>${far ? ` <em>${esc(far)}</em>` : ''}${c.status === 'closed' ? ' <em class="bad">CLOSED</em>' : ''}<span>${esc([c.sites, c.season, c.notes || c.note].filter(Boolean).join(' · '))}</span><span class="kit-l">${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">INFO ↗</a>` : ''}${c.reserve ? `<a href="${esc(c.reserve)}" target="_blank" rel="noopener">RESERVE ↗</a>` : ''}</span></div>`;
     const search = `<div class="kit-btns"><a class="alt" href="https://www.google.com/maps/search/campground/@${P.la},${P.lo},11z" target="_blank" rel="noopener">CAMPGROUNDS NEAR HERE ↗</a><a class="alt" href="https://www.recreation.gov/search?q=campground&lat=${P.la}&lng=${P.lo}&radius=25" target="_blank" rel="noopener">RECREATION.GOV ↗</a></div>`;
-    if (!P.ky) return '<p class="kit-small">Campground details are shown for Kentucky parks only for now. Check the park\'s own website.</p>';   /* HQ + Brandon Oct 29 8:38 AM: campground data outside KY hidden (files kept) */
+    if (!P.ky) return '<div id="kitFed"><p class="kit-small">Looking for federal campgrounds and picnic shelters nearby…</p></div><p class="kit-small">State park campgrounds aren\'t in this list: check the park\'s own website. These search near this spot:</p>' + search;   /* Brandon Oct 30 11:05 AM: camping outside KY shown again */
     const cg = P.park && (CAMP && CAMP.parks || []).find(x => x.pota === P.park.c);
     if (cg && ((cg.campgrounds || []).length || (cg.lodging || []).length)) return (cg.campgrounds || []).map(c => card(c)).join('') + (cg.lodging || []).map(c => card(c)).join('') + `<div class="kit-btns"><a class="alt" href="kpc-campgrounds.html">CAMPGROUNDS &amp; CABINS ›</a></div>`;
     const all = []; (CAMP && CAMP.parks || []).forEach(x => (x.campgrounds || []).forEach(c => { if (isFinite(c.la)) all.push({ c, x, d: B.km(P.la, P.lo, c.la, c.lo) }); }));

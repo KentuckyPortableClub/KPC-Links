@@ -234,12 +234,14 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const ky=nk||(!nu&&stateAt(s.la,s.lo)==='KY'),n=nk+nu,href=ky?'kpc-park-notes.html#'+encodeURIComponent(s.c):'kpc-park-notes-us.html?ref='+encodeURIComponent(s.c)+'#find';
   h+=`<div class="meta" style="margin:8px 0 2px;font-weight:800"><a href="${href}">📝 ${n?'PARK NOTES: '+n+' TIP'+(n===1?'':'S'):'PARK NOTES: BE THE FIRST TO ADD A TIP'} ›</a></div>`}
  /* federal campgrounds + picnic shelters within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
- const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])].filter(x=>x==='KY')){/* HQ + Brandon Oct 29: campground data outside KY hidden (files kept) */if(!(st in CFED))CFED[st]=dfetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){/* Brandon Oct 30: camping outside KY shown again */if(!(st in CFED))CFED[st]=dfetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
  near.sort((a,b)=>a.mi-b.mi);
  const row=({c,mi})=>ln(`<a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'right there':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}`);
  const cg=near.filter(x=>x.c[7]!=='s'),sh=near.filter(x=>x.c[7]==='s');
  if(cg.length)h+=hd('⛺ FEDERAL CAMPGROUNDS NEARBY (RECREATION.GOV)')+cg.slice(0,4).map(row).join('');
+ /* Oct 30 (HQ 11:12 AM): outside KY, say when the camping file was last read */
+ if(cg.length&&stateAt(s.la,s.lo)!=='KY'){const ds=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){const d=await CFED[st];if(d&&d.updated)ds.push(String(d.updated).slice(0,10))}ds.sort();const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(ds[0]||'');if(m)h+=ln('Camping info last checked '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+' '+(+m[3])+', '+m[1]+'. Check the agency before you go.')}
  if(sh.length&&P!=='SOTA')h+=hd('🧺 PICNIC SHELTERS NEARBY (SHADE + TABLE, GOOD FOR ACTIVATING)')+sh.slice(0,3).map(row).join('');
  /* the other programs at the same place */
  const sotaRows=so=>so.slice(0,4).map(x=>ln(`<a href="https://sotl.as/summits/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)} ↗</a> ${esc(x.name)} · ${Number(x.ft).toLocaleString()} ft · ${x.pts} pt${x.pts==1?'':'s'} · ${(x.d/1.609).toFixed(1)} mi`)).join('')+(so.length>4?`<div class="meta" style="font-size:11px;opacity:.8">${so.length-4} more on the map (turn on SOTA).</div>`:'');
