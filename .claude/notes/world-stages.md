@@ -1,4 +1,4 @@
-**PAUSED (Brandon Oct 29 8:36 AM SCOPE): NO world 2-fers. World = accurate outlines + official documents/maps only. This file is kept for reference.**
+**RESUMED FOR THE TOP 10 (Brandon Oct 30 5:51 AM: 'World 2fer a go' -> 'Top 10 countries'; replaces the Oct 29 8:36 AM pause for these 10 only): one country at a time, each held in the waiting room and graded by chat 8 + chat 11 like the US; the rest of the world stays outlines + documents only. Order: W2 Australia first (its world key is being rebuilt with chat 11's 268 YES), then W1 UK, then W3 onward. Each country runs only after its world key is LIVE (chat 11 KEY YES).**
 
 # WORLD 2-FER STAGES (HQ, Oct 27 2026 10 PM; Brandon: "a list that covers all, staged, I give the command for the next country")
 
