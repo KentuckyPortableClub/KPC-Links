@@ -157,6 +157,7 @@ per change, never rerun-to-see; every bot step ends `|| true` except the save; n
   decides when a code / layer / rule change needs a full rebuild; builds the drawn preview page when Brandon asks.
 - Chat 8: grades 2-fer areas. Brandon: the release word and any Rule G grey area.
 
+## BOT F — BUILT Oct 29 11:30 PM (Opus, KPC-Data 63cc0a70): the step is in kpc-fers-pending.yml. Offline test with a fake dispatcher: 6 marked states -> WV, DE, MT started (3 max), CT next run, AK held, IA skipped (already run), third run nothing. The real one-state test happens with the first real marker from chat 3 / 8.
 ## BOT F: start each state's FIRST new-key 2-fer run by itself  (Fable, Oct 29 11:30 PM; Brandon: 'Instructions?')
 Today chat 2 reads the Fable file, decides a state is done, dispatches its first run and adds it to data/fers/new-key-states.json.
 The Fable file has no fixed marker (3 loose 'DONE' mentions), so a bot cannot read it. Give it one marker, one place:
