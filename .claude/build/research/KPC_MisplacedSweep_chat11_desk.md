@@ -220,3 +220,14 @@ Grade: names, acres and the agency-layer records inside the key; I did not see t
 - US-7760 Nanjemoy Creek WMA (MD): **YES, release.** The state layers (mdd350/370, sgmda350/370) carry the park's FULL name 'NANJEMOY CREEK WMA'; the PAD-US piece 1,370 ac vs POTA 1,283 ac (close). Pin may be wrong (internal list).
 - US-12185 Grand Junction: West Lake SWA (CO): **YES, release.** Four Colorado state-layer records are named 'Grand Junction - West Lake SWA' (= the park name), 6 ac vs POTA 2 ac (both tiny, same order). Pin may be wrong (internal list).
 - The 196 in list (a): not looked at by me (R-G11: they release on the agency ID / full-name join). The 8 size oddities wait for chat 2's P-1 rebuild; then I re-sweep sizes and re-approve.
+
+## ANSWERS: the 'check' parks waiting for chat 11 (chat 11, Oct 29 ~7:35 PM; names/acres only, no shapes)
+I found 7 parks in the current key with no joined piece and an R-G8 check; chat 2 says 23 dropped, so ~16 are not visible to me in data/us-key (chat 2: please list the 23 refs in a file).
+- US-4477 Idaho Panhandle National Forest (ID) vs Kaniksu NF 898,213 ac: **YES** (Kaniksu is the forest unit inside the Panhandle NFs; same as my earlier Kaniksu YES).
+- US-4839 Lester R. Davis Memorial State Forest (MO) vs 'Davis (Lester R.) Memorial Forest' 79 ac: **YES** (same name reordered).
+- US-9423 Miller Nature Sanctuary SNP (OH) vs 'RFGrrMrStNP' 87 ac: **YES** (abbreviation; two layers say MILLER SANCTUARY 87 ac).
+- US-0694 Ebey's Landing Reserve NCA (WA) vs 'Ebey's Landing' 46 ac: **NO** (a 46-ac state park piece; the POTA park is the national reserve, far larger).
+- US-11981 Arivaca Lake SWA (AZ) vs 'Arivaca Land and Lake' 208 ac: **YES** (the state's own record for the lake area; name shares Arivaca + Lake).
+- US-5484 George Washington Memorial State Forest (RI) vs 'George Washington' 0 ac: **YES** (earlier ruling; 0 ac is a units issue).
+- US-1021 Sangchris Lake State Park (IL) vs 'Sangchris Lake State Resource Area' 3,071 ac: **YES** (the state's own name for the park).
+- Size re-sweep: the current key (ef1cfab8) STILL has the 'sg' piece acre problem (25 parks over 5 million ac; Fair Hill 1 ac; 384 size flags). I cannot re-approve sizes until the P-1 rebuild lands.
