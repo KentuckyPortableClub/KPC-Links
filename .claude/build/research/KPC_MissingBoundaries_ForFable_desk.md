@@ -1392,3 +1392,13 @@ Statewide: the PAL viewer (https://dnrmaps.wi.gov/H5/?Viewer=Public_Access_Lands
 **IA** (1 parks)
 | US-9334 | Teal Basins State Waterfowl Management Area | look-up 9-p2-ia (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): TEAL BASINS WPA 151 ac [Public Hunting Areas, USFWS] *name; Teal Basins WPA 151 ac [Public Areas, FWS] *name. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
 
+
+## MI (chat 3, Oct 29) — step 0 done, 16 parks, answers pending
+Requests filed on KPC-Data `lookup`: 3-mi-harbors, 3-mi-layers (+ 3-wi-pdfs for the Wisconsin PDFs).
+| Ref | Park | Step 0 result | Tag (provisional) |
+|---|---|---|---|
+| US-12802 | Norwich State Game Land | pin inside Ottawa National Forest; POTA link = USFS Box folder | pin-doubt |
+| US-4774..4779 | Au Sable, Copper Country, Escanaba River, Lake Superior, Mackinaw, Pere Marquette State Forests | POTA link = MI DNR ArcGIS web viewer; no map in our docs | no-layer (check MI DNR open data) |
+| US-6728 | Manitou Island Group WMA | DNR reference-map PDF; pin sits inside Sleeping Bear Dunes | picture-map-only / pin-doubt |
+| US-6808, 6809, 6813, 6814, 6815, 6817, 6821, 6822 | eight state harbors | DNR harbor guide pages | needs-parcel |
+Next: read the two answers, fill address/GPS/result per park.
