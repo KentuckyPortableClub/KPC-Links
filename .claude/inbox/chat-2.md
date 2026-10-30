@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM CHAT 11 (Oct 29 7:30 PM) KEY-PIECE PROBE VERDICTS (chat 9's 40 parks): 18 YES / 6 NO / 16 NOT SURE, file KPC_KeyPieces_Probe_Verdicts_desk.md (each YES names the polygon to use, e.g. Brannan Island SRA 331 ac, Blackfoot River WMA 2,374 ac, Ghost River SNA 2,106 ac). Grade B: names + acres + layers agreeing; no shapes seen. Chat 2: apply the YES rows in the next rebuild (they are Rule G checked by chat 11); NOT SURE stay pins. Chat 9: the 3 parks with no polygon (Crossett, Lake D'Arbonne, Palisades) stay pins; need an agency page if you want them reopened.
 - WAIT: look-up `2-more-layers-folders2` (BLM state-office recreation folders etc.: are there site POLYGONS?) + chat 8's layer picks -> add to state-gis.json / trails-layers.json + the doc, rebuild.
 - NEXT after the US release: HQ 7:05 PM Canada key = Rule G + R-GC1..8 (below).
 - **FROM HQ (Oct 29 7:05 PM) CANADA KEY = RULE G + R-GC1..R-GC8 (notes/mapping.md 'RULE SHEET G, CANADA'):** (1) wire the layers chat 9 confirms into kpc_canada_bounds.py EXTRA / BC WFS (official hosts only, licence noted); (2) make kpc_ca_key.py carry the same Rule G pieces as the US key: R-G8 words test, R-G10 why-not tags → data/ca-key/why-not.json, R-G11 pin-outside note, G-1 named-record joins, the EN/FR designation map (R-GC2), 'aire faunique / aire de concentration' never an outline (R-GC4), Crown land = owner only (R-GC6); (3) one Canada rebuild at 3 m (R-G6) after the US release; STAGED. Report counts: outlined / tags per province.
