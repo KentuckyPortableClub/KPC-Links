@@ -63,5 +63,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Whole open WY list already carried why-not tags from an earlier pass (57 name-mismatch, 4 needs-parcel, 24 no-layer). The 4 needs-parcel already had counties assigned (Sheridan, Natrona, Fremont, Park, all state fish hatcheries/reservoirs) -- handed to chat 9 as P-3 requests. Noted a stale Big Horn County parcel-list row for US-10825, which is already correctly tagged name-mismatch (not a 5th needs-parcel park). The 57 name-mismatch + 24 no-layer tags not individually re-verified, trusted absent contrary evidence."
+  },
+  "US-VT": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open VT list already carried why-not tags from an earlier pass (11 name-mismatch, 1 needs-parcel, 3 no-layer). Found the same county/FIPS mix-up as NH: US-10300 Kesick Swamp SWMA is listed under Berkshire County FIPS 25003, which is Massachusetts code/county, not Vermont -- likely should be Bennington County VT (pin is in VTs SW corner near the MA border). Not filed with chat 9 due to the wrong county; flagged to chat 9/chat 3 to fix first."
   }
 }
