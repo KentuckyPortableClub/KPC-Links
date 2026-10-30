@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
-  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky|-pota|-sota|-wwff)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
   const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
