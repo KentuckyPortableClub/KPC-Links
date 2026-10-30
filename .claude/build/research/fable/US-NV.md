@@ -213,3 +213,9 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-4438 | | PAD-US at pin: Fort Churchill State Historic Park (SHCA, owner SDOL/STAT, manager SPR, 3468 ac, Fee, PAD id 230191) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-4438 | Buckland Station State Park | http://parks.nv.gov/parks/buckland-station |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
 | US-4438 | Buckland Station State Park | look-up 9-p2-nv (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): Fort Churchill Historic State Monument 5283 ac [SCORPRecAreas, Nevada State Parks]; Fort Churchill Historic State Monument 5283 ac [SCORPRecAreas_Master, Nevada State Parks]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+
+
+## chat 9 PIN TEST (Oct 30 9:05 AM, HQ 8:20 AM): 68 NV parks vs chat 3's layers. Hit = pin inside a polygon; NAME = a proper word of the POTA name is in the polygon's name; NO NAME MATCH = polygon at a pin is not a name match (lead only, pin never moved)
+- NV State Parks (Nevada_State_Parks_Boundaries/FeatureServer/0): 0 of 68 pins inside a polygon, 0 with a name match; LAYER ERROR (layer index wrong?): {'code': 400, 'message': '', 'details': ['The requested layer (layerId: 0) was n
+- NV Surface Mgmt Agency (Surface_Management_Agency/FeatureServer/0): 0 of 68 pins inside a polygon, 0 with a name match
+NOTE: NV State Parks FeatureServer/0 does not exist (wrong layer index); NV SMA and Utah Parks Local gave 0 hits, layer index/geometry being checked (roots filed). WA State Parks FeatureServer/0 also not found. Re-test follows.

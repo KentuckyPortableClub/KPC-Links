@@ -69,3 +69,29 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-5576 | | PAD-US at pin: Washington State Department of Natural R (SRMA, owner SDNR/STAT, manager SDNR, 2562869 ac, Fee, PAD id 271374) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-5576 | Yacolt Burn State Forest | https://www.dnr.wa.gov/Yacolt |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
 | US-5576 | Yacolt Burn State Forest | look-up 9-p2-wa (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s):  ? ac [DNR Managed Land Parcels]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+
+
+## chat 9 PIN TEST (Oct 30 9:05 AM, HQ 8:20 AM): 20 WA parks vs chat 3's layers. Hit = pin inside a polygon; NAME = a proper word of the POTA name is in the polygon's name; NO NAME MATCH = polygon at a pin is not a name match (lead only, pin never moved)
+- WA State Parks (Parks_Administrative_Boundaries/FeatureServer/0): 0 of 20 pins inside a polygon, 0 with a name match; LAYER ERROR (layer index wrong?): {'code': 400, 'message': '', 'details': ['The requested layer (layerId: 0) was n
+- WDFW Wildlife Areas (MapServices/WildlifeAreas/MapServer/0): 0 of 20 pins inside a polygon, 0 with a name match
+- WDFW Water Access Sites (WP_RealEstate/WaterAccessSites/MapServer/0): 0 of 20 pins inside a polygon, 0 with a name match
+- WA RCO Public Lands Inventory (Public_Lands_Inventory_2/FeatureServer/0): 17 of 20 pins inside a polygon, 1 with a name match
+    US-11145 Naneum Ridge State Forest -> Kittitas [NO NAME MATCH]
+    US-12296 Raging River State Forest -> King [NO NAME MATCH]
+    US-12315 Dragoon Creek State Recreation Site -> Spokane [NO NAME MATCH]
+    US-12316 Sherry Creek State Recreation Site -> Washington [NO NAME MATCH]
+    US-12565 Skookum Creek State Recreation Area -> Pend Oreille [NO NAME MATCH]
+    US-12566 Sheep Creek State Recreation Area -> Stevens [NO NAME MATCH]
+    US-12567 Douglas Falls State Recreation Area -> Stevens [NO NAME MATCH]
+    US-12569 Beverly Dunes State Recreation Site -> Grant [NO NAME MATCH]
+    US-13516 Horseshoe -Kitsap- State Fishing La -> Kitsap [NAME]
+    US-5565 Ahtanum State Forest -> Yakima [NO NAME MATCH]
+    US-5566 Blanchard State Forest -> Skagit [NO NAME MATCH]
+    US-5567 Capitol State Forest -> Thurston [NO NAME MATCH]
+    US-5568 Elbe Hills-Tahoma State Forest -> Pierce [NO NAME MATCH]
+    US-5569 Green Mountain-Tahuya State Forest -> Mason [NO NAME MATCH]
+    US-5571 Loomis-Loup Loup State Forest -> Okanogan [NO NAME MATCH]
+    US-5572 Olympic Peninsula State Forest -> Clallam [NO NAME MATCH]
+    US-5576 Yacolt Burn State Forest -> Clark [NO NAME MATCH]
+LAYER | WA parks | WA RCO Public Lands Inventory | https://services2.arcgis.com/TGEC20q86HQAeMS6/arcgis/rest/services/Public_Lands_Inventory_2/FeatureServer/0 | name field: see layer | pin test Oct 30 chat 9: 1 of 17 hits name-match
+NOTE: WA State Parks FeatureServer/0 not found (layer index being checked). WDFW Wildlife Areas / Water Access 0 hits: pins are not inside those polygons.

@@ -56,3 +56,8 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-6060 | | PAD-US at pin: Fillmore Field Office (PUB, owner BLM/FED, manager BLM, 4420134 ac, Fee, PAD id 2097) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-6060 | Hermit's Cabin/Cave State Recreation Area | https://www.blm.gov/visit/hermits-cabin |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
 | US-6060 | Hermit's Cabin/Cave State Recreation Area | look-up 9-p2-ut (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 6 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+
+
+## chat 9 PIN TEST (Oct 30 9:05 AM, HQ 8:20 AM): 17 UT parks vs chat 3's layers. Hit = pin inside a polygon; NAME = a proper word of the POTA name is in the polygon's name; NO NAME MATCH = polygon at a pin is not a name match (lead only, pin never moved)
+- UT Parks Local (UtahParksLocal/FeatureServer/0): 0 of 17 pins inside a polygon, 0 with a name match
+NOTE: Utah Parks Local gave 0 of 17 hits (city/county parks only; none of the 17 POTA pins sit in one).

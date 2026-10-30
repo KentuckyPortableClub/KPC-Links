@@ -48,3 +48,44 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-6821 | Straits State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
 | US-6822 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-6822 | Whitefish Point State Harbor | look-up 9-p2-mi (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2 hit(s): N/A 33855630 ac [FWSApproved]. LEAD only: a polygon at the pin is not a name match; R-G7 decides; pin unchanged | chat 9 | 2026-10-29 |
+
+
+## chat 9 PIN TEST (Oct 30 9:05 AM, HQ 8:20 AM): 16 MI parks vs chat 3's layers. Hit = pin inside a polygon; NAME = a proper word of the POTA name is in the polygon's name; NO NAME MATCH = polygon at a pin is not a name match (lead only, pin never moved)
+- MI DNR Forest Management Units (DNRManagementBoundariesOPENDATA/FeatureServer/2): 13 of 16 pins inside a polygon, 1 with a name match
+    US-12802 Norwich State Game Land -> Baraga [NO NAME MATCH]
+    US-4774 Au Sable State Forest -> Grayling [NO NAME MATCH]
+    US-4775 Copper Country State Forest -> Escanaba [NO NAME MATCH]
+    US-4776 Escanaba River State Forest -> Escanaba [NAME]
+    US-4777 Lake Superior State Forest -> Newberry [NO NAME MATCH]
+    US-4778 Mackinaw State Forest -> Gaylord [NO NAME MATCH]
+    US-4779 Pere Marquette State Forest -> Cadillac [NO NAME MATCH]
+    US-6728 Manitou Island Group Wildlife Manag -> Traverse City [NO NAME MATCH]
+    US-6808 Cedar River State Harbor -> Escanaba [NO NAME MATCH]
+    US-6809 Copper Harbor State Harbor -> Baraga [NO NAME MATCH]
+    US-6814 Lac LaBelle State Harbor -> Baraga [NO NAME MATCH]
+    US-6815 Lexington State Harbor -> Southern [NO NAME MATCH]
+    US-6817 Little Lake State Harbor -> Newberry [NO NAME MATCH]
+LAYER | MI parks | MI DNR Forest Management Units | https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/2 | name field: see layer | pin test Oct 30 chat 9: 1 of 13 hits name-match
+- MI DNR Managed Sites (DNRReferenceAssetsOPENDATA/FeatureServer/10): 0 of 16 pins inside a polygon, 0 with a name match
+- MI DNR Wildlife Management Units (DNRManagementBoundariesOPENDATA/FeatureServer/7): 13 of 16 pins inside a polygon, 0 with a name match
+    US-12802 Norwich State Game Land -> Northern Michigan Region [NO NAME MATCH]
+    US-4774 Au Sable State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-4775 Copper Country State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-4776 Escanaba River State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-4777 Lake Superior State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-4778 Mackinaw State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-4779 Pere Marquette State Forest -> Northern Michigan Region [NO NAME MATCH]
+    US-6728 Manitou Island Group Wildlife Manag -> Northern Michigan Region [NO NAME MATCH]
+    US-6808 Cedar River State Harbor -> Northern Michigan Region [NO NAME MATCH]
+    US-6809 Copper Harbor State Harbor -> Northern Michigan Region [NO NAME MATCH]
+    US-6814 Lac LaBelle State Harbor -> Northern Michigan Region [NO NAME MATCH]
+    US-6815 Lexington State Harbor -> Southern Michigan Region [NO NAME MATCH]
+    US-6817 Little Lake State Harbor -> Northern Michigan Region [NO NAME MATCH]
+- MI DNR Project Boundaries (DNRLOTSParcelsOPENDATA/FeatureServer/13): 5 of 16 pins inside a polygon, 1 with a name match
+    US-4774 Au Sable State Forest -> Grayling Forest Management Unit [NO NAME MATCH]
+    US-4775 Copper Country State Forest -> Crystal Falls Forest Management Unit [NO NAME MATCH]
+    US-4776 Escanaba River State Forest -> Escanaba Forest Management Unit [NAME]
+    US-4777 Lake Superior State Forest -> Newberry Forest Management Unit [NO NAME MATCH]
+    US-4779 Pere Marquette State Forest -> Cadillac Forest Management Unit [NO NAME MATCH]
+LAYER | MI parks | MI DNR Project Boundaries | https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/13 | name field: see layer | pin test Oct 30 chat 9: 1 of 5 hits name-match
+NOTE: Forest Management Units and Wildlife Management Units are big district polygons (13 of 16 pins inside, almost no name match): they say WHICH unit a park is in, not the park outline. DNR Managed Sites 0 of 16 pins (point or small layer).
