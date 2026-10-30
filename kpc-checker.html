@@ -181,7 +181,7 @@ function stateData(a){if(a==='KY')return KPC.data();if(SD[a])return SD[a];
   try{const j=await jfetch('https://api.pota.app/location/parks/US-'+a,12000);
    const parks=(Array.isArray(j)?j:[]).map(x=>({c:String(x.reference||'').toUpperCase(),n:x.name||'',la:+x.latitude,lo:+x.longitude,co:'',t:'',web:''})).filter(p=>/^US-\d+$/.test(p.c)&&isFinite(p.la)&&isFinite(p.lo)&&p.la!==0);
    if(parks.length)return{parks,lite:true,src:'pota'}}catch(e){}
-  const[Lr,B]=await Promise.all([KPC.dataUrl('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json())]);
+  const[Lr,B]=await Promise.all([KPC.dataUrl('locations-pota.json').then(r=>{if(!r.ok)throw 0;return r.json()}).catch(()=>KPC.dataUrl('locations.json').then(r=>r.json())),fetch('kpc-us-states.json').then(r=>r.json())]);
   const sh=B.find(b=>b.a===a);if(!sh)throw new Error('No border for '+a);
   let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;sh.p.forEach(pl=>pl[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));
   const parks=Lr.filter(r=>r[0]==='POTA'&&/^US-/.test(r[1])&&r[4]>=x0&&r[4]<=x1&&r[3]>=y0&&r[3]<=y1&&inPoly(r[4],r[3],sh.p)).map(r=>({c:r[1],n:r[2],la:r[3],lo:r[4],co:'',t:'',web:''}));

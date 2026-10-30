@@ -181,7 +181,7 @@ document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
-async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([KPC.dataUrl('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
+async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([KPC.dataUrl('locations-sota.json').then(r=>{if(!r.ok)throw 0;return r.json()}).catch(()=>KPC.dataUrl('locations.json').then(r=>r.json())),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
  const by={};L.forEach(r=>{if(r[0]!=='SOTA')return;const a=r[1].split('/')[0];(by[a]=by[a]||[]).push({c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5],m:+r[6]||0,p:pts(r[7]),rg:r[1].split('/')[1].split('-')[0]})});
  const lab={};Object.entries(by).forEach(([a,l])=>{const cnt={};const step=Math.max(1,Math.floor(l.length/60));for(let i=0;i<l.length;i+=step){const s=BORD.length?stateOf(l[i].lo,l[i].la):'';if(s)cnt[s]=(cnt[s]||0)+1}
   const tot=Object.values(cnt).reduce((x,y)=>x+y,0);lab[a]=Object.entries(cnt).sort((x,y)=>y[1]-x[1]).filter(e=>e[1]>=tot*0.12).map(e=>e[0]).slice(0,4).join(' / ')});

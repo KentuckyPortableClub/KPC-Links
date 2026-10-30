@@ -15,6 +15,8 @@
   let KY = null, NWR = null, here = null, map = null, mk = null, warnLayer = null, radar = [], lightning = null, loop = null, fi = 0, req = 0;
 
   /* ---------- small helpers ---------- */
+  /* Oct 30: only the POTA rows (1.4 MB) instead of all of locations.json (5.4 MB); falls back to filtering the big file. */
+  async function locPota() { try { const r = await ((window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl('locations-pota.json') : fetch('locations-pota.json')); if (!r.ok) throw 0; return await r.json(); } catch (_) { const L = await jget('locations.json'); return ((L && (L.rows || L)) || []).filter(r => r[0] === 'POTA'); } }
   async function jget(u, o) { const r = await ((/^(data\/alerts\/|data\/nwr\/|data\/parkinfo\/|locations\.json$)/.test(u) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o)); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }   // Step B6: data/alerts, data/nwr, data/parkinfo and locations.json are all in KPC-Data now
   const NWSH = { headers: { Accept: 'application/geo+json' } };
   function save(p) { try { localStorage.setItem(LS, JSON.stringify(p)); } catch (e) {} }
@@ -61,7 +63,7 @@
      Lounge uses: locations.json (every US POTA park, with GPS) + data/parkinfo/CA.json (Canada). Loaded only when needed. */
   let USCA = null;
   function uscaData() {
-    if (!USCA) USCA = Promise.all([jget('locations.json').catch(() => null), jget('data/parkinfo/CA.json').catch(() => null)]).then(([L, C]) => {
+    if (!USCA) USCA = Promise.all([locPota().catch(() => null), jget('data/parkinfo/CA.json').catch(() => null)]).then(([L, C]) => {
       const out = [];
       ((L && (L.rows || L)) || []).forEach(r => { if (r[0] === 'POTA' && isFinite(r[3])) out.push({ c: r[1], n: r[2], la: +r[3], lo: +r[4] }); });
       Object.entries((C && C.parks) || {}).forEach(([ref, a]) => { if (isFinite(a[5])) out.push({ c: ref, n: a[0], la: +a[5], lo: +a[6], pr: a[10] || '' }); });
