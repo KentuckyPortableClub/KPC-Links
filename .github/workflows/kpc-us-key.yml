@@ -6,7 +6,8 @@ name: KPC US answer key
 # state, totals, the pin check), then the review issue and ONE save.
 on:
   schedule:
-    - cron: '37 9 1 * *'   # monthly
+    - cron: '37 9 1 * *'   # monthly: every state
+    - cron: '19 9 * * *'   # nightly (HQ Oct 30 6:55 AM, BOT B): only the states chat 11's new answers touch; nothing waiting = green, one notice
   workflow_dispatch:
     inputs:
       states:
@@ -43,12 +44,13 @@ jobs:
         env:
           STATES: ${{ inputs.states }}
           NJOBS: ${{ inputs.jobs }}
+          SCHED: ${{ github.event.schedule }}
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
           want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
-          if want == ['ALL'] or (not want and os.environ.get('GITHUB_EVENT_NAME') == 'schedule'): st = ALL      # 'all' / the monthly cron = every state
+          if want == ['ALL'] or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / the MONTHLY cron = every state
           elif want: st = [x for x in want if x != 'KY']
           else:                                                                                               # BOT B: only the states new answers touched
               try: st = [x for x in open('data/us-key/answers-states.txt').read().split() if x != 'KY']
@@ -151,12 +153,43 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_us_key_issue.py
+      - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
+        continue-on-error: true
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data live 2>/dev/null \
+            && git -C live sparse-checkout set --no-cone data/us-key 2>/dev/null && git -C live checkout -q 2>/dev/null || true
+          python3 - <<'PY' || true
+          import glob, json, os, time
+          def parks(d):
+              o = {}
+              for f in glob.glob(f'{d}/US-??.json'):
+                  try:
+                      for r, p in json.load(open(f))['parks'].items(): o[(f[-7:-5], r)] = p
+                  except Exception: pass
+              return o
+          L, N = parks('live/data/us-key'), parks('data/us-key')
+          if not L or not N: raise SystemExit
+          ids = lambda p: {str(x[0]) for x in p.get('m') or []}
+          g = sum(1 for k, p in N.items() if ids(p) and not ids(L.get(k, {})))
+          l = sum(1 for k, p in N.items() if ids(L.get(k, {})) and not ids(p))
+          ch = sum(1 for k, p in N.items() if ids(p) and ids(L.get(k, {})) and ids(p) != ids(L.get(k, {})))
+          sts = sorted({k[0] for k, p in N.items() if ids(p) != ids(L.get(k, {}))})
+          if not (g or l or ch): raise SystemExit
+          line = (f"- FROM THE KEY BOT ({time.strftime('%b %d %H:%M UTC')}): a new US key build is ready for your check: +{g} outlined / -{l} lost / "
+                  f"{ch} pieces changed vs the live key (states: {' '.join(sts[:20])}{' …' if len(sts) > 20 else ''}). The 30-park sample is in KPC-Data "
+                  "data/waiting/preview/us-key-changes.json after the next copy (01:41 / 10:41 UTC). Write a fresh KEY YES / KEY NO item in data/waiting/approved.json.")
+          p = '.claude/inbox/chat-11.md'; s = open(p).read()
+          s = s.replace('## OPEN', '## OPEN\n' + line, 1); open(p, 'w').write(s)
+          print('::notice title=BOT C::' + line[:200])
+          PY
+          rm -rf live
       - name: Save
         if: always()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/us-key 2>/dev/null || true
+          git add .claude/inbox/chat-11.md 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           if ! git diff --cached --quiet; then
             git commit -m 'US answer key'
