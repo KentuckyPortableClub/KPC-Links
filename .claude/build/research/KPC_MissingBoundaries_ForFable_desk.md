@@ -897,3 +897,11 @@ STATE NC DONE (with 3 trace candidates, 1 category fix, 1 pin-doubt upgrade, and
 The rest of the file's refs (US-13229, US-7442, US-7525, US-12078, and the 26 no-layer + remaining name-mismatch refs without a parcel follow-up row) confirmed correct as tagged. The refs with no research trail in this file at all (most of the no-layer 26, since this file only details a subset) were not individually re-verified -- trusted absent contrary evidence.
 
 STATE AR DONE (with 6 trace candidates and 5 pin-doubts corrected out of needs-parcel/name-mismatch)
+
+### ID — closing out (chat 8, Oct 30 2026)
+ID's whole open list already carries why-not tags: name-mismatch 106 (by far the biggest list of any state I've closed -- mostly ID's many small state-recreation airstrips and lakes that sit inside big BLM/federal units), needs-parcel 7, no-layer 35, pin-doubt 1. Checked the 7 needs-parcel against the same staleness pattern just found in AR (real parcel answers sitting behind a stale tag) -- **all 7 confirmed genuinely needs-parcel**, no staleness here (US-12230, US-13485, US-4584, US-7818, US-7825, US-7827, US-7831 each show "no parcel at the pin" / "no owner field" with nothing further). Scanned the whole file for hidden exact-name matches (the bug found in IN/KS/NC) -- found one worth a second look, not a clean correction:
+- **US-12226 Bruneau Arm Reservoir State Fishing Lake**: P-2 hit is "C.J. Strike Reservoir" (6,759 ac) *name* flagged, but "Bruneau Arm" and "C.J. Strike" share no proper word -- the flag looks like it triggered on the shared generic word "Reservoir," not a real name match. On the other hand, "Bruneau Arm" could genuinely be the named arm/inlet of C.J. Strike Reservoir (a specific bay has its own name but is still part of the larger reservoir) -- that would make it a real match after all. **Genuinely ambiguous either way; flagging as a grey area rather than guessing.**
+
+Didn't individually re-verify the 106 name-mismatch or 35 no-layer tags beyond the *name scan -- too large a list for this pass, trusted absent contrary evidence (same approach as the other states), spot-checked the *name flags across the whole file instead of reading every row.
+
+STATE ID DONE (needs-parcel confirmed clean, 1 grey area flagged)

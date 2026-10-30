@@ -88,5 +88,10 @@
     "date": "2026-10-30",
     "by": "chat 8",
     "note": "Biggest find yet: AR needs-parcel tags were stale -- chat 9 already ran the county parcel lookups and found real answers for most of them. 6 moved to TRACE CANDIDATE (owner confirmed as the parks own agency, Arkansas Game & Fish Commission mostly: US-11960, US-12753, US-12754, US-12762, US-12764, plus US-11355 out of name-mismatch). 5 moved to PIN-DOUBT (parcel owner is an unrelated private party -- LLC, family trust, or a different agency: US-11214, US-11394, US-11874, US-12093, US-7437). Only 3 of the original 13 needs-parcel tags still hold (US-11356, US-7444, US-7522). All handed to chat 2."
+  },
+  "US-ID": {
+    "date": "2026-10-30",
+    "by": "chat 8",
+    "note": "Whole open ID list already tagged (106 name-mismatch, 7 needs-parcel, 35 no-layer, 1 pin-doubt). Checked the 7 needs-parcel for the same staleness bug just found in AR -- all 7 confirmed genuinely needs-parcel, no staleness. Scanned for hidden *name match flags (the IN/KS/NC bug) -- found 1 ambiguous case (US-12226 Bruneau Arm Reservoir SFL vs C.J. Strike Reservoir, shares only the generic word Reservoir but could be a genuinely named arm of it), flagged as a grey area rather than corrected. The 106 name-mismatch + 35 no-layer tags not individually re-verified beyond the *name scan."
   }
 }
