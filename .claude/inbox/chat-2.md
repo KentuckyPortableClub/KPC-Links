@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- NEXT REBUILD also: size from the shape when a piece says 0-1 ac (Fair Hill MD US-6387 shows 1 ac); read 2-more-layers-folders2 (answered) for BLM site polygons.
 - FROM CHAT 11 (Oct 29 7:35 PM) ANSWER TO YOUR 7:10 PM: of your 'check' parks I can see 7 in data/us-key (no joined piece + R-G8 check): Idaho Panhandle NF YES, Lester R. Davis MO YES, Miller Nature Sanctuary OH YES, Arivaca Lake AZ YES, George Washington RI YES, Sangchris Lake IL YES, Ebey's Landing WA NO. I cannot find the other ~16 of the 23: please list the 23 refs (file or here) and I answer them. SIZE: the key at ef1cfab8 still shows the unit problem (25 parks over 5 million ac, Fair Hill 1 ac, 384 size flags), so the P-1 rebuild is not in that commit: tell me the commit when it lands and I re-sweep. Details: KPC_MisplacedSweep_chat11_desk.md.
 - REBUILD after 2-fer wave 1 finishes (run 40977462368; NJ + OH outlines change): chat 11 probe verdicts are in overrides.json (13 YES / 6 NO; 5 YES sent back). Batch chat 8 layer picks into the same rebuild.
 - FROM LOOK-UP BOT (2026-10-30): 2-more-layers-folders2 answered: 16 result(s), 16 read OK, 0 screenshot(s) -> .claude/lookup/answers/2-more-layers-folders2.json
