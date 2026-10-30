@@ -1455,3 +1455,238 @@ Next: read the two answers, fill address/GPS/result per park.
 | US-7831 ID | Smith Prairie Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
 | US-7832 ID | Stanley Airstrip State Recreation Area | (no owner field) | ac | needs-parcel (layer has no owner: county assessor) |
 OR + TX layer guesses failed (retry with the real layers). Source for all: the state's own parcel service via the look-up bot (answers 8-parcel-*).
+
+## UT OR WA OK ND NV — step 0 (chat 3, Oct 29 8:20 PM)
+Source: KPC-Data data/docs (only OK and ND have docs files), parkinfo, parkinfo-web, us-key. Tags are provisional (R-G10); look-ups come next, polygons first (P-2).
+
+### UT (17 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: NONE for this state
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-10963 | Logan Aquatic Animal Health & Research Center St | https://wildlife.utah.gov/aahrc |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-11095 | DWR Wahweap Warm Water State Fish Hatchery | https://www.mitigationcommission.gov/hatchery/hatchery_warmh |  |  | PIN INSIDE | no-layer |
+| US-11186 | Timber Canyon Wildlife Management Area | https://dwrapps.utah.gov/ram/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-11207 | Elliott Mesa Wildlife Management Area | https://www.blm.gov/visit/elliot-mesa-trailhead |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-11921 | The Casting of the Lots – Dominguez-Escalante 17 | https://wikimapia.org/10213548/Casting-of-Lots#:~:text=%22TH |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12069 | Old Iron Town State Historical Park | https://www.waymarking.com/waymarks/wm178CP_Old_Iron_Town_St |  |  | NOTHING NEAR | no-layer |
+| US-12998 | Cache Valley Public Shooting Range Utah DWR Stat | https://wildlife.utah.gov/cache-valley-public-shooting-range |  |  | NOTHING NEAR | no-layer |
+| US-13590 | Fremont Island Upper - Back Country Airstrip Sta | https://utahbackcountrypilots.org/airstrips/FREMONTISLANDUPP |  |  | NOTHING NEAR | no-layer |
+| US-13591 | Fremont Island Lower - Backcountry Airstrip Stat | https://utahbackcountrypilots.org/airstrips/FREMONTISLANDLOW |  |  | NOTHING NEAR | no-layer |
+| US-13596 | Butch Cassidy State Monument Park | https://stateparks.utah.gov/parks/butch-cassidy/ |  |  | NOTHING NEAR | no-layer |
+| US-5787 | Hidden Valley Trail State Recreation Area |  |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5844 | Monte Cristo State Recreation Area | https://stateparks.utah.gov/stateparks/wp-content/uploads/si |  |  | NOTHING NEAR | no-layer |
+| US-5875 | Wedge Overlook State Recreation Area | https://www.blm.gov/visit/wedge-overlook | Bureau of Land Management, Pri map HTTP 404 |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5957 | Sunstone Knoll State Recreation Site | https://geology.utah.gov/popular/places-to-go/rock-mineral-c |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5972 | North Oquirrh BLM Wildlife Management Area | https://www.blm.gov/visit/north-oquirrh-management-area-noma |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5998 | Horseshoe Springs Wildlife Management Area |  |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-6060 | Hermit's Cabin/Cave State Recreation Area | https://www.blm.gov/visit/hermits-cabin |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+
+UT: 0 of 17 have a map in our docs.
+
+### OR (18 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: NONE for this state
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-10486 | Warner Wetland Reserve | https://www.blm.gov/visit/warner-wetlands |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-10610 | South Santiam State Fish Hatchery | https://maps.app.goo.gl/r57dvtE8qfEvsTUN9 |  |  | NOTHING NEAR | no-layer |
+| US-10612 | Wizard Falls State Fish Hatchery | https://maps.app.goo.gl/3fffk8reWKE4JF3L7 |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-10613 | Cole M. Rivers State Fish Hatchery | https://maps.app.goo.gl/VCK4zWJyq8cEhHXz5 |  |  | NOTHING NEAR | no-layer |
+| US-12977 | Salmon River State Fish Hatchery | https://myodfw.com/salmon-river-hatchery-visitors-guide |  |  | NOTHING NEAR | no-layer |
+| US-12980 | Trask River State Fish Hatchery | https://myodfw.com/trask-river-hatchery-visitors-guide |  |  | NOTHING NEAR | no-layer |
+| US-12986 | Alsea River State Fish Hatchery | https://myodfw.com/alsea-hatchery-visitors-guide |  |  | PIN INSIDE | no-layer |
+| US-12990 | Rock Creek State Fish Hatchery | https://myodfw.com/rock-creek-hatchery-visitors-guide |  |  | NOTHING NEAR | no-layer |
+| US-12993 | Elk River State Fish Hatchery | https://myodfw.com/elk-river-hatchery-visitors-guide |  |  | NOTHING NEAR | name-mismatch? |
+| US-12994 | Klaskanine State Fish Hatchery | https://myodfw.com/klaskanine-hatchery-visitors-guide |  |  | NOTHING NEAR | no-layer |
+| US-13070 | Owyhee State Airstrip State Recreation Site | https://www.oregon.gov/aviation/airports/Pages/owyhee-28U.as |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-13078 | Cascade State Fish Hatchery | https://myodfw.com/cascade-hatchery-visitors-guide |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13096 | Bob Creek Wayside State Recreation Site | https://pages.uoregon.edu/mlclark/101/bob-creek.html |  |  | PIN INSIDE | no-layer |
+| US-13097 | Strawberry Hill Wayside State Recreation Site | https://pages.uoregon.edu/mlclark/101/strawberry-hill.html |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5456 | Clatsop State Forest | https://www.oregon.gov/odf/recreation/guides/clatsop-state-f |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5459 | Santiam State Forest | https://www.oregon.gov/odf/recreation/Pages/santiam-state-fo |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5460 | Sun Pass State Forest | https://www.oregon.gov/odf/working/pages/stateforests.aspx |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-9983 | Valley of the Giants Outstanding Natural Area | https://drive.google.com/file/d/16pRZxTbgswsHT_Vz8uMj8NA8Cy8 |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+
+OR: 0 of 18 have a map in our docs.
+
+### WA (20 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: NONE for this state
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-10711 | Marckworth State Forest | https://www.dnr.wa.gov/managed-lands/forest-and-trust-lands  |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-11145 | Naneum Ridge State Forest | https://www.dnr.wa.gov/NaneumRidge |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12296 | Raging River State Forest | https://www.dnr.wa.gov/geo/ragingriver.pdf |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12315 | Dragoon Creek State Recreation Site | https://wadnr.maps.arcgis.com/apps/Shortlist/index.html?appi |  |  | PIN INSIDE | no-layer |
+| US-12316 | Sherry Creek State Recreation Site | https://wadnr.maps.arcgis.com/apps/Shortlist/index.html?appi |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12565 | Skookum Creek State Recreation Area | https://dnr.wa.gov/forest-and-trust-lands/little-pend-oreill |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12566 | Sheep Creek State Recreation Area | https://dnr.wa.gov/forest-and-trust-lands/little-pend-oreill |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-12567 | Douglas Falls State Recreation Area | https://dnr.wa.gov/forest-and-trust-lands/little-pend-oreill |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-12569 | Beverly Dunes State Recreation Site | https://dnr.wa.gov/forest-and-trust-lands/naneum-ridge-state |  |  | PIN INSIDE | no-layer |
+| US-13391 | Olequa Crossing State Recreation Site | https://wdfw.wa.gov/places-to-go/water-access-sites/olequa-c |  |  | NOTHING NEAR | no-layer |
+| US-13516 | Horseshoe -Kitsap- State Fishing Lake | https://wdfw.wa.gov/fishing/locations/lowland-lakes/horsesho |  |  | PIN INSIDE | no-layer |
+| US-5565 | Ahtanum State Forest | https://www.dnr.wa.gov/Ahtanum |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5566 | Blanchard State Forest | https://www.dnr.wa.gov/Blanchard |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5567 | Capitol State Forest | https://www.dnr.wa.gov/Capitol |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5568 | Elbe Hills-Tahoma State Forest | https://www.dnr.wa.gov/ElbeHillsTahoma |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5569 | Green Mountain-Tahuya State Forest | https://www.dnr.wa.gov/GreenMountainTahuya |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5570 | Little Pend Oreille State Forest | https://www.dnr.wa.gov/LittlePendOreille |  |  | NOTHING NEAR | no-layer |
+| US-5571 | Loomis-Loup Loup State Forest | https://www.dnr.wa.gov/LoomisLoupLoup |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5572 | Olympic Peninsula State Forest | https://www.dnr.wa.gov/OlympicPeninsula |  |  | PIN INSIDE | no-layer |
+| US-5576 | Yacolt Burn State Forest | https://www.dnr.wa.gov/Yacolt |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+
+WA: 0 of 20 have a map in our docs.
+
+### OK (31 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: yes
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-10658 | Lake Carl Blackwell Wildlife Management Area | https://www.wildlifedepartment.com/fishing/wheretofish/north |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.wildlifedepartment.com/lands-and-minerals/maps) no name | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-10951 | Cherokee Strip Regional Heritage Center Historic | https://www.okhistory.org/sites/csrhc |  | ok names park | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-11182 | James A Manning State Fish Hatchery | https://stateparks.com/james_a_manning_state_fish_hatchery_i |  | no map link on file and none on the park page no name | PIN INSIDE | no-layer |
+| US-11245 | Byron State Fish Hatchery | https://stateparks.com/byron_state_fish_hatchery_in_oklahoma |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-11769 | Ozark Trail Obelisk Historic Site | https://www.travelok.com/listings/view.profile/id.30272 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.travelok.com/brochures) no name | PIN INSIDE | no-layer |
+| US-11820 | Miller Brothers 101 Ranch Historic Site | https://www.okhistory.org/publications/enc/entry?entry=MI029 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.okhistory.org/research/maps) no name | PIN INSIDE | no-layer |
+| US-11837 | Smallest National Park Historic Site | https://www.travelok.com/listings/view.profile/id.25759 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.travelok.com/brochures) no name | NOTHING NEAR | no-layer |
+| US-11842 | Fred and Addie Drummond State Historic Site | https://www.okhistory.org/sites/drummondhome |  | ok names park | PIN INSIDE | no-layer |
+| US-12154 | Standing Bear State Historic Site | https://www.travelok.com/listings/view.profile/id.7204 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.travelok.com/brochures) no name | PIN INSIDE | no-layer |
+| US-12735 | Saline Courthouse State Historic Site | https://www.travelok.com/listings/view.profile/id.29680 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.travelok.com/brochures) no name | PIN INSIDE | no-layer |
+| US-13077 | Southern Plaines Indian Historic Site | https://www.doi.gov/iacb/southern-plains-indian-museum |  | no map link on file and none on the park page no name | PIN INSIDE | no-layer |
+| US-13105 | Field Station State Fishing Lake | https://www.travelok.com/listings/view.profile/id.14888 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.travelok.com/brochures) no name | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-6335 | Cabin Creek Battlefield State Historic Site | https://www.okhistory.org/sites/cabincreek |  | ok names park | PIN INSIDE | no-layer |
+| US-6336 | Honey Springs Battlefield State Historic Site | https://www.okhistory.org/sites/honeysprings |  | ok names park | PIN INSIDE | no-layer |
+| US-6337 | Fort Towson State Historic Site | https://www.okhistory.org/sites/forttowson |  | ok names park | PIN INSIDE | no-layer |
+| US-8119 | Doc Hollis State Fishing Lake | https://www.wildlifedepartment.com/fishing/wheretofish/south |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.wildlifedepartment.com/lands-and-minerals/maps) no name | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-8128 | Lloyd Vincent State Fishing Lake | https://www.wildlifedepartment.com/fishing/wheretofish/north |  | no working map link (tried: opened, a readable map that does not name this park (chat 8 F2: another unit / several units) https://oklahoma.gov/content/dam/ok/en/owrb/documents/maps-and-data/pr; opened, a page that does not name this park (a generic agency page is not its map) https://www.wildlifedepartment.com/lands-and-minerals/maps) no name | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-8134 | Sardis State Fishing Lake | https://www.wildlifedepartment.com/fishing/wheretofish/south |  | no working map link (tried: opened, a readable map that does not name this park (chat 8 F2: another unit / several units) https://oklahoma.gov/content/dam/ok/en/owrb/documents/maps-and-data/pr; opened, a page that does not name this park (a generic agency page is not its map) https://www.wildlifedepartment.com/lands-and-minerals/maps) no name | PIN INSIDE | no-layer |
+| US-8272 | Holdenville State Fish Hatchery | https://www.wildlifedepartment.com/fishing/contact |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.wildlifedepartment.com/lands-and-minerals/maps; opened, a government data / policies page, not this park's map (chat 11 regrade 2) https://www.google.com/maps/place/Oklahoma+Aquarium/@36.0198841,-95.95) no name | PIN INSIDE | no-layer |
+| US-8639 | Birch State Fishing Lake | https://www.swt.usace.army.mil/Portals/41/docs/missions/recr |  | no map link on file and none on the park page no name | PIN INSIDE | no-layer |
+| US-8641 | Cherokee Strip Museum State Historic Site | https://www.okhistory.org/sites/cherokeestrip |  | ok names park | NOTHING NEAR | no-layer |
+| US-8642 | Museum of the Western Prairie State Historic Sit | https://www.okhistory.org/sites/westernprairie |  | ok names park | PIN INSIDE | no-layer |
+| US-8643 | Oklahoma History Center State Historic Site | https://www.okhistory.org/historycenter/index.php |  | ok names park | NOTHING NEAR | no-layer |
+| US-8644 | Oklahoma Route 66 Museum State Historic Site | https://www.okhistory.org/sites/route66 |  | ok names park | PIN INSIDE | no-layer |
+| US-8645 | Oklahoma Territorial Museum State Historic Site | https://www.okhistory.org/sites/territorialmuseum |  | ok names park | NOTHING NEAR | no-layer |
+| US-8646 | Pioneer Woman Museum State Historic Site | https://www.okhistory.org/sites/pioneerwoman |  | ok names park | LIKELY | name-mismatch/pin-doubt |
+| US-8647 | Sod House Museum State Historic Site | https://www.okhistory.org/sites/sodhouse |  | ok names park | NOTHING NEAR | no-layer |
+| US-8648 | Spiro Mounds Archaeological Center State Histori | https://www.okhistory.org/sites/spiromounds |  | ok names park | PIN INSIDE | no-layer |
+| US-8649 | Tom Mix Museum State Historic Site | https://www.okhistory.org/sites/tommix |  | ok names park | PIN INSIDE | no-layer |
+| US-8650 | White Hair Memorial State Historic Site | https://www.okhistory.org/sites/whitehair |  | ok names park | PIN INSIDE | no-layer |
+| US-8651 | Will Rogers State Historic Site | https://www.okhistory.org/sites/willrogers |  | ok names park | PIN INSIDE | no-layer |
+
+OK: 31 of 31 have a map in our docs.
+
+### ND (42 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: yes
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-12782 | Camp Arnold State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/arnold. |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-12783 | Camp Corning State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/corning |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-12784 | Camp Grant State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/grant.h |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-5639 | Writing Rock State Historic Site | https://www.history.nd.gov/historicsites/writingrock/index.h |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-5741 | Turtle Mountain State Forest | https://www.ag.ndsu.edu/ndfs/programs-and-services/turtle-mo |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.ndsu.edu/alphaindex/buildings) no name | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-5743 | Mouse River State Forest | https://www.ag.ndsu.edu/ndfs/programs-and-services/mouse-riv |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.ndsu.edu/alphaindex/buildings) no name | NOTHING NEAR | no-layer |
+| US-5744 | Tetrault Woods State Forest | https://www.ag.ndsu.edu/ndfs/programs-and-services/tetrault- |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.ndsu.edu/alphaindex/buildings) no name | PIN INSIDE | no-layer |
+| US-5745 | Nowesta Memorial Grove State Forest | https://www.ag.ndsu.edu/ndfs/programs-and-services/nowesta-m |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.ndsu.edu/alphaindex/buildings) no name | PIN INSIDE | no-layer |
+| US-5746 | Sheyenne River State Forest | https://www.ag.ndsu.edu/ndfs/programs-and-services/sheyenne- |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.ndsu.edu/alphaindex/buildings) no name | NOTHING NEAR | no-layer |
+| US-5748 | Fort Abercrombie State Historic Site | https://www.history.nd.gov/historicsites/abercrombie/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-7143 | International Peace Garden Park | https://peacegarden.com/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8524 | Bismarck-Deadwood Stage Trail State Historic Sit | https://www.history.nd.gov/historicsites/bdst/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8526 | Camp Atchison State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/atchiso |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8527 | Camp Buell State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/buell.h |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8528 | Camp Hancock State Historic Site | https://www.history.nd.gov/historicsites/hancock/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8531 | Cannonball Stage Station State Historic Site | https://www.history.nd.gov/historicsites/cannonballss/index. |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8532 | Chateau De Mores State Historic Site | https://www.history.nd.gov/historicsites/chateau/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8534 | David Thompson State Historic Site | https://www.history.nd.gov/historicsites/thompson/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8535 | Double Ditch Indian Village State Historic Site | https://www.history.nd.gov/historicsites/doubleditch/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8536 | Fort Buford State Historic Site | https://www.history.nd.gov/historicsites/buford/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8537 | Fort Clark State Historic Site | https://www.history.nd.gov/historicsites/clark/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8538 | Fort Dilts State Historic Site | https://www.history.nd.gov/historicsites/dilts/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8539 | Fort Mandan Overlook State Historic Site | https://www.history.nd.gov/historicsites/fmo/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8540 | Fort Rice State Historic Site | https://www.history.nd.gov/historicsites/rice/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8541 | Fort Totten State Historic Site | https://www.history.nd.gov/historicsites/totten/ |  | no map link on file and none on the park page no name | PIN INSIDE | no-layer |
+| US-8542 | Gingras Trading Post State Historic Site | https://www.history.nd.gov/historicsites/gingras/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8543 | Hudson Townsite State Historic Site | https://www.history.nd.gov/historicsites/hudson/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8544 | Huff Indian Village State Historic Site | https://www.history.nd.gov/historicsites/huff/ |  | no map link on file and none on the park page no name | PIN INSIDE | no-layer |
+| US-8545 | Killdeer Mountain Battlefield State Historic Sit | https://www.history.nd.gov/historicsites/kmb/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8546 | Lake Jessie State Historic Site | https://www.history.nd.gov/historicsites/jessie/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8547 | Lake Johnson State Historic Site | https://www.history.nd.gov/historicsites/sibleysully/johnson |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8548 | Maple Creek Crossing State Historic Site | https://www.history.nd.gov/historicsites/maplecreek/index.ht |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8549 | Menoken Indian Village State Historic Site | https://www.history.nd.gov/historicsites/menoken/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8550 | Missouri-Yellowstone Confluence Interpretive Cen | https://www.history.nd.gov/historicsites/mycic/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8552 | November 33 Launch Facility State Historic Site | https://www.history.nd.gov/historicsites/minutemanmissile/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8553 | Oak Lawn Church State Historic Site | https://www.history.nd.gov/historicsites/oaklawn/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8554 | Pembina State Museum State Historic Site | https://www.history.nd.gov/historicsites/pembina/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8555 | Oscar-Zero Missile Alert Facility State Historic | https://www.history.nd.gov/historicsites/minutemanmissile/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8558 | Wadeson Cabin State Historic Site | https://www.history.nd.gov/historicsites/wadeson/index.html |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8559 | Welk Homestead State Historic Site | https://www.history.nd.gov/historicsites/welk/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8560 | Whitestone Hill State Historic Site | https://www.history.nd.gov/historicsites/whitestone/ |  | no map link on file and none on the park page no name | NOTHING NEAR | no-layer |
+| US-8561 | Missouri River State Natural Area | https://www.mortonnd.gov/?SEC=85001A72-5BE8-44B9-8BCA-CFCC77 |  | no working map link (tried: opened, a page that does not name this park (a generic agency page is not its map) https://www.mortonnd.gov/electionmaps; opened, a page that does not name this park (a generic agency page is not its map) https://www.mortonnd.gov/maps) no name | NOTHING NEAR | no-layer |
+
+ND: 42 of 42 have a map in our docs.
+
+### NV (68 open) — step 0 (chat 3, Oct 29 8:20 PM); docs file: NONE for this state
+| Ref | Park | POTA's link | Web record | Our docs map | Key said | Provisional tag |
+|---|---|---|---|---|---|---|
+| US-13023 | Artesia Lake State Wildlife Area | https://www.mypacer.com/parks/363518/artesia-lake-state-wild |  |  | PIN INSIDE | no-layer |
+| US-13183 | Walking Box Ranch Historic Site | https://www.blm.gov/visit/walking-box-ranch |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13240 | Gallagher State Fish Hatchery | https://www.stateparks.com/gallagher_state_fish_hatchery_in_ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13242 | Spring Creek Rearing Station State Fish Hatchery | https://www.nps.gov/grba/learn/nature/spring-creek-rearing-s |  |  | NOTHING NEAR | no-layer |
+| US-13249 | Nevada Northern Railway Museum State Historic Si | https://nnry.com/ |  |  | NOTHING NEAR | no-layer |
+| US-13274 | Empire & Carson River Mills State Historical Mon | https://www.destination4x4.com/nevada-4x4-trails/nevada-stat |  |  | NOTHING NEAR | no-layer |
+| US-13276 | West End of Hastings Cutoff State Historical Mon | https://www.destination4x4.com/nevada-4x4-trails/nevada-stat |  |  | NOTHING NEAR | no-layer |
+| US-13278 | El Dorado Canyon State Historic Site | https://www.destination4x4.com/the-camel-corps-nevada-state- |  |  | NOTHING NEAR | no-layer |
+| US-13280 | Austin State Historical Monument | https://www.destination4x4.com/nevada-4x4-trails/nevada-stat |  |  | NOTHING NEAR | no-layer |
+| US-13281 | Copper Country State Historical Monument | https://www.destination4x4.com/nevada-4x4-trails/nevada-stat |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13282 | Eureka State Historical Monument | https://www.destination4x4.com/eureka-nevada-nevada-state-hi |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13283 | Nevada’s Birthplace State Historical Monument | https://www.destination4x4.com/nevada-4x4-trails/nevada-stat |  |  | NOTHING NEAR | no-layer |
+| US-13285 | Tonopah Nevada State Historical Monument | https://www.destination4x4.com/tonopah-nevada-state-historic |  |  | NOTHING NEAR | no-layer |
+| US-13286 | Mineral County – Nevada State Historical Monumen | https://www.destination4x4.com/mineral-county-nevada-state-h |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13288 | Columbus Nevada State Historical Monument | https://www.destination4x4.com/columbus-nevada-state-histori |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13289 | The Humboldt Canal State Historical Monument | https://www.destination4x4.com/the-humboldt-canal-nevada-sta |  |  | NOTHING NEAR | no-layer |
+| US-13290 | Forty Mile Desert State Historical Monument | https://en.wikipedia.org/wiki/Lahontan_Valley#Forty_Mile_Des |  |  | NOTHING NEAR | no-layer |
+| US-13291 | Chinese in Nevada-#29 State Historical Monument | https://en.wikipedia.org/wiki/List_of_Nevada_historical_mark |  |  | NOTHING NEAR | no-layer |
+| US-13300 | Powell of the Colorado State Historical Monument | https://southwestexplorers.com/powell-of-the-colorado/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13301 | Pueblo Grande de Nevada State Historical Monumen | https://www.destination4x4.com/pueblo-grande-de-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13302 | Big Smoky Valley State Historical Monument | https://southwestexplorers.com/big-smoky-valley/ |  |  | PIN INSIDE | no-layer |
+| US-13303 | Derby Diversion Dam State Historical Monument | https://southwestexplorers.com/derby-diversion-dam/ |  |  | NOTHING NEAR | no-layer |
+| US-13304 | Fort Halleck Military Reservation State Historic | https://www.destination4x4.com/fort-halleck-military-reserva |  |  | NOTHING NEAR | no-layer |
+| US-13305 | Carlin Canyon State Historical Monument | https://southwestexplorers.com/carlin-canyon/ |  |  | NOTHING NEAR | no-layer |
+| US-13306 | Reno Nevada State Historical Monument | https://southwestexplorers.com/reno-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13308 | Old Boundary (Nevada’s Southern Boundary 1861-18 | https://www.destination4x4.com/old-boundary-nevadas-southern |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13319 | Truckee River – West State Historical Monument | https://southwestexplorers.com/truckee-river-west/ |  |  | LIKELY | no-layer |
+| US-13320 | Truckee River – East State Historical Monument | https://southwestexplorers.com/truckee-river-east/ |  |  | NOTHING NEAR | no-layer |
+| US-13321 | Palisade Nevada State Historical Monument | https://www.destination4x4.com/palisade-nevada-eureka-county |  |  | NOTHING NEAR | no-layer |
+| US-13322 | Grand Army Of The Republic Memorial Tree State H | https://southwestexplorers.com/grand-army-of-the-republic-me |  |  | NOTHING NEAR | no-layer |
+| US-13323 | Savage Mansion (c. 1863) State Historical Monume | https://www.destination4x4.com/savage-mansion-nshm-87/ |  |  | NOTHING NEAR | no-layer |
+| US-13325 | Paradise Valley State Historical Monument | https://southwestexplorers.com/paradise-valley-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13363 | Panaca Mercantile Store State Historical Monumen | https://southwestexplorers.com/panaca-mercantile-store/ |  |  | NOTHING NEAR | no-layer |
+| US-13365 | The Camel Corps State Historical Monument | https://southwestexplorers.com/the-camel-corps/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13366 | Edwards Creek Valley State Historical Monument | https://southwestexplorers.com/edwards-creek-valley/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13367 | Wabuska Nevada State Historical Monument | https://southwestexplorers.com/wabuska-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13368 | Franktown Nevada State Historical Monument | https://southwestexplorers.com/franktown-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13369 | Potosi Nevada State Historical Monument | https://www.destination4x4.com/potosi-nevada-state-historic- |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13370 | Searchlight Nevada State Historical Monument | https://www.destination4x4.com/searchlight-nevada-clark-coun |  |  | LIKELY | name-mismatch/pin-doubt |
+| US-13405 | Kingsbury Grade State Historical Monument | https://southwestexplorers.com/kingsbury-grade/ |  |  | NOTHING NEAR | no-layer |
+| US-13407 | Courthouse Site (1865-1907) State Historical Mon | https://southwestexplorers.com/courthouse-site-1865-1907/ |  |  | NOTHING NEAR | no-layer |
+| US-13408 | Toquima Cave State Historical Monument | https://southwestexplorers.com/toquima-cave/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13409 | Belmont Nevada State Historical Monument | https://www.destination4x4.com/belmont-nevada-nye-county-gho |  |  | PIN INSIDE | no-layer |
+| US-13411 | Unionville (Pershing County) State Historical Mo | https://southwestexplorers.com/unionville-nevada/ |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-13412 | Silver Peak State Historical Monument | https://southwestexplorers.com/silver-peak-nevada/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13413 | Chinatown State Historical Monument | https://southwestexplorers.com/dayton-chinatown/ |  |  | NOTHING NEAR | no-layer |
+| US-13414 | Button Point State Historic Site | https://southwestexplorers.com/button-point-nevada/ |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-13448 | Chief Tecopa Peacemaker of the Paiutes State His | https://southwestexplorers.com/chief-tecopa-peacemaker-of-th |  |  | NOTHING NEAR | no-layer |
+| US-13449 | The Surveyors State Historical Monument | https://southwestexplorers.com/the-surveyors/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13450 | Hazen Nevada State Historical Monument | https://southwestexplorers.com/hazen-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13451 | Panaca Ward Chapel State Historical Monument | https://southwestexplorers.com/panaca-ward-chapel/ |  |  | NOTHING NEAR | no-layer |
+| US-13452 | Von Schmidt State Boundry Monument State Histori | https://southwestexplorers.com/von-schmidt-state-boundry-mon |  |  | PIN INSIDE | no-layer |
+| US-13453 | Original Homesite of a Las Vegas Pioneer “Pop” S | https://southwestexplorers.com/original-homesite-of-a-las-ve |  |  | NOTHING NEAR | no-layer |
+| US-13454 | Steamboat Springs Nevada State Historical Monume | https://southwestexplorers.com/steamboat-springs-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13464 | Bullionville Nevada State Historical Monument | https://southwestexplorers.com/bullionville-nevada/ |  |  | NOTHING NEAR | no-layer |
+| US-13467 | Hiko Nevada State Historical Monument | https://southwestexplorers.com/hiko-nevada/ |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-13468 | Chollar Mine State Historical Monument | https://southwestexplorers.com/chollar-mine/ |  |  | PIN INSIDE | no-layer |
+| US-13469 | Old Geiger Grade State Historical Monument | https://southwestexplorers.com/old-geiger-grade-in-canyon-be |  |  | NOTHING NEAR | no-layer |
+| US-13470 | Lahontan Dam State Historical Monument | https://southwestexplorers.com/lahontan-dam/ |  |  | NOTHING NEAR | name-mismatch/pin-doubt |
+| US-13475 | Mount Rose Weather Observatory State Historical  | https://southwestexplorers.com/mount-rose-weather-observator |  |  | PIN INSIDE | no-layer |
+| US-13476 | Stonehouse Nevada State Historical Monument | https://southwestexplorers.com/stonehouse-nevada/ |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13477 | Dinner Station Nevada State Historical Monument | https://www.destination4x4.com/dinner-station-nshm-nevada-st |  |  | NOTHING NEAR | no-layer |
+| US-13478 | Union Pacific Depot 1923 State Historical Monume | https://southwestexplorers.com/union-pacific-depot-1923/ |  |  | NOTHING NEAR | no-layer |
+| US-13479 | Diamondfield Jack Davis State Historical Monumen | https://southwestexplorers.com/diamondfield-jack-davis/ |  |  | NOTHING NEAR | no-layer |
+| US-13480 | The Eureka Mining District Producing Ore Since 1 | https://www.destination4x4.com/the-eureka-mining-district-pr |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+| US-13481 | Spooner Summit State Historical Monument | https://southwestexplorers.com/spooner-summit/ |  |  | PIN INSIDE | no-layer |
+| US-2638 | Van Sickle Bi State Park | http://parks.nv.gov/parks/lake-tahoe-nevada-state-park-3 |  |  | PIN INSIDE | name-mismatch? |
+| US-4438 | Buckland Station State Park | http://parks.nv.gov/parks/buckland-station |  |  | PIN INSIDE other record | name-mismatch/pin-doubt |
+
+NV: 0 of 68 have a map in our docs.
