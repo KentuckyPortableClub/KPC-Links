@@ -159,6 +159,11 @@
     "date": "2026-10-30",
     "note": "Whole open VT list already carried why-not tags from an earlier pass (11 name-mismatch, 1 needs-parcel, 3 no-layer). Found the same county/FIPS mix-up as NH: US-10300 Kesick Swamp SWMA is listed under Berkshire County FIPS 25003, which is Massachusetts code/county, not Vermont -- likely should be Bennington County VT (pin is in VTs SW corner near the MA border). Not filed with chat 9 due to the wrong county; flagged to chat 9/chat 3 to fix first."
   },
+  "US-WI": {
+    "by": 8,
+    "date": "2026-10-30",
+    "note": "4 trace candidates (incl. Love & Strutt/Rem-Love Creek R-G8 cleared via DNR's own page), 4 needs-layer name-searches, 3 picture-map leads"
+  },
   "US-WV": {
     "by": "chat 8",
     "date": "2026-10-30",
