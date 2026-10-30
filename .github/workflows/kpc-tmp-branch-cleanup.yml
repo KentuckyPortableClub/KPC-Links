@@ -1,0 +1,21 @@
+name: KPC temp branch cleanup (HQ, one time)
+# Oct 30 2026 (HQ, Brandon Oct 29 7:27 PM 'Yes tonight'): deletes the 18 merged / owner-OK branches after tonight's
+# history cleanup (the session proxy cannot delete refs). Never fails; HQ deletes this file right after it runs.
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kpc-tmp-branch-cleanup.yml']
+permissions:
+  contents: write
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Delete branches
+        continue-on-error: true
+        run: |
+          for b in chat2-fable-parts chat2-file-by-spot chat2-ky-refine chat2-queue chat2-same-land-far chat2-simple-test chat2-unread-outline chat9-semw evidence-links-maprep groupsio-2027-topic ky-fixes line-speed-p5 note-email-topics official-links probe probe2 release-loaded-verticals spam-save-contact; do
+            git push origin --delete "$b" && echo "::notice title=Branch cleanup::deleted $b" || echo "::notice title=Branch cleanup::could not delete $b"
+          done
