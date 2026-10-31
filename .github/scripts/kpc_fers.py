@@ -1551,7 +1551,7 @@ def water_route_spots(lref, ls, oref, obox):
             # Oct 31 (Fable review #13: the Metropolis shading): this shape is the OUTLINE of the bank strip (a polygon), not a line: no
             # 'every Nth point' (it cut straight across land), kept closed at 1.5 m (sharp_shape caps the points), marked shape_kind polygon
             # length = half the strip's outline (both long sides of a thin strip), not area / width (Fable #14: 25.6 mi for Ballard)
-            per = cv2.arcLength(max(cs, key=cv2.contourArea), True) * CELL / 2
+            per = cv2.arcLength(ap.reshape(-1, 1, 2).astype(np.float32), True) * CELL / 2   # the smoothed outline: a pixel staircase would add up to 40%
             out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(per),
                         'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True, 'shape_kind': 'polygon'})
     return merge(out)
