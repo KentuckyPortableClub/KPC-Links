@@ -402,7 +402,7 @@ async function showBoundary(s,btn){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:f=>{const kpc=f._L&&f._L.kpc;return{color:kpc?'#ffd400':'#f0c96b',weight:3,dashArray:kpc?'12 5 2 5':null,fillColor:'#f0c96b',fillOpacity:kpc?0:.15}}}).addTo(map);
    const kpc=fs.every(f=>f._L&&f._L.kpc);btn.textContent=kpc?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
-   status(kpc?`OpenStreetMap outline (unofficial): no official map has this park yet. Check the park's own map.`:`Official Kentucky boundary shown (${fs.length} piece${fs.length>1?'s':''}, from the state and federal map files KPC keeps). Check the park's own map too.`);return}}catch(e){}}
+   status(kpc?`OpenStreetMap outline (unofficial): no official map has this park yet. Check the park's own map.`:(fs.every(f=>f._line)?`Official trail line shown (${esc(fs[0]._src||'National Park Service')}): POTA counts within 100 ft of it. Check the trail's own map too.`:`Official Kentucky boundary shown (${fs.length} piece${fs.length>1?'s':''}, from the state and federal map files KPC keeps). Check the park's own map too.`));return}}catch(e){}}
  /* Oct 18 (Brandon: 'yes for sure'): every other US park uses the bot's checked list (data/us-key, same name AND same kind
     of place, every tract); parks the key doesn't know fall back to the PAD-US name search. Nothing official = no outline,
     but a separate 'SHOW UNOFFICIAL OUTLINE' button (OpenStreetMap) as a last resort. */

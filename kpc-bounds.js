@@ -67,12 +67,13 @@
      OWNS (shaded); its outer line is only a faint dashed 'Forest boundary line: not all land inside is public' and never says 'inside'. */
   const ALIAS = {"Ohio River Islands National Wildlife Refuge": ["US-0608"], "Livingston County Wildlife Management Area and State Nature Preserve (Bissell Bluff SNP)": ["US-3823"], "Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP)": ["US-3823"], "Blue Licks State Park State Nature Preserve": ["US-1274"], "Knobs State Forest and WMA": ["US-4690"], "Little South Fork State Natural Area (Steele Hollow SNA)": ["US-7962"], "Clifty Wilderness": ["US-3801"], "Big South Fork National River and Recreation Area": ["US-0686"], "Bad Branch Wild River": ["US-10112"], "Big South Fork Wild River": ["US-10107"], "Cumberland River Wild River": ["US-10103"], "Green River Wild River": ["US-10105"], "Rock Creek Wild River": ["US-10111"], "Red River Wild River": ["US-10104"], "Rockcastle River Wild River": ["US-10106"], "Mammoth Cave National Park": ["US-0050"], "Abraham Lincoln Birthplace National Historical Park": ["US-0724"], "Camp Nelson National Monument": ["US-7950"], "Mill Springs Battlefield National Monument": ["US-7708"], "Cumberland Gap National Historical Park": ["US-0019"], "Fort Donelson National Battlefield": ["US-0703"], "Fort Heiman (Fort Donelson National Battlefield tract)": ["US-3790"], "Jefferson National Forest": ["US-4526", "US-10139"], "Pine Mountain State Scenic Trail": ["US-10102"], "Clay WMA": ["US-10124"], "Horsemill Branch WMA": ["US-11274"], "Little Sexton Creek WMA": ["US-12079"], "General Burnside Island State Park": ["US-1257"], "Green River State Natural Area (Rush Island Bottoms)": ["US-12752"], "Green River State Natural Area (Davis Bend)": ["US-12752"], "Dale Hollow Lake State Resort Park": ["US-1278"], "Big Rivers WMA and State Forest": ["US-3796"], "Marion County WMA and State Forest": ["US-3824"], "Miller Welch-Central Kentucky WMA": ["US-3825"], "Vernon-Douglas State Nature Preserve": ["US-7957"], "Dr. William H. Martin State Natural Area": ["US-7964"], "Otter Creek Outdoor Recreation Area": ["US-8144"], "Kentucky Ridge Forest WMA": ["US-10141"], "Tom Dorman State Nature Preserve": ["US-7958"]};
   const inKY = (la, lo) => la > 36.45 && la < 39.2 && lo > -89.6 && lo < -81.9;
-  let kyFeat = null, kyData = null;
+  let kyFeat = null, kyData = null, KYBAD = 0;
   async function ky() {
     if (!kyData) kyData = await jget('kpc-ky-data.json').catch(() => ({ parks: [], kff: [], summits: [] }));
     if (kyFeat) return kyFeat;
     const out = [];
-    await Promise.all(KY.map(async L => { try { const j = await jget(L.file + '?v=20261018q', { cache: 'force-cache' }); (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) {} }));
+    let bad = 0; await Promise.all(KY.map(async L => { try { const j = await jget(L.file + '?v=20261018q', { cache: 'force-cache' }); (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) { bad++; } }));
+    KYBAD = bad; if (!out.length) return out;   /* Oct 31 (Fable #29): nothing loaded = try again next time, and the tools can say so */
     kyFeat = out; byName = null; return out;
   }
   /* which POTA refs a KY boundary belongs to: by name (or KPC's alias list) first; "the park's pin is inside it" only
@@ -173,7 +174,13 @@
     const t = (await trailIdx())[ref]; if (!t) return [];
     const j = await dfetch('data/trails/' + ref + '.json').then(r => r.ok ? r.json() : null).catch(() => null); if (!j) return [];
     return (j.type === 'FeatureCollection' ? j.features || [] : [j]).filter(f => f && f.geometry && isLine(f.geometry))
-      .map(f => (f._src = t.by || 'National Park Service', f._line = true, f._nm = t.name || (f.properties || {}).name || ref, f._L = { name: 'Official trail line', agency: f._src, k: 'btrail' }, f._bb = bbox(f.geometry), f));   /* _L: the shape the KY tools expect */
+      .map(f => (f._src = t.by || 'National Park Service', f._line = true, f._nm = t.name || (f.properties || {}).name || ref, f._L = { name: 'Official trail line', agency: f._src, k: 'btrail' }, f._bb = bbox(f.geometry), f._names = [ref], f));   /* _L: the shape the KY tools expect */
+  }
+  /* Oct 31 (Fable #17): every official trail line whose box is near a spot (Am I in the Park with no park typed in) */
+  async function trailsNear(la, lo, d) {
+    d = d || 0.05; const I = await trailIdx(), out = [];
+    await Promise.all(Object.values(I).filter(t => t.bbox && la > t.bbox[1] - d && la < t.bbox[3] + d && lo > t.bbox[0] - d && lo < t.bbox[2] + d).map(t => trailLine(t.ref).then(fs => fs.forEach(f => { if (edge(la, lo, f.geometry).km < 40) out.push(f); })).catch(() => {})));
+    return out;
   }
   async function kyFor(ref) { const fs = await kyFor0(ref); if (fs && fs.length) return fs; try { return await trailLine(ref); } catch (e) { return []; } }
 
@@ -223,10 +230,11 @@
   async function usKey(ref, states) {
     await layers();
     let hit = null, known = false, site = null, note = '', grade = '', pinOff = false;
-    for (const st of states || []) {
+    const SL = (states || []).slice();   /* Oct 31 (Fable #8): 'joined_in' states are read too (a multi-state trail's line sits in one state's file) */
+    for (let si = 0; si < SL.length; si++) { const st = SL[si];
       if (!(st in keyCache)) keyCache[st] = dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
-      if (p) { known = true; if (p.note) note = p.note; if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [], twin: new Set() }; (p.twin || []).forEach(t => hit.twin.add(String(t))); hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
+      if (p) { known = true; (p.joined_in || []).forEach(x => { x = String(x).replace(/^US-/, ''); if (SL.indexOf(x) < 0) SL.push(x); }); if (p.note) note = p.note; if (p.g && p.g !== 'pin' && (!grade || grade === 'pin')) grade = String(p.g); else if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [], twin: new Set() }; (p.twin || []).forEach(t => hit.twin.add(String(t))); hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
     /* RULE SHEET G (Oct 29): the key's own grade decides: 'official' / 'approximate' / 'pin' (= no outline, whatever matched) */
     if (grade === 'pin') return { state: 'none', site, grade, pinOff };
@@ -476,12 +484,14 @@
   const xe = t => String(t == null ? '' : t).replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
   function toKml(fc, o) {
     const pm = fc.features.map(f => ringsOf(f.geometry).map(poly => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.NAME || f.properties.name)) || o.name)}</name><styleUrl>#b</styleUrl><Polygon>` + poly.map((r, n) => `<${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}><LinearRing><coordinates>${r.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LinearRing></${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}>`).join('') + `</Polygon></Placemark>`).join('')).join('');
-    const pts = (o.points || []).map(p => `<Placemark><name>${xe(p[2])}</name><Point><coordinates>${p[1]},${p[0]}</coordinates></Point></Placemark>`).join('');
+    const pts = (o.points || []).map(p => `<Placemark><name>${xe(p[2])}</name><Point><coordinates>${p[1]},${p[0]}</coordinates></Point></Placemark>`).join('')
+      + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.name)) || f._nm || o.name)}</name><styleUrl>#b</styleUrl><LineString><coordinates>${l.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LineString></Placemark>`).join('') : '').join('');   /* Oct 31 (Fable #29): trail lines too */
     return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${xe(o.ref + ' ' + o.name)}</name><Style id="b"><LineStyle><color>ff00b0ff</color><width>3</width></LineStyle><PolyStyle><color>3300b0ff</color></PolyStyle></Style><Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pts}${pm}</Document></kml>`;
   }
   function toGpx(fc, o) {
     let n = 0; const tr = fc.features.map(f => ringsOf(f.geometry).map(poly => `<trk><name>${xe(o.ref + ' boundary ' + (++n))}</name><trkseg>${poly[0].map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('')).join('');
-    const pts = (o.points || []).map(p => `<wpt lat="${p[0]}" lon="${p[1]}"><name>${xe(p[2])}</name></wpt>`).join('');
+    const pts = (o.points || []).map(p => `<wpt lat="${p[0]}" lon="${p[1]}"><name>${xe(p[2])}</name></wpt>`).join('')
+      + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<trk><name>${xe(o.ref + ' trail ' + (++n))}</name><trkseg>${l.map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('') : '').join('');
     return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1"><wpt lat="${o.la}" lon="${o.lo}"><name>${xe(o.ref + ' ' + o.name)}</name></wpt>${pts}${tr}</gpx>`;
   }
   async function saveGeo(fc, fmt, o, btn) {
@@ -494,5 +504,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { trailLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

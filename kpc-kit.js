@@ -250,7 +250,8 @@
       if (us && us.pinOff) $('kitBnd').insertAdjacentHTML('beforeend', ' POTA’s pin may be off for this park.');
       if (B.sharpLayer && us && us.fs && us.fs.length) { if (kitSharp) kitSharp(); kitSharp = B.sharpLayer(map, lay, us.fs, { map: f => ({ type: 'Feature', properties: { NAME: f._nm, _proc: !!(f._L && f._L.proc), _own: !!(f._L && f._L.own) }, geometry: f.geometry }) }); }   /* RULE SHEET G: zoomed-in full detail */   /* rule B7: over a year since we last read it */
       files(fc);
-    } else $('kitBnd').innerHTML = 'Pin only (no official outline yet). Use the official map.' + (us && us.pinOff ? ' POTA’s pin may be off for this park.' : '') + (ap.length ? ' Green dots: parking / trailhead points.' : '');
+    } else if (P.ky && B.kyFailed && B.kyFailed()) $('kitBnd').innerHTML = '<b>Could not load the Kentucky boundary files right now.</b> Try again with a signal; this does not mean the park has no boundary.';   /* Oct 31 (Fable #29) */
+    else $('kitBnd').innerHTML = 'Pin only (no official outline yet). Use the official map.' + (us && us.pinOff ? ' POTA’s pin may be off for this park.' : '') + (ap.length ? ' Green dots: parking / trailhead points.' : '');
   }
 
   /* ---------- weather (Open-Meteo + NWS alerts) ---------- */

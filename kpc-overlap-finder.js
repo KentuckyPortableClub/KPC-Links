@@ -51,7 +51,8 @@
       var st = String(s.status || '');
       if (/^very tight/.test(st)) { if (MEMBER) TIGHT.push(s); return; }
       if (/^water only/.test(st)) { if (MEMBER) WATER.push(s); return; }   /* rule 9: water-only spots are listed apart (boat or kayak) */
-      if (st !== 'candidate') return;                                    // saved outline only / not sure / dropped / merged
+      if (!/^candidate/.test(st)) return;                                // not sure / dropped / merged
+      s._saved = st !== 'candidate';                                     // Oct 31 (Fable #26): 'candidate (saved outline only)' passed every check on our saved copy only: shown with a badge
       /* 'same land, two park numbers' = SHOWN with that label everywhere (final ruling, CLAUDE.md) */
       var noAcc = !s.access_pin || !s.access_pin.at;
       if (noAcc && !MEMBER) return;                                      // A9: members only
@@ -59,7 +60,7 @@
       var key = s.refs.slice().sort().join('+');
       var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice().sort(function (x, y) { return +(/(\d+)$/.exec(x) || [0, 0])[1] - +(/(\d+)$/.exec(y) || [0, 0])[1]; }), names: {}, patches: [], st: s._st, trail: false });
       Object.assign(g.names, s.names || {}); s._kids = (kids[s.id] || []).filter(function (k, i, A) { var sh = JSON.stringify(k.shape || ''); return sh !== JSON.stringify(s.shape || '') && A.findIndex(function (o) { return JSON.stringify(o.shape || '') === sh; }) === i; });   /* Brandon Oct 27 6:16 PM ('steps 2 and 3 are the same'): the data listed one stretch twice */ s._rev = rev; s._noAcc = noAcc;
-      if (s.kind === 'trail' || s.kind === 'river') g.trail = true; if (s.kind === 'river') g.river = true; g.patches.push(s);   // Oct 28: a water-route row is a LINE (the bank), drawn as its 100-ft band like a trail, never as a polygon
+      if (s.kind === 'trail' || s.kind === 'river') g.trail = true; if (s.water_route) g.bank = true; else if (s.kind === 'trail' || s.kind === 'river') g.lineK = true; g.patches.push(s);   // Oct 31 (Fable #13): a water-route row's shape IS the bank strip (a polygon, drawn as it is); a trail / river-line row is a line with its 100-ft band
     });
     Object.keys(groups).forEach(function (k) { var g = groups[k];
       g.patches.sort(function (a, b) { return size(b) - size(a); });
@@ -72,7 +73,7 @@
   function visiblePatches(g) { var w = $('ovWait') && $('ovWait').checked && MEMBER; return g.patches.filter(function (s) { return s._rev || w; }); }
 
   /* ---------- the LIST ---------- */
-  function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">' + (g.river ? 'POSSIBLE RIVER OVERLAP: WITHIN 100 FT OF THE RIVER BANK' : 'POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE TRAIL LINE') + '</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
+  function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">' + (g.bank && g.lineK ? 'POSSIBLE OVERLAP: WITHIN 100 FT OF THE RIVER BANK OR THE TRAIL LINE' : g.bank ? 'POSSIBLE RIVER OVERLAP: WITHIN 100 FT OF THE RIVER BANK' : 'POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE LINE') + '</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
   function nm(g, r) { return (g.names && g.names[r]) || r; }
   function accLine(s) {
     var a = s.access_pin;
@@ -87,13 +88,13 @@
   }
   function sizeLine(g, ps) {
     var s = ps[0];
-    if (g.trail) { var n = ps.reduce(function (t, x) { return t + (+x.stretches || 1); }, 0), km = ps.reduce(function (t, x) { return t + (x.len_m || 0); }, 0); return n + ' stretch' + (n > 1 ? 'es' : '') + ' of trail inside the park, about ' + (km / 1609).toFixed(1) + ' mi in all (the 100-ft band along the line is the zone)'; }
+    if (g.trail) { var n = ps.reduce(function (t, x) { return t + (+x.stretches || 1); }, 0), km = ps.reduce(function (t, x) { return t + (x.len_m || 0); }, 0); return n + ' stretch' + (n > 1 ? 'es' : '') + (g.bank && !g.lineK ? ' of river bank inside the park, about ' + (km / 1609).toFixed(1) + ' mi in all (the land within 100 ft of the water\'s edge is the zone)' : ' of trail inside the park, about ' + (km / 1609).toFixed(1) + ' mi in all (the 100-ft band along the line is the zone)'); }
     return (ps.length > 1 ? ps.length + ' places, biggest first: ' : '') + 'fits a circle about <b>' + Math.round((s.wide_m || 0) * YD) + ' yards</b> across' + (s.acres ? ' · about ' + (+s.acres).toFixed(1) + ' acres' : '');
   }
   /* Brandon Oct 27 2:37 PM ('info says 6 places but only lists 1'): every place listed, biggest first, each with its size, access and a SHOW button */
   function placesHtml(g, ps) {
     return '<details class="ov-places"' + (ps.length <= 3 ? ' open' : '') + '><summary>▸ THE ' + ps.length + ' PLACES</summary><ol>' + ps.map(function (s, i) {
-      var sz = (s.kind === 'trail' || s.kind === 'river') ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + (s.kind === 'river' ? ' yards of river bank' : ' yards of trail') + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
+      var sz = (s.kind === 'trail' || s.kind === 'river') ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + (s.water_route ? ' yards of river bank' : ' yards of trail') + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
       return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
   var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
@@ -101,7 +102,7 @@
   function rowHtml(g, ps) {
     var s = ps[0], small = ps.some(function (x) { return tierOf(x) === 'small'; }), wait = ps.some(function (x) { return !x._rev; });
     return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') +
-      (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') +
+      (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') + (ps.some(function (x) { return x._saved; }) ? '<span class="ov-badge bg-off">CHECKED ON OUR SAVED OUTLINE ONLY</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
       '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs) + (ps.length > 1 ? '' : accLine(s)) +
@@ -251,6 +252,7 @@
     out.push(out[0]); return out;
   }
   function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (!x.shape || x.shape.length < 2) return;
+    if (x.water_route && x.shape.length > 3) { var rg = x.shape.slice(), a0 = rg[0], z0 = rg[rg.length - 1]; if (a0[0] !== z0[0] || a0[1] !== z0[1]) rg.push(a0); out.push({ s: x, ring: rg, line: null, bank: true }); return; }   /* the bank strip, as saved */
     if (x.kind === 'trail' || x.kind === 'river') { var band = bandRing(x.shape), z = (x.zone || []).filter(function (r) { return r && r.length > 2; });
       if (z.length) z.forEach(function (r, i) { out.push({ s: x, ring: r, line: x.shape, band: band, zone: true, first: i === 0 }); });
       else out.push({ s: x, ring: band, line: x.shape, band: band, first: true }); }
@@ -333,6 +335,7 @@
     return Promise.all(parks.map(function (p) {
       var trailPatch = g.patches.some(function (s) { return s.kind === 'trail' && s.line_source && s.line_source[p.ref]; });
       if (trailPatch) { p.line = true; return null; }   // a line park: its zone is the 100-ft band, drawn from the patch itself
+      if (g.patches.some(function (s) { return s.water_route && s.line_source && s.line_source[p.ref]; })) { p.bank = true; return null; }   // Oct 31: a water route counts by the bank strip (the patch)
       var ky = /^US-/.test(p.ref) && (g.st === 'KY' || /KY/.test(g.st));
       var pr = ky && B.kyFor ? B.kyFor(p.ref) : /^CA-/.test(p.ref) && B.canada ? B.canada(p.ref) : B.usOutline ? B.usOutline(p.ref, nm(g, p.ref), g.best.center[0], g.best.center[1], [String(g.st || '').replace(/^US-/, '')]).then(function (o) { return o && o.fs; }) : Promise.resolve(null);
       return Promise.resolve(pr).then(function (fs) { p.fsAll = (fs || []).filter(function (f) { return f && f.geometry; }); p.fs = near(g, p.fsAll); }).catch(function () { p.fs = []; p.fsAll = []; });
@@ -451,10 +454,10 @@
     return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a href="#" onclick="var t=\'' + lat.toFixed(6) + ', ' + lon.toFixed(6) + '\';try{navigator.clipboard.writeText(t);this.textContent=\'COPIED: \'+t}catch(e){prompt(\'Copy the GPS:\',t)}return false">📋 COPY GPS</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
   }
   function landAt(lat, lon) {
-    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, ins = parks.map(function (q) { if (q.bank) return cur.rings.some(function (x) { return x.bank && pip(lon, lat, x.ring); }); if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var inN = parks.filter(function (q, i) { return ins[i]; }), outN = parks.filter(function (q, i) { return ins[i] === false; }), unk = ins.some(function (x) { return x === null; });
     var t = !inN.length ? '<b style="color:#7a1d0e">⛔ Not park land on our maps.</b><br>None of these parks owns or manages this spot: it is private property or another owner\'s land' + (unk ? '' : ', even if it sits inside a park\'s outer line') + '. Do not set up here.'
-      : !outN.length ? '<b style="color:#1d5a3a">✅ Inside both outlines by our maps.</b><br>' + inN.map(function (q) { return esc(q.ref); }).join(' + ')
+      : !outN.length ? '<b style="color:#1d5a3a">✅ ' + (parks.some(function (q) { return q.line || q.bank; }) ? 'Inside every park\'s zone by our maps (the 100-ft band counts for a trail or river).' : 'Inside both outlines by our maps.') + '</b><br>' + inN.map(function (q) { return esc(q.ref); }).join(' + ')
       : '<b style="color:#8a5a00">🟡 Inside ' + inN.map(function (q) { return esc(q.ref); }).join(', ') + ' only.</b><br>Not part of ' + outN.map(function (q) { return esc(q.ref) + ' ' + esc(nm(cur, q.ref)); }).join(', ') + ' here (that park does not own or manage this land).';
     return t + '<br><small>Official outlines can be off by several yards: check the agency map.</small>';
   }
@@ -486,7 +489,7 @@
   function status(p, acc, isPin) {
     if (!cur) return; var lat = p[0], lon = p[1], g = $('ovGps'), cls = 'out', t = '', body = '', who = isPin ? 'the pin' : 'you', look = isPin ? ' looks' : ' look';
     var inPatch = null, dPatch = 1e12; cur.rings.forEach(function (x) { var inn = pip(lon, lat, x.ring), d = edgeM(lon, lat, x.ring, true); if (inn && !inPatch) inPatch = x; dPatch = Math.min(dPatch, d); });
-    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.bank) return cur.rings.some(function (x) { return x.bank && pip(lon, lat, x.ring); }); if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); var A = q.fsAll || q.fs; if (!A || !A.length || !B) return null; return A.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var known = ins.filter(function (x) { return x !== null; }).length, k = ins.filter(Boolean).length, accM = acc / YD;
     if (inPatch) {
       if (accM > dPatch) { cls = 'edge'; t = '⚠️ TOO CLOSE TO THE EDGE TO TELL'; body = 'GPS is good to about ±' + Math.round(acc) + ' yards and the edge of the lit patch is ' + Math.round(dPatch * YD) + ' yards away. Step farther in; we never guess.'; }

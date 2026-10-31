@@ -33,7 +33,7 @@
     return k === 'bwma' ? { color: '#4ade80', who: 'Fish & Wildlife (WMA) land' } : k === 'bsnp' || k === 'bsna' ? { color: '#2dd4bf', who: 'Nature preserve land' }
       : k === 'bnps' ? { color: '#60a5fa', who: 'National Park Service' } : k === 'bfws' ? { color: '#5ab0ff', who: 'U.S. Fish & Wildlife' }
       : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', weight: 1.5, who: 'Forest boundary line: not all land inside is public' } : k === 'bdbnfo' ? { color: '#a3e635', fill: true, fillOpacity: .15, who: 'Forest Service-owned land (ownership map, 2015 data)' } : k === 'bwild' ? { color: '#16b3c0', who: 'Wild River corridor' }
-      : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bpad' ? { color: '#e8b04a', who: 'Official outline (USGS PAD-US)' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'OpenStreetMap outline (unofficial)' } : { color: '#f0c96b', who: 'State park land' }; };
+      : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bpad' ? { color: '#e8b04a', who: 'Official outline (USGS PAD-US)' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'OpenStreetMap outline (unofficial)' } : k === 'btrail' ? { color: '#f0c96b', who: 'Official trail line (100 ft each side counts)' } : { color: '#f0c96b', who: 'State park land' }; };   /* Oct 31 (Fable): a trail is not state park land */
   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
   function init() {
     map = L.map('pcMap', { zoomControl: true, preferCanvas: true }).setView([37.75, -85.7], 7);

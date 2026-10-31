@@ -103,10 +103,11 @@
   }
   function where(pt, fs) {
     const b = B(); if (!b || !fs.length) return { t: '', km: null };
-    if (fs.some(f => f.geometry && b.inside(pt.la, pt.lo, f.geometry))) return { t: 'inside the park line', km: 0 };
+    const ln = fs.every(f => f.geometry && b.isLine && b.isLine(f.geometry));   /* Oct 31 (Fable): a trail park = within 100 ft of its line */
+    if (fs.some(f => f.geometry && b.inside(pt.la, pt.lo, f.geometry))) return { t: ln ? 'within 100 ft of the trail' : 'inside the park line', km: 0 };
     let best = Infinity; fs.forEach(f => { if (f.geometry) { const e = b.edge(pt.la, pt.lo, f.geometry); if (e.km < best) best = e.km; } });
     const m = best * 0.621371;
-    return isFinite(m) ? { t: m < 0.1 ? 'right at the park line' : (m < 1 ? m.toFixed(1) : Math.round(m)) + ' mi outside the park line', km: best } : { t: '', km: null };
+    return isFinite(m) ? { t: ln ? (m < 0.1 ? Math.round(best * 3280.84) + ' ft from the trail (100 ft counts)' : (m < 1 ? m.toFixed(1) : Math.round(m)) + ' mi from the trail') : m < 0.1 ? 'right at the park line' : (m < 1 ? m.toFixed(1) : Math.round(m)) + ' mi outside the park line', km: best } : { t: '', km: null };
   }
 
   /* ---------- open a park ---------- */

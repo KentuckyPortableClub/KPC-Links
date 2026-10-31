@@ -43,13 +43,13 @@
   async function padus(name, la, lo, small) {
     const w = words(name), d = small ? 0.004 : 0.35;
     const env = `${lo - d},${la - d},${lo + d},${la + d}`;
-    const base = { geometry: env, geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'Unit_Nm,Loc_Nm,Mang_Name,Loc_Mang,Des_Tp,GIS_Acres,Pub_Access', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0003, f: 'geojson' };
+    const base = { geometry: env, geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'Unit_Nm,Loc_Nm,Mang_Name,Loc_Mang,Des_Tp,GIS_Acres,Pub_Access,Category', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0003, f: 'geojson' };
     /* PAD-US firewall: one plain LIKE only (no UPPER/OR/AND), so ask Title Case, CAPITALS and as typed, then merge */
     let wh = ['1=1'];
     if (!small && w.length) { const ws = w.slice(0, 2), pat = f => ('%' + ws.map(f).join('%') + '%').replace(/'/g, '%'); wh = [...new Set([`Unit_Nm LIKE '${pat(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())}'`, `Loc_Nm LIKE '${pat(x => x.toUpperCase())}'`, `Unit_Nm LIKE '${pat(x => x)}'`])]; }
     const gs = await Promise.all(wh.map(where => jget(PADUS + '?' + new URLSearchParams(Object.assign({}, base, { where }))).catch(() => ({ features: [] }))));
     const seen = new Set();
-    let fs = gs.flatMap(g => g.features || []).filter(f => f.geometry).filter(f => { const k = JSON.stringify(f.properties) + (f.geometry.coordinates || []).length; if (seen.has(k)) return false; seen.add(k); return true; });
+    let fs = gs.flatMap(g => g.features || []).filter(f => f.geometry && !/^(Proclamation|Easement)$/.test(String((f.properties || {}).Category || ''))).filter(f => {   /* Oct 31 (Fable #16): never a proclamation line or a private easement */ const k = JSON.stringify(f.properties) + (f.geometry.coordinates || []).length; if (seen.has(k)) return false; seen.add(k); return true; });
     if (!fs.length) return null;
     if (!small) { // best name match, then the piece the pin is in / nearest
       const nl = String(name).toLowerCase();
@@ -102,15 +102,16 @@
   /* Boundary files. Phones: share menu (Save to Files / open in a map app). Computers: a normal download. */
   const xe = t => String(t == null ? '' : t).replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
   function rings(g) { if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
+  function lns(g) { if (!g) return []; if (g.type === 'LineString') return [g.coordinates]; if (g.type === 'MultiLineString') return g.coordinates; return []; }   /* Oct 31 (Fable #29): trail parks export their line */
   function toKml(fc, o) {
     const pm = fc.features.map(f => rings(f.geometry).map(poly => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.name)) || o.name)}</name><styleUrl>#b</styleUrl><Polygon>` +
       poly.map((r, n) => `<${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}><LinearRing><coordinates>${r.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LinearRing></${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}>`).join('') + `</Polygon></Placemark>`).join('')).join('');
     return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${xe(o.ref + ' ' + o.name)}</name><Style id="b"><LineStyle><color>ff00b0ff</color><width>3</width></LineStyle><PolyStyle><color>3300b0ff</color></PolyStyle></Style>` +
-      `<Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pm}</Document></kml>`;
+      `<Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pm}${fc.features.map(f => lns(f.geometry).map(l => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.name)) || o.name)}</name><styleUrl>#b</styleUrl><LineString><coordinates>${l.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LineString></Placemark>`).join('')).join('')}</Document></kml>`;
   }
   function toGpx(fc, o) {
     let n = 0; const tr = fc.features.map(f => rings(f.geometry).map(poly => `<trk><name>${xe(o.ref + ' boundary ' + (++n))}</name><trkseg>${poly[0].map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('')).join('');
-    return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1"><wpt lat="${o.la}" lon="${o.lo}"><name>${xe(o.ref + ' ' + o.name)}</name></wpt>${tr}</gpx>`;
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1"><wpt lat="${o.la}" lon="${o.lo}"><name>${xe(o.ref + ' ' + o.name)}</name></wpt>${tr}${fc.features.map(f => lns(f.geometry).map(l => `<trk><name>${xe(o.ref + ' trail ' + (++n))}</name><trkseg>${l.map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('')).join('')}</gpx>`;
   }
   async function saveGeo(f, o, btn) {
     if (!lastGeo) return;
@@ -140,6 +141,18 @@
       if (o.prog === 'POTA' && window.KPCB && KPCB.retired) {
         const rt = await KPCB.retired(o.ref);
         if (rt) { B.className = 'pi-bnd none'; B.innerHTML = KPCB.retiredHtml(rt) + ' Its outline comes off at the next monthly update.'; return; }
+      }
+      /* Oct 31 (Fable #16): a Kentucky park uses the Kentucky official map files first (a trail park = its official trail line) */
+      if (o.ky && o.prog === 'POTA' && window.KPCB && KPCB.kyFor) {
+        let fs = []; try { fs = (await KPCB.kyFor(o.ref)) || []; } catch (e) { fs = null; }
+        if (fs && fs.length) {
+          const fc = { type: 'FeatureCollection', features: fs.map(f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry })) }, ln = fs.every(f => f._line);
+          show(fc, '#ffb000', null, .12); dl(); B.className = 'pi-bnd ok';
+          const ag = [...new Set(fs.map(f => (f._L && f._L.agency) || f._src).filter(Boolean))].map(esc).join(' and ');
+          B.innerHTML = `<b>${[...new Set(fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ')}</b>. ${ln ? 'Official trail line (POTA counts within 100 ft of it)' : 'Official outline'}${ag ? ' from ' + ag : ' from the Kentucky official maps'}. Check the park's own map for closed areas.`;
+          return;
+        }
+        if (fs === null) { B.className = 'pi-bnd none'; B.innerHTML = '<b>Could not load the Kentucky boundary files right now.</b> Try again with a signal; this does not mean the park has no boundary.'; return; }
       }
       /* Oct 22: a POTA park outside Kentucky uses the checked US list; one we are not sure of says Approximate */
       if (o.us && o.prog === 'POTA' && !o.ky && window.KPCB && KPCB.usOutline) {

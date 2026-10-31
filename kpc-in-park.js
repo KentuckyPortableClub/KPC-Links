@@ -23,6 +23,7 @@
     if (B.inKY(la, lo)) jobs.push(B.ky().then(F => { A.kyOk = true; F.forEach(f => { const b = f._bb; if (lo > b[0] - .1 && lo < b[2] + .1 && la > b[1] - .1 && la < b[3] + .1) feats.push({ src: f._L.kpc ? 'kpc' : 'ky', f }); }); }).catch(() => {}));
     jobs.push(B.padusArea(la, lo, 0.03).then(F => { A.padusOk = true; F.forEach(f => feats.push({ src: 'padus', f })); }).catch(() => {}));
     jobs.push(B.potaNear(la, lo, 0.3).then(P => { A.pota = P; }).catch(() => {}));
+    if (B.trailsNear) jobs.push(B.trailsNear(la, lo, 0.05).then(F => F.forEach(f => { if (!feats.some(x => x.f === f)) feats.push({ src: 'ky', f }); })).catch(() => {}));   /* Oct 31 (Fable #17): official trail lines nearby, typed park or not */
     A.wwff = []; A.sota = [];
     jobs.push(B.wwffNear(la, lo, 25).then(W => { A.wwff = W; }).catch(() => {}));
     jobs.push(B.sotaNear(la, lo, 6).then(S => { A.sota = S; }).catch(() => {}));
@@ -63,9 +64,10 @@
   }
   function judge() {
     const { la, lo, acc, how } = st.here, A = st.area, accKm = (acc || 0) / 1000, margin = Math.max(accKm, 0.015);   // G-M3: within 15 m of a line = near the edge
-    let rows = A.feats.map(x => Object.assign({}, x, { in: B.inside(la, lo, x.f.geometry), e: B.edge(la, lo, x.f.geometry) }));
+    const EB = g => { const e = B.edge(la, lo, g); return B.isLine && B.isLine(g) ? { km: Math.abs(0.03048 - e.km), lat: e.lat, lon: e.lon, line: true, to: e.km } : e; };   /* Oct 31 (Fable #17): a trail = POTA's 100 ft each side of the line */
+    let rows = A.feats.map(x => Object.assign({}, x, { in: B.inside(la, lo, x.f.geometry), e: EB(x.f.geometry) }));
     const T = st.target;
-    if (T && T.feats) rows = rows.concat(T.feats.filter(f => !A.feats.some(x => x.f === f)).map(f => ({ src: f._L ? (f._L.kpc ? 'kpc' : 'ky') : 'padus', f, tgt: true, in: B.inside(la, lo, f.geometry), e: B.edge(la, lo, f.geometry) })));
+    if (T && T.feats) rows = rows.concat(T.feats.filter(f => !A.feats.some(x => x.f === f)).map(f => ({ src: f._L ? (f._L.kpc ? 'kpc' : 'ky') : 'padus', f, tgt: true, in: B.inside(la, lo, f.geometry), e: EB(f.geometry) })));
     rows.forEach(r => { r.L = label(r); r.refs = refsOf(r); });
     const hits = rows.filter(r => r.in).sort((a, b) => (b.refs.length > 0) - (a.refs.length > 0) || ((a.f._bb[2] - a.f._bb[0]) * (a.f._bb[3] - a.f._bb[1])) - ((b.f._bb[2] - b.f._bb[0]) * (b.f._bb[3] - b.f._bb[1])));
     const seenN = new Set(), near = rows.filter(r => !r.in && r.e.km < 8).sort((a, b) => a.e.km - b.e.km).filter(r => { const k = r.L.name + '|' + r.src; if (seenN.has(k)) return false; seenN.add(k); return true; });   // one line per place (owned land comes in many parcels)
@@ -132,7 +134,7 @@
   }
   function item(r, isIn) {
     const L = r.L, { la, lo } = st.here;
-    return `<div class="ip-it${isIn ? ' in' : ''}${r.src === 'kpc' ? ' kpc' : ''}"><b>${esc(L.name)}</b><span>${esc(L.what)}</span><span>${isIn ? 'Edge about ' + B.dist(r.e.km) + ' away' : 'About ' + B.dist(r.e.km) + ' to the ' + B.dir(la, lo, r.e.lat, r.e.lon)} · ${esc(L.src)}</span>` +
+    return `<div class="ip-it${isIn ? ' in' : ''}${r.src === 'kpc' ? ' kpc' : ''}"><b>${esc(L.name)}</b><span>${esc(L.what)}</span><span>${r.e.line ? (isIn ? 'Within 100 ft of the trail (' + B.dist(r.e.to) + ' from it)' : 'About ' + B.dist(r.e.to) + ' from the trail (the zone is 100 ft each side)') : isIn ? 'Edge about ' + B.dist(r.e.km) + ' away' : 'About ' + B.dist(r.e.km) + ' to the ' + B.dir(la, lo, r.e.lat, r.e.lon)} · ${esc(L.src)}</span>` +
       (r.refs.length ? `<span class="ip-r">${r.refs.map(x => esc(x.ref + ' ' + x.name) + ' (' + esc(x.prog) + ')').join('; ')}</span>` : '') +
       (L.access && L.access !== 'OA' ? `<span class="ip-w">⚠ ${esc(B.ACCESS[L.access] || L.access)}</span>` : '') + (L.ease ? '<span class="ip-w">⚠ Conservation easement: often private land, not open to the public.</span>' : '') +
       (L.note ? `<span class="ip-w">⚠ ${esc(L.note)}</span>` : '') + '</div>';
