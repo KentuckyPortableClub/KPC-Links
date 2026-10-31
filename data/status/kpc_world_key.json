@@ -1,6 +1,10 @@
 {
 "about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
 "changed": {
+"/tmp/wb-test/CH/0.json": "2026-10-31",
+"/tmp/wb-test/CH/1.json": "2026-10-31",
+"/tmp/wb-test/CH/2.json": "2026-10-31",
+"/tmp/wb-test/CH/3.json": "2026-10-31",
 "data/world-bounds/CH/0.json": "2026-10-25",
 "data/world-bounds/CH/1.json": "2026-10-25",
 "data/world-bounds/CH/2.json": "2026-10-25",
@@ -224,7 +228,7 @@
 "data/world-key/AT.json": "2026-10-25",
 "data/world-key/AU.json": "2026-10-30",
 "data/world-key/BE.json": "2026-10-26",
-"data/world-key/CH.json": "2026-10-25",
+"data/world-key/CH.json": "2026-10-31",
 "data/world-key/CZ.json": "2026-10-26",
 "data/world-key/DE.json": "2026-10-26",
 "data/world-key/DK.json": "2026-10-26",
