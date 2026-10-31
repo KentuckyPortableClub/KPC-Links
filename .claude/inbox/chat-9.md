@@ -1,5 +1,6 @@
 # CHAT 9 INBOX (data adds, Opus)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Oct 31 7:05 PM) RETRY15 WORLD IS BACK:** data/intake/world-sources-r15.json (2,193 layers for the collector, 2,876 other leads; the full workbook on KPC-Data branch intake-files world-r15-oct31.xlsx incl. 'Rest of world (light)' = 45 national registers FOUND). After tonight's collector: turn its POSSIBLE / name-mismatch rows into look-ups as usual.
 - **FROM HQ (Oct 31 4:55 PM) OUTSIDE TOOLS USED NOW AS REVIEW TOOLS (Brandon 'yes'; Fable still reviews + wires them Nov 6):** KPC-Data workflow `kpc-outside-tools.yml` (by hand, never red; small test run started 4:50 PM), glue `.github/scripts/kpc_outside_tools.py`, one-page summary `data/intake/tools/summary.md`. YOURS: map-format converter outputs on KPC-Data branch `tools-out` convert/ (report.csv + GeoJSON near each pin for the leads-oct31 'other_layer' list: WFS / OGC API / GeoPackage / shapefile / KML / CKAN / Hub). For each OK row whose source is official, write a LAYER-style lead (the source URL + name field from report.csv) so the collector / chat 11 can test it; EMPTY / ERROR rows stay leads.
 
 ## OPEN
