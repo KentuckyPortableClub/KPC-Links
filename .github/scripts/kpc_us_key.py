@@ -755,6 +755,23 @@ try:
 except Exception as _e: print(f'Recreation.gov saved copy not read: {str(_e)[:80]}', flush=True)  # noqa: BLE001
 
 
+def near_ring(la, lo, g, km):
+    """Oct 31 (Fable review #18): the key matches on a ROUGH copy (DETAIL ~1 km), so 'pin inside' also passes when the pin is within that
+    slack of the rough line (segment distance, km)."""
+    k = math.cos(math.radians(la)) * 111.32
+    for r in rings(g):
+        for (x1, y1), (x2, y2) in zip(r, r[1:]):
+            ax, ay, bx, by = (x1 - lo) * k, (y1 - la) * 110.57, (x2 - lo) * k, (y2 - la) * 110.57
+            dx, dy = bx - ax, by - ay; L = dx * dx + dy * dy
+            t_ = 0 if L == 0 else max(0, min(1, -(ax * dx + ay * dy) / L))
+            if math.hypot(ax + t_ * dx, ay + t_ * dy) <= km: return True
+    return False
+
+
+def inside_slack(la, lo, g):
+    return inside(la, lo, g) or near_ring(la, lo, g, DETAIL * 111.0)
+
+
 def _km(la1, lo1, la2, lo2):
     return 111.2 * math.hypot(la1 - la2, (lo1 - lo2) * math.cos(math.radians((la1 + la2) / 2)))
 def transfers():
@@ -933,7 +950,13 @@ def run(st):
         for a in recs:
             nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
             close = la is None or near(la, lo, a['_bb'], .6)
-            if not close: continue
+            if not close:
+                # Oct 31 (Fable review #2, rule G-1 'a record that NAMES the park joins at any distance'): the 0.6 deg box no longer hides
+                # the agency's own record of the SAME full name (Ouachita NF's Oklahoma half, Gulf Islands NS in Mississippi) when that
+                # name is unique in the state's records (a namesake elsewhere, like a second Beaver Creek WMA, is never joined this way)
+                if la is not None and len(norm(name)) > 8 and norm(nm) == norm(name) and clusters.get(a.get('_nn'), 1) == 1 and not a.get('Water') and not KM.is_admin(nm):
+                    m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'same full name, far from the pin (G-1: the record names the park)'])
+                continue
             if bool(kp) != bool(a['_k']) and la is not None and not near(la, lo, a['_bb'], .1): close = False   # one name has no kind word: must be close by
             if not close: continue
             if a.get('Water') and (la is None or not near(la, lo, a['_bb'], .02)): continue   # Oct 25: lake names repeat (Washington has dozens of Lost Lakes): a lake surface joins only right at the pin
@@ -977,14 +1000,14 @@ def run(st):
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
                     if _tags(name) and not (_tags(name) & _tags(nm)): continue   # Oct 31 (chat 11: Milford State Fish Hatchery -> 'Milford Wildlife Area'): another kind of place never joins
-                    if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside(x['la'], x['lo'], a['_g']): continue
+                    if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
         if not m and la is not None and ov.get('alias'):
             for al in ov['alias']:
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and near(la, lo, a['_bb'], .05) and inside(la, lo, a['_g']):
+                    if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and near(la, lo, a['_bb'], .05) and inside_slack(la, lo, a['_g']):
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f'alias name (pin inside): {al}'])
         if ref in DBG:
             wants = list(ov.get('join', [])) + list(ov.get('alias', []))
