@@ -470,6 +470,31 @@ def download(parks, refs, det, prec):
                     if o is None: o = next((v for k2, v in a.items() if k2.lower() in ('objectid', 'fid', 'oid', 'object id')), None)
                     if o is not None: found.setdefault(int(o), []).append((a, esri_rings(f.get('geometry')))); WHEN[(u, int(o))] = _d
                 time.sleep(.3)
+        # Oct 30 (chat 2, Iowa came out EMPTY twice: 173 of 182 outlines 'not read' with only 12 requests asked): some state servers
+        # re-number their records when they re-publish (Iowa DNR's ids changed between the key build and the line), so a record
+        # asked for by its id is simply not there. Then ask for it by its NAME in the same layer (the key's name field) and use
+        # the record(s) of that name nearest the park's pin.
+        _pre = lambda rid_: (re.fullmatch(r'([a-z]+)\d+', str(rid_)) or [None, None])[1]
+        for ref, rid, oid, chk in items:
+            if found.get(oid) or 'm' in parks[ref] or late(): continue
+            pre_ = _pre(parks[ref]['ids'][int(rid)] if str(rid).isdigit() and 'm' in parks[ref] else rid)
+            lay = LAYERS_US.get(pre_) if pre_ else None
+            nm_ = parks[ref]['names'].get(rid) or ''
+            if not lay or len(lay) < 2 or not lay[1] or not nm_: continue
+            try:
+                j = get(lay[0], {'where': f"{lay[1]} = '{nm_.replace(chr(39), chr(39) * 2)}'", 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                                 'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'})
+                global _PINS
+                if _PINS is None: _PINS = pins()
+                pin = _PINS.get(ref)
+                fs = [(f.get('attributes') or {}, esri_rings(f.get('geometry'))) for f in j.get('features') or []]
+                fs = [x for x in fs if x[1]]
+                if pin and pin[1] is not None and len(fs) > 1:
+                    fs.sort(key=lambda x: min(abs(q[1] - pin[1]) + abs(q[0] - pin[2]) for rr in x[1] for q in rr[::20] or rr))
+                    fs = fs[:1]
+                if fs: found[oid] = fs; FOUNDBYNAME.add(ref)
+            except Exception as e: LOG.append(f'{lay[0].split("/rest/services/")[-1][:50]}: by-name not read ({str(e)[:40]})')  # noqa: BLE001
+            time.sleep(.3)
         for ref, rid, oid, chk in items:
             cand = [(a, r) for a, r in (found.get(oid) or []) if r and (not chk or name_ok(parks[ref]['names'].get(rid), a))]
             if not cand: bad.add(ref); continue
@@ -708,6 +733,8 @@ FSBO = KO.FSBO
 ACC = {}                   # ref -> notes ('restricted access (PAD-US)')
 LEFT = {}                  # ref -> records left out and why (easement, closed, proclamation…)
 MAPDATE = {}               # ref -> where / when its outline came from
+_PINS = None
+FOUNDBYNAME = set()        # Oct 30: parks whose record was found again by NAME (the server re-numbered its ids)
 WHEN, READ = {}, {}        # B2 (Oct 30): (layer url, object id) -> when read; ref -> the oldest read among its records
 
 
