@@ -68,10 +68,11 @@ def main():
         url = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
         area = str(r.get('area') or '').strip().upper()
         # Oct 30 (Brandon 9:48 'Yes'): an intake row whose area is a bare country code (GB, AU, NZ…) is a WORLD layer
-        if r.get('_intake') and re.fullmatch(r'[A-Z]{2}', area) and not r.get('st'):
+        if area.startswith('W-') and re.fullmatch(r'[A-Z]{2}', area[2:]): area = area[2:]; r = dict(r, _world=True)   # Oct 31 (Fable review #4): a layer-collector world row (area W-MX): 894 YES were skipped as 'no state'
+        if (r.get('_intake') and re.fullmatch(r'[A-Z]{2}', area) and not r.get('st')) or r.get('_world'):
             if not re.search(r'/(MapServer|FeatureServer)/\d+$', url, re.I): skipped.append(f"{area} not a layer URL: {url[:80]}"); continue
             if url.lower().split('://')[-1] in wknown or any(str(x.get('url')).rstrip('/').lower() == url.lower() for x in WC.get(area, [])): continue
-            WC.setdefault(area, []).append({'label': str(r.get('title') or r.get('publisher') or area + ' official layer')[:80], 'url': url,
+            WC.setdefault(area, []).append({'label': str(r.get('title') or r.get('publisher') or r.get('agency') or area + ' official layer')[:80], 'url': url,
                                             'name_field': str(r.get('name_field') or ''), 'credit': str((r.get('terms') or {}).get('credit') or '')[:200],
                                             'note': f"wired by kpc_key_layers.py {dt.date.today()}: {r.get('checked_by') or 'chat 11'} YES"})
             added.append(f'{area} (world) {url[-50:]}'); ccs.add(area); continue
