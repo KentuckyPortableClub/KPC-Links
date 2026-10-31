@@ -391,6 +391,18 @@
       gold.setAttribute('d', d); gold.setAttribute('fill', 'none'); gold.setAttribute('stroke', '#ffd34d'); gold.setAttribute('stroke-width', '4'); gold.setAttribute('stroke-dasharray', '14 10'); gold.setAttribute('clip-path', 'url(#ovClipB)'); gold.style.pointerEvents = 'none'; }
     else if (gold) gold.remove();
   }
+  /* Oct 31 (chat 2, Brandon's Ballard WMA screenshot): a water / trail row can name the line it used for a park (line_source
+     {ref: {line: 'data/trails/<ref>.json', note}}): draw that line thin + dashed so people see what the 100-ft band follows */
+  var TRL = {};
+  function srcLines(ref) {
+    var out = [];
+    visiblePatches(cur).forEach(function (s) { var ls = s.line_source && s.line_source[ref]; if (!ls || !/^data\//.test(String(ls.line || ''))) return;
+      var u = ls.line; if (!(u in TRL)) { TRL[u] = null; j((CFG.dataBase || '../KPC-Data/') + u).then(function (d) { TRL[u] = d || false; if (d && cur) draw(); }); }
+      if (TRL[u]) out.push({ d: TRL[u], note: ls.note || 'approximate line', by: ls.by || '' }); });
+    return out;
+  }
+  function geoLines(d) { var L0 = []; var add = function (g) { if (!g) return; if (g.type === 'LineString') L0.push(g.coordinates); else if (g.type === 'MultiLineString') L0.push.apply(L0, g.coordinates); };
+    (d.type === 'FeatureCollection' ? d.features || [] : [d]).forEach(function (f) { add(f.geometry || f); }); return L0; }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
     var act = !mode;   /* in pin / measure mode the shapes let the tap through to the map */
@@ -406,6 +418,10 @@
       /* Brandon Oct 27 5:29 PM ('the overlap lines … do not look like they follow the boundary lines'): the gold border is cut from the agency's
          LIVE full-detail map, the park lines above are our saved copy (a few yards different, up to ~20). When the data carries the live
          edges near the spot (s.lines {ref: [[[lon,lat]…]…]}, chat 2), they are drawn bold and the saved copy goes faint. */
+      var bx = null; visiblePatches(cur).forEach(function (q) { var b = q.box; if (!b) return; bx = bx ? [Math.min(bx[0], b[0]), Math.min(bx[1], b[1]), Math.max(bx[2], b[2]), Math.max(bx[3], b[3])] : b.slice(); });
+      var near = function (ln) { if (!bx) return [ln]; var o = [], run = [], pad = 0.25; ln.forEach(function (q) { if (q[0] > bx[0] - pad && q[0] < bx[2] + pad && q[1] > bx[1] - pad && q[1] < bx[3] + pad) run.push(q); else { if (run.length > 1) o.push(run); run = []; } }); if (run.length > 1) o.push(run); return o; };   /* only the stretch near this spot */
+      srcLines(p.ref).forEach(function (o) { [].concat.apply([], geoLines(o.d).map(near)).forEach(function (ln) { gAll.addLayer(L.polyline(ln.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 2, opacity: 0.95, dashArray: '2 6', className: cls, interactive: act })
+        .bindPopup('<b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b><br>' + esc(o.note.charAt(0).toUpperCase() + o.note.slice(1)) + (o.by ? ' (' + esc(o.by) + ')' : '') + '. The 100-ft band follows the river bank / trail on the agency map; check the official map.')); }); });
       liveLines().forEach(function (x) { (x[p.ref] || []).forEach(function (ln) { gAll.addLayer(L.polyline(ln.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls, interactive: false })); }); });
       if (p.line) cur.rings.forEach(function (x) { if (x.line && x.first) { gAll.addLayer(L.polygon((x.band || x.ring).map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls + ' ov-tclip ov-band', interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
