@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **DAILY HABITS (Oct 31, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
   (0) OUR OWN OFFICIAL DOCUMENTS FIRST: KPC-Data data/docs/US-XX.json (the documents bot's official maps + rules pages per park), data/parkinfo-web.json (official page / map links per park), data/parkinfo/US-XX.json (POTA's own official link per park), Kentucky: data/ky-official-maps.json. If the park's official map is there, use it (note 'from our docs').
   (1) Then R-G7 exactly as written (notes/mapping.md Rule Sheet G): step 2 agency's own record → step 3 official map (state open-data portal first, agency page, deed/parcel; SHARED LOOK-UP BOT for pages you can't open) → step 4 boundary line, else agency-owned land, else pin → step 5 trace (R-G6 3 m) → step 6 chat 11 yes/no + chat 2 recheck → step 7 grade. R-G8 for shared-words pieces. POTA plain answers. Pins never moved.
   (2) Each park's line in your per-state list says which rule placed it ('R-G7 step 4a, from our docs', etc.). A park with no Rule G reason is not done. New question = numbered grey area to HQ.
