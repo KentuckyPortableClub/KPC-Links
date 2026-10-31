@@ -11,6 +11,13 @@
   const inRing = (x, y, r) => { let ins = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) ins = !ins; } return ins; };
   const inKY = (C, x, y) => x > -89.6 && x < -81.9 && y > 36.4 && y < 39.2 && C.some(c => x >= c.bb[0] && x <= c.bb[2] && y >= c.bb[1] && y <= c.bb[3] && c.r.some(rg => inRing(x, y, rg)));
   /* cut every line where it enters Kentucky, keep the outside pieces */
+  /* Oct 30 (Brandon: a trail's official driving / auto-tour route counts too): a trail file may hold several lines
+     (a FeatureCollection, e.g. Lewis and Clark's trail + its driving route): draw them as one trail */
+  function one(f) {
+    const L = [], add = g => { if (!g) return; if (g.type === 'LineString') L.push(g.coordinates); else if (g.type === 'MultiLineString') L.push(...g.coordinates); };
+    if (f && f.type === 'FeatureCollection') (f.features || []).forEach(x => add(x.geometry)); else if (f) add(f.geometry || f);
+    return { type: 'Feature', properties: (f && (f.properties || (f.features && f.features[0] && f.features[0].properties))) || {}, geometry: { type: 'MultiLineString', coordinates: L } };
+  }
   function dropKY(f, C) {
     const out = [];
     (f.geometry.coordinates || []).forEach(line => { let cur = []; line.forEach(p => { if (inKY(C, p[0], p[1])) { if (cur.length > 1) out.push(cur); cur = []; } else cur.push(p); }); if (cur.length > 1) out.push(cur); });
@@ -34,6 +41,7 @@
         for (const t of IDX) {
           if (done[t.ref] || t.bbox[0] > E || t.bbox[2] < W || t.bbox[1] > N || t.bbox[3] < S) continue; done[t.ref] = 1;
           ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('data/trails/' + t.ref + '.json') : fetch('data/trails/' + t.ref + '.json')).then(r => r.json()).then(f => {
+            f = one(f);
             if (C && C.length) f = dropKY(f, C);
             if (!f.geometry.coordinates.length) return;
             const casing = L.geoJSON(f, { renderer: rend, interactive: false, style: { color: '#1b1b1b', weight: 6, opacity: .55 } });
