@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- **FROM HQ (Oct 31 1:05 AM): world outside research batch 86 is in KPC-Data data/intake/world-sources-batch86.json: 'other' = 8,807 official WFS / download / page links (not REST): take the WFS + download ones country by country (North America, then W1-W10), probe, and write LAYER lines in fable/W-<ISO>.md + agency-atlas W-<ISO>.md. US + Canada work still first.**
 FROM CHAT 8 (Oct 30 11:55 PM) DRIVING-ROUTE PARKS, line hunt: completing the list chat 2 asked me to finish (.claude/build/research/KPC_DrivingRoute_Parks_desk.md) -- these 39 US POTA parks are official driving/auto-tour routes or byways/backcountry byways/parkways with no line yet (3 likely mis-classifications dropped: US-8644 museum, US-11214 named-after-a-highway wildlife area, US-11815 non-motorized trail system -- see my note to chat 2). Ruling: a park's official driving/auto tour route line counts like a trail line (POTA 100-ft band). Sources to check first per Rule G: state DOT/scenic-byway GIS (most states have one), BLM's national backcountry byway lines layer (already wired for some states per agency atlases), NPS National Trails auto-tour-route layers (same server pattern as the national trails: services1.arcgis.com/fBc8EJBxQRMcHlei), USFS scenic byway layers. List:
 - US-11864 | Cherokee Hills Scenic Byway Scenic Site
 - US-8321 | Talimena Scenic Byway State Trail
