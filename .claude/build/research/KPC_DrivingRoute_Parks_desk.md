@@ -79,3 +79,8 @@ Chat 8 (Oct 30 11:55 PM): completed the name scan (byway/parkway/scenic drive/au
 - NPS Public Roads: mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Roads/FeatureServer/0 (US-0642 Natchez Trace, US-7973 Baltimore-Washington).
 - Not official (lead only): personal-account OK byway layer; IL DOT ScenicByways/1 (old tracing); NDOT ALRS routes (alignment check only).
 - Probes filed: 9-drv-lp3 (fields), 9-drv-nm1/nm2 (full name lists).
+
+## BLM UTAH + OREGON DOC (Brandon, Oct 31 12:45 AM) - chat 9 notes
+- BLM has NO Utah back-country-byway layer. Best lead: BLM national GTLF roads layer gis.blm.gov/arcgis/rest/services/transportation/BLM_Natl_GTLF_Public_Display/MapServer/0 (and /7 trails), filter ADMIN_ST='UT' AND ROUTE_SPCL_DSGNTN_TYPE='BLM BACK COUNTRY BYWAY'; BLM says these URLs move to /natl endpoints before 1 Feb 2027. Query filed 9-drv-gtlf (UT roads, UT trails, OR roads, OR GTRN byway layer).
+- BLM Utah's six official byways: Bull Creek Pass; Nine Mile Canyon; Pony Express Trail; Silver Island Mountains; Smithsonian Butte; Transcontinental Railroad.
+- US-12959 Quartzville is OREGON (BLM OR GTRN Back Country Byways MapServer/0: gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_Back_Country_Byways/MapServer/0). Wyoming BLM layer = Wyoming only.
