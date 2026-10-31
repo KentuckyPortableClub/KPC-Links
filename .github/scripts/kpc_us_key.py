@@ -739,6 +739,11 @@ try:
     for _x in json.load(open('data/trails/index.json')):
         if str(_x.get('kind') or '') != 'WSR' and re.search(r'service|bureau|agency|department|usfs|nps|blm|fws', str(_x.get('by')), re.I): TRL[_x['ref']] = _x
 except Exception as _e: print(f'trail lines index not read: {str(_e)[:80]}', flush=True)  # noqa: BLE001
+try:   # Oct 31 (Brandon's missing-boundaries sheet: 68 state / national recreation trails already have an OFFICIAL line saved by the
+       # trails bot, data/trails/index-state.json official: true): they carry it too. Wild & scenic rivers keep their own rules (R6).
+    for _x in json.load(open('data/trails/index-state.json')):
+        if _x.get('official') and str(_x.get('kind') or '') != 'WSR' and _x.get('ref') not in TRL: TRL[_x['ref']] = _x
+except Exception as _e: print(f'state trail lines index not read: {str(_e)[:80]}', flush=True)  # noqa: BLE001
 RIDB = {}
 try:
     import gzip as _gz
