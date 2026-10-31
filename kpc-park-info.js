@@ -149,7 +149,7 @@
           show(fc, '#ffb000', ap ? '10 6' : null, ap ? .06 : .12); dl(); if (KPCB.sharpLayer && layer) { if (sharpStop) sharpStop(); sharpStop = KPCB.sharpLayer(map, layer, u.fs, { map: f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry }) }); } B.className = 'pi-bnd ' + (ap ? 'osm' : 'ok');
           const names = [...new Set(u.fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ');
           B.innerHTML = ap ? `<b>Approximate outline, not official:</b> ${names} (${esc(u.src)}). We are not sure this is the park: ${esc(u.why)}. Check the park's own map.${u.pinOff ? ' POTA\u2019s pin may be off for this park.' : ''}`
-            : `<b>${names}</b>. Official outline from ${esc(u.src)}. Check the park's own map for closed areas.${u.note ? ' <b>' + esc(u.note) + '</b>' : ''}${u.pinOff ? ' POTA\u2019s pin may be off for this park.' : ''}`;
+            : `<b>${names}</b>. ${u.line ? 'Official trail line (POTA counts within 100 ft of it)' : 'Official outline'} from ${esc(u.src)}. Check the park's own map for closed areas.${u.note ? ' <b>' + esc(u.note) + '</b>' : ''}${u.pinOff ? ' POTA\u2019s pin may be off for this park.' : ''}`;
           return;
         }
         if (u.label === 'none') {

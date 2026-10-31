@@ -20,7 +20,9 @@
   function ringsOf(g) { if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
   function linesOf(g) { if (!g) return []; if (g.type === 'LineString') return [g.coordinates]; if (g.type === 'MultiLineString') return g.coordinates; const o = []; ringsOf(g).forEach(p => p.forEach(r => o.push(r))); return o; }
   function inRing(x, y, r) { let ins = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi + 1e-15) + xi) ins = !ins; } return ins; }
-  function inside(lat, lon, g) { for (const poly of ringsOf(g)) { if (!poly.length || !inRing(lon, lat, poly[0])) continue; if (poly.slice(1).some(h => inRing(lon, lat, h))) continue; return true; } return false; }
+  /* Oct 30 (Brandon: trail lines = option A): a LINE park (official trail line) counts within POTA's 100 ft of the line, never an inside test */
+  const isLine = g => !!g && (g.type === 'LineString' || g.type === 'MultiLineString');
+  function inside(lat, lon, g) { if (isLine(g)) return edge(lat, lon, g).km <= 0.03048; for (const poly of ringsOf(g)) { if (!poly.length || !inRing(lon, lat, poly[0])) continue; if (poly.slice(1).some(h => inRing(lon, lat, h))) continue; return true; } return false; }
   /* nearest point on the outline: {km, lat, lon} */
   function edge(lat, lon, g) {
     const sx = 111.195 * Math.cos(lat * Math.PI / 180), sy = 111.195; let best = { km: Infinity, lat, lon };
@@ -143,7 +145,7 @@
   }
   /* RULE SHEET G (Oct 29, chat 2 step 3): what a card says about the outline. o = {label: 'official'|'approx'|'none', pinOff} */
   function gradeText(o) {
-    o = o || {}; const t = o.label === 'official' ? 'Official outline' : o.label === 'approx' ? 'Approximate outline' : 'Pin only (no official outline yet)';
+    o = o || {}; const t = o.line && o.label !== 'approx' ? 'Official trail line' : o.label === 'official' ? 'Official outline' : o.label === 'approx' ? 'Approximate outline' : 'Pin only (no official outline yet)';
     return t + (o.pinOff ? '. POTA’s pin may be off for this park' : '');
   }
   /* RULE SHEET G: zoomed in close (zoom >= 13), a drawn outline is swapped for the agency's own ~3 m copy of the part on screen
@@ -212,17 +214,22 @@
     for (const st of states || []) {
       if (!(st in keyCache)) keyCache[st] = dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
-      if (p) { known = true; if (p.note) note = p.note; if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
+      if (p) { known = true; if (p.note) note = p.note; if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [], twin: new Set() }; (p.twin || []).forEach(t => hit.twin.add(String(t))); hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
     /* RULE SHEET G (Oct 29): the key's own grade decides: 'official' / 'approximate' / 'pin' (= no outline, whatever matched) */
     if (grade === 'pin') return { state: 'none', site, grade, pinOff };
     if (!hit) return known ? { state: 'none', site, grade, pinOff } : null;
-    const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
+    const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])) && !(hit.twin && hit.twin.has(String(x[0]))));   /* Oct 30 (chat 2): 'twin' ids = the same land as another joined record: not drawn twice */
     const off = a => a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;
     const groups = {};
     m.forEach(x => { const s = String(x[0]), pre = (s.match(/^[a-z]+/) || [''])[0], id = s.slice(pre.length), o = off(+x[2] || 0), g = pre + o; (groups[g] = groups[g] || { pre, o, ids: [] }).ids.push(id); });
     const jobs = [];
     Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(','), X = XMAP[g.pre];
+      if (X && String(X[0]).startsWith('file:') && String(X[0]).indexOf('{n}') >= 0) {   /* Oct 30: one file per record (official trail lines) */
+        g.ids.slice(i, i + 40).forEach(n => jobs.push(dfetch(X[0].slice(5).replace('{n}', n) + '?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null)
+          .then(j => (!j ? [] : j.type === 'FeatureCollection' ? (j.features || []) : [j]).map(f => (f._src = X[2] || 'National Park Service', f._line = true, f))).catch(() => [])));
+        continue;
+      }
       if (X && String(X[0]).startsWith('file:')) {   /* Oct 28: a zipped-shapefile layer (Mississippi): the key's own simplified copy */
         const want = new Set(g.ids.slice(i, i + 40).map(n => g.pre + n));
         jobs.push(dfetch(X[0].slice(5) + '?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : { features: [] })
@@ -244,14 +251,15 @@
     const water = !reviewed && [...how].every(h => h.indexOf('water outline only') >= 0);
     const approx = grade ? grade === 'approximate' : (handApprox || water || (!reviewed && !named && !!hit.far));
     const why = handApprox ? 'this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
-    return { state: 'ok', n: hit.n, m, fs, approx, why, note, water, read: hit.read || '', grade, pinOff };
+    const line = fs.every(f => isLine(f.geometry));   /* a trail park drawn as its official line */
+    return { state: 'ok', n: hit.n, m, fs, approx, why, note, water, read: hit.read || '', grade, pinOff, line };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
      {fs, label: 'official' | 'approx' | 'none', why, src, site}. Checked list first; a park it doesn't know falls back to a
      live name search, which is labelled approximate because nobody has checked it. */
   async function usOutline(ref, name, la, lo, states) {
     let k = null; try { k = await usKey(ref, states); } catch (e) {}
-    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', pinOff: !!k.pinOff, water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
+    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', line: !!k.line, pinOff: !!k.pinOff, water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
     if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site, pinOff: !!k.pinOff };
     let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
     return fs.length ? { fs, label: 'approx', why: 'found by a name search and not checked yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
