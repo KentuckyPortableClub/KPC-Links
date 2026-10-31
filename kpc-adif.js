@@ -188,22 +188,95 @@
 
   /* ---------- map ---------- */
   const BCOL = { '160m': '#7b3294', '80m': '#c2a5cf', '60m': '#9e9ac8', '40m': '#2c7fb8', '30m': '#41b6c4', '20m': '#d7301f', '17m': '#fc8d59', '15m': '#fdae61', '12m': '#a6d96a', '10m': '#1a9850', '6m': '#e7298a', '2m': '#666', '70cm': '#333' };
-  function leaflet() { return window.L ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement('link'); c.rel = 'stylesheet'; c.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(c);
-    const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+  /* Leaflet from unpkg, the same copy every other KPC map uses (the cdnjs '.min' name did not exist: Brandon Oct 31 'the map is not working') */
+  function leaflet() { return window.L ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement('link'); c.rel = 'stylesheet'; c.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(c);
+    const s = document.createElement('script'); s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+  /* the bar on top of the map (Brandon Oct 31 4:43 PM: 'club logo then the operator's call sign, date, qso total, states worked, dx worked, park info … hide dx if it does not apply') */
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fd = d => /^\d{8}$/.test(d) ? MON[+d.slice(4, 6) - 1] + ' ' + (+d.slice(6)) + ', ' + d.slice(0, 4) : d;
+  const US = /^(A[A-L]|[KNW][A-Z]?)\d/;
+  function mapInfo() {
+    const top = f => { const t = {}; recs.forEach(r => { const v = f(r); if (v) t[v] = (t[v] || 0) + 1; }); return Object.entries(t).sort((a, b) => b[1] - a[1]).map(x => x[0]); };
+    const calls = top(r => String(r.STATION_CALLSIGN || r.OPERATOR || '').toUpperCase().trim()); if (!calls.length && S.mycall) calls.push(S.mycall);
+    const ops = top(r => String(r.OPERATOR || '').toUpperCase().trim()).filter(o => !calls.includes(o));
+    const ds = recs.map(r => String(r.QSO_DATE || '')).filter(d => /^\d{8}$/.test(d)).sort(), d0 = ds[0], d1 = ds[ds.length - 1];
+    const home = String(top(r => r.MY_COUNTRY)[0] || '').toUpperCase() || (US.test(calls[0] || '') || !calls.length ? 'UNITED STATES OF AMERICA' : ''), homeD = String(top(r => r.MY_DXCC)[0] || (/UNITED STATES/.test(home) ? '291' : ''));
+    const dx = new Set(); recs.forEach(r => { const c = String(r.COUNTRY || '').toUpperCase().trim(), dd = String(r.DXCC || '').trim(), call = String(r.CALL || '').toUpperCase();
+      if (c) { if (home && c !== home && !(/UNITED STATES/.test(c) && /UNITED STATES/.test(home))) dx.add(c); }
+      else if (dd) { if (homeD && dd !== homeD) dx.add('#' + dd); }
+      else if (/UNITED STATES/.test(home) && call) { const base = call.split('/').sort((a, b) => b.length - a.length)[0]; if (!US.test(base)) dx.add('p:' + base.replace(/\d.*$/, '').slice(0, 2)); } });
+    const states = new Set(recs.map(r => String(r.STATE || '').toUpperCase().trim()).filter(Boolean));
+    const parks = top(r => String(r.MY_SIG_INFO || r.MY_POTA_REF || '').toUpperCase().trim()).flatMap(x => x.split(/[,\s]+/)).filter((v, i, a) => v && a.indexOf(v) === i);
+    const p2p = recs.filter(r => r.SIG_INFO || r.POTA_REF).length;
+    const items = [];
+    if (d0) items.push(['Date', d0 === d1 ? fd(d0) : fd(d0) + ' – ' + fd(d1)]);
+    items.push(['QSOs', num(recs.length)]);
+    if (states.size) items.push(['States', num(states.size)]);
+    if (dx.size) items.push(['DX', num(dx.size) + (dx.size > 1 ? ' countries' : ' country')]);
+    if (parks.length) items.push([parks.length > 1 ? 'Parks' : 'Park', parks.length > 4 ? parks.slice(0, 4).join(', ') + ' +' + (parks.length - 4) : parks.join(', ')]);
+    if (p2p) items.push(['Park to park', num(p2p)]);
+    return { call: calls.slice(0, 3).join(' · ') || 'My log', ops: ops.slice(0, 4), items };
+  }
+  function mapBar() {
+    const m = mapInfo();
+    $('aeMBar').innerHTML = '<img src="KPC-logo.png" alt="KPC logo" width="58" height="58"><div class="t"><div class="club">KENTUCKY PORTABLE CLUB · N4KPC</div><div class="call">' + esc(m.call) + '</div>' + (m.ops.length ? '<div class="club">op ' + esc(m.ops.join(', ')) + '</div>' : '') + '</div><div class="chips">' + m.items.map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div>';
+    return m;
+  }
+  let DRAW = null;
   function drawMap() {
+    mapBar();
     leaflet().then(() => {
-      if (!map) { map = L.map('aeMap', { zoomControl: true }).setView([38, -90], 4); L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap contributors' }).addTo(map); mapL = L.layerGroup().addTo(map); }
+      if (!map) { map = L.map('aeMap', { zoomControl: true }).setView([38, -90], 4); L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, crossOrigin: 'anonymous', attribution: '© OpenStreetMap contributors' }).addTo(map); mapL = L.layerGroup().addTo(map); }
       setTimeout(() => map.invalidateSize(), 50); mapL.clearLayers();
-      const myDef = A.gridLL(S.mygrid), pts = [], bands = {}; let have = 0;
+      const myDef = A.gridLL(S.mygrid), pts = [], bands = {}; let have = 0; DRAW = { lines: [], dots: [], mine: [], bands };
+      const lines = $('aeLines').checked;
       recs.forEach((r, i) => { const p = A.ll(r); if (!p) return; have++; const me = A.ll(r, true) || myDef, b = String(r.BAND || A.bandOf(r.FREQ) || '').toLowerCase(), c = BCOL[b] || '#d5a63a'; bands[b] = c;
-        if (me && $('aeLines').checked) L.polyline([me, p], { color: c, weight: 1.5, opacity: .55, interactive: false }).addTo(mapL);
+        if (me && lines) { L.polyline([me, p], { color: c, weight: 1.5, opacity: .55, interactive: false }).addTo(mapL); DRAW.lines.push([me, p, c]); }
+        DRAW.dots.push([p, c]);
         L.circleMarker(p, { radius: 6, color: '#111', weight: 1, fillColor: c, fillOpacity: .95 }).bindPopup('<b>' + esc(r.CALL || '') + '</b> ' + esc(r.NAME || '') + '<br>' + esc([r.QSO_DATE, r.TIME_ON && r.TIME_ON.slice(0, 4) + 'Z', b, r.SUBMODE || r.MODE].filter(Boolean).join(' · ')) + (r.STATE ? '<br>' + esc(r.STATE) : '') + (r.SIG_INFO ? '<br>Park ' + esc(r.SIG_INFO) : '') + (me ? '<br>' + num(Math.round(A.km(me, p) * 0.621371)) + ' mi' : '') + '<br><a href="#" data-row="' + i + '">EDIT THIS CONTACT</a>').addTo(mapL); pts.push(p); });
       const mine = [...new Set(recs.map(r => { const m = A.ll(r, true); return m && m.join(','); }).filter(Boolean))].map(s => s.split(',').map(Number)); if (!mine.length && myDef) mine.push(myDef);
-      mine.forEach(m => { L.marker(m, { icon: L.divIcon({ className: '', html: '<span class="ae-me">★</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).bindPopup('My station').addTo(mapL); pts.push(m); });
+      mine.forEach(m => { L.marker(m, { icon: L.divIcon({ className: '', html: '<span class="ae-me">★</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).bindPopup('My station').addTo(mapL); pts.push(m); DRAW.mine.push(m); });
       if (pts.length) map.fitBounds(L.latLngBounds(pts), { padding: [24, 24], maxZoom: 8 });
       $('aeMapN').innerHTML = num(have) + ' of ' + num(recs.length) + ' contacts have a place (GRIDSQUARE or LAT / LON).' + (have < recs.length ? ' Add their grid squares to see the rest.' : '') + (mine.length ? '' : ' Set MY grid in ⚙ SET UP (or MY_GRIDSQUARE) to draw lines from you.') +
         '<span class="ae-key">' + Object.entries(bands).map(([b, c]) => '<span><i style="background:' + c + '"></i>' + esc(b || '?') + '</span>').join('') + '</span>';
-    }).catch(() => { $('aeMapN').textContent = 'The map could not load (no signal?).'; });
+    }).catch(() => { $('aeMapN').textContent = 'The map could not load. Check your signal and tap MAP again.'; });
+  }
+  /* SAVE MAP AS A PICTURE: the bar + the map tiles + lines, dots, my star + the band key, drawn on one canvas → PNG */
+  function loadImg(src) { return new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }); }
+  function wrapText(c, t, maxW) { const w = t.split(' '), out = []; let l = ''; w.forEach(x => { const n = l ? l + ' ' + x : x; if (c.measureText(n).width > maxW && l) { out.push(l); l = x; } else l = n; }); if (l) out.push(l); return out; }
+  const msay = t => { $('aeMapMsg').textContent = t; };
+  async function saveMap() {
+    if (!map || !DRAW) { msay('Open the MAP tab first.'); return; }
+    const box = $('aeMap'), R = box.getBoundingClientRect(), W = Math.round(R.width), H = Math.round(R.height), k = 2, m = mapInfo(), logo = await loadImg('KPC-logo.png');
+    const meas = document.createElement('canvas').getContext('2d'); meas.font = '700 15px Arial';
+    /* chips laid out in rows under the call */
+    const chips = m.items.map(x => x[0] + ': ' + x[1]), rows = [[]]; let rw = 0; const cw = t => meas.measureText(t).width + 26, maxW = W - 28;
+    chips.forEach(t => { const w = cw(t); if (rw + w > maxW && rows[rows.length - 1].length) { rows.push([]); rw = 0; } rows[rows.length - 1].push(t); rw += w + 8; });
+    const barH = 92 + (m.ops.length ? 18 : 0) + rows.length * 34, keyH = 58, cv = document.createElement('canvas'); cv.width = W * k; cv.height = (barH + H + keyH) * k;
+    const c = cv.getContext('2d'); c.scale(k, k);
+    const g = c.createLinearGradient(0, 0, W, barH); g.addColorStop(0, '#0b0f0d'); g.addColorStop(.6, '#1d231f'); g.addColorStop(1, '#2a2414'); c.fillStyle = g; c.fillRect(0, 0, W, barH);
+    c.fillStyle = '#d5a63a'; c.fillRect(0, barH - 4, W, 4);
+    if (logo) { c.save(); c.beginPath(); c.arc(46, 46, 32, 0, 7); c.clip(); c.drawImage(logo, 14, 14, 64, 64); c.restore(); c.strokeStyle = '#d5a63a'; c.lineWidth = 2; c.beginPath(); c.arc(46, 46, 33, 0, 7); c.stroke(); }
+    c.fillStyle = '#f0c96b'; c.font = '14px Georgia, serif'; c.fillText('KENTUCKY PORTABLE CLUB · N4KPC', 92, 34);
+    c.fillStyle = '#f3ecd9'; c.font = '900 30px Arial'; c.fillText(m.call, 92, 68, W - 104);
+    let y = 84; if (m.ops.length) { c.fillStyle = '#f0c96b'; c.font = '13px Georgia, serif'; c.fillText('op ' + m.ops.join(', '), 92, y + 2); y += 18; }
+    c.font = '700 15px Arial'; rows.forEach(row => { let x = 14; row.forEach(t => { const w = cw(t); c.fillStyle = 'rgba(213,166,58,.18)'; c.strokeStyle = 'rgba(240,201,107,.6)'; c.lineWidth = 1; c.beginPath(); c.roundRect(x, y, w, 28, 14); c.fill(); c.stroke(); c.fillStyle = '#f3ecd9'; c.fillText(t, x + 13, y + 19); x += w + 8; }); y += 34; });
+    /* the map */
+    c.save(); c.translate(0, barH); c.fillStyle = '#aad3df'; c.fillRect(0, 0, W, H); c.beginPath(); c.rect(0, 0, W, H); c.clip();
+    box.querySelectorAll('.leaflet-tile-pane img.leaflet-tile').forEach(im => { if (!im.complete || !im.naturalWidth) return; const r = im.getBoundingClientRect(); c.drawImage(im, r.left - R.left, r.top - R.top, r.width, r.height); });
+    const P = ll => map.latLngToContainerPoint(ll);
+    DRAW.lines.forEach(([a, b, col]) => { const p = P(a), q = P(b); c.strokeStyle = col; c.globalAlpha = .6; c.lineWidth = 1.5; c.beginPath(); c.moveTo(p.x, p.y); c.lineTo(q.x, q.y); c.stroke(); }); c.globalAlpha = 1;
+    DRAW.dots.forEach(([a, col]) => { const p = P(a); c.fillStyle = col; c.strokeStyle = '#111'; c.lineWidth = 1; c.beginPath(); c.arc(p.x, p.y, 6, 0, 7); c.fill(); c.stroke(); });
+    DRAW.mine.forEach(a => { const p = P(a); c.font = '900 26px Arial'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 4; c.strokeStyle = '#111'; c.strokeText('★', p.x, p.y); c.fillStyle = '#ffd34d'; c.fillText('★', p.x, p.y); c.textAlign = 'left'; c.textBaseline = 'alphabetic'; });
+    c.restore();
+    /* band key + credit */
+    c.fillStyle = '#0b0f0d'; c.fillRect(0, barH + H, W, keyH); c.font = '700 13px Arial'; let x = 14; const ky = barH + H + 24;
+    Object.entries(DRAW.bands).forEach(([b, col]) => { c.fillStyle = col; c.beginPath(); c.arc(x + 5, ky - 4, 5, 0, 7); c.fill(); c.fillStyle = '#f3ecd9'; c.fillText(b || '?', x + 14, ky); x += c.measureText(b || '?').width + 30; });
+    c.font = '11px Arial'; c.fillStyle = '#bdb6a3'; c.fillText('Map © OpenStreetMap contributors · Kentucky Portable Club', 14, ky + 22);
+    const name = (m.call.split(' ')[0] || 'log').replace(/[^A-Z0-9-]/gi, '-') + '-map' + (m.items[0] && m.items[0][0] === 'Date' ? '-' + (recs.map(r => r.QSO_DATE || '').filter(Boolean).sort()[0] || '') : '') + '.png';
+    try {
+      cv.toBlob(bl => { if (!bl) { msay('The picture could not be made on this device.'); return; } const u = URL.createObjectURL(bl), a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); msay('Saved ' + name + '.'); }, 'image/png');
+    } catch (e) { msay('The map picture could not be saved here (the map pictures did not allow it). Try again once the map has finished loading.'); }
   }
 
   /* ---------- tabs ---------- */
@@ -213,6 +286,7 @@
   }
 
   /* ---------- events ---------- */
+  $('aeMapSave').addEventListener('click', saveMap);
   document.addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (b && $('ae').contains(b)) setTab(b.dataset.tab); });
   const readFiles = (files, add) => { [...files].forEach((f, k) => { const rd = new FileReader(); rd.onload = () => { const t = String(rd.result || ''); if (/\.csv$/i.test(f.name)) { const R = csvParse(t); const fake = A.write('', R); load(fake, f.name, add || k > 0); } else load(t, f.name, add || k > 0); }; rd.readAsText(f); }); };
   $('aeFile').addEventListener('change', () => { readFiles($('aeFile').files, false); $('aeFile').value = ''; });

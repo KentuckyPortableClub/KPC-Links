@@ -167,7 +167,18 @@ body.field .page-jump-nav{display:none!important}
 </div></div></section>
 <nav class="toolnav" aria-label="Log checker"><div class="wrap"><a href="kpc-club.html">← Club Room</a><a href="kpc-club.html#qrzup">N4KPC QRZ Upload</a><a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">POTA Log Upload ↗</a></div></nav>
 <style>
-#ae{max-width:1400px}
+#ae .ae-mapcard{border-radius:14px;overflow:hidden;border:1px solid rgba(240,201,107,.45);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#ae .ae-mapcard #aeMap{border:0;border-radius:0}
+#ae .ae-mbar{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:12px 14px;background:linear-gradient(135deg,#0b0f0d,#1d231f 60%,#2a2414);color:#f3ecd9;border-bottom:3px solid #d5a63a}
+#ae .ae-mbar img{width:58px;height:58px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 2px #d5a63a}
+#ae .ae-mbar .t{flex:1 1 160px;min-width:0}
+#ae .ae-mbar .club{font-family:Georgia,"Times New Roman",serif;color:#f0c96b;font-size:13px;letter-spacing:.06em}
+#ae .ae-mbar .call{font-weight:900;font-size:26px;line-height:1.1;letter-spacing:.03em;overflow-wrap:anywhere}
+#ae .ae-mbar .chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 100%}
+#ae .ae-mbar .chips span{padding:5px 10px;border-radius:999px;background:rgba(213,166,58,.16);border:1px solid rgba(240,201,107,.5);font-size:13px;font-weight:700;line-height:1.2}
+#ae .ae-mbar .chips b{color:#f0c96b;font-size:15px}
+@media(min-width:900px){#ae .ae-mbar .chips{flex:0 1 auto;justify-content:flex-end}}
+@media(min-width:768px){#aeSec{padding-left:14px;padding-right:14px}#ae.wrap{width:100%;max-width:none}#ae .gridw{max-height:80vh}#ae #aeMap{height:72vh}}
 #ae .ae-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
 #ae button,#ae .btn{min-height:44px;padding:8px 14px;border-radius:10px;border:1px solid rgba(240,201,107,.6);background:transparent;color:inherit;font-weight:800;font-size:13px;line-height:1.2;font-family:inherit;letter-spacing:.04em;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 #ae button.go,#ae .btn.go{background:#d5a63a;color:#111;border-color:#d5a63a}
@@ -221,10 +232,11 @@ body.field .page-jump-nav{display:none!important}
 #ae .st-spark{display:flex;align-items:flex-end;gap:1px;height:110px;border-bottom:1px solid rgba(127,127,127,.35);overflow:hidden}
 #ae .st-spark i{flex:1 1 0;min-width:1px;background:#3fbf6a;border-radius:2px 2px 0 0}
 #ae #aeMap{height:62vh;min-height:320px;border-radius:12px;border:1px solid rgba(240,201,107,.35)}
+@media(min-width:768px){#ae #aeMap{height:72vh}}
 #ae .ae-key{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:6px}#ae .ae-key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
 .ae-me{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#d5a63a;color:#111;font-weight:900;border:2px solid #111}
 </style>
-<section class="section"><div class="wrap" id="ae">
+<section class="section" id="aeSec"><div class="wrap" id="ae">
  <div class="ae-bar">
   <label class="btn go file">📂 OPEN LOG (.adi / .csv)<input type="file" id="aeFile" multiple accept=".adi,.adif,.ADI,.ADIF,.csv,.CSV,text/plain,text/csv" aria-label="Open a log file"></label>
   <label class="btn file">➕ ADD ANOTHER LOG<input type="file" id="aeMerge" multiple accept=".adi,.adif,.ADI,.ADIF,.csv,.CSV,text/plain,text/csv" aria-label="Add another log to this one"></label>
@@ -294,7 +306,10 @@ body.field .page-jump-nav{display:none!important}
  <!-- STATS -->
  <div id="aeP-stats" hidden><div id="aeStats"></div><p class="info">Times are UTC from QSO_DATE + TIME_ON. Distances need grid squares (theirs and yours).</p></div>
  <!-- MAP -->
- <div id="aeP-map" hidden><label class="ck"><input type="checkbox" id="aeLines" checked> Draw lines from my station</label><div id="aeMap"></div><p class="info" id="aeMapN"></p></div>
+ <div id="aeP-map" hidden>
+  <div class="ae-mapcard"><div class="ae-mbar" id="aeMBar"></div><div id="aeMap"></div></div>
+  <div class="ae-bar" style="margin-top:10px;align-items:center"><button type="button" class="go" id="aeMapSave">📷 SAVE MAP AS A PICTURE</button><label class="ck"><input type="checkbox" id="aeLines" checked> Draw lines from my station</label></div>
+  <p class="msg" id="aeMapMsg" aria-live="polite"></p><p class="info" id="aeMapN"></p></div>
  </div>
  <!-- SET UP -->
  <div id="aeP-setup" class="sheet" hidden><h3>⚙ Set up</h3>
@@ -315,7 +330,7 @@ body.field .page-jump-nav{display:none!important}
  </div>
  <p class="info" style="margin-top:14px">QRZ: every contact needs a call, a date (YYYYMMDD), a UTC time (HHMM), a band or frequency and an ADIF mode; FT4 / JS8 go as MFSK with a submode; the station call must match the logbook (the operator's own call goes in OPERATOR). POTA: one park and one activating call per upload, the park in MY_SIG_INFO, 10 contacts in one UTC day to count the activation.</p>
 </div></section>
-<script src="kpc-adif-lib.js?v=20261031b"></script><script src="kpc-adif.js?v=20261031b"></script>
+<script src="kpc-adif-lib.js?v=20261031b"></script><script src="kpc-adif.js?v=20261031c"></script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 
