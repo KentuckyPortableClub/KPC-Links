@@ -107,3 +107,9 @@ Builder: the outside coder (install contract = PART A of `KPC_10_Outside_Tools_S
 4. A YES moves the point into the access file with `kind: "possible pull-off (aerial photo)"`.
 5. The site shows it with the wording above.
 6. Order: Kentucky first, then the rest of the US, then Canada (Canada's photos: the provinces' open orthophotos, not NAIP; later).
+
+
+## RULED (Brandon Oct 31 6:50 PM 'yes' to chat 10's three answers)
+- **G-P1:** only real lots / turnouts (room for about 3 cars, built to stop in). Plain road shoulders are NEVER a bot candidate; a member may still report one by hand.
+- **G-P2:** 100 m outside the line is the normal limit. Up to 400 m ONLY for a park with no official access point and no approved pull-off, with the distance shown ('about N m outside the boundary').
+- **G-P3:** the same grader (chat 11) and the same final access list, but SEPARATE review piles (bot candidates apart from member submissions). Labels: 'reported by a member' / 'seen on an aerial photo'. A member report within 50 m of a bot candidate marks it 'confirmed by a member'.

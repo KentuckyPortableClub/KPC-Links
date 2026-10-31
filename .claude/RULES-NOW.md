@@ -224,3 +224,5 @@ Built from chat 11's 2,480 answers (US + Canada hunter 479, world finder 2,047) 
 
 - Oct 31 5:40 PM (Brandon, R-G6 exception for big world parks): '3 m wherever it fits, cap the very big ones, label their detail, and 2-fers always come from the full live detail.' Built: saved world outlines 3 m up to 1,500 points a park; bigger parks step to 6 / 12 / 24 m until they fit, labelled 'simplified to about N m: a very big park'. Size test CH JP GB FR first (Japan was 176 MB uncapped).
 
+- Oct 31 6:50 PM (Brandon 'yes'): PULL-OFF FINDER rulings G-P1..G-P3: real lots / turnouts only (no plain shoulders); 100 m outside the line (400 m only for parks with no access point at all, distance shown); bot candidates reviewed by chat 11 in their own pile, same final access list, labels 'seen on an aerial photo' / 'reported by a member', a member report within 50 m confirms a bot spot. Sheet: .claude/build/research/KPC_10_Pulloff_Finder_Spec.md.
+
