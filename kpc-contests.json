@@ -1,66 +1,6 @@
 {
- "updated": "2026-10-29T11:20:40Z",
+ "updated": "2026-10-31T11:15:07Z",
  "week": [
-  {
-   "name": "NCCC FT4 Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g36h1",
-   "when": "0100Z-0130Z, Oct 30",
-   "segs": [
-    [
-     "2026-10-30T01:00Z",
-     "2026-10-30T01:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Weekly RTTY Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g4929",
-   "when": "0145Z-0215Z, Oct 30",
-   "segs": [
-    [
-     "2026-10-30T01:45Z",
-     "2026-10-30T02:15Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g23cs",
-   "when": "0230Z-0300Z, Oct 30",
-   "segs": [
-    [
-     "2026-10-30T02:30Z",
-     "2026-10-30T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ftbhl",
-   "when": "2000Z-2100Z, Oct 30",
-   "segs": [
-    [
-     "2026-10-30T20:00Z",
-     "2026-10-30T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "ARRL EME Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003drkyp",
@@ -466,27 +406,171 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "Zombie Shuffle",
-   "url": "https://www.zianet.com/qrp",
-   "when": "",
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ga94w",
+   "when": "0000Z-0500Z, Nov 5",
    "segs": [
     [
-     "2026-10-30T15:00Z",
-     "2026-10-31T00:00Z"
+     "2026-11-05T00:00Z",
+     "2026-11-05T05:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gaw7v",
+   "when": "0000Z-0100Z, Nov 5 and 0200Z-0300Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-05T00:00Z",
+     "2026-11-05T01:00Z"
+    ],
+    [
+     "2026-11-06T02:00Z",
+     "2026-11-06T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghqz6",
+   "when": "0300Z-0400Z, Nov 5",
+   "segs": [
+    [
+     "2026-11-05T03:00Z",
+     "2026-11-05T04:00Z"
     ]
    ],
    "modes": [
     "CW"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RS(T), SPC, Zombie no. or area code, name"
+   "src": "WA7BNM"
   },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gilua",
+   "when": "0700Z-0800Z, Nov 5",
+   "segs": [
+    [
+     "2026-11-05T07:00Z",
+     "2026-11-05T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "SKCC Sprint Europe",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g96fp",
+   "when": "2000Z-2200Z, Nov 5",
+   "segs": [
+    [
+     "2026-11-05T20:00Z",
+     "2026-11-05T22:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gum4l",
+   "when": "0100Z-0130Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-06T01:00Z",
+     "2026-11-06T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gvh01",
+   "when": "0145Z-0215Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-06T01:45Z",
+     "2026-11-06T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gyok6",
+   "when": "0200Z-0330Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-06T02:00Z",
+     "2026-11-06T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gtqq4",
+   "when": "0230Z-0300Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-06T02:30Z",
+     "2026-11-06T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkjfd",
+   "when": "2000Z-2100Z, Nov 6",
+   "segs": [
+    [
+     "2026-11-06T20:00Z",
+     "2026-11-06T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "ARRL EME Contest",
    "url": "https://www.arrl.org/eme-contest",
@@ -1301,10 +1385,30 @@
    "src": "RULE",
    "by": "CQ",
    "exch": "RS(T) + CQ zone 4"
+  },
+  {
+   "name": "ARRL 160-Meter Contest",
+   "url": "https://www.arrl.org/160-meter",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-12-03T22:00Z",
+     "2027-12-05T16:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL",
+   "exch": "RS(T) + ARRL section (KY)"
   }
  ],
  "status": {
-  "WA7BNM": "ok (31)",
-  "CORRAL": "ok (4)"
+  "WA7BNM": "ok (37)",
+  "CORRAL": "ok (3)"
  }
 }

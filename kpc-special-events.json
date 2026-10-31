@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T11:20:30Z",
+ "updated": "2026-10-31T11:14:59Z",
  "stations": [
   {
    "title": "2026 Frankenstein Halloween FunXpedition",
@@ -391,6 +391,23 @@
    "note": ", Prescott, AZ. Yavapai Amateur Radio Club. 7.250 14.250 21.335 28.340. Certificate. downloadable certificate only, None, Prescott, AZ 86304."
   },
   {
+   "title": "VOYAGER 1. ONE LIGHT DAY AWAY",
+   "start": "2026-11-18",
+   "end": "2026-11-18",
+   "times": "1700Z-2100Z",
+   "call": "WE7GV",
+   "calls": [
+    "WE7GV"
+   ],
+   "where": "Sahuarita, AZ",
+   "st": "AZ",
+   "by": "Green Valley Amateur Radio Club",
+   "freqs": "14.242 14.246 14.248",
+   "qsl": "Certificate & QSL",
+   "url": "",
+   "note": ", Sahuarita, AZ. Green Valley Amateur Radio Club. 14.242 14.246 14.248. Certificate & QSL. Tom Lang K7VOA, 1085 W EL TORO RD, , Sahuarita, AZ 85629. Celebrating the success of Voyager 1."
+  },
+  {
    "title": "W6SFM On-Air Bug Roundup",
    "start": "2026-11-21",
    "end": "2026-11-23",
@@ -754,6 +771,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (41)"
+  "ARRL": "ok (42)"
  }
 }
