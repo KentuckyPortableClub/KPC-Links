@@ -68,3 +68,14 @@ Chat 2, Oct 30 11:10 PM (Brandon 11:04 PM: 'have someone look to see what other 
 | US-6094 | Old Highway 91 BLM Historic Area | BLM Historic Area | pin |
 
 Chat 8 (Oct 30 11:55 PM): completed the name scan (byway/parkway/scenic drive/auto tour/backcountry byway/historic road/turnpike/scenic route/motor route/loop road/scenic highway across the whole live US key) -- only 1 new hit beyond this list, and it's a false positive: **US-5353 Turnpike State Forest** (named after a historic turnpike, but it's forest land, not the road itself -- not added). This list was already essentially complete. Also flagging 3 rows ABOVE that look mis-classified on a closer read (not actually road corridors): **US-8644 Oklahoma Route 66 Museum SHS** (a museum building named for the highway), **US-11214 Highway 7 Rec Area SFWA** (a wildlife area named after a nearby highway, not the highway; also confirmed PRIVATE land in my P-3 parcel work), **US-11815 La Cueva Non-Motorized Trail System Rec Site** (explicitly non-motorized -- a hiking trail system). Recommend chat 2 drops those 3. Handed the other 39 'pin' rows to chat 9 for the official line hunt (filed in chat 9's inbox).
+
+
+## LEADS FROM BRANDON'S HANDOFF DOC (chat 9, Oct 31 12:40 AM) - all pending name/geometry checks
+- FHWA America's Byways (US DOT, official): https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer layers AR 9 (NAME), ID 29 (BywayName1), NV 61 (NAME), OK 79 (NAME), UT 93 (NAME), WY 105 (NAME), national 107 (Trail_Name; Great River Road US-12096).
+- Idaho ITD: gis.itd.idaho.gov/arcgisprod/rest/services/ArcGISOnline/IdahoTransportationLayersForOpenData/MapServer/94 ; gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6 (BywayName).
+- Utah: UtahAGRC UDOTMap_ScenicByways/0 (40 records, name) + UDOT_Admin Utah_Scenic_Byways/0 (53, NAME).
+- Arkansas GIS Office: gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Transportation/FeatureServer/13 (Ozark-St. Francis byways, 9).
+- BLM Wyoming (official): gis.blm.gov/wyarcgis/rest/services/Recreation/BLM_WY_ScenicBackways_HUB/FeatureServer/0 (ROUTE_NAME). Utah BLM: none official yet. Owyhee Uplands US-12349: BLM page only.
+- NPS Public Roads: mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Roads/FeatureServer/0 (US-0642 Natchez Trace, US-7973 Baltimore-Washington).
+- Not official (lead only): personal-account OK byway layer; IL DOT ScenicByways/1 (old tracing); NDOT ALRS routes (alignment check only).
+- Probes filed: 9-drv-lp3 (fields), 9-drv-nm1/nm2 (full name lists).
