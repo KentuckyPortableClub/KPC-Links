@@ -6,7 +6,7 @@ NPS doesn't run, the Forest Service / trail partners. MODE=info only prints what
 Oct 28 (HQ tune): a trail whose new line has under half the points of the saved one keeps the saved copy (a half-answered
 service must not cut the trail); a self-grade gate (the Sheltowee Trace + the Appalachian, Pacific Crest and North Country
 lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for the workflow's grade-me line."""
-import json, os, sys, time, urllib.request, urllib.parse
+import re, json, os, sys, time, urllib.request, urllib.parse
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
 T = json.load(open(os.path.join(os.path.dirname(__file__), 'kpc_us_trails.json')))
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
@@ -44,7 +44,7 @@ if MODE == 'info':
 
 # ------------------------------------------------------------------ build
 OUTDIR = 'data/trails'; os.makedirs(OUTDIR, exist_ok=True)
-TOL = float(os.environ.get('TOL', '0.0008'))          # about 80 m: plenty for a trip-planning map
+TOL = 0.00003   # Oct 31 (Fable review #7): ~3 m (rule R-G6); the 100-ft trail rule needs the line where it really is
 def pick_layer(u, want=None):
     j = get(u + '?f=json'); L = j.get('layers', [])
     if want is not None: return want
@@ -62,8 +62,8 @@ def oid(u, lid):
 def fetch(u, lid):
     feats, off = [], 0
     while True:
-        q = urllib.parse.urlencode({'where': '1=1', 'outFields': oid(u, lid), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
-                                    'geometryPrecision': 5, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'geojson'})
+        q = urllib.parse.urlencode({'where': '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
+                                    'geometryPrecision': 6, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'geojson'})
         j = get(f'{u}/{lid}/query?{q}', 180); fs = j.get('features') or []
         feats += fs
         if len(fs) < 1000 and not j.get('exceededTransferLimit') and not (j.get('properties') or {}).get('exceededTransferLimit'): break
@@ -105,13 +105,20 @@ for x in T:
     try:
         u = svc(x); lid = pick_layer(u, x.get('layer'))
         L = []
-        geoms = [f.get('geometry') for f in fetch(u, lid)]
-        if not any(lines_of(g) for g in geoms): geoms = fetch_esri(u, lid)     # some services won't hand out GeoJSON
-        for g in geoms:
+        fsx = fetch(u, lid)
+        geoms = [f.get('geometry') for f in fsx]
+        # Oct 31 (Fable review #7 / #12): keep WHICH parts are water routes (an attribute such as 'Water Route', 'water', 'river',
+        # 'boat'), so a water trail is measured from the river bank only on its water parts and from the line on its land parts
+        wet = [bool(re.search(r'\bwater\b|water ?route|river route|\bboat|canoe|\bkayak|navigable', ' '.join(str(v) for k_, v in ((f.get('properties') or {}).items()) if isinstance(v, str)), re.I)) for f in fsx]
+        if not any(lines_of(g) for g in geoms): geoms = fetch_esri(u, lid); wet = [False] * len(geoms)     # some services won't hand out GeoJSON
+        WATER_IDX = []
+        for gi, g in enumerate(geoms):
             for ln in lines_of(g):
-                pts = [[round(p[0], 5), round(p[1], 5)] for p in ln if p and len(p) >= 2]
+                pts = [[round(p[0], 6), round(p[1], 6)] for p in ln if p and len(p) >= 2]
                 pts = [p for i, p in enumerate(pts) if i == 0 or p != pts[i - 1]]
-                if len(pts) > 1: L.append(pts)
+                if len(pts) > 1:
+                    if gi < len(wet) and wet[gi]: WATER_IDX.append(len(L))
+                    L.append(pts)
         if not L: raise RuntimeError('no lines came back')
         xs = [p[0] for l in L for p in l]; ys = [p[1] for l in L for p in l]
         bb = [round(min(xs), 4), round(min(ys), 4), round(max(xs), 4), round(max(ys), 4)]
@@ -119,7 +126,7 @@ for x in T:
         except Exception: was = 0
         if x['ref'] in old and was > 20 and len(xs) < .5 * was:
             raise RuntimeError(f'only {len(xs)} points came back (saved copy has {was}): the saved copy is kept')
-        geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name'] or x['ref']}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
+        geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name'] or x['ref'], **({'water_parts': WATER_IDX} if WATER_IDX else {})}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
         json.dump(geo, open(f"{OUTDIR}/{x['ref']}.json", 'w'), separators=(',', ':'))
         npts = len(xs); kb = os.path.getsize(f"{OUTDIR}/{x['ref']}.json") // 1024
         index.append({'ref': x['ref'], 'name': x['name'], 'kind': 'NST' if 'Scenic' in x['name'] else 'NHT', 'bbox': bb, 'by': x['by'], 'kb': kb})

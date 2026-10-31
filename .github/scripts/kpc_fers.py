@@ -277,12 +277,14 @@ def trail_lines():
         if not x.get('official') or x['ref'] in out: continue
         f = pathlib.Path(f"data/trails/{x['ref']}.json")
         if not f.exists(): continue
-        try: g = json.load(open(f)).get('geometry') or {}
+        try: _j = json.load(open(f)); g = _j.get('geometry') or {}; _wp = set((_j.get('properties') or {}).get('water_parts') or [])
         except Exception: continue  # noqa: BLE001
         c = g.get('coordinates') or []
         ls = c if g.get('type') == 'MultiLineString' else ([c] if g.get('type') == 'LineString' else [])
-        ls = [l for l in ls if len(l) > 1]
-        if ls: out[x['ref']] = {'lines': ls, 'kind': 'river' if x.get('kind') == 'WSR' or re.search(r'river', str(x.get('type')), re.I) else 'trail',
+        _keep = [i for i, l in enumerate(ls) if len(l) > 1]
+        _wp = {_keep.index(i) for i in _wp if i in _keep}
+        ls = [ls[i] for i in _keep]
+        if ls: out[x['ref']] = {**({'water_parts': sorted(_wp)} if _wp else {}), 'lines': ls, 'kind': 'river' if x.get('kind') == 'WSR' or re.search(r'river', str(x.get('type')), re.I) else 'trail',
                                 'by': x.get('by') or '', 'type': x.get('kind') or x.get('type') or ''}
     return out
 
@@ -1499,7 +1501,9 @@ def water_route_spots(lref, ls, oref, obox):
         if len(near) < 4: continue                                    # the route does not pass near this tile
         land = pmask(F, oref, CURG)
         if not land.any(): continue
-        wg = nhd_water(bb, live=not str(oref).startswith('CA-'))
+        # Oct 31 (Fable review #14): the river ONLY (NHD 'StreamRiver' areas): lakes, ponds, oxbows and swamps (NHD waterbodies) never
+        # count as the route's water, so Ballard's sloughs stop adding miles
+        wg = nhd_water(bb, rivers_only=True, live=not str(oref).startswith('CA-'))
         if wg is None:   # never silent: the pair becomes a NOT SURE row
             WATER_FAIL.append((lref, oref))
             c = F.ll(F.W // 2, F.H // 2)
@@ -1541,7 +1545,9 @@ def water_route_spots(lref, ls, oref, obox):
             ap = cv2.approxPolyDP(max(cs, key=cv2.contourArea), 1.5, True).reshape(-1, 2)
             # Oct 31 (Fable review #13: the Metropolis shading): this shape is the OUTLINE of the bank strip (a polygon), not a line: no
             # 'every Nth point' (it cut straight across land), kept closed at 1.5 m (sharp_shape caps the points), marked shape_kind polygon
-            out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(k * CELL * CELL / max(CELL, BANK - STATION_IN)),
+            # length = half the strip's outline (both long sides of a thin strip), not area / width (Fable #14: 25.6 mi for Ballard)
+            per = cv2.arcLength(max(cs, key=cv2.contourArea), True) * CELL / 2
+            out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(per),
                         'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True, 'shape_kind': 'polygon'})
     return merge(out)
 
@@ -1682,10 +1688,14 @@ def find_spots(G, LN, pairs, counts):
             else:
                 got = []
                 for l_ref, o_ref in ((a, b), (b, a)):
-                    if l_ref in LN and l_ref not in G and o_ref in G and water_route(l_ref, LN, PINS):
-                        got += water_route_spots(l_ref, LN[l_ref]['lines'], o_ref, bbox_groups(G[o_ref]))   # the river bank, not the drawn line
+                    _ls = LN[l_ref]['lines'] if l_ref in LN else []
+                    _wp = set(LN[l_ref].get('water_parts') or []) if l_ref in LN else set()
+                    _wet = [l for i, l in enumerate(_ls) if i in _wp] if _wp else _ls          # Oct 31 (Fable #12): the WATER parts (from the
+                    _dry = [l for i, l in enumerate(_ls) if i not in _wp] if _wp else _ls      # agency's route field) use the bank, the land parts the line
+                    if l_ref in LN and l_ref not in G and o_ref in G and water_route(l_ref, LN, PINS) and _wet:
+                        got += water_route_spots(l_ref, _wet, o_ref, bbox_groups(G[o_ref]))   # the river bank, not the drawn line
                     if l_ref in LN and l_ref not in G:
-                        if o_ref in G: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, G[o_ref], False, box, LN[l_ref]['kind'])
+                        if o_ref in G and _dry: got += line_spots(l_ref, _dry, o_ref, G[o_ref], False, box, LN[l_ref]['kind'])
                         elif o_ref in LN: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, LN[o_ref]['lines'], True, box, LN[l_ref]['kind']); break
             spots += got
             seen_k = {}
@@ -1860,7 +1870,7 @@ def access_pin(s, G, LN, st_of):
     for r in s['refs']:
         if r in LN and r not in G:
             if s.get('water_route') and water_route(r, LN, PINS):   # within 100 ft of the water's bank, not of the drawn route line
-                wg = nhd_water(F.bounds())
+                wg = nhd_water(F.bounds(), rivers_only=True)   # Oct 31: the river only, as in water_route_spots
                 if not wg: continue
                 w = F.area(wg)
                 z = ((dt(1 - w, outside=1) * cell <= BANK) & (w == 0)).astype(np.uint8)
@@ -2798,7 +2808,7 @@ def main():
                     continue
                 lref = next((r for r in x['refs'] if r in LN and r not in G), None); oref = next((r for r in x['refs'] if r in G), None)
                 if not lref or not oref: continue
-                try: got = water_route_spots(lref, LN[lref]['lines'], oref, bbox_groups(G[oref]))
+                try: got = water_route_spots(lref, [l for i, l in enumerate(LN[lref]['lines']) if not LN[lref].get('water_parts') or i in set(LN[lref]['water_parts'])], oref, bbox_groups(G[oref]))
                 except Exception as e: LOG.append(f"water route again {x.get('id')}: {str(e)[:60]}"); continue  # noqa: BLE001
                 if any(g.get('water_unchecked') for g in got): still += 1; continue
                 done.add(pr)
