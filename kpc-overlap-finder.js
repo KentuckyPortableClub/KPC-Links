@@ -96,13 +96,15 @@
       var sz = (s.kind === 'trail' || s.kind === 'river') ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + (s.kind === 'river' ? ' yards of river bank' : ' yards of trail') + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
       return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
+  var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
+  function apxLine(refs) { var a = (refs || []).filter(function (r) { return APPROX[r]; }); return a.length ? '<p class="ov-note" style="color:#8a5a00"><b>Approximate outline</b> for ' + a.map(esc).join(', ') + ' (' + esc(APPROX[a[0]]) + '), not the official boundary.</p>' : ''; }
   function rowHtml(g, ps) {
     var s = ps[0], small = ps.some(function (x) { return tierOf(x) === 'small'; }), wait = ps.some(function (x) { return !x._rev; });
     return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') +
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
-      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + (ps.length > 1 ? '' : accLine(s)) +
+      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs) + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
       '<details class="ov-more"><summary>SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
@@ -444,7 +446,7 @@
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
       '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a>'; }   /* Brandon: the overlap message only on the overlap */
   function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
-    'Last checked ' + esc(s.checked || '') + '<span class="ov-short">' + SHORT + '</span>'; }
+    'Last checked ' + esc(s.checked || '') + apxLine(cur.refs).replace(/<\/?p[^>]*>/g, '<br>') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p>';
   }
@@ -547,11 +549,20 @@
      with a checked list come first, the rest say 'not checked yet' (picking one says so plainly, never an empty 'no overlaps') */
   var PLACES = { US: 'AL Alabama|AK Alaska|AZ Arizona|AR Arkansas|CA California|CO Colorado|CT Connecticut|DE Delaware|DC District of Columbia|FL Florida|GA Georgia|HI Hawaii|ID Idaho|IL Illinois|IN Indiana|IA Iowa|KS Kansas|KY Kentucky|LA Louisiana|ME Maine|MD Maryland|MA Massachusetts|MI Michigan|MN Minnesota|MS Mississippi|MO Missouri|MT Montana|NE Nebraska|NV Nevada|NH New Hampshire|NJ New Jersey|NM New Mexico|NY New York|NC North Carolina|ND North Dakota|OH Ohio|OK Oklahoma|OR Oregon|PA Pennsylvania|RI Rhode Island|SC South Carolina|SD South Dakota|TN Tennessee|TX Texas|UT Utah|VT Vermont|VA Virginia|WA Washington|WV West Virginia|WI Wisconsin|WY Wyoming',
     CA: 'AB Alberta|BC British Columbia|MB Manitoba|NB New Brunswick|NL Newfoundland and Labrador|NS Nova Scotia|NT Northwest Territories|NU Nunavut|ON Ontario|PE Prince Edward Island|QC Quebec|SK Saskatchewan|YT Yukon' };
+  /* Oct 30 (Brandon 9:47 PM: 'Canada then a world option'; chat 2's world prep): WORLD countries, Australia + UK first (world-stages),
+     then A-Z. A country shows a list only once its region line (files ['W-XX']) is added to kpc-fers-regions.json after chat 11's YES;
+     until then it says 'no list yet' (the parked Oct 27 world files in KPC-Data are never read). */
+  var WORLD = 'AU GB MX CA DE FR IT ES JP NZ AT BE CH CZ DK EE FI HR HU IE LT LU LV NL NO PL PT RO SE SI SK ZA BR AR CL IN PH TH'.split(' ').filter(function (c) { return c !== 'CA'; });
+  var CN = (function () { try { var d = new Intl.DisplayNames(['en'], { type: 'region' }); return function (c) { return d.of(c) || c; }; } catch (e) { return function (c) { return c; }; } })();
+  PLACES.W = WORLD.map(function (c) { return c + ' ' + CN(c === 'GB' ? 'GB' : c); }).join('|');
   function regionOf(cc, code) { return CFG.regions.filter(function (r) { return r.id === code && cc === 'US' || (r.files || []).indexOf(cc + '-' + code) >= 0; })[0]; }
+  var GRP = { US: 'United States', CA: 'Canada', W: 'World' };
   function regionSelect() {
-    var done = CFG.regions.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; }).join('');
+    var grpOf = function (r) { var f = (r.files || [])[0] || ''; return /^W-/.test(f) ? 'W' : /^CA-/.test(f) ? 'CA' : 'US'; };
+    var opt = function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; };
+    var done = ['US', 'CA', 'W'].map(function (g) { var l = CFG.regions.filter(function (r) { return grpOf(r) === g; }); return l.length ? '<optgroup label="' + GRP[g] + ': with a list">' + l.map(opt).join('') + '</optgroup>' : ''; }).join('');
     var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
-    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="With a list">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
+    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE / COUNTRY</b></label><select id="ovReg">' + done + grp('US', 'US states') + grp('CA', 'Canada') + grp('W', 'World') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
     $('ovReg').addEventListener('change', function () { US_PICK = true; loadRegion(this.value); usMark(); });
   }
@@ -663,7 +674,7 @@
     });
   }
   function notChecked(id) {
-    var m = /^(US|CA)-([A-Z]{2})$/.exec(id || ''); if (!m) return null; var hit = PLACES[m[1]].split('|').filter(function (x) { return x.slice(0, 2) === m[2]; })[0]; return hit ? { id: id, label: hit.slice(3), files: [], none: true } : null;
+    var m = /^(US|CA|W)-([A-Z]{2})$/.exec(id || ''); if (!m) return null; var hit = PLACES[m[1]].split('|').filter(function (x) { return x.slice(0, 2) === m[2]; })[0]; return hit ? { id: id, label: hit.slice(3), files: [], none: true } : null;
   }
   function loadRegion(id) {
     REG = CFG.regions.filter(function (r) { return r.id === id; })[0] || notChecked(id) || CFG.regions[0]; cur = null; closeSheet();
@@ -679,7 +690,9 @@
         if (sv && sv.until > Date.now() && sv.files) { files = sv.files; toast('Offline: showing your saved copy (good until ' + new Date(sv.until).toDateString() + ').'); }
         else { $('ovList').innerHTML = '<div class="ov-empty"><b>Could not load the overlap list right now.</b> Nothing is shown rather than an old or guessed list. Try again with a signal.</div>'; return; }
       }
-      SAVED[REG.id] = files; build(files, miss);
+      SAVED[REG.id] = files; APPROX = {};
+      if (REG.key) j((CFG.keyBase || '../KPC-Data/data/') + REG.key + '.json').then(function (k) { var P = (k && k.parks) || {}; Object.keys(P).forEach(function (r) { var g = String(P[r].g || ''); if (/^approx/.test(g)) APPROX[r] = P[r].gsrc || 'not the agency\'s own map'; }); if (Object.keys(APPROX).length) list(); });
+      build(files, miss);
       var nb = $('ovRegNote'); if (!nb) { nb = document.createElement('div'); nb.id = 'ovRegNote'; nb.className = 'ov-empty'; nb.style.margin = '0 0 12px'; $('ovRegions').after(nb); }
       nb.hidden = !REG.note; nb.innerHTML = REG.note ? (REG.beta ? '🧪 ' : '🔄 ') + '<b>' + esc(REG.note) + '</b>' : '';
       if (MEMBER && REG.showWaiting) $('ovWait').checked = true;   // Brandon Oct 27 2:15 PM: 'members only … good with putting KY list on there for now to test it'
