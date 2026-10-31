@@ -1066,6 +1066,13 @@ for cc in COUNTRIES:
         cnt['saved_outlines'] = sum(len(d) for d in shards.values())
         _sz = sum(f.stat().st_size for f in BD.glob('*.json')) if BD.exists() else 0
         notice(f'World key {cc} outline size', f"{cnt['saved_outlines']} saved outlines, {_sz / 1e6:.1f} MB in {BD} (FINE_TOL {FINE_TOL})")
+        if os.environ.get('WB_DIR'):   # the size test: one small line kept (notices past 10 per step are dropped)
+            _old = sum(f.stat().st_size for f in (pathlib.Path('data/world-bounds') / cc).glob('*.json'))
+            _t = load_json('data/world-key/outline-test.json', {}) if 'load_json' in globals() else {}
+            try: _t = json.load(open('data/world-key/outline-test.json'))
+            except Exception: _t = {}  # noqa: BLE001
+            _t[cc] = {'date': time.strftime('%Y-%m-%d'), 'outlines': cnt['saved_outlines'], 'mb_3m': round(_sz / 1e6, 2), 'mb_now': round(_old / 1e6, 2), 'tol': FINE_TOL}
+            json.dump(_t, open('data/world-key/outline-test.json', 'w'), indent=1)
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')
     # W-2 USE UNTIL BETTER (Brandon Oct 30 12:22 PM via HQ): an EU compilation record (EEA Natura 2000 / CDDA) IS the park's outline
