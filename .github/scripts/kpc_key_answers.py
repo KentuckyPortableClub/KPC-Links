@@ -144,8 +144,10 @@ def main():
         print('DRY ' + msg); [print('  skip ' + s) for s in skipped[:20]]; return
     if touched:
         save_json(OVR, ovr, 1); save_json(LEDGER, led, 1)
-        STATES.write_text(' '.join(sorted(states)) + '\n')
-    elif STATES.exists(): STATES.write_text('\n')
+    # Oct 30 (chat 2): ADD to tonight's list, never replace it (other bots and hand fixes put states there too); the key's join
+    # job takes the states it rebuilt off the list after saving
+    old = set(STATES.read_text().split()) if STATES.exists() else set()
+    if states - old: STATES.write_text(' '.join(sorted(old | states)) + '\n')
     print('::notice title=Key answers::' + msg + (f"; skipped: {'; '.join(skipped[:5])}" if skipped else ''))
 
 

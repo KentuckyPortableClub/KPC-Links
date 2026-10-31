@@ -110,7 +110,7 @@ jobs:
           path: part/
           retention-days: 3
   join:
-    needs: build
+    needs: [plan, build]
     if: ${{ always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -197,12 +197,21 @@ jobs:
           rm -rf live
       - name: Save
         if: always()
+        env:
+          PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
           # Oct 30 (chat 2): two runs' keys were LOST: 'git pull --rebase' hit a conflict in chat 11's inbox (other chats edit it all day),
           # all 4 tries failed and the step still ended green. Now: the key alone first (a failed rebase is aborted and retried, and a
           # save that never lands goes red = a real issue), then the BOT C line on a fresh copy of the inbox.
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
+          GROUPS="$PLAN_GROUPS" python3 - <<'PY' || true
+          import json, os, pathlib
+          done = {s for g in json.loads(os.environ.get('GROUPS') or '[]') for s in g.get('states', '').split()}
+          p = pathlib.Path('data/us-key/answers-states.txt')
+          if p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
+          PY
           git add data/us-key 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           if ! git diff --cached --quiet; then
