@@ -1,5 +1,8 @@
 {
  "CAPAD (DCCEEW)": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0",
+ "Chile SIMBIO protected areas (MMA)": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/0",
+ "Chile SIMBIO protected areas, layer 2 (MMA)": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2",
+ "Colombia RUNAP (national register of protected areas, DNP)": "https://mapasdnp.dnp.gov.co/server/rest/services/Hosted/RUNAP_Registro_%C3%9Anico_Nacional_de_%C3%81reas_Protegidas/FeatureServer/0",
  "EEA Natura 2000": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
  "EEA nationally designated areas": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
  "Ministry of the Environment national parks (Esri Japan)": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0",
@@ -10,6 +13,8 @@
  "Natural England National Landscapes": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Areas_of_Outstanding_Natural_Beauty_England/FeatureServer/0",
  "Natural England National Parks": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Parks_England/FeatureServer/0",
  "Natural England SSSI": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer/0",
+ "South Africa SAPAD (DFFE)": "https://dffeportal.environment.gov.za/hosting/rest/services/PACA/SAPAD/MapServer/2",
+ "South Africa protected areas (DPME, from DFFE SAPAD)": "https://dpmegis.dpme.gov.za/arcgis/rest/services/Environmental2/MapServer/1",
  "VIC DEECA state forests": "https://enterprise.mapshare.vic.gov.au/server/rest/services/Hosted/Public_Land___DEECA_Managed/FeatureServer/0",
  "WA DBCA state forests (legislated lands)": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15",
  "ZNIEFF (INPN data, Esri France) layer 0": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0",
