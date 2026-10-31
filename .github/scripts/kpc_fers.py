@@ -1505,9 +1505,9 @@ def water_route_spots(lref, ls, oref, obox):
         if len(near) < 4: continue                                    # the route does not pass near this tile
         land = pmask(F, oref, CURG)
         if not land.any(): continue
-        # Oct 31 (Fable review #14): the river ONLY (NHD 'StreamRiver' areas): lakes, ponds, oxbows and swamps (NHD waterbodies) never
-        # count as the route's water, so Ballard's sloughs stop adding miles
-        wg = nhd_water(bb, rivers_only=True, live=not str(oref).startswith('CA-'))
+        # Oct 31 (Fable review #14 + HQ 4:15 PM): the route's water = the ONE big water body the route follows in this tile (the river or its
+        # reservoir), not every lake / oxbow / slough beside it: only the LARGEST edge-touching blob near the route is kept (below)
+        wg = nhd_water(bb, live=not str(oref).startswith('CA-'))   # rivers AND reservoirs: the Trail of Tears follows Kentucky Lake / Lake Barkley (NHD reservoirs)
         if wg is None:   # never silent: the pair becomes a NOT SURE row
             WATER_FAIL.append((lref, oref))
             c = F.ll(F.W // 2, F.H // 2)
@@ -1534,6 +1534,7 @@ def water_route_spots(lref, ls, oref, obox):
             edge = left == 0 or top == 0 or left + w >= F.W or top + h >= F.H
             if edge and (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: accepted.append(L)   # the route runs along it
         if not accepted: continue
+        accepted = [max(accepted, key=lambda L_: int(stats[L_][4]))]   # the main river / reservoir only
         route = np.isin(lab, accepted).astype(np.uint8)
         wd = dt(1 - route, outside=1) * CELL
         ok = ((dt(land) * CELL >= STATION_IN) & (wd <= BANK + (CELL * .5 if PASS == 3 else CELL)) & (route == 0)).astype(np.uint8)
@@ -1876,7 +1877,7 @@ def access_pin(s, G, LN, st_of):
     for r in s['refs']:
         if r in LN and r not in G:
             if s.get('water_route') and water_route(r, LN, PINS):   # within 100 ft of the water's bank, not of the drawn route line
-                wg = nhd_water(F.bounds(), rivers_only=True)   # Oct 31: the river only, as in water_route_spots
+                wg = nhd_water(F.bounds())
                 if not wg: continue
                 w = F.area(wg)
                 z = ((dt(1 - w, outside=1) * cell <= BANK) & (w == 0)).astype(np.uint8)
