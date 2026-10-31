@@ -1869,6 +1869,16 @@ def access_pin(s, G, LN, st_of):
     for la, lo, lab in aps:
         c, r = F.px([[lo, la]])[0].astype(int)
         if 0 <= c < F.W and 0 <= r < F.H: cv2.circle(feats['parking / access point'], (int(c), int(r)), 1, 1, -1)
+    # Oct 31 (Brandon, Ballard WMA: the 'P' was a road in Metropolis, Illinois, across the Ohio): only a road / lot / path ON or AT the
+    # edge of the parks' own land (within ~60 m) can be the access; one across a river or in another state is never picked
+    if areas:
+        own = None
+        for r in areas:
+            m_ = pmask(F, r, G)
+            own = m_ if own is None else (own | m_)
+        if own is not None and own.any():
+            near_own = (dt(1 - own, outside=1) * cell <= 60).astype(np.uint8)
+            for k_ in feats: feats[k_] = feats[k_] & near_own
     best = None
     for kind, fm in feats.items():
         if not fm.any(): continue
