@@ -92,6 +92,21 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   const UNIT_PINS = { 'US-12752': [{ name: 'Boiling Springs unit: state nature preserve land, 115.76 ac, Hart Co. parcel 073-00-00-009.00', la: 37.2953451, lo: -85.8320279,
     src: 'Hart County PVA record (parcel 073-00-00-009.00, owner Commonwealth of Kentucky FBO Kentucky Nature Preserves), read by Brandon Oct 28 2026; no open outline' }] };
   for (const r in UNIT_PINS) if (parks[r]) parks[r].unit_pins = UNIT_PINS[r];
+  // Oct 31 (Brandon 10:43 PM Oct 30 picked A; HQ 2:30 AM: Kentucky's trails): a TRAIL park with no outline carries its official LINE
+  // (data/trails/<ref>.json, listed official in data/trails/index.json or index-state.json): tract 'trl', line: 1, so the Kit, Park
+  // Info and Am I in the Park follow it (POTA's 100-ft band from the line, never an inside test).
+  try {
+    const fs_ = require('fs');
+    const ix = [].concat(...['data/trails/index.json', 'data/trails/index-state.json'].map(f => { try { return JSON.parse(fs_.readFileSync(f, 'utf8')); } catch (e) { return []; } }));
+    const off = new Map(ix.filter(x => x.kind !== 'WSR' && (x.official || /service|bureau|agency|department|usfs|nps|blm/i.test(String(x.by)))).map(x => [x.ref, x]));
+    for (const x of P) {
+      const pk = parks[x.c];
+      if (pk && !pk.tracts.length && off.has(x.c) && fs_.existsSync(`data/trails/${x.c}.json`)) {
+        pk.tracts.push(['trl', off.get(x.c).name || x.n, 0, `official trail line (${off.get(x.c).by || 'agency'})`, 1]);
+        pk.line = 1; pk.trl = `data/trails/${x.c}.json`;
+      }
+    }
+  } catch (e) { console.error('trail lines: ' + e.message); }
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
   for (const r in parks) parks[r].tracts.sort((a, b) => b[2] - a[2]);

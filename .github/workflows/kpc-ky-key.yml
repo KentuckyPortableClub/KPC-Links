@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (the trail lines, Oct 31)
+        continue-on-error: true
+        run: bash .github/scripts/kpc_overlay.sh || true
       - name: Build the answer key
         env:
           GH_TOKEN: ${{ github.token }}
