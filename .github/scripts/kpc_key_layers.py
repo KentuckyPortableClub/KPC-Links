@@ -49,7 +49,9 @@ def main():
             r['_intake'] = 'intake' in str(p); rows.append(r)
     # Oct 30 9:45 AM (chat 10 AUTO-2): an intake READY row with approved: true counts as a YES; its name field is in probe.name_field
     for r in rows:
-        if r.get('approved') is True and not r.get('answer'): r['answer'] = 'YES'; r['checked_by'] = r.get('approved_by') or 'auto (AUTO-2)'
+        # Oct 30 10:35 PM (HQ 5:30 PM): only an approval that SAYS who approved it (AUTO-2's own stamp or a person) counts; a bare
+        # 'approved: true' (the GB SSSI test row: a land-class layer AUTO-2 must not approve) is ignored
+        if r.get('approved') is True and r.get('approved_by') and not r.get('answer'): r['answer'] = 'YES'; r['checked_by'] = r['approved_by']
         if not r.get('name_field') and isinstance(r.get('probe'), dict): r['name_field'] = r['probe'].get('name_field') or r['probe'].get('nameField') or ''
     sg = load('data/state-gis.json', {}); S = sg.setdefault('states', {})
     have = {str(x.get('url', '')).rstrip('/').lower() for v in S.values() for x in v}

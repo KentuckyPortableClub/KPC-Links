@@ -1278,6 +1278,26 @@ def run(st):
             if _big:
                 m = [x for x in m if x not in _big]; p['m'] = sorted(m, key=lambda x: -x[2]); weak = [x for x in weak if x not in _big]
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check: a small site joined to a big piece of another kind of land'] for x in _big]
+        # Oct 30 (chat 10 / Brandon's phone, Kings Gap US-4361: TWO dashed edges 20-30 m apart): two joined records that are the SAME
+        # land from two layers (sizes within 5%, boxes overlapping 80%+) are drawn once: the state agency's own record is drawn over PAD-US,
+        # else the first; the other's id goes in 'twin' = 'do not draw' for the tools (chat 3)
+        if len(m) > 1:
+            def _ov(b1, b2):
+                if not b1 or not b2: return 0
+                w = max(0, min(b1[2], b2[2]) - max(b1[0], b2[0])); h = max(0, min(b1[3], b2[3]) - max(b1[1], b2[1]))
+                s = min((b1[2] - b1[0]) * (b1[3] - b1[1]), (b2[2] - b2[0]) * (b2[3] - b2[1])) or 1e-12
+                return w * h / s
+            _drop = []
+            for i_, x in enumerate(m):
+                for y in m[i_ + 1:]:
+                    if x in _drop or y in _drop: continue
+                    ax, ay = x[2] or 0, y[2] or 0
+                    if not ax or not ay or abs(ax - ay) > .05 * max(ax, ay): continue
+                    ra, rb = gs_.get(str(x[0])) or {}, gs_.get(str(y[0])) or {}
+                    if _ov(ra.get('_bb'), rb.get('_bb')) < .8: continue
+                    _drop.append(x if (isinstance(x[0], int) and not isinstance(y[0], int)) else y)
+            if _drop:   # kept in 'm' (the 2-fer line and the ownership tests still see every record); the MAP skips drawing these
+                p['twin'] = [str(x[0]) for x in _drop]
         if weak and la_ is not None:
             ok = [x for x in m if x not in weak]
             left = list(weak)

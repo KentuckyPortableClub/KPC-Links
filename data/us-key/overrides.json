@@ -10983,6 +10983,13 @@
     "Fish Ford Recreation Site"
    ],
    "why": "2026-10-30 chat 2: the agency's own page spells it 'Fish Ford Recreation Site' (chat 9 website names); joins only with the pin inside"
+  },
+  "US-12811": {
+   "no": [
+    "208489"
+   ],
+   "why": "2026-10-30 10:35 PM chat 2: PAD-US 208489 is ONE record spanning both Beaver Creek WMAs (-95.74 to -92.39, look-up 2-mn-beavercreek): it reached Lake Shetek 269 km away; the MN DNR piece sgmna1483 is the one at the pin",
+   "when": "2026-10-30"
   }
  }
 }
