@@ -6,7 +6,7 @@ Chat 2, Oct 30 11:10 PM (Brandon 11:04 PM: 'have someone look to see what other 
 |---|---|---|---|
 | US-11864 | Cherokee Hills Scenic Byway Scenic Site | Scenic Site | pin |
 | US-8321 | Talimena Scenic Byway State Trail | State Trail | pin |
-| US-8644 | Oklahoma Route 66 Museum State Historic Site | State Historic Site | pin |
+| US-8644 | Oklahoma Route 66 Museum State Historic Site | State Historic Site | pin | DROPPED: not a route: a museum named for Route 66 (chat 8) |
 | US-13200 | Lunar Crater Back Country Byway National Landscape | National Landscape | official |
 | US-13259 | Great Basin Highway Scenic Byway Scenic Site | Scenic Site | pin |
 | US-13262 | Mt. Charleston Scenic Byway Area of Outstanding Natural Beauty | Area of Outstanding Natural Beauty | pin |
@@ -37,7 +37,7 @@ Chat 2, Oct 30 11:10 PM (Brandon 11:04 PM: 'have someone look to see what other 
 | US-7973 | Baltimore-Washington National Parkway | National Parkway | pin |
 | US-10303 | Pig Trail Scenic Byway State Trail | State Trail | pin |
 | US-11164 | Crowley’s Ridge Parkway National Scenic Byway National Parkway | National Parkway | pin |
-| US-11214 | Highway 7 Rec Area State Fish and Wildlife Area | State Fish and Wildlife Area | pin |
+| US-11214 | Highway 7 Rec Area State Fish and Wildlife Area | State Fish and Wildlife Area | pin | DROPPED: not a route: a wildlife area named for Highway 7, private land (chat 8) |
 | US-11393 | Sylamore Scenic Byway State Trail | State Trail | pin |
 | US-11953 | St. Francis Scenic Byway National Scenic Trail | National Scenic Trail | pin |
 | US-12096 | Great River Road National Scenic Byway National Historic Trail | National Historic Trail | pin |
@@ -49,7 +49,7 @@ Chat 2, Oct 30 11:10 PM (Brandon 11:04 PM: 'have someone look to see what other 
 | US-10477 | Virtue Flat Off-Highway Vehicle BLM Recreation Management Area | BLM Recreation Management Area | official |
 | US-12959 | Quartzville BC Byway Kiosk BLM Special Recreation Management Area | BLM Special Recreation Management Area | pin |
 | US-9155 | Historic Columbia River Highway State Trail | State Trail | official |
-| US-11815 | La Cueva Non-Motorized Trail System Recreation Site | Recreation Site | pin |
+| US-11815 | La Cueva Non-Motorized Trail System Recreation Site | Recreation Site | pin | DROPPED: not a route: a non-motorized trail system (chat 8) |
 | US-12746 | Aden Hills Off-Highway Vehicle Area BLM Recreation Management Area | BLM Recreation Management Area | official |
 | US-13159 | Quebradas Backcountry Byway BLM Wilderness Area | BLM Wilderness Area | official |
 | US-0997 | Hennepin Canal Parkway State Park | State Park | official |
