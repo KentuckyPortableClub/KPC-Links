@@ -12,6 +12,9 @@ on:
       countries:
         description: 'Countries, e.g. AU DE (blank = AU DE GB JP PL ES FR CH AT)'
         default: ''
+      outline_test:
+        description: 'yes = write the saved outlines to a test folder and print their size only (Oct 31: 3 m outlines, measure first)'
+        default: ''
 permissions:
   contents: write
 jobs:
@@ -36,6 +39,7 @@ jobs:
         env:
           COUNTRIES: ${{ inputs.countries }}
           PIN_JOIN: ${{ inputs.pin_join }}
+          WB_DIR: ${{ inputs.outline_test == 'yes' && '/tmp/wb-test' || '' }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run

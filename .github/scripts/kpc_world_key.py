@@ -401,6 +401,29 @@ def bbox(rs):
     xs = [p[0] for r in rs for p in r]; ys = [p[1] for r in rs for p in r]
     return [min(xs), min(ys), max(xs), max(ys)] if xs else None
 def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in rs]   # keep it light: only used for 'pin inside'
+# Oct 31 (Fable review #1, Brandon 12:36 PM 'fix the outline in the world map bot'): R-G6 = saved outlines simplified by at most
+# 3 m (never over 5 m), never 'every Nth point'. '_f' keeps each record's ring at that detail (Douglas-Peucker, FINE_TOL degrees of
+# latitude; ~3.3 m by default) for the saved website copy; '_r' (thinned) stays what pin-inside is judged on, exactly as before.
+FINE_TOL = float(os.environ.get('FINE_TOL') or 0.00003)
+def _dp(pts, tol):
+    if len(pts) < 3: return pts
+    import math
+    keep = [0, len(pts) - 1]; stack = [(0, len(pts) - 1)]
+    while stack:
+        a, b = stack.pop(); ax, ay = pts[a][0], pts[a][1]; bx, by = pts[b][0], pts[b][1]
+        k = math.cos(math.radians((ay + by) / 2)) or 1e-9   # metres east-west shrink with latitude: compare in latitude-degrees
+        dx, dy = (bx - ax) * k, by - ay; L2 = dx * dx + dy * dy
+        best, bi = -1.0, -1
+        for i in range(a + 1, b):
+            px, py = (pts[i][0] - ax) * k, pts[i][1] - ay
+            if L2 == 0: d2 = px * px + py * py
+            else:
+                t = max(0.0, min(1.0, (px * dx + py * dy) / L2)); qx, qy = px - t * dx, py - t * dy; d2 = qx * qx + qy * qy
+            if d2 > best: best, bi = d2, i
+        if bi > 0 and best > tol * tol: keep.append(bi); stack += [(a, bi), (bi, b)]
+    return [pts[i] for i in sorted(set(keep))]
+def fine(rs):
+    return [[[round(q[0], 6), round(q[1], 6)] for q in _dp([p for p in r if len(p) >= 2], FINE_TOL)] for r in rs]
 def in_ring(x, y, r):
     ins = False; j = len(r) - 1
     for i in range(len(r)):
@@ -494,7 +517,7 @@ def pull_wfs(label, url, typ):
             p = f.get('properties') or {}; rs = rings_of(f.get('geometry'))
             # EPSG:4326 in WFS 2.0 can come back lat,lon: swap when the 'x' looks like a latitude for this country
             if rs and abs(rs[0][0][0]) > 40 and abs(rs[0][0][1]) < 20: rs = [[[q2[1], q2[0]] for q2 in r] for r in rs]
-            recs.append({'id': f.get('id'), 'n': pick_name(p), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': p})
+            recs.append({'id': f.get('id'), 'n': pick_name(p), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': p})
         if len(fs) < step: break
         start += step; time.sleep(.5)
     if recs and not any(r['n'] for r in recs[:50]): notice(f'{label} name field?', ', '.join(list(recs[0]['_a'].keys())[:40]))
@@ -545,7 +568,7 @@ def pull_a10(label, page):
                 ty = next((v for v in jv if re.search(r'国立公園|国定公園|自然公園', v) and v != nm), '') or nm
                 pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
                 rs = [[list(p) for p in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
-                recs.append({'id': f'a10:{ln[-10:-8]}:{b.split("/")[-1]}:{i}', 'n': nm, 'nj': nm, 'ty': ty, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+                recs.append({'id': f'a10:{ln[-10:-8]}:{b.split("/")[-1]}:{i}', 'n': nm, 'nj': nm, 'ty': ty, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': a,
                              'code': '', 'dc': '', '_k0': jkind(nm) | jkind(ty)})
             if not told:
                 blank = next((r['_a'] for r in recs if not r['n']), None)
@@ -630,7 +653,7 @@ def pull_a10n(label, url):
             if not nm: continue
             pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
             rs = [[list(q) for q in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
-            recs.append({'id': f'a10n:{i}', 'n': nm, 'nj': nm, 'ty': nm, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {'A10_003': cls, 'A10_005': code},
+            recs.append({'id': f'a10n:{i}', 'n': nm, 'nj': nm, 'ty': nm, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': {'A10_003': cls, 'A10_005': code},
                          'code': '', 'dc': '', '_k0': jkind(nm) or ({'np'} if cls == '1' else {'qnp'} if cls == '2' else {'pnp'})})
     notice(label, f'{len(recs)} areas named from the codelist, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
     return recs
@@ -677,7 +700,7 @@ def pull_chshp(label, col):
             a = dict(zip(fn, list(rec)))
             pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
             rs = [[lv95(p[0], p[1]) for p in pts[parts[k]:parts[k + 1]][::max(1, (parts[k + 1] - parts[k]) // 400)]] for k in range(len(parts) - 1)]
-            recs.append({'id': f'{col.split(".")[-1]}:{i}', 'n': str(a.get(nf) or ''), 'ty': label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {nf: a.get(nf)}, 'code': '', 'dc': '',
+            recs.append({'id': f'{col.split(".")[-1]}:{i}', 'n': str(a.get(nf) or ''), 'ty': label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': {nf: a.get(nf)}, 'code': '', 'dc': '',
                          'tp': str(a.get('TeilObjNum') or ''), 'tpn': str(a.get('TeilObjNam') or '')})   # Oct 19: BLN part number / part name
         notice(f'{label} fields', f'{sp}: name={nf} | ' + ', '.join(fn[:20]) + f' | {len(recs)} areas, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
         tps = [f"{r['n'][:30]} #{r['tp']} {r['tpn'][:30]}" for r in recs if r.get('tp') and re.search(r'Säntis|Vierwald|Speer', r['n'])]
@@ -1007,7 +1030,7 @@ for cc in COUNTRIES:
     # Switzerland's BAFU, Japan's A10) could not be drawn at all: 12,500 of 41,000 joined parks on Oct 22. Their outlines
     # are saved here, lightly thinned, 100 parks to a file, for KPCB.worldKey to draw: data/world-bounds/CC/<n>.json.
     try:
-        BD = pathlib.Path('data/world-bounds') / cc
+        BD = pathlib.Path(os.environ.get('WB_DIR') or 'data/world-bounds') / cc   # WB_DIR = a test folder (measure first, Oct 31)
         LAY = {x[0] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}
         byn = {}
         for r in recs: byn.setdefault((r.get('src'), r.get('n')), []).append(r)
@@ -1020,16 +1043,19 @@ for cc in COUNTRIES:
             for x in mm:
                 for r in byn.get((x[2], x[1]), []):
                     if la and lo and r.get('_bb') and not near(la, lo, r['_bb'], .6): continue
-                    for ring in (r.get('_r') or []):
-                        if len(ring) >= 3: polys.append(ring)
+                    for ring in (r.get('_f') or r.get('_r') or []):
+                        if len(ring) >= 3: polys.append((ring, bool(r.get('_f'))))
             if polys:
                 # light enough for a phone: the 12 biggest pieces, 50 points each (a guide outline, labelled as saved by KPC)
                 def _area(rg):
                     xs, ys = [q[0] for q in rg], [q[1] for q in rg]; return (max(xs) - min(xs)) * (max(ys) - min(ys))
                 keep = []
-                for rg in sorted(polys, key=_area, reverse=True)[:12]:
-                    k = max(1, len(rg) // 50); pts = [[round(q[0], 4), round(q[1], 4)] for q in rg[::k]]
-                    if len(pts) >= 3: keep.append(pts + [pts[0]])
+                for rg, is_fine in sorted(polys, key=lambda x: _area(x[0]), reverse=True):
+                    if is_fine: pts = [[q[0], q[1]] for q in rg]   # Oct 31: every piece at <= ~3 m (R-G6)
+                    else:
+                        k = max(1, len(rg) // 50); pts = [[round(q[0], 4), round(q[1], 4)] for q in rg[::k]]
+                    if len(pts) >= 3: keep.append(pts if pts[0] == pts[-1] else pts + [pts[0]])
+                if not any(f for _, f in polys): keep = keep[:12]   # old coarse copies: the 12 biggest, as before
                 num = int(re.sub(r'\D', '', ref.split('-', 1)[1]) or 0)
                 if keep: shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': keep}
         if BD.exists():                       # Oct 25: only shards that no longer exist are removed; the rest are written only if they changed
@@ -1037,6 +1063,8 @@ for cc in COUNTRIES:
                 if old_f.stem.isdigit() and int(old_f.stem) not in shards: old_f.unlink()
         for b, d in shards.items(): save_json(BD / f'{b}.json', d)
         cnt['saved_outlines'] = sum(len(d) for d in shards.values())
+        _sz = sum(f.stat().st_size for f in BD.glob('*.json')) if BD.exists() else 0
+        notice(f'World key {cc} outline size', f"{cnt['saved_outlines']} saved outlines, {_sz / 1e6:.1f} MB in {BD} (FINE_TOL {FINE_TOL})")
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')
     # W-2 USE UNTIL BETTER (Brandon Oct 30 12:22 PM via HQ): an EU compilation record (EEA Natura 2000 / CDDA) IS the park's outline
