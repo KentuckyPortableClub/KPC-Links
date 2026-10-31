@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30 18:36",
+ "updated": "2026-10-30 21:46",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -834,6 +834,19 @@
    "runs": 2,
    "missing": 0,
    "announced": true
+  },
+  "nps-80BE4BEE-3E01-4AAC-B3DD-77CD110D42D0": {
+   "who": "BISO",
+   "title": "Temporary Closure of Trails and Areas Surrounding the Cactus Rock Fire",
+   "text": "This closure will restrict all vehicle, horse and pedestrian traffic in the following areas: • The Darrow Ridge Multi Use Trail east from where it intersects with the Tar Kiln Road and Multi Use Trail. • Access to the Darrow Ridge Multi Use Trail at its intersection with the Proctor Ridge Horse Trail. • Little Cliff Multi Use Trail at its intersection with O&W Horse Trail. • Christian Cemetery Mul",
+   "link": "https://www.nps.gov/",
+   "routine": false,
+   "cat": "danger",
+   "first": "2026-10-30",
+   "runs": 1,
+   "missing": 0,
+   "announced": true,
+   "refs": []
   }
  },
  "burn_queue": [],
