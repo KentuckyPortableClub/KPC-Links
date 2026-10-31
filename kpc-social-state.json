@@ -127,9 +127,9 @@
    "acts": 935
   },
   "N4BDW": {
-   "parks": 123,
+   "parks": 122,
    "counties": 63,
-   "acts": 478
+   "acts": 479
   },
   "KQ4HZK": {
    "parks": 72,
@@ -1070,7 +1070,8 @@
   "KQ4HZK|20261022",
   "KQ4HZK|20261023",
   "N4KPC|20261023",
-  "K4ZSR|20261028"
+  "K4ZSR|20261028",
+  "N4BDW|20261030"
  ],
  "pages": [
   "about.html",
