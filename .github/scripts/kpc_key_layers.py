@@ -63,8 +63,27 @@ def main():
     WX = load('data/world-key/extra-layers.json', {}); WC = WX.setdefault('countries', {})
     wknown = (open('.github/scripts/kpc_world_key.py').read().lower() if os.path.exists('.github/scripts/kpc_world_key.py') else '')
     added, skipped, states, provs, ccs = [], [], set(), set(), set()
+    # Oct 31 (Fable review #11 / #19): a layer is wired only when (a) its YES answers are at least its NO answers (one record's YES is
+    # not the whole layer), (b) it is not a trail / byway LINE layer (the keys read polygons; trail lines go to the trail list), and
+    # (c) it is not a land-class / coverage layer (SSSI, Natura 2000, designations, land cover, easements…), hand-approved or not,
+    # without Brandon's word
+    LANDCLASS = re.compile(r'sssi|\bsac\b|\bspa\b|ramsar|special (?:area|protection)|scientific interest|natura|habitat|designated|land ?cover|easement|'
+                           r'surface management|aonb|outstanding natural beauty|biosphere|discomap\.eea|cdda|wdpa|schutzgebiet|parcel|cadastr|zoning', re.I)
+    tally = {}
     for r in rows:
-        if str(r.get('answer') or '').strip().upper() != 'YES': continue
+        u_ = str(r.get('url') or r.get('layer') or '').strip().rstrip('/').lower()
+        a_ = re.sub(r'^[^A-Za-z]+', '', str(r.get('answer') or '')).upper()
+        if a_.startswith('YES'): tally.setdefault(u_, [0, 0])[0] += 1
+        elif re.match(r'NO\b', a_): tally.setdefault(u_, [0, 0])[1] += 1
+    for r in rows:
+        if str(r.get('answer') or '').strip().upper()[:3] != 'YES': continue
+        _u = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
+        _y, _n = tally.get(_u.lower(), [0, 0])
+        if _n > _y: skipped.append(f"{_u[-45:]}: more NO ({_n}) than YES ({_y})"); continue
+        _txt = ' '.join(str(r.get(k) or '') for k in ('title', 'url', 'layer', 'name', 'agency', 'publisher', 'kind', 'geom', 'geometry'))
+        if str(r.get('kind') or '').lower() in ('trail', 'byway', 'line', 'route') or re.search(r'polyline|esriGeometryPolyline|trail|centerline|byways?\b|scenic highway|\broads?\b|\broutes?\b|segments?\b|river ?lines?|streams?\b', _txt, re.I):
+            skipped.append(f"{_u[-45:]}: a LINE layer (trail list, not the key)"); continue
+        if LANDCLASS.search(_txt): skipped.append(f"{_u[-45:]}: land-class layer (Brandon's word needed)"); continue
         url = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
         area = str(r.get('area') or '').strip().upper()
         # Oct 30 (Brandon 9:48 'Yes'): an intake row whose area is a bare country code (GB, AU, NZ…) is a WORLD layer
