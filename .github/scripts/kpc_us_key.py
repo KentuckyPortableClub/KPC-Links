@@ -1242,6 +1242,16 @@ def run(st):
                 p['c'] = (p.get('c') or []) + [[b[0][0], b[0][1], b[0][2], f'check (rule R-G8): {b[1]}'] for b in _bad]
                 g8.append(f"{ref} ({', '.join(b[0][1][:24] for b in _bad[:2])})")
                 weak = [x for x in weak if x not in [b[0] for b in _bad]]
+        # Oct 30 (chat 2, from the 2-fer recheck: Coronado National Memorial -> the whole Coronado National Forest, Jemez Historic Site ->
+        # the whole Jemez NRA): a SMALL site (memorial, historic site, monument, battlefield, museum, lighthouse) never takes a big piece
+        # of ANOTHER kind of land (forest, refuge, recreation area, wilderness, grassland, lake) of 5,000+ acres by itself: a person looks
+        _sm = re.compile(r'memorial|historic(al)? site|historic park|monument|battlefield|museum|lighthouse|historic district|national historical', re.I)
+        _bg = re.compile(r'national forest|wildlife refuge|\bnwr\b|recreation area|wilderness|grassland|state forest|\bblm\b|national park\b|\blake\b', re.I)
+        if _sm.search(f"{p.get('n') or ''} {p.get('t') or ''}"):
+            _big = [x for x in m if (x[2] or 0) > 5000 and _bg.search(str(x[1])) and not _sm.search(str(x[1]))]
+            if _big:
+                m = [x for x in m if x not in _big]; p['m'] = sorted(m, key=lambda x: -x[2]); weak = [x for x in weak if x not in _big]
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check: a small site joined to a big piece of another kind of land'] for x in _big]
         if weak and la_ is not None:
             ok = [x for x in m if x not in weak]
             left = list(weak)
