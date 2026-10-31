@@ -1,0 +1,72 @@
+@@HEADER@@
+<main id="main">
+<section class="tool-head th-mem"><div class="wrap"><div class="th-text">
+<p class="eyebrow">KPC MEMBERS ONLY • CLUB ROOM</p>
+<h1>ADIF <span>LOG CHECKER</span></h1>
+<p class="sub">Open a log, check it for QRZ (N4KPC) and POTA, fix what's wrong with one tap, edit any contact, then save it or send it to the N4KPC uploader. Your file never leaves your phone or computer.</p>
+</div></div></section>
+<nav class="toolnav" aria-label="Log checker"><div class="wrap"><a href="kpc-club.html">← Club Room</a><a href="kpc-club.html#qrzup">N4KPC QRZ Upload</a><a href="https://pota.app/#/user/logs" target="_blank" rel="noopener">POTA Log Upload ↗</a></div></nav>
+<style>
+#ae{max-width:1400px}
+#ae .ae-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+#ae button,#ae .btn{min-height:44px;padding:8px 14px;border-radius:10px;border:1px solid rgba(240,201,107,.6);background:transparent;color:inherit;font-weight:800;font-size:13px;line-height:1.2;font-family:inherit;letter-spacing:.04em;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+#ae button.go{background:#d5a63a;color:#111;border-color:#d5a63a}
+#ae button.on{background:rgba(63,191,106,.18);border-color:#3fbf6a}
+#ae button:disabled{opacity:.45;cursor:not-allowed}
+#ae .file{position:relative;overflow:hidden}#ae .file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+#ae .info{font-size:13px;opacity:.85;margin:0 0 10px}
+#ae .sum{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+#ae .pill{padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;line-height:1.2;font-family:inherit;border:1px solid rgba(127,127,127,.35)}
+#ae .pill.ok{background:rgba(63,191,106,.16);border-color:rgba(63,191,106,.55)}#ae .pill.err{background:rgba(224,85,59,.16);border-color:rgba(224,85,59,.6)}#ae .pill.wrn{background:rgba(232,179,58,.16);border-color:rgba(232,179,58,.6)}
+#ae .issues{list-style:none;margin:0 0 14px;padding:0;max-height:340px;overflow:auto;border:1px solid rgba(240,201,107,.3);border-radius:12px}
+#ae .issues li{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:8px 10px;border-bottom:1px solid rgba(127,127,127,.18);font-size:14px}
+#ae .issues li b.e{color:#d0452e}#ae .issues li b.w{color:#b07d10}#ae .issues li span{flex:1 1 220px;min-width:0;overflow-wrap:anywhere}
+#ae .issues li button{min-height:36px;padding:5px 10px;font-size:12px}
+#ae .sheet{border:1px solid rgba(240,201,107,.45);border-radius:12px;padding:12px;margin:0 0 12px;background:rgba(213,166,58,.08)}
+#ae .sheet .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#ae .sheet input,#ae .sheet select{min-height:44px;padding:6px 10px;border-radius:8px;border:1px solid rgba(240,201,107,.5);background:var(--card,#fff);color:inherit;font:inherit;flex:1 1 140px;min-width:0}
+#ae .gridw{overflow:auto;max-height:70vh;border:1px solid rgba(240,201,107,.35);border-radius:12px;-webkit-overflow-scrolling:touch}
+#ae table{border-collapse:separate;border-spacing:0;font-size:13px;min-width:100%}
+#ae th{position:sticky;top:0;z-index:2;background:#1a1d1b;color:#f6d58a;font-weight:800;font-size:11px;line-height:1.2;font-family:inherit;letter-spacing:.06em;padding:8px 6px;text-align:left;white-space:nowrap;border-bottom:1px solid rgba(240,201,107,.4)}
+#ae td{border-bottom:1px solid rgba(127,127,127,.18);padding:0;white-space:nowrap}
+#ae td.n{padding:0 8px;font-weight:800;opacity:.7;position:sticky;left:0;background:inherit;z-index:1}
+#ae tr:nth-child(even) td{background:rgba(127,127,127,.06)}
+#ae td input[type=text]{width:100%;min-width:76px;border:0;background:transparent;color:inherit;font:inherit;padding:8px 6px}
+#ae td input[type=text]:focus{outline:2px solid #d5a63a;background:rgba(213,166,58,.12)}
+#ae td.bad{box-shadow:inset 0 0 0 2px #e0553b}#ae td.wrn{box-shadow:inset 0 0 0 2px #e8b33a}
+#ae tr.hit td{background:rgba(213,166,58,.22)!important}
+#ae .empty{padding:24px;text-align:center;opacity:.8}
+#ae .msg{font-weight:700;margin:8px 0}
+</style>
+<section class="section"><div class="wrap" id="ae">
+ <div class="ae-bar">
+  <label class="btn go file">📂 OPEN LOG FILE<input type="file" id="aeFile" accept=".adi,.adif,.ADI,.ADIF,text/plain" aria-label="Open an ADIF log file"></label>
+  <button type="button" id="aeQrz" class="on" aria-pressed="true">✓ CHECK FOR QRZ (N4KPC)</button>
+  <button type="button" id="aePota" class="on" aria-pressed="true">✓ CHECK FOR POTA</button>
+ </div>
+ <p class="info" id="aeName">No log open yet. Open an .adi file, or send one here from the N4KPC uploader.</p>
+ <div class="sum" id="aeSum"></div>
+ <ul class="issues" id="aeIss" hidden></ul>
+ <div class="ae-bar" id="aeTools" hidden>
+  <button type="button" class="go" id="aeFixAll">🔧 FIX EVERYTHING I CAN</button>
+  <button type="button" id="aeSetBtn">✎ SET A FIELD FOR ALL</button>
+  <button type="button" id="aeFindBtn">🔍 FIND &amp; REPLACE</button>
+  <button type="button" id="aeAdd">＋ ADD CONTACT</button>
+  <button type="button" id="aeCol">＋ ADD COLUMN</button>
+  <button type="button" id="aeDel" disabled>🗑 DELETE TICKED</button>
+  <button type="button" id="aeSplit">✂ SPLIT BY PARK</button>
+  <button type="button" id="aeSave">💾 SAVE ADIF</button>
+  <button type="button" id="aeSend">⬆ SEND TO N4KPC UPLOADER</button>
+  <a class="btn" href="https://pota.app/#/user/logs" target="_blank" rel="noopener">OPEN POTA LOG UPLOAD ↗</a>
+  <button type="button" id="aeUndo" disabled>↶ UNDO</button>
+ </div>
+ <div class="sheet" id="aeSet" hidden><div class="row"><select id="aeSetF" aria-label="Field"></select><input type="text" id="aeSetV" placeholder="Value (blank = remove the field)" aria-label="Value"><button type="button" class="go" id="aeSetGo">SET FOR ALL</button><button type="button" id="aeSetX">CLOSE</button></div></div>
+ <div class="sheet" id="aeFind" hidden><div class="row"><select id="aeFindF" aria-label="In field"></select><input type="text" id="aeFindA" placeholder="Find" aria-label="Find"><input type="text" id="aeFindB" placeholder="Replace with" aria-label="Replace with"><button type="button" class="go" id="aeFindGo">REPLACE</button><button type="button" id="aeFindX">CLOSE</button></div></div>
+ <div class="sheet" id="aeColS" hidden><div class="row"><input type="text" id="aeColN" placeholder="Field name, like GRIDSQUARE or COMMENT" aria-label="New field name"><button type="button" class="go" id="aeColGo">ADD</button><button type="button" id="aeColX">CLOSE</button></div></div>
+ <p class="msg" id="aeMsg" aria-live="polite"></p>
+ <div class="gridw" id="aeGridW" hidden><table id="aeGrid"></table></div>
+ <p class="info" style="margin-top:12px">QRZ (N4KPC): every contact needs a call, a date (YYYYMMDD), a UTC time (HHMM), a band or frequency and an ADIF mode; FT4 / JS8 go as MFSK with a submode; the station call must be N4KPC (the operator's own call goes in OPERATOR). POTA: one park and one activating call per upload, the park in MY_SIG_INFO, 10 contacts in one UTC day to count the activation.</p>
+</div></section>
+<script src="kpc-adif-lib.js?v=20261031a"></script><script src="kpc-adif.js?v=20261031a"></script>
+</main>
+@@FOOTER@@

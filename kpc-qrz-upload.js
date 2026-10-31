@@ -34,7 +34,7 @@
     $('quGo').hidden = false;
     const u = await relay();
     if (!u) { say('The N4KPC uploader is not switched on yet. Ask Brandon (KZ4CP).', true); return; }
-    busy = true; stop = false; $('quSend').hidden = true; $('quCancel').hidden = true; $('quStop').hidden = false; $('quFile').disabled = true;
+    busy = true; stop = false; $('quSend').hidden = true; $('quStop').hidden = false; $('quFile').disabled = true;
     const c = { ok: 0, dup: 0, bad: 0 }, why = {};
     for (let i = 0; i < recs.length && !stop; i++) {
       const a = await one(u, recs[i]);
@@ -43,21 +43,42 @@
       $('quProg').textContent = (i + 1) + ' of ' + recs.length;
       if (i < recs.length - 1 && !stop) await new Promise(res => setTimeout(res, 1000));   /* about one a second */
     }
-    busy = false; $('quSend').hidden = false; $('quStop').hidden = true; $('quCancel').hidden = false; $('quFile').disabled = false;
+    busy = false; $('quSend').hidden = false; $('quStop').hidden = true; $('quFile').disabled = false;
     const parts = [];
     if (c.ok) parts.push(c.ok + ' added'); if (c.dup) parts.push(c.dup + ' already there'); if (c.bad) parts.push(c.bad + ' not added');
     say((stop ? 'Stopped. ' : 'Done. ') + (parts.join(' · ') || 'Nothing sent.') + (Object.keys(why).length ? ' (' + Object.entries(why).map(([w, n]) => w + (n > 1 ? ' ×' + n : '')).join('; ') + ')' : ''), c.bad > 0);
   }
+  /* Brandon Oct 31 4:05 PM: 'instead of cancel … checks the log and verifies the log is correct for qrz example N4KPC; if something
+     is wrong give a message what it is and an option to correct the log' = KPCAdif.check for N4KPC; problems stop the upload
+     and FIX IT IN THE LOG CHECKER opens kpc-adif.html with this file; the fixed log comes back here by itself */
+  let raw = '', fname = '';
+  function take(text, nm) {
+    raw = text; fname = nm || 'log.adi'; $('quBar').style.width = '0'; $('quProg').textContent = ''; $('quFix').hidden = true; $('quIss').innerHTML = '';
+    const A = window.KPCAdif;
+    if (!A) { recs = parse(text); }
+    else {
+      const p = A.parse(text), iss = A.check(p.recs, { qrz: 'N4KPC' }), err = iss.filter(x => x.level === 'error');
+      recs = p.recs.map(A.record);
+      if (recs.length && iss.length) $('quIss').innerHTML = '<ul>' + iss.slice(0, 5).map(x => '<li class="' + (x.level === 'error' ? 'e' : 'w') + '">' + (x.level === 'error' ? '✕ ' : '⚠ ') + (x.i >= 0 ? 'Contact ' + (x.i + 1) + ': ' : '') + esc(x.msg) + '</li>').join('') + (iss.length > 5 ? '<li>…and ' + (iss.length - 5) + ' more.</li>' : '') + '</ul>';
+      if (err.length) {
+        $('quSend').disabled = true; $('quFix').hidden = false;
+        say('✕ ' + err.length + ' problem' + (err.length > 1 ? 's' : '') + ' in this log for the N4KPC logbook. Fix ' + (err.length > 1 ? 'them' : 'it') + ' first (most are one tap).', true);
+        return;
+      }
+      if (iss.length) $('quFix').hidden = false;
+    }
+    const n = recs.length;
+    $('quSend').disabled = !n;
+    say(n ? '✓ ' + n + ' contact' + (n > 1 ? 's' : '') + ' checked and ready for N4KPC.' + (n && $('quIss').innerHTML ? ' (Notes below are not problems.)' : '') : 'No contacts found in that file. Pick an ADIF (.adi) log.', !n);
+  }
   $('quFile').addEventListener('change', () => {
     const f = $('quFile').files[0]; if (!f) return;
-    const rd = new FileReader();
-    rd.onload = () => { recs = parse(String(rd.result || '')); const n = recs.length; $('quBar').style.width = '0'; $('quProg').textContent = '';
-      $('quGo').hidden = !n; $('quSend').disabled = !n; $('quCancel').hidden = !n; say(n ? n + ' contact' + (n > 1 ? 's' : '') + ' found.' : 'No contacts found in that file. Pick an ADIF (.adi) log.', !n); };
-    rd.readAsText(f);
+    const rd = new FileReader(); rd.onload = () => take(String(rd.result || ''), f.name); rd.readAsText(f);
   });
+  $('quFix').addEventListener('click', () => { try { sessionStorage.setItem('kpcAdifHand', JSON.stringify({ name: fname, text: raw })); } catch (e) {} location.href = 'kpc-adif.html'; });
   $('quSend').addEventListener('click', send);
   $('quStop').addEventListener('click', () => { stop = true; });
-  /* Brandon Oct 31: 'a cancel upload be nice too if someone enters wrong file' = drop the picked file before anything is sent */
-  $('quCancel').addEventListener('click', () => { if (busy) return; recs = []; $('quFile').value = ''; $('quSend').disabled = true; $('quCancel').hidden = true; $('quGo').hidden = true; $('quBar').style.width = '0'; $('quProg').textContent = ''; say('Cancelled. Pick another file.'); });
+  /* the fixed log handed back by the checker */
+  try { const h = JSON.parse(sessionStorage.getItem('kpcAdifBack') || 'null'); if (h && h.text) { sessionStorage.removeItem('kpcAdifBack'); take(h.text, h.name); } } catch (e) {}
   window.KPCQrzUp = { parse };
 })();
