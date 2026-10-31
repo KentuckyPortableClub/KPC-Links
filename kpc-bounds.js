@@ -163,7 +163,19 @@
     return () => { map.off('moveend zoomend', on); clearTimeout(t); gen++; };
   }
   /* KY features that belong to one POTA ref */
-  async function kyFor(ref) { const F = await ky(); const N = nameIndex(); return N.has(ref) ? N.get(ref) : F.filter(f => kyRefs(f).some(r => r.ref === ref)); }
+  async function kyFor0(ref) { const F = await ky(); const N = nameIndex(); return N.has(ref) ? N.get(ref) : F.filter(f => kyRefs(f).some(r => r.ref === ref)); }
+  /* Oct 31 (chat 2 / Brandon option A): a Kentucky TRAIL park with no outline in the KY files (Trail of Tears, Lewis and Clark,
+     Sheltowee Trace) is drawn as its official trail line (data/trails/<ref>.json, every line in the file), counted within 100 ft. */
+  let TIDX = null;
+  const trailIdx = () => TIDX || (TIDX = Promise.all(['data/trails/index.json', 'data/trails/index-state.json'].map(u => dfetch(u).then(r => r.ok ? r.json() : []).catch(() => [])))
+    .then(a => { const m = {}; [].concat(...a).forEach(t => { if (t && t.ref) m[t.ref] = t; }); return m; }));
+  async function trailLine(ref) {
+    const t = (await trailIdx())[ref]; if (!t) return [];
+    const j = await dfetch('data/trails/' + ref + '.json').then(r => r.ok ? r.json() : null).catch(() => null); if (!j) return [];
+    return (j.type === 'FeatureCollection' ? j.features || [] : [j]).filter(f => f && f.geometry && isLine(f.geometry))
+      .map(f => (f._src = t.by || 'National Park Service', f._line = true, f._nm = t.name || (f.properties || {}).name || ref, f._L = { name: 'Official trail line', agency: f._src, k: 'btrail' }, f._bb = bbox(f.geometry), f));   /* _L: the shape the KY tools expect */
+  }
+  async function kyFor(ref) { const fs = await kyFor0(ref); if (fs && fs.length) return fs; try { return await trailLine(ref); } catch (e) { return []; } }
 
   /* ---------- PAD-US ---------- */
   const ACCESS = { OA: 'open to the public', RA: 'restricted access (permit or season)', XA: 'CLOSED to the public', UK: 'access unknown' };
@@ -482,5 +494,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { trailLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

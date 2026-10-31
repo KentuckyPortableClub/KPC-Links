@@ -95,7 +95,7 @@
   async function outline(p) {
     const b = B(); if (!b) return { fs: [], label: 'none' };
     try {
-      if (p.st === 'KY') { const fs = await b.kyFor(p.ref); if (fs && fs.length) return { fs, label: 'official', src: 'Kentucky official maps' }; }
+      if (p.st === 'KY') { const fs = await b.kyFor(p.ref); if (fs && fs.length) return { fs, label: 'official', line: fs.every(f => f._line), src: fs.every(f => f._line) ? fs[0]._src : 'Kentucky official maps' }; }
       if (isCA(p.st) || /^CA-\d/.test(p.ref)) { const fs = b.canada ? await b.canada(p.ref) : []; return fs.length ? { fs, label: fs.some(f => f._approx) ? 'approx' : 'official', why: (fs.find(f => f._why) || {})._why || '', src: [...new Set(fs.map(f => f._src))].join(' + ') } : { fs: [], label: 'none' }; }
       if (b.usOutline) return await b.usOutline(p.ref, p.short || p.n, p.la, p.lo, [p.st].filter(Boolean));
     } catch (e) {}
