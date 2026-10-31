@@ -8635,13 +8635,14 @@
   },
   "US-7393": {
    "no": [
-    "sgksc78",
+    "2482",
+    "sgksb27",
     "sgksc18",
-    "2482"
+    "sgksc78"
    ],
    "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Milford Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Milford Outlet Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Milford Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-10-31",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Milford Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Milford Outlet Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Milford Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-31 chat 2 (chat 11 KEY NO): a fish hatchery is not the wildlife area around it: pin"
   },
   "US-7399": {
    "approx": true,

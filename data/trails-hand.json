@@ -477,9 +477,9 @@
      "by": "National Park Service National Trails (one layer = this trail)"
     },
     {
-     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/Lewis_and_Clark_Trail_Auto_Route/FeatureServer/0",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Auto_Route_Final_Combined/FeatureServer/0",
      "where": "1=1",
-     "by": "National Park Service: Lewis and Clark Trail Auto Route (2017, Illinois to Oregon; Brandon found it Oct 30). Brandon 11:00 PM: the trail needs BOTH lines"
+     "by": "National Park Service: Lewis and Clark NHT Auto Route (2025, all 16 states incl. the 2019 eastern extension; chat 8 probe Oct 31). Brandon Oct 30: the trail needs BOTH lines"
     }
    ]
   },

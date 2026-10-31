@@ -976,6 +976,7 @@ def run(st):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
+                    if _tags(name) and not (_tags(name) & _tags(nm)): continue   # Oct 31 (chat 11: Milford State Fish Hatchery -> 'Milford Wildlife Area'): another kind of place never joins
                     if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
