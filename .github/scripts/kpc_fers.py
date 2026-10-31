@@ -2658,9 +2658,15 @@ def main():
         def _crosses(r):
             if not _ab or r not in LN or (parks.get(r) or {}).get('ids'): return False
             return any(_ab[0] <= q[0] <= _ab[2] and _ab[1] <= q[1] <= _ab[3] for l in LN[r]['lines'] for q in l[::5] + l[-1:])
-        _x = [r for r, p in parks.items() if not (p['st'] in ONLY or p['st'][3:] in ONLY) and _crosses(r)]
+        # Oct 31 (chat 2, Delaware lost a cross-border area pair): a one-state area also needs its NEIGHBOURS' parks that sit at its edge,
+        # or a pair across a state line (a Delaware park x a Pennsylvania park) is found by neither state's run. A park filed under
+        # another state comes in when its POTA pin lies inside this area's box (its own state's run still owns its other rows).
+        def _near(r):
+            v = PIN.get(r)
+            return bool(_ab and (parks.get(r) or {}).get('ids') and v and v[1] is not None and _ab[0] <= v[2] <= _ab[2] and _ab[1] <= v[1] <= _ab[3])
+        _x = [r for r, p in parks.items() if not (p['st'] in ONLY or p['st'][3:] in ONLY) and (_crosses(r) or _near(r))]
         parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY or r in _x}
-        if _x: LOG.append(f'{len(_x)} line parks filed under another state but crossing this area kept: ' + ', '.join(_x[:8]))
+        if _x: LOG.append(f'{len(_x)} parks filed under another state but crossing / at the edge of this area kept: ' + ', '.join(_x[:8]))
     counts = {'pass': PASS, 'cell_m': CELL, 'official parks': len(parks), 'left out': skip, 'pairs tested': 0, 'with official lines': sum(1 for r in LN if r in parks)}
     today = time.strftime('%Y-%m-%d')
     old = {}
