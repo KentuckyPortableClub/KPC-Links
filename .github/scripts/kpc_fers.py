@@ -844,7 +844,7 @@ def _wlive(i, jt):
         if lay not in NHDL: continue
         j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
                                              'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
-                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=1, timeout=30)
+                                             'maxAllowableOffset': min(DET, 0.00003), 'geometryPrecision': max(PREC, 6), 'f': 'json'}, tries=1, timeout=30)   # Oct 31 (Fable #21): a SAVED water tile is reused by pass 3's 100-ft-from-bank test: always ~3 m
         got += [[lay, esri_rings(f.get('geometry'))] for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
     if len(NHDL) < 2: raise RuntimeError('USGS water layers not listed')
     return got
@@ -2694,7 +2694,11 @@ def main():
         # another state comes in when its POTA pin lies inside this area's box (its own state's run still owns its other rows).
         def _near(r):
             v = PIN.get(r)
-            return bool(_ab and (parks.get(r) or {}).get('ids') and v and v[1] is not None and _ab[0] <= v[2] <= _ab[2] and _ab[1] <= v[1] <= _ab[3])
+            if not (_ab and (parks.get(r) or {}).get('ids')): return False
+            if v and v[1] is not None and _ab[0] <= v[2] <= _ab[2] and _ab[1] <= v[1] <= _ab[3]: return True
+            # Oct 31 (Fable #20): or one of its OWN record part boxes (rule B12, from the key) reaches into this area (a national forest
+            # whose pin is a state away)
+            return any(not (b_[2] < _ab[0] or b_[0] > _ab[2] or b_[3] < _ab[1] or b_[1] > _ab[3]) for bs in (CLIP.get(r) or {}).values() for b_ in bs if len(b_) == 4)
         _x = [r for r, p in parks.items() if not (p['st'] in ONLY or p['st'][3:] in ONLY) and (_crosses(r) or _near(r))]
         parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY or r in _x}
         if _x: LOG.append(f'{len(_x)} parks filed under another state but crossing / at the edge of this area kept: ' + ', '.join(_x[:8]))
