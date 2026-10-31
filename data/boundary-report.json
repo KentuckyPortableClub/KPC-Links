@@ -1,17 +1,17 @@
 {
  "United States": {
   "totals": {
-   "matched": 11362,
-   "far": 3708,
+   "matched": 11371,
+   "far": 3746,
    "noshape": 0,
-   "edge": 3578,
+   "edge": 3616,
    "out": 130,
    "swap": 0
   },
   "states": [
    {
     "st": "AK",
-    "matched": 134,
+    "matched": 137,
     "far": 42,
     "noshape": 0,
     "out": 6,
@@ -23,7 +23,7 @@
    },
    {
     "st": "AL",
-    "matched": 134,
+    "matched": 136,
     "far": 40,
     "noshape": 0,
     "out": 4,
@@ -131,15 +131,15 @@
    },
    {
     "st": "GA",
-    "matched": 219,
-    "far": 27,
+    "matched": 218,
+    "far": 62,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 27
+    "edge": 62
    },
    {
     "st": "HI",
@@ -191,15 +191,15 @@
    },
    {
     "st": "IN",
-    "matched": 209,
-    "far": 70,
+    "matched": 215,
+    "far": 74,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 68
+    "edge": 72
    },
    {
     "st": "KS",
@@ -443,15 +443,15 @@
    },
    {
     "st": "OR",
-    "matched": 377,
-    "far": 116,
+    "matched": 376,
+    "far": 115,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 114
+    "edge": 113
    },
    {
     "st": "PA",
@@ -802,7 +802,7 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4290,
+   "matched": 4291,
    "far": 1675,
    "noshape": 0,
    "edge": 1598,
@@ -836,15 +836,15 @@
    },
    {
     "st": "CA-MB",
-    "matched": 220,
-    "far": 81,
+    "matched": 219,
+    "far": 80,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 78
+    "edge": 77
    },
    {
     "st": "CA-NB",
@@ -908,15 +908,15 @@
    },
    {
     "st": "CA-ON",
-    "matched": 930,
-    "far": 369,
+    "matched": 932,
+    "far": 370,
     "noshape": 0,
     "out": 7,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 362
+    "edge": 363
    },
    {
     "st": "CA-PE",
@@ -998,6 +998,12 @@
     "CA-6112",
     "Kananaskis Country Provincial Park",
     "The Kananaskis Country"
+   ],
+   [
+    "CA-MB",
+    "CA-2441",
+    "Lee Lake Wildlife Management Area",
+    "Lee Lake Wildlife Management Area"
    ],
    [
     "CA-NB",
@@ -1141,10 +1147,10 @@
  },
  "World": {
   "totals": {
-   "matched": 39749,
-   "far": 10028,
+   "matched": 40017,
+   "far": 10124,
    "noshape": 0,
-   "edge": 9101,
+   "edge": 9197,
    "out": 927,
    "swap": 97
   },
@@ -1163,15 +1169,15 @@
    },
    {
     "st": "AU",
-    "matched": 6977,
-    "far": 1433,
+    "matched": 7245,
+    "far": 1529,
     "noshape": 0,
     "out": 18,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 1415
+    "edge": 1511
    },
    {
     "st": "BE",

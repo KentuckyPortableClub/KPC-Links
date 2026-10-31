@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **134 of 179** parks joined to official land (same name + same kind of place). **7** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **137 of 179** parks joined to official land (same name + same kind of place). **6** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,7 +10,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - **US-11833** Galbraith Lake Campground BLM Recreation Management Area (BLM Recreation Management Area) → Galbraith Lake ACEC (~53,949 ac, similar name); Central Yukon Field Office (~12,497,870 ac, the POTA pin is inside it (different name)); Dalton Highway SRMA (~809,499 ac, the POTA pin is inside it (different name)); Dalton Highway SRMA (~809,499 ac, the POTA pin is inside it (different name)); James Dalton (~0 ac, the POTA pin is inside it (different name))
 - **US-7208** Big Lake North State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name)
 - **US-7209** Big Lake South State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name)
-- **US-7245** Juneau State Trail (State Trail) → Juneau Trail System (~67 ac, same name, different kind of place); Juneau Trail System (~67 ac, same name, different kind of place); Juneau Trail System (~67 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -53,7 +52,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-11834 Susitna Landing (Kashwitna) State Recreation Site (State Recreation Site)
 - US-11852 Beaver Creek BLM Wild and Scenic River (BLM Wild and Scenic River)
 - US-3382 John National Wild and Scenic River (National Wild and Scenic River)
-- US-4570 Iditarod National Historic Trail (National Historic Trail)
 - US-7885 Inupiat National Heritage Site (National Heritage Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -83,27 +81,27 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Nulato Hills (KSP) ACEC ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~1,079,924 ac
 - Kootznoowoo Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~999,979 ac
 - Tozitna River ACEC ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~872,628 ac
-- Tiekel SRMA ·  · BLM recreation sites · ~847,741 ac
+- Tiekel SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~847,741 ac
 - Tiekel SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~847,741 ac
 - Bering Glacier RNA ·  · BLM recreation areas · ~824,147 ac
-- Bering Glacier RNA ·  · BLM recreation sites · ~824,147 ac
+- Bering Glacier RNA ·  · BLM recreation management areas · official (BLM planning area) · ~824,147 ac
 - Bering Glacier RNA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~824,147 ac
 - Bering Glacier RNA ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~824,144 ac
-- Dalton Highway SRMA ·  · BLM recreation sites · ~809,499 ac
+- Dalton Highway SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~809,499 ac
 - Dalton Highway SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~809,499 ac
-- Squirrel River SRMA ·  · BLM recreation sites · ~726,379 ac
+- Squirrel River SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~726,379 ac
 - Squirrel River SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~726,379 ac
-- Steese SRMA ·  · BLM recreation sites · ~707,907 ac
+- Steese SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~707,907 ac
 - Steese SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~707,907 ac
 - Tracy Arm-Fords Terro Wilderness Original Legislated CDA Boundary ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~699,442 ac
 - State Land Disposals - Municipal Purposes · SOTH · Unknown · ~676,504 ac
 - Tracy Arm-Fords Terror Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~647,358 ac
 - Salmon Fork ACEC ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~623,046 ac
 - Cape Krusenstern National Monument · NM · NPS · ~617,870 ac
-- Denali Highway SRMA ·  · BLM recreation sites · ~557,672 ac
+- Denali Highway SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~557,672 ac
 - Denali Highway SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~557,672 ac
 - Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
-- Steese SRMA ·  · BLM recreation sites · ~539,040 ac
+- Steese SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~539,040 ac
 - Steese SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~539,040 ac
 - Stikine-LeConte Wilderness Original Legislated CDA Boundary ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~479,416 ac
 - Alaska Maritime National Wildlife Refuge · NWR · ALASKA MARITIME NATIONAL WILDLIFE REFUGE · ~478,341 ac
@@ -117,4 +115,4 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Fortymile ACEC ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~359,407 ac
 - Russell Fjord Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~350,158 ac
 - South Baranof Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~315,851 ac
-- Delta Range SRMA ·  · BLM recreation sites · ~276,621 ac
+- Delta Range SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~276,621 ac

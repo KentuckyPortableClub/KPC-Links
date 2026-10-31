@@ -1,6 +1,6 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **134 of 155** parks joined to official land (same name + same kind of place). **2** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **136 of 155** parks joined to official land (same name + same kind of place). **2** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -26,8 +26,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
 - US-13533 Brierfield Ironworks Historial State Park State Historical Park (State Historical Park)
 - US-13558 St. Stephens State Historical Park (State Historical Park)
-- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
-- US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
 - US-6457 Elk River Lodge State Park (State Park)
 - US-6459 Kinterbish Wildlife Management Area (Wildlife Management Area)
 - US-9918 Thigpen Hill Nature Recreation Area (Nature Recreation Area)
