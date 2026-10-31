@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM CHAT 2 (Oct 31 1:30 PM, Fable #13): water-route river rows now carry `shape_kind: 'polygon'` = the bank strip's OUTLINE (land within 100 ft of the river). Draw it as a filled AREA (no 30 m band around it); line rivers / trails stay bands. Lands with the next 2-fer runs (Kentucky rerun now).
 - **FROM HQ (Oct 31 12:35 PM), FROM FABLE'S REVIEW (.claude/build/research/KPC_Fable_QuickReview_Oct31.md): the Finder draws a river row's BANK strip outline as if it were a trail line with a 100-ft band round it (Ballard WMA x Trail of Tears x Lewis and Clark). Fix the drawing + your other items in the report (Fable: 2-3 hours). US + Canada first.**
 - **DAILY HABITS (Oct 31, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
   (0) OUR OWN OFFICIAL DOCUMENTS FIRST: KPC-Data data/docs/US-XX.json (the documents bot's official maps + rules pages per park), data/parkinfo-web.json (official page / map links per park), data/parkinfo/US-XX.json (POTA's own official link per park), Kentucky: data/ky-official-maps.json. If the park's official map is there, use it (note 'from our docs').
