@@ -731,6 +731,9 @@ _TR = []
 # (data/trails/<ref>.json, listed in data/trails/index.json by the Park Service / Forest Service / BLM) carries that LINE as its
 # record in the key: id 'trl<number>', grade official, line: 1. Every outline tool then follows it; Am I in the Park uses POTA's
 # 100-ft band from the line (never an inside test). Only a park with no other official piece gets it.
+# Oct 30 11:05 PM: trails whose only official line is a DRIVING route (roads), not the trail: held until Brandon rules
+# (US-4582 Washington-Rochambeau = the NPS 'WARO driving route centerline (2016)')
+DRIVING_ONLY = {'US-4582'}
 TRL = {}
 try:
     for _x in json.load(open('data/trails/index.json')):
@@ -1329,7 +1332,7 @@ def run(st):
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
         p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1])) for x in m) else 'official')
-        if not m and ref in TRL and pathlib.Path(f'data/trails/{ref}.json').exists():
+        if not m and ref in TRL and ref not in DRIVING_ONLY and pathlib.Path(f'data/trails/{ref}.json').exists():
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
             p['g'] = 'official'; p['line'] = 1
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
