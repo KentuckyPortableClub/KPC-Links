@@ -463,24 +463,29 @@ def download(parks, refs, det, prec):
                 except Exception as e:  # noqa: BLE001
                     LOG.append(f'{u.split("/rest/services/")[-1][:60]}: not read ({str(e)[:60]})'); continue
                 oidf = j.get('objectIdFieldName') or 'OBJECTID'
+                _d = HC.LAST or time.time()   # B2 (Oct 30): the date this answer was really read from the agency (a bundle answer is older)
                 for f in j.get('features') or []:
                     a = f.get('attributes') or {}
                     o = a.get(oidf)
                     if o is None: o = next((v for k2, v in a.items() if k2.lower() in ('objectid', 'fid', 'oid', 'object id')), None)
-                    if o is not None: found.setdefault(int(o), []).append((a, esri_rings(f.get('geometry'))))
+                    if o is not None: found.setdefault(int(o), []).append((a, esri_rings(f.get('geometry')))); WHEN[(u, int(o))] = _d
                 time.sleep(.3)
         for ref, rid, oid, chk in items:
             cand = [(a, r) for a, r in (found.get(oid) or []) if r and (not chk or name_ok(parks[ref]['names'].get(rid), a))]
             if not cand: bad.add(ref); continue
             a, r = cand[0]
             use, why = fws_use(a) if FWS in urls else pad_use(a, ref) if PADUS in urls else (True, None)
-            if use: got.setdefault(ref, []).append(clip(ref, parks[ref]['ids'][int(rid)] if 'm' in parks[ref] else rid, r))
+            if use:
+                got.setdefault(ref, []).append(clip(ref, parks[ref]['ids'][int(rid)] if 'm' in parks[ref] else rid, r))
+                _w = [WHEN[(u, oid)] for u in urls if (u, oid) in WHEN]
+                if _w: READ[ref] = min([READ.get(ref, 9e12)] + _w)
             else: LEFT.setdefault(ref, []).append(f'{parks[ref]["names"].get(rid) or rid}: {why}')   # rule 2: left out, not 'unreadable'
     for ref in bad: got.pop(ref, None)
     for ref in {i[0] for v in want.values() for i in v} - bad - set(got):
         if ref in LEFT: bad.add(ref)   # every record of this park was left out (all easement / closed): no public land to test
     today = time.strftime('%Y-%m-%d')
-    for ref in got: MAPDATE[ref] = f'downloaded {today}'
+    for ref in got:   # B2 (Oct 30): the real read date (a reused bundle answer can be up to weeks old), never 'today' for an old answer
+        MAPDATE[ref] = f"read from the agency {time.strftime('%Y-%m-%d', time.gmtime(READ[ref]))}" if ref in READ else f'downloaded {today}'
     return got, bad
 
 
@@ -703,6 +708,7 @@ FSBO = KO.FSBO
 ACC = {}                   # ref -> notes ('restricted access (PAD-US)')
 LEFT = {}                  # ref -> records left out and why (easement, closed, proclamation…)
 MAPDATE = {}               # ref -> where / when its outline came from
+WHEN, READ = {}, {}        # B2 (Oct 30): (layer url, object id) -> when read; ref -> the oldest read among its records
 
 
 # Oct 27 (Fable's boundary review #1): the ownership maps are read in ONE place, kpc_owned.py, shared with the website's

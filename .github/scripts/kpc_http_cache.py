@@ -9,6 +9,7 @@ DIR = os.environ.get('HTTP_CACHE') or ''
 DAYS = float(os.environ.get('HTTP_CACHE_DAYS') or 21)
 OFFLINE = os.environ.get('HTTP_OFFLINE') == '1'
 STATS = {'hit': 0, 'miss': 0, 'kept': 0}
+LAST = None    # Oct 30 (B2): when the last answer was READ from the agency (a bundle hit = the file's date, a live answer = now)
 TRACE = None   # Oct 28 (speed step 2): a list while a pair is computed = every answer it consumed (url, params, digest of the answer)
 
 
@@ -42,7 +43,8 @@ def _layer_edit(url):
 
 def cached(url, params, fetch):
     """fetch() = the real request (returns parsed JSON). Cached when HTTP_CACHE is set."""
-    if not DIR: return fetch()
+    global LAST
+    if not DIR: LAST = time.time(); return fetch()
     p = _path(url, params)
     try:
         fresh = p.exists() and time.time() - p.stat().st_mtime < DAYS * 86400
@@ -50,14 +52,14 @@ def cached(url, params, fetch):
             t = _layer_edit(url)
             if t and p.stat().st_mtime > t: fresh = True; CHECKS['unchanged'] += 1
         if fresh:
-            STATS['hit'] += 1
+            STATS['hit'] += 1; LAST = p.stat().st_mtime
             raw = gzip.decompress(p.read_bytes())
             if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))
             return json.loads(raw)
     except Exception: pass  # noqa: BLE001
     STATS['miss'] += 1
     if OFFLINE: raise RuntimeError('not in the bundle (offline stage)')
-    j = fetch()
+    j = fetch(); LAST = time.time()
     raw = json.dumps(j, separators=(',', ':')).encode()
     if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))
     try:
