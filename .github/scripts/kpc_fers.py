@@ -2650,7 +2650,9 @@ def main():
         # (a national trail crossing many states) is filed under ONE state by POTA, so a one-state area dropped it whenever that
         # state was not the area. Since the areas were cut to 1/3 size this hit IA / NM / ME / MN. A line park now stays when its
         # line passes through the area (the box of the area's own park pins, padded ~20 km); its rows are filed under the area's state.
-        _in = [PIN[r] for r, p in parks.items() if (p['st'] in ONLY or p['st'][3:] in ONLY) and r in PIN and PIN[r][1] is not None]
+        # only parks with their OWN outline set the box: a line park's POTA pin can sit far away (the Appalachian Trail is filed under
+        # Maine with its pin in Georgia, which once stretched Maine's box to Georgia)
+        _in = [PIN[r] for r, p in parks.items() if (p['st'] in ONLY or p['st'][3:] in ONLY) and p.get('ids') and r not in LN and r in PIN and PIN[r][1] is not None]
         _ab = [min(v[2] for v in _in) - .2, min(v[1] for v in _in) - .2, max(v[2] for v in _in) + .2, max(v[1] for v in _in) + .2] if _in else None
         AREA_BOX[:] = _ab or []
         def _crosses(r):
