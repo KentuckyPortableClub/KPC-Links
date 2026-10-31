@@ -1,9 +1,9 @@
 {
- "about": "R-G10 'why not' tag for every US park with NO outline in the current key (chat 2, Oct 29 6:50 PM; Fable's method): no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt. Rebuilt with each key; the key itself will carry it from the next code change.",
+ "about": "R-G10 'why not' tag for every US park with NO outline in the current key (chat 2, Oct 29 6:50 PM; Fable's method): no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt. Rebuilt with each key; the key itself will carry it from the next code change. Oct 30 10:05 PM: name-mismatch parks whose own website uses the POTA name retagged no-layer (HQ 5:00 AM).",
  "counts": {
   "needs-parcel": 253,
-  "no-layer": 448,
-  "name-mismatch": 868,
+  "no-layer": 869,
+  "name-mismatch": 447,
   "pin-doubt": 22,
   "picture-map-only": 6,
   "private": 1
@@ -19,7 +19,8 @@
   },
   "US-3724": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3791": {
    "st": "GA",
@@ -27,15 +28,18 @@
   },
   "US-4556": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4648": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4649": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7139": {
    "st": "GA",
@@ -71,7 +75,8 @@
   },
   "US-7861": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7893": {
    "st": "GA",
@@ -87,7 +92,8 @@
   },
   "US-11150": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11153": {
    "st": "MN",
@@ -95,7 +101,8 @@
   },
   "US-11154": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11904": {
    "st": "MN",
@@ -131,7 +138,8 @@
   },
   "US-8095": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9373": {
    "st": "MN",
@@ -139,11 +147,13 @@
   },
   "US-9375": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9377": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9378": {
    "st": "MN",
@@ -151,7 +161,8 @@
   },
   "US-9381": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9384": {
    "st": "MN",
@@ -183,11 +194,13 @@
   },
   "US-10658": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10951": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11018": {
    "st": "OK",
@@ -211,11 +224,13 @@
   },
   "US-11669": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11670": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11671": {
    "st": "OK",
@@ -267,7 +282,8 @@
   },
   "US-12739": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13077": {
    "st": "OK",
@@ -275,7 +291,8 @@
   },
   "US-13105": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2805": {
    "st": "OK",
@@ -359,7 +376,8 @@
   },
   "US-8646": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8647": {
    "st": "OK",
@@ -407,7 +425,8 @@
   },
   "US-12817": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13010": {
    "st": "NV",
@@ -427,7 +446,8 @@
   },
   "US-13058": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13062": {
    "st": "NV",
@@ -443,19 +463,23 @@
   },
   "US-13183": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13189": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13195": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13196": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13197": {
    "st": "NV",
@@ -463,11 +487,13 @@
   },
   "US-13206": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13207": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13209": {
    "st": "NV",
@@ -479,7 +505,8 @@
   },
   "US-13214": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13215": {
    "st": "NV",
@@ -487,11 +514,13 @@
   },
   "US-13217": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13218": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13222": {
    "st": "NV",
@@ -503,11 +532,13 @@
   },
   "US-13228": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13230": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13239": {
    "st": "NV",
@@ -515,7 +546,8 @@
   },
   "US-13240": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13241": {
    "st": "NV",
@@ -527,7 +559,8 @@
   },
   "US-13248": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13249": {
    "st": "NV",
@@ -543,7 +576,8 @@
   },
   "US-13252": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13259": {
    "st": "NV",
@@ -623,7 +657,8 @@
   },
   "US-13284": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13285": {
    "st": "NV",
@@ -691,7 +726,8 @@
   },
   "US-13308": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13319": {
    "st": "NV",
@@ -787,7 +823,8 @@
   },
   "US-13414": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13415": {
    "st": "NV",
@@ -835,7 +872,8 @@
   },
   "US-13465": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13466": {
    "st": "NV",
@@ -983,11 +1021,13 @@
   },
   "US-2638": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4438": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4566": {
    "st": "NV",
@@ -1435,7 +1475,8 @@
   },
   "US-2230": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2236": {
    "st": "ID",
@@ -1475,7 +1516,8 @@
   },
   "US-4666": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5617": {
    "st": "ID",
@@ -1607,11 +1649,13 @@
   },
   "US-2081": {
    "st": "NY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2151": {
    "st": "NY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4567": {
    "st": "NY",
@@ -1631,7 +1675,8 @@
   },
   "US-8061": {
    "st": "NY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8064": {
    "st": "NY",
@@ -1675,7 +1720,8 @@
   },
   "US-8089": {
    "st": "NY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8090": {
    "st": "NY",
@@ -1695,7 +1741,8 @@
   },
   "US-3100": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3102": {
    "st": "VT",
@@ -1711,19 +1758,23 @@
   },
   "US-3122": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3129": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3135": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3139": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3140": {
    "st": "VT",
@@ -1731,11 +1782,13 @@
   },
   "US-3142": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3144": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3145": {
    "st": "VT",
@@ -1743,11 +1796,13 @@
   },
   "US-3149": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3150": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13456": {
    "st": "KS",
@@ -1867,7 +1922,8 @@
   },
   "US-4568": {
    "st": "LA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11905": {
    "st": "SD",
@@ -1875,7 +1931,8 @@
   },
   "US-8164": {
    "st": "SD",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10259": {
    "st": "NC",
@@ -1883,11 +1940,13 @@
   },
   "US-10263": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10388": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10389": {
    "st": "NC",
@@ -1915,7 +1974,8 @@
   },
   "US-12119": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12320": {
    "st": "NC",
@@ -1923,19 +1983,23 @@
   },
   "US-12371": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12414": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12662": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13002": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3851": {
    "st": "NC",
@@ -1983,7 +2047,8 @@
   },
   "US-8011": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8226": {
    "st": "NC",
@@ -1999,11 +2064,13 @@
   },
   "US-9877": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9878": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9879": {
    "st": "DE",
@@ -2019,19 +2086,23 @@
   },
   "US-9886": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0655": {
    "st": "DC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0657": {
    "st": "DC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13597": {
    "st": "DC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13621": {
    "st": "DC",
@@ -2063,19 +2134,23 @@
   },
   "US-8203": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8204": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9897": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9900": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9904": {
    "st": "VA",
@@ -2087,27 +2162,33 @@
   },
   "US-9906": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9908": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9909": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9910": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9920": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9922": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9923": {
    "st": "VA",
@@ -2115,7 +2196,8 @@
   },
   "US-9925": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9931": {
    "st": "VA",
@@ -2123,7 +2205,8 @@
   },
   "US-9933": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9934": {
    "st": "VA",
@@ -2135,7 +2218,8 @@
   },
   "US-9961": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11181": {
    "st": "TN",
@@ -2167,7 +2251,8 @@
   },
   "US-6237": {
    "st": "TN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6247": {
    "st": "TN",
@@ -2215,7 +2300,8 @@
   },
   "US-5715": {
    "st": "MO",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5716": {
    "st": "MO",
@@ -2415,19 +2501,23 @@
   },
   "US-10915": {
    "st": "HI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10916": {
    "st": "HI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10917": {
    "st": "HI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10919": {
    "st": "HI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10921": {
    "st": "HI",
@@ -2451,7 +2541,8 @@
   },
   "US-6431": {
    "st": "HI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0337": {
    "st": "ME",
@@ -2527,7 +2618,8 @@
   },
   "US-10835": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10836": {
    "st": "WY",
@@ -2535,7 +2627,8 @@
   },
   "US-10837": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10838": {
    "st": "WY",
@@ -2551,31 +2644,38 @@
   },
   "US-10842": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10848": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10850": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10854": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10855": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10856": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10857": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10860": {
    "st": "WY",
@@ -2599,7 +2699,8 @@
   },
   "US-10876": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10877": {
    "st": "WY",
@@ -2611,11 +2712,13 @@
   },
   "US-10882": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10883": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10884": {
    "st": "WY",
@@ -2623,11 +2726,13 @@
   },
   "US-10885": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10886": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10888": {
    "st": "WY",
@@ -2635,23 +2740,28 @@
   },
   "US-10891": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10892": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10893": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10896": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10898": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10900": {
    "st": "WY",
@@ -2683,11 +2793,13 @@
   },
   "US-12722": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12723": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13244": {
    "st": "WY",
@@ -2711,7 +2823,8 @@
   },
   "US-6143": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6149": {
    "st": "WY",
@@ -2727,19 +2840,23 @@
   },
   "US-6162": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6164": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6169": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6177": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6181": {
    "st": "WY",
@@ -2751,7 +2868,8 @@
   },
   "US-6184": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6185": {
    "st": "WY",
@@ -2759,7 +2877,8 @@
   },
   "US-6186": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6187": {
    "st": "WY",
@@ -2779,11 +2898,13 @@
   },
   "US-6193": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6194": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6195": {
    "st": "WY",
@@ -2803,19 +2924,23 @@
   },
   "US-6215": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6216": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6219": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6220": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6221": {
    "st": "WY",
@@ -2851,7 +2976,8 @@
   },
   "US-12132": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12134": {
    "st": "FL",
@@ -2903,7 +3029,8 @@
   },
   "US-8719": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10184": {
    "st": "WI",
@@ -2927,11 +3054,13 @@
   },
   "US-10644": {
    "st": "WI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11230": {
    "st": "WI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11955": {
    "st": "WI",
@@ -2939,15 +3068,18 @@
   },
   "US-4242": {
    "st": "WI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4260": {
    "st": "WI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4261": {
    "st": "WI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9773": {
    "st": "WI",
@@ -2975,7 +3107,8 @@
   },
   "US-9227": {
    "st": "SC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9229": {
    "st": "SC",
@@ -2983,7 +3116,8 @@
   },
   "US-9759": {
    "st": "SC",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0877": {
    "st": "AK",
@@ -3031,23 +3165,28 @@
   },
   "US-11799": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11800": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11801": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11802": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11803": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11804": {
    "st": "AK",
@@ -3055,31 +3194,38 @@
   },
   "US-11805": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11825": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11826": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11827": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11830": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11831": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11832": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11833": {
    "st": "AK",
@@ -3095,7 +3241,8 @@
   },
   "US-11836": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11846": {
    "st": "AK",
@@ -3103,11 +3250,13 @@
   },
   "US-11850": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11851": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11852": {
    "st": "AK",
@@ -3115,27 +3264,33 @@
   },
   "US-11853": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11854": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12679": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12709": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12710": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12711": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13462": {
    "st": "AK",
@@ -3151,15 +3306,18 @@
   },
   "US-7208": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7209": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7245": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7885": {
    "st": "AK",
@@ -3167,7 +3325,8 @@
   },
   "US-0881": {
    "st": "CT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0882": {
    "st": "CT",
@@ -3179,7 +3338,8 @@
   },
   "US-6860": {
    "st": "CT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6875": {
    "st": "CT",
@@ -3199,7 +3359,8 @@
   },
   "US-7547": {
    "st": "CT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10751": {
    "st": "MD",
@@ -3211,7 +3372,8 @@
   },
   "US-13564": {
    "st": "MD",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6388": {
    "st": "MD",
@@ -3231,7 +3393,8 @@
   },
   "US-7776": {
    "st": "MD",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7973": {
    "st": "MD",
@@ -3255,7 +3418,8 @@
   },
   "US-11883": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12193": {
    "st": "MS",
@@ -3319,7 +3483,8 @@
   },
   "US-12638": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7072": {
    "st": "MS",
@@ -3423,7 +3588,8 @@
   },
   "US-7635": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8513": {
    "st": "MS",
@@ -3479,11 +3645,13 @@
   },
   "US-10526": {
    "st": "MT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10527": {
    "st": "MT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11215": {
    "st": "MT",
@@ -3579,15 +3747,18 @@
   },
   "US-11352": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11354": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11355": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11356": {
    "st": "AR",
@@ -3623,7 +3794,8 @@
   },
   "US-12078": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12086": {
    "st": "AR",
@@ -3659,11 +3831,13 @@
   },
   "US-13461": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13556": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13622": {
    "st": "AR",
@@ -3687,11 +3861,13 @@
   },
   "US-7441": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7442": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7443": {
    "st": "AR",
@@ -3707,7 +3883,8 @@
   },
   "US-7525": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7526": {
    "st": "AR",
@@ -3727,7 +3904,8 @@
   },
   "US-9161": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9163": {
    "st": "AR",
@@ -3755,19 +3933,23 @@
   },
   "US-11145": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12254": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12278": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12279": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12281": {
    "st": "WA",
@@ -3795,7 +3977,8 @@
   },
   "US-12563": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12565": {
    "st": "WA",
@@ -3807,7 +3990,8 @@
   },
   "US-12567": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12569": {
    "st": "WA",
@@ -3819,7 +4003,8 @@
   },
   "US-12829": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12830": {
    "st": "WA",
@@ -3835,15 +4020,18 @@
   },
   "US-13392": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13396": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13399": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13516": {
    "st": "WA",
@@ -3851,7 +4039,8 @@
   },
   "US-3171": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3385": {
    "st": "WA",
@@ -3859,31 +4048,38 @@
   },
   "US-4555": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4562": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5565": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5566": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5567": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5568": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5569": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5570": {
    "st": "WA",
@@ -3891,7 +4087,8 @@
   },
   "US-5571": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5572": {
    "st": "WA",
@@ -3899,11 +4096,13 @@
   },
   "US-5573": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5576": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8662": {
    "st": "WA",
@@ -3955,11 +4154,13 @@
   },
   "US-0891": {
    "st": "MA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0897": {
    "st": "MA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2436": {
    "st": "MA",
@@ -3987,7 +4188,8 @@
   },
   "US-0750": {
    "st": "TX",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10272": {
    "st": "TX",
@@ -4007,7 +4209,8 @@
   },
   "US-10276": {
    "st": "TX",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11900": {
    "st": "TX",
@@ -4035,7 +4238,8 @@
   },
   "US-6597": {
    "st": "TX",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6601": {
    "st": "TX",
@@ -4055,7 +4259,8 @@
   },
   "US-10023": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10025": {
    "st": "OR",
@@ -4095,7 +4300,8 @@
   },
   "US-10476": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10484": {
    "st": "OR",
@@ -4103,11 +4309,13 @@
   },
   "US-10486": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10488": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10610": {
    "st": "OR",
@@ -4131,7 +4339,8 @@
   },
   "US-12179": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12348": {
    "st": "OR",
@@ -4139,7 +4348,8 @@
   },
   "US-12462": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12470": {
    "st": "OR",
@@ -4183,11 +4393,13 @@
   },
   "US-12983": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12985": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12986": {
    "st": "OR",
@@ -4195,7 +4407,8 @@
   },
   "US-12988": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12990": {
    "st": "OR",
@@ -4203,7 +4416,8 @@
   },
   "US-12993": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12994": {
    "st": "OR",
@@ -4211,11 +4425,13 @@
   },
   "US-12995": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13065": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13070": {
    "st": "OR",
@@ -4227,7 +4443,8 @@
   },
   "US-13078": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13096": {
    "st": "OR",
@@ -4247,19 +4464,23 @@
   },
   "US-5459": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5460": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9156": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9157": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9158": {
    "st": "OR",
@@ -4267,11 +4488,13 @@
   },
   "US-9524": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9980": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9983": {
    "st": "OR",
@@ -4279,7 +4502,8 @@
   },
   "US-9984": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-9986": {
    "st": "OR",
@@ -4367,15 +4591,18 @@
   },
   "US-13626": {
    "st": "NH",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2642": {
    "st": "NH",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2654": {
    "st": "NH",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-2685": {
    "st": "NH",
@@ -4403,7 +4630,8 @@
   },
   "US-11783": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11795": {
    "st": "NM",
@@ -4419,7 +4647,8 @@
   },
   "US-11815": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11821": {
    "st": "NM",
@@ -4439,11 +4668,13 @@
   },
   "US-12111": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12592": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12737": {
    "st": "NM",
@@ -4467,7 +4698,8 @@
   },
   "US-7543": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7876": {
    "st": "NM",
@@ -4475,7 +4707,8 @@
   },
   "US-8617": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-8618": {
    "st": "NM",
@@ -4491,7 +4724,8 @@
   },
   "US-11045": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11122": {
    "st": "AZ",
@@ -4507,7 +4741,8 @@
   },
   "US-11971": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11975": {
    "st": "AZ",
@@ -4519,7 +4754,8 @@
   },
   "US-12142": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12161": {
    "st": "AZ",
@@ -4535,7 +4771,8 @@
   },
   "US-13594": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3390": {
    "st": "AZ",
@@ -4543,7 +4780,8 @@
   },
   "US-4557": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4571": {
    "st": "AZ",
@@ -4559,7 +4797,8 @@
   },
   "US-6071": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7383": {
    "st": "AZ",
@@ -4583,7 +4822,8 @@
   },
   "US-12173": {
    "st": "CO",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5749": {
    "st": "CO",
@@ -4623,7 +4863,8 @@
   },
   "US-4208": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4667": {
    "st": "IN",
@@ -4643,7 +4884,8 @@
   },
   "US-5683": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5684": {
    "st": "IN",
@@ -4651,7 +4893,8 @@
   },
   "US-5685": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5686": {
    "st": "IN",
@@ -4711,7 +4954,8 @@
   },
   "US-0684": {
    "st": "PA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10802": {
    "st": "PA",
@@ -4719,7 +4963,8 @@
   },
   "US-0198": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-0754": {
    "st": "CA",
@@ -4743,11 +4988,13 @@
   },
   "US-11336": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11580": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11582": {
    "st": "CA",
@@ -4755,7 +5002,8 @@
   },
   "US-11583": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11584": {
    "st": "CA",
@@ -4767,7 +5015,8 @@
   },
   "US-12957": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13334": {
    "st": "CA",
@@ -4783,15 +5032,18 @@
   },
   "US-13581": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-3578": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6448": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7375": {
    "st": "CA",
@@ -4799,11 +5051,13 @@
   },
   "US-7888": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7889": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6462": {
    "st": "NJ",
@@ -4815,7 +5069,8 @@
   },
   "US-6609": {
    "st": "NJ",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-7507": {
    "st": "NJ",
@@ -4839,15 +5094,18 @@
   },
   "US-12640": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13298": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4118": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4153": {
    "st": "IL",
@@ -4875,11 +5133,13 @@
   },
   "US-10964": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10965": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10966": {
    "st": "UT",
@@ -4891,11 +5151,13 @@
   },
   "US-10968": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10971": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10973": {
    "st": "UT",
@@ -4903,11 +5165,13 @@
   },
   "US-10975": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10976": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10977": {
    "st": "UT",
@@ -4915,7 +5179,8 @@
   },
   "US-10979": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10981": {
    "st": "UT",
@@ -4923,7 +5188,8 @@
   },
   "US-10984": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10987": {
    "st": "UT",
@@ -4931,11 +5197,13 @@
   },
   "US-10988": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10992": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-10997": {
    "st": "UT",
@@ -4943,15 +5211,18 @@
   },
   "US-10999": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11001": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11002": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11004": {
    "st": "UT",
@@ -4959,7 +5230,8 @@
   },
   "US-11005": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11006": {
    "st": "UT",
@@ -4979,7 +5251,8 @@
   },
   "US-11011": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11090": {
    "st": "UT",
@@ -5011,7 +5284,8 @@
   },
   "US-11113": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11116": {
    "st": "UT",
@@ -5035,15 +5309,18 @@
   },
   "US-11121": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11161": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11166": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11167": {
    "st": "UT",
@@ -5055,7 +5332,8 @@
   },
   "US-11179": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11186": {
    "st": "UT",
@@ -5079,7 +5357,8 @@
   },
   "US-11210": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11211": {
    "st": "UT",
@@ -5087,7 +5366,8 @@
   },
   "US-11269": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11270": {
    "st": "UT",
@@ -5095,11 +5375,13 @@
   },
   "US-11344": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11345": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11349": {
    "st": "UT",
@@ -5111,35 +5393,43 @@
   },
   "US-11650": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11651": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11652": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11653": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11654": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11655": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11656": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11658": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11659": {
    "st": "UT",
@@ -5147,11 +5437,13 @@
   },
   "US-11660": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11661": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11662": {
    "st": "UT",
@@ -5163,19 +5455,23 @@
   },
   "US-11664": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11665": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11666": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11667": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11668": {
    "st": "UT",
@@ -5183,7 +5479,8 @@
   },
   "US-11704": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11705": {
    "st": "UT",
@@ -5191,39 +5488,48 @@
   },
   "US-11706": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11707": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11708": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11709": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11720": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11721": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11723": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11728": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11729": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11730": {
    "st": "UT",
@@ -5239,11 +5545,13 @@
   },
   "US-11733": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11736": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11737": {
    "st": "UT",
@@ -5255,7 +5563,8 @@
   },
   "US-11743": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11744": {
    "st": "UT",
@@ -5275,11 +5584,13 @@
   },
   "US-11751": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11752": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11754": {
    "st": "UT",
@@ -5287,7 +5598,8 @@
   },
   "US-11756": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11757": {
    "st": "UT",
@@ -5295,11 +5607,13 @@
   },
   "US-11758": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11762": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11763": {
    "st": "UT",
@@ -5307,7 +5621,8 @@
   },
   "US-11764": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-11765": {
    "st": "UT",
@@ -5407,7 +5722,8 @@
   },
   "US-5754": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5759": {
    "st": "UT",
@@ -5431,7 +5747,8 @@
   },
   "US-5764": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5765": {
    "st": "UT",
@@ -5443,23 +5760,28 @@
   },
   "US-5767": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5770": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5772": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5773": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5776": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5777": {
    "st": "UT",
@@ -5467,7 +5789,8 @@
   },
   "US-5781": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5783": {
    "st": "UT",
@@ -5487,15 +5810,18 @@
   },
   "US-5795": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5797": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5799": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5800": {
    "st": "UT",
@@ -5507,7 +5833,8 @@
   },
   "US-5802": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5803": {
    "st": "UT",
@@ -5515,23 +5842,28 @@
   },
   "US-5804": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5805": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5806": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5807": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5808": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5809": {
    "st": "UT",
@@ -5551,7 +5883,8 @@
   },
   "US-5813": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5814": {
    "st": "UT",
@@ -5563,7 +5896,8 @@
   },
   "US-5816": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5817": {
    "st": "UT",
@@ -5571,7 +5905,8 @@
   },
   "US-5818": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5819": {
    "st": "UT",
@@ -5579,7 +5914,8 @@
   },
   "US-5820": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5823": {
    "st": "UT",
@@ -5591,19 +5927,23 @@
   },
   "US-5826": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5827": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5829": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5830": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5831": {
    "st": "UT",
@@ -5611,7 +5951,8 @@
   },
   "US-5834": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5835": {
    "st": "UT",
@@ -5619,7 +5960,8 @@
   },
   "US-5839": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5840": {
    "st": "UT",
@@ -5635,7 +5977,8 @@
   },
   "US-5845": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5851": {
    "st": "UT",
@@ -5647,23 +5990,28 @@
   },
   "US-5853": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5855": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5860": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5863": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5865": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5866": {
    "st": "UT",
@@ -5671,7 +6019,8 @@
   },
   "US-5870": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5871": {
    "st": "UT",
@@ -5679,11 +6028,13 @@
   },
   "US-5872": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5873": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5875": {
    "st": "UT",
@@ -5691,11 +6042,13 @@
   },
   "US-5876": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5878": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5881": {
    "st": "UT",
@@ -5711,19 +6064,23 @@
   },
   "US-5887": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5889": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5892": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5894": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5895": {
    "st": "UT",
@@ -5739,7 +6096,8 @@
   },
   "US-5900": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5901": {
    "st": "UT",
@@ -5747,11 +6105,13 @@
   },
   "US-5904": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5905": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5906": {
    "st": "UT",
@@ -5759,15 +6119,18 @@
   },
   "US-5907": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5908": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5910": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5912": {
    "st": "UT",
@@ -5775,19 +6138,23 @@
   },
   "US-5913": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5914": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5918": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5920": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5924": {
    "st": "UT",
@@ -5803,27 +6170,33 @@
   },
   "US-5945": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5950": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5951": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5952": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5957": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5958": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5960": {
    "st": "UT",
@@ -5831,7 +6204,8 @@
   },
   "US-5962": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5964": {
    "st": "UT",
@@ -5839,7 +6213,8 @@
   },
   "US-5966": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5969": {
    "st": "UT",
@@ -5847,15 +6222,18 @@
   },
   "US-5970": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5972": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5976": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5977": {
    "st": "UT",
@@ -5863,7 +6241,8 @@
   },
   "US-5979": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5981": {
    "st": "UT",
@@ -5875,7 +6254,8 @@
   },
   "US-5983": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5984": {
    "st": "UT",
@@ -5883,7 +6263,8 @@
   },
   "US-5985": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5986": {
    "st": "UT",
@@ -5891,15 +6272,18 @@
   },
   "US-5987": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5988": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5989": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5992": {
    "st": "UT",
@@ -5911,11 +6295,13 @@
   },
   "US-5996": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5997": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-5998": {
    "st": "UT",
@@ -5931,7 +6317,8 @@
   },
   "US-6001": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6002": {
    "st": "UT",
@@ -5939,7 +6326,8 @@
   },
   "US-6003": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6004": {
    "st": "UT",
@@ -5947,15 +6335,18 @@
   },
   "US-6008": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6012": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6013": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6014": {
    "st": "UT",
@@ -5963,11 +6354,13 @@
   },
   "US-6015": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6016": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6020": {
    "st": "UT",
@@ -5979,7 +6372,8 @@
   },
   "US-6022": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6023": {
    "st": "UT",
@@ -5987,7 +6381,8 @@
   },
   "US-6025": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6026": {
    "st": "UT",
@@ -5999,7 +6394,8 @@
   },
   "US-6029": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6034": {
    "st": "UT",
@@ -6019,11 +6415,13 @@
   },
   "US-6041": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6044": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6047": {
    "st": "UT",
@@ -6039,7 +6437,8 @@
   },
   "US-6051": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6052": {
    "st": "UT",
@@ -6047,23 +6446,28 @@
   },
   "US-6053": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6054": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6055": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6056": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6057": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6059": {
    "st": "UT",
@@ -6075,19 +6479,23 @@
   },
   "US-6061": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6064": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6068": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6078": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6079": {
    "st": "UT",
@@ -6099,15 +6507,18 @@
   },
   "US-6081": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6082": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6083": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6084": {
    "st": "UT",
@@ -6115,7 +6526,8 @@
   },
   "US-6086": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6087": {
    "st": "UT",
@@ -6123,11 +6535,13 @@
   },
   "US-6094": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6095": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6101": {
    "st": "UT",
@@ -6135,7 +6549,8 @@
   },
   "US-6103": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-12786": {
    "st": "MI",
@@ -6179,7 +6594,8 @@
   },
   "US-13170": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-13171": {
    "st": "MI",
@@ -6211,7 +6627,8 @@
   },
   "US-13566": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-4774": {
    "st": "MI",
@@ -6239,7 +6656,8 @@
   },
   "US-6666": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6713": {
    "st": "MI",
@@ -6247,7 +6665,8 @@
   },
   "US-6726": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6728": {
    "st": "MI",
@@ -6255,11 +6674,13 @@
   },
   "US-6780": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6796": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "no-layer",
+   "why": "the park's own website uses the POTA name (chat 9, T-1 re-verdict Oct 30): the outline is missing, not the name"
   },
   "US-6808": {
    "st": "MI",

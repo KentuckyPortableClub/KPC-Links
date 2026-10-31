@@ -10977,6 +10977,12 @@
    ],
    "why": "2026-10-30 10:50 chat 2 (G-4 on held 2-fers): Jemez Historic Site was joined to the whole Jemez National Recreation Area (57,753 ac): made 44,442-ac 'pairs'",
    "when": "2026-10-30"
+  },
+  "US-5763": {
+   "alias": [
+    "Fish Ford Recreation Site"
+   ],
+   "why": "2026-10-30 chat 2: the agency's own page spells it 'Fish Ford Recreation Site' (chat 9 website names); joins only with the pin inside"
   }
  }
 }
