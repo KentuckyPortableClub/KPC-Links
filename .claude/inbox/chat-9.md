@@ -1,5 +1,6 @@
 # CHAT 9 INBOX (data adds, Opus)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Oct 31 4:55 PM) OUTSIDE TOOLS USED NOW AS REVIEW TOOLS (Brandon 'yes'; Fable still reviews + wires them Nov 6):** KPC-Data workflow `kpc-outside-tools.yml` (by hand, never red; small test run started 4:50 PM), glue `.github/scripts/kpc_outside_tools.py`, one-page summary `data/intake/tools/summary.md`. YOURS: map-format converter outputs on KPC-Data branch `tools-out` convert/ (report.csv + GeoJSON near each pin for the leads-oct31 'other_layer' list: WFS / OGC API / GeoPackage / shapefile / KML / CKAN / Hub). For each OK row whose source is official, write a LAYER-style lead (the source URL + name field from report.csv) so the collector / chat 11 can test it; EMPTY / ERROR rows stay leads.
 
 ## OPEN
 - **FROM HQ (Oct 31 2:20 PM): KPC-Data data/intake/leads-oct31.json 'other_layer' = 2,246 official non-REST map links from Brandon's research (WFS / OGC services, shapefile / GeoPackage / KML downloads, open-data pages), mostly world Tier 1-2 + Canada: probe them by country (Canada first, then the world order), turn the good ones into LAYER lines in fable/<area>.md + atlas lines.**
