@@ -14,7 +14,7 @@ import datetime as dt, json, os, pathlib, re, sys
 
 KEY = pathlib.Path('data/world-key')
 OVR, LEDGER, CCS = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY / 'answers-countries.txt'
-BUILT = set('AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU'.split())   # kpc-world-key.yml ALL
+BUILT = set('AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL'.split())   # kpc-world-key.yml ALL
 
 
 def data_dir():

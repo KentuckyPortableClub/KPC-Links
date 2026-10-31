@@ -127,6 +127,12 @@ SRC['AU'] = SRC['AU'] + [('VIC DEECA state forests', 'arcgis', 'https://enterpri
                          ('WA DBCA state forests (legislated lands)', 'arcgis', 'https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15', ["leg_category='State Forest'"])]
 SRC['PL'] = SRC['PL'] + [('Śląskie ORSIP nature and landscape complexes (GDOŚ register)', 'arcgis', 'https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5')]
 SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10)', 'a10n', 'https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip')]
+# Oct 30 (chat 2; chat 10 ask, Brandon 12:05 PM 'Yes to 2'): Colombia, South Africa, Chile = the national agencies' own registers
+SRC['CO'] = [('Colombia RUNAP (national register of protected areas, DNP)', 'arcgis', 'https://mapasdnp.dnp.gov.co/server/rest/services/Hosted/RUNAP_Registro_%C3%9Anico_Nacional_de_%C3%81reas_Protegidas/FeatureServer/0')]
+SRC['ZA'] = [('South Africa protected areas (DPME, from DFFE SAPAD)', 'arcgis', 'https://dpmegis.dpme.gov.za/arcgis/rest/services/Environmental2/MapServer/1'),
+             ('South Africa SAPAD (DFFE)', 'arcgis', 'https://dffeportal.environment.gov.za/hosting/rest/services/PACA/SAPAD/MapServer/2')]
+SRC['CL'] = [('Chile SIMBIO protected areas (MMA)', 'arcgis', 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/0'),
+             ('Chile SIMBIO protected areas, layer 2 (MMA)', 'arcgis', 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2')]
 # Oct 30 (chat 2, Brandon 9:48 'Yes'): approved world layers (chat 11 YES / chat 10 AUTO-2), wired by kpc_key_layers.py (BOT W)
 # into data/world-key/extra-layers.json {CC: [{label, url, where?}]}; ArcGIS layers only, a URL already listed above is skipped.
 try:
@@ -137,7 +143,7 @@ try:
             if _u and _u.lower() not in _have: SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
 except FileNotFoundError: pass
 except Exception as _e: print(f'::notice title=World key::extra-layers.json not read: {_e}', flush=True)  # noqa: BLE001
-COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
+COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL').upper().split()
 
 
 def _hook(t, v, tb):
@@ -236,6 +242,11 @@ KINDS = {
     'JP': [('np', r'(?<!quasi.)national park|国立公園'), ('qnp', r'quasi.?national park|国定公園'), ('pnp', r'prefectural|県立')],
 }
 for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\b')]
+KINDS['CO'] = [('pnn', r'parque nacional|national (natural )?park|national nature reserve|reserva nacional natural|santuario|sanctuary'), ('pnr', r'parque natural regional|regional (natural )?park'),
+               ('rn', r'reserva natural|nature reserve|reserva forestal|forest reserve'), ('dmi', r'distrito|management district|conservation area|area de recreacion|recreation area')]
+KINDS['ZA'] = [('np', r'national park'), ('nr', r'nature reserve|game reserve|provincial park|reserve'), ('pe', r'protected environment'), ('mpa', r'marine protected area|marine reserve'), ('wa', r'wilderness|world heritage')]
+KINDS['CL'] = [('pn', r'parque nacional|national park'), ('rn', r'reserva nacional|national reserve|reserva forestal'), ('mn', r'monumento natural|natural monument'),
+               ('sn', r'santuario|sanctuary|conservation area|humedal|wetland|area marina|marine')]
 
 
 ABBR = [(r'\bn\.\s?c\.\s?r\b\.?', ' nature conservation reserve '), (r'\bf\.\s?f\.\s?r\b\.?', ' flora fauna reserve '),
@@ -401,7 +412,7 @@ def inside(la, lo, rs): return sum(1 for r in rs if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-NAMEF = ['nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
+NAMEF = ['nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名', 'nombre', 'NOMBRE', 'nombre_ap', 'NOMBRE_AP', 'nom_ap', 'NOM_AP', 'CUR_NME', 'cur_nme', 'PA_NAME']   # Oct 30: CO / CL (Spanish) + ZA (SAPAD CUR_NME)
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
 
 
@@ -415,7 +426,7 @@ def pick_name(a):
     v = pick(a, NAMEF)
     if v: return v
     for k in a:
-        if re.search(r'name|enw', k, re.I) and not re.search(r'welsh|cymraeg|_cy$|^cy_|enw', k, re.I) and a[k] not in (None, ''): return str(a[k])
+        if re.search(r'name|enw|nombre|_nme$', k, re.I) and not re.search(r'welsh|cymraeg|_cy$|^cy_|enw', k, re.I) and a[k] not in (None, ''): return str(a[k])
     return ''
 
 
