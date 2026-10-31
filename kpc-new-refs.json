@@ -1,8 +1,41 @@
 {
- "updated": "2026-10-28T13:38:48+00:00",
+ "updated": "2026-10-31T13:27:52+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13630",
+   "prog": "pota",
+   "name": "Flatsedge Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 41.2247,
+   "lo": -97.4832,
+   "found": "2026-10-31"
+  },
+  {
+   "ref": "US-13629",
+   "prog": "pota",
+   "name": "Killdeer Lake Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 40.6771,
+   "lo": -96.7617,
+   "found": "2026-10-31"
+  },
+  {
+   "ref": "US-13628",
+   "prog": "pota",
+   "name": "Two Rivers Wildlife Management Area",
+   "st": [
+    "NE"
+   ],
+   "la": 41.2125,
+   "lo": -96.349,
+   "found": "2026-10-31"
+  },
   {
    "ref": "US-13627",
    "prog": "pota",
@@ -843,28 +876,6 @@
    "la": 47.7349,
    "lo": -109.635,
    "found": "2026-10-26"
-  },
-  {
-   "ref": "US-13617",
-   "prog": "pota",
-   "name": "Great Scott Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 47.4644,
-   "lo": -92.7614,
-   "found": "2026-10-24"
-  },
-  {
-   "ref": "US-13616",
-   "prog": "pota",
-   "name": "Duff Pond State Fishing Lake",
-   "st": [
-    "ID"
-   ],
-   "la": 43.6981,
-   "lo": -116.592,
-   "found": "2026-10-24"
   }
  ]
 }
