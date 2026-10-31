@@ -1,0 +1,8051 @@
+{
+ "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
+ "counts": {
+  "needs-parcel": 331,
+  "no-layer": 1244,
+  "name-mismatch": 24,
+  "private": 9
+ },
+ "parks": {
+  "CA-0663": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Wood Buffalo National Park Of Canada"
+  },
+  "CA-1194": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2938": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Don Getty Wildland"
+  },
+  "CA-2969": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (Natural Area)"
+  },
+  "CA-2982": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2991": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Sibbald Snow Vehicle"
+  },
+  "CA-3018": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: The Kananaskis Country"
+  },
+  "CA-3073": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3076": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: McLean Creek"
+  },
+  "CA-3089": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3111": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (Natural Area)"
+  },
+  "CA-3113": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3136": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3157": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+  },
+  "CA-4771": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-4772": {
+   "st": "AB",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Athabasca Pass Trail"
+  },
+  "CA-4773": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4774": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4775": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-4776": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+  },
+  "CA-4777": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4778": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-4779": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4780": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4781": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Jasper National Park Of Canada"
+  },
+  "CA-4782": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4783": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-4784": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-4785": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Jasper National Park Of Canada"
+  },
+  "CA-5082": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5145": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5376": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5377": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kiska/Willson"
+  },
+  "CA-5491": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5933": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6073": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Writing-on-Stone"
+  },
+  "CA-6074": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6075": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-6076": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6077": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6078": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6079": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6081": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6082": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6083": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6084": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6085": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6086": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6087": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-6093": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6094": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6101": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+  },
+  "CA-6116": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Jasper National Park Of Canada"
+  },
+  "CA-6117": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banff National Park Of Canada"
+  },
+  "CA-6118": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6119": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6120": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6121": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6122": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6123": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6124": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6126": {
+   "st": "AB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Livingstone"
+  },
+  "CA-6134": {
+   "st": "AB",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Athabasca Ranch"
+  },
+  "CA-6395": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6396": {
+   "st": "AB",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Historic Site)"
+  },
+  "CA-0017": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0060": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3186": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: ANHLUUT'UKWSIM LAX̱MIHL ANGWINGA'ASANSKWHL NISG̱A'A PARK [A."
+  },
+  "CA-3199": {
+   "st": "BC",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Barkerville"
+  },
+  "CA-3211": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Old Growth Management Areas (Mapped Legal)"
+  },
+  "CA-3272": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3298": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "no official record found (Ecological Reserve)"
+  },
+  "CA-3334": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: CHU CHUA COTTONWOOD PARK"
+  },
+  "CA-3358": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3359": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3476": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Tang.ɢ̲wan — ḥačxʷiqak — Tsig̱is Marine Protected Area"
+  },
+  "CA-3493": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3601": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3618": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3679": {
+   "st": "BC",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Kilby General Store Museum"
+  },
+  "CA-3688": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3739": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3743": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3746": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3778": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-3888": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-3960": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-3968": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4025": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4187": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4791": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4793": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Yoho National Park Of Canada"
+  },
+  "CA-4794": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4795": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Gwaii Haanas National Marine Conservation Area Reserve & Hai"
+  },
+  "CA-4796": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Glacier National Park Of Canada"
+  },
+  "CA-5325": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5326": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Royal Roads University"
+  },
+  "CA-5331": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5344": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Pacific Rim National Park Reserve Of Canada"
+  },
+  "CA-5350": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5483": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Gwaii Haanas National Park Reserve Of Canada And Haida Herit"
+  },
+  "CA-5547": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6132": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Area)"
+  },
+  "CA-6133": {
+   "st": "BC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Yoho National Park Of Canada"
+  },
+  "CA-6369": {
+   "st": "BC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6398": {
+   "st": "BC",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Craigflower Manor"
+  },
+  "CA-0527": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0558": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0572": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-1048": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1050": {
+   "st": "MB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Hecla/Grindstone Provincial Park"
+  },
+  "CA-1053": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1055": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1058": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1067": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1069": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1079": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1091": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-2373": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-2390": {
+   "st": "MB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kaskatamagan Wildlife Management Area"
+  },
+  "CA-2407": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2408": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2410": {
+   "st": "MB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Duck Mountain"
+  },
+  "CA-2411": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2412": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2413": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2431": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2433": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-2443": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2444": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2454": {
+   "st": "MB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Nopiming Provincial Park"
+  },
+  "CA-2464": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-2475": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2478": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2486": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2496": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2503": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2527": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2529": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4799": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4800": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4803": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4805": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5120": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5122": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5123": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5124": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5126": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5127": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5129": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5465": {
+   "st": "MB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Loewen - MHHC"
+  },
+  "CA-5961": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5962": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5963": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5964": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5965": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5967": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5969": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5970": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5971": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5973": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5974": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5976": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5977": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5978": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5979": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5980": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6021": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6022": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6023": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6024": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6025": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6026": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-6027": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6028": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6029": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6030": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6031": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6032": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6034": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6035": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6036": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6037": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6038": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6039": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6040": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6041": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6042": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6043": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6044": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-6045": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6046": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6047": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6048": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6468": {
+   "st": "MB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0448": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #26 Wildlife Management Area"
+  },
+  "CA-0776": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #27 Wildlife Management Area"
+  },
+  "CA-0778": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-0782": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-0783": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-0785": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-0787": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-0793": {
+   "st": "NB",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Saint Croix"
+  },
+  "CA-0794": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-0797": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-0800": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-1231": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-1239": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-1240": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-1242": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-1248": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-1251": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-1255": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-4355": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-4438": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Magaguadavic River"
+  },
+  "CA-4444": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-4463": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-4493": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #2 Wildlife Management Area"
+  },
+  "CA-4522": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #11 Wildlife Management Area"
+  },
+  "CA-4526": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Ramsar Site)"
+  },
+  "CA-4530": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-4809": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Wilson's Point Wildlife Refuge"
+  },
+  "CA-4810": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-4811": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-4812": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4813": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-4814": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-4815": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-4943": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-4944": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5081": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Scenic Trail)"
+  },
+  "CA-5085": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5134": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5135": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5136": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5137": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5138": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5147": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5148": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5149": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-5154": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5155": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-5156": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-5157": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5159": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5160": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-5162": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-5163": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-5169": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5171": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-5172": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5173": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5174": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-5177": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-5178": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-5179": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5181": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5183": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5184": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-5185": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5186": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5189": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5191": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5192": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5193": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-5197": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-5198": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-5199": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-5200": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-5202": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5203": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5205": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-5210": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5211": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5212": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5213": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5214": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5215": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5217": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5220": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5221": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5222": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5223": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-5227": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5228": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5229": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5230": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5232": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5233": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-5234": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-5236": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5237": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Natural Area)"
+  },
+  "CA-5238": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5239": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5240": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5241": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-5242": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5243": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5244": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5245": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-5246": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5247": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-5248": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5249": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #12 Wildlife Management Area"
+  },
+  "CA-5252": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5253": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5255": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-5258": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-5259": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-5262": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #7 Wildlife Management Area"
+  },
+  "CA-5264": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5265": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5267": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #4 Wildlife Management Area"
+  },
+  "CA-5268": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5269": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5270": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5271": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5273": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5274": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-5545": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5672": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5674": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-5678": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-5686": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5688": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5691": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5693": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5699": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5702": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5703": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5704": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5706": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-5707": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5708": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5711": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-5726": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-6102": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #7 Wildlife Management Area"
+  },
+  "CA-6106": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6113": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-6218": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6235": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-6236": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #2 Wildlife Management Area"
+  },
+  "CA-6237": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-6239": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-6240": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6241": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-6242": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6243": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6244": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6245": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-6246": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-6247": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-6248": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6254": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-6312": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #4 Wildlife Management Area"
+  },
+  "CA-6376": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6379": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6380": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6384": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-6385": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6386": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6387": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6388": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6391": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6392": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6393": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-6394": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6400": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #27 Wildlife Management Area"
+  },
+  "CA-6428": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6434": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6435": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-6436": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6441": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #1 Wildlife Management Area"
+  },
+  "CA-6442": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #2 Wildlife Management Area"
+  },
+  "CA-6443": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #2 Wildlife Management Area"
+  },
+  "CA-6444": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6445": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6446": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6447": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6448": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #21 Wildlife Management Area"
+  },
+  "CA-6449": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Historic Site)"
+  },
+  "CA-6450": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6451": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6453": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6455": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Fundy National Park Of Canada"
+  },
+  "CA-6456": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6457": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6458": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6459": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6460": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-6461": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-6462": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6463": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6464": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-6465": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-6466": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-6469": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6470": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6471": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6472": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kouchibouguacis River"
+  },
+  "CA-6475": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-6477": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6478": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-6479": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #2 Wildlife Management Area"
+  },
+  "CA-6480": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Popelogan Lake"
+  },
+  "CA-6481": {
+   "st": "NB",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: New Brunswick #7 Wildlife Management Area"
+  },
+  "CA-6482": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (Ecological Area)"
+  },
+  "CA-6485": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6487": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #17 Wildlife Management Area"
+  },
+  "CA-6488": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-6489": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6491": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-6492": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #22 Wildlife Management Area"
+  },
+  "CA-6493": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6494": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6495": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6496": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #8 Wildlife Management Area"
+  },
+  "CA-6498": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #10 Wildlife Management Area"
+  },
+  "CA-6499": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #15 Wildlife Management Area"
+  },
+  "CA-6500": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-6501": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6515": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6516": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6517": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #16 Wildlife Management Area"
+  },
+  "CA-6519": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6520": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6521": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
+  },
+  "CA-6522": {
+   "st": "NB",
+   "tag": "no-layer",
+   "why": "no official record found (National Memorial)"
+  },
+  "CA-6530": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #5 Wildlife Management Area"
+  },
+  "CA-6536": {
+   "st": "NB",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: New Brunswick #20 Wildlife Management Area"
+  },
+  "CA-6555": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #24 Wildlife Management Area"
+  },
+  "CA-6579": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #25 Wildlife Management Area"
+  },
+  "CA-6584": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Privately Protected Area (NCC 120214)"
+  },
+  "CA-6586": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #9 Wildlife Management Area"
+  },
+  "CA-6590": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6591": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #19 Wildlife Management Area"
+  },
+  "CA-6597": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-6602": {
+   "st": "NB",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: New Brunswick #14 Wildlife Management Area"
+  },
+  "CA-4549": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4558": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4816": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4817": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4818": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4819": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4820": {
+   "st": "NL",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Torngat Mountains National Park Of Canada"
+  },
+  "CA-4821": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4822": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4823": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4824": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4825": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4942": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5132": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5275": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5276": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5277": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5278": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5279": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5280": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5281": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5282": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5284": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5383": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5384": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5385": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5386": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5387": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5388": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5389": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5390": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5391": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5392": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5393": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5394": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5395": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5396": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5397": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5399": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5400": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5401": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5402": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5403": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5404": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5405": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5406": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6114": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6156": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6157": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6158": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6159": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6160": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6162": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6163": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6164": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6165": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6166": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6167": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6168": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6169": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6290": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6291": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6295": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6296": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6297": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6298": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6401": {
+   "st": "NL",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0092": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0453": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0461": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0465": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Cole Harbour - Lawrencetown Provincial Park"
+  },
+  "CA-0478": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0479": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0485": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0882": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0892": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0894": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0903": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0919": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0929": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0941": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Cole Harbour - Lawrencetown Provincial Park"
+  },
+  "CA-1759": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1766": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1771": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1791": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1794": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1799": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1845": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1848": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-1849": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Wildlife Area)"
+  },
+  "CA-1851": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: St. Margarets Bay Islands Nature Reserve"
+  },
+  "CA-1863": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1867": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1876": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1893": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1902": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-1904": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-3053": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4827": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4829": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4830": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Fort Anne"
+  },
+  "CA-4831": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4836": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4842": {
+   "st": "NS",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Marconi Wireless Station"
+  },
+  "CA-4843": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4846": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4847": {
+   "st": "NS",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: St. Peters Canal"
+  },
+  "CA-5424": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5425": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5427": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5428": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5430": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5431": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5432": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5435": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5443": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5446": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-5448": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5537": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-5796": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5797": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5798": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Fort Anne"
+  },
+  "CA-5799": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5800": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5801": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5802": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5803": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5804": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5805": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5806": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5807": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5808": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Cape Breton Highlands National Park Of Canada"
+  },
+  "CA-5809": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5810": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5811": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5812": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5813": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5814": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5815": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5816": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5817": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5818": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5819": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: York Redoubt"
+  },
+  "CA-5820": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5821": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5822": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5823": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5824": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5825": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5826": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5827": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5828": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5829": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5831": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5833": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5834": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5835": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5836": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5838": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5839": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5840": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5841": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5842": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5843": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5844": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5845": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5846": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5847": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5849": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5850": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6105": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6109": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6110": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6137": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6176": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6177": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6178": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6179": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6180": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6182": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6183": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6184": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6185": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6186": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6187": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6188": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6189": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Peter's Island Conservation Lands"
+  },
+  "CA-6190": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6191": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6192": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6193": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6194": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6195": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6196": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6197": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6198": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6224": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6249": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6251": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6252": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6253": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6292": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6293": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6294": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6321": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6322": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6323": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6324": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6325": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6326": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6327": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6328": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6361": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6372": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6374": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6375": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6467": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6483": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6502": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6506": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park Reserve)"
+  },
+  "CA-6553": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6554": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-6557": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6558": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6559": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6560": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6561": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6562": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6563": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6565": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6567": {
+   "st": "NS",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Bowers Meadows Wilderness Area"
+  },
+  "CA-6568": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6569": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-6570": {
+   "st": "NS",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0002": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0751": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0752": {
+   "st": "NT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Hidden Lake Territorial Park"
+  },
+  "CA-0753": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0754": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0755": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0756": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0758": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0759": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0760": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0761": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0762": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0763": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0764": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0765": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4316": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4317": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4319": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4322": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4324": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4326": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4327": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4329": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4330": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4333": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4334": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "no official record found (Territorial Park)"
+  },
+  "CA-4335": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4336": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4337": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4338": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4339": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4340": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4341": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4343": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4345": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4347": {
+   "st": "NT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Wood Buffalo National Park Of Canada"
+  },
+  "CA-4348": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4571": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4597": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5470": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5471": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5472": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5473": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5474": {
+   "st": "NT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Thaidene Nene National Park Reserve Of Canada"
+  },
+  "CA-5475": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5476": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5477": {
+   "st": "NT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Tarium Niryutait Marine Protected Area"
+  },
+  "CA-5478": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5479": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5480": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6347": {
+   "st": "NT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0831": {
+   "st": "NU",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Inuujaarvik Territorial Park"
+  },
+  "CA-4575": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4580": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4585": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4588": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4590": {
+   "st": "NU",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Katannilik Territorial Park"
+  },
+  "CA-4852": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5285": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5466": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5467": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5468": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5469": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5735": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5736": {
+   "st": "NU",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0023": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0027": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0063": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Biosphere Reserve)"
+  },
+  "CA-0177": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0195": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: DUCLOS POINT PROVINCIAL PARK (NATURE RESERVE CLASS)"
+  },
+  "CA-0234": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Privately Protected Area (NCC 141947)"
+  },
+  "CA-0259": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0268": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1280": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Wilderness Area)"
+  },
+  "CA-1298": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1300": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Algonquin Provincial Park (Natural Environment Class)"
+  },
+  "CA-1301": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Algonquin Provincial Park (Natural Environment Class)"
+  },
+  "CA-1305": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Cavern Lake Provincial Park (Nature Reserve Class)"
+  },
+  "CA-1312": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-1340": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: POLAR BEAR PROVINCIAL PARK"
+  },
+  "CA-1346": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1349": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Park)"
+  },
+  "CA-1366": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-1368": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1386": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1394": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+  },
+  "CA-1408": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Wilderness Area)"
+  },
+  "CA-1439": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Blanche River Conservation Reserve"
+  },
+  "CA-1467": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+  },
+  "CA-1512": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Area)"
+  },
+  "CA-1535": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1542": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1559": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+  },
+  "CA-1566": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: LAKE NIPIGON CONSERVATION RESERVE"
+  },
+  "CA-1573": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1574": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1587": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-1596": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Reserve)"
+  },
+  "CA-1599": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: RONDEAU PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+  },
+  "CA-1620": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1621": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1651": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Reserve)"
+  },
+  "CA-1657": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1658": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1659": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1660": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1661": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1668": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Reserve)"
+  },
+  "CA-1678": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1688": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1692": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1695": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1696": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1697": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1707": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+  },
+  "CA-4853": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4854": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4855": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4857": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Georgian Bay Islands National Park Of Canada"
+  },
+  "CA-4858": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4859": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4860": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4861": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4862": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4864": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4865": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4866": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4868": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4870": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4872": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4873": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4874": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
+  },
+  "CA-4875": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4876": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4877": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4879": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4880": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4881": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4883": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4884": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4886": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4887": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4888": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4889": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4890": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5083": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5084": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5094": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5095": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5099": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-5101": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5106": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5109": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5110": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5113": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5114": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5115": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5116": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5117": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5118": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Selwyn Conservation Area"
+  },
+  "CA-5290": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5292": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5293": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5294": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5297": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5298": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5299": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5300": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5302": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5303": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5304": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5305": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5306": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5308": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5309": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5310": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5311": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5313": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5314": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5315": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5316": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5351": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5352": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Forest Reserve)"
+  },
+  "CA-5354": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5356": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5360": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5362": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5364": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Dundas Valley Conservation Area"
+  },
+  "CA-5365": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5367": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5369": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5371": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5505": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5506": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5507": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: TURKEY POINT PROVINCIAL PARK (RECREATIONAL CLASS)"
+  },
+  "CA-5527": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5528": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5535": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5536": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-5538": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5550": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5553": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5556": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5557": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5560": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5565": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Devil's Punch Bowl Conservation Area & Saltfleet Conservatio"
+  },
+  "CA-5567": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5605": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5607": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5608": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5609": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5610": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5611": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5612": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5613": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5614": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5615": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5616": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5617": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5618": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5619": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5620": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5621": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5622": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5623": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5624": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5625": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5626": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5628": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Inglis Falls"
+  },
+  "CA-5631": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Cavan Swamp Wildlife Area - Preston Block"
+  },
+  "CA-5634": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5636": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-5641": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Sylvan Glen C.A."
+  },
+  "CA-5644": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5645": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Ball's Mill C.A."
+  },
+  "CA-5646": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Ganaraska Millenium CA"
+  },
+  "CA-5650": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Thurne Parks C.A."
+  },
+  "CA-5659": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Bognor Marsh"
+  },
+  "CA-5662": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5663": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Hepworth"
+  },
+  "CA-5664": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Massie Hills"
+  },
+  "CA-5666": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Bighead River"
+  },
+  "CA-5925": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5926": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5927": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5928": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5929": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5930": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5931": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5934": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5935": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5936": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5937": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5938": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5940": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5944": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5945": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5952": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5954": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5958": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5960": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Park)"
+  },
+  "CA-5981": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5989": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-5993": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5998": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5999": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6002": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-6003": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6012": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Morrison Dam CA"
+  },
+  "CA-6017": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6018": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6019": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6020": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6088": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6089": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6090": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6095": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6096": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6097": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6139": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6155": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-6181": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Thousand Islands National Park of Canada"
+  },
+  "CA-6199": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
+  },
+  "CA-6204": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
+  },
+  "CA-6209": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6210": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6211": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6213": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6215": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6216": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6256": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Park)"
+  },
+  "CA-6257": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6317": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6318": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6319": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6336": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6337": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6341": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6345": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6346": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6348": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6349": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6350": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6353": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-6359": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (Conservation Area)"
+  },
+  "CA-6366": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6511": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6512": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6513": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6514": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Upper Canada Migratory Bird Sanctuary"
+  },
+  "CA-6604": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6617": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: H.R. Frink Conservation Area"
+  },
+  "CA-6619": {
+   "st": "ON",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Depot Lakes Conservation Area North Conservation Reserve"
+  },
+  "CA-0852": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0853": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0856": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0860": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0862": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0863": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0865": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0869": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0874": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0875": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-0878": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0880": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (Provincial Park)"
+  },
+  "CA-4657": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4673": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4696": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (Natural Area)"
+  },
+  "CA-4721": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4748": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4766": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4891": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4893": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4894": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5288": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5414": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5418": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5419": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5753": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5755": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5776": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5779": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5788": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5791": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6172": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (National Heritage Site)"
+  },
+  "CA-6373": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6439": {
+   "st": "PE",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Privately Protected Area (NCC 142051)"
+  },
+  "CA-6594": {
+   "st": "PE",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: PARK"
+  },
+  "CA-0015": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0049": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Biosphere Reserve)"
+  },
+  "CA-0054": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0511": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0514": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques du Fleuve Saint-L"
+  },
+  "CA-0515": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0956": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0957": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0958": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0959": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0960": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Senneville Bird Sanctuary"
+  },
+  "CA-0961": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0962": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0964": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0965": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0966": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0967": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0968": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0969": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0970": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0971": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire faunique communautaire du Lac Saint-Pierre"
+  },
+  "CA-0973": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0974": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0975": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0976": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0978": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-0979": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0980": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0981": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0982": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0983": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0984": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0985": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0986": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0987": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0988": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0989": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0990": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0991": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0992": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0993": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0994": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0995": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1000": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1001": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1002": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire faunique communautaire du Lac Saint-Pierre"
+  },
+  "CA-1003": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1004": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-1007": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1009": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1010": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1015": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1016": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1017": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1018": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1019": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1020": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques des Rapides de La"
+  },
+  "CA-1031": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1036": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1037": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1922": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Banc-des-Américains Marine Protected Area"
+  },
+  "CA-1929": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques Baie Comeau"
+  },
+  "CA-1944": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1945": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1954": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire faunique communautaire du Lac Saint-Pierre"
+  },
+  "CA-1955": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1957": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1958": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1962": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1964": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1966": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1972": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1974": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1983": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1984": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1997": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2000": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2007": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2016": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2017": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2025": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2026": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2027": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2028": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2029": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2033": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2034": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2039": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Bird Sanctuary)"
+  },
+  "CA-2042": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Bird Sanctuary)"
+  },
+  "CA-2043": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2046": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2048": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2049": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2052": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Historic Site)"
+  },
+  "CA-2053": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2056": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2058": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2061": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2064": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2072": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2080": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2082": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2083": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2084": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2088": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2089": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2092": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2093": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2097": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2099": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2103": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2105": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2108": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2116": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2121": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2122": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2137": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2140": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2143": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2144": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2145": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2146": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2147": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2150": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2154": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2155": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2159": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2165": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques Fleuve Saint-Laur"
+  },
+  "CA-2171": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2172": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2174": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2175": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2176": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2194": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2196": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2198": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2219": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2223": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2228": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2233": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2238": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2241": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2246": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2247": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2249": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2250": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire faunique communautaire du Lac Saint-Pierre"
+  },
+  "CA-2251": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2261": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2264": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2269": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2271": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-2274": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2299": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2331": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2332": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2343": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2346": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4141": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4896": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4897": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4898": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4899": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4900": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4901": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4902": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4903": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4904": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4906": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4907": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4908": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4909": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4911": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4912": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4913": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4915": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4916": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4917": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4918": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4919": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4920": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4921": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4922": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4923": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4924": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4925": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4945": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4946": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4947": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4948": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4949": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4950": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Baie de L'Isle-Verte National Wildlife Area"
+  },
+  "CA-4951": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4952": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4953": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4954": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4955": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4956": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4957": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4958": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4959": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4960": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4961": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4962": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4964": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4965": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4968": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4970": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4973": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4974": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4975": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4976": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4977": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4978": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4979": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4980": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4981": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-4982": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4983": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4985": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4986": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-4987": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4988": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4989": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4990": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4991": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4992": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4993": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4994": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4995": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-4996": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4997": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4998": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4999": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5000": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5001": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5002": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5005": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5006": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5007": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5008": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5009": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5010": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5011": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5012": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5013": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5014": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5015": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5016": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5017": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5018": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5019": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5020": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5021": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5024": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5025": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5026": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5027": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5028": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5029": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5030": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5031": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5032": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5033": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5034": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5035": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5036": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5038": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5039": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5040": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5041": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5043": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5044": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5045": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5046": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5047": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5049": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5050": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5052": {
+   "st": "QC",
+   "tag": "private",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5053": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5054": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5055": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5056": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5057": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5058": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5059": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5060": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5061": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5062": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5063": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5064": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5065": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5066": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5067": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5068": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5069": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5070": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5071": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5072": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-5073": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5074": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5075": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5076": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5077": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5078": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5079": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5080": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5852": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5853": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5854": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5855": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5856": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5857": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5858": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5859": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5860": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5861": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5862": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5863": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5864": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5865": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5866": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5867": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5868": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5869": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5870": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5871": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5872": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (National Park)"
+  },
+  "CA-5873": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5874": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5875": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5876": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5878": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5879": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5880": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5881": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5882": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5883": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5884": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Refuge faunique Pierre-Étienne-Fortin"
+  },
+  "CA-5886": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5888": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Gatineau Park"
+  },
+  "CA-5889": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5890": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5891": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5892": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Aire faunique communautaire du Lac Saint-Pierre"
+  },
+  "CA-5893": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5894": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5896": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5897": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5898": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5899": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5900": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5902": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5903": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5904": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5905": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5906": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5907": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5908": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5910": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5911": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5912": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5913": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5914": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5915": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5916": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5917": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5918": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5920": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5921": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5922": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5923": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5924": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6205": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-6206": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6310": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6316": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Sector of Isle-aux-Grues Territorial reserve for protected a"
+  },
+  "CA-6402": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6403": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6405": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6406": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6407": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6408": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6409": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6410": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6411": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6412": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6413": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6414": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6415": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6416": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6417": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6418": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6419": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0578": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0618": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Porcupine Hills Area Provincial Park"
+  },
+  "CA-0620": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-1156": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-2551": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2553": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2555": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2560": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2561": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2563": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2580": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2586": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Woodlawn Regional Park"
+  },
+  "CA-2603": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2607": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2643": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2680": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2704": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2720": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2727": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2731": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2733": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2743": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Porcupine Hills Area Provincial Park"
+  },
+  "CA-2745": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2761": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2764": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2768": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2771": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2775": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2779": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2782": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2787": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2793": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Misaw Lake Special Management Area"
+  },
+  "CA-2796": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Porcupine Hills Area Provincial Park"
+  },
+  "CA-2805": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2813": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2817": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2822": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2833": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2847": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2852": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2854": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2857": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-2874": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Delaronde Lake (Zig Zag Bay) Recreation Site"
+  },
+  "CA-2890": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2897": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Wascana Valley Natural Area Recreation Site"
+  },
+  "CA-2900": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-2912": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Jean Louis Legare Regional Park"
+  },
+  "CA-2914": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-2918": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-4926": {
+   "st": "SK",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: BATOCHE NATIONAL HISTORIC PARK"
+  },
+  "CA-4927": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4928": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-4930": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4933": {
+   "st": "SK",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: FORT WALSH NATIONAL HISTORIC PARK"
+  },
+  "CA-4934": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5131": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5139": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Site)"
+  },
+  "CA-5140": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5460": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5461": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5462": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5463": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6049": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6050": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6051": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6052": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6053": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6055": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6056": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6058": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6059": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6060": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6061": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Sutherland Migratory Bird Sanctuary"
+  },
+  "CA-6062": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6063": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6065": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6066": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6067": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6068": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6069": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6070": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6071": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6127": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Lac La Ronge Provincial Park"
+  },
+  "CA-6128": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6129": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6130": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6140": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6141": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6142": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6143": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6144": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6145": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6146": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6147": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6148": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6149": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6150": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6151": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6152": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6153": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
+  },
+  "CA-6170": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6203": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Crystal Beach Lake"
+  },
+  "CA-6207": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6217": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6233": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6311": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6315": {
+   "st": "SK",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Moose Mountain Creek National Wildlife Area"
+  },
+  "CA-6320": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6339": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "no official record found (National Historic Trail)"
+  },
+  "CA-6438": {
+   "st": "SK",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0844": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-0845": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4600": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane"
+  },
+  "CA-4601": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Peel Watershed LMU 8"
+  },
+  "CA-4602": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4607": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4610": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-4613": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-4614": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Regional Park)"
+  },
+  "CA-4615": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4616": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4619": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4624": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-4626": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4627": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4628": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane"
+  },
+  "CA-4631": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane"
+  },
+  "CA-4632": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4633": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4936": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4937": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4938": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4939": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-4940": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5286": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5287": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5449": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5451": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5452": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5453": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5454": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5455": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5456": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5458": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5737": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5738": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5739": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-5743": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5744": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5745": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Park)"
+  },
+  "CA-5746": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6258": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Territorial Park)"
+  },
+  "CA-6259": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Territorial Park)"
+  },
+  "CA-6260": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6262": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6263": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Agay Mene"
+  },
+  "CA-6264": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kusawa"
+  },
+  "CA-6265": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Tagish Narrows"
+  },
+  "CA-6266": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6267": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6268": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Agay Mene"
+  },
+  "CA-6269": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6270": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6271": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6272": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6273": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6274": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6275": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6276": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Territorial Park)"
+  },
+  "CA-6277": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6278": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6279": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6281": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6282": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane"
+  },
+  "CA-6283": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6284": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6285": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6286": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6287": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6288": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6289": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "no official record found (Recreation Site)"
+  },
+  "CA-6299": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6300": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6301": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6302": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6303": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6304": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6305": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6306": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6307": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6308": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6309": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6313": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6314": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6330": {
+   "st": "YT",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  }
+ }
+}

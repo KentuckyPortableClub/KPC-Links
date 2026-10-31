@@ -59,6 +59,10 @@ jobs:
         if: ${{ env.SKIP != '1' }}
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
+      - name: Why-not tags for parks with no outline (R-GC8)
+        if: ${{ env.SKIP != '1' }}
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_ca_whynot.py || true
       - name: Review issue
         if: ${{ env.SKIP != '1' }}
         continue-on-error: true
