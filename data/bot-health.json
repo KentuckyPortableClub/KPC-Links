@@ -21,7 +21,7 @@
   "site:wide:kpc-live.html:desktop",
   "site:wide:kpc-weather.html:desktop"
  ],
- "checked": "2026-10-30T10:29+00:00",
+ "checked": "2026-10-31T10:19+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -265,22 +265,22 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2905
+   "b": 2927
   },
   "L:data/ky-answer-key.json": {
    "b": 31176
   },
   "L:data/us-key": {
-   "b": 11360512
+   "b": 11424707
   },
   "L:data/ca-key": {
-   "b": 1812731
+   "b": 1994370
   },
   "L:data/world-key": {
-   "b": 13230413
+   "b": 13539046
   },
   "L:data/pota": {
-   "b": 5661927
+   "b": 5663129
   },
   "L:data/canada.json": {
    "b": 2494063
@@ -295,10 +295,10 @@
    "b": 529287
   },
   "L:data/state-gis.json": {
-   "b": 92215
+   "b": 93341
   },
   "L:data/boundary-score.json": {
-   "b": 969349
+   "b": 970347
   },
   "L:data/campfed": {
    "b": 643240
@@ -310,7 +310,7 @@
    "b": 334288
   },
   "L:locations.json": {
-   "b": 5418897
+   "b": 5418919
   },
   "L:kpc-events-auto.json": {
    "b": 20515
@@ -335,7 +335,7 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15110394
+   "b": 15291080
   },
   "D:data/trails": {
    "b": 7915560
@@ -347,28 +347,29 @@
    "b": 11660561
   },
   "D:data/review/scoreboard.json": {
-   "b": 130916
+   "b": 130911
   },
   "D:data/truth": {
    "b": 7473624
   },
   "D:data/alerts/eu.json": {
-   "b": 72167
+   "b": 72167,
+   "since": "2026-10-31"
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 277144
+   "b": 276474
   },
   "D:data/intake": {
-   "b": 6459751
+   "b": 20041164
   },
   "D:data/detective": {
    "b": 53730
   },
   "D:data/map-observations.json": {
-   "b": 601443
+   "b": 1204366
   }
  }
 }
