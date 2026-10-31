@@ -51,7 +51,11 @@ jobs:
                   # builds that know about it; anything older used the ~1.1 km ones)
                   if ((d.get('counts') or {}).get('detail') or 1) >= 0.01:
                       todo.append((d.get('st') or f.stem).replace('US-', ''))
-              want = todo[:14]         # ~11 min a state, 300 min limit: all 50 states in four nights
+              # Oct 30 (chat 2, HQ audit 'refresh.json never fires'): the nightly US key (kpc-us-key.yml, BOT B) and its monthly run
+              # write detail 0.01 into every file, so this 'not yet at 110 m' list never emptied: the same 14 states were rebuilt here
+              # every night and the monthly re-read below (needs <= 12) never ran. The key's own runs do the rebuilding now; this
+              # job only re-reads two states' saved outlines a night (the rotation), or the states it is given by hand.
+              want = []
           # Oct 27 (Fable's boundary review #7, HQ GO): the saved copies are re-read from the agencies in rotation, two
           # states a night (all 50 in about a month), oldest first (data/us-key/refresh.json); the old copy is kept as
           # prev-US-XX.json.gz and the observations log lists every outline that changed (25% / 500 acres / pieces)

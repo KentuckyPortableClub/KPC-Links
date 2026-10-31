@@ -1376,6 +1376,15 @@
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
     "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Wisconsin DNR (county forests, from the counties)",
+    "nm": "FR_PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0",
+    "host": "agency",
+    "lic": "public, no use constraints",
+    "note": "Oct 30 9:40 PM chat 2: HQ 9:12 PM Oct 29 (Brandon found the Public Access Lands viewer) + chat 9 probe 8:45 AM: county forests, polygons, FR_PROP_NAME. Rule G as always."
    }
   ],
   "WV": [
