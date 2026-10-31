@@ -1514,7 +1514,11 @@ def water_route_spots(lref, ls, oref, obox):
             dx = np.maximum(0, np.maximum(lo0 - near[:, 0], near[:, 0] - lo1)) * kx
             dy = np.maximum(0, np.maximum(la0 - near[:, 1], near[:, 1] - la1)) * ky
             d = np.hypot(dx, dy)
-            if (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: accepted.append(L)   # the route runs along it
+            # Oct 31 (Brandon on the live Finder, Ballard WMA x Trail of Tears x Lewis and Clark: '25.6 mi' and shading far from the
+            # Ohio): the route's water = the RIVER the route follows, not every lake / slough inside the park within 1-3 km of the
+            # coarse NPS line. A river runs THROUGH the tile (the blob touches the tile's edge); a lake / pond inside the land does not.
+            edge = left == 0 or top == 0 or left + w >= F.W or top + h >= F.H
+            if edge and (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: accepted.append(L)   # the route runs along it
         if not accepted: continue
         route = np.isin(lab, accepted).astype(np.uint8)
         wd = dt(1 - route, outside=1) * CELL
