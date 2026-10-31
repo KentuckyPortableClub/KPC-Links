@@ -1,1 +1,1 @@
-{"_how":"Web app URL of the KPC QRZ relay (.claude/build/relay/kpc-qrz-relay.gs). Empty = the page sends straight to QRZ and cannot see the answer.","url":""}
+{"_how": "Web app URL of the KPC QRZ relay (.claude/build/relay/kpc-qrz-relay.gs). Empty = the page sends straight to QRZ and cannot see the answer.", "url": "https://script.google.com/macros/s/AKfycbyJeX3CyB0XQKKNxHnLHFI3940pMDBMG5Dec6DIE6Nq9Rc7S2ExB6X7BYC-uCs9NPlL/exec"}
