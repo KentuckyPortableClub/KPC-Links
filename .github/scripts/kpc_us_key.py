@@ -723,6 +723,23 @@ def score_park(name, typ, la, lo, recs, clusters):
 
 RD = {}
 _TR = []
+# Oct 30 (chat 2, HQ Oct 29 8:50 PM 'the Recreation.gov saved copy holds the BLM sites'): the ONE keyed pull (KPC-Data
+# data/access-leads/keyed-pull-raw.json.gz: ridb_rec + ridb_fac, id / name / lat-lon). POTA built many BLM / Forest Service sites
+# from Recreation.gov, so a same-name Recreation.gov point near the pin is the park's own record: an official polygon that HOLDS that
+# point and carries the same name is joined (G-1 location proof). No new calls: the saved copy only, read when present.
+RIDB = {}
+try:
+    import gzip as _gz
+    _rj = json.load(_gz.open(os.environ.get('RIDB_FILE') or 'data/access-leads/keyed-pull-raw.json.gz', 'rt', encoding='utf-8'))
+    for _k in ('ridb_rec', 'ridb_fac'):
+        for _st, _xs in (_rj.get(_k) or {}).items():
+            RIDB.setdefault(_st, []).extend(x for x in _xs if x.get('la') and x.get('lo'))
+    print(f'Recreation.gov saved copy: {sum(len(v) for v in RIDB.values())} points', flush=True)
+except Exception as _e: print(f'Recreation.gov saved copy not read: {str(_e)[:80]}', flush=True)  # noqa: BLE001
+
+
+def _km(la1, lo1, la2, lo2):
+    return 111.2 * math.hypot(la1 - la2, (lo1 - lo2) * math.cos(math.radians((la1 + la2) / 2)))
 def transfers():
     """data/park-transfers.json: parks handed to another agency that keep their POTA number (Oct 28)."""
     if not _TR:
@@ -936,6 +953,15 @@ def run(st):
                 units = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '').startswith(_nf(pre)) and near(la, lo, a['_bb'], .3)]
                 if any(inside(la, lo, a['_g']) or near(la, lo, a['_bb'], .03) for a in units):
                     for a in units: m.append([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(a.get('GIS_Acres') or 0), f'alias units: {pre}'])
+        if not m and la is not None and RIDB.get(st):   # the Recreation.gov point proves WHERE the site is (see RIDB above)
+            for x in RIDB[st]:
+                if not (same_name(name, x['n']) or norm(name) == norm(x['n'])) or _km(la, lo, x['la'], x['lo']) > 25: continue
+                for a in recs:
+                    nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+                    if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
+                    if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside(x['la'], x['lo'], a['_g']): continue
+                    if any(q[0] == a['OBJECTID'] for q in m): continue
+                    m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
         if not m and la is not None and ov.get('alias'):
             for al in ov['alias']:
                 for a in recs:

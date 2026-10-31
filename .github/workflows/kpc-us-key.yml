@@ -85,6 +85,12 @@ jobs:
       - uses: actions/checkout@v5
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
+      - name: The Recreation.gov saved copy (the one keyed pull, read only; HQ Oct 29 8:50 PM)
+        continue-on-error: true
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .ridb 2>/dev/null \
+            && git -C .ridb sparse-checkout set --no-cone data/access-leads/keyed-pull-raw.json.gz 2>/dev/null && git -C .ridb checkout -q 2>/dev/null || true
+          mkdir -p data/access-leads && cp -f .ridb/data/access-leads/keyed-pull-raw.json.gz data/access-leads/ 2>/dev/null || true; rm -rf .ridb
       - name: Build the answer key (this job's states)
         env:
           STATES: ${{ matrix.g.states }}
