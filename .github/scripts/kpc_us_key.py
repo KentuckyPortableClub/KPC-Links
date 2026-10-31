@@ -733,7 +733,7 @@ _TR = []
 # 100-ft band from the line (never an inside test). Only a park with no other official piece gets it.
 # Oct 30 11:05 PM: trails whose only official line is a DRIVING route (roads), not the trail: held until Brandon rules
 # (US-4582 Washington-Rochambeau = the NPS 'WARO driving route centerline (2016)')
-DRIVING_ONLY = {'US-4582'}
+DRIVING_ONLY = set()   # Oct 30 11:05 PM: Brandon's ruling (Lewis and Clark 'needs both') = a trail's official driving route counts too
 TRL = {}
 try:
     for _x in json.load(open('data/trails/index.json')):
