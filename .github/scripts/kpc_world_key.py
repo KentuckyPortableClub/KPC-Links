@@ -405,6 +405,7 @@ def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in
 # 3 m (never over 5 m), never 'every Nth point'. '_f' keeps each record's ring at that detail (Douglas-Peucker, FINE_TOL degrees of
 # latitude; ~3.3 m by default) for the saved website copy; '_r' (thinned) stays what pin-inside is judged on, exactly as before.
 FINE_TOL = float(os.environ.get('FINE_TOL') or 0.00003)
+FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1'   # ON for the size test only until Brandon / HQ OK the storage
 def _dp(pts, tol):
     if len(pts) < 3: return pts
     import math
@@ -1043,7 +1044,7 @@ for cc in COUNTRIES:
             for x in mm:
                 for r in byn.get((x[2], x[1]), []):
                     if la and lo and r.get('_bb') and not near(la, lo, r['_bb'], .6): continue
-                    for ring in (r.get('_f') or r.get('_r') or []):
+                    for ring in ((r.get('_f') if FINE_ON else None) or r.get('_r') or []):
                         if len(ring) >= 3: polys.append((ring, bool(r.get('_f'))))
             if polys:
                 # light enough for a phone: the 12 biggest pieces, 50 points each (a guide outline, labelled as saved by KPC)
