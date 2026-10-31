@@ -12,8 +12,8 @@ ONE ROW PER PARK. Atlas: agency-atlas/US-DC.md
 | US-13621 | Desert Shield / Desert Storm Memorial | inside 'National Capital Parks' (container): LEAD only |
 | US-7891 | African American Civil War Memorial | inside 'National Capital Parks' (container): LEAD only |
 | US-4567 | Captain John Smith Chesapeake NHT | NPS boundary layer HAS a polygon for the unit 'Captain John Smith Chesapeake National Historic Trail' (nps_boundary, UNIT_CODE CAJO); pin falls in 'National Capital Parks'. DoD REPI layer MiddleChesapeakeSL/2 (line, NAME) = lead only |
-| US-4581 | Star-Spangled Banner NHT | pin inside 'Fort McHenry National Monument and Historic Shrine' (a different unit): trail line not found yet |
-| US-4582 | Washington-Rochambeau NHT | no NPS polygon at the pin; line not found yet |
+| US-4581 | Star-Spangled Banner NHT | UPDATE (relayed 9:55 PM): already wired in chat 2's trails-hand.json with the official NPS centerline; if it does not draw, it is a rebuild lag, not a missing source (look-up check filed by that chat). My pin test: pin inside Fort McHenry unit (a different unit) |
+| US-4582 | Washington-Rochambeau NHT | UPDATE (relayed 9:55 PM): no official NPS GIS layer exists (designated 2021, newer than NPS's published trail layers); only the printed brochure map, filed as a save-map (picture only); stays a pin until NPS publishes a layer. One more broad search is queued by that chat |
 | US-4564 | Potomac Heritage NST | NPS line layer found (below); pin not on the line |
 | US-9898 | Mount Vernon Trail | NPS_Public_Trails has 'Mount Vernon Trail' (unit George Washington Memorial Parkway); pin in the GWMP boundary |
 | US-9901 | Civil War Defenses of Washington NHT | NPS circuit trails layer found (below); pin inside GWMP boundary (container) |
