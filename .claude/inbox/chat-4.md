@@ -12,7 +12,7 @@ Read .claude/inbox/README.md first.
 - Brandon tests on the radio today (Fable's list in ft8-app.md / KPC_AppReadiness_Fable.md): read his builders' report when it comes.
 
 - TO DO (Brandon Oct 28 7:07 AM: 'this is to do...make notes'): TRIP PLANNER + OVERLAP FINDER as screens in the app (plan in ft8-app.md 'TRIP PLANNER + OVERLAP FINDER IN THE APP'). After his radio test fixes; members-only or not is decided when it's built (Brandon 7:09 AM).
-- TO DO (later, Brandon Oct 30 8:17 PM): on FT8 / FT4 and the other digital mode screens where it helps, a drop-down TX / RX LEVEL slider right on the screen for easier tuning (lvHtml('tx'|'rx') already builds them; put one in a fold-down on the mode strip).
+- TO DO (later, Brandon Oct 30 8:17 PM): on FT8 / FT4 and the other digital mode screens where it helps, a drop-down TX / RX LEVEL slider right on the screen for easier tuning (Brandon 8:21 PM: 'ways to adjust alc and recieve' = TX LEVEL to set the ALC + RX LEVEL; lvHtml('tx'|'rx') already builds them; a fold-down on the mode strip, with the live ALC reading and the RX level bar beside the sliders).
 - TO DO (later): iPhone: browser phone remote first (plan in ft8-app.md 'IPHONE PLAN').
 - TO DO (later, Brandon Oct 30 2:51 PM): CLOUD (Google Drive backup + log sync), APPLE, GO PUBLIC with a download page on the website: notes in ft8-app.md 'LATER (Brandon Oct 30 2:51 PM …)'.
 
