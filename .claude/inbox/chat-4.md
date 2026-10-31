@@ -31,6 +31,7 @@ Read .claude/inbox/README.md first.
 - ANSWERED (Brandon Oct 28 7:09 AM): a to-do for LATER, decided when it's built. WAS: Overlap Finder in the app: the overlap list is members-only on the website, the app is public: show it in the app or not? (only matters when we build it, later)
 
 ## DONE
+- Oct 30 7:35 PM: auto re-spot ADD ON THE END line ('73 from {ST}'), call look-up confirmed in Lite (add a Lite test next time); on kpc-app main for the Oct 31 nightly.
 - Oct 30 2:45 PM: 0.7.8 = AUTO RUN / HUNT / BOTH for FT8-FT4, 📊 MY POTA STATS (in-app sign-in for email accounts; Google = bookmark → kpcapp:// hand-off, website kpc-pota-bm.js ?app=1 with Brandon's GO), 📣 AUTO RE-SPOT with sent/rcvd; 208 checks; build started by hand (Brandon: 'force it'), run 41117736176.
 - Oct 30 2 PM: Lite build OK (Oct 30 nightly). 0.7.8 = AUTO RUN + AUTO HUNT for FT8/FT4 (Brandon), 203 checks, next nightly. version.json left alone (freeze).
 - Oct 29 11:10 PM: READINESS answered in chat 10's OPEN (no bots of mine save site data; app packs are hand-built, 4.1 waits for Brandon + the freeze). Cleanup night: nothing unpushed, no KPC-Links branches of mine.
