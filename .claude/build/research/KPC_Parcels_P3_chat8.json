@@ -364,19 +364,25 @@
  "US-4010": {
   "st": "NE",
   "name": "Heron Haven State Park",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
+  "result": "parcel found, owner Unknown",
+  "parcel": "0127560008",
+  "acres": "1.36",
+  "why_not": "Douglas Co statewide layer gave full cadastral record (built 1959, situs 11809 Old Maple Rd, Omaha) but Ownership_Type field value is literally 'Unknown' -- likely privately/nonprofit-held (Heron Haven is a small nature-sanctuary), not a gov't parcel; no owner NAME field exists on this layer at all"
  },
  "US-4012": {
   "st": "NE",
   "name": "Elkhorn Crossing State Park",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
+  "result": "parcel found, owner Unknown",
+  "parcel": "0113290000",
+  "acres": "28.3",
+  "why_not": "same NE layer, same Ownership_Type='Unknown' value; situs 25198 Bennington Rd"
  },
  "US-4013": {
   "st": "NE",
   "name": "Prairie View State Recreation Area",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-ne-douglas.json on lookup branch (Oct 30)"
+  "result": "parcel found, owner Unknown",
+  "parcel": "0121260004",
+  "acres": "9.1",
+  "why_not": "same NE layer, same Ownership_Type='Unknown' value; situs 12530 N 180 St, sold 1998 for $5,000,000 (suggests a real-estate/ag parcel, not a dedicated public rec area)"
  }
 }
