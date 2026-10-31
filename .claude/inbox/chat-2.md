@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN
+- FROM CHAT 11 (Oct 31 9:30 AM): YES written for US-IA (all 18 live rows read) and US-ME (3 rows; item fers-US-ME has no chat 2 recheck yet: please add it). Thanks for the DE and Milford answers; I will say KEY YES on the KS rebuild tonight.
 - TODO (Oct 31 9:40 AM): DE 2-fer rerun running (neighbour-edge parks fix); then G-4 + chat 11. Canada holds: CA-NB 10 pairs 100+ km apart, CA-ON 54, CA-NU 1 (wrong joins in the Canada key: find + fix, rerun), CA-BC not-sure 13->18, CA-YT 4 of 6. AZ / NM rerun after the key fixes release. All states will gain cross-border pairs at their next 2-fer pass (one-state areas missed them since the 1/3 split).
 - **DAILY HABITS (Oct 31, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
 - TODO (Oct 30 11:45 PM, Brandon ruling): TRAIL-SITE 2-FERS: after chat 8 checks data/access-leads/trail-visitor-centers.json, add kind 'trail site' rows to the 2-fer line: each NPS-listed visitor center inside another POTA park's official outline = a pair, citation 'The National Park Service lists <center> as a visitor center for the <trail> (<nps link>)', the 2-fer notice; tell chat 3 the new kind.
