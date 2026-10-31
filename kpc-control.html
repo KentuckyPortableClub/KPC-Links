@@ -105,7 +105,7 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 </style>
-<link rel="stylesheet" href="kpc-nav.css?v=20261030a">
+<link rel="stylesheet" href="kpc-tools.css"><link rel="stylesheet" href="kpc-nav.css?v=20261030a">
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
 <header class="site-nav">
   <div class="nav-inner">
@@ -166,25 +166,38 @@ body.field .page-jump-nav{display:none!important}
 </div></div></section>
 <nav class="toolnav" aria-label="Control panel"><div class="wrap"><a href="kpc-club.html">← Club Room</a><a href="#bots">Bots</a><a href="#outlines">Outlines</a><a href="#questions">Questions</a><a href="#layers">Layers</a><a href="#storage">Storage</a></div></nav>
 <style>
+/* Oct 31 (Brandon: 'the bot control make it look better'): status cards, plain words, bars instead of bare numbers */
+.cp-sum{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.cp-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;font:800 13px/1.2 inherit;letter-spacing:.03em;border:1px solid rgba(127,127,127,.35)}
+.cp-pill.green{background:rgba(63,191,106,.16);border-color:rgba(63,191,106,.55)}.cp-pill.amber{background:rgba(232,179,58,.16);border-color:rgba(232,179,58,.6)}.cp-pill.red{background:rgba(224,85,59,.16);border-color:rgba(224,85,59,.6)}
+.cp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.cp-card{background:rgba(213,166,58,.08);border:1px solid rgba(240,201,107,.32);border-left:5px solid #888;border-radius:14px;padding:12px 14px;min-width:0}
+.cp-card.green{border-left-color:#3fbf6a}.cp-card.amber,.cp-card.yellow{border-left-color:#e8b33a}.cp-card.red{border-left-color:#e0553b}
+.cp-card h3{margin:0 0 4px;font-size:16px;text-transform:capitalize;display:flex;justify-content:space-between;gap:8px;align-items:baseline}.cp-card h3 em{font-style:normal;font-size:12px;font-weight:800;opacity:.8;white-space:nowrap}
+.cp-st{font-size:12.5px;font-weight:800;margin:0 0 8px}.cp-st.green{color:#2e9a54}.cp-st.amber,.cp-st.yellow{color:#b07d10}.cp-st.red{color:#c0392b}
+.cp-chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}.cp-chips span{font-size:12px;padding:3px 8px;border-radius:999px;background:rgba(127,127,127,.14);overflow-wrap:anywhere}
+.cp-made{font-size:13px;opacity:.85;margin:0 0 6px;overflow-wrap:anywhere}.cp-wait{font-size:13px;margin:0;padding:6px 8px;border-radius:8px;background:rgba(232,179,58,.12);overflow-wrap:anywhere}
+.cp-card a{font-size:12px;font-weight:800}
+.cp-areas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.cp-area{background:rgba(213,166,58,.08);border:1px solid rgba(240,201,107,.32);border-radius:14px;padding:12px 14px}.cp-area h3{margin:0 0 8px;font-size:16px}
+.cp-bar{display:flex;height:14px;border-radius:99px;overflow:hidden;background:rgba(127,127,127,.2);margin:0 0 8px}.cp-bar i{display:block;height:100%}
+.cp-key{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}.cp-key b{font-size:15px}.cp-sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:middle}
+.c-off{background:#3fbf6a}.c-apx{background:#e8b33a}.c-pin{background:#9aa0a6}
 .cp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.cp-tile{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px}
-.cp-tile b{display:block;font-size:24px;line-height:1.1}
-.cp-tile span{font-size:13px;opacity:.8}
-.cp-bot{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-.cp-dot{flex:0 0 12px;height:12px;border-radius:50%;margin-top:4px;background:#888}
-.cp-dot.green{background:#3fbf6a}.cp-dot.red{background:#e0553b}.cp-dot.yellow,.cp-dot.amber{background:#e8b33a}
-.cp-bot div{min-width:0;overflow-wrap:anywhere}.cp-bot small{display:block;opacity:.75}
-.cp-table{width:100%;border-collapse:collapse;font-size:14px}.cp-table th,.cp-table td{text-align:left;padding:6px 4px;border-bottom:1px solid rgba(255,255,255,.08)}
-.cp-wrap{overflow-x:auto}.cp-note{opacity:.75;font-size:13px}
+.cp-tile{background:rgba(213,166,58,.08);border:1px solid rgba(240,201,107,.32);border-radius:12px;padding:12px}
+.cp-tile b{display:block;font-size:24px;line-height:1.1}.cp-tile span{font-size:13px;opacity:.85}
+.cp-meter{height:8px;border-radius:99px;background:rgba(127,127,127,.2);overflow:hidden;margin-top:8px}.cp-meter i{display:block;height:100%;background:#3fbf6a}.cp-meter i.hi{background:#e0553b}
+.cp-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}.cp-table th,.cp-table td{text-align:left;padding:7px 6px;border-bottom:1px solid rgba(127,127,127,.2)}.cp-table th{font-size:12px;letter-spacing:.06em;opacity:.8}.cp-table tr:nth-child(even) td{background:rgba(127,127,127,.06)}
+.cp-wrap{overflow-x:auto}.cp-note{opacity:.8;font-size:13px}
 </style>
 <section class="section" id="bots"><div class="wrap">
 <div class="sec-head"><div><div class="kicker">LIVE</div><h2>Bots</h2></div></div>
 <p class="cp-note" id="cp-made">Loading…</p>
-<div id="cp-bots"></div>
+<div class="cp-sum" id="cp-sum"></div>
+<div class="cp-cards" id="cp-bots"></div>
 </div></section>
 <section class="section" id="outlines"><div class="wrap">
 <div class="sec-head"><div><div class="kicker">PARKS COVERED</div><h2>Outlines</h2></div></div>
-<div class="cp-grid" id="cp-outlines"></div>
+<div class="cp-areas" id="cp-outlines"></div>
 <p class="cp-note">Official = the agency's own boundary. Approximate = an outline we could only partly confirm. Pin only = no outline yet.</p>
 </div></section>
 <section class="section" id="questions"><div class="wrap">
@@ -210,18 +223,33 @@ body.field .page-jump-nav{display:none!important}
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function n(x){return (x||0).toLocaleString();}
   function tile(el,v,l){el.insertAdjacentHTML('beforeend','<div class="cp-tile"><b>'+esc(v)+'</b><span>'+esc(l)+'</span></div>');}
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function day(d){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||'');return m?MON[+m[2]-1]+' '+(+m[3]):(d||'');}
+  function words(k){return String(k).replace(/_/g,' ');}
+  /* a bot's 'made' line: '{...}' counts become little chips, the rest stays as words */
+  function made(t){t=String(t||'');var i=t.indexOf('{'),chips='';   /* the bots cut long lines, so read "key": number pairs even from a cut-off {...} */
+    if(i>=0){var re=/"([a-z_ ]+)":\s*(\d+)/gi,m,c=0;while((m=re.exec(t))&&c<8){if(+m[2]){chips+='<span>'+esc(words(m[1]))+': <b>'+esc(n(+m[2]))+'</b></span>';c++;}}t=t.slice(0,i).replace(/[;:,\s]+$/,'');}
+    return {t:t,chips:chips};}
+  var STW={green:'✓ Running fine',amber:'⏳ Needs a look',yellow:'⏳ Needs a look',red:'⚠ Problem'};
   get('board.json').then(function(b){
-    var bots=b.bots||{},el=document.getElementById('cp-bots'),keys=Object.keys(bots).sort();
-    keys.forEach(function(k){var v=bots[k]||{},c=String(v.result||'').toLowerCase();
-      el.insertAdjacentHTML('beforeend','<div class="cp-bot"><i class="cp-dot '+esc(c)+'"></i><div><b>'+esc(k)+'</b> · '+esc(v.last_run||'')+'<small>'+esc(String(v.made||'').slice(0,160))+'</small>'+(v.waiting_on?'<small>Waiting on: '+esc(v.waiting_on)+'</small>':'')+'</div></div>');});
+    var bots=b.bots||{},el=document.getElementById('cp-bots'),keys=Object.keys(bots).sort(),cnt={green:0,amber:0,red:0};
+    keys.forEach(function(k){var v=bots[k]||{},c=String(v.result||'').toLowerCase();if(c==='yellow')c='amber';if(!(c in cnt))c='amber';cnt[c]++;
+      var M=made(v.made),fail=/failed/i.test(v.made||'');
+      el.insertAdjacentHTML('beforeend','<div class="cp-card '+c+'"><h3>'+esc(k)+'<em>'+esc(day(v.last_run))+'</em></h3><p class="cp-st '+c+'">'+(STW[c]||'')+(fail&&c==='green'?' (one area said failed: see its numbers)':'')+(v.areas?' · '+esc(v.areas):'')+'</p>'+
+        (M.chips?'<div class="cp-chips">'+M.chips+'</div>':'')+(M.t?'<p class="cp-made">'+esc(M.t.slice(0,180))+'</p>':'')+
+        (v.waiting_on&&!/^nothing$/i.test(v.waiting_on)?'<p class="cp-wait"><b>Waiting on:</b> '+esc(v.waiting_on)+'</p>':'')+
+        (/^https:\/\/github\.com\//.test(v.run||'')?'<p style="margin:8px 0 0"><a href="'+esc(v.run)+'" target="_blank" rel="noopener">LAST RUN ↗</a></p>':'')+'</div>');});
+    document.getElementById('cp-sum').innerHTML=keys.length?'<span class="cp-pill green">✓ '+cnt.green+' running fine</span>'+(cnt.amber?'<span class="cp-pill amber">⏳ '+cnt.amber+' need a look</span>':'')+(cnt.red?'<span class="cp-pill red">⚠ '+cnt.red+' with a problem</span>':''):'';
     if(!keys.length)el.textContent='No bot has written to the board yet.';
   }).catch(function(){document.getElementById('cp-bots').textContent='The bots\' status board could not be read right now.';});
   get('panel.json').then(function(p){
     var s=p.snap||{},f=p.first||{};
-    document.getElementById('cp-made').textContent='Numbers made '+(p.made||'')+'; the bot list below is live.';
+    document.getElementById('cp-made').textContent='Numbers made '+day(p.made)+' '+String(p.made||'').slice(11,16)+' UTC; the bot cards are live.';
     var o=document.getElementById('cp-outlines');
-    Object.keys(s.outlines||{}).forEach(function(k){var v=s.outlines[k]||{},v0=((f.outlines||{})[k]||{}).official||0,d=(v.official||0)-v0;
-      tile(o,n(v.official),k+' official'+(d?' ('+(d>0?'+':'')+n(d)+' this week)':''));tile(o,n(v.pin),k+' pin only');});
+    Object.keys(s.outlines||{}).forEach(function(k){var v=s.outlines[k]||{},off=v.official||0,apx=v.approximate||v.approx||0,pin=v.pin||0,all=off+apx+pin||1,v0=((f.outlines||{})[k]||{}).official||0,d=off-v0,pc=function(x){return (x/all*100).toFixed(1)+'%';};
+      o.insertAdjacentHTML('beforeend','<div class="cp-area"><h3>'+esc(k)+' <span class="cp-note">· '+n(all)+' parks</span></h3><div class="cp-bar" role="img" aria-label="'+esc(k)+': '+n(off)+' official, '+n(apx)+' approximate, '+n(pin)+' pin only"><i class="c-off" style="width:'+pc(off)+'"></i><i class="c-apx" style="width:'+pc(apx)+'"></i><i class="c-pin" style="width:'+pc(pin)+'"></i></div>'+
+        '<div class="cp-key"><span><i class="cp-sw c-off"></i><b>'+n(off)+'</b> official ('+Math.round(off/all*100)+'%)</span><span><i class="cp-sw c-apx"></i><b>'+n(apx)+'</b> approximate</span><span><i class="cp-sw c-pin"></i><b>'+n(pin)+'</b> pin only</span></div>'+
+        (d?'<p class="cp-note" style="margin:6px 0 0">'+(d>0?'▲ +':'▼ ')+n(d)+' official since '+esc(day(f.date||''))+'</p>':'')+'</div>');});
     var q=s.questions||{},open=0,yes=0,bot=0,rows='<tr><th>List</th><th>Rows</th><th>Open</th><th>YES</th><th>Bot YES</th></tr>';
     Object.keys(q).forEach(function(k){var v=q[k],o_=0,y=0,b=0;Object.keys(v).forEach(function(kk){if(/ open$/.test(kk))o_+=v[kk];else if(/ YES$/.test(kk)&&!/bot YES$/.test(kk))y+=v[kk];else if(/bot YES$/.test(kk))b+=v[kk];});
       open+=o_;yes+=y;bot+=b;rows+='<tr><td>'+esc(k)+'</td><td>'+n(v.rows)+'</td><td>'+n(o_)+'</td><td>'+n(y)+'</td><td>'+n(b)+'</td></tr>';});
@@ -231,9 +259,10 @@ body.field .page-jump-nav{display:none!important}
     tile(le,n((l.intake||{}).approved),'layers approved');tile(le,n((l.intake||{}).READY),'layers ready');tile(le,n(l['queue rows']),'layers queued to test');
     tile(le,n(l['finders found']),'found by the GIS finders');tile(le,n(c['world countries done'])+' / '+n(c['world countries started']),'world countries, first pass done');tile(le,n(c['world candidates']),'world finds');
     var st=p.storage||{},se=document.getElementById('cp-storage');
-    if(st['KPC-Links'])tile(se,n(st['KPC-Links'])+' MB','website repo'+(st['KPC-Links']>650?' ⚠️ over the line':''));
-    if(st['KPC-Data'])tile(se,n(st['KPC-Data'])+' MB','data repo'+(st['KPC-Data']>400?' ⚠️ over the line':''));
-    if(st.date)tile(se,st.date,'last measured');
+    var meter=function(v,line,lab){se.insertAdjacentHTML('beforeend','<div class="cp-tile"><b>'+n(v)+' MB</b><span>'+esc(lab)+' (line '+line+' MB)'+(v>line?' ⚠️ over':'')+'</span><div class="cp-meter"><i class="'+(v>line?'hi':'')+'" style="width:'+Math.min(100,v/line*100).toFixed(0)+'%"></i></div></div>');};
+    if(st['KPC-Links'])meter(st['KPC-Links'],650,'website repo');
+    if(st['KPC-Data'])meter(st['KPC-Data'],400,'data repo');
+    if(st.date)tile(se,day(st.date),'last measured');
   }).catch(function(){document.getElementById('cp-made').textContent='The numbers could not be read right now (they are made each night).';});
 })();
 </script>
