@@ -727,6 +727,15 @@ _TR = []
 # data/access-leads/keyed-pull-raw.json.gz: ridb_rec + ridb_fac, id / name / lat-lon). POTA built many BLM / Forest Service sites
 # from Recreation.gov, so a same-name Recreation.gov point near the pin is the park's own record: an official polygon that HOLDS that
 # point and carries the same name is joined (G-1 location proof). No new calls: the saved copy only, read when present.
+# Oct 30 (Brandon 10:43 PM picked A, via chat 3): a NATIONAL TRAIL park (NHT / NST / NRT) whose official line the agency publishes
+# (data/trails/<ref>.json, listed in data/trails/index.json by the Park Service / Forest Service / BLM) carries that LINE as its
+# record in the key: id 'trl<number>', grade official, line: 1. Every outline tool then follows it; Am I in the Park uses POTA's
+# 100-ft band from the line (never an inside test). Only a park with no other official piece gets it.
+TRL = {}
+try:
+    for _x in json.load(open('data/trails/index.json')):
+        if str(_x.get('kind') or '') != 'WSR' and re.search(r'service|bureau|agency|department|usfs|nps|blm|fws', str(_x.get('by')), re.I): TRL[_x['ref']] = _x
+except Exception as _e: print(f'trail lines index not read: {str(_e)[:80]}', flush=True)  # noqa: BLE001
 RIDB = {}
 try:
     import gzip as _gz
@@ -1320,6 +1329,9 @@ def run(st):
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
         p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1])) for x in m) else 'official')
+        if not m and ref in TRL and pathlib.Path(f'data/trails/{ref}.json').exists():
+            p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
+            p['g'] = 'official'; p['line'] = 1
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
@@ -1474,6 +1486,7 @@ for st in STATES:
                             'coordinates': [v[1][0]] if len(v[1]) == 1 else [[r] for r in v[1]]}} for i, v in sorted(recs_.items()) if v[1]]}
         save_json(OUT / f'zip-{pre}.json', fc)
         LJ[pre] = [f'file:data/us-key/zip-{pre}.json', 'Unit_Nm', LAYERS_ZIP[pre][2]]
+    LJ['trl'] = ['file:data/trails/US-{n}.json', 'name', 'official national trail lines (Park Service / Forest Service / BLM): one LINE file per park, trl<n> = US-<n>; draw as a line, POTA 100-ft band']
     save_json(OUT / 'layers.json', LJ)
 # Oct 28 (HQ item C): a park POTA files under several states (132 do: the Appalachian Trail under 14) is not 'nothing found' in
 # one state when another state's key joined it. Such parks are marked 'joined_in' and counted apart ('joined_in_another_state').
