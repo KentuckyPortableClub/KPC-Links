@@ -101,7 +101,9 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
     const off = new Map(ix.filter(x => x.kind !== 'WSR' && (x.official || /service|bureau|agency|department|usfs|nps|blm/i.test(String(x.by)))).map(x => [x.ref, x]));
     for (const x of P) {
       const pk = parks[x.c];
-      if (pk && !pk.tracts.length && off.has(x.c) && fs_.existsSync(`data/trails/${x.c}.json`)) {
+      // Oct 31 (Fable review #15): the kyFor fallback above already gave these trails a 'btrail' pin tract, which the 2-fer bot cannot read: the official line replaces it
+      if (pk && (!pk.tracts.length || pk.tracts.every(t => t[0] === 'btrail')) && off.has(x.c) && fs_.existsSync(`data/trails/${x.c}.json`)) {
+        pk.tracts = [];
         pk.tracts.push(['trl', off.get(x.c).name || x.n, 0, `official trail line (${off.get(x.c).by || 'agency'})`, 1]);
         pk.line = 1; pk.trl = `data/trails/${x.c}.json`;
       }

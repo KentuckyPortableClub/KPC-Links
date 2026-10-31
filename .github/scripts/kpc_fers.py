@@ -195,7 +195,7 @@ def official_parks(PIN):
     if REGION == 'ky':   # Oct 26 (Brandon: 'run just KY and see if it matches the guide'): Kentucky's own answer key + official files
         k = json.load(open('data/ky-answer-key.json'))['parks']
         for ref, p in k.items():
-            tr = [t for t in p.get('tracts') or [] if t[0] not in ('bdbnf', 'bkpc')]   # the forest's proclamation line and KPC-drawn outlines are not proof
+            tr = [t for t in p.get('tracts') or [] if t[0] not in ('bdbnf', 'bkpc', 'btrail', 'trl')]   # the forest's proclamation line and KPC-drawn outlines are not proof; Oct 31 (Fable #15): a trail's own line tract = a LINE park (tested by its line below), never an area
             if not tr: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if ref in KY_NOT_SURE: skip['no outline'] += 1; SKIPWHY[ref] = KY_NOT_SURE[ref]; continue   # ruling Oct 27: a line park, not its land tracts
             if ref not in PIN: skip['no pin'] += 1; continue
@@ -386,12 +386,15 @@ def source_of(rid, canada, src=None):
         if not n.isdigit(): return [], None, True
         urls = [u.rstrip('/') + '/query' for u in LAYERS_CA.get(lab) or [] if re.search(r'/\d+$', u.rstrip('/'))]
         return urls, int(n), True
-    if isinstance(rid, int): return [PADUS], rid, False
+    # Oct 31 (Fable review #3): US records are checked by NAME too (chk=True): a server that re-numbered its records can hand back
+    # ANOTHER park's polygon under the same id (Florida far-check rows); the record must carry the park's record name
+    if isinstance(rid, int): return [PADUS], rid, True
     m = re.fullmatch(r'([a-z]+)(\d+)', str(rid))
     if not m: return [], None, False
     pre, n = m.group(1), int(m.group(2))
-    if pre == 'fws': return [FWS], n, False
-    if pre in LAYERS_US: return [LAYERS_US[pre][0]], n, False
+    if pre == 'fws': return [FWS], n, True
+    if pre in ('trl',): return [], None, False
+    if pre in LAYERS_US: return [LAYERS_US[pre][0]], n, True
     return [], None, False
 
 
@@ -476,7 +479,8 @@ def download(parks, refs, det, prec):
         # the record(s) of that name nearest the park's pin.
         _pre = lambda rid_: (re.fullmatch(r'([a-z]+)\d+', str(rid_)) or [None, None])[1]
         for ref, rid, oid, chk in items:
-            if found.get(oid) or 'm' in parks[ref] or late(): continue
+            if 'm' in parks[ref] or late(): continue
+            if found.get(oid) and (not chk or any(name_ok(parks[ref]['names'].get(rid), a_) for a_, _ in found[oid])): continue   # Oct 31: an id that now names ANOTHER place is looked up by name too
             pre_ = _pre(parks[ref]['ids'][int(rid)] if str(rid).isdigit() and 'm' in parks[ref] else rid)
             lay = LAYERS_US.get(pre_) if pre_ else None
             nm_ = parks[ref]['names'].get(rid) or ''
@@ -489,9 +493,11 @@ def download(parks, refs, det, prec):
                 pin = _PINS.get(ref)
                 fs = [(f.get('attributes') or {}, esri_rings(f.get('geometry'))) for f in j.get('features') or []]
                 fs = [x for x in fs if x[1]]
-                if pin and pin[1] is not None and len(fs) > 1:
-                    fs.sort(key=lambda x: min(abs(q[1] - pin[1]) + abs(q[0] - pin[2]) for rr in x[1] for q in rr[::20] or rr))
-                    fs = fs[:1]
+                if pin and pin[1] is not None and len(fs) > 1:   # Oct 31 (Fable #3): keep EVERY same-name record near the pin (a park of several
+                    # tracts of one name keeps them all), only far namesakes (another place of the same name) are left out
+                    dist = lambda x: min(abs(q[1] - pin[1]) + abs(q[0] - pin[2]) for rr in x[1] for q in (rr[::20] or rr))
+                    d0 = min(dist(x) for x in fs)
+                    fs = [x for x in fs if dist(x) <= d0 + .15]
                 if fs: found[oid] = fs; FOUNDBYNAME.add(ref)
             except Exception as e: LOG.append(f'{lay[0].split("/rest/services/")[-1][:50]}: by-name not read ({str(e)[:40]})')  # noqa: BLE001
             time.sleep(.3)
@@ -1533,9 +1539,10 @@ def water_route_spots(lref, ls, oref, obox):
             c = F.ll(int(cc[i]), int(rr[i]))
             cs, _ = cv2.findContours(comp.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             ap = cv2.approxPolyDP(max(cs, key=cv2.contourArea), 1.5, True).reshape(-1, 2)
-            if len(ap) > 120: ap = ap[::int(math.ceil(len(ap) / 120))]
+            # Oct 31 (Fable review #13: the Metropolis shading): this shape is the OUTLINE of the bank strip (a polygon), not a line: no
+            # 'every Nth point' (it cut straight across land), kept closed at 1.5 m (sharp_shape caps the points), marked shape_kind polygon
             out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(k * CELL * CELL / max(CELL, BANK - STATION_IN)),
-                        'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True})
+                        'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True, 'shape_kind': 'polygon'})
     return merge(out)
 
 
@@ -2230,7 +2237,7 @@ def slim(spots):
         if s.get('shape'):
             if not s.get('box'): s['box'] = [round(v, 5) for v in bbox_lines([s['shape']])]
             if REGION == 'world': s.pop('shape', None)
-            elif len(s['shape']) > 80: s['shape'] = sharp_shape(s['shape'], closed=s.get('kind') not in ('trail', 'river'))
+            elif len(s['shape']) > 80: s['shape'] = sharp_shape(s['shape'], closed=bool(s.get('water_route')) or s.get('kind') not in ('trail', 'river'))   # a water-route row's shape is a polygon
     return spots
 
 

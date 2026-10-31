@@ -44,7 +44,8 @@ jobs:
           DATA=kpcdata python3 .github/scripts/kpc_world_answers.py || true   # BOT A for the WORLD key (chat 10 Oct 30 AUTO-1W): world-finder YES/NO -> world overrides + tonight's world run   # BOT W (HQ Oct 30 8:10 AM): chat 11's YES layers -> state-gis.json + that state rebuilds tonight
           rm -rf kpcdata
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json 2>/dev/null || true
+          # Oct 31: ONE missing path made the whole 'git add' fail, so last night's answers (24 US yes / 56 no, 60 Canada yes / 109 no) were never saved
+          for f in data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json; do [ -e "$f" ] && git add "$f"; done; true
           git commit -qm "Key: chat 11's answers applied (BOT A)" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done || true
       - id: p
         env:

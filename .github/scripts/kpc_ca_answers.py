@@ -41,12 +41,13 @@ def main():
     latest = {}
     for r in q:
         if not isinstance(r, dict): continue
-        ans = str(r.get('answer') or '').strip().upper()
+        _a = re.sub(r'^[^A-Za-z]+', '', str(r.get('answer') or '')).upper()   # Oct 31 (Fable #5): first word decides; NOT SURE is neither
+        ans = '' if _a.startswith('NOT') else (re.match(r'(YES|NO)\b', _a).group(1) if re.match(r'(YES|NO)\b', _a) else '')
         ref, nm = str(r.get('ref') or ''), str(r.get('record_name') or '').strip()
         if ans not in ('YES', 'NO') or not ref or not nm: continue
         latest[(ref, nm.lower())] = r
     for (ref, _), r in latest.items():
-        ans = str(r['answer']).strip().upper(); nm = str(r['record_name']).strip()
+        _a = re.sub(r'^[^A-Za-z]+', '', str(r['answer'])).upper(); ans = re.match(r'(YES|NO)\b', _a).group(1); nm = str(r['record_name']).strip()
         cc = str(r.get('area') or '').upper().replace('CA-', '')[:2] or 'CA'
         by = str(r.get('checked_by') or '')
         if ans == 'YES' and 'auto' in by.lower() and re.search(r'\beea\b|nationally designated|natura ?2000', str(r.get('layer') or ''), re.I):

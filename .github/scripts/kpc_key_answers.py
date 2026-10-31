@@ -78,8 +78,11 @@ def key_id(row, lmap):
 
 
 def answer_of(row):
-    a = str(row.get('answer') or '').strip().upper()
-    return a if a in ('YES', 'NO') else ''
+    # Oct 31 (Fable review #5): the FIRST word decides ('Yes.', 'YES (sector 2)', '**NO**'); NOT SURE is neither
+    a = re.sub(r'^[^A-Za-z]+', '', str(row.get('answer') or '')).upper()
+    if a.startswith('NOT'): return ''
+    m = re.match(r'(YES|NO)\b', a)
+    return m.group(1) if m else ''
 
 
 def st_of(row):

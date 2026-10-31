@@ -55,7 +55,7 @@ jobs:
                   p = pathlib.Path(f); old = set(p.read_text().split()) if p.exists() else set(); p.write_text(' '.join(sorted(old | new)) + '\n')
                   print(f'::notice title=New parks::{f}: + {" ".join(sorted(new))} (rebuilt tonight)')
           PY
-          git add data/us-key/answers-states.txt data/ca-key/answers-provinces.txt 2>/dev/null || true   # Oct 30 (HQ 7:40 AM (b)): a new US / CA park with no outline gets its Fable-book row
+          for f in data/us-key/answers-states.txt data/ca-key/answers-provinces.txt; do [ -e "$f" ] && git add "$f"; done; true   # Oct 30 (HQ 7:40 AM (b)): a new US / CA park with no outline gets its Fable-book row
           git add .claude/build/research/fable 2>/dev/null || true
           git add data/new-refs kpc-new-refs.json kpc-announcements.json locations.json locations-ky.json
           git add data/retired-refs.json 2>/dev/null || true
