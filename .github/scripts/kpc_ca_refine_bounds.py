@@ -12,7 +12,7 @@ import glob, json, math, os, pathlib, re, sys, time, urllib.parse, urllib.reques
 UA = {'User-Agent': 'KPC park-map bot (kentuckyportableclub.github.io; ham radio club)'}
 OUT = pathlib.Path('data/canada-bounds')
 CPCAD = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0'
-OFFS = [(0.00005, 5), (0.0001, 10), (0.0002, 20), (0.0004, 45), (0.002, 220)]
+OFFS = [(0.00003, 3), (0.00005, 5)]   # Oct 31 (Fable review #10, R-G6 'never over 5 m'): a park that cannot be read at 5 m keeps its old file (no 220 m fallback)
 LIMIT = int(os.environ.get('LIMIT') or 0)
 DEADLINE = time.time() + float(os.environ.get('MINUTES') or 150) * 60
 LAST = {}

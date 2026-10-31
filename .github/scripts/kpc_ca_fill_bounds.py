@@ -57,6 +57,11 @@ def main():
                 names.append(str(m[1])); srcs.append(str(r.get('src') or 'CPCAD'))
                 if str(m[3]) == 'reviewed-approx': approx = True
             if not rings: continue
+            # Oct 31 (Fable review #10): a rough cached outline (median segment over ~50 m) is NOT written as the park's file: the refine
+            # step fetches it fine (R-G6, 3-5 m); until then the tools draw the record live
+            import math as _mt
+            segs = sorted(_mt.hypot((b[0] - a[0]) * 111320 * _mt.cos(_mt.radians(a[1])), (b[1] - a[1]) * 110574) for rg in rings for ring_ in rg for a, b in zip(ring_, ring_[1:]))
+            if segs and segs[len(segs) // 2] > 50: continue
             props = {'ref': ref, 'name': p.get('n'), 'cpcad': names[0], 'type': p.get('t') or '', 'src': 'KPC checked list (' + ', '.join(sorted(set(srcs)))[:120] + ')',
                      'srcShort': 'KPC checked list (' + (srcs[0] if srcs else 'CPCAD') + ')'}
             if approx: props['approx'] = True

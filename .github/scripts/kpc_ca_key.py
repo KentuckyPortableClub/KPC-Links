@@ -376,6 +376,7 @@ if recs is None:
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     notice('Canada more layers (all)', ' | '.join(_mores))
     notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
+    LAYERS['trl'] = ['file:data/trails/CA-{n}.json']   # Oct 31: Canadian trail parks carry their official line (trl<n> = data/trails/CA-<n>.json)
     try: save_json(OUT / 'layers.json', LAYERS, indent=1)
     except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
     # Oct 22: a provincial map that did not answer must not cost Canada its parks: use the last saved copy instead,
@@ -592,9 +593,17 @@ if _bad and _old_ok:
 # RULE SHEET G (Brandon Oct 29 12:09 / 12:14 / 12:18): one grade per park; a pin well outside its official outline = 'POTA pin may
 # be wrong' (the outline stays). Canada's joins are all the agencies' own named records, so G-1 holds nothing back here.
 _pw = []
+_CTRL = {}
+try: _CTRL = {x['ref']: x for x in json.load(open('data/trails/index-state.json')) if str(x.get('ref', '')).startswith('CA-') and x.get('official') and x.get('kind') != 'WSR'}
+except Exception: pass  # noqa: BLE001
 for _r, _p in _all.items():
     _m = _p.get('m') or []
     _p['g'] = 'pin' if not _m else ('approximate' if any(str(q[3]).startswith('reviewed-approx') for q in _m) else 'official')
+    # Oct 31 (Fable review #10, as in the US key): a Canadian TRAIL park with no outline carries its official trail LINE (data/trails/
+    # index-state.json official, e.g. Bruce Trail, West Coast Trail): id 'trl<n>' = data/trails/CA-<n>.json, grade official, line 1
+    if not _m and _r in _CTRL and os.path.exists(f'data/trails/{_r}.json'):
+        _p['m'] = [[f"trl{_r.split('-')[1]}", _CTRL[_r].get('name') or _p.get('n'), 0, f"official trail line ({_CTRL[_r].get('by') or 'agency'}): the park is the line + POTA's 100-ft band"]]
+        _p['g'] = 'official'; _p['line'] = 1
     if _m and _p.get('far') == 'well outside': _p['pin_may_be_wrong'] = 1; _pw.append(_r)
 if _pw: notice('Canada key', f"{len(_pw)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(_pw[:12])}")
 for _pv, _o, _rp, _rt in PENDING:
