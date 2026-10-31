@@ -1338,6 +1338,7 @@ def run(st):
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
         p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1])) for x in m) else 'official')
+        if m and all('water outline only' in str(x[3]) for x in m): p['g'] = 'approximate'   # Oct 31 (Fable #25): a lake surface is not the park's land line
         if not m and ref in TRL and ref not in DRIVING_ONLY and pathlib.Path(f'data/trails/{ref}.json').exists():
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
             p['g'] = 'official'; p['line'] = 1

@@ -90,7 +90,7 @@ def main():
         pins = {}
         pf = 'CA' if st.startswith('CA-') else st   # Canada's pins are one file (parkinfo/CA.json)
         for pi in (pathlib.Path(f'data/parkinfo/{pf}.json'), pathlib.Path(f'../kpc-data/data/parkinfo/{pf}.json')):
-            pins = {r: (v[5], v[6]) for r, v in ((load(pi) or {}).get('parks') or {}).items() if len(v) > 6 and v[5] is not None}
+            pins = {r: ((abs(v[6]), -abs(v[5])) if abs(v[5]) > 90 else (v[5], v[6])) for r, v in ((load(pi) or {}).get('parks') or {}).items() if len(v) > 6 and v[5] is not None and v[6] is not None}   # Oct 31 (Fable #28)
             if pins: break
         def _km(a, b): return math.hypot((pins[a][1] - pins[b][1]) * 111.32 * math.cos(math.radians(pins[a][0])), (pins[a][0] - pins[b][0]) * 110.57)
         far = [s['id'] for s in spots if s.get('kind') == 'same land' and st_of(s).startswith(LIVE) and len(s.get('refs') or []) > 1

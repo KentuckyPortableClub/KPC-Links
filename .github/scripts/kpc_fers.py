@@ -129,7 +129,10 @@ def pins():
             if v[5] is not None: P[r] = (v[0], v[5], v[6], v[1], v[2], f.stem[3:])
     try:
         for r, v in json.load(open('data/parkinfo/CA.json'))['parks'].items():
-            if v[5] is not None and len(v) > 10: P[r] = (v[0], v[5], v[6], v[1], v[2], 'CA-' + v[10])
+            if v[5] is not None and len(v) > 10:
+                la_, lo_ = v[5], v[6]
+                if abs(la_) > 90: la_, lo_ = abs(lo_), -abs(la_)   # Oct 31 (Fable #28): a swapped Canadian pin (Churchill WMA), as the Canada key does
+                P[r] = (v[0], la_, lo_, v[1], v[2], 'CA-' + v[10])
     except Exception: pass  # noqa: BLE001
     try:   # Kentucky's parks live in kpc-ky-data.json (data/parkinfo/KY.json is the Cayman Islands)
         for x in json.load(open('kpc-ky-data.json')).get('parks') or []:
@@ -2994,7 +2997,7 @@ def main():
                 ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
                 sp = {'refs': sorted([a, b]), 'kind': 'same land', 'center': [round(sum(ys) / len(ys), 6), round(sum(xs) / len(xs), 6)],
                       'box': [round(min(xs), 5), round(min(ys), 5), round(max(xs), 5), round(max(ys), 5)],
-                      'shape': [[round(q[0], 6), round(q[1], 6)] for q in ring[::max(1, len(ring) // 80)]],
+                      'shape': [[round(q[0], 6), round(q[1], 6)] for q in sharp_shape(ring)],
                       'passes': [1, 1, 1], 'status': 'candidate', 'label': 'Same land, two park numbers', 'found': today,   # ruling Oct 27 8:10 AM: shown, labelled plainly
                       'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
                       'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}

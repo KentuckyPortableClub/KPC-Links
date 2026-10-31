@@ -17,7 +17,9 @@ def pins(pdir):
     for f in glob.glob(os.path.join(pdir, 'US-*.json')) + [os.path.join(pdir, 'CA.json')]:
         try:
             for r, v in json.load(open(f))['parks'].items():
-                if len(v) > 6 and v[5] is not None and v[6] is not None and (v[5] or v[6]): P[r] = (v[5], v[6], str(v[0]), str(v[2]) if len(v) > 2 else '')
+                if len(v) > 6 and v[5] is not None and v[6] is not None and (v[5] or v[6]):
+                    la_, lo_ = (abs(v[6]), -abs(v[5])) if abs(v[5]) > 90 else (v[5], v[6])   # Oct 31 (Fable #28): swapped Canadian pins
+                    P[r] = (la_, lo_, str(v[0]), str(v[2]) if len(v) > 2 else '')
         except Exception: pass  # noqa: BLE001
     return P
 
