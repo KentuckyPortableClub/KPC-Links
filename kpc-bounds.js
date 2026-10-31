@@ -418,7 +418,7 @@
        by the world bot in data/world-bounds/CC/<n>.json, 100 parks to a file */
     if (!fs.length) {
       const num = parseInt(String(ref).split('-')[1], 10), sh = await dget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => null), b = sh && sh[ref];
-      if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + ' (saved by KPC)' });
+      if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + (b.d && b.d > 5 ? ' (saved by KPC, simplified to about ' + b.d + ' m: a very big park)' : ' (saved by KPC)') });
     }
     if (!fs.length) return { state: 'error' };
     const nm = (m.find(x => L[x[2]]) || m[0])[1], how = m.map(x => String(x[3] || ''));

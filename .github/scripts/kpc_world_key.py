@@ -405,6 +405,7 @@ def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in
 # 3 m (never over 5 m), never 'every Nth point'. '_f' keeps each record's ring at that detail (Douglas-Peucker, FINE_TOL degrees of
 # latitude; ~3.3 m by default) for the saved website copy; '_r' (thinned) stays what pin-inside is judged on, exactly as before.
 FINE_TOL = float(os.environ.get('FINE_TOL') or 0.00003)
+FINE_CAP = int(os.environ.get('FINE_CAP') or 1500)   # points a saved park may hold at most (Brandon Oct 31: cap the very big ones)
 FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1'   # ON for the size test only until Brandon / HQ OK the storage
 def _dp(pts, tol):
     if len(pts) < 3: return pts
@@ -1050,15 +1051,26 @@ for cc in COUNTRIES:
                 # light enough for a phone: the 12 biggest pieces, 50 points each (a guide outline, labelled as saved by KPC)
                 def _area(rg):
                     xs, ys = [q[0] for q in rg], [q[1] for q in rg]; return (max(xs) - min(xs)) * (max(ys) - min(ys))
-                keep = []
-                for rg, is_fine in sorted(polys, key=lambda x: _area(x[0]), reverse=True):
-                    if is_fine: pts = [[q[0], q[1]] for q in rg]   # Oct 31: every piece at <= ~3 m (R-G6)
-                    else:
+                keep = []; det = None
+                if any(f for _, f in polys):
+                    # Brandon Oct 31 5:40 PM: '3 m wherever it fits, cap the very big ones, label their detail, and 2-fers always
+                    # come from the full live detail'. A park keeps every piece at 3 m when it fits FINE_CAP points; a bigger park is
+                    # simplified a step coarser (6, 12, 24 m ...) until it fits, and its detail is written on it ('d', metres).
+                    tol = FINE_TOL
+                    while True:
+                        cand = [_dp(rg, tol) if tol > FINE_TOL else rg for rg, f in polys if f]
+                        if sum(len(c) for c in cand) <= FINE_CAP or tol > 0.01: break
+                        tol *= 2
+                    det = round(tol * 111320)
+                    for rg in sorted(cand, key=_area, reverse=True):
+                        pts = [[round(q[0], 6), round(q[1], 6)] for q in rg]
+                        if len(pts) >= 3: keep.append(pts if pts[0] == pts[-1] else pts + [pts[0]])
+                else:
+                    for rg, _f in sorted(polys, key=lambda x: _area(x[0]), reverse=True)[:12]:   # old coarse copies: the 12 biggest, as before
                         k = max(1, len(rg) // 50); pts = [[round(q[0], 4), round(q[1], 4)] for q in rg[::k]]
-                    if len(pts) >= 3: keep.append(pts if pts[0] == pts[-1] else pts + [pts[0]])
-                if not any(f for _, f in polys): keep = keep[:12]   # old coarse copies: the 12 biggest, as before
+                        if len(pts) >= 3: keep.append(pts + [pts[0]])
                 num = int(re.sub(r'\D', '', ref.split('-', 1)[1]) or 0)
-                if keep: shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': keep}
+                if keep: shards.setdefault(num // 100, {})[ref] = dict({'n': mm[0][1], 's': mm[0][2], 'r': keep}, **({'d': det} if det else {}))
         if BD.exists():                       # Oct 25: only shards that no longer exist are removed; the rest are written only if they changed
             for old_f in BD.glob('*.json'):
                 if old_f.stem.isdigit() and int(old_f.stem) not in shards: old_f.unlink()
