@@ -373,6 +373,13 @@
     const k = await caCache[pv], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length || p.g === 'pin') return { state: 'none', site: p.a || null, pinOff: !!p.pin_may_be_wrong };
     const L = await CALAY, by = {};
+    /* Oct 31 (chat 2): a Canadian trail park = its official trail line, m [['trl<n>', name, 0, 'official trail line (…)']], layers.json trl ['file:data/trails/CA-{n}.json'] */
+    const trl = m.filter(x => /^trl/.test(String(x[0])));
+    if (trl.length && trl.length === m.length) {
+      const T = (L.trl || [])[0] || 'file:data/trails/CA-{n}.json';
+      const fs = (await Promise.all(trl.map(x => dfetch(String(T).replace(/^file:/, '').replace('{n}', String(x[0]).slice(3))).then(r => r.ok ? r.json() : null).catch(() => null)))).flatMap((j, i) => !j ? [] : (j.type === 'FeatureCollection' ? j.features || [] : [j]).filter(f => f && f.geometry).map(f => (f._src = 'the official trail line', f._line = true, f._nm = trl[i][1] || ref, f._bb = bbox(f.geometry), f._approx = false, f._why = '', f._info = '', f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }), f)));
+      return fs.length ? { state: 'ok', fs, approx: false, why: '', line: true, pinOff: !!p.pin_may_be_wrong } : { state: 'error' };
+    }
     m.forEach(x => { const s = String(x[0]), i = s.lastIndexOf(':'), pre = i < 0 ? 'cpcad' : s.slice(0, i), id = i < 0 ? s : s.slice(i + 1); (L[pre] || []).forEach(u => (by[u] = by[u] || []).push(id)); });
     const want = new Set(m.map(x => String(x[1] || '').toLowerCase().replace(/\s+/g, ' ').trim()));
     const fs = (await Promise.all(Object.entries(by).map(([u, ids]) => jget(u + '/query?' + new URLSearchParams({ objectIds: ids.slice(0, 40).join(','), outFields: '*', returnGeometry: true, outSR: 4326, maxAllowableOffset: 0.0002, geometryPrecision: 5, f: 'geojson' }), null, 30000)

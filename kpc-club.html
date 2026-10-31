@@ -84,7 +84,27 @@
 <h1>KPC <span>CLUB ROOM</span></h1>
 <p class="sub">The members' hub: our apps, club stats, the Kentucky County Challenge, Park of the Month, badges, the member list and the Kentucky 2-fers guide.</p>
 </div><img class="th-badge group" src="badge-group.jpg" alt="The KPC founders around a campfire with their radios" loading="lazy"></div></section>
-<nav class="toolnav" aria-label="Club Room"><div class="wrap"><a href="kpc-club.html" aria-current=page>Club Room</a><a href="#whatsnew">What's New</a><a href="#apps">Members' Apps</a><a href="#stats">Club Stats</a><a href="#kentucky-2fers">KY 2-Fers &amp; Land Owners</a><a href="#roster">Member List</a><a href="kpc-recap.html">Monthly Recap</a><a href="parks.html">← KY Parks</a></div></nav>
+<nav class="toolnav" aria-label="Club Room"><div class="wrap"><a href="kpc-club.html" aria-current=page>Club Room</a><a href="#qrzup">QRZ Upload</a><a href="#whatsnew">What's New</a><a href="#apps">Members' Apps</a><a href="#stats">Club Stats</a><a href="#kentucky-2fers">KY 2-Fers &amp; Land Owners</a><a href="#roster">Member List</a><a href="kpc-recap.html">Monthly Recap</a><a href="parks.html">← KY Parks</a></div></nav>
+<section class="section" id="qrzup"><div class="wrap">
+<div class="sec-head"><div><div class="kicker">MEMBERS • LOG UPLOAD</div><h2>Upload your log to QRZ</h2></div></div>
+<style>#qrzUp{background:rgba(213,166,58,.10);border:1px solid rgba(240,201,107,.35);border-radius:14px;padding:14px 16px;max-width:760px}#qrzUp h3{margin:0 0 6px;font-size:15px;letter-spacing:.06em}#qrzUp .qu-step{margin:0 0 14px}#qrzUp .qu-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}#qrzUp input[type=password],#qrzUp input[type=text]{flex:1 1 200px;min-width:0;min-height:44px;padding:8px 10px;border-radius:8px;border:1px solid rgba(240,201,107,.5);background:var(--card,#fff);color:inherit;font:inherit}#qrzUp button,#qrzUp .qu-file{min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid rgba(240,201,107,.6);background:transparent;color:inherit;font:800 13px/1.2 inherit;letter-spacing:.04em;cursor:pointer}#qrzUp button.go{background:#d5a63a;color:#111;border-color:#d5a63a}#qrzUp button:disabled{opacity:.5;cursor:not-allowed}#qrzUp .qu-small{font-size:12.5px;opacity:.85;margin:6px 0 0}#qrzUp label.qu-rem{display:flex;gap:6px;align-items:center;font-size:13px}#qrzUp table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}#qrzUp th,#qrzUp td{text-align:left;padding:4px 6px;border-bottom:1px solid rgba(240,201,107,.25);word-break:break-word}#qrzUp .qu-bar{height:8px;border-radius:99px;background:rgba(127,127,127,.25);overflow:hidden;margin:10px 0 4px}#qrzUp .qu-bar i{display:block;height:100%;width:0;background:#3ecf6e;transition:width .2s}#qrzUp .qu-msg{font-weight:700;margin:8px 0 0}#qrzUp .qu-msg.bad{color:#c0392b}#qrzUp input[type=file]{max-width:100%}</style>
+<div id="qrzUp">
+ <div class="qu-step"><h3>1. YOUR QRZ LOGBOOK KEY</h3>
+  <div class="qu-row"><input id="quKey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your QRZ logbook API key" aria-label="QRZ logbook API key"><button type="button" id="quEye">👁 SHOW</button><button type="button" class="go" id="quSave">SAVE KEY</button></div>
+  <div class="qu-row" style="margin-top:8px"><span id="quKeyNow"></span><button type="button" id="quForget" hidden>FORGET KEY</button><button type="button" id="quTest">TEST KEY</button></div>
+  <label class="qu-rem"><input type="checkbox" id="quRem" checked> Remember on this device</label>
+  <p class="qu-small">Your key stays on this device. Get it at QRZ.com → Logbook → Settings (needs a QRZ subscription with the logbook API).</p></div>
+ <div class="qu-step"><h3>2. PICK YOUR ADIF FILE</h3>
+  <input type="file" id="quFile" accept=".adi,.adif,.ADI,.ADIF,text/plain" aria-label="ADIF log file">
+  <p class="qu-small">The file is read on your phone or computer; nothing is uploaded to our site.</p>
+  <p id="quCount" class="qu-small" aria-live="polite"></p><div id="quPrev"></div></div>
+ <div class="qu-step" style="margin:0"><h3>3. SEND TO QRZ</h3>
+  <div class="qu-row"><button type="button" class="go" id="quSend" disabled>SEND TO MY QRZ LOGBOOK</button><button type="button" id="quStop" hidden>STOP</button><span id="quProg" class="qu-small" aria-live="polite"></span></div>
+  <div class="qu-bar"><i id="quBar"></i></div><p id="quMsg" class="qu-msg" aria-live="polite"></p>
+  <p class="qu-small">About one contact a second. Contacts already in your logbook are skipped by QRZ.</p></div>
+</div>
+</div></section>
+<script src="kpc-cat.js?v=20261026c" defer></script><script src="kpc-qrz-upload.js?v=20261031a" defer></script>
 <section class="section" id="whatsnew"><div class="wrap">
 <div class="sec-head"><div><div class="kicker">MEMBERS • WEEKLY RELEASE</div><h2>What's New This Week</h2></div></div>
 <style>#whatsnew .rel{background:rgba(213,166,58,.10);border:1px solid rgba(240,201,107,.35);border-radius:14px;padding:14px 16px}#whatsnew .rel-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}#whatsnew .rel-h span{opacity:.75;font-size:13px}#whatsnew ul{margin:8px 0 0;padding-left:18px}#whatsnew li{margin:6px 0;line-height:1.45}#whatsnew .rel-k{font:900 11px Arial,sans-serif;letter-spacing:1px;color:#b07a16;white-space:nowrap}#whatsnew .rel-old{margin-top:10px}#whatsnew .rel-old summary{cursor:pointer;font:900 12px Arial,sans-serif;letter-spacing:1px}#whatsnew .rel-ntc{font-size:12.5px;opacity:.85;margin:8px 0 0}#whatsnew .rel-empty{margin:0;line-height:1.5}#whatsnew .rel-b+.rel-b{margin-top:12px;border-top:1px solid rgba(240,201,107,.25);padding-top:10px}</style>
