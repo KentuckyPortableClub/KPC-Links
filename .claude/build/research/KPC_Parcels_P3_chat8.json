@@ -9,7 +9,7 @@
  },
  "US-11355": {
   "st": "AR",
-  "name": "Cook’s Lake Nature Center Nature Recreation Area",
+  "name": "Cook\u2019s Lake Nature Center Nature Recreation Area",
   "owner": "ARKANSAS GAME AND FISH FOUNDATION",
   "parcel": "001-00422-000",
   "acres": "",
@@ -219,45 +219,49 @@
  },
  "US-13291": {
   "st": "NV",
-  "name": "Chinese in Nevada-#29 State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "marker",
+  "owner": "SPARKS CITY OF",
+  "parcel": "57587",
+  "why_not": "marker: pin only regardless (R-G10 public)"
  },
  "US-13303": {
   "st": "NV",
-  "name": "Derby Diversion Dam State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "Derby Diversion Dam marker",
+  "owner": "UNION PACIFIC RAILROAD COMPANY",
+  "parcel": "95001",
+  "why_not": "marker: pin only regardless (R-G10 private)"
  },
  "US-13306": {
   "st": "NV",
-  "name": "Reno Nevada State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "Reno marker",
+  "owner": "WASHOE COUNTY",
+  "parcel": "21753",
+  "why_not": "marker: pin only regardless (R-G10 public)"
  },
  "US-13319": {
   "st": "NV",
-  "name": "Truckee River - West State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "Truckee River West marker",
+  "result": "no parcel at pin",
+  "why_not": "marker: pin only regardless; unparceled land"
  },
  "US-13322": {
   "st": "NV",
-  "name": "Grand Army Of The Republic Memorial Tree State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "GAR Memorial Tree marker",
+  "owner": "UNIVERSITY OF NEVADA RENO",
+  "parcel": "11135",
+  "why_not": "marker: pin only regardless (R-G10 public)"
  },
  "US-13368": {
   "st": "NV",
-  "name": "Franktown Nevada State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "Franktown marker",
+  "result": "no parcel at pin",
+  "why_not": "marker: pin only regardless; unparceled land"
  },
  "US-13454": {
   "st": "NV",
-  "name": "Steamboat Springs Nevada State Historical Monument",
-  "result": "pending-lookup",
-  "why_not": "filed 8-parcel-nv-washoe.json on lookup branch (Oct 30)"
+  "name": "Steamboat Springs marker",
+  "result": "no parcel at pin",
+  "why_not": "marker: pin only regardless; unparceled land"
  },
  "US-8526": {
   "st": "ND",
