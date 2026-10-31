@@ -115,5 +115,21 @@
     return n;
   }
   function byPark(recs) { const g = {}; recs.forEach(r => { const k = String(r.MY_SIG_INFO || '').toUpperCase().trim() || 'NO-PARK'; (g[k] = g[k] || []).push(r); }); return g; }
-  window.KPCAdif = { parse, write, record, check, fix, fixAll, byPark, bandOf, BANDS: BANDS.map(b => b[0]), MODES, PARK };
+  /* Oct 31 (Brandon 4:25 PM: 'make it work for anyones logs … top of the line'): helpers for the stats + map */
+  function when(r) { const d = String(r.QSO_DATE || ''), t = String(r.TIME_ON || '').padEnd(6, '0'); if (!/^\d{8}$/.test(d) || !/^\d{6}$/.test(t)) return null;
+    const ms = Date.UTC(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6, 8), +t.slice(0, 2), +t.slice(2, 4), +t.slice(4, 6)); return isFinite(ms) ? ms : null; }
+  function gridLL(g) { g = String(g || '').trim(); if (!/^[A-R]{2}\d{2}([A-X]{2})?/i.test(g)) return null; g = g.toUpperCase();
+    let lo = (g.charCodeAt(0) - 65) * 20 - 180, la = (g.charCodeAt(1) - 65) * 10 - 90; lo += +g[2] * 2; la += +g[3];
+    if (g.length >= 6) { lo += (g.charCodeAt(4) - 65) * (2 / 24) + 1 / 24; la += (g.charCodeAt(5) - 65) * (1 / 24) + 1 / 48; } else { lo += 1; la += 0.5; } return [la, lo]; }
+  /* ADIF LAT / LON: 'N037 12.345' style */
+  function adifDeg(v) { const m = /^([NSEW])(\d{3}) (\d{1,2}(?:\.\d+)?)$/i.exec(String(v || '').trim()); if (!m) return null; const d = +m[2] + (+m[3]) / 60; return /[SW]/i.test(m[1]) ? -d : d; }
+  function ll(r, mine) { const P = mine ? 'MY_' : ''; const la = adifDeg(r[P + 'LAT']), lo = adifDeg(r[P + 'LON']); if (la != null && lo != null) return [la, lo]; return gridLL(r[P + 'GRIDSQUARE']); }
+  function km(a, b) { const R = 6371, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]), h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); }
+  /* the common ADIF fields, with a plain description (the column chooser and the field picker show these) */
+  const FIELDS = { CALL: 'Their call sign', QSO_DATE: 'Date (UTC) YYYYMMDD', TIME_ON: 'Start time (UTC) HHMM', TIME_OFF: 'End time (UTC)', QSO_DATE_OFF: 'End date (UTC)', BAND: 'Band, like 20m', FREQ: 'Frequency in MHz', BAND_RX: 'Receive band', FREQ_RX: 'Receive frequency (MHz)',
+    MODE: 'Mode (ADIF list)', SUBMODE: 'Submode, like FT4 or USB', RST_SENT: 'Report sent', RST_RCVD: 'Report received', NAME: 'Their name', QTH: 'Their town', STATE: 'Their state / province', CNTY: 'Their county', COUNTRY: 'Their country', DXCC: 'Their DXCC number', GRIDSQUARE: 'Their grid square',
+    LAT: 'Their latitude', LON: 'Their longitude', SIG: 'Their program (POTA)', SIG_INFO: 'Their park (P2P)', POTA_REF: 'Their park (POTA field)', SOTA_REF: 'Their summit', WWFF_REF: 'Their WWFF area', COMMENT: 'Comment', NOTES: 'Notes', TX_PWR: 'My power (W)', RX_PWR: 'Their power (W)',
+    STATION_CALLSIGN: 'Call used on the air (my station / club)', OPERATOR: 'Operator who made the contact', OWNER_CALLSIGN: 'Owner of the station', MY_GRIDSQUARE: 'My grid square', MY_LAT: 'My latitude', MY_LON: 'My longitude', MY_STATE: 'My state', MY_CNTY: 'My county', MY_SIG: 'My program (POTA)', MY_SIG_INFO: 'My park',
+    MY_POTA_REF: 'My park (POTA field)', MY_SOTA_REF: 'My summit', MY_WWFF_REF: 'My WWFF area', MY_RIG: 'My radio', MY_ANTENNA: 'My antenna', CONTEST_ID: 'Contest', SRX: 'Serial received', STX: 'Serial sent', QSL_SENT: 'QSL sent', QSL_RCVD: 'QSL received', LOTW_QSL_SENT: 'LoTW sent', LOTW_QSL_RCVD: 'LoTW received', EQSL_QSL_SENT: 'eQSL sent', QRZCOM_QSO_UPLOAD_STATUS: 'QRZ upload status', PROP_MODE: 'Propagation', SAT_NAME: 'Satellite', EMAIL: 'Their email', AGE: 'Their age', ANT_AZ: 'Antenna heading' };
+  window.KPCAdif = { parse, write, record, check, fix, fixAll, byPark, bandOf, when, gridLL, ll, km, FIELDS, BANDS: BANDS.map(b => b[0]), MODES, PARK, SUB };
 })();
