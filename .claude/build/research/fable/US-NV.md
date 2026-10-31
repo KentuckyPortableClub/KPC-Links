@@ -222,3 +222,9 @@ NOTE: NV State Parks FeatureServer/0 does not exist (wrong layer index); NV SMA 
 
 RETEST (chat 9, Oct 30): NV State Parks is FeatureServer/1 (not /0): 1 of 68 pins inside (Fort Churchill Historic State Park, name match). 
 LAYER | US-NV Fort Churchill | NV State Parks | https://services5.arcgis.com/bQMB4G4scQKPv0h5/arcgis/rest/services/Nevada_State_Parks_Boundaries/FeatureServer/1 | name field: see layer | pin test: 1 name match; layer holds few parks
+
+## chat 9 DRIVING-ROUTE LAYER lines (Oct 31; US DOT / FHWA America's Byways, official line layer, R5 100 ft; names read, pins unchanged)
+LAYER | US-13262 | US DOT / FHWA (US_Scenic_Byways) | https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/61 | name field: NAME | T-2 SURE: park 'Mt. Charleston Scenic Byway' = record 'Mt. Charleston Scenic Byway'
+LAYER | US-13265 | US DOT / FHWA (US_Scenic_Byways) | https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/61 | name field: NAME | T-3 LIKELY (Mt = Mount, Highway vs Scenic Byway): park 'Mt Rose Scenic Byway' = record 'Mount Rose Highway'
+LAYER | US-13267 | US DOT / FHWA (US_Scenic_Byways) | https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/61 | name field: NAME | T-3 LIKELY (extra word Road): park 'Pyramid Lake Road Scenic Byway' = record 'Pyramid Lake Scenic Byway'
+NO MATCH BY NAME YET: US-13259 Great Basin Highway (maybe 'Highway 93' or 'The Loneliest Road in America': alias leads only), US-13266 North Shore Road, US-13268 Sutcliff-Nixon Rd. Other NV records: Lake Tahoe - Eastshore Drive (US-13269, already approximate), Lunar Crater (US-13200, already official).

@@ -99,3 +99,9 @@ LAYER | US-10423 | Idaho Transportation Department (ITD) | https://gis.itd.idaho
 LAYER | US-12349 | Idaho Transportation Department (ITD) | https://gis.itd.idaho.gov/arcgisprod/rest/services/ArcGISOnline/IdahoTransportationLayersForOpenData/MapServer/94 | name field: BywayName1 | T-2 SURE: 'Owyhee Uplands' = record 'Owyhee Uplands' (Idaho part only; the Oregon part is outside Idaho's layer)
 LAYER | US-10422 | Idaho Transportation Department (ITD) | https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6 | name field: BywayName | T-2 SURE: 'Northwest Passage' = record 'Northwest Passage Scenic Byway'
 STILL OPEN (name lists filed 9-drv-nm3): US-10419 Payette River, US-10420 Pioneer Historic, US-10421 International Selkirk Loop (maybe 'Panhandle Historic Rivers' / not in the first 15,000 characters).
+
+## chat 9 DRIVING-ROUTE LAYER lines, Idaho part 2 (Oct 31; ITD, line layer, R5)
+LAYER | US-10419 | Idaho Transportation Department (ITD) | https://gis.itd.idaho.gov/arcgisprod/rest/services/ArcGISOnline/IdahoTransportationLayersForOpenData/MapServer/94 | name field: BywayName1 | T-2 SURE: park 'Payette River National Scenic Byway' = record 'Payette River'
+LAYER | US-10420 | Idaho Transportation Department (ITD) | https://gis.itd.idaho.gov/arcgisprod/rest/services/ArcGISOnline/IdahoTransportationLayersForOpenData/MapServer/94 | name field: BywayName1 | T-2 SURE: park 'Pioneer Historic National Scenic Byway' = record 'Pioneer'
+LAYER | US-10421 | Idaho Transportation Department (ITD) | https://gis.itd.idaho.gov/arcgisprod/rest/services/ArcGISOnline/IdahoTransportationLayersForOpenData/MapServer/94 | name field: BywayName1 | T-3 LIKELY (park also says Loop): park 'International Selkirk Loop National Scenic Byway' = record 'International Selkirk'
+Note: the same list holds 'Panhandle Historic Rivers' (a different byway); do not use it for Selkirk Loop.
