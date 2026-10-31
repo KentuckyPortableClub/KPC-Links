@@ -116,3 +116,15 @@
   2. **(ON CHAT 4's TO-DO, Brandon Oct 28 7:07 AM: 'this is to do'; plan in ft8-app.md)** **PARK TOOLS INSIDE THE KPC APP (no new apps):** Hunters Lounge (spots, parks to hunt), KPC Trip Planner, the Overlap (2-fer) Finder as screens in the existing app, reading the same KPC-Data files as the website; one app, one build.
   3. **'INSTALLABLE' WEBSITE TOOLS (PWA):** trip planner, Overlap Finder, Am I in the Park, Kit, Lounges: 'Add to Home Screen' on any phone incl. iPhone, offline saving for no-signal parks (kpc-finder-v1 cache name never changes). Small chat 1 job.
   Order when Brandon says: 3 (cheap) -> 2 -> 1 (costs money).
+
+## RULE SHEET DRAFT: AUTO-RECHECK BOT for NO / NOT SURE rows (chat 11, Oct 31 9:30 AM, from Brandon: 'bot rechecks, adds info useful to chat 11, puts it back in the waiting room; no timer, runs when 10 or more are queued')
+1. WHAT COUNTS: any question row answered NO or NOT SURE by chat 11 with how = 'names + acres only' (no map seen), and not a road / trailhead / firebreak / 'Internal Roads' line.
+2. WHAT DOES NOT: rows already map-checked (how says so), roads/trailheads/points, rows rechecked once before (ONE automatic recheck per row, never loops).
+3. TRIGGER: runs when 10 or more such rows are queued (no schedule); one batched run, max 60 rows per run, max 2 runs a day; no run when under 10.
+4. SOURCES, best first: the agency record page + attributes; whole-page record shot; map shot at the POTA pin (zoom 14); record size vs the park's expected size.
+5. ADDS to each row (never changes the answer): pin_inside (yes/no/unknown), distance pin to outline, record acres vs expected, name match (same/spelling/part/different), owner/manager, picture names. Rows go back to the question file with 'recheck': {...} and a 'needs chat 11' flag, and into data/waiting/questions/recheck.json.
+6. THE BOT NEVER WRITES YES. Only chat 11 changes the answer. Clear-cut bot notes allowed: 'pin outside outline by >2 km and 10x bigger' is shown as 'bot note: likely stays NO' but the row still waits for chat 11.
+7. UNSURE: row stays as it is, flagged 'bot could not load'.
+8. WHAT PEOPLE SEE: nothing on the site; this is back-room only. Email: failed runs only (EMAIL ONLY FOR REAL ISSUES rule).
+9. EXAMPLES: (a) Frederick Municipal Forest (pin inside, same name, size ok) -> flagged for YES look; (b) Shelbyville record vs Kaskaskia unit (record 6,229 ac, unit 1/5 of it, pin inside parent) -> bot note 'parent, likely NO'; (c) Allens Creek SRA vs Monroe Lake (pin inside but record is the whole lake) -> 'parent'; (d) Ray Norbut East Hannibal unit (record = whole Ray Norbut) -> 'part of record'; (e) Wolf Creek Falls Trail vs Wolf Creek BLM SRMA (record 37 ac, pin 1 km away) -> likely NO; (f) road line -> skipped.
+10. GREY AREAS for Brandon: how big a gap in acres is 'same size' (suggest within 25%); is a pin 'inside' enough when the record is much bigger (no: bigger = parent).
