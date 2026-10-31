@@ -1479,6 +1479,7 @@ WATER_NHT = re.compile(r'lewis (and|&) clark|trail of tears|captain john smith|s
 ROUTE_KM = 3.0          # water within this distance of the route line is the route's water
 BANK = 30.48            # 100 ft from the bank
 WATER_FAIL = []
+WATER_UNCHECKED = set()   # Oct 31 (Fable #22): (river, park) pairs measured from the line because the water map did not answer
 ROUTE_PTS = {}
 
 
@@ -1571,7 +1572,9 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
             # from its line. Pass 1 has no water areas: a river gets RIVER_PAD extra as a screen; passes 2-3 measure exactly.
             wd = None
             if kind == 'river' and PASS >= 2 and str(lref).startswith('US-'):
-                wm = F.area(nhd_water(F.bounds(), rivers_only=True) or [])
+                _wg = nhd_water(F.bounds(), rivers_only=True)
+                if _wg is None: WATER_UNCHECKED.add((lref, oref))   # Oct 31 (Fable #22): no water map here = measured from the line: NOT SURE, never silent
+                wm = F.area(_wg or [])
                 if wm.any(): wd = dt(wm) * CELL      # inside the water: distance to the bank
             if other_is_line: ok = F.lines(other, 2 * ZONE); okd = None
             else:
@@ -2383,6 +2386,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
             for b in range(a + 1, len(refs)):
                 if (refs[a], refs[b]) in KY_DROP: s['status'] = 'dropped: ' + KY_DROP[(refs[a], refs[b])]; return
     if any(r in OWNED_FAIL for r in refs): s['status'] = 'not sure: the agency ownership map did not answer'; return
+    if s.get('kind') == 'river' and not s.get('water_route') and any((x, y) in WATER_UNCHECKED for x in refs for y in refs if x != y): s['water_unchecked'] = True   # Oct 31 (Fable #22)
     if s.get('water_unchecked'):
         s['status'] = 'not sure: water not checked (the USGS water map did not answer for this river bank): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
     if s['kind'] != 'area' and all(water_route(r, LN, PIN) for r in refs):   # Oct 28 (chat 8 KY 4, rule 9): two water routes alone share only the water
