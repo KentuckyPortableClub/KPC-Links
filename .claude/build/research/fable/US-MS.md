@@ -105,3 +105,6 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-8519 | Turkey Creek State Recreation Area | look-up 9-p2-ms (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 3 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
 | US-9849 | | PAD-US at pin: nothing (no public-land record holds the pin) | R-G7 step 4b (owner) | owner listed; Rule G decides | 2 | Oct 29 |
 | US-9849 | Deer Island Coastal Park | look-up 9-p2-ms (state-gis.json layers + BLM rec polygons, FWS approved, NPS legal boundary) | R-G7 step 2 (point at the pin) | P-2: no polygon at the pin (100 m) in 3 layers read (state + BLM rec + FWS + NPS); pin stays | chat 9 | 2026-10-29 |
+
+## chat 9 DRIVING-ROUTE LAYER line (Oct 31; NPS, line layer, R5)
+LAYER | US-0642 | National Park Service (NPS Public Roads) | https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Roads/FeatureServer/0 | name field: RDNAME | filter RDNAME LIKE '%Natchez Trace%' (21 features); official NPS road centerline of the parkway, verify the 21 pieces are the mainline (not side roads) before wiring
