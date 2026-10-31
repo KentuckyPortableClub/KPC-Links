@@ -1,0 +1,23 @@
+# Fable book: US-DC (DC pin-only parks)
+ONE ROW PER PARK. Atlas: agency-atlas/US-DC.md
+
+
+## chat 9 DC / trails probe (Oct 30 ~10 PM, HQ 5:45-6:00 PM): pin test = pin inside the NPS Land Resources Division boundary polygon (nps_boundary, FeatureServer/2); trail lines tested at 150 m from the pin (none touched: pins are not on the line). Container records (the NPS UNIT name, not the park's own name) are LEADS, not name matches.
+| park | name | result |
+|---|---|---|
+| US-0015 | C&O Canal NHP | pin inside NPS boundary 'Chesapeake and Ohio Canal National Historical Park' (same name) -> T-2 SURE |
+| US-0655 | National Mall and Memorial Parks | pin inside NPS boundary 'National Mall' (unit part): LIKELY, check the unit polygon covers the whole park |
+| US-0657 | President's Park | pin inside NPS 'National Capital Parks' (container unit): LEAD only |
+| US-13597 | George Mason Memorial | inside 'National Capital Parks' (container): LEAD only |
+| US-13621 | Desert Shield / Desert Storm Memorial | inside 'National Capital Parks' (container): LEAD only |
+| US-7891 | African American Civil War Memorial | inside 'National Capital Parks' (container): LEAD only |
+| US-4567 | Captain John Smith Chesapeake NHT | NPS boundary layer HAS a polygon for the unit 'Captain John Smith Chesapeake National Historic Trail' (nps_boundary, UNIT_CODE CAJO); pin falls in 'National Capital Parks'. DoD REPI layer MiddleChesapeakeSL/2 (line, NAME) = lead only |
+| US-4581 | Star-Spangled Banner NHT | pin inside 'Fort McHenry National Monument and Historic Shrine' (a different unit): trail line not found yet |
+| US-4582 | Washington-Rochambeau NHT | no NPS polygon at the pin; line not found yet |
+| US-4564 | Potomac Heritage NST | NPS line layer found (below); pin not on the line |
+| US-9898 | Mount Vernon Trail | NPS_Public_Trails has 'Mount Vernon Trail' (unit George Washington Memorial Parkway); pin in the GWMP boundary |
+| US-9901 | Civil War Defenses of Washington NHT | NPS circuit trails layer found (below); pin inside GWMP boundary (container) |
+LAYER | US-4564 Potomac Heritage NST | NPS Potomac Heritage NST centerline | https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/POHE_Trail_Centerline_FTDS_view/FeatureServer/0 | name field: TRNAME | OFFICIAL NPS (credit: Potomac Heritage National Scenic Trail, National Park Service); polyline; trail rule R5 100 ft
+LAYER | US-9901 Civil War Defenses of Washington | NPS NCR Circuit Trails 2023 | https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CWDW_Circuit_Trails_2023_NPS/FeatureServer/19 | name field: NAME | OFFICIAL NPS National Capital Region GIS; polyline; note: 'does not reflect changes after 2023'
+LAYER | US-9898 Mount Vernon NHT | NPS Public Trails (NPS home server) | https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0 | name field: TRLNAME | OFFICIAL NPS; filter TRLNAME = 'Mount Vernon Trail'
+LAYER | US-4567 Captain John Smith Chesapeake NHT | NPS LRD boundary (unit CAJO) | https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2 | name field: UNIT_NAME | OFFICIAL NPS polygon for the trail unit (filter UNIT_CODE = 'CAJO')

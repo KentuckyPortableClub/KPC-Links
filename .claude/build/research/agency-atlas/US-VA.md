@@ -33,3 +33,5 @@ Read FIRST before searching for this state's parks. ADD what you learn (one line
 
 ## Blocks bots / dead / private (don't retry)
 - (add)
+
+- (chat 9, Oct 30) Northern Virginia Regional Commission PHNST service (services5 6MUPhDX27Ne3DNOw, PHNST_Northern_Virginia_WFL1): /30 PHNST Trail line (Name), /18 Park-PHNST Corridor polygons (Name), /3 gaps, /28 planning status; publisher = a regional government body (usable for its own items). NPS POHE centerline is the official line (US-DC.md).

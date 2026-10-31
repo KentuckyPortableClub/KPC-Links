@@ -18,3 +18,5 @@ Read FIRST. Starter layers + the ones to probe for this province: notes/mapping.
 - (add)
 
 - (chat 9, Oct 30) Saskatchewan GeoHub (geohub.saskatchewan.ca) lists: Saskatchewan Parks Boundaries, PCS Regional Parks, ParksAsTitled MapServer/6 (https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6; probe filed), ParksAsLegislated/4 (already used).
+
+- (chat 9, Oct 30) ParksAsTitled/MapServer/6 Regional Park (PARK_NAME; Ministry of Parks, Culture and Sport) tested on 82 no-hit SK pins at 100 m: 2 hits (CA-2912 Willow Bunch = Willow Bunch Jean Louis Legare Regional Park T-3 LIKELY; CA-1156 'Thomas Lake' vs record 'Thomson Lake Regional Park' = spelling variant, check).
