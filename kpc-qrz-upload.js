@@ -31,6 +31,7 @@
   }
   async function send() {
     if (busy || !recs.length) return;
+    $('quGo').hidden = false;
     const u = await relay();
     if (!u) { say('The N4KPC uploader is not switched on yet. Ask Brandon (KZ4CP).', true); return; }
     busy = true; stop = false; $('quSend').hidden = true; $('quStop').hidden = false; $('quFile').disabled = true;
@@ -51,7 +52,7 @@
     const f = $('quFile').files[0]; if (!f) return;
     const rd = new FileReader();
     rd.onload = () => { recs = parse(String(rd.result || '')); const n = recs.length; $('quBar').style.width = '0'; $('quProg').textContent = '';
-      $('quGo').hidden = !n; say(n ? n + ' contact' + (n > 1 ? 's' : '') + ' found.' : 'No contacts found in that file. Pick an ADIF (.adi) log.', !n); };
+      $('quGo').hidden = !n; $('quSend').disabled = !n; say(n ? n + ' contact' + (n > 1 ? 's' : '') + ' found.' : 'No contacts found in that file. Pick an ADIF (.adi) log.', !n); };
     rd.readAsText(f);
   });
   $('quSend').addEventListener('click', send);
