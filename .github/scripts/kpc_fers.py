@@ -2837,7 +2837,15 @@ def main():
         notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
         got, bad = download(parks, need, DET, PREC)
         G.update(got)
+        if bad:   # Oct 30 (chat 2, Iowa came out EMPTY: 180 of 491 outlines not read, Iowa DNR did not answer): one slow second try
+            time.sleep(60); got2, bad = download(parks, sorted(bad), DET, PREC); G.update(got2)
         counts['parks whose outline could not be read'] = len(bad)
+        _withids = sum(1 for r in parks if parks[r].get('ids'))
+        if len(bad) > 20 and len(bad) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
+            hosts = sorted({str(next(iter(parks[r]['ids']), ''))[:6] for r in list(bad)[:200]})
+            print(f"::error title=2-fer line: outlines not read::{len(bad)} of {_withids} parks' outlines could not be read (id prefixes {' '.join(hosts[:8])}): "
+                  "an agency map did not answer. The area stops here, nothing is saved; try it again later.", flush=True)
+            sys.exit(1)
         boxes = {r: bbox_groups(g) for r, g in G.items() if bbox_groups(g)}
         for r in LN:
             if r in parks and r not in boxes:
