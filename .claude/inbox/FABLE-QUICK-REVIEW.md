@@ -13,7 +13,8 @@ You are Fable, opened in a FRESH chat for a quick, READ-ONLY code review. Goal: 
 - KPC-Data `.github/scripts/`: `kpc_layer_collector.py`, `kpc_tiers.py`, `kpc_key_questions.py`, `kpc_key_summary.py`, the waiting room (`kpc_waiting_room.py`, `kpc_release_approved.py`).
 - Pages that draw them: `finder.js` / `kpc-overlap-finder.html`, `kpc-bounds.js`, `kpc-trails-layer.js`.
 
-## Known bugs to explain first (real cases)
+## Known bugs (real cases). #1, #2 (Kentucky), #3, #4, #5 and the release check are ALREADY FIXED by chat 2 / 3 / 10: don't re-report them. CHECK THE FIX IS RIGHT and look for the SAME KIND of bug elsewhere (other states, other rivers / trails, other joins).
+Fixes Oct 31 morning: the 2-fer line now takes a water route's water as the river it follows (not lakes / sloughs inside the park); the access pin's road / lot must be on the parks' own land (no road across a river or state line); the Finder draws the line each river / trail row used (dotted, 'approximate line' note); Kentucky's key carries the three trails' official lines (Am I in the Park counts 100 ft from the line).
 1. **KY river trails:** the card says 'POSSIBLE RIVER OVERLAP: WITHIN 100 FT OF THE RIVER BANK, US-3791 Trail of Tears NHT + US-3793 Ballard WMA + US-4572 Lewis and Clark NHT, 3 stretches, ~25.6 mi'. The card map does NOT draw the trail lines, and the shaded zone near Metropolis, IL is MORE than 100 ft from the river. Is the 100 ft measured from the trail LINE (R5) or the BANK (label)? Why no line drawn? Are the miles right?
 2. **Trails show 'pin' in the key** while the trail file has their lines (Option A, chat 2, Sunday: the key will point trail parks at their official line). Check nothing else assumes trails are polygons.
 3. **AT x Virginia trails filed under Maine**, and **the AT's Georgia pin stretched Maine's area box** (chat 2 fixed both Oct 30): look for the same class of bug elsewhere (multi-state parks, area boxes, cross-state lines).
