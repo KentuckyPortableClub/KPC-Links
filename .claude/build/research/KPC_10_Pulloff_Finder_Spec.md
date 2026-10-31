@@ -102,7 +102,7 @@ Builder: the outside coder (install contract = PART A of `KPC_10_Outside_Tools_S
 
 **How chat 10 wires it.**
 1. Run it monthly, one state per run.
-2. Output goes to `data/access-candidates/US-XX.json` through the waiting room.
+2. Candidates and chips go on the KPC-Data side branch `tools-out` (`pulloffs/`), never on main (BRANCH FIRST, Brandon Oct 31 6:18 PM). Only the chat-11 YES points reach main, in the access file, through the waiting room.
 3. Chat 11 grades it, with the chips.
 4. A YES moves the point into the access file with `kind: "possible pull-off (aerial photo)"`.
 5. The site shows it with the wording above.
