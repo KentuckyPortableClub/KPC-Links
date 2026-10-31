@@ -222,22 +222,36 @@
     $('aeMBar').innerHTML = '<img src="KPC-logo.png" alt="KPC logo" width="58" height="58"><div class="t"><div class="club">KENTUCKY PORTABLE CLUB · N4KPC</div><div class="call">' + esc(m.call) + '</div>' + (m.ops.length ? '<div class="club">op ' + esc(m.ops.join(', ')) + '</div>' : '') + '</div><div class="chips">' + m.items.map(x => '<span>' + esc(x[0]) + ' <b>' + esc(x[1]) + '</b></span>').join('') + '</div>';
     return m;
   }
+  /* Where to put a contact when the log has no grid / lat-lon (Brandon Oct 31 4:54 PM: 'the map shows but the qsos and lines are not there'):
+     their park's pin (POTA), then the middle of their state / province. My station: MY grid, then my park's pin, then SET UP grid. */
+  const STC = { AL: [32.8, -86.8], AK: [61.4, -150.5], AZ: [34.3, -111.7], AR: [34.9, -92.4], CA: [37.2, -119.5], CO: [39.0, -105.5], CT: [41.6, -72.7], DE: [39.0, -75.5], DC: [38.9, -77.0], FL: [28.6, -82.4], GA: [32.7, -83.4], HI: [20.8, -156.3], ID: [44.4, -114.6], IL: [40.0, -89.2], IN: [39.9, -86.3], IA: [42.1, -93.5], KS: [38.5, -98.4], KY: [37.5, -85.3], LA: [31.1, -92.0], ME: [45.4, -69.2], MD: [39.0, -76.8], MA: [42.3, -71.8], MI: [44.3, -85.4], MN: [46.3, -94.3], MS: [32.7, -89.7], MO: [38.4, -92.5], MT: [47.0, -109.6], NE: [41.5, -99.8], NV: [39.3, -116.6], NH: [43.7, -71.6], NJ: [40.2, -74.7], NM: [34.4, -106.1], NY: [42.9, -75.5], NC: [35.6, -79.4], ND: [47.5, -100.5], OH: [40.3, -82.8], OK: [35.6, -97.5], OR: [43.9, -120.6], PA: [40.9, -77.8], RI: [41.7, -71.5], SC: [33.9, -80.9], SD: [44.4, -100.2], TN: [35.9, -86.4], TX: [31.5, -99.3], UT: [39.3, -111.7], VT: [44.1, -72.7], VA: [37.5, -78.9], WA: [47.4, -120.5], WV: [38.6, -80.6], WI: [44.6, -89.9], WY: [43.0, -107.6], PR: [18.2, -66.5],
+    AB: [54.5, -114.5], BC: [53.7, -124.8], MB: [55.0, -97.4], NB: [46.6, -66.4], NL: [53.1, -61.0], NS: [45.0, -63.0], ON: [49.3, -84.5], PE: [46.4, -63.2], QC: [52.0, -71.8], SK: [54.4, -105.9], YT: [63.5, -135.7], NT: [64.8, -119.2], NU: [70.3, -95.0] };
+  let PKC = {}; try { PKC = JSON.parse(localStorage.getItem('kpcAdifParks') || '{}'); } catch (e) {}
+  const refOf = (r, mine) => String((mine ? (r.MY_SIG_INFO || r.MY_POTA_REF) : (r.SIG_INFO || r.POTA_REF)) || '').toUpperCase().split(/[,\s]+/)[0];
+  async function parkPins() {
+    const need = [...new Set(recs.flatMap(r => [refOf(r), refOf(r, true)]).filter(x => /^[A-Z0-9]{1,4}-\d{4,5}$/.test(x) && !(x in PKC)))].slice(0, 60);
+    await Promise.all(need.map(ref => fetch('https://api.pota.app/park/' + encodeURIComponent(ref)).then(r => r.ok ? r.json() : null).then(j => { PKC[ref] = j && isFinite(+j.latitude) && isFinite(+j.longitude) && j.latitude !== null ? [+j.latitude, +j.longitude] : 0; }).catch(() => {})));
+    if (need.length) try { localStorage.setItem('kpcAdifParks', JSON.stringify(PKC)); } catch (e) {}
+  }
+  function placeThem(r) { const p = A.ll(r); if (p) return [p, 'grid']; const k = PKC[refOf(r)]; if (k) return [k, 'park']; const st = STC[String(r.STATE || r.VE_PROV || '').toUpperCase().trim()]; return st ? [st, 'state'] : [null, '']; }
+  function placeMe(r, def) { return A.ll(r, true) || PKC[refOf(r, true)] || def || null; }
   let DRAW = null;
   function drawMap() {
     mapBar();
-    leaflet().then(() => {
+    Promise.all([leaflet(), parkPins()]).then(() => {
       if (!map) { map = L.map('aeMap', { zoomControl: true }).setView([38, -90], 4); L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, crossOrigin: 'anonymous', attribution: '© OpenStreetMap contributors' }).addTo(map); mapL = L.layerGroup().addTo(map); }
       setTimeout(() => map.invalidateSize(), 50); mapL.clearLayers();
       const myDef = A.gridLL(S.mygrid), pts = [], bands = {}; let have = 0; DRAW = { lines: [], dots: [], mine: [], bands };
       const lines = $('aeLines').checked;
-      recs.forEach((r, i) => { const p = A.ll(r); if (!p) return; have++; const me = A.ll(r, true) || myDef, b = String(r.BAND || A.bandOf(r.FREQ) || '').toLowerCase(), c = BCOL[b] || '#d5a63a'; bands[b] = c;
+      const how = { grid: 0, park: 0, state: 0 };
+      recs.forEach((r, i) => { const [p, hw] = placeThem(r); if (!p) return; have++; how[hw]++; const me = placeMe(r, myDef), b = String(r.BAND || A.bandOf(r.FREQ) || '').toLowerCase(), c = BCOL[b] || '#d5a63a'; bands[b] = c;
         if (me && lines) { L.polyline([me, p], { color: c, weight: 1.5, opacity: .55, interactive: false }).addTo(mapL); DRAW.lines.push([me, p, c]); }
-        DRAW.dots.push([p, c]);
-        L.circleMarker(p, { radius: 6, color: '#111', weight: 1, fillColor: c, fillOpacity: .95 }).bindPopup('<b>' + esc(r.CALL || '') + '</b> ' + esc(r.NAME || '') + '<br>' + esc([r.QSO_DATE, r.TIME_ON && r.TIME_ON.slice(0, 4) + 'Z', b, r.SUBMODE || r.MODE].filter(Boolean).join(' · ')) + (r.STATE ? '<br>' + esc(r.STATE) : '') + (r.SIG_INFO ? '<br>Park ' + esc(r.SIG_INFO) : '') + (me ? '<br>' + num(Math.round(A.km(me, p) * 0.621371)) + ' mi' : '') + '<br><a href="#" data-row="' + i + '">EDIT THIS CONTACT</a>').addTo(mapL); pts.push(p); });
-      const mine = [...new Set(recs.map(r => { const m = A.ll(r, true); return m && m.join(','); }).filter(Boolean))].map(s => s.split(',').map(Number)); if (!mine.length && myDef) mine.push(myDef);
+        DRAW.dots.push([p, c, hw]);
+        L.circleMarker(p, { radius: hw === 'state' ? 5 : 6, color: hw === 'state' ? c : '#111', weight: hw === 'state' ? 2 : 1, fillColor: c, fillOpacity: hw === 'state' ? .35 : .95 }).bindPopup('<b>' + esc(r.CALL || '') + '</b> ' + esc(r.NAME || '') + '<br>' + esc([r.QSO_DATE, r.TIME_ON && r.TIME_ON.slice(0, 4) + 'Z', b, r.SUBMODE || r.MODE].filter(Boolean).join(' · ')) + (r.STATE ? '<br>' + esc(r.STATE) : '') + (r.SIG_INFO ? '<br>Park ' + esc(r.SIG_INFO) : '') + (me ? '<br>' + num(Math.round(A.km(me, p) * 0.621371)) + ' mi' : '') + '<br><a href="#" data-row="' + i + '">EDIT THIS CONTACT</a>').addTo(mapL); pts.push(p); });
+      const mine = [...new Set(recs.map(r => { const m = A.ll(r, true) || PKC[refOf(r, true)]; return m && m.join(','); }).filter(Boolean))].map(s => s.split(',').map(Number)); if (!mine.length && myDef) mine.push(myDef);
       mine.forEach(m => { L.marker(m, { icon: L.divIcon({ className: '', html: '<span class="ae-me">★</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).bindPopup('My station').addTo(mapL); pts.push(m); DRAW.mine.push(m); });
       if (pts.length) map.fitBounds(L.latLngBounds(pts), { padding: [24, 24], maxZoom: 8 });
-      $('aeMapN').innerHTML = num(have) + ' of ' + num(recs.length) + ' contacts have a place (GRIDSQUARE or LAT / LON).' + (have < recs.length ? ' Add their grid squares to see the rest.' : '') + (mine.length ? '' : ' Set MY grid in ⚙ SET UP (or MY_GRIDSQUARE) to draw lines from you.') +
+      $('aeMapN').innerHTML = num(have) + ' of ' + num(recs.length) + ' contacts on the map' + (how.park || how.state ? ' (' + [how.grid && num(how.grid) + ' by grid square', how.park && num(how.park) + ' at their park', how.state && num(how.state) + ' in the middle of their state: faint dots, rough'].filter(Boolean).join(', ') + ')' : '') + '.' + (have < recs.length ? ' The rest have no grid square, park or state: add one to see them.' : '') + (mine.length ? '' : ' Set MY grid in ⚙ SET UP (or MY_GRIDSQUARE) to draw lines from you.') +
         '<span class="ae-key">' + Object.entries(bands).map(([b, c]) => '<span><i style="background:' + c + '"></i>' + esc(b || '?') + '</span>').join('') + '</span>';
     }).catch(() => { $('aeMapN').textContent = 'The map could not load. Check your signal and tap MAP again.'; });
   }
@@ -266,7 +280,7 @@
     box.querySelectorAll('.leaflet-tile-pane img.leaflet-tile').forEach(im => { if (!im.complete || !im.naturalWidth) return; const r = im.getBoundingClientRect(); c.drawImage(im, r.left - R.left, r.top - R.top, r.width, r.height); });
     const P = ll => map.latLngToContainerPoint(ll);
     DRAW.lines.forEach(([a, b, col]) => { const p = P(a), q = P(b); c.strokeStyle = col; c.globalAlpha = .6; c.lineWidth = 1.5; c.beginPath(); c.moveTo(p.x, p.y); c.lineTo(q.x, q.y); c.stroke(); }); c.globalAlpha = 1;
-    DRAW.dots.forEach(([a, col]) => { const p = P(a); c.fillStyle = col; c.strokeStyle = '#111'; c.lineWidth = 1; c.beginPath(); c.arc(p.x, p.y, 6, 0, 7); c.fill(); c.stroke(); });
+    DRAW.dots.forEach(([a, col, hw]) => { const p = P(a), st = hw === 'state'; c.globalAlpha = st ? .45 : 1; c.fillStyle = col; c.strokeStyle = st ? col : '#111'; c.lineWidth = st ? 2 : 1; c.beginPath(); c.arc(p.x, p.y, st ? 5 : 6, 0, 7); c.fill(); c.globalAlpha = 1; c.stroke(); });
     DRAW.mine.forEach(a => { const p = P(a); c.font = '900 26px Arial'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 4; c.strokeStyle = '#111'; c.strokeText('★', p.x, p.y); c.fillStyle = '#ffd34d'; c.fillText('★', p.x, p.y); c.textAlign = 'left'; c.textBaseline = 'alphabetic'; });
     c.restore();
     /* band key + credit */

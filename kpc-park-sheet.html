@@ -22,7 +22,7 @@
 <script src="kpc-tools.js?v=20261027a"></script>
 <script src="kpc-bounds.js?v=20261031g"></script>
 <script src="kpc-map-tools.js?v=20261027a"></script>
-<script src="kpc-closures.js?v=20261029f"></script>
+<script src="kpc-unofficial.js?v=20261031a"></script><script src="kpc-closures.js?v=20261029f"></script>
 <script src="kpc-facilities.js?v=20261025b"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261030a">
 </head>
@@ -226,6 +226,7 @@ async function make(){$('msg').textContent='Making the sheet…';const p=await f
  <div class="ps-grid"><div class="ps-box"><small>GPS (${PG} POINT)</small><b><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${p.la},${p.lo}">${(+p.la).toFixed(5)}, ${(+p.lo).toFixed(5)}</a></b></div><div class="ps-box"><small>GRID SQUARE</small><b>${grid}</b></div><div class="ps-box"><small>${p.ky?'NEAREST TOWNS':p.us===false?'WHERE':'COUNTY'}</small><b>${p.ky?towns.map(t=>`${t[1].toFixed(0)} mi ${t[2]} of ${esc(t[0])}`).join('<br>'):esc(X.county||(p.us===false?p.where:'')||'—')}</b></div><div class="ps-box"><small>ACTIVATED</small><b>${actBox}</b></div></div>
  <div class="ps-grid" style="grid-template-columns:1fr;margin-top:-4px"><div class="ps-box"><small>NOAA WEATHER RADIO${X.county?' ('+esc(X.county).toUpperCase()+' CO.)':''}: THE WX BUTTON ON MOST HTs</small><b style="font-size:13px">${radio}</b></div></div>
  <div class="ps-qr"><div class="ps-q"><div class="qr" id="qr1"></div><a class="ps-a" href="${esc(off)}"><b>OFFICIAL MAP / SITE</b></a><span>${esc(short(off))}</span></div><div class="ps-q"><div class="qr" id="qr2"></div><a class="ps-a" href="${potaU}"><b>${PG==='POTA'?'POTA PARK PAGE':PG==='WWFF'?'WWFF PAGE':'SOTLAS SUMMIT PAGE'}</b></a><span>${esc(short(potaU))}</span></div><div class="ps-q"><div class="qr" id="qr3"></div><a class="ps-a" href="${dirU}"><b>DIRECTIONS</b></a><span>Google Maps to the POTA point</span></div></div>
+ <div data-unoff="${esc(p.c||p.ref||'')}" data-has="${p.off?'map':''} ${p.web?'page':''}"></div>
  ${ap.length?`<div class="ps-h">Official parking &amp; access points</div><ul class="ps-list">${ap.map(a=>`<li><a class="ps-a" href="https://www.google.com/maps/search/?api=1&query=${a[0]},${a[1]}">${a[0].toFixed(5)}, ${a[1].toFixed(5)}</a> — ${esc(a[2])}</li>`).join('')}</ul>`:`<div class="ps-h">Parking &amp; access</div><p style="font-size:13px;margin:0">${p.acc?`${p.acc} access points for this park are in the KPC POTA map file (KML/GPX) on the Parks page.`:'Check the official map for parking and access, or search “parking” at the POTA point in Google or Apple Maps.'}</p>`}
  <div class="ps-h">Also here — other programs</div><ul class="ps-list">${extrasL.map(x=>`<li>${x}</li>`).join('')||'<li>No 2-fers, WWFF or SOTA references found for this park.</li>'}</ul>
  ${(X.stay||[]).length||(X.shel||[]).length||p.ky?'<div class="ps-h">Where to stay</div>'+stay+shel:''}
