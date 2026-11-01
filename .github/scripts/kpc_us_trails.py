@@ -9,6 +9,10 @@ lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for th
 import re, json, os, sys, time, urllib.request, urllib.parse
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
 T = json.load(open(os.path.join(os.path.dirname(__file__), 'kpc_us_trails.json')))
+try:   # Nov 1 (chat 2): SURE line finds from the outside research for trail parks still a pin (kpc_finds_lines.py, EXTRA_TRAILS)
+    _have = {x['ref'] for x in T}
+    T += [x for x in json.load(open(os.environ['EXTRA_TRAILS'])) if x['ref'] not in _have] if os.environ.get('EXTRA_TRAILS') else []
+except Exception as _e: print(f'extra trails not read: {_e}')  # noqa: BLE001
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
 def get(u, t=90):
     for i in range(3):
@@ -59,11 +63,12 @@ def oid(u, lid):
         try: OIDF[k] = get(k + '?f=json').get('objectIdField') or 'OBJECTID'
         except Exception: OIDF[k] = 'OBJECTID'
     return OIDF[k]
+GEOM = None   # Nov 1: an envelope [xmin, ymin, xmax, ymax] around the pin for found lines (a same-named trail elsewhere stays out)
 WHERE = '1=1'   # Nov 1 (chat 2, Brandon: the DC trails): a source may name a filter ('where') when the layer holds more than this trail
 def fetch(u, lid):
     feats, off = [], 0
     while True:
-        q = urllib.parse.urlencode({'where': WHERE, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
+        q = urllib.parse.urlencode({'where': WHERE, **({'geometry': ','.join(map(str, GEOM)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'} if GEOM else {}), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
                                     'geometryPrecision': 6, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'geojson'})
         j = get(f'{u}/{lid}/query?{q}', 180); fs = j.get('features') or []
         feats += fs
@@ -77,7 +82,7 @@ def fetch_esri(u, lid):
     for tol in (TOL, 0):
         out, off = [], 0
         while True:
-            q = urllib.parse.urlencode({'where': WHERE, 'outFields': oid(u, lid), 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
+            q = urllib.parse.urlencode({'where': WHERE, **({'geometry': ','.join(map(str, GEOM)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'} if GEOM else {}), 'outFields': oid(u, lid), 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
                                         'maxAllowableOffset': tol, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
             j = get(f'{u}/{lid}/query?{q}', 180)
             if j.get('error'): note('esri error', f"{u} {j['error']}"); break
@@ -104,7 +109,7 @@ try: old = {x['ref']: x for x in json.load(open(OUTDIR + '/index.json'))}
 except Exception: pass
 for x in T:
     try:
-        u = svc(x); lid = pick_layer(u, x.get('layer')); WHERE = x.get('where') or '1=1'
+        u = svc(x); lid = pick_layer(u, x.get('layer')); WHERE = x.get('where') or '1=1'; GEOM = x.get('bbox')
         L = []
         fsx = fetch(u, lid)
         geoms = [f.get('geometry') for f in fsx]
@@ -130,7 +135,7 @@ for x in T:
         geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name'] or x['ref'], **({'water_parts': WATER_IDX} if WATER_IDX else {})}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
         json.dump(geo, open(f"{OUTDIR}/{x['ref']}.json", 'w'), separators=(',', ':'))
         npts = len(xs); kb = os.path.getsize(f"{OUTDIR}/{x['ref']}.json") // 1024
-        index.append({'ref': x['ref'], 'name': x['name'], 'kind': 'NST' if 'Scenic' in x['name'] else 'NHT', 'bbox': bb, 'by': x['by'], 'kb': kb})
+        index.append({'ref': x['ref'], 'name': x['name'], 'kind': x.get('kind') or ('NST' if 'Scenic' in x['name'] else 'NHT'), 'bbox': bb, 'by': x['by'], 'kb': kb})
         note(x['ref'], f"{x['name']}: layer {lid}, {len(L)} lines, {npts} points, {kb} KB"); done += 1
     except Exception as e:
         failed.append(x['ref']); note(x['ref'] + ' FAILED', f"{x['name']}: {e}")
