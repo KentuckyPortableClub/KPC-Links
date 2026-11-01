@@ -1,5 +1,6 @@
 # CHAT 3 INBOX (Lounges + Logger + Overlap Finder, Opus)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Oct 31 9:01 PM) WAIT, THEN DO: Brandon OK'd using Fable's state map file (data/state-gis.json: official park / natural area / wildlife / forest layer + name field per state) in the trip planners, Park Commander and Am I in the Park, AFTER the outside agent's open-data portals list lands and chat 10 adds its layers to the file. HQ will say when. Members / beta first.
 - **FROM HQ (Oct 31 9:00 PM) CELL COVERAGE TEST (Brandon 8:59 PM, test only):** when chat 10's data/cell/US-KY.json passes chat 11, show ONE line on the park card on the BETA / members side only (not public until Brandon's GO): '📶 FCC map (carriers' own claims): Verizon 4G · AT&T 4G · T-Mobile none at the pin. Not a guarantee: real signal varies.' 'no FCC data' when empty, never 'no signal'. Map dots (green 2+ carriers, amber 1, grey none) = later.
 
 ## OPEN
