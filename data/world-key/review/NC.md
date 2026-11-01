@@ -1,0 +1,46 @@
+# NC: POTA parks vs official land
+
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (. **19 of 56** joined (same name + same kind), **5** to check, **32** nothing found. Nothing below is joined.
+
+## To check (not joined)
+
+- **NC-0028** Reserve Speciale Botanique du Pic du Grand Kaori Nature Reserve (Nature Reserve) → Rivière bleue (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, the POTA pin is inside it (different name)); Rivière bleue (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, the POTA pin is inside it (different name))
+- **NC-0037** Reserve Botanique du Cap Ndua Natural Area (Natural Area) → Cap N'dua (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, similar name)
+- **NC-0043** Etang de Koumac Wildlife Reserve (Wildlife Reserve) → Etang de Koumac (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, similar name)
+- **NC-0045** Dumbea Provincial Park (Provincial Park) → la Dumbéa (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, similar name)
+- **NC-0048** Cote Oubliee National Park (National Park) → Massif du Kouakoué (New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (, the POTA pin is inside it (different name))
+
+## Nothing found
+
+- NC-0002 Reserve de Faune de l Aoupinie Nature Reserve (Nature Reserve)
+- NC-0003 plage de Pouembout Nature Reserve (Nature Reserve)
+- NC-0005 Reserve de Faune de l ile de Pam Nature Reserve (Nature Reserve)
+- NC-0006 MER DE CORAIL - bellona National Park (National Park)
+- NC-0007 Recif de petrie National Park (National Park)
+- NC-0008 Petit astrolabe Nature Park (Nature Park)
+- NC-0009 Grand Astrolabe Natural Area (Natural Area)
+- NC-0010 Cherterfield - Bellona National Marine Park (National Marine Park)
+- NC-0011 les atolls d’Entrecasteaux Natural Area (Natural Area)
+- NC-0012 ILE LONGUE - Chesterfield North Natural Area (Natural Area)
+- NC-0013 ILOT DU PASSAGE - Chesterfield North Nature Park (Nature Park)
+- NC-0014 ILOT DU MOUILLAGE N1 - Chesterfield North Natural Area (Natural Area)
+- NC-0015 Banc Capel Natural Area (Natural Area)
+- NC-0016 Sud Belona - Cherterfield islands Natural Area (Natural Area)
+- NC-0017 Fosse des Nouvelles Hébrides Natural Area (Natural Area)
+- NC-0018 Parc de la paix Mattew & Hunter National Reserve (National Reserve)
+- NC-0019 La Monique Ile de Walpole Natural Area (Natural Area)
+- NC-0020 Ride d Entrecasteaux Natural Area (Natural Area)
+- NC-0021 Sud Bassin de Fairway Natural Area (Natural Area)
+- NC-0022 Nord Chesterfield Natural Area (Natural Area)
+- NC-0031 Ile des Pins National Park (National Park)
+- NC-0035 Aire Marine Protegee Yves Merlet Marine Park (Marine Park)
+- NC-0036 Aire Marine Protegee du récif Abore Marine Park (Marine Park)
+- NC-0038 ile de la surprise National Nature Reserve (National Nature Reserve)
+- NC-0041 Ilot Canard Nature Conservation Reserve (Nature Conservation Reserve)
+- NC-0042 Ilot Maitre Conservation Park (Conservation Park)
+- NC-0044 Kan-Gunu Wildlife Area (Wildlife Area)
+- NC-0051 Parc de la zone cotiere ouest Provincial Park (Provincial Park)
+- NC-0053 Poe Marine Conservation Area (Marine Conservation Area)
+- NC-0054 Amieu Nature Reserve (Nature Reserve)
+- NC-0056 Roche percee Marine Conservation Area (Marine Conservation Area)
+- NC-0057 la cote oubliee Provincial Park (Provincial Park)
