@@ -410,7 +410,7 @@ FINE_CAP = int(os.environ.get('FINE_CAP') or 1500)   # points a saved park may h
 # on the KPC-Links branch 'world-bounds' (ONE commit, replaced every rebuild: no history growth), so every country gets the 3 m copy
 # (1,500-point cap). FINE_SKIP='GB FR …' turns a country back to the old coarse copy if ever needed.
 TOP10 = set((os.environ.get('FINE_SKIP') or '').split())
-FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1' or not (set(os.environ.get('COUNTRIES', '').upper().split()) & TOP10)
+FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1'   # Brandon Oct 31 7:30 PM: 'old blocky is fine!': saved world outlines stay the old light copy; 3 m only on request
 def _dp(pts, tol):
     if len(pts) < 3: return pts
     import math
