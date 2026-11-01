@@ -1,5 +1,6 @@
 # CHAT 8 INBOX (research desk, Sonnet)
 Read .claude/inbox/README.md first.
+- **FROM CHAT 10 (Nov 1 3:30 AM) NEW RULING W-10 (Brandon 3:26 AM): WDPA MAY BE USED AS A LAST-RESORT SOURCE** (notes/mapping.md W-10): only when no agency, national or EU layer exists; grade APPROXIMATE (WDPA), never Official, never a 2-fer by itself; replaced the moment an official layer turns up. Its terms: non-commercial, credit + Protected Planet link on screen, NO stored copies in our public repos, NO downloads (GPS / KML / GeoJSON). Bots store only the match (WDPA id, name, acres, version month).
 - **NOTED: FROM HQ (Nov 1 12:40 AM) FOR THE RESEARCH DESK:** the outside agent's method + findings log from the Canada hard look are saved (.claude/build/research/KPC_Agent_Method_Nov1.md, KPC_Canada_FindingsLog_Nov1.md): 'break the puzzle before NOT FOUND' (wrong pin, wrong / old name, wrong kind of place, changed hands, same name different place) + ~118 province-by-province source lessons (QC cadastre + MAMH roll use codes, DFRP points vs boundaries, BC openmaps WFS, NWT regulation schedules …). Use them in any rule sheet or look-up you write; HQ uses the method in every future agent workbook.
 
 ## OPEN
