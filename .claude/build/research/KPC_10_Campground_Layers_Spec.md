@@ -33,9 +33,10 @@ Many state parks, WMAs, county parks and national forests are missing. Their age
 2. Page through the features (`resultOffset`), using the query's own `where`, or `1=1`.
    - **Points** are taken as they are.
    - **Polygons** (campground loops): take the centre point, and keep the polygon too (simplified to 3 m) in `loop`.
-3. **Which features are campgrounds (keep):** the type, activity or name field says campground / campsite / camping / RV / tent / cabin / yurt / group camp / horse camp / primitive / backcountry / dispersed camping (use the code lists when a field holds codes).
-
-   **Drop:** day-use, picnic shelter, boat ramp, trailhead, and anything closed for good ("decommissioned", "closed permanently").
+3. **Sort each feature into one of three:**
+   - **Campground (keep in the campground list):** the type, activity or name field says campground / campsite / camping / RV / tent / cabin / yurt / group camp / horse camp / primitive / backcountry / dispersed camping. Use the code lists when a field holds codes.
+   - **Activating spot (keep in a SECOND list):** day-use area, picnic area, picnic shelter / pavilion, overlook. Brandon, Oct 31 8:00 PM: "might be good for points on the map ... for activating". These are often the easiest place to set up a station. They go to `<out>/dayuse/US-XX.json` with the same columns, `kind` = `day` (day-use / picnic area) or `shel` (shelter / pavilion). The access bot ties them to parks by place, like its parking points, and shows them as "Day-use area / picnic shelter (from <agency>)". A reservable shelter keeps its booking link.
+   - **Leave out:** boat ramps and trailheads (the access bot already reads those from the agencies' own access layers), and anything closed for good ("decommissioned", "closed permanently").
 4. **Fields per campground:**
    - `name`
    - `agency` (from the layer's service / owner text)
@@ -52,7 +53,8 @@ Many state parks, WMAs, county parks and national forests are missing. Their age
   - The SAME first 8 columns as `data/campstate` rows, so the existing bots read it with one extra line.
   - `id` = `L-<short hash of source_url + record id>`.
   - `park` is left EMPTY: the camp-and-activate bot fills it by its own rules.
-- `<out>/campgrounds/report.csv`: one line per layer (read OK / failed + why, features read, kept, dropped as day-use, duplicates).
+- `<out>/dayuse/US-XX.json`: the activating spots (day-use areas, picnic shelters, overlooks), in the same columns.
+- `<out>/campgrounds/report.csv`: one line per layer (read OK / failed + why, features read, campgrounds kept, activating spots kept, left out, duplicates).
 
 ## Rules (from the house rules)
 
@@ -64,7 +66,7 @@ Many state parks, WMAs, county parks and national forests are missing. Their age
 ## Test
 
 - **Small run:** the 5 layers that cover the most parks, then Minnesota DNR campsites and New York DEC points of interest.
-- **Pass mark:** ≥ 95% of the kept features are really campgrounds (chat 11 checks a sample of 40). No picnic shelters or boat ramps get in. The duplicates against `data/campfed` (Recreation.gov) are found.
+- **Pass mark:** ≥ 95% of the kept features are really campgrounds (chat 11 checks a sample of 40). No picnic shelters get into the campground list (they go to the activating-spots list), and no boat ramps get in at all. The duplicates against `data/campfed` (Recreation.gov) are found.
 
 ## How chat 10 wires it
 
