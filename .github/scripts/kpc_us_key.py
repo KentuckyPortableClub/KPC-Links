@@ -998,7 +998,7 @@ def run(st):
         # park. An alias joins ONLY with the sure-match test: same name as the alias AND the POTA pin inside that record's outline
         # 'alias_all' = a name PREFIX for a park the layer splits into units (Whitewater WMA: Main Branch Unit, …): when one of
         # them holds the pin or lies within ~3 km of it, every unit with that prefix within ~30 km joins (chat 2 + chat 8, Oct 29)
-        if not m and la is not None and ov.get('alias_all'):
+        if not m and la is not None and ov.get('alias_all') and (bool(ov.get('alias_ok')) or bool(re.search(r"chat 11[^·]{0,80}YES|YES[^·]{0,40}chat 11|alias YES|row YES|applied by kpc_key_answers", str(ov.get('why', ''))))):
             for pre in ov['alias_all']:
                 units = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '').startswith(_nf(pre)) and near(la, lo, a['_bb'], .3)]
                 if any(inside(la, lo, a['_g']) or near(la, lo, a['_bb'], .03) for a in units):
@@ -1014,7 +1014,10 @@ def run(st):
                     if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
-        if not m and la is not None and ov.get('alias'):
+        # Nov 1 (chat 11 KEY NO 2:32 PM: Oxford Slough, Iao Valley, Teanaway joined through name variants nobody approved): a name
+        # variant ('alias') joins ONLY when chat 11 said YES to it (kpc_key_answers marks it, or 'alias_ok'); the rest wait as questions
+        _alias_ok = bool(ov.get('alias_ok')) or bool(re.search(r"chat 11[^·]{0,80}YES|YES[^·]{0,40}chat 11|alias YES|row YES|applied by kpc_key_answers", str(ov.get('why', ''))))
+        if not m and la is not None and ov.get('alias') and _alias_ok:
             for al in ov['alias']:
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''

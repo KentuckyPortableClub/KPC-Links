@@ -128,12 +128,12 @@
    "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece"
   },
   "US-0280": {
-   "alias": [
-    "Oxford Slough Waterfowl Production Area",
-    "OXFORD SLOUGH WATERFOWL PRODUCTION AREA"
-   ],
-   "when": "2026-10-29",
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)"
+   "when": "2026-11-01",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Oxford Slough'; joins only with the POTA pin inside · Oct 29: alias taken back: Wetland Management District vs a waterfowl production area (chat 8) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside) · 2026-11-01 chat 11 NO (Nov 1 2:32 PM): a Waterfowl Production Area tract is not the Wetland Management District",
+   "no": [
+    "4195",
+    "5151"
+   ]
   },
   "US-0329": {
    "fp": {
@@ -6956,11 +6956,15 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Olympic National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-5573": {
-   "alias": [
-    "Teanaway Com Forest"
-   ],
-   "when": "2026-10-29",
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Teanaway Com Forest'; joins only with the POTA pin inside"
+   "when": "2026-11-01",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Teanaway Com Forest'; joins only with the POTA pin inside · 2026-11-01 chat 11 NO (Nov 1 2:32 PM): the Teanaway Community Forest is another unit, not Teanaway State Forest",
+   "no": [
+    "Teanaway Com Forest",
+    "sgwac3515064",
+    "sgwac3515341",
+    "sgwac3526141",
+    "sgwac3526365"
+   ]
   },
   "US-5574": {
    "approx": true,
@@ -7752,11 +7756,13 @@
    "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 1-ac Waimea pier is not the SRA (now a pin)"
   },
   "US-6410": {
-   "alias": [
-    "IAO VALLEY STATE MONUMENT"
-   ],
-   "when": "2026-10-29",
-   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IAO VALLEY STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 892 m from the edge, 6.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+   "when": "2026-11-01",
+   "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IAO VALLEY STATE MONUMENT'; joins only with the POTA pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 892 m from the edge, 6.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look) · 2026-11-01 chat 11 NOT SURE (Nov 1 2:32 PM): the State Monument is a different designation from the State Preserve; stays a pin",
+   "no": [
+    "sghia24",
+    "sghib280",
+    "sghic24"
+   ]
   },
   "US-6421": {
    "join": [
