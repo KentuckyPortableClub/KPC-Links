@@ -1,9 +1,9 @@
 {
  "about": "R-G10 'why not' tag for every US park with NO outline in the current key (chat 2, Oct 29 6:50 PM; Fable's method): no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt. Rebuilt with each key; the key itself will carry it from the next code change. Oct 30 10:05 PM: name-mismatch parks whose own website uses the POTA name retagged no-layer (HQ 5:00 AM).",
  "counts": {
-  "needs-parcel": 253,
+  "needs-parcel": 315,
   "no-layer": 869,
-  "name-mismatch": 447,
+  "name-mismatch": 385,
   "pin-doubt": 22,
   "picture-map-only": 6,
   "private": 1
@@ -67,7 +67,8 @@
   },
   "US-7473": {
    "st": "GA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7858": {
    "st": "GA",
@@ -126,7 +127,8 @@
   },
   "US-13549": {
    "st": "MN",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-4239": {
    "st": "MN",
@@ -324,11 +326,13 @@
   },
   "US-8119": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Sandy Sanders WMA; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-8128": {
    "st": "OK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Ellis County WMA; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-8134": {
    "st": "OK",
@@ -405,7 +409,8 @@
   },
   "US-11305": {
    "st": "IA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-4572": {
    "st": "IA",
@@ -421,7 +426,8 @@
   },
   "US-10851": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12817": {
    "st": "NV",
@@ -459,7 +465,8 @@
   },
   "US-13180": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13183": {
    "st": "NV",
@@ -483,7 +490,8 @@
   },
   "US-13197": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13206": {
    "st": "NV",
@@ -581,7 +589,8 @@
   },
   "US-13259": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13260": {
    "st": "NV",
@@ -593,7 +602,8 @@
   },
   "US-13262": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13263": {
    "st": "NV",
@@ -645,11 +655,13 @@
   },
   "US-13281": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13282": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13283": {
    "st": "NV",
@@ -674,7 +686,8 @@
   },
   "US-13288": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13289": {
    "st": "NV",
@@ -694,7 +707,8 @@
   },
   "US-13299": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13300": {
    "st": "NV",
@@ -759,7 +773,8 @@
   },
   "US-13326": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13363": {
    "st": "NV",
@@ -771,7 +786,8 @@
   },
   "US-13366": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13367": {
    "st": "NV",
@@ -787,7 +803,8 @@
   },
   "US-13370": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13405": {
    "st": "NV",
@@ -803,7 +820,8 @@
   },
   "US-13408": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13410": {
    "st": "NV",
@@ -815,7 +833,8 @@
   },
   "US-13412": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13413": {
    "st": "NV",
@@ -881,7 +900,8 @@
   },
   "US-13467": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13468": {
    "st": "NV",
@@ -905,7 +925,8 @@
   },
   "US-13476": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13477": {
    "st": "NV",
@@ -921,7 +942,8 @@
   },
   "US-13480": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13481": {
    "st": "NV",
@@ -937,27 +959,33 @@
   },
   "US-13494": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13496": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13497": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13504": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13505": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13506": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13507": {
    "st": "NV",
@@ -965,51 +993,63 @@
   },
   "US-13508": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13509": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13510": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13511": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13519": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13520": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13521": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13522": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13523": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13524": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13525": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13526": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13579": {
    "st": "NV",
@@ -1017,7 +1057,8 @@
   },
   "US-13580": {
    "st": "NV",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-2638": {
    "st": "NV",
@@ -1055,19 +1096,23 @@
   },
   "US-10072": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10268": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10304": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Department of Energy; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-10418": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10419": {
    "st": "ID",
@@ -1083,7 +1128,8 @@
   },
   "US-10422": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10423": {
    "st": "ID",
@@ -1091,7 +1137,8 @@
   },
   "US-10427": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10429": {
    "st": "ID",
@@ -1111,15 +1158,18 @@
   },
   "US-11089": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11157": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Lava Hot Springs Foundation; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11183": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11254": {
    "st": "ID",
@@ -1227,11 +1277,13 @@
   },
   "US-11299": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11300": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11301": {
    "st": "ID",
@@ -1239,7 +1291,8 @@
   },
   "US-11302": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11303": {
    "st": "ID",
@@ -1267,7 +1320,8 @@
   },
   "US-11313": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11314": {
    "st": "ID",
@@ -1291,7 +1345,8 @@
   },
   "US-11319": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11326": {
    "st": "ID",
@@ -1307,7 +1362,8 @@
   },
   "US-11331": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11332": {
    "st": "ID",
@@ -1323,7 +1379,8 @@
   },
   "US-11335": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11947": {
    "st": "ID",
@@ -1339,11 +1396,13 @@
   },
   "US-12155": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12157": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12163": {
    "st": "ID",
@@ -1355,7 +1414,8 @@
   },
   "US-12211": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12212": {
    "st": "ID",
@@ -1387,7 +1447,8 @@
   },
   "US-12225": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12226": {
    "st": "ID",
@@ -1395,7 +1456,8 @@
   },
   "US-12229": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12230": {
    "st": "ID",
@@ -1415,11 +1477,13 @@
   },
   "US-12299": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12300": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12302": {
    "st": "ID",
@@ -1431,7 +1495,8 @@
   },
   "US-12363": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12364": {
    "st": "ID",
@@ -1455,7 +1520,8 @@
   },
   "US-13294": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13295": {
    "st": "ID",
@@ -1529,15 +1595,18 @@
   },
   "US-7806": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7807": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7808": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7809": {
    "st": "ID",
@@ -1545,7 +1614,8 @@
   },
   "US-7810": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7811": {
    "st": "ID",
@@ -1553,11 +1623,13 @@
   },
   "US-7812": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7813": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7814": {
    "st": "ID",
@@ -1565,11 +1637,13 @@
   },
   "US-7815": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7817": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7818": {
    "st": "ID",
@@ -1577,11 +1651,13 @@
   },
   "US-7819": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7820": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7821": {
    "st": "ID",
@@ -1589,15 +1665,18 @@
   },
   "US-7822": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7823": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7824": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7825": {
    "st": "ID",
@@ -1605,7 +1684,8 @@
   },
   "US-7826": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7827": {
    "st": "ID",
@@ -1613,15 +1693,18 @@
   },
   "US-7828": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7829": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7830": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7831": {
    "st": "ID",
@@ -1629,15 +1712,18 @@
   },
   "US-7832": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7833": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7834": {
    "st": "ID",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-0778": {
    "st": "NY",
@@ -1700,7 +1786,8 @@
   },
   "US-8084": {
    "st": "NY",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Gateway National Recreation Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-8085": {
    "st": "NY",
@@ -1750,11 +1837,13 @@
   },
   "US-3118": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Bomoseen State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-3121": {
    "st": "VT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-3122": {
    "st": "VT",
@@ -1927,7 +2016,8 @@
   },
   "US-11905": {
    "st": "SD",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-8164": {
    "st": "SD",
@@ -2052,7 +2142,8 @@
   },
   "US-8226": {
    "st": "NC",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Nicholson Creek Game Land; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-10687": {
    "st": "DE",
@@ -2074,15 +2165,18 @@
   },
   "US-9879": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Cape Henlopen State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-9881": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (White Clay Creek State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-9885": {
    "st": "DE",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Delaware Seashore State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-9886": {
    "st": "DE",
@@ -2154,7 +2248,8 @@
   },
   "US-9904": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (George Washington and Jefferson National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-9905": {
    "st": "VA",
@@ -2214,7 +2309,8 @@
   },
   "US-9935": {
    "st": "VA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-9961": {
    "st": "VA",
@@ -2243,7 +2339,8 @@
   },
   "US-3941": {
    "st": "TN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Fiery Gizzard State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-4376": {
    "st": "TN",
@@ -2333,7 +2430,8 @@
   },
   "US-5741": {
    "st": "ND",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (North Dakota State Forest Service Land; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5743": {
    "st": "ND",
@@ -2550,7 +2648,8 @@
   },
   "US-10714": {
    "st": "ME",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-2402": {
    "st": "ME",
@@ -2574,7 +2673,8 @@
   },
   "US-9174": {
    "st": "ME",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10776": {
    "st": "WY",
@@ -2610,7 +2710,8 @@
   },
   "US-10825": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10829": {
    "st": "WY",
@@ -2640,7 +2741,8 @@
   },
   "US-10840": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10842": {
    "st": "WY",
@@ -2736,7 +2838,8 @@
   },
   "US-10888": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10891": {
    "st": "WY",
@@ -2836,7 +2939,8 @@
   },
   "US-6159": {
    "st": "WY",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6162": {
    "st": "WY",
@@ -2956,7 +3060,8 @@
   },
   "US-12121": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Kissimmee Chain of Lakes Wildlife Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12123": {
    "st": "FL",
@@ -2964,7 +3069,8 @@
   },
   "US-12124": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Stormwater Treatment Areas; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12125": {
    "st": "FL",
@@ -2985,7 +3091,8 @@
   },
   "US-3621": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Hillsborough River State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-3656": {
    "st": "FL",
@@ -2997,7 +3104,8 @@
   },
   "US-6281": {
    "st": "FL",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-7374": {
    "st": "FL",
@@ -3103,7 +3211,8 @@
   },
   "US-9203": {
    "st": "SC",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-9227": {
    "st": "SC",
@@ -3133,7 +3242,8 @@
   },
   "US-0880": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Lake Clark National Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-0887": {
    "st": "AK",
@@ -3149,7 +3259,8 @@
   },
   "US-0893": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Lake Clark National Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-10464": {
    "st": "AK",
@@ -3237,7 +3348,8 @@
   },
   "US-11835": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Susitna Flats State Game Refuge; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11836": {
    "st": "AK",
@@ -3246,7 +3358,8 @@
   },
   "US-11846": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Kenai River Special Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11850": {
    "st": "AK",
@@ -3294,7 +3407,8 @@
   },
   "US-13462": {
    "st": "AK",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-3382": {
    "st": "AK",
@@ -3492,7 +3606,8 @@
   },
   "US-7097": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Tombigbee National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7098": {
    "st": "MS",
@@ -3500,19 +3615,23 @@
   },
   "US-7104": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7105": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7106": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7111": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7115": {
    "st": "MS",
@@ -3520,7 +3639,8 @@
   },
   "US-7116": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Bienville National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7120": {
    "st": "MS",
@@ -3568,11 +3688,13 @@
   },
   "US-7629": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Tombigbee National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7630": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Holly Springs National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7631": {
    "st": "MS",
@@ -3580,11 +3702,13 @@
   },
   "US-7633": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7634": {
    "st": "MS",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (De Soto National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7635": {
    "st": "MS",
@@ -3671,7 +3795,8 @@
   },
   "US-11219": {
    "st": "MT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Jocko River Trout Hatchery; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11221": {
    "st": "MT",
@@ -3683,11 +3808,13 @@
   },
   "US-12827": {
    "st": "MT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12925": {
    "st": "MT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-8001": {
    "st": "MT",
@@ -3845,7 +3972,8 @@
   },
   "US-13623": {
    "st": "AR",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Ozark National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-7435": {
    "st": "AR",
@@ -3925,7 +4053,8 @@
   },
   "US-10408": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10711": {
    "st": "WA",
@@ -3957,7 +4086,8 @@
   },
   "US-12296": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Washington State Department of Natural Resources (WADNR) State Resource Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12315": {
    "st": "WA",
@@ -3965,7 +4095,8 @@
   },
   "US-12316": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Washington State Department of Natural Resources (WADNR) State Resource Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12403": {
    "st": "WA",
@@ -3982,11 +4113,13 @@
   },
   "US-12565": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Washington State Department of Natural Resources (WADNR) State Resource Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12566": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Washington State Department of Natural Resources (WADNR) State Resource Management Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12567": {
    "st": "WA",
@@ -4110,7 +4243,8 @@
   },
   "US-8663": {
    "st": "WA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10031": {
    "st": "WV",
@@ -4226,7 +4360,8 @@
   },
   "US-6538": {
    "st": "TX",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Washington-on-the-Brazos State Historic Site; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-6560": {
    "st": "TX",
@@ -4331,7 +4466,8 @@
   },
   "US-10752": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Willamette National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12082": {
    "st": "OR",
@@ -4435,7 +4571,8 @@
   },
   "US-13070": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13075": {
    "st": "OR",
@@ -4452,7 +4589,8 @@
   },
   "US-13097": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Neptune State Scenic Viewpoint; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-4383": {
    "st": "OR",
@@ -4460,7 +4598,8 @@
   },
   "US-5456": {
    "st": "OR",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Board of Forestry Lands; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5459": {
    "st": "OR",
@@ -4626,7 +4765,8 @@
   },
   "US-8024": {
    "st": "NH",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Ballard State Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11783": {
    "st": "NM",
@@ -4635,7 +4775,8 @@
   },
   "US-11795": {
    "st": "NM",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11797": {
    "st": "NM",
@@ -4720,7 +4861,8 @@
   },
   "US-10995": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11045": {
    "st": "AZ",
@@ -4746,7 +4888,8 @@
   },
   "US-11975": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11981": {
    "st": "AZ",
@@ -4759,7 +4902,8 @@
   },
   "US-12161": {
    "st": "AZ",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12162": {
    "st": "AZ",
@@ -4814,11 +4958,13 @@
   },
   "US-11911": {
    "st": "CO",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12106": {
    "st": "CO",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Roosevelt National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12173": {
    "st": "CO",
@@ -4872,11 +5018,13 @@
   },
   "US-5680": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Hoosier National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5681": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (J. Edward Roush Fish and Wildlife Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5682": {
    "st": "IN",
@@ -4906,11 +5054,13 @@
   },
   "US-5689": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Monroe Lake; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5690": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Monroe Lake; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5692": {
    "st": "IN",
@@ -4934,7 +5084,8 @@
   },
   "US-7843": {
    "st": "IN",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Mississinewa Lake; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-0620": {
    "st": "PA",
@@ -4984,7 +5135,8 @@
   },
   "US-10402": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11336": {
    "st": "CA",
@@ -4998,7 +5150,8 @@
   },
   "US-11582": {
    "st": "CA",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11583": {
    "st": "CA",
@@ -5065,7 +5218,8 @@
   },
   "US-6544": {
    "st": "NJ",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6609": {
    "st": "NJ",
@@ -5086,7 +5240,8 @@
   },
   "US-10661": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Shawnee National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-10788": {
    "st": "IL",
@@ -5109,11 +5264,13 @@
   },
   "US-4153": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Shelbyville State Fish and Wildlife Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-4154": {
    "st": "IL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Shelbyville State Fish and Wildlife Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-10061": {
    "st": "UT",
@@ -5125,7 +5282,8 @@
   },
   "US-10794": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10963": {
    "st": "UT",
@@ -5184,7 +5342,8 @@
   },
   "US-10981": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-10984": {
    "st": "UT",
@@ -5239,7 +5398,8 @@
   },
   "US-11008": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11009": {
    "st": "UT",
@@ -5280,7 +5440,8 @@
   },
   "US-11111": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Manti-La Sal National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11113": {
    "st": "UT",
@@ -5301,11 +5462,13 @@
   },
   "US-11119": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11120": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11121": {
    "st": "UT",
@@ -5324,7 +5487,8 @@
   },
   "US-11167": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Flaming Gorge National Recreation Area; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-11176": {
    "st": "UT",
@@ -5353,7 +5517,8 @@
   },
   "US-11209": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11210": {
    "st": "UT",
@@ -5389,7 +5554,8 @@
   },
   "US-11649": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11650": {
    "st": "UT",
@@ -5537,7 +5703,8 @@
   },
   "US-11731": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11732": {
    "st": "UT",
@@ -5572,7 +5739,8 @@
   },
   "US-11745": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11749": {
    "st": "UT",
@@ -5580,7 +5748,8 @@
   },
   "US-11750": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11751": {
    "st": "UT",
@@ -5603,7 +5772,8 @@
   },
   "US-11757": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11758": {
    "st": "UT",
@@ -5626,7 +5796,8 @@
   },
   "US-11765": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11766": {
    "st": "UT",
@@ -5638,7 +5809,8 @@
   },
   "US-11921": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-11963": {
    "st": "UT",
@@ -5654,7 +5826,8 @@
   },
   "US-12150": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12151": {
    "st": "UT",
@@ -5666,7 +5839,8 @@
   },
   "US-12997": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-12998": {
    "st": "UT",
@@ -5678,19 +5852,23 @@
   },
   "US-13488": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Fishlake National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-13490": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13500": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13571": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13586": {
    "st": "UT",
@@ -5698,7 +5876,8 @@
   },
   "US-13587": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-13589": {
    "st": "UT",
@@ -5735,7 +5914,8 @@
   },
   "US-5761": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5762": {
    "st": "UT",
@@ -5756,7 +5936,8 @@
   },
   "US-5766": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5767": {
    "st": "UT",
@@ -5794,7 +5975,8 @@
   },
   "US-5783": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Ashley National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5786": {
    "st": "UT",
@@ -5806,7 +5988,8 @@
   },
   "US-5788": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Sand Flats; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5795": {
    "st": "UT",
@@ -5923,7 +6106,8 @@
   },
   "US-5825": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5826": {
    "st": "UT",
@@ -5947,7 +6131,8 @@
   },
   "US-5831": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5834": {
    "st": "UT",
@@ -5965,7 +6150,8 @@
   },
   "US-5840": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5841": {
    "st": "UT",
@@ -5986,7 +6172,8 @@
   },
   "US-5852": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5853": {
    "st": "UT",
@@ -6024,7 +6211,8 @@
   },
   "US-5871": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (San Rafael Swell; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5872": {
    "st": "UT",
@@ -6052,7 +6240,8 @@
   },
   "US-5881": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Muddy Creek; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5882": {
    "st": "UT",
@@ -6060,7 +6249,8 @@
   },
   "US-5885": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Muddy Creek; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5887": {
    "st": "UT",
@@ -6088,7 +6278,8 @@
   },
   "US-5898": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5899": {
    "st": "UT",
@@ -6166,7 +6357,8 @@
   },
   "US-5935": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5945": {
    "st": "UT",
@@ -6200,7 +6392,8 @@
   },
   "US-5960": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5962": {
    "st": "UT",
@@ -6209,7 +6402,8 @@
   },
   "US-5964": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Paria Canyon - Vermilion Cliffs; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-5966": {
    "st": "UT",
@@ -6218,7 +6412,8 @@
   },
   "US-5969": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-5970": {
    "st": "UT",
@@ -6309,7 +6504,8 @@
   },
   "US-5999": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6000": {
    "st": "UT",
@@ -6322,7 +6518,8 @@
   },
   "US-6002": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6003": {
    "st": "UT",
@@ -6350,7 +6547,8 @@
   },
   "US-6014": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6015": {
    "st": "UT",
@@ -6364,7 +6562,8 @@
   },
   "US-6020": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6021": {
    "st": "UT",
@@ -6377,7 +6576,8 @@
   },
   "US-6023": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6025": {
    "st": "UT",
@@ -6386,7 +6586,8 @@
   },
   "US-6026": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6027": {
    "st": "UT",
@@ -6433,7 +6634,8 @@
   },
   "US-6050": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6051": {
    "st": "UT",
@@ -6499,7 +6701,8 @@
   },
   "US-6079": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6080": {
    "st": "UT",
@@ -6531,7 +6734,8 @@
   },
   "US-6087": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6094": {
    "st": "UT",
@@ -6545,7 +6749,8 @@
   },
   "US-6101": {
    "st": "UT",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6103": {
    "st": "UT",
@@ -6578,7 +6783,8 @@
   },
   "US-12802": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Ottawa National Forest; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-13166": {
    "st": "MI",
@@ -6670,7 +6876,8 @@
   },
   "US-6728": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Sleeping Bear Dunes National Lakeshore; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-6780": {
    "st": "MI",
@@ -6684,7 +6891,8 @@
   },
   "US-6808": {
    "st": "MI",
-   "tag": "name-mismatch"
+   "tag": "name-mismatch",
+   "why": "the record at the pin is a different place (outside name check Oct 31)"
   },
   "US-6809": {
    "st": "MI",
@@ -6764,7 +6972,8 @@
   },
   "US-12411": {
    "st": "AL",
-   "tag": "name-mismatch"
+   "tag": "needs-parcel",
+   "why": "inside a bigger area (Joe Wheeler State Park; outside name check Oct 31): rule R-G7, pin unless the unit's own boundary is found"
   },
   "US-12412": {
    "st": "AL",
