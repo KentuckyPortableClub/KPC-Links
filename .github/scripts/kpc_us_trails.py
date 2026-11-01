@@ -59,10 +59,11 @@ def oid(u, lid):
         try: OIDF[k] = get(k + '?f=json').get('objectIdField') or 'OBJECTID'
         except Exception: OIDF[k] = 'OBJECTID'
     return OIDF[k]
+WHERE = '1=1'   # Nov 1 (chat 2, Brandon: the DC trails): a source may name a filter ('where') when the layer holds more than this trail
 def fetch(u, lid):
     feats, off = [], 0
     while True:
-        q = urllib.parse.urlencode({'where': '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
+        q = urllib.parse.urlencode({'where': WHERE, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': TOL,
                                     'geometryPrecision': 6, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'geojson'})
         j = get(f'{u}/{lid}/query?{q}', 180); fs = j.get('features') or []
         feats += fs
@@ -76,7 +77,7 @@ def fetch_esri(u, lid):
     for tol in (TOL, 0):
         out, off = [], 0
         while True:
-            q = urllib.parse.urlencode({'where': '1=1', 'outFields': oid(u, lid), 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
+            q = urllib.parse.urlencode({'where': WHERE, 'outFields': oid(u, lid), 'returnGeometry': 'true', 'returnZ': 'false', 'returnM': 'false', 'outSR': 4326,
                                         'maxAllowableOffset': tol, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
             j = get(f'{u}/{lid}/query?{q}', 180)
             if j.get('error'): note('esri error', f"{u} {j['error']}"); break
@@ -103,7 +104,7 @@ try: old = {x['ref']: x for x in json.load(open(OUTDIR + '/index.json'))}
 except Exception: pass
 for x in T:
     try:
-        u = svc(x); lid = pick_layer(u, x.get('layer'))
+        u = svc(x); lid = pick_layer(u, x.get('layer')); WHERE = x.get('where') or '1=1'
         L = []
         fsx = fetch(u, lid)
         geoms = [f.get('geometry') for f in fsx]

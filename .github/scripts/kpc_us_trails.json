@@ -184,5 +184,20 @@
   "name": "Arizona National Scenic Trail",
   "url": "https://services3.arcgis.com/IKBBLZOXy58PXgpl/arcgis/rest/services/Arizona_National_Scenic_Trail_Feature_Layers_view/FeatureServer",
   "by": "Arizona Trail Association (USFS partner)"
+ },
+ {
+  "ref": "US-9898",
+  "name": "Mount Vernon National Historic Trail",
+  "url": "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer",
+  "layer": 0,
+  "where": "TRLNAME LIKE 'Mount Vernon Trail%'",
+  "by": "National Park Service (NPS Public Trails: Mount Vernon Trail, George Washington Memorial Parkway)"
+ },
+ {
+  "ref": "US-9901",
+  "name": "Civil War Defenses of Washington National Historic Trail",
+  "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CWDW_Circuit_Trails_2023_NPS/FeatureServer",
+  "layer": 19,
+  "by": "National Park Service (Civil War Defenses of Washington: Circuit Trails 2023)"
  }
 ]
