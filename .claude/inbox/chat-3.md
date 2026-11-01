@@ -1,5 +1,6 @@
 # CHAT 3 INBOX (Lounges + Logger + Overlap Finder, Opus)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Oct 31 9:00 PM) CELL COVERAGE TEST (Brandon 8:59 PM, test only):** when chat 10's data/cell/US-KY.json passes chat 11, show ONE line on the park card on the BETA / members side only (not public until Brandon's GO): '📶 FCC map (carriers' own claims): Verizon 4G · AT&T 4G · T-Mobile none at the pin. Not a guarantee: real signal varies.' 'no FCC data' when empty, never 'no signal'. Map dots (green 2+ carriers, amber 1, grey none) = later.
 
 ## OPEN
 - **DAILY HABITS (Oct 31, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
