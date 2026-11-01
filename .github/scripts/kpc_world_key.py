@@ -406,10 +406,11 @@ def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in
 # latitude; ~3.3 m by default) for the saved website copy; '_r' (thinned) stays what pin-inside is judged on, exactly as before.
 FINE_TOL = float(os.environ.get('FINE_TOL') or 0.00003)
 FINE_CAP = int(os.environ.get('FINE_CAP') or 1500)   # points a saved park may hold at most (Brandon Oct 31: cap the very big ones)
-# Brandon Oct 31 7:22 PM: 'not top 10 countries, smaller files are fine': 3 m saved outlines ON for every country EXCEPT the world
-# stages W1-W10 (their files are the big ones: France 15 -> 51 MB); FINE_OUTLINES=1 forces it on, WB_DIR = the size test.
-TOP10 = set((os.environ.get('FINE_SKIP') or 'GB AU JP DE PL FR ES IT NO NL').split())
-FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1' or (os.environ.get('COUNTRIES', '').strip().upper() not in TOP10 and len(os.environ.get('COUNTRIES', '').split()) == 1)
+# Brandon Oct 31 7:24 PM ('them files can they go to the branch … huge files we need to keep smaller'): the saved world outlines live
+# on the KPC-Links branch 'world-bounds' (ONE commit, replaced every rebuild: no history growth), so every country gets the 3 m copy
+# (1,500-point cap). FINE_SKIP='GB FR …' turns a country back to the old coarse copy if ever needed.
+TOP10 = set((os.environ.get('FINE_SKIP') or '').split())
+FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1' or not (set(os.environ.get('COUNTRIES', '').upper().split()) & TOP10)
 def _dp(pts, tol):
     if len(pts) < 3: return pts
     import math

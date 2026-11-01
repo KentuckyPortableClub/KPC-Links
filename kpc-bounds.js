@@ -417,7 +417,7 @@
     /* Oct 22: an outline from a map a web page cannot ask by id (IGN, BfN, NatureScot, Wales, BAFU, Japan A10) is saved
        by the world bot in data/world-bounds/CC/<n>.json, 100 parks to a file */
     if (!fs.length) {
-      const num = parseInt(String(ref).split('-')[1], 10), sh = await dget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => null), b = sh && sh[ref];
+      const num = parseInt(String(ref).split('-')[1], 10), sh = await jget('https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/world-bounds/data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => dget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000)).catch(() => null), b = sh && sh[ref];
       if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + (b.d && b.d > 5 ? ' (saved by KPC, simplified to about ' + b.d + ' m: a very big park)' : ' (saved by KPC)') });
     }
     if (!fs.length) return { state: 'error' };

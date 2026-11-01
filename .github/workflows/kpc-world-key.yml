@@ -54,5 +54,15 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/world-key
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
-          git add data/world-bounds 2>/dev/null || true
           if ! git diff --cached --quiet; then git commit -m 'World answer key'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi
+      - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
+        if: ${{ always() && env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        continue-on-error: true
+        run: |
+          [ -d data/world-bounds ] || exit 0
+          B=/tmp/wb; rm -rf $B; mkdir -p $B
+          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || true    # what the branch holds now
+          for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; mkdir -p $B/data/world-bounds; cp -r $d $B/data/world-bounds/$c; done
+          cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
+            && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
+          true
