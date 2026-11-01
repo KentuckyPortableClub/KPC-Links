@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T11:15:07Z",
+ "updated": "2026-11-01T11:15:55Z",
  "week": [
   {
    "name": "ARRL EME Contest",
@@ -41,36 +41,6 @@
     [
      "2026-10-31T12:00Z",
      "2026-11-01T11:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "North American SSB Sprint Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gebbm",
-   "when": "0000Z-0400Z, Nov 1",
-   "segs": [
-    [
-     "2026-11-01T00:00Z",
-     "2026-11-01T04:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Silent Key Memorial Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hrmbf",
-   "when": "0600Z-0859Z, Nov 1",
-   "segs": [
-    [
-     "2026-11-01T06:00Z",
-     "2026-11-01T08:59Z"
     ]
    ],
    "modes": [],
@@ -568,70 +538,57 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
-  {
-   "name": "ARRL EME Contest",
-   "url": "https://www.arrl.org/eme-contest",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-31T00:00Z",
-     "2026-11-02T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE",
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "CORRAL",
-   "bands": "50-1296",
-   "exch": "4-char grid"
   },
   {
-   "name": "Russian WW MultiMode Contest",
-   "url": "https://www.rdrclub.ru",
-   "when": "",
+   "name": "YBDXPI FT8 Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gftoz",
+   "when": "0000Z, Nov 7 to 2359Z, Nov 8",
    "segs": [
     [
-     "2026-10-31T12:00Z",
-     "2026-11-01T12:00Z"
+     "2026-11-07T00:00Z",
+     "2026-11-08T23:59Z"
     ]
    ],
    "modes": [
-    "CW",
-    "PHONE",
     "DIGITAL"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "RST(Q), 2-letter oblast or serial"
+   "src": "WA7BNM"
   },
   {
-   "name": "UK/EI DX Contest, SSB",
-   "url": "https://www.ukeicc.com",
-   "when": "",
+   "name": "IPARC Contest, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdgem",
+   "when": "0600Z-1800Z, Nov 7",
    "segs": [
     [
-     "2026-10-31T12:00Z",
-     "2026-11-01T12:01Z"
+     "2026-11-07T06:00Z",
+     "2026-11-07T18:00Z"
     ]
    ],
    "modes": [
-    "PHONE"
+    "CW"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RS, serial, district code (if UK/EI)"
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ARRL Sweepstakes Contest, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gbqoh",
+   "when": "2100Z, Nov 7 to 0300Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-07T21:00Z",
+     "2026-11-09T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
   }
  ],
+ "month": [],
  "big": [
   {
    "name": "ARRL November Sweepstakes (CW)",
@@ -1408,7 +1365,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (37)",
-  "CORRAL": "ok (3)"
+  "WA7BNM": "ok (38)",
+  "CORRAL": "ok (0)"
  }
 }
