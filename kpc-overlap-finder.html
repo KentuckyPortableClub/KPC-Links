@@ -125,6 +125,8 @@ body.field .page-jump-nav{display:none!important}
 #ov .ov-ush{margin:0 0 4px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12px;letter-spacing:1.6px;color:#f0c96b}
 #ov .ov-usk{color:#cfc7b4;letter-spacing:.3px;font-size:12px}#ov .ov-usk i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin:0 4px 0 8px}
 #ov .ov-usk .k1{background:#d5a63a}#ov .ov-usk .k0{background:#3a3f39;border:1px solid #5d6359}
+#ov .ov-usz[hidden],#ov .ov-usb[hidden]{display:none}
+#ov .ov-view{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}#ov .ov-view button{min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f3ecd9;font-weight:800;font-size:12px;letter-spacing:.06em;font-family:inherit;cursor:pointer}#ov .ov-view button.on{background:#d5a63a;color:#111;border-color:#d5a63a}
 #ov #ovUsMap{display:block;width:100%;height:auto;max-height:420px}
 #ov #ovUsMap path{fill:#3a3f39;stroke:#0e100e;stroke-width:1;cursor:pointer;transition:fill .15s}
 #ov #ovUsMap path.ck{fill:#b88d2c}#ov #ovUsMap path:hover,#ov #ovUsMap path:focus{fill:#f0c96b;outline:none}
@@ -277,9 +279,10 @@ body.field .page-jump-nav{display:none!important}
  <h1>PARK OVERLAP <span>FINDER</span></h1>
  <p class="ov-sub">Places where our maps suggest the boundaries of two or more POTA parks may overlap. Pick a result to watch the park outlines draw in, see the spot, find the closest public access, and walk in with your GPS.</p>
 </div></section>
-<section class="ov-us" aria-label="Pick a state on the map"><div class="ov-usin">
- <p class="ov-ush"><b>PICK A STATE</b> <span id="ovUsN" class="ov-usk">Tap a state</span> <button type="button" id="ovUsBack" class="ov-usb" hidden>← ALL STATES</button></p>
- <svg id="ovUsMap" viewBox="0 0 960 560" role="group" aria-label="Map of US states: tap a state to see its list"></svg>
+<section class="ov-us" aria-label="Pick a place on the map"><div class="ov-usin">
+ <div class="ov-view" id="ovView" role="group" aria-label="Which map"><button type="button" data-view="US" class="on" aria-pressed="true">UNITED STATES</button><button type="button" data-view="CA" aria-pressed="false">CANADA</button><button type="button" data-view="W" aria-pressed="false">🌍 WORLD</button></div>
+ <p class="ov-ush"><b id="ovUsH">PICK A STATE</b> <span id="ovUsN" class="ov-usk">Tap a state</span> <button type="button" id="ovUsBack" class="ov-usb" hidden>← ALL STATES</button></p>
+ <svg id="ovUsMap" viewBox="0 0 960 560" role="group" aria-label="Map: tap a place to see its list"></svg>
 </div></section>
 <div class="ov-wrap">
  <aside class="ov-full" role="note"><b>Please read: this is a research aid, not a ruling.</b> The Park Overlap Finder shows places where our maps suggest the boundaries of two or more POTA parks may overlap. It is a starting point for your own research only. The Kentucky Portable Club cannot confirm or deny that any location listed here is a valid multi-park activation site. Park boundaries change, maps can be out of date or imprecise, and private land, closures and local rules may apply even inside a boundary. Before you count an activation, check each park's official boundary map from the managing agency, make sure you are on public land that is open to the public, and follow POTA's activation rules. POTA sets the rules, and activations run on the honor system: it's up to each activator to follow them. You are responsible for confirming your own location. KPC is an independent ham radio club, not part of Parks on the Air®.</aside>
@@ -344,7 +347,7 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-bounds.js?v=20261031v"></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script>
 <script src="kpc-map-tools.js?v=20261027a"></script>
-<script src="kpc-overlap-finder.js?v=20261031f"></script>
+<script src="kpc-overlap-finder.js?v=20261031w"></script>
 <script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261031s" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

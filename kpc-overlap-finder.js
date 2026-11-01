@@ -576,14 +576,26 @@
   PLACES.W = WORLD.map(function (c) { return c + ' ' + CN(c === 'GB' ? 'GB' : c); }).join('|');
   function regionOf(cc, code) { return CFG.regions.filter(function (r) { return r.id === code && cc === 'US' || (r.files || []).indexOf(cc + '-' + code) >= 0; })[0]; }
   var GRP = { US: 'United States', CA: 'Canada', W: 'World' };
+  /* Oct 31 (Brandon 9:07 PM: 'overlap finder needs a map for the world … default US … your dropdown list needs to reflect that'):
+     the map has three views, UNITED STATES (default) / CANADA / WORLD, and the drop-down lists only the places of the view on screen */
+  var VIEW = 'US', VLAB = { US: ['STATE', 'a state'], CA: ['PROVINCE', 'a province'], W: ['COUNTRY', 'a country'] };
+  var grpOf = function (r) { var f = (r.files || [])[0] || ''; return /^W-/.test(f) ? 'W' : /^CA-/.test(f) ? 'CA' : 'US'; };
+  function grpOfId(id) { var r = CFG.regions.filter(function (x) { return x.id === id; })[0]; if (r) return grpOf(r); var m = /^(US|CA|W)-/.exec(id || ''); return m ? m[1] : 'US'; }
+  function setView(v, keep) {
+    VIEW = v; [].forEach.call(document.querySelectorAll('#ovView [data-view]'), function (b) { var on = b.dataset.view === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+    var h = $('ovUsH'); if (h) h.textContent = 'PICK ' + VLAB[v][1].toUpperCase();
+    regionSelect(); if (REG && grpOfId(REG.id) === v && $('ovReg')) $('ovReg').value = REG.id;
+    US_PICK = false; drawView();
+    if (!keep && (!REG || grpOfId(REG.id) !== v)) { var first = CFG.regions.filter(function (r) { return grpOf(r) === v; })[0]; if (first) loadRegion(first.id); }
+  }
+  function drawView() { if (VIEW === 'US') usMap(); else worldMap(VIEW); }
   function regionSelect() {
-    var grpOf = function (r) { var f = (r.files || [])[0] || ''; return /^W-/.test(f) ? 'W' : /^CA-/.test(f) ? 'CA' : 'US'; };
     var opt = function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; };
-    var done = ['US', 'CA', 'W'].map(function (g) { var l = CFG.regions.filter(function (r) { return grpOf(r) === g; }); return l.length ? '<optgroup label="' + GRP[g] + ': with a list">' + l.map(opt).join('') + '</optgroup>' : ''; }).join('');
+    var done = [VIEW].map(function (g) { var l = CFG.regions.filter(function (r) { return grpOf(r) === g; }); return l.length ? '<optgroup label="' + GRP[g] + ': with a list">' + l.map(opt).join('') + '</optgroup>' : ''; }).join('');
     var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
-    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE / COUNTRY</b></label><select id="ovReg">' + done + grp('US', 'US states') + grp('CA', 'Canada') + grp('W', 'World') + '</select>' +
+    $('ovRegions').innerHTML = '<label for="ovReg"><b>' + VLAB[VIEW][0] + '</b></label><select id="ovReg">' + (REG && grpOfId(REG.id) === VIEW ? '' : '<option value="" selected disabled>— Pick ' + VLAB[VIEW][1] + ' —</option>') + done + grp(VIEW, VIEW === 'US' ? 'US states' : VIEW === 'CA' ? 'Canada' : 'Countries') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
-    $('ovReg').addEventListener('change', function () { US_PICK = true; loadRegion(this.value); usMark(); });
+    $('ovReg').addEventListener('change', function () { if (!this.value) return; US_PICK = VIEW === 'US'; loadRegion(this.value); usMark(); });
   }
   /* Oct 28 (Brandon: 'under the hero have a state level clickable map'): every state drawn from kpc-us-states.json; gold = a
      checked list, grey = not checked yet; a tap does what the STATE / PROVINCE box does. Alaska + Hawaii in small boxes. */
@@ -612,6 +624,11 @@
       });
       svg.innerHTML = html;
       US_VIEW = 'all'; vb(0, 0, 960, 560); var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
+      wireSvg(svg);
+      usMark();
+    });
+  }
+  function wireSvg(svg) {
       if (!svg._wired) {
         svg._wired = true;
         var go = function (e) {
@@ -619,13 +636,37 @@
           var dt = e.target.closest('.dot');
           if (dt) { openRow.maxZ = 16; openRow(dt.getAttribute('data-k')); var m = $('ovMap'); if (m) setTimeout(function () { scrollTo({ top: m.getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 300); return; }
           var t = e.target.closest('path'); if (!t || US_VIEW !== 'all') return;
-          US_PICK = true; loadRegion(t.getAttribute('data-r'));
+          var rid = t.getAttribute('data-r'); if (!rid) return; if (/^VIEW:/.test(rid)) { setView(rid.slice(5)); return; } US_PICK = VIEW === 'US'; loadRegion(rid); usMark();
         };
         svg.addEventListener('click', go);
         svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
-        var bk2 = $('ovUsBack'); if (bk2) bk2.addEventListener('click', function () { US_PICK = false; usMap(); });
+        var bk2 = $('ovUsBack'); if (bk2) bk2.addEventListener('click', function () { US_PICK = false; drawView(); });
       }
-      usMark();
+  }
+  /* WORLD + CANADA maps: kpc-world-map.json (Natural Earth, public domain: 1:110m countries, 1:50m provinces). Gold = has a list,
+     grey = no list yet; on the world map the US and Canada open their own views. */
+  var WM_P = null;
+  function worldMap(v) {
+    var svg = $('ovUsMap'); if (!svg) return;
+    US_VIEW = 'all'; vb(0, 0, 960, 560); var bk = $('ovUsBack'); if (bk) bk.hidden = true;
+    var nt = $('ovUsN'); if (nt) nt.textContent = 'Loading the map…';
+    (WM_P || (WM_P = j('kpc-world-map.json'))).then(function (M) {
+      if (VIEW !== v) return;
+      var L0 = M && (v === 'W' ? M.countries : M.ca);
+      if (!L0 || !L0.length) { svg.innerHTML = '<text x="480" y="290" text-anchor="middle" class="nc">Map coming soon: use the list above</text>'; if (nt) nt.textContent = 'Pick ' + VLAB[v][1] + ' in the list'; return; }
+      if (v === 'W' && !PLACES._all) { PLACES._all = 1; PLACES.W = M.countries.filter(function (c) { return c.a !== 'US' && c.a !== 'CA'; }).sort(function (x, y) { return x.n < y.n ? -1 : 1; }).map(function (c) { return c.a + ' ' + c.n; }).join('|'); regionSelect(); if (REG && grpOfId(REG.id) === 'W') $('ovReg').value = REG.id; }
+      var x0 = -180, x1 = 180, y0 = -58, y1 = 84, k = 1;
+      if (v === 'CA') { x0 = 1e9; x1 = -1e9; y0 = 1e9; y1 = -1e9; L0.forEach(function (c) { c.p.forEach(function (poly) { poly[0].forEach(function (q) { x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); }); }); }); k = Math.cos(58 * Math.PI / 180); }
+      var W = 960, H = 560, pad = 8, sc = Math.min((W - 2 * pad) / ((x1 - x0) * k), (H - 2 * pad) / (y1 - y0)), ox = (W - (x1 - x0) * k * sc) / 2, oy = (H - (y1 - y0) * sc) / 2;
+      var P = function (lon, lat) { return [ox + (lon - x0) * k * sc, oy + (y1 - lat) * sc]; };
+      var html = '';
+      L0.forEach(function (c) {
+        var d = ''; c.p.forEach(function (poly) { (poly || []).forEach(function (ring) { if (ring.length < 3) return; d += 'M' + ring.map(function (q) { var p = P(q[0], q[1]); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join('L') + 'Z'; }); });
+        if (!d) return;
+        var go = v === 'W' && (c.a === 'US' || c.a === 'CA') ? 'VIEW:' + c.a : '', r = go ? null : regionOf(v, c.a), id = go || (r ? r.id : v + '-' + c.a);
+        html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r || go ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(c.n) + (go ? ': open its map' : r ? ': has a list' : ': no list yet') + '"><title>' + esc(c.n) + (go ? ' (tap for its map)' : r ? '' : ' (no list yet)') + '</title></path>';
+      });
+      svg.innerHTML = html; if (nt) nt.textContent = 'Tap ' + VLAB[v][1]; wireSvg(svg); usMark();
     });
   }
   /* Oct 28 (Brandon: zoomed in on the page, a tap jumped to a super-zoomed map you could not zoom out of): the state map zooms by
@@ -636,7 +677,7 @@
     x = Math.min(960 - w, Math.max(0, x)); y = Math.min(560 - h, Math.max(0, y)); VB = [x, y, w, h];
     svg.setAttribute('viewBox', VB.map(function (v) { return v.toFixed(1); }).join(' '));
     var k = w / 960; [].forEach.call(svg.querySelectorAll('.dot circle'), function (c) { if (!c.dataset.r) c.dataset.r = c.getAttribute('r'); c.setAttribute('r', (+c.dataset.r * Math.max(.35, k)).toFixed(2)); });
-    var zz = $('ovUsZ'); if (zz) zz.hidden = US_VIEW !== 'state';
+    var zz = $('ovUsZ'); if (zz) zz.hidden = US_VIEW !== 'state' && VIEW === 'US';   /* the world + Canada maps zoom too (small countries) */
   }
   function vbZoom(f) { var cx = VB[0] + VB[2] / 2, cy = VB[1] + VB[3] / 2, w = VB[2] / f; vb(cx - w / 2, cy - w * 560 / 960 / 2, w, 0); }
   (function () {
@@ -646,7 +687,7 @@
     svg.parentNode.insertBefore(zz, svg);
     zz.addEventListener('click', function (e) { var b = e.target.closest('[data-uz]'); if (b) vbZoom(b.dataset.uz === 'in' ? 2 : .5); });
     var drag = null;
-    svg.addEventListener('pointerdown', function (e) { if (US_VIEW !== 'state' || VB[2] >= 960) return; drag = { x: e.clientX, y: e.clientY, v: VB.slice(), moved: false }; });
+    svg.addEventListener('pointerdown', function (e) { if ((US_VIEW !== 'state' && VIEW === 'US') || VB[2] >= 960) return; drag = { x: e.clientX, y: e.clientY, v: VB.slice(), moved: false }; });
     svg.addEventListener('pointermove', function (e) { if (!drag) return; var r = svg.getBoundingClientRect(), k = drag.v[2] / r.width, dx = (e.clientX - drag.x) * k, dy = (e.clientY - drag.y) * k;
       if (Math.abs(dx) + Math.abs(dy) > 2) drag.moved = true; vb(drag.v[0] - dx, drag.v[1] - dy, drag.v[2], 0); });
     var end = function () { if (drag && drag.moved) { svg._noTap = true; setTimeout(function () { svg._noTap = false; }, 50); } drag = null; };
@@ -660,7 +701,7 @@
      numbered dot at every result in the LIST (same filters); a dot = that result on the MAP below; ALL STATES = back. */
   var US_VIEW = 'all', US_PICK = false;   // the state view only after a person picks a state (the page opens on the whole map)
   function usState() {
-    var svg = $('ovUsMap'); if (!svg || !US_P || !REG || !US_PICK) return;
+    var svg = $('ovUsMap'); if (!svg || !US_P || !REG || !US_PICK || VIEW !== 'US') return;
     var sts = ((REG.files || []).map(function (f) { return (/^US-([A-Z]{2})$/.exec(f) || [])[1]; }).filter(Boolean));
     if (!sts.length && /^US-[A-Z]{2}$/.test(REG.id)) sts = [REG.id.slice(3)];
     if (!sts.length) { if (US_VIEW !== 'all') usMap(); return; }
@@ -724,10 +765,11 @@
     CFG = a[0] || { regions: [] }; REV = (a[1] && a[1].reviewed) || {};
     CFG.regions = (CFG.regions || []).filter(function (r) { return r.public || MEMBER; });
     if (!CFG.regions.length) { $('ovList').innerHTML = '<div class="ov-empty"><b>We are still checking the parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>'; return; }
-    regionSelect();
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
-    loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
-    usMap();
+    want = CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id;
+    VIEW = grpOfId(want); regionSelect();
+    loadRegion(want); setView(VIEW, true);
+    var vw = $('ovView'); if (vw) vw.addEventListener('click', function (e) { var b = e.target.closest('[data-view]'); if (b && b.dataset.view !== VIEW) setView(b.dataset.view); });
   });
   window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); }, sharp: function () { return SHARP; } };
 })();
