@@ -6,7 +6,7 @@
 # usage: kpc_push_data.sh <repo dir> "<commit message>" <path> [path…]   (paths to look for changes in, e.g. data)
 cd "$1" || exit 0; shift; MSG="$1"; shift
 git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-git add -A "$@" 2>/dev/null
+for p in "$@"; do git add -A -- "$p" 2>/dev/null; done   # Nov 1 (chat 10): one path at a time: ONE missing path (data/intake/found-layers-stage2.json) made git add nothing at all, so the world finder saved nothing since Oct 30
 # B7 (Oct 30): file names are read NUL-separated, so a path with a space is one path, not two
 mapfile -d '' CH < <(git diff --cached --name-only -z --diff-filter=AMR); mapfile -d '' DEL < <(git diff --cached --name-only -z --diff-filter=D)
 [ ${#CH[@]} -eq 0 ] && [ ${#DEL[@]} -eq 0 ] && { echo "nothing changed"; exit 0; }
