@@ -1,0 +1,32 @@
+KPC POTA BOUNDARY SEARCH - WHERE TO CONTINUE   (Mapping, written 2026-11-01)
+
+RULES (never): WDPA/Protected Planet (incl. HDX copies), OpenStreetMap, Google, AllTrails, Wikipedia/Wikidata geometry, tourism/app sites, sign-in/"Token Required" layers, tokens found in public maps, getting around robot checks/403s. Game reserves are not POTA parks. Add finds to the "Outside agent help" tab / matching tabs in KPC_All_GIS_Sources_plus_mapping-nov1.xlsx (yellow rows, no approval wording). Check the workbook first so links are not added twice. Backup before saving; reopen the latest file right before saving.
+
+WHERE THINGS ARE (/workspace/world_keys/ unless noted)
+- KPC_All_GIS_Sources_plus_mapping-nov1.xlsx = master workbook with everything so far
+- KPC_World_Keys_filled.xlsx = country key sheet (status + notes per country)
+- handback/ handback2/ handback3/ handback4/ handback5/ = per-round files + READMEs (nov1, nov1b, nov1c, nov1d, nov1e)
+- retry/ and to_check_later/ = retry list, waiting-on-OK list, this file
+- /workspace/kpc_trails/out, out2 = trails rounds 1-2; /workspace/kpc_uscamp/out = parking/camping/acres; /workspace/kpc_otherweak/out (and out2 if finished) = US/CA other park kinds
+- pdf_maps/ small_maps/ pages2/ = picture maps for the 7 PDF-only countries
+
+CONTINUE HERE, IN THIS ORDER
+1. RETRY FROM A BROWSER OR OTHER NETWORK (box network blocks these; do not bypass 403s):
+   Turkey (467 parks) cbs1.tarimorman.gov.tr MapServer/38; Spain MITECO enp.zip (59.6 MB, robot check, a person downloads it); Thailand DNP catalog; Argentina IGN WFS; Japan gis.biodic.go.jp; Romania data.gov.ro; Venezuela IGVSB/SIGOT; Honduras, Bolivia, Bangladesh, Laos, Malawi, Serbia; Slovenia ARSO; Hungary inspire.termeszetvedelem.hu; Germany BfN; Rheinland-Pfalz (44 parks); Netherlands BIJ12; Cuba IDERC. Full detail: retry/retry-servers-down-nov1.csv.
+2. REVIEW LISTS: to_check_later/WAITING-ON-USER-OK.md (21 far-pin trail parks, 117+718+156 "check" matches, name-only matches, licences to verify, Israel and Pakistan decisions).
+3. BIGGEST REMAINING GAPS (parks without an outline):
+   - Australia ~3,400: ~1,600 State Beaches (no official layer), ~360 Wild & Scenic Rivers, SA Forest Reserves, SA Water Mgmt Areas, WA State Forests (match by ID, name blank).
+   - Britain ~4,200: ~1,200 town parks, Forestry England woods, other designations.
+   - France: name-only matches ~13,500 need checking; docs/pages work for France, Norway, Poland, Sweden, Italy, Finland not done.
+   - Spain ~660: Navarra reserves (34), Madrid wetlands (33), Castilla-La Mancha, Valencia, Canarias, Castilla y Leon; Andalucia trails/cañadas.
+   - Germany ~770: remaining states + Rheinland-Pfalz.
+   - Belgium 235, Ireland 133 (NPWS polygons not open), Denmark 134, Netherlands 98, Slovenia, Romania, Hungary, Japan (newer MOE shapes), Portugal (Madeira, ~40 Azores forest reserves).
+   - Russia (7,933) and China (1,845): no open government map found. Not worth more time unless something new appears.
+   - Small countries with only pins/points: Hong Kong, Mauritius, Trinidad & Tobago.
+   - US/Canada ~4,100 parks: QC 610, ON 395 (36 conservation authorities), NB 276, UT 266, NV 150, NS 139, ID 128, WA 120, BC 102, MS 91, YT 89, IN 87, WY 86. Blocked hosts on the failed tab (national forests, BLM rec areas, NPS units, QC/NB/YT) - retry plain once.
+4. TRAILS: ~124 true trails still without a line: UT 34, SK 14, NB 10, IL 9, OR 8, HI 8, AR 5, MI 4, VA 3, WY 3; plus Canada (NL, NS, TCT has no govt layer). Ideas: Utah trailheads = trail within 1 km of pin (needs human check). Retry Ontario Burgess Park (CA-5993) and Oak Ridges Moraine (CA-6211). World trails (outside US/CA/EE/GB) not searched yet.
+5. CAMPING/PARKING/ACRES: no agency layers found for SC, AL, MN, KS, LA, MS, OK, MD, RI, VT (and GA camping); Canada QC, NS, MB, SK, NB, PE facilities. Ontario Parks has no public campsite layer.
+6. WORLD COUNTRIES NOT YET DONE OR ONLY LIGHT: the ~112 small countries with <20 parks got one quick pass (nov1d); Middle East and Africa checked once, lightly; Philippines needs a sign-in; India, Moldova, Ukraine, Azerbaijan, Kazakhstan dead ends (see handback4 README).
+7. BEFORE ANY RE-RUN: do not re-run trails round-1 merge script (purges round-2 rows); use /workspace/kpc_trails/r2/merge2.py. Re-running world_keys/merge.py drops manually added sheets.
+
+TIP: the user's engine accepts any format; just keep the POTA park number / state / country next to each link.
