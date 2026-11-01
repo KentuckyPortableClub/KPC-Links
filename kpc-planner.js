@@ -484,7 +484,7 @@ $('route').onclick=()=>{if(trip.length)window.open(gmapsUrl(),'_blank','noopener
 $('share').onclick=async()=>{if(!trip.length)return;const u=shareUrl();
  try{if(navigator.share){await navigator.share({title:'KPC trip',text:'My KPC radio trip ('+trip.length+' stops)',url:u});return}}catch(e){if(e&&e.name==='AbortError')return}
  try{await navigator.clipboard.writeText(u);flash('Trip link copied. Paste it in a text or email.')}catch(e){prompt('Copy this trip link:',u)}};
-$('gpx').onclick=()=>{if(!trip.length)return;const b=new Blob([gpx()],{type:'application/gpx+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kpc-trip.gpx';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+$('gpx').onclick=()=>{if(!trip.length)return;if(window.KPCGPSW&&KPCGPSW.member()){KPCGPSW.tripFile(trip.map(s=>s.t==='park'&&s.ref?{ref:s.ref}:{name:s.n,lat:s.la,lon:s.lo})).catch(()=>{});return}const b=new Blob([gpx()],{type:'application/gpx+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kpc-trip.gpx';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
 })();
 
 /* ⛶ FULL / ✕ EXIT button (same as the Kit / Info Finder / In-Park maps; Esc exits) */

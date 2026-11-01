@@ -465,7 +465,8 @@ async function drawRoad(){if(trip.length<2||!map)return;const b=$('t-road');b.te
   const h=Math.floor(rt.duration/3600),m=Math.round(rt.duration%3600/60);b.textContent='DRAW DRIVING ROUTE';
   $('trip-sum').textContent=`${trip.length} stops • about ${Math.round(rt.distance/1609.34)} driving miles, ${h?h+' h ':''}${m} min${trip.length>25?' (first 25 stops)':''}.`}
  catch(e){b.textContent='ROUTE SERVICE BUSY, USE GOOGLE MAPS'}}
-function gpx(){const x=s=>String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+function gpx(){if(window.KPCGPSW&&KPCGPSW.member()&&trip.length){KPCGPSW.tripFile(trip.map(s=>s.p==='PIN'||!s.c?{name:s.n,lat:s.la,lon:s.lo}:{ref:s.c})).catch(()=>{});return}   /* Nov 1: members get the full GPS file (notice, parking, outlines) */
+ const x=s=>String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
  const body=trip.map(s=>`<wpt lat="${s.la}" lon="${s.lo}"><name>${x(s.p==='PIN'?s.n:s.c+' '+s.n)}</name><desc>${x(s.p)}</desc></wpt>`).join('\n');
  const rte='<rte><name>KPC trip</name>'+trip.map(s=>`<rtept lat="${s.la}" lon="${s.lo}"><name>${x(s.p==='PIN'?s.n:s.c)}</name></rtept>`).join('')+'</rte>';
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([`<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1">\n${body}\n${rte}\n</gpx>`],{type:'application/gpx+xml'}));

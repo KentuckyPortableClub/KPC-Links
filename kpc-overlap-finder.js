@@ -467,7 +467,9 @@
   function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
     'Last checked ' + esc(s.checked || '') + apxLine(cur.refs).replace(/<\/?p[^>]*>/g, '<br>') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
-    var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p>';
+    var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p><div data-gps-refs="' + esc((g.refs || []).join(',')) + '"></div>';
+    var ge = $('ovSpot').querySelector('[data-gps-refs]');   /* ⬇ GPS: both parks + exactly the spots shown here (never the raw list) */
+    if (ge) ge._gpsFers = ps.filter(function (x) { return x && x.center; }).map(function (x) { return { refs: g.refs.slice(), lat: x.center[0], lon: x.center[1], note: g.trail ? 'Possible trail overlap' : 'Possible 2-fer' }; });
   }
   /* Brandon Oct 27 2:26 PM ('show park number layer 1 and other park 2 … is the shading only the overlap?'): a key ON the map:
      each park's number badge + park number + its line style, and what the shading means */
