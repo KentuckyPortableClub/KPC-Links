@@ -1441,6 +1441,9 @@ def merge(spots):
             if s.get('len_m'): t['len_m'] = round(t.get('len_m', 0) + s['len_m'])
             t['_b'] = [min(t['_b'][0], b[0]), min(t['_b'][1], b[1]), max(t['_b'][2], b[2]), max(t['_b'][3], b[3])]
             t['shape'] = t['shape'] if len(t['shape']) >= len(s['shape']) else s['shape']
+            for _r, _z in (s.get('route_zone') or {}).items():   # Nov 1: the water route's own zone rings add up over the tiles
+                _have = t.setdefault('route_zone', {}).setdefault(_r, [])
+                _have += [z for z in _z if z not in _have]
         else:
             s['_b'] = b; out.append(s)
     for o in out: o['box'] = [round(v, 5) for v in o.pop('_b')]   # the box of ALL its pieces (the shape is the biggest piece only)
@@ -1536,7 +1539,29 @@ def water_route_spots(lref, ls, oref, obox):
         if not accepted: continue
         accepted = [max(accepted, key=lambda L_: int(stats[L_][4]))]   # the main river / reservoir only
         route = np.isin(lab, accepted).astype(np.uint8)
+        # Nov 1 (Brandon on the live Finder, Ballard WMA x Trail of Tears x Lewis and Clark: the strip ran up a creek through the fields;
+        # rule R5a: a cove / side arm of the river or lake counts, a separate creek does not): narrow channels joined to the main water
+        # are cut off. Width test = an opening as wide as 1/6 of the main water's width (15-100 m); the main bank keeps its exact line
+        # (only the pixels the opening removed AND that lie outside its grown copy go), so wide coves / embayments stay.
+        _mw = 2 * float(dt(route).max()) * CELL
+        _k = int(round(min(100.0, max(15.0, _mw / 6)) / CELL))
+        if _k >= 2:
+            _ker = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (_k | 1, _k | 1))
+            _op = cv2.morphologyEx(route, cv2.MORPH_OPEN, _ker)
+            if _op.any():
+                _keep = cv2.dilate(_op, _ker) & route
+                _n2, _l2, _st2, _ = cv2.connectedComponentsWithStats(_keep, connectivity=8)
+                if _n2 > 1: route = (_l2 == 1 + int(np.argmax(_st2[1:, 4]))).astype(np.uint8)
         wd = dt(1 - route, outside=1) * CELL
+        # Nov 1 (Brandon: 'shows the border for the WMA but never shows the river trail boundaries'): the water route's OWN zone in this
+        # tile = the land within 100 ft of the main water's edge (both banks), saved as rings beside the strip so the Finder can draw it
+        _bz = ((wd <= BANK) & (route == 0)).astype(np.uint8)
+        _bzr = []
+        if _bz.any():
+            for _c in cv2.findContours(_bz, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]:
+                if cv2.contourArea(_c) < 4: continue
+                _a = cv2.approxPolyDP(_c, 1.5, True).reshape(-1, 2)
+                if len(_a) > 2: _bzr.append([F.ll(int(x), int(y)) for x, y in _a])
         ok = ((dt(land) * CELL >= STATION_IN) & (wd <= BANK + (CELL * .5 if PASS == 3 else CELL)) & (route == 0)).astype(np.uint8)
         if not ok.any(): continue
         m2, lab2 = cv2.connectedComponents(ok, connectivity=8)
@@ -1553,7 +1578,8 @@ def water_route_spots(lref, ls, oref, obox):
             # length = half the strip's outline (both long sides of a thin strip), not area / width (Fable #14: 25.6 mi for Ballard)
             per = cv2.arcLength(ap.reshape(-1, 1, 2).astype(np.float32), True) * CELL / 2   # the smoothed outline: a pixel staircase would add up to 40%
             out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(per),
-                        'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True, 'shape_kind': 'polygon'})
+                        'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True, 'shape_kind': 'polygon',
+                        'route_zone': {lref: _bzr}})
     return merge(out)
 
 

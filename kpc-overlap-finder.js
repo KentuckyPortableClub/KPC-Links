@@ -335,7 +335,11 @@
     return Promise.all(parks.map(function (p) {
       var trailPatch = g.patches.some(function (s) { return s.kind === 'trail' && s.line_source && s.line_source[p.ref]; });
       if (trailPatch) { p.line = true; return null; }   // a line park: its zone is the 100-ft band, drawn from the patch itself
-      if (g.patches.some(function (s) { return s.water_route && s.line_source && s.line_source[p.ref]; })) { p.bank = true; return null; }   // Oct 31: a water route counts by the bank strip (the patch)
+      if (g.patches.some(function (s) { return s.water_route && s.line_source && s.line_source[p.ref]; })) { p.bank = true;   // Oct 31: a water route counts by the bank strip (the patch)
+        /* Nov 1 (Brandon: 'shows the border for the WMA but never shows the river trail boundaries'): the route's OWN zone = the land within
+           100 ft of the river's edge on both banks, saved by the 2-fer line as route_zone; drawn as that park's outline (does not change the count) */
+        var rz = []; g.patches.forEach(function (s) { ((s.route_zone || {})[p.ref] || []).forEach(function (r) { if (r && r.length > 2) rz.push({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [r.concat([r[0]])] } }); }); });
+        p.fsAll = rz; p.fs = rz; return null; }
       var ky = /^US-/.test(p.ref) && (g.st === 'KY' || /KY/.test(g.st));
       var pr = ky && B.kyFor ? B.kyFor(p.ref) : /^CA-/.test(p.ref) && B.canada ? B.canada(p.ref) : B.usOutline ? B.usOutline(p.ref, nm(g, p.ref), g.best.center[0], g.best.center[1], [String(g.st || '').replace(/^US-/, '')]).then(function (o) { return o && o.fs; }) : Promise.resolve(null);
       return Promise.resolve(pr).then(function (fs) { p.fsAll = (fs || []).filter(function (f) { return f && f.geometry; }); p.fs = near(g, p.fsAll); }).catch(function () { p.fs = []; p.fsAll = []; });
