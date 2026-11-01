@@ -47,3 +47,13 @@ if stale:
 if n in ('2', '8', '11'):
     q = subprocess.run(['gh', 'api', 'repos/KentuckyPortableClub/KPC-Data/contents/data/status/grade-queue.md', '-H', 'Accept: application/vnd.github.raw'], capture_output=True, text=True).stdout
     if q: print('\n## Waiting room grade list (only NEW + CHANGED rows need a look)\n' + q[:6000])
+
+# FLOW BOARD (chat 10, Nov 1; Brandon 2:01 PM 'stuff seems to get dropped a lot'): what is STUCK anywhere + what waits on THIS chat
+fl = subprocess.run(['gh', 'api', 'repos/KentuckyPortableClub/KPC-Data/contents/data/status/flow.md', '-H', 'Accept: application/vnd.github.raw'],
+                    capture_output=True, text=True).stdout
+if fl:
+    stuck = re.search(r'## STUCK[^\n]*\n(.*?)\n\n', fl, re.S)
+    mine = re.search(rf'### chat {re.escape(n)}\n(.*?)(?=\n###|\n\n|$)', fl, re.S)
+    print('\n## Flow board (KPC-Data data/status/flow.md): STUCK anywhere')
+    print(stuck.group(1) if stuck else '- (none)')
+    if mine: print(f'## Waiting on chat {n}\n' + mine.group(1))
