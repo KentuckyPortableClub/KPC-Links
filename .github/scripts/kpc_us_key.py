@@ -1009,6 +1009,7 @@ def run(st):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
+                    if KM.is_admin(nm) or KM.is_admin(a.get('Loc_Nm')) or re.search(r'field office|district office|ranger district', nm, re.I): continue   # Nov 1 (chat 11: Fortymile WSR -> 'Eastern Interior Field Office'): an office boundary is never a park
                     if _tags(name) and not (_tags(name) & _tags(nm)): continue   # Oct 31 (chat 11: Milford State Fish Hatchery -> 'Milford Wildlife Area'): another kind of place never joins
                     if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
