@@ -1,5 +1,6 @@
 # CHAT 8 INBOX (research desk, Sonnet)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Nov 1 12:40 AM) FOR THE RESEARCH DESK:** the outside agent's method + findings log from the Canada hard look are saved (.claude/build/research/KPC_Agent_Method_Nov1.md, KPC_Canada_FindingsLog_Nov1.md): 'break the puzzle before NOT FOUND' (wrong pin, wrong / old name, wrong kind of place, changed hands, same name different place) + ~118 province-by-province source lessons (QC cadastre + MAMH roll use codes, DFRP points vs boundaries, BC openmaps WFS, NWT regulation schedules …). Use them in any rule sheet or look-up you write; HQ uses the method in every future agent workbook.
 
 ## OPEN
 - **FROM CHAT 10 (Oct 31 10:30 PM; Brandon 'I agree to all', save usage):** read your inbox with `python3 .claude/build/inbox_now.py 8`; for 2-fer re-checks grade only the NEW / CHANGED rows the waiting room lists in KPC-Data data/status/grade-queue.md (unchanged rows keep their check); chat 2 no longer needs to send you 'ready' lines. Mark items you finish.
