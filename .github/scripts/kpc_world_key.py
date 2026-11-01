@@ -406,7 +406,10 @@ def thin(rs, n=None): n = n or THIN_N; return [r[::max(1, len(r) // n)] for r in
 # latitude; ~3.3 m by default) for the saved website copy; '_r' (thinned) stays what pin-inside is judged on, exactly as before.
 FINE_TOL = float(os.environ.get('FINE_TOL') or 0.00003)
 FINE_CAP = int(os.environ.get('FINE_CAP') or 1500)   # points a saved park may hold at most (Brandon Oct 31: cap the very big ones)
-FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1'   # ON for the size test only until Brandon / HQ OK the storage
+# Brandon Oct 31 7:22 PM: 'not top 10 countries, smaller files are fine': 3 m saved outlines ON for every country EXCEPT the world
+# stages W1-W10 (their files are the big ones: France 15 -> 51 MB); FINE_OUTLINES=1 forces it on, WB_DIR = the size test.
+TOP10 = set((os.environ.get('FINE_SKIP') or 'GB AU JP DE PL FR ES IT NO NL').split())
+FINE_ON = bool(os.environ.get('WB_DIR')) or os.environ.get('FINE_OUTLINES') == '1' or (os.environ.get('COUNTRIES', '').strip().upper() not in TOP10 and len(os.environ.get('COUNTRIES', '').split()) == 1)
 def _dp(pts, tol):
     if len(pts) < 3: return pts
     import math
