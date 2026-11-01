@@ -8,7 +8,7 @@ name: KPC POTA Discord Spotter
 # file is saved once at the end of the hour, only if it changed. Never fails (a failed run emails Brandon).
 on:
   schedule:
-    - cron: '2 * * * *'
+    - cron: '17 * * * *'   # Nov 1: moved off the busy top of the hour (GitHub dropped runs for hours)
   workflow_dispatch:
 permissions:
   contents: write

@@ -206,7 +206,8 @@ def main():
         if last.get('conclusion') not in ('success', 'skipped', 'neutral', 'cancelled'):
             problems.append((tag + f.name, f"{name}: last timed run ended '{last.get('conclusion')}' ({last['created_at'][:16]}Z) {last.get('html_url', '')}"))
         elif late and not grace:
-            problems.append((tag + f.name, f'{name}: has not run for {age:.0f} h (it should run about every {need:.0f} h)'))
+            every = f'{need * 60:.0f} min' if need < 1 else f'{need:.0f} h'
+            problems.append((tag + f.name, f'{name}: has not run for {age:.0f} h (it should run about every {every})'))
         else:
             ok.append(f'{name} · last ran {age:.1f} h ago')
     for path, hrs, who in FRESH:
