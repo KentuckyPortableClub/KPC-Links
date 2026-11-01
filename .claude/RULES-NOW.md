@@ -229,3 +229,5 @@ Built from chat 11's 2,480 answers (US + Canada hunter 479, world finder 2,047) 
 
 - Oct 31 7:22 PM (Brandon: 'not top 10 countries, smaller files are fine'): world saved outlines at 3 m (with the 1,500-point cap) for every country EXCEPT W1-W10 (GB AU JP DE PL FR ES IT NO NL), which stay as saved before; size test: CH 0.43 -> 1.48 MB.
 
+- Oct 31 7:24 PM (Brandon: 'them files can they go to the branch and france outside of top 10? huge files we need to keep smaller'): world saved outlines moved OFF main to the KPC-Links branch `world-bounds` (one commit, replaced every rebuild = no history growth); the site reads raw.githubusercontent .../world-bounds first, KPC-Data's old copy as fallback; KPC-Data no longer copies them. With no storage cost, EVERY country (France and the top 10 too) gets the 3 m copy with the 1,500-point cap (FINE_SKIP can turn a country back). Rebuild CH JP GB DE FR started 7:35 PM.
+
