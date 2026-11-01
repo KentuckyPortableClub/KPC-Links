@@ -334,7 +334,20 @@
     var B = window.KPCB; if (!B) return Promise.resolve();
     return Promise.all(parks.map(function (p) {
       var trailPatch = g.patches.some(function (s) { return s.kind === 'trail' && s.line_source && s.line_source[p.ref]; });
-      if (trailPatch) { p.line = true; return null; }   // a line park: its zone is the 100-ft band, drawn from the patch itself
+      if (trailPatch) { p.line = true;   // a line park: its zone is the 100-ft band, drawn from the patch itself
+        /* Nov 1 (Brandon: 'all trails it might not show the boundaries'): the trail's OWN 100-ft band near the spot, from its official line
+           file (KPC-Data data/trails/<ref>.json), drawn as that park's outline; the count still uses the patch */
+        var bb = [180, 90, -180, -90]; patchRings(g).forEach(function (x) { x.ring.forEach(function (q) { bb[0] = Math.min(bb[0], q[0]); bb[1] = Math.min(bb[1], q[1]); bb[2] = Math.max(bb[2], q[0]); bb[3] = Math.max(bb[3], q[1]); }); });
+        if (bb[0] > bb[2]) return null;
+        var pad = Math.max(0.02, 0.75 * Math.max(bb[2] - bb[0], bb[3] - bb[1])), BX = [bb[0] - pad, bb[1] - pad, bb[2] + pad, bb[3] + pad];
+        var base = String((CFG && CFG.base) || '../KPC-Data/data/fers/').replace(/fers\/?$/, 'trails/');
+        return j(base + p.ref + '.json').then(function (d) {
+          var gs = d ? (d.features ? d.features.map(function (f) { return f.geometry; }) : [d.geometry || d]) : [], out = [];
+          gs.forEach(function (G) { if (!G) return; var ls = G.type === 'LineString' ? [G.coordinates] : G.type === 'MultiLineString' ? G.coordinates : [];
+            ls.forEach(function (l) { var run = [];
+              var flush = function () { if (run.length > 1) out.push({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [bandRing(run).concat([bandRing(run)[0]])] } }); run = []; };
+              l.forEach(function (q) { if (q[0] >= BX[0] && q[0] <= BX[2] && q[1] >= BX[1] && q[1] <= BX[3]) run.push(q); else flush(); }); flush(); }); });
+          p.fsAll = out; p.fs = out; }).catch(function () {}); }
       if (g.patches.some(function (s) { return s.water_route && s.line_source && s.line_source[p.ref]; })) { p.bank = true;   // Oct 31: a water route counts by the bank strip (the patch)
         /* Nov 1 (Brandon: 'shows the border for the WMA but never shows the river trail boundaries'): the route's OWN zone = the land within
            100 ft of the river's edge on both banks, saved by the 2-fer line as route_zone; drawn as that park's outline (does not change the count) */
