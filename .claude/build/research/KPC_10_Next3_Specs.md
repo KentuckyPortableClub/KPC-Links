@@ -2,7 +2,7 @@
 
 Brandon, Oct 31 10:20 PM: "Give me instructions for 1-3 detailed ... I'll use outside bot to build it."
 
-Every tool follows the KPC install contract (`KPC_Install_Contract.md`, and PART A of `KPC_10_Outside_Tools_Specs.md`):
+Every tool follows the KPC install contract (PART A of `KPC_10_Outside_Tools_Specs.md`, in this zip):
 - Python 3.12, standard library first.
 - `--selftest` works offline.
 - `--max-minutes`, then exit 3, then `--resume`.
