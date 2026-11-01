@@ -595,7 +595,7 @@
     var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
     $('ovRegions').innerHTML = '<label for="ovReg"><b>' + VLAB[VIEW][0] + '</b></label><select id="ovReg">' + (REG && grpOfId(REG.id) === VIEW ? '' : '<option value="" selected disabled>— Pick ' + VLAB[VIEW][1] + ' —</option>') + done + grp(VIEW, VIEW === 'US' ? 'US states' : VIEW === 'CA' ? 'Canada' : 'Countries') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
-    $('ovReg').addEventListener('change', function () { if (!this.value) return; US_PICK = VIEW === 'US'; loadRegion(this.value); usMark(); });
+    $('ovReg').addEventListener('change', function () { if (!this.value) return; US_PICK = true; loadRegion(this.value); usMark(); });
   }
   /* Oct 28 (Brandon: 'under the hero have a state level clickable map'): every state drawn from kpc-us-states.json; gold = a
      checked list, grey = not checked yet; a tap does what the STATE / PROVINCE box does. Alaska + Hawaii in small boxes. */
@@ -636,7 +636,7 @@
           var dt = e.target.closest('.dot');
           if (dt) { openRow.maxZ = 16; openRow(dt.getAttribute('data-k')); var m = $('ovMap'); if (m) setTimeout(function () { scrollTo({ top: m.getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 300); return; }
           var t = e.target.closest('path'); if (!t || US_VIEW !== 'all') return;
-          var rid = t.getAttribute('data-r'); if (!rid) return; if (/^VIEW:/.test(rid)) { setView(rid.slice(5)); return; } US_PICK = VIEW === 'US'; loadRegion(rid); usMark();
+          var rid = t.getAttribute('data-r'); if (!rid) return; if (/^VIEW:/.test(rid)) { setView(rid.slice(5)); return; } US_PICK = true; loadRegion(rid); usMark();
         };
         svg.addEventListener('click', go);
         svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
@@ -700,13 +700,21 @@
   /* Oct 28 (Brandon: 'state level shows the selected state with the areas with the overlaps'): a picked state is drawn big with a
      numbered dot at every result in the LIST (same filters); a dot = that result on the MAP below; ALL STATES = back. */
   var US_VIEW = 'all', US_PICK = false;   // the state view only after a person picks a state (the page opens on the whole map)
+  /* Oct 31 (Brandon 9:19 PM: 'make canada and rest of the world when you click on it you get a province or country bigger look … how
+     us is with states'): the zoomed view works on all three maps; Canada + the world use kpc-world-map.json shapes */
   function usState() {
-    var svg = $('ovUsMap'); if (!svg || !US_P || !REG || !US_PICK || VIEW !== 'US') return;
-    var sts = ((REG.files || []).map(function (f) { return (/^US-([A-Z]{2})$/.exec(f) || [])[1]; }).filter(Boolean));
-    if (!sts.length && /^US-[A-Z]{2}$/.test(REG.id)) sts = [REG.id.slice(3)];
-    if (!sts.length) { if (US_VIEW !== 'all') usMap(); return; }
-    US_P.then(function (B) {
+    var svg = $('ovUsMap'); if (!svg || !REG || !US_PICK) return;
+    var V = VIEW, re = new RegExp('^' + V + '-([A-Z]{2})$');
+    var sts = ((REG.files || []).map(function (f) { return (re.exec(f) || [])[1]; }).filter(Boolean));
+    if (!sts.length && re.test(REG.id)) sts = [REG.id.slice(V.length + 1)];
+    if (!sts.length) { if (US_VIEW !== 'all') drawView(); return; }
+    var SP = V === 'US' ? US_P : (WM_P || (WM_P = j('kpc-world-map.json'))).then(function (M) { return M ? (V === 'CA' ? M.ca : M.countries) : null; });
+    if (!SP) return;
+    SP.then(function (B) {
+      if (VIEW !== V) return;
       var S = (B || []).filter(function (b) { return sts.indexOf(b.a) >= 0; }); if (!S.length) return;
+      var wrap = false; S.forEach(function (st) { (st.p || []).forEach(function (poly) { (poly || []).forEach(function (ring) { ring.forEach(function (q) { if (q[0] > 150) wrap = wrap || 1; if (q[0] < -150) wrap = wrap === 1 ? 2 : wrap; }); }); }); });
+      if (wrap === 2) S = S.map(function (st) { return { a: st.a, n: st.n, p: st.p.map(function (poly) { return poly.map(function (ring) { return ring.map(function (q) { return [q[0] < 0 ? q[0] + 360 : q[0], q[1]]; }); }); }) }; });   // Russia, Fiji: across the date line
       var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
       S.forEach(function (st) { (st.p || []).forEach(function (poly) { (poly || []).forEach(function (ring) { ring.forEach(function (q) { x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); }); }); }); });
       var k = Math.cos((y0 + y1) / 2 * Math.PI / 180), W = 960, H = 560, pad = 30;
@@ -724,13 +732,13 @@
         var ps = visiblePatches(g); if (!ps.length) return;
         if (g.trail ? !F.trail : !F[tierOf(ps[0])]) return; if (F.multi && g.n < 3) return;
         var c = (g.best && g.best.center) || ps[0].center; if (!c) return;
-        var v = P(c[1], c[0]); n++;
+        var v = P(wrap === 2 && c[1] < 0 ? c[1] + 360 : c[1], c[0]); n++;
         html += '<g class="dot" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + '"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '"></circle></g>';
       });
       if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">no list yet</text>';
       svg.innerHTML = html; US_VIEW = 'state'; vb(0, 0, 960, 560);
       var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': no list yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
-      var bk = $('ovUsBack'); if (bk) bk.hidden = false;
+      var bk = $('ovUsBack'); if (bk) { bk.hidden = false; bk.textContent = V === 'US' ? '← ALL STATES' : V === 'CA' ? '← ALL PROVINCES' : '← WORLD MAP'; }
     });
   }
   function notChecked(id) {
@@ -766,6 +774,7 @@
     CFG.regions = (CFG.regions || []).filter(function (r) { return r.public || MEMBER; });
     if (!CFG.regions.length) { $('ovList').innerHTML = '<div class="ov-empty"><b>We are still checking the parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>'; return; }
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
+    if (!q && want && grpOfId(want) !== 'US') want = '';   // Brandon Oct 31 9:19 PM: the page always opens on the US map
     want = CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id;
     VIEW = grpOfId(want); regionSelect();
     loadRegion(want); setView(VIEW, true);
