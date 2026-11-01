@@ -1,11 +1,11 @@
 {
  "United States": {
   "totals": {
-   "matched": 11371,
-   "far": 3746,
+   "matched": 11498,
+   "far": 3874,
    "noshape": 0,
-   "edge": 3616,
-   "out": 130,
+   "edge": 3740,
+   "out": 134,
    "swap": 0
   },
   "states": [
@@ -23,31 +23,31 @@
    },
    {
     "st": "AL",
-    "matched": 136,
-    "far": 40,
+    "matched": 137,
+    "far": 51,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 36
+    "edge": 47
    },
    {
     "st": "AR",
-    "matched": 251,
-    "far": 98,
+    "matched": 257,
+    "far": 101,
     "noshape": 0,
-    "out": 2,
+    "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 96
+    "edge": 98
    },
    {
     "st": "AZ",
-    "matched": 103,
+    "matched": 110,
     "far": 21,
     "noshape": 0,
     "out": 1,
@@ -59,27 +59,27 @@
    },
    {
     "st": "CA",
-    "matched": 385,
-    "far": 92,
+    "matched": 390,
+    "far": 128,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 88
+    "edge": 124
    },
    {
     "st": "CO",
-    "matched": 261,
-    "far": 119,
+    "matched": 267,
+    "far": 142,
     "noshape": 0,
-    "out": 11,
+    "out": 12,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 108
+    "edge": 130
    },
    {
     "st": "CT",
@@ -131,7 +131,7 @@
    },
    {
     "st": "GA",
-    "matched": 218,
+    "matched": 220,
     "far": 62,
     "noshape": 0,
     "out": 0,
@@ -143,15 +143,15 @@
    },
    {
     "st": "HI",
-    "matched": 89,
-    "far": 22,
+    "matched": 90,
+    "far": 34,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 21
+    "edge": 33
    },
    {
     "st": "IA",
@@ -167,19 +167,19 @@
    },
    {
     "st": "ID",
-    "matched": 213,
-    "far": 34,
+    "matched": 221,
+    "far": 75,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 31
+    "edge": 72
    },
    {
     "st": "IL",
-    "matched": 207,
+    "matched": 210,
     "far": 75,
     "noshape": 0,
     "out": 1,
@@ -191,7 +191,7 @@
    },
    {
     "st": "IN",
-    "matched": 215,
+    "matched": 216,
     "far": 74,
     "noshape": 0,
     "out": 2,
@@ -203,19 +203,19 @@
    },
    {
     "st": "KS",
-    "matched": 118,
-    "far": 35,
+    "matched": 126,
+    "far": 36,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 35
+    "edge": 36
    },
    {
     "st": "LA",
-    "matched": 115,
+    "matched": 116,
     "far": 30,
     "noshape": 0,
     "out": 1,
@@ -239,7 +239,7 @@
    },
    {
     "st": "MD",
-    "matched": 169,
+    "matched": 174,
     "far": 56,
     "noshape": 0,
     "out": 2,
@@ -251,7 +251,7 @@
    },
    {
     "st": "ME",
-    "matched": 139,
+    "matched": 140,
     "far": 82,
     "noshape": 0,
     "out": 0,
@@ -263,7 +263,7 @@
    },
    {
     "st": "MI",
-    "matched": 344,
+    "matched": 350,
     "far": 121,
     "noshape": 0,
     "out": 1,
@@ -275,7 +275,7 @@
    },
    {
     "st": "MN",
-    "matched": 274,
+    "matched": 291,
     "far": 70,
     "noshape": 0,
     "out": 5,
@@ -323,7 +323,7 @@
    },
    {
     "st": "NC",
-    "matched": 223,
+    "matched": 226,
     "far": 100,
     "noshape": 0,
     "out": 2,
@@ -335,7 +335,7 @@
    },
    {
     "st": "ND",
-    "matched": 110,
+    "matched": 112,
     "far": 49,
     "noshape": 0,
     "out": 2,
@@ -347,7 +347,7 @@
    },
    {
     "st": "NE",
-    "matched": 177,
+    "matched": 182,
     "far": 66,
     "noshape": 0,
     "out": 2,
@@ -383,7 +383,7 @@
    },
    {
     "st": "NM",
-    "matched": 99,
+    "matched": 104,
     "far": 30,
     "noshape": 0,
     "out": 0,
@@ -395,7 +395,7 @@
    },
    {
     "st": "NV",
-    "matched": 218,
+    "matched": 221,
     "far": 88,
     "noshape": 0,
     "out": 19,
@@ -407,7 +407,7 @@
    },
    {
     "st": "NY",
-    "matched": 826,
+    "matched": 830,
     "far": 247,
     "noshape": 0,
     "out": 4,
@@ -443,7 +443,7 @@
    },
    {
     "st": "OR",
-    "matched": 376,
+    "matched": 382,
     "far": 115,
     "noshape": 0,
     "out": 2,
@@ -467,7 +467,7 @@
    },
    {
     "st": "RI",
-    "matched": 57,
+    "matched": 58,
     "far": 34,
     "noshape": 0,
     "out": 0,
@@ -527,10 +527,10 @@
    },
    {
     "st": "UT",
-    "matched": 370,
-    "far": 117,
+    "matched": 379,
+    "far": 118,
     "noshape": 0,
-    "out": 14,
+    "out": 15,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -563,19 +563,19 @@
    },
    {
     "st": "WA",
-    "matched": 485,
+    "matched": 487,
     "far": 188,
     "noshape": 0,
-    "out": 0,
+    "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 188
+    "edge": 187
    },
    {
     "st": "WI",
-    "matched": 333,
+    "matched": 336,
     "far": 116,
     "noshape": 0,
     "out": 2,
@@ -599,7 +599,7 @@
    },
    {
     "st": "WY",
-    "matched": 205,
+    "matched": 211,
     "far": 69,
     "noshape": 0,
     "out": 9,
@@ -631,6 +631,12 @@
     "Fowl River"
    ],
    [
+    "AR",
+    "US-11394",
+    "Muddy Creek WMA Wildlife Management Area",
+    ""
+   ],
+   [
     "CA",
     "US-0197",
     "Kern National Wild and Scenic River",
@@ -641,6 +647,12 @@
     "US-3523",
     "Oceano Dunes State Recreation Area",
     "Oceano Dunes SVRA"
+   ],
+   [
+    "CO",
+    "US-9639",
+    "Deadman State Wildlife Area",
+    "Deadman SWA"
    ],
    [
     "CT",
@@ -764,6 +776,12 @@
    ],
    [
     "UT",
+    "US-11002",
+    "Otter Creek Reservoir BLM Special Recreation Management Area",
+    ""
+   ],
+   [
+    "UT",
     "US-11748",
     "Cedar Mesa BLM Special Recreation Management Area",
     "Cedar Mesa"
@@ -791,6 +809,12 @@
     "US-5553",
     "Camels Hump State Forest",
     "Camel's Hump State Forest"
+   ],
+   [
+    "WA",
+    "US-5570",
+    "Little Pend Oreille State Forest",
+    ""
    ],
    [
     "WY",

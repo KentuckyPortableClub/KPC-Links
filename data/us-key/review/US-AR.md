@@ -1,12 +1,10 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **251 of 306** parks joined to official land (same name + same kind of place). **4** to check by hand, **40** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **257 of 306** parks joined to official land (same name + same kind of place). **2** to check by hand, **37** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11352** Rattlesnake Ridge National Heritage Area (National Heritage Area) → Rattlesnake Ridge Natural Area (~0 ac, similar name)
-- **US-11870** Lake Wilhelmina State Fishing Lake (State Fishing Lake) → Wilhelmina Lake (~0 ac, similar name)
-- **US-13556** Lake June State Fishing Lake (State Fishing Lake) → June Lake - Lafayette (~0 ac, similar name)
 - **US-7525** Mike Huckabee Delta Rivers Nature Park (Nature Park) → Delta Rivers Nature Center Pond (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -25,7 +23,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-10258 Ouachita National Recreation Trail (National Recreation Trail)
 - US-10303 Pig Trail Scenic Byway State Trail (State Trail)
 - US-10426 West-Northwest State Trail (State Trail)
 - US-10508 Ozark Highlands Trail (OHT) National Historic Trail (National Historic Trail)
@@ -52,7 +49,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-12762 Charlie Craig State Fish Hatchery (State Fish Hatchery)
 - US-12764 Jim Hinkle Spring River State Fish Hatchery (State Fish Hatchery)
 - US-13622 The Razorback Regional Greenway National Recreation Trail (National Recreation Trail)
-- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-7435 Civil War Trail State Trail (State Trail)
 - US-7436 Southwest Trail State Trail (State Trail)
 - US-7437 Little Missouri River Access State Recreation Area (State Recreation Area)
@@ -64,7 +60,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-9163 Saracen State Trail (State Trail)
 - US-9169 Huckabee Lake State Recreation Area (State Recreation Area)
 - US-9681 Camden Expedition Scenic Highway State Trail (State Trail)
-- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

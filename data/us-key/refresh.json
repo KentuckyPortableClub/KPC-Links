@@ -2,6 +2,8 @@
  "about": "When each state's saved outlines were last re-read from the agencies (kpc-boundary-check.yml, two states a night, oldest first; old copy kept as prev-US-XX.json.gz on the boundary-cache release).",
  "states": {
   "AK": "2026-10-31",
-  "AL": "2026-10-31"
+  "AL": "2026-10-31",
+  "AR": "2026-11-01",
+  "AZ": "2026-11-01"
  }
 }

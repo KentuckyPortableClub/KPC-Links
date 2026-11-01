@@ -1,13 +1,12 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **103 of 123** parks joined to official land (same name + same kind of place). **4** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **110 of 123** parks joined to official land (same name + same kind of place). **3** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11045** Painted Rock Petroglyph Site National Historical Site (National Historical Site) → Painted Rock (~31,091 ac, similar name); Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name)); Lower Gila Terraces And Historic Trails (~139,110 ac, the POTA pin is inside it (different name))
 - **US-11971** Virgin River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → Virgin River Corridor (~2,065 ac, similar name); Arizona Strip Field Office (~2,766,023 ac, the POTA pin is inside it (different name))
 - **US-12162** Sears Point BLM Historic Preservation Site (BLM Historic Preservation Site) → Sears Point (~24,835 ac, similar name); Sears Point Core (~3,680 ac, similar name); Yuma Field Office (~1,190,046 ac, the POTA pin is inside it (different name))
-- **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Arizona National Scenic Trail (~415 ac, similar name); Coronado National Memorial (~4,810 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -25,17 +24,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Nothing found in PAD-US
 
 - US-0908 Canyon de Chelly National Monument (National Monument)
-- US-4571 Juan Bautista de Anza National Historic Trail (National Historic Trail)
-- US-4575 Old Spanish National Historic Trail (National Historic Trail)
 - US-5965 Stateline Campground BLM Recreation Management Area (BLM Recreation Management Area)
 - US-6043 Honeymoon Historic Trail National Historic Trail (National Historic Trail)
-- US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - State Trust Land · SRMA · Unknown · ~7,977,759 ac
 - Arizona Strip Field Office · PUB · BLM · ~2,766,023 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
 - Southern Nevada ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~2,494,377 ac
 - Kingman Field Office · PUB · BLM · ~2,476,668 ac
 - Lower Sonoran Field Office · PUB · BLM · ~1,404,336 ac
@@ -70,14 +66,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Lower Gila Terraces And Historic Trails ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~139,110 ac
 - Mormon Mountains ·  · BLM herd areas · ~136,987 ac
 - Black Mountains ACEC ·  · BLM recreation areas · ~134,533 ac
-- Black Mountains ACEC ·  · BLM recreation sites · ~134,533 ac
+- Black Mountains ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~134,533 ac
 - Black Mountains ACEC ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~134,533 ac
 - Black Mountains Ecosystem Management ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~133,225 ac
 - Chemehuevi ·  · BLM herd management areas · ~128,861 ac
-- Muddy Mountains ·  · BLM recreation sites · ~128,292 ac
+- Muddy Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~128,292 ac
 - Muddy Mountains ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~128,292 ac
 - Imperial Sand Dunes ·  · BLM recreation areas · ~124,345 ac
-- Imperial Sand Dunes ·  · BLM recreation sites · ~124,345 ac
+- Imperial Sand Dunes ·  · BLM recreation management areas · official (BLM planning area) · ~124,345 ac
 - Imperial Sand Dunes ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~124,345 ac
 - Gold Butte Part B ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~122,694 ac
 - Harquahala ·  · BLM herd areas · ~117,414 ac
@@ -88,8 +84,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Chiricahua Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,182 ac
 - Galiuro Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~77,585 ac
 - Harquahala Mountains ·  · BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table) · ~77,246 ac
-- Nelson - Eldorado ·  · BLM recreation sites · ~72,772 ac
+- Nelson - Eldorado ·  · BLM recreation management areas · official (BLM planning area) · ~72,772 ac
 - Nelson - Eldorado ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~72,772 ac
-- Beaver Dam Wash SRMA ·  · BLM recreation sites · ~63,478 ac
+- Beaver Dam Wash SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~63,478 ac
 - Beaver Dam Wash SRMA ·  · BLM recreation SITE polygons (national, 3,478) (land, state GIS table) · ~63,478 ac
 - Kanab Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~61,531 ac
