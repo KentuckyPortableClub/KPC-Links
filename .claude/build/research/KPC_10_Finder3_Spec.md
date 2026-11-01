@@ -135,3 +135,48 @@ On top of those, separate tools now do pieces of the job well:
 2. Its questions go to `data/waiting/questions/finder.json`. Chat 11 grades (STRONG = AUTO-T1 with the 1-in-10 sample). YES rows go into the keys by BOT W, as now.
 3. The GIS hunter, world finder and harvester are retired. Their leads files stay on `tools-out` for a month, then are deleted.
 4. The Fable book rows and the why-not tags update themselves, with no chat pasting work logs.
+
+---
+
+## PART 3. Lessons from the outside research runs (Oct 31; files in `outside-methods/`: read FINDINGS_LOG first)
+
+Build these in. Each one came from a real false "no hit".
+
+1. **Pin on the road / entrance.**
+   - Named records whose polygon sits 7-110 m from the POTA pin were missed by the "pin inside" test.
+   - Every layer is ALSO searched by name (LIKE, Title Case: CPCAD's `NAME_E LIKE` is case-sensitive and `UPPER()` gives error 400). The distance pin → polygon edge is measured and written on the row.
+   - Up to 150 m with a name match = a candidate row "pin just outside (N m)" for chat 11 (grey area G-F1).
+2. **The name is in an odd field.** Examples: Yukon campgrounds = `REMARKS`; Kingston = `NOTES_NAME_OF_BLDG`; Parks Canada trails = `SectionEn`.
+   - Scan EVERY text field for the park's core words, not only the display field.
+3. **Wrong POTA pin** (typos: 62 vs 61; 0,0; copied from a neighbour; geocoded to the town). POTA's API pin = the sheet pin, so POTA cannot catch it.
+   - When a record matches by name + kind + size but is far from the pin, check an official point (the agency's own point layer, DFHD address, historicplaces.ca meta tags).
+   - Write `PIN OFF: real lat,lon, distance, source`.
+   - We never move POTA's pin; the row goes to chat 11 with the evidence (grey area G-F2).
+4. **Renamed, merged or delisted.** Try English / French / Indigenous variants. Before "not found", read the agency's park-boundary amendments / regulations pages (AB Jan 2024; SK rec sites repealed 2021; Sylvan Lake PP → town 2018).
+   - Delisted = why-not tag `delisted <date> (<source>)`.
+5. **Wrong kind of place** (lighthouse, building, ship, dam, biosphere / Ramsar with no land boundary). Use the source that fits the kind:
+   - DFRP_PUBLIC (federal property): layer 4 polygons, 3 buildings, 2 points;
+   - building footprints;
+   - heritage registers.
+
+   Biosphere / IBA / Ramsar = `no land boundary`.
+6. **Same name, different place.** Always check the distance AS WELL AS the name (Denys Fort vs Nicholas Denys Site; Longwoods CA vs Battle Hill).
+7. **Blocked is not "no hit".** These are logged as BLOCKED with the reason and retried later:
+   - TLS failures;
+   - Cloudflare challenges;
+   - servers that only answer some clients;
+   - token-only services.
+
+   NEVER use an access token found inside a public web map's config.
+8. **Layer ids get renumbered** (GNWT `Environment_LCC` 1/2 → 193-206). A 404 on a known layer = re-read the service's layer list and match by name before calling it gone.
+9. **Parcels / cadastre as a last step.** Kept APPROXIMATE (PARCEL grade). Known open ones:
+   - the Québec cadastre + MAMH roll use codes (76xx park, 7191 historic);
+   - BC ParcelMap (`PARCEL_CLASS = 'Park'`);
+   - ISC SaskGrid;
+   - CLSS ParcelService/57 (legal NHS boundaries in the North).
+10. **Two passes.** First everything, then a second pass on only the NOT FOUND + weak rows with every trick learned (the outside run solved about half the leftovers that way). A new trick found mid-run is written to the shared findings file at once (our Agency Atlas), so every worker uses it.
+11. **8 parallel workers was the sweet spot.** Past that, the same government servers rate-limit. So `kpc_shard` groups = 8.
+
+**Grey areas for Brandon:**
+- **G-F1:** a named official record whose edge is within 150 m of the POTA pin (pin on the road / entrance): offer it to chat 11 as a candidate?
+- **G-F2:** a record that matches by name + kind + size, with the POTA pin clearly a typo (tens of km off), confirmed by an official point: use the outline (pin left as POTA has it) and send the typo to Brandon / the POTA pin list?

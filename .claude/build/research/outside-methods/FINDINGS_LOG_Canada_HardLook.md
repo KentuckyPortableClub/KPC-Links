@@ -1,0 +1,87 @@
+# KPC Canada Hard Look findings log
+
+- Sherbrooke AireAmenagee/0: checker 'no hit' false; live 50 m query finds parks.
+- Fredericton Parks_Public_View and Island Nature Trust layer: checker false no-hits (Henry, Killarney, Reading, Courtin Island).
+- Yukon Parks and Campgrounds - Surveyed: names are in REMARKS, not a name field.
+- Parks Canada TIMS trails: match on SectionEn, not just 'trail'.
+- ECCC CPCAD MapServer: use curl user agent, not Mozilla; LOC filter numeric.
+- NB Class II nature areas 1102-1106: POTA pins have lat/lon typos.
+- Many QC rows had 0,0 pins; matched by name in MELCC Aires protegees.
+- Points-only city maps (no polygons): Saint-Jerome, Blainville, Sainte-Therese, Mirabel, Prevost, Terrebonne, Saint-Lin, Candiac, Rigaud.
+- TLS failing servers: Saint-Hyacinthe, Shawinigan.
+- 2026-10-31 (B1/ON): checker 'no hit' false for named records whose pin sits on the road/entrance just outside the polygon. Examples: Ganaraska LANDMGNT fid 11/12 (7-63 m), ABCA_Properties 22/23 (24 m), SNC WebMap_ConservationLands 565 (80 m), RRCA 602 (107 m), DFRP/4 Woodside 2332 and Fort Mississauga 2309 (pin inside on re-test). Always LIKE-search by name and measure the distance.
+- 2026-10-31 (B1/ON): maps2.grca.on.ca LANDMGNT_CA_Lands is GANARASKA Region CA, not Grand River. Grand River CA's maps.grandriver.ca GRCA_GIS_v2/19-20 has only the 12 active (fee) CAs; passive tracts (Starkey Hill, Dickson, Dumfries, Snyder's Flats) have no polygon there.
+- 2026-10-31 (B1/ON): DFRP_PUBLIC/FeatureServer/4 (federal property boundaries, name_en, custodian_en) is the best outline source for Parks Canada NHS sites and NCC parks. vw_Places only has the big sites. NCC_Parks/0 (services2 WLyMuW006nKOfa5Z) has 16 NCC urban parks; its ID field is FID, not OBJECTID.
+- 2026-10-31 (B1/ON): Central Experimental Farm NHS in DFRP is named 'Ottawa Research and Development Centre' (AAFC, 08625). Chinguacousy Park in Brampton is 'DONALD M GORDON CHINGUACOUSY PARK'. Springwater (Elgin) is a former provincial park in LIO Open03/4.
+- 2026-10-31 (B1/ON): municipal NHS polygons exist at Kingston (api.cityofkingston.ca .../Planning/NationalHistoricSite/FeatureServer/2, NOTES_NAME_OF_BLDG), Toronto green spaces (cot_geospatial27/3 AREA_NAME 'OLD FORT YORK'), and Kitchener (Parks/0 qAo1OsXi67t7XgmS PARK_BOUNDARY_NAME).
+- 2026-10-31 (B1/ON): Hamilton CA trails are in d0Z HCA_Trails/FeatureServer/4 (Trail_Name, Conservation_Area field). mrca.ca is NOT Mattagami Region CA; use mattagamiregion.ca/trail-maps for geo-PDFs.
+- 2026-10-31 (C1): DFRP_PUBLIC layer 2 (points) holds federal properties with NO polygon in layer 4 (Marconi NHS, Denys Fort, Cape Sable LH, Battery Point/Victoria Beach). Check layer 2 before saying "no DFRP record".
+- 2026-10-31 (C1): Directory of Federal Heritage Designations pages list the official address and often the "DFRP Number". This is the best way to tie a heritage lighthouse or NHS to a DFRP record and to settle pins.
+- 2026-10-31 (C1): CPCAD carries NS/NB provincial parks, nature reserves and NCC/land-trust lands. NCC parcels are named only "Privately Protected Area (NCC n)", so match by location plus the NCC site page.
+- 2026-10-31 (C1): CLSS Aboriginal lands: an intersect at 0 m can miss pins on the reserve edge. Use a 30-500 m buffer. Names are UPPERCASE ('MEMBERTOU INDIAN RESERVE NO. 28B').
+- 2026-10-31 (C1): NB ERD HOLDER codes are decoded by the GNB Holder Codes .doc (arcgis item a89b99ef33d94aa0b7bebbb20f4d33bf): 54 National Park, 63 Parks Act lands (DNRE), 66 Parks Act lands (other depts).
+- 2026-10-31 (C1): POTA API park coords always equal the sheet pin, so POTA cannot detect a wrong pin. Use official addresses (DFHD, Tourism NS listing JSON-LD lat/lon, agency pages) instead.
+- 2026-10-31 (C1): POTA pin typo pattern again: Long Lake Bog NR pin lon -65.96 should be -64.94 (Queens Co).
+- 2026-10-31 (C1): Town of Lunenburg AGOL heritage layers are listed public but return Token Required (subscription disabled), so use the town's PDF maps.
+- 2026-10-31 (C1): DFRP 'Nicholas Denys Site' 04881 (Bathurst) is NOT Denys Fort / Habitation NHS (Shippagan, DFRP 56585). Beware same-person name matches.
+- 2026-10-31 (C1): Parks Canada "Canso Islands NHS" = DFRP "Grassy Island Fort NHS" 29944.
+- 2026-10-31 (worker D1): BC openmaps WFS (TANTALIS parks/ERs, conservancies, ParcelMap BC fabric, local/regional greenspaces) is public; use CQL DWITHIN in EPSG:3005 or strToUpperCase(name) LIKE. It solved 5 BC PIN OFFs (Chukachida 823 km, Evans Lake ER 393 km, Pine River Breaks 137 km, Negiy/Nekite 49 km, Becher's Prairie 9 km).
+- 2026-10-31 (D1): BC renamed parks do not match by name: Maquinna Marine = Nism̓aakqin Park, Mount Douglas = Pkols, Colony Farm = ƛ̓éxətəm, Endeavour Vents MPA merged into Tang.ɢ̲wan—ḥačxʷiqak—Tsig̱is MPA (DFO layer).
+- 2026-10-31 (D1): BC greenspaces layer has mislabelled polygons (the Lighthouse Park shape is labelled 'Trails Park'); cross-check with ParcelMap BC PARCEL_CLASS='Park'.
+- 2026-10-31 (D1): many AB PRAs (Chisholm, Crane Meadow, Eyrie Gap, Fort Vermilion, Big Elbow) and Sylvan Lake PP are missing from parks_protected_areas_alberta, PLRA (land_use_management/14) and section 7 lands. They are probably delisted; no current polygon.
+- 2026-10-31 (D1): AB PLUZ polygons are in boundary/land_use_management/MapServer/11 (PLUZ_NAME); column-O rejected records 30 (Livingstone) and 57 (Athabasca Ranch) come from this layer.
+- 2026-10-31 (D1): Parks Canada Land_Parcels FeatureServer/28 returns Jasper townsite lots only; for Banff and Waterton lots use CLSS ParcelService/MapServer/57.
+- 2026-10-31 (D1): UNESCO WHS map PDFs: scrape whc.unesco.org/en/list/<id>/maps/ for /document/NNN links (needs a Mozilla UA); the documents return application/pdf.
+- 2026-10-31 (D1): City of Red Deer park polygons are public at arcgis.reddeer.ca CoRD_View_Layers/PARK_MaintenanceAreas_inservice (ParkCommonName). Lethbridge greenspace (gis.lethbridge.ca odl_greenspace) is public but city-only.
+- 2026-10-31 (D1): many former MB "WMA" rows are really ex-PFRA community pastures; the AAFC AGR_AAFC_CP_OUTLINE.geojson has them (PASTURE_NAME).
+- 2026-10-31 (D2/YT-SK-NT-NU): CPCAD MapServer returns empty or cached results to python requests; the same query by curl works. Use curl.
+- 2026-10-31 (D2/NT): GNWT territorial parks have no polygon layer, only points (Environment_LCC/204). ATLAS_Public 35/36 (Commissioner's land) and 37 (territorial land) hold the park as a 'Reserve' parcel under the point. Fix the pin from the 204 point first: Fort Providence pin is 111 km off (latitude typed 62 for 61); Chan Lake 5.3 km, Lady Evelyn 4.8 km, Twin Falls ~40 km.
+- 2026-10-31 (D2/NT): old N layer ids GNWT Environment_LCC/MapServer/1 and /2 no longer exist (renumbered: 193 terrestrial PAs, 194 marine, 195 conservation areas, 204 TP points, 206 Nagwichoonjik).
+- 2026-10-31 (D2/NT): Alexandra Falls and Louise Falls are units of Twin Falls Gorge TP (one reserve, 107-SK-00046); Cameron Falls Trail is part of Hidden Lake TP. Tetlit Gwinjik's pin copies Nitainlaii's (real: NWT km 71 Dempster).
+- 2026-10-31 (D2/NU): NRCan CLSS ParcelService/57 holds the legal NHS boundary for Wrecks of HMS Erebus and Terror (two parts, from SOR/2015-88 and SOR/2017-273). Search CLSS by name for northern federal sites before giving up.
+- 2026-10-31 (D2/NU): Bloody Falls NHS = Kugluk (Bloody Falls) Territorial Park in CPCAD (21859, 88 m). Pins for Erebus/Terror (Gjoa Haven) and Fall Caribou Crossing (Baker Lake) are geocoded to the community, not the site.
+- 2026-10-31 (D2/SK): many 'Recreation Site' rows are delisted; the name survives in SK Planning/20 as a provincial pasture, game preserve or ecological reserve (NAME SOLVED, weak). Five old rec sites (Parr Hill, Pepaw, McBride, Saginas, Woody River) were merged into Porcupine Hills PP in 2018.
+- 2026-10-31 (D2/SK): SK rural/town cadastre (egis Cadastre) needs a token; SK Heritage Property Search gives points only, so small-town NHS rows end NOT FOUND with a confirmed pin.
+- 2026-10-31 (D2/Ramsar): RSIS RIS PDFs for Canadian sites (ris/240, /247) give coords and area but no map.
+- 2026-10-31 (A2): The QC renovated cadastre is open at geo.environnement.gouv.qc.ca .../Reference/Cadastre_allege/MapServer/0. NO_LOT has spaces every 3 digits ('1 213 203'). Point query with inSR=4326 returns the lot under any pin. This is the PARCEL fallback for small municipal and regional parks with no GIS layer.
+- 2026-10-31 (A2): The MAMH 2026 roll (gpkg) gives the CUBF use code per lot: 76xx park, 7191 historic site, 75xx outdoor/ski/tourist centre, 6911 church, 4550 street, 9100 vacant. A lot under the pin with 76xx/7191 is a strong PARCEL confirmation. Join on id_provinc. Do not write to the shared gpkg.
+- 2026-10-31 (A2): A pin on a street lot (CUBF 4550) or a house usually means the park is the nearest park-coded lot. Check roll units within 400 m, project to EPSG:32187, and mark weak if it is more than ~100 m away or there are several candidates.
+- 2026-10-31 (A2): Some roll lot numbers are retired in the cadastre (e.g. 3 343 911). Query the cadastre at the roll point instead (that gave 4 445 995).
+- 2026-10-31 (A2): A lot under a pin with NO roll unit often means federal, crown or reserve land (Parks Canada sites, Wendake, islands). Check DFRP before calling it.
+- 2026-10-31 (A2): CRHP pages (historicplaces.ca) carry PlaceLatitude/PlaceLongitude meta tags. Use them to test pins. Some coordinates are rounded (e.g. 1156 Pikogan), so do not trust them as PIN OFF.
+- 2026-10-31 (A2): Ville de Québec publishes building footprints, utilisation du sol and schéma grandes affectations (PEV = parks) as GeoJSON on Données Québec. These are good GIS FOUND sources for Québec City heritage buildings and parks.
+- 2026-10-31 (A2): Check pass-1 MACODE leads by location before offering them. For row 502, MELCC 22/11274 and 15/8055 were 60+ km away.
+- 2026-10-31 (A2): Biosphere reserves, IBAs and 0,0 marine pins (rows 496, 618, 624, 634) have no official boundary layer. Leave them NOT FOUND with the candidate named in the notes.
+- 2026-10-31 (B2/ON): Ottawa heritage layers Planning/MapServer/60 and /61 are POINTS only; take the outline from TopographicMapping/MapServer/3 building footprints under the point.
+- 2026-10-31 (B2/NL): St. John's MapCentre Heritage Buildings (Planning/5) has 109 of 166 polygons unnamed; identify them via Reference/0 address point -> P_ID -> parcel/heritage polygon.
+- 2026-10-31 (B2): CPCAD NAME_E LIKE is case-sensitive and UPPER() returns error 400; use Title Case patterns.
+- 2026-10-31 (B2): DFRP_PUBLIC layer 3 (building footprints) is separate from layer 4; when 4 is in col N, layer 3 can still give the building (Rideau Hall, Parliament blocks).
+- 2026-10-31 (B2/NL): DFRP4 name hits at NL outports/lighthouses are mostly DFO wharves/harbours, not the light; most NL lighthouse NHS rows have no DFRP record within 3 km.
+- 2026-10-31 (B2/NL): Colony of Avalon is in DFRP4 as 00051 "Old Sir David Kirke Site" (Parks Canada, Ferryland), ~450 m from POTA pin.
+- 2026-10-31 (B2/ON): OTN distance queries beyond ~1.2 km can hang; keep <=1200 m with a timeout.
+- 2026-10-31 (B2/ON): LPRCA MFTIP 2017 PDF Table 1 lists tract roll numbers that match Norfolk County Parcels RollNum15 (Fisher Tract = 331049308007500); Section 6 has detailed property maps (Haldimand CA p58, Fisher p63).
+- 2026-10-31 (B2/NL): the only T'Railway line layer found is the Town of CBS 14 km segment; POTA pin 49,-55.5 is a generic island centre.
+- 2026-10-31 (B2/ON): LTVCA "Longwoods Road" CA (Mount Brydges) is NOT Battle Hill NHS (Wardsville); CPCAD "Lake Wawanosh" 17306 is in Sarnia, not the MVCA site; MVCA's Wawanosh Park (Glenshill Rd) differs from Wawanosh Valley CA.
+- 2026-10-31 (B2/ON): CHRS web map layer 39 holds designated heritage river lines (Humber); layer 38 is points only.
+- 2026-10-31 (wA1): observatoire.cmm.qc.ca (CMM Utilisation du sol) returns a Cloudflare 403 challenge to every box request. It cannot be used from the box, so log it as "blocked", not as "no hit".
+- 2026-10-31 (wA1): The Lévis (cartes.ville.levis.qc.ca), Shawinigan and Saint-Hyacinthe city GIS hosts resolve to 198.18.0.1 on the box (network block; curl TLS exit 35). Use MRC AGOL mirrors instead (e.g. MRC des Maskoutains Zonage_SHY for Saint-Hyacinthe), or the cadastre plus roll.
+- 2026-10-31 (wA1): MAMH roll GPKG: rol_unite_p_2026 points are EPSG:4269 and the tables have no attribute index, so load b05v_* into pandas. Join a lot to a unit with b05v_lot_cadst_2026.rl0103a (strip spaces) → id_provinc → b05v_unite_evaln_2026.rl0105a (CUBF) and rl0302a (area m²).
+- 2026-10-31 (wA1): Some MRC/city matrice layers expose owner names, which confirm a park operator: Argenteuil Unite_evaluation_MRC_PUBLIC/FeatureServer/129 (nom), MRC Domaine-du-Roy Matrice_graphique_des_municipalités (Nom_Prop1), Mont-Tremblant Matrice_graphique_cadastre (PROPRIO_1).
+- 2026-10-31 (wA1): The Châteauguay parks polygons (NOM_PARC) are hidden in the AGOL service "Bordures_des_boisés_municipaux_à_inventorier_–_hors_parcs_et_espaces_verts", layer 12. A name search for "parc" misses it.
+- 2026-10-31 (wA1): In the Saint-Lin-Laurentides matrice, SI0528C is a status code, not a CUBF. Get the land use from the MAMH roll by matricule (SI0317C).
+- 2026-10-31 (wA1): For a pin on a street lot (common for small city parks in Saint-Jérôme), the park-coded roll unit on the same named street, within about 50 m (lot edge, not roll point), is usually the park. Roll points can sit 100 to 400 m from the lot, so always measure to the cadastre polygon edge.
+- 2026-10-31 (D2): SK Heritage Property Search FeatureServer/0 has LLD and ParcelNumber (ISC) fields: use them to get a legal description for SK historic sites, then PARCEL-by-description (weak) or match rural LLDs to the public SaskGrid quarter layer.
+- 2026-10-31 (D2): ISC SaskGrid quarter sections are public with no token at services.sac-isc.gc.ca .../SK_Cadastral_E/FeatureServer/2 (fields QSECT, PSECT, PTWP, PRGE, PMER as strings).
+- 2026-10-31 (D2): SK Cadastre_Secured needs a token; the SaskInteractive Geocortex config exposes one, but do NOT use embedded tokens. Treat it as not public.
+- 2026-10-31 (D2): Prince Albert city parcels are at maps.citypa.ca Hosted/Assessment_Council/FeatureServer/10 (a services2 "Parcels" item named Prince Albert is actually in California).
+- 2026-10-31 (D2): NWT park regulation schedules (R-025-2003, R-026-2003, on laws.opennwt.ca) give lot/plan for every territorial park; match them to ATLAS_Public/6. GNWT tenure tables have no holder field, so the schedule is the holder evidence.
+- 2026-10-31 (D2): Many SK recreation sites were repealed (SR 103/2021 on 1 Oct 2021; RS 93/2016; SR 62/2002) and not moved into the Parks Act; read the Rec Sites Regs consolidation before searching for them.
+- 2026-10-31 (D2): CIRNAC Nunavut Map Viewer nms20/nms MapServer/21 has Government of Nunavut territorial park polygons, including small campground parks (e.g. Inuujaarvik) that are missing from CPCAD.
+- 2026-10-31 (D2): CLSS/57 lot names can name a historic place (Fort Reliance lots 5-7 Group 967) even when Parks Canada publishes no boundary; use them as weak PARCEL leads only.
+- 2026-11-01 (D): In January 2024 Alberta deregulated or merged several PRAs (Chisholm, Fort Vermilion, Crane Meadow -> Sibbald PLUZ, Eyrie Gap -> Kananaskis PLUZ, Big Elbow inside Don Getty WPP). See the albertaparks.ca park-boundary-amendments page and fact sheets. These have no current polygon, so keep them NOT FOUND with the source.
+- 2026-11-01 (D): Sylvan Lake PP was rescinded by OIC 006/2018 and the dry land went to the Town of Sylvan Lake. Check town GIS for former provincial parks.
+- 2026-11-01 (D): The AB HRV layer (MapServer/4) gives LSD-generalized cells for designated historic land. A distance-0 point query returns nothing, so fetch with a distance and test containment. HeRMIS pages give the plan/lot boundary text. Grade these PARCEL, not GIS.
+- 2026-11-01 (D): CPCAD and CLSS layer 73 mostly return parent areas for NHS/WMA rows. CLSS 73 only covers the territories, ON, NS and PE.
+- 2026-11-01 (D): The MB SCA layer (Manitoba_Wildlife_Lands/1) has the St. Andrews Lock and Dam SCA. MLI has the old ASI/PAI shapefiles, but they gave no new matches for the WMA rows.
+- 2026-11-01 (D): BC "Thomas Hayes ER" is a local reserve on a municipal Crown lease, not a BC ER. Use TANTALIS crown tenures to tie the lease to the PMBC lot. BC greenspaces labels Robert Burnaby Park as "Cariboo", so check against the municipal park layer.
+- 2026-11-01 (D): The CIRNAC nms20 layer 21 (NU territorial parks) can confirm a parent park around heritage rivers (Soper is inside Katannilik), but the CHRS river record stays the answer.
