@@ -946,7 +946,7 @@ def run(st):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
         if la is None and ref in pins(): la, lo = pins()[ref]
         kp = kinds(name) | kinds(typ)
-        m, c = [], []
+        m, c, farm = [], [], []
         for a in recs:
             nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
             close = la is None or near(la, lo, a['_bb'], .6)
@@ -954,8 +954,13 @@ def run(st):
                 # Oct 31 (Fable review #2, rule G-1 'a record that NAMES the park joins at any distance'): the 0.6 deg box no longer hides
                 # the agency's own record of the SAME full name (Ouachita NF's Oklahoma half, Gulf Islands NS in Mississippi) when that
                 # name is unique in the state's records (a namesake elsewhere, like a second Beaver Creek WMA, is never joined this way)
+                # Nov 1 (chat 11 KEY NO: Pine Island SP -> 'Pine Island', Long Lake SRA -> 'Long Lake State Habitat Area', Smith River RMA ->
+                # the 329,827 ac NRA): norm() drops the kind words, so these were NOT the same full name. Now: the FULL name (kind words
+                # kept) must be the same, the kinds must agree, and it only ADDS a far piece to a park already joined at its pin
+                # (Ouachita NF's other-state half); with no join at the pin it goes to the check list, never an outline.
                 if la is not None and len(norm(name)) > 8 and norm(nm) == norm(name) and clusters.get(a.get('_nn'), 1) == 1 and not a.get('Water') and not KM.is_admin(nm):
-                    m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'same full name, far from the pin (G-1: the record names the park)'])
+                    _full = _nf(nm) == _nf(name) and not (_tags(name) and _tags(nm) and not (_tags(name) & _tags(nm)))
+                    farm.append(([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'same full name, far from the pin (G-1: the record names the park)'], _full))
                 continue
             if bool(kp) != bool(a['_k']) and la is not None and not near(la, lo, a['_bb'], .1): close = False   # one name has no kind word: must be close by
             if not close: continue
@@ -964,6 +969,11 @@ def run(st):
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
+        if farm:   # Nov 1: far same-name pieces (see above): extra pieces of a park joined at its pin, else only to check
+            _pinned = any(la is not None and near(la, lo, a['_bb'], .1) for a in recs if any(str(a['OBJECTID']) == str(x[0]) for x in m))
+            for x, _full in farm:
+                if _full and _pinned: m.append(x)
+                else: c.append(x[:3] + ['same name far from the pin, no join at the pin (Nov 1: check, never an outline)'])
         ov = OVR.get(ref) or {}
         if ov:
             no = {str(x) for x in ov.get('no', [])}
