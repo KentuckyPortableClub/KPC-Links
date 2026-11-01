@@ -729,15 +729,21 @@
         (st.p || []).forEach(function (poly) { (poly || []).forEach(function (ring) { if (ring.length < 3) return; d += 'M' + ring.map(function (q) { var v = P(q[0], q[1]); return v[0].toFixed(1) + ',' + v[1].toFixed(1); }).join('L') + 'Z'; }); });
         html += '<path class="st' + (REG.none ? '' : ' ck') + '" d="' + d + '"><title>' + esc(st.n) + '</title></path>';
       });
-      var n = 0, NC = {};
-      ROWS.forEach(function (g) {
+      var n = 0, NC = {}, PLACED = [];
+      /* Brandon Nov 1 1:45 PM ('it shows 6 3-fers, I only see 3 blue dots'): bigger groups are drawn last (on top) and a dot that
+         would sit on another one is moved just beside it, so every result has its own dot */
+      var DOTS = [];
+      ROWS.slice().sort(function (a, b) { return (b.n || 2) - (a.n || 2); }).forEach(function (g) {   // big groups keep their true spot
         var ps = visiblePatches(g); if (!ps.length) return;
         if (g.trail ? !F.trail : !F[tierOf(ps[0])]) return; if (F.multi && g.n < 3) return;
         var c = (g.best && g.best.center) || ps[0].center; if (!c) return;
         var v = P(wrap === 2 && c[1] < 0 ? c[1] + 360 : c[1], c[0]); n++;
+        for (var t = 0, a0 = v.slice(); t < 24 && PLACED.some(function (q) { return Math.hypot(q[0] - v[0], q[1] - v[1]) < 15; }); t++) { var ang = t * 2.4, rad = 15 * (1 + Math.floor(t / 6)); v = [a0[0] + rad * Math.cos(ang), a0[1] + rad * Math.sin(ang)]; }
+        PLACED.push(v);
         var nn = Math.min(7, Math.max(2, g.n || 2)); NC[nn] = (NC[nn] || 0) + 1;   /* Brandon Nov 1: a colour per number of parks (2-7+) + a legend */
-        html += '<g class="dot n' + nn + '" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + ' (' + g.n + ' parks)"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '" style="fill:' + ({ 2: '#f0c96b', 3: '#56b4e9', 4: '#3ddc84', 5: '#cc79a7', 6: '#ff7a45', 7: '#b98cff' })[nn] + '"></circle></g>';
+        DOTS.push([nn, '<g class="dot n' + nn + '" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + ' (' + g.n + ' parks)"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '" style="fill:' + ({ 2: '#f0c96b', 3: '#56b4e9', 4: '#3ddc84', 5: '#cc79a7', 6: '#ff7a45', 7: '#b98cff' })[nn] + '"></circle></g>']);
       });
+      html += DOTS.sort(function (a, b) { return a[0] - b[0]; }).map(function (d) { return d[1]; }).join('');   // small groups first, big ones on top
       if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">no list yet</text>';
       svg.innerHTML = html; US_VIEW = 'state'; vb(0, 0, 960, 560);
       var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': no list yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
