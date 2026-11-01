@@ -7,7 +7,7 @@
   'use strict';
   let kitSharp = null;   /* RULE SHEET G: stops the zoom-in sharpening of the last map */
   /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
-  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
   const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const B = window.KPCB, $ = id => document.getElementById(id), esc = B.esc;
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1'; /* same caches as Park Commander (kpc-finder-sw.js); never rename */

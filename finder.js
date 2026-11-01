@@ -6,7 +6,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
 const $=id=>document.getElementById(id), status=$('status');
 /* Storage plan Step B (Oct 27): locations.json / locations-ky.json now also live on KentuckyPortableClub/KPC-Data.
    dfetch tries that address first and falls back to this site's own copy, same as window.KPC.dataUrl. */
-const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,o):fetch(u,o);
+const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl&&!/^locations(-ky)?\.json/.test(u))?KPC.dataUrl(u,o):fetch(u,o);
 /* Locations (v20261011e): locations-ky.json (Kentucky + ~100 mi) loads first; the national locations.json
    loads only when a search needs it: a circle leaving the box, a partial reference, a name with no nearby
    match, or a saved/shared stop outside the box. */

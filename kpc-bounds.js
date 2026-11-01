@@ -232,7 +232,7 @@
     let hit = null, known = false, site = null, note = '', grade = '', pinOff = false;
     const SL = (states || []).slice();   /* Oct 31 (Fable #8): 'joined_in' states are read too (a multi-state trail's line sits in one state's file) */
     for (let si = 0; si < SL.length; si++) { const st = SL[si];
-      if (!(st in keyCache)) keyCache[st] = dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (!(st in keyCache)) keyCache[st] = st === 'KY' ? Promise.resolve(null) : dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
       if (p) { known = true; (p.joined_in || []).forEach(x => { x = String(x).replace(/^US-/, ''); if (SL.indexOf(x) < 0) SL.push(x); }); if (p.note) note = p.note; if (p.g && p.g !== 'pin' && (!grade || grade === 'pin')) grade = String(p.g); else if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [], twin: new Set() }; (p.twin || []).forEach(t => hit.twin.add(String(t))); hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
@@ -287,7 +287,7 @@
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
   async function keyRev(st) {
-    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
+    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || (st === 'KY' ? Promise.resolve(null) : null) || dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
       .then(k => { const m = {}; Object.entries((k && k.parks) || {}).forEach(([ref, p]) => (p.m || []).forEach(x => (m[String(x[0])] = m[String(x[0])] || []).push({ ref, n: p.n }))); return m; });
     return revCache[st];
   }

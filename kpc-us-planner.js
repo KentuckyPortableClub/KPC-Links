@@ -12,7 +12,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
 const $=id=>document.getElementById(id),esc=KPC.esc;
 /* Storage plan Step B (Oct 27): the folders/files below now live on KentuckyPortableClub/KPC-Data; dfetch
    tries that address first and falls back to this site's own copy, same as window.KPC.dataUrl. */
-const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,o):fetch(u,o);
+const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl&&!/^locations(-ky)?\.json/.test(u))?KPC.dataUrl(u,o):fetch(u,o);   /* locations.json lives on this site, not KPC-Data (Oct 31: 80 404s a load) */
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let BIG=store.get('kpcUsBig',false),ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
@@ -135,10 +135,11 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
    el.querySelectorAll('[data-here]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const s2=BYREF[b.dataset.here.toUpperCase()];map.closePopup();if(!s2)return;let hit=0;dots.eachLayer(l=>{if(l.getPopup&&l.getPopup()&&l.getPopup()._kpc===s2)hit=1});hit?openSpot(s2):Promise.resolve(go(s2.la,s2.lo,s2.n)).then(()=>openSpot(s2))})};
   wire();map.once('popupclose',()=>{if(hereL){map.removeLayer(hereL);hereL=null}})}dots.on('click',e=>{if(dropMode){L.DomEvent.stop(e);dropAt(e.latlng)}});
  map.on('popupopen',e=>{if(dropMode)setTimeout(()=>map.closePopup(),0)});
- map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
+ map.on('popupopen',e=>wirePop(e.popup));
+ function wirePop(pp){const el=pp.getElement();if(!el)return;const s=pp._kpc;if(!s)return;const body=el.querySelector('.leaflet-popup-content>*');if(body&&pp._wired===body)return;pp._wired=body;if(!pp._kpcCU){pp._kpcCU=1;pp.on('contentupdate',()=>setTimeout(()=>{if(map.hasLayer(pp))wirePop(pp)},0))}[400,1200,2600].forEach(t=>setTimeout(()=>refit(pp),t));
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);if(s.p==='PIN'&&!inTrip(s.c))map.closePopup();else b.innerHTML=inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}   /* Oct 19: the card stays open */else if(a==='bound')showBoundary(s,b)});
-  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'));noBound(s,el);retNote(s,el)})}
+  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'));noBound(s,el);retNote(s,el)}}
 /* Oct 23: a park POTA retired (the nightly pin bots write data/retired-refs.json) says so on its card */
 async function retNote(s,el){if(s.p!=='POTA'||!window.KPCB||!KPCB.retired)return;const r=await KPCB.retired(s.c);if(!r||el.querySelector('.retn'))return;
  const d=document.createElement('div');d.className='retn';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
@@ -148,7 +149,7 @@ async function retNote(s,el){if(s.p!=='POTA'||!window.KPCB||!KPCB.retired)return
 const NBK={};
 async function noBound(s,el){if(s.p!=='POTA'||!/^US-/.test(s.c)||(window.KPCB&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)))return;
  const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let known=false,has=false,site=null;
- for(const st of sts){if(!(st in NBK))NBK[st]=dfetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
+ for(const st of sts){if(st==='KY')continue;if(!(st in NBK))NBK[st]=dfetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
   const k=await NBK[st],p=k&&k.parks&&k.parks[s.c];if(p){known=true;if(p.m&&p.m.length)has=true;if(p.a&&p.a.length)site=p.a}}
  if(!known||has||el.querySelector('.nob'))return;
  const d=document.createElement('div');d.className='nob';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
@@ -200,7 +201,7 @@ async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
  /* Oct 30 (Brandon via chat 11): the outline grade sits in the card's pinned top (Official / Approximate / Pin only), when the key knows the park */
- if(P==='POTA'&&/^US-/.test(s.c)&&window.KPCB&&KPCB.gradeText){const gEl=el.closest('.us-pop')&&el.closest('.us-pop').querySelector('.us-grade');(async()=>{for(const st of sts){if(!(st in UKEY))UKEY[st]=dfetch('data/us-key/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);const k=await UKEY[st],e=k&&k.parks&&k.parks[s.c];if(e&&e.g&&gEl){const lab=e.g==='official'?'official':e.g==='approximate'?'approx':'pin';gEl.textContent=KPCB.gradeText({label:lab,line:!!e.line,pinOff:!!e.pin_may_be_wrong});gEl.dataset.g=lab;return}}})().catch(()=>{})}   /* the key file only (no outline read) */
+ if(P==='POTA'&&/^US-/.test(s.c)&&window.KPCB&&KPCB.gradeText){const gEl=el.closest('.us-pop')&&el.closest('.us-pop').querySelector('.us-grade');(async()=>{for(const st of sts){if(st==='KY')continue;if(!(st in UKEY))UKEY[st]=dfetch('data/us-key/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);const k=await UKEY[st],e=k&&k.parks&&k.parks[s.c];if(e&&e.g&&gEl){const lab=e.g==='official'?'official':e.g==='approximate'?'approx':'pin';gEl.textContent=KPCB.gradeText({label:lab,line:!!e.line,pinOff:!!e.pin_may_be_wrong});gEl.dataset.g=lab;return}}})().catch(()=>{})}   /* the key file only (no outline read) */
  const pre=String(s.c).split('-')[0];
  /* Canada + the rest of North America (Brandon Oct 17): data/parkinfo/<PREFIX>.json, same fields + the province / area */
  if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=dfetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
@@ -270,7 +271,9 @@ let VIEW=[];const VZ=7,VCAP=2500;
 const dotSty=s=>{const inT=inTrip(s.c),km=KM?KM.mark(s.c):{};return {radius:BIG?(inT?9:s.p==='SOTA'?6:7)+(TAP?2:0):(inT?6:s.p==='SOTA'?3.5:4.5)+(TAP?1:0),weight:inT||km.atno||km.rare?3:2,color:inT?'#f0c96b':km.atno?'#c2410c':km.rare?'#e08a2c':'#ffffff',fillColor:COL[s.p],fillOpacity:km.done&&!inT?.35:.95}};
 const PORD={SOTA:0,WWFF:1,KFF:1,POTA:2};
 /* phones: the card opens BELOW the top map buttons (zoom, layers) and above the bottom ones, full width; computers: beside them */
-const popOpts=()=>innerWidth<520?{maxWidth:Math.min(280,innerWidth-120),kpcClear:true,autoPanPaddingTopLeft:L.point(10,74),autoPanPaddingBottomRight:L.point(10,110)}:{maxWidth:300,autoPanPaddingTopLeft:L.point(56,12),autoPanPaddingBottomRight:L.point(56,12)};
+/* Oct 31 (site-checker T5): re-measure an open card after its slow parts fill in and pan it back on screen, without re-rendering it */
+function refit(pp){try{if(!pp||!map||!map.hasLayer(pp))return;pp._updateLayout();pp._updatePosition();pp._adjustPan()}catch(x){}}
+const popOpts=()=>innerWidth<520?{maxWidth:Math.min(280,innerWidth-60),keepInView:true,kpcClear:true,autoPanPaddingTopLeft:L.point(10,74),autoPanPaddingBottomRight:L.point(10,110)}:{maxWidth:300,autoPanPaddingTopLeft:L.point(56,12),autoPanPaddingBottomRight:L.point(56,12)};
 function drawDots(){if(!map)return;
  const op=map._popup&&map.hasLayer(map._popup)&&map._popup._kpc?map._popup:null;let keep=null;
  dots.eachLayer(l=>{if(op&&l.getPopup&&l.getPopup()===op)keep=l;else dots.removeLayer(l)});
@@ -300,7 +303,7 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
    put its top (zoom buttons) under the sticky site header on shorter screens; now the map's top lands just under the header */
 function toMap(){const m=$('usmap');if(!m)return;const h=document.querySelector('header.site-nav,.site-nav'),hb=h?h.getBoundingClientRect().bottom:0,r=m.getBoundingClientRect();
  scrollTo({top:Math.max(0,scrollY+r.top-Math.max(0,hb)-10),behavior:'smooth'})}
-function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit)hit.openPopup();else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
+function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit){if(!(hit.isPopupOpen&&hit.isPopupOpen()))hit.openPopup();else refit(hit.getPopup())}else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
 async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
