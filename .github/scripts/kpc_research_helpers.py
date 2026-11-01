@@ -284,7 +284,7 @@ HABITS = ("- **DAILY HABITS ({d}):** before today's work, skim .claude/build/res
           "stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only. Read the KPC-Data status board (data/status) "
           "first: open run logs / annotations only when the board says FAILED.")
 MON = {m: i for i, m in enumerate(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 1)}
-CLOSED = re.compile(r'^- (?:\(\w\) )?(?:DONE|NOTED|ANSWERED|MOVED|BUILT|RELEASED|CLOSED)\b|^- \*\*DAILY HABITS|^- (?:Oct|Nov|Dec|Sep) \d{1,2}\b[^:]{0,40}:', re.I)   # done / answered items + old history lines ('- Oct 28 7:15 AM: ...')
+CLOSED = re.compile(r'^- (?:\(\w\) )?(?:DONE|NOTED|ANSWERED|MOVED|BUILT|RELEASED|CLOSED|WIRED|SUPERSEDED)\b|^- \*\*DAILY HABITS|^- (?:Oct|Nov|Dec|Sep) \d{1,2}\b[^:]{0,40}:', re.I)   # done / answered items + old history lines ('- Oct 28 7:15 AM: ...')
 
 
 def newest_date(block):
