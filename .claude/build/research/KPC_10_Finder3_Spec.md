@@ -177,6 +177,8 @@ Build these in. Each one came from a real false "no hit".
 10. **Two passes.** First everything, then a second pass on only the NOT FOUND + weak rows with every trick learned (the outside run solved about half the leftovers that way). A new trick found mid-run is written to the shared findings file at once (our Agency Atlas), so every worker uses it.
 11. **8 parallel workers was the sweet spot.** Past that, the same government servers rate-limit. So `kpc_shard` groups = 8.
 
-**Grey areas for Brandon:**
-- **G-F1:** a named official record whose edge is within 150 m of the POTA pin (pin on the road / entrance): offer it to chat 11 as a candidate?
-- **G-F2:** a record that matches by name + kind + size, with the POTA pin clearly a typo (tens of km off), confirmed by an official point: use the outline (pin left as POTA has it) and send the typo to Brandon / the POTA pin list?
+**RULED by Brandon (Nov 1 12:02 AM 'yes'), now Rule G R-G12 / R-G13:**
+- **G-F1 = YES:** a named official record whose edge is within 150 m of the POTA pin (pin on the road / entrance): offer it to chat 11 as a candidate?
+- **G-F2 = YES:** a record that matches by name + kind + size, with the POTA pin clearly a typo (tens of km off), confirmed by an official point: use the outline (pin left as POTA has it) and send the typo to Brandon / the POTA pin list?
+
+  (G-F1: candidate for chat 11 only, name + kind must match, never a bot YES. G-F2: use the outline when an official point confirms; POTA's pin never moves; the card says 'POTA's map pin is about N km from this park's official boundary'; the typo goes to data/waiting/questions/pin-typos.json.)
