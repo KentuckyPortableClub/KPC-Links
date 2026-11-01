@@ -593,8 +593,8 @@
   function drawView() { if (VIEW === 'US') usMap(); else worldMap(VIEW); }
   function regionSelect() {
     var opt = function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; };
-    var done = [VIEW].map(function (g) { var l = CFG.regions.filter(function (r) { return grpOf(r) === g; }); return l.length ? '<optgroup label="' + GRP[g] + ': with a list">' + l.map(opt).join('') + '</optgroup>' : ''; }).join('');
-    var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
+    var done = [VIEW].map(function (g) { var l = CFG.regions.filter(function (r) { return grpOf(r) === g; }).sort(function (a, b) { return String(a.label).localeCompare(String(b.label)); });   /* Brandon Nov 1: A-Z */ return l.length ? '<optgroup label="' + GRP[g] + ': with a list">' + l.map(opt).join('') + '</optgroup>' : ''; }).join('');
+    var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (no list yet)">' + PLACES[cc].split('|').sort(function (a, b) { return a.slice(3).localeCompare(b.slice(3)); }).map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
     $('ovRegions').innerHTML = '<label for="ovReg"><b>' + VLAB[VIEW][0] + '</b></label><select id="ovReg">' + (REG && grpOfId(REG.id) === VIEW ? '' : '<option value="" selected disabled>— Pick ' + VLAB[VIEW][1] + ' —</option>') + done + grp(VIEW, VIEW === 'US' ? 'US states' : VIEW === 'CA' ? 'Canada' : 'Countries') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
     $('ovReg').addEventListener('change', function () { if (!this.value) return; US_PICK = true; loadRegion(this.value); usMark(); });
@@ -625,7 +625,7 @@
         html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(st.n) + (r ? ': has a list' : ': no list yet') + '"><title>' + esc(st.n) + (r ? '' : ' (no list yet)') + '</title></path>';
       });
       svg.innerHTML = html;
-      US_VIEW = 'all'; vb(0, 0, 960, 560); var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
+      US_VIEW = 'all'; vb(0, 0, 960, 560); var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var lg0 = $('ovUsLeg'); if (lg0) lg0.hidden = true; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
       wireSvg(svg);
       usMark();
     });
@@ -650,7 +650,7 @@
   var WM_P = null;
   function worldMap(v) {
     var svg = $('ovUsMap'); if (!svg) return;
-    US_VIEW = 'all'; vb(0, 0, 960, 560); var bk = $('ovUsBack'); if (bk) bk.hidden = true;
+    US_VIEW = 'all'; vb(0, 0, 960, 560); var bk = $('ovUsBack'); if (bk) bk.hidden = true; var lg0 = $('ovUsLeg'); if (lg0) lg0.hidden = true;
     var nt = $('ovUsN'); if (nt) nt.textContent = 'Loading the map…';
     (WM_P || (WM_P = j('kpc-world-map.json'))).then(function (M) {
       if (VIEW !== v) return;
@@ -729,17 +729,20 @@
         (st.p || []).forEach(function (poly) { (poly || []).forEach(function (ring) { if (ring.length < 3) return; d += 'M' + ring.map(function (q) { var v = P(q[0], q[1]); return v[0].toFixed(1) + ',' + v[1].toFixed(1); }).join('L') + 'Z'; }); });
         html += '<path class="st' + (REG.none ? '' : ' ck') + '" d="' + d + '"><title>' + esc(st.n) + '</title></path>';
       });
-      var n = 0;
+      var n = 0, NC = {};
       ROWS.forEach(function (g) {
         var ps = visiblePatches(g); if (!ps.length) return;
         if (g.trail ? !F.trail : !F[tierOf(ps[0])]) return; if (F.multi && g.n < 3) return;
         var c = (g.best && g.best.center) || ps[0].center; if (!c) return;
         var v = P(wrap === 2 && c[1] < 0 ? c[1] + 360 : c[1], c[0]); n++;
-        html += '<g class="dot" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + '"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '"></circle></g>';
+        var nn = Math.min(7, Math.max(2, g.n || 2)); NC[nn] = (NC[nn] || 0) + 1;   /* Brandon Nov 1: a colour per number of parks (2-7+) + a legend */
+        html += '<g class="dot n' + nn + '" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + ' (' + g.n + ' parks)"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '"></circle></g>';
       });
       if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">no list yet</text>';
       svg.innerHTML = html; US_VIEW = 'state'; vb(0, 0, 960, 560);
       var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': no list yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
+      var lg = $('ovUsLeg'); if (!lg) { lg = document.createElement('div'); lg.id = 'ovUsLeg'; lg.className = 'ov-usleg'; svg.after(lg); }
+      lg.hidden = !n; lg.innerHTML = '<b>PARKS AT THE SPOT</b>' + [2, 3, 4, 5, 6, 7].map(function (k) { return '<span class="n' + k + (NC[k] ? '' : ' none') + '"><i></i>' + (k === 7 ? '7+' : k) + (NC[k] ? ' · ' + NC[k] : '') + '</span>'; }).join('');
       var bk = $('ovUsBack'); if (bk) { bk.hidden = false; bk.textContent = V === 'US' ? '← ALL STATES' : V === 'CA' ? '← ALL PROVINCES' : '← WORLD MAP'; }
     });
   }
