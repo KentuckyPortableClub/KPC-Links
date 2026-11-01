@@ -75,6 +75,9 @@ for st in STATES:
 OKSITE = re.compile(r'(park|parc|parque|\.gov(\.|$)|\.gob\.|\.go\.[a-z]{2}$|\.gc\.ca$|gouv\.qc\.ca$|gov\.[a-z]{2}\.ca$|^gov\.mb\.ca$|sepaq\.com$|^bnt\.bs$|^bvinpt\.org$)')
 NA_PROGS = 'CA MX GT BZ SV HN NI CR PA CU JM HT DO BS BB TT AG DM GD KN LC VC AI AW CW SX BQ MF BL GP MQ KY TC VG MS BM GL PM'.split()
 WORLD_KEY_PROGS = 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL'.split()   # Oct 30: the world key's countries need their park lists every week too
+try:   # Nov 1 (chat 2): the countries in Brandon's filled world sheet need their park lists too
+    WORLD_KEY_PROGS += [c for c in (json.load(open('data/world-key/sheet-countries.json')).get('countries') or {}) if c not in WORLD_KEY_PROGS and c not in NA_PROGS]
+except Exception: pass  # noqa: BLE001
 PROGS = (os.environ.get('PROGS') or ('' if os.environ.get('STATES') else ' '.join(NA_PROGS + WORLD_KEY_PROGS))).split()  # also any POTA program outside NA, e.g. JP DE GB PL AU
 if PROGS:
     try: LOCS = get('https://api.pota.app/locations')

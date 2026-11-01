@@ -143,7 +143,22 @@ try:
             if _u and _u.lower() not in _have: SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
 except FileNotFoundError: pass
 except Exception as _e: print(f'::notice title=World key::extra-layers.json not read: {_e}', flush=True)  # noqa: BLE001
-COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL').upper().split()
+# Nov 1 (chat 2, Brandon's filled sheet KPC_World_Keys_filled.xlsx): countries whose official ArcGIS layer Brandon found, in
+# data/world-key/sheet-countries.json {countries: {CC: {country, agency, credit, layers: [{label, url, namef}], kinds: [local words]}}}.
+# Each layer = one official source; namef = its park-name field; the local kind words are dropped from names when matching.
+SHEET, LAYER_NAMEF, SHEET_URLS = {}, {}, set()
+try:
+    SHEET = json.load(open('data/world-key/sheet-countries.json', encoding='utf-8')).get('countries') or {}
+except Exception: SHEET = {}  # noqa: BLE001
+for _cc, _v in SHEET.items():
+    _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
+    for _l in _v.get('layers') or []:
+        _u = str(_l.get('url') or '').rstrip('/')
+        if not _u or _u.lower() in _have: continue
+        SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or _v.get('country') or _cc)[:90], 'arcgis', _u)]
+        SHEET_URLS.add(_u)
+        if _l.get('namef'): LAYER_NAMEF[_u] = _l['namef']
+COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL ' + ' '.join(SHEET)).upper().split()
 
 
 def _hook(t, v, tb):
@@ -230,6 +245,20 @@ _LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obsza
         'EE': r"rahvuspark|looduskaitseala|maastikukaitseala|hoiuala|kaitseala|looduspark|loodusala|linnuala|ja",
         'LU': r"zone protegee d interet national|zone protegee|reserve naturelle|reserve forestiere|naturschutzgebiet|naturpark|parc naturel|zone habitat|zone oiseaux|de|du|des|la|le|les|et|d|l|an|der|vum|am"}
 for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
+# Nov 1: countries without their own word list (CO / ZA / CL crashed here: GEN[cc] missing) + the sheet countries: the sheet's
+# local kind words first (longest first), then common Spanish / French / Portuguese / other generic words, then English.
+_MULTI = (r"parque nacional natural|parque nacional|parque natural|parque estatal|parque municipal|parque ecologico|parque regional|reserva de la biosfera|reserva da biosfera|"
+          r"reserva natural|reserva nacional|reserva forestal|reserva biologica|reserva ecologica|reserva cientifica|reserva extrativista|refugio de vida silvestre|"
+          r"area de proteccion de flora y fauna|area de proteccion de recursos naturales|area natural protegida|area protegida|area de recreo|area nacional de recreo|"
+          r"monumento natural|monumento nacional|paisaje protegido|paisagem protegida|santuario|humedal|estacao ecologica|floresta nacional|"
+          r"parc national|parc naturel|reserve naturelle|reserve biologique|zone humide|foret domaniale|aire protegee|"
+          r"wildlife sanctuary|wildlife refuge|wildlife management area|forest reserve|marine protected area|marine reserve|marine park|biosphere reserve|scenic reserve|"
+          r"parque|parc|reserva|reserve|refugio|de la|del|de los|de las|de|la|el|los|las|y|e|do|da|dos|das|des|du|le|les|et")
+def _flatw(w): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', re.sub(r"[’'`.]", '', flat(w))).split())
+for _c in set(COUNTRIES) | set(SHEET):
+    if _c in GEN: continue
+    _loc = sorted({_flatw(w) for w in (SHEET.get(_c) or {}).get('kinds') or [] if len(_flatw(w)) >= 4}, key=len, reverse=True)
+    GEN[_c] = '|'.join(re.escape(w) for w in _loc) + ('|' if _loc else '') + _MULTI + '|' + _EN
 KINDS = {
     'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r|\bf\.\s?r\b'),
            ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
@@ -245,6 +274,16 @@ for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\
 KINDS['CO'] = [('pnn', r'parque nacional|national (natural )?park|national nature reserve|reserva nacional natural|santuario|sanctuary'), ('pnr', r'parque natural regional|regional (natural )?park'),
                ('rn', r'reserva natural|nature reserve|reserva forestal|forest reserve'), ('dmi', r'distrito|management district|conservation area|area de recreacion|recreation area')]
 KINDS['ZA'] = [('np', r'national park'), ('nr', r'nature reserve|game reserve|provincial park|reserve'), ('pe', r'protected environment'), ('mpa', r'marine protected area|marine reserve'), ('wa', r'wilderness|world heritage')]
+# Nov 1: one kind list for every sheet country (several languages in one): a park only joins a record of the same kind when
+# both sides name a kind (an unnamed side never blocks, as before).
+KINDS_ANY = [('np', r'national park|parque nacional|parc national|parco nazionale|nationalpark|ethniko parko|kokuritsu'),
+             ('nr', r'nature reserve|reserva natural|reserve naturelle|reserva biologica|biological reserve|reserva cientifica|scientific reserve|reserva ecologica|ecological reserve|strict reserve'),
+             ('ws', r'wildlife|vida silvestre|refugio|refuge|sanctuary|santuario|sanctuaire|bird reserve'),
+             ('fr', r'forest reserve|reserva forestal|forest park|state forest|foret|floresta nacional|forest$'),
+             ('mn', r'natural monument|monumento natural|monument naturel|monumento nacional|national monument'),
+             ('bio', r'biosphere|biosfera'), ('mpa', r'marine|area marina|marinho|reserve marine|arrecife'),
+             ('wet', r'ramsar|humedal|wetland|zone humide'), ('hist', r'historic|historico|historique|heritage site|archaeolog|arqueolog')]
+for _c in SHEET: KINDS.setdefault(_c, KINDS_ANY)
 KINDS['CL'] = [('pn', r'parque nacional|national park'), ('rn', r'reserva nacional|national reserve|reserva forestal'), ('mn', r'monumento natural|natural monument'),
                ('sn', r'santuario|sanctuary|conservation area|humedal|wetland|area marina|marine')]
 
@@ -270,7 +309,7 @@ def norm(cc, s):
         s = s.replace('ł', 'l').replace('ø', 'o').replace('æ', 'ae').replace('đ', 'd')
     s = re.sub(r'\(.*?\)', ' ', s); s = re.sub(r"[’'`.]", '', s); s = re.sub(r'[-/,]', ' ', s)
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
-    s = re.sub(r'\b(' + GEN[cc] + r'|the|of|and)\b', ' ', s)
+    s = re.sub(r'\b(' + (GEN.get(cc) or _MULTI + '|' + _EN) + r'|the|of|and)\b', ' ', s)
     s = re.sub(r'\s+', ' ', s).strip()
     if cc == 'JP':
         s = s.replace(' ', '')
@@ -443,6 +482,7 @@ def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] -
 
 NAMEF = ['nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名', 'nombre', 'NOMBRE', 'nombre_ap', 'NOMBRE_AP', 'nom_ap', 'NOM_AP', 'CUR_NME', 'cur_nme', 'PA_NAME']   # Oct 30: CO / CL (Spanish) + ZA (SAPAD CUR_NME)
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
+TYPEF2 = ['cat_manejo', 'categoria', 'category', 'designation', 'desig_eng', 'desig_type', 'Protection', 'class', 'SubType', 'tipo', 'tipo_ap', 'categorie']   # Nov 1: sheet layers only
 
 
 def pick(a, names):
@@ -484,7 +524,7 @@ def pull_arcgis1(label, url, where):
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
-            recs.append({'id': a.get(oidf), 'n': pick_name(a), 'ty': pick(a, TYPEF), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+            recs.append({'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
                          'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
         if j.get('error'): notice(f'{label} query error', j.get('error')); break
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
@@ -787,7 +827,7 @@ for cc in COUNTRIES:
                 r['parts'] = [romaji(q) for q in r['jp']] or [romaji(jclean(r['nj']))]; r['n'] = '   '.join(r['parts'])
         JA = wd_ja(P)
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
-    for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
+    for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | (set() if cc in SHEET else kinds(cc, r['src'])) | r.get('_k0', set())   # Nov 1: a sheet label names the agency, not the kind
     # Oct 25: dual names - Australia files many parks under the Aboriginal name with the English one in brackets
     # ('Bandilngan (Windjana Gorge)', 'Danggu (Geikie Gorge)'); norm() drops bracket text, so both names become parts
     if cc != 'JP':

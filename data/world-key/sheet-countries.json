@@ -1,0 +1,1252 @@
+{
+ "about": "World countries from Brandon's filled sheet KPC_World_Keys_filled.xlsx (Nov 1 2026, rows marked 'ready' with an ArcGIS layer). kpc_world_key.py reads it: each layer = an official source, namef = the park-name field, kinds = local kind words (dropped from names when matching). WFS / download rows are listed in 'later'.",
+ "countries": {
+  "MX": {
+   "country": "Mexico",
+   "agency": "CONANP / SEMARNAT (federal protected areas)",
+   "credit": "Credit: CONANP/SEMARNAT. Licence not stated on layer (CONANP shapefile download is free; CONABIO copy CC BY-NC 2.5 MX).",
+   "layers": [
+    {
+     "label": "Mexico: CONANP / SEMARNAT (federal protected areas)",
+     "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/aps/SIVECA/MapServer/0",
+     "namef": "nombre"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Reserva de la Biosfera",
+    "Área de Protección de Flora y Fauna",
+    "Área de Protección de Recursos Naturales",
+    "Monumento Natural",
+    "Santuario"
+   ],
+   "tests": [
+    "MX-0071 = Isla Contoy",
+    "MX-0062 = Lagunas de Zempoala",
+    "MX-0073 = Gogorrón"
+   ]
+  },
+  "DO": {
+   "country": "Dominican Republic",
+   "agency": "Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer hosted on the Ministerio de Energía y Minas map portal",
+   "credit": "No credit or licence text on the layer (licence not stated). Credit: Gobierno de la República Dominicana (MIMARENA / MEM).",
+   "layers": [
+    {
+     "label": "Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host",
+     "url": "https://mapageneral.mineria.gob.do/arcgis/rest/services/PortalMapa/Portal_AP/MapServer/0",
+     "namef": "Name"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Reserva Forestal",
+    "Monumento Natural",
+    "Paisaje Protegido",
+    "Vía Panorámica",
+    "Área Nacional de Recreo",
+    "Santuario de Mamíferos Marinos",
+    "Refugio de Vida Silvestre",
+    "Reserva Científica"
+   ],
+   "tests": [
+    "DO-0148 = Río Cana",
+    "DO-0131 = Arrecifes del Suroeste",
+    "DO-0157 = Bahía de las Águilas"
+   ]
+  },
+  "PR": {
+   "country": "Puerto Rico",
+   "agency": "Puerto Rico Planning Board (Junta de Planificación, SIGE) – PACAT protected-areas compilation incl. DRNA",
+   "credit": "Licence not stated. Credit: Protected Areas Conservation Action Team (PACAT) 2018, Puerto Rico Protected Areas; hosted by Junta de Planificación.",
+   "layers": [
+    {
+     "label": "Puerto Rico: Puerto Rico Planning Board (Junta de Planificación, SIGE) – PACAT prot",
+     "url": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/5",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "Reserva Natural",
+    "Bosque Estatal",
+    "Refugio de Vida Silvestre",
+    "National Wildlife Refuge",
+    "Área Natural Protegida"
+   ],
+   "tests": [
+    "PR-0076 = Reserva Natural La Parguera",
+    "PR-0064 = Reserva Natural Laguna Tortuguero",
+    "PR-0058 = Culebra National Wildlife Refuge"
+   ]
+  },
+  "BZ": {
+   "country": "Belize",
+   "agency": "Belize Forest Department / Ministry FFESD (layer owner sfm.manager_FFESD); boundaries from Government Gazettes, Land Information Centre, NPAS/BAPPA 2015",
+   "credit": "Licence not stated. Credit: Jan Meerman, Land Information Center (2013), Government Gazettes 1984-2015, BAPPA 2015. Use note: \"boundaries cannot be seen as legal definitions\".",
+   "layers": [
+    {
+     "label": "Belize: Belize Forest Department / Ministry FFESD (layer owner sfm.manager_FFE",
+     "url": "https://services8.arcgis.com/IXYmdkndf6VGeFte/arcgis/rest/services/Protected_Areas_Belize_2015/FeatureServer/0",
+     "namef": "Name_PA"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Forest Reserve",
+    "Marine Reserve",
+    "Nature Reserve",
+    "Wildlife Sanctuary",
+    "Natural Monument",
+    "Archaeological Reserve",
+    "Private Protected Area"
+   ],
+   "tests": [
+    "BZ-0047 = Glovers Reef",
+    "BZ-0057 = Altun Ha",
+    "BZ-0037 = Vaca"
+   ]
+  },
+  "NI": {
+   "country": "Nicaragua",
+   "agency": "MARENA – SINIA / Dirección General de Áreas Protegidas (2007), served on Proyecto Mesoamérica RMGIR server",
+   "credit": "Licence not stated. Credit line on layer: SINIA-MARENA-DGAP-2007.",
+   "layers": [
+    {
+     "label": "Nicaragua: MARENA – SINIA / Dirección General de Áreas Protegidas (2007), served ",
+     "url": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Nicaragua_FISICO_NATURAL/MapServer/2",
+     "namef": "NOMBRE"
+    }
+   ],
+   "kinds": [
+    "Reserva Natural",
+    "Refugio de Vida Silvestre",
+    "Parque Nacional",
+    "Reserva de Biosfera",
+    "Monumento Nacional",
+    "Reserva Biológica",
+    "Paisaje Terrestre Protegido"
+   ],
+   "tests": [
+    "NI-0064 = Cerro Silva",
+    "NI-0047 = Cerro Kilambe",
+    "NI-0056 = Estero Padre Ramos"
+   ]
+  },
+  "PA": {
+   "country": "Panama",
+   "agency": "MiAmbiente (Ministerio de Ambiente de Panamá) – SINAP",
+   "credit": "No credit or licence text on the layer (licence not stated). Credit: MiAmbiente Panamá.",
+   "layers": [
+    {
+     "label": "Panama: MiAmbiente (Ministerio de Ambiente de Panamá) – SINAP",
+     "url": "https://geoportal.miambiente.gob.pa/server/rest/services/Hosted/SINAP_2025/FeatureServer/0",
+     "namef": "nombre"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Reserva Forestal",
+    "Área Silvestre Protegida",
+    "Refugio de Vida Silvestre",
+    "Humedal",
+    "Monumento Natural",
+    "Paisaje Protegido",
+    "Área de Recursos Manejados",
+    "Área de Uso Múltiple"
+   ],
+   "tests": [
+    "PA-0020 = Volcan Barú",
+    "PA-0012 = Portobelo",
+    "PA-0030 = La Yeguada"
+   ]
+  },
+  "BS": {
+   "country": "Bahamas",
+   "agency": "Bahamas National Trust (statutory manager of the national park system)",
+   "credit": "BNT GIS Data User Agreement (credit the SOURCE field). No open licence.",
+   "layers": [
+    {
+     "label": "Bahamas: Bahamas National Trust (statutory manager of the national park system)",
+     "url": "https://services3.arcgis.com/yRW96jkKjDj5GeHi/arcgis/rest/services/Protected_Areas_of_The_Bahamas/FeatureServer/0",
+     "namef": "AREANAM"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Land & Sea Park",
+    "Reserve",
+    "Nature Center",
+    "Preserve"
+   ],
+   "tests": [
+    "BS-0019 = Inagua National Park",
+    "BS-0016 = Lucayan National Park",
+    "BS-0015 = Exuma Cays Land & Sea Park"
+   ]
+  },
+  "BM": {
+   "country": "Bermuda",
+   "agency": "Bermuda Government – Dept of Planning (data from Dept of Conservation Services)",
+   "credit": "Credit: The Department of Conservation Services (Bermuda). Licence not stated.",
+   "layers": [
+    {
+     "label": "Bermuda: Bermuda Government – Dept of Planning (data from Dept of Conservation ",
+     "url": "https://gis.planning.gov.bm/arcgis/rest/services/PlanningLayers/MapServer/14",
+     "namef": "FullName"
+    }
+   ],
+   "kinds": [
+    "Park",
+    "Nature Reserve",
+    "Fort Park",
+    "Island Park"
+   ],
+   "tests": [
+    "BM-0025 = Walsingham Nature Reserve",
+    "BM-0009 = Cooper's Island Nature Reserve",
+    "BM-0015 = Hog Bay Park"
+   ]
+  },
+  "GT": {
+   "country": "Guatemala",
+   "agency": "CONAP (Consejo Nacional de Áreas Protegidas) – SIGAP 2018, served on Proyecto Mesoamérica RMGIR server",
+   "credit": "Licence not stated (layer has no credit line). Credit: CONAP / SIGAP 2018 via Proyecto Mesoamérica RMGIR.",
+   "layers": [
+    {
+     "label": "Guatemala: CONAP (Consejo Nacional de Áreas Protegidas) – SIGAP 2018, served on P",
+     "url": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Guatemala_Datos_B%C3%A1sicos_WGS1984/MapServer/3",
+     "namef": "NOMBRE"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Biotopo Protegido",
+    "Reserva de Biosfera",
+    "Refugio de Vida Silvestre",
+    "Monumento Cultural",
+    "Área de Usos Múltiples",
+    "Parque Regional Municipal",
+    "Reserva Natural Privada",
+    "Zona de Veda Definitiva"
+   ],
+   "tests": [
+    "GT-0018 = Grutas de Lanquín",
+    "GT-0017 = Las Victorias",
+    "GT-0004 = Mirador - Río Azul"
+   ]
+  },
+  "VI": {
+   "country": "Virgin Islands (US)",
+   "agency": "US National Park Service (Land Resources Division)",
+   "credit": "US federal government data (public domain). Credit: National Park Service Land Resources Division.",
+   "layers": [
+    {
+     "label": "Virgin Islands (US): US National Park Service (Land Resources Division)",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "namef": "UNIT_NAME"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "National Monument",
+    "National Historic Site",
+    "National Historical Park"
+   ],
+   "tests": [
+    "VI-0001 = Virgin Islands National Park",
+    "VI-0007 = Buck Island Reef National Monument",
+    "VI-0006 = Christiansted National Historic Site"
+   ]
+  },
+  "GL": {
+   "country": "Greenland",
+   "agency": "Greenland Institute of Natural Resources (Pinngortitaleriffik), Government of Greenland",
+   "credit": "No credit or licence text on layer (licence not stated). Credit: Greenland Institute of Natural Resources.",
+   "layers": [
+    {
+     "label": "Greenland: Greenland Institute of Natural Resources (Pinngortitaleriffik), Govern",
+     "url": "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Protected_Areas_of_Greenland_DisplayLayer/FeatureServer/0",
+     "namef": "name"
+    }
+   ],
+   "kinds": [
+    "National Park (Nationalparken)",
+    "Ramsar area",
+    "Nature Protection Area",
+    "Bird Protection Area",
+    "UNESCO World Heritage Site"
+   ],
+   "tests": [
+    "GL-0001 = Nationalparken i Nord- og Østgrønland",
+    "GL-0006 = Heden, Jameson Land",
+    "GL-0003 = Eqalummiut Nunaat & Nassuttuup Nunaa"
+   ]
+  },
+  "SV": {
+   "country": "El Salvador",
+   "agency": "MARN – Dirección de Ecosistemas y Vida Silvestre (Ministerio de Medio Ambiente y Recursos Naturales)",
+   "credit": "Licence not stated. Credit line on layer: Dirección de Ecosistemas y Vida Silvestre MARN.",
+   "layers": [
+    {
+     "label": "El Salvador: MARN – Dirección de Ecosistemas y Vida Silvestre (Ministerio de Medio ",
+     "url": "https://services6.arcgis.com/DO1cMKsePeciYDRE/arcgis/rest/services/Layers/FeatureServer/6",
+     "namef": "NOMBRE"
+    }
+   ],
+   "kinds": [
+    "Área Natural Protegida",
+    "Parque Nacional",
+    "Complejo",
+    "Estatus (Declarada / En proceso)"
+   ],
+   "tests": [
+    "SV-0001 = Montecristo",
+    "SV-0006 = Parque Walter Tilo Deininger",
+    "SV-0005 = San Diego y San Felipe las Barras"
+   ]
+  },
+  "NZ": {
+   "country": "New Zealand",
+   "agency": "Department of Conservation (DOC), New Zealand",
+   "credit": "Layer says \"There are no credits.\" DOC publishes this dataset (Public Conservation Land) on its open-data hub; licence to confirm (DOC open data is normally CC BY 4.0).",
+   "layers": [
+    {
+     "label": "New Zealand: Department of Conservation (DOC), New Zealand",
+     "url": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0",
+     "namef": "Name"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Conservation Area",
+    "Scenic Reserve",
+    "Ecological Area",
+    "Forest Park",
+    "Wildlife Management Reserve",
+    "Historic Reserve",
+    "Recreation Reserve"
+   ],
+   "tests": [
+    "NZ-0400 = Tangarakau Scenic Reserve",
+    "NZ-0402 = Pureora Mountain Ecological Area",
+    "NZ-0380 = Kāweka Forest Conservation Area"
+   ]
+  },
+  "GR": {
+   "country": "Greece",
+   "agency": "NECCA (Natural Environment & Climate Change Agency), Greece",
+   "credit": "No credit or licence text on the layer (licence not stated). Credit: NECCA (CDDA 2020 national designations).",
+   "layers": [
+    {
+     "label": "Greece: NECCA (Natural Environment & Climate Change Agency), Greece",
+     "url": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_CDDA2020/MapServer/0",
+     "namef": "siteName"
+    }
+   ],
+   "kinds": [
+    "Εθνικός Δρυμός (national park)",
+    "Καταφύγιο Άγριας Ζωής (wildlife refuge)",
+    "Αισθητικό Δάσος (aesthetic forest)",
+    "Διατηρητέο Μνημείο της Φύσης"
+   ],
+   "tests": [
+    "GR-0232 = Ethniko ygrotopiko parko delta Evrou",
+    "GR-0298 = Telendos (Kalymnion)",
+    "GR-0273 = Gripas (Fanou)"
+   ]
+  },
+  "MK": {
+   "country": "North Macedonia",
+   "agency": "Government of North Macedonia (Spatial Plan, Agency for Planning of Space / MOEPP)",
+   "credit": "Credit line: Government of North Macedonia spatial plan; licence not stated",
+   "layers": [
+    {
+     "label": "North Macedonia: Government of North Macedonia (Spatial Plan, Agency for Planning of Sp",
+     "url": "https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/94",
+     "namef": "SiteName"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "monument of nature",
+    "protected landscape (Name_MKD has Macedonian names)"
+   ],
+   "tests": [
+    "MK-0025 = Duvalo",
+    "MK-0030 = Prevalec",
+    "MK-0043 = Konche"
+   ]
+  },
+  "AE": {
+   "country": "United Arab Emirates",
+   "agency": "Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data",
+   "credit": "Abu Dhabi SDI Open Data; licence not stated on layer",
+   "layers": [
+    {
+     "label": "United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data",
+     "url": "https://arcgis.sdi.abudhabi.ae/agspublish/rest/services/OpenData/ADSDI_OpenData/FeatureServer/127",
+     "namef": "NAME_EN"
+    }
+   ],
+   "kinds": [
+    "Protected Area",
+    "Reserved Area",
+    "National Park",
+    "Wetland Reserve",
+    "Marine Protected Area"
+   ],
+   "tests": [
+    "AE-0003 = Jabal Hafit National Park",
+    "AE-0005 = Qasr Al Sarab Protected Area",
+    "AE-0002 = Wathba Wetland Reserve"
+   ]
+  },
+  "ID": {
+   "country": "Indonesia",
+   "agency": "Badan Informasi Geospasial (BIG)",
+   "credit": "Credit: Badan Informasi Geospasial; licence not stated",
+   "layers": [
+    {
+     "label": "Indonesia: Badan Informasi Geospasial (BIG)",
+     "url": "https://geoservices.big.go.id/gis/rest/services/PTRA/Atlas_250K_KawasanKonservasi/MapServer/7",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "TN (Taman Nasional)",
+    "CA (Cagar Alam)",
+    "SM (Suaka Margasatwa)",
+    "TWA",
+    "Tahura"
+   ],
+   "tests": [
+    "ID-0027 = TN Komodo",
+    "ID-0040 = TN Ujung Kulon",
+    "ID-0017 = TN Gunung Leuser"
+   ]
+  },
+  "UY": {
+   "country": "Uruguay",
+   "agency": "Ministerio de Ambiente (DINABISE) – SNAP; served by MVOT SIT",
+   "credit": "Credit: \"Dirección Nacional de Biodiversidad y Servicios Ecosistémicos – OAN Ministerio de Ambiente\"; licence not stated",
+   "layers": [
+    {
+     "label": "Uruguay: Ministerio de Ambiente (DINABISE) – SNAP; served by MVOT SIT",
+     "url": "https://sit.mvot.gub.uy/arcgis/rest/services/07_EXTERNO/LUGARES_PROTEGIDOS/MapServer/5",
+     "namef": "nombre"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Paisaje Protegido",
+    "Área de Manejo de Hábitats y/o Especies",
+    "Monumento Natural (categoria field)"
+   ],
+   "tests": [
+    "UY-0024 = Quebrada de los Cuervos y Sierras del Yerbal",
+    "UY-0026 = San Miguel",
+    "UY-0028 = Cabo Polonio"
+   ]
+  },
+  "NC": {
+   "country": "New Caledonia",
+   "agency": "Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (OEIL geoportal)",
+   "credit": "Credit: Province Sud, Province Nord, Gouvernement de la Nouvelle-Calédonie; licence not stated",
+   "layers": [
+    {
+     "label": "New Caledonia: Province Sud / Province Nord / Gouvernement de la Nouvelle-Calédonie (",
+     "url": "https://geoportail.oeil.nc/arcgis/rest/services/GEOPORTAIL_SUIVI/AIRE_PROTEGEE_TERRESTRE/MapServer/0",
+     "namef": "NOM"
+    }
+   ],
+   "kinds": [
+    "réserve naturelle",
+    "parc provincial",
+    "réserve de nature sauvage",
+    "aire de gestion durable"
+   ],
+   "tests": [
+    "NC-0004 = Mont Panié",
+    "NC-0046 = Haute Dumbéa",
+    "NC-0047 = Rivière bleue"
+   ]
+  },
+  "PE": {
+   "country": "Peru",
+   "agency": "SERNANP (Servicio Nacional de Áreas Naturales Protegidas por el Estado)",
+   "credit": "Copyright: SERNANP; licence not stated",
+   "layers": [
+    {
+     "label": "Peru: SERNANP (Servicio Nacional de Áreas Naturales Protegidas por el Estado",
+     "url": "https://geoservicios.sernanp.gob.pe/arcgis/rest/services/servicios_ogc/peru_sernanp_0102/MapServer/0",
+     "namef": "anp_nomb"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Santuario Nacional",
+    "Santuario Histórico",
+    "Reserva Nacional",
+    "Reserva Comunal",
+    "Refugio de Vida Silvestre",
+    "Reserva Paisajística",
+    "Coto de Caza (in anp_cate)"
+   ],
+   "tests": [
+    "PE-0003 = Huascarán",
+    "PE-0002 = Cordillera de Colán",
+    "PE-0006 = Lagunas de Mejía"
+   ]
+  },
+  "MT": {
+   "country": "Malta",
+   "agency": "Ambjent Malta (government agency; Natura 2000 data from ERA)",
+   "credit": "Licence not stated; no credit line (Ambjent Malta AGOL org)",
+   "layers": [
+    {
+     "label": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
+     "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
+     "namef": "site_name"
+    }
+   ],
+   "kinds": [
+    "Natura 2000 SAC/SCI/SPA (Maltese site names",
+    "e.g. L-Inħawi",
+    "Il-Ballut)"
+   ],
+   "tests": [
+    "MT-0003 = Il-Ballut tal-Wardija",
+    "MT-0015 = L-Inħawi tal-Għadira",
+    "MT-0002 = L-Inħawi ta’ Pembroke"
+   ]
+  },
+  "PF": {
+   "country": "French Polynesia",
+   "agency": "Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM de Moorea",
+   "credit": "Licence Ouverte / Open Licence Etalab 2.0; credit \"Direction du Système d'information de la Polynésie Française (DSI)\"",
+   "layers": [
+    {
+     "label": "French Polynesia: Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM",
+     "url": "https://services.arcgis.com/L4H4rU26VyhEF588/arcgis/rest/services/PGEM_Aires_marines_prot%C3%A9g%C3%A9es_(TeFenua)/FeatureServer/0",
+     "namef": "nom"
+    }
+   ],
+   "kinds": [
+    "AMP (Aire Marine Protégée)"
+   ],
+   "tests": [
+    "PF-0008 = AMP de Maatea",
+    "PF-0010 = AMP de Nuarei",
+    "PF-0013 = AMP de Tiahura"
+   ]
+  },
+  "CV": {
+   "country": "Cape Verde",
+   "agency": "INGT / Direção Nacional do Ambiente (DNA), Cabo Verde",
+   "credit": "Credit: INGT, DNA; licence not stated",
+   "layers": [
+    {
+     "label": "Cape Verde: INGT / Direção Nacional do Ambiente (DNA), Cabo Verde",
+     "url": "https://ingtgeo.gov.cv/arcgisingt/rest/services/SDI/areas_protegidas_2022/FeatureServer/0",
+     "namef": "designacao"
+    }
+   ],
+   "kinds": [
+    "Parque Natural",
+    "Reserva Natural",
+    "Paisagem Protegida",
+    "Monumento Natural"
+   ],
+   "tests": [
+    "CV-0019 = Parque Natural de Serra Malagueta",
+    "CV-0021 = Parque Natural de Moroços",
+    "CV-0006 = Reserva Natural Ponta do Sol"
+   ]
+  },
+  "PY": {
+   "country": "Paraguay",
+   "agency": "INFONA (Instituto Forestal Nacional) / SINASIP",
+   "credit": "Licence not stated; no credit line in service (credit INFONA)",
+   "layers": [
+    {
+     "label": "Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP",
+     "url": "https://visor.infona.gov.py/server/rest/services/Areas_Silvestres_Protegidas/Areas_Silvestres_Protegidas/MapServer/0",
+     "namef": "nombre"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Reserva Natural",
+    "Monumento Natural",
+    "Reserva de Recursos Manejados (in categoria)"
+   ],
+   "tests": [
+    "PY-0003 = CERRO CORA",
+    "PY-0002 = CAAZAPÁ",
+    "PY-0007 = ÑACUNDAY"
+   ]
+  },
+  "GE": {
+   "country": "Georgia",
+   "agency": "Agency of Protected Areas (APA), Ministry of Environmental Protection and Agriculture (MEPA)",
+   "credit": "licence not stated (MEPA GIS portal, portal.mepa.gov.ge)",
+   "layers": [
+    {
+     "label": "Georgia: Agency of Protected Areas (APA), Ministry of Environmental Protection ",
+     "url": "https://gisserver.mepa.gov.ge/arcgis/rest/services/APA/საქართველოს_დაცული_ტერიტორიები/FeatureServer/0",
+     "namef": "Name_ENG"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Strict Nature Reserve",
+    "Managed Reserve",
+    "Natural Monument",
+    "Protected Landscape (Type_ENG)"
+   ],
+   "tests": [
+    "GE-0007 = Kazbegi National Park",
+    "GE-0003 = Mtirala National Park",
+    "GE-0005 = Vashlovani National Park"
+   ]
+  },
+  "EC": {
+   "country": "Ecuador",
+   "agency": "Ministerio del Ambiente, Agua y Transición Ecológica (MAATE/MAAE), served by the government geovisor (controlrecursosyenergia.gob.ec)",
+   "credit": "Credit: \"MAAE\" (layer copyright); licence not stated",
+   "layers": [
+    {
+     "label": "Ecuador: Ministerio del Ambiente, Agua y Transición Ecológica (MAATE/MAAE), ser",
+     "url": "https://geovisorm.controlrecursosyenergia.gob.ec/arcgis/rest/services/MAAE_WGS84_17S/MapServer/0",
+     "namef": "nam"
+    }
+   ],
+   "kinds": [
+    "Parque Nacional",
+    "Reserva Ecológica",
+    "Refugio de Vida Silvestre",
+    "Reserva de Producción de Fauna (field \"csnap\"/\"map\")"
+   ],
+   "tests": [
+    "EC-0001 = CAJAS",
+    "EC-0015 = YASUNI",
+    "EC-0007 = PODOCARPUS"
+   ]
+  },
+  "KE": {
+   "country": "Kenya",
+   "agency": "Kenya Wildlife Service (KWS), layer hosted on WRI Kenya Forest Atlas",
+   "credit": "Credit: \"Kenya Wildlife Service\" (layer copyright); licence not stated",
+   "layers": [
+    {
+     "label": "Kenya: Kenya Wildlife Service (KWS), layer hosted on WRI Kenya Forest Atlas",
+     "url": "https://gis.forest-atlas.org/server/rest/services/ken/overlay_layers/MapServer/4",
+     "namef": "WPA_NAME"
+    }
+   ],
+   "kinds": [
+    "N.P. (National Park)",
+    "N.R. (National Reserve)",
+    "Marine N.P./N.R.",
+    "Sanctuary"
+   ],
+   "tests": [
+    "KE-0004 = Central Island N.P.",
+    "KE-0005 = Chyulu Hills N.P.",
+    "KE-0006 = Hell's Gate N.P."
+   ]
+  },
+  "LK": {
+   "country": "Sri Lanka",
+   "agency": "Survey Department / NSDI Sri Lanka",
+   "credit": "Licence not stated; no credit line in service (credit NSDI Sri Lanka)",
+   "layers": [
+    {
+     "label": "Sri Lanka: Survey Department / NSDI Sri Lanka",
+     "url": "https://gisapps.nsdi.gov.lk/server/rest/services/Srilanka/Biota/MapServer/1",
+     "namef": "name"
+    }
+   ],
+   "kinds": [
+    "NP",
+    "Sanctuary",
+    "Strict Natural Reserve",
+    "Nature Reserve (in type)"
+   ],
+   "tests": [
+    "LK-0003 = Yala NP",
+    "LK-0015 = Horton Plains NP",
+    "LK-0022 = Bundala NP"
+   ]
+  },
+  "OM": {
+   "country": "Oman",
+   "agency": "Environment Authority Oman / NCSI (Environment Atlas of Oman, ONSDI)",
+   "credit": "Source: EA & NCSI; licence not stated",
+   "layers": [
+    {
+     "label": "Oman: Environment Authority Oman / NCSI (Environment Atlas of Oman, ONSDI)",
+     "url": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/المناطق_المحمية27012025/FeatureServer/0",
+     "namef": "CONSNAME"
+    }
+   ],
+   "kinds": [
+    "Nature Reserve",
+    "Wildlife Reserve",
+    "Wetland Reserve",
+    "Archaeological Reserve (Arabic in CONSANAME)"
+   ],
+   "tests": [
+    "OM-0005 = Al Rustaq Wildlife Reserve",
+    "OM-0013 = Jabal Qahwan Nature Reserve",
+    "OM-0021 = Ras Al Shajar Nature Reserve"
+   ]
+  },
+  "CM": {
+   "country": "Cameroon",
+   "agency": "MINFOF (Ministère des Forêts et de la Faune) – Atlas forestier du Cameroun, hosted by WRI Forest Atlas",
+   "credit": "Credit: \"produit par le MINFOF et WRI\" (layer copyright); service credit MINFOF, WRI, GFW, INC, MINEE, MINTP; licence not stated",
+   "layers": [
+    {
+     "label": "Cameroon: MINFOF (Ministère des Forêts et de la Faune) – Atlas forestier du Came",
+     "url": "https://gis.forest-atlas.org/server/rest/services/cmr/open_data_fr/MapServer/123",
+     "namef": "nom_ap"
+    }
+   ],
+   "kinds": [
+    "Parc national",
+    "Réserve de faune",
+    "Sanctuaire",
+    "Jardin zoologique (desc_type)"
+   ],
+   "tests": [
+    "CM-0006 = Korup",
+    "CM-0007 = Lobéké",
+    "CM-0001 = Bénoué"
+   ]
+  },
+  "CD": {
+   "country": "Congo (Dem. Rep.)",
+   "agency": "ICCN (Institut Congolais pour la Conservation de la Nature), hosted on WRI Forest Atlas",
+   "credit": "Credit: produced by ICCN with OFAC support (FORAF project); WRI Forest Atlas host; licence not stated",
+   "layers": [
+    {
+     "label": "Congo (Dem. Rep.): ICCN (Institut Congolais pour la Conservation de la Nature), hosted on",
+     "url": "https://gis.forest-atlas.org/server/rest/services/cod/Localisation_aacs_en/MapServer/102",
+     "namef": "nom_ap"
+    }
+   ],
+   "kinds": [
+    "Parc national",
+    "Réserve",
+    "Domaine de chasse",
+    "Réserve de faune"
+   ],
+   "tests": [
+    "CD-0002 = Parc national de la Salonga",
+    "CD-0009 = Parc national de la Garamba",
+    "CD-0005 = Parc national du Kahuzi-Biega"
+   ]
+  },
+  "GA": {
+   "country": "Gabon",
+   "agency": "Gabon Ministère des Eaux et Forêts / ANPN – Atlas forestier du Gabon, hosted by WRI Forest Atlas",
+   "credit": "Credit: Forest Atlas of Gabon (Ministère des Eaux et Forêts with WRI); layer copyright blank, licence not stated",
+   "layers": [
+    {
+     "label": "Gabon: Gabon Ministère des Eaux et Forêts / ANPN – Atlas forestier du Gabon, ",
+     "url": "https://gis.forest-atlas.org/server/rest/services/gab/pnat_conservation/MapServer/0",
+     "namef": "nom_ap"
+    }
+   ],
+   "kinds": [
+    "Parc National",
+    "Réserve",
+    "Domaine de chasse (desc_type)"
+   ],
+   "tests": [
+    "GA-0001 = AKANDA",
+    "GA-0003 = IVINDO",
+    "GA-0004 = LOANGO"
+   ]
+  },
+  "QA": {
+   "country": "Qatar",
+   "agency": "Ministry of Environment and Climate Change / GIS Qatar (MME)",
+   "credit": "Licence not stated; no credit line in service (credit GISQatar)",
+   "layers": [
+    {
+     "label": "Qatar: Ministry of Environment and Climate Change / GIS Qatar (MME)",
+     "url": "https://services.gisqatar.org.qa/server/rest/services/Vector/Protected_Areas/FeatureServer/0",
+     "namef": "SITENAME"
+    }
+   ],
+   "kinds": [
+    "Reserve",
+    "Protected Area (NAME_AR Arabic names)"
+   ],
+   "tests": [
+    "QA-0006 = Al Reem",
+    "QA-0008 = Al Thakhira",
+    "QA-0012 = Khor Al Adaid"
+   ]
+  },
+  "AX": {
+   "country": "Åland Islands",
+   "agency": "Ålands landskapsregering",
+   "credit": "© Ålands landskapsregering; licence not stated",
+   "layers": [
+    {
+     "label": "Åland Islands: Ålands landskapsregering",
+     "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
+     "namef": "Namn"
+    }
+   ],
+   "kinds": [
+    "naturreservat",
+    "naturskyddsområde",
+    "sälskyddsområde"
+   ],
+   "tests": [
+    "AX-0019 = Herröskatan naturreservat",
+    "AX-0010 = Svenstjälpa naturreservat",
+    "AX-0012 = Ramsholmen naturskyddsområde"
+   ]
+  },
+  "MP": {
+   "country": "Northern Mariana Islands",
+   "agency": "CNMI Bureau of Environmental & Coastal Quality - Division of Coastal Resources Management (DCRM) / Division of Fish and Wildlife",
+   "credit": "Credit: \"CNMI Division of Fish and Wildlife, CNMI Division of Coastal Resources Management, NOAA Coral Reef Conservation Program\". Licence not stated.",
+   "layers": [
+    {
+     "label": "Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coastal R",
+     "url": "https://services.arcgis.com/qchgHH9IIeiivY5M/arcgis/rest/services/CNMI_Marine_Protected_Areas/FeatureServer/0",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "marine conservation area",
+    "marine sanctuary",
+    "marine reserve",
+    "fish reserve"
+   ],
+   "tests": [
+    "MP-0003 = Managaha Marine Conservation Area",
+    "MP-0009 = Tinian Marine Reserve Boundaries",
+    "MP-0010 = Sasanhaya Bay Fish Reserve"
+   ]
+  },
+  "MV": {
+   "country": "Maldives",
+   "agency": "Environmental Protection Agency (EPA) of the Maldives; hosted on ArcGIS Online account LAMP_MLSA (likely Maldives Land & Survey Authority)",
+   "credit": "Credit: \"Environmental Protection Agency (EPA) of the Maldives, Version 4.1, 20 August 2024\". Licence not stated.",
+   "layers": [
+    {
+     "label": "Maldives: Environmental Protection Agency (EPA) of the Maldives; hosted on ArcGI",
+     "url": "https://services7.arcgis.com/yvCbn3q8PPtPLZIM/arcgis/rest/services/ProtectedArea/FeatureServer/0",
+     "namef": "Name_Engli"
+    }
+   ],
+   "kinds": [
+    "protected area",
+    "marine protected area",
+    "kandu",
+    "kilhi",
+    "region",
+    "area (atoll prefix e.g. \"B.\"",
+    "\"HA.\")"
+   ],
+   "tests": [
+    "MV-0002 = B. Hanifaru Area",
+    "MV-0003 = HA. Gallandhoo",
+    "MV-0008 = ADh. South Ari Marine Park (SAMPA)"
+   ]
+  },
+  "NF": {
+   "country": "Norfolk Island",
+   "agency": "Australian Government DCCEEW (CAPAD)",
+   "credit": "CC BY 4.0 per Australia example row (CAPAD on data.gov.au); layer credit: Australian Government, Department of Climate Change, Energy, the Environment and Water 2025",
+   "layers": [
+    {
+     "label": "Norfolk Island: Australian Government DCCEEW (CAPAD)",
+     "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "botanic gardens"
+   ],
+   "tests": [
+    "NF-0001 = Norfolk Island (Mt Pitt)",
+    "NF-0001 = Norfolk Island (Phillip Island)"
+   ]
+  },
+  "GY": {
+   "country": "Guyana",
+   "agency": "Guyana Lands and Survey Commission (data) / Protected Areas Commission; hosted on ArcGIS Online by Conservation International (owner CI_KCort)",
+   "credit": "Credit: \"Feature dataset created by staff of the Guyana Lands and Survey Commission.\" Licence not stated.",
+   "layers": [
+    {
+     "label": "Guyana: Guyana Lands and Survey Commission (data) / Protected Areas Commission",
+     "url": "https://services.arcgis.com/bL1WyMoaiBW4etad/arcgis/rest/services/Guyana_VIP_Status/FeatureServer/1",
+     "namef": "Name"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "protected area",
+    "Amerindian protected area"
+   ],
+   "tests": [
+    "GY-0001 = Kaieteur National Park",
+    "GY-0005 = Kanuku Mountains",
+    "GY-0003 = Iwokrama Forest"
+   ]
+  },
+  "UM": {
+   "country": "US minor outlying islands",
+   "agency": "U.S. Fish and Wildlife Service, National Wildlife Refuge System (Division of Realty)",
+   "credit": "Credit: U.S. Fish and Wildlife Service, National Wildlife Refuge System, Division of Realty. Licence not stated on layer (US federal data).",
+   "layers": [
+    {
+     "label": "US minor outlying islands: U.S. Fish and Wildlife Service, National Wildlife Refuge System (Divis",
+     "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+     "namef": "ORGNAME"
+    }
+   ],
+   "kinds": [
+    "national wildlife refuge",
+    "marine national monument"
+   ],
+   "tests": [
+    "UM-0001 = BAKER ISLAND NATIONAL WILDLIFE REFUGE",
+    "UM-0004 = MIDWAY ATOLL NATIONAL WILDLIFE REFUGE",
+    "UM-0006 = PALMYRA ATOLL NATIONAL WILDLIFE REFUGE"
+   ]
+  },
+  "BT": {
+   "country": "Bhutan",
+   "agency": "Bhutan National Spatial Data Infrastructure (NSDI, nsdi.systems.gov.bt) – PA data from DoFPS",
+   "credit": "Bhutan NSDI (government portal); item has no licence/credit text – licence not stated",
+   "layers": [
+    {
+     "label": "Bhutan: Bhutan National Spatial Data Infrastructure (NSDI, nsdi.systems.gov.bt",
+     "url": "https://nsdi.systems.gov.bt/server/rest/services/Hosted/Protected_Areas_of_Bhutan/FeatureServer/1",
+     "namef": "name"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Wildlife Sanctuary",
+    "Strict Nature Reserve",
+    "Botanical Park"
+   ],
+   "tests": [
+    "BT-0001 = Jigme Dorji National Park",
+    "BT-0003 = Royal Manas National Park",
+    "BT-0004 = Sakteng Wildlife Sanctuary"
+   ]
+  },
+  "BW": {
+   "country": "Botswana",
+   "agency": "Department of Environmental Affairs (DEA) – Mapping Biodiversity Priorities project",
+   "credit": "Department of Environmental Affairs (DEA). 2021. Botswana Spatial Biodiversity Assessment, v1. Mapping Biodiversity Priorities Project, Gaborone. \"Not to be sold\"; licence not stated",
+   "layers": [
+    {
+     "label": "Botswana: Department of Environmental Affairs (DEA) – Mapping Biodiversity Prior",
+     "url": "https://services7.arcgis.com/mbEujVpJG0aE29fS/arcgis/rest/services/Protected_Areas_and_Other_Effective_Conservation_Measures/FeatureServer/0",
+     "namef": "Label"
+    }
+   ],
+   "kinds": [
+    "National Park",
+    "Game Reserve",
+    "Wildlife Reserve",
+    "Forest Reserve",
+    "Sanctuary"
+   ],
+   "tests": [
+    "BW-0002 = Chobe National Park",
+    "BW-0004 = Khutse Game Reserve",
+    "BW-0005 = Makgadikgadi Pans National Park"
+   ]
+  },
+  "CG": {
+   "country": "Congo (Rep.)",
+   "agency": "Ministry of Forest Economy (MEFDDE) / CNIAF, via WRI Forest Atlas of the Republic of Congo",
+   "credit": "Credit: \"Copyrights go mainly to the Ministry of Forest Economy for Sustainable Development and Environment (MEFDDE) and to the World Resources Institute (WRI) ... CNIAF-WRI Forest Atlas project\". Licence not stated.",
+   "layers": [
+    {
+     "label": "Congo (Rep.): Ministry of Forest Economy (MEFDDE) / CNIAF, via WRI Forest Atlas of t",
+     "url": "https://gis.forest-atlas.org/server/rest/services/cog/Affectation_terre_en/MapServer/47",
+     "namef": "nom_ap"
+    }
+   ],
+   "kinds": [
+    "parc national",
+    "réserve",
+    "réserve de faune",
+    "sanctuaire",
+    "domaine de chasse"
+   ],
+   "tests": [
+    "CG-0004 = Odzala kokoua",
+    "CG-0006 = Lac Télé",
+    "CG-0005 = Ntokou-pikounda"
+   ]
+  },
+  "IM": {
+   "country": "Isle of Man",
+   "agency": "Isle of Man Government - Department of Environment, Food and Agriculture (DEFA), MannGIS",
+   "credit": "Credit: \"DEFA\" (service copyright text). Licence not stated.",
+   "layers": [
+    {
+     "label": "Isle of Man: Isle of Man Government - Department of Environment, Food and Agricultu",
+     "url": "https://ppmaps.gov.im/manngispubserver/rest/services/CorporateDynamicServices/PPDEFA/MapServer/3",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "glen",
+    "gardens",
+    "national nature reserve",
+    "ASSI",
+    "Ramsar site"
+   ],
+   "tests": [
+    "IM-0001 = Glen Wyllin",
+    "IM-0002 = Cooill y Ree",
+    "IM-0003 = Garey ny Cloie Gardens"
+   ]
+  },
+  "GU": {
+   "country": "Guam",
+   "agency": "Guam Coastal Management Program (GCMP), served by PacIOOS GeoServer; plus US NPS and USFWS layers",
+   "credit": "Credit: Guam Coastal Management Program (data.gov / PacIOOS metadata); licence not stated. NPS/FWS: US federal, licence not stated.",
+   "layers": [
+    {
+     "label": "Guam: Guam Coastal Management Program (GCMP), served by PacIOOS GeoServer; p (1)",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "namef": "NAME"
+    },
+    {
+     "label": "Guam: Guam Coastal Management Program (GCMP), served by PacIOOS GeoServer; p (2)",
+     "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "conservation area",
+    "national wildlife refuge",
+    "national historical park"
+   ],
+   "tests": [
+    "GU-0006 = Anao",
+    "GU-0005 = Cotal",
+    "GU-0007 = Balonos"
+   ]
+  },
+  "LR": {
+   "country": "Liberia",
+   "agency": "Forestry Development Authority (FDA), via WRI Forest Atlas of Liberia",
+   "credit": "No credit or licence text on the service/layer. Licence not stated (Forest Atlas of Liberia, FDA + WRI).",
+   "layers": [
+    {
+     "label": "Liberia: Forestry Development Authority (FDA), via WRI Forest Atlas of Liberia (1)",
+     "url": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/2",
+     "namef": "name"
+    },
+    {
+     "label": "Liberia: Forestry Development Authority (FDA), via WRI Forest Atlas of Liberia (2)",
+     "url": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/3",
+     "namef": "name"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "reserve (desc_type field)"
+   ],
+   "tests": [
+    "LR-0002 = Sapo",
+    "LR-0003 = Gola Forest",
+    "LR-0004 = Lake Piso (layer 3)"
+   ]
+  },
+  "FO": {
+   "country": "Faroe Islands",
+   "agency": "Umhvørvisstovan (Faroese Environment Agency), gis.us.fo",
+   "credit": "Credit: ©Umhvørvisstovan. Licence not stated.",
+   "layers": [
+    {
+     "label": "Faroe Islands: Umhvørvisstovan (Faroese Environment Agency), gis.us.fo",
+     "url": "https://gis.us.fo/arcgis/rest/services/ramsar/us_ramsar_oki/MapServer/1",
+     "namef": "ramsar_area"
+    }
+   ],
+   "kinds": [
+    "Ramsar øki",
+    "náttúrufriðing",
+    "viðarlund (plantation)",
+    "skógfriðað"
+   ],
+   "tests": [
+    "FO-0002 = Nólsoy",
+    "FO-0003 = Mykines",
+    "FO-0004 = Skúgvoy"
+   ]
+  },
+  "JE": {
+   "country": "Jersey",
+   "agency": "Government of Jersey (Infrastructure & Environment; maps.gov.je AGOL org)",
+   "credit": "Credit '© Government of Jersey'. Licence: 'This content is for illustrative purposes only... provided without a warranty'; no open licence stated",
+   "layers": [
+    {
+     "label": "Jersey: Government of Jersey (Infrastructure & Environment; maps.gov.je AGOL o",
+     "url": "https://services-eu1.arcgis.com/mUgkK1QjC37PAGmP/arcgis/rest/services/BIP2022_WFL1/FeatureServer/32",
+     "namef": "Name"
+    }
+   ],
+   "kinds": [
+    "Coastal National Park",
+    "Protected open space",
+    "Park"
+   ],
+   "tests": [
+    "JE-0001 = Coastal National Park"
+   ]
+  },
+  "RW": {
+   "country": "Rwanda",
+   "agency": "Rwanda Development Board (RDB), via national geodata portal geodata.rw",
+   "credit": "Credit: \"RDB\". Licence not stated.",
+   "layers": [
+    {
+     "label": "Rwanda: Rwanda Development Board (RDB), via national geodata portal geodata.rw",
+     "url": "https://geodata.rw/server/rest/services/basemap/National_Parks/FeatureServer/0",
+     "namef": "areaname"
+    }
+   ],
+   "kinds": [
+    "national park"
+   ],
+   "tests": [
+    "RW-0001 = Volcanoes National Park",
+    "RW-0003 = Nyungwe National Park",
+    "RW-0005 = Akagera National Park"
+   ]
+  },
+  "AS": {
+   "country": "Samoa (American)",
+   "agency": "US National Park Service (Land Resources Division) + US Fish & Wildlife Service",
+   "credit": "NPS layer: no credit or licence stated. FWS layer credit: U.S. Fish and Wildlife Service, NWRS Division of Realty; licence not stated (US federal data).",
+   "layers": [
+    {
+     "label": "Samoa (American): US National Park Service (Land Resources Division) + US Fish & Wildlif (1)",
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "namef": "UNIT_NAME"
+    },
+    {
+     "label": "Samoa (American): US National Park Service (Land Resources Division) + US Fish & Wildlif (2)",
+     "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+     "namef": "UNIT_NAME"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "national wildlife refuge",
+    "marine national monument"
+   ],
+   "tests": [
+    "AS-0001 = National Park of American Samoa",
+    "AS-0002 = ROSE ATOLL NATIONAL WILDLIFE REFUGE (FWS layer)"
+   ]
+  },
+  "CC": {
+   "country": "Cocos (Keeling) Islands",
+   "agency": "Australian Government DCCEEW (CAPAD)",
+   "credit": "CC BY 4.0 per Australia example row (CAPAD on data.gov.au); layer credit: Australian Government, Department of Climate Change, Energy, the Environment and Water 2025",
+   "layers": [
+    {
+     "label": "Cocos (Keeling) Islands: Australian Government DCCEEW (CAPAD) (1)",
+     "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "namef": "NAME"
+    },
+    {
+     "label": "Cocos (Keeling) Islands: Australian Government DCCEEW (CAPAD) (2)",
+     "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/1",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "national park",
+    "Australian Marine Park"
+   ],
+   "tests": [
+    "CC-0001 = Pulu Keeling",
+    "CC-0002 = Cocos (Keeling) Islands (marine layer 1, TYPE Australian Marine Park)"
+   ]
+  },
+  "SJ": {
+   "country": "Svalbard & Jan Mayen",
+   "agency": "Miljødirektoratet (Norwegian Environment Agency) – Naturbase",
+   "credit": "NLOD 2.0 (Norsk lisens for offentlige data) per Geonorge/data.norge.no; credit Miljødirektoratet",
+   "layers": [
+    {
+     "label": "Svalbard & Jan Mayen: Miljødirektoratet (Norwegian Environment Agency) – Naturbase",
+     "url": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/MapServer/0",
+     "namef": "navn"
+    }
+   ],
+   "kinds": [
+    "nasjonalpark",
+    "naturreservat",
+    "fuglereservat"
+   ],
+   "tests": [
+    "SJ-0001 = Moseøya",
+    "SJ-0002 = Bjørnøya",
+    "NO-0895 = Jan Mayen"
+   ]
+  },
+  "CX": {
+   "country": "Christmas Island",
+   "agency": "Australian Government DCCEEW (CAPAD)",
+   "credit": "CC BY 4.0 per Australia example row (CAPAD on data.gov.au); layer credit: Australian Government, Department of Climate Change, Energy, the Environment and Water 2025",
+   "layers": [
+    {
+     "label": "Christmas Island: Australian Government DCCEEW (CAPAD)",
+     "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "namef": "NAME"
+    }
+   ],
+   "kinds": [
+    "national park"
+   ],
+   "tests": [
+    "CX-0001 = Christmas Island"
+   ]
+  }
+ },
+ "later": [
+  "CR (WFS (GeoServer))",
+  "GP (WFS (OGC, Géoplateforme))",
+  "MF (WFS (OGC, Géoplateforme))",
+  "DM (Shapefile download (per-park zips, EPSG:4326))",
+  "MQ (WFS (OGC, Géoplateforme))",
+  "BL (WFS (OGC, Géoplateforme))",
+  "KR (Shapefile download (EPSG:5179 Korea 2000 Unified CS, cp949))",
+  "BR (Shapefile download (SIRGAS 2000, UTF-8))",
+  "BG (Shapefile download (UTM 35N, EPSG:32635, cp1251))",
+  "CY (Shapefile download (zip))",
+  "IS (WFS (GeoServer))",
+  "SG (GeoJSON download)",
+  "TW (Shapefile download (zip))",
+  "GF (WFS (one layer per designation type))",
+  "RE (WFS (one layer per designation type))",
+  "LI (GeoPackage/FileGDB download (zip), layer NL_Naturschutzgebiet)",
+  "MN (Shapefile download (RAR))",
+  "FK (Shapefile (zip; fi_nature_reserves_2017.shp))",
+  "ME (Shapefile (zip))",
+  "AD (WFS (one layer per park))"
+ ]
+}
