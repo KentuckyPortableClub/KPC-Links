@@ -1,0 +1,960 @@
+{
+ "made": "2026-11-01 19:42 UTC",
+ "counts": {
+  "A_decided_not_in_key": 37,
+  "B_sure_area_not_asked": 23,
+  "C_sure_line_not_drawn": 75
+ },
+ "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
+ "A": [
+  [
+   "US-0042",
+   "AL",
+   "Fort Gaines National Historic Site",
+   "join",
+   " record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Historic Fort Gaines' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-0621",
+   "PA",
+   "Todd Sanctuary State Conservation Area",
+   "join, alias",
+   "(chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Todd Nature Reserve' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-0622",
+   "PA",
+   "Bear Run State Conservation Area",
+   "alias",
+   "at 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Bear Run Nature Reserve' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-0623",
+   "PA",
+   "Powdermill State Conservation Area",
+   "join, alias",
+   "11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Powdermill Nature Reserve' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-0778",
+   "NY",
+   "Hamilton Grange National Memorial",
+   "join",
+   " 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10431",
+   "ID",
+   "Cabinet Gorge State Fish Hatchery",
+   "join, alias",
+   "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Cabinet Gorge Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10540",
+   "CO",
+   "Bellevue-Watson State Fish Hatchery",
+   "alias",
+   "e-Watson Fish Hatchery' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-10575",
+   "MO",
+   "Walnut Woods State Conservation Area",
+   "join",
+   "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)"
+  ],
+  [
+   "US-10644",
+   "WI",
+   "Love and Strutt Creeks State Fish and Wildlife Area",
+   "alias",
+   "reek' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Rem-Love Creek' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10661",
+   "IL",
+   "Oakwood Bottoms USFS Recreation Area",
+   "alias",
+   " that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Shawnee National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10788",
+   "IL",
+   "Ray Norbut East Hannibal Unit State Fish and Wildlife Area",
+   "alias",
+   "s that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Miscellaneous Property' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10963",
+   "UT",
+   "Logan Aquatic Animal Health & Research Center State Fish Hatchery",
+   "alias",
+   "th and Research Center' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-11089",
+   "ID",
+   "Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area",
+   "join, alias",
+   " G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Ted Trueblood Wildlife Habitat Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-11222",
+   "OK",
+   "Stinchcomb Wildlife Refuge",
+   "join, alias",
+   "d; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Stinchcomb Wildlife Refuge' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-11652",
+   "UT",
+   "Burbank Hills One Day Ride BLM Recreation Management Area",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Burbank'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-11798",
+   "AK",
+   "Tangle Lakes Archeological Reserve",
+   "alias",
+   "rchaeological District' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-11823",
+   "NM",
+   "Coronado Historic Site",
+   "join, alias",
+   "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Coronado Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-13097",
+   "OR",
+   "Strawberry Hill Wayside State Recreation Site",
+   "alias",
+   " name 'Strawberry Hill' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-2236",
+   "ID",
+   "Hells Gate State Park",
+   "join, alias",
+   "record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hells Gate State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-2238",
+   "ID",
+   "Heyburn State Park",
+   "join, alias",
+   "wn record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Heyburn State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-3121",
+   "VT",
+   "Kamp Kill Kare State Park",
+   "alias",
+   "that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Burton Island State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-3140",
+   "VT",
+   "Sand Bar State Park",
+   "alias",
+   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-3724",
+   "GA",
+   "Roosevelts Little White House State Historic Site",
+   "alias",
+   "at exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'F. D. Roosevelt State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-3862",
+   "NC",
+   "Nags Head Woods Ecological State Preserve",
+   "join",
+   "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 271 m from the edge, 794.8 ac; a piece where the park is bigger)"
+  ],
+  [
+   "US-3863",
+   "NC",
+   "Palmetto-Peartree State Preserve",
+   "join",
+   "recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'The Conservation Fund - Palmetto-Peartre' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-4036",
+   "NE",
+   "Walnut Creek State Recreation Area",
+   "join, alias",
+   " chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Walnut Creek Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-4648",
+   "GA",
+   "Bartram Educational State Forest",
+   "alias",
+   "e name 'Bartram Forest' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-5656",
+   "NE",
+   "Flanagan Lake State Recreation Area",
+   "join, alias",
+   "at 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Flanagan Lake & Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-5763",
+   "UT",
+   "Fish Forde BLM Recreation Management Area",
+   "alias",
+   "2026-10-30 chat 2: the agency's own page spells it 'Fish Ford Recreation Site' (chat 9 website names); joins only with the pin inside"
+  ],
+  [
+   "US-5972",
+   "UT",
+   "North Oquirrh BLM Wildlife Management Area",
+   "alias",
+   "quirrh Management Area' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-6060",
+   "UT",
+   "Hermit's Cabin/Cave State Recreation Area",
+   "alias",
+   "e name 'Hermit's Cabin' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-6462",
+   "NJ",
+   "Garret Mountain Reservation State Park",
+   "join",
+   "; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Garret Mountain Reservation' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-6538",
+   "TX",
+   "Barrington Plantation State Historic Site",
+   "alias",
+   "rm State Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-7140",
+   "GA",
+   "Charlie Elliot Wildlife Management Area",
+   "alias",
+   " name 'Charlie Elliott' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-8024",
+   "NH",
+   "Taylor Saw Mill State Historic Site",
+   "alias",
+   "lor Mill Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-8663",
+   "WA",
+   "Plymouth Park National Recreation Area",
+   "join",
+   "y's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Plymouth Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-9683",
+   "CO",
+   "Amache National Historic Site",
+   "join",
+   "chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Amache National Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ]
+ ],
+ "B": [
+  [
+   "US-0025",
+   "AL",
+   "Fort Morgan National Historic Site",
+   "Fort Morgan",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-0042",
+   "AL",
+   "Fort Gaines National Historic Site",
+   "Fort Gaines",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-0491",
+   "OK",
+   "Tishomingo National Wildlife Refuge",
+   "TISHOMINGO NATIONAL WILDLIFE REFUGE",
+   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0"
+  ],
+  [
+   "US-0778",
+   "NY",
+   "Hamilton Grange National Memorial",
+   "Hamilton Grange National Memorial",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
+  ],
+  [
+   "US-0915",
+   "CA",
+   "Cesar E. Chavez National Monument",
+   "César E. Chávez National Monument",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
+  ],
+  [
+   "US-0958",
+   "LA",
+   "Poverty Point National Monument",
+   "Poverty Point National Monument",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
+  ],
+  [
+   "US-10921",
+   "HI",
+   "Hawaii Capital National Historic District",
+   "Hawaii Capital Historic District",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-12679",
+   "AK",
+   "Fort Egbert BLM Historic Area",
+   "Fort Egbert",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-13181",
+   "NV",
+   "Pine Forest BLM Recreation Management Area",
+   "Pine Forest",
+   "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0"
+  ],
+  [
+   "US-13183",
+   "NV",
+   "Walking Box Ranch Historic Site",
+   "Walking Box Ranch",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-13251",
+   "NV",
+   "Virginia City Historic District (Comstock Lode) National Historic District",
+   "Virginia City Historic District",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-3492",
+   "NE",
+   "Willa Cather Memorial Prairie State Historic Site",
+   "Willa Cather Memorial Prairie",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-4649",
+   "GA",
+   "Hitchiti State Forest",
+   "HITCHITI",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0"
+  ],
+  [
+   "US-5950",
+   "UT",
+   "This Is The Place Heritage Park",
+   "This Is The Place",
+   "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0"
+  ],
+  [
+   "US-6335",
+   "OK",
+   "Cabin Creek Battlefield State Historic Site",
+   "Cabin Creek Battlefield",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-6336",
+   "OK",
+   "Honey Springs Battlefield State Historic Site",
+   "Honey Springs Battlefield",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-7139",
+   "GA",
+   "Arabia Mountain National Heritage Area",
+   "Arabia Mountain National Heritage Area",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0"
+  ],
+  [
+   "US-7974",
+   "MD",
+   "Harmony Hall National Heritage Site",
+   "Harmony Hall",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-8532",
+   "ND",
+   "Chateau De Mores State Historic Site",
+   "Chateau de Mores",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-8536",
+   "ND",
+   "Fort Buford State Historic Site",
+   "Fort Buford State Historic Site",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-8555",
+   "ND",
+   "Oscar-Zero Missile Alert Facility State Historic Site",
+   "Oscar-Zero Missile Alert Facility",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-9190",
+   "KS",
+   "Marais des Cygnes Massacre State Historic Site",
+   "Marais des Cygnes Massacre Site",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-9683",
+   "CO",
+   "Amache National Historic Site",
+   "Amache National Historic Site",
+   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
+  ]
+ ],
+ "C": [
+  [
+   "US-0880",
+   "AK",
+   "Chilikadrotna National Wild and Scenic River",
+   "Chilikadrotna Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-0881",
+   "CT",
+   "Eightmile National Wild and Scenic River",
+   "Eightmile Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-0891",
+   "MA",
+   "Taunton National Wild and Scenic River",
+   "Taunton Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-0893",
+   "AK",
+   "Tlikakila National Wild and Scenic River",
+   "Tlikakila Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-10249",
+   "OR",
+   "Salmon River National Wild and Scenic River",
+   "Salmon Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-10251",
+   "OR",
+   "White River National Wild and Scenic River",
+   "White Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-10303",
+   "AR",
+   "Pig Trail Scenic Byway State Trail",
+   "Pig Trail Scenic Byway",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3"
+  ],
+  [
+   "US-10418",
+   "ID",
+   "Western Heritage National Scenic Byway National Parkway",
+   "Western Heritage Historic Byway",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
+  ],
+  [
+   "US-10419",
+   "ID",
+   "Payette River National Scenic Byway National Parkway",
+   "Payette River Scenic Byway",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
+  ],
+  [
+   "US-10420",
+   "ID",
+   "Pioneer Historic National Scenic Byway National Parkway",
+   "Pioneer Historic Byway",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
+  ],
+  [
+   "US-10421",
+   "ID",
+   "International Selkirk Loop National Scenic Byway National Parkway",
+   "International Selkirk Loop",
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
+  ],
+  [
+   "US-10422",
+   "ID",
+   "Northwest Passage National Scenic Byway National Parkway",
+   "Northwest Passage Scenic Byway",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
+  ],
+  [
+   "US-10715",
+   "AR",
+   "True Grit State Trail",
+   "True Grit Trail",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/0"
+  ],
+  [
+   "US-10794",
+   "UT",
+   "Logan Canyon National Scenic Byway National Parkway",
+   "Logan Canyon Scenic Byway",
+   "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0"
+  ],
+  [
+   "US-10876",
+   "WY",
+   "Lone Tree Trail BLM Recreation Management Area",
+   "Lone Tree Trail",
+   "https://gis.blm.gov/natl/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  [
+   "US-10886",
+   "WY",
+   "Salt Lick Trail BLM Recreation Management Area",
+   "Salt Lick Trail",
+   "https://gis.blm.gov/natl/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  [
+   "US-10966",
+   "UT",
+   "K-Hill Trail BLM Recreation Management Area",
+   "K-Hill Trail",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-11005",
+   "UT",
+   "Wire Mesa Trail BLM Recreation Management Area",
+   "Wire Mesa",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-11011",
+   "UT",
+   "Flying Monkey Trail BLM Recreation Management Area",
+   "Flying Monkey",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-11121",
+   "UT",
+   "Government Trail BLM Recreation Management Area",
+   "Government Trail",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-11127",
+   "AR",
+   "Arkansas Rocks! Mining & Mineral State Trail",
+   "Arkansas Rocks Mining And Mineral Trail",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3"
+  ],
+  [
+   "US-11164",
+   "AR",
+   "Crowley’s Ridge Parkway National Scenic Byway National Parkway",
+   "Crowley's Ridge Parkway National Scenic Byway",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3"
+  ],
+  [
+   "US-11167",
+   "UT",
+   "Little Hole National Scenic Trail",
+   "LITTLE HOLE",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-11758",
+   "UT",
+   "Guacamole Trail BLM Recreation Management Area",
+   "Guacamole",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-11804",
+   "AK",
+   "Gulkana BLM Wild and Scenic River",
+   "Gulkana Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-11905",
+   "SD",
+   "Centennial Trail State Trail",
+   "Centennial Trail",
+   "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0"
+  ],
+  [
+   "US-12096",
+   "AR",
+   "Great River Road National Scenic Byway National Historic Trail",
+   "Great River Road",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3"
+  ],
+  [
+   "US-12786",
+   "MI",
+   "Au Sable National Wild and Scenic River",
+   "Au Sable Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-12788",
+   "MI",
+   "Black River National Wild and Scenic River",
+   "Black Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-12789",
+   "MI",
+   "Carp National Wild and Scenic River",
+   "Carp Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-12790",
+   "MI",
+   "East Branch of the Taquamenon National Wild and Scenic River",
+   "East Branch Tahquamenon Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-12794",
+   "MI",
+   "Paint National Wild and Scenic River",
+   "Paint Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-12796",
+   "MI",
+   "Pine National Wild and Scenic River",
+   "Pine Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-13170",
+   "MI",
+   "Bay De Noc/Grand Island National Recreation Trail",
+   "BAY DE NOC - GRAND ISLAND",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-13229",
+   "AR",
+   "Arkansas River Water Trail Recreation Park",
+   "Arkansas River Water Trail",
+   "https://gisec2.agfc.com/arcgis/rest/services/Operations/VUEWorks/MapServer/5"
+  ],
+  [
+   "US-13461",
+   "AR",
+   "Upper Illinois River Water Trail State Trail",
+   "Upper Illinois River Water Trail",
+   "https://gisec2.agfc.com/arcgis/rest/services/Operations/VUEWorks/MapServer/5"
+  ],
+  [
+   "US-13490",
+   "UT",
+   "Flaming Gorge-Uintas Scenic Byway National Parkway",
+   "Flaming Gorge-Uintas Scenic Byway",
+   "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0"
+  ],
+  [
+   "US-13571",
+   "UT",
+   "Zion Scenic Byway National Parkway",
+   "Zion National Scenic Byway",
+   "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0"
+  ],
+  [
+   "US-13622",
+   "AR",
+   "The Razorback Regional Greenway National Recreation Trail",
+   "Razorback Regional Greenway",
+   "https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5"
+  ],
+  [
+   "US-3171",
+   "WA",
+   "Spokane River Centennial State Trail",
+   "Spokane River Centennial State Park Trail",
+   "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0"
+  ],
+  [
+   "US-5787",
+   "UT",
+   "Hidden Valley Trail State Recreation Area",
+   "Hidden Valley",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5804",
+   "UT",
+   "Corona Arch BLM National Recreation Trail",
+   "Corona Arch",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5892",
+   "UT",
+   "Behind the Reef Trail BLM Recreation Management Area",
+   "Behind The Reef",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5898",
+   "UT",
+   "Scenic Byway 143 - Utah's Patchwork National Parkway",
+   "Scenic Byway 143 - Utah's Patchwork Parkway",
+   "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0"
+  ],
+  [
+   "US-5918",
+   "UT",
+   "Lower Calf Creek Falls Trail BLM Recreation Management Area",
+   "Lower Calf Creek Falls",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5982",
+   "UT",
+   "Tom's Canyon Trail BLM Recreation Management Area",
+   "Tom's Canyon Trail",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5986",
+   "UT",
+   "Greenhalgh Trail BLM Recreation Management Area",
+   "Greenhalgh Trail",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-5988",
+   "UT",
+   "Bunting Trail BLM Recreation Management Area",
+   "Bunting Trail",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6013",
+   "UT",
+   "Short Creek Trail BLM Recreation Management Area",
+   "Short Creek",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6015",
+   "UT",
+   "Water Canyon Arch Trail BLM Recreation Management Area",
+   "Water Canyon Arch",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6016",
+   "UT",
+   "White Domes Trail BLM Recreation Management Area",
+   "White Domes",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6036",
+   "UT",
+   "North Rim Trail BLM Recreation Management Area",
+   "North Rim",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6038",
+   "UT",
+   "Jem Trail BLM Recreation Management Area",
+   "Jem",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6039",
+   "UT",
+   "Cryptobiotic Trail BLM Recreation Management Area",
+   "Cryptobionic",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6054",
+   "UT",
+   "Red Reef East Trail BLM Recreation Management Area",
+   "Red Reef East",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6055",
+   "UT",
+   "Cordura Trail BLM Recreation Management Area",
+   "Cordura",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6056",
+   "UT",
+   "McMullin Trail BLM Recreation Management Area",
+   "McMullin",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6061",
+   "UT",
+   "Silver Reef Trail BLM Recreation Management Area",
+   "Silver Reef",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6079",
+   "UT",
+   "Silver Island Mountains Back Country Byway BLM Recreation Management Area",
+   "Silver Island Mountain National Back Country Byway",
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
+  ],
+  [
+   "US-6082",
+   "UT",
+   "Lower Graveyard Trail BLM Recreation Management Area",
+   "Lower Graveyard",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6083",
+   "UT",
+   "Rim Rock Trail BLM Recreation Management Area",
+   "Rim Rock",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6143",
+   "WY",
+   "Outlaw Cave Trail BLM Recreation Management Area",
+   "Outlaw Cave Trail",
+   "https://gis.blm.gov/natl/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  [
+   "US-6597",
+   "TX",
+   "Rio Grande National Wild and Scenic River",
+   "Rio Grande Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-8014",
+   "MA",
+   "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
+   "Nashua,Squannacook,and Nissitissit Wild and Scenic Rivers",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-8164",
+   "SD",
+   "George S. Mickelson State Trail",
+   "George S. Mickelson Trail",
+   "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0"
+  ],
+  [
+   "US-9156",
+   "OR",
+   "Crooked River National Wild and Scenic River",
+   "Crooked Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-9877",
+   "DE",
+   "Junction and Breakwater National Recreation Trail",
+   "Junction & Breakwater Trail",
+   "https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0"
+  ],
+  [
+   "US-9878",
+   "DE",
+   "Northern Delaware Greenway National Recreation Trail",
+   "Northern Delaware Greenway Trail",
+   "https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0"
+  ],
+  [
+   "US-9898",
+   "DC",
+   "Mount Vernon National Historic Trail",
+   "Mount Vernon Trail",
+   "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0"
+  ],
+  [
+   "US-9904",
+   "VA",
+   "Apple Orchard Falls National Recreation Trail",
+   "APPLE ORCHARD FALLS",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-9905",
+   "VA",
+   "Cascades National Recreation Trail",
+   "CASCADES",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-9906",
+   "VA",
+   "Cornelius Creek National Recreation Trail",
+   "CORNELIUS CREEK",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-9910",
+   "VA",
+   "Massanutten National Recreation Trail",
+   "MASSANUTTEN",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-9922",
+   "VA",
+   "The Lion's Tale National Recreation Trail",
+   "THE LIONS TALE",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
+  ],
+  [
+   "US-9933",
+   "VA",
+   "Beaches to Bluegrass State Trail",
+   "Beaches to Bluegrass Trail",
+   "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/3"
+  ]
+ ]
+}

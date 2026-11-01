@@ -163,6 +163,13 @@ jobs:
           print(f'::notice title=US key::{len(set(ch))} parks with a changed outline -> the 2-fer waiting list')
           PY
           cat us-key-*.log > us-key.log 2>/dev/null || true
+      - name: Lost finds check (chat 2, Nov 1; Brandon 'we are finding stuff but it never makes it in')
+        continue-on-error: true
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .lf 2>/dev/null \
+            && git -C .lf sparse-checkout set --no-cone data/intake/external-results.json 'data/waiting/questions/*.json' 2>/dev/null && git -C .lf checkout -q 2>/dev/null || true
+          DATA=.lf python3 .github/scripts/kpc_lost_finds.py || true
+          rm -rf .lf
       - name: Review issue
         env:
           GH_TOKEN: ${{ github.token }}
