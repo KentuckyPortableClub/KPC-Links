@@ -1,0 +1,87 @@
+# NOT SURE 146 (83 parks): chat 9 name-tier read, Nov 1 (for chat 11 / chat 2; leans only, chat 11 decides)
+T-1 rule: proper words of POTA name vs piece name (kind words stripped). T-2 = equal, T-3 = one inside the other, T-4+ = no name tie. 'no link' = no agency record to read.
+
+Counts: {'T-4': 23, 'T-3': 21, 'T-2': 22, 'no-name': 17}
+- US-10540 | POTA: Bellevue-Watson State Fish Hatchery | pieces 2 (T-4) | acres 10-112 | stay NOT SURE (names differ)
+- US-1021 | POTA: Sangchris Lake State Park | pieces 1 (T-3) | acres 851-851 | lean YES-LIKELY (one name inside the other)
+- US-10391 | POTA: Kishwaukee River State Fish and Wildlife Area | pieces 2 (T-2) | acres 553-582 | lean YES (name equal; check size)
+- US-7768 | POTA: Frederick City Watershed Cooperative Wildlife Management Area | pieces 1 (T-4) | acres 5158-5158 | stay NOT SURE (names differ)
+- US-3375 | POTA: Stolley National Historic Site | pieces 1 (T-2) | acres 36-36 | lean YES (name equal; check size)
+- US-4648 | POTA: Bartram Educational State Forest | pieces 3 (T-3) | acres 859-2029 | lean YES-LIKELY (one name inside the other)
+- US-7140 | POTA: Charlie Elliot Wildlife Management Area | pieces 1 (T-4) | acres 6219-6219 | stay NOT SURE (names differ)
+- US-12162 | POTA: Sears Point BLM Historic Preservation Site | pieces 1 (T-4) | acres 3663-3663 | stay NOT SURE (names differ)
+- US-4208 | POTA: J. E. Roush Lake State Fish and Wildlife Area | pieces 1 (T-4) | acres 8372-8372 | stay NOT SURE (names differ)
+- US-9897 | POTA: Jamestowne National Historical Site | pieces 1 (T-4) | acres 1566-1566 | stay NOT SURE (names differ)
+- US-8618 | POTA: White Ridge National Recreation Trail | pieces 1 (T-3) | acres 2864-2864 | lean YES-LIKELY (one name inside the other)
+- US-9187 | POTA: John Brown Museum State Historic Site | pieces 1 (T-4) | acres 42-42 | stay NOT SURE (names differ)
+- US-11584 | POTA: Panoche Hills BLM Special Recreation Management Area | pieces 1 (T-4) | acres 54843-54843 | stay NOT SURE (names differ)
+- US-6448 | POTA: William Randolph Hearst Memorial State Beach | pieces 2 (T-4) | acres 3-1684 | stay NOT SURE (names differ)
+- US-3862 | POTA: Nags Head Woods Ecological State Preserve | pieces 5 (T-4) | acres 280-1980 | stay NOT SURE (names differ)
+- US-0694 | POTA: Ebey's Landing Reserve National Conservation Area | pieces 2 (T-2/T-3) | acres 46-1086 | lean YES (name equal; check size)
+- US-12315 | POTA: Dragoon Creek State Recreation Site | pieces 1 (no-name) | acres 159-159 | stay NOT SURE (record has no name)
+- US-13516 | POTA: Horseshoe -Kitsap- State Fishing Lake | pieces 1 (T-3) | acres 1-1 | lean YES-LIKELY (one name inside the other)
+- US-4555 | POTA: Hanford Reach National Monument | pieces 1 (T-3) | acres 10151-10151 | lean YES-LIKELY (one name inside the other)
+- US-5565 | POTA: Ahtanum State Forest | pieces 1 (no-name) | acres 645-645 | stay NOT SURE (record has no name)
+- US-5568 | POTA: Elbe Hills-Tahoma State Forest | pieces 1 (no-name) | acres 161-161 | stay NOT SURE (record has no name)
+- US-5569 | POTA: Green Mountain-Tahuya State Forest | pieces 1 (no-name) | acres 612-612 | stay NOT SURE (record has no name)
+- US-5571 | POTA: Loomis-Loup Loup State Forest | pieces 1 (no-name) | acres 495-495 | stay NOT SURE (record has no name)
+- US-5576 | POTA: Yacolt Burn State Forest | pieces 1 (no-name) | acres 630-630 | stay NOT SURE (record has no name)
+- US-6796 | POTA: Tobico Marsh Wildlife Management Area | pieces 1 (T-2) | acres 2044-2044 | lean YES (name equal; check size)
+- US-11165 | POTA: Chalk Bluff Battlefield Park Recreation Park | pieces 2 (T-3) | acres 48-49 | lean YES-LIKELY (one name inside the other)
+- US-11352 | POTA: Rattlesnake Ridge National Heritage Area | pieces 1 (T-3) | acres 397-397 | lean YES-LIKELY (one name inside the other)
+- US-10008 | POTA: Klamath Hills BLM Recreation Management Area | pieces 1 (T-4) | acres 1577-1577 | stay NOT SURE (names differ)
+- US-6184 | POTA: The Pinnacles Geologic Site BLM Recreation Management Area | pieces 1 (T-4) | acres 1388-1388 | stay NOT SURE (names differ)
+- US-6185 | POTA: South Pass Historic Landmark National Historic Site | pieces 1 (T-4) | acres 53117-53117 | stay NOT SURE (names differ)
+- US-12210 | POTA: Jump Creek Falls BLM Scenic Site | pieces 1 (T-4) | acres 588-588 | stay NOT SURE (names differ)
+- US-5759 | POTA: John Jarvie BLM Historic Preservation Site | pieces 1 (T-4) | acres 9-9 | stay NOT SURE (names differ)
+- US-6078 | POTA: Fort Pearce BLM National Historic Site | pieces 1 (T-4) | acres 4283-4283 | stay NOT SURE (names differ)
+- US-11026 | POTA: The Indian Mountain Conservation Area | pieces 3 (T-2/no-name) | acres 0-515 | lean YES (name equal; check size); some pieces no link
+- US-7277 | POTA: Crossett Experimental Forest Wildlife Management Area | pieces 2 (T-2/no-name) | acres 0-1685 | lean YES (name equal; check size); some pieces no link
+- US-7356 | POTA: St. Francis National Forest Wildlife Management Area | pieces 2 (T-4/no-name) | acres 0-1519 | stay NOT SURE (names differ); some pieces no link
+- US-11981 | POTA: Arivaca Lake State Wildlife Area | pieces 1 (T-3) | acres 208-208 | lean YES-LIKELY (one name inside the other)
+- US-6446 | POTA: Brannan Island State Recreation Area | pieces 1 (T-2) | acres 7-7 | lean YES (name equal; check size)
+- US-7389 | POTA: Cypress Creek Preserve State Conservation Area | pieces 2 (T-2/no-name) | acres 0-2684 | lean YES (name equal; check size); some pieces no link
+- US-6409 | POTA: Waimea State Recreation Area | pieces 5 (T-3) | acres 1-1845 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-6423 | POTA: Manuka State Preserve | pieces 1 (T-3) | acres 13-13 | lean YES-LIKELY (one name inside the other)
+- US-10318 | POTA: Chichaqua Wildlife Area | pieces 1 (T-3) | acres 5144-5144 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-2313 | POTA: Pilot Knob State Park | pieces 3 (T-2) | acres 11-129 | lean YES (name equal; check size); some pieces no link
+- US-9331 | POTA: Eagle Lake Wildlife Management Area | pieces 1 (T-2) | acres 1196-1196 | lean YES (name equal; check size); some pieces no link
+- US-5592 | POTA: Blackfoot River Wildlife Management Area | pieces 1 (T-2) | acres 5-5 | lean YES (name equal; check size)
+- US-5615 | POTA: Portneuf Wildlife Management Area | pieces 2 (T-3) | acres 53-69 | lean YES-LIKELY (one name inside the other)
+- US-11781 | POTA: Bishop Hill State Historic Site | pieces 1 (T-2) | acres 7-7 | lean YES (name equal; check size)
+- US-13310 | POTA: Foley Sand Prairie National Preserve | pieces 2 (T-4/no-name) | acres 0-314 | stay NOT SURE (names differ); some pieces no link
+- US-10231 | POTA: Limberlost Swamp State Nature Preserve | pieces 2 (T-2) | acres 135-883 | lean YES (name equal; check size); some pieces no link
+- US-2369 | POTA: Lake D'Arbonne State Park | pieces 2 (T-3/no-name) | acres 0-90 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-11491 | POTA: Westfield Wildlife Management Area | pieces 2 (T-3/no-name) | acres 0-0 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-11571 | POTA: Ware River Wildlife Management Area | pieces 2 (T-3/no-name) | acres 0-0 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-7979 | POTA: Fort Popham State Historic Site | pieces 2 (T-3/no-name) | acres 0-36 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-11042 | POTA: Kahrs-Boger State Conservation Area | pieces 1 (T-2) | acres 106-106 | lean YES (name equal; check size)
+- US-7873 | POTA: Agency State Conservation Area | pieces 2 (T-2) | acres 0-1 | lean YES (name equal; check size); some pieces no link
+- US-8607 | POTA: Sweet Briar Lake Wildlife Management Area | pieces 1 (T-4) | acres 875-875 | stay NOT SURE (names differ)
+- US-13150 | POTA: Belvidere Access Wildlife Management Area | pieces 1 (T-2) | acres 0-0 | lean YES (name equal; check size)
+- US-11780 | POTA: Datil Well Campground BLM Recreation Management Area | pieces 1 (T-3) | acres 671-671 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-2028 | POTA: Captree State Park | pieces 2 (T-3) | acres 5401-5403 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-5154 | POTA: Cameron Mills State Forest | pieces 3 (T-3/no-name) | acres 0-1967 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-8102 | POTA: Catharine Creek Wildlife Management Area | pieces 2 (T-2) | acres 3-3 | lean YES (name equal; check size); some pieces no link
+- US-8319 | POTA: Palisades Interstate Park | pieces 2 (T-3/no-name) | acres 0-35 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-9095 | POTA: Indian River Wildlife Management Area | pieces 3 (T-2/no-name) | acres 0-0 | lean YES (name equal; check size); some pieces no link
+- US-9423 | POTA: Miller Nature Sanctuary State Nature Preserve | pieces 1 (T-4) | acres 87-87 | stay NOT SURE (names differ); some pieces no link
+- US-10358 | POTA: Shotgun Creek BLM Recreation Management Area | pieces 10 (T-4/no-name) | acres 0-71 | stay NOT SURE (names differ); some pieces no link
+- US-7865 | POTA: East State Beach | pieces 2 (T-2/no-name) | acres 0-0 | lean YES (name equal; check size); some pieces no link
+- US-3917 | POTA: Little Pee Dee Bay Heritage Preserve | pieces 3 (T-2/T-3) | acres 218-10455 | lean YES (name equal; check size); some pieces no link
+- US-6245 | POTA: Ghost River State Natural Area | pieces 1 (T-3) | acres 7420-7420 | lean YES-LIKELY (one name inside the other); some pieces no link
+- US-12151 | POTA: Point of Pines BLM Special Recreation Management Area | pieces 12 (T-4) | acres 0-0 | stay NOT SURE (names differ); some pieces no link
+- US-12551 | POTA: Samish State Wildlife Area | pieces 3 (T-2/no-name) | acres 0-0 | lean YES (name equal; check size); some pieces no link
+- US-9831 | POTA: Allenton Marsh State Wildlife Area | pieces 2 (T-2/no-name) | acres 0-0 | lean YES (name equal; check size); some pieces no link
+- US-6160 | POTA: Stewart Creek BLM Herd Management Area | pieces 1 (T-4) | acres 215105-215105 | stay NOT SURE (names differ); some pieces no link
+- US-7456 | POTA: Dahlonega Gold Museum SHS | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-7565 | POTA: AEDC and Woods Reservoir WMA | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-9753 | POTA: Katy Trail Rock Island Spur SP | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-3656 | POTA: Beker-South Fork SP | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-12830 | POTA: Old Ruby State Park Heritage Area | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-10055 | POTA: Cline Buttes OHV BLM RMA | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-12837 | POTA: East Shore BLM RMA | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-4383 | POTA: Rogue River-Siskiyou NF | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-10237 | POTA: Mongoquinong SNP | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-11092 | POTA: Midway Utah State Fish Hatchery | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
+- US-12145 | POTA: Doc's Beach OHV Staging Area | pieces 1 (no-name) | acres 0-0 | stay NOT SURE (record has no name); some pieces no link
