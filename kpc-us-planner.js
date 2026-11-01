@@ -48,7 +48,7 @@ async function addTiles(s0,w0,n0,e0,la,lo,cap){let keys=[];
  const P={POTA:['data/pota/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://pota.app/#/park/'+r[0]})],WWFF:['data/wwff/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://wwff.co/directory/?showRef='+r[0]})],
   SOTA:['data/sota/t/',r=>({c:r[0],n:r[1]&&r[1]!==r[0]?r[1]:`Unnamed summit, ${(+r[3]||0).toLocaleString()} m`,la:r[4],lo:r[5],url:'https://sotl.as/summits/'+r[0],m:+r[3]||0,pts:+r[6]||0})]};
  await Promise.all(Object.keys(P).filter(p=>progs.includes(p)).flatMap(p=>keys.map(async([y,x])=>{const u=P[p][0]+y+'_'+x+'.json';
-  const L=await(WTILE[u]||(WTILE[u]=dfetch(u).then(r=>r.ok?r.json():[]).catch(()=>[])));
+  const L=await(WTILE[u]||(WTILE[u]=(window.KPCB&&KPCB.tileHas?KPCB.tileHas(P[p][0],y+'_'+x):Promise.resolve(true)).then(ok=>ok?dfetch(u).then(r=>r.ok?r.json():[]):[]).catch(()=>[])));
   (L||[]).forEach(r=>{const o=P[p][1](r),k=String(o.c).toUpperCase();if(BYREF[k]||!isFinite(o.la)||!isFinite(o.lo))return;const s=Object.assign({p,m:0,pts:0,world:1},o);ALL.push(s);BYREF[k]=s;added++})})));
  return added}
 async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0;
@@ -216,7 +216,7 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
  /* Oct 25 (Brandon: 'parking / entrance layer is weak'): the state agencies' own parking, entrance, gate and ramp points (data/access, kpc_us_access.py) */
- if(P==='POTA'&&pre==='US')for(const st of sts){const k='acc'+st;if(!(k in PINFO))PINFO[k]=dfetch('data/access/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ if(P==='POTA'&&pre==='US')for(const st of sts){if(st==='KY')continue;const k='acc'+st;if(!(k in PINFO))PINFO[k]=dfetch('data/access/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[k],a=d&&d.parks&&d.parks[s.c];if(!a||!a.length)continue;
   const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),dir=q=>ios?`https://maps.apple.com/?daddr=${q[0]},${q[1]}`:`https://www.google.com/maps/dir/?api=1&destination=${q[0]},${q[1]}`;
   h+=`<div class="meta" style="margin-top:8px"><b>&#127359; PARKING &amp; ACCESS (THE AGENCY'S OWN MAP)</b></div>`+a.slice(0,6).map(q=>`<div class="meta">&bull; ${esc(q[2])} &middot; <a href="${dir(q)}" target="_blank" rel="noopener">DIRECTIONS ↗</a></div>`).join('')+
@@ -485,7 +485,7 @@ $('usf').onsubmit=e=>{e.preventDefault();search($('usq').value)};
 if(window.KPCPlace){
  const KIND={POTA:'POTA park',SOTA:'SOTA summit',WWFF:'WWFF reference'};
  const local=q=>{const l=q.toLowerCase(),r=normRef(q);const hit=ALL.filter(s=>progs.includes(s.p)&&(s.c.toUpperCase()===r||s.c.toUpperCase().startsWith(r)&&r.length>3||s.n.toLowerCase().includes(l)));
-  hit.sort((a,b)=>(b.n.toLowerCase().startsWith(l)-a.n.toLowerCase().startsWith(l))||a.n.localeCompare(b.n));
+  hit.sort((a,b)=>((b.c.toUpperCase()===r)-(a.c.toUpperCase()===r))||(b.n.toLowerCase().startsWith(l)-a.n.toLowerCase().startsWith(l))||a.n.localeCompare(b.n));   /* Nov 1 (site checker): US-1139 typed = US-1139 first, not US-11395 */
   return hit.slice(0,7).map(s=>({v:s.n,k:KIND[s.p]+' · '+s.c,la:s.la,lo:s.lo,s}))};
  KPCPlace.box($('usq'),{local,remote:true,onPick:async x=>{if(x.s){$('usq').value=x.s.n;await go(x.s.la,x.s.lo,x.s.n);openSpot(x.s)}else go(x.la,x.lo,x.v)}});
  ['urf','urt'].forEach(id=>KPCPlace.box($(id),{local,remote:true,onPick:x=>{PICKED[x.v]={la:x.la,lo:x.lo,label:x.s?x.s.n+' ('+x.s.c+')':x.v}}}));

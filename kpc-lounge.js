@@ -64,7 +64,7 @@
     msg('Finding where you are…');
     navigator.geolocation.getCurrentPosition(async pos => {
       const la = pos.coords.latitude, lo = pos.coords.longitude, R = 40;
-      const tiles = (dir) => { const K = new Set(), dla = R / 111, dlo = R / (111 * Math.cos(la * Math.PI / 180)); for (const a of [la - dla, la, la + dla]) for (const o of [lo - dlo, lo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o)); return Promise.all([...K].map(k => dfetch(dir + k + '.json').then(r => r.ok ? r.json() : []).catch(() => []))).then(x => x.flat()); };
+      const tiles = (dir) => { const K = new Set(), dla = R / 111, dlo = R / (111 * Math.cos(la * Math.PI / 180)); for (const a of [la - dla, la, la + dla]) for (const o of [lo - dlo, lo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o)); return Promise.all([...K].map(k => (window.KPCB && KPCB.tileHas ? KPCB.tileHas(dir, k) : Promise.resolve(true)).then(ok => ok ? dfetch(dir + k + '.json').then(r => r.ok ? r.json() : []) : []).catch(() => []))).then(x => x.flat()); };   /* Nov 1: only tiles that exist */
       /* POTA tiles skip the US + Canada (those parks are in the state lists): ask POTA's own map for them, and with no
          signal fall back to our US search list */
       const usca = () => (B() && B().potaNear ? B().potaNear(la, lo, 0.4).then(L => L.map(p => [p.ref, p.name, p.la, p.lo])) : Promise.reject()).catch(() => (search.loc || (search.loc = j('locations-pota.json', 30000).then(L => (L && L.length) ? L : Promise.reject()).catch(() => j('locations.json', 30000)).catch(() => []))).then(L => L.filter(r => r[0] === 'POTA' && Math.abs(r[3] - la) < 0.5 && Math.abs(r[4] - lo) < 0.7).map(r => [r[1], r[2], r[3], r[4]])));
@@ -124,7 +124,7 @@
       let ap = [];
       try {
         if (ky) { const d = await (open.ky || (open.ky = j('kpc-ky-data.json'))); const k = d && (d.parks || []).find(p => p.c === o.ref); ap = (k && k.ap) || []; }
-        else if (o.st) { const d = await j('data/access/US-' + o.st + '.json').catch(() => null); ap = (d && d.parks && d.parks[o.ref]) || []; }
+        else if (o.st && o.st !== 'KY') { const d = await j('data/access/US-' + o.st + '.json').catch(() => null); ap = (d && d.parks && d.parks[o.ref]) || []; }
       } catch (e) {}
       const el = $('lgAp'); if (!el || !ap.length) return;
       ap = ap.slice().sort((x, y) => (x[3] === 'place') - (y[3] === 'place'));   // the park's own points first

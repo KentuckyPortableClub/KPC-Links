@@ -450,8 +450,14 @@
     for (const a of [la - dla, la + dla]) for (const o of [lo - dlo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o));
     K.add(Math.floor(la) + '_' + Math.floor(lo)); return [...K];
   }
+  /* Nov 1 (site checker: 'skip quietly' the tiles for areas that have none): data/<pota|sota|wwff>/tiles.json lists the tiles
+     that exist (KPC-Data, rebuilt nightly); a tile not on it is never asked for. No index = ask as before. */
+  const TIX = {};
+  function tileIndex(dir) { const u = String(dir).replace(/\/t\/?$/, '/tiles.json'); return TIX[u] || (TIX[u] = dfetch(u + '?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).then(j => j && Array.isArray(j.keys) ? new Set(j.keys) : null).catch(() => null)); }
+  async function tileHas(dir, key) { const s = await tileIndex(dir); return !s || s.has(String(key)); }
   async function tileRows(dir, la, lo, kmR) {
-    const rows = await Promise.all(tilesAround(la, lo, kmR).map(k => { const u = dir + k + '.json'; return tileCache[u] || (tileCache[u] = dfetch(u).then(r => r.ok ? r.json() : []).catch(() => [])); }));
+    const ix = await tileIndex(dir);
+    const rows = await Promise.all(tilesAround(la, lo, kmR).filter(k => !ix || ix.has(k)).map(k => { const u = dir + k + '.json'; return tileCache[u] || (tileCache[u] = dfetch(u).then(r => r.ok ? r.json() : []).catch(() => [])); }));
     return rows.flat();
   }
   async function wwffNear(la, lo, kmR) { return (await tileRows('data/wwff/t/', la, lo, kmR)).map(r => ({ ref: r[0], name: r[1], la: r[2], lo: r[3], d: km(la, lo, r[2], r[3]) })).filter(x => x.d <= kmR).sort((a, b) => a.d - b.d); }
@@ -511,5 +517,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
