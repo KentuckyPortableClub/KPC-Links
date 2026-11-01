@@ -9,8 +9,10 @@
 
 Brandon used to copy every task between chats. Now: HQ (chat 7) writes each chat's tasks in `.claude/inbox/chat-N.md`; Brandon just types **inbox** to that chat.
 
+GRADING (Brandon Oct 31 10:00 PM 'I agree to all'): (a) the waiting room writes KPC-Data data/status/grade-queue.md itself: every held file with its NEW / CHANGED rows; rows the same as the live (graded) copy keep their YES: grade only the listed rows; no chat writes 'ready to check' relay lines any more. (b) TRUSTED BOTS: a bot kind (campinfo, access, docs, truth, campfed, campstate, trails, leads, hours, campsites, cell; never 2-fers / keys) whose last 3 chat-11 grades in data/waiting/approved.json all say YES releases its PASS files by itself; 1 in 10 lands in data/waiting/sample-for-chat11.json for chat 11; one NO item ends that trust at once. So chat 11 records EVERY grade (YES and NO) as an approved.json item with `what` = `<kind>-<area>` (e.g. campinfo-US-TN). (c) Link piles (leads / world-sources 'other') are read by the converter + collector bots nightly: people take only rows the bots mark failed.
+
 WHEN BRANDON SAYS "inbox":
-1. `git fetch && git reset --hard origin/main` (or pull), open YOUR file only: `.claude/inbox/chat-N.md`.
+1. `git fetch && git reset --hard origin/main` (or pull), then run **`python3 .claude/build/inbox_now.py N`** (Brandon Oct 31 10:00 PM, save usage): it prints only your NEW items in full, in-progress + stale ones as one line, and (chats 2 / 8 / 11) the waiting room's grade list. Do NOT read the whole `chat-N.md`: open it only to mark items (Edit by a unique bit of the item's text). MARK every item you finish (DONE / NOTED / WIRED + one line), or it keeps costing every chat that reads it.
 2. Do the OPEN items top to bottom (skip any you already did; say so). House rules (CLAUDE.md) still apply: rules first, batch pushes, never wait on bots, email only for real issues.
 3. Move each finished item to DONE with the date + one line of result, and write your short REPORT TO HQ at the bottom of the same file (newest first). Push once. Then give Brandon a 2-3 line summary in your chat.
 4. If an item needs Brandon (a ruling, a secret, a GO), put it under NEEDS BRANDON in your file and tell him in one line.
