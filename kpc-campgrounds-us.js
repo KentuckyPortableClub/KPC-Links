@@ -231,13 +231,6 @@
       (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD A CAMPGROUND OR CABIN WE ARE MISSING</a></div>' : '');
   }
 
-  function closCover() {   // which closure sources we watch for this state (data/alerts/us-parks.json via kpc-closures.js)
-    var el = $('cguClosCov'); if (!el || !window.KPCClos) return;
-    KPCClos.get('', S.st).then(function (r) {
-      el.innerHTML = '<span class="cgu-clos">' + (r.cover.length ? '<b>Closures:</b> we check ' + esc(r.cover.map(function (x) { return x.agency; }).join(', ')) + ' every 6 hours; notices show on the park cards. Other managers are not watched.'
-        : '<b>Closures:</b> we do not watch closures in ' + esc(ST[S.st]) + ' yet, so no notice does NOT mean open. Check the state’s page before you go.') + '</span>';
-    });
-  }
   function setMode(st) {
     cur = st; store('kpcCgSt', st); if ($('cgpName')) $('cgpName').textContent = ST[st] || st; if ($('cgSt') && $('cgSt').value !== st) $('cgSt').value = st;
     var u = new URL(location.href); if (st === 'KY') u.searchParams.delete('state'); else u.searchParams.set('state', st);
