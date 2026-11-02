@@ -1,6 +1,6 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **394 of 459** joined (same name + same kind). **2** to check, **43** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **395 of 459** joined (same name + same kind). **2** to check, **42** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -32,7 +32,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Nothing found in CPCAD
 
-- CA-1194 Sylvan Lake Provincial Park (Provincial Park)
 - CA-2969 Castle Falls Natural Area (Natural Area)
 - CA-2982 Chisholm Provincial Recreation Area (Provincial Recreation Area)
 - CA-3073 Mary Reimer Regional Park (Regional Park)

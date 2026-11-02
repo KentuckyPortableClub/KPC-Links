@@ -1,6 +1,6 @@
 # Canada NL: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **67 of 134** joined (same name + same kind). **0** to check, **66** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **74 of 134** joined (same name + same kind). **0** to check, **59** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -12,13 +12,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 ## Nothing found in CPCAD
 
 - CA-4549 Grand Codroy Estuary Ramsar Site (Ramsar Site)
-- CA-4558 Middle Ridge Reserve Wildlife Reserve (Wildlife Reserve)
-- CA-4816 Cape Spear Lighthouse National Historic Site (National Historic Site)
-- CA-4817 Castle Hill National Historic Site (National Historic Site)
 - CA-4818 Hawthorne Cottage National Historic Site (National Historic Site)
 - CA-4819 Hopedale Mission National Historic Site (National Historic Site)
-- CA-4821 L'Anse aux Meadows National Historic Site (National Historic Site)
-- CA-4822 Port au Choix National Historic Site (National Historic Site)
 - CA-4823 Red Bay National Historic Site (National Historic Site)
 - CA-4824 Ryan Premises National Historic Site (National Historic Site)
 - CA-4825 Signal Hill National Historic Site (National Historic Site)
@@ -32,13 +27,11 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5280 Okak National Historic Site (National Historic Site)
 - CA-5281 Port Union Historic District National Historic Site (National Historic Site)
 - CA-5282 Rennies Mill Road Historic District National Historic Site (National Historic Site)
-- CA-5284 Basilica of St. John the Baptist National Historic Site (National Historic Site)
 - CA-5383 Cape Pine Lighthouse National Historic Site (National Historic Site)
 - CA-5384 Colony of Avalon National Historic Site (National Historic Site)
 - CA-5385 Fort Townshend National Historic Site (National Historic Site)
 - CA-5386 Government House National Historic Site (National Historic Site)
 - CA-5387 Hebron Mission National Historic Site (National Historic Site)
-- CA-5388 Mallard Cottage National Historic Site (National Historic Site)
 - CA-5389 St. John the Baptist Anglican Cathedral National Historic Site (National Historic Site)
 - CA-5390 St. John's Court House National Historic Site (National Historic Site)
 - CA-5391 St. Thomas Rectory / Commissariat House and Garden National Historic Site (National Historic Site)

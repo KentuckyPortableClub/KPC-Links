@@ -1,16 +1,14 @@
 # Canada YT: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **27 of 112** joined (same name + same kind). **0** to check, **76** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **29 of 112** joined (same name + same kind). **0** to check, **76** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-4600 Alsek River National Heritage Area (National Heritage Area) → on Kluane (~5,411,117 ac); Kluane National Park Reserve Of Canada (~5,451,383 ac)
 - CA-4601 Bonnet Plume River National Heritage Area (National Heritage Area) → on Peel Watershed LMU 8 (~4,724,008 ac)
 - CA-4628 Spruce Beetle Trail Recreation Site (Recreation Site) → on Kluane (~859,646 ac)
-- CA-4631 Tatshenshini River National Heritage Area (National Heritage Area) → on Kluane (~859,646 ac)
 - CA-6263 Tarfu Lake Campground Recreation Site (Recreation Site) → on Agay Mene (~172,885 ac)
 - CA-6264 Takhini River Campground Recreation Site (Recreation Site) → on Kusawa (~755,827 ac); Kusawa (~758,341 ac)
 - CA-6265 Tagish Bridge Recreation Site (Recreation Site) → on Tagish Narrows (~846 ac); Tagish River (~1,112 ac)

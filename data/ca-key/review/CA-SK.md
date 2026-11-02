@@ -1,11 +1,9 @@
 # Canada SK: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **301 of 411** joined (same name + same kind). **2** to check, **79** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **303 of 411** joined (same name + same kind). **0** to check, **79** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-4926** Batoche National Historic Site (National Historic Site) → BATOCHE NATIONAL HISTORIC PARK (~305 ac, similar name)
-- **CA-4933** Fort Walsh National Historic Site (National Historic Site) → FORT WALSH NATIONAL HISTORIC PARK (~817 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

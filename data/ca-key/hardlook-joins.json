@@ -1,6 +1,6 @@
 {
  "about": "Canada HARD LOOK -> the Canada key (chat 2, Nov 2 2026; chat 10 Nov 1 12:30 AM + Brandon 'do it'). Chat 11's YES rows in KPC-Data",
- "from": "/home/claude/kpc-data/data/waiting/questions/hardlook.json",
+ "from": ".hl/data/waiting/questions/hardlook.json",
  "rows": [
   {
    "ref": "CA-1194",
@@ -43,6 +43,27 @@
    "name_field": "name_en",
    "record_name": "",
    "oid": 411
+  },
+  {
+   "ref": "CA-5284",
+   "url": "https://map.stjohns.ca/mapsrv/rest/services/Mapcentre/Planning/MapServer/5",
+   "name_field": "BUILDINGS",
+   "record_name": "Basilica of St. John the Baptist",
+   "oid": 53
+  },
+  {
+   "ref": "CA-5388",
+   "url": "https://map.stjohns.ca/mapsrv/rest/services/Mapcentre/Planning/MapServer/5",
+   "name_field": "BUILDINGS",
+   "record_name": "Mallard Cottage",
+   "oid": 152
+  },
+  {
+   "ref": "CA-6252",
+   "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Heritage_Properties/FeatureServer/0",
+   "name_field": "HRTG_NM",
+   "record_name": "",
+   "oid": 133
   },
   {
    "ref": "CA-0023",
@@ -246,6 +267,90 @@
    "name_field": "NAME_E",
    "record_name": "H.R. Frink Conservation Area",
    "oid": 17102
+  },
+  {
+   "ref": "CA-4926",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
+   "name_field": "PARKNM",
+   "record_name": "",
+   "oid": 39
+  },
+  {
+   "ref": "CA-4933",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
+   "name_field": "PARKNM",
+   "record_name": "",
+   "oid": 113
+  },
+  {
+   "ref": "CA-6130",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 369
+  },
+  {
+   "ref": "CA-6140",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 364
+  },
+  {
+   "ref": "CA-6143",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 71571
+  },
+  {
+   "ref": "CA-6144",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 68510
+  },
+  {
+   "ref": "CA-6145",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 368
+  },
+  {
+   "ref": "CA-6148",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 67349
+  },
+  {
+   "ref": "CA-6149",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 382
+  },
+  {
+   "ref": "CA-6150",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name_field": "SectionEn",
+   "record_name": "",
+   "oid": 384
+  },
+  {
+   "ref": "CA-4600",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19",
+   "name_field": "CANADIAN_HERITAGE_RIVER",
+   "record_name": "",
+   "oid": 4
+  },
+  {
+   "ref": "CA-4631",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19",
+   "name_field": "CANADIAN_HERITAGE_RIVER",
+   "record_name": "",
+   "oid": 3
   },
   {
    "ref": "CA-3590",

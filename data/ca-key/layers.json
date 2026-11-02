@@ -20,6 +20,75 @@
  "BC-HP Govern": [
   "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82"
  ],
+ "Hard look~0": [
+  "https://geo.sylvanlake.ca/server/rest/services/Tourism/ParkArea/FeatureServer/0"
+ ],
+ "Hard look~1": [
+  "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/Provincial_Protected_Areas/FeatureServer/0"
+ ],
+ "Hard look~10": [
+  "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Parks_OD/FeatureServer/6"
+ ],
+ "Hard look~11": [
+  "https://services.arcgis.com/aji2lCmjXt0KpGzI/arcgis/rest/services/FacilitySites_Select_Merge/FeatureServer/0"
+ ],
+ "Hard look~12": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
+ ],
+ "Hard look~13": [
+  "https://services2.arcgis.com/9LnN9037wYhPG904/arcgis/rest/services/VAUGHAN_PARKS/FeatureServer/0"
+ ],
+ "Hard look~14": [
+  "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+ ],
+ "Hard look~15": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0"
+ ],
+ "Hard look~16": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5"
+ ],
+ "Hard look~17": [
+  "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0"
+ ],
+ "Hard look~18": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+ ],
+ "Hard look~19": [
+  "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+ ],
+ "Hard look~2": [
+  "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4"
+ ],
+ "Hard look~20": [
+  "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19"
+ ],
+ "Hard look~21": [
+  "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+ ],
+ "Hard look~22": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+ ],
+ "Hard look~3": [
+  "https://map.stjohns.ca/mapsrv/rest/services/Mapcentre/Planning/MapServer/5"
+ ],
+ "Hard look~4": [
+  "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Heritage_Properties/FeatureServer/0"
+ ],
+ "Hard look~5": [
+  "https://services7.arcgis.com/7xVQ8rKWOtAFBw48/arcgis/rest/services/Frontenac_Arch_Biosphere_Region_Boundary/FeatureServer/0"
+ ],
+ "Hard look~6": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7"
+ ],
+ "Hard look~7": [
+  "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0"
+ ],
+ "Hard look~8": [
+  "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/32"
+ ],
+ "Hard look~9": [
+  "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46"
+ ],
  "Manitoba Par": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
  ],

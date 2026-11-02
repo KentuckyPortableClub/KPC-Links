@@ -1,9 +1,9 @@
 {
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
-  "needs-parcel": 319,
-  "no-layer": 1252,
-  "name-mismatch": 25,
+  "needs-parcel": 316,
+  "no-layer": 1221,
+  "name-mismatch": 19,
   "private": 9
  },
  "parks": {
@@ -11,11 +11,6 @@
    "st": "AB",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Wood Buffalo National Park Of Canada"
-  },
-  "CA-1194": {
-   "st": "AB",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-2938": {
    "st": "AB",
@@ -2197,21 +2192,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-4558": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4816": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4817": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-4818": {
    "st": "NL",
    "tag": "no-layer",
@@ -2226,16 +2206,6 @@
    "st": "NL",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Torngat Mountains National Park Of Canada"
-  },
-  "CA-4821": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4822": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-4823": {
    "st": "NL",
@@ -2302,11 +2272,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5284": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-5383": {
    "st": "NL",
    "tag": "no-layer",
@@ -2328,11 +2293,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-5387": {
-   "st": "NL",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5388": {
    "st": "NL",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -3187,11 +3147,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6252": {
-   "st": "NS",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-6253": {
    "st": "NS",
    "tag": "no-layer",
@@ -3687,11 +3642,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-0023": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-0027": {
    "st": "ON",
    "tag": "no-layer",
@@ -3701,11 +3651,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Biosphere Reserve)"
-  },
-  "CA-0177": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-0195": {
    "st": "ON",
@@ -3867,22 +3812,7 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-1658": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-1659": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-1660": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-1661": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -3891,11 +3821,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Reserve)"
-  },
-  "CA-1678": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-1688": {
    "st": "ON",
@@ -3962,22 +3887,12 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-4861": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-4862": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
   "CA-4864": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4865": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -3998,11 +3913,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-4872": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4873": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4057,22 +3967,12 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-4887": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-4888": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
   "CA-4889": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-4890": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4127,11 +4027,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5114": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-5115": {
    "st": "ON",
    "tag": "no-layer",
@@ -4168,11 +4063,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-5294": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5297": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4238,11 +4128,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-5313": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5314": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4331,11 +4216,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (National Heritage Site)"
-  },
-  "CA-5528": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-5535": {
    "st": "ON",
@@ -4497,30 +4377,15 @@
    "tag": "no-layer",
    "why": "no official record found (Nature Reserve)"
   },
-  "CA-5641": {
-   "st": "ON",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: Sylvan Glen C.A."
-  },
   "CA-5644": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5645": {
-   "st": "ON",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: Ball's Mill C.A."
-  },
   "CA-5646": {
    "st": "ON",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Ganaraska Millenium CA"
-  },
-  "CA-5650": {
-   "st": "ON",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: Thurne Parks C.A."
   },
   "CA-5659": {
    "st": "ON",
@@ -4613,11 +4478,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-5944": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5945": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4727,11 +4587,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6139": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-6155": {
    "st": "ON",
    "tag": "no-layer",
@@ -4743,11 +4598,6 @@
    "why": "the pin is inside a bigger area: Thousand Islands National Park of Canada"
   },
   "CA-6199": {
-   "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
-  },
-  "CA-6204": {
    "st": "ON",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
@@ -4782,16 +4632,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6256": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (National Park)"
-  },
-  "CA-6257": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-6317": {
    "st": "ON",
    "tag": "no-layer",
@@ -4812,17 +4652,7 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6337": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-6341": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-6345": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4867,11 +4697,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6512": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-6513": {
    "st": "ON",
    "tag": "no-layer",
@@ -4886,11 +4711,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
-  },
-  "CA-6617": {
-   "st": "ON",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: H.R. Frink Conservation Area"
   },
   "CA-6619": {
    "st": "ON",
@@ -7347,11 +7167,6 @@
    "tag": "no-layer",
    "why": "no official record found (Recreation Site)"
   },
-  "CA-4926": {
-   "st": "SK",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: BATOCHE NATIONAL HISTORIC PARK"
-  },
   "CA-4927": {
    "st": "SK",
    "tag": "no-layer",
@@ -7366,11 +7181,6 @@
    "st": "SK",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
-  },
-  "CA-4933": {
-   "st": "SK",
-   "tag": "name-mismatch",
-   "why": "a record held for a person's check: FORT WALSH NATIONAL HISTORIC PARK"
   },
   "CA-4934": {
    "st": "SK",
@@ -7617,11 +7427,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-4600": {
-   "st": "YT",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Kluane"
-  },
   "CA-4601": {
    "st": "YT",
    "tag": "needs-parcel",
@@ -7683,11 +7488,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-4628": {
-   "st": "YT",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Kluane"
-  },
-  "CA-4631": {
    "st": "YT",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Kluane"

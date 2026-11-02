@@ -1,6 +1,6 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **322 of 489** joined (same name + same kind). **4** to check, **154** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **323 of 489** joined (same name + same kind). **4** to check, **153** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -143,7 +143,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6224 Long Lake Bog Nature Reserve (Nature Reserve)
 - CA-6249 Peggy's Cove Lighthouse National Heritage Site (National Heritage Site)
 - CA-6251 Grand Parade National Heritage Site (National Heritage Site)
-- CA-6252 Scott Manor House National Heritage Site (National Heritage Site)
 - CA-6253 Moirs Ltd. Power House Historic Site (Historic Site)
 - CA-6292 Uniacke House Historic Site (Historic Site)
 - CA-6293 Amherst Intercolonial Railway Station Historic Site (Historic Site)
