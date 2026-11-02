@@ -31,7 +31,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
-          python3 .github/scripts/kpc_key_freeze.py check world-key || true
+          python3 .github/scripts/kpc_key_freeze.py check world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
@@ -51,15 +51,15 @@ jobs:
           PIN_JOIN: ${{ inputs.pin_join }}
           WB_DIR: ${{ inputs.outline_test == 'yes' && '/tmp/wb-test' || '' }}
         run: |
-          pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || true
+          pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
           [ -n "$NIGHT_LIST" ] && COUNTRIES="$NIGHT_LIST"
-          SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # Nov 1: Brandon's filled sheet
+          SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
           ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
           for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || echo "::notice title=World key $c::stopped with an error (see the traceback above)"; done
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
         if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || true
+        run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ always() && env.SKIP != '1' }}
         run: |
@@ -67,18 +67,33 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/world-key
-          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
+          git add data/status 2>/dev/null || true   # ok: an optional file or tidy step (Oct 25 storage plan: when each file last changed)
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main; the chat-11 inbox and hand lists are merged, not copied). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
         if: ${{ always() && env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        id: kept_green_1
         continue-on-error: true
         run: |
           [ -d data/world-bounds ] || exit 0
           B=/tmp/wb; rm -rf $B; mkdir -p $B
-          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || true    # what the branch holds now
+          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || echo "::warning title=download::a branch could not be read; this run uses what it has (exit $?)"    # what the branch holds now
           for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; mkdir -p $B/data/world-bounds; cp -r $d $B/data/world-bounds/$c; done
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
             && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

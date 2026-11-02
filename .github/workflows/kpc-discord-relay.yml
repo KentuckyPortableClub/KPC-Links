@@ -46,12 +46,14 @@ jobs:
       # Both of these ride along here rather than on a timer of their own: it is the only job that already runs
       # every 15 minutes, so answers are quick and no new scheduled workflow lands in anybody's email.
       - name: Answer what we can in the club rooms
+        id: kept_green_1
         continue-on-error: true
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_ask.py || true
+        run: python3 .github/scripts/kpc_discord_ask.py || echo "::error title=kpc_discord_ask.py::stopped with an error (exit $?), see the log above"
       - name: Keep an eye on the rooms
+        id: kept_green_2
         continue-on-error: true
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
@@ -59,8 +61,9 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MODE: watch
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_mod.py || true
+        run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
       - name: Do anything asked for in the staff room
+        id: kept_green_3
         continue-on-error: true
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
@@ -68,20 +71,21 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MODE: commands
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_mod.py || true
+        run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 25: a state file whose only change is a time stamp is put back, so a quiet run commits nothing
-          python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || true
+          python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || echo "::error title=kpc_save_filter.py::stopped with an error (exit $?), see the log above"
           for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json; do if [ -e "$f" ]; then git add "$f"; fi; done
-          git add -A photos/announce 2>/dev/null || true
+          git add -A photos/announce 2>/dev/null || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-announcements.json, kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_TRIES=6 \
             bash .github/scripts/kpc_save_overwrite.sh 'Club post from Discord' - -- kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json photos/announce
       - name: WATCHDOG HEARTBEAT (Nov 2, HQ 11:30 AM; GitHub's own schedule skipped the watchdog all morning, this relay fires every 15 min)
         if: always()
+        id: kept_green_hb
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -92,3 +96,17 @@ jobs:
             gh api -X POST "repos/${{ github.repository }}/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main && echo "::notice title=Watchdog heartbeat::the watchdog had not run for $((age / 60)) min: started it once (from the relay)"
           else echo "watchdog ran $((age / 60)) min ago: nothing to do"; fi
           true   # ok: a missed heartbeat is retried 15 min later by the next relay run
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

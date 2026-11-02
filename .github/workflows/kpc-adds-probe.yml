@@ -18,15 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Browser for look-ups (round 7+)
+        id: kept_green_1
         continue-on-error: true
-        run: pip install -q playwright && python3 -m playwright install --with-deps chromium >/dev/null 2>&1 || true
-      - run: python3 .github/scripts/kpc_adds_probe.py || true
+        run: pip install -q playwright && python3 -m playwright install --with-deps chromium >/dev/null 2>&1 || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
+      - run: python3 .github/scripts/kpc_adds_probe.py || echo "::error title=kpc_adds_probe.py::stopped with an error (exit $?), see the log above"
+        id: kept_green_2
         continue-on-error: true
         timeout-minutes: 225   # Oct 29: ends the step BEFORE the 240 job limit so the Save step still runs
         env:
           CAND: ${{ inputs.cand }}
           PROBE_T: 180
       - name: Save
+        id: kept_green_3
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
@@ -34,5 +37,19 @@ jobs:
           git add .claude/build/research/ADDS/ 2>/dev/null || exit 0
           git diff --cached --quiet && exit 0
           git commit -qm 'Data adds probe results'
-          for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*8)); done
+          { for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*8)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

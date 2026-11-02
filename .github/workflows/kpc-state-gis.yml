@@ -22,13 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Scan
-        run: python3 .github/scripts/kpc_state_gis.py ${{ inputs.states }} || true
+        run: python3 .github/scripts/kpc_state_gis.py ${{ inputs.states }} || echo "::error title=kpc_state_gis.py::stopped with an error (exit $?), see the log above"
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/state-gis-found.json data/state-gis-proposed.json data/state-gis.json || true
-          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
+          git add data/state-gis-found.json data/state-gis-proposed.json data/state-gis.json || true   # ok: an optional path may not exist
+          git add data/status 2>/dev/null || true   # ok: an optional file or tidy step (Oct 25 storage plan: when each file last changed)
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (data/state-gis.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh 'State GIS layer scan' - -- data/state-gis-found.json data/state-gis-proposed.json data/state-gis.json data/status

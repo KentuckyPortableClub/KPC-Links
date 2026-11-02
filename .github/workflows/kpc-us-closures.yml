@@ -20,21 +20,37 @@ jobs:
       - name: Lay KPC-Data's moved data over the KPC-Links checkout (Step B; stops red on empty input)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Merge KPC-Data's closures into kpc-conditions.json
+        id: kept_green_1
         continue-on-error: true
         run: |
           mkdir -p data/alerts
           curl -fsSL --retry 3 -o /tmp/us-parks.json https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/main/data/alerts/us-parks.json || exit 0
           python3 -c "import json;json.load(open('/tmp/us-parks.json'))" || exit 0
           cp /tmp/us-parks.json data/alerts/us-parks.json
-          python3 .github/scripts/kpc_us_closures.py --merge || true
-          git checkout -- data/alerts 2>/dev/null || true      # the file itself lives in KPC-Data now; only kpc-conditions.json is saved here
+          python3 .github/scripts/kpc_us_closures.py --merge || echo "::error title=kpc_us_closures.py::stopped with an error (exit $?), see the log above"
+          git checkout -- data/alerts 2>/dev/null || true   # ok: an optional file or tidy step (the file itself lives in KPC-Data now; only kpc-conditions.json is saved here)
       - name: Save (once, only real changes)
+        id: kept_green_2
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          python3 .github/scripts/kpc_save_filter.py kpc-conditions.json || true
+          python3 .github/scripts/kpc_save_filter.py kpc-conditions.json || echo "::error title=kpc_save_filter.py::stopped with an error (exit $?), see the log above"
           git add kpc-conditions.json
           git diff --cached --quiet && exit 0
           git commit -qm 'US park closures (merged from KPC-Data)'
-          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 0
+          { for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }; exit 0
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

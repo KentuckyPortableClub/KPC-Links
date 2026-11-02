@@ -19,8 +19,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add kpc-nwr.json 2>/dev/null || true
-          git add data/nwr 2>/dev/null || true
+          git add kpc-nwr.json 2>/dev/null || true   # ok: an optional path may not exist
+          git add data/nwr 2>/dev/null || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'Update NOAA Weather Radio list' - -- kpc-nwr.json data/nwr

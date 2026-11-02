@@ -30,12 +30,13 @@ jobs:
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Read the state GIS servers
+        id: kept_green_1
         continue-on-error: true
         env:
           STATES: ${{ inputs.states }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
           GH_TOKEN: ${{ github.token }}
-        run: python3 .github/scripts/kpc_state_camps.py || true
+        run: python3 .github/scripts/kpc_state_camps.py || echo "::error title=kpc_state_camps.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ !inputs.dry_run }}
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files); red ONLY when the save failed
@@ -43,5 +44,19 @@ jobs:
           STRICT: '1'
         run: |
           mkdir -p data/campstate
-          python3 .github/scripts/kpc_light_guard.py data/campstate/*.json || true   # Nov 2 (chat 5's WRONG: a state emptied when its layer half-answers): halved / doubled rows = keep last week's
+          python3 .github/scripts/kpc_light_guard.py data/campstate/*.json || echo "::error title=kpc_light_guard.py::stopped with an error (exit $?), see the log above"   # Nov 2 (chat 5's WRONG: a state emptied when its layer half-answers): halved / doubled rows = keep last week's
           bash .github/scripts/kpc_push_data.sh . 'State park camping, weekly update' data/campstate
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

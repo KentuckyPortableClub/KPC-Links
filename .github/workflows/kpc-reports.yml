@@ -33,7 +33,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json kpc-comments.json
           if [ -e data/kpc-checks-reports.json ]; then git add data/kpc-checks-reports.json; fi
-          git add -A photos/members 2>/dev/null || true
+          git add -A photos/members 2>/dev/null || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh 'Update KPC reports (conditions, member photos, events, comments)' - -- kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json kpc-comments.json data/kpc-checks-reports.json photos/members

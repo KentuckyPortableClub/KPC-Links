@@ -25,5 +25,5 @@ jobs:
           git add ky-usace.geojson
           if ! git diff --cached --quiet; then
             git commit -m 'Update Kentucky Army Corps land'
-            for i in 1 2 3; do git pull --rebase -X theirs --autostash && git push && break; git rebase --abort 2>/dev/null || true; sleep 10; done
+            { saved=0; for i in 1 2 3; do git pull --rebase -X theirs --autostash && git push && { saved=1; break; }; git rebase --abort 2>/dev/null || true; sleep 10; done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }   # ok: there may be no rebase to stop
           fi

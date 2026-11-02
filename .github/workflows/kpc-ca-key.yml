@@ -30,7 +30,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
-          python3 .github/scripts/kpc_key_freeze.py check ca-key || true
+          python3 .github/scripts/kpc_key_freeze.py check ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
@@ -48,42 +48,47 @@ jobs:
         env:
           GEO_CACHE_MODE: ${{ (inputs.saved || github.event.schedule == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
           GH_TOKEN: ${{ github.token }}
+        id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         run: |
-          pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || true
+          pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
           # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
-          if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true; fi
+          if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"; fi
           # Nov 2 (chat 2): chat 11's Canada hard-look YES records (KPC-Data questions/hardlook.json) -> data/ca-key/hardlook-joins.json
-          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json 2>/dev/null && git -C .hl checkout -q 2>/dev/null && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || true; rm -rf .hl
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json 2>/dev/null && git -C .hl checkout -q 2>/dev/null && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || echo "::error title=kpc_ca_hardlook.py::stopped with an error (exit $?), see the log above"; rm -rf .hl
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
-          grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true
+          grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
       - name: Keep the saved copy current (a full read that finished)
         if: ${{ env.SKIP != '1' && !inputs.saved && github.event.schedule != '49 9 * * *' }}
+        id: kept_green_2
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           # Oct 27: the release copy was from Oct 22, so a 'saved' build lost 169 joins (undone). Upload after every good full read.
-          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || true; fi
+          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"; fi
       - name: Save outline files for joined parks that have none (never overwrites)
         if: ${{ env.SKIP != '1' }}
+        id: kept_green_3
         continue-on-error: true
-        run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
+        run: python3 .github/scripts/kpc_ca_fill_bounds.py || echo "::error title=kpc_ca_fill_bounds.py::stopped with an error (exit $?), see the log above"
       - name: Why-not tags for parks with no outline (R-GC8)
         if: ${{ env.SKIP != '1' }}
+        id: kept_green_4
         continue-on-error: true
-        run: python3 .github/scripts/kpc_ca_whynot.py || true
+        run: python3 .github/scripts/kpc_ca_whynot.py || echo "::error title=kpc_ca_whynot.py::stopped with an error (exit $?), see the log above"
       - name: Review issue
         if: ${{ env.SKIP != '1' }}
+        id: kept_green_5
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_ca_key_issue.py
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
         if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp ca-key || true
+        run: python3 .github/scripts/kpc_key_freeze.py stamp ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ always() && env.SKIP != '1' }}
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
@@ -93,3 +98,17 @@ jobs:
         run: |
           if [ -n "$NIGHT_LIST" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done
           bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

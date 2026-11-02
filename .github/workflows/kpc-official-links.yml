@@ -29,6 +29,7 @@ jobs:
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Harvest official links
+        id: kept_green_1
         continue-on-error: true
         timeout-minutes: 160
         env:
@@ -36,18 +37,33 @@ jobs:
           RIDB_API_KEY: ${{ github.event_name == 'workflow_dispatch' && secrets.RIDB_API_KEY || '' }}   # Oct 29 (Brandon 9:34 AM): no recurring keyed calls
           MINUTES: '150'
           ONLY: ${{ inputs.only }}
-        run: python3 .github/scripts/kpc_link_harvest.py || true
+        run: python3 .github/scripts/kpc_link_harvest.py || echo "::error title=kpc_link_harvest.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: always()
+        id: kept_green_2
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/parkinfo-web.json 2>/dev/null || true
+          git add data/parkinfo-web.json 2>/dev/null || true   # ok: an optional path may not exist
           git diff --cached --quiet && exit 0
           git commit -qm 'Official links: harvested (bot-tagged, hidden until GO)' || exit 0
-          for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done
+          { for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY
   maps:
     if: ${{ inputs.only != 'linkcheck' && inputs.only != 'agency' }}
     runs-on: ubuntu-latest
@@ -55,23 +71,39 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Look for official maps on the park pages
+        id: kept_green_3
         continue-on-error: true
         timeout-minutes: 160
         env:
           MAX: ${{ inputs.pages || '600' }}
           MINUTES: '150'
-        run: python3 .github/scripts/kpc_map_finder.py || true
+        run: python3 .github/scripts/kpc_map_finder.py || echo "::error title=kpc_map_finder.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: always()
+        id: kept_green_4
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/map-leads.json 2>/dev/null || true
+          git add data/map-leads.json 2>/dev/null || true   # ok: an optional path may not exist
           git diff --cached --quiet && exit 0
           git commit -qm 'Map finder: suggestions (not checked)' || exit 0
-          for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done
+          { for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY
   linkcheck:
     # Oct 26 (research desk + HQ): every map link must load before a tool shows it; held links are cleared only when they load
     needs: harvest
@@ -81,21 +113,37 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Check every map link loads
+        id: kept_green_5
         continue-on-error: true
         timeout-minutes: 130
         env:
           MINUTES: '120'
         run: |
-          git pull -q || true
-          python3 .github/scripts/kpc_map_linkcheck.py || true
+          git pull -q || echo "::warning title=git fetch::git could not fetch or merge the newest main (exit $?)"
+          python3 .github/scripts/kpc_map_linkcheck.py || echo "::error title=kpc_map_linkcheck.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: always()
+        id: kept_green_6
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/parkinfo-web.json 2>/dev/null || true
+          git add data/parkinfo-web.json 2>/dev/null || true   # ok: an optional path may not exist
           git diff --cached --quiet && exit 0
           git commit -qm 'Map links: checked that they load' || exit 0
-          for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done
+          { for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

@@ -26,8 +26,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          python3 .github/scripts/kpc_light_guard.py kpc-special-events.json kpc-contests.json || true   # Oct 30 (Brandon 6:07 AM GO, HQ step C): shrank by half / a row twice = keep the saved copy + a line to chat 11
-          git add .claude/inbox/chat-11.md 2>/dev/null || true
+          python3 .github/scripts/kpc_light_guard.py kpc-special-events.json kpc-contests.json || echo "::error title=kpc_light_guard.py::stopped with an error (exit $?), see the log above"   # Oct 30 (Brandon 6:07 AM GO, HQ step C): shrank by half / a row twice = keep the saved copy + a line to chat 11
+          git add .claude/inbox/chat-11.md 2>/dev/null || true   # ok: an optional path may not exist
           git add kpc-special-events.json kpc-contests.json
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main; the chat-11 inbox and hand lists are merged, not copied). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_LINES=".claude/inbox/chat-11.md" \

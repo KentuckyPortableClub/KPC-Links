@@ -20,15 +20,31 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Start what GitHub skipped
+        id: kept_green_1
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_watchdog.py
       - name: Save
+        id: kept_green_2
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/status 2>/dev/null; git diff --cached --quiet && exit 0
           git commit -qm 'watchdog: skipped runs started again'
-          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*6)); done
+          { saved=0; for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; sleep $((i*6)); done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

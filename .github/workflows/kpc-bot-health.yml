@@ -42,6 +42,7 @@ jobs:
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: KPC-Data's bot files (read-only), so moved bots are checked too
+        id: kept_green_1
         continue-on-error: true
         uses: actions/checkout@v5
         with:
@@ -55,77 +56,100 @@ jobs:
           if [ "$(date -u +%u)" = "7" ] || [ "${{ inputs.full }}" = "true" ]; then echo "weekly=yes" >> "$GITHUB_OUTPUT"; else echo "weekly=no" >> "$GITHUB_OUTPUT"; fi
           if [ "${{ inputs.release }}" = "true" ]; then echo "release=yes" >> "$GITHUB_OUTPUT"; else echo "release=no" >> "$GITHUB_OUTPUT"; fi
       - name: Public-list guard (daily)
+        id: kept_green_2
         continue-on-error: true
-        run: python3 .github/scripts/kpc_checkup.py guard || true
+        run: python3 .github/scripts/kpc_checkup.py guard || echo "::error title=kpc_checkup.py::stopped with an error (exit $?), see the log above"
       - name: Keys and tokens answer (daily; a key is never printed)
+        id: kept_green_3
         continue-on-error: true
         env:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
           RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
-        run: python3 .github/scripts/kpc_key_check.py || true
+        run: python3 .github/scripts/kpc_key_check.py || echo "::error title=kpc_key_check.py::stopped with an error (exit $?), see the log above"
       - name: Reference check, every state (Sunday)
         if: steps.day.outputs.weekly == 'yes'
+        id: kept_green_4
         continue-on-error: true
-        run: python3 .github/scripts/kpc_checkup.py refs || true
+        run: python3 .github/scripts/kpc_checkup.py refs || echo "::error title=kpc_checkup.py::stopped with an error (exit $?), see the log above"
       - name: Data link check (Sunday)
         if: steps.day.outputs.weekly == 'yes'
+        id: kept_green_5
         continue-on-error: true
         timeout-minutes: 25
         env:
           LINK_MINUTES: '18'
-        run: python3 .github/scripts/kpc_checkup.py links || true
+        run: python3 .github/scripts/kpc_checkup.py links || echo "::error title=kpc_checkup.py::stopped with an error (exit $?), see the log above"
       - uses: actions/setup-node@v5
         if: steps.day.outputs.weekly == 'yes' || steps.day.outputs.release == 'yes'
+        id: kept_green_6
         continue-on-error: true
         with:
           node-version: '22'
       - name: Site test as a guest (Sunday) / guest + member on the live site (release)
         if: steps.day.outputs.weekly == 'yes' || steps.day.outputs.release == 'yes'
+        id: kept_green_7
         continue-on-error: true
         timeout-minutes: 25
         run: |
-          npm install --no-save --no-package-lock playwright@1.56.0 >/dev/null 2>&1 || true
-          npx playwright install --with-deps chromium >/dev/null 2>&1 || true
+          npm install --no-save --no-package-lock playwright@1.56.0 >/dev/null 2>&1 || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
+          npx playwright install --with-deps chromium >/dev/null 2>&1 || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
           if [ "${{ steps.day.outputs.release }}" = "yes" ]; then
-            MEMBER_PASS=1 node .github/scripts/kpc_site_test.js https://kentuckyportableclub.github.io/KPC-Links/ checkup-out/site.json || true
+            MEMBER_PASS=1 node .github/scripts/kpc_site_test.js https://kentuckyportableclub.github.io/KPC-Links/ checkup-out/site.json || echo "::error title=kpc_site_test.js::stopped with an error (exit $?), see the log above"
             exit 0
           fi
           # served under /KPC-Links/ like GitHub Pages (404.html uses <base href="/KPC-Links/">)
           mkdir -p /tmp/site && ln -sfn "$GITHUB_WORKSPACE" /tmp/site/KPC-Links
           (cd /tmp/site && python3 -m http.server 8765 >/dev/null 2>&1 &)
           sleep 2
-          node .github/scripts/kpc_site_test.js http://127.0.0.1:8765/KPC-Links/ checkup-out/site.json || true
+          node .github/scripts/kpc_site_test.js http://127.0.0.1:8765/KPC-Links/ checkup-out/site.json || echo "::error title=kpc_site_test.js::stopped with an error (exit $?), see the log above"
       - name: Bot check + one report grouped by chat
+        id: kept_green_8
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
-        run: python3 .github/scripts/kpc_bot_health.py || true
+        run: python3 .github/scripts/kpc_bot_health.py || echo "::error title=kpc_bot_health.py::stopped with an error (exit $?), see the log above"
       - name: Weekly backup snapshot (Sunday) as a DRAFT release, last 8 kept
         if: (github.event_name == 'schedule' && steps.day.outputs.weekly == 'yes') || inputs.backup
+        id: kept_green_9
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           D=$(date -u +%F); R=$GITHUB_REPOSITORY; W=$RUNNER_TEMP/bk; mkdir -p $W
           git clone -q --depth 1 https://github.com/KentuckyPortableClub/KPC-Data $W/kd || { echo "::notice title=Backup::KPC-Data could not be read; no backup this week"; exit 0; }
-          (cd $W/kd && zip -qr -9 $W/KPC-Data-data-$D.zip data) || true
+          (cd $W/kd && zip -qr -9 $W/KPC-Data-data-$D.zip data) || true   # ok: nothing to do is fine
           # KPC-Links: the COMMITTED data (not the overlay copies on disk) + the notes
-          git archive --format=zip -9 -o $W/KPC-Links-data-notes-$D.zip HEAD data .claude/notes || true
+          git archive --format=zip -9 -o $W/KPC-Links-data-notes-$D.zip HEAD data .claude/notes || true   # ok: optional git step; the next step reports
           ls -la $W/*.zip
           gh release create "backup-$D" $W/*.zip -R $R --draft --title "Backup $D" \
             --notes "Weekly backup: KPC-Data data/ + KPC-Links data/ and .claude/notes, as of $D. Draft = only club admins see it; nothing is published." \
             && echo "::notice title=Backup::backup-$D saved ($(du -ch $W/*.zip | tail -1 | cut -f1))" || echo "::notice title=Backup::could not save the backup"
           gh api "repos/$R/releases?per_page=100" --jq '[.[] | select(.name|startswith("Backup "))] | sort_by(.created_at) | reverse | .[8:] | .[].id' \
-            | while read id; do gh api -X DELETE "repos/$R/releases/$id" >/dev/null && echo "old backup $id removed"; done || true
+            | while read id; do gh api -X DELETE "repos/$R/releases/$id" >/dev/null && echo "old backup $id removed"; done || echo "::warning title=Release::a release step failed (exit $?)"
       - name: Save
+        id: kept_green_10
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          python3 .github/scripts/kpc_save_filter.py data/bot-health.json || true
+          python3 .github/scripts/kpc_save_filter.py data/bot-health.json || echo "::error title=kpc_save_filter.py::stopped with an error (exit $?), see the log above"
           git add data/bot-health.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -q -m 'KPC check-up'
-          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 0
+          { for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }; exit 0
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

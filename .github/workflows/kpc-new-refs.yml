@@ -40,9 +40,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          python3 .github/scripts/kpc_new_fable_rows.py || true
+          python3 .github/scripts/kpc_new_fable_rows.py || echo "::error title=kpc_new_fable_rows.py::stopped with an error (exit $?), see the log above"
           # Oct 30 (HQ 7:40 AM NEW-PARK PIPELINE): a new US / CA park goes on that night's key rebuild list (BOT B / the nightly Canada run)
-          python3 - <<'PY' || true
+          python3 - <<'PY' || echo "::error title=inline Python::stopped with an error (exit $?), see the log above"
           import json, datetime, pathlib
           today = datetime.date.today().isoformat(); us, ca = set(), set()
           for x in (json.load(open('kpc-new-refs.json')).get('items') or []):
@@ -56,18 +56,33 @@ jobs:
                   print(f'::notice title=New parks::{f}: + {" ".join(sorted(new))} (rebuilt tonight)')
           PY
           for f in data/us-key/answers-states.txt data/ca-key/answers-provinces.txt; do [ -e "$f" ] && git add "$f"; done; true   # Oct 30 (HQ 7:40 AM (b)): a new US / CA park with no outline gets its Fable-book row
-          git add .claude/build/research/fable 2>/dev/null || true
+          git add .claude/build/research/fable 2>/dev/null || true   # ok: an optional path may not exist
           git add data/new-refs kpc-new-refs.json kpc-announcements.json locations.json locations-ky.json
-          git add data/retired-refs.json 2>/dev/null || true
-          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
-          git add -A kpc-ky-data.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true
+          git add data/retired-refs.json 2>/dev/null || true   # ok: an optional path may not exist
+          git add data/status 2>/dev/null || true   # ok: an optional file or tidy step (Oct 25 storage plan: when each file last changed)
+          git add -A kpc-ky-data.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-announcements.json, kpc-ky-data.json, kpc-top25.json, locations-ky.json, locations.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh 'New references' - -- data/us-key/answers-states.txt data/ca-key/answers-provinces.txt .claude/build/research/fable data/new-refs kpc-new-refs.json kpc-announcements.json locations.json locations-ky.json data/retired-refs.json data/status kpc-ky-data.json wwff-unmapped.json app/packs kpc-top25.json data/ky-retired.json $(ls kpc-guide-*-data.json ky-*.geojson KPC_Kentucky_*.kml KPC_Kentucky_*.gpx 2>/dev/null)
       - name: Reprint the guide PDFs when a Kentucky park was retired
         if: always()
+        id: kept_green_1
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -f /tmp/kpc-reprint ]; then gh api -X POST repos/${{ github.repository }}/actions/workflows/kpc-guide-pdf.yml/dispatches -f ref=main || true; fi
+          if [ -f /tmp/kpc-reprint ]; then gh api -X POST repos/${{ github.repository }}/actions/workflows/kpc-guide-pdf.yml/dispatches -f ref=main || echo "::error title=start the next run::could not start the next run (exit $?); the chain stops here"; fi
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY

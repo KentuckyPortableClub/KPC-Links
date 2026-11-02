@@ -30,6 +30,7 @@ jobs:
         with:
           persist-credentials: true
       - name: Check the park alerts
+        id: kept_green_1
         continue-on-error: true
         env:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
@@ -40,15 +41,30 @@ jobs:
           LBL_LOOK: ${{ inputs.lbl_look && '1' || '' }}
           NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_park_alerts.py || true
+        run: python3 .github/scripts/kpc_park_alerts.py || echo "::error title=kpc_park_alerts.py::stopped with an error (exit $?), see the log above"
       - name: Save what it saw
+        id: kept_green_2
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 25: put back a state file whose only change is a time stamp, so quiet runs commit nothing
-          python3 .github/scripts/kpc_save_filter.py data/park-alerts-state.json kpc-conditions.json || true
-          git add data/park-alerts-state.json kpc-conditions.json 2>/dev/null || true
+          python3 .github/scripts/kpc_save_filter.py data/park-alerts-state.json kpc-conditions.json || echo "::error title=kpc_save_filter.py::stopped with an error (exit $?), see the log above"
+          git add data/park-alerts-state.json kpc-conditions.json 2>/dev/null || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-conditions.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh 'Park alerts: what the parks are saying' - -- data/park-alerts-state.json kpc-conditions.json
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          PY
