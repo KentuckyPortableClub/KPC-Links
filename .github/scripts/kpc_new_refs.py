@@ -343,7 +343,24 @@ feed = {'updated': NOW.isoformat(timespec='seconds'), 'start': START.isoformat()
 
 # Kentucky posts: once a day, only after START, only items not posted yet
 posted = set(seen.get('posted', []))
-ky = [i for i in items if 'KY' in i.get('st', []) and f"{i['prog']}|{i['ref']}" not in posted]
+# Nov 2 (chat 5's notes 3 + 4, HQ GO Oct 30): a Kentucky post waits until the park is on the LIVE site (kpc-ky-data.json on
+# main = released), and a 'to_post' list keeps it until it is posted, so a release slower than the 7-day window is never lost
+# (dropped after 60 days with a notice). One post a day, all the day's ready items together.
+TP = seen.setdefault('to_post', {})
+for i in items:
+    k = f"{i['prog']}|{i['ref']}"
+    if 'KY' in i.get('st', []) and k not in posted and k not in TP: TP[k] = {**i}
+def _live():
+    try:
+        d = json.loads(pathlib.Path('kpc-ky-data.json').read_text(encoding='utf-8'))
+        return {x.get('c') for key in ('parks', 'summits', 'kff') for x in d.get(key) or [] if isinstance(x, dict)}
+    except Exception: return set()  # noqa: BLE001
+LIVE = _live()
+for k in [k for k, i in TP.items() if i.get('found', TODAY) < (NOW.date() - datetime.timedelta(days=60)).isoformat()]:
+    notice('New references', f'{k} waited 60 days for the site and was never posted: dropped from the to-post list (staff: add it by hand if wanted)'); TP.pop(k)
+ky = [i for k, i in sorted(TP.items()) if k not in posted and i['ref'] in LIVE]
+wait = [k for k, i in TP.items() if k not in posted and i['ref'] not in LIVE]
+if wait: notice('New references', f'{len(wait)} Kentucky item(s) waiting for the site (not in kpc-ky-data.json yet): ' + ', '.join(sorted(wait)[:12]))
 if ky and NOW >= START:
     title, text = ky_post(ky)
     link = SITE + 'kpc-park-notes.html#new'
@@ -364,11 +381,13 @@ if ky and NOW >= START:
                 gh('issue', 'comment', str(num[0]['number']), '--body-file', '-', input_text=
                    '🆕 **New Kentucky references today** (add them to kpc-ky-data.json and the guides):\n\n' + '\n'.join(line(i) for i in ky))
         seen['posted'] = sorted(posted | {f"{i['prog']}|{i['ref']}" for i in ky})
+        if ok:
+            for i in ky: TP.pop(f"{i['prog']}|{i['ref']}", None)
         notice('New references: Kentucky post', f'{title} ({"sent" if ok else "some places failed"})')
 elif ky:
     notice('New references', f'{len(ky)} Kentucky item(s) waiting for the start ({START.isoformat()}).')
 # forget posted marks older than the 7-day window
-keep = {f"{i['prog']}|{i['ref']}" for i in items}
+keep = {f"{i['prog']}|{i['ref']}" for i in items} | set(TP)
 seen['posted'] = sorted(set(seen.get('posted', [])) & keep)
 
 if DRY:
