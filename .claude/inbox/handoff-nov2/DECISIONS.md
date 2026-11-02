@@ -26,3 +26,18 @@ setting shown.
 
 How to set a switch: on the GitHub site, open KPC-Links, then Settings, Secrets and variables, Actions, Variables. Add or
 edit the variable (for example `KPC_FERS_LAYER` = `preview`). Only do this after Brandon's OK, and note the time in your inbox.
+
+## ANSWERS (Brandon Nov 2 9:51 AM: 'Yes implement it 100%, the ship is sinking and we must get it straight'; recorded by HQ 10:05 AM)
+1-3 G10 2-fer layer / PDF / GPX: `preview` now (members / beta only), `on` after HQ checks the preview; public stays hidden until Brandon's GO. Acts: chat 10 sets the variables, chat 8 checks the preview.
+4 KPC_HOURS_PUBLISH: `preview`, KENTUCKY ONLY (scope rule); Brandon reads the changes list before `on`. Acts: chat 10 + chat 2.
+5 data/fers (bot) is the truth; the site layer is written from it, reviewed rows only. Acts: chat 10 (G10).
+6 Reviewed list FILLED by HQ (KPC-Links kpc-fers-reviewed.json: 335 spots from the 11 files chat 11 said YES to). Acts: done; G10 preview reads it.
+7 G6 yes, AFTER the world key's 4,330 YES are released (no blank countries). Acts: chat 10 releases, then chat 3 + 10 apply G6.
+8 KPC_SAVE_RED = yes only for key releases; elsewhere a loud notice, no email. Acts: chat 10.
+9-11 Chat 10 finds the stray build id (boundary-check bot first), re-stamps; chat 11 gives fresh YES quoting the build id (pre-restart YES = not yet given; Canada YES re-given with the id). Acts: chat 10, then chat 11 (+ chat 2).
+12-13 Watchdog may restart the hunters' Friday post (never-twice state holds); practice / research bots stay out. Acts: chat 10.
+14 Bots email ONLY on a real failure; every other email path off. Acts: chat 10.
+15 OpenStreetMap / Wikidata / place-name lookups OFF for facts and shapes; only the outlines already labelled 'OpenStreetMap outline (unofficial)' stay. Acts: chat 10 + chat 2.
+16 Delete branch test-keyfix-0102: yes. Acts: chat 10.
+17-18 Later (after the rollout). 
+G1-G11 patches: APPLY ALL, in PLAN.md order, each after `git apply --check` on a FRESH clone and its test; done = live (a real run / the site shows it), proof in LEDGER.md.
