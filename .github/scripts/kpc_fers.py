@@ -2067,10 +2067,33 @@ def spot_lines(x, G):
             for ring in g:
                 if not inter(bbox_lines([ring]), bb): continue
                 for l in clip_ring(ring, bb):
+                    l = dp_line(l, LINE_DP_M)   # Nov 2 (HQ, the 103 MB Alaska file): drawing lines thinned 3 m (R-G6), 5 decimals
+                    if len(l) < 2: continue
+                    if n + len(l) > LINE_CAP: break
                     ls.append(l); n += len(l)
-                if n > 6000: break
+                if n >= LINE_CAP: break
+            if n >= LINE_CAP: break   # the cap was per ring group only, so a big park (Tongass, Wrangell) filled 240 KB per spot
         if ls: out[r] = ls
     return out or None
+
+
+LINE_DP_M, LINE_CAP = 3.0, 6000
+
+
+def dp_line(l, tol_m=3.0):
+    """Douglas-Peucker in metres (flat earth near the line), both ends kept, rounded to 5 decimals (~1 m)."""
+    if len(l) < 3: return [[round(q[0], 5), round(q[1], 5)] for q in l]
+    la = math.radians(sum(q[1] for q in l) / len(l)); kx, ky = 111320 * math.cos(la), 110574
+    P = [(q[0] * kx, q[1] * ky) for q in l]; keep = [False] * len(P); keep[0] = keep[-1] = True; st = [(0, len(P) - 1)]
+    while st:
+        a, b = st.pop(); ax, ay = P[a]; dx, dy = P[b][0] - ax, P[b][1] - ay; L = dx * dx + dy * dy; best, bi = -1.0, -1
+        for i in range(a + 1, b):
+            px, py = P[i][0] - ax, P[i][1] - ay
+            t = 0.0 if L == 0 else max(0.0, min(1.0, (px * dx + py * dy) / L))
+            d = math.hypot(px - t * dx, py - t * dy)
+            if d > best: best, bi = d, i
+        if best > tol_m: keep[bi] = True; st += [(a, bi), (bi, b)]
+    return [[round(l[i][0], 5), round(l[i][1], 5)] for i in range(len(l)) if keep[i]]
 
 
 def add_lines(files, G, today):
@@ -2756,7 +2779,7 @@ def main():
             except Exception as e: LOG.append(f'drift: {str(e)[:80]}')  # noqa: BLE001
         for st, d in files.items():
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         mark('pass 5 start')
@@ -2907,7 +2930,7 @@ def main():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         counts.update(n)
     elif PASS == 4:   # access pins for candidates that have none yet (Oct 26: added after pass 3 had run)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
@@ -2924,7 +2947,7 @@ def main():
             except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
         for st, d in files.items():
             d['about'] = ABOUT
-            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         counts.update({'candidates without a pin': len(cand), 'pins placed': n})
     elif PASS == 1:
         same = same_outline(parks)
@@ -3051,7 +3074,7 @@ def main():
                 # over when the batch made no row of that pair + kind (line / river / water-route rows are not all remade by a batch)
                 sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
                 if not sp and st not in old: continue
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
+            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
@@ -3120,7 +3143,7 @@ def main():
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
     # report
