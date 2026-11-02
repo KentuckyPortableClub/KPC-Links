@@ -8,7 +8,7 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 | 3 | Per-park key release ON | 10 | a release where good parks went live and only the bad ones stayed pins | ON, waiting for its first release (KPC-Data 12b0ab9b; dry run on today's build: 12,828 parks pass, 258 kept back); fires on chat 11's next KEY NO / YES of an unchanged build | Nov 2 |
 | 4 | Patches 03, 04, 05 applied | 10 | each on main after its test branch; one ledger note per patch | ON MAIN Nov 2: 05 KPC-Data f1d8944d, 03+04 KPC-Links 67d6727 (new switches all OFF; NO-on-every-path fix ON); proof = the Nov 3 build's doctor line '0 came back' | Nov 2 |
 | 5 | Tracer fixes (patch 06) + re-run | 10 | re-run report: maps drawn of 172 (was 3) | RUNNING Nov 2: KPC-Data 26555bb4; fresh runs 41449163264 (pictures) + 41449166483 (parcels) | Nov 2 |
-| 6 | Canada + world KEY YES missing fields | 2 | both approvals release on the next run | OPEN | Nov 2 |
+| 6 | Canada + world KEY YES missing fields | 2 | both approvals release on the next run | PARTLY Nov 2 6:50 AM: chat2 field + path added in approved.json (KPC-Data 2d751816); DONE when the next release run puts them live | Nov 2 |
 | 7 | KPC-Data storage fix step 1, then step 2 | 10 | GitHub size under 400 MB | OPEN (633 MB) | Nov 1 |
 | 8 | Trusted-bot release for the collector's SURE matches | 10 | first night: released / sampled / sent-to-11 counts | OPEN | Nov 1 |
 | 9 | 320 approved parks on the map | 10 | Sunday's boundary numbers include them | OPEN | Nov 1 |
@@ -20,6 +20,8 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 | 15 | Cell coverage test (KY + 5 parks), card line on the members side | 10 + 3 | the line shows on a KY park card (members) | OPEN | Oct 31 |
 | 16 | One-week hours / fees / closures test outside KY (saved only) | 10 + 11 | Sat Nov 7: chat 11's grade + Brandon decides | OPEN | Oct 31 |
 | 17 | NO rechecker real run graded | 10 + 11 | chat 11's verdict: weekly or fix | OPEN | Nov 1 |
-| 18 | Hard-look decisions (dot-only sites, big parents, the 24 wrong outlines, Reelfoot swap) | 2 | the keys changed + the US pin-only number drops | OPEN | Nov 1 |
+| 18 | Hard-look decisions (dot-only sites, big parents, the 24 wrong outlines, Reelfoot swap) | 2 | the keys changed + the US pin-only number drops | PARTLY Nov 2: rules pushed (bare-name pieces held, Reelfoot/Chickasaw/Pickett; Prophetstown Fen; WSR never the SRMA/ACEC), 24 parcel/near-pin calls in data/intake/parcel-decisions-chat2-nov2.json; all-state build running; DONE when the built key shows them + chat 11 KEY YES | Nov 1 |
 | 19 | Chat 12 second checker started | Brandon + 12 | chat 12's first answers in the question files | OPEN | Nov 2 |
 | 20 | Tuesday 'where to search' sheet | HQ | the file sent Tue Nov 3 8 AM | SCHEDULED | Nov 1 |
+| 21 | Key build stamp + freeze: chat 11 grades one stamped build, YES tied to its id, no new build until released (Brandon Nov 2 7:11 AM) | 10 (chat 2 started kpc_key_freeze.py, not wired) | a key run that says 'FROZEN: build X waits for chat 11' and a release that names the build | OPEN | Nov 2 |
+| 22 | Kentucky river rows: creek cut + river trail zones on the Finder | 2 | the Ballard / Lewis and Clark spot follows only the Ohio bank and shows the trails' bank zones live | RUNNING Nov 2: KY line run started 6:43 AM; then chat 11 + release | Nov 1 |
