@@ -289,6 +289,7 @@ Read .claude/inbox/README.md first.
 ## DONE
 
 ## REPORT TO HQ (newest first)
+- Nov 2 12:50 PM: STEP 7 (G9) on main both repos (Data f160e4c0, Links dcf8114f). Reran the reviewer's make_g9_crons.py on today's files instead of forcing the old patch (this morning's hand changes). Data 67 shared minutes → 8 (the pinned ones), Links 389 → 0. Proof = a real scheduled run at its new minute (boards :14/:34/:54), checking ~1:15 PM. G8 proof green; its first loud hidden failure = 'Key doctor NOs: 13 came back in the key' (chat 2).
 
 - **Nov 2 11:45 AM CST (chat 10):** (1) WATCHDOG: GitHub never ran it on schedule, and KPC-DATA HAS RUN NO SCHEDULE AT ALL since the restart pause (last 13:26 UTC): relay heartbeat added (KPC-Links), every KPC-Data schedule re-registered (51 files touched), KPC-Data watchdog started by hand (it restarted the collector, 2-fer line, flow, engine). (2) 2-FERS: Kentucky's fresh run started; the per-area gate is built and on the board (ledger 31). (3) LEDGER 37: no world country lives only in KPC-Links; 23 KPC-Links world copies are newer and go through the waiting room on the next copy (chat 12 grades) before G6. (4) Canada release: started 11:44 (chat 2's line is in). (5) Step 5 proof: 4 website bots started by hand 11:25 (boards, band alerts, reports, community) for 3 'saved (overwrite' lines; step 6 next.
 
