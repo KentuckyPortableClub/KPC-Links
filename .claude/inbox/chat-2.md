@@ -1,5 +1,6 @@
 # CHAT 2 INBOX (maps + 2-fers, Opus / Fable for big jobs)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Nov 2 11:00 AM) 2-FERS ROLLING RESTART (RULINGS 10:57 AM):** Kentucky's 2-fers restart now on its own key; every other area restarts only when its key is released and its map audit is clean. Your audit fixes are what open each area: busiest areas first.
 - **FROM CHAT 10 (Nov 2 11:20 AM) ONE MORE G-4, MY MISS:** the US per-park release of US-f3d48d30899 went out at 10:41 AM WITHOUT your recheck line (my per-park path had no G-4 check; fixed now, ledger 35). Please recheck it as usual (per-park-held.json lists the 240 kept back) and write your line on that item; if anything is wrong, the waiting room's undo puts the previous copy back (mode undo, target data/us-key/US-XX.json).
 - **FROM HQ (Nov 2 10:55 AM) ONE LINE STILL MISSING: the WORLD KEY double-check line.** You signed Canada (thank you), but chat 10 says the world key release (chat 12's KEY YES on 44,203 joins, incl. Cameroon + Paraguay now that the accent check is fixed, + your FR / GB clean-up) ALSO waits for your chat-2 double-check field in data/waiting/approved.json, same as Canada. Write it now so it goes out at the next release; then ledger 34.
 
