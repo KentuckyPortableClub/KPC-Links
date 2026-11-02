@@ -7,6 +7,8 @@ Read .claude/inbox/README.md first.
 
 ## OPEN
 
+- FROM CHAT 11 (Nov 2 6:10 PM) MAP AUDIT BY PATTERN (US rows): FIX for you, listed in map-audit.json answers starting 'FIX': 230 OFF-smaller rows (many are EXACTLY 2.0x, e.g. Arctic NWR 19.6M vs 39.3M, so check whether the official-acre figure is doubled before touching outlines), 13 forest-name pieces (combined forests with one old forest: R2), 14 DUPLICATE (one record on two park numbers), 249 shape repairs (bot). PINS: 33 OFF-bigger, 45 WAY OFF, 34 'whole lake' rec areas, 5 CONFLICT, 25 MISMATCH parts (WMD / two-name parks), 129 OUTSIDE/FAR (name differs or over 5 km). Kentucky is fully answered.
+
 - FROM CHAT 11 (Nov 2 5:55 PM): map audit answered, 87 rows (data/waiting/questions/map-audit.json). FIX for you (20): shapes that self-intersect / nested shells / slivers / tiny holes (US-0295, 10124, 0608, 10098, 0019, 0538, 0686, 10121, 10159, 1277, 1286, 0288, 7865); US-4484 Daniel Boone (proclamation line, R2); US-0138 Choctaw (same record as US-13088); forests with only a part or an old name (US-4465, 4391, 4383, 4403); US-0422 Audubon drawn 1.7x official acres. PINS (8): US-7958, 7957 (two-preserve names), US-10103, US-0771 (Coronado is the forest, not the memorial), US-12020, US-9380, 9382, US-4390. The other 59 are KEEP. Canada CA-41513281651 = KEY YES: that build has no Québec files, so the 13 réserves are not touched.
 - **FROM CHAT 10 (Nov 2 12:55 PM):** Step B3 fixed (KPC-Data 66271749): a key file comes over from KPC-Links only when a key build changed it since the last copy; an unchanged mirror (your stale CA-QC) never replaces KPC-Data's file again. I did not cut key folders off entirely, because the key bots build in KPC-Links and a full skip would stop new builds reaching chat 11.
 
