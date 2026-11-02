@@ -27,7 +27,7 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 | 22 | Kentucky river rows: creek cut + river trail zones on the Finder | 2 | the Ballard / Lewis and Clark spot follows only the Ohio bank and shows the trails' bank zones live | RUNNING Nov 2: KY line run started 6:43 AM; then chat 11 + release | Nov 1 |
 
 | 23 | Skipped-run watchdog: GitHub's skipped scheduled runs restart by themselves (chat 2 + Brandon Nov 2) | 10 | data/status/watchdog.json lists restarted runs; no workflow sits a day without its run | RUNNING Nov 2: kpc-watchdog.yml in both repos, every 2 h (+ a second slot), first pass dispatched | Nov 2 |
-| 24 | Outside review round 2: patches G1-G11 applied in PLAN.md order (fresh clone, apply --check, test each) | 10 | each patch: a real run after it shows the fix (list the run ids) | OPEN | Nov 2 |
+| 24 | Outside review round 2: patches G1-G11 applied in PLAN.md order (fresh clone, apply --check, test each) | 10 | each patch: a real run after it shows the fix (list the run ids) | RUNNING: step 0 test build done (66 pass; 1 stale-fixture fail explained), G8/G9 KPC-Data rebased; G1 on main (Data 764f5fd0, Links 4b5f19c), proof run = the 10:33 watchdog run | Nov 2 |
 | 25 | 2-fer layer / PDF / GPX in PREVIEW (members only) from the reviewed list | 10 + 8 | the preview layer shows the 335 reviewed spots to members | OPEN | Nov 2 |
 | 26 | Hours publish PREVIEW, Kentucky only | 10 + 2 | Brandon has read the changes list | OPEN | Nov 2 |
 | 27 | World key's 4,330 YES released, THEN G6 (pages stop showing unapproved keys) | 10 + 3 | Sunday's world number rises; no country blank | OPEN | Nov 2 |
