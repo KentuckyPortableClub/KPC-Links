@@ -1,0 +1,1238 @@
+{
+ "about": "Canada HARD LOOK -> the Canada key (chat 2, Nov 2 2026; chat 10 Nov 1 12:30 AM + Brandon 'do it'). Chat 11's YES rows in KPC-Data",
+ "from": "/home/claude/kpc-data/data/waiting/questions/hardlook.json",
+ "rows": [
+  {
+   "ref": "CA-1194",
+   "url": "https://geo.sylvanlake.ca/server/rest/services/Tourism/ParkArea/FeatureServer/0",
+   "name_field": "ParkName",
+   "record_name": "",
+   "oid": 1649
+  },
+  {
+   "ref": "CA-4558",
+   "url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/Provincial_Protected_Areas/FeatureServer/0",
+   "name_field": "NAME_E",
+   "record_name": "Middle Ridge Wildlife Reserve",
+   "oid": 46
+  },
+  {
+   "ref": "CA-4816",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 48
+  },
+  {
+   "ref": "CA-4817",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 14
+  },
+  {
+   "ref": "CA-4821",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 425
+  },
+  {
+   "ref": "CA-4822",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 411
+  },
+  {
+   "ref": "CA-0023",
+   "url": "https://services7.arcgis.com/7xVQ8rKWOtAFBw48/arcgis/rest/services/Frontenac_Arch_Biosphere_Region_Boundary/FeatureServer/0",
+   "name_field": "Name",
+   "record_name": "Frontenac Arch Biosphere Reserve",
+   "oid": 1
+  },
+  {
+   "ref": "CA-0177",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7",
+   "name_field": "OFFICIAL_NAME",
+   "record_name": "Chapleau Crown Game Preserve",
+   "where": "OGF_ID = 450757661"
+  },
+  {
+   "ref": "CA-1596",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Hog",
+   "oid": 1
+  },
+  {
+   "ref": "CA-1658",
+   "url": "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/32",
+   "name_field": "NAME",
+   "record_name": "SUNNIDALE PARK",
+   "oid": 96
+  },
+  {
+   "ref": "CA-1660",
+   "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
+   "name_field": "Name",
+   "record_name": "Edenvale Conservation Area",
+   "oid": 1
+  },
+  {
+   "ref": "CA-1661",
+   "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
+   "name_field": "Name",
+   "record_name": "Fort Willow Conservation Area",
+   "oid": 2
+  },
+  {
+   "ref": "CA-1678",
+   "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
+   "name_field": "Name",
+   "record_name": "New Lowell Conservation Area",
+   "oid": 4
+  },
+  {
+   "ref": "CA-4861",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "Butler",
+   "oid": 4691
+  },
+  {
+   "ref": "CA-4865",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 2355
+  },
+  {
+   "ref": "CA-4873",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "",
+   "oid": 4695
+  },
+  {
+   "ref": "CA-4887",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "Sir John Johnson House National Historic Site",
+   "oid": 4694
+  },
+  {
+   "ref": "CA-4890",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
+   "name_field": "name_en",
+   "record_name": "Woodside National Historic Site",
+   "oid": 2332
+  },
+  {
+   "ref": "CA-5114",
+   "url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Parks_OD/FeatureServer/6",
+   "name_field": "NAME",
+   "record_name": "Pier 4 Park",
+   "oid": 567
+  },
+  {
+   "ref": "CA-5297",
+   "url": "https://services.arcgis.com/aji2lCmjXt0KpGzI/arcgis/rest/services/FacilitySites_Select_Merge/FeatureServer/0",
+   "name_field": "NAME",
+   "record_name": "Bell Homestead Historic Site",
+   "oid": 111
+  },
+  {
+   "ref": "CA-5314",
+   "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
+   "name_field": "Name",
+   "record_name": "Tottenham Conservation Area",
+   "oid": 9
+  },
+  {
+   "ref": "CA-5506",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+   "name_field": "TRAIL_NAME",
+   "record_name": "Nine Mile Portage Heritage Trail",
+   "where": "OGF_ID = 143666935"
+  },
+  {
+   "ref": "CA-5528",
+   "url": "https://services2.arcgis.com/9LnN9037wYhPG904/arcgis/rest/services/VAUGHAN_PARKS/FeatureServer/0",
+   "name_field": "NAME",
+   "record_name": "Mackenzie Glen District Park",
+   "oid": 639
+  },
+  {
+   "ref": "CA-5641",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
+   "name_field": "name",
+   "record_name": "Sylvan Glen C.A.",
+   "oid": 12
+  },
+  {
+   "ref": "CA-5645",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
+   "name_field": "name",
+   "record_name": "Ball",
+   "oid": 15
+  },
+  {
+   "ref": "CA-5650",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
+   "name_field": "name",
+   "record_name": "Thurne Parks C.A.",
+   "oid": 11
+  },
+  {
+   "ref": "CA-5945",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0",
+   "name_field": "NAME",
+   "record_name": "Cooper Marsh",
+   "oid": 602
+  },
+  {
+   "ref": "CA-6139",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5",
+   "name_field": "NAME_ENG",
+   "record_name": "Fingal Wildlife Management Area",
+   "oid": 202385
+  },
+  {
+   "ref": "CA-6204",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Vincent Massey Park",
+   "oid": 2
+  },
+  {
+   "ref": "CA-6256",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Major",
+   "oid": 10
+  },
+  {
+   "ref": "CA-6257",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Rideau Falls Park and Green Island",
+   "oid": 13
+  },
+  {
+   "ref": "CA-6337",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "LeBreton Flats Park",
+   "oid": 6
+  },
+  {
+   "ref": "CA-6345",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Confederation Park",
+   "oid": 8
+  },
+  {
+   "ref": "CA-6512",
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name_field": "NAME_EN",
+   "record_name": "Kìwekì Point",
+   "oid": 11
+  },
+  {
+   "ref": "CA-6617",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "H.R. Frink Conservation Area",
+   "oid": 17102
+  },
+  {
+   "ref": "CA-3590",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 19934
+  },
+  {
+   "ref": "CA-0771",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0",
+   "name_field": "NAME",
+   "record_name": "",
+   "oid": 4
+  },
+  {
+   "ref": "CA-4552",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 22153
+  },
+  {
+   "ref": "CA-4320",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 22074
+  },
+  {
+   "ref": "CA-0130",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40673
+  },
+  {
+   "ref": "CA-0131",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58817
+  },
+  {
+   "ref": "CA-0138",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59377
+  },
+  {
+   "ref": "CA-0142",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40321
+  },
+  {
+   "ref": "CA-0143",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59441
+  },
+  {
+   "ref": "CA-0144",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 55729
+  },
+  {
+   "ref": "CA-0145",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36385
+  },
+  {
+   "ref": "CA-0151",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36241
+  },
+  {
+   "ref": "CA-0153",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59793
+  },
+  {
+   "ref": "CA-0154",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59345
+  },
+  {
+   "ref": "CA-0160",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 60161
+  },
+  {
+   "ref": "CA-0402",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 22306
+  },
+  {
+   "ref": "CA-0491",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 10431
+  },
+  {
+   "ref": "CA-0512",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 10442
+  },
+  {
+   "ref": "CA-0513",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 14588
+  },
+  {
+   "ref": "CA-1918",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 10396
+  },
+  {
+   "ref": "CA-1923",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 10393
+  },
+  {
+   "ref": "CA-1949",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 14577
+  },
+  {
+   "ref": "CA-1961",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 22100
+  },
+  {
+   "ref": "CA-1985",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 12169
+  },
+  {
+   "ref": "CA-1987",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 12043
+  },
+  {
+   "ref": "CA-2106",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 12095
+  },
+  {
+   "ref": "CA-4910",
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "name_field": "NAME_E",
+   "record_name": "",
+   "oid": 22060
+  },
+  {
+   "ref": "CA-0162",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37297
+  },
+  {
+   "ref": "CA-0164",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 55857
+  },
+  {
+   "ref": "CA-0167",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39537
+  },
+  {
+   "ref": "CA-0169",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 53777
+  },
+  {
+   "ref": "CA-0170",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 55041
+  },
+  {
+   "ref": "CA-0171",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37169
+  },
+  {
+   "ref": "CA-0173",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39025
+  },
+  {
+   "ref": "CA-0181",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59873
+  },
+  {
+   "ref": "CA-0184",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39345
+  },
+  {
+   "ref": "CA-0188",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59185
+  },
+  {
+   "ref": "CA-0189",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40977
+  },
+  {
+   "ref": "CA-0193",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59105
+  },
+  {
+   "ref": "CA-0194",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59585
+  },
+  {
+   "ref": "CA-0197",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 57313
+  },
+  {
+   "ref": "CA-0204",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 53137
+  },
+  {
+   "ref": "CA-0206",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59073
+  },
+  {
+   "ref": "CA-0207",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59057
+  },
+  {
+   "ref": "CA-0209",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 55713
+  },
+  {
+   "ref": "CA-0212",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45921
+  },
+  {
+   "ref": "CA-0216",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45121
+  },
+  {
+   "ref": "CA-0219",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40097
+  },
+  {
+   "ref": "CA-0220",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40753
+  },
+  {
+   "ref": "CA-0224",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58577
+  },
+  {
+   "ref": "CA-0233",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37105
+  },
+  {
+   "ref": "CA-0235",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39745
+  },
+  {
+   "ref": "CA-0236",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58897
+  },
+  {
+   "ref": "CA-0237",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59553
+  },
+  {
+   "ref": "CA-0239",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59393
+  },
+  {
+   "ref": "CA-0243",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47441
+  },
+  {
+   "ref": "CA-0244",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40257
+  },
+  {
+   "ref": "CA-0246",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59617
+  },
+  {
+   "ref": "CA-0247",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36497
+  },
+  {
+   "ref": "CA-0248",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45761
+  },
+  {
+   "ref": "CA-0249",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39937
+  },
+  {
+   "ref": "CA-0252",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59729
+  },
+  {
+   "ref": "CA-0253",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59665
+  },
+  {
+   "ref": "CA-0254",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 60001
+  },
+  {
+   "ref": "CA-0255",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36849
+  },
+  {
+   "ref": "CA-0265",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 35569
+  },
+  {
+   "ref": "CA-0266",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40129
+  },
+  {
+   "ref": "CA-0272",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58945
+  },
+  {
+   "ref": "CA-0278",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37505
+  },
+  {
+   "ref": "CA-0281",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 53217
+  },
+  {
+   "ref": "CA-0282",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47873
+  },
+  {
+   "ref": "CA-0284",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 41409
+  },
+  {
+   "ref": "CA-0289",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59745
+  },
+  {
+   "ref": "CA-0290",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 54737
+  },
+  {
+   "ref": "CA-0291",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 38433
+  },
+  {
+   "ref": "CA-0294",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59985
+  },
+  {
+   "ref": "CA-0295",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40593
+  },
+  {
+   "ref": "CA-0300",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45777
+  },
+  {
+   "ref": "CA-0303",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58961
+  },
+  {
+   "ref": "CA-0304",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58977
+  },
+  {
+   "ref": "CA-0306",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58641
+  },
+  {
+   "ref": "CA-0308",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 38641
+  },
+  {
+   "ref": "CA-0312",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 43569
+  },
+  {
+   "ref": "CA-0313",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37393
+  },
+  {
+   "ref": "CA-0314",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 38241
+  },
+  {
+   "ref": "CA-0315",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47777
+  },
+  {
+   "ref": "CA-0316",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37233
+  },
+  {
+   "ref": "CA-0317",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59681
+  },
+  {
+   "ref": "CA-0320",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 60081
+  },
+  {
+   "ref": "CA-0323",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45857
+  },
+  {
+   "ref": "CA-0324",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37633
+  },
+  {
+   "ref": "CA-0325",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47697
+  },
+  {
+   "ref": "CA-0327",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37457
+  },
+  {
+   "ref": "CA-0334",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59281
+  },
+  {
+   "ref": "CA-0335",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47745
+  },
+  {
+   "ref": "CA-0339",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36689
+  },
+  {
+   "ref": "CA-0342",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58929
+  },
+  {
+   "ref": "CA-0349",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59649
+  },
+  {
+   "ref": "CA-0352",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 56001
+  },
+  {
+   "ref": "CA-0356",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39009
+  },
+  {
+   "ref": "CA-0357",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59953
+  },
+  {
+   "ref": "CA-0358",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58241
+  },
+  {
+   "ref": "CA-0359",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36913
+  },
+  {
+   "ref": "CA-0363",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45841
+  },
+  {
+   "ref": "CA-0368",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37377
+  },
+  {
+   "ref": "CA-0370",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 50961
+  },
+  {
+   "ref": "CA-0375",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 53329
+  },
+  {
+   "ref": "CA-0376",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47601
+  },
+  {
+   "ref": "CA-0380",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47633
+  },
+  {
+   "ref": "CA-0389",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37905
+  },
+  {
+   "ref": "CA-0390",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40273
+  },
+  {
+   "ref": "CA-0394",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 50977
+  },
+  {
+   "ref": "CA-0397",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36033
+  },
+  {
+   "ref": "CA-0399",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59297
+  },
+  {
+   "ref": "CA-0400",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45825
+  },
+  {
+   "ref": "CA-0408",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37153
+  },
+  {
+   "ref": "CA-0410",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59489
+  },
+  {
+   "ref": "CA-0412",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36113
+  },
+  {
+   "ref": "CA-0421",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 52801
+  },
+  {
+   "ref": "CA-0424",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59713
+  },
+  {
+   "ref": "CA-0425",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58625
+  },
+  {
+   "ref": "CA-0426",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 57297
+  },
+  {
+   "ref": "CA-0433",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 40529
+  },
+  {
+   "ref": "CA-0439",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58993
+  },
+  {
+   "ref": "CA-0441",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36817
+  },
+  {
+   "ref": "CA-0443",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59425
+  },
+  {
+   "ref": "CA-1039",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36593
+  },
+  {
+   "ref": "CA-1040",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 45793
+  },
+  {
+   "ref": "CA-1044",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47649
+  },
+  {
+   "ref": "CA-1045",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 43553
+  },
+  {
+   "ref": "CA-1047",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59969
+  },
+  {
+   "ref": "CA-1302",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 39841
+  },
+  {
+   "ref": "CA-1306",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 35905
+  },
+  {
+   "ref": "CA-1375",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 36961
+  },
+  {
+   "ref": "CA-1420",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 58673
+  },
+  {
+   "ref": "CA-1430",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47361
+  },
+  {
+   "ref": "CA-1556",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47809
+  },
+  {
+   "ref": "CA-1558",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 47393
+  },
+  {
+   "ref": "CA-1575",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 43537
+  },
+  {
+   "ref": "CA-1710",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 37185
+  },
+  {
+   "ref": "CA-1711",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "name_field": "PROTECTED_AREA_NAME_ENG",
+   "record_name": "",
+   "oid": 59537
+  }
+ ]
+}

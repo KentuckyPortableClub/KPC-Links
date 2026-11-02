@@ -43,6 +43,8 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || true
           # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
           if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true; fi
+          # Nov 2 (chat 2): chat 11's Canada hard-look YES records (KPC-Data questions/hardlook.json) -> data/ca-key/hardlook-joins.json
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json 2>/dev/null && git -C .hl checkout -q 2>/dev/null && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || true; rm -rf .hl
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).

@@ -480,6 +480,34 @@ def around(la, lo):
 # A FAIL means the read or the matcher broke: the old province files are kept (nothing saved) and the run says so.
 GATE_REFS = {'CA-0005': 'Banff', 'CA-0040': 'Jasper', 'CA-0138': 'Algonquin', 'CA-0030': 'Gros Morne', 'CA-0010': 'Bruce Peninsula'}
 PENDING = []
+# Nov 2 (chat 10 + HQ, Brandon 'do it'): chat 11's YES rows from the Canada HARD LOOK name the exact layer + record for a park
+# (data/ca-key/hardlook-joins.json, made from KPC-Data questions/hardlook.json by kpc_ca_hardlook.py). Each record is read by its
+# own id (or the named id field / name) and joins its park when the key found nothing else. Layer ids 'Hard look~N' go in layers.json.
+HLR = {}
+try:
+    _hj = json.load(open(OUT / 'hardlook-joins.json')).get('rows') or []
+    _L = json.load(open(OUT / 'layers.json')) if (OUT / 'layers.json').exists() else {}
+    _hu = {}
+    for _r in _hj:
+        _u = _r['url'].rstrip('/'); _pid = _hu.setdefault(_u, f'Hard look~{len(_hu)}'); _L[_pid] = [_u]
+        _q = {'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': 5, 'f': 'json'}
+        if _r.get('oid') is not None: _q['objectIds'] = str(_r['oid'])
+        else: _q['where'] = _r['where']
+        try:
+            _info = get(_u, {'f': 'json'}); _oidf = _info.get('objectIdField') or next((f['name'] for f in _info.get('fields', []) if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
+            _fs = (get(_u + '/query', _q) or {}).get('features') or []
+        except Exception as _e: notice('Canada hard look', f"{_r['ref']} read failed: {str(_e)[:100]}"); continue  # noqa: BLE001
+        _fs = [f for f in _fs if (f.get('geometry') or {}).get('rings')]
+        if not _fs: continue
+        _g = {'rings': [rg for f in _fs for rg in f['geometry']['rings']]}
+        _a = _fs[0].get('attributes') or {}
+        _nm = str(_a.get(_r.get('name_field') or '') or _r.get('record_name') or _r['ref'])
+        _ids = [str(f['attributes'].get(_oidf)) for f in _fs if (f.get('attributes') or {}).get(_oidf) is not None]
+        HLR[_r['ref']] = {'oid': f"{_pid}:{_ids[0]}" if _ids else f"{_pid}:n-{_nm[:40]}", 'n': _nm, 'nf': '', 'ty': 'hard look', 'ow': '', 'mg': '', 'ha': 0, '_g': _g, '_bb': bbox(_g), 'src': 'Canada hard look (chat 11 YES)', '_k': kinds(_nm)}
+    save_json(OUT / 'layers.json', _L, indent=1)
+    notice('Canada hard look', f'{len(HLR)} of {len(_hj)} chat 11 YES records read for joining')
+except FileNotFoundError: pass
+except Exception as _e: notice('Canada hard look', f'stopped: {str(_e)[:150]}')  # noqa: BLE001
 by = {}
 for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {})[ref] = x
 idx = {}
@@ -519,6 +547,8 @@ for pv, parks_in in sorted(by.items()):
                     oldid = ':' in str(want) and '~' not in str(want) and re.sub(r'~\d+:', ':', str(r['oid'])) == str(want) and str(r['oid']) != str(want)
                     if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want) or (oldid and la is not None and near(la, lo, r['_bb'], .1))) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
+        if not m and ref in HLR and not (ov or {}).get('none'):   # Nov 2: chat 11's hard-look YES record (see HLR above)
+            _hr = HLR[ref]; m.append([_hr['oid'], _hr['n'], acres(_hr), 'reviewed (chat 11 YES, Canada hard look)'])
         # Oct 29 (chat 2 + chat 8, as in the US key): 'alias' = another name the official layer uses; joins ONLY with the pin inside it
         if not m and la is not None and ov.get('alias'):
             for al in ov['alias']:
