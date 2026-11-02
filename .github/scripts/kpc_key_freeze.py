@@ -50,13 +50,13 @@ def check(kind):
         notice(f'{kind}: no stamped build waiting for chat 11: building is allowed'); return
     ap = gh_json('data/waiting/approved.json') or {}
     items = ap.get('items') if isinstance(ap, dict) else ap
-    graded = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and str(it.get('build') or '') == bid and str(it.get('chat11') or '').strip()]
+    graded = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and (str(it.get('build') or '') == bid or bid in str(it.get('chat11') or '')) and str(it.get('chat11') or '').strip()]   # the id in the verdict text counts too
     if graded:
         it = graded[-1]; v = str(it.get('chat11') or '').strip().upper()
         yes = v.startswith(('YES', 'PASS', 'KEY YES', 'KEY PASS'))
         per_park = kind == 'us-key' and v.startswith(('NO', 'KEY NO')) and (os.environ.get('KPC_PER_PARK', '1') != '0')
         used = gh_json('data/waiting/approved-used.json') or {}
-        done = any(f'"build": "{bid}"' in k and f'"what": "{kind}"' in k for k in used)
+        done = any(bid in k and f'"what": "{kind}"' in k for k in used)
         if (yes or per_park) and not done:   # Brandon: 'no new build ... until the answers are saved and RELEASED'
             env = os.environ.get('GITHUB_ENV')
             if env:
