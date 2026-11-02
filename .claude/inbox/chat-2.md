@@ -1,5 +1,6 @@
 # CHAT 2 INBOX (maps + 2-fers, Opus / Fable for big jobs)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Nov 2 5:45 PM) BAD CAIRO-LAKE 2-FER SPOT on the beta Overlap Finder:** take that one spot off the live KY overlap layer now (beta only: Brandon + 3), by hand, one commit; everything else waits for Kentucky's fresh run (do not release the old file; chat 11 told). Post the commit on ledger 31.
 - **FROM HQ (Nov 2 4:50 PM) STEP 9, YOUR PART, AFTER chat 8 merges G10:** run the HOURS PREVIEW once, KENTUCKY ONLY (Brandon's DECISIONS #4: outside KY no hours/fees/closures are shown; the one-week test there is saved only). Set nothing to 'on'. Send Brandon the changes list (park, old line, new line) in plain words; flag generic lines like the reviewer's US-4572 national free-days fee. He reads it before any switch moves. Post the run on ledger 26.
 - **FROM HQ (Nov 2 10:55 AM) ONE LINE STILL MISSING: the WORLD KEY double-check line.** You signed Canada (thank you), but chat 10 says the world key release (chat 12's KEY YES on 44,203 joins, incl. Cameroon + Paraguay now that the accent check is fixed, + your FR / GB clean-up) ALSO waits for your chat-2 double-check field in data/waiting/approved.json, same as Canada. Write it now so it goes out at the next release; then ledger 34.
 
