@@ -52,7 +52,17 @@ def check(kind):
     items = ap.get('items') if isinstance(ap, dict) else ap
     graded = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and str(it.get('build') or '') == bid and str(it.get('chat11') or '').strip()]
     if graded:
-        notice(f"{kind}: build {bid} has chat 11's verdict ({str(graded[-1].get('chat11'))[:60]}): a new build may start"); return
+        it = graded[-1]; v = str(it.get('chat11') or '').strip().upper()
+        yes = v.startswith(('YES', 'PASS', 'KEY YES', 'KEY PASS'))
+        per_park = kind == 'us-key' and v.startswith(('NO', 'KEY NO')) and (os.environ.get('KPC_PER_PARK', '1') != '0')
+        used = gh_json('data/waiting/approved-used.json') or {}
+        done = any(f'"build": "{bid}"' in k and f'"what": "{kind}"' in k for k in used)
+        if (yes or per_park) and not done:   # Brandon: 'no new build ... until the answers are saved and RELEASED'
+            env = os.environ.get('GITHUB_ENV')
+            if env:
+                with open(env, 'a') as f: f.write(f'FROZEN=1\nFROZEN_BUILD={bid}\n')
+            notice(f"{kind}: FROZEN: build {bid} is graded ({v[:40]}) and waits for its release (every 2 h); no new build until it is out"); return
+        notice(f"{kind}: build {bid} has chat 11's verdict ({v[:60]}){' and was released' if done else ''}: a new build may start"); return
     env = os.environ.get('GITHUB_ENV')
     if env:
         with open(env, 'a') as f: f.write(f'FROZEN=1\nFROZEN_BUILD={bid}\n')

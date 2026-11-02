@@ -10,6 +10,9 @@ on:
         description: 'Build from the saved outlines (no full re-read of every map; newer layers are topped up)'
         type: boolean
         default: false
+      force:
+        description: "yes = build even while chat 11 grades a held build (Brandon's freeze, Nov 2: by hand only)"
+        default: 'no'
 permissions:
   contents: write
   issues: write
@@ -22,6 +25,13 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5
+      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM) - a held build chat 11 has not graded, or graded and not yet released, means no new build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          python3 .github/scripts/kpc_key_freeze.py check ca-key || true
+          if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
           SCHED: ${{ github.event.schedule }}
@@ -71,6 +81,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_ca_key_issue.py
+      - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
+        if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        run: python3 .github/scripts/kpc_key_freeze.py stamp ca-key || true
       - name: Save
         if: ${{ always() && env.SKIP != '1' }}
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
