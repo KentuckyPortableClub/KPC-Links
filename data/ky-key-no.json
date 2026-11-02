@@ -1,0 +1,14 @@
+{
+ "about": "Kentucky key: tracts a person said NO to (map audit, chat 11). kpc_ky_key.js drops them. 'layer:outline name' as in data/ky-answer-key.json tracts.",
+ "parks": {
+  "US-7958": [
+   "bsnp:Tom Dorman State Nature Preserve"
+  ],
+  "US-7957": [
+   "bsnp:Vernon-Douglas State Nature Preserve"
+  ],
+  "US-10103": [
+   "bwild:Cumberland River Wild River"
+  ]
+ }
+}

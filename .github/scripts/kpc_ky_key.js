@@ -73,6 +73,13 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   // in its acreage (raster check: Bissell Bluff 99.9% and Newman's Bluff 99.8% inside KDFWR's Livingston WMA polygon; KDFWR's Big South
   // Fork hunting polygon 99.3% inside the NPS unit). The park keeps its land; only the double count goes.
   const SAME_LAND = { 'US-3823': ['bsnp'], 'US-0686': ['bwma'] };
+  // Nov 2 (chat 2, map audit): chat 11's NO on a Kentucky tract (data/ky-key-no.json {ref: ['layer:outline name', ...]}): the tract
+  // leaves the park (Tom Dorman alone is not 'Kentucky River Palisades/Tom Dorman'; the Cumberland Wild River is not the Wilderness).
+  let KNO = {}; try { KNO = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ky-key-no.json'), 'utf8')).parks || {}; } catch (e) {}
+  for (const r in KNO) if (parks[r]) {
+    const bad = new Set(KNO[r]), gone = parks[r].tracts.filter(t => bad.has(t[0] + ':' + t[1]));
+    if (gone.length) { parks[r].tracts = parks[r].tracts.filter(t => !bad.has(t[0] + ':' + t[1])); parks[r].said_no = gone.map(t => t[1]); }
+  }
   for (const r in SAME_LAND) if (parks[r] && parks[r].tracts.some(t => !SAME_LAND[r].includes(t[0]))) {
     const gone = parks[r].tracts.filter(t => SAME_LAND[r].includes(t[0]));
     if (gone.length) { parks[r].tracts = parks[r].tracts.filter(t => !SAME_LAND[r].includes(t[0])); parks[r].same_land_dropped = gone.map(t => t[1] + ' (' + t[2] + ' ac, inside the main outline)'); }

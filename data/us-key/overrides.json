@@ -257,10 +257,17 @@
   },
   "US-0150": {
    "no": [
-    "fws448"
+    "fws448",
+    "4005"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: 'Kodiak Office' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Kodiak Office' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: 'Kodiak Office' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Kodiak Office' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 4005 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "nofp": {
+    "4005": [
+     "Kodiak National Wildlife Refuge",
+     1637748.8
+    ]
+   }
   },
   "US-0171": {
    "fp": {
@@ -324,8 +331,17 @@
    "join": [
     "Penrose Commons SRMA"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on rst13932 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "rst13932"
+   ],
+   "nofp": {
+    "rst13932": [
+     "Penrose Commons SRMA",
+     2346.1
+    ]
+   }
   },
   "US-0184": {
    "fp": {
@@ -584,13 +600,31 @@
   },
   "US-0425": {
    "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws1871 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "no": [
+    "fws1871"
+   ],
+   "nofp": {
+    "fws1871": [
+     "TOWNER COUNTY WATERFOWL PRODUCTION AREA",
+     53346.6
+    ]
+   }
   },
   "US-0428": {
    "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws2592 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "fws2592"
+   ],
+   "nofp": {
+    "fws2592": [
+     "PIERCE COUNTY WATERFOWL PRODUCTION AREA",
+     34027.8
+    ]
+   }
   },
   "US-0446": {
    "no": [
@@ -1206,8 +1240,14 @@
    "no": [
     "2743"
    ],
-   "when": "2026-10-30",
-   "why": "2026-10-30 10:50 chat 2 (G-4 on held 2-fers): Coronado National MEMORIAL was joined to the whole Coronado National FOREST (1.65M ac): made a 135 km 'pair' with Catalina SP"
+   "when": "2026-11-02",
+   "why": "2026-10-30 10:50 chat 2 (G-4 on held 2-fers): Coronado National MEMORIAL was joined to the whole Coronado National FOREST (1.65M ac): made a 135 km 'pair' with Catalina SP · Nov 2 map audit: chat 11 NO on 2743 (NO (chat 11, Nov 2): PIN. record is Coronado National Forest (1.66M ac)",
+   "nofp": {
+    "2743": [
+     "Coronado National Forest",
+     1656911.7
+    ]
+   }
   },
   "US-0776": {
    "join": [
@@ -1677,8 +1717,17 @@
    "join": [
     "Lake DePue State Fish and Wildlife Area"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 382 m from the edge, 2224.4 ac; a piece where the park is bigger)"
+   "when": "2026-11-02",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 382 m from the edge, 2224.4 ac; a piece where the park is bigger) · Nov 2 map audit: chat 11 NO on sgila1693 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "no": [
+    "sgila1693"
+   ],
+   "nofp": {
+    "sgila1693": [
+     "Lake DePue State Fish and Wildlife Area",
+     2266.1
+    ]
+   }
   },
   "US-0991": {
    "fp": {
@@ -1902,11 +1951,18 @@
     "sgakh1935"
    ],
    "no": [
-    "sgakg10853"
+    "sgakg10853",
+    "sgakh1935"
    ],
    "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row NO 'Christmas Valley Sand Dunes' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Lost Forest-Sand Dunes-Fossil Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row NO 'Christmas Valley Sand Dunes' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Lost Forest-Sand Dunes-Fossil Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgakh1935 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "nofp": {
+    "sgakh1935": [
+     "Lost Forest-Sand Dunes-Fossil Lake",
+     26743.5
+    ]
+   }
   },
   "US-10027": {
    "join": [
@@ -2550,7 +2606,16 @@
     "sgiab104129"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Marble Beach State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Marble Beach State Recreation Area' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 199096 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "199096"
+   ],
+   "nofp": {
+    "199096": [
+     "Marble Lake",
+     205.5
+    ]
+   }
   },
   "US-10175": {
    "fp": {
@@ -2569,8 +2634,17 @@
    "join": [
     "10 O'clock Line Nature Preserve"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 201050 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "201050"
+   ],
+   "nofp": {
+    "201050": [
+     "10 O'clock Line Nature Preserve",
+     3341.5
+    ]
+   }
   },
   "US-1018": {
    "fp": {
@@ -2629,8 +2703,17 @@
    "join": [
     "Sam Parr State Fish and Wildlife Area"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 70880 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )",
+   "no": [
+    "70880"
+   ],
+   "nofp": {
+    "70880": [
+     "Sam Parr State Fish and Wildlife Area",
+     1163.6
+    ]
+   }
   },
   "US-10202": {
    "fp": {
@@ -3210,8 +3293,17 @@
    "alias_ok_names": [
     "DeSoto State Park"
    ],
-   "when": "2026-10-29",
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'DeSoto State Park' and the POTA pin is inside it; joins only with the pin inside"
+   "when": "2026-11-02",
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'DeSoto State Park' and the POTA pin is inside it; joins only with the pin inside · Nov 2 map audit: chat 11 NO on 256241 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "256241"
+   ],
+   "nofp": {
+    "256241": [
+     "DeSoto State Park",
+     1595.6
+    ]
+   }
   },
   "US-10390": {
    "fp": {
@@ -5031,7 +5123,16 @@
    ],
    "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "sgarb44"
+   ],
+   "nofp": {
+    "sgarb44": [
+     "DeGray Lake Resort State Park",
+     12342.6
+    ]
+   }
   },
   "US-10805": {
    "none": true,
@@ -5250,7 +5351,16 @@
     "sgarb4"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Chicot State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Chicot State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 166845 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "166845"
+   ],
+   "nofp": {
+    "166845": [
+     "Lake Chicot State Park",
+     4689.9
+    ]
+   }
   },
   "US-10904": {
    "join": [
@@ -5336,10 +5446,17 @@
     "sgarb45"
    ],
    "no": [
-    "Dardanelle Recreation Area"
+    "Dardanelle Recreation Area",
+    "166846"
    ],
    "when": "2026-11-02",
-   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Lake Dardanelle State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Lake Dardanelle State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 166846 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "nofp": {
+    "166846": [
+     "Lake Dardanelle State Park",
+     34258.0
+    ]
+   }
   },
   "US-10910": {
    "fp": {
@@ -5380,8 +5497,17 @@
    "join": [
     "195379"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195379 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "195379"
+   ],
+   "nofp": {
+    "195379": [
+     "Kaena Point State Park",
+     1137.5
+    ]
+   }
   },
   "US-10918": {
    "approx": true,
@@ -5394,8 +5520,17 @@
    "join": [
     "195408"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195408 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "195408"
+   ],
+   "nofp": {
+    "195408": [
+     "Waahila Ridge State Recreation Area",
+     71.6
+    ]
+   }
   },
   "US-1092": {
    "fp": {
@@ -5408,7 +5543,16 @@
     "sgarb19"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Fort Smith State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Fort Smith State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb19 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "sgarb19"
+   ],
+   "nofp": {
+    "sgarb19": [
+     "Lake Fort Smith State Park",
+     1613.3
+    ]
+   }
   },
   "US-10920": {
    "alias": [
@@ -5470,7 +5614,16 @@
     "sgarb27"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Frierson State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Frierson State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb27 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "sgarb27"
+   ],
+   "nofp": {
+    "sgarb27": [
+     "Lake Frierson State Park",
+     455.4
+    ]
+   }
   },
   "US-1094": {
    "fp": {
@@ -5483,7 +5636,16 @@
     "sgarb13"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Ouachita State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Ouachita State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb13 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "sgarb13"
+   ],
+   "nofp": {
+    "sgarb13": [
+     "Lake Ouachita State Park",
+     39495.8
+    ]
+   }
   },
   "US-1095": {
    "fp": {
@@ -7429,8 +7591,17 @@
    "join": [
     "rst13911"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on rst13911 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "no": [
+    "rst13911"
+   ],
+   "nofp": {
+    "rst13911": [
+     "Campground - Hawkins Reservoir",
+     158.7
+    ]
+   }
   },
   "US-1132": {
    "fp": {
@@ -7814,8 +7985,17 @@
    "join": [
     "Battleship Memorial Park"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 166717 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "166717"
+   ],
+   "nofp": {
+    "166717": [
+     "Battleship Memorial Park",
+     80.8
+    ]
+   }
   },
   "US-11377": {
    "fp": {
@@ -9826,7 +10006,13 @@
    ],
    "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 pins-check (outside research B): the pin is in the Prophetstown Fen Nature Preserve subunit; the state park record is another unit"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 pins-check (outside research B): the pin is in the Prophetstown Fen Nature Preserve subunit; the state park record is another unit · Nov 2 map audit: chat 11 NO on sginb5702 (NO (chat 11, Nov 2): PIN. record is Prophetstown State Park, a differe)",
+   "nofp": {
+    "sginb5702": [
+     "Prophetstown State Park",
+     15.8
+    ]
+   }
   },
   "US-12029": {
    "join": [
@@ -10203,8 +10389,17 @@
     "cow29",
     "184168"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on rst13946 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "rst13946"
+   ],
+   "nofp": {
+    "rst13946": [
+     "Arkansas River SRMA",
+     5307.6
+    ]
+   }
   },
   "US-12085": {
    "join": [
@@ -10473,8 +10668,17 @@
    "join": [
     "Paradise Run"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 190247 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "190247"
+   ],
+   "nofp": {
+    "190247": [
+     "Paradise Run",
+     3317.9
+    ]
+   }
   },
   "US-12126": {
    "approx": true,
@@ -10487,8 +10691,17 @@
    "join": [
     "190265"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 190265 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "no": [
+    "190265"
+   ],
+   "nofp": {
+    "190265": [
+     "Stormwater Treatment Areas",
+     47575.9
+    ]
+   }
   },
   "US-12127": {
    "approx": true,
@@ -10542,8 +10755,17 @@
    "join": [
     "Allen David Broussard Catfish Creek Preserve State Park"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on sgfla133 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "sgfla133"
+   ],
+   "nofp": {
+    "sgfla133": [
+     "Allen David Broussard Catfish Creek Preserve State Park",
+     8403.7
+    ]
+   }
   },
   "US-12135": {
    "join": [
@@ -11705,8 +11927,17 @@
   },
   "US-12395": {
    "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgmnd20 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "sgmnd20"
+   ],
+   "nofp": {
+    "sgmnd20": [
+     "Saint Croix Boom Site",
+     103.5
+    ]
+   }
   },
   "US-12397": {
    "fp": {
@@ -13133,8 +13364,17 @@
    "join": [
     "165883"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 165883 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "165883"
+   ],
+   "nofp": {
+    "165883": [
+     "Kenai River Special Management Area",
+     45768.5
+    ]
+   }
   },
   "US-12712": {
    "fp": {
@@ -13166,8 +13406,17 @@
    "join": [
     "Deep River State Trail"
    ],
-   "when": "2026-10-22",
-   "why": "same trail (hand review Oct 22 (shadow check))"
+   "when": "2026-11-02",
+   "why": "same trail (hand review Oct 22 (shadow check)) · Nov 2 map audit: chat 11 NO on 214825 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "214825"
+   ],
+   "nofp": {
+    "214825": [
+     "Deep River State Trail",
+     1669.1
+    ]
+   }
   },
   "US-12719": {
    "alias": [
@@ -19190,10 +19439,17 @@
   },
   "US-1660": {
    "no": [
-    "52976"
+    "52976",
+    "sgcta4115"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: 'Day Pond State Park and Salmon River State Forest' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Day Pond State Park and Salmon River Sta' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: 'Day Pond State Park and Salmon River State Forest' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Day Pond State Park and Salmon River Sta' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgcta4115 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "nofp": {
+    "sgcta4115": [
+     "Day Pond State Park",
+     965.0
+    ]
+   }
   },
   "US-1694": {
    "none": true,
@@ -19280,7 +19536,16 @@
     "sgdea102"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Delaware Seashore State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Delaware Seashore State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 60689 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "60689"
+   ],
+   "nofp": {
+    "60689": [
+     "Delaware Seashore State Park",
+     1971.7
+    ]
+   }
   },
   "US-1735": {
    "fp": {
@@ -19293,7 +19558,16 @@
     "sgdea226"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fenwick Island State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Fenwick Island State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 8811 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "8811"
+   ],
+   "nofp": {
+    "8811": [
+     "Fenwick Island Beach",
+     347.8
+    ]
+   }
   },
   "US-1736": {
    "fp": {
@@ -19388,10 +19662,17 @@
   },
   "US-1744": {
    "no": [
-    "52035"
+    "52035",
+    "9725"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: 'Wilmington and Western Railroad' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Wilmington and Western Railroad' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: 'Wilmington and Western Railroad' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Wilmington and Western Railroad' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 9725 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "nofp": {
+    "9725": [
+     "Wilmington State Parks",
+     0.2
+    ]
+   }
   },
   "US-1746": {
    "fp": {
@@ -19711,7 +19992,16 @@
     "sgmoa1495"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Meramec State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Meramec State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmoa1495 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "sgmoa1495"
+   ],
+   "nofp": {
+    "sgmoa1495": [
+     "Meramec State Park",
+     10690.1
+    ]
+   }
   },
   "US-1774": {
    "fp": {
@@ -25271,7 +25561,8 @@
    "no": [
     "sgiab104232",
     "sgiab104234",
-    "sgiab104231"
+    "sgiab104231",
+    "sgiaa33950"
    ],
    "nofp": {
     "sgiab104231": [
@@ -25285,10 +25576,14 @@
     "sgiab104234": [
      "Pilot Knob State Preserve",
      104
+    ],
+    "sgiaa33950": [
+     "PILOT KNOB RECREATION AREA",
+     302.9
     ]
    },
    "when": "2026-11-02",
-   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Pilot Knob State Preserve 129 ac (inside the park) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Pilot Knob State Preserve 129 ac (inside the park) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Pilot Knob State Preserve' (chat 11 (Oct 31); applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgiaa33950 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
   },
   "US-2314": {
    "fp": {
@@ -32465,8 +32760,17 @@
    "join": [
     "166064"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 166064 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "166064"
+   ],
+   "nofp": {
+    "166064": [
+     "Ruffner Mountain Nature Center",
+     225.5
+    ]
+   }
   },
   "US-3704": {
    "fp": {
@@ -33231,7 +33535,16 @@
     "sgncd83"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Kerr Lake' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Kerr Lake' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 211902 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "211902"
+   ],
+   "nofp": {
+    "211902": [
+     "Kerr Reservoir",
+     26414.7
+    ]
+   }
   },
   "US-3847": {
    "fp": {
@@ -33608,7 +33921,16 @@
     "sgsca60"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hickory Top WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hickory Top WMA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 253964 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "253964"
+   ],
+   "nofp": {
+    "253964": [
+     "Hickory Top Wildlife Management Area",
+     3964.5
+    ]
+   }
   },
   "US-3902": {
    "fp": {
@@ -33842,7 +34164,16 @@
     "sgtnf168"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Vesta Cedar Glade State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Vesta Cedar Glade State Natural Area' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgtnh30 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "sgtnh30"
+   ],
+   "nofp": {
+    "sgtnh30": [
+     "Vesta Cedar Glade State Natural Area",
+     147.4
+    ]
+   }
   },
   "US-3926": {
    "fp": {
@@ -34292,8 +34623,17 @@
    "join": [
     "Ozark National Scenic Riverways"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 3490 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "3490"
+   ],
+   "nofp": {
+    "3490": [
+     "Ozark National Scenic Riverways",
+     53180.0
+    ]
+   }
   },
   "US-4011": {
    "alias": [
@@ -35086,8 +35426,17 @@
    "join": [
     "Weinberg-King State Fish and Wildlife Area"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on sgila1154 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )",
+   "no": [
+    "sgila1154"
+   ],
+   "nofp": {
+    "sgila1154": [
+     "Weinberg-King State Fish and Wildlife Area",
+     2390.3
+    ]
+   }
   },
   "US-4107": {
    "fp": {
@@ -37945,7 +38294,16 @@
     "sgdea133"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Auburn Valley State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Auburn Valley State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgdee435 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "sgdee435"
+   ],
+   "nofp": {
+    "sgdee435": [
+     "Auburn Valley State Park",
+     342.1
+    ]
+   }
   },
   "US-4370": {
    "join": [
@@ -38026,8 +38384,17 @@
    "alias_ok_names": [
     "Newberry National Volcanic Monument"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57031.9 ac)"
+   "when": "2026-11-02",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57031.9 ac) · Nov 2 map audit: chat 11 NO on fsod87 (NO (chat 11, Nov 2): PIN. record is Mount St. Helens, pin 249 km away)",
+   "no": [
+    "fsod87"
+   ],
+   "nofp": {
+    "fsod87": [
+     "Mount St. Helens National Volcanic Monument",
+     113207.9
+    ]
+   }
   },
   "US-4391": {
    "fp": {
@@ -41436,7 +41803,16 @@
     "sgneb276"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sherman Reservoir SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Sherman Reservoir SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgneb276 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "sgneb276"
+   ],
+   "nofp": {
+    "sgneb276": [
+     "Sherman Reservoir SRA",
+     3633.6
+    ]
+   }
   },
   "US-5630": {
    "fp": {
@@ -41462,7 +41838,16 @@
     "sgneb415"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Merritt Reservoir SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Merritt Reservoir SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 2333 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "2333"
+   ],
+   "nofp": {
+    "2333": [
+     "Merritt Reservoir",
+     3243.6
+    ]
+   }
   },
   "US-5632": {
    "fp": {
@@ -41514,7 +41899,16 @@
     "sgneb402"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Swanson Reservoir SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Swanson Reservoir SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 2346 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "2346"
+   ],
+   "nofp": {
+    "2346": [
+     "Swanson Lake",
+     6020.3
+    ]
+   }
   },
   "US-5643": {
    "fp": {
@@ -41540,7 +41934,16 @@
     "sgneb164"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake McConaughy SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake McConaughy SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on nep29 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "nep29"
+   ],
+   "nofp": {
+    "nep29": [
+     "Lake McConaughy SRA",
+     5207.7
+    ]
+   }
   },
   "US-5647": {
    "fp": {
@@ -41673,7 +42076,16 @@
     "sgneb396"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Enders Reservoir SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Enders Reservoir SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 2318 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "2318"
+   ],
+   "nofp": {
+    "2318": [
+     "Enders Reservoir",
+     2544.7
+    ]
+   }
   },
   "US-5665": {
    "fp": {
@@ -43803,8 +44215,17 @@
    "join": [
     "Okaloacoochee Slough Wildlife Management Area"
    ],
-   "when": "2026-10-25",
-   "why": "Oct 25 round 5 hand check (outside research bot)"
+   "when": "2026-11-02",
+   "why": "Oct 25 round 5 hand check (outside research bot) · Nov 2 map audit: chat 11 NO on 191747 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "191747"
+   ],
+   "nofp": {
+    "191747": [
+     "Okaloacoochee Slough Wildlife Management Area",
+     58666.1
+    ]
+   }
   },
   "US-6333": {
    "fp": {
@@ -44453,7 +44874,16 @@
     "sghia65"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'KIHOLO STATE PARK RESERVE' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'KIHOLO STATE PARK RESERVE' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sghib258 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "sghib258"
+   ],
+   "nofp": {
+    "sghib258": [
+     "KIHOLO PRESERVE (NATURE CONSERVANCY)",
+     4483.9
+    ]
+   }
   },
   "US-6421": {
    "join": [
@@ -44689,7 +45119,16 @@
     "sgnjb265"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Spruce Run Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Spruce Run Recreation Area' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgnjb205 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "sgnjb205"
+   ],
+   "nofp": {
+    "sgnjb205": [
+     "Spruce Run Reservoir",
+     2139.1
+    ]
+   }
   },
   "US-6462": {
    "fp": {
@@ -45844,10 +46283,17 @@
   "US-6861": {
    "no": [
     "52998",
-    "sgctb2112"
+    "sgctb2112",
+    "sgcta4081"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page) · Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page)"
+   "when": "2026-11-02",
+   "why": "Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page) · Oct 29 3:05 PM: 'Massacoe State Forest' is not this park (chat 11 agency page) · Nov 2 map audit: chat 11 NO on sgcta4081 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "nofp": {
+    "sgcta4081": [
+     "Massacoe State Forest",
+     379.6
+    ]
+   }
   },
   "US-6864": {
    "fp": {
@@ -46074,8 +46520,17 @@
   },
   "US-6936": {
    "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgncb62 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "sgncb62"
+   ],
+   "nofp": {
+    "sgncb62": [
+     "Pisgah",
+     517861.7
+    ]
+   }
   },
   "US-6937": {
    "fp": {
@@ -47342,7 +47797,16 @@
    ],
    "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Minnesota Valley' (chat 11; applied by kpc_key_answers)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Minnesota Valley' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmnd2 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "no": [
+    "sgmnd2"
+   ],
+   "nofp": {
+    "sgmnd2": [
+     "Minnesota Valley",
+     10418.2
+    ]
+   }
   },
   "US-7146": {
    "fp": {
@@ -47550,8 +48014,17 @@
    "join": [
     "Madison County"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-02",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 166807 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "no": [
+    "166807"
+   ],
+   "nofp": {
+    "166807": [
+     "Madison County",
+     14195.4
+    ]
+   }
   },
   "US-7308": {
    "join": [
@@ -48028,7 +48501,16 @@
     "sgnjb188"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Round Valley Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Round Valley Recreation Area' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 227552 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "227552"
+   ],
+   "nofp": {
+    "227552": [
+     "Round Valley Reservoir",
+     4009.6
+    ]
+   }
   },
   "US-7506": {
    "fp": {
@@ -49325,8 +49807,17 @@
    "join": [
     "56479"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'CEDAR ISLAND Wildlife Management Area - ' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'CEDAR ISLAND Wildlife Management Area - ' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 56481 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )",
+   "no": [
+    "56481"
+   ],
+   "nofp": {
+    "56481": [
+     "CEDAR ISLAND Wildlife Management Area - Cedar Island Wildland",
+     2924.2
+    ]
+   }
   },
   "US-7761": {
    "fp": {
@@ -49338,8 +49829,17 @@
    "join": [
     "56565"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'PARKERS CREEK Wildlife Management Area -' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'PARKERS CREEK Wildlife Management Area - Parkers Creek Wildlands' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'PARKERS CREEK Wildlife Management Area -' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 56561 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )",
+   "no": [
+    "56561"
+   ],
+   "nofp": {
+    "56561": [
+     "Parker Creek Wildlife Management Area",
+     1943.0
+    ]
+   }
   },
   "US-7768": {
    "fp": {
@@ -49982,7 +50482,16 @@
     "sggab59"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Standing Boy Creek State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Standing Boy Creek State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 195158 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "no": [
+    "195158"
+   ],
+   "nofp": {
+    "195158": [
+     "Standing Boy Creek State Park",
+     1582.3
+    ]
+   }
   },
   "US-7897": {
    "fp": {
@@ -51941,7 +52450,16 @@
     "sgcab573"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Millerton Lake SRA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Millerton Lake SRA' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgcab573 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "sgcab573"
+   ],
+   "nofp": {
+    "sgcab573": [
+     "Millerton Lake SRA",
+     14376.6
+    ]
+   }
   },
   "US-8326": {
    "join": [
@@ -53698,7 +54216,16 @@
     "sgora191"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Detroit Lake' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Detroit Lake' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on osp191 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "no": [
+    "osp191"
+   ],
+   "nofp": {
+    "osp191": [
+     "Detroit Lake",
+     97.2
+    ]
+   }
   },
   "US-9144": {
    "fp": {
@@ -54149,10 +54676,17 @@
     "High Rock Canyon"
    ],
    "no": [
-    "High Rock Canyon Camping Areas"
+    "High Rock Canyon Camping Areas",
+    "sgakh1264"
    ],
-   "when": "2026-10-22",
-   "why": "the whole recreation area, not just its camp sites (hand review Oct 22 (shadow check))"
+   "when": "2026-11-02",
+   "why": "the whole recreation area, not just its camp sites (hand review Oct 22 (shadow check)) · Nov 2 map audit: chat 11 NO on sgakh1264 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "nofp": {
+    "sgakh1264": [
+     "High Rock Canyon",
+     50267.9
+    ]
+   }
   },
   "US-9288": {
    "join": [
@@ -54827,10 +55361,17 @@
   },
   "US-9356": {
    "no": [
-    "Willow Lake B.C. Wildlife Management Area"
+    "Willow Lake B.C. Wildlife Management Area",
+    "sgneb342"
    ],
-   "when": "2026-10-22",
-   "why": "another Willow Lake 52 km away (hand review Oct 22 (shadow check))"
+   "when": "2026-11-02",
+   "why": "another Willow Lake 52 km away (hand review Oct 22 (shadow check)) · Nov 2 map audit: chat 11 NO on sgneb342 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "nofp": {
+    "sgneb342": [
+     "Willow Lake B.C. WMA",
+     513.5
+    ]
+   }
   },
   "US-9357": {
    "fp": {
@@ -58527,6 +59068,2775 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Virgin Islands Coral Reef National Monum' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  },
+  "US-9380": {
+   "no": [
+    "sgmne13206"
+   ],
+   "nofp": {
+    "sgmne13206": [
+     "MILL TOWNS",
+     79.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmne13206 (NO (chat 11, Nov 2): PIN. drawn 5x the official acres, looks like a pl)",
+   "when": "2026-11-02"
+  },
+  "US-9382": {
+   "no": [
+    "sgmne13160"
+   ],
+   "nofp": {
+    "sgmne13160": [
+     "GREAT RIVER RIDGE",
+     80.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmne13160 (NO (chat 11, Nov 2): PIN. drawn 13x the official acres, looks like a p)",
+   "when": "2026-11-02"
+  },
+  "US-4537": {
+   "no": [
+    "fsod168"
+   ],
+   "nofp": {
+    "fsod168": [
+     "Kenai Mountains-Turnagain Arm National Heritage Area",
+     1176782.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fsod168 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10281": {
+   "no": [
+    "rst11010"
+   ],
+   "nofp": {
+    "rst11010": [
+     "White Mountains SRMA",
+     1016250.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rst11010 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7884": {
+   "no": [
+    "fsod167"
+   ],
+   "nofp": {
+    "fsod167": [
+     "Yakutat Forelands LUD II Management Area",
+     137485.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fsod167 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0144": {
+   "no": [
+    "4507"
+   ],
+   "nofp": {
+    "4507": [
+     "Alaska Peninsula National Wildlife Refuge",
+     3944900.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 4507 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0643": {
+   "no": [
+    "3310"
+   ],
+   "nofp": {
+    "3310": [
+     "Noatak National Preserve",
+     6542342.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 3310 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-11862": {
+   "no": [
+    "sgakb1873"
+   ],
+   "nofp": {
+    "sgakb1873": [
+     "JUNEAU CHANNEL ISLAND SMP",
+     5256.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgakb1873 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9701": {
+   "no": [
+    "165807"
+   ],
+   "nofp": {
+    "165807": [
+     "Palmer Hay Flats State Game Refuge",
+     22837.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 165807 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12996": {
+   "no": [
+    "166042"
+   ],
+   "nofp": {
+    "166042": [
+     "Fowl River",
+     791.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 166042 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9919": {
+   "no": [
+    "sgalb144"
+   ],
+   "nofp": {
+    "sgalb144": [
+     "Dallas County WMA Phase II",
+     1550.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgalb144 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-11033": {
+   "no": [
+    "sgalb190"
+   ],
+   "nofp": {
+    "sgalb190": [
+     "Portland Landing - Gilmore Addition",
+     328.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgalb190 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-3701": {
+   "no": [
+    "166069"
+   ],
+   "nofp": {
+    "166069": [
+     "Pike County Pocosin Complex",
+     335.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 166069 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-1035": {
+   "no": [
+    "256239"
+   ],
+   "nofp": {
+    "256239": [
+     "Buck's Pocket State Park",
+     1040.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 256239 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7310": {
+   "no": [
+    "sgarc9"
+   ],
+   "nofp": {
+    "sgarc9": [
+     "Norfork Lake",
+     26806.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc9 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7438": {
+   "no": [
+    "sgarc84"
+   ],
+   "nofp": {
+    "sgarc84": [
+     "Gurdon Lake",
+     56.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc84 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-7439": {
+   "no": [
+    "166779"
+   ],
+   "nofp": {
+    "166779": [
+     "Bois D'arc",
+     5890.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 166779 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-7445": {
+   "no": [
+    "sgarc478"
+   ],
+   "nofp": {
+    "sgarc478": [
+     "Cove Lake",
+     158.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc478 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-9162": {
+   "no": [
+    "sgarc432"
+   ],
+   "nofp": {
+    "sgarc432": [
+     "Lower White Oak Lake",
+     1110.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc432 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-9165": {
+   "no": [
+    "sgarc119"
+   ],
+   "nofp": {
+    "sgarc119": [
+     "Cox Creek Lake",
+     255.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc119 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-9166": {
+   "no": [
+    "sgarc290"
+   ],
+   "nofp": {
+    "sgarc290": [
+     "Elmdale Lake",
+     147.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgarc290 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-7171": {
+   "no": [
+    "166765"
+   ],
+   "nofp": {
+    "166765": [
+     "Warren Prairie Natural Area",
+     6314.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 166765 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7188": {
+   "no": [
+    "166764"
+   ],
+   "nofp": {
+    "166764": [
+     "Terre Noire Natural Area",
+     481.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 166764 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7190": {
+   "no": [
+    "2493"
+   ],
+   "nofp": {
+    "2493": [
+     "Bull Shoals Recreation Area",
+     80102.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2493 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-11028": {
+   "no": [
+    "167492"
+   ],
+   "nofp": {
+    "167492": [
+     "Robbins Butte Wildlife Area",
+     5697.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 167492 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-11985": {
+   "no": [
+    "167479"
+   ],
+   "nofp": {
+    "167479": [
+     "Raymond Wildlife Area",
+     14638.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 167479 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7382": {
+   "no": [
+    "167483"
+   ],
+   "nofp": {
+    "167483": [
+     "Arlington Wildlife Area",
+     2575.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 167483 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-0197": {
+   "no": [
+    "wsrc4"
+   ],
+   "nofp": {
+    "wsrc4": [
+     "Kern Wild and Scenic River",
+     8691.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on wsrc4 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12114": {
+   "no": [
+    "sgakh500"
+   ],
+   "nofp": {
+    "sgakh500": [
+     "Chuckwalla",
+     649065.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgakh500 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0203": {
+   "no": [
+    "4168"
+   ],
+   "nofp": {
+    "4168": [
+     "North Central Valley Wildlife Management Area",
+     2771.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 4168 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10635": {
+   "no": [
+    "184127"
+   ],
+   "nofp": {
+    "184127": [
+     "Eastern Kern County Onyx Ranch State Vehicular Recreation Area",
+     26411.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 184127 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-3523": {
+   "no": [
+    "sgcab584"
+   ],
+   "nofp": {
+    "sgcab584": [
+     "Oceano Dunes SVRA",
+     3458.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcab584 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0894": {
+   "no": [
+    "wsrc3"
+   ],
+   "nofp": {
+    "wsrc3": [
+     "Tuolumne Wild and Scenic River",
+     24342.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on wsrc3 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-4404": {
+   "no": [
+    "2703"
+   ],
+   "nofp": {
+    "2703": [
+     "Pike National Forest",
+     1096883.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2703 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9658": {
+   "no": [
+    "sgcoa155"
+   ],
+   "nofp": {
+    "sgcoa155": [
+     "Hot Sulphur Springs SWA",
+     2161.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcoa155 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9665": {
+   "no": [
+    "sgcoc655"
+   ],
+   "nofp": {
+    "sgcoc655": [
+     "Queens STL",
+     51766.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcoc655 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-11910": {
+   "no": [
+    "wsa100"
+   ],
+   "nofp": {
+    "wsa100": [
+     "Oil Springs Mountain",
+     18437.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on wsa100 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12185": {
+   "no": [
+    "189280"
+   ],
+   "nofp": {
+    "189280": [
+     "West Lake State Wildlife Area",
+     6.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 189280 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-1249": {
+   "no": [
+    "sgcob47"
+   ],
+   "nofp": {
+    "sgcob47": [
+     "Vega State Park",
+     1843.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcob47 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9637": {
+   "no": [
+    "cow243"
+   ],
+   "nofp": {
+    "cow243": [
+     "Cowdrey Lake SWA",
+     283.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on cow243 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-9638": {
+   "no": [
+    "cow256"
+   ],
+   "nofp": {
+    "cow256": [
+     "Dan Noble SWA - Greager Tract",
+     3140.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on cow256 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9675": {
+   "no": [
+    "sgcoa303"
+   ],
+   "nofp": {
+    "sgcoa303": [
+     "Two Buttes Reservoir SWA",
+     10179.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcoa303 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0191": {
+   "no": [
+    "sgcoc168"
+   ],
+   "nofp": {
+    "sgcoc168": [
+     "Brush Hollow STL",
+     1876.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcoc168 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-1689": {
+   "no": [
+    "sgcta4138"
+   ],
+   "nofp": {
+    "sgcta4138": [
+     "Lake Waramaug State Park",
+     413.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcta4138 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1696": {
+   "no": [
+    "sgcta4199"
+   ],
+   "nofp": {
+    "sgcta4199": [
+     "Mianus River State Park Scenic Reserve",
+     330.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcta4199 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-1656": {
+   "no": [
+    "sgcta4113"
+   ],
+   "nofp": {
+    "sgcta4113": [
+     "Chatfield Hollow State Park",
+     1032.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcta4113 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-1676": {
+   "no": [
+    "sgcta4125"
+   ],
+   "nofp": {
+    "sgcta4125": [
+     "Hammonasset Beach State Park",
+     1013.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgcta4125 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-10673": {
+   "no": [
+    "57523"
+   ],
+   "nofp": {
+    "57523": [
+     "Craigs Pond",
+     22.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 57523 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-10667": {
+   "no": [
+    "76200"
+   ],
+   "nofp": {
+    "76200": [
+     "Abbotts Pond",
+     88.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 76200 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-10686": {
+   "no": [
+    "57592"
+   ],
+   "nofp": {
+    "57592": [
+     "Portsville Pond",
+     47.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 57592 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-10669": {
+   "no": [
+    "76206"
+   ],
+   "nofp": {
+    "76206": [
+     "Blairs Pond",
+     229.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 76206 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-10685": {
+   "no": [
+    "57569"
+   ],
+   "nofp": {
+    "57569": [
+     "Mud Mill Pond",
+     78.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 57569 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-10689": {
+   "no": [
+    "57602"
+   ],
+   "nofp": {
+    "57602": [
+     "Tussock Pond",
+     10.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 57602 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-6744": {
+   "no": [
+    "191790"
+   ],
+   "nofp": {
+    "191790": [
+     "Terra Ceia Preserve State Park",
+     1948.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 191790 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6288": {
+   "no": [
+    "191726"
+   ],
+   "nofp": {
+    "191726": [
+     "Apalachicola River Wildlife and Environmental Area",
+     684706.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 191726 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-6295": {
+   "no": [
+    "191737"
+   ],
+   "nofp": {
+    "191737": [
+     "Caravelle Ranch Wildlife Management Area",
+     28684.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 191737 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-3660": {
+   "no": [
+    "fnl2898"
+   ],
+   "nofp": {
+    "fnl2898": [
+     "Suwannee River Wilderness State Trail",
+     75.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fnl2898 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6299": {
+   "no": [
+    "191739"
+   ],
+   "nofp": {
+    "191739": [
+     "Dinner Island Ranch Wildlife Management Area",
+     38970.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 191739 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7475": {
+   "no": [
+    "190281"
+   ],
+   "nofp": {
+    "190281": [
+     "Starkey Wilderness Preserve",
+     19866.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 190281 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-7879": {
+   "no": [
+    "sgflg58"
+   ],
+   "nofp": {
+    "sgflg58": [
+     "Citrus Wildlife Management Area",
+     48107.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgflg58 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-0270": {
+   "no": [
+    "fws2381"
+   ],
+   "nofp": {
+    "fws2381": [
+     "CERRO GORDO COUNTY WATERFOWL PRODUCTION AREA",
+     27593.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws2381 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-5735": {
+   "no": [
+    "199095"
+   ],
+   "nofp": {
+    "199095": [
+     "Lower Gar Lake",
+     315.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 199095 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-4478": {
+   "no": [
+    "2675"
+   ],
+   "nofp": {
+    "2675": [
+     "Nezperce National Forest",
+     2223551.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2675 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13296": {
+   "no": [
+    "rst13919"
+   ],
+   "nofp": {
+    "rst13919": [
+     "Upper Salmon River",
+     108237.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rst13919 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-2232": {
+   "no": [
+    "sgidb1939350"
+   ],
+   "nofp": {
+    "sgidb1939350": [
+     "Dworshak Reservoir",
+     16484.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgidb1939350 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4136": {
+   "no": [
+    "sgila1199"
+   ],
+   "nofp": {
+    "sgila1199": [
+     "Kincaid Lake State Fish and Wildlife Area",
+     1067.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgila1199 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4161": {
+   "no": [
+    "200695"
+   ],
+   "nofp": {
+    "200695": [
+     "Brookville Lake Public Fishing Area",
+     2.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 200695 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10180": {
+   "no": [
+    "201064"
+   ],
+   "nofp": {
+    "201064": [
+     "Fourteen Mile Creek Nature Preserve",
+     829.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201064 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7397": {
+   "no": [
+    "201253"
+   ],
+   "nofp": {
+    "201253": [
+     "Pottawatomie State Fishing Lake",
+     256.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201253 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7406": {
+   "no": [
+    "201168"
+   ],
+   "nofp": {
+    "201168": [
+     "Mined Land Wildlife Area",
+     14846.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201168 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7396": {
+   "no": [
+    "201252"
+   ],
+   "nofp": {
+    "201252": [
+     "Pottawatomie State Fishing Lake",
+     187.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201252 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7931": {
+   "no": [
+    "201157"
+   ],
+   "nofp": {
+    "201157": [
+     "Jamestown Wildlife Area",
+     4624.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201157 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7394": {
+   "no": [
+    "201311"
+   ],
+   "nofp": {
+    "201311": [
+     "Nebo State Lake Wildlife Area",
+     284.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201311 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7419": {
+   "no": [
+    "201201"
+   ],
+   "nofp": {
+    "201201": [
+     "Logan State Fishing Lake And Wildlife Area",
+     601.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201201 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-7425": {
+   "no": [
+    "201191"
+   ],
+   "nofp": {
+    "201191": [
+     "Barber State Fishing Lake And Wildlife Area",
+     213.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 201191 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-11473": {
+   "no": [
+    "55767"
+   ],
+   "nofp": {
+    "55767": [
+     "Montague Plains Wildlife Management Area",
+     4179.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 55767 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-11401": {
+   "no": [
+    "55327"
+   ],
+   "nofp": {
+    "55327": [
+     "Cummington Wildlife Management Area",
+     426.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 55327 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-8405": {
+   "no": [
+    "59466"
+   ],
+   "nofp": {
+    "59466": [
+     "Charles River Reservation",
+     3904.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 59466 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-11447": {
+   "no": [
+    "56209"
+   ],
+   "nofp": {
+    "56209": [
+     "Stage Brook Wildlife Management Area",
+     776.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56209 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-11476": {
+   "no": [
+    "59780"
+   ],
+   "nofp": {
+    "59780": [
+     "Mount Tom State Reservation",
+     2094.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 59780 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )",
+   "when": "2026-11-02"
+  },
+  "US-11395": {
+   "no": [
+    "55147"
+   ],
+   "nofp": {
+    "55147": [
+     "Abbott Brook Wildlife Management Area",
+     1685.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 55147 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-11427": {
+   "no": [
+    "55605"
+   ],
+   "nofp": {
+    "55605": [
+     "Housatonic River East Branch Wildlife Management Area",
+     151.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 55605 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-11511": {
+   "no": [
+    "55621"
+   ],
+   "nofp": {
+    "55621": [
+     "Lawrence Brook Wildlife Management Area",
+     836.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 55621 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-11683": {
+   "no": [
+    "sgmaa665084"
+   ],
+   "nofp": {
+    "sgmaa665084": [
+     "Pickerel Cove WMA",
+     92.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmaa665084 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-8433": {
+   "no": [
+    "sgmaa672911"
+   ],
+   "nofp": {
+    "sgmaa672911": [
+     "Winthrop Shore Reservation",
+     23.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmaa672911 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7760": {
+   "no": [
+    "56554"
+   ],
+   "nofp": {
+    "56554": [
+     "Nanjemoy Wma",
+     1916.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56554 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7741": {
+   "no": [
+    "9209"
+   ],
+   "nofp": {
+    "9209": [
+     "Idylwild Wildlife Management Area",
+     3702.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9209 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-0335": {
+   "no": [
+    "56735"
+   ],
+   "nofp": {
+    "56735": [
+     "Susquehanna Sp",
+     2755.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56735 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1566": {
+   "no": [
+    "56627"
+   ],
+   "nofp": {
+    "56627": [
+     "CUNNINGHAM FALLS SP - Cunningham Falls Wildland",
+     6409.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56627 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1601": {
+   "no": [
+    "56735"
+   ],
+   "nofp": {
+    "56735": [
+     "Susquehanna Sp",
+     2754.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56735 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7749": {
+   "no": [
+    "56569"
+   ],
+   "nofp": {
+    "56569": [
+     "Pocomoke Sound Wma",
+     916.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56569 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7783": {
+   "no": [
+    "56521"
+   ],
+   "nofp": {
+    "56521": [
+     "Gravel Hill Swamp Wma",
+     65.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56521 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1573": {
+   "no": [
+    "56638"
+   ],
+   "nofp": {
+    "56638": [
+     "Gambrill Sp",
+     1219.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56638 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1588": {
+   "no": [
+    "56692"
+   ],
+   "nofp": {
+    "56692": [
+     "Patapsco Valley Sp",
+     14038.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56692 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1596": {
+   "no": [
+    "9237"
+   ],
+   "nofp": {
+    "9237": [
+     "Seneca Creek State Park",
+     6509.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9237 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1589": {
+   "no": [
+    "56698"
+   ],
+   "nofp": {
+    "56698": [
+     "Patuxent River Sp",
+     5812.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56698 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-1595": {
+   "no": [
+    "9235"
+   ],
+   "nofp": {
+    "9235": [
+     "Sandy Point State Park",
+     1125.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9235 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-6387": {
+   "no": [
+    "56633"
+   ],
+   "nofp": {
+    "56633": [
+     "Fair Hill Nrma",
+     5643.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56633 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-8434": {
+   "no": [
+    "9742"
+   ],
+   "nofp": {
+    "9742": [
+     "Big Spencer Mountain",
+     631.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9742 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0350": {
+   "no": [
+    "fws3874"
+   ],
+   "nofp": {
+    "fws3874": [
+     "JACKSON COUNTY WATERFOWL PRODUCTION AREA OF MI",
+     563.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws3874 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-6730": {
+   "no": [
+    "sgmib136"
+   ],
+   "nofp": {
+    "sgmib136": [
+     "Maple River State Game Area",
+     10229.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmib136 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0365": {
+   "no": [
+    "fws3900"
+   ],
+   "nofp": {
+    "fws3900": [
+     "BLUE EARTH COUNTY WATERFOWL PRODUCTION AREA",
+     8695.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws3900 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-11023": {
+   "no": [
+    "207678"
+   ],
+   "nofp": {
+    "207678": [
+     "Egret Island State Scientific and Natural Area",
+     535.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 207678 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0362": {
+   "no": [
+    "fws3201"
+   ],
+   "nofp": {
+    "fws3201": [
+     "MEEKER COUNTY WATERFOWL PRODUCTION AREA",
+     38859.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws3201 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-12396": {
+   "no": [
+    "209798"
+   ],
+   "nofp": {
+    "209798": [
+     "Sam Brown Memorial State Wayside",
+     45.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 209798 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-0359": {
+   "no": [
+    "fws2188"
+   ],
+   "nofp": {
+    "fws2188": [
+     "OTTER TAIL COUNTY WATERFOWL PRODUCTION AREA",
+     50215.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws2188 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0373": {
+   "no": [
+    "fws6144"
+   ],
+   "nofp": {
+    "fws6144": [
+     "JACKSON COUNTY WATERFOWL PRODUCTION AREA OF MN",
+     17912.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws6144 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0356": {
+   "no": [
+    "fws1015"
+   ],
+   "nofp": {
+    "fws1015": [
+     "LYON COUNTY WATERFOWL PRODUCTION AREA",
+     4441.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws1015 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0358": {
+   "no": [
+    "fws1581"
+   ],
+   "nofp": {
+    "fws1581": [
+     "MAHNOMEN COUNTY WATERFOWL PRODUCTION AREA",
+     50753.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws1581 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0361": {
+   "no": [
+    "3915"
+   ],
+   "nofp": {
+    "3915": [
+     "Hamden Slough National Wildlife Refuge",
+     3414.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 3915 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0366": {
+   "no": [
+    "fws4256"
+   ],
+   "nofp": {
+    "fws4256": [
+     "TRAVERSE COUNTY WATERFOWL PRODUCTION AREA",
+     56779.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws4256 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-12392": {
+   "no": [
+    "209796"
+   ],
+   "nofp": {
+    "209796": [
+     "Joseph R. Brown State Wayside",
+     47.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 209796 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-7144": {
+   "no": [
+    "209866"
+   ],
+   "nofp": {
+    "209866": [
+     "La Salle Lake",
+     999.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 209866 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-10725": {
+   "no": [
+    "207783"
+   ],
+   "nofp": {
+    "207783": [
+     "St. Croix Savanna State Scientific and Natural Area",
+     154.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 207783 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6465": {
+   "no": [
+    "sgmnd51"
+   ],
+   "nofp": {
+    "sgmnd51": [
+     "Greenleaf Lake",
+     1173.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmnd51 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-9376": {
+   "no": [
+    "sgmne12458"
+   ],
+   "nofp": {
+    "sgmne12458": [
+     "SHOOTING STAR",
+     40.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmne12458 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-10211": {
+   "no": [
+    "sgmoc829"
+   ],
+   "nofp": {
+    "sgmoc829": [
+     "Sunklands CA",
+     41941.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc829 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0374": {
+   "no": [
+    "4565"
+   ],
+   "nofp": {
+    "4565": [
+     "Big Muddy National Fish And Wildlife Refuge",
+     10963.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 4565 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12406": {
+   "no": [
+    "sgmoc185"
+   ],
+   "nofp": {
+    "sgmoc185": [
+     "Poplar Bluff CA",
+     1186.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc185 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12676": {
+   "no": [
+    "sgmoc248"
+   ],
+   "nofp": {
+    "sgmoc248": [
+     "Holly Ridge CA",
+     1011.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc248 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6503": {
+   "no": [
+    "sgmoc566"
+   ],
+   "nofp": {
+    "sgmoc566": [
+     "Magnolia Hollow CA",
+     1756.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc566 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6514": {
+   "no": [
+    "sgmoc148"
+   ],
+   "nofp": {
+    "sgmoc148": [
+     "Big Buffalo Creek CA",
+     3645.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc148 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6517": {
+   "no": [
+    "sgmoc883"
+   ],
+   "nofp": {
+    "sgmoc883": [
+     "Diana Bend CA",
+     1342.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc883 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-7673": {
+   "no": [
+    "sgmoc891"
+   ],
+   "nofp": {
+    "sgmoc891": [
+     "Liberty Bend CA",
+     134.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgmoc891 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4502": {
+   "no": [
+    "2658"
+   ],
+   "nofp": {
+    "2658": [
+     "Flathead National Forest",
+     2414171.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2658 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6928": {
+   "no": [
+    "sgncb53"
+   ],
+   "nofp": {
+    "sgncb53": [
+     "Needmore",
+     5470.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgncb53 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-3841": {
+   "no": [
+    "211900"
+   ],
+   "nofp": {
+    "211900": [
+     "Falls Lake",
+     37530.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 211900 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-6834": {
+   "no": [
+    "214552"
+   ],
+   "nofp": {
+    "214552": [
+     "Brunswick Town State Historic Site",
+     129.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 214552 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-6880": {
+   "no": [
+    "ncg3"
+   ],
+   "nofp": {
+    "ncg3": [
+     "Bachelor Bay",
+     2786.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on ncg3 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-6901": {
+   "no": [
+    "ncg24"
+   ],
+   "nofp": {
+    "ncg24": [
+     "Dover Bay",
+     2898.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on ncg24 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0421": {
+   "no": [
+    "fws809"
+   ],
+   "nofp": {
+    "fws809": [
+     "EDDY COUNTY WATERFOWL PRODUCTION AREA",
+     6251.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws809 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0430": {
+   "no": [
+    "fws2738"
+   ],
+   "nofp": {
+    "fws2738": [
+     "DICKEY COUNTY WATERFOWL PRODUCTION AREA",
+     45145.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws2738 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0440": {
+   "no": [
+    "fws5767"
+   ],
+   "nofp": {
+    "fws5767": [
+     "CASS COUNTY WATERFOWL PRODUCTION AREA",
+     19536.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws5767 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-7707": {
+   "no": [
+    "ndw342"
+   ],
+   "nofp": {
+    "ndw342": [
+     "MacLean Bottoms",
+     6955.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on ndw342 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-5742": {
+   "no": [
+    "sgndc26"
+   ],
+   "nofp": {
+    "sgndc26": [
+     "Homen State Forest",
+     322.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgndc26 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4028": {
+   "no": [
+    "215684"
+   ],
+   "nofp": {
+    "215684": [
+     "Prairie Lake",
+     158.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 215684 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-4029": {
+   "no": [
+    "215722"
+   ],
+   "nofp": {
+    "215722": [
+     "Roseland Lake",
+     116.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 215722 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-5660": {
+   "no": [
+    "2307"
+   ],
+   "nofp": {
+    "2307": [
+     "Box Butte Reservoir",
+     1709.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2307 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-5675": {
+   "no": [
+    "nep57"
+   ],
+   "nofp": {
+    "nep57": [
+     "Sutherland Reservoir SRA",
+     105.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on nep57 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4894": {
+   "no": [
+    "56963"
+   ],
+   "nofp": {
+    "56963": [
+     "Davis-White State Forest",
+     60.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56963 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4933": {
+   "no": [
+    "56999"
+   ],
+   "nofp": {
+    "56999": [
+     "Merrimack River State Forest",
+     167.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56999 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4934": {
+   "no": [
+    "sgnhc317"
+   ],
+   "nofp": {
+    "sgnhc317": [
+     "Merriman State Forest",
+     544.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgnhc317 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4955": {
+   "no": [
+    "sgnhc2115"
+   ],
+   "nofp": {
+    "sgnhc2115": [
+     "Saltmarsh Pond State Forest",
+     74.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgnhc2115 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4868": {
+   "no": [
+    "56939"
+   ],
+   "nofp": {
+    "56939": [
+     "Annett State Forest",
+     1769.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56939 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4886": {
+   "no": [
+    "56956"
+   ],
+   "nofp": {
+    "56956": [
+     "Connecticut Lakes State Forest",
+     2001.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 56956 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4949": {
+   "no": [
+    "57965"
+   ],
+   "nofp": {
+    "57965": [
+     "Ragged Mountain Tract",
+     887.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 57965 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-4552": {
+   "no": [
+    "sgakg14047"
+   ],
+   "nofp": {
+    "sgakg14047": [
+     "Prehistoric Trackways",
+     5272.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgakg14047 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9285": {
+   "no": [
+    "nca22323"
+   ],
+   "nofp": {
+    "nca22323": [
+     "Avi Kwa Ame",
+     509430.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on nca22323 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13018": {
+   "no": [
+    "hma22"
+   ],
+   "nofp": {
+    "hma22": [
+     "Black Rock Range",
+     189273.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma22 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13019": {
+   "no": [
+    "hma11"
+   ],
+   "nofp": {
+    "hma11": [
+     "Buffalo Hills",
+     125513.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma11 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13042": {
+   "no": [
+    "hma132"
+   ],
+   "nofp": {
+    "hma132": [
+     "Montezuma Peak",
+     77937.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma132 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13044": {
+   "no": [
+    "hma70"
+   ],
+   "nofp": {
+    "hma70": [
+     "Palmetto",
+     118359.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma70 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13128": {
+   "no": [
+    "hma168"
+   ],
+   "nofp": {
+    "hma168": [
+     "Jackson Mountains",
+     265083.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma168 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13129": {
+   "no": [
+    "hma1"
+   ],
+   "nofp": {
+    "hma1": [
+     "Lahontan",
+     9577.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma1 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13135": {
+   "no": [
+    "hma139"
+   ],
+   "nofp": {
+    "hma139": [
+     "Seven Troughs",
+     116307.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma139 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13017": {
+   "no": [
+    "hma107"
+   ],
+   "nofp": {
+    "hma107": [
+     "Augusta Mountains",
+     177703.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma107 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13048": {
+   "no": [
+    "hma12"
+   ],
+   "nofp": {
+    "hma12": [
+     "Rocky Hills",
+     84050.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma12 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13130": {
+   "no": [
+    "hma42"
+   ],
+   "nofp": {
+    "hma42": [
+     "Lava Beds",
+     214057.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma42 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9247": {
+   "no": [
+    "wbl207"
+   ],
+   "nofp": {
+    "wbl207": [
+     "Eldorado",
+     5764.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on wbl207 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9258": {
+   "no": [
+    "wbl208"
+   ],
+   "nofp": {
+    "wbl208": [
+     "Ireteba Peaks",
+     10330.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on wbl208 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10844": {
+   "no": [
+    "hma28"
+   ],
+   "nofp": {
+    "hma28": [
+     "Diamond",
+     165728.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma28 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13034": {
+   "no": [
+    "hma44"
+   ],
+   "nofp": {
+    "hma44": [
+     "Goshute",
+     169186.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma44 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13127": {
+   "no": [
+    "sgakg9890"
+   ],
+   "nofp": {
+    "sgakg9890": [
+     "Fort Sage",
+     26108.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgakg9890 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13190": {
+   "no": [
+    "rst9749"
+   ],
+   "nofp": {
+    "rst9749": [
+     "Zunino/Jiggs Reservoir",
+     783.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rst9749 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-13013": {
+   "no": [
+    "hma92"
+   ],
+   "nofp": {
+    "hma92": [
+     "Dogskin Mountains",
+     6519.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma92 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13024": {
+   "no": [
+    "hma3"
+   ],
+   "nofp": {
+    "hma3": [
+     "Callaghan",
+     156280.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma3 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13029": {
+   "no": [
+    "hma156"
+   ],
+   "nofp": {
+    "hma156": [
+     "Flanigan",
+     17136.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma156 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13031": {
+   "no": [
+    "hma71"
+   ],
+   "nofp": {
+    "hma71": [
+     "Garfield Flat",
+     142783.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma71 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13035": {
+   "no": [
+    "hma153"
+   ],
+   "nofp": {
+    "hma153": [
+     "Granite Range",
+     103779.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma153 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13041": {
+   "no": [
+    "hma31"
+   ],
+   "nofp": {
+    "hma31": [
+     "Maverick-Medicine",
+     309119.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma31 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13043": {
+   "no": [
+    "hma84"
+   ],
+   "nofp": {
+    "hma84": [
+     "New Pass-Ravenswood",
+     286102.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma84 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13046": {
+   "no": [
+    "hma103"
+   ],
+   "nofp": {
+    "hma103": [
+     "Paymaster",
+     100666.9
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma103 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13052": {
+   "no": [
+    "hma68"
+   ],
+   "nofp": {
+    "hma68": [
+     "Spruce-Pequop",
+     180536.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma68 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13053": {
+   "no": [
+    "hma83"
+   ],
+   "nofp": {
+    "hma83": [
+     "Stone Cabin",
+     407878.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma83 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13119": {
+   "no": [
+    "hma108"
+   ],
+   "nofp": {
+    "hma108": [
+     "Stonewall",
+     23889.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma108 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13122": {
+   "no": [
+    "hma138"
+   ],
+   "nofp": {
+    "hma138": [
+     "Horse Mountain",
+     49786.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma138 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-13123": {
+   "no": [
+    "hma173"
+   ],
+   "nofp": {
+    "hma173": [
+     "Bald Mountain",
+     139986.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma173 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10293": {
+   "no": [
+    "9135"
+   ],
+   "nofp": {
+    "9135": [
+     "Raquette Boreal",
+     10213.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9135 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10292": {
+   "no": [
+    "9149"
+   ],
+   "nofp": {
+    "9149": [
+     "Watsons East Triangle",
+     0.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9149 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9037": {
+   "no": [
+    "9093"
+   ],
+   "nofp": {
+    "9093": [
+     "Allegheny Reservoir Wildlife Management Area",
+     1.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 9093 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12028": {
+   "no": [
+    "odw7"
+   ],
+   "nofp": {
+    "odw7": [
+     "Barren Fork Wildlife Management Area",
+     506.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on odw7 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10485": {
+   "no": [
+    "sgakh1997"
+   ],
+   "nofp": {
+    "sgakh1997": [
+     "Saddle Butte",
+     86744.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgakh1997 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-10744": {
+   "no": [
+    "hma21"
+   ],
+   "nofp": {
+    "hma21": [
+     "Pokegama",
+     85022.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma21 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-9159": {
+   "no": [
+    "sgord3960"
+   ],
+   "nofp": {
+    "sgord3960": [
+     "Lower Deschutes",
+     60.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgord3960 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-9993": {
+   "no": [
+    "rst13039"
+   ],
+   "nofp": {
+    "rst13039": [
+     "Nestucca River",
+     138.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rst13039 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10482": {
+   "no": [
+    "sgord6123"
+   ],
+   "nofp": {
+    "sgord6123": [
+     "Riverside",
+     1797.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgord6123 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-10748": {
+   "no": [
+    "hma106"
+   ],
+   "nofp": {
+    "hma106": [
+     "South Steens",
+     134491.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on hma106 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12840": {
+   "no": [
+    "rst12081"
+   ],
+   "nofp": {
+    "rst12081": [
+     "Smith River Corridor",
+     3321.7
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rst12081 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-10024": {
+   "no": [
+    "rma9957"
+   ],
+   "nofp": {
+    "rma9957": [
+     "Duncan Reservoir Campground",
+     16.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on rma9957 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-10548": {
+   "no": [
+    "sgria649"
+   ],
+   "nofp": {
+    "sgria649": [
+     "Barbers Pond",
+     1.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgria649 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-7717": {
+   "no": [
+    "sgria391"
+   ],
+   "nofp": {
+    "sgria391": [
+     "Charlestown Breachway Fishing Area",
+     87.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgria391 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-3917": {
+   "no": [
+    "sgscc59"
+   ],
+   "nofp": {
+    "sgscc59": [
+     "Little Pee Dee State Park Bay Heritage Preserve",
+     307.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-10470": {
+   "no": [
+    "sgscb48"
+   ],
+   "nofp": {
+    "sgscb48": [
+     "Hanging Rock Battleground Property",
+     255.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgscb48 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-8155": {
+   "no": [
+    "2299"
+   ],
+   "nofp": {
+    "2299": [
+     "Angostura Reservoir",
+     7986.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 2299 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-0525": {
+   "no": [
+    "fws2277"
+   ],
+   "nofp": {
+    "fws2277": [
+     "BEADLE COUNTY WATERFOWL PRODUCTION AREA",
+     17725.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws2277 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-0529": {
+   "no": [
+    "fws3477"
+   ],
+   "nofp": {
+    "fws3477": [
+     "BROOKINGS COUNTY WATERFOWL PRODUCTION AREA",
+     44264.0
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws3477 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-0532": {
+   "no": [
+    "fws5957"
+   ],
+   "nofp": {
+    "fws5957": [
+     "GRANT COUNTY WATERFOWL PRODUCTION AREA",
+     41098.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on fws5957 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)",
+   "when": "2026-11-02"
+  },
+  "US-8192": {
+   "no": [
+    "255232"
+   ],
+   "nofp": {
+    "255232": [
+     "Shadehill Reservoir Game Production Area",
+     12451.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255232 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-10330": {
+   "no": [
+    "255206"
+   ],
+   "nofp": {
+    "255206": [
+     "Newell Lake Game Production Area",
+     807.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255206 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-10340": {
+   "no": [
+    "255373"
+   ],
+   "nofp": {
+    "255373": [
+     "Wall Lake",
+     15.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255373 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8159": {
+   "no": [
+    "255281"
+   ],
+   "nofp": {
+    "255281": [
+     "Burke Lake",
+     205.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255281 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8177": {
+   "no": [
+    "255327"
+   ],
+   "nofp": {
+    "255327": [
+     "Mina",
+     373.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255327 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8183": {
+   "no": [
+    "255341"
+   ],
+   "nofp": {
+    "255341": [
+     "Pelican Lake",
+     569.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255341 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8184": {
+   "no": [
+    "255343"
+   ],
+   "nofp": {
+    "255343": [
+     "Pickerel Lake",
+     529.2
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255343 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8189": {
+   "no": [
+    "255348"
+   ],
+   "nofp": {
+    "255348": [
+     "Richmond Lake",
+     480.8
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255348 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)",
+   "when": "2026-11-02"
+  },
+  "US-8199": {
+   "no": [
+    "255372"
+   ],
+   "nofp": {
+    "255372": [
+     "Walkers Point Recreation Area",
+     47.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255372 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "when": "2026-11-02"
+  },
+  "US-10323": {
+   "no": [
+    "255379"
+   ],
+   "nofp": {
+    "255379": [
+     "White Swan Recreation Area",
+     45.6
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255379 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-2924": {
+   "no": [
+    "255339"
+   ],
+   "nofp": {
+    "255339": [
+     "Palisades",
+     424.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255339 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-8160": {
+   "no": [
+    "255282"
+   ],
+   "nofp": {
+    "255282": [
+     "Buryanek Recreation Area",
+     259.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255282 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-8191": {
+   "no": [
+    "255355"
+   ],
+   "nofp": {
+    "255355": [
+     "Sandy Shore",
+     35.3
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on 255355 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
+  },
+  "US-3928": {
+   "no": [
+    "sgtnc80"
+   ],
+   "nofp": {
+    "sgtnc80": [
+     "Bridgestone/Firestone WMA",
+     18580.4
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgtnc80 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)",
+   "when": "2026-11-02"
+  },
+  "US-6275": {
+   "no": [
+    "sgtni153"
+   ],
+   "nofp": {
+    "sgtni153": [
+     "Walls Of Jericho SNA",
+     779.5
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on sgtni153 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "when": "2026-11-02"
+  },
+  "US-12663": {
+   "no": [
+    "tnd84"
+   ],
+   "nofp": {
+    "tnd84": [
+     "Hiwassee/Ocoee Scenic River State Park",
+     190.1
+    ]
+   },
+   "why": "Nov 2 map audit: chat 11 NO on tnd84 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )",
+   "when": "2026-11-02"
   }
  }
 }
