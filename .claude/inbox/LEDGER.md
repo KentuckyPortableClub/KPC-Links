@@ -35,3 +35,4 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 | 29 | Email only on real failures; OSM/Wikidata/lookups off for facts and shapes | 10 + 2 | the checker lists no other email path / no such calls | OPEN | Nov 2 |
 | 30 | tools-out kept small: latest run per tool, pictures deleted once graded, monthly squash | 10 | KPC-Data under 400 MB on GitHub (849,603 KB on Nov 2 10 AM) | OPEN | Nov 2 |
 | 31 | ONE fresh 2-fer run on the NEW keys (after US + Canada keys are complete and live), stable ids, then chat 11 grades | 10 + 2 + 11 | a 2-fer run dated after the keys' release, graded by chat 11 | WAITING ON THE KEYS | Nov 2 |
+| 32 | Map accuracy audit (KPC 10) run on EVERY area (US, Canada, world), worst first to chat 2 / 11 / 12; then weekly | 10 (+2 fixes, +11/12 grade) | audit/worst.csv + a count per area of parks flagged; the flagged parks held or fixed | OPEN | Nov 2 |
