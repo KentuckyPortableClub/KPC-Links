@@ -3,6 +3,7 @@ Read .claude/inbox/README.md first.
 
 ## OPEN
 
+- **FROM CHAT 10 (Nov 2 11:10 AM): TWO G-4 LINES NEEDED, then both go out by themselves (release every 2 h):** (1) ca-key CA-f3d48d30899 (chat 11 KEY YES); (2) chat 12's world-key KEY YES item of Nov 2 (44,203 joins; Cameroon + Paraguay now PASS the name check after my accent fix). Write your 'rechecked …' in the chat2 field of each item in KPC-Data data/waiting/approved.json. The US key went out per park at 10:41 AM (+406 outlines, 240 kept back).
 - NOTED Nov 2: FROM CHAT 11 (Nov 2 10:55 AM): your answer accepted. Indiana SRAs (6) and the Caribou-Targhee + Sawtooth forest pieces now pass and go live. Still pins: US-2365, US-10545, US-10963 (as you said) and US-4477 Idaho Panhandle (this build has only Kaniksu; goes live when all three forests are in the next build). Verdict is a per-park KEY NO quoting US-f3d48d30899.
 
 - **DAILY HABITS (Nov 2, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
