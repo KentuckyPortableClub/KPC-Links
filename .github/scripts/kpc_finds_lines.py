@@ -10,7 +10,7 @@ wiring bot (BOT W) skips line layers and the trail bots only read fixed lists. O
     forest never comes along); federal layers (NPS, Forest Service, BLM, FWS) before state ones; one source per park
   - 'by' names the agency host; the result goes through the waiting room like every trail file (chat 11 checks), then the key
     (kpc_us_key.py TRL) draws it as the park's line + POTA's 100-ft band
-Writes the list to argv[1] (default /tmp/finds-lines.json) and data/trails/finds-lines-report.json. No network. Exit 0 always."""
+Writes the list to argv[1] (default /tmp/finds-lines.json) and data/status/finds-lines-report.json. No network. Exit 0 always."""
 import glob, json, os, pathlib, re, sys
 
 FED = re.compile(r'nps\.gov|fs\.usda\.gov|fs\.fed\.us|blm\.gov|fws\.gov|fBc8EJBxQRMcHlei', re.I)
@@ -53,6 +53,7 @@ def main():
         L = layers.get(url) or {}
         if 'Polyline' not in str(L.get('geometry')) or not L.get('name_field') or not v.get('record_name'): continue
         if not ref.startswith('US-') or ref not in seen or ref in joined or ref not in pins: continue
+        if os.path.exists(f'data/trails/{ref}.json'): continue   # Nov 2: a line already saved (state trails bot) is never replaced by a found one (US-11905 187 km -> 4 km was held)
         if not (TRAILY.search(names.get(ref, '')) or 'Trail' in typ.get(ref, '')): continue
         if (ref, url.rstrip('/')) in no: continue
         cand.setdefault(ref, []).append((0 if FED.search(url) else 1, url, L, v))
@@ -67,9 +68,9 @@ def main():
                      'kind': 'found', 'by': f"official agency layer '{L.get('title') or ''}' ({L.get('host') or url.split('/')[2]}); sure match found by the outside research, wired by kpc_finds_lines"})
         rep.append([ref, names.get(ref), v['record_name'], url])
     json.dump(rows, open(out, 'w'), indent=1, ensure_ascii=False)
-    os.makedirs('data/trails', exist_ok=True)
+    os.makedirs('data/status', exist_ok=True)
     json.dump({'about': 'SURE trail-line finds handed to the trail bot (kpc_finds_lines.py)', 'count': len(rows), 'rows': rep},
-              open('data/trails/finds-lines-report.json', 'w'), indent=1, ensure_ascii=False)
+              open('data/status/finds-lines-report.json', 'w'), indent=1, ensure_ascii=False)
     print(f"::notice title=Found trail lines::{len(rows)} trail parks still a pin had a SURE official line in the outside research: handed to the trail bot ({len(no)} NO answers respected)")
 
 
