@@ -1,18 +1,32 @@
 {
- "made": "2026-11-02 12:51 UTC",
+ "made": "2026-11-02 14:19 UTC",
  "counts": {
-  "A_decided_not_in_key": 83,
-  "B_sure_area_not_asked": 28,
+  "A_decided_not_in_key": 96,
+  "B_sure_area_not_asked": 20,
   "C_sure_line_not_drawn": 70
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
  "A": [
   [
+   "US-0025",
+   "AL",
+   "Fort Morgan National Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-0042",
    "AL",
    "Fort Gaines National Historic Site",
    "join",
-   " record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Historic Fort Gaines' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "ines' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Fort Gaines' (chat 11 (Nov 1, by layer); applied by kpc_key_answers)"
+  ],
+  [
+   "US-0491",
+   "OK",
+   "Tishomingo National Wildlife Refuge",
+   "join",
+   "2026-11-02 13:05: layers row YES 'TISHOMINGO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-0621",
@@ -64,25 +78,11 @@
    "2026-11-02 12:49: layers row YES 'Poverty Point National Monument' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
-   "US-0980",
-   "IL",
-   "Beall Woods State Park",
-   "join, alias",
-   "e found within 500 m of the pin; a bot must look) · 2026-11-02 12:49: layers row YES 'Beall Woods State Conservation Area' (chat 11; applied by kpc_key_answers)"
-  ],
-  [
    "US-10251",
    "OR",
    "White River National Wild and Scenic River",
    "alias",
    "2026-11-02 12:49: aliases-oct31 row YES 'White River (Oregon)' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-10429",
-   "ID",
-   "Middle Fork Clearwater River National Wild & Scenic River",
-   "join, alias",
-   "ct 31); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Middle Fork Clearwater, Idaho National W' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-10431",
@@ -99,13 +99,6 @@
    "fferent site (Chena River SRS); pin · 2026-11-02 12:49: aliases-oct31 row YES 'Chena River State Recreation Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
-   "US-10540",
-   "CO",
-   "Bellevue-Watson State Fish Hatchery",
-   "join, alias",
-   "eck); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Watson Lake SFU' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
-  ],
-  [
    "US-10547",
    "RI",
    "Silver Spring State Recreation Area",
@@ -118,6 +111,13 @@
    "Walnut Woods State Conservation Area",
    "join",
    "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)"
+  ],
+  [
+   "US-10610",
+   "OR",
+   "South Santiam State Fish Hatchery",
+   "join",
+   "2026-11-02 13:05: layers row YES 'SOUTH SANTIAM HATCHERY' (chat 11; applied by kpc_key_answers)"
   ],
   [
    "US-10644",
@@ -148,6 +148,41 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Ellis'; joins only with the POTA pin inside"
   ],
   [
+   "US-10921",
+   "HI",
+   "Hawaii Capital National Historic District",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Hawaii Capital Historic District' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10922",
+   "HI",
+   "Marconi Wireless Telegraphy Station Kahuku National Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Marconi Wireless Telegraphy Station' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10971",
+   "UT",
+   "Smith Creek BLM Wild and Scenic River",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Smith Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10975",
+   "UT",
+   "Oak Creek BLM Wild and Scenic River",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Oak Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10976",
+   "UT",
+   "Kolob Creek BLM Wild and Scenic River",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Kolob Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-11089",
    "ID",
    "Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area",
@@ -169,6 +204,13 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Burbank'; joins only with the POTA pin inside"
   ],
   [
+   "US-11778",
+   "OK",
+   "Fort Sill National Historic Site",
+   "join",
+   "ier answer); applied by kpc_key_answers) · 2026-11-02 13:05: no-recheck row YES 'Fort Sill' (chat 11 (Nov 1, same ruling as Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-11798",
    "AK",
    "Tangle Lakes Archeological Reserve",
@@ -181,13 +223,6 @@
    "Coronado Historic Site",
    "join, alias",
    "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Coronado Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
-   "US-12378",
-   "MN",
-   "Whitewater Wildlife Management Area",
-   "alias_all",
-   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   ],
   [
    "US-12426",
@@ -232,6 +267,13 @@
    "2026-11-02 12:49: aliases-oct31 row YES 'Pine River' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-13000",
+   "UT",
+   "Spiral Jetty NPS National Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Spiral Jetty' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-13097",
    "OR",
    "Strawberry Hill Wayside State Recreation Site",
@@ -239,11 +281,25 @@
    " name 'Strawberry Hill' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
   ],
   [
+   "US-13183",
+   "NV",
+   "Walking Box Ranch Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Walking Box Ranch' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-13236",
    "MA",
    "Rockdale Heights Wildlife Management Area",
    "alias",
    "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Rockdale Highlands WMA'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-13251",
+   "NV",
+   "Virginia City Historic District (Comstock Lode) National Historic District",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Virginia City Historic District' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-13395",
@@ -260,25 +316,11 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Hand'; joins only with the POTA pin inside"
   ],
   [
-   "US-2236",
-   "ID",
-   "Hells Gate State Park",
-   "join, alias",
-   "record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hells Gate State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
    "US-2238",
    "ID",
    "Heyburn State Park",
    "join, alias",
    "wn record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Heyburn State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
-   "US-2334",
-   "KS",
-   "Cross Timbers State Park",
-   "join",
-   " 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: no-recheck row YES 'Toronto Point' (chat 11 (Nov 1, same ruling as Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-2445",
@@ -307,6 +349,13 @@
    "Stolley National Historic Site",
    "join",
    "2026-11-02 12:49: gis-hunter row YES 'Stolley Park' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
+  ],
+  [
+   "US-3492",
+   "NE",
+   "Willa Cather Memorial Prairie State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Willa Cather Memorial Prairie' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-3724",
@@ -365,27 +414,6 @@
    "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
   ],
   [
-   "US-4208",
-   "IN",
-   "J. E. Roush Lake State Fish and Wildlife Area",
-   "join",
-   "2026-11-02 12:49: gis-hunter row YES 'J. Edward Roush Recreation Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
-  ],
-  [
-   "US-4555",
-   "WA",
-   "Hanford Reach National Monument",
-   "alias",
-   "y_answers) · 2026-11-02 12:49: gis-hunter row NO 'Hanford Reach National Monument, McGee R' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
-  ],
-  [
-   "US-4648",
-   "GA",
-   "Bartram Educational State Forest",
-   "join, alias",
-   "ey_answers) · 2026-11-02 12:49: gis-hunter row NO 'Bartram Forest Wildlife Management Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
-  ],
-  [
    "US-5564",
    "VT",
    "Essex Nursery State Forest",
@@ -407,13 +435,6 @@
    "2026-10-30 chat 2: the agency's own page spells it 'Fish Ford Recreation Site' (chat 9 website names); joins only with the pin inside"
   ],
   [
-   "US-5950",
-   "UT",
-   "This Is The Place Heritage Park",
-   "join",
-   "2026-11-02 12:49: layers row YES 'This Is The Place' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
    "US-5972",
    "UT",
    "North Oquirrh BLM Wildlife Management Area",
@@ -428,18 +449,32 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Big Creek'; joins only with the POTA pin inside"
   ],
   [
+   "US-5999",
+   "UT",
+   "Gunnison Massacre BLM Historic Preservation Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Gunnison Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-6012",
+   "UT",
+   "Shunes Creek BLM Wild and Scenic River",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Shunes Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-6025",
+   "UT",
+   "Willis Creek BLM Wild and Scenic River",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Willis Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-6060",
    "UT",
    "Hermit's Cabin/Cave State Recreation Area",
    "alias",
    "e name 'Hermit's Cabin' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
-  ],
-  [
-   "US-6117",
-   "WY",
-   "Camp Douglas WW-II POW Officers' Club State Historic Site",
-   "join",
-   "2026-11-02 12:49: layers row YES 'Camp Douglas' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-6212",
@@ -449,18 +484,25 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whiskey Basin'; joins only with the POTA pin inside"
   ],
   [
+   "US-6335",
+   "OK",
+   "Cabin Creek Battlefield State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Cabin Creek Battlefield' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-6336",
+   "OK",
+   "Honey Springs Battlefield State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Honey Springs Battlefield' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-6426",
    "HI",
    "Iolani Palace State Preserve",
    "alias",
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IOLANI PALACE STATE MONUMENT'; joins only with the POTA pin inside"
-  ],
-  [
-   "US-6448",
-   "CA",
-   "William Randolph Hearst Memorial State Beach",
-   "join",
-   " helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Hearst San Simeon SP' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-6462",
@@ -484,18 +526,18 @@
    "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
   ],
   [
+   "US-6532",
+   "NY",
+   "Erie Canalway Corridor National Heritage Area",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Erie Canalway National Heritage Corridor' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-6538",
    "TX",
    "Barrington Plantation State Historic Site",
    "alias",
    "rm State Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
-  ],
-  [
-   "US-6796",
-   "MI",
-   "Tobico Marsh Wildlife Management Area",
-   "join, alias",
-   "in inside · 2026-11-02 12:49: gis-hunter row YES 'Tobico Marsh Unit of Bay City State Park' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
   ],
   [
    "US-7529",
@@ -512,6 +554,20 @@
    "2026-11-02 12:49: gis-hunter row YES 'Frederick Municipal Forest' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
   ],
   [
+   "US-7843",
+   "IN",
+   "Pearson Mill State Recreation Area",
+   "join",
+   "2026-11-02 13:05: layers row YES 'PEARSON MILL' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
+   "US-7974",
+   "MD",
+   "Harmony Hall National Heritage Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Harmony Hall' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
    "US-8024",
    "NH",
    "Taylor Saw Mill State Historic Site",
@@ -526,11 +582,39 @@
    "; applied by kpc_key_answers) · 2026-11-02 12:49: aliases-oct31 row YES 'Barcelona Neck Cooperative Hunting Area' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
-   "US-8287",
-   "ME",
-   "Capitol State Park",
+   "US-8532",
+   "ND",
+   "Chateau De Mores State Historic Site",
    "join",
-   "K' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Capital Park' (auto recheck (AUTO-1); applied by kpc_key_answers)"
+   "2026-11-02 13:05: layers row YES 'Chateau de Mores' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-8536",
+   "ND",
+   "Fort Buford State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Fort Buford State Historic Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-8544",
+   "ND",
+   "Huff Indian Village State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Huff State Historic Site (32MO11)' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-8555",
+   "ND",
+   "Oscar-Zero Missile Alert Facility State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Oscar-Zero Missile Alert Facility' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-8559",
+   "ND",
+   "Welk Homestead State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Welk, Ludwig and Christina, Homestead' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-8663",
@@ -566,6 +650,13 @@
    "White Springs, Little Shoals, Gar Pond State Conservation Area",
    "alias",
    "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-9190",
+   "KS",
+   "Marais des Cygnes Massacre State Historic Site",
+   "join",
+   "2026-11-02 13:05: layers row YES 'Marais des Cygnes Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-9598",
@@ -619,25 +710,11 @@
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ],
   [
-   "US-0915",
-   "CA",
-   "Cesar E. Chavez National Monument",
-   "César E. Chávez National Monument",
-   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
-  ],
-  [
    "US-0958",
    "LA",
    "Poverty Point National Monument",
    "Poverty Point National Monument",
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
-  ],
-  [
-   "US-0980",
-   "IL",
-   "Beall Woods State Park",
-   "Beall Woods State Conservation Area",
-   "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0"
   ],
   [
    "US-10610",
@@ -651,13 +728,6 @@
    "HI",
    "Hawaii Capital National Historic District",
    "Hawaii Capital Historic District",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-12679",
-   "AK",
-   "Fort Egbert BLM Historic Area",
-   "Fort Egbert",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
@@ -682,32 +752,11 @@
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
-   "US-2236",
-   "ID",
-   "Hells Gate State Park",
-   "HELLS GATE STATE PARK",
-   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
-  ],
-  [
    "US-3492",
    "NE",
    "Willa Cather Memorial Prairie State Historic Site",
    "Willa Cather Memorial Prairie",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-4649",
-   "GA",
-   "Hitchiti State Forest",
-   "HITCHITI",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0"
-  ],
-  [
-   "US-5950",
-   "UT",
-   "This Is The Place Heritage Park",
-   "This Is The Place",
-   "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0"
   ],
   [
    "US-6335",
@@ -724,13 +773,6 @@
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
-   "US-7139",
-   "GA",
-   "Arabia Mountain National Heritage Area",
-   "Arabia Mountain National Heritage Area",
-   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0"
-  ],
-  [
    "US-7843",
    "IN",
    "Pearson Mill State Recreation Area",
@@ -742,13 +784,6 @@
    "MD",
    "Harmony Hall National Heritage Site",
    "Harmony Hall",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-8287",
-   "ME",
-   "Capitol State Park",
-   "Capitol Park",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
