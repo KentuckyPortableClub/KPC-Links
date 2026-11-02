@@ -171,6 +171,7 @@ def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25')
 
 def fetch(u, tries=4, timeout=240):
     last = None
+    u = urllib.parse.quote(u, safe=":/?&=%+,;@#~*()!$'")   # Nov 2: Georgia / Oman layer addresses carry non-ASCII letters ('ascii' codec error)
     for i in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=timeout) as r: return json.loads(r.read().decode('utf-8', 'replace'))
@@ -526,6 +527,14 @@ def pull_arcgis1(label, url, where):
             a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
             recs.append({'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
                          'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
+        if j.get('error') and 'agination' in str(j.get('error')) and off == 0:   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported' = ask once without paging
+            for k_ in ('resultOffset', 'resultRecordCount', 'orderByFields'): qq.pop(k_, None)
+            j = fetch(url + '/query?' + urllib.parse.urlencode(qq)); fs = j.get('features', [])
+            for f in fs:
+                a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
+                recs.append({'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+                             'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
+            break
         if j.get('error'): notice(f'{label} query error', j.get('error')); break
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
         off += len(fs); time.sleep(.5)
