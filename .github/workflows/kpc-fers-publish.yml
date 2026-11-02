@@ -1,0 +1,79 @@
+name: KPC 2-fer and hours publish (off until GO)
+# Nov 2 review (G10). Puts REVIEWED Kentucky 2-fers on the map layer (ky-overlaps.geojson), the GPX and the 2-fer guide PDF,
+# and fills empty hours / fee fields on the park pages (kpc-ky-hours.json) from the hours bot's official lines.
+# Four repo variables, each off | preview | on, ALL OFF until Brandon says GO:
+#   KPC_FERS_LAYER, KPC_FERS_GPX, KPC_FERS_PDF, KPC_HOURS_PUBLISH
+# preview = the new files are attached to the run as a download (nothing on the site changes); on = the live files are saved.
+# Started by hand only (Actions > this workflow > Run workflow). It reads KPC-Data; it never writes there. No internet look-ups.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Run only one part (layer, gpx, pdf, hours); empty = every part whose switch is not off'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-fers-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      KPC_FERS_LAYER: ${{ vars.KPC_FERS_LAYER || 'off' }}
+      KPC_FERS_GPX: ${{ vars.KPC_FERS_GPX || 'off' }}
+      KPC_FERS_PDF: ${{ vars.KPC_FERS_PDF || 'off' }}
+      KPC_HOURS_PUBLISH: ${{ vars.KPC_HOURS_PUBLISH || 'off' }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the 2-fer and hours files from KPC-Data (read only)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpc-data \
+            && git -C kpc-data sparse-checkout set --no-cone data/fers/US-KY.json data/hours/US-KY.json \
+            && git -C kpc-data checkout -q \
+            || { echo "::error title=KPC-Data::could not read KPC-Data (exit $?); nothing was published"; exit 1; }
+      - name: Tools for the guide PDF (only when its switch is not off)
+        if: env.KPC_FERS_PDF != 'off'
+        run: |
+          sudo apt-get install -y -q fonts-crosextra-carlito fonts-crosextra-caladea >/dev/null || { echo "::error title=PDF fonts::the PDF fonts could not be installed (exit $?)"; exit 1; }
+          pip install -q reportlab || { echo "::error title=reportlab::reportlab could not be installed (exit $?)"; exit 1; }
+      - name: Build (layer, PDF, GPX, hours; each by its own switch)
+        env:
+          ONLY: ${{ inputs.only }}
+        run: |
+          rc=0
+          for part in layer pdf gpx hours; do   # pdf before gpx: both read the same hand list
+            [ -n "$ONLY" ] && [ "$ONLY" != "$part" ] && continue
+            python3 .github/scripts/kpc_fers_publish.py "$part" --data kpc-data || { echo "::error title=$part::refused or stopped (exit $?); its file was not changed"; rc=1; }
+          done
+          exit $rc
+      - name: Attach the previews to this run
+        if: always() && hashFiles('preview/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: kpc-publish-preview
+          path: preview/
+      - name: Save the live files (only parts switched on)
+        run: |
+          rm -rf preview kpc-data   # previews are never saved to the site
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          F="ky-overlaps.geojson KPC_KY_POTA_2fers_3fers.gpx KPC_Kentucky_POTA_2fers_3fers_Guide.pdf kpc-ky-hours.json .claude/build/fers/fers.json"
+          if git diff --quiet -- $F; then echo "::notice title=Publish::no live file changed"; exit 0; fi
+          git add -- $F
+          # hand-edited files: rebase mode, so a newer hand edit on main is never overwritten (a clash stops loudly)
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED=yes \
+            bash .github/scripts/kpc_save_overwrite.sh 'Publish reviewed 2-fers / hours (G10)' - -- $F
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          PY
