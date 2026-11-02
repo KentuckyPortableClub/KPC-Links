@@ -1,6 +1,6 @@
 # Canada QC: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **440 of 833** joined (same name + same kind). **10** to check, **349** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **427 of 833** joined (same name + same kind). **11** to check, **360** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -9,6 +9,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-0964** Parc Cartier-Roberval Archeological Reserve (Archeological Reserve) → Site archéologique Cartier-Roberval (~1 ac, similar name)
 - **CA-0994** Parc Maisonneuve Regional Park (Regional Park) → Site patrimonial de l'Ancienne-Cité-de-Maisonneuve (~5 ac, similar name)
 - **CA-1003** Parc régional Bois de Belle-Rivière Regional Park (Regional Park) → Domaine et manoir de Belle-Rivière (~7 ac, similar name)
+- **CA-1928** Ashuapmushuan Nature Reserve (Nature Reserve) → Réserve aquatique projetée de la rivière Ashuapmushuan (~69,549 ac, similar name); Proposed rivière Ashuapmushuan Aquatic Reserve (~68,349 ac, similar name)
 - **CA-1944** Le poste de traite de Chicoutimi National Historic Site (National Historic Site) → Site patrimonial du Poste-de-Traite-de-Chicoutimi (~10 ac, similar name)
 - **CA-4922** Saint-Ours Canal National Historic Site (National Historic Site) → Domaine seigneurial de Saint-Ours (~18 ac, similar name)
 - **CA-5855** Arvida National Historic Site (National Historic Site) → Site patrimonial d'Arvida (~436 ac, similar name)
@@ -29,6 +30,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1954 Parc de la Maison-des-Gouverneurs National Historic Site (National Historic Site) → on Aire faunique communautaire du Lac Saint-Pierre (~103,158 ac)
 - CA-2043 Perce UNESCO Global Geopark (Geopark) → on Site patrimonial de Percé (~10,387 ac)
 - CA-2165 Montreal Archipelago Ecological Park Nature Reserve (Nature Reserve) → on Aire de concentration d'oiseaux aquatiques Fleuve Saint-Laurent (Emb Rdp) (~544 ac); fleuve Saint-Laurent (Emb Rdp) Water Fowl Gathering Area (~804 ac)
+- CA-2218 Rimouski Reserve Nature Reserve (Nature Reserve) → on Zec du Bas-Saint-Laurent (~245,836 ac)
 - CA-2233 Parc de la Maison-Valois Recreation Park (Recreation Park) → on Maison Joachim-Génus (~5 ac)
 - CA-2250 Fort Richelieu National Historic Site (National Historic Site) → on Aire faunique communautaire du Lac Saint-Pierre (~103,158 ac)
 - CA-4897 Battle of the Restigouche National Historic Site (National Historic Site) → on New Brunswick #4 Wildlife Management Area (~871,008 ac)
@@ -100,6 +102,13 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1017 Parc Sir William Price (aka Parc Ball) Recreation Park (Recreation Park)
 - CA-1018 Parc Stewart (Stewart Hall) Park (Park)
 - CA-1019 Plaines d'Abraham National Historic Site (National Historic Site)
+- CA-1023 Réserve faunique de Matane Wildlife Reserve (Wildlife Reserve)
+- CA-1024 Réserve faunique de Papineau-Labelle Wildlife Reserve (Wildlife Reserve)
+- CA-1025 Réserve faunique des Chic-Chocs Wildlife Reserve (Wildlife Reserve)
+- CA-1026 Réserve faunique des Laurentides Wildlife Reserve (Wildlife Reserve)
+- CA-1027 Réserve faunique La Vérendrye Wildlife Reserve (Wildlife Reserve)
+- CA-1028 Réserve faunique Mastigouche Wildlife Reserve (Wildlife Reserve)
+- CA-1029 Réserve faunique Rouge-Matawin Wildlife Reserve (Wildlife Reserve)
 - CA-1031 Réserve naturelle de Pointe-Yamachiche Nature Reserve (Nature Reserve)
 - CA-1036 Vallee Bras-du-Nord Recreation Park (Recreation Park)
 - CA-1037 Zone Portuaire de Chicoutimi Historic Site (Historic Site)
@@ -172,11 +181,15 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2194 Parc du Mont-Loup-Garou Recreation Park (Recreation Park)
 - CA-2196 Place Émilie-Gamelin Recreation Park (Recreation Park)
 - CA-2198 Pointe a la Battrie Cap de la Table Nature Reserve (Nature Reserve)
+- CA-2208 Port-Cartier-Sept-Iles Nature Reserve (Nature Reserve)
+- CA-2209 Port-Daniel  Reserve Nature Reserve (Nature Reserve)
+- CA-2211 Portneuf Reserve faunique Nature Reserve (Nature Reserve)
 - CA-2219 Parc Central Recreation Park (Recreation Park)
 - CA-2223 Riviere Bostonnais Old Growth Forest Nature Reserve (Nature Reserve)
 - CA-2228 Riviere Pikauba Rare Forest Ecosystem Nature Reserve (Nature Reserve)
 - CA-2238 Ruisseau Teed Old Growth Forest Nature Reserve (Nature Reserve)
 - CA-2241 Saint Helen's Island Nature Reserve (Nature Reserve)
+- CA-2242 Saint-Maurice Reserve Nature Reserve (Nature Reserve)
 - CA-2246 Senneville Migratory Bird Sanctuary (Bird Sanctuary)
 - CA-2247 Sentiers Plein Air Ste-Anne-des-Lacs Nature Reserve (Nature Reserve)
 - CA-2249 Parc Le Rocher Recreation Park (Recreation Park)

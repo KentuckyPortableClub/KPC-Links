@@ -1,9 +1,9 @@
 {
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
-  "needs-parcel": 331,
-  "no-layer": 1244,
-  "name-mismatch": 24,
+  "needs-parcel": 319,
+  "no-layer": 1252,
+  "name-mismatch": 25,
   "private": 9
  },
  "parks": {
@@ -496,11 +496,6 @@
    "st": "BC",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
-  },
-  "CA-5344": {
-   "st": "BC",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Pacific Rim National Park Reserve Of Canada"
   },
   "CA-5350": {
    "st": "BC",
@@ -3747,11 +3742,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Algonquin Provincial Park (Natural Environment Class)"
   },
-  "CA-1301": {
-   "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Algonquin Provincial Park (Natural Environment Class)"
-  },
   "CA-1305": {
    "st": "ON",
    "tag": "needs-parcel",
@@ -3856,11 +3846,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Reserve)"
-  },
-  "CA-1599": {
-   "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: RONDEAU PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
   },
   "CA-1620": {
    "st": "ON",
@@ -4357,11 +4342,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5536": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Recreation Site)"
-  },
   "CA-5538": {
    "st": "ON",
    "tag": "no-layer",
@@ -4391,11 +4371,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Area)"
-  },
-  "CA-5565": {
-   "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Devil's Punch Bowl Conservation Area & Saltfleet Conservatio"
   },
   "CA-5567": {
    "st": "ON",
@@ -4506,11 +4481,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
-  },
-  "CA-5628": {
-   "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Inglis Falls"
   },
   "CA-5631": {
    "st": "ON",
@@ -4701,11 +4671,6 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Area)"
-  },
-  "CA-6003": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
   },
   "CA-6012": {
    "st": "ON",
@@ -5392,6 +5357,41 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques des Rapides de La"
   },
+  "CA-1023": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1024": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1025": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1026": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1027": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1028": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
+  "CA-1029": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Wildlife Reserve)"
+  },
   "CA-1031": {
    "st": "QC",
    "tag": "no-layer",
@@ -5411,6 +5411,11 @@
    "st": "QC",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Banc-des-Américains Marine Protected Area"
+  },
+  "CA-1928": {
+   "st": "QC",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Réserve aquatique projetée de la rivière Ashuapmushuan"
   },
   "CA-1929": {
    "st": "QC",
@@ -5787,6 +5792,26 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-2208": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-2209": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-2211": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
+  "CA-2218": {
+   "st": "QC",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Zec du Bas-Saint-Laurent"
+  },
   "CA-2219": {
    "st": "QC",
    "tag": "no-layer",
@@ -5816,6 +5841,11 @@
    "st": "QC",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
+  },
+  "CA-2242": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
   },
   "CA-2246": {
    "st": "QC",
@@ -7487,11 +7517,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Lac La Ronge Provincial Park"
   },
-  "CA-6128": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
   "CA-6129": {
    "st": "SK",
    "tag": "no-layer",
@@ -7517,36 +7542,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
   },
-  "CA-6143": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6144": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6145": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6146": {
-   "st": "SK",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-6147": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6148": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
   "CA-6149": {
    "st": "SK",
    "tag": "needs-parcel",
@@ -7557,17 +7552,7 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
   },
-  "CA-6151": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
   "CA-6152": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6153": {
    "st": "SK",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
