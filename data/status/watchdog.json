@@ -25,19 +25,17 @@
   "kpc-park-alerts.yml|2026-11-02T17:05:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
   "kpc-pota-discord.yml|2026-11-02T16:17:00+00:00": "2026-11-02T17:30+00:00 started",
   "kpc-social.yml|2026-11-02T13:07:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-whats-new.yml|2026-11-02T16:07:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)"
+  "kpc-whats-new.yml|2026-11-02T16:07:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
+  "kpc-band-alerts.yml|2026-11-02T17:48:00+00:00": "2026-11-02T18:17+00:00 started",
+  "kpc-discord-watch.yml|2026-11-02T17:47:00+00:00": "2026-11-02T18:17+00:00 started",
+  "kpc-fb-comments.yml|2026-11-02T17:32:00+00:00": "2026-11-02T18:17+00:00 skipped (not restarted)",
+  "kpc-park-alerts.yml|2026-11-02T17:03:00+00:00": "2026-11-02T18:17+00:00 skipped (not restarted)"
  },
- "last": "2026-11-02T17:30+00:00",
+ "last": "2026-11-02T18:17+00:00",
  "last_restarted": [
-  "kpc-bot-queue.yml (missed Nov 02 16:23 UTC)",
-  "kpc-campground-notes.yml (missed Nov 02 13:53 UTC)",
-  "kpc-club-posts.yml (missed Nov 02 14:41 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-discord-watch.yml (missed Nov 02 16:48 UTC)",
-  "kpc-fb-comments.yml (missed Nov 02 16:35 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 02 17:00 UTC)",
-  "kpc-park-alerts.yml (missed Nov 02 17:05 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-pota-discord.yml (missed Nov 02 16:17 UTC)",
-  "kpc-social.yml (missed Nov 02 13:07 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-whats-new.yml (missed Nov 02 16:07 UTC, NOT restarted: its next scheduled run catches up)"
+  "kpc-band-alerts.yml (missed Nov 02 17:48 UTC)",
+  "kpc-discord-watch.yml (missed Nov 02 17:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 02 17:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-park-alerts.yml (missed Nov 02 17:03 UTC, NOT restarted: its next scheduled run catches up)"
  ]
 }
