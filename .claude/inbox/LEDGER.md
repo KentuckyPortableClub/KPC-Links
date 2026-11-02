@@ -31,7 +31,7 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 | 25 | 2-fer layer / PDF / GPX in PREVIEW (members only) from the reviewed list | 10 + 8 | the preview layer shows the reviewed spots to members | ON HOLD (Brandon Nov 2 10:07 AM: 2-fers start over after the new keys) | Nov 2 |
 | 26 | Hours publish PREVIEW, Kentucky only | 10 + 2 | Brandon has read the changes list | OPEN | Nov 2 |
 | 27 | World key's 4,330 YES released, THEN G6 (pages stop showing unapproved keys) | 10 + 3 | Sunday's world number rises; no country blank | OPEN | Nov 2 |
-| 28 | Stray build id found + fresh build-id YES verdicts | 10 + 11 | a release run that names the build chat 11 approved | OPEN | Nov 2 |
+| 28 | Stray build id found + fresh build-id YES verdicts | 10 + 11 | a release run that names the build chat 11 approved | PARTLY Nov 2 10:21 AM: FOUND (chat 10): US-f3d48d30899 = chat 2's 7:04 AM US build, stamped by the copy bot; WAITING ON CHAT 11's verdict quoting that id | Nov 2 |
 | 29 | Email only on real failures; OSM/Wikidata/lookups off for facts and shapes | 10 + 2 | the checker lists no other email path / no such calls | OPEN | Nov 2 |
 | 30 | tools-out kept small: latest run per tool, pictures deleted once graded, monthly squash | 10 | KPC-Data under 400 MB on GitHub (849,603 KB on Nov 2 10 AM) | OPEN | Nov 2 |
 | 31 | ONE fresh 2-fer run on the NEW keys (after US + Canada keys are complete and live), stable ids, then chat 11 grades | 10 + 2 + 11 | a 2-fer run dated after the keys' release, graded by chat 11 | WAITING ON THE KEYS | Nov 2 |
