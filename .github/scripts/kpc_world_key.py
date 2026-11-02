@@ -834,7 +834,7 @@ for cc in COUNTRIES:
             if r['n']:
                 r['nj'] = r.get('nj') or r['n']; r['jp'] = jparts(r['nj'])
                 r['parts'] = [romaji(q) for q in r['jp']] or [romaji(jclean(r['nj']))]; r['n'] = '   '.join(r['parts'])
-        JA = wd_ja(P)
+        JA = wd_ja(P) if os.environ.get('KPC_WIKIDATA_JP') == '1' else {}   # Nov 2 (decision #15): Wikidata lookups OFF for facts and shapes (switch)
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
     for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | (set() if cc in SHEET else kinds(cc, r['src'])) | r.get('_k0', set())   # Nov 1: a sheet label names the agency, not the kind
     # Oct 25: dual names - Australia files many parks under the Aboriginal name with the English one in brackets

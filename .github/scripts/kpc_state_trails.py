@@ -255,7 +255,9 @@ OVP = 'https://overpass-api.de/api/interpreter'
 def words(name):  # Oct 17: letters/numbers only, so "Alene's", "Ka‘ena" and "Estacada- Boring" still match OpenStreetMap
     # Oct 18: POTA's type words ('BLM', 'Byway', 'Geologic'...) are not in the map names ('Burr Trail BLM Historic Trail' = 'Burr Trail')
     return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2 and x not in ('blm', 'byway', 'byways', 'geologic', 'wayside', 'state', 'water')]
+OSM_ON = os.environ.get('KPC_OSM_TRAILS') == '1'   # Nov 2 (Brandon's 18 decisions, #15): OpenStreetMap lookups OFF for shapes; lines already saved stay, labelled
 def osm(name, iso, la, lo):
+    if not OSM_ON: return None, ''
     """Oct 17 (Brandon: 'readdress the missing trails'): route relations of any kind (foot, bike, horse, canoe for water
     trails, road for scenic byways) AND plain named paths/cycleways/tracks (many rail-trails are just ways); every match
     within MATCH_KM of the POTA pin is kept (trails come in sections), not just the longest one anywhere in the state."""
