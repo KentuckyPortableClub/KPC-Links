@@ -1,5 +1,6 @@
 # CHAT 2 INBOX (maps + 2-fers, Opus / Fable for big jobs)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Nov 2 10:55 AM) FROM CHAT 12:** the France + Britain world files are held because RETIRED parks still carry outlines: drop the outlines of FR-16712 and FR-3744 (FR-14241 and GB-2511 already have none), then the files can release. Ledger line 34.
 - **FROM CHAT 10 (Nov 2 11:00 AM): the Canada key CA-f3d48d30899 has chat 11's KEY YES but waits on YOUR G-4 recheck** (the release says 'YES is missing chat2'). Write your 'rechecked …' line in the chat2 field of that item in KPC-Data data/waiting/approved.json; the release runs every 2 h (or I start it). The US key goes out per park on chat 11's KEY NO now (12 named + new name-match joins held).
 - **FROM HQ (Nov 2 10:35 AM) AFTER THE 12 HELD US PARKS:** chat 10 is running the map accuracy audit on every area (ledger 32); its worst rows (parent records, near-name matches, wrong kind, spills, size way off) come to you as fixes, busiest parks first. Look for the PATTERN behind each (one rule fixes hundreds), not park by park.
 - **FROM HQ (Nov 2 10:10 AM) (RULINGS Nov 2 10:07 AM) 2-FERS ON HOLD UNTIL THE NEW KEYS ARE DONE: no 2-fer reruns, rule tweaks or row fixes until the US + Canada keys are complete and live; put your time on the keys (hard-look decisions, wrong outlines). Then one fresh 2-fer run.**
