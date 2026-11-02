@@ -168,6 +168,18 @@ body.field .page-jump-nav{display:none!important}
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-club.html">← Club Room</a><a href="kpc-maprep.html">Map Rep Tool Box</a><a href="kpc-map-coverage.html" aria-current=page>Map Coverage</a></div></nav>
 
 <section class="section"><div class="wrap">
+<div class="chips" role="tablist" aria-label="Region" style="margin-bottom:14px">
+<button type="button" class="chip" data-region="na" aria-pressed="true">US &amp; CANADA</button>
+<button type="button" class="chip" data-region="world" aria-pressed="false">WORLD</button>
+</div>
+<div id="mcWorld" style="display:none">
+<div class="panel"><div class="controls"><b class="muted" style="font-size:12px;align-self:center" id="mcWorldNote">Loading…</b></div>
+<div class="tablewrap"><table class="list" id="mcWorldTable">
+<thead><tr><th>COUNTRY</th><th>PARKS</th><th>MISSING</th><th>ACTIVATIONS AT MISSING PARKS</th><th>MOST ACTIVE MISSING PARK</th><th></th></tr></thead>
+<tbody><tr><td colspan="6" class="empty">Loading…</td></tr></tbody>
+</table></div>
+<div class="note">Countries are in order of POTA activity at the parks still missing a boundary, busiest first. Each CSV lists that country's missing parks, most activated first (park number, name, area, type, activations, attempts, pin, why it is missing). Lists are rebuilt every night; activation counts come from POTA once a week.</div>
+</div></div>
 <div id="mcState">
 <div class="panel"><div class="controls">
 <div class="chips" style="flex:1 1 auto" role="group" aria-label="Sort by">
@@ -187,7 +199,7 @@ body.field .page-jump-nav{display:none!important}
 
 <div id="mcDrill" style="display:none">
 <div class="panel"><div class="controls">
-<button type="button" class="btn alt sm" id="mcBack">← ALL STATES</button>
+<button type="button" class="btn alt sm" id="mcBack">← ALL STATES</button> <button type="button" class="btn sm" id="mcDrillCsv" style="margin-left:auto">⬇ CSV (MOST ACTIVATED FIRST)</button>
 <b id="mcDrillTitle" style="font-family:Georgia,serif;font-size:20px"></b>
 </div>
 <div class="controls" style="margin-top:10px"><b class="muted" style="font-size:11px;letter-spacing:1px;align-self:center">SHOW COLUMNS:</b><div class="chips" id="mcCols" role="group" aria-label="Choose columns"></div></div>
@@ -302,6 +314,7 @@ body.field .page-jump-nav{display:none!important}
   }).join('');
  }
  function drill(code){
+  window.__mcDrillCode=code;
   var parts=code.split('-'),country=parts[0],st=parts[1];
   var s=window.__mcData.states.find(function(x){return x.country===country&&x.code===st});
   if(!s)return;
@@ -330,6 +343,57 @@ body.field .page-jump-nav{display:none!important}
   if(!parksPromise)parksPromise=KPC.dataUrl('data/review/scoreboard-parks.json').then(function(r){return r.json()}).then(function(d){window.__mcParks=d;});
   return parksPromise;
  }
+
+ /* ---------- WORLD tab + CSV downloads (chat 10, Nov 1: Brandon 'show the world in other tabs ... download csv by country in rank of activity') ---------- */
+ var ML='https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/missing-lists/';
+ var mlCache={};
+ function mlGet(f){if(!mlCache[f])mlCache[f]=fetch(ML+f,{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});return mlCache[f];}
+ function csvCell(v){v=v==null?'':String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+ function saveCsv(name,cols,rows){
+  var head=cols.map(function(c){return c.toUpperCase()}).join(',');
+  var body=rows.map(function(r){return r.map(csvCell).join(',')}).join('\r\n');
+  var blob=new Blob(['\ufeff'+head+'\r\n'+body],{type:'text/csv;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+ }
+ function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+ var DN=null;try{DN=new Intl.DisplayNames(['en'],{type:'region'})}catch(e){}
+ function ccName(c){if(c.name&&c.name!==c.cc)return c.name;try{return (DN&&DN.of(c.cc))||c.cc}catch(e){return c.cc}}
+ function countryCsv(cc,area,btn){
+  var old=btn&&btn.textContent;if(btn){btn.disabled=true;btn.textContent='…';}
+  mlGet(cc+'.json').then(function(d){
+   var rows=area?d.rows.filter(function(r){return r[2]===area}):d.rows;
+   saveCsv('kpc-missing-boundaries-'+(area||cc)+'-'+today()+'.csv',d.cols,rows);
+  }).catch(function(){alert('The list is not ready yet (it is built every night). Try again later.')})
+   .then(function(){if(btn){btn.disabled=false;btn.textContent=old;}});
+ }
+ function renderWorld(){
+  var tb=document.querySelector('#mcWorldTable tbody');
+  mlGet('index.json').then(function(d){
+   var C=d.countries||[];
+   document.getElementById('mcWorldNote').textContent=C.length+' countries • '+C.reduce(function(s,c){return s+c.missing},0).toLocaleString()+
+    ' parks still missing a boundary • lists built '+(d.built||'?')+(d.activity_built?' • POTA activity of '+d.activity_built:' • POTA activity counts arrive with the weekly pull');
+   tb.innerHTML=C.map(function(c){
+    return '<tr><td><b>'+esc(ccName(c))+'</b> <span class="muted" style="font-size:12px">'+esc(c.cc)+'</span></td><td>'+c.parks.toLocaleString()+'</td>'+
+     '<td>'+(c.missing?'<b style="color:#a33">'+c.missing.toLocaleString()+'</b>':'0')+'</td><td>'+(c.missing_activations||0).toLocaleString()+'</td>'+
+     '<td>'+esc(c.top||'')+'</td><td><button type="button" class="btn alt sm" data-csv="'+esc(c.cc)+'">⬇ CSV</button></td></tr>';
+   }).join('')||'<tr><td colspan="6" class="empty">Nothing missing.</td></tr>';
+   Array.prototype.forEach.call(tb.querySelectorAll('[data-csv]'),function(b){b.addEventListener('click',function(){countryCsv(b.getAttribute('data-csv'),null,b)})});
+  }).catch(function(){tb.innerHTML='<tr><td colspan="6" class="empty">The world lists are not built yet: they appear after tonight\'s run.</td></tr>';});
+ }
+ Array.prototype.forEach.call(document.querySelectorAll('[data-region]'),function(b){
+  b.addEventListener('click',function(){
+   var w=b.getAttribute('data-region')==='world';
+   Array.prototype.forEach.call(document.querySelectorAll('[data-region]'),function(x){x.setAttribute('aria-pressed',String(x===b))});
+   document.getElementById('mcWorld').style.display=w?'':'none';
+   document.getElementById('mcState').style.display=w?'none':'';
+   document.getElementById('mcDrill').style.display='none';
+   if(w&&!window.__mcWorldDone){window.__mcWorldDone=1;renderWorld();}
+  });
+ });
+ document.getElementById('mcDrillCsv').addEventListener('click',function(){
+  var code=window.__mcDrillCode;if(!code)return;countryCsv(code.split('-')[0],code,this);
+ });
  document.getElementById('mcBack').addEventListener('click',function(){
   document.getElementById('mcDrill').style.display='none';
   document.getElementById('mcState').style.display='';
