@@ -1307,6 +1307,14 @@ def run(st):
         # Hill National Game Preserve' = the agency's own record, G-1: any distance); only the rest must prove their place
         _pw = words(p.get('n') or (r[0] if r else ''))
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
+        # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
+        # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code
+        # ignored is NOT added on top (it is often a neighbouring unit); it goes to CHECK
+        if weak and any(x not in weak and str(x[3]).split(' · ')[0] not in WEAK for x in m):
+            _bare = [x for x in weak if str(x[3]).split(' · ')[0] == 'name (designation code ignored)']
+            if _bare:
+                p['m'] = m = [x for x in m if x not in _bare]; weak = [x for x in weak if x not in _bare]
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held: a bare-name piece beside the park\'s own full-name record (Nov 2 map audit)'] for x in _bare]
         # R-G8 (HQ ruling Oct 29 2:45 PM, Brandon 2:40 PM): a shared-words piece joins only if (1) it shares a PLACE word (type
         # words do not count), (2) the kind of place agrees (an office is never park land), (3) it is not bigger than the park's
         # own name-matched record; else CHECK (the waiting room), never joined, never silently dropped

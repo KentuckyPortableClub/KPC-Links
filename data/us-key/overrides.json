@@ -2923,8 +2923,12 @@
   },
   "US-12020": {
    "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-02",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 pins-check (outside research B): the pin is in the Prophetstown Fen Nature Preserve subunit; the state park record is another unit",
+   "no": [
+    "Prophetstown State Park",
+    "sginb5702"
+   ]
   },
   "US-12029": {
    "join": [
