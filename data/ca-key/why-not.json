@@ -1,8 +1,8 @@
 {
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
-  "needs-parcel": 316,
-  "no-layer": 1221,
+  "needs-parcel": 317,
+  "no-layer": 1218,
   "name-mismatch": 19,
   "private": 9
  },
@@ -3700,7 +3700,7 @@
   "CA-1340": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: POLAR BEAR PROVINCIAL PARK"
+   "why": "the pin is inside a bigger area: WILDAREA"
   },
   "CA-1346": {
    "st": "ON",
@@ -3734,8 +3734,8 @@
   },
   "CA-1408": {
    "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Wilderness Area)"
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: CLUPAGEO"
   },
   "CA-1439": {
    "st": "ON",
@@ -3745,7 +3745,7 @@
   "CA-1467": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   "why": "the pin is inside a bigger area: WILDAREA"
   },
   "CA-1512": {
    "st": "ON",
@@ -3765,12 +3765,12 @@
   "CA-1559": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+   "why": "the pin is inside a bigger area: WILDAREA"
   },
   "CA-1566": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: LAKE NIPIGON CONSERVATION RESERVE"
+   "why": "the pin is inside a bigger area: WILDAREA"
   },
   "CA-1573": {
    "st": "ON",
@@ -3850,7 +3850,7 @@
   "CA-1707": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+   "why": "the pin is inside a bigger area: WILDAREA"
   },
   "CA-4853": {
    "st": "ON",
@@ -4157,11 +4157,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5356": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-5360": {
    "st": "ON",
    "tag": "no-layer",
@@ -4178,11 +4173,6 @@
    "why": "the pin is inside a bigger area: Dundas Valley Conservation Area"
   },
   "CA-5365": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5367": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"

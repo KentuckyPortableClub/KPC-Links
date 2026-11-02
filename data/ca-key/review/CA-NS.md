@@ -11,9 +11,9 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~1,835 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
+- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~1,835 ac); Cole Harbour - Lawrencetown Provincial Park (~1,883 ac)
 - CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~2,129 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
-- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~50 ac); St. Margarets Bay Islands Nature Reserve (~137 ac)
+- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~50 ac); St. Margarets Bay Islands Nature Reserve (~50 ac)
 - CA-4830 Charles Fort National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
 - CA-5798 Annapolis County Court House National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
 - CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~4 ac); Cape Breton Highlands National Park Of Canada (~80 ac)
