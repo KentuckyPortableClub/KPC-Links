@@ -1,9 +1,9 @@
 {
- "made": "2026-11-02 11:34 UTC",
+ "made": "2026-11-02 12:44 UTC",
  "counts": {
   "A_decided_not_in_key": 71,
   "B_sure_area_not_asked": 28,
-  "C_sure_line_not_drawn": 69
+  "C_sure_line_not_drawn": 70
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
  "A": [
@@ -877,6 +877,13 @@
    "AK",
    "Gulkana BLM Wild and Scenic River",
    "Gulkana Wild and Scenic River",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
+  ],
+  [
+   "US-11828",
+   "AK",
+   "Fortymile BLM Wild and Scenic River",
+   "Fortymile Wild and Scenic River",
    "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
   ],
   [

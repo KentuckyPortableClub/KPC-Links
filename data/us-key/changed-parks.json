@@ -1,22 +1,5 @@
 {
  "about": "Parks whose joined outline changed in the last US key rebuild (for the 2-fer small batches).",
  "date": "2026-11-02",
- "refs": [
-  "US-10545",
-  "US-10776",
-  "US-10963",
-  "US-11828",
-  "US-12822",
-  "US-1839",
-  "US-1926",
-  "US-2365",
-  "US-3618",
-  "US-4627",
-  "US-5759",
-  "US-5913",
-  "US-6311",
-  "US-6321",
-  "US-7140",
-  "US-9150"
- ]
+ "refs": []
 }
