@@ -27,6 +27,7 @@ from kpc_issue import report  # noqa: E402
 ROOT = pathlib.Path('.')
 UA = 'KPC-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: honest KPC User-Agent (Oct 31 ruling); a site that refuses it is listed, never worked around
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
+print('::notice title=User-Agent::' + UA, flush=True)   # G2 proof in every run log (Nov 2)
 # Sites that block automated checks; listed separately instead of as broken.
 NO_BOTS = ('facebook.com', 'instagram.com', 'x.com', 'twitter.com', 'linkedin.com', 'photos.google.com', 'photos.app.goo.gl',
            'tiktok.com', 'reddit.com', 'qrz.com', 'fs.usda.gov', 'groups.io')

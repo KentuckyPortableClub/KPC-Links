@@ -13,6 +13,7 @@ import datetime as dt, html, json, pathlib, re, sys, time, urllib.request
 SEEN, OUT = pathlib.Path('data/ky-lands-seen.json'), pathlib.Path('data/ky-official-maps.json')
 UA = 'KPC-map-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: the honest KPC User-Agent, never a browser's (Oct 31 ruling)
 def notice(t, m=''): print('::notice title=%s::%s' % (t, str(m).replace('\n', '%0A')), flush=True)
+notice('User-Agent', UA)   # G2 proof in every run log (Nov 2)
 def get(u):
     for i in range(3):
         try: return urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': UA}), timeout=45).read().decode('utf8', 'replace')
