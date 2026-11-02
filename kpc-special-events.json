@@ -1,40 +1,6 @@
 {
- "updated": "2026-10-31T11:14:59Z",
+ "updated": "2026-11-02T20:30:50Z",
  "stations": [
-  {
-   "title": "2026 Frankenstein Halloween FunXpedition",
-   "start": "2026-10-31",
-   "end": "2026-11-01",
-   "times": "1800Z-0300Z",
-   "call": "W0O",
-   "calls": [
-    "W0O"
-   ],
-   "where": "Jefferson City, MO",
-   "st": "MO",
-   "by": "Mid-MO ARC",
-   "freqs": "3.538 3.963 14.038 14.280",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", Jefferson City, MO. Mid-MO ARC. 3.538 3.963 14.038 14.280. QSL. Kent Trimble, K9ZTV, 2210 Heartland Ridge, Jefferson City, MO 65109. Annual Halloween FunXpedition from the only Frankenstein in the USA. CW & SSB 80-10. Consult spotting networks for frequencies. W0O QSL info on QRZ.com. Further details: K9ZTV"
-  },
-  {
-   "title": "Boo to You",
-   "start": "2026-10-31",
-   "end": "2026-11-01",
-   "times": "0000Z-0300Z",
-   "call": "KC5BOO",
-   "calls": [
-    "KC5BOO"
-   ],
-   "where": "Cleburne, TX",
-   "st": "TX",
-   "by": "KC5NX",
-   "freqs": "7.074 14.038 14.074 14.278",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", Cleburne, TX. KC5NX. 7.074 14.038 14.074 14.278. QSL. Boo to You, 3701 Park Rd 21, Cleburne, TX 76033."
-  },
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
    "start": "2026-11-01",
@@ -51,23 +17,6 @@
    "qsl": "Certificate",
    "url": "https://livoniaarc.com",
    "note": ", Livonia, MI. Livonia Amateur Radio Club. 14.260 7.260 7.050 14.050. Certificate. Electronic Only See QRZ page, 145.350 MHz, Livonia, MI 48151."
-  },
-  {
-   "title": "88th Anniversary of the War of the World Broadcast",
-   "start": "2026-11-01",
-   "end": "2026-11-01",
-   "times": "0500Z-1000Z",
-   "call": "W0W",
-   "calls": [
-    "W0W"
-   ],
-   "where": "Grovers Mill, NJ",
-   "st": "NJ",
-   "by": "Delaware Valley Radio Association",
-   "freqs": "7225 14255 7050 14050",
-   "qsl": "Certificate & QSL",
-   "url": "http://w2zq.com",
-   "note": ", Grovers Mill, NJ. Delaware Valley Radio Association. 7225 14255 7050 14050. Certificate & QSL. Delaware Valley Radio Association, PO BOX 7024, Trenton, NJ 08628."
   },
   {
    "title": "Nat'l Animal Shelter Appreciation Week",
@@ -596,6 +545,23 @@
    "note": ", San Diego, CA. USS Midway Museum Ship CV-41 COMEDTRA NI6IW. 7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters. QSL. USS Midway Ship Museum CV-41 COMEDTRA NI6IW, 910 N Harbor Drive, San Diego, CA 92101. See www.qrz.com for details."
   },
   {
+   "title": "95th Anniversary of Tri-Town Radio Amateur Club",
+   "start": "2026-12-15",
+   "end": "2026-12-21",
+   "times": "0000Z-2359Z",
+   "call": "W9VT",
+   "calls": [
+    "W9VT"
+   ],
+   "where": "Homewood, IL",
+   "st": "IL",
+   "by": "Tri-Town Radio Amateur Club",
+   "freqs": "7.240 14.240",
+   "qsl": "Certificate",
+   "url": "http://w9vt.org",
+   "note": ", Homewood, IL. Tri-Town Radio Amateur Club. 7.240 14.240. Certificate. Tricia Jaggard N9WDG, 17609 Golfview Ave, Homewood, IL 60430. Look for us on Facebook, QRZ, LoTW- W9VT- may be on other frequencies- please look us up for more information"
+  },
+  {
    "title": "Edwin Howard Armstrong Memorial SE",
    "start": "2026-12-18",
    "end": "2026-12-20",
@@ -662,6 +628,23 @@
    "qsl": "Certificate & QSL",
    "url": "https://www.skccgroup.com/k3y",
    "note": ", Ellicot City. SKCC - Straight Key Century Club. 3.550 7.055 14.050 21.050. Certificate & QSL. SKCC c/o Bill Hunt KJ7GNB, PO Box 731, Shelby, MT 59474."
+  },
+  {
+   "title": "Washington's Conference on Horseback in Kingston 250th",
+   "start": "2027-01-03",
+   "end": "2027-01-03",
+   "times": "0000Z-2359Z",
+   "call": "W2K",
+   "calls": [
+    "W2K"
+   ],
+   "where": "Kingston, NJ",
+   "st": "NJ",
+   "by": "David Sarnoff Radio Club",
+   "freqs": "14.235 14.090 JTTY",
+   "qsl": "QSL",
+   "url": "https://n2re.org/w2k",
+   "note": ", Kingston, NJ. David Sarnoff Radio Club. 14.235 14.090 JTTY. QSL. W2K c/o Dieterich, PO Box 597, Kingston, NJ 08528. This event marks the end of the 1776/1777 Ten Crucial Days... More frequencies and updates on web page https://n2re.org/w2k"
   },
   {
    "title": "\"Remembering W0JH Father Metcalf\"",
@@ -771,6 +754,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (42)"
+  "ARRL": "ok (41)"
  }
 }

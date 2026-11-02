@@ -1,66 +1,6 @@
 {
- "updated": "2026-11-01T11:15:55Z",
+ "updated": "2026-11-02T20:31:00Z",
  "week": [
-  {
-   "name": "ARRL EME Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003drkyp",
-   "when": "0000Z, Oct 31 to 2359Z, Nov 1",
-   "segs": [
-    [
-     "2026-10-31T00:00Z",
-     "2026-11-01T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "UK/EI DX Contest, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=0039u4ic",
-   "when": "1200Z, Oct 31 to 1200Z, Nov 1",
-   "segs": [
-    [
-     "2026-10-31T12:00Z",
-     "2026-11-01T12:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Russian WW MultiMode Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003b7f6m",
-   "when": "1200Z, Oct 31 to 1159Z, Nov 1",
-   "segs": [
-    [
-     "2026-10-31T12:00Z",
-     "2026-11-01T11:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "EANET Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gclty",
-   "when": "0800Z-1200Z, Nov 1",
-   "segs": [
-    [
-     "2026-11-01T08:00Z",
-     "2026-11-01T12:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "Classic Exchange, CW",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhqod",
@@ -78,78 +18,6 @@
    "modes": [
     "CW"
    ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "High Speed Club CW Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gd11k",
-   "when": "1400Z-1700Z, Nov 1",
-   "segs": [
-    [
-     "2026-11-01T14:00Z",
-     "2026-11-01T17:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Real Time Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fnbim",
-   "when": "1600Z-2000Z, Nov 1",
-   "segs": [
-    [
-     "2026-11-01T16:00Z",
-     "2026-11-01T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gjguh",
-   "when": "0000Z-0100Z, Nov 2",
-   "segs": [
-    [
-     "2026-11-02T00:00Z",
-     "2026-11-02T01:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003glebk",
-   "when": "1300Z-1400Z, Nov 2",
-   "segs": [
-    [
-     "2026-11-02T13:00Z",
-     "2026-11-02T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK1WC Memorial (MWC)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003goebf",
-   "when": "1630Z-1729Z, Nov 2",
-   "segs": [
-    [
-     "2026-11-02T16:30Z",
-     "2026-11-02T17:29Z"
-    ]
-   ],
-   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -583,6 +451,22 @@
    ],
    "modes": [
     "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "IPARC Contest, SSB",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdo4f",
+   "when": "0600Z-1800Z, Nov 8",
+   "segs": [
+    [
+     "2026-11-08T06:00Z",
+     "2026-11-08T18:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
    ],
    "kinds": [],
    "src": "WA7BNM"
@@ -1365,7 +1249,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (38)",
+  "WA7BNM": "ok (30)",
   "CORRAL": "ok (0)"
  }
 }
