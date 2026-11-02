@@ -1,0 +1,4627 @@
+{
+ "CA-0831:inuujaarvik territorial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0856:brookvale": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0862:park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0865:park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0869:prov park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6594:park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0863:park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0874:prov": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0880:prov park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0752:hidden lake territorial park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5477:tarium niryutait marine protected area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2991:sibbald snow vehicle": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3018:the kananaskis country": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3076:mclean creek off-highway vehicle": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3076:mclean creek": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3157:waterton lakes": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3157:waterton lakes national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4776:waterton lakes national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5377:kiska/willson": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6126:livingstone": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6134:athabasca ranch": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2969:castle": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2969:castle provincial park": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3111:hargrave coulees": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3111:hargrave coulees natural area": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4773:banff": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4773:banff national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4779:jasper": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4779:jasper national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4780:jasper": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4780:jasper national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6075:banff": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6075:banff national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4820:torngat mountains national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6166:cape st. mary's ecological reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6263:agay mene": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6268:agay mene": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6282:kluane": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6259:kluane": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6276:kluane": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2390:kaskatamagan wildlife management area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5465:loewen - mhhc": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2793:misaw lake special management area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2912:jean louis legare regional park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6061:sutherland migratory bird sanctuary": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4926:batoche national historic park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4933:fort walsh national historic park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2560:fort walsh national historic park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2720:armit river recreation site": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2727:armit river recreation site": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2775:nisbet south": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2779:armit river recreation site": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2857:wascana": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4928:fort walsh national historic park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5139:wascana": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5326:a08b281a-e511-415f-9e06-f362ee8b649f": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3199:8f66e0f3-a791-476b-87a7-eabcc313fad9": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3739:14387c09-1022-4a68-befc-c358f4b36010": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6189:peter's island conservation lands": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31, same as my earlier answer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6567:bowers meadows wilderness area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6191:scallop buffer zone (sfa 24)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6375:fortress of louisbourg": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6375:fortress of louisbourg national historic site": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0785:shepody national wildlife area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4438:magaguadavic river": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4444:4021400": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6480:4015800": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6584:privately protected area (ncc 120214)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6481:4021700": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0778:miramichi bay closure": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6444:miramichi bay closure": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0195:duclos point provincial park (nature reserve class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0234:privately protected area (ncc 141947)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1300:algonquin provincial park (natural environment class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1305:cavern lake provincial park (nature reserve class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1340:polar bear provincial park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1394:missinaibi provincial park (waterway class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1439:blanche river conservation reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1467:bon echo provincial park (natural environment class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1559:missinaibi provincial park (waterway class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1566:lake nipigon conservation reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1599:rondeau provincial park (natural environment class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1707:missinaibi provincial park (waterway class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4857:georgian bay islands national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5364:dundas valley conservation area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5507:turkey point provincial park (recreational class)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5646:conservation area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6181:thousand islands national park of canada": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6199:rideau canal national historic site": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6514:upper canada migratory bird sanctuary": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6617:h.r. frink conservation area": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0063:limehouse conservation area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1349:champlain bridge and lemieux islands": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1408:lake superior highlands conservation reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1651:dundas valley conservation area": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5099:privately protected area (ncc 140618)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5352:privately protected area (ncc 141091)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5557:glen major forest": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5636:privately protected area (ncc 141284)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5981:allan park management unit": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0960:senneville bird sanctuary": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1922:proposed banc-des-américains aquatic reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1922:banc-des-américains marine protected area": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1005:parc régional de la forêt ouareau": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1006:parc régional de la montagne du diable": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4972:parc régional du réservoir kiamika": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0985:canton-de-shefford nature reserve": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1011:parc régional du massif du sud": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1012:parc régional du mont-ham": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4963:parc régional de la chute-à-bull": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4966:parc régional de la seigneurie du lac matapédia": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5044:tourbière de johnville (partie université bishop/sherbrooke - servitude) natural area under private stewardship": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5051:parc régional du marécage des scots": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5052:parc nature de pointe-aux-outardes natural area under private stewardship": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5054:réserve faunique des laurentides": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 30)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2464:narcisse wildlife management area": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2897:wascana valley natural area recreation site": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5203:miscou": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3636:jericho beach park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5346:thompson regional park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3282:delta nature reserve": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3427:douglas park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3966:pitt meadows athletic park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4023:riverview forest": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5500:deas island regional park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5540:beacon hill park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3178:a.h.p. matthew park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3180:allco park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3200:barnet marine park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3258:bright angel park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3278:burnaby mountain conservation area": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3307:cedar creek park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3310:cates park/ whey-ah-wichen": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3358:colony farm regional park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3376:coutts park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3394:dacre park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3407:deer lake park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3453:eastern drive park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3469:elks park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3513:burnaby fraser foreshore park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3532:frost road park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3538:gates park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3591:hawthorne park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3603:hillcrest park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3606:holland park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3712:kroeker park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3774:maple park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3777:maquabeak park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3801:memorial south park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3859:mundy park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3918:oak meadows park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3968:pitt river greenway": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4071:settlers park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4106:skyline park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4184:tatlow park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4230:douglas taylor park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4232:jackman wetlands park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4251:vandusen botanical gardens park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4260:volunteer park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4268:walnut grove community park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5168:hudson bay park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5323:central community park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5341:rotary beach park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5501:grouse mountain regional park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5544:stoney hill forest reserve": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5548:blackie spit": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5667:mount tolmie park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6087:dunvegan": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5202:minister's island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5202:minister's island wildlife management area": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5259:kings landing wildlife management area": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5154:cape jourimain national wildlife area": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4847:st. peters canal": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6178:cape george provincial park": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5645:ball's mill c.a.": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5118:selwyn conservation area": {
+  "answer": "NO",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4025:robert burnaby park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5976:churchill airport (misc)": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4811:fort beauséjour - fort cumberland national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4812:fort gaspareaux national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4815:st. andrews blockhouse national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4825:signal hill national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5813:grand-pré nhs - lot kt-1": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5116:rideau hall": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5117:royal canadian mint": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5316:wolseley barracks": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4915:maillou house national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0975:braves park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1019:plains of abraham": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4925:the fur trade at lachine national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6256:major's hill park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6204:vincent massey park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6151:boundary bog trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6144:elk trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6153:fisher trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6143:freight tait springs trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6145:hunters lake trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6150:kingsmere river trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6130:mud creek trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6149:narrows peninsula trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6140:shady lake trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6142:spruce river highland trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6148:treebeard trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3358:ƛ̓éxətəm regional park": {
+  "answer": "NO",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3968:pitt river regional greenway": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3359:ƛ̓éxətəm regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3298:cardiff mountain ecological reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3778:maquinna marine park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4187:taylor landing park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4810:carleton martello tower": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4944:fort howe": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1251:rockwood park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5274:wolastoq park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5711:queen square": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5704:mispec park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1240:hyla park - nature preserve": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5211:officers' square": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5273:wilmot park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5253:carleton park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5138:odell park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4558:middle ridge wildlife reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1799:maccormacks beach provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6563:baker inlet provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1904:blind bay provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6565:bulls head provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0892:burnt island provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1845:cape jack beach provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0903:cookville provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6506:hay cove provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6559:hirtles beach provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6570:mahoney beach provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1794:marie joseph provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6561:medway river provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6562:mersey river provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6568:pinehurst provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5446:ross ferry provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6483:roxbury provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1867:spry bay provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1902:tusket river lookoff provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5796:africville": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5428:public gardens": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5425:admiralty house": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5812:government house": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5823:mccully house": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6322:quaker whaler house-william ray": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5841:st. george's round church": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5844:st. paul's anglican church": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5478:nagwichoonjik national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4316:60th parallel": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0751:blackstone": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4324:dory point": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4327:fort smith mission": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0755:fred henne": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4329:happy valley": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0758:jàk": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4336:mackinnon": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0761:nitainlaii": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6347:paniksak": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0762:prelude lake": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0763:fort smith queen elizabeth": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4348:yellowknife river": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1658:sunnidale park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5646:ganaraska millenium ca": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5565:dofasco 2000 trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1301:barron canyon trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5628:bruce trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1599:south point trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6003:waterfront trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5536:nassagaweya trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5506:nine mile portage heritage trail": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0177:chapleau crown game preserve": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6439:holman’s island, located in bedeque bay, was the former site of the island park hotel, established in 1872. it is home t": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4945:base de plein air sainte-foy": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0514:île-charron, parc de l'": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Oct 31)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4816:cape spear lighthouse national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4822:port au choix national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4861:butler's barracks national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4864:fort henry national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4865:fort malden national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4866:fort mississauga national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4873:laurier house national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4887:sir john johnson house national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4906:57-63 st. louis street national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4901:chambly canal national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4904:fort chambly national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4909:fortifications of quebéc national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4911:lachine canal national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4917:montmorency park national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1596:hog's back park": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4794:kootenai house": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0973:parc de la riviere-du-moulin": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0983:parc du mont-fortin": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0984:parc du mont-jacob": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1016:parc rosaire-gauthier": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4960:michel-chartrand, parc": {
+  "answer": "YES",
+  "checked_by": "chat 11 (Nov 1, by layer)",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0005:banff": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0020:elk island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0040:jasper": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0110:waterton lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0115:wood buffalo": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0118:dinosaur": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0631:antelope hill": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0632:beauvais lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0634:big knife": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0635:birch mountains wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0636:bow valley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0637:bragg creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0638:brown-lowery": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0639:calling lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0641:crimson lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0642:cypress hills": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0643:dillberry lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0644:dunvegan": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0645:dry island buffalo jump": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0646:eagle point": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0648:fish creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0649:glenbow ranch": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0651:greene valley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0652:gregoire lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0654:lakeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0655:long lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0656:mclean creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0657:midland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0658:miquelon lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0660:moose lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0661:notikewin": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0662:obed lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0664:peter lougheed": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0665:pierre grey's lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0666:police outpost": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0667:ram falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0668:ribstone creek heritage rangeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0669:rock lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0670:ross lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0671:rumsey": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0672:saskatoon island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0673:scalp creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0674:sheep river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0675:sherwood park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0676:sir winston churchill": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0677:spray valley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0678:sundance": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0679:tawatinaw": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0680:tolman badlands heritage rangeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0681:two lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0682:vermilion": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0683:victoria settlement": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0684:washout creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0685:west bragg creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0686:whitney lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0687:william a. switzer": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0688:winagami lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0689:writing-on-stone": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0690:young's point": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1163:aspen beach": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1165:beaverdam": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1166:calhoun bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1167:canmore nordic centre": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1168:chain lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1169:chambers creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1170:chinook": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1171:cold lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1172:crescent falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1173:cross lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1175:dry haven": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1176:dutch creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1177:elbow falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1178:engstrom lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1179:garner lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1180:jarvis bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1181:kinbrook island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1182:lesser slave lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1183:little bow": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1184:little fish lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1185:lois hole centennial": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1186:o'brien": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1188:pembina river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1189:pigeon lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1190:queen elizabeth": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1191:red lodge": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1192:rochon sands": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1193:strathcona science": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1195:thunder lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1196:tillebrook": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1198:wabamun lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1199:williamson": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1200:willow creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1201:woolford": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1202:wyndham-carseland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2920:alexo": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2921:alsike bat lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2922:anderson creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2924:antler lake island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2927:aurora": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2928:aylmer": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2929:battle lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2930:bear lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2931:bearberry prairie": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2932:birch river wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2933:beaverhill lake heritage rangeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2934:beaverhill": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2935:beehive": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2936:bentz lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2937:big berland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2939:big mountain creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2940:bigelow reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2941:bigoray": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2942:bilby": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2944:blackstone": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2945:bleriot ferry": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2946:blue rapids": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2947:bluerock wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2948:bob creek wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2949:bow valley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2950:bow valley wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2951:brazeau canyon wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2952:brazeau reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2953:brazeau river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2954:bridge lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2955:brown creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2956:buck lake creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2957:buck lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2958:buck lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2959:buffalo lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2960:buffalo tower": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2961:bullshead reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2962:burnt timber": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2963:burtonsville island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2964:butcher creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2965:caribou mountains wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2966:caribou river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2967:carnwood modeste": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2968:cartier creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2971:castle": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2972:castle wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2973:cat creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2974:cataract creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2975:centre of alberta": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2976:chain lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2977:chambers creek group camp": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2978:chedderville": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2979:child lake meadows": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2980:chin coulee": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2981:chinchaga wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2983:chrystina lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2984:clear lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2985:clearwater ricinus": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2986:coal lake north": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2987:cobble flats": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2988:kazan wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2989:cooking lake-blackfoot": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2990:coyote lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2992:ghost reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2993:crippsdale": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2995:dawson": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2996:deer creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2997:demmitt": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2998:dillon river wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2999:don getty wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3001:dunvegan west wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3002:dussault lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3003:easyford": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3004:easyford creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3005:edgar t. jones": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3006:edith lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3008:elbow river launch": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3009:fairfax lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3010:elbow-sheep wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3011:elk creek fish pond": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3012:elk creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3013:elk river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3014:emerson creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3015:english bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3016:etherington creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3017:evan-thomas": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3019:fickle lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3020:fidler-greywillow wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3021:fort assiniboine sandhills wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3022:gadsby lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3023:genesee": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3024:george lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3027:gipsy-gordon wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3029:grand rapids wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3031:halfmoon lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3032:halfway lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3034:harper creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3035:hastings lake islands": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3036:ghost airstrip": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3037:hay-zama lakes wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3038:heatburg": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3040:highway": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3041:hoadley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3043:hondo": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3044:horseshoe creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3045:hubert lake wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3047:innisfail": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3048:isle lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3049:j.j. collett": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3050:kakina lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3051:kakwa river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3052:kakwa wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3056:kleskun hill": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3058:la biche river wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3059:south ghost": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3060:la saline": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3061:lac la nonne": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3062:lakeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3063:lesser slave lake wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3064:lily lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3065:little elbow": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3067:lloyd creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3068:magee lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3069:majeau lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3070:marguerite river wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3071:markerville": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3074:matthews crossing": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3075:waiparous creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3077:medicine lodge hills": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3078:milk river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3079:mill island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3080:modeste creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3081:modeste saskatchewan": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3082:mount butte": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3083:mt. livingstone": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3084:musreau lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3086:newton lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3087:noel lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3088:north cooking lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3090:o'chiese": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3093:onefour heritage rangeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3094:opal": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3095:open creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3096:otauwau": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3097:otter-orloff lakes wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3098:outpost wetlands": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3099:paddle river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3100:lake mcgregor": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3101:park court": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3102:parkland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3103:peace river wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3105:pembina river moon lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3106:pembina river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3107:pinto creek canyon": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3109:police point": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3110:poplar creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3112:prefontaine brock lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3114:red rock coulee": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3115:redwater river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3117:travers reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3118:richardson wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3119:rock lake - solomon creek wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3120:rocky rapids": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3121:roselea": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3124:sand lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3126:saulteaux": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3128:sheep creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3131:snakes head": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3132:spruce island lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3133:st. francis": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3135:sturgeon lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3137:little bow reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3138:sibbald lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3139:sulphur gates": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3140:sundance": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3141:sundre": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3142:sundre north": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3144:sylvan lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3145:sibbald meadows pond": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3146:sibbald viewpoint": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3147:taylor lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3148:thorsby": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3149:threepoint creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3150:town creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3151:twin river heritage rangeland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3152:upper mann lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3153:vega": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3154:wagner": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3156:wapiabi": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3158:welch creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3160:white earth valley": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3162:whitecourt mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3163:whitehorse wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3165:whitemud falls wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3166:wildhay glacial cascades": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3168:winagami wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3169:yates": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5144:gooseberry lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5146:watson creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5482:wildcat island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5484:fallen timber": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5485:fallen timber south": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5486:fawcett lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5487:figure eight lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5488:fish lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5489:fisher creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5490:fitzsimmons creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5492:franchere bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5493:freeman river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5494:french bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5509:gleniffer reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5510:goldeye lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5511:hangingstone": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5512:harlech": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5513:heart creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5514:heart river dam": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5515:highwood": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5516:highwood compound": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5517:highwood junction": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5518:highwood river": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5519:horburg": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5520:hornbeck creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5521:indian graves": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5522:ing's mine": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5523:iosegun lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5524:jackfish lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5529:james-wilson": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5530:jensen reservoir": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5531:kehiwin": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5532:kitaskino nuwenëné wildland": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5533:kootenay plains": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5534:lantern creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5629:riverlot 56": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5932:lundbreck falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6331:twin lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6332:sulphur lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6333:stoney lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6334:running lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6587:lusk creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6589:snow creek": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6603:saskatoon mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6606:big island": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0512:oka national park (québec)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1987:coteau-de-la-rivière-la guerre nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0897:caribou-munroe island provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5426:cole harbour - lawrencetown provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0491:aiguebelle national park (québec)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2158:montagnes-vertes (sec. sccn / par. allistone-winkler, domtar, nadon, ghiskas-schmid, johnston) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0513:opémican national park (québec)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0402:st. joseph island migratory bird sanctuary": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1920:alvar-d'aylmer (conservation de la nature - québec) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2142:mont-rougemont (sec. cnq / par. pettigrew, lussier) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2270:tourbière-du-lac-à-la-tortue (sec. cnq / par. abitibiconsolidated, abitibi phase 2) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1268:hawke hill ecological reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1918:aigle-à-tête-blanche ecological reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1923:andré-linteau ecological reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2153:mont-yamaska (sec. onil-caouette) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2106:lacs-vaudray-et-joannès biodiversity reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2820:regina beach": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3395:dahl lake park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3590:hathayim marine park [a.k.a. von donop marine park]": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4375:brookvale": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4524:tabusintac": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1362:crane lake forest conservation reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1961:bonaventure island and percé rock bird sanctuary": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3486:eskers park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3716:kunxalas conservancy": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4351:andersonville": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4482:phillipstown": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4910:grosse île and the irish memorial national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1949:boisé-des-blouin nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1985:collines-ondulées national park reserve (québec)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2074:jean-paul-riopelle (sec. cnq / par. pointe-aux-pins) nature reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3488:esté-tiwilh/sigurd creek conservancy": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3661:katherine tye ecological reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3701:klewnuggit inlet marine park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-3889:neneikekh/nanika-kidprice park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4222:tsa-latĺ / smokehouse conservancy": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4237:ugʷiwa'/cape caution – blunden bay conservancy": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4378:burpee lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4388:dowdall lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4398:gaspereau": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4422:lake stream": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4439:maxwell": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4454:monument brook": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4456:mount akroyd": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4466:nepisiquit": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4511:skiff lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4542:woodman": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4552:île aux canes migratory bird sanctuary": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1055:lower fort garry national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4805:st. andrew's rectory national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4891:ardgowan national historic site": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0538:duck mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0571:turtle mountain provincial forest": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1087:whiteshell provincial forest": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0569:stephenfield": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2417:grant's lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2458:marshy point": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0771:république provincial park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0766:baillie settlement": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0768:blue mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0774:freeze lakes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0795:spednic lake": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-4549:grand codroy estuary": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5092:bruce's caves": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5627:inglis falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5651:hibou": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5654:old baldy": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5655:indian falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5656:eugenia falls": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5657:epping-john muir lookout": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5660:arran lake conservation area": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5665:the glen": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5959:west rocks": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6004:christie beach": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6005:ainslie wood": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6006:clendenan": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6007:colpoy's lookout": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6008:kemble mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6610:beaver valley lowlands": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1385:chapman mills": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1638:w.a. taylor": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5295:baxter": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5542:foley mountain": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5955:mill pond": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5956:perth wildlife reserve": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5957:portland bay": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5630:carr's marsh": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5541:e.m. warwick": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-6212:big bend": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5291:ken reid": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5086:seymour": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5088:king's mill": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5089:sager": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5637:goodrich-loomis": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1519:milne park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0400:springwater provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0138:algonquin provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0426:wasaga beach provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0244:kakabeka falls provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0144:awenda provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0233:inverhuron provincial park (cultural heritage class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0189:darlington provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0342:pinery provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0281:macgregor point provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0209:ferris provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0352:pretty river valley provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0204:emily provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0358:queen elizabeth ii wildlands provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0254:killbear provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0145:balsam lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0160:bon echo provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0224:grundy lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0184:craigleith provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0212:fitzroy provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0368:rondeau provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0312:murphys point provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0389:silent lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0219:frontenac provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0421:voyageur provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1375:dupont provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0266:lake superior provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0363:restoule provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0323:oastler lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0359:quetico provincial park (wilderness class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0130:aaron provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0170:carden alvar provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0181:chutes provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0255:komoka provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0334:oxtongue river-ragged falls provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0308:mono cliffs provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1040:burnt lands provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0162:bonnechere provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0188:dana-jowsey lakes provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0316:neys provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0339:petroglyphs provincial park (cultural heritage class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0164:boyne valley provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0194:driftwood provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0153:bigwind lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1045:puzzle lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0300:mikisew provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0265:lake st. peter provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0252:killarney provincial park (wilderness class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0290:the massasauga provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0439:windy lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1575:petawawa terrace provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0171:carson lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0193:dividing lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0390:silver falls provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0207:fairbank provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0349:potholes provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0206:esker lakes provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0236:ivanhoe lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0282:macleod provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0433:westmeath provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0356:quackenbush provincial park (cultural heritage class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0143:aubrey falls provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0237:j. albert bauer provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0294:mattawa river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1038:amable du fond river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0151:bell bay provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0220:fushimi lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0246:kap-kig-iwan provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0410:the shoals provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0291:matawatchan provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0306:mississagi river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0325:obatanga provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0375:sandbar lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0424:wakami lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1302:barron river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1420:grant's creek provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0235:ira lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0253:killarney lakelands and headwaters provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0304:mississagi provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0317:noganosh lake provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0320:north channel inshore provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0399:spanish river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1047:rushbrook provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1306:batchawana river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0169:caliper lake provincial park (recreational class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0197:eagle-dogtooth provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0216:fraleigh lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0239:jocko rivers provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0289:mashkinonje provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0303:missinaibi provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0315:nakina moraine provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0327:ojibway provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0357:queen elizabeth the queen mother mnidoo mnising provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0370:ruby lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0408:temagami river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1039:aubinadong river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0142:aubinadong-nushatogaini rivers provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0154:biscotasi lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0173:cavern lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0247:kashabowie provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0249:kenny forest provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0284:makobe-grays river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0324:obabika river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0335:pakwash provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0394:slate islands provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0397:solace provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0409:thackeray provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0425:wanapitei provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0443:woman river forest provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1710:whitesand provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1711:widdifield forest provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0131:abitibi-de-troyes provincial park (cultural heritage class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0167:butler lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0243:kaiashk provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0272:little abitibi provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0278:lola lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0295:maynard lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0313:nagagami lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0314:nagagamisis provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0376:sandpoint island provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0380:sedgman lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0412:tide lake provincial park (nature reserve class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0441:winnange lake provincial park (natural environment class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1044:nimoosh provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1430:gull river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1556:obonga-ottertooth provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1558:ogoki river provincial park (waterway class)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0518:parc national de la pointe-taillon": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0492:parc national du bic": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0517:parc national de plaisance": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0510:parc national des monts-valin": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0496:parc national de frontenac": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0509:parc national du mont-tremblant": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0520:parc national de la yamaska": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1033:réserve naturelle du bois-de-brossard (naq)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0500:parc national des hautes-gorges-de-la-rivière-malbaie": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0499:parc national des grands-jardins": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0506:parc national de miguasha": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2217:réserve naturelle de l'île-kettle (sec. sccn)": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1022:réserve écologique samuel-brisson": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0504:parc national kuururjuaq": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-0516:parc national des pingualuit": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2216:réserve naturelle de l'île-aux-pommes": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1093:antelope lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1094:assiniboia regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1095:atton's lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1096:bengough regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1097:big river regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1098:brightsand lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1099:cabri regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1100:canwood regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1102:ceylon regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1105:dunnet regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1106:eagle creek regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1107:emerald lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1108:eston riverside regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1109:glenburn regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1110:hudson bay regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1112:jean louis legare regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1113:kemoca regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1114:kindersley regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1115:kipabiskau regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1116:lac pelletier regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1117:lake charron regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1118:last mountain regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1122:lucien lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1123:macklin lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1124:mainprize regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1126:martin's lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1127:mclaren lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1128:mcnab regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1130:melville regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1131:memorial lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1132:meota regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1133:moose creek regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1135:morin lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1136:nickle lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1138:notukeu regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1139:ogema regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1140:oungre memorial regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1142:pasquia regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1143:pine cree regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1144:prairie lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1145:radville laurier regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1146:redberry lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1149:shamrock regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1150:silver lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1151:st brieux regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1152:struthers lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1153:sturgeon lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1155:suffern lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1158:wakaw lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1159:wapiti valley regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1160:welwyn centennial regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1161:whitesand regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-1162:york lake regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2910:wilkie regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2916:wood mountain regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-2917:woodlawn regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ },
+ "CA-5130:big manitou regional park": {
+  "answer": "YES",
+  "checked_by": "chat 11",
+  "applied": "2026-11-02 12:49"
+ }
+}

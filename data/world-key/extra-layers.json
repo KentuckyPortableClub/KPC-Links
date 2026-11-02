@@ -1,0 +1,925 @@
+{
+ "countries": {
+  "VI": [
+   {
+    "label": "FWSBoundaries",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+    "name_field": "ORGNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "nps_boundary",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "name_field": "UNIT_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "FWSNationalRealtyBoundaries",
+    "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+    "name_field": "ORGNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "AS": [
+   {
+    "label": "nps_boundary",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "name_field": "UNIT_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "FWSNationalRealtyBoundaries",
+    "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+    "name_field": "ORGNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "BM": [
+   {
+    "label": "National Parks",
+    "url": "https://gis.planning.gov.bm/arcgis/rest/services/PlanningLayers/MapServer/14",
+    "name_field": "FullName",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "CR": [
+   {
+    "label": "Áreas de uso público",
+    "url": "https://mapas.msj.go.cr/server/rest/services/SIG_BASE/SIG_SER_Areas_Uso_Publico_SJ/MapServer/0",
+    "name_field": "NOMBRE",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "GL": [
+   {
+    "label": "Protected or Important Areas of Greenland Display Layer",
+    "url": "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Protected_Areas_of_Greenland_DisplayLayer/FeatureServer/0",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "AU": [
+   {
+    "label": "National_Heritage_List_Australia",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/National_Heritage_List/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "NPWS Estate",
+    "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/EDP/Estate/MapServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "LIST Public Land Classification",
+    "url": "https://services.thelist.tas.gov.au/arcgis/rest/services/Public/OpenDataWFS/MapServer/38",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Protected areas and forests of Queensland",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/10",
+    "name_field": "estatename",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "World heritage areas of Queensland",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/25",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Walking track",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/5",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Great walk",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/6",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Protected Areas (CAPAD)",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Beach Presence",
+    "url": "https://biod-gis.mapshare.vic.gov.au/arcgis/rest/services/CoastKit/BOV/MapServer/14",
+    "name_field": "BEACH_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "State Heritage Register Curtilage",
+    "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/EDP/SHR_Curtilage/MapServer/0",
+    "name_field": "ITEMNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Beach Names",
+    "url": "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/26",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "CONSERVATION_NpwsaReserves levels zoomed in",
+    "url": "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/31",
+    "name_field": "resname",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Forest Blocks (DBCA-025)",
+    "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Environment/MapServer/0",
+    "name_field": "sfb_block",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Surface_HydroLines_National",
+    "url": "https://services.ga.gov.au/gis/rest/services/Surface_Hydrology/MapServer/2",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ACTGOV Urban Open Space Asset",
+    "url": "https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/ACTGOV_Urban_Open_Space_Asset/FeatureServer/1",
+    "name_field": "ASSET_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Protected areas and forests of Queensland",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77",
+    "name_field": "estatename",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Queensland heritage register boundary",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer/78",
+    "name_field": "placename",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Beach",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Location/Places/FeatureServer/11",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "StateForest",
+    "url": "https://portal.spatial.nsw.gov.au/server/rest/services/NSW_Administrative_Boundaries_Theme/FeatureServer/3",
+    "name_field": "stateforestname",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "NT Parks and Reserves",
+    "url": "https://gis-d.nt.gov.au/arcgis/rest/services/Parks_and_Culture/MapServer/169",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Public Land Reserves",
+    "url": "https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/Public_Land_Reserves/FeatureServer/0",
+    "name_field": "RESERVE_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "NSW_Flora_Reserves",
+    "url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Flora_Reserves/FeatureServer/0",
+    "name_field": "FRName",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Nature refuge",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer/69",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "DO": [
+   {
+    "label": "Areas Protegidas",
+    "url": "https://mapageneral.mineria.gob.do/arcgis/rest/services/PortalMapa/Portal_AP/MapServer/0",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "NF": [
+   {
+    "label": "Protected Areas (CAPAD)",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "CX": [
+   {
+    "label": "Protected Areas (CAPAD)",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "UM": [
+   {
+    "label": "FWSNationalRealtyBoundaries",
+    "url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+    "name_field": "ORGNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "AT": [
+   {
+    "label": "ESG_FFH_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/1",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "S_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/10",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ESG_VSR_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/2",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ESG_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/4",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "NSG_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/5",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "BP_AT_2025 (exkl. St - Untere Mur)",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/6",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "LSG_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/7",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "NAP_AT",
+    "url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/9",
+    "name_field": "SG_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "AX": [
+   {
+    "label": "Naturreservat",
+    "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
+    "name_field": "Namn",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "CD": [
+   {
+    "label": "Protected areas",
+    "url": "https://gis.forest-atlas.org/server/rest/services/cod/Localisation_aacs_en/MapServer/102",
+    "name_field": "nom_ap",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "CG": [
+   {
+    "label": "Protected Areas",
+    "url": "https://gis.forest-atlas.org/server/rest/services/cog/Affectation_terre_en/MapServer/47",
+    "name_field": "nom_ap",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "CL": [
+   {
+    "label": "Áreas Protegidas",
+    "url": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/0",
+    "name_field": "NombreOriginal",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Otras Designaciones",
+    "url": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/1",
+    "name_field": "NombreOriginal",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Conservación Privada",
+    "url": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/3",
+    "name_field": "NombreOriginal",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "CV": [
+   {
+    "label": "Áreas Protegidas",
+    "url": "https://ingtgeo.gov.cv/arcgisingt/rest/services/SDI/areas_protegidas_2022/FeatureServer/0",
+    "name_field": "ilha",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "GY": [
+   {
+    "label": "Protected Areas",
+    "url": "https://services.arcgis.com/bL1WyMoaiBW4etad/arcgis/rest/services/Guyana_VIP_Status/FeatureServer/1",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "ID": [
+   {
+    "label": "Kawasan Konservasi",
+    "url": "https://geoservices.big.go.id/gis/rest/services/PTRA/Atlas_250K_KawasanKonservasi/MapServer/7",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "LK": [
+   {
+    "label": "Protected Area Network",
+    "url": "https://gisapps.nsdi.gov.lk/server/rest/services/Srilanka/Biota/MapServer/1",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "LR": [
+   {
+    "label": "National Parks",
+    "url": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/2",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Reserves",
+    "url": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/3",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "MK": [
+   {
+    "label": "Заштитени подрачја",
+    "url": "https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/94",
+    "name_field": "SiteName",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "NC": [
+   {
+    "label": "Aires protégées provinciales terrestres",
+    "url": "https://geoportail.oeil.nc/arcgis/rest/services/GEOPORTAIL_SUIVI/AIRE_PROTEGEE_TERRESTRE/MapServer/0",
+    "name_field": "NOM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "PY": [
+   {
+    "label": "Areas_Silvestres_Protegidas",
+    "url": "https://visor.infona.gov.py/server/rest/services/Areas_Silvestres_Protegidas/Areas_Silvestres_Protegidas/MapServer/0",
+    "name_field": "nombre",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "QA": [
+   {
+    "label": "ProtectedAreas",
+    "url": "https://services.gisqatar.org.qa/server/rest/services/Vector/Protected_Areas/FeatureServer/0",
+    "name_field": "SITENAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "RW": [
+   {
+    "label": "National Parks",
+    "url": "https://geodata.rw/server/rest/services/basemap/National_Parks/FeatureServer/0",
+    "name_field": "areaname",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "ZA": [
+   {
+    "label": "ENV_DB.LDR.National_Park",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/1",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ENV_DB.LDR.Nature_Reserve",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/2",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ENV_DB.LDR.Forest_Nature_Reserve",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/3",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ENV_DB.LDR.Marine_Protected_Area",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/5",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "ENV_DB.LDR.Forest_Wilderness_Area",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/4",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "ENV_DB.LDR.Protected_Environment",
+    "url": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/7",
+    "name_field": "CUR_NME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "GB": [
+   {
+    "label": "World Heritage Sites",
+    "url": "https://services-eu1.arcgis.com/ZOdPfBS3aqqDYPUQ/arcgis/rest/services/National_Heritage_List_for_England_NHLE_v02_VIEW/FeatureServer/10",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Scheduled Monuments",
+    "url": "https://services-eu1.arcgis.com/ZOdPfBS3aqqDYPUQ/arcgis/rest/services/National_Heritage_List_for_England_NHLE_v02_VIEW/FeatureServer/6",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Parks and Gardens",
+    "url": "https://services-eu1.arcgis.com/ZOdPfBS3aqqDYPUQ/arcgis/rest/services/National_Heritage_List_for_England_NHLE_v02_VIEW/FeatureServer/7",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "RSPB_Reserves_20102025_BNG",
+    "url": "https://services1.arcgis.com/h1C9f6qsGKmqXsVs/arcgis/rest/services/RSPB_Public_Reserves/FeatureServer/0",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "FE_RecAreas_170226",
+    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Recreation_Areas/FeatureServer/0",
+    "name_field": "asset_name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "NationalScenicAreas",
+    "url": "https://maps.gov.scot/server/rest/services/ScotGov/ProtectedSites/MapServer/3",
+    "name_field": "nsaname",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1) YES"
+   },
+   {
+    "label": "NT_Land_Always_Open",
+    "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer/0",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1) YES"
+   },
+   {
+    "label": "NT_Land_Limited_Access",
+    "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Limited_Access/FeatureServer/0",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
+   },
+   {
+    "label": "INV_BLKDATA",
+    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Blocks/FeatureServer/0",
+    "name_field": "extent",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
+   },
+   {
+    "label": "Forest_Blocks",
+    "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Forest_Blocks_WFS/FeatureServer/0",
+    "name_field": "extent",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
+   },
+   {
+    "label": "FE_Ownership_160726",
+    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Ownership_2024_/FeatureServer/0",
+    "name_field": "title",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Greenspace_Phase2_06052022",
+    "url": "https://services7.arcgis.com/rVwbcvflURVxkV6s/arcgis/rest/services/Greenspace_3_view/FeatureServer/4",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "CZ": [
+   {
+    "label": "Přírodní park",
+    "url": "https://gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer/0",
+    "name_field": "NAZEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Maloplošné zvláště chráněné území (MZCHÚ)",
+    "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/ChranUzemi/MapServer/0",
+    "name_field": "NAZEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Velkoplošné zvláště chráněné území",
+    "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/ChranUzemi/MapServer/3",
+    "name_field": "NAZEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "HU": [
+   {
+    "label": "Országos védett természeti területek",
+    "url": "https://geoportal.vizugy.hu/arcgis/rest/services/VGT_1/03_vedett/MapServer/17",
+    "name_field": "ROVID_NEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
+   }
+  ],
+  "IE": [
+   {
+    "label": "Forest Park",
+    "url": "https://services7.arcgis.com/6LSAdqgf43oKRpP6/arcgis/rest/services/Coillte_Recreation_Information/FeatureServer/4",
+    "name_field": "Park_Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
+   },
+   {
+    "label": "National Park Boundaries",
+    "url": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NationalParkBoundaries/FeatureServer/0",
+    "name_field": "SITE_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "BS": [
+   {
+    "label": "Protected_Areas_of_The_Bahamas",
+    "url": "https://services3.arcgis.com/yRW96jkKjDj5GeHi/arcgis/rest/services/Protected_Areas_of_The_Bahamas/FeatureServer/0",
+    "name_field": "AREANAM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "BZ": [
+   {
+    "label": "Protected_Areas_Belize_2015",
+    "url": "https://services8.arcgis.com/IXYmdkndf6VGeFte/arcgis/rest/services/Protected_Areas_Belize_2015/FeatureServer/0",
+    "name_field": "Name_PA",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "PA_updated_2024",
+    "url": "https://services8.arcgis.com/IXYmdkndf6VGeFte/arcgis/rest/services/PA_updated_2024/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "GT": [
+   {
+    "label": "Áreas protegidas 2018",
+    "url": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Guatemala_Datos_B%C3%A1sicos_WGS1984/MapServer/3",
+    "name_field": "NOMBRE",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "PA": [
+   {
+    "label": "SINAP",
+    "url": "https://geoportal.miambiente.gob.pa/server/rest/services/Hosted/SINAP_2025/FeatureServer/0",
+    "name_field": "nombre",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "DE": [
+   {
+    "label": "FFH_Gebiet",
+    "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/FFH_Gebiet/MapServer/0",
+    "name_field": "OBJEKT",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturpark",
+    "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturpark/MapServer/0",
+    "name_field": "OBJEKT",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturpark",
+    "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/1",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Nationalpark",
+    "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/2",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "AE": [
+   {
+    "label": "ProtectedAreas",
+    "url": "https://arcgis.sdi.abudhabi.ae/agspublish/rest/services/OpenData/ADSDI_OpenData/FeatureServer/127",
+    "name_field": "NAME_EN",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "BE": [
+   {
+    "label": "Réserves naturelles domaniales",
+    "url": "https://geoservices.wallonie.be/arcgis/rest/services/FAUNE_FLORE/CONSNAT/MapServer/2",
+    "name_field": "NOM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Réserves naturelles agréées",
+    "url": "https://geoservices.wallonie.be/arcgis/rest/services/FAUNE_FLORE/CONSNAT/MapServer/3",
+    "name_field": "NOM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Zones humides d'intérêt biologique",
+    "url": "https://geoservices.wallonie.be/arcgis/rest/services/FAUNE_FLORE/CONSNAT/MapServer/4",
+    "name_field": "NOM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "BT": [
+   {
+    "label": "Parks_20200716",
+    "url": "https://nsdi.systems.gov.bt/server/rest/services/Hosted/Protected_Areas_of_Bhutan/FeatureServer/1",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "BW": [
+   {
+    "label": "Protected_Areas_and_Other_Effective_Conservation_Measures",
+    "url": "https://services7.arcgis.com/mbEujVpJG0aE29fS/arcgis/rest/services/Protected_Areas_and_Other_Effective_Conservation_Measures/FeatureServer/0",
+    "name_field": "Label",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "CM": [
+   {
+    "label": "Aires protegées de la faune",
+    "url": "https://gis.forest-atlas.org/server/rest/services/cmr/open_data_fr/MapServer/123",
+    "name_field": "nom_ap",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "GA": [
+   {
+    "label": "Aires protégées",
+    "url": "https://gis.forest-atlas.org/server/rest/services/gab/pnat_conservation/MapServer/0",
+    "name_field": "nom_ap",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "GE": [
+   {
+    "label": "საქართველოს დაცული ტერიტორიები",
+    "url": "https://gisserver.mepa.gov.ge/arcgis/rest/services/APA/%E1%83%A1%E1%83%90%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%95%E1%83%94%E1%83%9A%E1%83%9D%E1%83%A1_%E1%83%93%E1%83%90%E1%83%AA%E1%83%A3%E1%83%9A%E1%83%98_%E1%83%A2%E1%83%94%E1%83%A0%E1%83%98%E1%83%A2%E1%83%9D%E1%83%A0%E1%83%98%E1%83%94%E1%83%91%E1%83%98/FeatureServer/0",
+    "name_field": "Name_ENG",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "IM": [
+   {
+    "label": "Glens",
+    "url": "https://ppmaps.gov.im/manngispubserver/rest/services/CorporateDynamicServices/PPDEFA/MapServer/3",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "National Nature Reserves",
+    "url": "https://ppmaps.gov.im/manngispubserver/rest/services/CorporateDynamicServices/PPDEFA/MapServer/9",
+    "name_field": "Site_name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "KE": [
+   {
+    "label": "Protected Areas",
+    "url": "https://gis.forest-atlas.org/server/rest/services/ken/overlay_layers/MapServer/4",
+    "name_field": "WPA_NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "MP": [
+   {
+    "label": "marine_protected_areas",
+    "url": "https://services.arcgis.com/qchgHH9IIeiivY5M/arcgis/rest/services/CNMI_Marine_Protected_Areas/FeatureServer/0",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "MT": [
+   {
+    "label": "N2K Special Protected Areas",
+    "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
+    "name_field": "site_name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "MV": [
+   {
+    "label": "Protected_Areas_of_Maldives_EPA_V4_1",
+    "url": "https://services7.arcgis.com/yvCbn3q8PPtPLZIM/arcgis/rest/services/ProtectedArea/FeatureServer/0",
+    "name_field": "Name_Engli",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "NZ": [
+   {
+    "label": "Public conservation land",
+    "url": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Regional Parks and Forests",
+    "url": "https://mapping.gw.govt.nz/arcgis/rest/services/GW/Parks_P/MapServer/26",
+    "name_field": "Name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Park Extents",
+    "url": "https://services1.arcgis.com/n4yPwebTjJCmXB6W/arcgis/rest/services/Park_Extents/FeatureServer/0",
+    "name_field": "SITEDESCRIPTION",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "OM": [
+   {
+    "label": "المناطق_المحمية27012025",
+    "url": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82_%D8%A7%D9%84%D9%85%D8%AD%D9%85%D9%8A%D8%A927012025/FeatureServer/0",
+    "name_field": "CONSNAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "PT": [
+   {
+    "label": "RNAP - Limites",
+    "url": "https://sigservices.icnf.pt/server/rest/services/BDG/RNAP/MapServer/0",
+    "name_field": "nome_ap",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Sítios de Importância Comunitária",
+    "url": "https://sigservices.icnf.pt/server/rest/services/BDG/SIC/MapServer/0",
+    "name_field": "site_name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Zonas de Proteção Especial",
+    "url": "https://sigservices.icnf.pt/server/rest/services/BDG/ZPE/MapServer/0",
+    "name_field": "site_name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "REFLOA_RF",
+    "url": "https://sigservices.icnf.pt/server/rest/services/BDG/refloa_p/MapServer/0",
+    "name_field": "NOME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "NO": [
+   {
+    "label": "naturvern_omrade",
+    "url": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/MapServer/0",
+    "name_field": "navn",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ]
+ }
+}

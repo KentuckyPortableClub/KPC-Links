@@ -69,6 +69,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-12679"
    }
   ],
   "AR": [
@@ -150,6 +159,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "park",
+    "ag": "BLM CA Recreation Polygons",
+    "nm": "FET_NAME",
+    "url": "https://gis.blm.gov/caarcgis/rest/services/Recreation/BLM_CA_RECS/FeatureServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-10402"
    }
   ],
   "CO": [
@@ -339,6 +357,24 @@
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3"
+   },
+   {
+    "kind": "forest",
+    "ag": "BdyDesg_LSRS_SpecialInterestManagementArea",
+    "nm": "areaname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-4649"
+   },
+   {
+    "kind": "land",
+    "ag": "National_Heritage_Areas_Updated2023",
+    "nm": "RESNAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-7139"
    }
   ],
   "HI": [
@@ -453,6 +489,24 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "forest",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Nov 1, by layer)); park US-4477"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-2236"
    }
   ],
   "IN": [
@@ -552,6 +606,15 @@
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 23 of 52"
+   },
+   {
+    "kind": "park",
+    "ag": "Michigan State Park Boundaries",
+    "nm": "FACILITY",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-1519"
    }
   ],
   "MN": [
@@ -593,6 +656,24 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 17 outline-less parks"
+   },
+   {
+    "kind": "forest",
+    "ag": "DNR Management Units",
+    "nm": "UNIT_NAME",
+    "url": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-10720"
+   },
+   {
+    "kind": "wild",
+    "ag": "FWSBoundaries",
+    "nm": "ORGNAME",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-0367"
    }
   ],
   "MT": [
@@ -746,6 +827,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "park",
+    "ag": "BLM Natl Recreation Site Polygons",
+    "nm": "FET_NAME",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-12593"
    }
   ],
   "NV": [
@@ -818,6 +908,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "forest",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-4391"
    }
   ],
   "NY": [
@@ -982,6 +1081,15 @@
     "read": "2026-10-28",
     "note": "23 natural areas inside state parks (HT-24; layered on state park land)",
     "url": "https://gis.dcnr.pa.gov/agsprod/rest/services/StateParks/BSP_StateParksNaturalAreas/MapServer/0"
+   },
+   {
+    "kind": "forest",
+    "ag": "State Forests",
+    "nm": "SF_Name",
+    "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/BOF/State_Forests/MapServer/4",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-5472"
    }
   ],
   "RI": [
@@ -1185,6 +1293,24 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "land",
+    "ag": "NLCS Wild and Scenic Rivers",
+    "nm": "NLCS_NAME",
+    "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-10976"
+   },
+   {
+    "kind": "park",
+    "ag": "state_park_boundaries_dissolved",
+    "nm": "truncated_name",
+    "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-5950"
    }
   ],
   "VA": [
@@ -1345,6 +1471,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "land",
+    "ag": "Hanford Reach",
+    "nm": "NAME",
+    "url": "https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-4555"
    }
   ],
   "WI": [
@@ -1583,6 +1718,15 @@
     "acc": "PUB_ACCESS",
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
     "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "WMA_Boundaries",
+    "nm": "PROJECT",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-8458"
    }
   ],
   "MD": [
@@ -1696,6 +1840,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "preserve",
+    "ag": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+    "nm": "NCA_NAME",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-7381"
    }
   ],
   "MO": [
@@ -1740,6 +1893,15 @@
     "read": "2026-10-28",
     "note": "13 wild areas inside state parks (layered, rule 3)",
     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2"
+   },
+   {
+    "kind": "forest",
+    "ag": "MDC Lands",
+    "nm": "Area_Name",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-4838"
    }
   ],
   "CT": [
@@ -1784,6 +1946,15 @@
     "nm": "Site_Name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "IDNR Properties",
+    "nm": "SITE_NAME",
+    "url": "https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-4118"
    }
   ],
   "VT": [
@@ -1880,6 +2051,24 @@
     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 15"
+   },
+   {
+    "kind": "wild",
+    "ag": "Game Lands - detail",
+    "nm": "GML_HAB",
+    "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-6944"
+   },
+   {
+    "kind": "park",
+    "ag": "ParkBoundaries",
+    "nm": "PK_NAME",
+    "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-2726"
    }
   ],
   "NH": [
@@ -1945,6 +2134,33 @@
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
     "code": "NS-PPA"
+   },
+   {
+    "kind": "park",
+    "ag": "NS_Lands_Proposed_or_Pending_Protection",
+    "nm": "INT_NAME",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-1799"
+   },
+   {
+    "kind": "park",
+    "ag": "NS_Lands_Proposed_or_Pending_Protection",
+    "nm": "INT_NAME",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-6563"
+   },
+   {
+    "kind": "park",
+    "ag": "HRM Parks",
+    "nm": "PARK_NAME",
+    "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-5796"
    }
   ],
   "QC": [
@@ -1986,6 +2202,15 @@
     "host": "agency",
     "code": "QC-RF",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 44 (QC Nature Reserve)"
+   },
+   {
+    "kind": "park",
+    "ag": "PoleConnectivite_CIMA_2025",
+    "nm": "TOPONYME",
+    "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-4945"
    }
   ],
   "ON": [
@@ -2164,6 +2389,24 @@
     "host": "agency",
     "code": "NB-PP",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 14 of 193 (NB Historic Site, National Historic Site, Natural Area, Provincial Park, Recreation Park, Recreation Site)"
+   },
+   {
+    "kind": "park",
+    "ag": "Parks",
+    "nm": "Park_Name",
+    "url": "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-4810"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Parks",
+    "nm": "Park_Name",
+    "url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-1240"
    }
   ],
   "SK": [
@@ -2205,6 +2448,15 @@
     "read": "2026-10-28",
     "note": "49 wildlife management + natural areas (TYPE_E: provincial, provincially owned natural area, privately owned WMA)",
     "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
+   },
+   {
+    "kind": "preserve",
+    "ag": "NCC_AT_Nature_Reserves_Public_Map",
+    "nm": "Descriptio",
+    "url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-6439"
    }
   ],
   "AB": [
@@ -2216,6 +2468,15 @@
     "host": "agency",
     "code": "AB-PLUZ",
     "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 2 (AB Recreation Park)"
+   },
+   {
+    "kind": "park",
+    "ag": "Public Land Use Zone",
+    "nm": "PLUZ_NAME",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-6134"
    }
   ],
   "SD": [
@@ -2282,6 +2543,33 @@
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
     "code": "BC-HCA"
+   },
+   {
+    "kind": "park",
+    "ag": "Park Inventory",
+    "nm": "NAME",
+    "url": "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-4025"
+   },
+   {
+    "kind": "park",
+    "ag": "RegionalParksBoundaries_OpenData",
+    "nm": "parkname",
+    "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-3359"
+   },
+   {
+    "kind": "park",
+    "ag": "BC Parks EcoRes and PAs",
+    "nm": "PROTECTED_LANDS_NAME",
+    "url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-3298"
    }
   ],
   "NT": [
@@ -2294,6 +2582,26 @@
     "read": "2026-10-27",
     "note": "Federal/Territorial Conservation Areas: 4 polygons incl. Gwich'in + Hidden Lake Territorial Parks (BigHoles R2-6)",
     "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+   },
+   {
+    "kind": "land",
+    "ag": "Nagwichoonjik National Historic Site",
+    "nm": "Name",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-5478"
+   }
+  ],
+  "NL": [
+   {
+    "kind": "wild",
+    "ag": "Provincial_Protected_Areas_NL",
+    "nm": "NAME_E",
+    "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-4558"
    }
   ]
  },
