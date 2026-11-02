@@ -43,4 +43,5 @@ jobs:
           STRICT: '1'
         run: |
           mkdir -p data/campstate
+          python3 .github/scripts/kpc_light_guard.py data/campstate/*.json || true   # Nov 2 (chat 5's WRONG: a state emptied when its layer half-answers): halved / doubled rows = keep last week's
           bash .github/scripts/kpc_push_data.sh . 'State park camping, weekly update' data/campstate
