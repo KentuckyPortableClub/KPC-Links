@@ -8,10 +8,15 @@ name: KPC check-up
 #   SUNDAY: site test as a guest (390 px + desktop), reference check for every state, data link check.
 # Run it by hand with 'full' ticked to do the Sunday parts on any day.
 on:
+  # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '44 9 * * *'    # 4:47 AM Central (3:47 in winter), after the night's data bots   # G9 Nov 2: was '47 9 * * *' (spread the start times; now 3 min earlier)
   workflow_dispatch:
     inputs:
+      as_schedule:
+        description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
+        required: false
+        default: ''
       full:
         description: 'Also run the Sunday parts (site test, reference check, link check)'
         type: boolean
@@ -111,7 +116,7 @@ jobs:
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
         run: python3 .github/scripts/kpc_bot_health.py || echo "::error title=kpc_bot_health.py::stopped with an error (exit $?), see the log above"
       - name: Weekly backup snapshot (Sunday) as a DRAFT release, last 8 kept
-        if: (github.event_name == 'schedule' && steps.day.outputs.weekly == 'yes') || inputs.backup
+        if: ((github.event_name == 'schedule' || inputs.as_schedule) && steps.day.outputs.weekly == 'yes') || inputs.backup
         id: kept_green_9
         continue-on-error: true
         env:

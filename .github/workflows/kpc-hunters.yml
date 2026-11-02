@@ -7,11 +7,16 @@ name: KPC Hunters
 # Fridays 8:33 AM Central: one post to Discord (park news) + the Facebook Page, once 14 days are counted.
 # Never fails: a POTA hiccup or a busy repo is skipped quietly (no email).
 on:
+  # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '*/15 * * * *'
     - cron: '33 13 * * 5'
   workflow_dispatch:
     inputs:
+      as_schedule:
+        description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
+        required: false
+        default: ''
       post:
         description: 'Also send the weekly post now'
         type: boolean
@@ -52,7 +57,7 @@ jobs:
             data/hunters/buckets.json
           key: hunters-work-${{ github.run_id }}
       - name: Weekly post
-        if: github.event.schedule == '33 13 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.post)
+        if: (github.event.schedule || inputs.as_schedule) == '33 13 * * 5' || ((github.event_name == 'workflow_dispatch' && !inputs.as_schedule) && inputs.post)
         id: kept_green_3
         continue-on-error: true
         env:
@@ -69,7 +74,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # at most one commit every ~3 hours (HQ Oct 27); the cache carries the counts in between
           last=$(git log -1 --format=%ct -- kpc-hunters.json 2>/dev/null || echo 0); last=${last:-0}
-          if [ $(( $(date +%s) - last )) -lt 10500 ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then echo "saved $(( ($(date +%s) - last) / 60 )) min ago; next save after ~3 h"; exit 0; fi
+          if [ $(( $(date +%s) - last )) -lt 10500 ] && [ "${{ (inputs.as_schedule && 'schedule') || github.event_name }}" != "workflow_dispatch" ]; then echo "saved $(( ($(date +%s) - last) / 60 )) min ago; next save after ~3 h"; exit 0; fi
           git add data/hunters/buckets.json kpc-hunters.json app/hunters.json 2>/dev/null || git add data/hunters/buckets.json kpc-hunters.json 2>/dev/null || true   # ok: an optional path may not exist
           if git diff --cached --quiet; then exit 0; fi
           git commit -q -m 'Hunter counts'

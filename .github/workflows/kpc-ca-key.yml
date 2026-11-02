@@ -1,11 +1,16 @@
 name: KPC Canada answer key
 # Canada: CA- POTA parks joined to CPCAD land only when name + kind match; the rest goes on review lists (issue label ca-answer-key).
 on:
+  # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '43 10 2 * *'   # monthly
     - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
   workflow_dispatch:
     inputs:
+      as_schedule:
+        description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
+        required: false
+        default: ''
       saved:
         description: 'Build from the saved outlines (no full re-read of every map; newer layers are topped up)'
         type: boolean
@@ -34,7 +39,7 @@ jobs:
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
-          SCHED: ${{ github.event.schedule }}
+          SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
           if [ "$SCHED" = "49 9 * * *" ]; then
             L=$(cat data/ca-key/answers-provinces.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
@@ -46,7 +51,7 @@ jobs:
       - name: Build the Canada answer key
         if: ${{ env.SKIP != '1' }}
         env:
-          GEO_CACHE_MODE: ${{ (inputs.saved || github.event.schedule == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ (inputs.saved || (github.event.schedule || inputs.as_schedule) == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
           GH_TOKEN: ${{ github.token }}
         id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
@@ -61,7 +66,7 @@ jobs:
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
       - name: Keep the saved copy current (a full read that finished)
-        if: ${{ env.SKIP != '1' && !inputs.saved && github.event.schedule != '49 9 * * *' }}
+        if: ${{ env.SKIP != '1' && !inputs.saved && (github.event.schedule || inputs.as_schedule) != '49 9 * * *' }}
         id: kept_green_2
         continue-on-error: true
         env:

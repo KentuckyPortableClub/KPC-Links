@@ -30,12 +30,18 @@ WATCHDOG_SKIP = {'kpc-youtube-comments.yml', 'kpc-social.yml', 'kpc-club-posts.y
                  'kpc-fb-comments.yml', 'kpc-discord-relay.yml', 'kpc-research-helpers.yml'}
 
 
-def restart_inputs(name, cron):
-    """-> the inputs to send for this workflow's missed cron ('@<cron>' keys pick per-schedule inputs)."""
+def restart_inputs(name, cron, path=None):
+    """-> the inputs to send for this workflow's missed cron ('@<cron>' keys pick per-schedule inputs).
+    Nov 2 review (G11): a workflow that declares the input 'as_schedule' also gets the missed cron, so its 'is this the
+    scheduled run?' tests answer yes and the restart does exactly what that scheduled run would have done."""
     spec = WATCHDOG_INPUTS.get(name) or {}
     if any(k.startswith('@') for k in spec):
-        return dict(spec.get('@' + cron) or {})
-    return dict(spec)
+        out = dict(spec.get('@' + cron) or {})
+    else:
+        out = dict(spec)
+    if path and re.search(r'^\s+as_schedule\s*:', pathlib.Path(path).read_text(encoding='utf-8'), re.M):
+        out['as_schedule'] = cron
+    return out
 
 
 def gh(*a):
@@ -112,7 +118,7 @@ def main():
         if name in WATCHDOG_SKIP:
             done[key] = NOW.isoformat(timespec='minutes') + ' skipped (not restarted)'
             started.append(f"{name} (missed {t.strftime('%b %d %H:%M')} UTC, NOT restarted: its next scheduled run catches up)"); continue
-        for k, v in restart_inputs(name, cron).items(): args += ['-f', f'inputs[{k}]={v}']
+        for k, v in restart_inputs(name, cron, path).items(): args += ['-f', f'inputs[{k}]={v}']
         rc, _ = (0, '') if os.environ.get('DRY') else gh(*args)
         done[key] = NOW.isoformat(timespec='minutes') + (' started' if rc == 0 else ' could not start')
         started.append(f"{name} (missed {t.strftime('%b %d %H:%M')} UTC{'' if rc == 0 else ', start FAILED'})")

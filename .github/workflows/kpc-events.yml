@@ -7,10 +7,15 @@ name: KPC Events Finder
 # Run it any time from the Actions tab with "Run workflow".
 #  - then posts the next five weeks of events to the KPC Discord and Facebook Page (Mondays, or when you tick the boxes)
 on:
+  # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '17 11 * * 1'
   workflow_dispatch:
     inputs:
+      as_schedule:
+        description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
+        required: false
+        default: ''
       post_discord:
         description: 'Also post the upcoming events to Discord'
         type: boolean
@@ -44,7 +49,7 @@ jobs:
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
             bash .github/scripts/kpc_save_overwrite.sh 'Update auto-found events' - -- kpc-events-auto.json .claude/inbox/chat-11.md
       - name: Post upcoming events to Discord
-        if: github.event_name == 'schedule' || inputs.post_discord
+        if: (github.event_name == 'schedule' || inputs.as_schedule) || inputs.post_discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           GENERAL_WEBHOOK_URL: ${{ secrets.KPC_GENERAL_WEBHOOK }}
@@ -53,7 +58,7 @@ jobs:
           git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
           node .github/scripts/kpc_discord_events.js
       - name: Post upcoming events to the Facebook Page
-        if: github.event_name == 'schedule' || inputs.post_facebook
+        if: (github.event_name == 'schedule' || inputs.as_schedule) || inputs.post_facebook
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}

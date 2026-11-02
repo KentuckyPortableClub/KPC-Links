@@ -5,10 +5,15 @@ name: KPC new references
 # Oct 23: it also keeps the Finder's search lists (locations.json / locations-ky.json) current, and a Kentucky park
 # POTA RETIRES is taken off every site list the same morning (kpc_retired_sweep.py) + a Discord note + issue comment.
 on:
+  # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '39 12 * * *'   # G9 Nov 2: was '41 12 * * *' (spread the start times; now 2 min earlier)
   workflow_dispatch:
     inputs:
+      as_schedule:
+        description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
+        required: false
+        default: ''
       dry_run:
         description: 'Dry run (show what is new, do not write or post)'
         type: boolean
@@ -34,7 +39,7 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           GH_TOKEN: ${{ github.token }}
-          DRY: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '' }}
+          DRY: ${{ ((github.event_name == 'workflow_dispatch' && !inputs.as_schedule) && inputs.dry_run) && '1' || '' }}
         run: python3 .github/scripts/kpc_new_refs.py
       - name: Save
         run: |
