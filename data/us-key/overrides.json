@@ -1415,14 +1415,19 @@
   },
   "US-10644": {
    "alias": [
-    "Love & Strutt Creeks"
+    "Love & Strutt Creeks",
+    "Rem-Love Creek"
    ],
    "no": [
     "wid709260",
     "272794"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 9:30 PM: the park's own website name 'Love & Strutt Creeks' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Rem-Love Creek' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Rem-Love Creek' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 9:30 PM: the park's own website name 'Love & Strutt Creeks' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Rem-Love Creek' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Rem-Love Creek' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 chat 2 (US hard look list, R-G7): 'Rem-Love Creek' is the same land under another name; approximate",
+   "alias_ok_names": [
+    "Rem-Love Creek"
+   ],
+   "approx": true
   },
   "US-10647": {
    "join": [
@@ -11283,7 +11288,17 @@
    ]
   },
   "US-0400": {},
-  "US-4011": {},
+  "US-4011": {
+   "alias": [
+    "Wehrspann Recreation Area"
+   ],
+   "alias_ok_names": [
+    "Wehrspann Recreation Area"
+   ],
+   "approx": true,
+   "why": "2026-11-02 chat 2 (US hard look list, R-G7): 'Wehrspann Recreation Area' is the same land under another name; approximate",
+   "when": "2026-11-02"
+  },
   "US-6155": {}
  }
 }
