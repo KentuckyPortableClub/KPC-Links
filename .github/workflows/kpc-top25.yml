@@ -24,9 +24,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add kpc-top25.json
           if git diff --cached --quiet; then echo 'No change.'; exit 0; fi
-          git commit -m 'Update Top 25 low-activity parks'
-          for i in 1 2 3; do
-            git pull --rebase --autostash && git push && exit 0
-            sleep $((i * 15))
-          done
-          echo '::notice title=Push skipped::Could not push kpc-top25.json; it will be saved on the next run.'
+          # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-top25.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh 'Update Top 25 low-activity parks' - -- kpc-top25.json

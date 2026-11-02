@@ -49,7 +49,6 @@ jobs:
           # Oct 25: put back a state file whose only change is a time stamp, so quiet runs commit nothing
           python3 .github/scripts/kpc_save_filter.py data/park-alerts-state.json kpc-conditions.json || true
           git add data/park-alerts-state.json kpc-conditions.json 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Park alerts: what the parks are saying'
-            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
-          fi
+          # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-conditions.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh 'Park alerts: what the parks are saying' - -- data/park-alerts-state.json kpc-conditions.json

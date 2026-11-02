@@ -23,11 +23,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ky-official-maps.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update KY official map links'
-            for i in 1 2 3; do
-              if git pull --rebase --autostash && git push; then exit 0; fi
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 10))
-            done
-          fi
+          # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'Update KY official map links' - -- data/ky-official-maps.json

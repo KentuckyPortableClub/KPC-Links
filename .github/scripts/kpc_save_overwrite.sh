@@ -15,12 +15,22 @@
 #
 # Switches (env):  KPC_SAVE_MODE  overwrite (default) | rebase (the old way, kept as a fallback; still loud on failure)
 #                  KPC_SAVE_TRIES 5
+#                  KPC_SAVE_RED   yes (default) = a save that never lands exits 1 (red job) | no = ::error only, exit 0 (the Oct 22
+#                                 rule for the busy bots: a lost race is loud but does not email). Nov 2 review.
+#                  KPC_SAVE_WORDS / KPC_SAVE_LINES (Nov 2 review, space lists): hand-kept files that are MERGED, not copied back:
+#                    WORDS = a space list like answers-countries.txt (newest main's list - what this run took off + what it added),
+#                    LINES = an inbox like .claude/inbox/chat-11.md (this run's new lines go into the newest copy). kpc_save_merge.py.
 # Loud: a save that never lands prints ::error and exits 1 (the job goes red). Nothing is hidden with '|| true'.
 set -u
 copy=0; [ "${1:-}" = "--copy" ] && { copy=1; shift; }
 msg=$1; redo=$2; shift 2; [ "${1:-}" = "--" ] && shift
-tries=${KPC_SAVE_TRIES:-5}; mode=${KPC_SAVE_MODE:-overwrite}; skip=" ${KPC_SAVE_SKIP:-} "
-stash=$(mktemp -d)
+tries=${KPC_SAVE_TRIES:-5}; mode=${KPC_SAVE_MODE:-overwrite}; skip=" ${KPC_SAVE_SKIP:-} ${KPC_SAVE_WORDS:-} ${KPC_SAVE_LINES:-} "
+stash=$(mktemp -d); merge=$(mktemp -d)
+here=$(dirname "$0")
+if [ "$mode" != rebase ]; then
+  [ -n "${KPC_SAVE_WORDS:-}" ] && python3 "$here/kpc_save_merge.py" keep "$merge" words $KPC_SAVE_WORDS
+  [ -n "${KPC_SAVE_LINES:-}" ] && python3 "$here/kpc_save_merge.py" keep "$merge" lines $KPC_SAVE_LINES
+fi
 if [ "$copy" = 1 ]; then
   git status --porcelain --untracked-files=all -- "$@" | sed -E 's/^.. //; s/^"(.*)"$/\1/; s/.* -> //' | while IFS= read -r f; do
     case "$skip" in *" $f "*) continue ;; esac
@@ -31,13 +41,15 @@ add_paths() { for p in "$@"; do [ -e "$p" ] && git add -A -- "$p"; done; return 
 for i in $(seq 1 "$tries"); do
   if [ "$mode" = rebase ]; then
     add_paths "$@"
-    if git diff --cached --quiet; then echo "::notice title=Save::$msg: nothing changed"; exit 0; fi
-    git commit -qm "$msg" >/dev/null 2>&1 || true
+    # Nov 2 review: after a lost race the commit is already made (nothing staged), so 'nothing staged' alone is not 'nothing changed'
+    if git diff --cached --quiet && [ -z "$(git rev-list origin/main..HEAD 2>/dev/null)" ]; then echo "::notice title=Save::$msg: nothing changed"; exit 0; fi
+    git diff --cached --quiet || git commit -qm "$msg" >/dev/null 2>&1 || echo "::warning title=Save::$msg: git commit said no (try $i)"
     if git pull -q --rebase --autostash && git push -q; then echo "::notice title=Save::$msg: saved (rebase, try $i)"; exit 0; fi
     git rebase --abort 2>/dev/null || true
   else
     if ! { git fetch -q origin main && git reset -q --hard origin/main; }; then sleep $((5 * i)); continue; fi
     if [ "$copy" = 1 ]; then (cd "$stash" && find . -type f -print) | while IFS= read -r f; do f=${f#./}; mkdir -p "$(dirname "$f")"; cp -p "$stash/$f" "$f"; done; fi
+    python3 "$here/kpc_save_merge.py" apply "$merge"
     if [ "$redo" != "-" ]; then
       bash -c "$redo" || echo "::error title=Save::$msg: the redo step failed on try $i"
     fi
@@ -48,4 +60,5 @@ for i in $(seq 1 "$tries"); do
   sleep $((5 * i))
 done
 echo "::error title=Save::$msg was NOT saved after $tries tries (mode $mode)"
+[ "${KPC_SAVE_RED:-yes}" = no ] && exit 0
 exit 1

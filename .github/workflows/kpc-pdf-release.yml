@@ -57,8 +57,9 @@ jobs:
             exit 0
           fi
           git commit -q -m 'Move big PDFs to the site-pdfs release (storage plan, Stage 2)'
-          for i in 1 2 3; do
-            git pull --rebase --autostash && git push && break
-            sleep $((i * 15))
+          ok=0; for i in 1 2 3; do
+            if git pull --rebase --autostash && git push; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true; sleep $((i * 15))   # ok: there may be no rebase to stop
           done
+          [ $ok = 1 ] || { echo '::error title=PDF move::the move was NOT saved after 3 tries'; exit 1; }   # G7: was silent
           echo "::notice title=PDF move::moved ${#moved[@]}: ${moved[*]}"

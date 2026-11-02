@@ -40,18 +40,17 @@ jobs:
           python3 .github/scripts/kpc_light_guard.py kpc-events-auto.json || true   # Oct 30 (Brandon 6:07 AM GO, HQ step C): shrank by half / a row twice = keep the saved copy + a line to chat 11
           git add .claude/inbox/chat-11.md 2>/dev/null || true
           git add kpc-events-auto.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update auto-found events'
-            git pull --rebase --autostash || true
-            git push || echo 'Push skipped; will save on the next run.'
-          fi
+          # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-events-auto.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh 'Update auto-found events' - -- kpc-events-auto.json .claude/inbox/chat-11.md
       - name: Post upcoming events to Discord
         if: github.event_name == 'schedule' || inputs.post_discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           GENERAL_WEBHOOK_URL: ${{ secrets.KPC_GENERAL_WEBHOOK }}
         run: |
-          git pull --rebase --autostash || true
+          # G7: post from the newest main; if it cannot be fetched, do not post (a stale state file could post twice)
+          git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
           node .github/scripts/kpc_discord_events.js
       - name: Post upcoming events to the Facebook Page
         if: github.event_name == 'schedule' || inputs.post_facebook

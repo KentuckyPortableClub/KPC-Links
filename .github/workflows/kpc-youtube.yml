@@ -98,11 +98,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add kpc-youtube.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update KPC YouTube video list'
-            git pull --rebase --autostash || true
-            git push || echo 'Push skipped; the list will be saved on the next run.'
-          fi
+          # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'Update KPC YouTube video list' - -- kpc-youtube.json
       - name: Share new videos on the Facebook Page
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
@@ -113,15 +111,14 @@ jobs:
           if [ "$(date -u +%s)" -lt "$(date -u -d '2026-10-21 21:55' +%s)" ]; then
             echo "::notice title=Videos::Holding video posts until 4:55 PM Central today."; exit 0
           fi
-          git pull --rebase --autostash || true
+          # G7: post from the newest main; if it cannot be fetched, do not post (a stale state file could post twice)
+          git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
           node .github/scripts/kpc_facebook.js videos
           if [ -f kpc-fb-posted.json ]; then
             git add kpc-fb-posted.json
-            if ! git diff --cached --quiet; then
-              git commit -m 'Remember videos shared on Facebook'
-              git pull --rebase --autostash || true
-              git push || echo 'Push skipped; will save on the next run.'
-            fi
+            # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+            KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+              bash .github/scripts/kpc_save_overwrite.sh --copy 'Remember videos shared on Facebook' - -- kpc-fb-posted.json
           fi
       - name: Share new videos in the KPC Discord
         if: ${{ !cancelled() }}
@@ -135,13 +132,12 @@ jobs:
           if [ "$(date -u +%s)" -lt "$(date -u -d '2026-10-21 21:55' +%s)" ]; then
             echo "::notice title=Videos::Holding video posts until 4:55 PM Central today."; exit 0
           fi
-          git pull --rebase --autostash || true
+          # G7: post from the newest main; if it cannot be fetched, do not post (a stale state file could post twice)
+          git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
           node .github/scripts/kpc_discord_videos.js
           if [ -f kpc-discord-videos.json ]; then
             git add kpc-discord-videos.json
-            if ! git diff --cached --quiet; then
-              git commit -m 'Remember videos shared on Discord'
-              git pull --rebase --autostash || true
-              git push || echo 'Push skipped; will save on the next run.'
-            fi
+            # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+            KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+              bash .github/scripts/kpc_save_overwrite.sh --copy 'Remember videos shared on Discord' - -- kpc-discord-videos.json
           fi

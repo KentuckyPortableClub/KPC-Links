@@ -76,15 +76,6 @@ jobs:
           python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || true
           for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json; do if [ -e "$f" ]; then git add "$f"; fi; done
           git add -A photos/announce 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Club post from Discord'
-            # Oct 22: a busy repo (several bots and builds pushing at once) is not a fault, so it no longer fails the job
-            # and emails Brandon. Six tries over about two minutes; if all lose the race, the next run saves it again.
-            for i in 1 2 3 4 5 6; do
-              if git pull --rebase --autostash && git push; then exit 0; fi
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 8 + RANDOM % 7))
-            done
-            echo "::notice title=Relay save::the repo was busy and the save lost the race 6 times; the next run will save it"
-            exit 0
-          fi
+          # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-announcements.json, kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_TRIES=6 \
+            bash .github/scripts/kpc_save_overwrite.sh 'Club post from Discord' - -- kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json photos/announce

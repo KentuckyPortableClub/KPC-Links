@@ -34,12 +34,6 @@ jobs:
           git add kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json kpc-comments.json
           if [ -e data/kpc-checks-reports.json ]; then git add data/kpc-checks-reports.json; fi
           git add -A photos/members 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update KPC reports (conditions, member photos, events, comments)'
-            for i in 1 2 3; do
-              if git pull --rebase --autostash && git push; then exit 0; fi
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 10))
-            done
-            echo 'Push skipped; will save on the next run.'
-          fi
+          # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh 'Update KPC reports (conditions, member photos, events, comments)' - -- kpc-conditions.json kpc-member-photos.json kpc-events-submitted.json kpc-events-auto.json kpc-comments.json data/kpc-checks-reports.json photos/members

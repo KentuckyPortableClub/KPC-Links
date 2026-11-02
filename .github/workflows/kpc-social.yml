@@ -80,9 +80,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if [ -f kpc-social-state.json ]; then
             git add kpc-social-state.json
-            if ! git diff --cached --quiet; then
-              git commit -m 'Remember social posts'
-              git pull --rebase --autostash || true
-              git push || echo 'Push skipped; will save on the next run.'
-            fi
+            # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-social-state.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+            KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+              bash .github/scripts/kpc_save_overwrite.sh 'Remember social posts' - -- kpc-social-state.json
           fi

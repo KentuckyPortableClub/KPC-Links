@@ -68,7 +68,9 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/world-key
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
-          if ! git diff --cached --quiet; then git commit -m 'World answer key'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi
+          # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main; the chat-11 inbox and hand lists are merged, not copied). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
         if: ${{ always() && env.SKIP != '1' && inputs.outline_test != 'yes' }}
         continue-on-error: true

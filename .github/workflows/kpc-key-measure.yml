@@ -98,7 +98,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$KEYDIR"
-          if ! git diff --cached --quiet; then
-            git commit -m "Answer keys (${{ inputs.scope }}): rebuilt from the saved outlines"
-            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
-          fi
+          # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy "Answer keys (${{ inputs.scope }}): rebuilt from the saved outlines" - -- "$KEYDIR"
