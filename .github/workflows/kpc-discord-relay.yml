@@ -14,6 +14,7 @@ on:
         default: true
 permissions:
   contents: write
+  actions: write   # Nov 2: the watchdog heartbeat below
 concurrency:
   group: kpc-discord-relay
   cancel-in-progress: false
@@ -79,3 +80,15 @@ jobs:
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-announcements.json, kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_TRIES=6 \
             bash .github/scripts/kpc_save_overwrite.sh 'Club post from Discord' - -- kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json photos/announce
+      - name: WATCHDOG HEARTBEAT (Nov 2, HQ 11:30 AM; GitHub's own schedule skipped the watchdog all morning, this relay fires every 15 min)
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          last=$(gh api "repos/${{ github.repository }}/actions/workflows/kpc-watchdog.yml/runs?per_page=1" --jq '.workflow_runs[0].created_at // "1970-01-01T00:00:00Z"')
+          age=$(( $(date -u +%s) - $(date -u -d "$last" +%s) ))
+          if [ "$age" -gt 9000 ]; then
+            gh api -X POST "repos/${{ github.repository }}/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main && echo "::notice title=Watchdog heartbeat::the watchdog had not run for $((age / 60)) min: started it once (from the relay)"
+          else echo "watchdog ran $((age / 60)) min ago: nothing to do"; fi
+          true   # ok: a missed heartbeat is retried 15 min later by the next relay run
