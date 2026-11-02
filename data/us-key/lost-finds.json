@@ -1,9 +1,9 @@
 {
- "made": "2026-11-01 19:42 UTC",
+ "made": "2026-11-02 11:34 UTC",
  "counts": {
-  "A_decided_not_in_key": 37,
-  "B_sure_area_not_asked": 23,
-  "C_sure_line_not_drawn": 75
+  "A_decided_not_in_key": 71,
+  "B_sure_area_not_asked": 28,
+  "C_sure_line_not_drawn": 69
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
  "A": [
@@ -43,6 +43,27 @@
    " 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-0980",
+   "IL",
+   "Beall Woods State Park",
+   "alias",
+   "t 11 YES (pin 1290 m from the edge, 47.2 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-10251",
+   "OR",
+   "White River National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
+   "US-10429",
+   "ID",
+   "Middle Fork Clearwater River National Wild & Scenic River",
+   "alias",
+   ""
+  ],
+  [
    "US-10431",
    "ID",
    "Cabinet Gorge State Fish Hatchery",
@@ -50,11 +71,25 @@
    "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Cabinet Gorge Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-10464",
+   "AK",
+   "Chena Wayside State Recreation Site",
+   "alias",
+   " 11 (Oct 29-30); applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): joined to a different site (Chena River SRS); pin"
+  ],
+  [
    "US-10540",
    "CO",
    "Bellevue-Watson State Fish Hatchery",
    "alias",
    "e-Watson Fish Hatchery' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-10547",
+   "RI",
+   "Silver Spring State Recreation Area",
+   "alias",
+   "a fishing access may be only a corner (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)"
   ],
   [
    "US-10575",
@@ -85,11 +120,11 @@
    "s that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Miscellaneous Property' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
-   "US-10963",
-   "UT",
-   "Logan Aquatic Animal Health & Research Center State Fish Hatchery",
+   "US-10799",
+   "WY",
+   "Ellis State Wildlife Habitat Management Area",
    "alias",
-   "th and Research Center' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Ellis'; joins only with the POTA pin inside"
   ],
   [
    "US-11089",
@@ -127,11 +162,81 @@
    "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Coronado Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-12378",
+   "MN",
+   "Whitewater Wildlife Management Area",
+   "alias_all",
+   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-12426",
+   "WA",
+   "Hog Canyon State Fishing Lake",
+   "alias",
+   "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)"
+  ],
+  [
+   "US-12786",
+   "MI",
+   "Au Sable National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
+   "US-12789",
+   "MI",
+   "Carp National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
+   "US-12790",
+   "MI",
+   "East Branch of the Taquamenon National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
+   "US-12794",
+   "MI",
+   "Paint National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
+   "US-12796",
+   "MI",
+   "Pine National Wild and Scenic River",
+   "alias",
+   ""
+  ],
+  [
    "US-13097",
    "OR",
    "Strawberry Hill Wayside State Recreation Site",
    "alias",
    " name 'Strawberry Hill' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-13236",
+   "MA",
+   "Rockdale Heights Wildlife Management Area",
+   "alias",
+   "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Rockdale Highlands WMA'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-13395",
+   "WA",
+   "County Line State Recreation Site",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'County Line'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-13399",
+   "WA",
+   "Hand State Recreation Site",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Hand'; joins only with the POTA pin inside"
   ],
   [
    "US-2236",
@@ -146,6 +251,13 @@
    "Heyburn State Park",
    "join, alias",
    "wn record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Heyburn State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-2445",
+   "MA",
+   "Lynn Shores/Nahant Beach State Reserve",
+   "alias",
+   "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)"
   ],
   [
    "US-3121",
@@ -169,6 +281,13 @@
    "at exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'F. D. Roosevelt State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-3857",
+   "NC",
+   "Horton Grove State Nature Preserve",
+   "alias",
+   "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 707.8 ac)"
+  ],
+  [
    "US-3862",
    "NC",
    "Nags Head Woods Ecological State Preserve",
@@ -183,6 +302,13 @@
    "recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'The Conservation Fund - Palmetto-Peartre' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-3950",
+   "TN",
+   "Lauderdale Waterfowl Wildlife Management Area",
+   "alias",
+   "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 649.8 ac)"
+  ],
+  [
    "US-4036",
    "NE",
    "Walnut Creek State Recreation Area",
@@ -190,11 +316,32 @@
    " chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Walnut Creek Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-4188",
+   "IN",
+   "Bryan Woods State Nature Preserve",
+   "alias",
+   "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
+  ],
+  [
+   "US-4555",
+   "WA",
+   "Hanford Reach National Monument",
+   "alias",
+   "hat 11 YES (pin inside; a piece where the park is bigger) · 2026-10-29 23:15: gis-hunter row NO 'Hanford Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
    "US-4648",
    "GA",
    "Bartram Educational State Forest",
    "alias",
    "e name 'Bartram Forest' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-5564",
+   "VT",
+   "Essex Nursery State Forest",
+   "alias",
+   " · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)"
   ],
   [
    "US-5656",
@@ -218,11 +365,32 @@
    "quirrh Management Area' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
   ],
   [
+   "US-5992",
+   "UT",
+   "Big Creek USFS Wild Horse Territory & BLM Herd Management Area",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Big Creek'; joins only with the POTA pin inside"
+  ],
+  [
    "US-6060",
    "UT",
    "Hermit's Cabin/Cave State Recreation Area",
    "alias",
    "e name 'Hermit's Cabin' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-6212",
+   "WY",
+   "Whiskey Basin/ Little Red Creek Wildlife Management Area",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Whiskey Basin'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-6426",
+   "HI",
+   "Iolani Palace State Preserve",
+   "alias",
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IOLANI PALACE STATE MONUMENT'; joins only with the POTA pin inside"
   ],
   [
    "US-6462",
@@ -232,6 +400,20 @@
    "; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Garret Mountain Reservation' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
+   "US-6468",
+   "MN",
+   "Iron Range OHV State Recreation Area",
+   "alias",
+   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-6473",
+   "WA",
+   "Chief Joesph State Wildlife Area",
+   "alias",
+   "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  ],
+  [
    "US-6538",
    "TX",
    "Barrington Plantation State Historic Site",
@@ -239,11 +421,18 @@
    "rm State Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
   ],
   [
-   "US-7140",
-   "GA",
-   "Charlie Elliot Wildlife Management Area",
+   "US-6796",
+   "MI",
+   "Tobico Marsh Wildlife Management Area",
    "alias",
-   " name 'Charlie Elliott' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+   "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Tobico Marsh Unit of Bay City State Park'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-7529",
+   "CT",
+   "Beckley Iron Furnace State Park",
+   "alias",
+   ""
   ],
   [
    "US-8024",
@@ -253,11 +442,60 @@
    "lor Mill Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
   ],
   [
+   "US-8064",
+   "NY",
+   "Barcelona Neck Cooperative State Forest",
+   "alias",
+   "2026-10-29 23:15: gis-hunter row NO 'Sag Harbor' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
    "US-8663",
    "WA",
    "Plymouth Park National Recreation Area",
    "join",
    "y's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Plymouth Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-8689",
+   "FL",
+   "Little Creek, McAlpin Landing State Conservation Area",
+   "alias",
+   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-8696",
+   "FL",
+   "Purvis Landing, Otter Springs, Shingle Lndg State Conservation Area",
+   "alias",
+   "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  ],
+  [
+   "US-8701",
+   "FL",
+   "Shelly, Duck Pond, Hartsfield State Conservation Area",
+   "alias",
+   "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  ],
+  [
+   "US-8712",
+   "FL",
+   "White Springs, Little Shoals, Gar Pond State Conservation Area",
+   "alias",
+   "S (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-9598",
+   "CO",
+   "Hardscrabble-East Eagle BLM National Recreation Area",
+   "alias",
+   "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
+  ],
+  [
+   "US-9652",
+   "CO",
+   "Grenada State Wildlife Area",
+   "alias",
+   " 11 YES (pin 850 m from the edge, 6094.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   ],
   [
    "US-9683",
@@ -311,6 +549,20 @@
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ],
   [
+   "US-0980",
+   "IL",
+   "Beall Woods State Park",
+   "Beall Woods State Conservation Area",
+   "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0"
+  ],
+  [
+   "US-10610",
+   "OR",
+   "South Santiam State Fish Hatchery",
+   "SOUTH SANTIAM HATCHERY",
+   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
+  ],
+  [
    "US-10921",
    "HI",
    "Hawaii Capital National Historic District",
@@ -344,6 +596,13 @@
    "Virginia City Historic District (Comstock Lode) National Historic District",
    "Virginia City Historic District",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-2236",
+   "ID",
+   "Hells Gate State Park",
+   "HELLS GATE STATE PARK",
+   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
   ],
   [
    "US-3492",
@@ -388,10 +647,24 @@
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0"
   ],
   [
+   "US-7843",
+   "IN",
+   "Pearson Mill State Recreation Area",
+   "PEARSON MILL",
+   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
+  ],
+  [
    "US-7974",
    "MD",
    "Harmony Hall National Heritage Site",
    "Harmony Hall",
+   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+  ],
+  [
+   "US-8287",
+   "ME",
+   "Capitol State Park",
+   "Capitol Park",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
@@ -503,7 +776,7 @@
   ],
   [
    "US-10421",
-   "ID",
+   "WA",
    "International Selkirk Loop National Scenic Byway National Parkway",
    "International Selkirk Loop",
    "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
@@ -901,53 +1174,11 @@
    "https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0"
   ],
   [
-   "US-9878",
-   "DE",
-   "Northern Delaware Greenway National Recreation Trail",
-   "Northern Delaware Greenway Trail",
-   "https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0"
-  ],
-  [
    "US-9898",
    "DC",
    "Mount Vernon National Historic Trail",
    "Mount Vernon Trail",
    "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0"
-  ],
-  [
-   "US-9904",
-   "VA",
-   "Apple Orchard Falls National Recreation Trail",
-   "APPLE ORCHARD FALLS",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
-  ],
-  [
-   "US-9905",
-   "VA",
-   "Cascades National Recreation Trail",
-   "CASCADES",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
-  ],
-  [
-   "US-9906",
-   "VA",
-   "Cornelius Creek National Recreation Trail",
-   "CORNELIUS CREEK",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
-  ],
-  [
-   "US-9910",
-   "VA",
-   "Massanutten National Recreation Trail",
-   "MASSANUTTEN",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
-  ],
-  [
-   "US-9922",
-   "VA",
-   "The Lion's Tale National Recreation Trail",
-   "THE LIONS TALE",
-   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0"
   ],
   [
    "US-9933",
