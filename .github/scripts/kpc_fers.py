@@ -2316,6 +2316,37 @@ def slim(spots):
 def key_of(s): return '+'.join(s['refs']) + '@' + s['kind']
 
 
+# Nov 2 5:45 PM (HQ, chat 8's KY hold check: 4 pairs looked 'missing' after the river fix, only their centre had moved a little): a
+# spot keeps its id from run to run. ID memory per state file ('ids': {pair@kind: [[lat, lon, id], ...]}); a new spot of the same
+# pair + kind within STABLE_M of a remembered spot takes that id (nearest first, each id once per run); else a new id is made.
+STABLE_M = 600
+
+
+def stable_ids(spots, mem):
+    used = set()
+    def dm(a, b): return math.hypot((a[0] - b[0]) * 110570, (a[1] - b[1]) * 111320 * math.cos(math.radians(a[0])))
+    for s in sorted(spots, key=lambda x: (key_of(x), x['center'][0], x['center'][1])):
+        k = key_of(s); c = s['center']
+        near = sorted((dm(c, (m[0], m[1])), m[2]) for m in mem.get(k, []) if m[2] not in used)
+        if near and near[0][0] <= STABLE_M: s['id'] = near[0][1]
+        else:
+            i = k + '@%.3f,%.3f' % tuple(c); n = 2
+            while i in used: i = k + '@%.3f,%.3f' % tuple(c) + f'#{n}'; n += 1
+            s['id'] = i; mem.setdefault(k, []).append([round(c[0], 5), round(c[1], 5), i])
+        used.add(s['id'])
+    return mem
+
+
+def id_memory(d):
+    """the state file's id memory, seeded from its spots when it has none yet (files made before Nov 2 5:45 PM)"""
+    mem = {k: [list(m) for m in v] for k, v in ((d or {}).get('ids') or {}).items()}
+    for x in (d or {}).get('spots') or []:
+        if x.get('id') and x.get('center') and x.get('refs') and x.get('kind'):
+            k = key_of(x)
+            if not any(m[2] == x['id'] for m in mem.get(k, [])): mem.setdefault(k, []).append([round(x['center'][0], 5), round(x['center'][1], 5), x['id']])
+    return mem
+
+
 def channel_rows(files, G, today):
     """Brandon Oct 28 6:55 PM (mapping.md): a river channel counts as park land only where the agency's OWN record includes it;
     else the channel inside BOTH parks' outlines is a WATER ONLY row (boat spot), never dropped. For each live area pair with an
@@ -2883,6 +2914,10 @@ def main():
                 have = {q.get('id') for q in d['spots']}
                 for g in got:
                     g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center']); g.update({'passes': [1, 1, 1], 'found': today})
+                    mem = files[st].setdefault('ids', id_memory(files[st]))
+                    near = [m[2] for m in mem.get(key_of(g), []) if m[2] not in have and math.hypot((m[0] - g['center'][0]) * 110570, (m[1] - g['center'][1]) * 111320 * math.cos(math.radians(m[0]))) <= STABLE_M]
+                    if near: g['id'] = near[0]   # Nov 2 5:45 PM: a remade row keeps its old id
+                    else: mem.setdefault(key_of(g), []).append([round(g['center'][0], 5), round(g['center'][1], 5), g['id']])
                     if g['id'] in have: continue
                     decide(g, parks, G, LN, PIN, today, set(), st_of); d['spots'].append(g); have.add(g['id']); remade += 1
             n['water-route rows made again from the saved water'] = remade
@@ -3080,7 +3115,8 @@ def main():
                 # over when the batch made no row of that pair + kind (line / river / water-route rows are not all remade by a batch)
                 sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
                 if not sp and st not in old: continue
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
+            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
