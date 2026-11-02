@@ -11,7 +11,7 @@ Saves the maps AND the other documents (fact sheets, brochures, guides) the page
 import datetime as dt, html, json, pathlib, re, sys, time, urllib.request
 
 SEEN, OUT = pathlib.Path('data/ky-lands-seen.json'), pathlib.Path('data/ky-official-maps.json')
-UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/129 Safari/537.36 (KPC map-link check)'
+UA = 'KPC-map-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: the honest KPC User-Agent, never a browser's (Oct 31 ruling)
 def notice(t, m=''): print('::notice title=%s::%s' % (t, str(m).replace('\n', '%0A')), flush=True)
 def get(u):
     for i in range(3):

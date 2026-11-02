@@ -25,7 +25,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from kpc_issue import report  # noqa: E402
 
 ROOT = pathlib.Path('.')
-UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 KPC-link-check'
+UA = 'KPC-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: honest KPC User-Agent (Oct 31 ruling); a site that refuses it is listed, never worked around
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 # Sites that block automated checks; listed separately instead of as broken.
 NO_BOTS = ('facebook.com', 'instagram.com', 'x.com', 'twitter.com', 'linkedin.com', 'photos.google.com', 'photos.app.goo.gl',
