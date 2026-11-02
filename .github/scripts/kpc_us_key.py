@@ -884,6 +884,14 @@ def _nf(t):   # hand decisions match names whatever way the accents are stored (
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 def _oid(a): return str(a['OBJECTID'])
+# Nov 2 review: one set of rules for a person's NO in every join path, a name check on id joins, self-checks and confidence
+# (kpc_key_rules.py; every rule has its own switch, see that file). Missing file = today's behaviour.
+try:
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_rules as KR
+except Exception: KR = None  # noqa: BLE001
+def _kr(name): return KR is not None and KR.on(name)
+def _no_all(ov, a):   # KPC_NO_ALL_PATHS: True when a person ruled this record out (id, exact name, or with KPC_NO_BY_NAME the saved name)
+    return _kr('KPC_NO_ALL_PATHS') and KR.is_no(ov, _oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
 
 
 DBG = set((os.environ.get('DEBUG_REFS') or '').split())   # Oct 29 (chat 2): trace these parks through every step (a debug run saves nothing)
@@ -906,8 +914,48 @@ def pins():
     return PIN
 
 
+ACRES_OFF = None
+def _official_acres():
+    global ACRES_OFF
+    if ACRES_OFF is None:
+        ACRES_OFF = {}
+        try:
+            d = json.load(open('data/acres.json')); d = d.get('parks', d) if isinstance(d, dict) else {}
+            for r_, v in d.items():
+                try: ACRES_OFF[r_] = float(v.get('acres') if isinstance(v, dict) else v)
+                except (TypeError, ValueError): pass
+        except Exception: pass  # noqa: BLE001
+    return ACRES_OFF
+
+
+def _selfchk(st, parks, recs):
+    """Nov 2 review. KPC_SELF_CHECKS=report notes problems in parks[ref]['self']; =hold also moves the park to check (no outline).
+    KPC_CONF_SORT=1 writes review/unsure-US-<st>.json: only the parks a person needs to see, each with a one-line reason."""
+    mode = KR.setting('KPC_SELF_CHECKS') if KR is not None else '0'
+    if KR is None or (mode in ('0', 'off', '') and not _kr('KPC_CONF_SORT')): return
+    bbs = [a['_bb'] for a in recs if a.get('_bb')]
+    box_ = (min(b[1] for b in bbs), min(b[0] for b in bbs), max(b[3] for b in bbs), max(b[2] for b in bbs)) if bbs else None
+    ko = lambda t, nm: (not _tags(t)) or (not _tags(nm)) or bool(_tags(t) & _tags(nm))
+    probs = {}
+    for ref, p in parks.items():
+        if mode in ('0', 'off', ''): break
+        pr = (P_ALL.get(ref) or [])
+        q = dict(p, la=pr[5] if len(pr) > 6 else None, lo=pr[6] if len(pr) > 6 else None)
+        bad = KR.self_checks(ref, q, box_, _official_acres().get(ref), ko)
+        if not bad: continue
+        probs[ref] = bad; p['self'] = bad
+        if mode == 'hold' and p.get('m'):
+            p['c'] = [x[:3] + ['self-check: ' + bad[0]] for x in p['m']] + list(p.get('c') or []); p['m'] = []
+    if probs: notice(f'US key {st}', f'self-checks: {len(probs)} park(s) with a problem ({mode})')
+    if _kr('KPC_CONF_SORT'):
+        for ref, p in parks.items(): p['conf'], p['conf_why'] = KR.confidence(p, probs.get(ref) or ())
+        R_ = OUT / 'review'; R_.mkdir(exist_ok=True)
+        save_json(R_ / f'unsure-US-{st}.json', {'st': st, 'note': 'Nov 2 review: only the parks a person needs to see, with why', 'parks': KR.unsure_list(parks, probs)})
+
+
+P_ALL = {}
 def run(st):
-    try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
+    try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
     except Exception: pass  # noqa: BLE001
@@ -981,7 +1029,9 @@ def run(st):
         if ov:
             no = {str(x) for x in ov.get('no', [])}
             m = [x for x in m if str(x[0]) not in no and _nf(x[1]) not in {_nf(y) for y in no}]
+            if _kr('KPC_NO_BY_NAME'): m = KR.drop_no(m, ov)   # Nov 2: a NO survives a PAD-US renumbering (name + acres saved with it)
             for want in ov.get('join', []):
+                _want0 = str(want)
                 # Oct 27 (boundary review #3): PAD-US gives its records NEW ids in each version. A hand join by id whose id is gone
                 # is found again by its fingerprint (name + acres within 10%, near the pin), saved with it in overrides.json 'fp'
                 if not any(_oid(a) == str(want) for a in recs) and str(want) in (ov.get('fp') or {}):
@@ -991,6 +1041,12 @@ def run(st):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)):   # Oct 25: an id in 'no' is never re-added by a same-name join
+                        if _no_all(ov, a): continue   # Nov 2: a NO by name wins over a join by id
+                        if _kr('KPC_ID_JOIN_NAME') and _oid(a) == str(want) and _nf(nm) != _nf(want):
+                            _ok, _why = KR.id_join_name_ok(name, nm, ((ov.get('fp') or {}).get(_want0) or [None])[0])
+                            if not _ok:   # Nov 2: the approved id now points at other land: check, never an outline
+                                if not any(str(x[0]) == _oid(a) for x in c): c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _why])
+                                continue
                         _how = 'reviewed-approx' if ov.get('approx') else 'reviewed'
                         _was = next((x for x in m if str(x[0]) == _oid(a)), None)
                         # Oct 29 8:25 PM (release check): a piece the name test had ALREADY joined kept its plain 'name'/'words'
@@ -1005,7 +1061,9 @@ def run(st):
             for pre in ov['alias_all']:
                 units = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '').startswith(_nf(pre)) and near(la, lo, a['_bb'], .3)]
                 if any(inside(la, lo, a['_g']) or near(la, lo, a['_bb'], .03) for a in units):
-                    for a in units: m.append([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(a.get('GIS_Acres') or 0), f'alias units: {pre}'])
+                    for a in units:
+                        if _no_all(ov, a): continue   # Nov 2: alias_all had no NO check at all
+                        m.append([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(a.get('GIS_Acres') or 0), f'alias units: {pre}'])
         if not m and la is not None and RIDB.get(st):   # the Recreation.gov point proves WHERE the site is (see RIDB above)
             for x in RIDB[st]:
                 if not (same_name(name, x['n']) or norm(name) == norm(x['n'])) or _km(la, lo, x['la'], x['lo']) > 25: continue
@@ -1014,7 +1072,7 @@ def run(st):
                     if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
                     if KM.is_admin(nm) or KM.is_admin(a.get('Loc_Nm')) or re.search(r'field office|district office|ranger district', nm, re.I): continue   # Nov 1 (chat 11: Fortymile WSR -> 'Eastern Interior Field Office'): an office boundary is never a park
                     if _tags(name) and not (_tags(name) & _tags(nm)): continue   # Oct 31 (chat 11: Milford State Fish Hatchery -> 'Milford Wildlife Area'): another kind of place never joins
-                    if _oid(a) in {str(q) for q in ov.get('no', [])} or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
+                    if _oid(a) in {str(q) for q in ov.get('no', [])} or _no_all(ov, a) or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
         # Nov 1 (chat 11 KEY NO 2:32 PM: Oxford Slough, Iao Valley, Teanaway joined through name variants nobody approved): a name
@@ -1028,7 +1086,7 @@ def run(st):
             for al in _alias_ok:
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and near(la, lo, a['_bb'], .05) and inside_slack(la, lo, a['_g']):
+                    if _nf(nm) == _nf(al) and _oid(a) not in {str(x) for x in ov.get('no', [])} and not _no_all(ov, a) and near(la, lo, a['_bb'], .05) and inside_slack(la, lo, a['_g']):
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f'alias name (pin inside): {al}'])
         if ref in DBG:
             wants = list(ov.get('join', [])) + list(ov.get('alias', []))
@@ -1064,7 +1122,8 @@ def run(st):
             # join only when the one same-named area also HOLDS the park's pin (or the pin sits at its edge): an
             # Oregon 'State Recreation Site' filed by PAD-US as a state park, a SC heritage preserve that is the WMA.
             if not m and c and NAME_JOIN and not ov.get('none') and not ov.get('site'):
-                sn = [x for x in c if x[3] == 'same name, different kind of place' and str(x[0]) not in {str(y) for y in ov.get('no', [])}]   # Oct 25: a person's 'no' wins here too
+                sn = [x for x in c if x[3] == 'same name, different kind of place' and str(x[0]) not in {str(y) for y in ov.get('no', [])}
+                      and not (_kr('KPC_NO_ALL_PATHS') and KR.is_no(ov, x[0], x[1], x[2]))]   # Oct 25: a person's 'no' wins here too
                 if sn and len({_nf(x[1]) for x in sn}) == 1:
                     gs = {_oid(a): a for a in recs}
                     hold = [x for x in sn if str(x[0]) in gs and rings(gs[str(x[0])].get('_g'))
@@ -1446,6 +1505,7 @@ def run(st):
             if not np_ or np_.get('m') or not op.get('m'): continue
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
+            if _kr('KPC_NO_ALL_PATHS'): om = KR.drop_no(om, OVR.get(ref) or {})   # Nov 2: a NO by name also wins over the kept outline
             if om and ref in TR and any(str(x[0]) in ids_here for x in om):
                 # Oct 28 (HQ, Brandon): a TRANSFERRED park (handed to a county / city, POTA number kept) never loses its outline:
                 # its land is still in the read but no longer under the old name: keep the last good join, say why
@@ -1456,8 +1516,12 @@ def run(st):
                 fp = []
                 for x in om:
                     if not isinstance(x[0], int): continue
+                    _pr = P.get(ref) or []; _pla, _plo = (_pr[5], _pr[6]) if len(_pr) > 6 else (None, None)
+                    if _pla is None and ref in pins(): _pla, _plo = pins()[ref]
                     hit = next((a for a in recs if isinstance(a.get('OBJECTID'), int) and _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(x[1])
-                                and abs((a.get('GIS_Acres') or 0) - (x[2] or 0)) <= max(20, .1 * (x[2] or 0))), None)
+                                and abs((a.get('GIS_Acres') or 0) - (x[2] or 0)) <= max(20, .1 * (x[2] or 0))
+                                and not _no_all(OVR.get(ref) or {}, a)   # Nov 2: a NO'd record is never 'found again'
+                                and not (_kr('KPC_REFOUND_NEAR') and _pla is not None and not near(_pla, _plo, a['_bb'], .6))), None)
                     if hit: fp.append([hit['OBJECTID'], x[1], round(hit.get('GIS_Acres') or 0), (str(x[3]) if str(x[3]).startswith('reviewed') else 'same land, new PAD-US id (name + acres)')])
                 if fp and len(fp) == sum(1 for x in om if isinstance(x[0], int)):
                     np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = []; np_['refound'] = PADVER[0]; kept += 1
@@ -1489,6 +1553,7 @@ def run(st):
               'shadow_demote': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') in ('check', 'none')),
               'shadow_add': sum(1 for p in parks.values() if not p.get('m') and (p.get('shadow') or {}).get('v') == 'join'),
               'shadow_other_place': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') == 'join')}
+    _selfchk(st, parks, recs)   # Nov 2 review: pre-handoff self-checks + confidence (switches KPC_SELF_CHECKS / KPC_CONF_SORT; off = today)
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)

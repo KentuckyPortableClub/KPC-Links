@@ -1653,6 +1653,12 @@ def grid_pairs(boxes):
 import copy, hashlib
 REUSE, REUSE_NEW, REUSE_FILE = {}, {}, None
 CODE_HASH = hashlib.sha1(b''.join(open(pathlib.Path(__file__).parent / n, 'rb').read() for n in ('kpc_fers.py', 'kpc_owned.py', 'kpc_http_cache.py'))).hexdigest()
+# Nov 2 review (speed): CODE_HASH changes on ANY edit to these files (a comment, a log line), and then every pair is computed
+# again (~all night). FERS_ALGO is a version name for the 2-fer MATH: bump it by hand whenever a change can move a spot.
+# Switch KPC_FERS_REUSE_KEY: 'code' (default, today: the file hash) | 'algo' (FERS_ALGO, so edits that cannot move a spot keep
+# the saved spots). The pass constants (PASS, CELL, DET, PREC, REGION) stay in the fingerprint either way.
+FERS_ALGO = 'fers-2026-11-02.1'
+REUSE_KEY = FERS_ALGO if os.environ.get('KPC_FERS_REUSE_KEY', 'code').strip().lower() == 'algo' else CODE_HASH
 
 
 def _h(x): return hashlib.sha1(json.dumps(x, sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest()
@@ -1660,7 +1666,7 @@ def _h(x): return hashlib.sha1(json.dumps(x, sort_keys=True, separators=(',', ':
 
 def pair_fp(a, b, G, LN):
     ln = lambda r: {k: v for k, v in (LN.get(r) or {}).items() if k != 'date'} if r in LN else None   # the read date is not an input
-    return _h([CODE_HASH, PASS, CELL, DET, PREC, REGION, a, b, G.get(a), G.get(b), ln(a), ln(b), PINS.get(a), PINS.get(b), OWNED.get(a), OWNED.get(b),
+    return _h([REUSE_KEY, PASS, CELL, DET, PREC, REGION, a, b, G.get(a), G.get(b), ln(a), ln(b), PINS.get(a), PINS.get(b), OWNED.get(a), OWNED.get(b),
                a in KY_FS_MANAGED, b in KY_FS_MANAGED])
 
 
