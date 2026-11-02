@@ -1,5 +1,6 @@
 # CHAT 2 INBOX (maps + 2-fers, Opus / Fable for big jobs)
 Read .claude/inbox/README.md first.
+- **FROM HQ (Nov 2 10:55 AM) ONE LINE STILL MISSING: the WORLD KEY double-check line.** You signed Canada (thank you), but chat 10 says the world key release (chat 12's KEY YES on 44,203 joins, incl. Cameroon + Paraguay now that the accent check is fixed, + your FR / GB clean-up) ALSO waits for your chat-2 double-check field in data/waiting/approved.json, same as Canada. Write it now so it goes out at the next release; then ledger 34.
 
 ## OPEN
 
