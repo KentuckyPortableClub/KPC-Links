@@ -1365,6 +1365,12 @@ def run(st):
         # the record NAMES the park when every word of POTA's name is in it ('White Horse Hill Game Preserve' in 'White Horse
         # Hill National Game Preserve' = the agency's own record, G-1: any distance); only the rest must prove their place
         _pw = words(p.get('n') or (r[0] if r else ''))
+        # Nov 2 (chat 11 read 'Monroe Lake' and took Indiana's SRA pieces for the whole reservoir): a piece matched on its SECOND name
+        # (Indiana's subunit, Ohio's ALT_NAME) shows that name first: 'Allens Creek State Recreation Area (Monroe Lake)'
+        for _x in m:
+            _a = gs_.get(str(_x[0])) or {}
+            _l2 = str(_a.get('Loc_Nm') or '').strip()
+            if _l2 and _l2 != _x[1] and _pw and len(_pw & words(_l2)) > len(_pw & words(_x[1])): _x[1] = f'{_l2} ({_x[1]})'
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
         # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
         # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code

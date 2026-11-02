@@ -3887,14 +3887,12 @@
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   },
   "US-10545": {
-   "alias": [
-    "Decoppet Estate"
-   ],
-   "alias_ok_names": [
-    "Decoppet Estate"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Decoppet Estate' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Decoppet Estate' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 chat 11 (US key build US-f3d48d30899, per-park KEY NO): Decoppet Estate is another property",
+   "no": [
+    "78857",
+    "Decoppet Estate"
+   ]
   },
   "US-10547": {
    "alias": [
@@ -5580,15 +5578,12 @@
    "why": "same place, another name (hand review Oct 22 (waiting list))"
   },
   "US-10963": {
-   "alias": [
-    "Aquatic Animal Health and Research Center",
-    "Fisheries Experiment Station"
-   ],
-   "alias_ok_names": [
-    "Fisheries Experiment Station"
-   ],
    "when": "2026-11-02",
-   "why": "Oct 29 9:30 PM: the park's own website name 'Aquatic Animal Health and Research Center' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-11-02 12:49: aliases-oct31 row YES 'Fisheries Experiment Station' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "Oct 29 9:30 PM: the park's own website name 'Aquatic Animal Health and Research Center' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-11-02 12:49: aliases-oct31 row YES 'Fisheries Experiment Station' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 chat 11 (US key build US-f3d48d30899, per-park KEY NO): a 0-acre station record, not the center",
+   "no": [
+    "Fisheries Experiment Station",
+    "sgutb71"
+   ]
   },
   "US-10969": {
    "join": [
@@ -25433,14 +25428,12 @@
    "why": "2026-11-02 12:49: layers row YES 'Machicomoco State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-2365": {
-   "alias": [
-    "Caney Creek Lake State Park"
-   ],
-   "alias_ok_names": [
-    "Caney Creek Lake State Park"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Caney Creek Lake State Park' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Caney Creek Lake State Park' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 chat 11 (US key build US-f3d48d30899, per-park KEY NO): Caney Creek Lake SP is another park",
+   "no": [
+    "203110",
+    "Caney Creek Lake State Park"
+   ]
   },
   "US-2369": {
    "no": [
@@ -38216,10 +38209,14 @@
    },
    "join": [
     "2663",
-    "sgidd187"
+    "sgidd187",
+    "Coeur d'Alene National Forest",
+    "Saint Joe National Forest",
+    "St. Joe National Forest",
+    "Idaho Panhandle National Forests"
    ],
    "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers)"
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2)"
   },
   "US-4480": {
    "fp": {
