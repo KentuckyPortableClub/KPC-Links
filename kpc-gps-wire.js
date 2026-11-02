@@ -40,7 +40,9 @@
     return { status: 'pin' };
   }
   async function parkInfo(ref) { const o = await look(ref); return o ? { ref, name: o.name, lat: o.la, lon: o.lo, area: areaOf(o) } : null; }
-  KPCGPS.config({ siteUrl: 'https://kentuckyportableclub.github.io/KPC-Links/', dataUrl: p => KD + p, outline, parkInfo, trails: () => [] });
+  /* G6 (Nov 2): answer keys come ONLY from KPC-Data (released); the site's own held copy is never read */
+  const kfetch = u => (/(^|\/)data\/(us|ca|world)-key\//.test(u) && u.indexOf(KD) !== 0) ? Promise.resolve(new Response('', { status: 404 })) : fetch(u);
+  KPCGPS.config({ siteUrl: 'https://kentuckyportableclub.github.io/KPC-Links/', dataUrl: p => KD + p, fetch: kfetch, outline, parkInfo, trails: () => [] });
   /* a stop with its area filled in (parking + the checked key are read per state) */
   async function stopOf(s) {
     if (typeof s === 'string') { const o = await look(s); return { ref: s, area: areaOf(o) }; }
