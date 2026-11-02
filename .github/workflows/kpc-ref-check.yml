@@ -30,6 +30,7 @@ jobs:
         run: |
           git config user.name "KPC bot"
           git config user.email "kpc-bot@users.noreply.github.com"
+          python3 .github/scripts/kpc_refcheck_guard.py || true   # Nov 2 (chat 5's WRONG list): a park lost that POTA did not retire / an emptied map file = put back
           git add -A kpc-ky-data.json locations-ky.json locations.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true
           if git diff --cached --quiet; then echo "nothing to save"; exit 0; fi
           git commit -q -m "Retired parks taken off every list (reference check)"
