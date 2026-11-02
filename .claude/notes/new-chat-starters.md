@@ -281,3 +281,5 @@ MORNING QUEUE:
 
 ## 10. Bot workshop (chat 10)
 "Read .claude/build/research/KPC_Chat10_Handoff_Nov1.md, then run python3 .claude/build/inbox_now.py 10. You are chat 10, KPC's BOT BUILDER (KPC-Data + KPC-Links bots, outside tools, the park-info engine). Automation first, branch first, never red, email only for real issues."
+
+- **CHAT 12 (second checker, Sonnet; Brandon Nov 2 6:34 AM):** starter: 'You are KPC chat 12, the second checker. Work in KentuckyPortableClub/KPC-Links + KPC-Data. Read .claude/CLAUDE.md, .claude/RULES-NOW.md and .claude/inbox/chat-12.md, then type-free: do your OPEN items.'
