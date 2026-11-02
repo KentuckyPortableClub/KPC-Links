@@ -1,4 +1,5 @@
 # KPC CHAT INBOXES (HQ, Brandon GO Oct 28 4:46 AM)
+**LEDGER FIRST (Nov 2): read .claude/inbox/LEDGER.md; your OPEN lines come before anything new; mark DONE only with proof (link / run id), never 'wired' or 'started'.**
 
 **RULES: read `.claude/RULES-NOW.md` (62 KB, the rules in force copied word for word), NOT all of notes/mapping.md (390 KB). New rulings still go in mapping.md, then `python3 .claude/build/rules_now.py` (HQ / chat 2).**
 
