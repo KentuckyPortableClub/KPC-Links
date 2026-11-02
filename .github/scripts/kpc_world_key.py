@@ -808,6 +808,10 @@ except Exception as e: notice('World key layers', e)  # noqa: BLE001
 for cc in COUNTRIES:
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
     except Exception: notice(f'World key {cc}', 'no park list yet (data/parkinfo); skipped'); continue  # noqa: BLE001
+    # Nov 2 (chat 2, HQ 10:55 AM): park numbers POTA retired (data/retired-refs.json) leave the world key too, as in the US + Canada keys
+    # (FR-16712 / FR-3744 / FR-14241 / GB-2511 kept outlines and held the France + Britain files)
+    try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
+    except Exception: pass  # noqa: BLE001
     recs = wload(cc) if CMODE in ('use', 'only') else None
     if recs is None and CMODE == 'only':
         print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
