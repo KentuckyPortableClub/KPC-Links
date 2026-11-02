@@ -172,6 +172,42 @@ def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] -
 recs = cload() if CMODE in ('use', 'only') else None
 if recs is None and CMODE == 'only':
     notice('Canada key', 'no saved outlines yet; nothing done (saved-copy-only run)'); raise SystemExit(0)
+# Nov 2 (chat 2, Canada G-4 recheck of CA-f3d48d30899): the saved copy had NO records of 'Québec Réser' (MRNF réserves fauniques,
+# TRQ_WMS/11), so 13 reviewed Québec outlines (Matane, Papineau-Labelle, Chic-Chocs, Laurentides, La Vérendrye …) went back to pins.
+# A saved-copy run now reads live every layer in layers.json that has no record at all in the saved copy, and saves the copy again.
+if recs is not None and CMODE == 'use':
+    try:
+        _LJ = json.load(open(OUT / 'layers.json'))
+        _havep = {str(r.get('oid', '')).split(':', 1)[0] for r in recs}
+        _miss = [(p, u[0]) for p, u in _LJ.items() if p not in _havep and p not in ('cpcad', 'trl', 'NB WMZ') and u and str(u[0]).startswith('http')][:10]
+        _got, _msg = 0, []
+        for _p, _u in _miss:
+            try:
+                _li = get(_u, {'f': 'json'})
+                if 'Polygon' not in str(_li.get('geometryType', '')): continue
+                _fl = [f['name'] for f in _li.get('fields', [])]
+                _nfs = [f for f in _fl if re.search(r'(name|nom|toponym|title)', f, re.I) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
+                _oidf = _li.get('objectIdField') or 'OBJECTID'
+                _ids = sorted(get(f'{_u}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or [])[:6000]
+                _n0 = _got
+                for _o in range(0, len(_ids), 100):
+                    _j = get(f'{_u}/query', {'objectIds': ','.join(str(x) for x in _ids[_o:_o + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                                            'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json'}, tries=3)
+                    for _f in _j.get('features', []):
+                        _a = _f.get('attributes') or {}; _g = _f.get('geometry') or {}
+                        _nk = _nfs or [k for k in _a if re.search(r'(name|nom|toponym)', k, re.I) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3]
+                        _nm = next((str(_a[n]) for n in _nk if _a.get(n)), '')
+                        _ov = next((v for k, v in _a.items() if k.lower() in (_oidf.lower(), 'objectid', 'fid') and v is not None), None)
+                        if not _nm or _ov is None: continue
+                        _lab = f'{_p} (live top-up)'
+                        _r = {'oid': f'{_p}:{_ov}', 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': 0, '_g': _g, '_bb': bbox(_g), 'src': _lab}
+                        _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); recs.append(_r); _got += 1
+                    time.sleep(.4)
+                _msg.append(f'{_p}: {_got - _n0}')
+            except Exception as _e: _msg.append(f'{_p} FAILED: {str(_e)[:80]}')  # noqa: BLE001
+        if _miss: notice('Canada saved outlines', f'{len(_miss)} layers had no record in the saved copy; read live: ' + ' | '.join(_msg))
+        if _got: csave(recs)
+    except Exception as _e: notice('Canada saved outlines', f'live top-up skipped: {_e}')  # noqa: BLE001
 if recs is None:
     # ---------------- pull CPCAD ----------------
     root = get(SVC, {'f': 'json'})
