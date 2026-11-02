@@ -1546,6 +1546,32 @@ def run(st):
             if ref in parks and t.get('outline_note'): parks[ref]['outline_note'] = t['outline_note']
     except FileNotFoundError: pass
     except Exception as e: notice(f'US key {st}', f'transfer tags skipped: {e}')  # noqa: BLE001
+    # Nov 2 (chat 2, map audit DUPLICATE pattern, chat 11 FIX): one record joined to two parks of DIFFERENT kinds (Woodson State
+    # Wildlife Area's record also on Woodson State Fishing Lake; Backbone State Forest's on Backbone State Park; Loess Hills State
+    # Forest / Wildlife Area): the record stays with the park whose kind its own name says, the other park gets it as 'check'.
+    # Same kind on both (same land, two park numbers) is left alone; hand joins ('reviewed' / chat answers) are never moved.
+    try:
+        _by = {}
+        for _r, _p in parks.items():
+            for _q in _p.get('m') or []:
+                if str(_q[0]).startswith('trl') or re.search(r'review|chat|hand|answer', str(_q[3] if len(_q) > 3 else ''), re.I): continue
+                _by.setdefault(str(_q[0]), []).append(_r)
+        _moved = []
+        for _id, _rs in _by.items():
+            if len(_rs) < 2: continue
+            _qn = next(q[1] for q in parks[_rs[0]]['m'] if str(q[0]) == _id)
+            _kr = kinds(_qn)
+            if not _kr: continue
+            _fit = [r for r in _rs if kinds(parks[r].get('n')) & _kr]
+            if not _fit or len(_fit) == len(_rs): continue
+            for _r in _rs:
+                if _r in _fit: continue
+                _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
+                _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
+                _p['c'] = [list(q[:3]) + [f'record also joined to {", ".join(_fit)} whose kind it names'] for q in _q] + (_p.get('c') or [])
+                _moved.append(_r)
+        if _moved: notice(f'US key {st}', f"{len(_moved)} parks gave back a record joined to another park of the kind it names: {', '.join(_moved[:10])}")
+    except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {_e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
