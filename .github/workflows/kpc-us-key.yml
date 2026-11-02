@@ -8,6 +8,7 @@ on:
   schedule:
     - cron: '37 9 1 * *'   # monthly: every state
     - cron: '19 9 * * *'   # nightly (HQ Oct 30 6:55 AM, BOT B): only the states chat 11's new answers touch; nothing waiting = green, one notice
+    - cron: '47 11 * * *'   # Nov 2 (Brandon: the 9:19 start was skipped by GitHub): a BACKUP start; the states list is cleared by a finished build, so after a normal night it finds nothing to do
   workflow_dispatch:
     inputs:
       states:
