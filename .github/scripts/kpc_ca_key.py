@@ -177,9 +177,14 @@ if recs is None and CMODE == 'only':
 # A saved-copy run now reads live every layer in layers.json that has no record at all in the saved copy, and saves the copy again.
 if recs is not None and CMODE == 'use':
     try:
+        # Nov 2 2:30 PM: the first try spent all 10 slots on 'Hard look~N' layers (read by id further on, never whole) and missed Québec:
+        # those are left out, a top-up record from them is dropped from the copy, and province layers come first
+        recs = [r for r in recs if not (str(r.get('src', '')).endswith('(live top-up)') and str(r.get('oid', '')).startswith('Hard look'))]
         _LJ = json.load(open(OUT / 'layers.json'))
         _havep = {str(r.get('oid', '')).split(':', 1)[0] for r in recs}
-        _miss = [(p, u[0]) for p, u in _LJ.items() if p not in _havep and p not in ('cpcad', 'trl', 'NB WMZ') and u and str(u[0]).startswith('http')][:10]
+        _miss = [(p, u[0]) for p, u in _LJ.items() if p not in _havep and p not in ('cpcad', 'trl', 'NB WMZ') and not p.startswith('Hard look')
+                 and u and str(u[0]).startswith('http')]
+        _miss = sorted(_miss, key=lambda x: (0 if x[0].startswith(('Québec', 'QC')) else 1, x[0]))[:12]
         _got, _msg = 0, []
         for _p, _u in _miss:
             try:
@@ -206,7 +211,7 @@ if recs is not None and CMODE == 'use':
                 _msg.append(f'{_p}: {_got - _n0}')
             except Exception as _e: _msg.append(f'{_p} FAILED: {str(_e)[:80]}')  # noqa: BLE001
         if _miss: notice('Canada saved outlines', f'{len(_miss)} layers had no record in the saved copy; read live: ' + ' | '.join(_msg))
-        if _got: csave(recs)
+        if _got or _miss: csave(recs)
     except Exception as _e: notice('Canada saved outlines', f'live top-up skipped: {_e}')  # noqa: BLE001
 if recs is None:
     # ---------------- pull CPCAD ----------------
