@@ -7,7 +7,7 @@ name: KPC saved shapes (world + Canada)
 # pushes to the repo, so the jobs cannot collide with each other or with the other bots. Never fails.
 on:
   schedule:
-    - cron: '47 9 4 * *'          # the 4th of each month (the US one runs on the 3rd)
+    - cron: '43 9 4 * *'          # the 4th of each month (the US one runs on the 3rd)   # G9 Nov 2: was '47 9 4 * *' (spread the start times; now 4 min earlier)
   workflow_dispatch:
     inputs:
       countries:

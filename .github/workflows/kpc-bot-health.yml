@@ -9,7 +9,7 @@ name: KPC check-up
 # Run it by hand with 'full' ticked to do the Sunday parts on any day.
 on:
   schedule:
-    - cron: '47 9 * * *'    # 4:47 AM Central (3:47 in winter), after the night's data bots
+    - cron: '44 9 * * *'    # 4:47 AM Central (3:47 in winter), after the night's data bots   # G9 Nov 2: was '47 9 * * *' (spread the start times; now 3 min earlier)
   workflow_dispatch:
     inputs:
       full:

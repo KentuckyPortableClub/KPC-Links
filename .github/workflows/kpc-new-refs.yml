@@ -6,7 +6,7 @@ name: KPC new references
 # POTA RETIRES is taken off every site list the same morning (kpc_retired_sweep.py) + a Discord note + issue comment.
 on:
   schedule:
-    - cron: '41 12 * * *'
+    - cron: '39 12 * * *'   # G9 Nov 2: was '41 12 * * *' (spread the start times; now 2 min earlier)
   workflow_dispatch:
     inputs:
       dry_run:

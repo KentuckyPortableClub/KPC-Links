@@ -6,7 +6,7 @@ name: KPC saved shapes
 # Monthly, plus by hand. Six states at a time so the government servers are not hammered. Never fails.
 on:
   schedule:
-    - cron: '17 9 3 * *'          # the 3rd of each month, 4.17am Central
+    - cron: '13 9 3 * *'          # the 3rd of each month, 4.17am Central   # G9 Nov 2: was '17 9 3 * *' (spread the start times; now 4 min earlier)
   workflow_dispatch:
     inputs:
       states:

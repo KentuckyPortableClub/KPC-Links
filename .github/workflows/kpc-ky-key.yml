@@ -2,7 +2,7 @@ name: KPC KY answer key
 # The Kentucky park <-> outline answer key (data/ky-answer-key.json) + its review issue (label ky-answer-key).
 on:
   schedule:
-    - cron: '11 8 * * 1'
+    - cron: '10 8 * * 1'   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
   push:
     branches: [main]
     paths: ['ky-*.geojson', 'kpc-ky-data.json', 'kpc-bounds.js', '.github/scripts/kpc_ky_key*']

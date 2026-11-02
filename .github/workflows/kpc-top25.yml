@@ -4,7 +4,7 @@ name: KPC Top 25
 # Run it any time from the Actions tab with "Run workflow".
 on:
   schedule:
-    - cron: '17 11 * * 1'
+    - cron: '16 11 * * 1'   # G9 Nov 2: was '17 11 * * 1' (spread the start times; now 1 min earlier)
   workflow_dispatch:
 permissions:
   contents: write

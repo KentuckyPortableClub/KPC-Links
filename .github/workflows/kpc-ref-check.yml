@@ -6,7 +6,7 @@ name: KPC Reference Check
 # this job commits that. New parks are still only listed for a person to add.
 on:
   schedule:
-    - cron: '23 10 * * 1'
+    - cron: '24 10 * * 1'   # G9 Nov 2: was '23 10 * * 1' (spread the start times; now 1 min later)
   workflow_dispatch:
 permissions:
   contents: write

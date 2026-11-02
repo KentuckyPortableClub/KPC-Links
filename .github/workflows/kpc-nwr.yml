@@ -2,7 +2,7 @@ name: KPC NOAA Weather Radio list
 # Refreshes kpc-nwr.json (NOAA Weather Radio transmitters around Kentucky) for the Weather page.
 on:
   schedule:
-    - cron: '17 9 3 * *'
+    - cron: '12 9 3 * *'   # G9 Nov 2: was '17 9 3 * *' (spread the start times; now 5 min earlier)
   workflow_dispatch:
 permissions:
   contents: write

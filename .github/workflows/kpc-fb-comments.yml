@@ -5,7 +5,7 @@ name: KPC Facebook comments
 # Hourly. Never fails, never emails. Nothing a visitor wrote is ever saved in this repo.
 on:
   schedule:
-    - cron: '35 * * * *'
+    - cron: '32 * * * *'   # G9 Nov 2: was '35 * * * *' (spread the start times; now 3 min earlier)
   workflow_dispatch:
     inputs:
       dry_run:

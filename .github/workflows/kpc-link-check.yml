@@ -4,7 +4,7 @@ name: KPC Link Check
 # Problems are listed in one GitHub issue labelled "link-check" that closes itself when everything is fine.
 on:
   schedule:
-    - cron: '41 10 * * 0'
+    - cron: '43 10 * * 0'   # G9 Nov 2: was '41 10 * * 0' (spread the start times; now 2 min later)
   workflow_dispatch:
 permissions:
   contents: read

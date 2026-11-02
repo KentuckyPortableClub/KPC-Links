@@ -4,7 +4,7 @@ name: KPC Band Alerts
 # At most one post per kind every 6 hours unless it gets worse.
 on:
   schedule:
-    - cron: '11,41 * * * *'   # Nov 1: off the busy :00/:30 minutes (GitHub dropped runs for hours)
+    - cron: '18,48 * * * *'   # Nov 1: off the busy :00/:30 minutes (GitHub dropped runs for hours)   # G9 Nov 2: was '11,41 * * * *' (spread the start times; now 7 min later)
   workflow_dispatch:
 permissions:
   contents: write

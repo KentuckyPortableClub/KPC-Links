@@ -5,7 +5,7 @@ name: KPC Discord relay
 # by the watcher in the KPC Mailer Apps Script (kpcwebhost@gmail.com), which calls workflow_dispatch with dry_run=false.
 on:
   schedule:
-    - cron: '7,22,37,52 * * * *'
+    - cron: '5,20,35,50 * * * *'   # G9 Nov 2: was '7,22,37,52 * * * *' (spread the start times; now 2 min earlier)
   workflow_dispatch:
     inputs:
       dry_run:

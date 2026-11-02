@@ -3,7 +3,7 @@ name: KPC Discord watch
 # Hourly. Run it by hand with mode 'list' to see which rooms the bot can see. Never fails, never emails.
 on:
   schedule:
-    - cron: '48 * * * *'
+    - cron: '47 * * * *'   # G9 Nov 2: was '48 * * * *' (spread the start times; now 1 min earlier)
   workflow_dispatch:
     inputs:
       mode:

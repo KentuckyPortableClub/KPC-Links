@@ -5,7 +5,7 @@ name: KPC park alerts
 # holds anything it found until the morning. A quiet check posts nothing anywhere. Never fails, never emails.
 on:
   schedule:
-    - cron: '5 11,14,17,20,23,2 * * *'
+    - cron: '3 11,14,17,20,23,2 * * *'   # G9 Nov 2: was '5 11,14,17,20,23,2 * * *' (spread the start times; now 2 min earlier)
   workflow_dispatch:
     inputs:
       lbl_look:

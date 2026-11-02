@@ -7,8 +7,8 @@ name: KPC US answer key
 on:
   schedule:
     - cron: '37 9 1 * *'   # monthly: every state
-    - cron: '19 9 * * *'   # nightly (HQ Oct 30 6:55 AM, BOT B): only the states chat 11's new answers touch; nothing waiting = green, one notice
-    - cron: '47 11 * * *'   # Nov 2 (Brandon: the 9:19 start was skipped by GitHub): a BACKUP start; the states list is cleared by a finished build, so after a normal night it finds nothing to do
+    - cron: '17 9 * * *'   # nightly (HQ Oct 30 6:55 AM, BOT B): only the states chat 11's new answers touch; nothing waiting = green, one notice   # G9 Nov 2: was '19 9 * * *' (spread the start times; now 2 min earlier)
+    - cron: '46 11 * * *'   # Nov 2 (Brandon: the 9:19 start was skipped by GitHub): a BACKUP start; the states list is cleared by a finished build, so after a normal night it finds nothing to do   # G9 Nov 2: was '47 11 * * *' (spread the start times; now 1 min earlier)
   workflow_dispatch:
     inputs:
       states:
