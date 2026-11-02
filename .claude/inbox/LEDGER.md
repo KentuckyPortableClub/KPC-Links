@@ -3,11 +3,11 @@ RULES: (1) every job HQ or a chat promises Brandon gets ONE line here: what, own
 
 | # | Promise | Owner | DONE MEANS | Status | Since |
 |---|---|---|---|---|---|
-| 1 | BOT A saves chat 11's YES/NO answers (review patch 01+02) | 10 | a nightly run's log says 'saved'; key doctor: 0 missing NOs, 0 came back | OPEN | Nov 2 |
-| 2 | Split the Alaska 2-fer file below 80 MB | 10 | no file over 80 MB in KPC-Data (key doctor storage line green) | OPEN | Nov 2 |
-| 3 | Per-park key release ON | 10 | a release where good parks went live and only the bad ones stayed pins | OPEN | Nov 2 |
-| 4 | Patches 03, 04, 05 applied | 10 | each on main after its test branch; one ledger note per patch | OPEN | Nov 2 |
-| 5 | Tracer fixes (patch 06) + re-run | 10 | re-run report: maps drawn of 172 (was 3) | OPEN | Nov 2 |
+| 1 | BOT A saves chat 11's YES/NO answers (review patch 01+02) | 10 | a nightly run's log says 'saved'; key doctor: 0 missing NOs, 0 came back | PARTLY Nov 2: SAVED (run 41447818219 'saved (overwrite, try 1)', commit c11b797: 3,467 US + 815 CA + 1,033 world YES landed after 10 days lost); doctor 3 missing (answers since) + 14 came back (in builds made before patch 03): check after the Nov 3 09:19 build | Nov 2 |
+| 2 | Split the Alaska 2-fer file below 80 MB | 10 | no file over 80 MB in KPC-Data (key doctor storage line green) | DONE Nov 2: held US-AK 103,491,694 → 2,068,685 bytes, same 1,511 spots (KPC-Data commit 'held Alaska 2-fer file slimmed'); cause fixed in kpc_fers.py (KPC-Links 2c48379): lines thinned 3 m + a real cap + compact files | Nov 2 |
+| 3 | Per-park key release ON | 10 | a release where good parks went live and only the bad ones stayed pins | ON, waiting for its first release (KPC-Data 12b0ab9b; dry run on today's build: 12,828 parks pass, 258 kept back); fires on chat 11's next KEY NO / YES of an unchanged build | Nov 2 |
+| 4 | Patches 03, 04, 05 applied | 10 | each on main after its test branch; one ledger note per patch | ON MAIN Nov 2: 05 KPC-Data f1d8944d, 03+04 KPC-Links 67d6727 (new switches all OFF; NO-on-every-path fix ON); proof = the Nov 3 build's doctor line '0 came back' | Nov 2 |
+| 5 | Tracer fixes (patch 06) + re-run | 10 | re-run report: maps drawn of 172 (was 3) | RUNNING Nov 2: KPC-Data 26555bb4; fresh runs 41449163264 (pictures) + 41449166483 (parcels) | Nov 2 |
 | 6 | Canada + world KEY YES missing fields | 2 | both approvals release on the next run | OPEN | Nov 2 |
 | 7 | KPC-Data storage fix step 1, then step 2 | 10 | GitHub size under 400 MB | OPEN (633 MB) | Nov 1 |
 | 8 | Trusted-bot release for the collector's SURE matches | 10 | first night: released / sampled / sent-to-11 counts | OPEN | Nov 1 |
