@@ -969,6 +969,9 @@ def run(st):
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
+        if re.search(r'wild and scenic|scenic river', name, re.I):   # Nov 2 (chat 11 KEY NO: Fortymile WSR -> SRMA / ACEC): a wild and scenic river is never the
+            # management area, monument or office land around it (Delta WSR -> Delta River SRMA, Upper Missouri WSR -> the Breaks monument)
+            m = [x for x in m if not re.search(r'ACEC|SRMA|\bRMA\b|recreation management|national monument|conservation area|field office|district', str(x[1]), re.I)]
         if farm:   # Nov 1: far same-name pieces (see above): extra pieces of a park joined at its pin, else only to check
             _pinned = any(la is not None and near(la, lo, a['_bb'], .1) for a in recs if any(str(a['OBJECTID']) == str(x[0]) for x in m))
             for x, _full in farm:
