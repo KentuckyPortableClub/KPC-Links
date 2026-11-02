@@ -14,6 +14,28 @@ STATE = pathlib.Path('data/status/watchdog.json')
 NOW = dt.datetime.now(dt.timezone.utc)
 SELF = 'kpc-watchdog.yml'
 WATCHDOG_INPUTS = {'kpc-new-refs.yml': {'dry_run': 'false'}}   # its dispatch default is a dry run; the scheduled run is not
+# Nov 2 review: a restart must do what the SCHEDULED run does. These dispatch defaults would change it:
+WATCHDOG_INPUTS.update({
+    'kpc-waiting-room.yml': {'mode': 'release-approved'},             # default 'replay' = no release, no key doctor
+    'kpc-closures.yml': {'areas': '', 'test': 'no', 'chunks': '5'},  # default = a Kentucky-only TEST run
+    'kpc-discovery.yml': {'states': ''},                              # default 'OH' every time; scheduled = the week's 8 states
+    'kpc-helpers.yml': {'@37 5 * * 0': {'jobs': 'linkfix sitecheck'}, '@23 10 * * *': {'jobs': 'match'}},
+    'kpc-world-key.yml': {'pin_join': ''},                            # default 'JP'; scheduled = no pin
+    'kpc-approvals.yml': {'send_now': 'false'},                       # default true = an extra email at the wrong hour
+    'kpc-discord-watch.yml': {'mode': 'watch', 'target': ''},         # default 'list' to admin
+})
+# Restarting these cannot match the scheduled run without posting by hand (their dispatch is a practice run or a different task),
+# or they run so often that the next slot comes first: listed on the board as skipped, never restarted.
+WATCHDOG_SKIP = {'kpc-youtube-comments.yml', 'kpc-social.yml', 'kpc-club-posts.yml', 'kpc-whats-new.yml', 'kpc-park-alerts.yml',
+                 'kpc-fb-comments.yml', 'kpc-discord-relay.yml', 'kpc-research-helpers.yml'}
+
+
+def restart_inputs(name, cron):
+    """-> the inputs to send for this workflow's missed cron ('@<cron>' keys pick per-schedule inputs)."""
+    spec = WATCHDOG_INPUTS.get(name) or {}
+    if any(k.startswith('@') for k in spec):
+        return dict(spec.get('@' + cron) or {})
+    return dict(spec)
 
 
 def gh(*a):
@@ -78,16 +100,19 @@ def main():
         if name == SELF or not os.path.exists(path): continue
         can, cs = crons(path)
         if not can or not cs: continue
-        ts = sorted({t for c in cs for t in last_fire(c)}, reverse=True)
+        ts = sorted({(t, c) for c in cs for t in last_fire(c)}, reverse=True)
         if not ts: continue
-        t = ts[0]; key = f'{name}|{t.isoformat()}'   # the newest time ANY of its crons should have fired
+        t, cron = ts[0]; key = f'{name}|{t.isoformat()}'   # the newest time ANY of its crons should have fired
         if key in done: continue
         checked += 1
         since = (t - dt.timedelta(minutes=15)).strftime('%Y-%m-%dT%H:%M:%SZ')
         rc, runs = gh(f'repos/{REPO}/actions/workflows/{wid}/runs?created=>={since}&per_page=5', '--jq', '.total_count')
         if rc != 0 or not runs.strip() or int(runs.strip() or 0) > 0: continue
         args = [f'repos/{REPO}/actions/workflows/{wid}/dispatches', '-X', 'POST', '-f', 'ref=main']
-        for k, v in (WATCHDOG_INPUTS.get(name) or {}).items(): args += ['-f', f'inputs[{k}]={v}']
+        if name in WATCHDOG_SKIP:
+            done[key] = NOW.isoformat(timespec='minutes') + ' skipped (not restarted)'
+            started.append(f"{name} (missed {t.strftime('%b %d %H:%M')} UTC, NOT restarted: its next scheduled run catches up)"); continue
+        for k, v in restart_inputs(name, cron).items(): args += ['-f', f'inputs[{k}]={v}']
         rc, _ = (0, '') if os.environ.get('DRY') else gh(*args)
         done[key] = NOW.isoformat(timespec='minutes') + (' started' if rc == 0 else ' could not start')
         started.append(f"{name} (missed {t.strftime('%b %d %H:%M')} UTC{'' if rc == 0 else ', start FAILED'})")
