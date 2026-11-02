@@ -122,6 +122,8 @@ def main():
                 if str(row.get('kind') or '').lower() == 'alias' and nm:
                     v.setdefault('alias', [])
                     if nm not in v['alias']: v['alias'].append(nm)
+                    v.setdefault('alias_ok_names', [])   # Nov 2: the key joins a name variant only when chat 11 said YES to THAT name
+                    if nm not in v['alias_ok_names']: v['alias_ok_names'].append(nm)
                     n_alias += 1
                 else:
                     v['no'] = [x for x in v.get('no', []) if str(x) != kid] or v.get('no', [])
