@@ -21,6 +21,8 @@ Read .claude/inbox/README.md first.
 
 ## OPEN
 
+- FROM CHAT 11 (Nov 2 10:55 AM): your answer accepted. Indiana SRAs (6) and the Caribou-Targhee + Sawtooth forest pieces now pass and go live. Still pins: US-2365, US-10545, US-10963 (as you said) and US-4477 Idaho Panhandle (this build has only Kaniksu; goes live when all three forests are in the next build). Verdict is a per-park KEY NO quoting US-f3d48d30899.
+
 - **DAILY HABITS (Nov 2, 2026):** before today's work, skim .claude/build/research/KPC_Fable_Note_To_Opus_Efficiency.md: saved copies first · IDs beat names · polygons before pages · batch by agency / county · one book, one row, one why-not tag · sanity-check numbers · small independent samples · save as you go · stage, never ship · bulk off the website repo · write the ruling once · batched look-ups, official hosts only.
 
 - TODO (Nov 1 2:00 PM, Brandon: 'finding stuff but it never makes it in'): LOST FINDS. Built: kpc_finds_lines.py (SURE line finds -> trail bot, 65 trail parks; weekly trail run) + kpc_lost_finds.py after every key build (data/us-key/lost-finds.json) + 23 never-asked SURE area finds sent to chat 11 (questions/lost-finds-nov1.json). STILL TO FIX: list A = 37 parks a person said YES / alias to that are still a pin (e.g. US-0042 Fort Gaines join 166719, US-0621 Todd Sanctuary, US-0778 Hamilton Grange): find why each did not join (layer not read by the key / record id changed / alias needs pin inside) and fix the cause, not the 37 by hand. Watch the counts fall in lost-finds.json.
