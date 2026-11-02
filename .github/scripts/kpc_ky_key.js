@@ -88,6 +88,12 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   // private inholdings); Land Between the Lakes = Forest Service-owned land (Basic Ownership, 'Land Between the Lakes NRA').
   const OWNED_ONLY = { 'US-0050': 'Park Service-owned land only (PAD-US fee records)', 'US-3792': 'Forest Service-owned land only (Basic Ownership)' };
   for (const r in OWNED_ONLY) if (parks[r]) parks[r].owned_only = OWNED_ONLY[r];
+  // Nov 2 (chat 2, map audit, chat 11 FIX on US-4484, rule R2): a park that has its agency-OWNED land drops the proclamation line
+  // (a national forest is the land the Forest Service owns, never the proclamation boundary with private land inside).
+  for (const r in parks) if (parks[r].tracts.some(t => /agency-owned/.test(t[3])) && parks[r].tracts.some(t => t[3] === 'proclamation line')) {
+    parks[r].proclamation_dropped = parks[r].tracts.filter(t => t[3] === 'proclamation line').map(t => t[1] + ' (' + t[2] + ' ac proclamation line)');
+    parks[r].tracts = parks[r].tracts.filter(t => t[3] !== 'proclamation line');
+  }
   // Oct 28 (Brandon + chat 8): Green River SNA = 3 units; the Boiling Springs unit is NOT in OKNP's natural-areas layer (7 areas,
   // runner probe Oct 28) nor the nature-preserves layer, so it has no official outline yet (pin / agency map only). Card notes:
   const NOTES = { 'US-12752': 'Three units: Davis Bend, Rush Island Bottoms and Boiling Springs (Boiling Springs = 115.76 ac of state nature preserve land, Hart Co. parcel 073-00-00-009.00; no outline yet: check the agency map). Rush Island Bottoms is open by boat only (paddle access at Thelma Stovall Park, Munfordville).' };
