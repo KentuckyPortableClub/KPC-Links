@@ -8,7 +8,7 @@ A file that fails is put back to the saved copy (the site keeps yesterday's list
 (.claude/inbox/chat-11.md, once per file per day). Run before `git add`:
   python3 .github/scripts/kpc_light_guard.py kpc-special-events.json kpc-contests.json
 Never fails (any doubt = the file is left alone)."""
-import datetime as dt, json, pathlib, subprocess, sys
+import datetime as dt, json, pathlib, re, subprocess, sys
 
 INBOX = pathlib.Path('.claude/inbox/chat-11.md')
 
@@ -37,6 +37,11 @@ def check(f):
         ks = [key(r) for r in rows]
         d = len(ks) - len(set(ks))
         if d: bad.append(f"'{k}' has {d} row(s) twice")
+        # Nov 2 (chat 5's note 6): a form note sent twice gets two ids; the same time + call + park is the same note
+        stamp = lambda r: r.get('ts') or r.get('timestamp') or (r.get('date') if re.match(r'\d{4}-\d\d-\d\d[T ]\d', str(r.get('date') or '')) else None)
+        ts = [(stamp(r), r.get('call'), r.get('ref') or r.get('place')) for r in rows if isinstance(r, dict) and r.get('call') and stamp(r)]
+        d2 = len(ts) - len(set(ts))
+        if d2 and not d: bad.append(f"'{k}' has {d2} note(s) twice (same time + call + park)")
     return bad
 
 
