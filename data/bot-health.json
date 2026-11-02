@@ -1,15 +1,17 @@
 {
  "open": [
   "KPC-Data/kpc-storage.yml",
-  "KPC-Data/kpc-world-finder.yml",
-  "kpc-band-alerts.yml",
+  "kpc-boards.yml",
+  "kpc-bot-queue.yml",
+  "kpc-discord-watch.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.yml",
-  "kpc-pota-discord.yml",
+  "kpc-us-key.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-01T10:37+00:00",
+ "checked": "2026-11-02T13:23+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -112,19 +114,19 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2925
+   "b": 2914
   },
   "L:data/ky-answer-key.json": {
    "b": 31569
   },
   "L:data/us-key": {
-   "b": 11625658
+   "b": 13370286
   },
   "L:data/ca-key": {
-   "b": 1994370
+   "b": 2153289
   },
   "L:data/world-key": {
-   "b": 13699013
+   "b": 15262648
   },
   "L:data/pota": {
    "b": 5664575
@@ -133,7 +135,7 @@
    "b": 2494063
   },
   "L:kpc-top25.json": {
-   "b": 16587
+   "b": 16593
   },
   "L:data/ky-official-maps.json": {
    "b": 92565
@@ -142,7 +144,7 @@
    "b": 529287
   },
   "L:data/state-gis.json": {
-   "b": 93341
+   "b": 105415
   },
   "L:data/boundary-score.json": {
    "b": 977367
@@ -157,10 +159,10 @@
    "b": 334288
   },
   "L:locations.json": {
-   "b": 5419259
+   "b": 5419266
   },
   "L:kpc-events-auto.json": {
-   "b": 20515
+   "b": 21042
   },
   "L:kpc-special-events.json": {
    "b": 26316
@@ -182,25 +184,25 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15678943
+   "b": 15660927
   },
   "D:data/trails": {
-   "b": 7915560
+   "b": 25757006
   },
   "D:data/access": {
-   "b": 6568488
+   "b": 5153645
   },
   "D:data/wwff": {
-   "b": 11668610
+   "b": 11719053
   },
   "D:data/review/scoreboard.json": {
-   "b": 130961
+   "b": 131000
   },
   "D:data/truth": {
-   "b": 7475540
+   "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 53833
+   "b": 98201
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -210,13 +212,13 @@
    "since": "2026-11-01"
   },
   "D:data/intake": {
-   "b": 30234650
+   "b": 38283667
   },
   "D:data/detective": {
    "b": 53730
   },
   "D:data/map-observations.json": {
-   "b": 1195130
+   "b": 1180533
   }
  }
 }
