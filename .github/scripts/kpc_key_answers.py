@@ -126,8 +126,10 @@ def main():
                     if nm not in v['alias_ok_names']: v['alias_ok_names'].append(nm)
                     n_alias += 1
                 else:
-                    v['no'] = [x for x in v.get('no', []) if str(x) != kid] or v.get('no', [])
+                    v['no'] = [x for x in v.get('no', []) if str(x) != kid]   # Nov 2 review: a YES clears even a SOLE NO (the old '... or v.get("no")' put it back)
                     if not v.get('no'): v.pop('no', None)
+                    if kid in (v.get('nofp') or {}): v['nofp'].pop(kid)
+                    if not v.get('nofp'): v.pop('nofp', None)
                     v.setdefault('join', [])
                     if kid not in [str(x) for x in v['join']]: v['join'].append(kid)
                     v.setdefault('fp', {})[kid] = [nm, round(float(ac)) if ac not in (None, '') else 0]
@@ -139,6 +141,9 @@ def main():
                 if not v.get('fp'): v.pop('fp', None)
                 v.setdefault('no', [])
                 if kid not in [str(x) for x in v['no']]: v['no'].append(kid)
+                # Nov 2 review: a NO is stored WITH the name + acres it was given for ('nofp', like 'fp' for a YES), so it can be
+                # matched again after a PAD-US renumbering (the key uses it with KPC_NO_BY_NAME=1). A bare id said nothing.
+                if nm: v.setdefault('nofp', {})[kid] = [nm, round(float(ac)) if ac not in (None, '') else 0]
                 n_no += 1
             v['why'] = (v.get('why', '') + ' · ' if v.get('why') else '') + f"{stamp}: {name} row {ans} '{nm[:40]}' ({row.get('checked_by') or 'chat 11'}; applied by kpc_key_answers)"
             v['when'] = today
@@ -157,6 +162,10 @@ def main():
 
 
 if __name__ == '__main__':
+    # Nov 2 review (loud failures): a stop is an ::error (red in the run summary), not a quiet notice. KPC_LOUD_FAIL=1 also
+    # exits 1 so the job goes red; default 0 keeps today's exit code (the save step is loud on its own).
     try: main()
-    except Exception as e: print(f'::notice title=Key answers::stopped: {str(e)[:200]}')  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        print(f'::error title=Key answers::stopped, chat 11\'s answers were NOT applied: {type(e).__name__}: {str(e)[:200]}')
+        if os.environ.get('KPC_LOUD_FAIL', '0') == '1': sys.exit(1)
     sys.exit(0)

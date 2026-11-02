@@ -39,15 +39,21 @@ jobs:
         run: |
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata 2>/dev/null \
             && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions data/intake 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true
-          DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || true
-          DATA=kpcdata python3 .github/scripts/kpc_key_layers.py || true
-          DATA=kpcdata python3 .github/scripts/kpc_ca_answers.py || true      # BOT A for the CANADA key (chat 10 AUTO-1 ask 1): Canada YES/NO rows -> ca-key overrides + tonight's Canada run
-          DATA=kpcdata python3 .github/scripts/kpc_world_answers.py || true   # BOT A for the WORLD key (chat 10 Oct 30 AUTO-1W): world-finder YES/NO -> world overrides + tonight's world run   # BOT W (HQ Oct 30 8:10 AM): chat 11's YES layers -> state-gis.json + that state rebuilds tonight
-          rm -rf kpcdata
+          # Nov 2 review: the four writers go in one file so the save can run them AGAIN on top of the newest main (save by overwrite).
+          # A writer that stops is now loud (::error) instead of hidden by '|| true'.
+          cat > /tmp/bota.sh <<'SH'
+          DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || echo '::error title=BOT A::kpc_key_answers.py stopped (see its log above)'
+          DATA=kpcdata python3 .github/scripts/kpc_key_layers.py || echo '::error title=BOT A::kpc_key_layers.py stopped (see its log above)'
+          DATA=kpcdata python3 .github/scripts/kpc_ca_answers.py || echo '::error title=BOT A::kpc_ca_answers.py stopped (see its log above)'
+          DATA=kpcdata python3 .github/scripts/kpc_world_answers.py || echo '::error title=BOT A::kpc_world_answers.py stopped (see its log above)'
+          SH
+          bash /tmp/bota.sh
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          # Oct 31: ONE missing path made the whole 'git add' fail, so last night's answers (24 US yes / 56 no, 60 Canada yes / 109 no) were never saved
-          for f in data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json; do [ -e "$f" ] && git add "$f"; done; true
-          git commit -qm "Key: chat 11's answers applied (BOT A)" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done || true
+          # Oct 31: ONE missing path made the whole 'git add' fail; Oct 30-Nov 2: 'git pull --rebase' failed on unstaged files and
+          # '|| true' hid it, so chat 11's answers were never saved. Now: save by overwrite (fresh main + the writers again), red on failure.
+          # KPC_SAVE_MODE (repo variable) = overwrite (default) | rebase (the old way, still loud).
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" bash .github/scripts/kpc_save_overwrite.sh "Key: chat 11's answers applied (BOT A)" 'bash /tmp/bota.sh' -- data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json
+          rm -rf kpcdata
       - id: p
         env:
           STATES: ${{ inputs.states }}
@@ -85,6 +91,8 @@ jobs:
         g: ${{ fromJSON(needs.plan.outputs.groups) }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: The Recreation.gov saved copy (the one keyed pull, read only; HQ Oct 29 8:50 PM)
@@ -118,6 +126,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - uses: actions/download-artifact@v4
@@ -215,23 +225,21 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
-          GROUPS="$PLAN_GROUPS" python3 - <<'PY' || true
+          # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
+          cat > /tmp/done-states.py <<'PY'
           import json, os, pathlib
           done = {s for g in json.loads(os.environ.get('GROUPS') or '[]') for s in g.get('states', '').split()}
           p = pathlib.Path('data/us-key/answers-states.txt')
           if p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
           PY
-          git add data/us-key 2>/dev/null || true
-          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
-          if ! git diff --cached --quiet; then
-            git commit -qm 'US answer key'
-            ok=0
-            for i in 1 2 3 4 5 6; do
-              if git pull -q --rebase --autostash && git push -q; then ok=1; break; fi
-              git rebase --abort 2>/dev/null || true; sleep $((i*9))
-            done
-            if [ "$ok" != 1 ]; then echo "::error title=US key save::the new key could NOT be saved after 6 tries"; exit 1; fi
-          fi
+          export GROUPS="$PLAN_GROUPS"
+          python3 /tmp/done-states.py || echo '::error title=US key save::could not take tonight'"'"'s states off answers-states.txt'
+          # Nov 2 review: save by overwrite. The files THIS run built (state files, index, layers, zip files, review pages, status)
+          # are copied on top of the newest main; the hand-edited files (overrides, the ledger) are never copied back, and the
+          # states list is worked out again on the newest copy. Red on failure. KPC_SAVE_MODE=rebase = the old way (still loud).
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_TRIES=6 \
+            KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py' -- data/us-key data/status
           if [ -s /tmp/botc-line.txt ]; then
             for i in 1 2 3 4 5; do
               git fetch -q origin main && git reset -q --hard origin/main
