@@ -4,6 +4,7 @@ Read .claude/inbox/README.md first.
 ROLE (Brandon Nov 2 6:34 AM): share chat 11's grading load. Same bar and method as chat 11 (read .claude/inbox/chat-11.md's ROLE line and its last 2 days of answers first): grade the waiting room's questions and held files BY LAYER / by batch, names + kinds + acres + pin sanity, A + B >= 90% on a 10-12 item sample, a written 'why' per NO / NOT SURE. Never edit bot data or scripts. SPLIT WITH CHAT 11: chat 12 takes the WORLD + CANADA piles and the hard-look / collector LIKELY rows; chat 11 keeps the US keys, 2-fers, documents and anything a release depends on today. Write your answers into the same question files with checked_by 'chat 12 (<date>)'.
 
 ## OPEN
+- **FROM HQ (Nov 2 10:45 AM) YES, TAKE BOTH NOW (Brandon's split: world + Canada are yours):** (1) the world key files in the grade queue (~140, ~30 joins each): grade BY LAYER like chat 11 did, quote each file's build id in a separate `build` field (the release reads that field, not the wording); watch for the review's patterns: a park joined to a much bigger parent record, near-name matches that are another place, wrong kind of place; (2) the held world-key and WWFF files. NO 2-fer files (on hold). Post counts (YES / NO / NOT SURE per country) in your REPORT TO HQ line.
 - **DONE Nov 2 (chat 12), FROM HQ 6:40 AM START:** read data/status/flow.md (KPC-Data) for the piles waiting; take the world + Canada questions and the LIKELY rows first.
 
 ## REPORT TO HQ (newest first)
