@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""BUILD STAMP + FREEZE for the answer keys (Brandon Nov 2 7:11 AM: 'Every key build gets a build id stamp and is frozen while chat 11
+grades it. Chat 11 grades only that stamped build, and the YES is tied to that id. No new build of that area can start until the
+answers are saved and released.').
+
+  stamp us-key|ca-key|world-key   write {'build': 'US-<run id>', 'built': UTC} into data/<kind>/index.json (the waiting room carries
+                                  it with the held key, BOT C and chat 11 quote it, the release checks it)
+  check us-key|ca-key|world-key   FROZEN when KPC-Data's waiting room holds a build of that key (data/waiting/in/data/<kind>/index.json
+                                  'build') and chat 11 has not yet written a verdict tied to that build id in data/waiting/approved.json
+                                  (item 'what' = kind, 'build' = the id, any chat11 text). Writes FROZEN=1 + FROZEN_BUILD=<id> to
+                                  $GITHUB_ENV and one notice. FORCE=yes skips the freeze (by hand only).
+Never fails (a read error = not frozen, said in the notice)."""
+import base64, json, os, subprocess, sys, time
+
+PRE = {'us-key': 'US', 'ca-key': 'CA', 'world-key': 'W'}
+REPO = 'KentuckyPortableClub/KPC-Data'
+
+
+def notice(m): print(f'::notice title=Key build freeze::{m}', flush=True)
+
+
+def gh_json(path):
+    r = subprocess.run(['gh', 'api', f'repos/{REPO}/contents/{path}', '--jq', '.content'], capture_output=True, text=True)
+    if r.returncode != 0 or not r.stdout.strip(): return None
+    try: return json.loads(base64.b64decode(r.stdout.strip()).decode('utf-8'))
+    except Exception:  # noqa: BLE001  (big files come back without content: ask the raw media type)
+        r = subprocess.run(['gh', 'api', '-H', 'Accept: application/vnd.github.raw', f'repos/{REPO}/contents/{path}'], capture_output=True, text=True)
+        try: return json.loads(r.stdout)
+        except Exception: return None  # noqa: BLE001
+
+
+def stamp(kind):
+    p = f'data/{kind}/index.json'
+    try: d = json.load(open(p, encoding='utf-8'))
+    except Exception: d = {}  # noqa: BLE001
+    bid = f"{PRE[kind]}-{os.environ.get('GITHUB_RUN_ID') or time.strftime('%Y%m%d%H%M')}"
+    d['build'] = bid; d['built'] = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    json.dump(d, open(p, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    notice(f'{kind} build stamped {bid}: chat 11 grades THIS build; its YES must say build {bid}')
+    print(bid)
+
+
+def check(kind):
+    if (os.environ.get('FORCE') or '').lower() in ('yes', 'true', '1'):
+        notice(f'{kind}: freeze skipped by hand (force)'); return
+    held = gh_json(f'data/waiting/in/data/{kind}/index.json')
+    bid = (held or {}).get('build')
+    if not bid:
+        notice(f'{kind}: no stamped build waiting for chat 11: building is allowed'); return
+    ap = gh_json('data/waiting/approved.json') or {}
+    items = ap.get('items') if isinstance(ap, dict) else ap
+    graded = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and str(it.get('build') or '') == bid and str(it.get('chat11') or '').strip()]
+    if graded:
+        notice(f"{kind}: build {bid} has chat 11's verdict ({str(graded[-1].get('chat11'))[:60]}): a new build may start"); return
+    env = os.environ.get('GITHUB_ENV')
+    if env:
+        with open(env, 'a') as f: f.write(f'FROZEN=1\nFROZEN_BUILD={bid}\n')
+    notice(f'{kind}: FROZEN: build {bid} waits for chat 11 (approved.json item what={kind}, build={bid}); no new build until it is graded')
+
+
+if __name__ == '__main__':
+    try:
+        mode, kind = sys.argv[1], sys.argv[2]
+        (stamp if mode == 'stamp' else check)(kind)
+    except Exception as e: notice(f'stopped: {str(e)[:200]}')  # noqa: BLE001
+    sys.exit(0)
