@@ -407,8 +407,8 @@
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/campground-mapbf93e98e-e76c-4d09-8aa5-759f6522781b.pdf?sfvrsn=d8568a69_0"
     ],
     [
-     "Late Summer Cave Tour Schedule (PDF)",
-     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/late-summer-cave-tour-schedule.pdf?sfvrsn=e3475e01_0"
+     "Winter Cave Tour Schedule (PDF)",
+     "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/winter-cave-tour-schedule.pdf?sfvrsn=9398dedc_0"
     ],
     [
      "Fall Cave Tour Schedule (PDF)",
@@ -665,6 +665,10 @@
     [
      "Location map (picture)",
      "https://app.fw.ky.gov/kfwis/Map_Images/DeckerWMA_onlineimage.jpg"
+    ],
+    [
+     "Document (PDF)",
+     "https://fw.ky.gov/More/Documents/2026_StreamRestoration.pdf"
     ]
    ],
    "page": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9717"
@@ -2795,5 +2799,5 @@
   }
  },
  "source": "Map links found on each agency page (KDFWR, Kentucky State Parks, Office of Kentucky Nature Preserves)",
- "updated": "2026-10-27 09:52 UTC"
+ "updated": "2026-11-02 16:24 UTC"
 }
