@@ -48,17 +48,25 @@
   "kpc-discord-watch.yml|2026-11-02T22:47:00+00:00": "2026-11-02T23:25+00:00 started",
   "kpc-fb-comments.yml|2026-11-02T22:32:00+00:00": "2026-11-02T23:25+00:00 skipped (not restarted)",
   "kpc-hunters.yml|2026-11-02T23:00:00+00:00": "2026-11-02T23:25+00:00 started",
-  "kpc-pota-discord.yml|2026-11-02T22:19:00+00:00": "2026-11-02T23:25+00:00 started"
+  "kpc-pota-discord.yml|2026-11-02T22:19:00+00:00": "2026-11-02T23:25+00:00 started",
+  "kpc-band-alerts.yml|2026-11-03T00:18:00+00:00": "2026-11-03T00:53+00:00 started",
+  "kpc-bot-queue.yml|2026-11-03T00:22:00+00:00": "2026-11-03T00:53+00:00 started",
+  "kpc-discord-watch.yml|2026-11-02T23:47:00+00:00": "2026-11-03T00:53+00:00 started",
+  "kpc-fb-comments.yml|2026-11-02T23:32:00+00:00": "2026-11-03T00:53+00:00 skipped (not restarted)",
+  "kpc-hunters.yml|2026-11-03T00:07:00+00:00": "2026-11-03T00:53+00:00 started",
+  "kpc-park-alerts.yml|2026-11-02T23:03:00+00:00": "2026-11-03T00:53+00:00 skipped (not restarted)",
+  "kpc-pota-discord.yml|2026-11-03T00:19:00+00:00": "2026-11-03T00:53+00:00 started",
+  "kpc-youtube.yml|2026-11-02T23:23:00+00:00": "2026-11-03T00:53+00:00 started"
  },
- "last": "2026-11-02T23:25+00:00",
+ "last": "2026-11-03T00:53+00:00",
  "last_restarted": [
-  "kpc-approvals.yml (missed Nov 02 22:02 UTC)",
-  "kpc-band-alerts.yml (missed Nov 02 22:48 UTC)",
-  "kpc-boards.yml (missed Nov 02 22:54 UTC)",
-  "kpc-bot-queue.yml (missed Nov 02 22:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 02 22:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 02 22:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 02 23:00 UTC)",
-  "kpc-pota-discord.yml (missed Nov 02 22:19 UTC)"
+  "kpc-band-alerts.yml (missed Nov 03 00:18 UTC)",
+  "kpc-bot-queue.yml (missed Nov 03 00:22 UTC)",
+  "kpc-discord-watch.yml (missed Nov 02 23:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 02 23:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-hunters.yml (missed Nov 03 00:07 UTC)",
+  "kpc-park-alerts.yml (missed Nov 02 23:03 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-pota-discord.yml (missed Nov 03 00:19 UTC)",
+  "kpc-youtube.yml (missed Nov 02 23:23 UTC)"
  ]
 }
