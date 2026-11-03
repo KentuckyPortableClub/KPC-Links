@@ -1379,6 +1379,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11 (Oct 30, helper bot map check)"
  },
+ "gis-hunter:US-7139:sggae56": {
+  "answer": "YES",
+  "applied": "2026-11-03 17:08",
+  "checked_by": "auto recheck (AUTO-1)"
+ },
  "gis-hunter:US-7140:195024": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -1483,6 +1488,21 @@
   "answer": "YES",
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-8001:sgmtd219": {
+  "answer": "YES",
+  "applied": "2026-11-03 17:08",
+  "checked_by": "auto recheck (AUTO-1)"
+ },
+ "gis-hunter:US-8002:sgmtd235": {
+  "answer": "YES",
+  "applied": "2026-11-03 17:08",
+  "checked_by": "auto recheck (AUTO-1)"
+ },
+ "gis-hunter:US-8003:sgmtd101": {
+  "answer": "YES",
+  "applied": "2026-11-03 17:08",
+  "checked_by": "auto recheck (AUTO-1)"
  },
  "gis-hunter:US-8010:sgnca6215": {
   "answer": "NO",
