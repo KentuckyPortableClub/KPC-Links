@@ -500,6 +500,11 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "JP-2154": {
+   "n": "Nouka Prefectural Park",
+   "d": "2026-11-03",
+   "src": "world"
+  },
   "SK-0222": {
    "n": "Park Kaštieľ Kamenica nad Cirochou - National Monument",
    "d": "2026-10-28",
@@ -552,5 +557,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-29"
+ "updated": "2026-11-03"
 }
