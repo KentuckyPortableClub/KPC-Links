@@ -1560,9 +1560,9 @@ def run(st):
         for _id, _rs in _by.items():
             if len(_rs) < 2: continue
             _qn = next(q[1] for q in parks[_rs[0]]['m'] if str(q[0]) == _id)
-            _kr = kinds(_qn)
-            if not _kr: continue
-            _fit = [r for r in _rs if kinds(parks[r].get('n')) & _kr]
+            _kq = kinds(_qn)   # batch 1b: was '_kr', which made _kr() (the switch test) a local name in run(): every state stopped
+            if not _kq: continue
+            _fit = [r for r in _rs if kinds(parks[r].get('n')) & _kq]
             if not _fit or len(_fit) == len(_rs): continue
             for _r in _rs:
                 if _r in _fit: continue
