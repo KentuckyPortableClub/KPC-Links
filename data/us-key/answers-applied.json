@@ -134,6 +134,11 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-0405:sgmtd81": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "gis-hunter:US-0446:4221": {
   "answer": "NO",
   "applied": "2026-11-02 12:49",
@@ -464,10 +469,25 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-11215:sgmtd209": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
+ "gis-hunter:US-11217:sgmtd2999": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "gis-hunter:US-11218:2572": {
   "answer": "NO",
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11218:sgmtd3396": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "gis-hunter:US-11222:116910": {
   "answer": "YES",
@@ -548,6 +568,11 @@
   "answer": "YES",
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
+ },
+ "gis-hunter:US-11580:sgcad462": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "gis-hunter:US-11584:sgakh463": {
   "answer": "NO",
@@ -899,6 +924,11 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-13298:sgild354": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "gis-hunter:US-13311:1816": {
   "answer": "YES",
   "applied": "2026-10-29 23:15",
@@ -1134,6 +1164,11 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-4118:sgild9": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "gis-hunter:US-4153:sgila1080": {
   "answer": "NO",
   "applied": "2026-10-29 23:15",
@@ -1154,6 +1189,11 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-4477:sgidd187": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "gis-hunter:US-4555:1797": {
   "answer": "NO",
   "applied": "2026-10-29 23:15",
@@ -1163,6 +1203,11 @@
   "answer": "NO",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11 (Oct 30, helper bot map check)"
+ },
+ "gis-hunter:US-4555:sgwah1": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "gis-hunter:US-4568:203098": {
   "answer": "NO",
@@ -1183,6 +1228,11 @@
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11 (Oct 30, helper bot map check)"
+ },
+ "gis-hunter:US-4649:sggad1017": {
+  "answer": "YES",
+  "applied": "2026-11-03 18:41",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "gis-hunter:US-4839:210771": {
   "answer": "YES",
