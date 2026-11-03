@@ -26,15 +26,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_watchdog.py
       - name: Save
-        id: kept_green_2
-        continue-on-error: true
+        id: save
+        # Nov 2 bot fixes (the same bug as KPC-Data run 41558037825, exit 128): a changed but unstaged file made 'git pull --rebase'
+        # refuse, then the bare 'git rebase --abort' (no rebase in progress) exited 128 and ended the step, hidden by
+        # continue-on-error. Now: --autostash, the abort may fail quietly, and a save that never lands turns the job RED.
         run: |
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/status 2>/dev/null; python3 .github/scripts/kpc_stamp_only.py   # PR2: a look that only moved a time stamp saves nothing
+          git add data/status 2>/dev/null || true; python3 .github/scripts/kpc_stamp_only.py   # PR2: a look that only moved a time stamp saves nothing
           git diff --cached --quiet && exit 0
           git commit -qm 'watchdog: skipped runs started again'
-          { saved=0; for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; git rebase --abort 2>/dev/null; sleep $((i*6)); done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }
-          true
+          saved=0
+          for i in 1 2 3 4; do
+            if git pull -q --rebase --autostash origin main && git push -q origin HEAD:main; then saved=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i*6))
+          done
+          if [ "$saved" != 1 ]; then echo "::error title=Save::the watchdog's save did not land after 4 tries (see the git lines above); the next run tries again"; exit 1; fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
