@@ -2,11 +2,17 @@
 For each state in STATES, every POTA park in data/parkinfo/US-XX.json whose POTA type is a trail (State Trail,
 National Recreation Trail ...) or a State Park whose name says Trail (rail-trail parks like Katy Trail). National
 Scenic / Historic Trails are left out (kpc_us_trails.py draws those from the NPS).
-Line sources, best first:
-  1. US Forest Service trails (EDW TrailNFS_Publish) by trail name, for National Recreation Trails on forest land
+Line sources, best first (Nov 2, PR 4 'Official trail lines', Brandon: official lines preferred, OpenStreetMap only as a
+labelled fallback when no official line exists, official always wins):
+  0. lines picked by hand (data/trails-hand.json): the exact official layer + filter for one park
+  1. US Forest Service trails (EDW TrailNFS_Publish) by trail name (National Recreation Trails first; any trail as a later try)
   1b. (Oct 18) official agency layers: NPS Public Trails, then ArcGIS Online services found by the trail's name / '<State> trails'
       that were published by that STATE's agency or a federal agency (org name checked; county/city/club layers don't count)
-  2. OpenStreetMap route relations (Overpass) with the trail's name inside the state; labelled NOT OFFICIAL
+  2. OpenStreetMap (Overpass), ONLY when no official line was found AND the switch is on (data/trails-layers.json
+     settings.osm_fallback, or env KPC_OSM_TRAILS=1/0). Labelled 'Unofficial line (OpenStreetMap)' (source: osm). An official
+     line never loses to an OpenStreetMap one, whatever their lengths.
+Planned / proposed / future segments are left out. A line over 3x the official length (when known) is flagged. Water
+(paddle) trails are drawn and marked water: true.
 Each line must pass near the POTA pin (CHECK_KM) or it is not used: wrong-place matches are worse than none.
 Writes data/trails/<REF>.json (same format as the national trails) + data/trails/index-state.json
 [{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC).
@@ -17,9 +23,23 @@ a new line under half the length of the saved one keeps the saved one; parks POT
 gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA WI MN AR DE CO ID').split()  # Oct 27-28 chat 9 (HQ): WI, MN, AR, DE, CO, ID added with their official trail layers
+_ALLST = ('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD '
+          'TN TX UT VT VA WA WV WI WY CANADA').split()
+# Nov 2 (PR 4): blank STATES = every state + Canada. The start state turns with the month, so a run that stops for time does not
+# always leave the same states for last (parks not reached keep last run's lines; official lines read lately are reused).
+_m = datetime.date.today().month % len(_ALLST)
+STATES = (os.environ.get('STATES') or ' '.join(_ALLST[_m:] + _ALLST[:_m])).split()
+ONLY = set(re.split(r'[\s,]+', os.environ.get('ONLY') or '')) - {''}   # Nov 2: run just these POTA refs (a test or a hand fix)
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
-UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
+UA = {'User-Agent': 'KPC-bot/1.0 trails (+https://github.com/KentuckyPortableClub)'}
+try: SETTINGS = json.load(open('data/trails-layers.json', encoding='utf-8')).get('settings', {}) or {}
+except Exception: SETTINGS = {}  # noqa: BLE001
+OSM_LABEL = 'Unofficial line (OpenStreetMap)'   # Nov 2 (PR 4): the one wording the data and the site use
+PLANNED = re.compile(r'\b(planned|proposed|future|conceptual|potential|unbuilt|not built|under study|feasibility)\b', re.I)
+def planned(A):
+    """Nov 2 (PR 4): a segment that is only planned / proposed (a status-like field says so) is not drawn."""
+    return any(re.search(r'stat|phase|exist|cond|build|constr', str(k), re.I) and isinstance(v, str) and PLANNED.search(v) for k, v in (A or {}).items())
+WATER = re.compile(r'water (state )?trail|watertrail|blueway|paddl|canoe|kayak', re.I)
 CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
 CHECK_KM_TRAIL = 35.0  # Oct 18: a real trail (not a park named 'Trail') may have its POTA pin at one end, away from the mapped line
 # Oct 18 (finishing the US): other names the maps use for these POTA trail parks
@@ -34,21 +54,55 @@ ALIAS.update({'US-3660': ['Lower Suwannee River Wilderness Trail', 'Suwannee Riv
               'CA-6128': ['Grey Owl'], 'CA-6148': ['Treebeard'], 'CA-6144': ['Elk Trail'], 'CA-6153': ['Fisher Trail'], 'CA-6145': ['Hunters Lake'], 'CA-6146': ['Valleyview'],
               'CA-4786': ['Chilkoot Trail'], 'CA-3546': ['Giscome Portage'], 'CA-5565': ['Dofasco 2000 Trail'], 'CA-5595': ['Gordon Harry'], 'CA-5536': ['Nassagaweya Canyon Trail'],
               'CA-1599': ['South Point Trail'], 'CA-6003': ['Waterfront Trail']})
-# Oct 18: POTA trail parks that are NOT a line to draw (driving routes, areas, water trails, ordinary parks named 'Trail'): listed under 'noline'
-NOLINE = re.compile(r'Byway|Scenic Highway|Heritage|Geologic|Bird & Wildlife|Mining|Civil War Trail|Southwest Trail|Butterfield State|Saracen|West-Northwest|True Grit|Camden Expedition|Water State Trail|Water Trail|Coastal State Trail|Na Ala Hele', re.I)
+# Oct 18: POTA trail parks that are NOT a line to draw (driving routes, areas, ordinary parks named 'Trail'): listed under 'noline'
+# Nov 2 (PR 4): water trails came off this list: an official paddle route is drawn and marked water: true
+NOLINE = re.compile(r'Byway|Scenic Highway|Heritage|Geologic|Bird & Wildlife|Mining|Civil War Trail|Southwest Trail|Butterfield State|Saracen|West-Northwest|True Grit|Camden Expedition|Coastal State Trail|Na Ala Hele', re.I)
 NOLINE_PARK = {'US-1002', 'US-1007', 'US-4098', 'US-3222', 'US-2152'}
 MATCH_KM = 60.0  # pieces with the right name are collected from this far around the pin (long trails come in sections)
 # parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
 SKIP = {'US-1990'}
 def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:900])
-GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host
+GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host (default)
 _LAST, _META = {}, {}
+# Nov 2 (PR 4): a per-site wait. data/trails-layers.json settings.host_delays {host: seconds} (South Dakota GFP asks for 10 s)
+# and the host's own robots.txt Crawl-delay (for our bot name or '*'); the longest of those and GAP is used, capped at 60 s
+HOST_DELAYS = {str(k).lower(): float(v) for k, v in (SETTINGS.get('host_delays') or {}).items() if isinstance(v, (int, float))}
+_CRAWL = {}
+def crawl_delay(h):
+    if h in _CRAWL: return _CRAWL[h]
+    d = None
+    try:
+        with urllib.request.urlopen(urllib.request.Request(f'https://{h}/robots.txt', headers=UA), timeout=15) as f:
+            txt = f.read(200000).decode('utf-8', 'replace')
+        mine, agents, grp_has_rules = False, [], False
+        best = {}
+        for ln in txt.splitlines():
+            ln = ln.split('#', 1)[0].strip()
+            if ':' not in ln: continue
+            k, v = [x.strip() for x in ln.split(':', 1)]; k = k.lower()
+            if k == 'user-agent':
+                if grp_has_rules: agents, grp_has_rules = [], False
+                agents.append(v.lower())
+            else:
+                grp_has_rules = True
+                if k == 'crawl-delay':
+                    try: val = float(v)
+                    except ValueError: continue
+                    for ag in agents:
+                        if ag == '*' or ag.startswith('kpc'): best[ag] = val
+        d = next((v for k, v in best.items() if k.startswith('kpc')), best.get('*'))
+    except Exception: d = None  # noqa: BLE001  (no robots.txt / not readable: no Crawl-delay)
+    _CRAWL[h] = d
+    return d
+def host_gap(h):
+    h = h.lower()
+    return min(60.0, max(GAP, HOST_DELAYS.get(h) or 0, crawl_delay(h) or 0))
 def get(u, data=None, t=120):
     err = None
     memo = data is None and re.search(r'\?f=json$', u)   # a service / layer description: the same all run long
     if memo and u in _META: return _META[u]
     for i in range(3):
-        h = urllib.parse.urlsplit(u).netloc; w = _LAST.get(h, 0) + GAP - time.time()
+        h = urllib.parse.urlsplit(u).netloc; w = _LAST.get(h, 0) + host_gap(h) - time.time()
         if w > 0: time.sleep(w)
         _LAST[h] = time.time()
         try:
@@ -63,10 +117,11 @@ def km(a, b, c, d):
 def seglen(line): return sum(km(line[i][1], line[i][0], line[i + 1][1], line[i + 1][0]) for i in range(len(line) - 1))
 def dp(pts, eps):
     if len(pts) < 3: return pts
-    a, b = pts[0], pts[-1]; dx, dy = b[0] - a[0], b[1] - a[1]; n = (dx * dx + dy * dy) ** .5 or 1e-12
+    a, b = pts[0], pts[-1]; dx, dy = b[0] - a[0], b[1] - a[1]; n = (dx * dx + dy * dy) ** .5
     i, dm = 0, 0
     for k in range(1, len(pts) - 1):
-        d = abs(dy * pts[k][0] - dx * pts[k][1] + b[0] * a[1] - b[1] * a[0]) / n
+        # Nov 2 (PR 4): a loop (first point = last point) is measured from that point, not collapsed to a dot
+        d = abs(dy * pts[k][0] - dx * pts[k][1] + b[0] * a[1] - b[1] * a[0]) / n if n > 1e-12 else ((pts[k][0] - a[0]) ** 2 + (pts[k][1] - a[1]) ** 2) ** .5
         if d > dm: i, dm = k, d
     if dm > eps: return dp(pts[:i + 1], eps)[:-1] + dp(pts[i:], eps)
     return [a, b]
@@ -91,12 +146,13 @@ def forest(name, la, lo):
             FSF = [f['name'] for f in get(FS + '?f=json').get('fields', [])]
         nf = next((f for f in FSF if f.upper() == 'TRAIL_NAME'), None)
         if not nf: return None
-        w = core(name).upper().split()
+        w = [x.upper() for x in words(name)]   # Nov 2 (PR 4): letters/numbers only ('Bay De Noc/Grand Island' = BAY%NOC%GRAND%ISLAND)
         if not w: return None
         q = {'where': f"{nf} LIKE '%{'%'.join(w)}%'", 'geometry': f'{lo-.6},{la-.6},{lo+.6},{la+.6}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
-             'spatialRel': 'esriSpatialRelIntersects', 'outFields': nf, 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
+             'spatialRel': 'esriSpatialRelIntersects', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
         j = get(FS + '/query?' + urllib.parse.urlencode(q))
-        lines = [[[round(x, 5), round(y, 5)] for x, y in p] for f in j.get('features', []) for p in (f.get('geometry') or {}).get('paths', [])]
+        lines = [[[round(x, 5), round(y, 5)] for x, y in p] for f in j.get('features', []) if not planned(f.get('attributes'))
+                 for p in (f.get('geometry') or {}).get('paths', [])]
         return lines or None
     except Exception as e:
         note('Forest Service', f'{name}: {str(e)[:120]}'); return None
@@ -180,6 +236,7 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
         fs = j.get('features', [])
         for f in fs:  # Oct 18: 'Greenbrier River Trail' must not pick up the 'Greenbrier River Water Trail' (the river itself)
             A = f.get('attributes') or {}; nm = str(A.get(fld, '') if fld else '')
+            if planned(A): continue   # Nov 2 (PR 4): planned / proposed segments are not drawn
             # WV-style layers mark the river line with surface = Water (named just like the rail-trail)
             if nowater and any(re.search(r'surf|type|use|class', str(k), re.I) and str(v).strip().lower() in ('water', 'water trail', 'paddle', 'blueway') for k, v in A.items()): continue
             if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
@@ -255,7 +312,11 @@ OVP = 'https://overpass-api.de/api/interpreter'
 def words(name):  # Oct 17: letters/numbers only, so "Alene's", "Ka‘ena" and "Estacada- Boring" still match OpenStreetMap
     # Oct 18: POTA's type words ('BLM', 'Byway', 'Geologic'...) are not in the map names ('Burr Trail BLM Historic Trail' = 'Burr Trail')
     return [x for x in re.split(r'[^0-9a-z]+', core(name)) if len(x) > 2 and x not in ('blm', 'byway', 'byways', 'geologic', 'wayside', 'state', 'water')]
-OSM_ON = os.environ.get('KPC_OSM_TRAILS') == '1'   # Nov 2 (Brandon's 18 decisions, #15): OpenStreetMap lookups OFF for shapes; lines already saved stay, labelled
+# Nov 2 (Brandon's 18 decisions, #15; PR 4): OpenStreetMap is a FALLBACK only, used when no official line exists, and only when
+# switched on: data/trails-layers.json settings.osm_fallback (true/false), or env KPC_OSM_TRAILS=1/0 (env wins). Default OFF.
+# OpenStreetMap lines already saved stay, labelled 'Unofficial line (OpenStreetMap)', until an official line replaces them.
+_osm_env = os.environ.get('KPC_OSM_TRAILS')
+OSM_ON = (_osm_env == '1') if _osm_env in ('0', '1') else bool(SETTINGS.get('osm_fallback', False))
 def osm(name, iso, la, lo):
     if not OSM_ON: return None, ''
     """Oct 17 (Brandon: 'readdress the missing trails'): route relations of any kind (foot, bike, horse, canoe for water
@@ -275,6 +336,8 @@ def osm(name, iso, la, lo):
     except Exception as e: note('Overpass', f'{name}: {str(e)[:120]}'); return None, ''
     keep, names = [], set()
     for el in j.get('elements', []):
+        tg = el.get('tags', {}) or {}
+        if tg.get('highway') == 'proposed' or tg.get('state') == 'proposed' or 'proposed' in tg or tg.get('construction'): continue   # Nov 2: not built
         if el.get('type') == 'relation':
             lines = [[[round(p['lon'], 5), round(p['lat'], 5)] for p in m.get('geometry', [])] for m in el.get('members', []) if m.get('type') == 'way' and m.get('geometry')]
         else:
@@ -285,10 +348,43 @@ def osm(name, iso, la, lo):
         if near <= MATCH_KM: keep += lines; names.add(el.get('tags', {}).get('name', ''))
     time.sleep(2)
     return (keep or None), ', '.join(sorted(n for n in names if n))[:120]
+# ---------------------------------------------------------------- Nov 2 (PR 4) checks: size, state
+def shrink(ls, budget=12000):
+    """Douglas-Peucker at about 3 m; a very long trail is thinned more (up to about 40 m) until it fits the point budget."""
+    for eps in (0.00003, 0.00006, 0.0001, 0.0002, 0.0004):
+        out = [x for x in (dp(l, eps) for l in ls) if len(x) > 1]
+        if sum(len(x) for x in out) <= budget: break
+    return out
+try: _STP = {x['a']: x['p'] for x in json.load(open('kpc-us-states.json', encoding='utf-8'))}
+except Exception: _STP = {}  # noqa: BLE001
+def _inpoly(x, y, mp):
+    for poly in mp:
+        ins = False
+        for ring in poly:
+            j = len(ring) - 1
+            for i in range(len(ring)):
+                xi, yi, xj, yj = ring[i][0], ring[i][1], ring[j][0], ring[j][1]
+                if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-12) + xi: ins = not ins
+                j = i
+        if ins: return True
+    return False
+def in_state(ls, st, buf=0.05):
+    """Share (0-1) of the line's points in (or within ~5 km of) the state; unknown state outline = 1. A trail that crosses a
+    state line (Nashua River Rail Trail: mostly Massachusetts, POTA lists it in New Hampshire) keeps its whole line."""
+    mp = _STP.get(st)
+    if not mp: return 1.0
+    pts = [p for l in ls for p in l]; pts = pts[::max(1, len(pts) // 300)]
+    if not pts: return 1.0
+    hit = sum(1 for x, y in pts if _inpoly(x, y, mp) or any(_inpoly(x + dx, y + dy, mp) for dx, dy in ((buf, 0), (-buf, 0), (0, buf), (0, -buf))))
+    return hit / len(pts)
 # ---------------------------------------------------------------- run
 try: IDX = {x['ref']: x for x in json.load(open(f'{OUT}/index-state.json'))}
 except Exception: IDX = {}
-try: NAT = {x['ref'] for x in json.load(open(f'{OUT}/index.json'))}
+try: HAND = json.load(open('data/trails-hand.json')).get('parks', {})
+except Exception: HAND = {}  # noqa: E722
+# Nov 2 (PR 4): a row the national bot only carries for an outside-research find (kind 'found', kpc_finds_lines) does not block
+# this bot when the park has an official line picked by hand in data/trails-hand.json: that line is drawn here, with its source shown
+try: NAT = {x['ref'] for x in json.load(open(f'{OUT}/index.json')) if not (x.get('kind') == 'found' and x['ref'] in HAND)}
 except Exception: NAT = set()
 LOC = {}
 try:
@@ -310,7 +406,7 @@ _ran0 = lambda s: s in STATES or ('CANADA' in [z.upper() for z in STATES] and st
 _ran = _ran0
 try:  # keep last run's rows for the states not run this time (Oct 17), so the report covers every state
     _old = json.load(open(f'{OUT}/state-report.json'))
-    _rr = lambda x: _ran(x[2]) or x[0] in _WSRREFS
+    _rr = lambda x: (_ran(x[2]) and (not ONLY or x[0] in ONLY)) or x[0] in _WSRREFS   # Nov 2: an ONLY run keeps every other park's row
     report['found'] = [x for x in _old.get('found', []) if not _rr(x)]; report['missing'] = [x for x in _old.get('missing', []) if not _rr(x)]
     report['noline'] = [x for x in _old.get('noline', []) if not _rr(x)]
     for _k in ('found', 'missing', 'noline'):
@@ -342,18 +438,23 @@ def jobs():
             ('Trail' in (v[2] or '') and 'National Scenic' not in (v[2] or '') and 'National Historic' not in (v[2] or ''))
             or ((v[2] or '') == 'State Park' and re.search(r'\bTrail\b', v[0]) and not re.search(r'Trail of Tears', v[0])))]
 # Oct 25 (round 6, outside research bot; chat 2): lines picked by hand = the exact official layer + filter for one park
-try: HAND = json.load(open('data/trails-hand.json')).get('parks', {})
-except Exception: HAND = {}  # noqa: E722
 def hand_lines(ref):
+    """Nov 2 (PR 4): a part may carry 'bbox' [W,S,E,N] (only pieces crossing it, e.g. one park's loops when another park has a
+    trail of the same name) and 'max' (records per page, for servers that cap pages lower than 1000). Planned segments are skipped."""
     out, by = [], ''
     for part in HAND[ref]['parts']:
         off = 0
-        for _ in range(10):
-            j = get(part['url'] + '/query?' + urllib.parse.urlencode({'where': part.get('where') or '1=1', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
-                                                                    'maxAllowableOffset': 0.00003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}), t=90)
+        for _ in range(20):
+            q = {'where': part.get('where') or '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                 'maxAllowableOffset': 0.00003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': part.get('max') or 1000}
+            if part.get('bbox'):
+                q.update({'geometry': ','.join(map(str, part['bbox'])), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'})
+            j = get(part['url'] + '/query?' + urllib.parse.urlencode(q), t=90)
             if 'error' in j: raise Exception(str(j['error'])[:150])
             fs = j.get('features', [])
-            for f in fs: out += [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]
+            for f in fs:
+                if planned(f.get('attributes')): continue
+                out += [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]
             if not fs or not j.get('exceededTransferLimit'): break
             off += len(fs)
         by = by or part.get('by') or ''
@@ -383,6 +484,8 @@ for r in RETIRED:
 if RETIRED: note('State trails', f'{len(RETIRED)} parks POTA no longer lists taken out: {" ".join(RETIRED[:20])}')
 for st, cand in jobs():
     got = 0
+    if ONLY: cand = [c for c in cand if c[0] in ONLY]
+    if ONLY and not cand: continue
     for ref, v, iso in cand:
         stc = iso[3:] if iso.startswith('US-') else iso
         if ref in SKIP: continue
@@ -421,17 +524,21 @@ for st, cand in jobs():
                 lines, org = agency(nm, stc, la, lo, lim)
                 if lines and sum(seglen(l) for l in lines) < 0.3: lines = None   # Oct 19: a ~100 m scrap (Barron Canyon, Ontario) is not the trail
                 if lines: by, off = org, True
-                # Oct 17: an agency layer that only has a tiny piece (Empire State Trail 4 km) loses to a much longer OpenStreetMap line
-                if lines and sum(seglen(l) for l in lines) < 8:
-                    ol, on = osm(nm, iso, la, lo)
-                    if ol and sum(seglen(l) for l in ol) > 3 * sum(seglen(l) for l in lines) and min(km(la, lo, p[1], p[0]) for l in ol for p in l) <= lim:
-                        lines, by, off = ol, 'OpenStreetMap (not official)', False
-            if not lines:
-                lines, on = osm(nm, iso, la, lo); by = 'OpenStreetMap (not official)' if lines else ''
+                # Nov 2 (PR 4): the Oct 17 rule that let a longer OpenStreetMap line beat a short official one is GONE: official always wins
+            if not lines and iso.startswith('US-') and 'National Recreation' not in typ:   # Nov 2 (PR 4): Forest Service trails for any trail, not only NRTs
+                lines = forest(nm, la, lo)
+                if lines and sum(seglen(l) for l in lines) < 0.3: lines = None
+                by, off = ('US Forest Service', True) if lines else ('', False)
+            if not lines and OSM_ON:   # last resort, labelled unofficial
+                lines, on = osm(nm, iso, la, lo); by, off = (OSM_LABEL, False) if lines else ('', False)
             if lines:
                 near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
                 if near <= lim: break
                 lines = None
+        if not lines and IDX.get(ref) and not IDX[ref].get('official') and os.path.exists(f'{OUT}/{ref}.json'):
+            # Nov 2 (PR 4): no official line yet: the saved OpenStreetMap line stays, labelled unofficial
+            o = IDX[ref]; o['by'], o['source'] = OSM_LABEL, 'osm'
+            report['found'].append([ref, name, stc, OSM_LABEL, o.get('km', 0), 0]); got += 1; continue
         if not lines:
             why = 'line found too far from the POTA pin: not used' if near < 1e9 else 'no line found'
             if ref in NOLINE_PARK: report.setdefault('noline', []).append([ref, name, stc, 'a park with Trail in its name, not a trail'])
@@ -444,8 +551,17 @@ for st, cand in jobs():
             k = tuple(map(tuple, l)); kr = tuple(reversed(k))
             if k in _seen or kr in _seen: continue
             _seen.add(k); _u.append(l)
-        lines = [dp(l, 0.00003) for l in _u]
+        lines = shrink(_u)   # Nov 2 (PR 4): simplified for the web (about 3 m, more for very long trails)
         total = sum(seglen(l) for l in lines)
+        share = in_state(lines, stc) if iso.startswith('US-') else 1.0
+        if share < .1:   # a same-named trail in another state is the wrong line
+            note(ref, f'{name}: the line is not in {stc}: not used'); report['missing'].append([ref, name, stc, f'line found is not in {stc}: not used']); continue
+        if share < .5: note(ref, f'{name}: only {round(share * 100)}% of the line is in {stc} (it crosses a state line)')
+        okm = (HAND.get(ref) or {}).get('km')
+        flag = f'line {round(total)} km is over 3x the official {okm} km' if okm and total > 3 * okm else ''
+        if flag:
+            note(ref, f'{name}: {flag}'); report.setdefault('flags', []).append([ref, name, stc, flag])
+            if not off: report['missing'].append([ref, name, stc, 'unofficial line over 3x the official length: not used']); continue
         if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         o = IDX.get(ref)
         if o and o.get('km') and total < .5 * o['km'] and (o.get('official') or not off) and os.path.exists(f'{OUT}/{ref}.json'):
@@ -453,10 +569,16 @@ for st, cand in jobs():
             KEPT.append(ref); note(ref, f'{name}: new line {round(total)} km, saved {o["km"]} km: the saved line is kept')
             report['found'].append([ref, name, stc, o.get('by', ''), o['km'], round(near, 1)]); got += 1; continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
-        f = {'type': 'Feature', 'properties': {'ref': ref, 'name': name}, 'geometry': {'type': 'MultiLineString', 'coordinates': lines}}
+        src = 'official' if off else 'osm'
+        wat = bool((HAND.get(ref) or {}).get('water')) or bool(WATER.search(name + ' ' + typ))
+        f = {'type': 'Feature', 'properties': {'ref': ref, 'name': name, 'source': src, 'by': by}, 'geometry': {'type': 'MultiLineString', 'coordinates': lines}}
+        if wat: f['properties']['water'] = True
         save_json(f'{OUT}/{ref}.json', f)
         IDX[ref] = {'ref': ref, 'name': name, 'kind': kind(typ, name), 'type': typ, 'st': stc, 'bbox': [round(min(xs), 4), round(min(ys), 4), round(max(xs), 4), round(max(ys), 4)],
-                    'by': by, 'official': off, 'km': round(total), 'kb': round(os.path.getsize(f'{OUT}/{ref}.json') / 1024), 'read': TODAY}
+                    'by': by, 'official': off, 'source': src, 'km': round(total), 'kb': round(os.path.getsize(f'{OUT}/{ref}.json') / 1024), 'read': TODAY}
+        if wat: IDX[ref]['water'] = True
+        if okm: IDX[ref]['km_official'] = okm
+        if flag: IDX[ref]['flag'] = flag
         report['found'].append([ref, name, stc, by, round(total), round(near, 1)]); got += 1
     note(st if st == 'CANADA' else f'US-{st}', f'{got} of {len(cand)} trail parks drawn')
 save_json(f'{OUT}/index-state.json', sorted(IDX.values(), key=lambda x: (x['st'], x['name'])))
@@ -466,7 +588,13 @@ report['agency'] = (ALOG or _oldag)[-400:]
 for _k in ('found', 'missing', 'noline'): report[_k] = sorted(report.get(_k, []), key=lambda x: (str(x[2]), str(x[0])))   # a stable order: no churn
 save_json(f'{OUT}/state-report.json', report, indent=1)
 note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json); "
-                          f"{len(REUSED)} official lines reused, {len(KEPT)} saved lines kept over shorter ones")
+                          f"{len(REUSED)} official lines reused, {len(KEPT)} saved lines kept over shorter ones; "
+                          f"{sum(1 for x in IDX.values() if not x.get('official'))} still unofficial (OpenStreetMap); OpenStreetMap fallback {'ON' if OSM_ON else 'OFF'}")
+# Nov 2 (PR 4): every index row says where its line came from (source official / osm; unofficial rows carry the one label)
+for _x in IDX.values():
+    _x['source'] = 'official' if _x.get('official') else 'osm'
+    if not _x.get('official'): _x['by'] = OSM_LABEL
+save_json(f'{OUT}/index-state.json', sorted(IDX.values(), key=lambda x: (x['st'], x['name'])))
 # ---------------------------------------------------------------- Oct 28 self-grade gate
 def _pts(fn):
     try:

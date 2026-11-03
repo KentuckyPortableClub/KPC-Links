@@ -174,7 +174,9 @@
     const t = (await trailIdx())[ref]; if (!t) return [];
     const j = await dfetch('data/trails/' + ref + '.json').then(r => r.ok ? r.json() : null).catch(() => null); if (!j) return [];
     return (j.type === 'FeatureCollection' ? j.features || [] : [j]).filter(f => f && f.geometry && isLine(f.geometry))
-      .map(f => (f._src = t.by || 'National Park Service', f._line = true, f._nm = t.name || (f.properties || {}).name || ref, f._L = { name: 'Official trail line', agency: f._src, k: 'btrail' }, f._bb = bbox(f.geometry), f._names = [ref], f));   /* _L: the shape the KY tools expect */
+      .map(f => (f._unofficial = t.official === false || t.source === 'osm',   /* Nov 2 (PR 4): an OpenStreetMap line is never called official */
+        f._src = f._unofficial ? 'OpenStreetMap (unofficial)' : (t.by || 'National Park Service'), f._line = true, f._nm = t.name || (f.properties || {}).name || ref,
+        f._L = { name: f._unofficial ? 'Unofficial line (OpenStreetMap)' : 'Official trail line', agency: f._src, k: 'btrail' }, f._bb = bbox(f.geometry), f._names = [ref], f));   /* _L: the shape the KY tools expect */
   }
   /* Oct 31 (Fable #17): every official trail line whose box is near a spot (Am I in the Park with no park typed in) */
   async function trailsNear(la, lo, d) {

@@ -81,5 +81,12 @@
   "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)",
   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Delaware State Parks",
   "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)"
+ },
+ "settings": {
+  "osm_fallback": true,
+  "host_delays": {
+   "ert.gfp.sd.gov": 10
+  },
+  "about": "Nov 2 (PR 4): osm_fallback true (default, Brandon's rule) = when NO official line is found, kpc_state_trails.py may draw an OpenStreetMap line, always labelled 'Unofficial line (OpenStreetMap)'; an official line always wins and replaces it. false = OpenStreetMap is never searched (lines already saved stay, labelled, until an official one replaces them). Env KPC_OSM_TRAILS=1/0 overrides for one run. host_delays = seconds between two requests to that site (default 2 s, env POLITE); a site's robots.txt Crawl-delay is honoured too (the longest wait wins, at most 60 s)."
  }
 }

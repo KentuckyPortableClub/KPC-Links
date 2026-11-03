@@ -14,6 +14,14 @@ Writes the list to argv[1] (default /tmp/finds-lines.json) and data/status/finds
 import glob, json, os, pathlib, re, sys
 
 FED = re.compile(r'nps\.gov|fs\.usda\.gov|fs\.fed\.us|blm\.gov|fws\.gov|fBc8EJBxQRMcHlei', re.I)
+# Nov 2 (PR 4, Official trail lines; Brandon: official sources only): picks that are NOT an agency's own layer, so never wired.
+#  - Razorback Regional Greenway (US-13622): the only copy is a personal ArcGIS account (consultant / university re-host), no agency layer
+#  - Junction and Breakwater (US-9877) and any park: services9 'USGS_Trails' is a third-party RE-HOST of the USGS trails, not USGS itself
+#    (the real USGS National Digital Trails layer is partnerships.nationalmap.gov, wired by hand in data/trails-hand.json)
+REJECT_LAYERS = {
+    'https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5': 'personal account re-host (Razorback)',
+}
+REJECT_HOSTS = re.compile(r'services9\.arcgis\.com/FF3qnCUixr5w9JQi/', re.I)   # third-party USGS_Trails re-host
 TRAILY = re.compile(r'\btrail\b|\btrails\b|\broute\b|greenway|\bpath\b|\bway\b|byway|towpath|rail.?trail', re.I)
 
 
@@ -46,6 +54,7 @@ def main():
         for q in rows or []:
             if isinstance(q, dict) and re.match(r'\W*NO\b', str(q.get('answer') or ''), re.I):
                 no.add((str(q.get('ref') or ''), str(q.get('layer') or q.get('url') or '').rstrip('/')))
+    HAND = set((load('data/trails-hand.json', {}).get('parks') or {}))
     cand = {}
     for k, v in pairs.items():
         if v.get('result') != 'SURE' or '|' not in k: continue
@@ -54,8 +63,10 @@ def main():
         if 'Polyline' not in str(L.get('geometry')) or not L.get('name_field') or not v.get('record_name'): continue
         if not ref.startswith('US-') or ref not in seen or ref in joined or ref not in pins: continue
         if os.path.exists(f'data/trails/{ref}.json'): continue   # Nov 2: a line already saved (state trails bot) is never replaced by a found one (US-11905 187 km -> 4 km was held)
+        if ref in HAND: continue   # Nov 2 (PR 4): an official line picked by hand (data/trails-hand.json) is the state trails bot's
         if not (TRAILY.search(names.get(ref, '')) or 'Trail' in typ.get(ref, '')): continue
         if (ref, url.rstrip('/')) in no: continue
+        if url.rstrip('/') in REJECT_LAYERS or REJECT_HOSTS.search(url): continue   # Nov 2 (PR 4): not an agency's own layer
         cand.setdefault(ref, []).append((0 if FED.search(url) else 1, url, L, v))
     rows, rep = [], []
     for ref, cs in sorted(cand.items()):
