@@ -6,7 +6,7 @@
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-03T12:25+00:00",
+ "checked": "2026-11-03T17:21+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -115,10 +115,10 @@
    "b": 31590
   },
   "L:data/us-key": {
-   "b": 13612352
+   "b": 13654857
   },
   "L:data/ca-key": {
-   "b": 2235051
+   "b": 2159477
   },
   "L:data/world-key": {
    "b": 15264661
@@ -142,7 +142,7 @@
    "b": 105760
   },
   "L:data/boundary-score.json": {
-   "b": 980140
+   "b": 972612
   },
   "L:data/campfed": {
    "b": 643240
@@ -151,10 +151,10 @@
    "b": 439119
   },
   "L:data/nwr": {
-   "b": 334296
+   "b": 334294
   },
   "L:locations.json": {
-   "b": 5419266
+   "b": 5421646
   },
   "L:kpc-events-auto.json": {
    "b": 21042
@@ -179,7 +179,7 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15813671
+   "b": 15819377
   },
   "D:data/trails": {
    "b": 25903884
@@ -197,8 +197,7 @@
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 98201,
-   "since": "2026-11-03"
+   "b": 68885
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -208,13 +207,13 @@
    "since": "2026-11-01"
   },
   "D:data/intake": {
-   "b": 39288899
+   "b": 39310639
   },
   "D:data/detective": {
    "b": 53765
   },
   "D:data/map-observations.json": {
-   "b": 1186190
+   "b": 1194724
   }
  }
 }
