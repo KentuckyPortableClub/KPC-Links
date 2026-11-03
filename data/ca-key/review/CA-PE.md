@@ -1,6 +1,6 @@
 # Canada PE: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 53** joined (same name + same kind). **0** to check, **28** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 54** joined (same name + same kind). **0** to check, **29** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -44,4 +44,5 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5779 Point Prim National Heritage Site (National Heritage Site)
 - CA-5788 Rotary Friendship Park Protected Area (Protected Area)
 - CA-5791 Sir Andrew MacPhail Homestead National Historic Site (National Historic Site)
+- CA-6138 Hillsborough River Canadian Heritage River (Canadian Heritage River)
 - CA-6172 Seacow Head Lighthouse National Heritage Site (National Heritage Site)

@@ -1,6 +1,6 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **323 of 489** joined (same name + same kind). **4** to check, **153** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **322 of 489** joined (same name + same kind). **5** to check, **153** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -8,12 +8,13 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~32 ac, same name, different kind of place)
 - **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~515,482 ac, the POTA pin is inside it (different name))
 - **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~18 ac, similar name)
+- **CA-6136** Shelburne River Canadian Heritage River (National Heritage Area) → Shelburne River Wilderness Area (~6,013 ac, same name, different kind of place); Shelburne River Wilderness Area (~6,013 ac, same name, different kind of place); Shelburne River Wilderness Area (~5,601 ac, same name, different kind of place); Shelburne River Wilderness Area (~4,029 ac, same name, different kind of place); Shelburne River Wilderness Area (~3,365 ac, same name, different kind of place); Shelburne River Wilderness Area (~2,910 ac, same name, different kind of place)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~1,835 ac); Cole Harbour - Lawrencetown Provincial Park (~1,883 ac)
+- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~1,835 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
 - CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~2,129 ac); Cole Harbour - Lawrencetown Provincial Park (~2,129 ac)
-- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~50 ac); St. Margarets Bay Islands Nature Reserve (~50 ac)
+- CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~50 ac); St. Margarets Bay Islands Nature Reserve (~137 ac)
 - CA-4830 Charles Fort National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
 - CA-5798 Annapolis County Court House National Historic Site (National Historic Site) → on Fort Anne (~15 ac)
 - CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~4 ac); Cape Breton Highlands National Park Of Canada (~80 ac)
@@ -118,7 +119,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6105 de Gannes-Cosby House National Historic Site (National Historic Site)
 - CA-6109 Truro Old Normal College National Historic Site (National Historic Site)
 - CA-6110 Old Town Lunenburg National Historic District (National Historic District)
-- CA-6137 Margaree River National Heritage Area (National Heritage Area)
+- CA-6137 Margaree River Canadian Heritage River (National Heritage Area)
 - CA-6176 Boars Head Lighthouse National Heritage Site (National Heritage Site)
 - CA-6177 Brier Island Lighthouse National Heritage Site (National Heritage Site)
 - CA-6178 Cape George Lighthouse National Heritage Site (National Heritage Site)

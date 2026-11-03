@@ -2,9 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "result": "PASS"
  },
+ "previous_build": "CA-41513281651",
+ "previous_built": "2026-11-02 19:51 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -12,8 +14,8 @@
    "matched": 395,
    "none": 42,
    "parks": 459,
-   "pin_no_shape": 0,
-   "pin_outside": 171,
+   "pin_no_shape": 1,
+   "pin_outside": 172,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 20
@@ -60,16 +62,16 @@
    "matched": 74,
    "none": 59,
    "parks": 134,
-   "pin_no_shape": 6,
-   "pin_outside": 28,
+   "pin_no_shape": 7,
+   "pin_outside": 31,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 1
   },
   "NS": {
-   "check": 4,
+   "check": 5,
    "detail": 0.02,
-   "matched": 323,
+   "matched": 322,
    "none": 153,
    "parks": 489,
    "pin_no_shape": 1,
@@ -103,23 +105,23 @@
    "site": 2
   },
   "ON": {
-   "check": 13,
+   "check": 9,
    "detail": 0.02,
-   "matched": 961,
-   "none": 167,
+   "matched": 959,
+   "none": 187,
    "parks": 1180,
-   "pin_no_shape": 19,
-   "pin_outside": 398,
+   "pin_no_shape": 27,
+   "pin_outside": 397,
    "pin_swap": 0,
    "pin_well_outside": 7,
-   "site": 39
+   "site": 25
   },
   "PE": {
    "check": 0,
    "detail": 0.02,
    "matched": 18,
-   "none": 28,
-   "parks": 53,
+   "none": 29,
+   "parks": 54,
    "pin_no_shape": 0,
    "pin_outside": 10,
    "pin_swap": 0,
@@ -129,11 +131,11 @@
   "QC": {
    "check": 11,
    "detail": 0.02,
-   "matched": 427,
+   "matched": 428,
    "none": 360,
-   "parks": 833,
+   "parks": 834,
    "pin_no_shape": 0,
-   "pin_outside": 160,
+   "pin_outside": 161,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 35
@@ -187,6 +189,6 @@
    "site": 7
   }
  },
- "build": "CA-41513281651",
- "built": "2026-11-02 19:51 UTC"
+ "build": "CA-41635613151",
+ "built": "2026-11-03 12:29 UTC"
 }

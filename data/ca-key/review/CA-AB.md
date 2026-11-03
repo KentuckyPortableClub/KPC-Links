@@ -26,8 +26,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5377 Nordegg National Historic Site (National Historic Site) → on Kiska/Willson (~194,361 ac)
 - CA-6073 Áísínai'pi National Historic Site (National Historic Site) → on Writing-on-Stone (~6,029 ac); Writing-on-Stone Provincial Park (~6,649 ac)
 - CA-6101 Prince of Wales Hotel National Historic Site (National Historic Site) → on Waterton Lakes National Park Of Canada (~124,788 ac); Waterton Lakes (~125,722 ac)
-- CA-6116 Athabasca River National Heritage River National Heritage Area (National Heritage Area) → on Jasper National Park Of Canada (~2,688,008 ac); Jasper (~2,758,106 ac)
-- CA-6117 North Saskatchewan River National Heritage River National Heritage Area (National Heritage Area) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
+- CA-6116 Athabasca River Canadian Heritage River (National Heritage Area) → on Jasper National Park Of Canada (~2,688,008 ac); Jasper (~2,758,106 ac)
+- CA-6117 North Saskatchewan River Canadian Heritage River (National Heritage Area) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
 - CA-6126 Livingston Public Land Use Zone Recreation Park (Recreation Park) → on Livingstone (~302,463 ac)
 
 ## Nothing found in CPCAD

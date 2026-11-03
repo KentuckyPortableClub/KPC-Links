@@ -1,9 +1,9 @@
 {
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
-  "needs-parcel": 317,
-  "no-layer": 1218,
-  "name-mismatch": 19,
+  "needs-parcel": 309,
+  "no-layer": 1222,
+  "name-mismatch": 20,
   "private": 9
  },
  "parks": {
@@ -1617,11 +1617,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
   },
-  "CA-5688": {
-   "st": "NB",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: New Brunswick #23 Wildlife Management Area"
-  },
   "CA-5691": {
    "st": "NB",
    "tag": "needs-parcel",
@@ -3017,6 +3012,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-6136": {
+   "st": "NS",
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Shelburne River Wilderness Area"
+  },
   "CA-6137": {
    "st": "NS",
    "tag": "no-layer",
@@ -3700,7 +3700,7 @@
   "CA-1340": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: WILDAREA"
+   "why": "the pin is inside a bigger area: POLAR BEAR PROVINCIAL PARK"
   },
   "CA-1346": {
    "st": "ON",
@@ -3734,8 +3734,8 @@
   },
   "CA-1408": {
    "st": "ON",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: CLUPAGEO"
+   "tag": "no-layer",
+   "why": "no official record found (Wilderness Area)"
   },
   "CA-1439": {
    "st": "ON",
@@ -3745,7 +3745,7 @@
   "CA-1467": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: WILDAREA"
+   "why": "the pin is inside a bigger area: BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
   },
   "CA-1512": {
    "st": "ON",
@@ -3765,12 +3765,12 @@
   "CA-1559": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: WILDAREA"
+   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
   },
   "CA-1566": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: WILDAREA"
+   "why": "the pin is inside a bigger area: LAKE NIPIGON CONSERVATION RESERVE"
   },
   "CA-1573": {
    "st": "ON",
@@ -3850,7 +3850,7 @@
   "CA-1707": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: WILDAREA"
+   "why": "the pin is inside a bigger area: MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
   },
   "CA-4853": {
    "st": "ON",
@@ -4157,6 +4157,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-5356": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-5360": {
    "st": "ON",
    "tag": "no-layer",
@@ -4173,6 +4178,11 @@
    "why": "the pin is inside a bigger area: Dundas Valley Conservation Area"
   },
   "CA-5365": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5367": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4861,6 +4871,11 @@
    "st": "PE",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
+  },
+  "CA-6138": {
+   "st": "PE",
+   "tag": "no-layer",
+   "why": "no official record found (Canadian Heritage River)"
   },
   "CA-6172": {
    "st": "PE",
@@ -7322,37 +7337,7 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-6130": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6140": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
   "CA-6141": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6142": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6149": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6150": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"
-  },
-  "CA-6152": {
    "st": "SK",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Prince Albert National Park Of Canada"

@@ -7,7 +7,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-4601 Bonnet Plume River National Heritage Area (National Heritage Area) → on Peel Watershed LMU 8 (~4,724,008 ac)
+- CA-4601 Bonnet Plume River Canadian Heritage River (National Heritage Area) → on Peel Watershed LMU 8 (~4,724,008 ac)
 - CA-4628 Spruce Beetle Trail Recreation Site (Recreation Site) → on Kluane (~859,646 ac)
 - CA-6263 Tarfu Lake Campground Recreation Site (Recreation Site) → on Agay Mene (~172,885 ac)
 - CA-6264 Takhini River Campground Recreation Site (Recreation Site) → on Kusawa (~755,827 ac); Kusawa (~758,341 ac)
@@ -30,7 +30,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-4624 Otter Falls Recreation Park (Recreation Park)
 - CA-4626 Rampart House Habitat Protection Area (Habitat Protection Area)
 - CA-4627 Rancheria Falls Recreation Site (Recreation Site)
-- CA-4632 Thirty Mile - Yukon River National Heritage Area (National Heritage Area)
+- CA-4632 Thirty Mile - Yukon River Canadian Heritage River (National Heritage Area)
 - CA-4633 Thirty Mile River Habitat Protection Area (Habitat Protection Area)
 - CA-4936 Dawson Historical Complex National Historic Site (National Historic Site)
 - CA-4937 Dredge No. 4 National Historic Site (National Historic Site)

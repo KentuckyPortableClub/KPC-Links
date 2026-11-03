@@ -28,7 +28,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5326 Hatley Park National Historic Site (National Historic Site) → on Royal Roads University (~281 ac)
 - CA-5344 The West Coast Trail National Park (National Park) → on Pacific Rim National Park Reserve Of Canada (~55,599 ac)
 - CA-5483 SGang Gwaay National Heritage Site (National Heritage Site) → on Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site (~364,332 ac)
-- CA-6133 Kicking Horse River National Heritage Area (National Heritage Area) → on Yoho National Park Of Canada (~324,474 ac)
+- CA-6133 Kicking Horse River Canadian Heritage River (National Heritage Area) → on Yoho National Park Of Canada (~324,474 ac)
 
 ## Nothing found in CPCAD
 
@@ -49,5 +49,5 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5325 Fort Hope National Historic Site (National Historic Site)
 - CA-5350 Tumbler Ridge UNESCO Global Geopark (Geopark)
 - CA-5547 Thomas Hayes Ecological Reserve (Ecological Reserve)
-- CA-6132 Fraser River National Heritage Area (National Heritage Area)
+- CA-6132 Fraser River Canadian Heritage River (National Heritage Area)
 - CA-6369 Cape Mudge Lighthouse National Historic Site (National Historic Site)
