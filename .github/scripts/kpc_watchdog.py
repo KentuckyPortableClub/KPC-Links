@@ -123,15 +123,25 @@ def main():
         done[key] = NOW.isoformat(timespec='minutes') + (' started' if rc == 0 else ' could not start')
         started.append(f"{name} (missed {t.strftime('%b %d %H:%M')} UTC{'' if rc == 0 else ', start FAILED'})")
     cut = (NOW - dt.timedelta(days=7)).isoformat()
+    before = json.dumps({k: v for k, v in st.items() if k != 'last'}, sort_keys=True)
     st['restarted'] = {k: v for k, v in done.items() if v >= cut}
-    st['last'] = NOW.isoformat(timespec='minutes'); st['last_restarted'] = started
+    st['last_restarted'] = started
+    # PR2 (fewer saves, Nov 2): the file is only rewritten when the watchdog restarted something (or a 7-day-old entry dropped off).
+    # A quiet look changes nothing, so the save step commits nothing; the time of this look is in the run log and summary.
+    changed = json.dumps({k: v for k, v in st.items() if k != 'last'}, sort_keys=True) != before
     STATE.parent.mkdir(parents=True, exist_ok=True)
-    if not os.environ.get('DRY'): json.dump(st, open(STATE, 'w'), indent=1)
-    msg = (f'{len(started)} skipped run(s) started again: ' + '; '.join(started)) if started else f'nothing skipped ({checked} scheduled times checked)'
-    print(f'::notice title=Watchdog::{msg}', flush=True)
+    if changed:
+        st['last'] = NOW.isoformat(timespec='minutes')
+        if not os.environ.get('DRY'): json.dump(st, open(STATE, 'w'), indent=1)
+    msg = (f'{len(started)} skipped run(s) started again: ' + '; '.join(started)) if started else 'nothing skipped'
+    print(f'::notice title=Watchdog::{msg} ({checked} scheduled times checked, {NOW.strftime("%Y-%m-%d %H:%M")} UTC)', flush=True)
+    if os.environ.get('GITHUB_STEP_SUMMARY'):
+        try: open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f"**Watchdog {NOW.strftime('%Y-%m-%d %H:%M')} UTC:** {msg} ({checked} scheduled times checked)\n\n")
+        except Exception: pass  # noqa: BLE001
     if os.path.exists('.github/scripts/kpc_status.py') and not os.environ.get('DRY'):
+        # PR2: the board line carries the time only when something was restarted, so a quiet look leaves the board as it was
         subprocess.run([sys.executable, '.github/scripts/kpc_status.py', 'board', 'Skipped-run watchdog', 'amber' if started else 'green',
-                        f"{NOW.strftime('%Y-%m-%d %H:%M')} UTC: {msg}"[:300], 'nobody (it restarts them itself)'], check=False)
+                        (f"{NOW.strftime('%Y-%m-%d %H:%M')} UTC: {msg}" if started else msg)[:300], 'nobody (it restarts them itself)'], check=False)
 
 
 if __name__ == '__main__':

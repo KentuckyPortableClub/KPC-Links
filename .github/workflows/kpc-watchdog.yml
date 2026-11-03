@@ -30,9 +30,10 @@ jobs:
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/status 2>/dev/null; git diff --cached --quiet && exit 0
+          git add data/status 2>/dev/null; python3 .github/scripts/kpc_stamp_only.py   # PR2: a look that only moved a time stamp saves nothing
+          git diff --cached --quiet && exit 0
           git commit -qm 'watchdog: skipped runs started again'
-          { saved=0; for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; sleep $((i*6)); done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }
+          { saved=0; for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; git rebase --abort 2>/dev/null; sleep $((i*6)); done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }
           true
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
