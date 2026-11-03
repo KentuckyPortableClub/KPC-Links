@@ -2262,6 +2262,18 @@
     "Portobello Provincial Park"
    ],
    "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-4902": {
+   "join": [
+    "Coteau-du-Lac National Historic Site"
+   ],
+   "why": "2026-11-03 09:53: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5170": {
+   "join": [
+    "Fallsview Park"
+   ],
+   "why": "2026-11-03 09:53: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
   }
  }
 }
