@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03 03:04",
+ "updated": "2026-11-03 11:35",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -872,6 +872,18 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "fs-fees-waived-veterans-day-nov-11": {
+   "who": "Daniel Boone National Forest",
+   "title": "Fees waived for Veterans Day, Nov 11",
+   "text": "In recognition of Veterans Day, visitors will not be charged a fee at Forest-operated recreation sites, Wednesday, November 11, 2026. Fees at the campgrounds listed below as well as backcountry camping in the Red River Gorge will be waived Wednesday evening.",
+   "link": "https://www.fs.usda.gov/r08/danielboone/alerts/fees-waived-veterans-day-nov-11",
+   "routine": true,
+   "first": "2026-11-03",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
