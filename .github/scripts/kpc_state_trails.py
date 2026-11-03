@@ -62,14 +62,47 @@ MATCH_KM = 60.0  # pieces with the right name are collected from this far around
 # parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
 SKIP = {'US-1990'}
 def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:900])
-GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host
+GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host (default)
 _LAST, _META = {}, {}
+# Nov 2 (PR 4): a per-site wait. data/trails-layers.json settings.host_delays {host: seconds} (South Dakota GFP asks for 10 s)
+# and the host's own robots.txt Crawl-delay (for our bot name or '*'); the longest of those and GAP is used, capped at 60 s
+HOST_DELAYS = {str(k).lower(): float(v) for k, v in (SETTINGS.get('host_delays') or {}).items() if isinstance(v, (int, float))}
+_CRAWL = {}
+def crawl_delay(h):
+    if h in _CRAWL: return _CRAWL[h]
+    d = None
+    try:
+        with urllib.request.urlopen(urllib.request.Request(f'https://{h}/robots.txt', headers=UA), timeout=15) as f:
+            txt = f.read(200000).decode('utf-8', 'replace')
+        mine, agents, grp_has_rules = False, [], False
+        best = {}
+        for ln in txt.splitlines():
+            ln = ln.split('#', 1)[0].strip()
+            if ':' not in ln: continue
+            k, v = [x.strip() for x in ln.split(':', 1)]; k = k.lower()
+            if k == 'user-agent':
+                if grp_has_rules: agents, grp_has_rules = [], False
+                agents.append(v.lower())
+            else:
+                grp_has_rules = True
+                if k == 'crawl-delay':
+                    try: val = float(v)
+                    except ValueError: continue
+                    for ag in agents:
+                        if ag == '*' or ag.startswith('kpc'): best[ag] = val
+        d = next((v for k, v in best.items() if k.startswith('kpc')), best.get('*'))
+    except Exception: d = None  # noqa: BLE001  (no robots.txt / not readable: no Crawl-delay)
+    _CRAWL[h] = d
+    return d
+def host_gap(h):
+    h = h.lower()
+    return min(60.0, max(GAP, HOST_DELAYS.get(h) or 0, crawl_delay(h) or 0))
 def get(u, data=None, t=120):
     err = None
     memo = data is None and re.search(r'\?f=json$', u)   # a service / layer description: the same all run long
     if memo and u in _META: return _META[u]
     for i in range(3):
-        h = urllib.parse.urlsplit(u).netloc; w = _LAST.get(h, 0) + GAP - time.time()
+        h = urllib.parse.urlsplit(u).netloc; w = _LAST.get(h, 0) + host_gap(h) - time.time()
         if w > 0: time.sleep(w)
         _LAST[h] = time.time()
         try:
