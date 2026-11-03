@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31 06:35",
+ "updated": "2026-11-02 19:59",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -846,6 +846,32 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "nps-0E0A964A-C477-4EFE-916B-4FF343E15627": {
+   "who": "CANE",
+   "title": "*6th Annual Luminaria and Memorial Walk Start Time Changed*",
+   "text": "The 6th Annual Luminaria and Memorial Walk will begin at 5:15 PM on Saturday, November 7, 2026. Originally scheduled to start at 6 PM, we are starting the event earlier to take advantage of daylight and for visitor safety and comfort.",
+   "link": "https://www.nps.gov/",
+   "routine": true,
+   "cat": "information",
+   "first": "2026-11-02",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": []
+  },
+  "nps-B4E1D566-7261-4427-87F1-63AD9492570C": {
+   "who": "CUGA",
+   "title": "Temporary Rolling Roadblocks on Pinnacle Road",
+   "text": "Park staff will conduct rolling roadblocks along Pinnacle Road to remove fallen leaves from the roadway. Visitors may experience temporary traffic delays while crews work. Leaf removal will continue as needed to help keep the road safe while maintaining visitor access. Please use caution and allow extra travel time.",
+   "link": "https://www.nps.gov/",
+   "routine": true,
+   "cat": "information",
+   "first": "2026-11-02",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
