@@ -1,17 +1,12 @@
 {
  "open": [
   "KPC-Data/kpc-storage.yml",
-  "kpc-boards.yml",
-  "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
-  "kpc-fb-comments.yml",
-  "kpc-hunters.yml",
   "kpc-us-key.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-02T13:23+00:00",
+ "checked": "2026-11-03T12:25+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -114,40 +109,40 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2914
+   "b": 2910
   },
   "L:data/ky-answer-key.json": {
-   "b": 31569
+   "b": 31590
   },
   "L:data/us-key": {
-   "b": 13370286
+   "b": 13612352
   },
   "L:data/ca-key": {
-   "b": 2153289
+   "b": 2235051
   },
   "L:data/world-key": {
-   "b": 15262648
+   "b": 15264661
   },
   "L:data/pota": {
-   "b": 5664575
+   "b": 5664892
   },
   "L:data/canada.json": {
-   "b": 2494063
+   "b": 2494163
   },
   "L:kpc-top25.json": {
    "b": 16593
   },
   "L:data/ky-official-maps.json": {
-   "b": 92565
+   "b": 92658
   },
   "L:data/parkinfo-web.json": {
    "b": 529287
   },
   "L:data/state-gis.json": {
-   "b": 105415
+   "b": 105760
   },
   "L:data/boundary-score.json": {
-   "b": 977367
+   "b": 980140
   },
   "L:data/campfed": {
    "b": 643240
@@ -156,7 +151,7 @@
    "b": 439119
   },
   "L:data/nwr": {
-   "b": 334288
+   "b": 334296
   },
   "L:locations.json": {
    "b": 5419266
@@ -165,7 +160,7 @@
    "b": 21042
   },
   "L:kpc-special-events.json": {
-   "b": 26316
+   "b": 25918
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -184,25 +179,26 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15660927
+   "b": 15813671
   },
   "D:data/trails": {
-   "b": 25757006
+   "b": 25903884
   },
   "D:data/access": {
    "b": 5153645
   },
   "D:data/wwff": {
-   "b": 11719053
+   "b": 11738578
   },
   "D:data/review/scoreboard.json": {
-   "b": 131000
+   "b": 137097
   },
   "D:data/truth": {
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 98201
+   "b": 98201,
+   "since": "2026-11-03"
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -212,13 +208,13 @@
    "since": "2026-11-01"
   },
   "D:data/intake": {
-   "b": 38283667
+   "b": 39288899
   },
   "D:data/detective": {
-   "b": 53730
+   "b": 53765
   },
   "D:data/map-observations.json": {
-   "b": 1180533
+   "b": 1186190
   }
  }
 }
