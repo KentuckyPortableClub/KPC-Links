@@ -2,8 +2,9 @@
 
    1) MAILER (doPost): the website's Discord relay (GitHub Actions) sends it a post; it emails Groups.io and the
       email-updates list from this Gmail.
-   2) WATCHER (kpcWatch, runs every 5 minutes): starts the relay on GitHub, so posts go out within about 5 minutes
-      instead of waiting for GitHub's own 15-minute timer (which often runs late). It does NOT read Discord itself:
+   2) WATCHER (kpcWatch, runs every 5 minutes): starts the relay on GitHub, so posts go out within about 10 minutes
+      instead of waiting for GitHub's own 15-minute timer (which often runs late). PR3 (Nov 2): it starts the relay only
+      when the newest relay run is 8+ minutes old (28+ at night), about 115 starts a day instead of ~280. It does NOT read Discord itself:
       Discord blocks Google's servers (error 40333 "internal network error", found Oct 15), so GitHub does the reading.
 
    Script properties (Project Settings -> Script properties). Never paste these into a chat:
@@ -16,6 +17,8 @@
 
 var REPO = 'KentuckyPortableClub/KPC-Links';
 var WORKFLOW = 'kpc-discord-relay.yml';
+var MIN_GAP_MIN = 8;     // PR3: start the relay only when its newest run is at least this old (daytime)
+var QUIET_GAP_MIN = 28;  // PR3: the same at night, 11 PM-6 AM Central (no email goes out then anyway)
 
 function doPost(e) {
   var out = function (o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); };
@@ -58,6 +61,15 @@ function kpcWatch(verbose) {
   if (r.getResponseCode() === 200) {
     var run = (JSON.parse(r.getContentText()).workflow_runs || [])[0];
     if (run && run.status !== 'completed') { if (verbose === true) Logger.log('A relay run is already going. Watcher is running.'); return; }
+    // PR3 (Nov 2, fewer runs): this watcher cannot ask Discord whether anything is new (Discord blocks Google's servers), so it
+    // starts the relay less often instead: only when the newest relay run is MIN_GAP_MIN old (QUIET_GAP_MIN at night, 11 PM-6 AM
+    // Central). The relay itself then looks in a few seconds and ends at once when nothing is new. Was: every 5 minutes (~280/day).
+    if (run && verbose !== true) {
+      var ageMin = (Date.now() - new Date(run.created_at).getTime()) / 60000;
+      var hour = Number(Utilities.formatDate(new Date(), 'America/Chicago', 'H'));
+      var gap = (hour >= 23 || hour < 6) ? QUIET_GAP_MIN : MIN_GAP_MIN;
+      if (ageMin < gap) return;
+    }
   }
   var g = UrlFetchApp.fetch(base + '/dispatches', {
     method: 'post', contentType: 'application/json', muteHttpExceptions: true, headers: H,

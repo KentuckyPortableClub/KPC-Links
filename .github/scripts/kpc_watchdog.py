@@ -23,10 +23,13 @@ WATCHDOG_INPUTS.update({
     'kpc-world-key.yml': {'pin_join': ''},                            # default 'JP'; scheduled = no pin
     'kpc-approvals.yml': {'send_now': 'false'},                       # default true = an extra email at the wrong hour
     'kpc-discord-watch.yml': {'mode': 'watch', 'target': ''},         # default 'list' to admin
+    # PR3 (Nov 2): park alerts were skipped by GitHub for 11 h and never restarted (it sat in WATCHDOG_SKIP because its dispatch
+    # default is a practice run). With dry_run=false a restart is the real check; the script itself still holds posts 9 PM-6 AM.
+    'kpc-park-alerts.yml': {'dry_run': 'false'},
 })
 # Restarting these cannot match the scheduled run without posting by hand (their dispatch is a practice run or a different task),
 # or they run so often that the next slot comes first: listed on the board as skipped, never restarted.
-WATCHDOG_SKIP = {'kpc-youtube-comments.yml', 'kpc-social.yml', 'kpc-club-posts.yml', 'kpc-whats-new.yml', 'kpc-park-alerts.yml',
+WATCHDOG_SKIP = {'kpc-youtube-comments.yml', 'kpc-social.yml', 'kpc-club-posts.yml', 'kpc-whats-new.yml',
                  'kpc-fb-comments.yml', 'kpc-discord-relay.yml', 'kpc-research-helpers.yml'}
 
 
@@ -146,5 +149,5 @@ def main():
 
 if __name__ == '__main__':
     try: main()
-    except Exception as e: print(f'::notice title=Watchdog::stopped ({type(e).__name__}: {e})')  # noqa: BLE001
+    except Exception as e: print(f'::error title=Watchdog::stopped early ({type(e).__name__}: {e}); skipped runs were NOT checked')  # noqa: BLE001  PR3: was a quiet ::notice
     sys.exit(0)

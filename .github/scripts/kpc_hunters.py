@@ -256,5 +256,7 @@ if __name__ == '__main__':
         if 'build' in what and (CLOSED or not OUT.exists() or 'collect' not in what): build()
         if 'post' in what: post()
     except Exception as e:  # noqa: BLE001
-        notice('Hunters', f'skipped: {e}')
+        # PR3 (Nov 2): POTA being down is handled inside collect(); getting here means the bot itself broke, so say it as an
+        # ::error (the KPC-Data watchdog's key-bot sweep turns that red on the status board). Still exit 0: no failure email.
+        print(f'::error title=Hunters::stopped early: {type(e).__name__}: {str(e)[:300]}', flush=True)
     sys.exit(0)

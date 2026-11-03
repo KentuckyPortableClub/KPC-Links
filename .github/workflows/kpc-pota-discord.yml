@@ -33,12 +33,17 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: |
           stop=$(( $(date +%s) + 54 * 60 ))          # finish before the next hour's job starts
+          ok=0; bad=0
           for i in $(seq 1 12); do
-            python3 .github/scripts/kpc_pota_spotter.py || echo "check $i: skipped (POTA or Discord hiccup)"
+            if python3 .github/scripts/kpc_pota_spotter.py; then ok=$((ok+1)); else bad=$((bad+1)); echo "::warning title=POTA spotter::check $i failed (POTA or Discord hiccup); the next check tries again"; fi
             [ "$i" -lt 12 ] || break
             [ $(( $(date +%s) + 300 )) -lt "$stop" ] || break
             sleep 300
           done
+          # PR3 (Nov 2): one hiccup is normal, but EVERY check of the hour failing means spots are not reaching Discord
+          # (a dead webhook secret, POTA's feed changed, a bug). Say it as an ::error so the key-bot sweep shows it red.
+          # Still green (no failure email).
+          if [ "$ok" = 0 ]; then echo "::error title=POTA spotter::all $bad checks this hour failed: no spots reached Discord. See the log above"; fi
       - name: Save sent spot IDs (once, only if changed)
         if: always()
         id: kept_green_2

@@ -3,6 +3,8 @@ name: KPC Discord relay
 # the email-updates list, the Events calendar and park warnings. Edits/deletes follow. How posts are read (tags):
 # see the top of .github/scripts/kpc_discord_relay.py. Started every 15 min here, and within ~1 minute of a new post
 # by the watcher in the KPC Mailer Apps Script (kpcwebhost@gmail.com), which calls workflow_dispatch with dry_run=false.
+# PR3 (Nov 2): a started run first takes a few-second look and ends there when nothing is new (kpc_relay_peek.py); the full
+# work still runs at least every ~15 min. It is also the outside heartbeat that restarts KPC-Data's watchdog (see the end).
 on:
   schedule:
     - cron: '5,20,35,50 * * * *'   # G9 Nov 2: was '7,22,37,52 * * * *' (spread the start times; now 2 min earlier)
@@ -12,6 +14,10 @@ on:
         description: 'Dry run (show what would be posted, change nothing)'
         type: boolean
         default: true
+      full:
+        description: 'PR3: always do the full run (skip the quick "anything new?" look)'
+        type: boolean
+        default: false
 permissions:
   contents: write
   actions: write   # Nov 2: the watchdog heartbeat below
@@ -24,9 +30,23 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
+      # PR3 (Nov 2): the Apps Script starts this relay every few minutes; most starts find nothing new. On those STARTED runs
+      # a few-second look decides: a new Discord message, a waiting email, a due post, or 14+ min since the last full run =
+      # the full run; else the run ends here (the heartbeat below still runs). Scheduled runs and practice runs always go full.
+      - name: Anything new? (started runs only, PR3)
+        id: peek
+        if: github.event_name == 'workflow_dispatch' && !inputs.dry_run
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          KPC_RELAY_CHANNEL: ${{ secrets.KPC_RELAY_CHANNEL }}
+          GH_TOKEN: ${{ github.token }}
+          FULL: ${{ inputs.full && '1' || '' }}
+        run: python3 .github/scripts/kpc_relay_peek.py
       - name: Install image tools
+        if: steps.peek.outputs.skip != '1'
         run: pip install --quiet pillow
       - name: Share new posts
+        if: steps.peek.outputs.skip != '1'
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           KPC_RELAY_CHANNEL: ${{ secrets.KPC_RELAY_CHANNEL }}
@@ -46,6 +66,7 @@ jobs:
       # Both of these ride along here rather than on a timer of their own: it is the only job that already runs
       # every 15 minutes, so answers are quick and no new scheduled workflow lands in anybody's email.
       - name: Answer what we can in the club rooms
+        if: steps.peek.outputs.skip != '1'
         id: kept_green_1
         continue-on-error: true
         env:
@@ -53,6 +74,7 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_ask.py || echo "::error title=kpc_discord_ask.py::stopped with an error (exit $?), see the log above"
       - name: Keep an eye on the rooms
+        if: steps.peek.outputs.skip != '1'
         id: kept_green_2
         continue-on-error: true
         env:
@@ -63,6 +85,7 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
       - name: Do anything asked for in the staff room
+        if: steps.peek.outputs.skip != '1'
         id: kept_green_3
         continue-on-error: true
         env:
@@ -73,6 +96,7 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
       - name: Save
+        if: steps.peek.outputs.skip != '1'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -96,6 +120,32 @@ jobs:
             gh api -X POST "repos/${{ github.repository }}/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main && echo "::notice title=Watchdog heartbeat::the watchdog had not run for $((age / 60)) min: started it once (from the relay)"
           else echo "watchdog ran $((age / 60)) min ago: nothing to do"; fi
           true   # ok: a missed heartbeat is retried 15 min later by the next relay run
+      # PR3 (Nov 2): KPC-Data's own timers stopped firing at 7:26 AM CT Nov 2, and every KPC-Data backup (its watchdog, the
+      # engine / map-audit chains) lives inside KPC-Data, so nothing from outside could start it again. This relay runs many
+      # times an hour from KPC-Links, so it is the outside heartbeat: when KPC-Data's watchdog is 2 h 15 min old it starts it
+      # (the watchdog then restarts every KPC-Data timer GitHub skipped and checks the website copy), and when the website copy
+      # bot is 40+ min old while 'site' differs from main, it starts that too. Needs the secret KPC_DATA_ACTIONS_TOKEN (a
+      # fine-grained token: ONLY KPC-Data, 'Actions: Read and write'); without it this step only says so. Never red.
+      - name: KPC-DATA HEARTBEAT (PR3; cross-repo backup starter)
+        if: always()
+        id: kept_green_hb2
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.KPC_DATA_ACTIONS_TOKEN }}
+          D: KentuckyPortableClub/KPC-Data
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "::notice title=KPC-Data heartbeat::off: add the secret KPC_DATA_ACTIONS_TOKEN (KPC-Data only, Actions read/write) to switch it on"; exit 0; fi
+          age() { last=$(gh api "repos/$D/actions/workflows/$1/runs?per_page=1" --jq '.workflow_runs[0].created_at // "1970-01-01T00:00:00Z"') || return 1; echo $(( $(date -u +%s) - $(date -u -d "$last" +%s) )); }
+          a=$(age kpc-watchdog.yml) || { echo "::warning title=KPC-Data heartbeat::could not read KPC-Data's runs (token?)"; exit 0; }
+          if [ "$a" -gt 8100 ]; then
+            gh api -X POST "repos/$D/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::KPC-Data's watchdog had not run for $((a / 60)) min: started it" || echo "::error title=KPC-Data heartbeat::could not start KPC-Data's watchdog (token?)"
+          else echo "KPC-Data watchdog ran $((a / 60)) min ago"; fi
+          M=$(gh api repos/$D/git/ref/heads/main --jq .object.sha 2>/dev/null); S=$(gh api repos/$D/git/ref/heads/site --jq .object.sha 2>/dev/null)
+          p=$(age kpc-pages-sync.yml) || p=0
+          if [ -n "$M" ] && [ "$M" != "$S" ] && [ "$p" -gt 2400 ]; then
+            gh api -X POST "repos/$D/actions/workflows/kpc-pages-sync.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::website copy bot $((p / 60)) min old and site != main: started it" || echo "::error title=KPC-Data heartbeat::could not start kpc-pages-sync (token?)"
+          fi
+          true   # ok: the next relay run tries again
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
