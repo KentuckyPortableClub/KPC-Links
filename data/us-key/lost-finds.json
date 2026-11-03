@@ -1,8 +1,8 @@
 {
- "made": "2026-11-03 18:15 UTC",
+ "made": "2026-11-03 19:40 UTC",
  "counts": {
-  "A_decided_not_in_key": 104,
-  "B_sure_area_not_asked": 9,
+  "A_decided_not_in_key": 106,
+  "B_sure_area_not_asked": 10,
   "C_sure_line_not_drawn": 21
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
@@ -183,6 +183,13 @@
    "2026-11-02 13:05: layers row YES 'Smith Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-10973",
+   "UT",
+   "Middle Fork Taylor Creek BLM Wild and Scenic River",
+   "join",
+   "ddle Fork Taylor Creek' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+  ],
+  [
    "US-10975",
    "UT",
    "Oak Creek BLM Wild and Scenic River",
@@ -307,6 +314,13 @@
    "Pine National Wild and Scenic River",
    "alias",
    "2026-11-02 12:49: aliases-oct31 row YES 'Pine River' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-12979",
+   "OR",
+   "Bonneville State Fish Hatchery",
+   "join",
+   "w YES 'BONNEVILLE FISH HATCHERY' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   ],
   [
    "US-13000",
@@ -749,6 +763,13 @@
    "OR",
    "South Santiam State Fish Hatchery",
    "SOUTH SANTIAM HATCHERY",
+   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
+  ],
+  [
+   "US-12979",
+   "OR",
+   "Bonneville State Fish Hatchery",
+   "BONNEVILLE FISH HATCHERY",
    "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
   ],
   [
