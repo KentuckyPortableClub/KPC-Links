@@ -11,6 +11,27 @@ two owners…) so chat 8 sees how much is unresolved. TAG=<area tag>, STATES='US
 import json, math, os, pathlib, re, sys, time
 OUT = pathlib.Path('data/fers')
 LIVE = ('candidate', 'very tight', 'water only')
+# Nov 2 bot fixes (Mapping #8): the missing check passed when every NEVER LOOKED AT pair had ANY reason (US-ND: READY with 662 of
+# 710 expected pairs never looked at). READY now also needs the pairs never looked at, NOT counting the ones where a park has no
+# official outline, to be at most this share of the expected pairs. (The 10% is Mapping's example: a question for Brandon.)
+NEVER_LOOKED_MAX = 0.10
+NO_OUTLINE = re.compile(r'no official (boundary|outline)|approximate outline only', re.I)
+
+
+def never_looked(e):
+    """-> (counted, no_outline, total expected, {reason: n} for the counted ones) from an expected-<tag>.json"""
+    nla = e.get('NEVER LOOKED AT') if isinstance(e.get('NEVER LOOKED AT'), list) else []
+    tot = sum(len(e.get(k)) for k in ('FOUND', 'DROPPED', 'NEVER LOOKED AT') if isinstance(e.get(k), list))
+    if not tot: tot = sum(int(v or 0) for v in (e.get('counts') or {}).values())
+    no_out, why = 0, {}
+    for x in nla:
+        parts = [q.split(':', 1)[-1].strip() for q in str(x.get('reason') or 'unknown').split(';') if q.strip()]
+        if parts and all(NO_OUTLINE.search(q) for q in parts): no_out += 1; continue
+        k = re.sub(r'\bUS-\d+|\bCA-\d+', '<park>', str(x.get('reason') or 'unknown'))[:90]
+        why[k] = why.get(k, 0) + 1
+    if not nla and (e.get('counts') or {}).get('NEVER LOOKED AT'):   # a file without the lists: count them all
+        return int(e['counts']['NEVER LOOKED AT']), 0, tot, {'(the file has no list: reasons unknown)': int(e['counts']['NEVER LOOKED AT'])}
+    return sum(why.values()), no_out, tot, dict(sorted(why.items(), key=lambda kv: -kv[1]))
 
 
 def load(p):
@@ -46,6 +67,12 @@ def main():
     if not e: why.append('no missing-check file')
     elif not e.get('pass'): why.append('missing check: some expected pairs have no reason')
     elif str(e.get('date', '')) < since: why.append(f"missing check is from {e.get('date')}, before this run")
+    if e:
+        n_nl, n_noout, n_tot, by = never_looked(e)
+        info['never_looked_at'] = {'counted': n_nl, 'no_official_outline': n_noout, 'expected': n_tot, 'limit': f'{NEVER_LOOKED_MAX:.0%}', 'by_reason': dict(list(by.items())[:6])}
+        if n_tot and n_nl > NEVER_LOOKED_MAX * n_tot:
+            why.append(f"missing check: {n_nl} of {n_tot} expected pairs were never looked at ({n_nl / n_tot:.0%}; {n_noout} more have no official outline and are not counted); "
+                       f"READY needs {NEVER_LOOKED_MAX:.0%} or less. Most: " + '; '.join(f'{k} ({v})' for k, v in list(by.items())[:3]))
     # (4) the passes were not cut short
     rep = load(OUT / f'report-{tag}.json') or {}
     for p in ('pass1', 'pass2'):
