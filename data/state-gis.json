@@ -720,6 +720,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "land",
+    "ag": "Managed Areas",
+    "nm": "MANAME",
+    "url": "https://gisservice.mt.gov/ArcGIS/rest/services/msdi_administrative_boundaries_map_v1/MapServer/70",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-03: chat 11 YES (auto (T1 map-match STRONG)); park US-11215"
    }
   ],
   "ND": [

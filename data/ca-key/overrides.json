@@ -2274,6 +2274,12 @@
     "Fallsview Park"
    ],
    "why": "2026-11-03 09:53: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5219": {
+   "join": [
+    "Riverview Park"
+   ],
+   "why": "2026-11-03 12:26: question row YES (auto (T1 map-match STRONG); applied by kpc_ca_answers)"
   }
  }
 }

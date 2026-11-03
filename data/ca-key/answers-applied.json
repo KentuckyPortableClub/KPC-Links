@@ -4683,5 +4683,10 @@
   "answer": "YES",
   "checked_by": "auto (AUTO-1C, trusted collector)",
   "applied": "2026-11-03 09:53"
+ },
+ "CA-5219:riverview park": {
+  "answer": "YES",
+  "checked_by": "auto (T1 map-match STRONG)",
+  "applied": "2026-11-03 12:26"
  }
 }
