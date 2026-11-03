@@ -143,10 +143,13 @@
   "kpc-hunters.yml|2026-11-03T22:07:00+00:00": "2026-11-03T23:10+00:00 started",
   "kpc-pota-discord.yml|2026-11-03T22:19:00+00:00": "2026-11-03T23:10+00:00 started",
   "kpc-reports.yml|2026-11-03T21:29:00+00:00": "2026-11-03T23:10+00:00 started",
-  "kpc-discord-watch.yml|2026-11-03T22:47:00+00:00": "2026-11-03T23:12+00:00 started"
+  "kpc-discord-watch.yml|2026-11-03T22:47:00+00:00": "2026-11-03T23:12+00:00 started",
+  "kpc-band-alerts.yml|2026-11-03T22:48:00+00:00": "2026-11-03T23:34+00:00 started",
+  "kpc-park-alerts.yml|2026-11-03T23:03:00+00:00": "2026-11-03T23:34+00:00 started"
  },
- "last": "2026-11-03T23:12+00:00",
+ "last": "2026-11-03T23:34+00:00",
  "last_restarted": [
-  "kpc-discord-watch.yml (missed Nov 03 22:47 UTC)"
+  "kpc-band-alerts.yml (missed Nov 03 22:48 UTC)",
+  "kpc-park-alerts.yml (missed Nov 03 23:03 UTC)"
  ]
 }
