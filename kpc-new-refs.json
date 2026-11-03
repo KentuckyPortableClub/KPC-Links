@@ -1,8 +1,239 @@
 {
- "updated": "2026-10-31T13:27:52+00:00",
+ "updated": "2026-11-03T15:01:10+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13651",
+   "prog": "pota",
+   "name": "Zim Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 47.2157,
+   "lo": -92.6024,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13650",
+   "prog": "pota",
+   "name": "Darwin S. Meyers Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 47.6364,
+   "lo": -92.2233,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13649",
+   "prog": "pota",
+   "name": "Old Koschak Farm Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 47.9224,
+   "lo": -91.8297,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13648",
+   "prog": "pota",
+   "name": "Altona Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.1954,
+   "lo": -96.3255,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13647",
+   "prog": "pota",
+   "name": "Badger Lake Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 43.9228,
+   "lo": -95.7295,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13646",
+   "prog": "pota",
+   "name": "Bohemian Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.6337,
+   "lo": -96.4067,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13645",
+   "prog": "pota",
+   "name": "Budolfson Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.0445,
+   "lo": -95.4761,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13644",
+   "prog": "pota",
+   "name": "Cedar Rock Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.6084,
+   "lo": -95.1649,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13643",
+   "prog": "pota",
+   "name": "Coon Creek Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.3361,
+   "lo": -96.0402,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13642",
+   "prog": "pota",
+   "name": "Fenmont Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 43.8475,
+   "lo": -95.8295,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13641",
+   "prog": "pota",
+   "name": "Green Valley Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.5043,
+   "lo": -95.6988,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13640",
+   "prog": "pota",
+   "name": "Hole-In-Mountain Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2256,
+   "lo": -96.3167,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13639",
+   "prog": "pota",
+   "name": "Hopeful Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2557,
+   "lo": -96.0983,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13638",
+   "prog": "pota",
+   "name": "Lake Maria Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.1721,
+   "lo": -95.8155,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13637",
+   "prog": "pota",
+   "name": "Lamberton Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2521,
+   "lo": -95.22,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13636",
+   "prog": "pota",
+   "name": "Lyons Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2812,
+   "lo": -95.8878,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13635",
+   "prog": "pota",
+   "name": "Phyllis Voosen Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.4953,
+   "lo": -95.4642,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13634",
+   "prog": "pota",
+   "name": "Sodus Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2801,
+   "lo": -95.8394,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13633",
+   "prog": "pota",
+   "name": "Talcot Lake Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 43.8942,
+   "lo": -95.4529,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13632",
+   "prog": "pota",
+   "name": "Two Rivers Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.2796,
+   "lo": -95.3845,
+   "found": "2026-11-03"
+  },
+  {
+   "ref": "US-13631",
+   "prog": "pota",
+   "name": "Winter Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.1451,
+   "lo": -96.384,
+   "found": "2026-11-03"
+  },
   {
    "ref": "US-13630",
    "prog": "pota",
@@ -79,803 +310,6 @@
    "la": 42.4552,
    "lo": -76.5165,
    "found": "2026-10-28"
-  },
-  {
-   "ref": "US-13623",
-   "prog": "pota",
-   "name": "Alum Cove Natural Bridge Trail National Recreation Trail",
-   "st": [
-    "AR"
-   ],
-   "la": 35.859,
-   "lo": -93.2338,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "US-13622",
-   "prog": "pota",
-   "name": "The Razorback Regional Greenway National Recreation Trail",
-   "st": [
-    "AR"
-   ],
-   "la": 36.0285,
-   "lo": -94.1999,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "US-13621",
-   "prog": "pota",
-   "name": "Desert Shield and Desert Storm National Memorial",
-   "st": [
-    "DC"
-   ],
-   "la": 38.8915,
-   "lo": -77.0512,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7589",
-   "prog": "kff",
-   "name": "Simon Canyon",
-   "st": [],
-   "la": 36.8232,
-   "lo": -107.659,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7588",
-   "prog": "kff",
-   "name": "San Lorenzo Canyon",
-   "st": [],
-   "la": 34.2231,
-   "lo": -106.922,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7587",
-   "prog": "kff",
-   "name": "Salinas Pueblo Missions-Quarai",
-   "st": [],
-   "la": 34.5953,
-   "lo": -106.298,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7586",
-   "prog": "kff",
-   "name": "Salinas Pueblo Missions-Abo",
-   "st": [],
-   "la": 34.45,
-   "lo": -106.375,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7585",
-   "prog": "kff",
-   "name": "Quebradas Backcountry Byway",
-   "st": [],
-   "la": 34.1108,
-   "lo": -106.872,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7584",
-   "prog": "kff",
-   "name": "Parks Ranch Cave",
-   "st": [],
-   "la": 32.1105,
-   "lo": -104.407,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7583",
-   "prog": "kff",
-   "name": "Ojito",
-   "st": [],
-   "la": 35.4944,
-   "lo": -106.9219,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7582",
-   "prog": "kff",
-   "name": "Kilbourne Hole Volcanic Crater",
-   "st": [],
-   "la": 31.9566,
-   "lo": -106.958,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7581",
-   "prog": "kff",
-   "name": "Black River",
-   "st": [],
-   "la": 36.2593,
-   "lo": -108.252,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7580",
-   "prog": "kff",
-   "name": "Bisti/De-Na-Zin",
-   "st": [],
-   "la": 36.2593,
-   "lo": -108.252,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7579",
-   "prog": "kff",
-   "name": "Winter-West Unit",
-   "st": [],
-   "la": 44.1396,
-   "lo": -96.3829,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7578",
-   "prog": "kff",
-   "name": "Vermillion River",
-   "st": [],
-   "la": 44.6762,
-   "lo": -93.1133,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7577",
-   "prog": "kff",
-   "name": "Vermillion Highlands",
-   "st": [],
-   "la": 44.6826,
-   "lo": -93.0604,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7576",
-   "prog": "kff",
-   "name": "Two Rivers",
-   "st": [],
-   "la": 44.2787,
-   "lo": -95.3701,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7575",
-   "prog": "kff",
-   "name": "Talcot Lake",
-   "st": [],
-   "la": 43.8854,
-   "lo": -95.4365,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7574",
-   "prog": "kff",
-   "name": "Sodus",
-   "st": [],
-   "la": 44.2813,
-   "lo": -95.8366,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7573",
-   "prog": "kff",
-   "name": "Sandstone",
-   "st": [],
-   "la": 46.0788,
-   "lo": -92.8419,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7572",
-   "prog": "kff",
-   "name": "Roberts-Wickstrom-East Unit",
-   "st": [],
-   "la": 46.7393,
-   "lo": -93.4667,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7571",
-   "prog": "kff",
-   "name": "Phyllis Voosen",
-   "st": [],
-   "la": 44.5011,
-   "lo": -95.4723,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7570",
-   "prog": "kff",
-   "name": "Pelican Lake",
-   "st": [],
-   "la": 45.2261,
-   "lo": -93.6836,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7569",
-   "prog": "kff",
-   "name": "Lyons",
-   "st": [],
-   "la": 44.2829,
-   "lo": -95.8922,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7568",
-   "prog": "kff",
-   "name": "Lamberton",
-   "st": [],
-   "la": 44.2461,
-   "lo": -95.1989,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7567",
-   "prog": "kff",
-   "name": "Lake Maria",
-   "st": [],
-   "la": 44.17,
-   "lo": -95.8126,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7566",
-   "prog": "kff",
-   "name": "Hopeful",
-   "st": [],
-   "la": 44.2677,
-   "lo": -96.0951,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7565",
-   "prog": "kff",
-   "name": "Hole-In-Mountain",
-   "st": [],
-   "la": 44.2267,
-   "lo": -96.3065,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7564",
-   "prog": "kff",
-   "name": "Green Valley",
-   "st": [],
-   "la": 44.5159,
-   "lo": -95.7035,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7563",
-   "prog": "kff",
-   "name": "Gores Pool #3",
-   "st": [],
-   "la": 44.6726,
-   "lo": -92.7818,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7562",
-   "prog": "kff",
-   "name": "Gichigami Ziibi",
-   "st": [],
-   "la": 46.6841,
-   "lo": -92.4045,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7561",
-   "prog": "kff",
-   "name": "Flowing Prairie",
-   "st": [],
-   "la": 47.0098,
-   "lo": -96.4784,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7560",
-   "prog": "kff",
-   "name": "Fenmont",
-   "st": [],
-   "la": 43.8338,
-   "lo": -95.8223,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7559",
-   "prog": "kff",
-   "name": "Coon Creek",
-   "st": [],
-   "la": 44.3453,
-   "lo": -96.0589,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7558",
-   "prog": "kff",
-   "name": "Cedar Rock-South East Unit",
-   "st": [],
-   "la": 44.613,
-   "lo": -95.1778,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7557",
-   "prog": "kff",
-   "name": "Budolfson",
-   "st": [],
-   "la": 44.0499,
-   "lo": -95.4588,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7556",
-   "prog": "kff",
-   "name": "Bohemian",
-   "st": [],
-   "la": 44.6249,
-   "lo": -96.3991,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7555",
-   "prog": "kff",
-   "name": "Badger Lake",
-   "st": [],
-   "la": 43.9295,
-   "lo": -95.7403,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "KFF-7554",
-   "prog": "kff",
-   "name": "Altona",
-   "st": [],
-   "la": 44.1976,
-   "lo": -96.3203,
-   "found": "2026-10-27"
-  },
-  {
-   "ref": "US-8227",
-   "prog": "pota",
-   "name": "Jemez National Recreation Area",
-   "st": [
-    "NM"
-   ],
-   "la": 35.6802,
-   "lo": -106.737,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "US-13620",
-   "prog": "pota",
-   "name": "Lake Eleanor Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 45.0677,
-   "lo": -94.998,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "US-13619",
-   "prog": "pota",
-   "name": "Whitefield Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 45.0451,
-   "lo": -95.0642,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "US-13618",
-   "prog": "pota",
-   "name": "Dalton Johnson Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.9333,
-   "lo": -94.8201,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7553",
-   "prog": "kff",
-   "name": "Sunnyvale",
-   "st": [],
-   "la": 29.514,
-   "lo": -82.9985,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7552",
-   "prog": "kff",
-   "name": "Sugar Creek",
-   "st": [],
-   "la": 30.4005,
-   "lo": -82.9411,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7551",
-   "prog": "kff",
-   "name": "Stephen Foster",
-   "st": [],
-   "la": 30.3243,
-   "lo": -82.7691,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7550",
-   "prog": "kff",
-   "name": "R.V. Griffin Reserve",
-   "st": [],
-   "la": 28.0889,
-   "lo": -82.0097,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7549",
-   "prog": "kff",
-   "name": "Prairie/Shell Creek",
-   "st": [],
-   "la": 26.9936,
-   "lo": -81.9719,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7548",
-   "prog": "kff",
-   "name": "Panasoffkee Outlet",
-   "st": [],
-   "la": 28.8,
-   "lo": -82.1543,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7547",
-   "prog": "kff",
-   "name": "Mud Swamp",
-   "st": [],
-   "la": 29.8534,
-   "lo": -82.3141,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7546",
-   "prog": "kff",
-   "name": "Little Creek-McAlpin Landing",
-   "st": [],
-   "la": 30.3827,
-   "lo": -82.6682,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7545",
-   "prog": "kff",
-   "name": "Lindsey",
-   "st": [],
-   "la": 29.6985,
-   "lo": -82.9442,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7544",
-   "prog": "kff",
-   "name": "Jack Creek",
-   "st": [],
-   "la": 27.3801,
-   "lo": -81.425,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7543",
-   "prog": "kff",
-   "name": "Edward W. Chance Reserve-Coker Prairie",
-   "st": [],
-   "la": 27.499,
-   "lo": -82.312,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7542",
-   "prog": "kff",
-   "name": "Chassahowitzka River and Coastal Swamp",
-   "st": [],
-   "la": 28.7144,
-   "lo": -82.5772,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7541",
-   "prog": "kff",
-   "name": "Annutteliga Hammock",
-   "st": [],
-   "la": 28.615,
-   "lo": -82.544,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7540",
-   "prog": "kff",
-   "name": "Ocoee River",
-   "st": [],
-   "la": 35.0811,
-   "lo": -84.4898,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7539",
-   "prog": "kff",
-   "name": "Clinch River Valley",
-   "st": [],
-   "la": 36.57,
-   "lo": -83.0423,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7538",
-   "prog": "kff",
-   "name": "Treat Mountain",
-   "st": [],
-   "la": 33.902,
-   "lo": -85.3523,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7537",
-   "prog": "kff",
-   "name": "Townsend",
-   "st": [],
-   "la": 31.6176,
-   "lo": -81.6663,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7536",
-   "prog": "kff",
-   "name": "Tallulah Gorge",
-   "st": [],
-   "la": 34.7241,
-   "lo": -83.3809,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7535",
-   "prog": "kff",
-   "name": "Tallapoosa River",
-   "st": [],
-   "la": 33.8952,
-   "lo": -85.1204,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7534",
-   "prog": "kff",
-   "name": "Southern Nantahala (GA)",
-   "st": [],
-   "la": 34.9502,
-   "lo": -83.5441,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7533",
-   "prog": "kff",
-   "name": "Soap Creek",
-   "st": [],
-   "la": 33.8282,
-   "lo": -82.4707,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7532",
-   "prog": "kff",
-   "name": "Sheffield",
-   "st": [],
-   "la": 34.0242,
-   "lo": -84.9062,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7531",
-   "prog": "kff",
-   "name": "Sandhills West",
-   "st": [],
-   "la": 32.5703,
-   "lo": -84.4073,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7530",
-   "prog": "kff",
-   "name": "Rich Mountain-Cartecay Tract",
-   "st": [],
-   "la": 34.6466,
-   "lo": -84.4384,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7529",
-   "prog": "kff",
-   "name": "Morgan Lake",
-   "st": [],
-   "la": 31.6691,
-   "lo": -81.8147,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7528",
-   "prog": "kff",
-   "name": "Moody Forest",
-   "st": [],
-   "la": 31.9067,
-   "lo": -82.3119,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7527",
-   "prog": "kff",
-   "name": "Lower Broad River",
-   "st": [],
-   "la": 33.9985,
-   "lo": -82.6597,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7526",
-   "prog": "kff",
-   "name": "Little River",
-   "st": [],
-   "la": 33.3145,
-   "lo": -83.4584,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7525",
-   "prog": "kff",
-   "name": "Lanahassee Creek",
-   "st": [],
-   "la": 32.0441,
-   "lo": -84.4882,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7524",
-   "prog": "kff",
-   "name": "Lake Seminole",
-   "st": [],
-   "la": 30.847,
-   "lo": -84.662,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7523",
-   "prog": "kff",
-   "name": "Hitchiti",
-   "st": [],
-   "la": 33.05,
-   "lo": -83.7146,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7522",
-   "prog": "kff",
-   "name": "Hiltonia",
-   "st": [],
-   "la": 32.8909,
-   "lo": -81.7151,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7521",
-   "prog": "kff",
-   "name": "Cochrans Creek",
-   "st": [],
-   "la": 34.5376,
-   "lo": -84.2097,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7520",
-   "prog": "kff",
-   "name": "Chattahoochee Fall: Line Hilliard Tract",
-   "st": [],
-   "la": 32.4098,
-   "lo": -84.5838,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7519",
-   "prog": "kff",
-   "name": "Charles Elliot",
-   "st": [],
-   "la": 33.4625,
-   "lo": -83.7367,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7518",
-   "prog": "kff",
-   "name": "Ceylon",
-   "st": [],
-   "la": 30.044,
-   "lo": -81.6712,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7517",
-   "prog": "kff",
-   "name": "Big Dukes Pond",
-   "st": [],
-   "la": 32.8705,
-   "lo": -82.0357,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7516",
-   "prog": "kff",
-   "name": "Ball's Ferry Property",
-   "st": [],
-   "la": 32.783,
-   "lo": -82.9647,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7515",
-   "prog": "kff",
-   "name": "Altama Plantation",
-   "st": [],
-   "la": 31.3031,
-   "lo": -81.4835,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7514",
-   "prog": "kff",
-   "name": "Alexander",
-   "st": [],
-   "la": 33.0086,
-   "lo": -81.8983,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7513",
-   "prog": "kff",
-   "name": "Savage Highlands",
-   "st": [],
-   "la": 39.6548,
-   "lo": -79.0218,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7512",
-   "prog": "kff",
-   "name": "Cathedral Ledge",
-   "st": [],
-   "la": 44.0631,
-   "lo": -71.1674,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7511",
-   "prog": "kff",
-   "name": "Alexandria",
-   "st": [],
-   "la": 40.2295,
-   "lo": -97.3503,
-   "found": "2026-10-26"
-  },
-  {
-   "ref": "KFF-7510",
-   "prog": "kff",
-   "name": "Judith Landing",
-   "st": [],
-   "la": 47.7349,
-   "lo": -109.635,
-   "found": "2026-10-26"
   }
  ]
 }
