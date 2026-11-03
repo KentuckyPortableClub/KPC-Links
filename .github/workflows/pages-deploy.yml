@@ -5,25 +5,69 @@ name: Deploy Pages (Actions)
 # retired - update that note to this workflow's run list instead). Confirmed live Oct 28 5:06 AM
 # (deployment API: state success, sha matched HEAD) and confirmed a .claude/**-only push does NOT
 # trigger a run (chat 10's notes-only commit landed with no new workflow_dispatch/push run).
+# Nov 3 (Brandon YES 5:29 PM): THE PUBLISHING GAP. Bot saves are pushed with the job's own GitHub token, and GitHub never starts
+# another workflow from such a push, so NOTHING a bot saved here went live until a person pushed. Now a timer (every 2 hours,
+# like KPC-Data's kpc-pages-sync) publishes when something the site reads changed since the last live copy, and skips
+# otherwise. Bookkeeping (bot notes, status, the watchdog, workflow files) never counts as a site change, for the timer or a push.
 on:
   push:
     branches: [main]
     paths-ignore:
       - '.claude/**'
       - '.github/**'   # PR2 (Nov 2): a bot or workflow change is not a site change (Nov 2: 160 such commits in a day each rebuilt the site)
+      - 'data/status/**'   # Nov 3: bot bookkeeping
+  schedule:
+    - cron: '41 */2 * * *'   # Nov 3: every 2 hours; publishes only when the site's files changed since the live copy
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read        # Nov 3: the timer looks up the last deploy
+  deployments: read    # Nov 3: the timer looks up the live copy's commit
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  changed:
+    # Nov 3: the timer's 'anything new for the site?' look. A push or a by-hand run always publishes (as before).
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      go: ${{ steps.c.outputs.go }}
+    steps:
+      - id: c
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R: ${{ github.repository }}
+          EV: ${{ github.event_name }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          if [ "$EV" != schedule ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # the commit that is live now: the newest github-pages deployment, else the newest successful run of this workflow
+          LIVE=$(gh api "repos/$R/deployments?environment=github-pages&per_page=1" --jq '.[0].sha // empty' 2>/dev/null || true)
+          [ -n "$LIVE" ] || LIVE=$(gh api "repos/$R/actions/workflows/pages-deploy.yml/runs?status=success&per_page=1" --jq '.workflow_runs[0].head_sha // empty' 2>/dev/null || true)
+          if [ -z "$LIVE" ]; then echo "::notice title=Pages timer::could not find the live copy's commit: publishing"; echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$LIVE" = "$HEAD_SHA" ]; then echo "::notice title=Pages timer::the live copy is main (${HEAD_SHA:0:8}): nothing to publish"; echo "go=no" >> "$GITHUB_OUTPUT"; exit 0; fi
+          gh api "repos/$R/compare/$LIVE...$HEAD_SHA?per_page=300" --jq '.files[].filename' > /tmp/files.txt 2>/dev/null || { echo "::notice title=Pages timer::could not compare ${LIVE:0:8}...${HEAD_SHA:0:8}: publishing"; echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; }
+          N=$(wc -l < /tmp/files.txt)
+          # bookkeeping = not a site change (same list as the push filter above)
+          SITE=$(grep -v -E '^(\.claude/|\.github/|data/status/)' /tmp/files.txt | wc -l)
+          if [ "$N" -ge 300 ] || [ "$SITE" -gt 0 ]; then
+            echo "::notice title=Pages timer::$SITE site file(s) changed since the live copy (${LIVE:0:8}): publishing ${HEAD_SHA:0:8}"
+            grep -v -E '^(\.claude/|\.github/|data/status/)' /tmp/files.txt | head -20
+            echo "go=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice title=Pages timer::only bookkeeping changed since the live copy (${LIVE:0:8}; $N file(s)): nothing to publish"
+            echo "go=no" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: changed
+    if: ${{ needs.changed.outputs.go == 'yes' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

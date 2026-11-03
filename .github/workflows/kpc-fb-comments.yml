@@ -2,10 +2,10 @@ name: KPC Facebook comments
 # Sends new comments on the club's Facebook posts to Discord, with a link to reply and a suggested answer
 # for the questions we get asked a lot. Since Oct 24 it also answers the clear-cut ones on Facebook itself
 # (fixed answers, switch in data/fb-comments-auto.json); everything else waits for a person.
-# Hourly. Never fails, never emails. Nothing a visitor wrote is ever saved in this repo.
+# Every 2 hours (Nov 3; was hourly). Never fails, never emails. Nothing a visitor wrote is ever saved in this repo.
 on:
   schedule:
-    - cron: '32 * * * *'   # G9 Nov 2: was '35 * * * *' (spread the start times; now 3 min earlier)
+    - cron: '32 */2 * * *'   # Nov 3 (Brandon YES 5:29 PM): every 2 hours (was hourly '32 * * * *')   # G9 Nov 2: was '35 * * * *' (spread the start times; now 3 min earlier)
   workflow_dispatch:
     inputs:
       dry_run:

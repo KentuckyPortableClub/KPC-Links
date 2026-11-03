@@ -87,6 +87,18 @@ jobs:
           import json, os
           if os.environ.get('FROZEN') == '1':
               print('groups=[]'); print(f"::notice title=US key plan::FROZEN: build {os.environ.get('FROZEN_BUILD')} waits for chat 11 / its release; nothing builds (BOT A's answers were still saved)"); raise SystemExit(0)
+          # Nov 3 (Brandon YES 5:29 PM): a nightly/backup start (or the watchdog's late restart of one) does nothing when a build
+          # already FINISHED today after 09:17 UTC (the nightly time). Nov 3 had 4 builds: the backup and two late restarts rebuilt
+          # the same states. The monthly run and by-hand runs with states are never skipped.
+          import datetime as _dt
+          if os.environ.get('SCHED') in ('17 9 * * *', '46 11 * * *') and not (os.environ.get('STATES') or '').strip():
+              try: _b = json.load(open('data/us-key/index.json', encoding='utf-8')).get('built') or ''
+              except Exception: _b = ''
+              _now = _dt.datetime.now(_dt.timezone.utc); _t0 = _now.replace(hour=9, minute=17, second=0, microsecond=0)
+              try: _bt = _dt.datetime.strptime(_b, '%Y-%m-%d %H:%M UTC').replace(tzinfo=_dt.timezone.utc)
+              except Exception: _bt = None
+              if _bt and _now >= _t0 and _bt >= _t0:
+                  print('groups=[]'); print(f"::notice title=US key plan::a build already finished today at {_b} (after the 09:17 UTC nightly time): this {os.environ.get('SCHED')} start does nothing"); raise SystemExit(0)
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
           want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
           if want == ['ALL'] or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / the MONTHLY cron = every state
@@ -270,14 +282,28 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
-          # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
+          # Nov 3 (Brandon YES 5:29 PM): the list was NEVER cleared: GROUPS is a reserved bash variable (the user's group ids), so
+          # 'export GROUPS=...' did nothing and python read nothing. Now KPC_DONE_GROUPS. And only a FINISHED build clears it: this run's
+          # stamp (US-<run id>) must be in data/us-key/index.json; parts named 'failed' in the stamp stay on the list.
+          python3 - <<'PY' || true
+          import json, os
+          try: d = json.load(open('data/us-key/index.json', encoding='utf-8'))
+          except Exception: d = {}
+          if str(d.get('build') or '') == f"US-{os.environ.get('GITHUB_RUN_ID')}":
+              open('/tmp/kpc-us-build-finished', 'w').write(' '.join(d.get('failed') or []))
+              print(f"::notice title=US key save::build {d.get('build')} finished: its states come off answers-states.txt")
+          else:
+              print(f"::warning title=US key save::no finished build stamp for this run (index says {d.get('build')!r}): answers-states.txt is kept")
+          PY
           cat > /tmp/done-states.py <<'PY'
           import json, os, pathlib
-          done = {s for g in json.loads(os.environ.get('GROUPS') or '[]') for s in g.get('states', '').split()}
+          ok = pathlib.Path('/tmp/kpc-us-build-finished')
+          failed = set(ok.read_text().split()) if ok.exists() else set()
+          done = {s for g in json.loads(os.environ.get('KPC_DONE_GROUPS') or '[]') for s in g.get('states', '').split()} - failed
           p = pathlib.Path('data/us-key/answers-states.txt')
-          if p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
+          if ok.exists() and p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
           PY
-          export GROUPS="$PLAN_GROUPS"
+          export KPC_DONE_GROUPS="$PLAN_GROUPS"
           python3 /tmp/done-states.py || echo '::error title=US key save::could not take tonight'"'"'s states off answers-states.txt'
           # Nov 2 review: save by overwrite. The files THIS run built (state files, index, layers, zip files, review pages, status)
           # are copied on top of the newest main; the hand-edited files (overrides, the ledger) are never copied back, and the
