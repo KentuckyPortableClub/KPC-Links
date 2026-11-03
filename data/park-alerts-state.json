@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02 19:59",
+ "updated": "2026-11-03 03:04",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -856,9 +856,9 @@
    "routine": true,
    "cat": "information",
    "first": "2026-11-02",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   },
   "nps-B4E1D566-7261-4427-87F1-63AD9492570C": {
@@ -869,9 +869,9 @@
    "routine": true,
    "cat": "information",
    "first": "2026-11-02",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
