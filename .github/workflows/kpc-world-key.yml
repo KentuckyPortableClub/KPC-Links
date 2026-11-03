@@ -64,9 +64,13 @@ jobs:
           [ -n "$NIGHT_LIST" ] && COUNTRIES="$NIGHT_LIST"
           SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
           ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
-          for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || echo "::notice title=World key $c::stopped with an error (see the traceback above)"; done
+          # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp below names it (chat 11 must not grade it as a full build)
+          : > /tmp/world-failed.txt
+          for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || { echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> /tmp/world-failed.txt; }; done
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
         if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        env:
+          KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ always() && env.SKIP != '1' }}

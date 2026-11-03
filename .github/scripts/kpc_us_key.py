@@ -1603,6 +1603,20 @@ def run(st):
     return counts
 
 
+# Nov 2 review (Mapping #7): a rebuild used to write index.json without the build stamp, so the stamp was simply lost.
+# The old stamp is now kept as previous_build / previous_built (NOT as 'build': the content changed, so it is not that build any
+# more). The workflow that saves the rebuild stamps it again (kpc_key_freeze.py stamp); if one forgets, the copy bot gives the
+# new content its own id, which is honest.
+def _with_old_stamp(d):
+    try: _o = json.load(open(OUT / 'index.json'))
+    except Exception: _o = {}  # noqa: BLE001
+    _o = _o if isinstance(_o, dict) else {}
+    _pb, _pt = _o.get('build') or _o.get('previous_build'), _o.get('built') or _o.get('previous_built')
+    if _pb: d['previous_build'] = _pb
+    if _pt: d['previous_built'] = _pt
+    return d
+
+
 idx = {}
 try: idx = json.load(open(OUT / 'index.json')).get('states', {})
 except Exception: pass  # noqa: BLE001
@@ -1631,7 +1645,7 @@ for st in STATES:
     if c:
         idx[st] = c; done.append(st); c['seconds'] = STATE_S[st]
         print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park, {STATE_S[st]} s", flush=True)
-    save_json(OUT / 'index.json', {'states': idx})
+    save_json(OUT / 'index.json', _with_old_stamp({'states': idx}))
     # the map pages draw joined pieces live: tell them each layer's query url + name field (layers found at run time too)
     try: LJ = json.load(open(OUT / 'layers.json'))
     except Exception: LJ = {}  # noqa: BLE001

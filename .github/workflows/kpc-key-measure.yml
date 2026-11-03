@@ -94,8 +94,23 @@ jobs:
           open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a').write(s + '\n')
           print(f"::notice title=Measure::joins +{T['gained']} / -{T['lost']}; pins outside {T['out_before']} -> {T['out_after']} (full table in the run summary)")
           PY
-      - name: Keep them (only if asked)
+      - name: FREEZE CHECK (Nov 2 review, Mapping #7) - the rebuilt key is not kept while chat 11 grades a held build
         if: ${{ inputs.commit }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          case "${{ inputs.scope }}" in world) k=world-key ;; ca) k=ca-key ;; *) k=us-key ;; esac
+          echo "KEYKIND=$k" >> "$GITHUB_ENV"
+          python3 .github/scripts/kpc_key_freeze.py check "$k" || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+      - name: Not kept (frozen)
+        if: ${{ inputs.commit && env.FROZEN == '1' }}
+        run: |
+          echo "::warning title=Measure::the key is frozen (build ${FROZEN_BUILD}), so the comparison above is shown and nothing was saved"
+      - name: Stamp the rebuilt key (Nov 2 review, Mapping #7) - a kept rebuild is a new build with its own id
+        if: ${{ inputs.commit && env.FROZEN != '1' }}
+        run: python3 .github/scripts/kpc_key_freeze.py stamp "$KEYKIND" || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+      - name: Keep them (only if asked)
+        if: ${{ inputs.commit && env.FROZEN != '1' }}
         id: kept_green_4
         continue-on-error: true
         run: |

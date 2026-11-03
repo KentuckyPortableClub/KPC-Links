@@ -23,6 +23,10 @@ Anything else (new file, deleted file, unreadable, a real change) is left alone.
 import json, os, re, subprocess, sys
 
 STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at'}
+# Nov 2 review (Quality 5b): the waiting room's verdicts.json says 'checked' and heartbeat.json says 'ok'. They count as stamps only
+# when the value is a date / time, so a 'checked' or 'ok' that holds a real answer is still a change.
+STAMP_IF_TIME = {'checked', 'ok'}
+IS_TIME = re.compile(r'^\d{4}-\d\d-\d\d([T ]|$)')
 RUN = re.compile(r'actions/runs/\d+(/jobs?/\d+)?(/attempts/\d+)?')
 CLOCK = [(re.compile(r'(\d{4}-\d\d-\d\d)[T ]\d\d:\d\d(:\d\d(\.\d+)?)?(Z|[+-]\d\d:?\d\d| ?UTC| ?CST| ?CDT| ?CT)?'), r'\1'),
          (re.compile(r'\b\d{1,2}:\d\d(:\d\d)?( ?[AaPp]\.?[Mm]\.?)?( ?(UTC|CST|CDT|CT|Z))?\b'), 'HH:MM'),
@@ -36,7 +40,7 @@ def norm(x, key=None):
     if isinstance(x, dict): return {k: norm(v, k) for k, v in x.items()}
     if isinstance(x, list): return [norm(v) for v in x]
     if isinstance(x, str):
-        if key in STAMP: return x[:10]   # the date part still counts
+        if key in STAMP or (key in STAMP_IF_TIME and IS_TIME.match(x)): return x[:10]   # the date part still counts
         return RUN.sub('actions/runs/N', x)
     return x
 
@@ -90,6 +94,64 @@ if __name__ == '__main__':
     sys.exit(0)
 KPC_STAMP_PY
 }
+# Nov 2 review (Quality 5a): files that several bots write are MERGED with main's copy instead of copied over it whole:
+#   data/waiting/*.jsonl (append-only)  main's lines + this job's lines that main does not have yet (no line is lost)
+#   data/waiting/verdicts.json          results by file path: this job's result wins; main's result is kept while that file is still held
+#   data/waiting/verdicts-last.json     by path, this job wins
+#   data/waiting/held-since.json        by path, the EARLIER date wins; a file that is gone from data/waiting/in/, or that this job
+#                                       judged and did not hold, drops out
+# Anything that cannot be read is copied as before (this job's copy). KPC_SAVE_MERGE=off switches it off.
+kpc_merge_shared() {   # $1 = dir holding main's copies; run in the repo after this job's files are copied on top
+KPC_MAIN="$1" python3 - "${CH[@]}" <<'KPC_MERGE_PY' || true
+import json, os, sys
+M = os.environ['KPC_MAIN']
+def load(p):
+    with open(p, encoding='utf-8') as fh: return json.load(fh)
+def held(path): return os.path.exists(os.path.join('data/waiting/in', path))
+n = 0
+for f in sys.argv[1:]:
+    mf = os.path.join(M, f)
+    if not os.path.isfile(mf) or not os.path.isfile(f): continue
+    try:
+        if f.startswith('data/waiting/') and f.count('/') == 2 and f.endswith('.jsonl'):
+            main = open(mf, encoding='utf-8').read().splitlines(); ours = open(f, encoding='utf-8').read().splitlines()
+            have = set(main); add = [l for l in ours if l not in have]
+            out = main + add
+            if out != ours:
+                with open(f, 'w', encoding='utf-8') as fh: fh.write('\n'.join(out) + ('\n' if out else ''))
+                n += 1
+        elif f == 'data/waiting/verdicts.json':
+            a, b = load(mf), load(f)
+            mine = {r.get('path'): r for r in b.get('results') or [] if isinstance(r, dict)}
+            extra = [r for r in a.get('results') or [] if isinstance(r, dict) and r.get('path') not in mine and held(r.get('path') or '')]
+            if extra:
+                b['results'] = list(b.get('results') or []) + extra
+                with open(f, 'w', encoding='utf-8') as fh: json.dump(b, fh, indent=1, ensure_ascii=False)
+                n += 1
+        elif f == 'data/waiting/verdicts-last.json':
+            a, b = load(mf), load(f)
+            c = {**a, **b}
+            if c != b:
+                with open(f, 'w', encoding='utf-8') as fh: json.dump(c, fh, ensure_ascii=False, separators=(',', ':'))
+                n += 1
+        elif f == 'data/waiting/held-since.json':
+            a, b = load(mf), load(f)
+            try: mine = {r.get('path'): r.get('verdict') for r in load('data/waiting/verdicts.json').get('results') or [] if isinstance(r, dict)}
+            except Exception: mine = {}  # noqa: BLE001
+            c = {}
+            for k in set(a) | set(b):
+                if not held(k): continue
+                if k not in b and mine.get(k) not in (None, 'HOLD'): continue   # judged here and not held any more
+                v = [x for x in (a.get(k), b.get(k)) if x]
+                if v: c[k] = min(v)
+            if c != b:
+                with open(f, 'w', encoding='utf-8') as fh: json.dump(c, fh, indent=1)
+                n += 1
+    except Exception as e:  # noqa: BLE001
+        print(f'merge: {f} copied as this job wrote it ({type(e).__name__}: {str(e)[:120]})')
+if n: print(f'merge: {n} shared file(s) merged with the newest main instead of overwritten')
+KPC_MERGE_PY
+}
 for p in "$@"; do git add -A -- "$p" 2>/dev/null; done   # Nov 1 (chat 10): one path at a time: ONE missing path (data/intake/found-layers-stage2.json) made git add nothing at all, so the world finder saved nothing since Oct 30
 # B7 (Oct 30): file names are read NUL-separated, so a path with a space is one path, not two
 mapfile -d '' CH < <(git diff --cached --name-only -z --diff-filter=AMR); mapfile -d '' DEL < <(git diff --cached --name-only -z --diff-filter=D)
@@ -98,8 +160,15 @@ T=$(mktemp -d)
 for f in "${CH[@]}"; do mkdir -p "$T/$(dirname "$f")" && cp -a "$f" "$T/$f"; done
 for i in 1 2 3 4 5 6; do
   if git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD; then
+    M=$(mktemp -d)
+    if [ "${KPC_SAVE_MERGE:-on}" != off ]; then
+      for f in "${CH[@]}"; do case "$f" in data/waiting/*.jsonl|data/waiting/verdicts.json|data/waiting/verdicts-last.json|data/waiting/held-since.json)
+        [ -f "$f" ] && mkdir -p "$M/$(dirname "$f")" && cp -a "$f" "$M/$f" ;; esac; done
+    fi
     cp -a "$T"/. . 2>/dev/null
     for f in "${DEL[@]}"; do git rm -q --ignore-unmatch -- "$f" >/dev/null 2>&1; done
+    [ "${KPC_SAVE_MERGE:-on}" != off ] && kpc_merge_shared "$M"
+    rm -rf "$M"
     [ ${#CH[@]} -gt 0 ] && git add -A -- "${CH[@]}" 2>/dev/null
     kpc_stamp_filter
     git diff --cached --quiet && { echo "nothing new to save"; exit 0; }

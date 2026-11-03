@@ -35,9 +35,17 @@ def stamp(kind):
     except Exception: d = {}  # noqa: BLE001
     bid = f"{PRE[kind]}-{os.environ.get('GITHUB_RUN_ID') or time.strftime('%Y%m%d%H%M')}"
     d['build'] = bid; d['built'] = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
+    # Nov 2 review (Mapping #18): parts that failed in this build are named in the stamp (KPC_BUILD_FAILED_FILE = one code per line)
+    failed = []
+    ff = os.environ.get('KPC_BUILD_FAILED_FILE')
+    if ff and os.path.exists(ff):
+        failed = sorted({l.strip() for l in open(ff, encoding='utf-8') if l.strip()})
+    if failed: d['failed'] = failed; d['complete'] = False
+    else: d.pop('failed', None); d.pop('complete', None)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(d, open(p, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
-    notice(f'{kind} build stamped {bid}: chat 11 grades THIS build; its YES must say build {bid}')
+    notice(f'{kind} build stamped {bid}: chat 11 grades THIS build; its YES must say build {bid}'
+           + (f" -- NOT a full build: {len(failed)} part(s) failed: {' '.join(failed[:20])}" if failed else ''))
     print(bid)
 
 
