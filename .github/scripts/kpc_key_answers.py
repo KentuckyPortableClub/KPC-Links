@@ -106,7 +106,7 @@ def main():
     ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
     led = load(LEDGER, {})
     today = dt.date.today().isoformat(); stamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M')
-    n_yes = n_no = n_alias = n_skip = n_same = 0; skipped = []; states = set(); touched = set()
+    n_yes = n_no = n_alias = n_skip = n_same = n_none = 0; skipped = []; states = set(); touched = set()
     # last answer wins: rows are read file by file (sorted), in file order; the latest row for a (file, ref, id) is the one applied
     skipped_files = []
     for f in sorted(glob.glob(str(D / 'data/waiting/questions/*.json'))):
@@ -143,6 +143,10 @@ def main():
                     if kid not in [str(x) for x in v['join']]: v['join'].append(kid)
                     v.setdefault('fp', {})[kid] = [nm, round(float(ac)) if ac not in (None, '') else 0]
                     n_yes += 1
+                    # Nov 2 evening (Mapping; quality notes 2026-11-02, US-12987 Klamath + US-4783 Beltrami Island): an older
+                    # 'none' (a person found no outline of its own) stayed next to the YES join and contradicted it; it would also
+                    # hide the park's check list again if the joined record ever went away. A YES join replaces it.
+                    if v.pop('none', None): n_none += 1; v['why'] = (v.get('why', '') + ' · ' if v.get('why') else '') + f"{stamp}: the older 'none' (no outline of its own) is replaced by this YES join"
             else:
                 v['join'] = [x for x in v.get('join', []) if str(x) != kid]
                 if not v['join']: v.pop('join', None)
@@ -158,7 +162,13 @@ def main():
             v['when'] = today
             led[lk] = {'answer': ans, 'checked_by': row.get('checked_by'), 'applied': stamp}
             touched.add(ref); st = st_of(row); states.add(st) if st else None
-    msg = f"{n_yes} yes / {n_no} no / {n_alias} alias applied on {len(touched)} parks; {n_same} already applied; {n_skip} skipped; states: {' '.join(sorted(states)) or '-'}"
+    # the same for parks a YES reached BEFORE this fix (the ledger skips them now): their last note is this bot's YES join
+    for ref, v in P.items():
+        last = str(v.get('why') or '').rsplit(' · ', 1)[-1]
+        if v.get('none') and v.get('join') and re.search(r" row YES '", last) and 'applied by kpc_key_answers' in last:
+            v.pop('none'); n_none += 1; touched.add(ref)
+            v['why'] = v['why'] + f" · {stamp}: the older 'none' (no outline of its own) is replaced by this YES join"
+    msg = f"{n_yes} yes / {n_no} no / {n_alias} alias applied on {len(touched)} parks; {n_same} already applied; {n_skip} skipped; {n_none} old 'none' notes replaced by a YES join; states: {' '.join(sorted(states)) or '-'}"
     if skipped_files: msg += f"; files not read (KPC_ANSWERS_SKIP): {' '.join(skipped_files)}"
     if DRY:
         print('DRY ' + msg); [print('  skip ' + s) for s in skipped[:20]]; return

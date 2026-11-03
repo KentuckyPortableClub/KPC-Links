@@ -6,7 +6,7 @@
 kpc_us_key.py also calls failures() on start-up and refuses to write answer keys while any case is wrong, so a
 broken rule can never reach the data even if it slips through. Nothing here emails anybody.
 """
-import json
+import os, json
 import pathlib
 import sys
 import types
@@ -33,12 +33,27 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names', 'ca_nam
     us = _load('kpc_us_key.py', '\nidx = {}\n') if 'us_names' in groups else None
     for c in (CASES.get('us_names', []) if us else []):
         a, b = c['a'], c['b']
-        rec = {'OBJECTID': 1, 'Unit_Nm': b, 'Loc_Nm': '', '_k': us.kinds(b)}
+        rec = {'OBJECTID': 1, 'Unit_Nm': b, 'Loc_Nm': c.get('loc', ''), '_k': us.kinds(b)}
+        # batch 1b: a case for a rule behind a switch ('switch': 'KPC_PIECE_NAME') is tested with that switch ON, whatever
+        # this run's setting is, so the rule stays tested while it is OFF (the default) and a run with it OFF still builds
+        sw = c.get('switch'); old = os.environ.get(sw) if sw else None
+        if sw: os.environ[sw] = '1'
         # the very function run() calls, with the record right next to the pin - the case where a wrong name hurts most
-        got = bool(us.join_how(a, us.kinds(a), rec, True))
+        try: got = bool(us.join_how(a, us.kinds(a), rec, True))
+        finally:
+            if sw and old is None: os.environ.pop(sw, None)
+            elif sw: os.environ[sw] = old
         ok = got == c['same']
         say(('ok   ' if ok else 'FAIL ') + f"US   {a!r} vs {b!r}: {'same' if got else 'different'}")
         if not ok: out.append(f"US names: {a!r} vs {b!r} should be {'same' if c['same'] else 'different'} — {c['why']}")
+
+    # batch 1b: the rule 18 piece test on its own (S.E. = South East; Alabama 'Forever Wild Tract' names no piece)
+    if us and us.KR is not None:
+        for c in CASES.get('piece_names', []):
+            got = us.KR.piece_ok(c['a'], c['b'], c.get('loc'))[0]
+            ok = got == c['same']
+            say(('ok   ' if ok else 'FAIL ') + f"PIECE {c['a']!r} vs {c['b']!r}: {'same piece' if got else 'refused'}")
+            if not ok: out.append(f"Piece names: {c['a']!r} vs {c['b']!r} should be {'same' if c['same'] else 'refused'} — {c['why']}")
 
     # Oct 22: the new check's extra name reading (shadow only): same place under two agencies' words, and kind clashes
     for c in (CASES.get('shadow_names', []) if us else []):
@@ -86,7 +101,7 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names', 'ca_nam
 
 if __name__ == '__main__':
     bad = failures(verbose=True)
-    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'shadow_names', 'alerts', 'world_names', 'ca_names'))
+    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'shadow_names', 'alerts', 'world_names', 'ca_names', 'piece_names'))
     print(f"\n{n - len(bad)} of {n} golden cases right.")
     for b in bad:
         print('  ✗ ' + b)

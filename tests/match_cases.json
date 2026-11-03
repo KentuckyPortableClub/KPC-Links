@@ -1,5 +1,5 @@
 {
- "note": "THE GOLDEN CASES. Every one is a real place that went wrong or right for a reason worth remembering. A matching rule that breaks any of these does not get to write answer keys (kpc_us_key.py checks on start-up) and must not be pushed (run python3 tests/run_match_tests.py first). Add a case whenever a wrong join or a wrong alert is found and fixed - with the story in 'why' - so it can never come back. Fable's review, Oct 22: 'keep a golden file of the known cases ... the next rule change will break something old otherwise; it is only a matter of which one.'",
+ "note": "THE GOLDEN CASES. Every one is a real place that went wrong or right for a reason worth remembering. A matching rule that breaks any of these does not get to write answer keys (kpc_us_key.py checks on start-up) and must not be pushed (run python3 tests/run_match_tests.py first). Add a case whenever a wrong join or a wrong alert is found and fixed - with the story in 'why' - so it can never come back. Fable's review, Oct 22: 'keep a golden file of the known cases ... the next rule change will break something old otherwise; it is only a matter of which one.' batch 1b: piece_names = the rule 18 piece test alone (kpc_key_rules.piece_ok), for names that join by another path (alias, a person, Recreation.gov) but must never be refused by the piece test.",
  "us_names": [
   {
    "a": "Settler's Cove State Recreation Site",
@@ -66,6 +66,67 @@
    "b": "White Oak Lake State Park",
    "same": false,
    "why": "Oct 22: Upper / Lower halves are different places (kept as a case for the world + Canada ports too)."
+  },
+  {
+   "a": "Salinas Pueblo Missions, Abo Unit National Monument",
+   "b": "Salinas Pueblo Missions National Monument",
+   "same": false,
+   "why": "Nov 2 (rule 18, KPC_PIECE_NAME): the park is one UNIT; the whole monument is not its outline (map audit SPILL US-11813).",
+   "switch": "KPC_PIECE_NAME"
+  },
+  {
+   "a": "Chattahoochee Fall Line Hilliard Tract Wildlife Management Area",
+   "b": "Chattahoochee Fall Line Wildlife Management Area",
+   "same": false,
+   "why": "Nov 2 (rule 18): a named tract is not the whole WMA (map audit SPILL US-9797).",
+   "switch": "KPC_PIECE_NAME"
+  },
+  {
+   "a": "Chattahoochee Fall Line Hilliard Tract Wildlife Management Area",
+   "b": "CHATTAHOOCHEE FALL LINE WMA - HILLIARD",
+   "same": true,
+   "why": "Nov 2: the record that names the tract still joins."
+  },
+  {
+   "a": "Las Palomas , Anacua Unit Wildlife Management Area",
+   "b": "Las Palomas WMA - Taormina Unit",
+   "same": false,
+   "why": "Nov 2 (rule 18): a sibling unit is another place (US-6571 had joined every Las Palomas unit).",
+   "switch": "KPC_PIECE_NAME"
+  },
+  {
+   "a": "Playa Lakes, Dimmitt Unit Wildlife Management Area",
+   "b": "Playa Lakes WMA-Dimmit Unit",
+   "same": true,
+   "why": "Nov 2: a one-letter spelling difference in the piece's own word (Dimmitt / Dimmit) still names the piece."
+  },
+  {
+   "a": "Rio Bonito Acquired Lands: Salazar Tract, BLM Recreation Management Area",
+   "b": "Rio Bonito Acquired Lands Tract 4",
+   "same": false,
+   "why": "Nov 2 (rule 18): Tract 4 is not the Salazar Tract (US-11866 had joined Tracts 1-4).",
+   "switch": "KPC_PIECE_NAME"
+  },
+  {
+   "a": "Wolf River Wildlife Management Area",
+   "b": "Wolf River WMA Unit 1",
+   "same": true,
+   "why": "Nov 2: a numbered piece of the area is still part of the whole park (the Oct 22 rule; unchanged)."
+  },
+  {
+   "a": "Steese National Conservation Area",
+   "b": "Eastern Interior Field Office",
+   "loc": "Steese National Conservation Area",
+   "same": true,
+   "switch": "KPC_NO_OFFICE_JOIN",
+   "why": "batch 1b (Quality): PAD-US 2162 keeps the office in Unit_Nm and the real place in Loc_Nm; the place name decides."
+  },
+  {
+   "a": "Upper Missouri River BLM Wild and Scenic River",
+   "b": "Upper Missouri River Breaks National Monument Field Office",
+   "same": false,
+   "switch": "KPC_NO_OFFICE_JOIN",
+   "why": "Nov 2: an office with no real place name never joins by name."
   }
  ],
  "alerts": [
@@ -241,6 +302,38 @@
    "b": "Saint-Jean-sur-Richelieu",
    "same": true,
    "why": "Oct 24: French 'sur' is not a side."
+  }
+ ],
+ "piece_names": [
+  {
+   "a": "Gordon W. Yeager-S.E. Unit Wildlife Management Area",
+   "b": "Gordon W. Yeager WMA: South East Unit",
+   "same": true,
+   "why": "batch 1b (Quality): 'S.E.' and 'South East' are the same piece word (US-13221; MN DNR WMA objectid 68)."
+  },
+  {
+   "a": "Gordon W. Yeager-S.E. Unit Wildlife Management Area",
+   "b": "Gordon W. Yeager State Wildlife Management Area",
+   "same": false,
+   "why": "batch 1b: the South East Unit is still not the whole WMA (rule 18)."
+  },
+  {
+   "a": "Hinds Road Outcrop Forever Wild Tract State Conservation Area",
+   "b": "Hinds Road Outcrop",
+   "same": true,
+   "why": "batch 1b (Quality): Alabama's 'Forever Wild Tract' is a program name, not a piece (US-12740)."
+  },
+  {
+   "a": "Fort Toulouse Forever Wild Tract State Wildlife Area",
+   "b": "Ft. Toulouse Tract",
+   "same": true,
+   "why": "batch 1b (Quality): 'Forever Wild Tract' is a program name, not a piece (US-13081); the piece test must not refuse it."
+  },
+  {
+   "a": "Salinas Pueblo Missions, Quarai unit, National Monument",
+   "b": "Salinas Pueblo Missions National Monument",
+   "same": false,
+   "why": "batch 1b: the piece test alone (the whole monument does not name Quarai); the tract exception, not the name, gives Quarai its outline."
   }
  ]
 }

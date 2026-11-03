@@ -224,13 +224,39 @@ def same_kind(ka, kb): return not ka or not kb or bool(ka & kb) or any(ka & c an
 def words(s): return set(w for w in norm(s).split() if len(w) > 2)
 
 
-def join_how(name, kp, a, close):
+def piece_why(name, a):
+    """Nov 2 (mapping agent, rule 18; switch KPC_PIECE_NAME): why record `a` may not join the park `name` because the park is a
+    named PIECE (unit / tract / parcel / zone) and the record does not name that piece; '' when it may. Before: norm()'s
+    'starts the same way' allowance joined 'Salinas Pueblo Missions, Abo Unit' to the whole monument, both Chattahoochee Fall
+    Line tracts to the whole WMA, 'Las Palomas, Anacua Unit' to every other Las Palomas unit."""
+    if not _kr('KPC_PIECE_NAME'): return ''
+    nm, loc = a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('Loc_Nm')
+    if _office(nm) and loc and not _office(loc): nm, loc = loc, None   # batch 1b: an office's Unit_Nm is not the record's place name
+    ok, why = KR.piece_ok(name, nm, loc)
+    return '' if ok else why
+
+
+def _office(t):
+    """A name that is an office or district, not a place ('Eastern Interior Field Office', 'Ranger District')."""
+    return bool(t) and (KM.is_admin(t) or bool(re.search(r'field office|district office|ranger district', str(t), re.I)))
+
+
+def join_how(name, kp, a, close, rules=True):
     """How - if at all - the POTA park called `name` (kinds `kp`) joins official record `a`. `close` = within
     about 0.1 degree of the park's pin. This is the ONLY place the decision is made: run() calls it and so do the
     golden tests, so a test can never again check a different path from the one the matcher really takes (Oct 22:
-    the first Upper/Lower fix went into exact_name, which was never the path White Oak Lake actually joined by)."""
+    the first Upper/Lower fix went into exact_name, which was never the path White Oak Lake actually joined by).
+    rules=False skips the Nov 2 refusals (only used to tell 'refused by a rule' from 'no match' for the check list)."""
     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
     loc = a.get('Loc_Nm')
+    if rules:
+        # Nov 2 (mapping agent; KPC_NO_OFFICE_JOIN): an office is not a park. Batch 1b (Quality): PAD-US 2162 / 2165 carry the
+        # office in Unit_Nm ('Eastern Interior Field Office') but the real place in Loc_Nm ('Steese National Conservation Area',
+        # 'White Mountains National Recreation Area'): then the place name is tested, never the office's. No place name = no join.
+        if _kr('KPC_NO_OFFICE_JOIN') and _office(nm):
+            if not loc or _office(loc): return None
+            nm, loc = loc, None
+        if piece_why(name, a): return None
     if name_ok(name, nm, kp, a['_k']) or (loc and name_ok(name, loc, kp, a['_k'])):
         return 'name'
     if isinstance(a.get('OBJECTID'), int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
@@ -270,7 +296,9 @@ def fields():
             m = re.search(r'PAD-US\s*(?:version\s*)?(\d+(?:\.\d+)*)', ' '.join(str(info.get(k) or '') for k in ('description', 'copyrightText', 'name')), re.I)
             PADVER[0] = 'PAD-US ' + m.group(1) if m else 'PAD-US'
         except Exception: have = set()  # noqa: BLE001
-        want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category'.split(',')
+        # Nov 2 (mapping agent): + Agg_Src, the data provider of each record (FWS PAD-US 3.0 / 4.0, a state's list, TNC...): the
+        # KPC_PADUS_DEDUPE switch needs it, and a saved copy only carries it once it was read with this list (GEO_CACHE_MODE=refresh)
+        want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category,Agg_Src'.split(',')
         FIELDS = ','.join(w for w in want if not have or w in have)
         notice('PAD-US fields', FIELDS + (' (field list not read)' if not have else ''))
     return FIELDS
@@ -890,6 +918,54 @@ try:
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_rules as KR
 except Exception: KR = None  # noqa: BLE001
 def _kr(name): return KR is not None and KR.on(name)
+
+
+def _hand_ids(recs, P):
+    """batch 1b (Quality, the Canada lesson): every record id a person joined by hand, AFTER the fingerprint re-find: an
+    overrides 'join' id that is gone from this read is found again by its saved name + acres (within 10%) near the pin, the
+    same test the join path uses, and the NEW id is kept too. Before, only the old raw ids were kept."""
+    out = set()
+    for ref, v in OVR.items():
+        v = v or {}
+        r = P.get(ref) or []   # this state's parks (P from run())
+        la, lo = (r[5], r[6]) if len(r) > 6 else (None, None)
+        if la is None and ref in pins(): la, lo = pins()[ref]
+        for x in v.get('join') or []:
+            out.add(str(x))
+            fp = (v.get('fp') or {}).get(str(x))
+            if not fp or any(_oid(a) == str(x) for a in recs): continue
+            fn, fa = fp[:2]
+            out |= {_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a.get('_bb'), .6))
+                    and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))}
+    return out
+
+
+def _share_inside(a, b, n=24):
+    """batch 1b: the share (0..1) of record a's land that lies inside record b, from their outlines; None if either has none.
+    shapely when it is installed, else a 24 x 24 grid of points over a (the Canada fill uses the same grid)."""
+    ga, gb = a.get('_g'), b.get('_g')
+    if not rings(ga) or not rings(gb): return None
+    try:
+        from shapely.geometry import Polygon
+        def _shp(g):
+            u = None
+            for r in rings(g):
+                if len(r) < 4: continue
+                q = Polygon(r).buffer(0)
+                u = q if u is None else u.symmetric_difference(q)
+            return u
+        pa, pb = _shp(ga), _shp(gb)
+        if pa is None or pb is None or not pa.area: return None
+        return pa.intersection(pb).area / pa.area
+    except ImportError: pass
+    except Exception: return None  # noqa: BLE001
+    w, s_, e, n_ = bbox(ga); hit = tot = 0
+    for i in range(n):
+        for j in range(n):
+            x, y = w + (i + .5) * (e - w) / n, s_ + (j + .5) * (n_ - s_) / n
+            if inside(y, x, ga):
+                tot += 1; hit += inside(y, x, gb)
+    return hit / tot if tot else None
 def _no_all(ov, a):   # KPC_NO_ALL_PATHS: True when a person ruled this record out (id, exact name, or with KPC_NO_BY_NAME the saved name)
     return _kr('KPC_NO_ALL_PATHS') and KR.is_no(ov, _oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
 
@@ -987,6 +1063,16 @@ def run(st):
             notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
+    if _kr('KPC_PADUS_DEDUPE'):
+        # Nov 2 (mapping agent): PAD-US keeps the older copy of a place from the same provider (FWS_PADUS3_0 + FWS_PADUS4_0 for
+        # every refuge); both joined, the park's 'official acres' came out doubled (230 'OFF smaller' map-audit rows) and the two
+        # near-identical outlines drew slivers. The older copy is left out; an id a person joined by hand is always kept.
+        _old = KR.padus_old_copies(recs, _hand_ids(recs, P), _share_inside)
+        if _old:
+            recs = [a for a in recs if _oid(a) not in _old]
+            notice(f'US key {st}', f'{len(_old)} older PAD-US copies of the same place from the same provider left out (KPC_PADUS_DEDUPE)')
+        elif not any(a.get('Agg_Src') for a in recs if isinstance(a.get('OBJECTID'), int)):
+            notice(f'US key {st}', 'KPC_PADUS_DEDUPE is on but the saved copy has no Agg_Src: run GEO_CACHE_MODE=refresh once')
     parks, used = {}, set()
     RD.clear()
     clusters = name_clusters(recs)
@@ -1017,6 +1103,8 @@ def run(st):
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
+            elif piece_why(name, a) and join_how(name, kp, a, near(la, lo, a['_bb'], .1) if la is not None else False, rules=False):
+                c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), piece_why(name, a)])   # Nov 2: a person looks, never an outline
         if re.search(r'wild and scenic|scenic river', name, re.I):   # Nov 2 (chat 11 KEY NO: Fortymile WSR -> SRMA / ACEC): a wild and scenic river is never the
             # management area, monument or office land around it (Delta WSR -> Delta River SRMA, Upper Missouri WSR -> the Breaks monument)
             m = [x for x in m if not re.search(r'ACEC|SRMA|\bRMA\b|recreation management|national monument|conservation area|field office|district', str(x[1]), re.I)]
@@ -1072,6 +1160,9 @@ def run(st):
                     if not (same_name(name, nm) or same_name(x['n'], nm) or (a.get('Loc_Nm') and same_name(name, a['Loc_Nm']))): continue
                     if KM.is_admin(nm) or KM.is_admin(a.get('Loc_Nm')) or re.search(r'field office|district office|ranger district', nm, re.I): continue   # Nov 1 (chat 11: Fortymile WSR -> 'Eastern Interior Field Office'): an office boundary is never a park
                     if _tags(name) and not (_tags(name) & _tags(nm)): continue   # Oct 31 (chat 11: Milford State Fish Hatchery -> 'Milford Wildlife Area'): another kind of place never joins
+                    if piece_why(name, a):   # batch 1b (Quality): rule 18 here too; same_name() says yes for Yeager, Abo, Quarai, Rio Bonito
+                        if not any(str(q[0]) == _oid(a) for q in c): c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), piece_why(name, a) + ' (Recreation.gov path)'])
+                        continue
                     if _oid(a) in {str(q) for q in ov.get('no', [])} or _no_all(ov, a) or not near(x['la'], x['lo'], a['_bb'], 0) or not inside_slack(x['la'], x['lo'], a['_g']): continue
                     if any(q[0] == a['OBJECTID'] for q in m): continue
                     m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f"name + Recreation.gov point inside (G-1, id {x.get('id')})"])
@@ -1128,6 +1219,13 @@ def run(st):
                     gs = {_oid(a): a for a in recs}
                     hold = [x for x in sn if str(x[0]) in gs and rings(gs[str(x[0])].get('_g'))
                             and (inside(la, lo, gs[str(x[0])]['_g']) or near(la, lo, gs[str(x[0])]['_bb'], .005))]
+                    # batch 1b (switch KPC_PIECE_NAME): the same piece check as the other name paths. Before, this path joined the
+                    # WHOLE area to a park named for one piece of it (US-13221 Gordon W. Yeager-S.E. Unit got the whole WMA; US-11866
+                    # Rio Bonito Salazar Tract got Tract 1). A refused record stays on the check list with the reason.
+                    _pw = {str(x[0]): piece_why(name, gs[str(x[0])]) for x in hold}
+                    if any(_pw.values()):
+                        c = [([y[0], y[1], y[2], _pw[str(y[0])] + ' (same name + pin inside path)'] if _pw.get(str(y[0])) else y) for y in c]
+                        hold = [x for x in hold if not _pw[str(x[0])]]
                     if hold and not any(_tags(name) and _tags(x[1]) and not (_tags(name) & _tags(x[1])) for x in hold):   # a memorial is never the refuge
                         m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name) + pin inside'] for x in hold]
                         c = [x for x in c if x not in hold]; site = []
@@ -1262,6 +1360,42 @@ def run(st):
             parks[r].setdefault('parts', {})[rid] = [[round(c, 4) for c in ps[i]] for i in v]
             clipped.append(f'{r} ({len(v)} of {len(ps)} parts)')
     if clipped: notice(f'US key {st}', f"{len(clipped)} parks given only their own parts of a shared multipart record: {', '.join(clipped[:12])}")
+    # batch 1b, RULE 18 TRACT EXCEPTION (Brandon Nov 2 8:38 PM CST, via Super Head Bot): one official record that is really
+    # separate TRACTS, each tract its own POTA park (Salinas Pueblo Missions NM = Abo + Quarai + Gran Quivira in NPS and PAD-US
+    # 4.1 Fee): each park gets ONLY its own tract, a person reviewed it (kpc_key_rules.TRACT_SPLITS or an overrides 'tract'
+    # entry), and the pin must be inside its tract (30 m on the true line, plus the rough copy's slack). The record is found
+    # again by its NAME near the pin every run (PAD-US ids change between versions). If any test fails the park is left as it
+    # was and a notice says why; this never joins a record a person did not name. A person's 'no' on the WHOLE record (for
+    # example the Nov 2 hand-join drops put 'Salinas Pueblo Missions National Monument' in US-0961's 'no') does not stop the
+    # reviewed TRACT: the 'no' is about the whole monument, and the whole is never joined here. To stop a tract, take the park
+    # out of TRACT_SPLITS (code review) or remove its overrides 'tract' entry.
+    ntr, trw = 0, []
+    for ref in sorted(parks):
+        t = KR.tract_entry(ref, OVR.get(ref)) if KR is not None and hasattr(KR, 'tract_entry') else None
+        if not t or ref not in pinx: continue
+        la_, lo_ = pinx[ref]
+        rec = next((a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(t['record']) and a.get('_bb') and near(la_, lo_, a['_bb'], .6)), None)
+        if rec is None: trw.append(f"{ref}: no record named '{t['record']}' near the pin"); continue
+        rid = _oid(rec); rr = [r for r in rings(rec.get('_g')) if len(r) > 2]
+        bx = [[min(q[0] for q in r), min(q[1] for q in r), max(q[0] for q in r), max(q[1] for q in r)] for r in rr]
+        groups = KR.tracts_of(bx)
+        if len(groups) < 2: trw.append(f'{ref}: record {rid} is one tract, nothing to split'); continue
+        mine = [gp for gp in groups if any(in_ring(lo_, la_, rr[i]) for i in gp) or near_ring(la_, lo_, {'rings': [rr[i] for i in gp]}, 0.03 + DETAIL * 111.0)]
+        if len(mine) != 1: trw.append(f'{ref}: the pin is in {len(mine)} tracts of record {rid}, not exactly one'); continue
+        gp = mine[0]
+        k_ = math.cos(math.radians(la_)) * 111320.0
+        def _sq(r): return 0.5 * sum((x1 - lo_) * k_ * (y2 - la_) * 110570.0 - (x2 - lo_) * k_ * (y1 - la_) * 110570.0 for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]))
+        acres = round(abs(sum(_sq(rr[i]) for i in gp)) / 4046.86)
+        pk = parks[ref]
+        pk['m'] = [x for x in (pk.get('m') or []) if str(x[0]) != rid] + [[rec['OBJECTID'], KR.tract_label(t), acres,
+                   f"reviewed (official tract: {t['tract']} of {t['record']}; rule 18 tract exception, {t.get('approved_by')} {t.get('approved')})"]]
+        pk['c'] = [x for x in (pk.get('c') or []) if str(x[0]) != rid]
+        pk.setdefault('parts', {})[rid] = [[round(c, 4) for c in bx[i]] for i in gp]
+        pk['tract'] = {'record': t['record'], 'tract': t['tract'], 'label': KR.tract_label(t), 'of': t.get('of'), 'pieces': len(gp), 'acres': acres,
+                       'approved_by': t.get('approved_by'), 'approved': t.get('approved'), 'build': t.get('build'), 'source': t.get('source')}
+        if len(groups) != (t.get('of') or len(groups)): trw.append(f"{ref}: record {rid} has {len(groups)} tracts, the person-reviewed entry says {t.get('of')}")
+        ntr += 1
+    if ntr or trw: notice(f'US key {st}', f'{ntr} park(s) given only their own official tract (rule 18 tract exception)' + (f"; not split: {'; '.join(trw[:6])}" if trw else ''))
     # Oct 29 10:40 AM: the 'agency layer has nothing there' cut (plan 2.7) was TAKEN OUT the same morning: it cut REAL tracts of
     # spread-out parks (Florida Keys WA 20 of 235 pieces, Tanana Valley SF 63 of 92, US-0150 242 of 249) because a state layer
     # can be partial. Brandon: 'if it is a tract that belongs to the park NEVER delete it'. Far pieces are now only HELD + checked
@@ -1499,6 +1633,9 @@ def run(st):
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
+        if parks[ref].get('tract'):   # batch 1b: the POTA name stays as POTA lists it; the note says what the outline is
+            _tn = KR.tract_note(parks[ref]['tract'])
+            parks[ref]['note'] = (parks[ref]['note'] + ' ' + _tn) if parks[ref].get('note') else _tn
     # Oct 22 guard (a rebuild from the saved outlines dropped 315 joins: the land was simply not in the saved copy): a park
     # that HAD an outline keeps it when NONE of its old land is in what this run read. A join the new rules turned down
     # (its land is here, just not matched) is not kept; a person's 'no' always wins.

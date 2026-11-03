@@ -169,6 +169,37 @@ LOCALSRC = re.compile(r'local and regional|greenspace|municipal parks', re.I)
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
+# Nov 2 evening (Mapping, quality notes 2026-11-02 canada-keys-and-us-overrides): three small helpers shared by the full read,
+# the live top-up and the hard look, so the three read a layer the same way.
+# name_fields: a name-like field that is really a class code is tried LAST. Ontario LIO Open06/5 lists RELATED_CLASS_SHORT_NAME
+#   ('PROVPREG', 'CLUPAGEO', 'WILDAREA') before NAME_ENG ('OUTER BARN ISLAND WILDERNESS AREA'), so parks got code words as names.
+_NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
+_NAME_NO = re.compile(r'(file|url|link|code|id$)', re.I)
+_NAME_LAST = re.compile(r'(class|short|abbr|categ|type|desig|status)', re.I)
+def name_fields(fl, nf=None, k=3):
+    got = [n for n in (nf or []) if n in fl]
+    if got: return got
+    c = [f for f in fl if _NAMEY.search(str(f)) and not _NAME_NO.search(str(f))]
+    return sorted(c, key=lambda f: 1 if _NAME_LAST.search(str(f)) else 0)[:k]   # stable: the order is kept otherwise
+# rec_oid: the record number exactly as the full read takes it (Québec MRNF answers with field ALIASES and has no OBJECTID at all:
+#   TRQ_WMS/11 réserves fauniques use ESRI_OID and no objectIdField). None = the full read's id is 'n-<name>', so the top-up must
+#   use the same, or the reviewed joins ('Québec Réser:n-Réserve faunique de Matane') never find the record again.
+def rec_oid(a, li):
+    oidf = li.get('objectIdField') or 'OBJECTID'
+    oida = {oidf.lower(), 'objectid', 'fid'} | {str(f.get('alias') or '').lower() for f in li.get('fields', []) if f.get('name') == oidf}
+    return a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
+# area_ha: the agency's own area when the record has one, so acres do not come from the 0.02 degree (about 2 km) saved shape
+#   (Brookvale 1,339 vs 2,628 ac; Burnt Cape 485 vs 897). Only fields whose unit is certain; DFRP land_area is hectares.
+_HA = [('o_area_ha', 1), ('area_ha', 1), ('hectares', 1), ('superficie_ha', 1), ('superficie_km2', 100), ('area_km2', 100)]
+def area_ha(a, url=''):
+    low = {str(k).lower(): v for k, v in (a or {}).items()}
+    for f, mul in _HA + ([('land_area', 1)] if 'DFRP' in str(url) else []):
+        try:
+            if low.get(f) not in (None, '') and float(low[f]) > 0: return round(float(low[f]) * mul, 4)
+        except (TypeError, ValueError): pass
+    return 0
+
+
 recs = cload() if CMODE in ('use', 'only') else None
 if recs is None and CMODE == 'only':
     notice('Canada key', 'no saved outlines yet; nothing done (saved-copy-only run)'); raise SystemExit(0)
@@ -191,8 +222,7 @@ if recs is not None and CMODE == 'use':
                 _li = get(_u, {'f': 'json'})
                 if 'Polygon' not in str(_li.get('geometryType', '')): continue
                 _fl = [f['name'] for f in _li.get('fields', [])]
-                _nfs = [f for f in _fl if re.search(r'(name|nom|toponym|title)', f, re.I) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
-                _oidf = _li.get('objectIdField') or 'OBJECTID'
+                _nfs = name_fields(_fl)
                 _ids = sorted(get(f'{_u}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or [])[:6000]
                 _n0 = _got
                 for _o in range(0, len(_ids), 100):
@@ -200,12 +230,13 @@ if recs is not None and CMODE == 'use':
                                             'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json'}, tries=3)
                     for _f in _j.get('features', []):
                         _a = _f.get('attributes') or {}; _g = _f.get('geometry') or {}
-                        _nk = _nfs or [k for k in _a if re.search(r'(name|nom|toponym)', k, re.I) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3]
+                        _nk = _nfs or name_fields(list(_a))
                         _nm = next((str(_a[n]) for n in _nk if _a.get(n)), '')
-                        _ov = next((v for k, v in _a.items() if k.lower() in (_oidf.lower(), 'objectid', 'fid') and v is not None), None)
-                        if not _nm or _ov is None: continue
+                        if not _nm: continue
+                        # Nov 2 evening: was 'no OBJECTID -> skip', which dropped all 21 Québec réserves fauniques (QC 440 -> 427)
+                        _ov = rec_oid(_a, _li)
                         _lab = f'{_p} (live top-up)'
-                        _r = {'oid': f'{_p}:{_ov}', 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': 0, '_g': _g, '_bb': bbox(_g), 'src': _lab}
+                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': area_ha(_a, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
                         _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); recs.append(_r); _got += 1
                     time.sleep(.4)
                 _msg.append(f'{_p}: {_got - _n0}')
@@ -282,7 +313,7 @@ if recs is None:
             pid = pid_for(label, lu)
             LAYERS.setdefault(pid, []).append(lu)
             fl = [f['name'] for f in li.get('fields', [])]
-            names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
+            names = name_fields(fl, nf)
             oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
             # Oct 25 (round 5 hand checks): Québec's MRNF MapServer answers objectIds queries with the field ALIASES as keys,
             # so a.get('OBJECTID') was None and every ZEC / réserve / parc got the id 'None' (one shared, wrong shape)
@@ -304,7 +335,7 @@ if recs is None:
                     print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); ERRLAB.add(label); break  # noqa: BLE001
                 fs = j.get('features', [])
                 if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
-                    at = fs[0].get('attributes') or {}; names = [k for k in at if NAMEY.search(k) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3] or names
+                    at = fs[0].get('attributes') or {}; names = name_fields(list(at)) or names
                 for f in fs:
                     a = f.get('attributes') or {}; g = f.get('geometry') or {}
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
@@ -531,20 +562,47 @@ try:
     _hu = {}
     for _r in _hj:
         _u = _r['url'].rstrip('/'); _pid = _hu.setdefault(_u, f'Hard look~{len(_hu)}'); _L[_pid] = [_u]
-        _q = {'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': 5, 'f': 'json'}
-        if _r.get('oid') is not None: _q['objectIds'] = str(_r['oid'])
-        else: _q['where'] = _r['where']
-        try:
-            _info = get(_u, {'f': 'json'}); _oidf = _info.get('objectIdField') or next((f['name'] for f in _info.get('fields', []) if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
-            _fs = (get(_u + '/query', _q) or {}).get('features') or []
+        # Nov 2 evening (Mapping; quality notes 2026-11-02): DFRP renumbered its objectids (+5 to +15), so 'objectid 4691' became an
+        # Iqaluit house lot for Butler's Barracks and 'objectid 425' a nameless record for L'Anse aux Meadows. A record is now read by
+        # its stable number first (DFRP property_number, the row's 'where'), then by objectid, then by its name, and is joined ONLY
+        # when the record read back has the park's name (or the name chat 11 gave) and lies near the pin. Otherwise it stays a pin.
+        _q0 = {'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': 5, 'f': 'json'}
+        _pk = P.get(_r['ref']) or []
+        _pn = str(_pk[0]) if _pk else ''
+        _pla, _plo = (_pk[5], _pk[6]) if len(_pk) > 6 and (_pk[5] or _pk[6]) else (None, None)
+        if _pla is not None and abs(_pla) > 90: _pla, _plo = abs(_plo), -abs(_pla)
+        _want = list(dict.fromkeys(w for w in [_r.get('record_name'), _pn] + list(_r.get('names') or []) if w))   # + chat 11's read-back names
+        _tries = []
+        if _r.get('where'): _tries.append(('where', _r['where']))
+        if _r.get('oid') is not None: _tries.append(('objectIds', str(_r['oid'])))
+        if _r.get('name_field'):
+            for _w in _want: _tries.append(('where', f"{_r['name_field']} = '" + str(_w).replace("'", "''") + "'"))
+        try: _info = get(_u, {'f': 'json'})
         except Exception as _e: notice('Canada hard look', f"{_r['ref']} read failed: {str(_e)[:100]}"); continue  # noqa: BLE001
-        _fs = [f for f in _fs if (f.get('geometry') or {}).get('rings')]
-        if not _fs: continue
+        _oidf = _info.get('objectIdField') or next((f['name'] for f in _info.get('fields', []) if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
+        _nfl = name_fields([f['name'] for f in _info.get('fields', [])], [_r['name_field']] if _r.get('name_field') else None, k=1) + name_fields([f['name'] for f in _info.get('fields', [])], k=6)
+        def _names(a): return [str(a[n]) for n in dict.fromkeys(_nfl) if (a or {}).get(n)]
+        _fs, _how, _bad, _line = [], '', [], 0
+        for _k, _v in _tries:
+            try: _got = (get(_u + '/query', dict(_q0, **{_k: _v})) or {}).get('features') or []
+            except Exception as _e: _bad.append(f'{_k} {_v}: {str(_e)[:60]}'); continue  # noqa: BLE001
+            _line += sum(1 for f in _got if (f.get('geometry') or {}).get('paths'))   # trails: lines, not outlines
+            _got = [f for f in _got if (f.get('geometry') or {}).get('rings')]
+            _ok = [f for f in _got if any(same_name(n, w) or _nf(n) == _nf(w) for n in _names(f.get('attributes')) for w in _want)]
+            if _ok and _pla is not None: _ok = [f for f in _ok if near(_pla, _plo, bbox(f['geometry']), .6)]
+            if _ok: _fs, _how = _ok, f'{_k} {_v}'; break
+            if _got: _bad.append(f"{_k} {_v} -> '{(_names(_got[0].get('attributes')) or ['no name'])[0][:50]}'")
+        if not _fs and _line:
+            notice('Canada hard look', f"{_r['ref']} {_pn[:50]}: the record is a line (a trail), not an outline; left as a pin (a line + 100 ft buffer is not built here)"); continue
+        if not _fs:
+            notice('Canada hard look', f"{_r['ref']} {_pn[:50]}: no record with this park's name; left as a pin ({'; '.join(_bad)[:220] or 'nothing read'})"); continue
+        if _bad: notice('Canada hard look', f"{_r['ref']}: read by {_how} (the saved id now points elsewhere: {'; '.join(_bad)[:160]})")
         _g = {'rings': [rg for f in _fs for rg in f['geometry']['rings']]}
         _a = _fs[0].get('attributes') or {}
-        _nm = str(_a.get(_r.get('name_field') or '') or _r.get('record_name') or _r['ref'])
+        _nm = (_names(_a) or [_r.get('record_name') or _pn])[0]
         _ids = [str(f['attributes'].get(_oidf)) for f in _fs if (f.get('attributes') or {}).get(_oidf) is not None]
-        HLR[_r['ref']] = {'oid': f"{_pid}:{_ids[0]}" if _ids else f"{_pid}:n-{_nm[:40]}", 'n': _nm, 'nf': '', 'ty': 'hard look', 'ow': '', 'mg': '', 'ha': 0, '_g': _g, '_bb': bbox(_g), 'src': 'Canada hard look (chat 11 YES)', '_k': kinds(_nm)}
+        _ha = sum(area_ha(f.get('attributes'), _u) for f in _fs)
+        HLR[_r['ref']] = {'oid': f"{_pid}:{_ids[0]}" if _ids else f"{_pid}:n-{_nm[:40]}", 'n': _nm, 'nf': '', 'ty': 'hard look', 'ow': '', 'mg': '', 'ha': _ha, '_g': _g, '_bb': bbox(_g), 'src': 'Canada hard look (chat 11 YES)', '_k': kinds(_nm)}
     save_json(OUT / 'layers.json', _L, indent=1)
     notice('Canada hard look', f'{len(HLR)} of {len(_hj)} chat 11 YES records read for joining')
 except FileNotFoundError: pass
