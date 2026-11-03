@@ -790,10 +790,10 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4318,
-   "far": 1709,
-   "noshape": 40,
-   "edge": 1592,
+   "matched": 4320,
+   "far": 1706,
+   "noshape": 30,
+   "edge": 1599,
    "out": 77,
    "swap": 0
   },
@@ -801,8 +801,8 @@
    {
     "st": "CA-AB",
     "matched": 395,
-    "far": 172,
-    "noshape": 1,
+    "far": 171,
+    "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
@@ -849,14 +849,14 @@
    {
     "st": "CA-NL",
     "matched": 74,
-    "far": 31,
-    "noshape": 7,
+    "far": 28,
+    "noshape": 6,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 23
+    "edge": 21
    },
    {
     "st": "CA-NS",
@@ -896,15 +896,15 @@
    },
    {
     "st": "CA-ON",
-    "matched": 959,
-    "far": 397,
-    "noshape": 27,
+    "matched": 961,
+    "far": 398,
+    "noshape": 19,
     "out": 7,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 363
+    "edge": 372
    },
    {
     "st": "CA-PE",
