@@ -764,5 +764,7 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        # PR3 (Nov 2): was a quiet ::notice; a crash is a real failure, so it is an ::error now (the KPC-Data watchdog's key-bot
+        # sweep turns it red on the status board). Still exit 0: no failure email.
+        print(f'::error title=Park alerts::stopped early: {type(e).__name__}: {str(e)[:300]}', flush=True)
         sys.exit(0)           # never fail the job: a failed run emails Brandon
