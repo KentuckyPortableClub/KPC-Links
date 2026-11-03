@@ -261,7 +261,9 @@ function flash(msg){const n=$('tripMsg');n.textContent=msg;n.hidden=false;clearT
 /* ---------------- search results (unchanged behaviour) ---------------- */
 /* overlap lookups (ky-overlaps.geojson). Until that file loads, only the park file's 2-fer list (tf) is used. */
 function ovAnySet(){const s=new Set();if(OVX)OVX.forEach((l,r)=>{s.add(r);l.forEach(o=>{o.sota.forEach(x=>s.add(x[0]));if(o.kind!=='2fer')o.kff.forEach(x=>s.add(x[0]))})});return s}
-function twoFers(p){const P=new Map(D.parks.map(q=>[q.c,q.n]));   // park file list + mapped overlaps of two POTA refs
+/* PR1 Nov 2: guests do not get unreviewed 2-fer partners (same rule as kpc-park-control.js); the OVERLAPS chip is hidden for them */
+function PGUEST_(){return !!(window.KPCGate&&!window.KPCGate.member())}
+function twoFers(p){if(PGUEST_())return [];const P=new Map(D.parks.map(q=>[q.c,q.n]));   // park file list + mapped overlaps of two POTA refs
  const out=p.tf.map(r=>[r,P.get(r)||'']);
  if(OVX)for(const o of OVX.get(p.c)||[])if(o.kind==='2fer')for(const r of o.others)if(!out.some(x=>x[0]===r[0]))out.push(r);
  return out.filter(r=>r[0]!==p.c)}
@@ -413,6 +415,7 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
 (async()=>{
  D=await KPC.data();
  map=makeMap();if(map)KPC.countyLayer(map).catch(()=>{});if(map&&window.kpcLocate)kpcLocate(map,{position:'bottomright'});
+ if(PGUEST_()){on.two=0;const b=document.querySelector('#prog_ [data-k=two]');if(b)b.hidden=true}   // PR1: no overlap chip for guests
  {const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two))}
  layer=L.layerGroup().addTo(map);tripLayer=L.layerGroup().addTo(map);V0=[map.getCenter(),map.getZoom()];ALL=items();
  const q=new URLSearchParams(location.search);let restored=false;

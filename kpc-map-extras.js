@@ -10,6 +10,9 @@
 (function () {
 'use strict';
 if (!window.L) return;
+/* PR1 Nov 2 (Brandon): guests do not see unreviewed 2-fer / 3-fer information (the Oct 10 ky-overlaps.geojson and the
+   park file's tf lists); members still see it. Same rule as kpc-park-control.js (Oct 17). Undo: set GUEST to false. */
+const GUEST = !!(window.KPCGate && !window.KPCGate.member()), SOON = '2-fer and 3-fer information coming soon!';
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const KY = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/';
 const OFFICIAL = [
@@ -217,7 +220,7 @@ function hover(layer){
 
 /* ---------- overlap data ---------- */
 let OVL = null;
-function overlapData(){return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013g', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
+function overlapData(){if (GUEST) return Promise.resolve({type:'FeatureCollection', features:[]}); return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013g', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
 /* POTA refs → [{kind, other refs, areas}] for cards */
 function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  for (const f of gj.features) {const p = f.properties, refs = p.pota.map(r => r[0]);
@@ -306,6 +309,7 @@ function attach(map, opt){
  opt = opt || {};
  const KEY = 'kpcx_' + (opt.key || 'map');
  const st = Object.assign({P:false, E:false, O:false}, store.get(KEY, {}));
+ if (GUEST) st.O = false;
  map.createPane('kxov').style.zIndex = 450;
  map.createPane('kxovl').style.zIndex = 455;
  map.createPane('kxpin').style.zIndex = 590;
@@ -448,7 +452,7 @@ function attach(map, opt){
    <div class="kx-lg">🅿️ parking · 🚗 pull-off · 🚪 entrance · 🚧 gate · 🥾 trailhead · ⛵ boat access</div>
    <div class="kx-stat" data-kxstat></div>
    <div class="kx-h">Park Overlaps</div>
-   <label><input type="checkbox" data-kx="O">Show Park Overlaps</label>
+   ${GUEST ? `<div class="kx-stat">${SOON}</div>` : `<label><input type="checkbox" data-kx="O">Show Park Overlaps</label>
    <div data-kxlegend hidden>
     <div class="kx-lg"><span class="kx-sw" style="background:#f2c230;border:2px solid #a67c00"></span>Possible POTA 2-Fer (2+ POTA refs)</div>
     <div class="kx-lg"><span class="kx-sw" style="background:repeating-linear-gradient(90deg,#f2c230 0 7px,transparent 7px 11px);height:5px;border:1px solid #111"></span>Trail or Ohio River bank inside another POTA park</div>
@@ -456,7 +460,7 @@ function attach(map, opt){
     <div class="kx-lg"><span class="kx-sw" style="background:#a66bd3;border:2px solid #5e2d82"></span>POTA + WWFF or other combo</div>
     <div class="kx-lg"><span class="kx-sota" style="width:16px;height:16px;font-size:9px">▲</span>SOTA summit inside a POTA park</div>
     <div class="kx-stat">Tap a highlight for details. Do your own research before activating.</div>
-   </div>`;
+   </div>`}`;
  if (opt.panel) {
   /* the options live in the "Map layers" dropdown above the map (KPCX.layerBar section) */
   const d = opt.panel; d.classList.add('kx-box-in'); d.innerHTML = BOXHTML;
@@ -496,7 +500,7 @@ function attach(map, opt){
  else fetch('kpc-ky-data.json', {cache:'force-cache'}).then(r => r.json()).then(j => addStatic(j.parks)).catch(() => {});
  apply();
  return {
-  setOverlaps(v){st.O = !!v; apply()},
+  setOverlaps(v){st.O = !!v && !GUEST; apply()},
   overlapsOn(){return !!st.O},
   set(k, v){st[k] = !!v; apply()},
   state(){return Object.assign({}, st)},

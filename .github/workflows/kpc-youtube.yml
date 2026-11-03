@@ -1,13 +1,13 @@
 name: KPC YouTube Feed
 # Keeps videos.html current and shares new videos on the Facebook Page and in the KPC Discord.
-# Every two hours this reads the public YouTube feed for each
+# Once a day this reads the public YouTube feed for each
 # club channel and saves the newest videos to kpc-youtube.json (no API key needed).
 #  - Only commits when a video is added, removed or renamed (or twice a day for view counts).
 #  - If YouTube doesn't answer, the last good list is kept, so the page never goes blank.
 #  - To add a channel: add a line to CHANNELS below and a matching entry in videos.html (CH).
 on:
   schedule:
-    - cron: '23 11,23 * * *'   # twice a day, 6:23 AM / 6:23 PM Central (Brandon GO Oct 28: was every 2 h)
+    - cron: '23 23 * * *'   # once a day, 5:23 PM Central (winter) / 6:23 PM (summer). PR1 Nov 2, Brandon: 'YouTube once a day' (was twice a day; before Oct 28 every 2 h). Undo: '23 11,23 * * *'
   workflow_dispatch:
 permissions:
   contents: write
