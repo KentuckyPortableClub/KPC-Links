@@ -14,6 +14,8 @@ import datetime as dt, json, os, pathlib, re, sys
 
 KEY = pathlib.Path('data/ca-key')
 OVR, LEDGER, CCS = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY / 'answers-provinces.txt'
+SKIP = {x.strip().lower() for x in (os.environ.get('KPC_ANSWERS_SKIP') if os.environ.get('KPC_ANSWERS_SKIP') is not None else 'map-audit').split(',')
+        if x.strip() and x.strip().lower() != 'none'}
 BUILT = set('AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU'.split())   # kpc-world-key.yml ALL
 
 
@@ -33,6 +35,7 @@ def main():
     if D is None: print('::notice title=Canada answers::no KPC-Data checkout: nothing applied'); return
     q = []
     for f in sorted((D / 'data/waiting/questions').glob('*.json')):   # every question file: gis-hunter, key-pieces… (Canada rows only)
+        if f.stem.lower() in SKIP: continue   # Nov 2: the map audit's pattern answers are not a person's (see kpc_key_answers.py SKIP)
         j = load(f, {}); x = j.get('questions') if isinstance(j, dict) else j
         q += [r for r in (list(x.values()) if isinstance(x, dict) else (x or [])) if isinstance(r, dict) and str(r.get('ref', '')).startswith('CA-')]
     ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})

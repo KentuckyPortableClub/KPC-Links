@@ -28,6 +28,13 @@ OVR, LEDGER, STATES = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY 
 PAD = 'edits.nationalmap.gov/arcgis/rest/services/pad-us/pad_us/mapserver/0'
 FWS = 'fwsinterest_simplified_authoritative/featureserver/0'
 DRY = '--dry' in sys.argv
+# Nov 2 (Brandon, before the 3:17 AM run): question files BOT A must NOT read. map-audit.json holds the map audit's answers, and
+# almost all of them are pattern answers ("pattern NEAR / SPILL / OUTSIDE ...", one verdict for a whole group of rows), not a
+# person's look at that row; its "NO ... PIN" means "show the pin until fixed", not "ban this record for ever". Applied here they
+# became ~590 hard joins / record bans that later rule fixes could not undo. Comma list of file names (no .json);
+# KPC_ANSWERS_SKIP=none reads every file again (the old way). Turn it back on only once those rows mark who really looked.
+SKIP = {x.strip().lower() for x in (os.environ.get('KPC_ANSWERS_SKIP') if os.environ.get('KPC_ANSWERS_SKIP') is not None else 'map-audit').split(',')
+        if x.strip() and x.strip().lower() != 'none'}
 
 
 def data_dir():
@@ -101,8 +108,10 @@ def main():
     today = dt.date.today().isoformat(); stamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M')
     n_yes = n_no = n_alias = n_skip = n_same = 0; skipped = []; states = set(); touched = set()
     # last answer wins: rows are read file by file (sorted), in file order; the latest row for a (file, ref, id) is the one applied
+    skipped_files = []
     for f in sorted(glob.glob(str(D / 'data/waiting/questions/*.json'))):
         name = pathlib.Path(f).stem
+        if name.lower() in SKIP: skipped_files.append(name); continue   # Nov 2: see SKIP above
         latest = {}
         for row in rows_of(load(f, {})):
             kid, why = key_id(row, lmap)
@@ -150,6 +159,7 @@ def main():
             led[lk] = {'answer': ans, 'checked_by': row.get('checked_by'), 'applied': stamp}
             touched.add(ref); st = st_of(row); states.add(st) if st else None
     msg = f"{n_yes} yes / {n_no} no / {n_alias} alias applied on {len(touched)} parks; {n_same} already applied; {n_skip} skipped; states: {' '.join(sorted(states)) or '-'}"
+    if skipped_files: msg += f"; files not read (KPC_ANSWERS_SKIP): {' '.join(skipped_files)}"
     if DRY:
         print('DRY ' + msg); [print('  skip ' + s) for s in skipped[:20]]; return
     if touched:
