@@ -1,12 +1,19 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **443 of 460** parks joined to official land (same name + same kind of place). **3** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **437 of 460** parks joined to official land (same name + same kind of place). **10** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-12122** S-65E Impoundment and Paradise Run State Conservation Area (State Conservation Area) → Paradise Run (~3,318 ac, similar name); Kissimmee River Public Use Area (~24,820 ac, the POTA pin is inside it (different name)); Kissimmee River Public Use Area (~0 ac, the POTA pin is inside it (different name))
+- **US-12126** Stormwater Treatment Area 5/6 State Conservation Area (State Conservation Area) → Stormwater Treatment Area 5/6 Waterfowl Public Small Game Hunting Area (~0 ac, similar name); Stormwater Treatment Areas (~47,574 ac, same name, different kind of place)
 - **US-6281** Loxahatchee River National Wild and Scenic River (National Wild and Scenic River) → Cypress Creek and Loxahatchee River Management Area (~4,438 ac, similar name); Loxahatchee River Park (~1 ac, same name, different kind of place); Jonathan Dickinson State Park (~11,466 ac, the POTA pin is inside it (different name)); Jonathan Dickinson State Park (~10,442 ac, the POTA pin is inside it (different name))
+- **US-7475** Starkey Wilderness/Serenova Preserve State Conservation Area (State Conservation Area) → Starkey Wilderness Preserve (~19,866 ac, similar name)
+- **US-7879** Citrus Wildlife Management Area (Wildlife Management Area) → Citrus Wildlife Management Area (~0 ac, same name, different kind of place); Withlacoochee State Forest (~172,494 ac, the POTA pin is inside it (different name)); Withlacoochee State Forest (~165,562 ac, the POTA pin is inside it (different name))
 - **US-8689** Little Creek, McAlpin Landing State Conservation Area (State Conservation Area) → MCALPIN LANDING (~676 ac, similar name); MCALPIN LANDING (~149 ac, similar name); MCALPIN LANDING (~139 ac, similar name); MCALPIN LANDING (~82 ac, similar name); MCALPIN LANDING (~12 ac, similar name); MCALPIN LANDING (~3 ac, similar name)
+- **US-8696** Purvis Landing, Otter Springs, Shingle Lndg State Conservation Area (State Conservation Area) → OTTER SPRINGS (~511 ac, similar name); SHINGLE LANDING (~433 ac, similar name); PURVIS LANDING (~165 ac, similar name); PURVIS LANDING (~82 ac, similar name); PURVIS LANDING (~80 ac, similar name); OTTER SPRINGS CAMPGROUND (~57 ac, similar name)
+- **US-8701** Shelly, Duck Pond, Hartsfield State Conservation Area (State Conservation Area) → SHELLY (~596 ac, similar name); SHELLY (~173 ac, similar name); SHELLY (~43 ac, similar name); Upper Aucilla Conservation Area (~2,818 ac, the POTA pin is inside it (different name))
 - **US-8711** Owens Spring, Walker, Adams State Conservation Area (State Conservation Area) → ADAMS (~494 ac, similar name); OWENS SPRING (~387 ac, similar name); WALKER (~191 ac, similar name); ADAMS (~109 ac, similar name); ADAMS (~105 ac, similar name); ADAMS (~86 ac, similar name)
+- **US-8712** White Springs, Little Shoals, Gar Pond State Conservation Area (State Conservation Area) → GAR POND (~376 ac, similar name); WHITE SPRINGS (~215 ac, similar name); GAR POND (~146 ac, similar name); LITTLE SHOALS (~123 ac, similar name); GAR POND (~120 ac, similar name); LITTLE SHOALS (~109 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -23,7 +30,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-0896 Wekiva National Wild and Scenic River (National Wild and Scenic River)
 - US-12125 Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area (State Conservation Area)
-- US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
 - US-7374 Wysong Park State Conservation Area (State Conservation Area)
 - US-8329 Choctawhatchee & Holmes Creek State Conservation Area (State Conservation Area)
 - US-8705 Stephen Foster State Conservation Area (State Conservation Area)
@@ -45,6 +51,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Camp Blanding Military Reservation · MIL · FL Dept. of Military Affairs · ~71,599 ac
 - Ocala National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~68,284 ac
 - Babcock State Forest ·  · Florida Forest Service (forest, state GIS table) · ~67,399 ac
+- Apalachicola River Wildlife and Environmental Area · SCA · FL Fish and Wildlife Conservation Commission · ~62,955 ac
 - Choctawhatchee River Water Management Area · WPA · Northwest Florida Water Management District · ~62,693 ac
 - Everglades Agricultural Area · WPA · South Florida Water Management District · ~51,975 ac
 - Miccosukee Indian Water Conservation Area ·  · Florida Natural Areas Inventory conservation lands · ~46,200 ac
@@ -66,7 +73,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Upper Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~23,368 ac
 - Duette Preserve ·  · Florida Natural Areas Inventory conservation lands · ~21,907 ac
+- Dinner Island Ranch Wildlife Management Area · SCA · FL Fish and Wildlife Conservation Commission · ~21,706 ac
 - Lake Apopka Restoration Area · LCA · St. Johns River Water Management District · ~20,024 ac
+- Starkey Wilderness Preserve · LCA · Southwest Florida Water Management District · ~19,866 ac
 - East Coast Buffer ·  · Florida Natural Areas Inventory conservation lands · ~19,269 ac
 - Lyme Timber II - Block 4 ·  · Florida Natural Areas Inventory conservation lands · ~19,252 ac
 - Open Space · LOTH · SOUTHWEST FLORIDA WATER MANAGEMENT DISTRICT · ~18,062 ac
@@ -87,6 +96,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Upper Lakes Basin Watershed · WPA · South Florida Water Management District · ~12,997 ac
 - Loxahatchee Slough Natural Area ·  · Florida Natural Areas Inventory conservation lands · ~12,975 ac
 - Lower Green Swamp Nature Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,823 ac
-- Grassy Waters Preserve ·  · Florida Natural Areas Inventory conservation lands · ~12,800 ac
-- SUWANNEE SWAMP ·  · Suwannee River Water Management District (land, state GIS table) · ~12,789 ac
-- Telogia Creek Wildlife Management Area ·  · Florida Natural Areas Inventory conservation lands · ~12,384 ac

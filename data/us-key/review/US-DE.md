@@ -1,9 +1,10 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **79 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **84 of 89** parks joined to official land (same name + same kind of place). **1** to check by hand, **1** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-11812** Trap Pond State Fishing Lake (State Fishing Lake) → Trap Pond State Park (~0 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~0 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~0 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~0 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~0 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~10 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~11 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~44 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~74 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~153 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~163 ac, record also joined to US-1742 whose kind it names); Trap Pond State Park (~2,118 ac, record also joined to US-1742 whose kind it names)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -18,8 +19,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Nothing found in PAD-US
 
 - US-4367 First State Heritage State Park (State Park)
-- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
-- US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -43,6 +42,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Buena Vista · SOTH · DE Division of Historical and Cultural Affairs · ~249 ac
 - Great Marsh Preserve · SP ·   · ~245 ac
 - Rehoboth Bay Marshes Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~238 ac
+- Delaware Seashore State Park · SP ·   · ~232 ac
 - Murderkill River Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~231 ac
 - Angola Neck Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~229 ac
 - St. Jones River Natural Area · SOTH ·   · ~228 ac
@@ -82,4 +82,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - New Castle County Vo-Tech High School · REA ·   · ~111 ac
 - Burrows Run Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~110 ac
 - Hawkey Branch Road Open Space · SOTH · DE Department of Transportation · ~108 ac
-- Patriots Way Open Space · SRMA · DE Department of Transportation · ~107 ac

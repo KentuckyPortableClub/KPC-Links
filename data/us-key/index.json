@@ -1,4 +1,6 @@
 {
+ "previous_build": "US-41635676980",
+ "previous_built": "2026-11-03 14:46 UTC",
  "states": {
   "AK": {
    "check": 8,
@@ -153,42 +155,42 @@
    "site": 3
   },
   "DE": {
-   "check": 0,
-   "detail": 0.01,
-   "matched": 85,
-   "none": 2,
-   "nonum": 1579,
-   "padus": 2302,
+   "check": 1,
+   "detail": 0.001,
+   "matched": 84,
+   "none": 1,
+   "nonum": 1267,
+   "padus": 1802,
    "parks": 89,
    "pin_no_shape": 0,
-   "pin_outside": 27,
+   "pin_outside": 15,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 2786,
-   "seconds": 30,
+   "seconds": 47,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6
+   "site": 7
   },
   "FL": {
-   "check": 11,
-   "detail": 0.01,
-   "matched": 436,
-   "none": 8,
-   "nonum": 4013,
-   "padus": 5488,
+   "check": 10,
+   "detail": 0.001,
+   "matched": 437,
+   "none": 5,
+   "nonum": 3764,
+   "padus": 5198,
    "parks": 460,
    "pin_no_shape": 0,
-   "pin_outside": 194,
+   "pin_outside": 64,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 8681,
-   "seconds": 163,
+   "seconds": 234,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 5
+   "site": 8
   },
   "GA": {
    "check": 3,
@@ -951,6 +953,6 @@
    "site": 49
   }
  },
- "build": "US-41635676980",
- "built": "2026-11-03 14:46 UTC"
+ "build": "US-41663938246",
+ "built": "2026-11-03 15:31 UTC"
 }
