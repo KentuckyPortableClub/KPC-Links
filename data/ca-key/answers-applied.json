@@ -4623,5 +4623,55 @@
   "answer": "YES",
   "checked_by": "chat 11",
   "applied": "2026-11-02 12:49"
+ },
+ "CA-5166:dominion park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-5190:little river reservoir": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-5224:seaside park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-5694:king square west": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-5713:queen square west": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-6558:horne settlement provincial park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-6560:kingsburg beach provincial park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-6557:louis head provincial park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-6553:portobello provincial park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
+ },
+ "CA-6564:blanche provincial park": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-03 06:32"
  }
 }

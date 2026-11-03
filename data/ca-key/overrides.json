@@ -1353,9 +1353,10 @@
    "join": [
     "1510",
     "1513",
-    "1514"
+    "1514",
+    "Blanche Provincial Park"
    ],
-   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22) · 2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)",
    "approx": true
   },
   "CA-6600": {
@@ -2207,6 +2208,60 @@
    ],
    "why": "Oct 30 5:30 AM chat 11 ca-key: the 'Cariboo Conservation Area' pieces are a different kind of place: NO; keeps the 5-ac 'Cariboo Park' piece",
    "when": "2026-10-30"
+  },
+  "CA-5166": {
+   "join": [
+    "Dominion Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5190": {
+   "join": [
+    "Little River Reservoir"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5224": {
+   "join": [
+    "Seaside Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5694": {
+   "join": [
+    "King Square West"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-5713": {
+   "join": [
+    "Queen Square West"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-6558": {
+   "join": [
+    "Horne Settlement Provincial Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-6560": {
+   "join": [
+    "Kingsburg Beach Provincial Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-6557": {
+   "join": [
+    "Louis Head Provincial Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
+  },
+  "CA-6553": {
+   "join": [
+    "Portobello Provincial Park"
+   ],
+   "why": "2026-11-03 06:32: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
   }
  }
 }
