@@ -1,9 +1,9 @@
 {
- "made": "2026-11-02 14:19 UTC",
+ "made": "2026-11-03 06:39 UTC",
  "counts": {
   "A_decided_not_in_key": 96,
-  "B_sure_area_not_asked": 20,
-  "C_sure_line_not_drawn": 70
+  "B_sure_area_not_asked": 9,
+  "C_sure_line_not_drawn": 73
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
  "A": [
@@ -682,38 +682,10 @@
  ],
  "B": [
   [
-   "US-0025",
-   "AL",
-   "Fort Morgan National Historic Site",
-   "Fort Morgan",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-0042",
-   "AL",
-   "Fort Gaines National Historic Site",
-   "Fort Gaines",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-0491",
-   "OK",
-   "Tishomingo National Wildlife Refuge",
-   "TISHOMINGO NATIONAL WILDLIFE REFUGE",
-   "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0"
-  ],
-  [
-   "US-0778",
-   "NY",
-   "Hamilton Grange National Memorial",
-   "Hamilton Grange National Memorial",
-   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
-  ],
-  [
-   "US-0958",
-   "LA",
-   "Poverty Point National Monument",
-   "Poverty Point National Monument",
+   "US-0655",
+   "DC",
+   "National Mall and Memorial Parks National Park",
+   "National Mall",
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ],
   [
@@ -724,11 +696,11 @@
    "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
   ],
   [
-   "US-10921",
-   "HI",
-   "Hawaii Capital National Historic District",
-   "Hawaii Capital Historic District",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+   "US-13083",
+   "AL",
+   "TVA Wheeler Dam Public Park National Recreation Area",
+   "Wheeler",
+   "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/Dispersed_Recreation_Areas/FeatureServer/0"
   ],
   [
    "US-13181",
@@ -745,31 +717,17 @@
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
-   "US-13251",
+   "US-13482",
    "NV",
-   "Virginia City Historic District (Comstock Lode) National Historic District",
-   "Virginia City Historic District",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
+   "Galena Creek Fish Hatchery State Historical Monument",
+   "GALENA CREEK REGIONAL PARK",
+   "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
   ],
   [
    "US-3492",
    "NE",
    "Willa Cather Memorial Prairie State Historic Site",
    "Willa Cather Memorial Prairie",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-6335",
-   "OK",
-   "Cabin Creek Battlefield State Historic Site",
-   "Cabin Creek Battlefield",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-6336",
-   "OK",
-   "Honey Springs Battlefield State Historic Site",
-   "Honey Springs Battlefield",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
@@ -780,46 +738,11 @@
    "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
   ],
   [
-   "US-7974",
-   "MD",
-   "Harmony Hall National Heritage Site",
-   "Harmony Hall",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-8532",
-   "ND",
-   "Chateau De Mores State Historic Site",
-   "Chateau de Mores",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-8536",
-   "ND",
-   "Fort Buford State Historic Site",
-   "Fort Buford State Historic Site",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-8555",
-   "ND",
-   "Oscar-Zero Missile Alert Facility State Historic Site",
-   "Oscar-Zero Missile Alert Facility",
-   "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
    "US-9190",
    "KS",
    "Marais des Cygnes Massacre State Historic Site",
    "Marais des Cygnes Massacre Site",
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
-  ],
-  [
-   "US-9683",
-   "CO",
-   "Amache National Historic Site",
-   "Amache National Historic Site",
-   "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ]
  ],
  "C": [
@@ -1020,6 +943,13 @@
    "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3"
   ],
   [
+   "US-12349",
+   "ID",
+   "Owyhee Uplands Back Country Byway National Parkway",
+   "Owyhee Uplands Back Country Byway",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
+  ],
+  [
    "US-12786",
    "MI",
    "Au Sable National Wild and Scenic River",
@@ -1095,6 +1025,13 @@
    "Zion Scenic Byway National Parkway",
    "Zion National Scenic Byway",
    "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0"
+  ],
+  [
+   "US-13577",
+   "ID",
+   "Jarbidge River Recreation Site BLM Recreation Management Area",
+   "Jarbidge River",
+   "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0"
   ],
   [
    "US-13622",
@@ -1234,6 +1171,13 @@
    "UT",
    "Silver Reef Trail BLM Recreation Management Area",
    "Silver Reef",
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
+  ],
+  [
+   "US-6068",
+   "UT",
+   "Red Reef Trail BLM Recreation Management Area",
+   "Red Reef",
    "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/TrailsAndPathways/FeatureServer/0"
   ],
   [
