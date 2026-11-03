@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T20:31:00Z",
+ "updated": "2026-11-03T12:26:42Z",
  "week": [
   {
    "name": "Classic Exchange, CW",
@@ -18,78 +18,6 @@
    "modes": [
     "CW"
    ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gmgwg",
-   "when": "1900Z-2000Z, Nov 2",
-   "segs": [
-    [
-     "2026-11-02T19:00Z",
-     "2026-11-02T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "RSGB 80m Autumn Series, Data",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g83uh",
-   "when": "2000Z-2130Z, Nov 2",
-   "segs": [
-    [
-     "2026-11-02T20:00Z",
-     "2026-11-02T21:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ARS Spartan Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g5yff",
-   "when": "0100Z-0300Z, Nov 3",
-   "segs": [
-    [
-     "2026-11-03T01:00Z",
-     "2026-11-03T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Worldwide Sideband Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gpgw0",
-   "when": "0100Z-0159Z, Nov 3",
-   "segs": [
-    [
-     "2026-11-03T01:00Z",
-     "2026-11-03T01:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gnjhc",
-   "when": "0300Z-0400Z, Nov 3",
-   "segs": [
-    [
-     "2026-11-03T03:00Z",
-     "2026-11-03T04:00Z"
-    ]
-   ],
-   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -468,6 +396,78 @@
    "modes": [
     "PHONE"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gjok9",
+   "when": "0000Z-0100Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-09T00:00Z",
+     "2026-11-09T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "4 States QRP Group Second Sunday Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g5qyr",
+   "when": "0100Z-0300Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-09T01:00Z",
+     "2026-11-09T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003glm1c",
+   "when": "1300Z-1400Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-09T13:00Z",
+     "2026-11-09T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK1WC Memorial (MWC)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gom17",
+   "when": "1630Z-1729Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-09T16:30Z",
+     "2026-11-09T17:29Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gmom8",
+   "when": "1900Z-2000Z, Nov 9",
+   "segs": [
+    [
+     "2026-11-09T19:00Z",
+     "2026-11-09T20:00Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   }
