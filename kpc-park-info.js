@@ -149,7 +149,7 @@
           const fc = { type: 'FeatureCollection', features: fs.map(f => ({ type: 'Feature', properties: Object.assign({}, f.properties, { Unit_Nm: f._nm }), geometry: f.geometry })) }, ln = fs.every(f => f._line);
           show(fc, '#ffb000', null, .12); dl(); B.className = 'pi-bnd ok';
           const ag = [...new Set(fs.map(f => (f._L && f._L.agency) || f._src).filter(Boolean))].map(esc).join(' and ');
-          B.innerHTML = `<b>${[...new Set(fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ')}</b>. ${ln ? 'Official trail line (POTA counts within 100 ft of it)' : 'Official outline'}${ag ? ' from ' + ag : ' from the Kentucky official maps'}. Check the park's own map for closed areas.`;
+          B.innerHTML = `<b>${[...new Set(fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ')}</b>. ${fs.some(f => f._unofficial) ? 'Unofficial line (OpenStreetMap), no official line found yet (POTA counts within 100 ft of the trail)' : ln ? 'Official trail line (POTA counts within 100 ft of it)' : 'Official outline'}${fs.some(f => f._unofficial) ? '' : ag ? ' from ' + ag : ' from the Kentucky official maps'}. Check the park's own map for closed areas.`;
           return;
         }
         if (fs === null) { B.className = 'pi-bnd none'; B.innerHTML = '<b>Could not load the Kentucky boundary files right now.</b> Try again with a signal; this does not mean the park has no boundary.'; return; }

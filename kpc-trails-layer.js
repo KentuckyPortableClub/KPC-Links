@@ -29,8 +29,11 @@
     if (!map.getPane('kpcTrails')) { map.createPane('kpcTrails'); map.getPane('kpcTrails').style.zIndex = 390; }
     const rend = L.svg({ pane: 'kpcTrails', padding: .5 });
     const KIND = { NST: ['National Scenic Trail', '#ff5fa2', null], NHT: ['National Historic Trail', '#ffb347', '9 6'], ST: ['State Trail', '#3ddc84', null], NRT: ['National Recreation Trail', '#b388ff', '4 5'], TP: ['Trail park', '#3ddc84', null], WSR: ['Wild and Scenic River', '#4fc3f7', null] };   /* Oct 25: designated river stretches */
+    /* Nov 2 (PR 4, Brandon: official lines preferred, OpenStreetMap only as a labelled fallback): source 'osm' / official false =
+       'Unofficial line (OpenStreetMap)', drawn dotted; water: true = a paddle route, drawn light blue with long dashes */
+    const UNOFF = t => t.official === false || t.source === 'osm';
     const pop = t => { const k = KIND[t.kind] || KIND.ST; return `<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${esc(t.type || k[0])}${t.km ? ' · about ' + t.km + (t.kind === 'WSR' ? ' km of river drawn' : ' km of trail drawn') : ''}</div>` +
-      `<div class="meta" style="margin-top:6px">${t.official === false ? 'Line from <b>OpenStreetMap</b> (a volunteer map, usually close but <b>not official</b>).' : (t.kind === 'WSR' ? 'Official designated river stretch from the ' : 'Official route from the ') + esc(t.by) + '.'} ${t.kind === 'WSR' ? 'The river is one park along its designated stretch: check its POTA page and the managing agency for where you can set up.' : 'A trail is one POTA park along its whole length: check the trail\'s POTA page for where you can set up.'}</div>` +
+      `<div class="meta" style="margin-top:6px">${UNOFF(t) ? '<b>Unofficial line (OpenStreetMap)</b>: a volunteer map, usually close but <b>not official</b>. No official line has been found for this trail yet.' : (t.kind === 'WSR' ? 'Official designated river stretch from the ' : t.water ? 'Official water trail (paddle route) from the ' : 'Official route from the ') + esc(t.by) + '.'} ${t.kind === 'WSR' ? 'The river is one park along its designated stretch: check its POTA page and the managing agency for where you can set up.' : 'A trail is one POTA park along its whole length: check the trail\'s POTA page for where you can set up.'}</div>` +
       `<div class="acts" style="margin-top:8px"><a href="https://pota.app/#/park/${encodeURIComponent(t.ref)}" target="_blank" rel="noopener" style="font-weight:800">POTA PAGE ↗</a></div></div>`; };
     async function load() {
       if (!map.hasLayer(g) || busy) return; busy = true;
@@ -45,8 +48,9 @@
             if (C && C.length) f = dropKY(f, C);
             if (!f.geometry.coordinates.length) return;
             const casing = L.geoJSON(f, { renderer: rend, interactive: false, style: { color: '#1b1b1b', weight: 6, opacity: .55 } });
-            const k = KIND[t.kind] || KIND.ST, line = L.geoJSON(f, { renderer: rend, style: { color: k[1], weight: 3, opacity: .95, dashArray: k[2] } });
-            line.bindPopup(pop(t), { maxWidth: 300 }); line.bindTooltip(t.name, { sticky: true });
+            const k = KIND[t.kind] || KIND.ST, un = UNOFF(t), col = t.water ? '#4fc3f7' : k[1];
+            const line = L.geoJSON(f, { renderer: rend, style: { color: col, weight: 3, opacity: un ? .8 : .95, dashArray: un ? '1 7' : t.water ? '10 6' : k[2], lineCap: 'round' } });
+            line.bindPopup(pop(t), { maxWidth: 300 }); line.bindTooltip(t.name + (un ? ' · Unofficial line (OpenStreetMap)' : t.water ? ' · water trail' : ''), { sticky: true });
             g.addLayer(casing); g.addLayer(line);
           }).catch(() => { delete done[t.ref]; });
         }

@@ -47,6 +47,7 @@
     const p = x.f.properties || {};
     if (x.src === 'padus') return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' };
     if (x.src === 'osm') return { name: x.f._nm, what: x.f._op || 'OpenStreetMap outline', src: 'OpenStreetMap (NOT official)' };
+    if (x.f._unofficial) return { name: x.f._nm, what: 'Unofficial line (OpenStreetMap)', src: 'Unofficial line (OpenStreetMap): no official line found yet' };   /* Nov 2 (PR 4) */
     return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc, own: x.f._L.own };
   }
 

@@ -1,5 +1,5 @@
 {
- "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note. Oct 26 (round 11, HQ): + 16 National Historic Trails from NPS National Trails (one layer per trail, so the whole layer is the trail; 5 have no name field: Oregon, California, Pony Express, Mormon Pioneer, El Camino Real de los Tejas). Ala Kahakai is a corridor polygon: in the US key instead.",
+ "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note. Oct 26 (round 11, HQ): + 16 National Historic Trails from NPS National Trails (one layer per trail, so the whole layer is the trail; 5 have no name field: Oregon, California, Pony Express, Mormon Pioneer, El Camino Real de los Tejas). Ala Kahakai is a corridor polygon: in the US key instead. Nov 2 (PR 4, 'Official trail lines'): + 44 trail parks that had only an OpenStreetMap line, each with its verified official layer (USGS National Digital Trails, state / provincial agencies, Parks Canada, BLM, USFS). Optional per entry: 'km' = the official length (a drawn line over 3x is flagged), 'water': true = a paddle route, and per part 'bbox' [W,S,E,N] = only pieces crossing that box.",
  "parks": {
   "CA-5536": {
    "name": "Nassagaweya Canyon Trail Recreation Site",
@@ -572,6 +572,674 @@
      "by": "National Park Service National Trails (one layer = this trail)"
     }
    ]
+  },
+  "US-8323": {
+   "name": "Ozark Highlands Scenic Byway State Trail",
+   "parts": [
+    {
+     "url": "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3",
+     "where": "Name LIKE 'Ozark Highlands%'",
+     "by": "ARDOT Scenic Highways and Byways (ARDOT / USFS)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 93.1 km official. OSM had 357 km, which looks like the Ozark Highlands hiking trail, the wrong feature. Layer total measured Nov 2 (the research said 93.1)",
+   "km": 57.3
+  },
+  "US-11393": {
+   "name": "Sylamore Scenic Byway State Trail",
+   "parts": [
+    {
+     "url": "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3",
+     "where": "Name='Sylamore Scenic Byway'",
+     "by": "ARDOT Scenic Highways and Byways (ARDOT)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 76.9 km official vs 36 km OSM. Already in waiting/finds.. layer holds two pieces twice; 40 km once each",
+   "km": 40.0
+  },
+  "CA-5688": {
+   "name": "Hillside Trail National Scenic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/9M0W2FyHuittNScn/arcgis/rest/services/Trails/FeatureServer/0",
+     "where": "Name='Hillside Trail'",
+     "by": "Town of Rothesay Trails (Town of Rothesay)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 3.2 km. Town government layer.",
+   "km": 3.2
+  },
+  "CA-6150": {
+   "name": "Kingsmere River Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn='Kingsmere River' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 1.7 km. This layer is already in trails-layers.json; the entry is just stale.",
+   "km": 1.7
+  },
+  "CA-6130": {
+   "name": "Mud Creek Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn='Mud Creek' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 2.1 km",
+   "km": 2.1
+  },
+  "CA-6149": {
+   "name": "Narrows Peninsula Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn='Narrows Peninsula' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 2.7 km",
+   "km": 2.7
+  },
+  "CA-6152": {
+   "name": "Red Deer Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn LIKE 'Red Deer -%' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): Blue/Red/Yellow loops, about 19 km. Exclude the Banff Red Deer features.",
+   "km": 19.0
+  },
+  "CA-6140": {
+   "name": "Shady Lake Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn='Shady Lake' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 1.2 km",
+   "km": 1.2
+  },
+  "CA-6142": {
+   "name": "Spruce River Highlands Trail National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "where": "TrailEn='Spruce River Highland' AND ParkEn LIKE 'Prince Albert%'",
+     "by": "Parks Canada TIMS trails (Parks Canada)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 7.3 km. The official name has no \"s\".",
+   "km": 7.3
+  },
+  "US-7528": {
+   "name": "Air Line State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+     "where": "TRAILNAME LIKE 'Air%Line%'",
+     "by": "CT DEEP Trails Set (also in USGS NDT) (CT DEEP)",
+     "bbox": [
+      -73.693,
+      40.378,
+      -71.293,
+      42.778
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): USGS: Airline Trail 93.7 km, CT DEEP",
+   "km": 93.7
+  },
+  "US-7532": {
+   "name": "Hop River State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+     "where": "TRAILNAME LIKE 'Hop River%'",
+     "by": "CT DEEP Trails Set (also in USGS NDT) (CT DEEP)",
+     "bbox": [
+      -73.635,
+      40.579,
+      -71.235,
+      42.979
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): USGS 38.8 km vs 96 km OSM. Check the OSM line for double counting.",
+   "km": 38.8
+  },
+  "US-7533": {
+   "name": "Larkin State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+     "where": "TRAILNAME LIKE 'Larkin%'",
+     "by": "CT DEEP Trails Set (also in USGS NDT) (CT DEEP)",
+     "bbox": [
+      -74.266,
+      40.312,
+      -71.865,
+      42.713
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 17.1 km",
+   "km": 17.1
+  },
+  "US-7535": {
+   "name": "Moosup Valley State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+     "where": "TRAILNAME LIKE 'Moosup%'",
+     "by": "CT DEEP Trails Set (also in USGS NDT) (CT DEEP)",
+     "bbox": [
+      -73.08,
+      40.513,
+      -70.68,
+      42.913
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 9.6 km",
+   "km": 9.6
+  },
+  "US-9877": {
+   "name": "Junction and Breakwater National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Junction%Breakwater%'",
+     "by": "USGS National Digital Trails (DNREC)",
+     "bbox": [
+      -76.311,
+      37.52,
+      -73.911,
+      39.92
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 11.4 km, originator DNREC. The waiting/finds services9 USGS_Trails is a third-party re-host, so do not use it.",
+   "km": 11.4
+  },
+  "US-9881": {
+   "name": "Pomeroy and Newark National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Pomeroy%'",
+     "by": "USGS National Digital Trails (DNREC)",
+     "bbox": [
+      -76.96,
+      38.515,
+      -74.56,
+      40.915
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): Pomeroy + Pomeroy/Mason Dixon, DNREC"
+  },
+  "US-11305": {
+   "name": "Wapsipinicon River Water State Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_Water_Trails/FeatureServer/0",
+     "where": "WT_Name='Wapsipinicon River'",
+     "by": "Iowa DNR Water Trails (Iowa DNR)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 168.9 km paddle route",
+   "km": 168.9,
+   "water": true
+  },
+  "US-13170": {
+   "name": "Bay De Noc/Grand Island National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
+     "where": "trail_name='BAY DE NOC - GRAND ISLAND'",
+     "by": "USFS EDW Trails (USFS Hiawatha NF)",
+     "bbox": [
+      -88.119,
+      44.731,
+      -85.719,
+      47.132
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): About 108 km in EDW (USGS 63.5). The script missed it because of the \"/\" bug and the NRT-only check.. EDW trail 905 measured 63.5 km (the research said about 108)",
+   "km": 63.5
+  },
+  "US-13171": {
+   "name": "Betsie Valley State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Betsie Valley%'",
+     "by": "USGS National Digital Trails (MI DNR)",
+     "bbox": [
+      -87.295,
+      43.428,
+      -84.895,
+      45.828
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 75.3 km, MI DNR",
+   "km": 75.3
+  },
+  "US-9386": {
+   "name": "Browns Creek State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Brown%s Creek%'",
+     "by": "USGS National Digital Trails (MN DNR)",
+     "bbox": [
+      -94.044,
+      43.87,
+      -91.644,
+      46.27
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 9.3 km. OSM had about 0 km.",
+   "km": 9.3
+  },
+  "US-13002": {
+   "name": "Dan River State Trail",
+   "parts": [
+    {
+     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "where": "SYSTEMNAME='Dan River State Trail'",
+     "by": "NC DPR State Trails (NC DPR)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 144.7 km paddle trail. designated paddle stretches; 49 km more is marked Planned and is left out",
+   "km": 95.6,
+   "water": true
+  },
+  "US-11856": {
+   "name": "Fonta-Flora State Trail",
+   "parts": [
+    {
+     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "where": "SYSTEMNAME LIKE 'Fonta Flora%' AND TRAILSTAT IN ('Designated','Constructed')",
+     "by": "NC DPR State Trails (NC DPR)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 69.6 km open/designated. Leave out the 105.9 km Planned.",
+   "km": 69.6
+  },
+  "US-12320": {
+   "name": "Yadkin River State Trail",
+   "parts": [
+    {
+     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "where": "SYSTEMNAME='Yadkin River Trail'",
+     "by": "NC DPR State Trails (NC DPR)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 261.1 km paddle trail",
+   "km": 261.1,
+   "water": true
+  },
+  "US-8396": {
+   "name": "Nashua River Rail Trail State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name='Nashua River Rail Trail'",
+     "by": "USGS National Digital Trails (MA DCR (+NH))",
+     "bbox": [
+      -72.778,
+      41.436,
+      -70.378,
+      43.836
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): MassGIS 18.2 + NH GRANIT 2.2 km. OSM had 41 km.",
+   "km": 20.4
+  },
+  "US-13595": {
+   "name": "Northern Recreational State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Northern Rail Trail%'",
+     "by": "USGS National Digital Trails (NH DNCR)",
+     "bbox": [
+      -73.056,
+      42.236,
+      -70.656,
+      44.636
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 89.3 km, NH GRANIT",
+   "km": 89.3
+  },
+  "US-10076": {
+   "name": "Black River State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Black River Trail%' AND sourceoriginator LIKE 'New York State Parks%'",
+     "by": "USGS National Digital Trails (NYS OPRHP)",
+     "bbox": [
+      -77.031,
+      42.79,
+      -74.631,
+      45.19
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 8.0 km official. OSM had 170 km, which looks like the wrong feature (the river or a water trail).",
+   "km": 8.0
+  },
+  "US-12375": {
+   "name": "Catharine Valley State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Catharine Valley%'",
+     "by": "USGS National Digital Trails (NYS OPRHP)",
+     "bbox": [
+      -78.046,
+      41.087,
+      -75.646,
+      43.487
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 19.8 km",
+   "km": 19.8
+  },
+  "US-8098": {
+   "name": "Empire State Trail",
+   "parts": [
+    {
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/EST_Public/FeatureServer/3",
+     "where": "1=1",
+     "by": "NYS Parks Empire State Trail (EST_Public) (NYS OPRHP)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): Full trail 1215.6 km. Inside the POTA bbox: 8 legs, 130.6 km.",
+   "km": 1215.6
+  },
+  "US-12382": {
+   "name": "WAG State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name='W.a.g. Trail'",
+     "by": "USGS National Digital Trails (NYS DEC)",
+     "bbox": [
+      -79.127,
+      40.876,
+      -76.727,
+      43.276
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 13.9 km. The name has dots, which is why the earlier search missed it.",
+   "km": 13.9
+  },
+  "US-9528": {
+   "name": "Banks-Vernonia State Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3",
+     "where": "TRAILNAME='Banks-Vernonia State Trail'",
+     "by": "Oregon Metro Regional Trails (AGENCYNAME=OPRD) (OPRD)",
+     "bbox": [
+      -124.402,
+      44.558,
+      -122.002,
+      46.959
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 33.3 km. Regional government layer; not in the OPRD hosted layer.",
+   "km": 33.3
+  },
+  "US-10734": {
+   "name": "East Applegate Ridge Trail BLM Historic Trail",
+   "parts": [
+    {
+     "url": "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_PUB_Trails/MapServer/0",
+     "where": "TRAILNAME='East Applegate Ridge Trail'",
+     "by": "BLM OR GTRN Trails (BLM Medford)",
+     "bbox": [
+      -124.178,
+      41.045,
+      -121.778,
+      43.445
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 8.6 km",
+   "km": 8.6
+  },
+  "US-10506": {
+   "name": "Estacada- Boring State Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3",
+     "where": "TRAILNAME='Cazadero State Trail'",
+     "by": "Oregon Metro Regional Trails (OPRD)",
+     "bbox": [
+      -123.576,
+      44.228,
+      -121.176,
+      46.628
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 11.5 km. Cazadero is the official name of the Boring–Estacada trail.",
+   "km": 11.5
+  },
+  "US-10355": {
+   "name": "I-205 Multi-Use State Trail",
+   "parts": [
+    {
+     "url": "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3",
+     "where": "TRAILNAME='I-205 Trail'",
+     "by": "Oregon Metro Regional Trails (AGENCYNAME=ODOT) (ODOT)",
+     "bbox": [
+      -123.787,
+      44.177,
+      -121.387,
+      46.578
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 30.2 km",
+   "km": 30.2
+  },
+  "US-10007": {
+   "name": "Oregon Coast State Trail",
+   "parts": [
+    {
+     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Trails_Hosted_view/FeatureServer/0",
+     "where": "name LIKE 'Oregon Coast Trail%'",
+     "by": "OPRD Rec Trails (OPRD)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 241.9 km official (32 segments + 1 alternative). OSM had 1090 km, which likely includes beach and road walks or duplicates.",
+   "km": 241.9
+  },
+  "US-10009": {
+   "name": "Row River National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_PUB_Trails/MapServer/0",
+     "where": "TRAILNAME LIKE 'Row River%'",
+     "by": "BLM OR GTRN Trails (BLM Northwest Oregon)",
+     "bbox": [
+      -124.207,
+      42.578,
+      -121.807,
+      44.978
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 27.2 km",
+   "km": 27.2
+  },
+  "US-11905": {
+   "name": "Centennial Trail State Trail",
+   "parts": [
+    {
+     "url": "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0",
+     "where": "TrailName LIKE 'Centennial Trail%'",
+     "by": "SD GFP Recreational Trails (SD GFP / USFS Black Hills)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 70 km in SD GFP (USFS pieces also in USGS NDT). Already in waiting/finds.. SD GFP pieces measured 52.5 km on the ground (70 was the map-projection length)",
+   "km": 52.5
+  },
+  "US-8164": {
+   "name": "George S. Mickelson State Trail",
+   "parts": [
+    {
+     "url": "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0",
+     "where": "TrailName='George S. Mickelson Trail'",
+     "by": "SD GFP Recreational Trails (SD GFP)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): About 180 km. Already in waiting/finds.",
+   "km": 180.0
+  },
+  "US-5804": {
+   "name": "Corona Arch BLM National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0",
+     "where": "PrimaryName='Corona Arch'",
+     "by": "UGRC Trails and Pathways (OwnerSteward=BLM) (BLM Moab)",
+     "bbox": [
+      -110.833,
+      37.374,
+      -108.433,
+      39.774
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 1.8 km. Already in waiting/finds.",
+   "km": 1.8
+  },
+  "US-5788": {
+   "name": "Slickrock Bike National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_GTLF_Public_Managed_Trails/FeatureServer/2",
+     "where": "ROUTE_PRMRY_NM='SLICKROCK TRAIL'",
+     "by": "BLM National GTLF Managed Trails (BLM Moab)",
+     "bbox": [
+      -110.723,
+      37.376,
+      -108.323,
+      39.776
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 15.3 km (UGRC has 64 km including variants)",
+   "km": 15.3
+  },
+  "US-9907": {
+   "name": "First Landing National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name IN ('First Landing State Park','Cape Henry Trail') AND sourceoriginator LIKE 'Virginia%'",
+     "by": "USGS National Digital Trails (VA DCR)",
+     "bbox": [
+      -77.253,
+      35.718,
+      -74.853,
+      38.118
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 31.9 km system + 6.8 km Cape Henry. OSM had about 0 km.",
+   "km": 38.7
+  },
+  "US-10407": {
+   "name": "Columbia Plateau State Park Trail State Trail",
+   "parts": [
+    {
+     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+     "where": "TR_NM='Columbia Plateau State Park Trail'",
+     "by": "WA State Parks Long-Distance Trails (WA State Parks)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 208.9 km",
+   "km": 208.9
+  },
+  "US-10706": {
+   "name": "Klickitat State Park State Trail",
+   "parts": [
+    {
+     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+     "where": "TR_NM='Klickitat State Park Trail'",
+     "by": "WA State Parks Long-Distance Trails (WA State Parks)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 49.0 km",
+   "km": 49.0
+  },
+  "US-3171": {
+   "name": "Spokane River Centennial State Trail",
+   "parts": [
+    {
+     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+     "where": "TR_NM='Spokane River Centennial State Park Trail'",
+     "by": "WA State Parks Long-Distance Trails (WA State Parks)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 73.8 km. Already in waiting/finds; owner confirmed as wa_stateparks.",
+   "km": 73.8
+  },
+  "US-10411": {
+   "name": "Willapa Hills State Park Trail State Trail",
+   "parts": [
+    {
+     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+     "where": "TR_NM='Willapa Hills State Park Trail'",
+     "by": "WA State Parks Long-Distance Trails (WA State Parks)"
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 89.9 km",
+   "km": 89.9
+  },
+  "US-9778": {
+   "name": "Devil’s River State Trail",
+   "parts": [
+    {
+     "url": "https://partnerships.nationalmap.gov/arcgis/rest/services/USGSTrails/MapServer/0",
+     "where": "name LIKE 'Devil%s River%'",
+     "by": "USGS National Digital Trails (WI DNR)",
+     "bbox": [
+      -88.92,
+      43.004,
+      -86.52,
+      45.404
+     ]
+    }
+   ],
+   "note": "Nov 2 PR 4 (official trail lines): 23.5 km, WI DNR",
+   "km": 23.5
   }
  }
 }
