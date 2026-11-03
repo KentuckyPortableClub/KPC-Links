@@ -86,10 +86,19 @@
   "kpc-hunters.yml|2026-11-03T08:07:00+00:00": "2026-11-03T09:05+00:00 started",
   "kpc-pota-discord.yml|2026-11-03T08:19:00+00:00": "2026-11-03T09:05+00:00 started",
   "kpc-world-pota.yml|2026-11-03T06:17:00+00:00": "2026-11-03T09:05+00:00 started",
-  "kpc-canada.yml|2026-11-03T08:53:00+00:00": "2026-11-03T09:26+00:00 started"
+  "kpc-canada.yml|2026-11-03T08:53:00+00:00": "2026-11-03T09:26+00:00 started",
+  "kpc-geo-cache.yml|2026-11-03T09:13:00+00:00": "2026-11-03T09:53+00:00 started",
+  "kpc-ky-maps.yml|2026-11-03T09:21:00+00:00": "2026-11-03T09:53+00:00 started",
+  "kpc-nwr.yml|2026-11-03T09:12:00+00:00": "2026-11-03T09:53+00:00 started",
+  "kpc-owned.yml|2026-11-03T09:23:00+00:00": "2026-11-03T09:53+00:00 started",
+  "kpc-us-key.yml|2026-11-03T09:17:00+00:00": "2026-11-03T09:53+00:00 started"
  },
- "last": "2026-11-03T09:26+00:00",
+ "last": "2026-11-03T09:53+00:00",
  "last_restarted": [
-  "kpc-canada.yml (missed Nov 03 08:53 UTC)"
+  "kpc-geo-cache.yml (missed Nov 03 09:13 UTC)",
+  "kpc-ky-maps.yml (missed Nov 03 09:21 UTC)",
+  "kpc-nwr.yml (missed Nov 03 09:12 UTC)",
+  "kpc-owned.yml (missed Nov 03 09:23 UTC)",
+  "kpc-us-key.yml (missed Nov 03 09:17 UTC)"
  ]
 }
