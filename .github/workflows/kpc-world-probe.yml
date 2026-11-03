@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:   # PR2 (Nov 2): one run of this bot at a time; a second start waits instead of piling up
+  group: kpc-world-probe
+  cancel-in-progress: false
 jobs:
   run:
     runs-on: ubuntu-latest

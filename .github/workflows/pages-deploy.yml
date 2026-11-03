@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths-ignore:
       - '.claude/**'
+      - '.github/**'   # PR2 (Nov 2): a bot or workflow change is not a site change (Nov 2: 160 such commits in a day each rebuilt the site)
   workflow_dispatch:
 
 permissions:

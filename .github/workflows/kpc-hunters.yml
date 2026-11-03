@@ -9,7 +9,10 @@ name: KPC Hunters
 on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
-    - cron: '*/15 * * * *'
+    # PR2 (Nov 2, fewer runs): ONE job an hour that counts 4 times, 15 minutes apart (like the POTA spotter), instead of 96
+    # separate runs a day. Same counts (spots are counted once by their spot id). GitHub was dropping most */15 runs anyway
+    # (Nov 2: 3 of 96 scheduled runs happened). Was: '*/15 * * * *'.
+    - cron: '7 * * * *'
     - cron: '33 13 * * 5'
   workflow_dispatch:
     inputs:
@@ -29,7 +32,7 @@ concurrency:
 jobs:
   count:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 58   # PR2: was 10; the hourly job counts 4 times, 15 min apart
     steps:
       - uses: actions/checkout@v5
         with:
@@ -45,7 +48,14 @@ jobs:
           key: hunters-work-${{ github.run_id }}
           restore-keys: hunters-work-
       - name: Count
-        run: python3 .github/scripts/kpc_hunters.py collect build || echo "::error title=kpc_hunters.py::stopped with an error (exit $?), see the log above"
+        run: |
+          # PR2: the hourly run counts 4 times (0, 15, 30, 45 min); the Friday post run and a by-hand run count once, as before
+          N=1; [ "${{ github.event.schedule || inputs.as_schedule }}" = '7 * * * *' ] && N=4
+          for i in $(seq 1 $N); do
+            python3 .github/scripts/kpc_hunters.py collect build || echo "::error title=kpc_hunters.py::stopped with an error (exit $?), see the log above"
+            [ "$i" -lt "$N" ] && sleep 870
+          done
+          true
       - name: Keep the open hour
         if: always()
         id: kept_green_2

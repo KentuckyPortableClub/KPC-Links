@@ -7,7 +7,7 @@ name: KPC boundary bot queue
 # status read counts as busy (never start blind).
 on:
   schedule:
-    - cron: '22 * * * *'   # G9 Nov 2: was '23 * * * *' (spread the start times; now 1 min earlier)
+    - cron: '22 */2 * * *'   # PR2 (Nov 2): every 2 h (was hourly, '22 * * * *'); boundary jobs take hours, so the next one rarely waits long   # G9 Nov 2: was '23 * * * *' (spread the start times; now 1 min earlier)
   workflow_dispatch:
 permissions:
   contents: write
