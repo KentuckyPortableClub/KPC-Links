@@ -41,16 +41,31 @@ jobs:
       groups: ${{ steps.p.outputs.groups }}
     steps:
       - uses: actions/checkout@v5
+      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM, frozen while chat 11 grades it) - a held build without a verdict for its id, or graded and not yet released, means no new build
+        # Nov 2 (before the 3:17 AM run): moved BEFORE BOT A, so a frozen US key also gets no new US answers (see BOT A below)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force }}
+        run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: BOT A, the answers writer (Fable Oct 29 11:15 PM; plan KPC_Key_And_2fer_Automation_Plan.md)
         # chat 11's YES / NO rows in KPC-Data data/waiting/questions/*.json -> data/us-key/overrides.json (join / no / alias) +
         # the ledger answers-applied.json + answers-states.txt (the states to rebuild). Saved first, so the build jobs read it.
+        env:
+          KPC_ANSWERS_WHILE_FROZEN: ${{ vars.KPC_ANSWERS_WHILE_FROZEN || 'no' }}
+          KPC_ANSWERS_SKIP: ${{ vars.KPC_ANSWERS_SKIP || 'map-audit' }}
         run: |
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata 2>/dev/null \
             && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions data/intake 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
           # Nov 2 review: the four writers go in one file so the save can run them AGAIN on top of the newest main (save by overwrite).
           # A writer that stops is now loud (::error) instead of hidden by '|| true'.
           cat > /tmp/bota.sh <<'SH'
-          DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || echo '::error title=BOT A::kpc_key_answers.py stopped (see its log above)'
+          # Nov 2: while the US key is FROZEN (the check above), US answers wait; nothing is lost, the ledger applies them after the release.
+          # Repo variable KPC_ANSWERS_WHILE_FROZEN=yes = the old way (apply them even while frozen).
+          if [ "${FROZEN:-}" = "1" ] && [ "${KPC_ANSWERS_WHILE_FROZEN:-no}" != "yes" ]; then
+            echo "::notice title=BOT A::US key frozen (build ${FROZEN_BUILD:-?}): US answers not applied tonight; they wait for the release"
+          else
+            DATA=kpcdata python3 .github/scripts/kpc_key_answers.py || echo '::error title=BOT A::kpc_key_answers.py stopped (see its log above)'
+          fi
           DATA=kpcdata python3 .github/scripts/kpc_key_layers.py || echo '::error title=BOT A::kpc_key_layers.py stopped (see its log above)'
           DATA=kpcdata python3 .github/scripts/kpc_ca_answers.py || echo '::error title=BOT A::kpc_ca_answers.py stopped (see its log above)'
           DATA=kpcdata python3 .github/scripts/kpc_world_answers.py || echo '::error title=BOT A::kpc_world_answers.py stopped (see its log above)'
@@ -62,11 +77,6 @@ jobs:
           # KPC_SAVE_MODE (repo variable) = overwrite (default) | rebase (the old way, still loud).
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" bash .github/scripts/kpc_save_overwrite.sh "Key: chat 11's answers applied (BOT A)" 'bash /tmp/bota.sh' -- data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json
           rm -rf kpcdata
-      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM, frozen while chat 11 grades it) - a held build without a verdict for its id, or graded and not yet released, means no new build
-        env:
-          GH_TOKEN: ${{ github.token }}
-          FORCE: ${{ inputs.force }}
-        run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - id: p
         env:
           STATES: ${{ inputs.states }}
