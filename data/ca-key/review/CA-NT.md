@@ -1,6 +1,6 @@
 # Canada NT: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **17 of 68** joined (same name + same kind). **0** to check, **47** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 68** joined (same name + same kind). **0** to check, **46** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -57,7 +57,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5473 Fort McPherson National Historic Site (National Historic Site)
 - CA-5475 Fort Resolution National Historic Site (National Historic Site)
 - CA-5476 Hay River Mission Sites National Historic Site (National Historic Site)
-- CA-5478 Nagwichoonjik (Mackenzie River) National Historic Site (National Historic Site)
 - CA-5479 Parry's Rock Wintering Site National Historic Site (National Historic Site)
 - CA-5480 Tsa Tue Biosphere Reserve UNESCO Biosphere Reserve (UNESCO Biosphere Reserve)
 - CA-6347 Paniksak Territorial Park (Territorial Park)

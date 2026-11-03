@@ -6,7 +6,10 @@
    "ref": "CA-1194",
    "url": "https://geo.sylvanlake.ca/server/rest/services/Tourism/ParkArea/FeatureServer/0",
    "name_field": "ParkName",
-   "record_name": "",
+   "record_name": "Sylvan Lake Park",
+   "names": [
+    "Sylvan Lake Park"
+   ],
    "oid": 1649
   },
   {
@@ -14,34 +17,59 @@
    "url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/Provincial_Protected_Areas/FeatureServer/0",
    "name_field": "NAME_E",
    "record_name": "Middle Ridge Wildlife Reserve",
+   "names": [
+    "Middle Ridge Wildlife Reserve"
+   ],
    "oid": 46
   },
   {
    "ref": "CA-4816",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "Cape Spear Lighthouse National Historic Site",
+   "names": [
+    "Cape Spear Lighthouse National Historic Site",
+    "Lieu historique national du Phare-de-Cap-Spear"
+   ],
+   "where": "property_number = '00345'",
    "oid": 48
   },
   {
    "ref": "CA-4817",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "Castle Hill National Historic Site",
+   "names": [
+    "Castle Hill National Historic Site",
+    "Freshwater, Placentia Bay",
+    "Lieu historique national de Castle Hill"
+   ],
+   "where": "property_number = '00094'",
    "oid": 14
   },
   {
    "ref": "CA-4821",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "L'Anse aux Meadows National Historic Site",
+   "names": [
+    "L'Anse aux Meadows",
+    "L'Anse aux Meadows National Historic Site",
+    "Lieu historique national de L’Anse aux Meadows"
+   ],
+   "where": "property_number = '01725'",
    "oid": 425
   },
   {
    "ref": "CA-4822",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "Port au Choix National Historic Site",
+   "names": [
+    "Lieu historique national du Port au Choix",
+    "Port au Choix National Historic Site"
+   ],
+   "where": "property_number = '01688'",
    "oid": 411
   },
   {
@@ -70,6 +98,9 @@
    "url": "https://services7.arcgis.com/7xVQ8rKWOtAFBw48/arcgis/rest/services/Frontenac_Arch_Biosphere_Region_Boundary/FeatureServer/0",
    "name_field": "Name",
    "record_name": "Frontenac Arch Biosphere Reserve",
+   "names": [
+    "Frontenac Arch Biosphere Reserve"
+   ],
    "oid": 1
   },
   {
@@ -77,13 +108,20 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7",
    "name_field": "OFFICIAL_NAME",
    "record_name": "Chapleau Crown Game Preserve",
+   "names": [
+    "Chapleau Crown Game Preserve"
+   ],
    "where": "OGF_ID = 450757661"
   },
   {
    "ref": "CA-1596",
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
-   "record_name": "Hog",
+   "record_name": "Hog's Back Park",
+   "names": [
+    "Hog's Back Park",
+    "Parc Hog's Back"
+   ],
    "oid": 1
   },
   {
@@ -91,6 +129,9 @@
    "url": "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/32",
    "name_field": "NAME",
    "record_name": "SUNNIDALE PARK",
+   "names": [
+    "SUNNIDALE PARK"
+   ],
    "oid": 96
   },
   {
@@ -98,6 +139,9 @@
    "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
    "name_field": "Name",
    "record_name": "Edenvale Conservation Area",
+   "names": [
+    "Edenvale Conservation Area"
+   ],
    "oid": 1
   },
   {
@@ -105,6 +149,9 @@
    "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
    "name_field": "Name",
    "record_name": "Fort Willow Conservation Area",
+   "names": [
+    "Fort Willow Conservation Area"
+   ],
    "oid": 2
   },
   {
@@ -112,27 +159,45 @@
    "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
    "name_field": "Name",
    "record_name": "New Lowell Conservation Area",
+   "names": [
+    "New Lowell Conservation Area"
+   ],
    "oid": 4
   },
   {
    "ref": "CA-4861",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "Butler",
+   "record_name": "Butler's Barracks National Historic Site",
+   "names": [
+    "Butler's Barracks National Historic Site",
+    "Lieu historique national des Casernes-de-Butler"
+   ],
+   "where": "property_number = '56474'",
    "oid": 4691
   },
   {
    "ref": "CA-4865",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "Fort Malden National Historic Site",
+   "names": [
+    "Fort Malden National Historic Site",
+    "Lieu historique national du Fort-Malden"
+   ],
+   "where": "property_number = '10700'",
    "oid": 2355
   },
   {
    "ref": "CA-4873",
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
-   "record_name": "",
+   "record_name": "Laurier House National Historic Site",
+   "names": [
+    "Laurier House National Historic Site",
+    "Lieu historique national de la Maison-Laurier"
+   ],
+   "where": "property_number = '56479'",
    "oid": 4695
   },
   {
@@ -140,6 +205,12 @@
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
    "record_name": "Sir John Johnson House National Historic Site",
+   "names": [
+    "Lieu historique national de la Maison-de-Sir-John-Johnson",
+    "Sir John Johnson House National Historic Site",
+    "Williamstown"
+   ],
+   "where": "property_number = '56478'",
    "oid": 4694
   },
   {
@@ -147,6 +218,11 @@
    "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4",
    "name_field": "name_en",
    "record_name": "Woodside National Historic Site",
+   "names": [
+    "Lieu historique national Woodside",
+    "Woodside National Historic Site"
+   ],
+   "where": "property_number = '10540'",
    "oid": 2332
   },
   {
@@ -154,6 +230,9 @@
    "url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Parks_OD/FeatureServer/6",
    "name_field": "NAME",
    "record_name": "Pier 4 Park",
+   "names": [
+    "Pier 4 Park"
+   ],
    "oid": 567
   },
   {
@@ -161,6 +240,9 @@
    "url": "https://services.arcgis.com/aji2lCmjXt0KpGzI/arcgis/rest/services/FacilitySites_Select_Merge/FeatureServer/0",
    "name_field": "NAME",
    "record_name": "Bell Homestead Historic Site",
+   "names": [
+    "Bell Homestead Historic Site"
+   ],
    "oid": 111
   },
   {
@@ -168,6 +250,9 @@
    "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46",
    "name_field": "Name",
    "record_name": "Tottenham Conservation Area",
+   "names": [
+    "Tottenham Conservation Area"
+   ],
    "oid": 9
   },
   {
@@ -175,6 +260,9 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
    "name_field": "TRAIL_NAME",
    "record_name": "Nine Mile Portage Heritage Trail",
+   "names": [
+    "Nine Mile Portage Heritage Trail"
+   ],
    "where": "OGF_ID = 143666935"
   },
   {
@@ -182,6 +270,9 @@
    "url": "https://services2.arcgis.com/9LnN9037wYhPG904/arcgis/rest/services/VAUGHAN_PARKS/FeatureServer/0",
    "name_field": "NAME",
    "record_name": "Mackenzie Glen District Park",
+   "names": [
+    "Mackenzie Glen District Park"
+   ],
    "oid": 639
   },
   {
@@ -189,13 +280,19 @@
    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
    "name_field": "name",
    "record_name": "Sylvan Glen C.A.",
+   "names": [
+    "Sylvan Glen C.A."
+   ],
    "oid": 12
   },
   {
    "ref": "CA-5645",
    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
    "name_field": "name",
-   "record_name": "Ball",
+   "record_name": "Ball's Mill C.A.",
+   "names": [
+    "Ball's Mill C.A."
+   ],
    "oid": 15
   },
   {
@@ -203,6 +300,9 @@
    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
    "name_field": "name",
    "record_name": "Thurne Parks C.A.",
+   "names": [
+    "Thurne Parks C.A."
+   ],
    "oid": 11
   },
   {
@@ -210,6 +310,9 @@
    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0",
    "name_field": "NAME",
    "record_name": "Cooper Marsh",
+   "names": [
+    "Cooper Marsh"
+   ],
    "oid": 602
   },
   {
@@ -217,6 +320,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5",
    "name_field": "NAME_ENG",
    "record_name": "Fingal Wildlife Management Area",
+   "names": [
+    "CLACQ",
+    "Fingal Wildlife Management Area",
+    "Zone de gestion de la faune de Fingal"
+   ],
    "oid": 202385
   },
   {
@@ -224,13 +332,21 @@
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
    "record_name": "Vincent Massey Park",
+   "names": [
+    "Parc Vincent Massey",
+    "Vincent Massey Park"
+   ],
    "oid": 2
   },
   {
    "ref": "CA-6256",
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
-   "record_name": "Major",
+   "record_name": "Major's Hill Park",
+   "names": [
+    "Major's Hill Park",
+    "Parc Major's Hill"
+   ],
    "oid": 10
   },
   {
@@ -238,6 +354,10 @@
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
    "record_name": "Rideau Falls Park and Green Island",
+   "names": [
+    "Parc des Chutes-Rideau et l’île Green",
+    "Rideau Falls Park and Green Island"
+   ],
    "oid": 13
   },
   {
@@ -245,6 +365,10 @@
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
    "record_name": "LeBreton Flats Park",
+   "names": [
+    "LeBreton Flats Park",
+    "Parc des Plaines-LeBreton"
+   ],
    "oid": 6
   },
   {
@@ -252,6 +376,10 @@
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
    "record_name": "Confederation Park",
+   "names": [
+    "Confederation Park",
+    "Parc de la Confédération"
+   ],
    "oid": 8
   },
   {
@@ -259,6 +387,10 @@
    "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
    "name_field": "NAME_EN",
    "record_name": "Kìwekì Point",
+   "names": [
+    "Kìwekì Point",
+    "Pointe Kìwekì"
+   ],
    "oid": 11
   },
   {
@@ -266,90 +398,93 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "H.R. Frink Conservation Area",
+   "names": [
+    "H.R. Frink Conservation Area"
+   ],
    "oid": 17102
   },
   {
    "ref": "CA-4926",
    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
    "name_field": "PARKNM",
-   "record_name": "",
+   "record_name": "BATOCHE NATIONAL HISTORIC PARK",
    "oid": 39
   },
   {
    "ref": "CA-4933",
    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
    "name_field": "PARKNM",
-   "record_name": "",
+   "record_name": "FORT WALSH NATIONAL HISTORIC PARK",
    "oid": 113
   },
   {
    "ref": "CA-6130",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Mud Creek Trail",
    "oid": 369
   },
   {
    "ref": "CA-6140",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Shady Lake Trail",
    "oid": 364
   },
   {
    "ref": "CA-6143",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Freight Tait Springs Trail",
    "oid": 71571
   },
   {
    "ref": "CA-6144",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Elk Trail",
    "oid": 68510
   },
   {
    "ref": "CA-6145",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Hunters Lake Trail",
    "oid": 368
   },
   {
    "ref": "CA-6148",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Treebeard Trail",
    "oid": 67349
   },
   {
    "ref": "CA-6149",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Narrows Peninsula Trail",
    "oid": 382
   },
   {
    "ref": "CA-6150",
    "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
    "name_field": "SectionEn",
-   "record_name": "",
+   "record_name": "Kingsmere River Trail",
    "oid": 384
   },
   {
    "ref": "CA-4600",
    "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19",
    "name_field": "CANADIAN_HERITAGE_RIVER",
-   "record_name": "",
+   "record_name": "Alsek River",
    "oid": 4
   },
   {
    "ref": "CA-4631",
    "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19",
    "name_field": "CANADIAN_HERITAGE_RIVER",
-   "record_name": "",
+   "record_name": "Tatshenshini River",
    "oid": 3
   },
   {
@@ -357,6 +492,9 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "HATHAYIM MARINE PARK [A.K.A. VON DONOP MARINE PARK]"
+   ],
    "oid": 19934
   },
   {
@@ -364,6 +502,10 @@
    "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0",
    "name_field": "NAME",
    "record_name": "",
+   "names": [
+    "Parc provincial de la République",
+    "République Provincial Park"
+   ],
    "oid": 4
   },
   {
@@ -371,6 +513,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Refuge d’oiseaux de l’île aux Canes",
+    "Île aux Canes Migratory Bird Sanctuary"
+   ],
    "oid": 22153
   },
   {
@@ -378,6 +524,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Banks Island Migratory Bird Sanctuary No. 1",
+    "Île Banks, Refuge D’Oiseaux Migrateurs No 1 De L’"
+   ],
    "oid": 22074
   },
   {
@@ -385,6 +535,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "AARON  ",
+    "AARON PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Dryden Cluster (Northwest Zone)"
+   ],
    "oid": 40673
   },
   {
@@ -392,6 +547,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "ABITIBI-DE-TROYES",
+    "ABITIBI-DE-TROYES PROVINCIAL PARK (CULTURAL HERITAGE CLASS)",
+    "Timmins/Cochrane Cluster (Northeast Zone)"
+   ],
    "oid": 58817
   },
   {
@@ -399,6 +559,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "ALGONQUIN",
+    "ALGONQUIN PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Algonquin Cluster (Algonquin Zone)"
+   ],
    "oid": 59377
   },
   {
@@ -406,6 +571,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "AUBINADONG-NUSHATOGAINI RIVERS    ",
+    "AUBINADONG-NUSHATOGAINI RIVERS PROVINCIAL PARK (WATERWAY CLASS)",
+    "Algoma Cluster (Northeast Zone)"
+   ],
    "oid": 40321
   },
   {
@@ -413,6 +583,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "AUBREY FALLS  ",
+    "AUBREY FALLS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 59441
   },
   {
@@ -420,6 +595,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "AWENDA  ",
+    "AWENDA PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Awenda Cluster (Southwest Zone)"
+   ],
    "oid": 55729
   },
   {
@@ -427,6 +607,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BALSAM LAKE  ",
+    "BALSAM LAKE PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Balsam Lake Cluster (Southeast Zone)"
+   ],
    "oid": 36385
   },
   {
@@ -434,6 +619,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BELL BAY  ",
+    "BELL BAY PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Bonnechere Park Cluster (Algonquin Zone)"
+   ],
    "oid": 36241
   },
   {
@@ -441,6 +631,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Arrowhead Cluster (Algonquin Zone)",
+    "BIGWIND LAKE  ",
+    "BIGWIND LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59793
   },
   {
@@ -448,6 +643,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BISCOTASI LAKE   ",
+    "BISCOTASI LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 59345
   },
   {
@@ -455,6 +655,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BON ECHO  ",
+    "BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Bon Echo Cluster (Southeast Zone)"
+   ],
    "oid": 60161
   },
   {
@@ -462,6 +667,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Refuge d'oiseaux migrateurs de l'Île-St-Joseph",
+    "St. Joseph Island Migratory Bird Sanctuary"
+   ],
    "oid": 22306
   },
   {
@@ -469,6 +678,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Aiguebelle National Park (Québec)",
+    "Parc national d'Aiguebelle"
+   ],
    "oid": 10431
   },
   {
@@ -476,6 +689,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Oka National Park (Québec)",
+    "Parc national d'Oka"
+   ],
    "oid": 10442
   },
   {
@@ -483,6 +700,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Opémican National Park (Québec)",
+    "Parc national d'Opémican"
+   ],
    "oid": 14588
   },
   {
@@ -490,6 +711,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Aigle-à-Tête-Blanche Ecological Reserve",
+    "Réserve écologique de l'Aigle-à-Tête-Blanche"
+   ],
    "oid": 10396
   },
   {
@@ -497,6 +722,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "André-Linteau Ecological Reserve",
+    "Réserve écologique André-Linteau"
+   ],
    "oid": 10393
   },
   {
@@ -504,6 +733,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Boisé-des-Blouin Nature Reserve",
+    "Réserve naturelle du Boisé-des-Blouin"
+   ],
    "oid": 14577
   },
   {
@@ -511,6 +744,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Bonaventure Island and Percé Rock Bird Sanctuary",
+    "Refuge d'oiseaux de l'Île Bonaventure et du Rocher Percé"
+   ],
    "oid": 22100
   },
   {
@@ -518,6 +755,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Collines-Ondulées National Park Reserve (Québec)",
+    "Réserve de parc national des Collines-Ondulées"
+   ],
    "oid": 12169
   },
   {
@@ -525,6 +766,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Coteau-de-la-Rivière-La Guerre Nature Reserve",
+    "Réserve naturelle du Coteau-de-la-Rivière-La Guerre"
+   ],
    "oid": 12043
   },
   {
@@ -532,6 +777,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Lacs-Vaudray-et-Joannès Biodiversity Reserve",
+    "Réserve de biodiversité des Lacs-Vaudray-et-Joannès"
+   ],
    "oid": 12095
   },
   {
@@ -539,6 +788,10 @@
    "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
    "name_field": "NAME_E",
    "record_name": "",
+   "names": [
+    "Grosse Île and the Irish Memorial National Historic Site",
+    "Lieu historique national de la Grosse-Île-et-le-Mémorial-des-Irlandais"
+   ],
    "oid": 22060
   },
   {
@@ -546,6 +799,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BONNECHERE  ",
+    "BONNECHERE PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Bonnechere Park Cluster (Algonquin Zone)"
+   ],
    "oid": 37297
   },
   {
@@ -553,6 +811,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BOYNE VALLEY  ",
+    "BOYNE VALLEY PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Earl Rowe Cluster (Southwest Zone)"
+   ],
    "oid": 55857
   },
   {
@@ -560,6 +823,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BUTLER LAKE  ",
+    "BUTLER LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Dryden Cluster (Northwest Zone)"
+   ],
    "oid": 39537
   },
   {
@@ -567,6 +835,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "CALIPER LAKE  ",
+    "CALIPER LAKE PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Kenora Cluster (Northwest Zone)"
+   ],
    "oid": 53777
   },
   {
@@ -574,6 +847,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bass Lake Cluster (Algonquin Zone)",
+    "CARDEN ALVAR",
+    "CARDEN ALVAR PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 55041
   },
   {
@@ -581,6 +859,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bonnechere Park Cluster (Algonquin Zone)",
+    "CARSON LAKE  ",
+    "CARSON LAKE PROVINCIAL PARK (RECREATIONAL CLASS)"
+   ],
    "oid": 37169
   },
   {
@@ -588,6 +871,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "CAVERN LAKE  ",
+    "CAVERN LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Sleeping Giant Cluster (Northwest Zone)"
+   ],
    "oid": 39025
   },
   {
@@ -595,6 +883,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "CHUTES  ",
+    "CHUTES PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 59873
   },
   {
@@ -602,6 +895,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "CRAIGLEITH  ",
+    "CRAIGLEITH PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Wasaga Beach Cluster (Southwest Zone)"
+   ],
    "oid": 39345
   },
   {
@@ -609,6 +907,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "DANA-JOWSEY LAKES",
+    "DANA-JOWSEY LAKES PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Timmins/Cochrane Cluster (Northeast Zone)"
+   ],
    "oid": 59185
   },
   {
@@ -616,6 +919,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "DARLINGTON  ",
+    "DARLINGTON PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Darlington Cluster (Southeast Zone)"
+   ],
    "oid": 40977
   },
   {
@@ -623,6 +931,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Arrowhead Cluster (Algonquin Zone)",
+    "DIVIDING LAKE    ",
+    "DIVIDING LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 59105
   },
   {
@@ -630,6 +943,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "DRIFTWOOD  ",
+    "DRIFTWOOD PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Mattawa Cluster (Algonquin Zone)"
+   ],
    "oid": 59585
   },
   {
@@ -637,6 +955,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "EAGLE-DOGTOOTH",
+    "EAGLE-DOGTOOTH PROVINCIAL PARK (WATERWAY CLASS)",
+    "Kenora Cluster (Northwest Zone)"
+   ],
    "oid": 57313
   },
   {
@@ -644,6 +967,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "EMILY  ",
+    "EMILY PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Emily Cluster (Southeast Zone)"
+   ],
    "oid": 53137
   },
   {
@@ -651,6 +979,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "ESKER LAKES",
+    "ESKER LAKES PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Timmins/Cochrane Cluster (Northeast Zone)"
+   ],
    "oid": 59073
   },
   {
@@ -658,6 +991,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FAIRBANK",
+    "FAIRBANK PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Sudbury/Manitoulin Cluster (Northeast Zone)"
+   ],
    "oid": 59057
   },
   {
@@ -665,6 +1003,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FERRIS  ",
+    "FERRIS PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Presqu'ile Cluster (Southeast Zone)"
+   ],
    "oid": 55713
   },
   {
@@ -672,6 +1015,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FITZROY  ",
+    "FITZROY PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Fitzroy Cluster (Algonquin Zone)"
+   ],
    "oid": 45921
   },
   {
@@ -679,6 +1027,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FRALEIGH LAKE  ",
+    "FRALEIGH LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Kakabeka Cluster (Northwest Zone)"
+   ],
    "oid": 45121
   },
   {
@@ -686,6 +1039,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FRONTENAC  ",
+    "FRONTENAC PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Frontenac Cluster (Southeast Zone)"
+   ],
    "oid": 40097
   },
   {
@@ -693,6 +1051,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "FUSHIMI LAKE  ",
+    "FUSHIMI LAKE PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Hearst Area Cluster (Northeast Zone)"
+   ],
    "oid": 40753
   },
   {
@@ -700,6 +1063,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "GRUNDY LAKE   ",
+    "GRUNDY LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Grundy Lake/Sturgeon Bay Cluster (Northeast Zone)"
+   ],
    "oid": 58577
   },
   {
@@ -707,6 +1075,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "INVERHURON  ",
+    "INVERHURON PROVINCIAL PARK (CULTURAL HERITAGE CLASS)",
+    "MacGregor Point Cluster (Southwest Zone)"
+   ],
    "oid": 37105
   },
   {
@@ -714,6 +1087,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "IRA LAKE  ",
+    "IRA LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "MacGregor Point Cluster (Southwest Zone)"
+   ],
    "oid": 39745
   },
   {
@@ -721,6 +1099,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "IVANHOE LAKE  ",
+    "IVANHOE LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 58897
   },
   {
@@ -728,6 +1111,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Arrowhead Cluster (Algonquin Zone)",
+    "J. ALBERT BAUER  ",
+    "J. ALBERT BAUER PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59553
   },
   {
@@ -735,6 +1123,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "JOCKO RIVERS    ",
+    "JOCKO RIVERS PROVINCIAL PARK (WATERWAY CLASS)",
+    "Mattawa Cluster (Algonquin Zone)"
+   ],
    "oid": 59393
   },
   {
@@ -742,6 +1135,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KAIASHK  ",
+    "KAIASHK PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47441
   },
   {
@@ -749,6 +1147,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KAKABEKA FALLS  ",
+    "KAKABEKA FALLS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Kakabeka Cluster (Northwest Zone)"
+   ],
    "oid": 40257
   },
   {
@@ -756,6 +1159,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KAP-KIG-IWAN   ",
+    "KAP-KIG-IWAN PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Timmins/Cochrane Cluster (Northeast Zone)"
+   ],
    "oid": 59617
   },
   {
@@ -763,6 +1171,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KASHABOWIE  ",
+    "KASHABOWIE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Kakabeka Cluster (Northwest Zone)"
+   ],
    "oid": 36497
   },
   {
@@ -770,6 +1183,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KAWARTHA HIGHLANDS  ",
+    "KAWARTHA HIGHLANDS SIGNATURE SITE PARK (NATURAL ENVIRONMENT CLASS)",
+    "Kawartha Highlands Cluster (Algonquin Zone)"
+   ],
    "oid": 45761
   },
   {
@@ -777,6 +1195,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KENNY FOREST  ",
+    "KENNY FOREST PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Temagami Area Cluster (Northeast Zone)"
+   ],
    "oid": 39937
   },
   {
@@ -784,6 +1207,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KILLARNEY  ",
+    "KILLARNEY PROVINCIAL PARK (WILDERNESS CLASS)",
+    "Killarney/French River Cluster (Northeast Zone)"
+   ],
    "oid": 59729
   },
   {
@@ -791,6 +1219,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KILLARNEY LAKELANDS AND HEADWATERS",
+    "KILLARNEY LAKELANDS AND HEADWATERS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Killarney/French River Cluster (Northeast Zone)"
+   ],
    "oid": 59665
   },
   {
@@ -798,6 +1231,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KILLBEAR  ",
+    "KILLBEAR PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Killarney/French River Cluster (Northeast Zone)"
+   ],
    "oid": 60001
   },
   {
@@ -805,6 +1243,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "KOMOKA  ",
+    "KOMOKA PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Port Burwell Cluster (Southwest Zone)"
+   ],
    "oid": 36849
   },
   {
@@ -812,6 +1255,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "LAKE ST. PETER  ",
+    "LAKE ST. PETER PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Silent Lake Cluster (Southeast Zone)"
+   ],
    "oid": 35569
   },
   {
@@ -819,6 +1267,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "LAKE SUPERIOR   ",
+    "LAKE SUPERIOR PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Lake Superior Cluster (Northwest Zone)"
+   ],
    "oid": 40129
   },
   {
@@ -826,6 +1279,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "LITTLE ABITIBI  ",
+    "LITTLE ABITIBI PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Timmins/Cochrane Cluster (Northeast Zone)"
+   ],
    "oid": 58945
   },
   {
@@ -833,6 +1291,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Dryden Cluster (Northwest Zone)",
+    "LOLA LAKE  ",
+    "LOLA LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 37505
   },
   {
@@ -840,6 +1303,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MACGREGOR POINT  ",
+    "MACGREGOR POINT PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "MacGregor Point Cluster (Southwest Zone)"
+   ],
    "oid": 53217
   },
   {
@@ -847,6 +1315,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MACLEOD  ",
+    "MACLEOD PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47873
   },
   {
@@ -854,6 +1327,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MAKOBE-GRAYS RIVER",
+    "MAKOBE-GRAYS RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Temagami Area Cluster (Northeast Zone)"
+   ],
    "oid": 41409
   },
   {
@@ -861,6 +1339,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Killarney/French River Cluster (Northeast Zone)",
+    "MASHKINONJE  ",
+    "MASHKINONJE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59745
   },
   {
@@ -868,6 +1351,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Oastler/Massasauga Cluster (Algonquin Zone)",
+    "THE MASSASAUGA  ",
+    "THE MASSASAUGA PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 54737
   },
   {
@@ -875,6 +1363,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bon Echo Cluster (Southeast Zone)",
+    "MATAWATCHAN  ",
+    "MATAWATCHAN PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 38433
   },
   {
@@ -882,6 +1375,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MATTAWA RIVER",
+    "MATTAWA RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Mattawa Cluster (Algonquin Zone)"
+   ],
    "oid": 59985
   },
   {
@@ -889,6 +1387,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Kenora Cluster (Northwest Zone)",
+    "MAYNARD LAKE  ",
+    "MAYNARD LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 40593
   },
   {
@@ -896,6 +1399,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MIKISEW  ",
+    "MIKISEW PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Restoule Cluster (Algonquin Zone)"
+   ],
    "oid": 45777
   },
   {
@@ -903,6 +1411,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "MISSINAIBI",
+    "MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)"
+   ],
    "oid": 58961
   },
   {
@@ -910,6 +1423,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MISSISSAGI   ",
+    "MISSISSAGI PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 58977
   },
   {
@@ -917,6 +1435,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MISSISSAGI RIVER    ",
+    "MISSISSAGI RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 58641
   },
   {
@@ -924,6 +1447,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Earl Rowe Cluster (Southwest Zone)",
+    "MONO CLIFFS  ",
+    "MONO CLIFFS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 38641
   },
   {
@@ -931,6 +1459,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "MURPHYS POINT  ",
+    "MURPHYS POINT PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Murphys Point Cluster (Southeast Zone)"
+   ],
    "oid": 43569
   },
   {
@@ -938,6 +1471,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Hearst Area Cluster (Northeast Zone)",
+    "NAGAGAMI LAKE  ",
+    "NAGAGAMI LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 37393
   },
   {
@@ -945,6 +1483,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Hearst Area Cluster (Northeast Zone)",
+    "NAGAGAMISIS  ",
+    "NAGAGAMISIS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 38241
   },
   {
@@ -952,6 +1495,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "NAKINA MORAINE  ",
+    "NAKINA MORAINE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47777
   },
   {
@@ -959,6 +1507,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "NEYS  ",
+    "NEYS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Northshore Cluster (Northwest Zone)"
+   ],
    "oid": 37233
   },
   {
@@ -966,6 +1519,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Grundy Lake/Sturgeon Bay Cluster (Northeast Zone)",
+    "NOGANOSH LAKE    ",
+    "NOGANOSH LAKE PROVINCIAL PARK (WATERWAY CLASS)"
+   ],
    "oid": 59681
   },
   {
@@ -973,6 +1531,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "NORTH CHANNEL INSHORE    ",
+    "NORTH CHANNEL INSHORE PROVINCIAL PARK (WATERWAY CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 60081
   },
   {
@@ -980,6 +1543,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "OASTLER LAKE  ",
+    "OASTLER LAKE PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Oastler/Massasauga Cluster (Algonquin Zone)"
+   ],
    "oid": 45857
   },
   {
@@ -987,6 +1555,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "OBABIKA RIVER  ",
+    "OBABIKA RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Temagami Area Cluster (Northeast Zone)"
+   ],
    "oid": 37633
   },
   {
@@ -994,6 +1567,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Lake Superior Cluster (Northwest Zone)",
+    "OBATANGA  ",
+    "OBATANGA PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 47697
   },
   {
@@ -1001,6 +1579,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Dryden Cluster (Northwest Zone)",
+    "OJIBWAY  ",
+    "OJIBWAY PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 37457
   },
   {
@@ -1008,6 +1591,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Arrowhead Cluster (Algonquin Zone)",
+    "OXTONGUE RIVER-RAGGED FALLS",
+    "OXTONGUE RIVER-RAGGED FALLS PROVINCIAL PARK (WATERWAY CLASS)"
+   ],
    "oid": 59281
   },
   {
@@ -1015,6 +1603,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "PAKWASH  ",
+    "PAKWASH PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Red Lake Cluster (Northwest Zone)"
+   ],
    "oid": 47745
   },
   {
@@ -1022,6 +1615,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "PETROGLYPHS  ",
+    "PETROGLYPHS PROVINCIAL PARK (CULTURAL HERITAGE CLASS)",
+    "Silent Lake Cluster (Southeast Zone)"
+   ],
    "oid": 36689
   },
   {
@@ -1029,6 +1627,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "PINERY  ",
+    "PINERY PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Pinery Cluster (Southwest Zone)"
+   ],
    "oid": 58929
   },
   {
@@ -1036,6 +1639,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "POTHOLES  ",
+    "POTHOLES PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 59649
   },
   {
@@ -1043,6 +1651,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "PRETTY RIVER VALLEY  ",
+    "PRETTY RIVER VALLEY PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Wasaga Beach Cluster (Southwest Zone)"
+   ],
    "oid": 56001
   },
   {
@@ -1050,6 +1663,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "QUACKENBUSH",
+    "QUACKENBUSH PROVINCIAL PARK (CULTURAL HERITAGE CLASS)",
+    "Silent Lake Cluster (Southeast Zone)"
+   ],
    "oid": 39009
   },
   {
@@ -1057,6 +1675,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "QUEEN ELIZABETH THE QUEEN MOTHER MNIDOO MNISING ",
+    "QUEEN ELIZABETH THE QUEEN MOTHER MNIDOO MNISING PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Sudbury/Manitoulin Cluster (Northeast Zone)"
+   ],
    "oid": 59953
   },
   {
@@ -1064,6 +1687,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Balsam Lake Cluster (Southeast Zone)",
+    "QUEEN ELIZABETH II WILDLANDS   ",
+    "QUEEN ELIZABETH II WILDLANDS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 58241
   },
   {
@@ -1071,6 +1699,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "QUETICO  ",
+    "QUETICO PROVINCIAL PARK (WILDERNESS CLASS)",
+    "Quetico Cluster (Northwest Zone)"
+   ],
    "oid": 36913
   },
   {
@@ -1078,6 +1711,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "RESTOULE   ",
+    "RESTOULE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Restoule Cluster (Algonquin Zone)"
+   ],
    "oid": 45841
   },
   {
@@ -1085,6 +1723,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "RONDEAU  ",
+    "RONDEAU PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Rondeau Cluster (Southwest Zone)"
+   ],
    "oid": 37377
   },
   {
@@ -1092,6 +1735,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "RUBY LAKE   ",
+    "RUBY LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Sleeping Giant Cluster (Northwest Zone)"
+   ],
    "oid": 50961
   },
   {
@@ -1099,6 +1747,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Dryden Cluster (Northwest Zone)",
+    "SANDBAR LAKE   ",
+    "SANDBAR LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 53329
   },
   {
@@ -1106,6 +1759,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Quetico Cluster (Northwest Zone)",
+    "SANDPOINT ISLAND  ",
+    "SANDPOINT ISLAND PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 47601
   },
   {
@@ -1113,6 +1771,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "SEDGMAN LAKE  ",
+    "SEDGMAN LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47633
   },
   {
@@ -1120,6 +1783,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "SILENT LAKE",
+    "SILENT LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Silent Lake Cluster (Southeast Zone)"
+   ],
    "oid": 37905
   },
   {
@@ -1127,6 +1795,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Kakabeka Cluster (Northwest Zone)",
+    "SILVER FALLS  ",
+    "SILVER FALLS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 40273
   },
   {
@@ -1134,6 +1807,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Northshore Cluster (Northwest Zone)",
+    "SLATE ISLANDS  ",
+    "SLATE ISLANDS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 50977
   },
   {
@@ -1141,6 +1819,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "SOLACE  ",
+    "SOLACE PROVINCIAL PARK (WATERWAY CLASS)",
+    "Temagami Area Cluster (Northeast Zone)"
+   ],
    "oid": 36033
   },
   {
@@ -1148,6 +1831,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "SPANISH RIVER  ",
+    "SPANISH RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 59297
   },
   {
@@ -1155,6 +1843,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bass Lake Cluster (Algonquin Zone)",
+    "SPRINGWATER   ",
+    "SPRINGWATER PROVINCIAL PARK (RECREATIONAL CLASS)"
+   ],
    "oid": 45825
   },
   {
@@ -1162,6 +1855,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "TEMAGAMI RIVER",
+    "TEMAGAMI RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Temagami Area Cluster (Northeast Zone)"
+   ],
    "oid": 37153
   },
   {
@@ -1169,6 +1867,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "THE SHOALS  ",
+    "THE SHOALS PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59489
   },
   {
@@ -1176,6 +1879,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Kenora Cluster (Northwest Zone)",
+    "TIDE LAKE  ",
+    "TIDE LAKE PROVINCIAL PARK (NATURE RESERVE CLASS)"
+   ],
    "oid": 36113
   },
   {
@@ -1183,6 +1891,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "VOYAGEUR  ",
+    "VOYAGEUR PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Voyageur Cluster (Southeast Zone)"
+   ],
    "oid": 52801
   },
   {
@@ -1190,6 +1903,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "WAKAMI LAKE    ",
+    "WAKAMI LAKE PROVINCIAL PARK (RECREATIONAL CLASS)"
+   ],
    "oid": 59713
   },
   {
@@ -1197,6 +1915,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Sudbury/Manitoulin Cluster (Northeast Zone)",
+    "WANAPITEI  ",
+    "WANAPITEI PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 58625
   },
   {
@@ -1204,6 +1927,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "WASAGA BEACH  ",
+    "WASAGA BEACH PROVINCIAL PARK (RECREATIONAL CLASS)",
+    "Wasaga Beach Cluster (Southwest Zone)"
+   ],
    "oid": 57297
   },
   {
@@ -1211,6 +1939,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bonnechere Park Cluster (Algonquin Zone)",
+    "WESTMEATH  ",
+    "WESTMEATH PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 40529
   },
   {
@@ -1218,6 +1951,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Sudbury/Manitoulin Cluster (Northeast Zone)",
+    "WINDY LAKE  ",
+    "WINDY LAKE PROVINCIAL PARK (RECREATIONAL CLASS)"
+   ],
    "oid": 58993
   },
   {
@@ -1225,6 +1963,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Dryden Cluster (Northwest Zone)",
+    "WINNANGE LAKE  ",
+    "WINNANGE LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 36817
   },
   {
@@ -1232,6 +1975,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Chapleau Cluster (Northeast Zone)",
+    "WOMAN RIVER FOREST   ",
+    "WOMAN RIVER FOREST PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59425
   },
   {
@@ -1239,6 +1987,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "AUBINADONG RIVER  ",
+    "AUBINADONG RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Algoma Cluster (Northeast Zone)"
+   ],
    "oid": 36593
   },
   {
@@ -1246,6 +1999,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BURNT LANDS    ",
+    "BURNT LANDS PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Fitzroy Cluster (Algonquin Zone)"
+   ],
    "oid": 45793
   },
   {
@@ -1253,6 +2011,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Lake Superior Cluster (Northwest Zone)",
+    "NIMOOSH    ",
+    "NIMOOSH PROVINCIAL PARK (WATERWAY CLASS)"
+   ],
    "oid": 47649
   },
   {
@@ -1260,6 +2023,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bon Echo Cluster (Southeast Zone)",
+    "PUZZLE LAKE   ",
+    "PUZZLE LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 43553
   },
   {
@@ -1267,6 +2035,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "RUSHBROOK",
+    "RUSHBROOK PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+    "Spanish/Mississagi River Cluster (Northeast Zone)"
+   ],
    "oid": 59969
   },
   {
@@ -1274,6 +2047,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "BARRON RIVER",
+    "BARRON RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Bonnechere Park Cluster (Algonquin Zone)"
+   ],
    "oid": 39841
   },
   {
@@ -1281,6 +2059,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Algoma Cluster (Northeast Zone)",
+    "BATCHAWANA RIVER    ",
+    "BATCHAWANA RIVER PROVINCIAL PARK (WATERWAY CLASS)"
+   ],
    "oid": 35905
   },
   {
@@ -1288,6 +2071,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "DUPONT",
+    "DUPONT PROVINCIAL PARK (NATURE RESERVE CLASS)",
+    "Voyageur Cluster (Southeast Zone)"
+   ],
    "oid": 36961
   },
   {
@@ -1295,6 +2083,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "GRANT'S CREEK",
+    "GRANT'S CREEK PROVINCIAL PARK (WATERWAY CLASS)",
+    "Mattawa Cluster (Algonquin Zone)"
+   ],
    "oid": 58673
   },
   {
@@ -1302,6 +2095,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "GULL RIVER    ",
+    "GULL RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47361
   },
   {
@@ -1309,6 +2107,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "OBONGA-OTTERTOOTH    ",
+    "OBONGA-OTTERTOOTH PROVINCIAL PARK (WATERWAY CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47809
   },
   {
@@ -1316,6 +2119,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "OGOKI RIVER    ",
+    "OGOKI RIVER PROVINCIAL PARK (WATERWAY CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 47393
   },
   {
@@ -1323,6 +2131,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Bonnechere Park Cluster (Algonquin Zone)",
+    "PETAWAWA TERRACE",
+    "PETAWAWA TERRACE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 43537
   },
   {
@@ -1330,6 +2143,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "WHITESAND    ",
+    "WHITESAND PROVINCIAL PARK (WATERWAY CLASS)",
+    "Wabakimi Cluster (Northwest Zone)"
+   ],
    "oid": 37185
   },
   {
@@ -1337,6 +2155,11 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
    "name_field": "PROTECTED_AREA_NAME_ENG",
    "record_name": "",
+   "names": [
+    "Mattawa Cluster (Algonquin Zone)",
+    "WIDDIFIELD FOREST  ",
+    "WIDDIFIELD FOREST PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
+   ],
    "oid": 59537
   }
  ]

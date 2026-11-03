@@ -5,8 +5,8 @@
   "date": "2026-11-03",
   "result": "PASS"
  },
- "previous_build": "CA-41513281651",
- "previous_built": "2026-11-02 19:51 UTC",
+ "previous_build": "CA-41635613151",
+ "previous_built": "2026-11-03 12:29 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -21,13 +21,13 @@
    "site": 20
   },
   "BC": {
-   "check": 9,
+   "check": 8,
    "detail": 0.02,
-   "matched": 1213,
-   "none": 19,
+   "matched": 1219,
+   "none": 14,
    "parks": 1254,
    "pin_no_shape": 0,
-   "pin_outside": 447,
+   "pin_outside": 350,
    "pin_swap": 0,
    "pin_well_outside": 6,
    "site": 13
@@ -45,46 +45,46 @@
    "site": 5
   },
   "NB": {
-   "check": 3,
+   "check": 8,
    "detail": 0.02,
-   "matched": 305,
-   "none": 38,
+   "matched": 320,
+   "none": 35,
    "parks": 548,
    "pin_no_shape": 0,
-   "pin_outside": 154,
+   "pin_outside": 163,
    "pin_swap": 0,
-   "pin_well_outside": 28,
-   "site": 202
+   "pin_well_outside": 27,
+   "site": 185
   },
   "NL": {
-   "check": 0,
+   "check": 1,
    "detail": 0.02,
    "matched": 74,
-   "none": 59,
+   "none": 58,
    "parks": 134,
-   "pin_no_shape": 7,
-   "pin_outside": 31,
+   "pin_no_shape": 6,
+   "pin_outside": 28,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 1
   },
   "NS": {
-   "check": 5,
+   "check": 11,
    "detail": 0.02,
-   "matched": 322,
-   "none": 153,
+   "matched": 359,
+   "none": 108,
    "parks": 489,
-   "pin_no_shape": 1,
-   "pin_outside": 89,
+   "pin_no_shape": 0,
+   "pin_outside": 107,
    "pin_swap": 0,
    "pin_well_outside": 2,
-   "site": 9
+   "site": 11
   },
   "NT": {
    "check": 0,
    "detail": 0.02,
-   "matched": 17,
-   "none": 47,
+   "matched": 18,
+   "none": 46,
    "parks": 68,
    "pin_no_shape": 0,
    "pin_outside": 4,
@@ -107,17 +107,17 @@
   "ON": {
    "check": 9,
    "detail": 0.02,
-   "matched": 959,
-   "none": 187,
+   "matched": 951,
+   "none": 195,
    "parks": 1180,
    "pin_no_shape": 27,
-   "pin_outside": 397,
+   "pin_outside": 389,
    "pin_swap": 0,
    "pin_well_outside": 7,
    "site": 25
   },
   "PE": {
-   "check": 0,
+   "check": 1,
    "detail": 0.02,
    "matched": 18,
    "none": 29,
@@ -126,19 +126,19 @@
    "pin_outside": 10,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 7
+   "site": 6
   },
   "QC": {
-   "check": 11,
+   "check": 13,
    "detail": 0.02,
-   "matched": 428,
-   "none": 360,
+   "matched": 442,
+   "none": 345,
    "parks": 834,
    "pin_no_shape": 0,
-   "pin_outside": 161,
+   "pin_outside": 168,
    "pin_swap": 0,
    "pin_well_outside": 5,
-   "site": 35
+   "site": 34
   },
   "SI": {
    "check": 0,
@@ -189,6 +189,6 @@
    "site": 7
   }
  },
- "build": "CA-41635613151",
- "built": "2026-11-03 12:29 UTC"
+ "build": "CA-41739774609",
+ "built": "2026-11-03 23:49 UTC"
 }

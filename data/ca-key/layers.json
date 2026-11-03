@@ -1,4 +1,7 @@
 {
+ "AB Public La": [
+  "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0"
+ ],
  "AB-PLUZ Gove": [
   "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
  ],
@@ -7,6 +10,15 @@
  ],
  "Alberta publ": [
   "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14"
+ ],
+ "BC BC Parks ": [
+  "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0"
+ ],
+ "BC Park Inve": [
+  "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6"
+ ],
+ "BC RegionalP": [
+  "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0"
  ],
  "BC local and": [
   "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39"
@@ -105,11 +117,29 @@
  "Manitoba wil~2": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2"
  ],
+ "NB Parks": [
+  "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0"
+ ],
+ "NB Parks~1": [
+  "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0"
+ ],
  "NB WMZ": [
   "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
  ],
  "NB-PP Govern": [
   "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+ ],
+ "NL Provincia": [
+  "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0"
+ ],
+ "NS HRM Parks": [
+  "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0"
+ ],
+ "NS NS_Lands_": [
+  "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0"
+ ],
+ "NS NS_Lands_~1": [
+  "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0"
  ],
  "NS-F111 Nova": [
   "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52"
@@ -122,6 +152,9 @@
  ],
  "NT GNWT Envi": [
   "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+ ],
+ "NT Nagwichoo": [
+  "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206"
  ],
  "NU-TP Crown-": [
   "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
@@ -207,6 +240,9 @@
  "Ontario muni": [
   "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
  ],
+ "PE NCC_AT_Na": [
+  "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0"
+ ],
  "PE Province ": [
   "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
  ],
@@ -215,6 +251,9 @@
  ],
  "Parks Canada": [
   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Places_Public_lieux_public_APCA/FeatureServer/0"
+ ],
+ "QC PoleConne": [
+  "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0"
  ],
  "Québec Aire ": [
   "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"

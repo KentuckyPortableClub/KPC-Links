@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **959 of 1180** joined (same name + same kind). **9** to check, **187** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **951 of 1180** joined (same name + same kind). **9** to check, **195** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -48,6 +48,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-0063 Niagara Escarpment Biosphere Reserve (Biosphere Reserve)
 - CA-0259 La Verendrye Provincial Park (Provincial Park)
 - CA-0268 Le Pate Provincial Park (Provincial Park)
+- CA-1043 Mount Nemo Conservation Reserve (Conservation Reserve)
+- CA-1046 Rattlesnake Point Conservation Area (Conservation Area)
 - CA-1280 Abitibi Lake Narrows Wilderness Area (Wilderness Area)
 - CA-1298 Bannister Lake Complex Conservation Reserve (Conservation Reserve)
 - CA-1312 Beverly Swamp Conservation Area (Conservation Area)
@@ -57,8 +59,11 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1368 North Maple Regional Park (Regional Park)
 - CA-1386 Eau Claire Gorge Conservation Reserve (Conservation Reserve)
 - CA-1408 Ganley Harbour Wilderness Area (Wilderness Area)
+- CA-1440 Hilton Falls Conservation Area (Conservation Area)
 - CA-1512 McLaughlin Bay Reserve Wildlife Area (Wildlife Area)
+- CA-1528 Mountsberg Conservation Area (Conservation Area)
 - CA-1535 Murray Overlook Scenic Site (Scenic Site)
+- CA-1541 Crawford Lake Conservation Area (Conservation Area)
 - CA-1573 Peisk Lake (Payshk Ohsahgaheegahn) Conservation Reserve (Conservation Reserve)
 - CA-1574 Petawawa Centennial Park Conservation Reserve (Conservation Reserve)
 - CA-1587 Tiffany Falls Conservation Area (Conservation Area)
@@ -103,6 +108,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5095 Central Experimental Farm National Historic Site (National Historic Site)
 - CA-5099 Forested Dunes Nature Reserve (Nature Reserve)
 - CA-5101 Glenorchy Conservation Area (Conservation Area)
+- CA-5105 Kelso Conservation Area (Conservation Area)
 - CA-5106 Langevin National Historic Site (National Historic Site)
 - CA-5109 National Arts Centre National Historic Site (National Historic Site)
 - CA-5110 Notre-Dame Roman Catholic Basilica National Historic Site (National Historic Site)
@@ -141,6 +147,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5371 Royal Botanical Gardens National Historic Site (National Historic Site)
 - CA-5505 Oro African Methodist Episcopal Church National Historic Site (National Historic Site)
 - CA-5506 Nine Mile Portage Heritage Trail Recreation Site (Recreation Site)
+- CA-5508 Robert Edmondson Conservation Area (Conservation Area)
 - CA-5527 Waterloo Pioneer Memorial Tower National Heritage Site (National Heritage Site)
 - CA-5535 Airmen's Park National Historic Site (National Historic Site)
 - CA-5536 Nassagaweya Canyon Trail Recreation Site (Recreation Site)
@@ -150,6 +157,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5556 Glassco Park Conservation Area (Conservation Area)
 - CA-5557 East Duffins Headwaters Conservation Area (Conservation Area)
 - CA-5560 West Duffins Headwaters Conservation Area (Conservation Area)
+- CA-5564 Area 8 Conservation Area (Conservation Area)
 - CA-5567 Canal Park Conservation Area (Conservation Area)
 - CA-5605 FWR Dickson Conservation Area (Conservation Area)
 - CA-5607 Starkey Hill Conservation Area (Conservation Area)

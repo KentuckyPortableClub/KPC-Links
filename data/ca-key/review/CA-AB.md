@@ -5,14 +5,14 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 ## To check (not joined)
 
 - **CA-4772** Athabasca Pass National Historic Site (National Historic Site) → Athabasca Pass Trail (~1,082 ac, same name, different kind of place); Jasper National Park Of Canada (~2,688,008 ac, the POTA pin is inside it (different name))
-- **CA-6134** Athabasca Ranch Public Land Use Zone Recreation Park (Recreation Park) → Athabasca Ranch (~9,577 ac, similar name)
+- **CA-6134** Athabasca Ranch Public Land Use Zone Recreation Park (Recreation Park) → Athabasca Ranch (~9,577 ac, similar name); Athabasca Ranch (~9,577 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
 - CA-0663 Peace-Athabasca Delta Natural Area (Natural Area) → on Wood Buffalo National Park Of Canada (~8,807,344 ac); Wood Buffalo (~8,903,428 ac)
 - CA-2938 Big Elbow Provincial Recreation Area (Provincial Recreation Area) → on Don Getty Wildland (~146,122 ac); Don Getty Wildland Provincial Park (~154,882 ac)
-- CA-2991 Crane Meadow Provincial Recreation Area (Provincial Recreation Area) → on Sibbald Snow Vehicle (~24,335 ac)
-- CA-3018 Eyrie Gap Provincial Recreation Area (Provincial Recreation Area) → on The Kananaskis Country (~122,948 ac)
+- CA-2991 Crane Meadow Provincial Recreation Area (Provincial Recreation Area) → on Sibbald Snow Vehicle (~24,335 ac); Sibbald Snow Vehicle (~24,335 ac)
+- CA-3018 Eyrie Gap Provincial Recreation Area (Provincial Recreation Area) → on The Kananaskis Country (~122,948 ac); The Kananaskis Country (~122,948 ac)
 - CA-3076 McLean Pond Natural Area (Natural Area) → on McLean Creek (~309 ac); McLean Creek Off-Highway Vehicle (~51,661 ac)
 - CA-3157 Waterton-Glacier International Peace Park (Park) → on Waterton Lakes National Park Of Canada (~124,788 ac); Waterton Lakes (~125,722 ac)
 - CA-4771 Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
@@ -23,12 +23,12 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-4783 Skoki Ski Lodge National Historic Site (National Historic Site) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
 - CA-4784 Sulphur Mountain Cosmic Ray Station National Historic Site (National Historic Site) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
 - CA-4785 Yellowhead Pass National Historic Site (National Historic Site) → on Jasper National Park Of Canada (~2,688,008 ac); Jasper (~2,758,106 ac)
-- CA-5377 Nordegg National Historic Site (National Historic Site) → on Kiska/Willson (~194,361 ac)
+- CA-5377 Nordegg National Historic Site (National Historic Site) → on Kiska/Willson (~194,361 ac); Kiska/Willson (~194,361 ac)
 - CA-6073 Áísínai'pi National Historic Site (National Historic Site) → on Writing-on-Stone (~6,029 ac); Writing-on-Stone Provincial Park (~6,649 ac)
 - CA-6101 Prince of Wales Hotel National Historic Site (National Historic Site) → on Waterton Lakes National Park Of Canada (~124,788 ac); Waterton Lakes (~125,722 ac)
 - CA-6116 Athabasca River Canadian Heritage River (National Heritage Area) → on Jasper National Park Of Canada (~2,688,008 ac); Jasper (~2,758,106 ac)
 - CA-6117 North Saskatchewan River Canadian Heritage River (National Heritage Area) → on Banff National Park Of Canada (~1,641,024 ac); Banff (~1,668,844 ac)
-- CA-6126 Livingston Public Land Use Zone Recreation Park (Recreation Park) → on Livingstone (~302,463 ac)
+- CA-6126 Livingston Public Land Use Zone Recreation Park (Recreation Park) → on Livingstone (~302,463 ac); Livingstone (~302,463 ac)
 
 ## Nothing found in CPCAD
 

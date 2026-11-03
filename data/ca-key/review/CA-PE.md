@@ -1,9 +1,11 @@
 # Canada PE: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 54** joined (same name + same kind). **0** to check, **29** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 54** joined (same name + same kind). **1** to check, **29** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
+- **CA-6439** Holman's Island National Nature Reserve (National Nature Reserve) → Holman’s Island, located in Bedeque Bay, was the former site of the Island Park Hotel, established in 1872. It is home to Wabanaki (Acadian) forest and saltmarsh habitat, and is a stopover for several bird species, including Eastern Wood Peewee. 
+ (~28 ac, similar name); Scallop Buffer Zone (SFA 22) (~704,937 ac, the POTA pin is inside it (different name)); Privately Protected Area (NCC 142051) (~100 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
@@ -12,7 +14,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-0865 Linkletter Provincial Park (Provincial Park) → on PARK (~50 ac)
 - CA-0869 Northumberland Provincial Park (Provincial Park) → on PROV PARK (~54 ac)
 - CA-6373 Fisherman's Haven Provincial Park (Provincial Park) → on TIGNISH SHORE (~2 ac)
-- CA-6439 Holman's Island National Nature Reserve (National Nature Reserve) → on Privately Protected Area (NCC 142051) (~100 ac)
 - CA-6594 Pinette Provincial Park (Provincial Park) → on PARK (~19 ac)
 
 ## Nothing found in CPCAD

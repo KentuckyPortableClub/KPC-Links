@@ -1,9 +1,11 @@
 # Canada NL: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **74 of 134** joined (same name + same kind). **0** to check, **59** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **74 of 134** joined (same name + same kind). **1** to check, **58** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
+- **CA-4549** Grand Codroy Estuary Ramsar Site (Ramsar Site) → A haven for nature lovers, historians and travellers, the Grand Codroy Estuary Nature Reserve is a Ramsar Wetland of International Importance — the only such site in Newfoundland and Labrador. Over 100 species of birds have been identified here.
+ (~412 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
@@ -11,7 +13,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Nothing found in CPCAD
 
-- CA-4549 Grand Codroy Estuary Ramsar Site (Ramsar Site)
 - CA-4818 Hawthorne Cottage National Historic Site (National Historic Site)
 - CA-4819 Hopedale Mission National Historic Site (National Historic Site)
 - CA-4823 Red Bay National Historic Site (National Historic Site)
