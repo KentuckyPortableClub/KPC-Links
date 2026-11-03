@@ -797,6 +797,20 @@ def wd_ja(P):
     return {r: {jstrip(j) for _, j in v} for r, v in C.items()}
 
 
+# Nov 2 review (Mapping #7): a rebuild used to write index.json without the build stamp, so the stamp was simply lost.
+# The old stamp is now kept as previous_build / previous_built (NOT as 'build': the content changed, so it is not that build any
+# more). The workflow that saves the rebuild stamps it again (kpc_key_freeze.py stamp); if one forgets, the copy bot gives the
+# new content its own id, which is honest.
+def _with_old_stamp(d):
+    try: _o = json.load(open(OUT / 'index.json'))
+    except Exception: _o = {}  # noqa: BLE001
+    _o = _o if isinstance(_o, dict) else {}
+    _pb, _pt = _o.get('build') or _o.get('previous_build'), _o.get('built') or _o.get('previous_built')
+    if _pb: d['previous_build'] = _pb
+    if _pt: d['previous_built'] = _pt
+    return d
+
+
 idx = {}
 try: idx = json.load(open(OUT / 'index.json')).get('countries', {})
 except Exception: pass  # noqa: BLE001
@@ -1164,6 +1178,6 @@ for cc in COUNTRIES:
     idx[cc] = cnt
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
                               f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
-    save_json(OUT / 'index.json', {'countries': idx})
+    save_json(OUT / 'index.json', _with_old_stamp({'countries': idx}))
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")

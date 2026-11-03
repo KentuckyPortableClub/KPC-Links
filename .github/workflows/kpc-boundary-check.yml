@@ -5,7 +5,7 @@ name: KPC boundary check
 # Never fails. Run it by hand with a list of states to do those instead.
 on:
   schedule:
-    - cron: '37 7 * * *'          # 2.37am Central
+    - cron: '37 7 * * *'          # 1:37 AM CST (2:37 AM in daylight time)
   workflow_dispatch:
     inputs:
       states:
@@ -80,8 +80,15 @@ jobs:
         run: |
           mkdir -p cache/us
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"
-      - name: Rebuild those keys with the check
+      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 2 review, Mapping #7) - no US key rebuild while chat 11 grades a held build
+        # Before: only kpc-us-key.yml asked. This nightly run rebuilt US-CA, US-CO and US-OR on Nov 2 while the US key was frozen.
+        # Frozen = the rebuild, the outline upload and the stamp below are skipped; the report and the second witness still run.
         if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+      - name: Rebuild those keys with the check
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
         id: kept_green_2
         continue-on-error: true
         env:
@@ -110,8 +117,15 @@ jobs:
           p.write_text(json.dumps(d, indent=1, sort_keys=True) + '\n', encoding='utf-8')
           PY
           fi
+      - name: Stamp the rebuilt key (Nov 2 review, Mapping #7) - a rebuild is a new build, so it gets its own build id
+        # Only when a state file really changed; the rebuild keeps the old id as previous_build (kpc_us_key.py).
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
+        run: |
+          if [ -n "$(git status --porcelain -- 'data/us-key/US-*.json')" ]; then
+            python3 .github/scripts/kpc_key_freeze.py stamp us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+          else echo "::notice title=Boundary check::no US key state file changed: no new build id"; fi
       - name: Keep any newly saved outlines
-        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
         id: kept_green_3
         continue-on-error: true
         env:

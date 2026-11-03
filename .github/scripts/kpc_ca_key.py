@@ -682,7 +682,21 @@ for _pv, _o, _rp, _rt in PENDING:
     _rp.parent.mkdir(exist_ok=True); save_text(_rp, _rt)
 notice('Canada key GATE ' + GATE['result'], f"{len(GATE_REFS) - len(_bad)} of {len(GATE_REFS)} well-known parks keep an outline (" + ', '.join(GATE_REFS.values()) + ')'
        + ('; ' + '; '.join(_bad) if _bad else '') + f" · grade me: Canada answer key {GATE['result']}, {sum(1 for p in _all.values() if p.get('m'))} of {len(_all)} parks joined")
-save_json(OUT / 'index.json', {'provinces': idx, 'gate': GATE})
+# Nov 2 review (Mapping #7): a rebuild used to write index.json without the build stamp, so the stamp was simply lost.
+# The old stamp is now kept as previous_build / previous_built (NOT as 'build': the content changed, so it is not that build any
+# more). The workflow that saves the rebuild stamps it again (kpc_key_freeze.py stamp); if one forgets, the copy bot gives the
+# new content its own id, which is honest.
+def _with_old_stamp(d):
+    try: _o = json.load(open(OUT / 'index.json'))
+    except Exception: _o = {}  # noqa: BLE001
+    _o = _o if isinstance(_o, dict) else {}
+    _pb, _pt = _o.get('build') or _o.get('previous_build'), _o.get('built') or _o.get('previous_built')
+    if _pb: d['previous_build'] = _pb
+    if _pt: d['previous_built'] = _pt
+    return d
+
+
+save_json(OUT / 'index.json', _with_old_stamp({'provinces': idx, 'gate': GATE}))
 # Oct 24 (Brandon: 'hook the Canada answer key into the planner, Info Finder and the Kit'): the website needs to know which
 # province file holds a park (a CA- number says nothing about the province)
 save_json(OUT / 'refs.json', {ref: pv for pv, pk in by.items() for ref in pk})
