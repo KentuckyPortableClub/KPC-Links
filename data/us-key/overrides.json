@@ -7776,6 +7776,19 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Manti Meadows WMA' (chat 11; applied by kpc_key_answers)"
   },
+  "US-11215": {
+   "fp": {
+    "sgmtd209": [
+     "Bear Paw Battlefield",
+     1057
+    ]
+   },
+   "join": [
+    "sgmtd209"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-03 13:41: layers row YES 'Bear Paw Battlefield' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+  },
   "US-11217": {
    "none": true,
    "when": "2026-10-22",

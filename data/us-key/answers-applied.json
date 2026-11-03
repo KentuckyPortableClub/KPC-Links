@@ -4834,6 +4834,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11215:sgmtd209": {
+  "answer": "YES",
+  "applied": "2026-11-03 13:41",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "layers:US-11223:sgfla168": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
