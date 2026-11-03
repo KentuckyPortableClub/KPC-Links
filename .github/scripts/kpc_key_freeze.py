@@ -5,7 +5,8 @@ answers are saved and released.').
 
   stamp us-key|ca-key|world-key   write {'build': 'US-<run id>', 'built': UTC} into data/<kind>/index.json (the waiting room carries
                                   it with the held key, BOT C and chat 11 quote it, the release checks it)
-  check us-key|ca-key|world-key   FROZEN when KPC-Data's waiting room holds a build of that key (data/waiting/in/data/<kind>/index.json
+  check us-key|ca-key|world-key   (Nov 3: also FROZEN when the newest stamp in KPC-Links data/<kind>/index.json has no chat 11 verdict)
+                                  FROZEN when KPC-Data's waiting room holds a build of that key (data/waiting/in/data/<kind>/index.json
                                   'build') and chat 11 has not yet written a verdict tied to that build id in data/waiting/approved.json
                                   (item 'what' = kind, 'build' = the id, any chat11 text). Writes FROZEN=1 + FROZEN_BUILD=<id> to
                                   $GITHUB_ENV and one notice. FORCE=yes skips the freeze (by hand only).
@@ -54,10 +55,25 @@ def check(kind):
         notice(f'{kind}: freeze skipped by hand (force)'); return
     held = gh_json(f'data/waiting/in/data/{kind}/index.json')
     bid = (held or {}).get('build')
-    if not bid:
-        notice(f'{kind}: no stamped build waiting for chat 11: building is allowed'); return
     ap = gh_json('data/waiting/approved.json') or {}
     items = ap.get('items') if isinstance(ap, dict) else ap
+    # Nov 3 (Brandon YES 5:29 PM): the waiting room still held an OLD build (US-f3d48d30899) while newer builds were saved straight
+    # to KPC-Links, so the freeze never engaged and 4 US builds ran on Nov 3 before any was graded. Now the NEWEST stamped build in
+    # KPC-Links' own data/<kind>/index.json counts too: if it is not the held one and chat 11 has written nothing for its id, a 2nd
+    # build waits. FORCE=yes still skips (by hand only).
+    live = None
+    try: live = json.load(open(f'data/{kind}/index.json', encoding='utf-8'))
+    except Exception: live = None  # noqa: BLE001
+    lbid = str((live or {}).get('build') or '')
+    if lbid and lbid != bid:
+        said = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and (str(it.get('build') or '') == lbid or lbid in str(it.get('chat11') or '')) and str(it.get('chat11') or '').strip()]
+        if not said:
+            env = os.environ.get('GITHUB_ENV')
+            if env:
+                with open(env, 'a') as f: f.write(f'FROZEN=1\nFROZEN_BUILD={lbid}\n')
+            notice(f"{kind}: FROZEN: the newest build {lbid} (KPC-Links data/{kind}/index.json, built {(live or {}).get('built')}) has no chat 11 verdict yet; no 2nd build until it is graded (force=yes by hand skips)"); return
+    if not bid:
+        notice(f'{kind}: no stamped build waiting for chat 11: building is allowed'); return
     graded = [it for it in (items or []) if isinstance(it, dict) and it.get('what') == kind and (str(it.get('build') or '') == bid or bid in str(it.get('chat11') or '')) and str(it.get('chat11') or '').strip()]   # the id in the verdict text counts too
     if graded:
         it = graded[-1]; v = str(it.get('chat11') or '').strip().upper()

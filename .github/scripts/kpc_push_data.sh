@@ -13,7 +13,7 @@ python3 - <<'KPC_STAMP_PY' || true
 """PR2 (fewer saves, Nov 2 2026): put back every STAGED file whose only change is a time stamp, so a quiet run commits nothing.
 Run inside the repo after 'git add' and before 'git diff --cached --quiet' / 'git commit'.
 A file counts as stamp-only when, compared with HEAD:
-  JSON  - the only differences are in stamp keys (updated, updated_at, generated, generated_at, last_checked, checked_at) AND the
+  JSON  - the only differences are in stamp keys (updated, updated_at, generated, generated_at, last_checked, checked_at, built, made, last_run; Nov 3) AND the
           stamp's DATE part did not change (so a file's 'updated' still moves once a day), or in GitHub run links (actions/runs/N);
   text  (.md .txt .log, ONLY status-type files: a path with /status/ or a name with board, flow, heartbeat, summary, watchdog,
           health) - the only differences are clock times (12:34, 2026-11-02T12:34Z, '3 h old', '5 min ago') or run links; the dates
@@ -22,7 +22,8 @@ The files are only put back when EVERY changed file is stamp-only: a run with on
 Anything else (new file, deleted file, unreadable, a real change) is left alone. Never fails. KPC_SAVE_STAMPS=keep switches it off."""
 import json, os, re, subprocess, sys
 
-STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at'}
+STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at', 'built', 'made', 'last_run'}   # Nov 3: + built, made, last_run
+IDS = {'build'}   # Nov 3: a build id (US-<run id>) changes on every run: ignored whole (it moves with the real changes)
 # Nov 2 review (Quality 5b): the waiting room's verdicts.json says 'checked' and heartbeat.json says 'ok'. They count as stamps only
 # when the value is a date / time, so a 'checked' or 'ok' that holds a real answer is still a change.
 STAMP_IF_TIME = {'checked', 'ok'}
@@ -40,6 +41,7 @@ def norm(x, key=None):
     if isinstance(x, dict): return {k: norm(v, k) for k, v in x.items()}
     if isinstance(x, list): return [norm(v) for v in x]
     if isinstance(x, str):
+        if key in IDS: return 'ID'
         if key in STAMP or (key in STAMP_IF_TIME and IS_TIME.match(x)): return x[:10]   # the date part still counts
         return RUN.sub('actions/runs/N', x)
     return x

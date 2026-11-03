@@ -3,7 +3,7 @@ name: KPC Hunters
 # Every 15 min: count hunter spots on US parks from POTA's spot list (kpc_hunters.py collect). The open hour lives in the
 # Actions cache; finished hours go to data/hunters/buckets.json, kpc-hunters.json (Happening Now card) and
 # app/hunters.json (the app's 'Hunters are out' alert). Oct 27 (HQ limits plan): the finished hours (buckets.json) also
-# live in the cache between runs, and the repo gets ONE commit every ~3 hours (each push rebuilds the site).
+# live in the cache between runs, and the repo gets ONE commit a day (Nov 3; was every ~3 hours).
 # Fridays 8:33 AM Central: one post to Discord (park news) + the Facebook Page, once 14 days are counted.
 # Never fails: a POTA hiccup or a busy repo is skipped quietly (no email).
 on:
@@ -79,12 +79,18 @@ jobs:
       - name: Save
         id: kept_green_4
         continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          # at most one commit every ~3 hours (HQ Oct 27); the cache carries the counts in between
-          last=$(git log -1 --format=%ct -- kpc-hunters.json 2>/dev/null || echo 0); last=${last:-0}
-          if [ $(( $(date +%s) - last )) -lt 10500 ] && [ "${{ (inputs.as_schedule && 'schedule') || github.event_name }}" != "workflow_dispatch" ]; then echo "saved $(( ($(date +%s) - last) / 60 )) min ago; next save after ~3 h"; exit 0; fi
+          # Nov 3 (Brandon YES 5:29 PM): ONE commit a DAY (was one every ~3 h, HQ Oct 27). Counting still happens every 15 min; the
+          # Actions cache carries the counts in between (the card shows busy HOURS over 14 days, so a day-old file loses nothing).
+          # 82800 s = 23 h, so the hourly job saves once a day; a by-hand run still saves at once.
+          # the last save's time comes from GitHub (the 150-commit checkout may not reach back a whole day on a busy main)
+          lt=$(gh api "repos/${{ github.repository }}/commits?path=kpc-hunters.json&per_page=1" --jq '.[0].commit.committer.date' 2>/dev/null || true)
+          last=$( [ -n "$lt" ] && date -d "$lt" +%s 2>/dev/null || git log -1 --format=%ct -- kpc-hunters.json 2>/dev/null || echo 0); last=${last:-0}
+          if [ $(( $(date +%s) - last )) -lt 82800 ] && [ "${{ (inputs.as_schedule && 'schedule') || github.event_name }}" != "workflow_dispatch" ]; then echo "saved $(( ($(date +%s) - last) / 60 )) min ago; next save after ~23 h"; exit 0; fi
           git add data/hunters/buckets.json kpc-hunters.json app/hunters.json 2>/dev/null || git add data/hunters/buckets.json kpc-hunters.json 2>/dev/null || true   # ok: an optional path may not exist
           if git diff --cached --quiet; then exit 0; fi
           git commit -q -m 'Hunter counts'

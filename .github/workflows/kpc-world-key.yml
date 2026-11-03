@@ -1,5 +1,11 @@
 name: KPC world answer key
 # Busy POTA programs outside North America (AU DE GB JP + PL ES FR CH AT via the EEA): parks joined to OFFICIAL protected-area land only when name + kind match.
+# Nov 3 (Brandon YES 5:29 PM): the monthly full rebuild hit the 300-minute limit (run 41631658745: one Australian source stopped
+# answering at 12:01 UTC and the job sat there until it was cancelled at 16:58, so NO country after AU was built). Now:
+#   plan  = the freeze check + tonight's list + the countries split over up to 3 jobs at once (biggest first, like the US key);
+#   build = each job builds its countries, ONE COUNTRY AT A TIME with its own time limit (KPC_WORLD_COUNTRY_MIN, default 100 min;
+#           a country that runs over is stopped and named in the build stamp as failed, the others go on); 350 min per job;
+#   join  = puts the parts together (index.json merged country by country), the BUILD STAMP, ONE save, the world-bounds branch.
 on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
@@ -29,9 +35,11 @@ concurrency:   # PR2 (Nov 2): one run of this bot at a time; a second start wait
   group: kpc-world-key
   cancel-in-progress: false
 jobs:
-  run:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 10
+    outputs:
+      groups: ${{ steps.p.outputs.groups }}
     steps:
       - uses: actions/checkout@v5
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM) - a held build chat 11 has not graded, or graded and not yet released, means no new build
@@ -47,35 +55,166 @@ jobs:
         run: |
           if [ "$SCHED" = "7 10 * * *" ]; then
             L=$(cat data/world-key/answers-countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
-            if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layers for: $L"; fi
+            if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layer(s) for: $L"; fi
           fi
-      - name: Read the moved data from KPC-Data (Step B, read only)
-        if: ${{ env.SKIP != '1' }}
-        run: bash .github/scripts/kpc_overlay.sh
-      - name: Build
-        if: ${{ env.SKIP != '1' }}
+      - name: Split the countries over the jobs (Nov 3)
+        id: p
         env:
           COUNTRIES: ${{ inputs.countries }}
+        run: |
+          if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
+          [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
+          SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
+          export ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          cs = list(dict.fromkeys(os.environ['ALL'].upper().split()))
+          try: idx = json.load(open('data/world-key/index.json', encoding='utf-8')).get('countries', {})
+          except Exception: idx = {}
+          w = {c: ((idx.get(c) or {}).get('parks') or 200) + ((idx.get(c) or {}).get('areas') or 0) // 20 for c in cs}   # rough size: parks + official areas read
+          n = max(1, min(3, len(cs)))
+          g = [[] for _ in range(n)]; load = [0] * n
+          for c in sorted(cs, key=lambda c: -w[c]):
+              k = load.index(min(load)); g[k].append(c); load[k] += w[c]
+          print('groups=' + json.dumps([{'i': k, 'countries': ' '.join(x)} for k, x in enumerate(g) if x]))
+          print(f"::notice title=World key plan::{n} job(s): " + ' | '.join(' '.join(x) for x in g if x))
+          PY
+  build:
+    needs: plan
+    if: ${{ needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350   # GitHub's own limit is 360 for one job
+    strategy:
+      fail-fast: false
+      matrix:
+        g: ${{ fromJSON(needs.plan.outputs.groups) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh
+      - name: Build (this job's countries)
+        timeout-minutes: 335   # the step stops before the job's limit, so the part below is still uploaded
+        continue-on-error: true
+        id: kept_green_b
+        env:
           PIN_JOIN: ${{ inputs.pin_join }}
           WB_DIR: ${{ inputs.outline_test == 'yes' && '/tmp/wb-test' || '' }}
+          CMIN: ${{ vars.KPC_WORLD_COUNTRY_MIN || '100' }}
+          MINE: ${{ matrix.g.countries }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
-          [ -n "$NIGHT_LIST" ] && COUNTRIES="$NIGHT_LIST"
-          SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
-          ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
-          # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp below names it (chat 11 must not grade it as a full build)
-          : > /tmp/world-failed.txt
-          for c in $ALL; do COUNTRIES=$c python3 .github/scripts/kpc_world_key.py || { echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> /tmp/world-failed.txt; }; done
+          # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp names it (chat 11 must not grade it as a full build)
+          # Nov 3: each country also has its own time limit (CMIN minutes); one that hangs is stopped and written down the same way
+          mkdir -p part; : > part/failed.txt; echo "$MINE" > part/countries.txt
+          for c in $MINE; do
+            echo "::group::World key $c (limit ${CMIN} min)"
+            rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?
+            echo "::endgroup::"
+            if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then echo "::warning title=World key $c::stopped after ${CMIN} min (a source stopped answering?); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
+            elif [ "$rc" != 0 ]; then echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> part/failed.txt; fi
+          done
+      - name: This job's part
+        if: always()
+        run: |
+          mkdir -p part/world-key/review part/world-bounds
+          [ -f part/countries.txt ] || echo "${{ matrix.g.countries }}" > part/countries.txt
+          for c in $(cat part/countries.txt); do
+            # a country never finished (job stopped) = failed
+            grep -qx "$c" part/failed.txt 2>/dev/null || [ -f data/world-key/$c.json ] || echo "$c" >> part/failed.txt
+            [ -f data/world-key/$c.json ] && cp data/world-key/$c.json part/world-key/
+            [ -f data/world-key/review/$c.md ] && cp data/world-key/review/$c.md part/world-key/review/
+            [ -d data/world-bounds/$c ] && cp -r data/world-bounds/$c part/world-bounds/
+          done
+          for f in index.json layers.json eea-designations.json jp-wikidata.json outline-test.json; do [ -f data/world-key/$f ] && cp data/world-key/$f part/world-key/; done
+          true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: world-key-part-${{ matrix.g.i }}
+          path: part/
+          retention-days: 3
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          PY
+  join:
+    needs: [plan, build]
+    if: ${{ always() && needs.build.result != 'skipped' && needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main   # the newest main (other bots saved while the build ran)
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: world-key-part-*
+          path: parts
+      - name: Put the parts together (Nov 3)
+        id: tonight
+        run: |
+          python3 - <<'PY'
+          import glob, json, os, shutil, sys
+          sys.path.insert(0, '.github/scripts')
+          from kpc_save import save_json   # the same writer the script uses
+          O = 'data/world-key'; os.makedirs(f'{O}/review', exist_ok=True)
+          try: old = json.load(open(f'{O}/index.json', encoding='utf-8'))
+          except Exception: old = {}
+          idx = dict(old.get('countries') or {}); failed = []; n = 0; LJ = None
+          for d in sorted(glob.glob('parts/world-key-part-*')):
+              cs = open(f'{d}/countries.txt').read().split()
+              failed += open(f'{d}/failed.txt').read().split() if os.path.exists(f'{d}/failed.txt') else []
+              try: pi = json.load(open(f'{d}/world-key/index.json', encoding='utf-8')).get('countries', {})
+              except Exception: pi = {}
+              for c in cs:
+                  if os.path.exists(f'{d}/world-key/{c}.json'):
+                      shutil.copy(f'{d}/world-key/{c}.json', f'{O}/{c}.json'); n += 1
+                      if os.path.exists(f'{d}/world-key/review/{c}.md'): shutil.copy(f'{d}/world-key/review/{c}.md', f'{O}/review/{c}.md')
+                      if os.path.isdir(f'{d}/world-bounds/{c}'):
+                          shutil.rmtree(f'data/world-bounds/{c}', ignore_errors=True); shutil.copytree(f'{d}/world-bounds/{c}', f'data/world-bounds/{c}')
+                      if c in pi: idx[c] = pi[c]
+              for f in ('layers.json', 'eea-designations.json', 'jp-wikidata.json', 'outline-test.json'):   # the same for every job (sources / caches): the biggest copy wins
+                  src = f'{d}/world-key/{f}'
+                  if os.path.exists(src) and (not os.path.exists(f'{O}/{f}') or os.path.getsize(src) >= os.path.getsize(f'{O}/{f}')): shutil.copy(src, f'{O}/{f}')
+          new = {'countries': idx}
+          pb, pt = old.get('build') or old.get('previous_build'), old.get('built') or old.get('previous_built')
+          if pb: new['previous_build'] = pb
+          if pt: new['previous_built'] = pt
+          if n: save_json(f'{O}/index.json', new)
+          failed = sorted(set(failed))
+          open('/tmp/world-failed.txt', 'w').write(''.join(f + '\n' for f in failed))
+          open(os.environ['GITHUB_OUTPUT'], 'a').write(f'built={n}\n')
+          print(f"::notice title=World key join::{n} countries from {len(glob.glob('parts/world-key-part-*'))} job(s)" + (f"; failed or unfinished: {' '.join(failed)}" if failed else ''))
+          PY
+      - name: Tonight's list (the plan job's, again)
+        env:
+          SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
+        run: |
+          if [ "$SCHED" = "7 10 * * *" ]; then
+            L=$(cat parts/*/countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//'); [ -n "$L" ] && echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"   # the countries the jobs were given
+          fi
+          true
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
-        if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        if: ${{ steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
           KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
-        if: ${{ always() && env.SKIP != '1' }}
+        if: ${{ always() && steps.tonight.outputs.built != '0' }}
         run: |
-          if [ -n "$NIGHT_LIST" ]; then : > data/world-key/answers-countries.txt; git add data/world-key/answers-countries.txt; fi   # tonight's list done
+          # Nov 3: only the countries built tonight come off the list (a failed one, or one BOT W added during the build, stays for next night)
+          if [ -n "$NIGHT_LIST" ] && [ -f data/world-key/answers-countries.txt ]; then
+            python3 -c "import sys;l=open('data/world-key/answers-countries.txt').read().split();b=set(sys.argv[1].split())-set(open('/tmp/world-failed.txt').read().split());open('data/world-key/answers-countries.txt','w').write(' '.join(c for c in l if c not in b)+('\n' if [c for c in l if c not in b] else ''))" "$NIGHT_LIST"; git add data/world-key/answers-countries.txt
+          fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/world-key
@@ -84,7 +223,7 @@ jobs:
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
-        if: ${{ always() && env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        if: ${{ always() && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         id: kept_green_1
         continue-on-error: true
         run: |

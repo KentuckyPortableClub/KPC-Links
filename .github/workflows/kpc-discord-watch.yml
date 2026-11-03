@@ -1,9 +1,20 @@
 name: KPC Discord watch
 # Nudges the staff room when somebody asked something in a club room and nobody replied.
-# Hourly. Run it by hand with mode 'list' to see which rooms the bot can see. Never fails, never emails.
+# Hourly, plus at once when the club-room form asks (repository_dispatch 'kpc-discord-watch', Nov 3). Run it by hand with mode
+# 'list' to see which rooms the bot can see. Never fails, never emails.
 on:
   schedule:
-    - cron: '47 * * * *'   # G9 Nov 2: was '48 * * * *' (spread the start times; now 1 min earlier)
+    - cron: '47 * * * *'   # hourly (Nov 3, Brandon YES 5:29 PM: stays hourly)   # G9 Nov 2: was '48 * * * *' (spread the start times; now 1 min earlier)
+  # Nov 3 (Brandon YES 5:29 PM): the club-room form can start a normal watch run at once, between the hourly runs.
+  # What the form calls (either one; the form's own token, kept in the form's script properties, never in this repo):
+  #   A) POST https://api.github.com/repos/KentuckyPortableClub/KPC-Links/dispatches
+  #      body {"event_type": "kpc-discord-watch"}                        (token: fine-grained, this repo, Contents: read and write)
+  #   B) POST https://api.github.com/repos/KentuckyPortableClub/KPC-Links/actions/workflows/kpc-discord-watch.yml/dispatches
+  #      body {"ref": "main", "inputs": {"mode": "watch"}}               (token: fine-grained, this repo, Actions: read and write)
+  #      (B MUST send mode=watch: the by-hand default is 'list'.)
+  #   Headers for both: Authorization: Bearer <token>, Accept: application/vnd.github+json. GitHub answers 204 = started.
+  repository_dispatch:
+    types: [kpc-discord-watch]
   workflow_dispatch:
     inputs:
       mode:
