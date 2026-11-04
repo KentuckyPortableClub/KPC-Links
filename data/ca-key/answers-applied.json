@@ -4688,5 +4688,10 @@
   "answer": "YES",
   "checked_by": "auto (T1 map-match STRONG)",
   "applied": "2026-11-03 12:26"
+ },
+ "CA-5989:sulphur spring conservation area": {
+  "answer": "YES",
+  "checked_by": "auto (AUTO-1C, trusted collector)",
+  "applied": "2026-11-04 14:23"
  }
 }

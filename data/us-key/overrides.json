@@ -1595,6 +1595,19 @@
    "when": "2026-10-23",
    "why": "same place (hand review Oct 23)"
   },
+  "US-0822": {
+   "fp": {
+    "sgaki387660": [
+     "Fort Smith National Historic Site",
+     59
+    ]
+   },
+   "join": [
+    "sgaki387660"
+   ],
+   "when": "2026-11-04",
+   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+  },
   "US-0824": {
    "fp": {
     "sgakd1189": [

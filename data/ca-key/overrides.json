@@ -2310,6 +2310,12 @@
    ],
    "none": true,
    "why": "Nov 3: dropped to pin (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); on the ASK BRANDON list; no trim or join applied"
+  },
+  "CA-5989": {
+   "join": [
+    "Sulphur Spring Conservation Area"
+   ],
+   "why": "2026-11-04 14:23: question row YES (auto (AUTO-1C, trusted collector); applied by kpc_ca_answers)"
   }
  }
 }
