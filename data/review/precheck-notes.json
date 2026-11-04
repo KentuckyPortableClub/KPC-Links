@@ -1,5 +1,5 @@
 {
- "note": "Read by .github/scripts/kpc_precheck.py (never a key file; no build reads it). mapping_checked: Mapping's check of a bad-POTA-pin park whose name matches but whose area could not be tested offline (Brandon's 6:54 PM CST Nov 3 ruling, relayed by Super via Quality: the outline stays pending Mapping's check). ask_brandon: a question for Brandon with a proposal that is NOT applied until he answers (a REVIEW_PILE row, never held).",
+ "note": "Read by .github/scripts/kpc_precheck.py (never a key file; no build reads it). mapping_checked: Mapping's check of a bad-POTA-pin park whose name matches but whose area could not be tested offline (Brandon's 6:54 PM CST Nov 3 ruling, relayed by Super via Quality: the outline stays pending Mapping's check). ask_brandon: a question for Brandon with a proposal that is NOT applied until he answers (a REVIEW_PILE row, never held). trail_check (Nov 4): a trail park whose saved official line a person chose to KEEP while it is checked against the official trail data (a REVIEW_PILE row 'TRAIL CHECK', never held; the line stays).",
  "mapping_checked": {
   "CA-0120": {
    "result": "PASS: CPCAD 22036 'Sable Island National Park Reserve Of Canada' is LOC 7 Nova Scotia; POTA's CA-SI (Sable Island) is part of NS; bbox -60.17,43.93,-59.62,44.06 is the island",
@@ -63,6 +63,22 @@
    "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
    "by": "Mapping, Nov 3 2026 7:2x PM CST",
    "dropped_to_pin": true
+  }
+ },
+ "trail_check": {
+  "US-9905": {
+   "name": "Cascades National Recreation Trail",
+   "keep": "the saved official US Forest Service line (6.0 km, 7 pieces, 153 points; read 2026-10-29)",
+   "rejected": "the shorter new line held in the KPC-Data waiting room (2.9 km, 1 piece, 55 points)",
+   "check": "check the kept line against US Forest Service trail data",
+   "by": "Brandon, Super Head Bot chat, 4:35 AM CST Nov 4 2026 (relayed via Super Head Bot): 'Agree keep the official line'; Brandon, Mapping chat, 4:36 AM CST Nov 4 2026: 'No keep the full length ones we had'"
+  },
+  "US-9906": {
+   "name": "Cornelius Creek National Recreation Trail",
+   "keep": "the saved official US Forest Service line (6.4 km, 3 pieces, 152 points; read 2026-10-29)",
+   "rejected": "the shorter new line held in the KPC-Data waiting room (4.5 km, 2 pieces, 97 points)",
+   "check": "check the kept line against US Forest Service trail data",
+   "by": "Brandon, Super Head Bot chat, 4:35 AM CST Nov 4 2026 (relayed via Super Head Bot): 'Agree keep the official line'; Brandon, Mapping chat, 4:36 AM CST Nov 4 2026: 'No keep the full length ones we had'"
   }
  }
 }

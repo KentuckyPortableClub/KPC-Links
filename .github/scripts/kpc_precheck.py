@@ -278,6 +278,18 @@ def notes():
     return d.get('mapping_checked') or {}, d.get('ask_brandon') or {}
 
 
+def trail_checks():
+    """Nov 4 (Brandon, Super Head Bot chat, 4:35 AM CST (relayed via Super Head Bot): 'Agree keep the official line'; Brandon, Mapping chat, 4:36 AM CST: 'No keep the full length ones we had'): data/review/precheck-notes.json 'trail_check' =
+    trail parks whose saved official line a person chose to KEEP while it is checked against the official trail data. Each is ONE
+    review-pile row 'TRAIL CHECK' (never held, never a doubt: the line stays), whether or not the park is in a key file read."""
+    return load(NOTES, {}).get('trail_check') or {}
+
+
+def trail_act(t):
+    return (f"TRAIL CHECK (not held; the line stays): keep {t.get('keep', 'the saved official line')}; {t.get('check', 'check it against the official trail data')}"
+            f"{'; rejected: ' + t['rejected'] if t.get('rejected') else ''} ({t.get('by', 'a person')})")
+
+
 def bad_pin_flag(n_ok, a_ok):
     """6:45 + 6:54 PM CST rulings (relayed): name + area -> NAME_MATCH (keep); name only -> NAME_ONLY (keep, pending Mapping's
     check); no name match -> UNBACKED (a doubt)."""
@@ -339,6 +351,7 @@ def main():
     for f in sorted(glob.glob(str(DATA / 'data/world-key/??.json'))): srcs[pathlib.Path(f).stem] = tuple(load(f, {}).get('sources') or ())
     nab = collections.Counter(); nab_rows = []
     checked, asks = notes(); flag_rows = {}   # BAD_POTA_PIN_FLAGS.csv: one row per park
+    trails_chk = trail_checks()
     seen, n, cnt = set(), 0, collections.Counter()
     for area, kname, ref, p in allk:
         if ONLY and area not in ONLY: continue
@@ -414,6 +427,7 @@ def main():
             if wk or r18.startswith('[KIND]'):
                 flags.append('WRONG_KIND'); why.append(('layer kind: ' + '; '.join(f'{x[1]}' for x in wk[:3]) + f" is another kind of place than a {p.get('t') or 'park'}") if wk else 'WWFF: ' + r18[:120])
             if ref in lost: flags.append('LOST_FIND')
+        if ref in trails_chk: flags.append('TRAIL_CHECK'); why.append('trail check: a person kept the saved official line; check it against the agency trail data')   # Nov 4: never a doubt
         if not flags: continue
         for f in flags: cnt[f] += 1
         row = [ref, area, p.get('n'), p.get('t'), p.get('g') or ('official' if m else 'pin'), level, ' '.join(flags), ' | '.join(why)[:400],
@@ -449,6 +463,11 @@ def main():
             if ref in pile:
                 if 'RULE 18' not in pile[ref][-1]: pile[ref][-1] += ' | ' + act18
             else: pile[ref] = row + [act18]; cnt['rule18_pile_added'] += 1
+        if ref in trails_chk:   # Nov 4 (Brandon: Super Head Bot chat 4:35 AM CST + Mapping chat 4:36 AM CST): a kept official trail line to check against the agency's trail data
+            actt = trail_act(trails_chk[ref])
+            if ref in pile:
+                if 'TRAIL CHECK' not in pile[ref][-1]: pile[ref][-1] += ' | ' + actt
+            else: pile[ref] = row + [actt]
     # parks with a POTA pin but in no key at all (other programs are in the world key only if DATA was given)
     if not ONLY:
         for ref, pn in pins.items():
@@ -458,6 +477,10 @@ def main():
                 B['pota-0-0'].append([ref, ref.split('-')[0], pn[0], pn[1], pn[2], bp + ' (park not in any key file read)', 'tell POTA (we never move POTA pins)']); cnt['POTA_0_0_not_in_key'] += 1
                 flag_rows[ref] = [ref, ref.split('-')[0], 'BAD_POTA_PIN_NO_OUTLINE', bp + '; the park is in no key file read', '', '', pn[0] or '', '', '', '']
     H = ['park', 'area', 'name', 'type', 'outline', 'check', 'flags', 'why', 'joined ids', 'pota_lat', 'pota_lon']
+    if not ONLY:   # a trail-check park in no key file read still gets its row (Nov 4)
+        for ref, tc in trails_chk.items():
+            if ref not in pile: pile[ref] = [ref, '', tc.get('name', ''), '', 'line (kept)', '', 'TRAIL_CHECK', 'park in no key file read', '', '', '', trail_act(tc)]; cnt['trail_check_not_in_key'] += 1
+    tc_in_pile = sorted(r for r in trails_chk if r in pile)
     heads = {'misnamed': H, 'pin-way-out': H, 'wrong-kind': H,
              'no-official-boundary': ['park', 'area', 'name', 'type', 'outline now', 'best candidates the key saw', 'next bot'],
              'pota-0-0': ['park', 'area', 'name', 'pota_lat', 'pota_lon', 'problem', 'action'],
@@ -482,7 +505,7 @@ def main():
               'hold': len(hold), 'hold_us_ca': len(us_ca), 'hold_us_ca_to_pin': sum(1 for r in us_ca if not hold[r]['keep_ids']),
               'hold_us_ca_pieces_only': sum(1 for r in us_ca if hold[r]['keep_ids']), 'hold_world_listed_only': len(hold) - len(us_ca),
               'bad_pin_name_area': dict(nab), 'bad_pin_flags': len(flag_rows), 'bad_pin_flags_by_flag': dict(collections.Counter(r[2] for r in flag_rows.values())),
-              'bad_pin_flags_held': sum(1 for r in flag_rows if r in hold), 'ask_brandon': sorted(a for a in asks if a in seen), 'ask_brandon_not_in_key': [] if ONLY else sorted(a for a in asks if a not in seen), 'lost_finds': len(lost_rows), 'lost_find_parks': len(lost), 'lost_routed': dict(lr), 'seconds': round(time.time() - t0, 1)}
+              'bad_pin_flags_held': sum(1 for r in flag_rows if r in hold), 'ask_brandon': sorted(a for a in asks if a in seen), 'ask_brandon_not_in_key': [] if ONLY else sorted(a for a in asks if a not in seen), 'trail_check': tc_in_pile, 'lost_finds': len(lost_rows), 'lost_find_parks': len(lost), 'lost_routed': dict(lr), 'seconds': round(time.time() - t0, 1)}
     json.dump(counts, open(OUT / 'counts.json', 'w'), indent=1)
     print(f"::notice title=Pre-check::{n} parks: {cnt['light']} light (a person approved), {cnt['full']} full; review pile {len(pile)} "
           f"(hold {len(hold)}); 0,0 pins {len(B['pota-0-0'])}; lost finds {len(lost_rows)} ({dict(lr)}) -> {OUT}")
