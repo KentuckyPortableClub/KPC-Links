@@ -165,21 +165,21 @@
   "kpc-park-alerts.yml|2026-11-04T02:03:00+00:00": "2026-11-04T04:45+00:00 started",
   "kpc-pota-discord.yml|2026-11-04T04:19:00+00:00": "2026-11-04T04:45+00:00 started",
   "kpc-reports.yml|2026-11-04T03:29:00+00:00": "2026-11-04T04:45+00:00 started",
-  "pages-deploy.yml|2026-11-04T02:41:00+00:00": "2026-11-04T04:45+00:00 started"
+  "pages-deploy.yml|2026-11-04T02:41:00+00:00": "2026-11-04T04:45+00:00 started",
+  "kpc-band-alerts.yml|2026-11-04T05:18:00+00:00": "2026-11-04T06:02+00:00 started",
+  "kpc-boards.yml|2026-11-04T05:14:00+00:00": "2026-11-04T06:02+00:00 started",
+  "kpc-fb-comments.yml|2026-11-04T04:32:00+00:00": "2026-11-04T06:02+00:00 skipped (not restarted)",
+  "kpc-hunters.yml|2026-11-04T05:07:00+00:00": "2026-11-04T06:02+00:00 started",
+  "kpc-pota-discord.yml|2026-11-04T05:19:00+00:00": "2026-11-04T06:02+00:00 started",
+  "kpc-research-helpers.yml|2026-11-04T05:23:00+00:00": "2026-11-04T06:02+00:00 skipped (not restarted)"
  },
- "last": "2026-11-04T04:45+00:00",
+ "last": "2026-11-04T06:02+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 04 04:18 UTC)",
-  "kpc-boards.yml (missed Nov 04 04:14 UTC)",
-  "kpc-bot-queue.yml (missed Nov 04 02:22 UTC)",
-  "kpc-campground-notes.yml (missed Nov 04 01:53 UTC)",
-  "kpc-community.yml (missed Nov 04 02:17 UTC)",
-  "kpc-discord-watch.yml (missed Nov 04 03:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 04 02:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 04 04:07 UTC)",
-  "kpc-park-alerts.yml (missed Nov 04 02:03 UTC)",
-  "kpc-pota-discord.yml (missed Nov 04 04:19 UTC)",
-  "kpc-reports.yml (missed Nov 04 03:29 UTC)",
-  "pages-deploy.yml (missed Nov 04 02:41 UTC)"
+  "kpc-band-alerts.yml (missed Nov 04 05:18 UTC)",
+  "kpc-boards.yml (missed Nov 04 05:14 UTC)",
+  "kpc-fb-comments.yml (missed Nov 04 04:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-hunters.yml (missed Nov 04 05:07 UTC)",
+  "kpc-pota-discord.yml (missed Nov 04 05:19 UTC)",
+  "kpc-research-helpers.yml (missed Nov 04 05:23 UTC, NOT restarted: its next scheduled run catches up)"
  ]
 }
