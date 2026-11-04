@@ -300,15 +300,15 @@ _SAPU = {'record': 'Salinas Pueblo Missions National Monument', 'park': 'Salinas
          'approved_by': 'Brandon (via Super Head Bot)', 'approved': '2026-11-02 8:38 PM CST',
          'build': 'KPC-Links 635d37f / KPC-Data c12914e7 (batch 1b, re-based); first built on KPC-Links 688c152 / KPC-Data 8fb4237b; Quality research read the key at KPC-Data 8a9d04f7',
          'source': 'NPS Land Resources Division boundary + tracts (SAPU) and USGS PAD-US 4.1 Fee'}
-TRACT_SPLITS = {   # 'label' = the plain label Brandon asked for (8:38 PM CST): POTA's unit name + "tract (NPS boundary piece)"
-    'US-11813': dict(_SAPU, tract='Abo', label='Salinas Pueblo Missions NM, Abo tract (NPS boundary piece)'),
-    'US-11814': dict(_SAPU, tract='Quarai', label='Salinas Pueblo Missions NM, Quarai tract (NPS boundary piece)'),
-    'US-0961': dict(_SAPU, tract='Gran Quivira', label='Salinas Pueblo Missions NM, Gran Quivira tract (NPS boundary piece)'),
+TRACT_SPLITS = {   # 'label' = the plain label Brandon asked for (8:38 PM CST): POTA's unit name + "tract (PAD-US fee piece)" (Quality grade-1b, Nov 3: the outline is the PAD-US 4.1 Fee piece, not the NPS boundary)
+    'US-11813': dict(_SAPU, tract='Abo', label='Salinas Pueblo Missions NM, Abo tract (PAD-US fee piece)'),
+    'US-11814': dict(_SAPU, tract='Quarai', label='Salinas Pueblo Missions NM, Quarai tract (PAD-US fee piece)'),
+    'US-0961': dict(_SAPU, tract='Gran Quivira', label='Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)'),
 }
 
 
 def tract_label(t):
-    """The plain label shown for the tract outline, e.g. 'Salinas Pueblo Missions NM, Gran Quivira tract (NPS boundary piece)'."""
+    """The plain label shown for the tract outline, e.g. 'Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)'."""
     return t.get('label') or f"{t.get('park') or t.get('record')}, {t.get('tract')} tract (official boundary piece)"
 
 
