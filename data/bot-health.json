@@ -1,12 +1,17 @@
 {
  "open": [
+  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
-  "kpc-us-key.yml",
+  "KPC-Data/kpc-waiting-room.yml",
+  "kpc-boards.yml",
+  "kpc-bot-queue.yml",
+  "kpc-discord-relay.yml",
+  "kpc-hunters.json",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-03T17:21+00:00",
+ "checked": "2026-11-04T12:01+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -109,22 +114,22 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2910
+   "b": 2915
   },
   "L:data/ky-answer-key.json": {
    "b": 31590
   },
   "L:data/us-key": {
-   "b": 13654857
+   "b": 13688277
   },
   "L:data/ca-key": {
-   "b": 2159477
+   "b": 2294811
   },
   "L:data/world-key": {
-   "b": 15264661
+   "b": 15264939
   },
   "L:data/pota": {
-   "b": 5664892
+   "b": 5664894
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -142,13 +147,13 @@
    "b": 105760
   },
   "L:data/boundary-score.json": {
-   "b": 972612
+   "b": 975350
   },
   "L:data/campfed": {
    "b": 643240
   },
   "L:data/campstate": {
-   "b": 439119
+   "b": 820531
   },
   "L:data/nwr": {
    "b": 334294
@@ -173,7 +178,7 @@
    "b": 684
   },
   "D:data/leaders": {
-   "b": 1032925
+   "b": 1035002
   },
   "D:data/sota-land": {
    "b": 1697496
@@ -197,7 +202,7 @@
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 68885
+   "b": 64268
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -207,13 +212,13 @@
    "since": "2026-11-01"
   },
   "D:data/intake": {
-   "b": 39310639
+   "b": 39653390
   },
   "D:data/detective": {
    "b": 53765
   },
   "D:data/map-observations.json": {
-   "b": 1194724
+   "b": 1195130
   }
  }
 }
