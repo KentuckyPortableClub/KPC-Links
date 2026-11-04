@@ -18,6 +18,7 @@ import gzip
 # Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_host_pace  # noqa: E402
+import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind per park, 'bk')
 kpc_host_pace.install()
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
@@ -71,6 +72,7 @@ def wload(cc):
     for r in recs:
         if '_k0' in r and not isinstance(r['_k0'], set): r['_k0'] = set(r['_k0'] or [])
         if r.get('_bb') is not None: r['_bb'] = list(r['_bb'])
+        if r.get('id') is None and isinstance(r.get('_a'), dict): r['id'] = wfs_id({}, r['_a'])   # links-10: a copy saved before the WFS id fix
     WUSED.append(cc)
     return recs
 SRC = {
@@ -555,6 +557,15 @@ def pull_find(label, url, rx):
 
 
 FMT, TOLD = {}, set()
+# Nov 4 (links-10; Super relayed 7:20 AM CST Nov 4: 670 of Germany's 677 review-pile rows are 'joined row with no id'): BfN's WFS
+# (geodienste.bfn.de) sends its GeoJSON features with NO top-level 'id', so every German record had id None, every BfN layer
+# collapsed to ONE record in the boundary check's (source, id) table and 677 joined parks read 'well outside'. The layer's own
+# stable id is in the properties: BfN 'ID' ('nrp_2106', 'NI_DE2520332'; read on all 8 BfN layers Nov 4), else the site code /
+# INSPIRE id. Never made up: with none of them the id stays None, as before.
+WFS_IDF = ('ID', 'SITECODE', 'inspire_id', 'BFN_ID')
+def wfs_id(f, p):
+    if f.get('id') is not None: return f.get('id')
+    return next((p[k] for k in WFS_IDF if p.get(k) not in (None, '', ' ')), None)
 def pull_wfs(label, url, typ):
     recs, start, step = [], 0, 1000
     while True:
@@ -576,7 +587,7 @@ def pull_wfs(label, url, typ):
             p = f.get('properties') or {}; rs = rings_of(f.get('geometry'))
             # EPSG:4326 in WFS 2.0 can come back lat,lon: swap when the 'x' looks like a latitude for this country
             if rs and abs(rs[0][0][0]) > 40 and abs(rs[0][0][1]) < 20: rs = [[[q2[1], q2[0]] for q2 in r] for r in rs]
-            recs.append({'id': f.get('id'), 'n': pick_name(p), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': p})
+            recs.append({'id': wfs_id(f, p), 'n': pick_name(p), 'ty': pick(p, TYPEF) or label, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': p})
         if len(fs) < step: break
         start += step; time.sleep(.5)
     if recs and not any(r['n'] for r in recs[:50]): notice(f'{label} name field?', ', '.join(list(recs[0]['_a'].keys())[:40]))
@@ -1177,7 +1188,22 @@ for cc in COUNTRIES:
         if all(_eu(q) for q in _m): _p['g'] = 'approx'; _p['gsrc'] = 'EU compilation of national data'; n_eu += 1
         else: _p['m'] = [q for q in _m if not _eu(q)]; n_rep += 1
     if n_eu or n_rep: notice(f'World key {cc}', f'W-2: {n_eu} parks outlined from the EU compilation (Approximate); {n_rep} had an agency outline that replaced it')
-    save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks})
+    # Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this
+    # rebuild'): every park gets 'bk' = [best record id, km from the POTA pin, the record's kind (the layer's own type field, else
+    # its name's kind tags), src] (kpc_key_facts.py). A layer label standing in for the type ('ty' = the source) is not a field.
+    _bkk = {}
+    try:
+        _rid = {(r.get('src'), r.get('id')): r for r in recs if r.get('id') is not None}
+        def _bklook(x):
+            r = _rid.get((x[2], x[0])) if len(x) > 2 and x[0] is not None else None
+            if not r: return None, ''
+            ty = str(r.get('ty') or '')
+            return r.get('_r'), (ty if ty and ty != r.get('src') and ty != r.get('n') else '')
+        _bkk, _ = KF.stamp(parks, lambda ref: tuple((P.get(ref) or [None] * 7)[5:7]) if len(P.get(ref) or []) > 6 else None, _bklook)
+    except Exception as e:  # noqa: BLE001
+        notice(f'World key {cc}', f'pin distance / kind (bk) skipped: {type(e).__name__}: {str(e)[:200]}')
+    save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks,
+                                   'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t}})
     L = [f'# {cc}: POTA parks vs official land', '', f"Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: {', '.join(s[0] for s in SRC[cc])}. "
          f"**{cnt['matched']} of {cnt['parks']}** joined (same name + same kind), **{cnt['check']}** to check, **{cnt['none']}** nothing found. Nothing below is joined.", '', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} ({q[2]}, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]

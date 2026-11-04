@@ -84,6 +84,14 @@ _R18_CLASSES = ({'north', 'south', 'east', 'west', 'northeast', 'northwest', 'so
 _ROMAN = re.compile(r'^(?:ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)$')
 
 
+def unbracket(t):
+    """links-09 (Nov 4 2026): a name with its bracketed qualifiers taken off ('Dunbar Cave (Lower Tract)' -> 'Dunbar Cave').
+    Rule 18 v5 (Brandon, Super Head Bot chat, 7:43 PM CST Nov 3, relayed via Super Head Bot: "Yes"; relayed (paraphrase of the
+    question he answered Yes to): bracket qualifiers do not count; one-side compass words in English or French do).
+    Same rule as KPC-Links kpc_fers_guard.unbracket (links-02)."""
+    return re.sub(r'\s+', ' ', re.sub(r'\([^)]*\)|\[[^\]]*\]', ' ', str(t or ''))).strip()
+
+
 def rule18_differs(park, rec, brackets=False):
     """'' when nothing tells the two names apart as pieces; else a plain reason. Uses the key's own rule 18 piece test
     (KR.piece_ok: 'Unit 2' vs 'Unit 3', 'Abo Unit') plus clashing piece words. brackets=True (the bad-pin name test only) also
@@ -91,7 +99,38 @@ def rule18_differs(park, rec, brackets=False):
     Used in the bad-pin name test (name_area_backs) and, since Brandon's ruling relayed by Super 7:26 PM CST Nov 3, beside the
     general name test too: there a park whose joined record rule 18 tells apart gets RULE18_PIECE and a review-pile row, never
     a hold. v5 (Brandon, relayed by Super 7:43 PM CST Nov 3): the general test calls it with brackets=False, so a bracketed place
-    qualifier ('(Lewis County)', '(Qld)') no longer counts there; the bad-pin test keeps brackets=True."""
+    qualifier ('(Lewis County)', '(Qld)') no longer counts there; the bad-pin test keeps brackets=True.
+    links-09 (Nov 4): with brackets=False a difference counts only when it is there BOTH on the full names AND on the names with
+    their bracket text taken off, so bracket text can neither make a piece ('(Lower Tract)' read by KR.piece_ok as the piece 'lower',
+    a one-side '(South)') nor hide one. links-11: POTA 'Langres Nord' vs record 'Langres (secteur Nord)' (the word only inside the
+    other name's bracket) is flagged for the review pile, not passed.
+    One exception, kept on purpose: when BOTH names carry bracket text and it clashes ('Horseshoe Canyon (South)' vs
+    'Horseshoe Canyon (North)', '(No. 1)' vs '(No. 2)', '(0130)' vs '(0189)'), the two records are different pieces, not a
+    qualifier on one side, so the row stays a review-pile flag (flag only, never held). brackets=True (the bad-pin test) is unchanged."""
+    if not brackets:
+        u = (unbracket(park) or park, unbracket(rec) or rec)
+        if u != (park, rec):
+            w = _rule18_core(park, rec, False)
+            if w and _rule18_core(*u, False): return _rule18_core(*u, False)
+            if w and _bracket_text(park) and _bracket_text(rec) and ("' vs '" in w or 'number' in w):
+                return w + ' (both names carry a different bracketed piece)'
+            # links-11 (Nov 4, Quality's v2 grade, should-fix 3, YES'd by Super's 7:15 AM CST relay): a compass / position word that
+            # one name carries OUTSIDE brackets and the other only INSIDE its bracket ('Langres Nord' vs 'Langres (secteur Nord)')
+            # may or may not be the same piece: a review-pile flag (never a hold), not a silent pass.
+            ua, ub = set(KR._plain_words(u[0])), set(KR._plain_words(u[1]))
+            pa, pb = (ua & _R18_ONESIDE) - ub, (ub & _R18_ONESIDE) - ua
+            if (pa or pb) and not (pa and pb):
+                inb = (pa or pb) & set(KR._plain_words(_bracket_text(rec if pa else park)))
+                if inb: return (f"rule 18: '{' '.join(sorted(inb))}' names a piece in one name but sits only inside the other name's bracket "
+                                f"({_bracket_text(rec if pa else park)}): check it is the same piece")
+            return ''
+    return _rule18_core(park, rec, brackets)
+
+
+def _bracket_text(t): return ' '.join(a or b for a, b in re.findall(r'\(([^)]*)\)|\[([^\]]*)\]', str(t or ''))).strip()
+
+
+def _rule18_core(park, rec, brackets):
     ok, why = KR.piece_ok(park, rec)
     if not ok: return why
     a, b = set(KR._plain_words(park)), set(KR._plain_words(rec))
@@ -149,6 +188,16 @@ def name_how(park, rec, r18=False):
     if a and b and max(difflib.SequenceMatcher(None, x, y).ratio() for x in a for y in b if len(x) > 3 and len(y) > 3 or x == y) >= .8 if any(len(x) > 3 for x in a) and any(len(y) > 3 for y in b) else False: return 'spelling'
     if difflib.SequenceMatcher(None, _sq(park), _sq(rec)).ratio() >= .85: return 'spelling'
     return 'other'
+
+
+def name_how_general(park, rec):
+    """links-09 (Nov 4): the general name test (MISNAMED / NAME_MISMATCH) with bracket qualifiers off (rule 18 v5, 7:43 PM CST Nov 3):
+    the better of name_how on the full names and on the names without their brackets (same > spelling > other). The bad-pin
+    name test (name_how(..., r18=True)) is not changed: there a bracketed POTA qualifier still counts."""
+    h = name_how(park, rec)
+    if h == 'same': return h
+    u = name_how(unbracket(park) or park, unbracket(rec) or rec)
+    return min(h, u, key=('same', 'spelling', 'other').index)
 
 
 def load(p, d):
@@ -278,6 +327,18 @@ def notes():
     return d.get('mapping_checked') or {}, d.get('ask_brandon') or {}
 
 
+def trail_checks():
+    """Nov 4 (Brandon, Super Head Bot chat, 4:35 AM CST (relayed via Super Head Bot): 'Agree keep the official line'; Brandon, Mapping chat, 4:36 AM CST: 'No keep the full length ones we had'): data/review/precheck-notes.json 'trail_check' =
+    trail parks whose saved official line a person chose to KEEP while it is checked against the official trail data. Each is ONE
+    review-pile row 'TRAIL CHECK' (never held, never a doubt: the line stays), whether or not the park is in a key file read."""
+    return load(NOTES, {}).get('trail_check') or {}
+
+
+def trail_act(t):
+    return (f"TRAIL CHECK (not held; the line stays): keep {t.get('keep', 'the saved official line')}; {t.get('check', 'check it against the official trail data')}"
+            f"{'; rejected: ' + t['rejected'] if t.get('rejected') else ''} ({t.get('by', 'a person')})")
+
+
 def bad_pin_flag(n_ok, a_ok):
     """6:45 + 6:54 PM CST rulings (relayed): name + area -> NAME_MATCH (keep); name only -> NAME_ONLY (keep, pending Mapping's
     check); no name match -> UNBACKED (a doubt)."""
@@ -339,6 +400,7 @@ def main():
     for f in sorted(glob.glob(str(DATA / 'data/world-key/??.json'))): srcs[pathlib.Path(f).stem] = tuple(load(f, {}).get('sources') or ())
     nab = collections.Counter(); nab_rows = []
     checked, asks = notes(); flag_rows = {}   # BAD_POTA_PIN_FLAGS.csv: one row per park
+    trails_chk = trail_checks()
     seen, n, cnt = set(), 0, collections.Counter()
     for area, kname, ref, p in allk:
         if ONLY and area not in ONLY: continue
@@ -399,7 +461,7 @@ def main():
                 flags.append('NO_OFFICIAL_BOUNDARY')
                 B['no-official-boundary'].append([ref, area, p.get('n'), p.get('t'), p.get('g') or 'pin', '; '.join(str(x[1]) + ' (' + str(x[3])[:50] + ')' for x in (p.get('c') or [])[:2] if isinstance(x, list) and len(x) > 3),
                                                   'park-finder lane (detective) / GIS hunter' if kname != 'world-key' else 'world finder'])
-            nh = [(x, name_how(p.get('n') or '', x[1])) for x in m if not str(x[3]).startswith(('reviewed', 'official trail line'))]
+            nh = [(x, name_how_general(p.get('n') or '', x[1])) for x in m if not str(x[3]).startswith(('reviewed', 'official trail line'))]
             sp = [x for x, h in nh if h == 'spelling']; oth = [x for x, h in nh if h == 'other']
             if sp: flags.append('MISNAMED'); why.append('POTA spells the name differently from the agency record (same place): ' + '; '.join(f'{x[0]} {x[1]}' for x in sp[:3]))
             if oth: flags.append('NAME_MISMATCH'); why.append('joined record shares no real word with the park name: ' + '; '.join(f'{x[0]} {x[1]}' for x in oth[:3]))
@@ -414,6 +476,7 @@ def main():
             if wk or r18.startswith('[KIND]'):
                 flags.append('WRONG_KIND'); why.append(('layer kind: ' + '; '.join(f'{x[1]}' for x in wk[:3]) + f" is another kind of place than a {p.get('t') or 'park'}") if wk else 'WWFF: ' + r18[:120])
             if ref in lost: flags.append('LOST_FIND')
+        if ref in trails_chk: flags.append('TRAIL_CHECK'); why.append('trail check: a person kept the saved official line; check it against the agency trail data')   # Nov 4: never a doubt
         if not flags: continue
         for f in flags: cnt[f] += 1
         row = [ref, area, p.get('n'), p.get('t'), p.get('g') or ('official' if m else 'pin'), level, ' '.join(flags), ' | '.join(why)[:400],
@@ -449,6 +512,11 @@ def main():
             if ref in pile:
                 if 'RULE 18' not in pile[ref][-1]: pile[ref][-1] += ' | ' + act18
             else: pile[ref] = row + [act18]; cnt['rule18_pile_added'] += 1
+        if ref in trails_chk:   # Nov 4 (Brandon: Super Head Bot chat 4:35 AM CST + Mapping chat 4:36 AM CST): a kept official trail line to check against the agency's trail data
+            actt = trail_act(trails_chk[ref])
+            if ref in pile:
+                if 'TRAIL CHECK' not in pile[ref][-1]: pile[ref][-1] += ' | ' + actt
+            else: pile[ref] = row + [actt]
     # parks with a POTA pin but in no key at all (other programs are in the world key only if DATA was given)
     if not ONLY:
         for ref, pn in pins.items():
@@ -458,6 +526,10 @@ def main():
                 B['pota-0-0'].append([ref, ref.split('-')[0], pn[0], pn[1], pn[2], bp + ' (park not in any key file read)', 'tell POTA (we never move POTA pins)']); cnt['POTA_0_0_not_in_key'] += 1
                 flag_rows[ref] = [ref, ref.split('-')[0], 'BAD_POTA_PIN_NO_OUTLINE', bp + '; the park is in no key file read', '', '', pn[0] or '', '', '', '']
     H = ['park', 'area', 'name', 'type', 'outline', 'check', 'flags', 'why', 'joined ids', 'pota_lat', 'pota_lon']
+    if not ONLY:   # a trail-check park in no key file read still gets its row (Nov 4)
+        for ref, tc in trails_chk.items():
+            if ref not in pile: pile[ref] = [ref, '', tc.get('name', ''), '', 'line (kept)', '', 'TRAIL_CHECK', 'park in no key file read', '', '', '', trail_act(tc)]; cnt['trail_check_not_in_key'] += 1
+    tc_in_pile = sorted(r for r in trails_chk if r in pile)
     heads = {'misnamed': H, 'pin-way-out': H, 'wrong-kind': H,
              'no-official-boundary': ['park', 'area', 'name', 'type', 'outline now', 'best candidates the key saw', 'next bot'],
              'pota-0-0': ['park', 'area', 'name', 'pota_lat', 'pota_lon', 'problem', 'action'],
@@ -482,7 +554,7 @@ def main():
               'hold': len(hold), 'hold_us_ca': len(us_ca), 'hold_us_ca_to_pin': sum(1 for r in us_ca if not hold[r]['keep_ids']),
               'hold_us_ca_pieces_only': sum(1 for r in us_ca if hold[r]['keep_ids']), 'hold_world_listed_only': len(hold) - len(us_ca),
               'bad_pin_name_area': dict(nab), 'bad_pin_flags': len(flag_rows), 'bad_pin_flags_by_flag': dict(collections.Counter(r[2] for r in flag_rows.values())),
-              'bad_pin_flags_held': sum(1 for r in flag_rows if r in hold), 'ask_brandon': sorted(a for a in asks if a in seen), 'ask_brandon_not_in_key': [] if ONLY else sorted(a for a in asks if a not in seen), 'lost_finds': len(lost_rows), 'lost_find_parks': len(lost), 'lost_routed': dict(lr), 'seconds': round(time.time() - t0, 1)}
+              'bad_pin_flags_held': sum(1 for r in flag_rows if r in hold), 'ask_brandon': sorted(a for a in asks if a in seen), 'ask_brandon_not_in_key': [] if ONLY else sorted(a for a in asks if a not in seen), 'trail_check': tc_in_pile, 'lost_finds': len(lost_rows), 'lost_find_parks': len(lost), 'lost_routed': dict(lr), 'seconds': round(time.time() - t0, 1)}
     json.dump(counts, open(OUT / 'counts.json', 'w'), indent=1)
     print(f"::notice title=Pre-check::{n} parks: {cnt['light']} light (a person approved), {cnt['full']} full; review pile {len(pile)} "
           f"(hold {len(hold)}); 0,0 pins {len(B['pota-0-0'])}; lost finds {len(lost_rows)} ({dict(lr)}) -> {OUT}")

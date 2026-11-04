@@ -5,6 +5,12 @@ on:
   schedule:
     - cron: '43 10 2 * *'   # monthly
     - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
+  # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
+  # NO new cron. After a rules change this key waits for the key(s) before it (kpc_key_order.py); it is picked up here when one of
+  # them finishes. A chained start builds ONLY a new-rules catch-up; otherwise it skips cleanly (one notice).
+  workflow_run:
+    workflows: ['KPC US answer key']
+    types: [completed]
   workflow_dispatch:
     inputs:
       as_schedule:
@@ -30,18 +36,25 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5
-      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM) - a held build chat 11 has not graded, or graded and not yet released, means no new build
+      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         env:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
           python3 .github/scripts/kpc_key_freeze.py check ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
+      - name: BUILD ORDER (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4) - after a rules change US, then Canada, then the world; a key whose turn has not come skips cleanly and is started again by workflow_run
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ "${SKIP:-}" != 1 ]; then python3 .github/scripts/kpc_key_order.py check ca-key || { echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Key build order::the order check stopped (exit $?): this start waits"; }; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
-          if [ "$SCHED" = "49 9 * * *" ]; then
+          # Nov 4 (links-04): RULES_CHANGED=1 (the newest Canada build was not a full build on the current rules) = build tonight anyway
+          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: the whole key is built on the current rules (no force needed)"
+          elif [ "$SCHED" = "49 9 * * *" ]; then
             L=$(cat data/ca-key/answers-provinces.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
             if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::new approved layers for: $L"; fi
           fi
@@ -61,7 +74,7 @@ jobs:
           if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"; fi
           # Nov 2 (chat 2): chat 11's Canada hard-look YES records (KPC-Data questions/hardlook.json) -> data/ca-key/hardlook-joins.json
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json 2>/dev/null && git -C .hl checkout -q 2>/dev/null && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || echo "::error title=kpc_ca_hardlook.py::stopped with an error (exit $?), see the log above"; rm -rf .hl
-          python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
+          python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { touch /tmp/ca-key-stopped; echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
@@ -91,9 +104,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_ca_key_issue.py
-      - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
+      - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
         if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+        run: |
+          # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
+          if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
+          python3 .github/scripts/kpc_key_freeze.py stamp ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ always() && env.SKIP != '1' }}
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.

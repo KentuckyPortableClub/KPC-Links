@@ -20,6 +20,7 @@ import gzip
 # Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_host_pace  # noqa: E402
+import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind per park, 'bk')
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review: 'nearly all the time is re-downloading the same geometry').
 # Every live run has fetched outlines simplified to 0.01 degrees (~1.1 km) because they were fetched fresh each
@@ -1837,9 +1838,26 @@ def run(st):
               'shadow_demote': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') in ('check', 'none')),
               'shadow_add': sum(1 for p in parks.values() if not p.get('m') and (p.get('shadow') or {}).get('v') == 'join'),
               'shadow_other_place': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') == 'join')}
+    # Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this
+    # rebuild'): every park gets 'bk' = [best record id, km from the POTA pin, the record's kind (PAD-US Des_Tp, else its name's
+    # kind tags), src] (kpc_key_facts.py). Measures only: no join, no pin is changed.
+    try:
+        _byid = {_oid(a): a for a in recs}
+        def _bkpin(ref):
+            r = P.get(ref) or []
+            la_, lo_ = (r[5], r[6]) if len(r) > 6 else (None, None)
+            if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+            return la_, lo_
+        def _bklook(x):
+            a = _byid.get(str(x[0]))
+            return (rings(a.get('_g')), a.get('Des_Tp') or '') if a else (None, '')
+        _bkk, _bkn = KF.stamp(parks, _bkpin, _bklook)
+    except Exception as _e:  # noqa: BLE001
+        _bkk, _bkn = {}, None; notice(f'US key {st}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')
     _selfchk(st, parks, recs)   # Nov 2 review: pre-handoff self-checks + confidence (switches KPC_SELF_CHECKS / KPC_CONF_SORT; off = today)
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
-           'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
+           'counts': counts, 'parks': parks, 'nonum': nonum[:300],
+           'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t}}   # links-10
     # plain-words review page for this state (GitHub shows .md files nicely)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
     L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **{counts['matched']} of {counts['parks']}** parks joined to official land "

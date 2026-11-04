@@ -51,6 +51,7 @@ import cv2
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
 import kpc_owned as KO
+import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
 
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
@@ -122,28 +123,37 @@ def _get(url, params, tries=3, timeout=120):
 
 
 # ------------------------------------------------------------------ parks (official only)
+BAD_PIN = {}   # Nov 4 (Mapping 2-fer review #1): {ref: (name, why, area)} POTA pins at 0,0 / impossible: listed, never moved, never used
+
+
+def _pin(P, r, v):
+    why = FG.pin_problem(v[1], v[2])
+    if why: BAD_PIN[r] = (v[0], why, v[5]); P.pop(r, None); return
+    P[r] = v
+
+
 def pins():
     P = {}
     for f in pathlib.Path('data/parkinfo').glob('US-*.json'):
         for r, v in json.load(open(f))['parks'].items():
-            if v[5] is not None: P[r] = (v[0], v[5], v[6], v[1], v[2], f.stem[3:])
+            if v[5] is not None: _pin(P, r, (v[0], v[5], v[6], v[1], v[2], f.stem[3:]))
     try:
         for r, v in json.load(open('data/parkinfo/CA.json'))['parks'].items():
             if v[5] is not None and len(v) > 10:
-                la_, lo_ = v[5], v[6]
-                if abs(la_) > 90: la_, lo_ = abs(lo_), -abs(la_)   # Oct 31 (Fable #28): a swapped Canadian pin (Churchill WMA), as the Canada key does
-                P[r] = (v[0], la_, lo_, v[1], v[2], 'CA-' + v[10])
+                # Nov 4 (Mapping 2-fer review #1; rule: never move POTA pins): the Oct 31 swap guess for an impossible Canadian pin
+                # (Churchill WMA) is gone. An impossible or 0,0 pin is listed in BAD_PIN and the park waits for POTA to fix it.
+                _pin(P, r, (v[0], v[5], v[6], v[1], v[2], 'CA-' + v[10]))
     except Exception: pass  # noqa: BLE001
     try:   # Kentucky's parks live in kpc-ky-data.json (data/parkinfo/KY.json is the Cayman Islands)
         for x in json.load(open('kpc-ky-data.json')).get('parks') or []:
-            if x.get('la') is not None: P[x['c']] = (x.get('n', ''), x['la'], x['lo'], x.get('web', ''), x.get('t', ''), 'KY')
+            if x.get('la') is not None: _pin(P, x['c'], (x.get('n', ''), x['la'], x['lo'], x.get('web', ''), x.get('t', ''), 'KY'))
     except Exception: pass  # noqa: BLE001
     for f in pathlib.Path('data/parkinfo').glob('[A-Z][A-Z].json'):
         if f.stem in ('CA', 'US'): continue
 
         try:
             for r, v in json.load(open(f))['parks'].items():
-                if len(v) > 6 and v[5] is not None and v[6] is not None: P[r] = (v[0], v[5], v[6], v[1], v[2], 'W-' + f.stem)
+                if len(v) > 6 and v[5] is not None and v[6] is not None: _pin(P, r, (v[0], v[5], v[6], v[1], v[2], 'W-' + f.stem))
         except Exception: pass  # noqa: BLE001
     return P
 
@@ -194,13 +204,31 @@ def agency_kind(m):
 def official_parks(PIN):
     """{ref: {'st', 'ids': [record ids], 'names': {id: name}}} + why parks were left out."""
     water_prefixes()
-    parks, skip = {}, {'approximate': 0, 'pin well outside': 0, 'no outline': 0, 'no pin': 0, 'Kentucky (own list)': 0}
+    parks, skip = {}, {'approximate': 0, 'pin well outside': 0, 'no outline': 0, 'no pin': 0, 'Kentucky (own list)': 0,
+                       'bad POTA pin (0,0 / impossible, listed)': 0, 'every joined piece is in the overrides no list (key not rebuilt yet)': 0}
+    # Nov 4 (Mapping 2-fer review #4): a piece a person (or a ruling) said is NOT this park ('no' in overrides.json) is never
+    # tested, even when the answer key file was built before that 'no' was written (the keys wait for a rebuild)
+    NO = {k: FG.override_no(f'data/{k}-key/overrides.json') for k in ('us', 'ca', 'world')}
+
+    def _bad(ref):
+        if ref not in BAD_PIN: return False
+        skip['bad POTA pin (0,0 / impossible, listed)'] += 1; SKIPWHY[ref] = f'{BAD_PIN[ref][1]}: POTA\'s pin, never moved; not tested until POTA fixes it'
+        return True
+
+    def _no(ref, m, k):
+        m2 = FG.drop_no(m, NO[k].get(ref))
+        if m and not m2:
+            skip['every joined piece is in the overrides no list (key not rebuilt yet)'] += 1
+            SKIPWHY[ref] = 'every joined piece is in the overrides no list (a person said: not this park); waits for the key rebuild'
+        elif len(m2) < len(m): LOG.append(f'{ref}: {len(m) - len(m2)} joined piece(s) in the overrides no list left out (key not rebuilt yet)')
+        return m2
     if REGION == 'ky':   # Oct 26 (Brandon: 'run just KY and see if it matches the guide'): Kentucky's own answer key + official files
         k = json.load(open('data/ky-answer-key.json'))['parks']
         for ref, p in k.items():
             tr = [t for t in p.get('tracts') or [] if t[0] not in ('bdbnf', 'bkpc', 'btrail', 'trl')]   # the forest's proclamation line and KPC-drawn outlines are not proof; Oct 31 (Fable #15): a trail's own line tract = a LINE park (tested by its line below), never an area
             if not tr: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if ref in KY_NOT_SURE: skip['no outline'] += 1; SKIPWHY[ref] = KY_NOT_SURE[ref]; continue   # ruling Oct 27: a line park, not its land tracts
+            if _bad(ref): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': 'US-KY', 'ids': [f'{t[0]}|{t[1]}' for t in tr], 'names': {f'{t[0]}|{t[1]}': t[1] for t in tr}}
             if all(t[0] != 'bpad' for t in tr): AGENCY.add(ref)   # Kentucky's agency files (state parks, KDFWR, nature preserves, NPS, FWS)
@@ -222,8 +250,11 @@ def official_parks(PIN):
         for f in sorted(pathlib.Path('data/world-key').glob('[A-Z][A-Z].json')):
             for ref, p in json.load(open(f))['parks'].items():
                 m = p.get('m') or []
+                m0, m = m, _no(ref, m, 'world')
+                if m0 and not m: continue
                 if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
                 if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+                if _bad(ref): continue
                 if ref not in PIN: skip['no pin'] += 1; continue
                 parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m}
         skip.pop('Kentucky (own list)', None)
@@ -233,9 +264,12 @@ def official_parks(PIN):
         if st == 'US-KY': continue
         for ref, p in json.load(open(f))['parks'].items():
             m = p.get('m') or []
+            m0, m = m, _no(ref, m, 'us')
+            if m0 and not m: continue
             if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
                 skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+            if _bad(ref): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
             if p.get('parts'): CLIP[ref] = p['parts']   # Oct 29 rule B12: only this park's own parts of a shared multipart record
@@ -251,8 +285,11 @@ def official_parks(PIN):
         if not re.fullmatch(r'CA-[A-Z]{2}', f.stem): continue
         for ref, p in json.load(open(f))['parks'].items():
             m = p.get('m') or []
+            m0, m = m, _no(ref, m, 'ca')
+            if m0 and not m: continue
             if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+            if _bad(ref): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
             if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
@@ -1482,6 +1519,7 @@ WATER_NHT = re.compile(r'lewis (and|&) clark|trail of tears|captain john smith|s
 ROUTE_KM = 3.0          # water within this distance of the route line is the route's water
 BANK = 30.48            # 100 ft from the bank
 WATER_FAIL = []
+WATER_NO_SPLIT = set()   # Nov 4: water routes with no water/land split (centre-line test skipped)
 WATER_UNCHECKED = set()   # Oct 31 (Fable #22): (river, park) pairs measured from the line because the water map did not answer
 ROUTE_PTS = {}
 
@@ -1731,6 +1769,11 @@ def find_spots(G, LN, pairs, counts):
                     _wp = set(LN[l_ref].get('water_parts') or []) if l_ref in LN else set()
                     _wet = [l for i, l in enumerate(_ls) if i in _wp] if _wp else _ls          # Oct 31 (Fable #12): the WATER parts (from the
                     _dry = [l for i, l in enumerate(_ls) if i not in _wp] if _wp else _ls      # agency's route field) use the bank, the land parts the line
+                    if not _wp and l_ref in LN and water_route(l_ref, LN, PINS):
+                        # Nov 4 (Mapping 2-fer review #2): a WATER route with no water/land split (no route field) was tested by its bank
+                        # AND its drawn centre line; the drawn line of a water trail is not land. Bank only; listed as not sure.
+                        _dry = []
+                        if l_ref not in WATER_NO_SPLIT: WATER_NO_SPLIT.add(l_ref); LOG.append(f'{l_ref}: water route with no water/land split: bank test only, centre-line test skipped (not sure)')
                     if l_ref in LN and l_ref not in G and o_ref in G and water_route(l_ref, LN, PINS) and _wet:
                         got += water_route_spots(l_ref, _wet, o_ref, bbox_groups(G[o_ref]))   # the river bank, not the drawn line
                     if l_ref in LN and l_ref not in G:
@@ -2865,6 +2908,11 @@ def main():
                 if dkm > 8 and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
                     x['status'] = f'dropped: two park numbers joined to one record by name, pins {dkm:.0f} km apart and not both inside the same part of it (a wrong join in the key)'
                     n['same land dropped: wrong join'] = n.get('same land dropped: wrong join', 0) + 1; continue
+            if REGION != 'ky' and a in PIN and b in PIN and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
+                _rm = re.search(r'same official outline \((.*)\); POTA', str(x.get('note') or ''))
+                _doubt = FG.same_land_doubt(PIN[a][0], PIN[b][0], _rm.group(1)) if _rm else ''
+                if _doubt:   # Nov 4 (Mapping 2-fer review #3): an older row from one record that does not clearly name both parks
+                    x['status'] = _doubt; n['same land not sure: one record covers two parks'] = n.get('same land not sure: one record covers two parks', 0) + 1; continue
             ow = {owner_word(park_owner(r, parks)) for r in x['refs']} - {'', '?'}
             x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
@@ -3043,6 +3091,9 @@ def main():
                                                     # Oct 29 (chat 8, missing pairs): a trail / river park is tested by its official LINE (LN), so it is
                                                     # neither 'no official boundary' nor 'not in this run' (a multi-state trail's pin may sit elsewhere)
                                                     'near100': near_pairs(G, pairs, spots), 'parks': sorted(set(parks) | set(LN)),
+                                                    # Nov 4 (Mapping 2-fer review #1): POTA pins at 0,0 / impossible (never moved; not tested)
+                                                    'bad_pota_pins': {r: v[1] for r, v in sorted(BAD_PIN.items()) if not ONLY or v[2] in ONLY or 'US-' + str(v[2]) in ONLY or str(v[2])[3:] in ONLY},
+                                                    'water_no_split': sorted(WATER_NO_SPLIT),
                                                     # Oct 29 (chat 8: Colton Point / Leonard Harrison x Tioga SF said 'boxes do not touch'):
                                                     # parks whose official outline could not be READ in pass 1 (one record of theirs did not answer)
                                                     'unread': sorted(r for r in parks if r not in G and r not in LN and r not in SKIPWHY and r not in LEFT),
@@ -3090,6 +3141,9 @@ def main():
                 dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
                 if dkm > 8 and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
                     SAME_FAR.append([a, b, round(dkm, 1), x.get('record')]); continue
+                # Nov 4 (Mapping 2-fer review #3): one record joined to two parks is only a candidate when it names BOTH parks and
+                # no kind differs (Fundy Biosphere Reserve on the Fundy National Park record = a person decides, rule 18)
+                _doubt = '' if tuple(sorted((a, b))) in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} else FG.same_land_doubt(PIN[a][0], PIN[b][0], x.get('name') or x.get('record'))
                 la, lo = PIN[b][1], PIN[b][2]
                 best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
                 ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
@@ -3101,6 +3155,7 @@ def main():
                       'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
                 if any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
+                elif _doubt: sp['status'] = _doubt; counts['same land not sure: one record covers two parks'] = counts.get('same land not sure: one record covers two parks', 0) + 1
                 by.setdefault(st_of(a), []).append(sp)
             if SAME_FAR:
                 counts['same land left out: pins far apart, not both inside the outline'] = len(SAME_FAR)
