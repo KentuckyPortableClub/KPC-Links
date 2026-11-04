@@ -215,4 +215,13 @@ check(pc.name_how('Estuaire de la Riviere Bonaventure Nature Reserve', 'Rivière
       and pc.name_how('Alpha Bravo Charlie Wildlife Area', 'Alpha Delta Echo Wildlife Area', True) == 'other'
       and pc.name_how('France MacKeen Nature Reserve', 'Réserve naturelle Frances-MacKeen', True) != 'other'
       and pc.name_how('Kungsberget Nature Reserve', '2000283 Kungsberget', True) == 'same', "one shared word is not 'same' (a near spelling still counts)")
+# --- Brandon 7:33 PM CST ruling (relayed): CA-2218, CA-2227, SE-0797 dropped to pins by overrides, kept on the ask list ---
+_co = json.load(open(HERE / 'data/ca-key/overrides.json'))['parks']; _wo = json.load(open(HERE / 'data/world-key/overrides.json'))['parks']
+_an = json.load(open(HERE / 'data/review/precheck-notes.json'))['ask_brandon']
+check('join' not in _co['CA-2218'] and _co['CA-2218']['none'] and 'Réserve faunique de Rimouski' in _co['CA-2218']['no']
+      and set(_co['CA-2227']['no']) >= {'Québec prote:2496', 'Québec recog:2496', 'Québec prote:5246', 'Québec recog:5246', 'Réserve naturelle de la Rivière-Malbaie (Sec. SCCN / Par. Stallman)', 'Réserve naturelle de la Rivière-Malbaie (Conservation de la nature - Québec)'} and _co['CA-2227']['none']
+      and '2000283 Kungsberget' in _wo['SE-0797']['no'] and _wo['SE-0797']['none'] and 'join' not in _wo['SE-0797']
+      and all(_an[r].get('dropped_to_pin') and 'NOT applied' in _an[r]['status'] for r in ('CA-2218', 'CA-2227', 'SE-0797'))
+      and not (HERE / 'data/canada-bounds/CA-2218.json').exists() and not (HERE / 'data/canada-bounds/CA-2227.json').exists(),
+      'when in doubt drop it: three parks dropped to pins by overrides (no trim, no join) and kept on the ASK BRANDON list')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

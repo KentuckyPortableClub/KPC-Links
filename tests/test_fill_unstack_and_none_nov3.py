@@ -60,4 +60,32 @@ with tempfile.TemporaryDirectory() as t:
     check(Q['US-1080'].get('none') is True, "US-1080: a map-audit NO on the joined record keeps 'none' (a person decides)")
     check(Q['US-9'].get('none') is True, "a later NO on the joined record's own name keeps 'none'")
     if not ok: print(r.stdout[-800:], r.stderr[-800:])
+
+# v5b (Quality grade of v4; Brandon 7:33 PM CST Nov 3, relayed by Super: "When in doubt drop it put it on a list"): the bounds fill
+# must NOT write CA-2218.json / CA-2227.json again while the key files still carry the old join: a person's 'no' is honored.
+import gzip  # noqa: E402
+def _fine_square(x0, y0, d=0.01, n=60):   # segments ~20 m, so the 50 m roughness gate lets it through
+    e = [[x0 + d * i / n, y0] for i in range(n)] + [[x0 + d, y0 + d * i / n] for i in range(n)] + \
+        [[x0 + d - d * i / n, y0 + d] for i in range(n)] + [[x0, y0 + d - d * i / n] for i in range(n)]
+    return e + [e[0]]
+with tempfile.TemporaryDirectory() as t:
+    T = pathlib.Path(t); (T / 'data/ca-key').mkdir(parents=True); (T / 'data/canada-bounds').mkdir(parents=True); (T / 'cache/ca').mkdir(parents=True)
+    recs = [{'oid': 'Québec Réser:n-Réserve faunique de Rimouski', 'n': 'Réserve faunique de Rimouski', 'src': 'Québec', '_r': [_fine_square(-68.5, 48.0)]},
+            {'oid': 'Québec prote:2496', 'n': 'Réserve naturelle de la Rivière-Malbaie (Sec. SCCN / Par. Stallman)', 'src': 'Québec', '_r': [_fine_square(-70.3, 47.6)]},
+            {'oid': 'Québec prote:9', 'n': 'Okay Reserve', 'src': 'Québec', '_r': [_fine_square(-71.0, 46.0)]}]
+    with gzip.open(T / 'cache/ca/CA-ALL.json.gz', 'wt', encoding='utf-8') as f: json.dump({'recs': recs}, f)
+    (T / 'data/ca-key/CA-QC.json').write_text(json.dumps({'parks': {
+        'CA-2218': {'n': 'Rimouski Reserve Nature Reserve', 'm': [[recs[0]['oid'], recs[0]['n'], 445000, 'reviewed']]},
+        'CA-2227': {'n': 'Riviere Malbaie (CNC/Stallman) Nature Reserve', 'm': [[recs[1]['oid'], recs[1]['n'], 38, 'name']]},
+        'CA-9': {'n': 'Okay Reserve', 'm': [[recs[2]['oid'], recs[2]['n'], 100, 'name']]}}}, ensure_ascii=False))
+    (T / 'data/ca-key/overrides.json').write_text(json.dumps({'parks': {
+        'CA-2218': {'no': ['Québec Réser:n-Réserve faunique de Rimouski', 'Réserve faunique de Rimouski'], 'none': True},
+        'CA-2227': {'no': ['Québec prote:2496'], 'none': True}}}, ensure_ascii=False))
+    env = dict(os.environ); env.pop('GEO_CACHE', None)
+    r = subprocess.run([sys.executable, os.environ.get('FILL_TOOL') or str(HERE / '.github/scripts/kpc_ca_fill_bounds.py')], cwd=t, env=env, capture_output=True, text=True)
+    B = T / 'data/canada-bounds'
+    check((B / 'CA-9.json').exists(), 'fill: a park with no NO still gets its outline file (the test fixture draws)')
+    check(not (B / 'CA-2218.json').exists() and not (B / 'CA-2227.json').exists(),
+          "fill: a joined record a person said NO to (overrides 'no', by id or name) is never written again (CA-2218, CA-2227)")
+    if not ok: print(r.stdout[-600:], r.stderr[-600:])
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

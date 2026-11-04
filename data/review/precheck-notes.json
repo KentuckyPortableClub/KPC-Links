@@ -36,7 +36,7 @@
  },
  "ask_brandon": {
   "CA-2227": {
-   "ask": "POTA's name 'Riviere Malbaie (CNC/Stallman) Nature Reserve' names only the Stallman tract (Québec register #2496 'Sec. SCCN / Par. Stallman', 17.9 ha; SCCN = CNC), but the outline joins both #2496 and #5246 '(Conservation de la nature - Québec)', 309.8 ha, another holder (Quality spot-check Nov 3). Trim to Stallman, or does POTA mean the whole reserve (then label each tract per the split-tract ruling)?",
+   "ask": "POTA's name 'Riviere Malbaie (CNC/Stallman) Nature Reserve' names only the Stallman tract (Québec register #2496 'Sec. SCCN / Par. Stallman', 17.9 ha; SCCN = CNC), but the outline joins both #2496 and #5246 '(Conservation de la nature - Québec)', 309.8 ha, another holder (Quality spot-check Nov 3). Trim to Stallman, or does POTA mean the whole reserve (then label each tract per the split-tract ruling)? Dropped to pin (both tracts said no); trim to Stallman, take the whole reserve, or leave it a pin?",
    "proposal_text": "rule 18 default: trim to the Stallman tract = data/ca-key/overrides.json CA-2227 {\"no\": [\"Québec prote:5246\", \"Québec recog:5246\"]} (kept: Québec prote:2496, Québec recog:2496)",
    "proposal": {
     "no": [
@@ -44,22 +44,25 @@
      "Québec recog:5246"
     ]
    },
-   "status": "PROPOSED, NOT APPLIED (waits for Brandon)",
-   "by": "Mapping, Nov 3 2026, from Quality's spot-check PULL"
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026, from Quality's spot-check PULL",
+   "dropped_to_pin": true
   },
   "SE-0797": {
-   "ask": "SE-0797 has a 0,0 POTA pin and its outline is joined to the EEA Natura 2000 record '2000283 Kungsberget' by name only. Mapping could NOT check the area: Sweden's own layer (Naturvårdsverket) was not read. Keep the outline, or should a person check it against Sweden's own layer first?",
+   "ask": "SE-0797 has a 0,0 POTA pin and its outline is joined to the EEA Natura 2000 record '2000283 Kungsberget' by name only. Mapping could NOT check the area: Sweden's own layer (Naturvårdsverket) was not read. Keep the outline, or should a person check it against Sweden's own layer first? Dropped to pin until a person checks it against Sweden's own layer.",
    "proposal_text": "nothing is changed: the outline stays, flagged BAD_POTA_PIN_NAME_ONLY, until a person answers",
    "proposal": {},
-   "status": "ASK BRANDON (Super, 7:24 PM CST Nov 3); nothing applied",
-   "by": "Mapping, Nov 3 2026 7:2x PM CST"
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026 7:2x PM CST",
+   "dropped_to_pin": true
   },
   "CA-2218": {
-   "ask": "CA-2218 Rimouski Reserve Nature Reserve: the key record 'Réserve faunique de Rimouski' (Québec Réser:n-Réserve faunique de Rimouski) says 180,344 ac, but the saved outline data/canada-bounds/CA-2218.json draws only 195 ac, so the saved outline is suspect (it is probably one small piece). Rebuild the outline from the record, or check it by hand?",
+   "ask": "CA-2218 Rimouski Reserve Nature Reserve: the key record 'Réserve faunique de Rimouski' (Québec Réser:n-Réserve faunique de Rimouski) says 180,344 ac, but the saved outline data/canada-bounds/CA-2218.json draws only 195 ac, so the saved outline is suspect (it is probably one small piece). Rebuild the outline from the record, or check it by hand? Quality (Nov 3 grade): the record is a wildlife reserve (réserve faunique), another kind, so the hand join (Oct 25, on main) is probably wrong. Dropped to pin; restore it?",
    "proposal_text": "nothing is changed: the saved outline stays, flagged, until a person answers (Mapping's lean: rebuild it from the official record on a normal CA fill run)",
    "proposal": {},
-   "status": "ASK BRANDON (Super, 7:24 PM CST Nov 3); nothing applied",
-   "by": "Mapping, Nov 3 2026 7:2x PM CST"
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026 7:2x PM CST",
+   "dropped_to_pin": true
   }
  }
 }

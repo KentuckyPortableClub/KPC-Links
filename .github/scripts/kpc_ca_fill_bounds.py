@@ -118,8 +118,20 @@ def main():
     retired = sorted(have - keyed) if len(keyed) > 5000 else []
     for ref in retired:
         (OUT / f'{ref}.json').unlink(); have.discard(ref)
+    # v5b (Quality grade of v4; Brandon 7:33 PM CST Nov 3, relayed by Super: "When in doubt drop it put it on a list"): a person's
+    # 'no' in data/ca-key/overrides.json is honored HERE too (proposed rule 21: a no means the record never joins that park on any
+    # build path). Until the CA key is rebuilt, the key files still carry the old join (CA-2218 Rimouski, CA-2227 Malbaie tracts),
+    # and without this the fill would write their outline files again from the cache. A NO'd record is left out, by id or name.
+    try: NOV = json.load(open('data/ca-key/overrides.json', encoding='utf-8')).get('parks', {})
+    except Exception: NOV = {}  # noqa: BLE001
+    _nos = lambda ref: {low(x) for x in ((NOV.get(ref) or {}).get('no') or [])}
+    held_no = []
     for kf in sorted(glob.glob('data/ca-key/CA-*.json')):
         for ref, p in json.load(open(kf))['parks'].items():
+            nos = _nos(ref)
+            if nos and p.get('m'):
+                keep = [m for m in p['m'] if low(m[0]) not in nos and low(m[1]) not in nos]
+                if len(keep) < len(p['m']): held_no.append(ref); p = dict(p, m=keep)
             if not p.get('m') or ref in have or cp_only(p): continue
             rings, names, srcs, approx, dup = [], [], [], False, []
             for m in p['m']:
@@ -148,7 +160,8 @@ def main():
     notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten); {dropped} CPCAD-only files removed (drawn live now)'
            + (f"; {len(retired)} retired park(s) removed: {', '.join(retired[:10])}" if retired else '')
            + (f"; {len(unstacked)} older file(s) had the same land drawn more than once (or dots / flat lines), taken out: {', '.join(unstacked[:12])}" if unstacked else '')
-           + (f"; {len(emptied)} older file(s) held only dots / flat lines and were removed: {', '.join(emptied[:12])}" if emptied else ''))
+           + (f"; {len(emptied)} older file(s) held only dots / flat lines and were removed: {', '.join(emptied[:12])}" if emptied else '')
+           + (f"; {len(held_no)} park(s) had joined records a person said NO to, left out: {', '.join(held_no[:12])}" if held_no else ''))
 
 
 if __name__ == '__main__':
