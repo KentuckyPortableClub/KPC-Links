@@ -1,36 +1,6 @@
 {
- "updated": "2026-11-04T12:02:20Z",
+ "updated": "2026-11-04T18:15:25Z",
  "week": [
-  {
-   "name": "A1Club AWT",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gr6nf",
-   "when": "1145Z-1300Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T11:45Z",
-     "2026-11-04T13:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gg18y",
-   "when": "1300Z-1400Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T13:00Z",
-     "2026-11-04T14:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "VHF-UHF FT8 Activity Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9lwi",
@@ -2785,7 +2755,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (30)",
+  "WA7BNM": "ok (28)",
   "CORRAL": "ok (82)"
  }
 }

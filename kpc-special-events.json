@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T20:30:50Z",
+ "updated": "2026-11-04T18:15:08Z",
  "stations": [
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
@@ -292,7 +292,7 @@
    "title": "USS Cobia Veterans Day Special Event",
    "start": "2026-11-14",
    "end": "2026-11-15",
-   "times": "1420Z-1420Z",
+   "times": "1500Z-2100Z",
    "call": "NB9QV",
    "calls": [
     "NB9QV"
