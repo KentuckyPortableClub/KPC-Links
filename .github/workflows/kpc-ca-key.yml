@@ -5,6 +5,12 @@ on:
   schedule:
     - cron: '43 10 2 * *'   # monthly
     - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
+  # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
+  # NO new cron. After a rules change this key waits for the key(s) before it (kpc_key_order.py); it is picked up here when one of
+  # them finishes. A chained start builds ONLY a new-rules catch-up; otherwise it skips cleanly (one notice).
+  workflow_run:
+    workflows: ['KPC US answer key']
+    types: [completed]
   workflow_dispatch:
     inputs:
       as_schedule:
@@ -37,6 +43,11 @@ jobs:
         run: |
           python3 .github/scripts/kpc_key_freeze.py check ca-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
+      - name: BUILD ORDER (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4) - after a rules change US, then Canada, then the world; a key whose turn has not come skips cleanly and is started again by workflow_run
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ "${SKIP:-}" != 1 ]; then python3 .github/scripts/kpc_key_order.py check ca-key || { echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Key build order::the order check stopped (exit $?): this start waits"; }; fi
       - name: Tonight's list (chat 2 Oct 30, Brandon 9:48 'Yes'; the nightly run only builds when BOT W wired a new layer)
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
