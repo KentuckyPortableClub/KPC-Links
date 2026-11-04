@@ -77,6 +77,12 @@ jobs:
         id: p
         env:
           COUNTRIES: ${{ inputs.countries }}
+          # Nov 4 PM fix bundle (item 5; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): W-41895532587 was not a full build
+          # because AU ran over the 100-min country limit in a job shared with 26 other countries. A SLOW country now gets a job of its
+          # own and its own limit (repo variables KPC_WORLD_SLOW = space list, default AU; KPC_WORLD_SLOW_MIN, default 300 = under the
+          # build step's 335). Two slow jobs at most; the other countries are split as before.
+          SLOW: ${{ vars.KPC_WORLD_SLOW || 'AU' }}
+          SLOW_MIN: ${{ vars.KPC_WORLD_SLOW_MIN || '300' }}
         run: |
           if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
           [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
@@ -89,12 +95,16 @@ jobs:
           try: idx = json.load(open('data/world-key/index.json', encoding='utf-8')).get('countries', {})
           except Exception: idx = {}
           w = {c: ((idx.get(c) or {}).get('parks') or 200) + ((idx.get(c) or {}).get('areas') or 0) // 20 for c in cs}   # rough size: parks + official areas read
-          n = max(1, min(3, len(cs)))
+          slow = [c for c in dict.fromkeys((os.environ.get('SLOW') or '').upper().split()) if c in cs][:2]   # Nov 4 PM fix bundle (item 5)
+          rest = [c for c in cs if c not in slow]
+          n = max(1, min(3, len(rest))) if rest else 0
           g = [[] for _ in range(n)]; load = [0] * n
-          for c in sorted(cs, key=lambda c: -w[c]):
+          for c in sorted(rest, key=lambda c: -w[c]):
               k = load.index(min(load)); g[k].append(c); load[k] += w[c]
-          print('groups=' + json.dumps([{'i': k, 'countries': ' '.join(x)} for k, x in enumerate(g) if x]))
-          print(f"::notice title=World key plan::{n} job(s): " + ' | '.join(' '.join(x) for x in g if x))
+          G = [{'i': k, 'countries': ' '.join(x), 'cmin': ''} for k, x in enumerate(g) if x]
+          G += [{'i': n + j, 'countries': c, 'cmin': os.environ.get('SLOW_MIN') or '300'} for j, c in enumerate(slow)]
+          print('groups=' + json.dumps(G))
+          print(f"::notice title=World key plan::{len(G)} job(s): " + ' | '.join(x['countries'] + (f" (own job, limit {x['cmin']} min)" if x['cmin'] else '') for x in G))
           PY
   build:
     needs: plan
@@ -116,7 +126,7 @@ jobs:
         env:
           PIN_JOIN: ${{ inputs.pin_join }}
           WB_DIR: ${{ inputs.outline_test == 'yes' && '/tmp/wb-test' || '' }}
-          CMIN: ${{ vars.KPC_WORLD_COUNTRY_MIN || '100' }}
+          CMIN: ${{ matrix.g.cmin || vars.KPC_WORLD_COUNTRY_MIN || '100' }}   # Nov 4 PM fix bundle (item 5): a slow country's own limit
           MINE: ${{ matrix.g.countries }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
