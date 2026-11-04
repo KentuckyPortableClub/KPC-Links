@@ -102,7 +102,8 @@ def rule18_differs(park, rec, brackets=False):
     qualifier ('(Lewis County)', '(Qld)') no longer counts there; the bad-pin test keeps brackets=True.
     links-09 (Nov 4): with brackets=False a difference counts only when it is there BOTH on the full names AND on the names with
     their bracket text taken off, so bracket text can neither make a piece ('(Lower Tract)' read by KR.piece_ok as the piece 'lower',
-    a one-side '(South)') nor hide one (POTA 'Langres Nord' vs record 'Langres (secteur Nord)' is the same piece, not flagged).
+    a one-side '(South)') nor hide one. links-11: POTA 'Langres Nord' vs record 'Langres (secteur Nord)' (the word only inside the
+    other name's bracket) is flagged for the review pile, not passed.
     One exception, kept on purpose: when BOTH names carry bracket text and it clashes ('Horseshoe Canyon (South)' vs
     'Horseshoe Canyon (North)', '(No. 1)' vs '(No. 2)', '(0130)' vs '(0189)'), the two records are different pieces, not a
     qualifier on one side, so the row stays a review-pile flag (flag only, never held). brackets=True (the bad-pin test) is unchanged."""
@@ -113,6 +114,15 @@ def rule18_differs(park, rec, brackets=False):
             if w and _rule18_core(*u, False): return _rule18_core(*u, False)
             if w and _bracket_text(park) and _bracket_text(rec) and ("' vs '" in w or 'number' in w):
                 return w + ' (both names carry a different bracketed piece)'
+            # links-11 (Nov 4, Quality's v2 grade, should-fix 3, YES'd by Super's 7:15 AM CST relay): a compass / position word that
+            # one name carries OUTSIDE brackets and the other only INSIDE its bracket ('Langres Nord' vs 'Langres (secteur Nord)')
+            # may or may not be the same piece: a review-pile flag (never a hold), not a silent pass.
+            ua, ub = set(KR._plain_words(u[0])), set(KR._plain_words(u[1]))
+            pa, pb = (ua & _R18_ONESIDE) - ub, (ub & _R18_ONESIDE) - ua
+            if (pa or pb) and not (pa and pb):
+                inb = (pa or pb) & set(KR._plain_words(_bracket_text(rec if pa else park)))
+                if inb: return (f"rule 18: '{' '.join(sorted(inb))}' names a piece in one name but sits only inside the other name's bracket "
+                                f"({_bracket_text(rec if pa else park)}): check it is the same piece")
             return ''
     return _rule18_core(park, rec, brackets)
 

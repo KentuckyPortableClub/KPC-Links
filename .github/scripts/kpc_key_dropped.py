@@ -20,12 +20,14 @@ kpc_ca_key.py, kpc_world_key.py candidate reasons, kpc_precheck.py flags, why-no
   private_or_picture_map  why-not 'private' / 'picture-map-only'
   no_boundary       nothing found at all: no candidate, no record at the pin (its own list, no-boundary.csv)
 
-Writes data/status/key-check/<key>-<build>/dropped/<reason>.csv (one per reason, header-only when empty), no-boundary.csv and
-index.json (counts, columns, files, the jump check), and adds a count table to data/status/key-check/<key>-<build>.md.
+Writes data/status/key-check/dropped-<key>/latest/<reason>.csv (one per reason, header-only when empty), no-boundary.csv and
+index.json (counts, columns, files, the jump check), and adds a count table to data/status/key-check/<key>-<build>.md. links-11: only
+latest/ and previous/ are kept per key (the old latest moves to previous/ when the rows change); rows equal apart from the build /
+checked stamps write nothing, so an unchanged run commits nothing.
 No per-park notices: one summary notice; a ::warning only for a real system problem (a sudden jump in drops, a whole area going
 to pins, key files that do not read). Exit code is always 0 (never fails a build).
 
-Distance and kind from the pre-check (6:49 AM CST Nov 4 ask, relayed via Super Head Bot): pre_km / pre_km_what / pre_kind /
+Distance and kind (links-11): first from the key's own per-park 'bk' (links-10), then from the pre-check (6:49 AM CST Nov 4 ask, relayed via Super Head Bot): pre_km / pre_km_what / pre_kind /
 pre_kind_why are joined BY REF from the latest kpc_precheck.py output in PRECHECK_OUT (scorecard.csv flags + why: WRONG_KIND with
 its layer-kind reason, PIN_WAY_OUT; county.csv 'km to listed'). Nothing is worked out here and no key rule changes. A blank cell
 says why in pre_blank_reason: 'no precheck output' (no scorecard.csv), 'precheck older than build' (scorecard.csv older than the
@@ -34,7 +36,7 @@ build's 'built' time: a stale run is not used), 'no precheck row', or what the p
   KEY / WORKFLOW_NAME, OUT_DIR, ANSWER_SHEET, PRECHECK_OUT, FORCE as kpc_key_postcheck.py.
   KPC_DROP_JUMP_MIN (default 25) / KPC_DROP_JUMP_PCT (default 5): warn when the parks newly dropped this build exceed both.
 """
-import csv, json, os, pathlib, re, sys, time
+import csv, json, os, pathlib, re, shutil, sys, time
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_key_postcheck as PK  # noqa: E402  (links-01: KEYS, load_tree, parks_of, has_outline, read_csv, git)
@@ -90,6 +92,7 @@ COLUMNS = ['ref', 'pota_name', 'pota_lat', 'pota_lon', 'area', 'pota_kind', 'off
            'before', 'cand_name', 'cand_id', 'cand_layer', 'cand_acres', 'cand_distance_km', 'cand_kind', 'cand_why', 'other_cands',
            'rule18_flag', 'bad_pin_flag', 'precheck_flags', 'why_not_tag', 'override', 'sheet_answer', 'person_answer', 'needs_research',
            'pre_km', 'pre_km_what', 'pre_kind', 'pre_kind_why', 'pre_blank_reason', 'build', 'checked']
+STAMP_COLS = ('build', 'checked')   # links-11: a row that differs only in these is the same row
 PRE_COLS = ('pre_km', 'pre_km_what', 'pre_kind', 'pre_kind_why', 'pre_blank_reason')
 JUMP_MIN, JUMP_PCT = 25, 5.0
 
@@ -141,7 +144,7 @@ def sheet_rows(k, sheet_dir):
 def by_area(tree):
     """{(area, ref): park} - a park listed in several state files (a multi-state park) is one row per file (links-01's parks_of keeps
     only one of them)."""
-    return {(a, r): dict(p, _area=a) for a, d in tree.items() for r, p in ((d or {}).get('parks') or {}).items() if isinstance(p, dict)}
+    return {(a, r): dict(p, _area=a, _bkk=(d or {}).get('bk_kinds') or {}) for a, d in tree.items() for r, p in ((d or {}).get('parks') or {}).items() if isinstance(p, dict)}
 
 
 def classify(r, p, pin, ov, sheet, who, pile, whynot, elsewhere=()):
@@ -226,26 +229,56 @@ def precheck_join(pre, built=''):
     return {'score': T, 'county': {x.get('park'): x for x in (PK.read_csv(d / 'county.csv') or [])}}, ''
 
 
-def pre_cols(r, area, J, state):
-    """pre_km / pre_km_what / pre_kind / pre_kind_why / pre_blank_reason for one dropped row (joined, never worked out)."""
+BK_WHY = {'nopin': 'the POTA pin is missing', 'pin00': 'the POTA pin is 0,0 (never moved)', 'pinbad': 'the POTA pin is impossible (never moved)',
+          'noshape': 'the build had no outline for the record', 'nocand': 'the key names no candidate record'}
+
+
+NO_BK = 'no key fact (a key built before links-10)'
+
+
+def key_fact(p, cand_id=''):
+    """links-11 (per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: "Yes, add distance and kind to the keys in this rebuild"):
+    (km, km_what, kind, kind_why, gaps) from the key's own 'bk' (links-10 kpc_key_facts.py). Read only, nothing worked out here."""
+    bk = p.get('bk') if isinstance(p.get('bk'), list) else None
+    if not bk or len(bk) < 4: return '', '', '', '', [NO_BK]
+    rid, km, kd, src = bk[:4]
+    other = f' (record {rid}, not the cand_id {cand_id})' if cand_id != '' and str(rid) != str(cand_id) and rid is not None else (f' (record {rid})' if rid is not None else '')
+    gaps = []
+    if km is not None: kmo, kmw = f'{float(km):.2f}', 'key: about km from the POTA pin to the best candidate, 0.00 = inside' + other
+    else: kmo, kmw = '', ''; gaps.append('key distance blank: ' + BK_WHY.get(bk[4] if len(bk) > 4 else '', 'no reason given'))
+    if kd: ko, kw = (p.get('_bkk') or {}).get(kd, kd), {'des': "key: the record's designation / type field", 'nm': "key: the kind words of the record's name"}.get(src, 'key') + other
+    else: ko, kw = '', ''; gaps.append("key kind blank: no designation field and no kind word in the record's name")
+    return kmo, kmw, ko, kw, gaps
+
+
+def pre_cols(r, area, J, state, p=None, cand_id=''):
+    """pre_km / pre_km_what / pre_kind / pre_kind_why / pre_blank_reason for one dropped row. links-11: the key's own 'bk' first,
+    then the pre-check join by ref for what the key lacks; a blank cell only when neither has it, and pre_blank_reason says why."""
     out = dict.fromkeys(PRE_COLS, '')
-    if state: out['pre_blank_reason'] = state; return out
+    km, kmw, kd, kw, kgaps = key_fact(p or {}, cand_id)
+    out['pre_km'], out['pre_km_what'], out['pre_kind'], out['pre_kind_why'] = km, kmw, kd, kw
+    if km and kd: return out
+    gaps = list(kgaps)
+    if state: out['pre_blank_reason'] = '; '.join(gaps + [state]); return out
     s = J['score'].get(r) or []
     s = [x for x in s if x.get('area') == area] or s
     c = J['county'].get(r) or {}
-    if not s and not c: out['pre_blank_reason'] = 'no precheck row'; return out
-    gaps, fl = [], ' '.join(x.get('flags') or '' for x in s).split()
-    km = str(c.get('km to listed') or '').strip()
-    if km: out['pre_km'], out['pre_km_what'] = km, 'pin to the nearest WWFF-listed county (pre-check county check)'
-    elif 'PIN_WAY_OUT' in fl:
-        out['pre_km_what'] = 'pre-check PIN_WAY_OUT: the POTA pin is well outside the joined land'
-        gaps.append('distance: the pre-check keeps no km for PIN_WAY_OUT')
-    else: gaps.append('distance: the pre-check row has no distance (no county-check row)')
-    wk = [x for x in s if 'WRONG_KIND' in (x.get('flags') or '').split()]
-    if wk:
-        out['pre_kind'] = 'wrong kind'
-        out['pre_kind_why'] = next((w for x in wk for w in (x.get('why') or '').split(' | ') if w.startswith(('layer kind:', 'WWFF:'))), '')
-    else: gaps.append('kind: no kind problem in the pre-check row (it checks joined records only)')
+    if not s and not c: out['pre_blank_reason'] = '; '.join(gaps + ['no precheck row']); return out
+    fl = ' '.join(x.get('flags') or '' for x in s).split()
+    if not km:
+        kmc = str(c.get('km to listed') or '').strip()
+        if kmc: out['pre_km'], out['pre_km_what'] = kmc, 'pin to the nearest WWFF-listed county (pre-check county check)'
+        elif 'PIN_WAY_OUT' in fl:
+            out['pre_km_what'] = 'pre-check PIN_WAY_OUT: the POTA pin is well outside the joined land'
+            gaps.append('distance: the pre-check keeps no km for PIN_WAY_OUT')
+        else: gaps.append('distance: the pre-check row has no distance (no county-check row)')
+    if not kd:
+        wk = [x for x in s if 'WRONG_KIND' in (x.get('flags') or '').split()]
+        if wk:
+            out['pre_kind'] = 'wrong kind'
+            out['pre_kind_why'] = next((w for x in wk for w in (x.get('why') or '').split(' | ') if w.startswith(('layer kind:', 'WWFF:'))), '')
+        else: gaps.append('kind: no kind problem in the pre-check row (it checks joined records only)')
+    if out['pre_km'] and out['pre_kind']: gaps = []
     out['pre_blank_reason'] = '; '.join(gaps)
     return out
 
@@ -297,12 +330,26 @@ def rows_for(k, N, O, cwd, env, build, checked, built=''):
                'sheet_answer': ' | '.join(f"{s.get('status')} {s.get('record_name') or ''} ({s.get('key_id') or s.get('record_id') or ''}) by {s.get('approved_by') or '-'} {s.get('approved_date') or ''}".strip() for s in sh)[:400],
                'person_answer': 'yes' if signed else '', 'needs_research': ('sheet: ' + '; '.join((s.get('note') or s.get('status') or '')[:120] for s in nr)) if nr else
                (f"pre-check: {lr.get('route') or lr.get('status') or ''} {lr.get('why') or ''}".strip() if 'NEEDS_RESEARCH' in json.dumps(lr) else ''),
-               **pre_cols(r, p['_area'], J, jstate), 'build': build, 'checked': checked}
+               **pre_cols(r, p['_area'], J, jstate, p, cand.get('cand_id', '')), 'build': build, 'checked': checked}
         rows.append(row)
     import collections
     pj = {'state': jstate or 'used', 'rows': len(rows), 'rows_with_km': sum(1 for x in rows if x['pre_km']),
-          'rows_with_kind': sum(1 for x in rows if x['pre_kind']), 'blank_reasons': dict(collections.Counter(x['pre_blank_reason'] for x in rows if x['pre_blank_reason']))}
+          'rows_with_kind': sum(1 for x in rows if x['pre_kind']), 'km_from_key': sum(1 for x in rows if x['pre_km'] and x['pre_km_what'].startswith('key')),
+          'kind_from_key': sum(1 for x in rows if x['pre_kind'] and x['pre_kind_why'].startswith('key')), 'blank_reasons': dict(collections.Counter(x['pre_blank_reason'] for x in rows if x['pre_blank_reason']))}
     return rows, {'pins': len(pins), 'sheet_read': sheet_read, 'precheck_read': bool(pile or bpf), 'precheck_join': pj}
+
+
+def same_rows(dd, sets):
+    """links-11: True when dd already holds exactly these files with these rows, the STAMP_COLS aside (an unchanged run writes nothing)."""
+    if not dd.is_dir(): return False
+    have = sorted(f.name for f in dd.glob('*.csv'))
+    if have != sorted(sets): return False
+    for fn, sel in sets.items():
+        old = PK.read_csv(dd / fn)
+        if old is None or len(old) != len(sel): return False
+        strip = lambda x: {c: str(x.get(c) if x.get(c) is not None else '') for c in COLUMNS if c not in STAMP_COLS}   # noqa: E731
+        if [strip(x) for x in old] != [strip(x) for x in sel]: return False
+    return True
 
 
 def jump_check(rows, N, O, env):
@@ -334,8 +381,9 @@ def md_table(counts, newc, files, warn, pj=None):
     t.append(f"| **total** | **{sum(counts.values())}** | **{sum(newc.values())}** | index.json |")
     t += ['', 'Each row carries the POTA name and pin, the area, the official site, the best official candidate (name, id, layer, acres, '
           'kind words, why), the flags, any past person answer and the build. cand_distance_km is the key\'s own (e.g. ">2" km).']
-    if pj: t += ['', f"Pre-check join by ref ({pj['state']}): distance (pre_km) on {pj['rows_with_km']} and kind (pre_kind) on "
-                 f"{pj['rows_with_kind']} of {pj['rows']} rows; every blank cell says why in pre_blank_reason."]
+    if pj: t += ['', f"Distance (pre_km) on {pj['rows_with_km']} rows ({pj.get('km_from_key', 0)} from the key's own bk) and kind (pre_kind) on "
+                 f"{pj['rows_with_kind']} ({pj.get('kind_from_key', 0)} from the key) of {pj['rows']} rows; the rest from the pre-check join by ref "
+                 f"({pj['state']}); every blank cell says why in pre_blank_reason."]
     if warn: t += [''] + [f'- **System check:** {w}' for w in warn]
     return '\n'.join(t) + '\n<!-- /links-07 -->\n'
 
@@ -350,7 +398,11 @@ def run(env=None, cwd='.'):
     rep = load(rep_f, None) if last.get('report') else None
     if not rep: note('notice', f'{k} key: no post-key report yet (last-{k}.json): nothing to list'); return None
     base = rep_f.with_suffix('')
-    dd = base / 'dropped'
+    # links-11 storage (Super's 7:15 AM CST Nov 4 relay of Quality's v2 grade, item 1): ONE fixed folder per key, the latest set plus
+    # the one before it, overwritten in place: data/status/key-check/dropped-<key>/latest/ and previous/. A run whose rows are the
+    # same apart from stamps (build, checked) writes nothing at all, so an unchanged run commits nothing.
+    top = out_dir / f'dropped-{k}'
+    dd, pv = top / 'latest', top / 'previous'
     idx_f = dd / 'index.json'
     old_idx = load(idx_f, {}) or {}
     if old_idx.get('report_checked') == rep.get('checked') and (env.get('FORCE') or '').lower() != 'yes':
@@ -365,27 +417,39 @@ def run(env=None, cwd='.'):
     bad = [a for a, v in tree.items() if v.get('_bad')]
     if bad: warn.append('key files did not read as JSON: ' + ', '.join(bad)[:200])
     if not info['pins']: warn.append('no POTA pins found: the pin columns are empty')
-    dd.mkdir(parents=True, exist_ok=True)
-    counts, newc, files = {}, {}, {}
+    counts, newc, files, sets = {}, {}, {}, {}
     for code, _ in REASONS + [NO_BOUNDARY]:
         fn = ('no-boundary' if code == 'no_boundary' else code.replace('_', '-')) + '.csv'
         files[code] = fn
         sel = [x for x in rows if x['reason'] == code]
         counts[code], newc[code] = len(sel), sum(1 for x in sel if x['new_this_build'] == 'yes')
-        with open(dd / fn, 'w', newline='', encoding='utf-8') as f:
-            w = csv.DictWriter(f, fieldnames=COLUMNS); w.writeheader(); w.writerows(sel)
-    idx = {'key': k, 'build': rep.get('build'), 'report': rep_f.name, 'report_checked': rep.get('checked'), 'checked': checked,
-           'prev_ref': prev or 'none', 'about': 'parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07)',
+        sets[fn] = sel
+    same = same_rows(dd, sets)
+    idx = {'key': k, 'build': rep.get('build'), 'report': rep_f.name, 'report_checked': rep.get('checked'), 'checked_at': checked,
+           'prev_ref': prev or 'none', 'about': 'parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; '
+           'links-11: latest/ + previous/ only, rewritten only when the rows change)',
            'counts': counts, 'new_this_build': newc, 'total': len(rows), 'files': files, 'columns': COLUMNS,
            'reasons': {c: t for c, t in REASONS + [NO_BOUNDARY]}, 'jump_check': jc, 'system_warnings': warn,
            'inputs': {'pota_pins': info['pins'], 'answer_sheet_read': info['sheet_read'], 'precheck_read': info['precheck_read']},
            'precheck_join': info['precheck_join']}
-    json.dump(idx, open(idx_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     mdf = base.with_suffix('.md')
     txt = mdf.read_text(encoding='utf-8') if mdf.exists() else ''
-    txt = re.sub(r'\n?<!-- links-07 dropped parks -->.*?<!-- /links-07 -->\n', '', txt, flags=re.S)
-    mdf.write_text(txt.rstrip('\n') + '\n' + md_table(counts, newc, {c: f'{base.name}/dropped/{f}' for c, f in files.items()}, warn, info['precheck_join']), encoding='utf-8')
-    for w in warn: note('warning', f'{k} key {rep.get("build")}: {w}')
+    new_txt = re.sub(r'\n?<!-- links-07 dropped parks -->.*?<!-- /links-07 -->\n', '', txt, flags=re.S).rstrip('\n') + '\n' + md_table(
+        counts, newc, {c: f'dropped-{k}/latest/{f}' for c, f in files.items()}, warn, info['precheck_join'])
+    if new_txt != txt: mdf.write_text(new_txt, encoding='utf-8')   # same text = no write
+    for w in warn: note('warning', f'{k} key {rep.get("build")}: {w}')   # a system problem is said on every run, changed or not
+    if same:
+        note('notice', f"{k} key {rep.get('build')}: {len(rows)} parks with no outline, the same rows as {dd} (stamps aside): nothing written")
+        idx['unchanged'] = True
+        return idx
+    if dd.exists():   # rotate: the old latest becomes previous (the one before that is overwritten)
+        if pv.exists(): shutil.rmtree(pv)
+        dd.rename(pv)
+    dd.mkdir(parents=True, exist_ok=True)
+    for fn, sel in sets.items():
+        with open(dd / fn, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=COLUMNS); w.writeheader(); w.writerows(sel)
+    json.dump(idx, open(idx_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     note('notice', f"{k} key {rep.get('build')}: {len(rows)} parks with no outline (" + ', '.join(f'{c} {n}' for c, n in counts.items() if n) + f") -> {dd}")
     return idx
 

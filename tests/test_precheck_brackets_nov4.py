@@ -30,10 +30,12 @@ for a, b, want in (('Lower Tract Foo', 'Foo', "piece 'lower'"), ('Bonaventure So
                    ('Riviere Bonaventure Ouest', 'Riviere Bonaventure', "'ouest' names only one piece"), ('North Fork Foo', 'South Fork Foo', "'north' vs 'south'"),
                    ('Foo Unit 2', 'Foo Unit 3', "piece '2'"), ('Foo Unit 2 (Lower Tract)', 'Foo Unit 3', "piece '2'")):
     check(want in G(a, b), f'general test: {a!r} vs {b!r} still flagged outside brackets: {G(a, b)!r}')
-# general test: bracket text on ONE side cannot make a piece either (the record's '(secteur Nord)' matches the POTA 'Nord')
-for a, b in (('Marais tufeux du plateau de Langres Nord', 'Marais tufeux du plateau de Langres (secteur Nord)'),
-             ('Papa Westray North Hill', 'Papa Westray (North Hill and Holm)'), ('Gerang Gerung South', 'Gerang Gerung (south) F.R')):
-    check(G(a, b) == '', f"general test: {a!r} vs {b!r} -> '' (taking the record's bracket off must not create a one-side word): {G(a, b)!r}")
+# general test (links-11, Quality v2 should-fix 3): a compass word one name has outside brackets and the other ONLY inside its bracket
+# ('Langres Nord' vs 'Langres (secteur Nord)') is a review-pile flag that names the bracket, not a silent pass
+for a, b, want in (('Marais tufeux du plateau de Langres Nord', 'Marais tufeux du plateau de Langres (secteur Nord)', "'nord'"),
+                   ('Papa Westray North Hill', 'Papa Westray (North Hill and Holm)', "'north'"), ('Gerang Gerung South', 'Gerang Gerung (south) F.R', "'south'"),
+                   ('Langres (secteur Nord)', 'Langres Nord', "'nord'")):
+    check(want in G(a, b) and "only inside the other name's bracket" in G(a, b), f"general test: {a!r} vs {b!r} -> flagged (word only inside the other bracket): {G(a, b)!r}")
 # general test: BOTH names carry clashing bracket pieces = different pieces, kept as a flag (not a one-side qualifier)
 for a, b, want in (('Foo River (North)', 'Foo River (South)', "'north' vs 'south'"), ('Horseshoe Canyon (South) BLM Wilderness Area', 'Horseshoe Canyon (North)', "'south' vs 'north'"),
                    ('Deep Lead Nature Conservation Reserve (No. 2)', 'Deep Lead Nature Conservation Reserve (No. 1)', 'number 2 vs 1'),

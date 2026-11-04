@@ -69,7 +69,8 @@ jobs:
         run: python3 .github/scripts/kpc_key_postcheck.py
       - name: Dropped parks, split by reason (links-07)
         # per Brandon via Super Head Bot (relayed), 6:05 AM CST Nov 4: every park this build left with no outline, one CSV per
-        # reason + no-boundary.csv + index.json under data/status/key-check/<key>-<build>/dropped/, and a count table in the .md.
+        # reason + no-boundary.csv + index.json under data/status/key-check/dropped-<key>/latest/ (links-11: plus previous/, the set
+        # before it; nothing else is kept, and rows equal apart from build/checked stamps write nothing), and a count table in the .md.
         # Read-only like the step above; one notice, a warning only for a system problem (a sudden jump in drops).
         continue-on-error: true
         env:

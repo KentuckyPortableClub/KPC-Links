@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Offline test for .github/scripts/kpc_key_dropped.py (links-07, Nov 4 2026; per Brandon via Super Head Bot (relayed), 6:05 AM CST
 Nov 4). A tiny git repo with two 'US answer key' builds; links-01's kpc_key_postcheck.py writes its report, then kpc_key_dropped.py
-writes the dropped lists. Checks: one CSV per reason (header-only when empty) + no-boundary.csv + index.json; every reason the key
+writes the dropped lists. Checks: one CSV per reason (header-only when empty) + no-boundary.csv + index.json (links-11: in
+dropped-<key>/latest/, the set before it in previous/, an unchanged run writes nothing; distance + kind from the key's bk first); every reason the key
 code uses lands in its own list; the first reason wins and all_reasons keeps the rest; each row carries the POTA name + pin, area,
 official site, best candidate (name, id, layer, acres, kind, why, distance when the key says it), the pre-check's distance and kind
 joined by ref (6:49 AM CST Nov 4 ask, relayed via Super Head Bot; blank + pre_blank_reason when it has none, is missing or is older
@@ -112,10 +113,10 @@ with tempfile.TemporaryDirectory() as t:
     rep_before = rep_f.read_bytes()
     p2 = run(R, TOOL)
     check(p2.returncode == 0, f'exit 0: {p2.stderr[-300:]}')
-    D = R / 'out/us-US-200/dropped'
+    D = R / 'out/dropped-us/latest'   # links-11: one fixed folder per key (latest/ + previous/)
     names = sorted(x.name for x in D.iterdir()) if D.exists() else []
     want = sorted([c.replace('_', '-') + '.csv' for c, _ in KD.REASONS] + ['no-boundary.csv', 'index.json'])
-    check(names == want, f'one CSV per reason + no-boundary.csv + index.json under <key>-<build>/dropped/: {names}')
+    check(names == want, f'one CSV per reason + no-boundary.csv + index.json under dropped-<key>/latest/: {names}')
     hdr = next(csv.reader(open(D / 'wrong-kind.csv'))) if D.exists() else []
     check(hdr == KD.COLUMNS and open(D / 'pota-bad-pin.csv').read().count('\n') == 2, 'every CSV has the same columns; header-only file when a reason has none (here 1 row)')
     I = json.load(open(D / 'index.json'))
@@ -148,11 +149,11 @@ with tempfile.TemporaryDirectory() as t:
           f"distance joined by ref from the pre-check county check (km to listed): {pj['US-0005']}")
     check(pj['US-0004']['pre_km'] == '' and 'PIN_WAY_OUT' in pj['US-0004']['pre_km_what'] and 'keeps no km for PIN_WAY_OUT' in pj['US-0004']['pre_blank_reason'],
           f"PIN_WAY_OUT has no km: blank, with the reason: {pj['US-0004']}")
-    check(pj['US-0002']['pre_km'] == pj['US-0002']['pre_kind'] == '' and pj['US-0002']['pre_blank_reason'].count(';') == 1, f"a pre-check row with neither: both blank, both reasons: {pj['US-0002']}")
-    check(pj['US-0009'] == {'pre_km': '', 'pre_km_what': '', 'pre_kind': '', 'pre_kind_why': '', 'pre_blank_reason': 'no precheck row'}, "no pre-check row for the ref: blank, 'no precheck row'")
+    check(pj['US-0002']['pre_km'] == pj['US-0002']['pre_kind'] == '' and pj['US-0002']['pre_blank_reason'].count(';') == 2, f"a pre-check row with neither (and no key fact): both blank, all reasons: {pj['US-0002']}")
+    check(pj['US-0009'] == {'pre_km': '', 'pre_km_what': '', 'pre_kind': '', 'pre_kind_why': '', 'pre_blank_reason': KD.NO_BK + '; no precheck row'}, "no key fact and no pre-check row for the ref: blank, both said")
     check(all(allr[r]['pre_blank_reason'] for r in allr if not (allr[r]['pre_km'] and allr[r]['pre_kind'])), 'every row with a blank pre-check cell has a pre_blank_reason')
-    check(I['precheck_join'] == {'state': 'used', 'rows': 14, 'rows_with_km': 1, 'rows_with_kind': 1, 'blank_reasons': I['precheck_join']['blank_reasons']}
-          and I['precheck_join']['blank_reasons'].get('no precheck row') == 10, f"index.json counts the join: {I['precheck_join']}")
+    check(I['precheck_join'] == {'state': 'used', 'rows': 14, 'rows_with_km': 1, 'rows_with_kind': 1, 'km_from_key': 0, 'kind_from_key': 0, 'blank_reasons': I['precheck_join']['blank_reasons']}
+          and I['precheck_join']['blank_reasons'].get(KD.NO_BK + '; no precheck row') == 10, f"index.json counts the join: {I['precheck_join']}")
     check(allr['US-0003']['cand_kind'] == KD.kind_of('Charlie River Conservation Area') != 'wrong kind' and allr['US-0005']['cand_distance_km'] == '>2',
           "the key's own cand_kind / cand_distance_km are kept as they were (the pre-check values go in their own columns)")
     pc = {'c': [['91', 'Clear Creek Serpentine', 50, 'similar name'], ['92', 'Clear Creek', 70, 'same name far from the pin, no join at the pin']]}
@@ -178,23 +179,55 @@ with tempfile.TemporaryDirectory() as t:
     p4 = run(R, TOOL, FORCE='yes')
     check(p4.returncode == 0 and (R / 'out/us-US-200.md').read_text().count('## Dropped parks') == 1, 'FORCE re-run: the .md table is replaced, not added twice')
     check({p: p.read_bytes() for p in (R / 'data').rglob('*') if p.is_file()} == keyfiles, 'no key file / POTA pin / data file is changed')
-    check(sorted(str(p.relative_to(R)) for p in (R / 'out').iterdir()) == ['out/last-us.json', 'out/us-US-200', 'out/us-US-200.json', 'out/us-US-200.md'], 'only the report folder is written')
+    check(sorted(str(p.relative_to(R)) for p in (R / 'out').iterdir()) == ['out/dropped-us', 'out/last-us.json', 'out/us-US-200.json', 'out/us-US-200.md'], 'only the report + the one dropped-us folder are written')
     p5 = run(R, TOOL, FORCE='yes', KPC_DROP_JUMP_MIN='0', KPC_DROP_JUMP_PCT='1')
     w = [ln for ln in p5.stdout.splitlines() if ln.startswith('::warning')]
     check(len(w) == 1 and 'sudden jump' in w[0] and json.load(open(D / 'index.json'))['jump_check']['new_drops'] == 1, f'a sudden jump in drops warns once (a system problem): {w}')
     os.utime(R / 'pre/scorecard.csv', (1762000000, 1762000000))   # Nov 1 2025: older than the build's 'built' (2026-11-04 10:00 UTC)
     run(R, TOOL, FORCE='yes')
     st = [x['pre_blank_reason'] for f in json.load(open(D / 'index.json'))['files'].values() for x in rows(D, f)]
-    check(set(st) == {'precheck older than build'} and json.load(open(D / 'index.json'))['precheck_join']['state'] == 'precheck older than build'
+    check(set(st) == {KD.NO_BK + '; precheck older than build'} and json.load(open(D / 'index.json'))['precheck_join']['state'] == 'precheck older than build'
           and not any(x['pre_kind'] for f in json.load(open(D / 'index.json'))['files'].values() for x in rows(D, f)), "a stale pre-check (older than the build) is not used: blank, 'precheck older than build'")
     (R / 'pre/scorecard.csv').rename(R / 'pre/scorecard.off')
     run(R, TOOL, FORCE='yes')
     st = [x['pre_blank_reason'] for f in json.load(open(D / 'index.json'))['files'].values() for x in rows(D, f)]
-    check(set(st) == {'no precheck output'} and json.load(open(D / 'index.json'))['precheck_join']['state'] == 'no precheck output', "no pre-check output: blank, 'no precheck output'")
+    check(set(st) == {KD.NO_BK + '; no precheck output'} and json.load(open(D / 'index.json'))['precheck_join']['state'] == 'no precheck output', "no pre-check output: blank, 'no precheck output'")
     (R / 'pre/scorecard.off').rename(R / 'pre/scorecard.csv'); os.utime(R / 'pre/scorecard.csv'); run(R, TOOL, FORCE='yes', KPC_DROP_JUMP_MIN='0', KPC_DROP_JUMP_PCT='1')
     check(KD.built_ts('2026-11-04 10:00 UTC') == 1793786400 and KD.built_ts('2026-11-04T10:00:00Z') == 1793786400 and KD.built_ts('') is None, 'built_ts reads the build stamp (UTC)')
-    check('Pre-check join by ref (used): distance (pre_km) on 1 and kind (pre_kind) on 1 of 14 rows' in (R / 'out/us-US-200.md').read_text(), 'the .md says how many rows the join filled')
+    check("Distance (pre_km) on 1 rows (0 from the key's own bk) and kind (pre_kind) on 1 (0 from the key) of 14 rows; the rest from the pre-check join by ref (used)" in (R / 'out/us-US-200.md').read_text(), 'the .md says how many rows the join filled')
     check(json.load(open(D / 'index.json'))['system_warnings'] and '**System check:**' in (R / 'out/us-US-200.md').read_text(), 'the warning is in the index and the .md')
+    # links-11 storage (Quality v2 item 1, YES'd via Super 7:15 AM CST Nov 4): latest/ + previous/ only; an unchanged run writes nothing
+    top = R / 'out/dropped-us'
+    check(sorted(x.name for x in top.iterdir()) == ['latest', 'previous'], f"only latest/ and previous/ per key: {sorted(x.name for x in top.iterdir())}")
+    check(set(json.load(open(top / 'previous/index.json'))['precheck_join']['blank_reasons']) == {KD.NO_BK + '; no precheck output'},
+          'previous/ holds the set before the latest (the no-pre-check run), the one before that is overwritten')
+    snap = {str(q.relative_to(top)): q.read_bytes() for q in top.rglob('*') if q.is_file()}
+    md0 = (R / 'out/us-US-200.md').read_bytes()
+    p6 = run(R, TOOL, FORCE='yes', KPC_DROP_JUMP_MIN='0', KPC_DROP_JUMP_PCT='1')
+    check(p6.returncode == 0 and 'nothing written' in p6.stdout and any(ln.startswith('::warning') for ln in p6.stdout.splitlines()),
+          'a re-run with the same rows says so and still warns about a system problem')
+    check({str(q.relative_to(top)): q.read_bytes() for q in top.rglob('*') if q.is_file()} == snap and (R / 'out/us-US-200.md').read_bytes() == md0,
+          'the same rows (build / checked stamps aside): no file is rewritten, nothing to commit')
+    with tempfile.TemporaryDirectory() as t2:
+        d2 = pathlib.Path(t2)
+        row = dict.fromkeys(KD.COLUMNS, ''); row.update(ref='X-1', build='B1', checked='2026-11-04 10:00 UTC')
+        with open(d2 / 'a.csv', 'w', newline='') as fh: w = csv.DictWriter(fh, fieldnames=KD.COLUMNS); w.writeheader(); w.writerow(row)
+        check(KD.same_rows(d2, {'a.csv': [dict(row, build='B2', checked='2026-11-05 10:00 UTC')]}), 'same_rows: rows that differ only in build / checked are the same')
+        check(not KD.same_rows(d2, {'a.csv': [dict(row, reason='wrong_kind')]}) and not KD.same_rows(d2, {'a.csv': [row], 'b.csv': []}),
+              'same_rows: a real cell change or a new file is a change')
+    # links-11 key-first fill (per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: "Yes, add distance and kind to the keys in this rebuild")
+    J0 = {'score': {'X-1': [{'area': 'US-XX', 'flags': 'WRONG_KIND', 'why': 'layer kind: X'}]}, 'county': {'X-1': {'km to listed': '9.9'}}}
+    k1 = KD.pre_cols('X-1', 'US-XX', J0, '', {'bk': [5, 1.234, 'SP', 'des'], '_bkk': {}}, 5)
+    check(k1['pre_km'] == '1.23' and k1['pre_km_what'].startswith('key:') and k1['pre_kind'] == 'SP' and 'designation' in k1['pre_kind_why'] and k1['pre_blank_reason'] == '',
+          f"the key's bk fills distance + kind first (the pre-check is not needed): {k1}")
+    k2 = KD.pre_cols('X-1', 'US-XX', {}, 'no precheck output', {'bk': [5, 0.0, 'NWA', 'des'], '_bkk': {'NWA': 'National Wildlife Area'}}, 5)
+    check(k2['pre_km'] == '0.00' and k2['pre_kind'] == 'National Wildlife Area' and k2['pre_blank_reason'] == '', f'key fill works with no pre-check at all; codes read back through bk_kinds: {k2}')
+    k3 = KD.pre_cols('X-1', 'US-XX', J0, '', {'bk': [5, None, '', '-', 'pin00']}, 5)
+    check(k3['pre_km'] == '9.9' and k3['pre_kind'] == 'wrong kind' and k3['pre_blank_reason'] == '', f'a blank key fact falls back to the pre-check join: {k3}')
+    k4 = KD.pre_cols('X-1', 'US-XX', {'score': {}, 'county': {}}, '', {'bk': [5, None, '', '-', 'pin00']}, 5)
+    check(k4['pre_km'] == '' and '0,0' in k4['pre_blank_reason'] and 'no precheck row' in k4['pre_blank_reason'], f'blank only when neither has it, and the reason says both: {k4}')
+    k5 = KD.pre_cols('X-1', 'US-XX', {}, 'no precheck output', {'bk': [7, 2.5, 'SP', 'des']}, '5')
+    check('record 7, not the cand_id 5' in k5['pre_km_what'], f'a key fact on another record than cand_id still fills and names its record: {k5}')
 
 # a whole area going to pins; no report; a broken input never fails
 with tempfile.TemporaryDirectory() as t:
