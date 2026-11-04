@@ -196,10 +196,69 @@ def gh_json(path):
         except Exception: return None  # noqa: BLE001
 
 
+def _git(*a, cwd=None, timeout=120):
+    try: r = subprocess.run(['git', *a], cwd=cwd, capture_output=True, timeout=timeout)
+    except Exception: return 1, b''  # noqa: BLE001
+    return r.returncode, r.stdout
+
+
+def load_index(kind, ref=None, cwd=None):
+    """Nov 4 PM fix bundle (item 1; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4). The stamp a decision is made on.
+    KPC_INDEX_REF unset = this checkout's data/<kind>/index.json (as before). KPC_INDEX_REF=origin/main = the NEWEST main's copy
+    (fetched now): a queued run's checkout is the commit of the moment it was queued, so its index can be older than main (the
+    9:43 AM CST Nov 4 boundary check read the Nov 3 stamp US-41695918852 although US-41846994942 had been saved a minute before it
+    started, and a queued second Canada start read the stamp from before the first one). Falls back to the checkout's copy."""
+    p = f'data/{kind}/index.json'
+    ref = (os.environ.get('KPC_INDEX_REF') or '').strip() if ref is None else ref
+    if ref:
+        tgt = ref
+        if ref.startswith('origin/'):
+            rc, _ = _git('fetch', '-q', '--depth', '1', 'origin', ref.split('/', 1)[1], cwd=cwd)
+            if rc == 0: tgt = 'FETCH_HEAD'
+        rc, out = _git('show', f'{tgt}:{p}', cwd=cwd)
+        if rc == 0:
+            try:
+                d = json.loads(out.decode('utf-8'))
+                if isinstance(d, dict): return d
+            except Exception: pass  # noqa: BLE001
+        notice(f'{kind}: could not read {p} at {ref}: the checkout\'s copy is used')
+    try:
+        d = json.load(open(os.path.join(cwd or '.', p), encoding='utf-8'))
+        return d if isinstance(d, dict) else {}
+    except Exception: return {}  # noqa: BLE001
+
+
+# Nov 4 PM fix bundle (item 2): what a build of each key was made FROM, besides its rules: the builds of the keys before it in the
+# build order (kpc_key_order.py WAIT_FOR). A chained start whose newest build has the same rules_of_run and the same inputs skips.
+INPUTS = {'us-key': (), 'ca-key': ('us-key',), 'world-key': ('us-key', 'ca-key')}
+
+
+def inputs_of(kind, ref=None, cwd=None):
+    return {k: str(load_index(k, ref, cwd).get('build') or '') for k in INPUTS.get(kind, ())}
+
+
+def _committed_rules(kind):
+    """the 'rules' / 'rules_files' of this key's index as committed at HEAD (the builders rewrite index.json with only
+    previous_build / previous_built, so the previous rules hash was lost on every partial build: item 1)"""
+    rc, out = _git('show', f'HEAD:data/{kind}/index.json')
+    if rc != 0: return {}
+    try: o = json.loads(out.decode('utf-8'))
+    except Exception: return {}  # noqa: BLE001
+    return {k: o[k] for k in ('rules', 'rules_files') if isinstance(o, dict) and o.get(k)}
+
+
 def stamp(kind):
     p = f'data/{kind}/index.json'
     try: d = json.load(open(p, encoding='utf-8'))
     except Exception: d = {}  # noqa: BLE001
+    # Nov 4 PM fix bundle (item 1): links-04 meant 'a partial build keeps the previous rules', but the builders' index write drops
+    # them, so the 9:43 AM CST boundary check (a 3-state rebuild) was stamped 'rules none' and the next nightly rebuilt the WHOLE US key,
+    # then Canada and the world. The previous hash now comes back from the committed index when the builder dropped it.
+    if not d.get('rules'):
+        for k, v in _committed_rules(kind).items(): d.setdefault(k, v)
+    # Nov 4 PM fix bundle (item 2): the rules this run was built on (also for a partial or failed build) and its inputs
+    d['rules_of_run'] = rules_hash(kind)
+    if INPUTS.get(kind): d['inputs'] = inputs_of(kind)
     bid = f"{PRE[kind]}-{os.environ.get('GITHUB_RUN_ID') or time.strftime('%Y%m%d%H%M')}"
     d['build'] = bid; d['built'] = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
     # Nov 2 review (Mapping #18): parts that failed in this build are named in the stamp (KPC_BUILD_FAILED_FILE = one code per line)
@@ -223,8 +282,7 @@ def check(kind, now=None):
     built on the CURRENT rules, is at most KPC_FREEZE_MAX_DAYS old, and has no person's sign-off yet (Brandon / KZ4CP, after the restart; or a YES whose
     answers wait for their release). Returns (frozen, build, why) for the tests."""
     rules = rules_hash(kind)
-    try: live = json.load(open(f'data/{kind}/index.json', encoding='utf-8'))
-    except Exception: live = {}  # noqa: BLE001
+    live = load_index(kind)   # Nov 4 PM fix bundle (item 1): KPC_INDEX_REF=origin/main = the newest main's stamp, not a stale checkout's
     lbid = str((live or {}).get('build') or '')
     if str((live or {}).get('rules') or '') != rules:   # the newest build here was not a full build on the current rules
         _env(RULES_CHANGED=1)

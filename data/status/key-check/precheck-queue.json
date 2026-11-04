@@ -1,0 +1,13 @@
+{
+ "about": "Queued pre-check re-runs (Nov 4 PM fix bundle item 11b; Quality should-fix; Brandon's yes relayed via Super Head Bot 4:53 PM CST). No cron: kpc-key-postcheck.yml re-runs the pre-check after every key build and .github/scripts/kpc_precheck_queue.py keeps the first result once each entry's key file is built at or after 'from_commit' (or strictly after 'after_commit'). A person may add an entry by hand (state 'waiting').",
+ "queue": [
+  {
+   "id": "de-after-german-rebuild",
+   "area": "DE",
+   "key_file": "data/world-key/DE.json",
+   "from_commit": "ddd815b34",
+   "why": "Quality follow-up (health check Nov 4 PM): re-run the pre-check after the German rebuild (links-10 DE ids; DE BROKEN_ROW 677 -> 1, about 722 expected). from_commit = the DE.json build on main at f11401d52 (3:24 PM CST Nov 4), which COUNTS as the real rebuild (Brandon, relayed via Super Head Bot 5:36 PM CST Nov 4: \"yes to your questions\"), so the entry is due on the next key check (at or after ddd815b34).",
+   "state": "waiting"
+  }
+ ]
+}

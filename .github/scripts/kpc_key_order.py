@@ -12,6 +12,8 @@ RULES_CHANGED) waits until every key it follows (WAIT_FOR) has finished its own 
       * FORCE=yes (by hand only) skips the order check
       * an error = the run waits (SKIP=1): it is picked up again when the key before it finishes
       * KPC-Links without links-04 (no rules hash): no order at all, the run goes on as before (never a key that waits forever)
+      * Nov 4 PM fix bundle (item 2): a workflow_run start whose newest build (read from the NEWEST main when KPC_INDEX_REF is set)
+        has the current rules_of_run and the same inputs is a DUPLICATE and skips (DUPLICATE=1), even when that build failed a part
 To change or extend the order, edit WAIT_FOR (one line per key)."""
 import json, os, pathlib, sys
 
@@ -35,11 +37,39 @@ def on_current(kind, root='.'):
     """(True|False, why): is KPC-Links' newest build of this key a full build on the current rules?"""
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
     import kpc_key_freeze as KF
-    try: st = json.load(open(pathlib.Path(root) / f'data/{kind}/index.json', encoding='utf-8')) or {}
-    except Exception: st = {}  # noqa: BLE001
+    st = _index(kind, root)
     cur = KF.rules_hash(kind, root) if root != '.' else KF.rules_hash(kind)
     have = str(st.get('rules') or '')
     return have == cur, f"build {st.get('build') or 'none'} rules {have or 'none'} vs current {cur}"
+
+
+def _index(kind, root='.'):
+    """Nov 4 PM fix bundle (items 1-2): KPC_INDEX_REF=origin/main (set by the key workflows) = the NEWEST main's stamp: the queued
+    second Canada start of Nov 4 (41891453412) read the stamp of its trigger-time checkout, from before the first Canada build."""
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import kpc_key_freeze as KF
+    if hasattr(KF, 'load_index'): return KF.load_index(kind, cwd=None if root == '.' else str(root))
+    try: return json.load(open(pathlib.Path(root) / f'data/{kind}/index.json', encoding='utf-8')) or {}
+    except Exception: return {}  # noqa: BLE001
+
+
+def same_build_exists(kind, root='.'):
+    """Nov 4 PM fix bundle (item 2, Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): '' or why a chained start is a
+    duplicate: the newest build of this key was made on the CURRENT rules (rules_of_run, set by kpc_key_freeze.py stamp even for a
+    partial or failed build) from the SAME inputs (the builds of the keys before it). Nov 4: the world build W-41895532587 (AU timed
+    out, so 'rules none') was started again (41901828387) by the second Canada completion with exactly the same rules and inputs."""
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import kpc_key_freeze as KF
+    if not hasattr(KF, 'inputs_of'): return ''
+    st = _index(kind, root)
+    cur = KF.rules_hash(kind, root) if root != '.' else KF.rules_hash(kind)
+    if str(st.get('rules_of_run') or '') != cur: return ''
+    want = KF.inputs_of(kind, cwd=None if root == '.' else str(root))
+    have = st.get('inputs') if isinstance(st.get('inputs'), dict) else {}
+    if any(not v for v in want.values()) or have != want: return ''
+    bad = st.get('failed') or []
+    return (f"build {st.get('build')} was already made on the current rules {cur} from the same inputs ("
+            + ', '.join(f'{NAMES[k]} {v}' for k, v in want.items()) + ')' + (f"; its failed part(s) {' '.join(bad[:10])} need a fix or a by-hand run" if bad else ''))
 
 
 def check(kind, env=os.environ, root='.'):
@@ -52,6 +82,9 @@ def check(kind, env=os.environ, root='.'):
         if not hasattr(KF, 'rules_hash'):
             notice(f'{NAMES[kind]} key: kpc_key_freeze.py has no rules hash (links-04 not merged): no build order, the run goes on as before'); return 'go'
         mine, why = on_current(kind, root)
+        dup = same_build_exists(kind, root) if ev == 'workflow_run' else ''
+        if dup:
+            _env(SKIP=1, DUPLICATE=1); notice(f'{NAMES[kind]} key: DUPLICATE chained start skipped: {dup}. A by-hand run (workflow_dispatch) still builds'); return 'skip'
         if mine:
             if ev == 'workflow_run':
                 _env(SKIP=1); notice(f'{NAMES[kind]} key: already on the current rules ({why}): nothing to catch up, this chained start skips'); return 'skip'

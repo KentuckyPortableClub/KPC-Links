@@ -29,6 +29,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: true
+      - name: Start from the NEWEST main (Nov 4 PM fix bundle, item 1; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4)
+        # A queued run checks out the commit of the moment it was queued. On Nov 4 this run (41860712149) waited behind the US key
+        # (same lock), checked out the Nov 3 key, and its save copied that old index.json (stamp without a rules hash) over the
+        # newer US-41846994942: the 11:19 AM CST nightly then rebuilt the WHOLE US key, then Canada and the world. Nothing else
+        # writes data/us-key while this run holds the kpc-us-key lock, so starting from the newest main closes the gap.
+        run: |
+          if git fetch -q --depth 1 origin main && git reset -q --hard FETCH_HEAD; then echo "::notice title=Boundary check::started from the newest main $(git rev-parse --short HEAD)"
+          else echo "::warning title=Boundary check::could not move to the newest main (exit $?): the stamp step still keeps the committed rules hash"; fi
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Pick the states that have not been checked yet
@@ -85,6 +93,7 @@ jobs:
         # Frozen = the rebuild, the outline upload and the stamp below are skipped; the report and the second witness still run.
         if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
         env:
+          KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Rebuild those keys with the check
