@@ -50,7 +50,7 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names', 'ca_nam
     # batch 1b: the rule 18 piece test on its own (S.E. = South East; Alabama 'Forever Wild Tract' names no piece)
     if us and us.KR is not None:
         for c in CASES.get('piece_names', []):
-            got = us.KR.piece_ok(c['a'], c['b'], c.get('loc'))[0]
+            got = us.KR.piece_ok(c['a'], c['b'], c.get('loc'), c.get('layer', ''))[0]
             ok = got == c['same']
             say(('ok   ' if ok else 'FAIL ') + f"PIECE {c['a']!r} vs {c['b']!r}: {'same piece' if got else 'refused'}")
             if not ok: out.append(f"Piece names: {c['a']!r} vs {c['b']!r} should be {'same' if c['same'] else 'refused'} — {c['why']}")

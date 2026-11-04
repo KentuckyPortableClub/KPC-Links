@@ -17,6 +17,10 @@ if os.environ.get('FINISH_ONLY'): STATES = []   # Oct 28 (key speed-up): the joi
 OUT = pathlib.Path('data/us-key'); OUT.mkdir(parents=True, exist_ok=True)
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 import gzip
+# Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_host_pace  # noqa: E402
+kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review: 'nearly all the time is re-downloading the same geometry').
 # Every live run has fetched outlines simplified to 0.01 degrees (~1.1 km) because they were fetched fresh each
 # time and finer ones are slow. That is coarser than many of the parks: a 40-acre wildlife area is narrower than
@@ -232,7 +236,7 @@ def piece_why(name, a):
     if not _kr('KPC_PIECE_NAME'): return ''
     nm, loc = a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('Loc_Nm')
     if _office(nm) and loc and not _office(loc): nm, loc = loc, None   # batch 1b: an office's Unit_Nm is not the record's place name
-    ok, why = KR.piece_ok(name, nm, loc)
+    ok, why = KR.piece_ok(name, nm, loc, a.get('Loc_Mang') if str(a.get('Mang_Name') or '').lower() != 'padus' and not isinstance(a.get('OBJECTID'), int) else '')   # Nov 3: a state / BLM layer's own type word is not a piece
     return '' if ok else why
 
 
@@ -1188,7 +1192,12 @@ def run(st):
                 # is found again by its fingerprint (name + acres within 10%, near the pin), saved with it in overrides.json 'fp'
                 if not any(_oid(a) == str(want) for a in recs) and str(want) in (ov.get('fp') or {}):
                     fn, fa = ov['fp'][str(want)][:2]
+                    # Nov 3 step 3 (Quality drops-27: Elkhorn SP's 'sgmta6613' fp ['Elkhorn', 0] was re-found as BLM's 'wsa205' Elkhorn
+                    # WSA, 4.3 km off, and tagged 'reviewed'): the re-found record must come from the SAME layer (id family: PAD-US
+                    # numbers, 'sgmta', 'wsa' ...). An id reset happens inside one layer, never across layers.
+                    _fam = re.match(r'\D*', _want0).group()
                     want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
+                                 and re.match(r'\D*', _oid(a)).group() == _fam
                                  and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
@@ -1283,7 +1292,12 @@ def run(st):
                 if not near(la, lo, a['_bb'], .02): continue
                 w1, w2 = words(name), words(nm)
                 share = len(w1 & w2) / max(1, min(len(w1), len(w2))) if w1 and w2 else 0
-                if same_name(name, nm): why = 'same name, different kind of place'
+                # Nov 3 step 3 (Quality spot-check, NV −26): a record a person answered NO to was listed as 'same name, different
+                # kind of place', which read like a kind-check refusal (16 NV herd areas: the real cause was chat 11's map-audit NO,
+                # pattern OUTSIDE/FAR, applied Nov 2 in 6662f2d). It is now listed with the true reason, so nobody 'fixes' the kind rule.
+                if str(_oid(a)) in {str(y) for y in ov.get('no', [])} or (_kr('KPC_NO_ALL_PATHS') and KR.is_no(ov, a['OBJECTID'], nm, a.get('GIS_Acres'))):
+                    why = 'a person said NO to this record (overrides.json no' + (': ' + str(ov.get('why'))[:80] if ov.get('why') else '') + ')'
+                elif same_name(name, nm): why = 'same name, different kind of place'
                 elif share >= .6: why = 'similar name'
                 elif inside(la, lo, a['_g']): why = 'the POTA pin is inside it (different name)'
                 else: continue
@@ -1501,7 +1515,7 @@ def run(st):
     # scattered-tract FWS park the same way) = ALL the tracts the Fish and Wildlife Service OWNS in fee in that district, from its
     # own realty layer (INTTYPE1 = 'F'), one multi-part outline; EASEMENT tracts (private farmland) are never part of it
     wmd = [ref for ref, p in parks.items() if re.search(r'wetland management district', p.get('n') or '', re.I) and not p.get('m')]
-    nwmd = 0
+    nwmd = wmd_no = 0
     for ref in wmd:
         core = re.sub(r'\s*(wpa\s+)?wetland management district.*$', '', parks[ref]['n'], flags=re.I).strip().upper().replace("'", "''")
         if not core: continue
@@ -1526,10 +1540,14 @@ def run(st):
             rec = {'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': ((a.get('UNITNAME') + ' WPA, ') if a.get('UNITNAME') else '') + (a.get('ORGNAME') or '').title(), 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED',
                    'Mang_Name': 'FWS', 'Loc_Mang': 'U.S. Fish & Wildlife Service (own realty map, fee tracts)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0,
                    'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': {'nwr'}}
+            # Nov 3 (rules sort §9 conflict 2; proposed rule 21): a person's 'no' holds on this path too (id, exact name, or with
+            # KPC_NO_BY_NAME the saved name + acres). Before, a tract in the district's 'no' came back here on every build.
+            if KR.is_no(OVR.get(ref) or {}, rec['OBJECTID'], rec['Unit_Nm'], rec['GIS_Acres']): wmd_no += 1; continue
             recs.append(rec)
             m.append([rec['OBJECTID'], rec['Unit_Nm'], round(rec['GIS_Acres'] or 0), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
+        if not m: continue
         parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
-    if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts')
+    if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts' + (f'; {wmd_no} tract(s) left out by a person\'s no' if wmd_no else ''))
     for r_ in DBG & set(parks): dbg(r_, 'D before rule G', {k: parks[r_].get(k) for k in ('m', 'parts')})
     # RULE SHEET G (one boundary pipeline; Brandon Oct 29 12:09 PM 'implement this now', rulings 12:14 + 12:18; notes/mapping.md):
     # G-1 the AGENCY'S OWN RECORD that names the park is the proof and joins at ANY distance (pins can be wrong). A piece matched
