@@ -84,6 +84,14 @@ _R18_CLASSES = ({'north', 'south', 'east', 'west', 'northeast', 'northwest', 'so
 _ROMAN = re.compile(r'^(?:ii|iii|iv|v|vi|vii|viii|ix|x|xi|xii)$')
 
 
+def unbracket(t):
+    """links-09 (Nov 4 2026): a name with its bracketed qualifiers taken off ('Dunbar Cave (Lower Tract)' -> 'Dunbar Cave').
+    Rule 18 v5 (Brandon, Super Head Bot chat, 7:43 PM CST Nov 3, relayed via Super Head Bot: "Yes"; relayed (paraphrase of the
+    question he answered Yes to): bracket qualifiers do not count; one-side compass words in English or French do).
+    Same rule as KPC-Links kpc_fers_guard.unbracket (links-02)."""
+    return re.sub(r'\s+', ' ', re.sub(r'\([^)]*\)|\[[^\]]*\]', ' ', str(t or ''))).strip()
+
+
 def rule18_differs(park, rec, brackets=False):
     """'' when nothing tells the two names apart as pieces; else a plain reason. Uses the key's own rule 18 piece test
     (KR.piece_ok: 'Unit 2' vs 'Unit 3', 'Abo Unit') plus clashing piece words. brackets=True (the bad-pin name test only) also
@@ -91,7 +99,28 @@ def rule18_differs(park, rec, brackets=False):
     Used in the bad-pin name test (name_area_backs) and, since Brandon's ruling relayed by Super 7:26 PM CST Nov 3, beside the
     general name test too: there a park whose joined record rule 18 tells apart gets RULE18_PIECE and a review-pile row, never
     a hold. v5 (Brandon, relayed by Super 7:43 PM CST Nov 3): the general test calls it with brackets=False, so a bracketed place
-    qualifier ('(Lewis County)', '(Qld)') no longer counts there; the bad-pin test keeps brackets=True."""
+    qualifier ('(Lewis County)', '(Qld)') no longer counts there; the bad-pin test keeps brackets=True.
+    links-09 (Nov 4): with brackets=False a difference counts only when it is there BOTH on the full names AND on the names with
+    their bracket text taken off, so bracket text can neither make a piece ('(Lower Tract)' read by KR.piece_ok as the piece 'lower',
+    a one-side '(South)') nor hide one (POTA 'Langres Nord' vs record 'Langres (secteur Nord)' is the same piece, not flagged).
+    One exception, kept on purpose: when BOTH names carry bracket text and it clashes ('Horseshoe Canyon (South)' vs
+    'Horseshoe Canyon (North)', '(No. 1)' vs '(No. 2)', '(0130)' vs '(0189)'), the two records are different pieces, not a
+    qualifier on one side, so the row stays a review-pile flag (flag only, never held). brackets=True (the bad-pin test) is unchanged."""
+    if not brackets:
+        u = (unbracket(park) or park, unbracket(rec) or rec)
+        if u != (park, rec):
+            w = _rule18_core(park, rec, False)
+            if w and _rule18_core(*u, False): return _rule18_core(*u, False)
+            if w and _bracket_text(park) and _bracket_text(rec) and ("' vs '" in w or 'number' in w):
+                return w + ' (both names carry a different bracketed piece)'
+            return ''
+    return _rule18_core(park, rec, brackets)
+
+
+def _bracket_text(t): return ' '.join(a or b for a, b in re.findall(r'\(([^)]*)\)|\[([^\]]*)\]', str(t or ''))).strip()
+
+
+def _rule18_core(park, rec, brackets):
     ok, why = KR.piece_ok(park, rec)
     if not ok: return why
     a, b = set(KR._plain_words(park)), set(KR._plain_words(rec))
@@ -149,6 +178,16 @@ def name_how(park, rec, r18=False):
     if a and b and max(difflib.SequenceMatcher(None, x, y).ratio() for x in a for y in b if len(x) > 3 and len(y) > 3 or x == y) >= .8 if any(len(x) > 3 for x in a) and any(len(y) > 3 for y in b) else False: return 'spelling'
     if difflib.SequenceMatcher(None, _sq(park), _sq(rec)).ratio() >= .85: return 'spelling'
     return 'other'
+
+
+def name_how_general(park, rec):
+    """links-09 (Nov 4): the general name test (MISNAMED / NAME_MISMATCH) with bracket qualifiers off (rule 18 v5, 7:43 PM CST Nov 3):
+    the better of name_how on the full names and on the names without their brackets (same > spelling > other). The bad-pin
+    name test (name_how(..., r18=True)) is not changed: there a bracketed POTA qualifier still counts."""
+    h = name_how(park, rec)
+    if h == 'same': return h
+    u = name_how(unbracket(park) or park, unbracket(rec) or rec)
+    return min(h, u, key=('same', 'spelling', 'other').index)
 
 
 def load(p, d):
@@ -412,7 +451,7 @@ def main():
                 flags.append('NO_OFFICIAL_BOUNDARY')
                 B['no-official-boundary'].append([ref, area, p.get('n'), p.get('t'), p.get('g') or 'pin', '; '.join(str(x[1]) + ' (' + str(x[3])[:50] + ')' for x in (p.get('c') or [])[:2] if isinstance(x, list) and len(x) > 3),
                                                   'park-finder lane (detective) / GIS hunter' if kname != 'world-key' else 'world finder'])
-            nh = [(x, name_how(p.get('n') or '', x[1])) for x in m if not str(x[3]).startswith(('reviewed', 'official trail line'))]
+            nh = [(x, name_how_general(p.get('n') or '', x[1])) for x in m if not str(x[3]).startswith(('reviewed', 'official trail line'))]
             sp = [x for x, h in nh if h == 'spelling']; oth = [x for x, h in nh if h == 'other']
             if sp: flags.append('MISNAMED'); why.append('POTA spells the name differently from the agency record (same place): ' + '; '.join(f'{x[0]} {x[1]}' for x in sp[:3]))
             if oth: flags.append('NAME_MISMATCH'); why.append('joined record shares no real word with the park name: ' + '; '.join(f'{x[0]} {x[1]}' for x in oth[:3]))
