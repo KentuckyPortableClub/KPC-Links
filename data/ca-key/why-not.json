@@ -2,7 +2,7 @@
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
   "needs-parcel": 292,
-  "no-layer": 1167,
+  "no-layer": 1158,
   "name-mismatch": 27,
   "private": 9
  },
@@ -70,7 +70,7 @@
   "CA-3157": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+   "why": "the pin is inside a bigger area: Waterton Lakes"
   },
   "CA-4771": {
    "st": "AB",
@@ -100,7 +100,7 @@
   "CA-4776": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+   "why": "the pin is inside a bigger area: Waterton Lakes"
   },
   "CA-4777": {
    "st": "AB",
@@ -260,7 +260,7 @@
   "CA-6101": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes National Park Of Canada"
+   "why": "the pin is inside a bigger area: Waterton Lakes"
   },
   "CA-6116": {
    "st": "AB",
@@ -3377,16 +3377,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-1043": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Reserve)"
-  },
-  "CA-1046": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
   "CA-1280": {
    "st": "ON",
    "tag": "no-layer",
@@ -3457,11 +3447,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Blanche River Conservation Reserve"
   },
-  "CA-1440": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
   "CA-1467": {
    "st": "ON",
    "tag": "needs-parcel",
@@ -3472,20 +3457,10 @@
    "tag": "no-layer",
    "why": "no official record found (Wildlife Area)"
   },
-  "CA-1528": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
   "CA-1535": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
-  },
-  "CA-1541": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
   },
   "CA-1542": {
    "st": "ON",
@@ -3737,11 +3712,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-5105": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
   "CA-5106": {
    "st": "ON",
    "tag": "no-layer",
@@ -3947,11 +3917,6 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: TURKEY POINT PROVINCIAL PARK (RECREATIONAL CLASS)"
   },
-  "CA-5508": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
   "CA-5527": {
    "st": "ON",
    "tag": "no-layer",
@@ -3988,11 +3953,6 @@
    "why": "no official record found (Conservation Area)"
   },
   "CA-5560": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
-  "CA-5564": {
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Area)"
@@ -4248,11 +4208,6 @@
    "why": "no official record found (National Park)"
   },
   "CA-5981": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Conservation Area)"
-  },
-  "CA-5989": {
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (Conservation Area)"
@@ -4665,7 +4620,7 @@
   "CA-0514": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques du Fleuve Saint-L"
+   "why": "the pin is inside a bigger area: fleuve Saint-Laurent (Île Verte) Water Fowl Gathering Area"
   },
   "CA-0515": {
    "st": "QC",
@@ -4925,7 +4880,7 @@
   "CA-1020": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques des Rapides de La"
+   "why": "the pin is inside a bigger area: Rapides de Lachine (Cote Ste-Catherine) Water Fowl Gathering"
   },
   "CA-1031": {
    "st": "QC",
@@ -4950,7 +4905,7 @@
   "CA-1929": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques Baie Comeau"
+   "why": "the pin is inside a bigger area: Baie Comeau Water Fowl Gathering Area"
   },
   "CA-1944": {
    "st": "QC",
@@ -5023,11 +4978,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-2000": {
-   "st": "QC",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-2007": {
    "st": "QC",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -5222,11 +5172,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-2137": {
-   "st": "QC",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-2140": {
    "st": "QC",
    "tag": "no-layer",
@@ -5280,7 +5225,7 @@
   "CA-2165": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Aire de concentration d'oiseaux aquatiques Fleuve Saint-Laur"
+   "why": "the pin is inside a bigger area: fleuve Saint-Laurent (Emb Rdp) Water Fowl Gathering Area"
   },
   "CA-2171": {
    "st": "QC",
@@ -5322,6 +5267,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-2218": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
+  },
   "CA-2219": {
    "st": "QC",
    "tag": "no-layer",
@@ -5331,6 +5281,11 @@
    "st": "QC",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
+  },
+  "CA-2227": {
+   "st": "QC",
+   "tag": "no-layer",
+   "why": "no official record found (Nature Reserve)"
   },
   "CA-2228": {
    "st": "QC",
@@ -5590,7 +5545,7 @@
   "CA-4950": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Baie de L'Isle-Verte National Wildlife Area"
+   "why": "the pin is inside a bigger area: Réserve nationale de faune de la baie de l'Isle-Verte"
   },
   "CA-4951": {
    "st": "QC",
@@ -6335,7 +6290,7 @@
   "CA-5888": {
    "st": "QC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Gatineau Park"
+   "why": "the pin is inside a bigger area: Parc de la Gatineau"
   },
   "CA-5889": {
    "st": "QC",

@@ -8,12 +8,12 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-1849** Shubenacadie Provincial  Park Provincial Wildlife Area (Provincial Wildlife Area) → Shubenacadie Provincial Park (~283 ac, same name, different kind of place); Shubenacadie Provincial Park (~283 ac, same name, different kind of place)
 - **CA-4842** Marconi National Historic Site (National Historic Site) → Marconi Wireless Station (~2 ac, similar name)
 - **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~32 ac, same name, different kind of place)
-- **CA-5427** Halifax City Hall National Historic Site (National Historic Site) → NCC holds a conservation easement on this City of Halifax owned land.  It contains a mix of forest communities, wetlands, and unique Jack Pine and Broom Crowberry vegetation interspersed among granite barrens.  (~226 ac, similar name); GRAND PARADE (~1 ac, the POTA pin is inside it (different name))
-- **CA-5428** Halifax Public Gardens National Historic Site (National Historic Site) → PUBLIC GARDENS (~3 ac, similar name)
+- **CA-5427** Halifax City Hall National Historic Site (National Historic Site) → NCC holds a conservation easement on this City of Halifax owned land.  It contains a mix of forest communities, wetlands, and unique Jack Pine and Broom Crowberry vegetation interspersed among granite barrens.  (~226 ac, similar name); GRAND PARADE (~2 ac, the POTA pin is inside it (different name))
+- **CA-5428** Halifax Public Gardens National Historic Site (National Historic Site) → PUBLIC GARDENS (~16 ac, similar name)
 - **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~515,482 ac, the POTA pin is inside it (different name))
 - **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~18 ac, similar name)
-- **CA-5843** St. Mary's Basilica National Historic Site (National Historic Site) → ST. MARY'S BOAT CLUB PARK (~2 ac, similar name); SAINT MARY'S ELEMENTARY SCHOOL PARK (~0 ac, similar name)
-- **CA-5844** St. Paul's Anglican Church National Historic Site (National Historic Site) → SAINT PAUL'S CEMETERY (~0 ac, similar name)
+- **CA-5843** St. Mary's Basilica National Historic Site (National Historic Site) → ST. MARY'S BOAT CLUB PARK (~6 ac, similar name); SAINT MARY'S ELEMENTARY SCHOOL PARK (~1 ac, similar name)
+- **CA-5844** St. Paul's Anglican Church National Historic Site (National Historic Site) → SAINT PAUL'S CEMETERY (~2 ac, similar name)
 - **CA-6136** Shelburne River Canadian Heritage River (National Heritage Area) → Shelburne River Wilderness Area (~6,013 ac, same name, different kind of place); Shelburne River Wilderness Area (~6,013 ac, same name, different kind of place); Shelburne River Wilderness Area (~5,601 ac, same name, different kind of place); Shelburne River Wilderness Area (~4,029 ac, same name, different kind of place); Shelburne River Wilderness Area (~3,365 ac, same name, different kind of place); Shelburne River Wilderness Area (~2,910 ac, same name, different kind of place)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
@@ -27,7 +27,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~4 ac); Cape Breton Highlands National Park Of Canada (~80 ac)
 - CA-5819 Halifax WWII Coastal Defences National Historic Site (National Historic Site) → on York Redoubt (~100 ac)
 - CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~3 ac); Peter's Island Conservation Lands (~3 ac)
-- CA-6554 Musquodoboit Harbour Railway Historic Site (Historic Site) → on MUSQUODOBOIT TRAIL AT GREENWAY (~1,164 ac)
+- CA-6554 Musquodoboit Harbour Railway Historic Site (Historic Site) → on MUSQUODOBOIT TRAIL AT GREENWAY (~115 ac)
 - CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~79 ac); Bowers Meadows Wilderness Area (~79 ac)
 
 ## Nothing found in CPCAD

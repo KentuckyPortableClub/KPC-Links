@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "result": "PASS"
  },
- "previous_build": "CA-41635613151",
- "previous_built": "2026-11-03 12:29 UTC",
+ "previous_build": "CA-41739774609",
+ "previous_built": "2026-11-03 23:49 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -33,10 +33,10 @@
    "site": 13
   },
   "MB": {
-   "check": 1,
+   "check": 0,
    "detail": 0.02,
    "matched": 219,
-   "none": 83,
+   "none": 84,
    "parks": 308,
    "pin_no_shape": 0,
    "pin_outside": 80,
@@ -107,11 +107,11 @@
   "ON": {
    "check": 9,
    "detail": 0.02,
-   "matched": 951,
-   "none": 195,
+   "matched": 960,
+   "none": 186,
    "parks": 1180,
    "pin_no_shape": 27,
-   "pin_outside": 389,
+   "pin_outside": 398,
    "pin_swap": 0,
    "pin_well_outside": 7,
    "site": 25
@@ -135,7 +135,7 @@
    "none": 345,
    "parks": 834,
    "pin_no_shape": 0,
-   "pin_outside": 168,
+   "pin_outside": 167,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 34
@@ -189,6 +189,14 @@
    "site": 7
   }
  },
- "build": "CA-41739774609",
- "built": "2026-11-03 23:49 UTC"
+ "build": "CA-41889018960",
+ "built": "2026-11-04 19:17 UTC",
+ "rules": "1d309938ff7e",
+ "rules_files": [
+  ".github/scripts/kpc_ca_fill_bounds.py",
+  ".github/scripts/kpc_ca_hardlook.py",
+  ".github/scripts/kpc_ca_key.py",
+  ".github/scripts/kpc_key_facts.py",
+  ".github/key-rules-version.json"
+ ]
 }

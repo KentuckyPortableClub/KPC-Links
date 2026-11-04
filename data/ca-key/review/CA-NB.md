@@ -4,8 +4,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## To check (not joined)
 
-- **CA-0793** Saint Croix Island National Historic Site (National Historic Site) → Saint Croix (~9 ac, same name, different kind of place); New Brunswick #20 Wildlife Management Area (~1,291,213 ac, the POTA pin is inside it (different name))
-- **CA-5193** Malloy Field Recreation Park (Recreation Park) → Malloy Park (~8 ac, similar name); New Brunswick #16 Wildlife Management Area (~1,020,038 ac, the POTA pin is inside it (different name)); New Brunswick #17 Wildlife Management Area (~823,047 ac, the POTA pin is inside it (different name))
+- **CA-0793** Saint Croix Island National Historic Site (National Historic Site) → Saint Croix (~13 ac, same name, different kind of place); New Brunswick #20 Wildlife Management Area (~1,291,213 ac, the POTA pin is inside it (different name))
+- **CA-5193** Malloy Field Recreation Park (Recreation Park) → Malloy Park (~10 ac, similar name); New Brunswick #16 Wildlife Management Area (~1,020,038 ac, the POTA pin is inside it (different name)); New Brunswick #17 Wildlife Management Area (~823,047 ac, the POTA pin is inside it (different name))
 - **CA-5691** Jervis Bay-Ross Memorial Park Natural Monument (Natural Monument) → Jervis Bay Ross Memorial Park (~1 ac, similar name); New Brunswick #23 Wildlife Management Area (~677,684 ac, the POTA pin is inside it (different name))
 - **CA-5707** Pte. David Robert Greenslade Peace Park Recreation Park (Recreation Park) → Private David Greenslade Peace Park (~1 ac, similar name); New Brunswick #23 Wildlife Management Area (~677,684 ac, the POTA pin is inside it (different name))
 - **CA-6481** New Brunswick Highlands Ecological Area (Ecological Area) → New Brunswick #7 Wildlife Management Area (~1,504,067 ac, similar name); New Brunswick #5 Wildlife Management Area (~768,121 ac, similar name)
@@ -32,7 +32,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1248 Pagan Point Nature Reserve (Nature Reserve) → on New Brunswick #20 Wildlife Management Area (~1,291,213 ac)
 - CA-1255 Sugar Island Nature Reserve (Nature Reserve) → on New Brunswick #21 Wildlife Management Area (~637,335 ac); New Brunswick #16 Wildlife Management Area (~1,020,038 ac)
 - CA-4355 Bantalor Protected Area (Protected Area) → on New Brunswick #20 Wildlife Management Area (~1,291,213 ac)
-- CA-4438 Martial Brook Protected Area (Protected Area) → on Magaguadavic River (~3,107 ac); Magaguadavic River (~5,213 ac)
+- CA-4438 Martial Brook Protected Area (Protected Area) → on Magaguadavic River (~5,213 ac); Magaguadavic River (~5,213 ac)
 - CA-4444 McCoy Brook Protected Area (Protected Area) → on New Brunswick #5 Wildlife Management Area (~768,121 ac)
 - CA-4463 Notre-Dame-de l'assompton Monument Historic Site (Historic Site) → on New Brunswick #14 Wildlife Management Area (~644,671 ac)
 - CA-4493 Portage Lakes Protected Area (Protected Area) → on New Brunswick #2 Wildlife Management Area (~655,567 ac)
@@ -58,7 +58,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5163 Denys Fort / Habitation National Historic Site (National Historic Site) → on New Brunswick #9 Wildlife Management Area (~287,058 ac)
 - CA-5169 East Riverside Kingshurst Park Recreation Park (Recreation Park) → on New Brunswick #23 Wildlife Management Area (~677,684 ac)
 - CA-5171 Ferris Street Forest and Wetland Nature Reserve (Nature Reserve) → on New Brunswick #16 Wildlife Management Area (~1,020,038 ac)
-- CA-5172 Fredericton Botanic Garden Conservation Area (Conservation Area) → on Prospect Street Park (~8 ac); New Brunswick #21 Wildlife Management Area (~637,335 ac)
+- CA-5172 Fredericton Botanic Garden Conservation Area (Conservation Area) → on Prospect Street Park (~35 ac); New Brunswick #21 Wildlife Management Area (~637,335 ac)
 - CA-5178 George M Stirrett Nature Reserve (Nature Reserve) → on New Brunswick #10 Wildlife Management Area (~664,617 ac)
 - CA-5179 Greenock Church National Historic Site (National Historic Site) → on New Brunswick #20 Wildlife Management Area (~1,291,213 ac)
 - CA-5181 Hammond River Park Nature Park (Nature Park) → on New Brunswick #23 Wildlife Management Area (~677,684 ac)
