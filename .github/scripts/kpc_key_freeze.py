@@ -51,6 +51,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
+# Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this
+# rebuild'): kpc_key_facts.py writes every key's per-park 'bk' (pin distance + record kind), so it is a rule file of all three keys.
+for _kind in RULE_FILES: RULE_FILES[_kind].append('.github/scripts/kpc_key_facts.py')
 # FINAL-v2 (must-fix 1): sign-offs dated before the restart (9:37 AM CST Nov 2 2026 = 15:37 UTC) never count.
 RESTART = datetime.datetime(2026, 11, 2, 15, 37, tzinfo=datetime.timezone.utc)
 DATE_KEYS = ('date', 'signed', 'when', 'approved_date', 'at')

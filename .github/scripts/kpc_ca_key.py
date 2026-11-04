@@ -15,6 +15,7 @@ import gzip
 # Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_host_pace  # noqa: E402
+import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind per park, 'bk')
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
@@ -581,6 +582,7 @@ def around(la, lo):
 # A FAIL means the read or the matcher broke: the old province files are kept (nothing saved) and the run says so.
 GATE_REFS = {'CA-0005': 'Banff', 'CA-0040': 'Jasper', 'CA-0138': 'Algonquin', 'CA-0030': 'Gros Morne', 'CA-0010': 'Bruce Peninsula'}
 PENDING = []
+BKPIN = {}   # links-10: ref -> POTA's pin (lat, lon) as POTA has it
 # Nov 2 (chat 10 + HQ, Brandon 'do it'): chat 11's YES rows from the Canada HARD LOOK name the exact layer + record for a park
 # (data/ca-key/hardlook-joins.json, made from KPC-Data questions/hardlook.json by kpc_ca_hardlook.py). Each record is read by its
 # own id (or the named id field / name) and joins its park when the key found nothing else. Layer ids 'Hard look~N' go in layers.json.
@@ -646,6 +648,7 @@ for pv, parks_in in sorted(by.items()):
     def in_pv(b): return not PVB or (b and b[0] <= PVB[2] and b[2] >= PVB[0] and b[1] <= PVB[3] and b[3] >= PVB[1])
     for ref, x in sorted(parks_in.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
+        BKPIN[ref] = (la, lo)   # links-10: POTA's own pin, as POTA has it (the swap below is for matching only)
         if not la and not lo: la = lo = None   # Oct 18: POTA has no pin for ~200 Canadian parks (0,0): match by name in the province only
         elif abs(la) > 90:                      # Oct 25: POTA has a few pins with latitude and longitude swapped (Churchill WMA 92.6, -57.1): Canada is north + west
             la, lo = abs(lo), -abs(la)
@@ -771,6 +774,17 @@ for _r, _p in _all.items():
         _p['g'] = 'official'; _p['line'] = 1
     if _m and _p.get('far') == 'well outside': _p['pin_may_be_wrong'] = 1; _pw.append(_r)
 if _pw: notice('Canada key', f"{len(_pw)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(_pw[:12])}")
+# Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this rebuild'):
+# every park gets 'bk' = [best record id, km from the POTA pin, the record's kind (CPCAD TYPE_E, else its name's kind tags), src]
+# (kpc_key_facts.py). Only CPCAD records carry a designation field here; a provincial layer's label is not one. Measures only.
+def _bklook(x):
+    r = RID.get(str(x[0]))
+    return (rings(r.get('_g')), r.get('ty') if not r.get('src') else '') if r else (None, '')
+for _pv, _o, _rp, _rt in PENDING:
+    try:
+        _bkk, _ = KF.stamp(_o['parks'], lambda ref: BKPIN.get(ref), _bklook)
+        _o['bk_about'] = KF.ABOUT; _o['bk_kinds'] = {c: t for c, t in _bkk.items() if c != t}
+    except Exception as _e: notice(f'Canada key {_pv}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')  # noqa: BLE001
 for _pv, _o, _rp, _rt in PENDING:
     save_json(OUT / f'CA-{_pv}.json', _o)
     _rp.parent.mkdir(exist_ok=True); save_text(_rp, _rt)
