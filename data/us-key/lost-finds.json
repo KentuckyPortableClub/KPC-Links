@@ -1,7 +1,7 @@
 {
- "made": "2026-11-03 19:40 UTC",
+ "made": "2026-11-04 15:44 UTC",
  "counts": {
-  "A_decided_not_in_key": 106,
+  "A_decided_not_in_key": 107,
   "B_sure_area_not_asked": 10,
   "C_sure_line_not_drawn": 21
  },
@@ -482,6 +482,13 @@
    "Bryan Woods State Nature Preserve",
    "alias",
    "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
+  ],
+  [
+   "US-4342",
+   "WI",
+   "Herb Behnke Unit of Wolf River Bottoms State Wildlife Area",
+   "join",
+   " a unit (Herb Behnke) of Wolf River Bottoms WA (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   ],
   [
    "US-5564",
