@@ -163,9 +163,23 @@ def main():
             led[lk] = {'answer': ans, 'checked_by': row.get('checked_by'), 'applied': stamp}
             touched.add(ref); st = st_of(row); states.add(st) if st else None
     # the same for parks a YES reached BEFORE this fix (the ledger skips them now): their last note is this bot's YES join
+    # Nov 3 (Quality, Canada key fixes grade: US-7383, US-7854): a later NO from this bot on a DIFFERENT record (its name is not a
+    # joined record's name) does not undo the YES, so it is stepped over. A NO on the joined record itself, or any note that is
+    # not this bot's (a map-audit "PIN until fixed"), stops the walk: that is a person's call (US-10025, US-1080, US-7145).
+    def _yes_is_last(v):
+        jn = {str(x) for x in v.get('join') or []}
+        if jn & {str(x) for x in v.get('no') or []}: return False
+        names = [str(x[0]).lower() for x in (v.get('fp') or {}).values() if x] + [x.lower() for x in jn]
+        for note in reversed(str(v.get('why') or '').split(' · ')):
+            if 'applied by kpc_key_answers' not in note: return False
+            if re.search(r" row YES '", note): return True
+            m = re.search(r" row NO '([^']*)'", note)
+            if not m: return False
+            nm = m.group(1).strip().lower()
+            if not nm or any(x.startswith(nm) or nm.startswith(x) for x in names): return False   # a NO on the joined record
+        return False
     for ref, v in P.items():
-        last = str(v.get('why') or '').rsplit(' · ', 1)[-1]
-        if v.get('none') and v.get('join') and re.search(r" row YES '", last) and 'applied by kpc_key_answers' in last:
+        if v.get('none') and v.get('join') and _yes_is_last(v):
             v.pop('none'); n_none += 1; touched.add(ref)
             v['why'] = v['why'] + f" · {stamp}: the older 'none' (no outline of its own) is replaced by this YES join"
     msg = f"{n_yes} yes / {n_no} no / {n_alias} alias applied on {len(touched)} parks; {n_same} already applied; {n_skip} skipped; {n_none} old 'none' notes replaced by a YES join; states: {' '.join(sorted(states)) or '-'}"

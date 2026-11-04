@@ -20,7 +20,16 @@ def notice(t, m): print(f'::notice title={t}::{m}', flush=True)
 # Nov 2 evening (Mapping; quality notes 2026-11-02, Witless Bay CA-1275 = 25,103 ac against about 7,166 in CPCAD): the park was
 # joined to the same land three times (CPCAD, a CPCAD top-up copy and the Newfoundland copy), and every ring of every copy was
 # stacked into one file. A record whose land is already drawn (80% or more) is now left out, and so is a ring that is only a dot.
-def _real(ring): return len({(round(q[0], 6), round(q[1], 6)) for q in ring}) >= 3
+# Nov 3 re-cut (Quality should-fix, S2-06): 3 distinct points is not enough - a 3-point FLAT ring (collinear, or a speck) passed and
+# kept a zero-area "outline" (CA-4106 Skyline Park 0.0 ac, CA-4798 Twin Falls Tea House 0.0001 ac, CA-5438 Fort St. Louis 0.007 ac
+# = 27 m2). A ring must also draw at least REAL_MIN_AC. The smallest real outline on main is CA-3699 at 0.066 ac, so 0.01 ac
+# (about 40 m2) leaves every real one alone.
+# Recut addendum (Quality grade of the recut; Brandon OK'd clearing all three to pins, relayed by Super 7:11-7:12 PM CST Nov 3):
+# the three files are DELETED in this patch. A run alone would not clear them all: main() skips a file with detail_m (refined
+# Oct 29), so only CA-4106 would go; CA-4798 (27 m2) and CA-5438 (0.5 m2) would stay as specks.
+REAL_MIN_AC = 0.01
+def _pts3(ring): return len({(round(q[0], 6), round(q[1], 6)) for q in ring}) >= 3
+def _real(ring): return _pts3(ring) and _ring_ac(list(ring)) >= REAL_MIN_AC   # an outer ring / a fill piece
 def _in(x, y, ring):
     ins, j = False, len(ring) - 1
     for i in range(len(ring)):
@@ -36,12 +45,26 @@ def _cover(new, kept, n=24):
     pts = [(x, y) for x, y in pts if sum(_in(x, y, r) for r in new) % 2]
     return sum(1 for x, y in pts if sum(_in(x, y, r) for r in kept) % 2) / len(pts) if pts else 0.0
 def _in_poly(x, y, poly): return _in(x, y, poly[0]) and not any(_in(x, y, h) for h in poly[1:])   # outer ring minus its holes
+def _ring_ac(r):
+    """Rough acres of one ring (flat-earth shoelace at the ring's latitude): only used to size the land a copy alone draws."""
+    import math
+    if len(r) < 3: return 0.0
+    lat = sum(q[1] for q in r) / len(r)
+    k = 111320 * math.cos(math.radians(lat)) * 110574
+    return abs(sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(r, r[1:] + r[:1]))) / 2 * k / 4046.86
 def _unstack(coords):
     """The polygons of a file with repeats left out (same outline twice, or a polygon 80%+ inside the ones before it, holes
-    counted, so an island in a lake is kept). None = nothing repeated."""
+    counted, so an island in a lake is kept). None = nothing to change. [] = nothing real is left (the caller removes the file).
+    Nov 3 (Quality, grade of the Canada key fixes):
+    - a dot or a flat line (not _real) is left out here too, as the fill already does (CA-3380 Coyote Springs was a 2-point line
+      drawn twice), and so is a hole that is only a dot;
+    - a copy that is 80-98% inside the kept land is left out only when the land it alone draws is under 1 acre. At 80% East
+      Sooke CA-3212 lost 137 ac and CA-3229 22 ac of real land (616 ac over 66 files; with this, about 11 ac)."""
     seen, keep, hit = set(), [], False
     for poly in coords or []:
         if not poly: continue
+        if not _real(poly[0]): hit = True; continue
+        if any(not _pts3(h) for h in poly[1:]): poly = [poly[0]] + [h for h in poly[1:] if _pts3(h)]; hit = True   # holes: only dots go (no area floor)
         k = frozenset((round(q[0], 4), round(q[1], 4)) for q in poly[0])
         if k in seen: hit = True; continue
         seen.add(k)
@@ -49,9 +72,11 @@ def _unstack(coords):
             xs = [q[0] for q in poly[0]]; ys = [q[1] for q in poly[0]]; n = 24
             pts = [(min(xs) + (max(xs) - min(xs)) * (i + .5) / n, min(ys) + (max(ys) - min(ys)) * (j + .5) / n) for i in range(n) for j in range(n)]
             pts = [(x, y) for x, y in pts if _in_poly(x, y, poly)]
-            if pts and sum(1 for x, y in pts if any(_in_poly(x, y, kp) for kp in keep)) / len(pts) >= .8: hit = True; continue
+            c = sum(1 for x, y in pts if any(_in_poly(x, y, kp) for kp in keep)) / len(pts) if pts else 0.0
+            own = (1 - c) * max(0.0, _ring_ac(poly[0]) - sum(_ring_ac(h) for h in poly[1:]))
+            if pts and (c >= .98 or (c >= .8 and own < 1.0)): hit = True; continue
         keep.append(poly)
-    return keep if hit and keep else None
+    return keep if hit else None
 
 
 def main():
@@ -65,7 +90,7 @@ def main():
     low = lambda x: ' '.join(str(x or '').lower().split())
     have = {p.stem for p in OUT.glob('CA-*.json')}
     # a file THIS script wrote earlier (src 'KPC checked list', never refined) that repeats the same land: the repeats are taken out
-    unstacked = []
+    unstacked, emptied = [], []
     for f in sorted(OUT.glob('CA-*.json')):
         try: j = json.loads(f.read_text(encoding='utf-8'))
         except Exception: continue  # noqa: BLE001
@@ -73,6 +98,8 @@ def main():
         if not str(pr.get('src', '')).startswith('KPC checked list') or 'detail_m' in pr: continue
         keep = _unstack((j.get('geometry') or {}).get('coordinates'))
         if keep is None: continue
+        if not keep:   # Nov 3: only dots / flat lines: not an outline. The tools then show the pin, as for any park with no file.
+            f.unlink(); emptied.append(f.stem); continue
         j['geometry']['coordinates'] = keep
         f.write_text(json.dumps(j, separators=(',', ':'), ensure_ascii=False), encoding='utf-8'); unstacked.append(f.stem)
     wrote = dropped = 0
@@ -120,7 +147,8 @@ def main():
             wrote += 1
     notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten); {dropped} CPCAD-only files removed (drawn live now)'
            + (f"; {len(retired)} retired park(s) removed: {', '.join(retired[:10])}" if retired else '')
-           + (f"; {len(unstacked)} older file(s) had the same land drawn more than once, repeats taken out: {', '.join(unstacked[:12])}" if unstacked else ''))
+           + (f"; {len(unstacked)} older file(s) had the same land drawn more than once (or dots / flat lines), taken out: {', '.join(unstacked[:12])}" if unstacked else '')
+           + (f"; {len(emptied)} older file(s) held only dots / flat lines and were removed: {', '.join(emptied[:12])}" if emptied else ''))
 
 
 if __name__ == '__main__':
