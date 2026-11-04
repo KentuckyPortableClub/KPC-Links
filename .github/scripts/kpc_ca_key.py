@@ -194,7 +194,19 @@ def rec_oid(a, li):
     return a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
 # area_ha: the agency's own area when the record has one, so acres do not come from the 0.02 degree (about 2 km) saved shape
 #   (Brookvale 1,339 vs 2,628 ac; Burnt Cape 485 vs 897). Only fields whose unit is certain; DFRP land_area is hectares.
-_HA = [('o_area_ha', 1), ('area_ha', 1), ('hectares', 1), ('superficie_ha', 1), ('superficie_km2', 100), ('area_km2', 100)]
+# Nov 3 addendum (CA-2359, Quality spot-check): 'ha_legal' = MELCCFP Aires protégées 'Superficie (ha)' (legal hectares).
+_HA = [('o_area_ha', 1), ('area_ha', 1), ('hectares', 1), ('superficie_ha', 1), ('ha_legal', 1), ('superficie_km2', 100), ('area_km2', 100)]
+def area_fields(li):
+    """The layer's own area fields (names from _HA), to ask for with the name fields."""
+    want = {f for f, _ in _HA}
+    return [f['name'] for f in (li or {}).get('fields', []) if str(f.get('name', '')).lower() in want]
+def rec_ha(a, li, url=''):
+    """Nov 3 addendum (CA-2359: key 1,891 ac vs ZEC Z-031D 0.52 km2 = 52 ha): the agency's area of a record read by arc_pull.
+    arc_pull set 'ha': 0 for every record, so acres came from the 0.02-degree (about 2 km) saved shape, which blows a narrow
+    river strip (a salmon ZEC) up many times. Québec's MRNF MapServer answers with field ALIASES as keys ('Superficie (km2)'),
+    so the aliases are mapped back to the field names first."""
+    al = {str(f.get('alias') or ''): f['name'] for f in (li or {}).get('fields', []) if f.get('alias') and f.get('name')}
+    return area_ha({al.get(k, k): v for k, v in (a or {}).items()}, url)
 def area_ha(a, url=''):
     low = {str(k).lower(): v for k, v in (a or {}).items()}
     for f, mul in _HA + ([('land_area', 1)] if 'DFRP' in str(url) else []):
@@ -240,7 +252,7 @@ if recs is not None and CMODE == 'use':
                         # Nov 2 evening: was 'no OBJECTID -> skip', which dropped all 21 Québec réserves fauniques (QC 440 -> 427)
                         _ov = rec_oid(_a, _li)
                         _lab = f'{_p} (live top-up)'
-                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': area_ha(_a, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
+                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': rec_ha(_a, _li, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
                         _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); recs.append(_r); _got += 1
                     time.sleep(.4)
                 _msg.append(f'{_p}: {_got - _n0}')
@@ -327,7 +339,7 @@ if recs is None:
             while True:
                 try:
                     if ids is None:
-                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names + [f for f in area_fields(li) if f not in names]), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
                                                 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
                     else:
                         if off >= len(ids): break
@@ -344,7 +356,7 @@ if recs is None:
                     a = f.get('attributes') or {}; g = f.get('geometry') or {}
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
                     if not nm: continue
-                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': rec_ha(a, li, lu), '_g': g, '_bb': bbox(g), 'src': label}
                     r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                     got.append(r)
                 if ids is not None: off += 100; time.sleep(.4); continue
