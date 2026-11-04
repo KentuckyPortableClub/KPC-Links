@@ -1,0 +1,76 @@
+name: KPC key check (after a key build)
+# Nov 4 2026 (Mapping; Brandon 4:11 AM CST Nov 4, relayed by Super: "Let's have everything set up and done instead of back and
+# forth"). After the US, Canada or world answer key build FINISHES, compare the new key with the previous build and write
+# data/status/key-check/<key>-<build>.json + .md (.github/scripts/kpc_key_postcheck.py): parks gained / lost, outline <-> pin,
+# flat outlines, pins outside their outline, 0,0 pins, the answer sheet / overrides / REVIEW_PILE disagreements, RULE 18 and
+# bad-pin flags, and CA-2218 / CA-2227 / SE-0797 must be pins (Brandon 7:33 PM CST Nov 3).
+# READ-ONLY: no web request (only this repo, a read-only copy of KPC-Data's answer sheet + world outlines, and git history).
+# No schedule (it runs only after a key build or by hand). Never red: every step continues on error, the save is KPC_SAVE_RED=no.
+# Default GITHUB_TOKEN only (contents: write, for the one status save per run). No secrets. Never posts or emails.
+# Not triggered by 'KPC Canada pins' (kpc-canada.yml): that writes POTA's pins (data/canada.json), not the Canada key.
+on:
+  workflow_run:
+    workflows: ['KPC US answer key', 'KPC Canada answer key', 'KPC world answer key']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      key:
+        description: 'us, ca or world'
+        required: true
+        default: 'us'
+      force:
+        description: 'yes = write a report even if this build was already checked'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-key-postcheck
+  cancel-in-progress: false
+jobs:
+  check:
+    # a cancelled or skipped key run built nothing; a frozen run ends 'success' with no new build commit (the script then says
+    # 'no new build' and writes nothing)
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion != 'cancelled' && github.event.workflow_run.conclusion != 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        continue-on-error: true
+        with:
+          ref: main
+          fetch-depth: 0          # the previous build commit (git show <commit>:data/...-key/...)
+          filter: blob:none       # history without the old file contents; git show fetches only the files it reads
+      - name: Read-only copy of KPC-Data's answer sheet and world outlines
+        continue-on-error: true
+        uses: actions/checkout@v5
+        with:
+          repository: KentuckyPortableClub/KPC-Data
+          path: kpcdata
+          sparse-checkout: |
+            data/answer-sheet
+            data/world-bounds
+          persist-credentials: false
+      - name: Pre-check (REVIEW_PILE, RULE 18, bad-pin flags) into a temp folder
+        continue-on-error: true
+        run: |
+          # the world keys the pre-check reads are THIS repo's new ones (kpcdata/data/world-key -> data/world-key); nothing is held here
+          mkdir -p kpcdata/data && ln -sfn "$GITHUB_WORKSPACE/data/world-key" kpcdata/data/world-key
+          OUT=/tmp/kpc-precheck DATA=kpcdata python3 .github/scripts/kpc_precheck.py > /tmp/kpc-precheck.log 2>&1 || echo "::warning title=Key check::the pre-check stopped (exit $?); its flags are left out of the report"
+          grep '^::' /tmp/kpc-precheck.log | tail -n 3 || true   # ok: only shows the pre-check's own summary line
+      - name: Compare the new key with the previous build
+        continue-on-error: true
+        env:
+          KEY: ${{ inputs.key }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          BUILD: ${{ github.event.workflow_run.id }}
+          FORCE: ${{ inputs.force }}
+          ANSWER_SHEET: kpcdata/data/answer-sheet
+          PRECHECK_OUT: /tmp/kpc-precheck
+        run: python3 .github/scripts/kpc_key_postcheck.py
+      - name: Save the report (one save per run)
+        continue-on-error: true
+        run: |
+          git config user.name kpc-bot; git config user.email bot@kpc.local
+          [ -d data/status/key-check ] || { echo "::notice title=Key check::nothing to save"; exit 0; }
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED=no \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'Key check after the key build' - -- data/status/key-check
