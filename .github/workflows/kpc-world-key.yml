@@ -51,6 +51,7 @@ jobs:
       - uses: actions/checkout@v5
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         env:
+          KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
@@ -58,6 +59,7 @@ jobs:
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: BUILD ORDER (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4) - after a rules change US, then Canada, then the world; a key whose turn has not come skips cleanly and is started again by workflow_run
         env:
+          KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           FORCE: ${{ inputs.force }}
         run: |
           if [ "${SKIP:-}" != 1 ]; then python3 .github/scripts/kpc_key_order.py check world-key || { echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Key build order::the order check stopped (exit $?): this start waits"; }; fi

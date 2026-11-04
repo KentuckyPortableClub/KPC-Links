@@ -45,6 +45,7 @@ jobs:
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04, Brandon 4:51 AM CST, relayed via Super Head Bot) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         # Nov 2 (before the 3:17 AM run): moved BEFORE BOT A, so a frozen US key also gets no new US answers (see BOT A below)
         env:
+          KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
