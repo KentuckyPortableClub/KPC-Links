@@ -145,11 +145,25 @@
   "kpc-reports.yml|2026-11-03T21:29:00+00:00": "2026-11-03T23:10+00:00 started",
   "kpc-discord-watch.yml|2026-11-03T22:47:00+00:00": "2026-11-03T23:12+00:00 started",
   "kpc-band-alerts.yml|2026-11-03T22:48:00+00:00": "2026-11-03T23:34+00:00 started",
-  "kpc-park-alerts.yml|2026-11-03T23:03:00+00:00": "2026-11-03T23:34+00:00 started"
+  "kpc-park-alerts.yml|2026-11-03T23:03:00+00:00": "2026-11-03T23:34+00:00 started",
+  "kpc-band-alerts.yml|2026-11-04T01:18:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-bot-queue.yml|2026-11-04T00:22:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-discord-watch.yml|2026-11-04T00:47:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-fb-comments.yml|2026-11-04T00:32:00+00:00": "2026-11-04T02:05+00:00 skipped (not restarted)",
+  "kpc-hunters.yml|2026-11-04T01:07:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-park-notes.yml|2026-11-04T00:41:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-pota-discord.yml|2026-11-04T01:19:00+00:00": "2026-11-04T02:05+00:00 started",
+  "kpc-youtube.yml|2026-11-03T23:23:00+00:00": "2026-11-04T02:05+00:00 started"
  },
- "last": "2026-11-03T23:34+00:00",
+ "last": "2026-11-04T02:05+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 03 22:48 UTC)",
-  "kpc-park-alerts.yml (missed Nov 03 23:03 UTC)"
+  "kpc-band-alerts.yml (missed Nov 04 01:18 UTC)",
+  "kpc-bot-queue.yml (missed Nov 04 00:22 UTC)",
+  "kpc-discord-watch.yml (missed Nov 04 00:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 04 00:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-hunters.yml (missed Nov 04 01:07 UTC)",
+  "kpc-park-notes.yml (missed Nov 04 00:41 UTC)",
+  "kpc-pota-discord.yml (missed Nov 04 01:19 UTC)",
+  "kpc-youtube.yml (missed Nov 03 23:23 UTC)"
  ]
 }
