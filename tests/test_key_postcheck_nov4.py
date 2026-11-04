@@ -69,7 +69,8 @@ with tempfile.TemporaryDirectory() as t:
     cols = ['ref', 'pota_name', 'area', 'key_id', 'record_name', 'status', 'approved_by', 'approved_date']
     with open(R / 'sheet/CA.csv', 'w', newline='', encoding='utf-8') as fh:
         w = csv.DictWriter(fh, cols); w.writeheader()
-        w.writerow({'ref': 'CA-0001', 'key_id': 'a-id', 'record_name': 'Alpha PP', 'status': 'YES', 'approved_by': 'Brandon', 'approved_date': '2026-11-02'})   # ignored by the key
+        w.writerow({'ref': 'CA-0001', 'key_id': 'a-id', 'record_name': 'Alpha PP', 'status': 'YES', 'approved_by': 'Brandon', 'approved_date': '2026-11-03'})   # ignored by the key
+        w.writerow({'ref': 'CA-0004', 'key_id': 'zz4', 'record_name': 'Not Delta', 'status': 'YES', 'approved_by': 'Brandon', 'approved_date': '2026-11-02'})   # links-08: before the 9:37 AM CST Nov 2 restart: not a sign-off
         w.writerow({'ref': 'CA-0002', 'key_id': 'zzz', 'record_name': 'Other', 'status': 'PROPOSED'})                                                       # bot proposal: counted only
         w.writerow({'ref': 'CA-0003', 'key_id': 'c2-id', 'record_name': 'Charlie PP', 'status': 'NO', 'approved_by': 'Brandon (TEST ROW, not real)', 'approved_date': '2026-11-02'})
     (R / 'pre').mkdir()
@@ -96,6 +97,11 @@ with tempfile.TemporaryDirectory() as t:
     sd = J['answer_sheet']['signed_disagree']
     check([x['park'] for x in sd] == ['CA-0001'] and J['answer_sheet']['proposed_disagree'] == 1 and J['answer_sheet']['signed'] == 1,
           f"signed YES ignored by the key listed; PROPOSED counted; fake sign-off not a person: {sd} {J['answer_sheet']}")
+    import importlib.util   # links-08
+    _sp = importlib.util.spec_from_file_location('kpc_key_postcheck', TOOL); PK = importlib.util.module_from_spec(_sp); sys.path.insert(0, str(TOOL.parent)); _sp.loader.exec_module(PK)
+    check(all(PK.after_restart(d) == want for d, want in (('2026-11-02', False), ('2026-11-01', False), ('2026-11-02 15:36 UTC', False),
+                                                         ('2026-11-02 15:37 UTC', True), ('2026-11-02 09:37 CST', True), ('2026-11-03', True), ('', False))),
+          'links-08: a sheet sign-off before the 9:37 AM CST Nov 2 restart (a bare Nov 2 date too) is not a person\'s answer')
     ov = {(x['park'], x['problem'][:20]) for x in J['overrides']}
     check(('CA-2218', "an id/name in overri") in ov and ('CA-0004', "an id/name in overri") in ov and not any(x[0] == 'CA-0007' for x in ov), f'overrides: {ov}')
     check(next(x for x in J['overrides'] if x['park'] == 'CA-0004')['newer_than_build'] is False, 'an override dated before the build is a real miss')

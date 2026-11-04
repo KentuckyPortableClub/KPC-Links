@@ -204,6 +204,27 @@ def read_csv(f):
     except Exception: return None  # noqa: BLE001
 
 
+RESTART = (2026, 11, 2, 15, 37)   # links-08: 9:37 AM CST Nov 2 restart, in UTC; a sign-off before it never counts (person-answer rule)
+
+
+def after_restart(d):
+    """links-08 (FINAL-v2 self-check, Brandon's 6:14 AM CST Nov 4 rule, relayed via Super Head Bot): True when an answer-sheet approved_date is
+    at or after the 9:37 AM CST Nov 2 restart. A bare YYYY-MM-DD is the START of that day in CST (as kpc_key_freeze.signed_when):
+    a bare 2026-11-02 is before the restart. 'HH:MM UTC|CST|CDT' and ISO with a zone are read too."""
+    import datetime
+    s = str(d or '').strip(); utc = datetime.timezone.utc
+    m = re.match(r'^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2})(?::\d{2})?\s*(UTC|Z|CST|CDT|[+-]\d{2}:?\d{2})?)?$', s)
+    if not m: return False
+    y, mo, da, hh, mm, z = m.groups()
+    try: t = datetime.datetime(int(y), int(mo), int(da), int(hh or 0), int(mm or 0))
+    except ValueError: return False
+    if hh is None or z in ('CST', None): off = -6
+    elif z == 'CDT': off = -5
+    elif z in ('UTC', 'Z'): off = 0
+    else: off = int(z[:3]) + (1 if z[0] == '+' else -1) * int(z[-2:]) / 60
+    return (t - datetime.timedelta(hours=off)).replace(tzinfo=utc) >= datetime.datetime(*RESTART, tzinfo=utc)
+
+
 def sheet_check(N, k, sheet_dir, who):
     rows = read_csv(pathlib.Path(sheet_dir) / KEYS[k]['sheet']) if sheet_dir else None
     if rows is None: return {'read': False, 'signed_disagree': [], 'proposed_disagree': 0, 'rows': 0, 'signed': 0}
@@ -215,7 +236,7 @@ def sheet_check(N, k, sheet_dir, who):
         rid = str(row.get('key_id') or row.get('record_id') or '').strip()
         p = N.get(r)
         joined = bool(p) and has_outline(p) and (rid in ids_of(p) or (row.get('record_name') or '').strip().lower() in names_of(p))
-        person = AW.signed_off(row.get('approved_by'), row.get('approved_date'), who) if AW else False
+        person = (AW.signed_off(row.get('approved_by'), row.get('approved_date'), who) and after_restart(row.get('approved_date'))) if AW else False   # links-08
         bad = (w == 'YES' and not joined) or (w in ('NO', 'PIN') and joined)
         if w == 'PROPOSED':
             if p is not None and has_outline(p) and rid and rid not in ids_of(p): pdis += 1
