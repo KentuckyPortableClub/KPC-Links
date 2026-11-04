@@ -118,19 +118,6 @@
    "when": "2026-11-02",
    "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece · 2026-11-02 12:49: layers row YES 'KALAUPAPA NATIONAL HISTORICAL PARK' (chat 11; applied by kpc_key_answers)"
   },
-  "US-0054": {
-   "fp": {
-    "sgakd1187": [
-     "Nez Perce National Historical Park",
-     4209
-    ]
-   },
-   "join": [
-    "sgakd1187"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 12:26: layers row YES 'Nez Perce National Historical Park' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
-  },
   "US-0063": {
    "no": [
     "fsod24"
@@ -822,19 +809,6 @@
    },
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: aliases-oct31 row NO 'Grass Lake National Wildlife Refuge' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  },
-  "US-0405": {
-   "fp": {
-    "sgmtd81": [
-     "CSKT Bison Range",
-     18732
-    ]
-   },
-   "join": [
-    "sgmtd81"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 18:41: gis-hunter row YES 'CSKT Bison Range' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
   },
   "US-0421": {
    "no": [
@@ -7785,47 +7759,18 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Manti Meadows WMA' (chat 11; applied by kpc_key_answers)"
   },
-  "US-11215": {
-   "fp": {
-    "sgmtd209": [
-     "Bear Paw Battlefield",
-     1114
-    ]
-   },
-   "join": [
-    "sgmtd209"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 13:41: layers row YES 'Bear Paw Battlefield' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Bear Paw Battlefield' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
-  },
   "US-11217": {
-   "fp": {
-    "sgmtd2999": [
-     "Bluewater Springs Trout Hatchery",
-     50
-    ]
-   },
-   "join": [
-    "sgmtd2999"
-   ],
-   "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03 18:41: gis-hunter row YES 'Bluewater Springs Trout Hatchery' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "none": true,
+   "when": "2026-10-22",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-11218": {
-   "fp": {
-    "sgmtd3396": [
-     "Fort Peck Hatchery",
-     71
-    ]
-   },
-   "join": [
-    "sgmtd3396"
-   ],
    "no": [
     "2572"
    ],
-   "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03 18:41: gis-hunter row YES 'Fort Peck Hatchery' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "none": true,
+   "when": "2026-10-29",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-1122": {
    "fp": {
@@ -9147,18 +9092,13 @@
     "sgakh568": [
      "Red Hills",
      9889
-    ],
-    "sgcad462": [
-     "Red Hills",
-     9894
     ]
    },
    "join": [
-    "sgakh568",
-    "sgcad462"
+    "sgakh568"
    ],
-   "when": "2026-11-03",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Red Hills' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Red Hills' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-10-29",
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Red Hills' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-11584": {
    "no": [
@@ -16708,8 +16648,8 @@
    "no": [
     "sgila1422"
    ],
-   "when": "2026-11-03",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Adeline Jay Geo-Karis Illinois Beach Sta' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'North Point Marina' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'North Point Marina' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Adeline Jay Geo-Karis Illinois Beach Sta' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'North Point Marina' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-1330": {
    "fp": {
@@ -37187,8 +37127,8 @@
    "no": [
     "sgila1404"
    ],
-   "when": "2026-11-03",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Pere Marquette State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Copperhead Hollow' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Copperhead Hollow' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Pere Marquette State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Copperhead Hollow' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4119": {
    "fp": {
@@ -40290,7 +40230,7 @@
     ],
     "sgidd187": [
      "Idaho Panhandle National Forests",
-     2482918
+     2481543
     ]
    },
    "join": [
@@ -40301,8 +40241,8 @@
     "St. Joe National Forest",
     "Idaho Panhandle National Forests"
    ],
-   "when": "2026-11-03",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:41: gis-hunter row YES 'Idaho Panhandle National Forests' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4478": {
    "no": [
@@ -40490,8 +40430,8 @@
      10151
     ]
    },
-   "when": "2026-11-03",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-10-29 23:15: gis-hunter row NO 'Hanford Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Hanford Reach National Monument, McGee R' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Hanford Reach National Monument' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Hanford Reach National Monument' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-10-29 23:15: gis-hunter row NO 'Hanford Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Hanford Reach National Monument, McGee R' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Hanford Reach National Monument' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4560": {
    "approx": true,
@@ -41030,8 +40970,8 @@
    "join": [
     "sggad1017"
    ],
-   "when": "2026-11-03",
-   "why": "2026-11-02 13:05: layers row YES 'HITCHITI' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'HITCHITI' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'HITCHITI' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4650": {
    "join": [
