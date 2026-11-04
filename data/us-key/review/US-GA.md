@@ -1,19 +1,16 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **219 of 237** parks joined to official land (same name + same kind of place). **2** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **226 of 237** parks joined to official land (same name + same kind of place). **3** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-7467** Marben State Fishing Lake (State Fishing Lake) → Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, similar name); CLYBEL WMA (~6,581 ac, the POTA pin is inside it (different name)); CLYBEL WMA (~6,275 ac, the POTA pin is inside it (different name))
+- **US-3724** Roosevelts Little White House State Historic Site (State Historic Site) → F. D. Roosevelt State Park (~9,995 ac, a person said NO to this record (overrides.json no: Oct 29 9:30 PM: the park's own website name 'Roosevelt's Little White House' (ch)); F. D. Roosevelt State Park (~9,989 ac, a person said NO to this record (overrides.json no: Oct 29 9:30 PM: the park's own website name 'Roosevelt's Little White House' (ch)); F. D. ROOSEVELT STATE PARK (~9,989 ac, a person said NO to this record (overrides.json no: Oct 29 9:30 PM: the park's own website name 'Roosevelt's Little White House' (ch))
+- **US-7467** Marben State Fishing Lake (State Fishing Lake) → CLYBEL WMA (~6,581 ac, the POTA pin is inside it (different name)); CLYBEL WMA (~6,275 ac, the POTA pin is inside it (different name)); Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac, a person said NO to this record (overrides.json no: Oct 18 review: same place, official name written differently · Oct 29 6:25 PM (c))
 - **US-9758** Chattooga National Wild and Scenic River (National Wild and Scenic River) → Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~10,971 ac, similar name); Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~4,651 ac, similar name); Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River (~906 ac, similar name); Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-3724 Roosevelts Little White House State Historic Site (State Historic Site) → on F. D. Roosevelt State Park (~9,989 ac); F. D. ROOSEVELT STATE PARK (~9,989 ac)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail) → on Ed Jenkins National Recreation Area (~23,574 ac); Chattahoochee National Forest (~750,991 ac)
-- US-4648 Bartram Educational State Forest (State Forest) → on BARTRAM FOREST WMA (~874 ac); BARTRAM FOREST WMA (~1,346 ac)
-- US-4649 Hitchiti State Forest (State Forest) → on Oconee National Forest (~116,196 ac)
-- US-7140 Charlie Elliot Wildlife Management Area (Wildlife Management Area) → on Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac); CLYBEL WMA (~6,275 ac)
 - US-7473 DeSoto Falls National Recreation Area (National Recreation Area) → on Chestatee Wildlife Management Area (~19,724 ac); CHESTATEE WMA (~21,784 ac)
 - US-7861 Suwannee River Eco-Lodge State Park (State Park) → on Stephen C. Foster State Park (~320 ac); Stephen C. Foster State Park (~320 ac)
 
@@ -21,13 +18,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-12772 Georgia National Fairgrounds State Recreation Area (State Recreation Area)
 - US-2200 Okefenokee State Park (State Park)
-- US-3791 Trail of Tears National Historic Trail (National Historic Trail)
-- US-7139 Arabia Mountain National Heritage Area (National Heritage Area)
 - US-7459 Lake Nottely Dam Recreation Park (Recreation Park)
 - US-7460 Lake Blue Ridge Dam Recreation Park (Recreation Park)
 - US-7471 Allatoona Pass Battlefield State Historic Site (State Historic Site)
 - US-7858 Dames Ferry Campground State Park (State Park)
-- US-7893 Augusta Canal National Heritage Area (National Heritage Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -48,6 +42,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Rayonier Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~12,443 ac
 - Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~10,971 ac
 - Rich Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,791 ac
+- JOHN C. CALHOUN ·  · BdyDesg_LSRS_SpecialInterestManagementArea (forest, state GIS table) · ~10,692 ac
 - Tray Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,343 ac
 - Cherokee #1 National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~9,863 ac
 - King Tract Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~9,610 ac
@@ -67,6 +62,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - ROCKY MOUNTAIN RECREATION PFA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~4,752 ac
 - ROCKY MOUNTAIN RECREATION PFA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~4,752 ac
 - Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~4,651 ac
+- SCULL SHOALS ·  · BdyDesg_LSRS_SpecialInterestManagementArea (forest, state GIS table) · ~4,487 ac
 - CHATTAHOOCHEE FALL LINE WMA - VPA TRACTS ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~4,414 ac
 - Natural Area Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~4,387 ac
 - CHATTAHOOCHEE FALL LINE WMA - VPA TRACTS ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~4,228 ac
@@ -89,5 +85,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Camp Thunder Voluntary Public Access · PCON · Georgia Department of Natural Resources · ~1,623 ac
 - STANDING BOY CREEK WMA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,622 ac
 - Satilla River Forest · SCA · Board of Regents · ~1,602 ac
-- CHATTAHOOCHEE FALL LINE WMA - BLACKJACK CROSSING ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,599 ac
-- Flat Tub Wildlife Management Area / Broxton Rocks Mitigation Bank · SCA · Georgia Department of Natural Resources · ~1,595 ac

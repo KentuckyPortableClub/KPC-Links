@@ -1,11 +1,14 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **89 of 102** parks joined to official land (same name + same kind of place). **2** to check by hand, **4** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **88 of 102** parks joined to official land (same name + same kind of place). **5** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-6409** Waimea State Recreation Area (State Recreation Area) → Waimea Canyon State Park (~1,845 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece); WAIMEA CANYON STATE PARK (~1,802 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece); WAIMEA CANYON STATE PARK (~1,802 ac, held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece)
-- **US-6410** Iao Valley State Preserve (State Preserve) → IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name); IAO VALLEY STATE MONUMENT (~6 ac, similar name)
+- **US-0119** Hawaiian Islands National Wildlife Refuge (National Wildlife Refuge) → Hawaiian Islands National Wildlife Refuge (~256,105 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline)); Hawaiian Islands National Wildlife Refuge (~182,872 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline))
+- **US-10914** Ka‘ena Point State Trail (State Trail) → KAENA POINT STATE PARK (~1,508 ac, record also joined to US-2212 whose kind it names); KAENA POINT STATE PARK (~1,509 ac, record also joined to US-2212 whose kind it names); KAENA POINT STATE PARK (~1,509 ac, record also joined to US-2212 whose kind it names); KAENA POINT FOREST RESERVE (~560 ac, similar name); State Department of Land State Resource Management Area (~249,706 ac, the POTA pin is inside it (different name)); Kaena Point State Park (~1,138 ac, a person said NO to this record (overrides.json no: the closest official land; bigger or a different shape than the park (hand revie))
+- **US-6409** Waimea State Recreation Area (State Recreation Area) → Waimea Athletic Field (~13 ac, similar name); Waimea River Park (~5 ac, similar name); WAIMEA STATE RECREATION PIER (~1 ac, similar name); Waimea State Recreation Pier (~2 ac, a person said NO to this record (overrides.json no: Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 1-ac Waimea)); WAIMEA STATE RECREATION PIER (~1 ac, a person said NO to this record (overrides.json no: Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 1-ac Waimea)); WAIMEA STATE RECREATION PIER (~1 ac, a person said NO to this record (overrides.json no: Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 1-ac Waimea))
+- **US-6410** Iao Valley State Preserve (State Preserve) → IAO VALLEY STATE MONUMENT (~6 ac, a person said NO to this record (overrides.json no: alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IA)); IAO VALLEY STATE MONUMENT (~6 ac, a person said NO to this record (overrides.json no: alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IA)); IAO VALLEY STATE MONUMENT (~6 ac, a person said NO to this record (overrides.json no: alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'IA))
+- **US-6426** Iolani Palace State Preserve (State Preserve) → IOLANI PALACE STATE MONUMENT (~11 ac, similar name); IOLANI PALACE STATE MONUMENT (~11 ac, similar name); IOLANI PALACE STATE MONUMENT (~11 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -19,7 +22,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-0119 Hawaiian Islands National Wildlife Refuge (National Wildlife Refuge)
 - US-10921 Hawaii Capital National Historic District (National Historic District)
 - US-10922 Marconi Wireless Telegraphy Station Kahuku National Historic Site (National Historic Site)
 - US-10923 Artillery District of Honolulu Historic Site (Historic Site)

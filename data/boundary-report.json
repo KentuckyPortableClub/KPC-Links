@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11632,
-   "far": 4079,
+   "matched": 11633,
+   "far": 4029,
    "noshape": 0,
-   "edge": 3968,
+   "edge": 3918,
    "out": 111,
    "swap": 0
   },
@@ -131,27 +131,27 @@
    },
    {
     "st": "GA",
-    "matched": 225,
-    "far": 63,
+    "matched": 226,
+    "far": 27,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 63
+    "edge": 27
    },
    {
     "st": "HI",
     "matched": 88,
-    "far": 32,
+    "far": 19,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 32
+    "edge": 19
    },
    {
     "st": "IA",
@@ -480,14 +480,14 @@
    {
     "st": "SC",
     "matched": 160,
-    "far": 84,
+    "far": 83,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 84
+    "edge": 83
    },
    {
     "st": "SD",
