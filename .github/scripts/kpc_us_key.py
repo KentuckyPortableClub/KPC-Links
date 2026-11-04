@@ -969,6 +969,70 @@ def _share_inside(a, b, n=24):
 def _no_all(ov, a):   # KPC_NO_ALL_PATHS: True when a person ruled this record out (id, exact name, or with KPC_NO_BY_NAME the saved name)
     return _kr('KPC_NO_ALL_PATHS') and KR.is_no(ov, _oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
 
+# Nov 3 (Mapping, answer sheet: inbox 2026-11-03-answer-sheet/DESIGN.md, remade after Quality's grade R1-R4): KPC-Data
+# data/answer-sheet/US.csv ties a park to its official record (layer + record id + key id + fp [name, acres] + the agency's unit id).
+# READ ONLY: this engine never writes it.  KPC_ANSWER_SHEET = off (default: today's behaviour) | add (YES rows join like hand
+# joins) | first (a park with YES rows takes ONLY them + its overrides joins; the builder's own guesses for it go to 'check').
+# Precedence: overrides 'no' (id OR name) > overrides 'join' > YES sheet rows > the builder's guessing. Status words are the shared
+# list in kpc_answer_words.py (YES / NO / PIN / FIXED / NOT SURE). A row in NOT SURE / PIN / FIXED / any unknown word, a bad cell,
+# or a YES row whose record vanished or changed is a NOT SURE question: the park never falls back to a guess. A person answers it
+# in an inbox batch (Quality then writes YES or NO on the row); a NO row is enforced like an overrides 'no' for that record id
+# (R5, Quality grade Nov 3: before, a typed NO was skipped and the builder's own name match could still join that record).
+SHEET_MODE = (os.environ.get('KPC_ANSWER_SHEET') or 'off').strip().lower()
+SHEET, SHEET_GREEN, SHEET_STAT, SHEET_NO = {}, False, {}, {}
+def _sst(k): SHEET_STAT[k] = SHEET_STAT.get(k, 0) + 1
+def _sheet_rows(path, appr, who, chk):
+    """One row at a time (R3): a bad row becomes NOT SURE for its park, never switches the whole sheet off."""
+    import csv as _csv, kpc_answer_words as AW
+    out = {}
+    for _r in _csv.DictReader(open(path, encoding='utf-8')):
+        ref, kid = (_r.get('ref') or '').strip(), str(_r.get('key_id') or '').strip()
+        if not ref or not kid: _sst('no key id (layer not read here)'); continue
+        u = AW.use(_r.get('status'))
+        if not AW.word(_r.get('status'))[1]: _sst('unknown status word: NOT SURE')
+        if u == 'proposed': _sst('proposed (not used)'); continue
+        fp = AW.fp_cell(_r.get('fp'))
+        if u == 'ignore':   # R5 (Quality, Nov 3 re-cut): a typed NO is ENFORCED as an overrides-style 'no' for that record id (+ its fp)
+            SHEET_NO.setdefault(ref, {})[kid] = list(fp) if fp and fp[0] else None; _sst('NO (enforced as a no for that record)'); continue
+        st = 'NOT SURE'
+        if fp is None: _sst('bad fp cell: NOT SURE'); fp = ('', None)
+        elif u == 'join':
+            if appr == 'B' and not AW.signed_off(_r.get('approved_by'), _r.get('approved_date'), who):
+                _sst('YES without a person sign-off + date (option B): not used'); continue
+            st = 'NOT SURE' if (chk.get(f'{ref}|{kid}') or {}).get('state', '') in ('VANISHED', 'CHANGED') else 'OK'
+        out.setdefault(ref, []).append({'id': kid, 'fp': [fp[0], fp[1]], 'st': st}); _sst(st.lower())
+    return out
+def _sheet_no_into(ovr, sno):
+    """R5: a sheet NO row becomes a 'no' (+ 'nofp' when its fp cell has a name and acres) for that park, IN MEMORY only (this engine
+    never writes overrides.json), so every 'no' path - the m filter, drop_no, alias, kept-outline, the sheet's own R4 - sees it."""
+    for _ref, _ids in sno.items():
+        _o = dict(ovr.get(_ref) or {}); _have = {str(x) for x in _o.get('no', [])}
+        _o['no'] = list(_o.get('no', [])) + [i for i in sorted(_ids) if i not in _have]
+        _nf_ = {i: v for i, v in _ids.items() if v and v[1]}
+        if _nf_: _o['nofp'] = {**_nf_, **(_o.get('nofp') or {})}
+        ovr[_ref] = _o
+if SHEET_MODE in ('add', 'first'):
+    try:
+        import datetime as _dt, kpc_answer_words as _AW
+        _appr = (os.environ.get('KPC_SHEET_APPROVAL') or 'B').strip().upper()   # A: Quality's YES alone; B (default): + a person's sign-off
+        _who = _AW.persons(os.environ.get('KPC_SHEET_PERSONS'))
+        _chk = {}
+        try:   # the nightly vanished/changed check (KPC-Data kpc_answer_sheet_check.py): green AND under 36 h old = hand-join protection
+            _cj = json.load(open(os.environ.get('ANSWER_SHEET_CHECK') or 'data/answer-sheet/check/US.json', encoding='utf-8'))
+            _age = time.time() - _dt.datetime.fromisoformat(str(_cj.get('built')).replace('Z', '+00:00')).timestamp()
+            SHEET_GREEN = _cj.get('green') is True and 0 <= _age < 36 * 3600
+            _chk = _cj.get('rows') or {}
+        except Exception: SHEET_GREEN = False  # noqa: BLE001
+        SHEET = _sheet_rows(os.environ.get('ANSWER_SHEET_FILE') or 'data/answer-sheet/US.csv', _appr, _who, _chk)
+        _sheet_no_into(OVR, SHEET_NO)
+        notice('Answer sheet', f"mode {SHEET_MODE}, approval {_appr}, nightly check {'green' if SHEET_GREEN else 'NOT green: rows join without hand-join protection'}: {SHEET_STAT}")
+    except Exception as e:  # noqa: BLE001  (no sheet file / no module: today's behaviour, said once)
+        SHEET = {}; notice('Answer sheet', f"not read ({str(e)[:120]}); today's behaviour")
+def _sheet_no(ov, a):
+    """R4: overrides 'no' always beats the sheet, by id OR by exact name, even with KPC_NO_ALL_PATHS switched off."""
+    nos = {str(x) for x in ov.get('no', [])}
+    return _oid(a) in nos or _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') in {_nf(x) for x in nos} or _no_all(ov, a)
+
 
 DBG = set((os.environ.get('DEBUG_REFS') or '').split())   # Oct 29 (chat 2): trace these parks through every step (a debug run saves nothing)
 def dbg(ref, stage, x):
@@ -1141,6 +1205,32 @@ def run(st):
                         # tag, so Rule G (G-1 / R-G8) still held it although a person said YES. A hand join now marks it reviewed.
                         if _was is not None: _was[3] = _how
                         else: m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _how])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
+        _sct, _sfirst = [], False   # Nov 3 answer sheet (read only; nothing here runs unless KPC_ANSWER_SHEET is add / first)
+        if SHEET and SHEET.get(ref) and not ov.get('none'):
+            _sno = {str(x) for x in ov.get('no', [])}
+            _sby = {_oid(a): a for a in recs}
+            _stag = 'reviewed-sheet' if SHEET_GREEN else 'answer sheet (nightly check not green)'
+            _spre = {re.match(r'\D*', k).group() for k in _sby}   # the record-id families (PAD-US numbers, 'sgvta'...) this run read
+            for _s in SHEET[ref]:
+                if _s['id'] in _sno: continue                                  # 1. overrides 'no' always wins
+                fn, fa = _s['fp']
+                a = _sby.get(_s['id'])
+                if a is None and _s['st'] == 'OK' and re.match(r'\D*', _s['id']).group() not in _spre: continue   # a layer this builder does not read: not its question
+                if a is None and fn and fa is not None:   # id reset: the SAME fingerprint as overrides.json 'fp' (name + acres within 10%, near the pin)
+                    _h = [b for b in recs if _nf(b.get('Unit_Nm') or b.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, b['_bb'], .6))
+                          and re.match(r'\D*', _oid(b)).group() == re.match(r'\D*', _s['id']).group()   # same layer only (Elkhorn / wsa205; was in step 3)
+                          and abs(float(b.get('GIS_Acres') or 0) - fa) <= max(20, .1 * fa)]
+                    a = _h[0] if len(_h) == 1 else None
+                if a is not None and _sheet_no(ov, a): continue                # 1. a NO by id or name beats the sheet (R4)
+                nm = (a.get('Unit_Nm') or a.get('Loc_Nm') or '') if a is not None else ''
+                if (_s['st'] != 'OK' or a is None or not fn or _nf(nm) != _nf(fn)
+                        or (la is not None and not near(la, lo, a['_bb'], .6))):
+                    _sct.append([_s['id'], fn or nm, fa, 'NOT SURE (answer sheet): the record is marked NOT SURE / PIN / FIXED, or it is gone, renamed or moved; a person answers YES or NO in an inbox batch, no guess']); continue
+                _was = next((x for x in m if str(x[0]) == _oid(a)), None)
+                if _was is not None:
+                    if not str(_was[3]).startswith('reviewed'): _was[3] = _stag   # 2. an overrides join keeps its own tag
+                else: m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _stag])
+            _sfirst = SHEET_MODE == 'first' and any(str(x[3]) == _stag for x in m)
         # Oct 29 (chat 8's name-mismatch list, Brandon 'help the boundaries'): 'alias' = another name the official layer uses for this
         # park. An alias joins ONLY with the sure-match test: same name as the alias AND the POTA pin inside that record's outline
         # 'alias_all' = a name PREFIX for a park the layer splits into units (Whitewater WMA: Main Branch Unit, …): when one of
@@ -1229,6 +1319,13 @@ def run(st):
                     if hold and not any(_tags(name) and _tags(x[1]) and not (_tags(name) & _tags(x[1])) for x in hold):   # a memorial is never the refuge
                         m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name) + pin inside'] for x in hold]
                         c = [x for x in c if x not in hold]; site = []
+        if _sct or _sfirst:   # Nov 3 answer sheet: 4. the builder's own guesses never stand in for a sheet row
+            _keep = lambda x: str(x[3]).startswith(('reviewed', 'answer sheet'))
+            _why = "held: the park's answer-sheet record is NOT SURE" if _sct else 'not on the answer sheet (KPC_ANSWER_SHEET=first): check'
+            _sids = {str(y[0]) for y in _sct}
+            c = [x for x in c if str(x[0]) not in _sids] + [x[:3] + [_why] for x in m if not _keep(x) and str(x[0]) not in _sids]
+            m = [x for x in m if _keep(x)]
+            if _sct: c = _sct + c; site = []
         # Oct 27 (Fable's boundary review #4, HQ GO): two different places with the same name and kind within reach of the pin
         # must not become ONE park. Joined records are grouped into places (pieces that link up are one place). A far place
         # (further than twice its own size and over ~10 km) that holds ANOTHER POTA park's pin with the same name belongs to
