@@ -826,16 +826,37 @@ KNOWN_LIVE = {('US-0050', 'US-10105'): 'Mammoth Cave x Green River Wild River: B
 OWNED_FAIL = set()
 CA_WATER = None     # Fable #9: an official Canadian water service (NRCan National Hydro Network) once the probe finds one
 CACHE_TILES = 600   # Oct 27 (Fable #8): tiles kept in memory before the far ones are dropped
+# Nov 4 PM fix bundle item 4 (Brandon's yes relayed via Super Head Bot 4:53 PM CST; the Southeast worker was shut down near
+# 12.5 GB in pass 5's water re-check of 365 spots): pass 5 never dropped a cached tile, so every saved water tile of the area
+# (3 m detail) stayed in memory. Pass 5 now streams the spots tile by tile (sorted by place) and drops the far tiles before each
+# spot like pass 3 does; the caches are ALSO dropped when the process passes KPC_FERS_MEM_MB (default 5000 MB; a GitHub runner
+# has 16 GB). Only memory changes: the same tiles are read again from the saved copy (bundle/water) when needed, so the answers
+# do not change.
+MEM_MB = float(os.environ.get('KPC_FERS_MEM_MB') or 5000)
+
+
+def rss_mb():
+    """This process's memory now (Linux /proc), in MB; 0 when it cannot be read."""
+    try: return int(open('/proc/self/statm').read().split()[1]) * os.sysconf('SC_PAGE_SIZE') / 1048576.0
+    except Exception: return 0.0  # noqa: BLE001
 
 
 def evict(box):
-    """Keep the cached ownership / water tiles near box (1 degree around); drop the rest when the caches grow big."""
+    """Keep the cached ownership / water tiles near box (1 degree around); drop the rest when the caches grow big, or when
+    the process passes MEM_MB (then only the tiles of box itself are kept)."""
     if not box: return
     n = KO.tiles_cached() + len(NHDC)
-    if n <= CACHE_TILES: return
-    near = lambda x0, y0, sz: inter(box, [x0 * sz, y0 * sz, (x0 + 1) * sz, (y0 + 1) * sz], 1.0) is not None
+    big = MEM_MB > 0 and rss_mb() > MEM_MB
+    if n <= CACHE_TILES and not big: return
+    m = 0.0 if big else 1.0
+    near = lambda x0, y0, sz: inter(box, [x0 * sz, y0 * sz, (x0 + 1) * sz, (y0 + 1) * sz], m) is not None
     KO.evict(near)
     for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]   # keys (i, j) and (i, j, 'd')
+    if big:
+        import gc; gc.collect(); EVICT_N['memory'] += 1
+
+
+EVICT_N = {'memory': 0}
 
 
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer'
@@ -2878,10 +2899,14 @@ def main():
             if not b or not WATER_STORE: return False
             return all(_wpath(i, j).exists() for i in range(int(math.floor((b[0] - pad) / .1)), int(math.floor((b[2] + pad) / .1)) + 1)
                        for j in range(int(math.floor((b[1] - pad) / .1)), int(math.floor((b[3] + pad) / .1)) + 1))
-        cand.sort(key=lambda x: 0 if _saved_all(x) else 1)
+        # Nov 4 PM fix bundle item 4: saved-first as before, then by place (0.5-degree cells, west to east), so the water tiles are
+        # read once per place and the far ones are dropped before each spot (evict), not all kept to the end
+        _cell = lambda x: (lambda b: (int(math.floor(b[1] / .5)), int(math.floor(b[0] / .5))) if b else (0, 0))(sbox(x))
+        cand.sort(key=lambda x: (0 if _saved_all(x) else 1,) + _cell(x))
         for x in cand:
             if late(): break
             if any(r not in G for r in x['refs']): continue
+            evict(sbox(x))
             WATER_MARK.clear()
             try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
             except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -2916,6 +2941,7 @@ def main():
             ow = {owner_word(park_owner(r, parks)) for r in x['refs']} - {'', '?'}
             x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
+                evict(sbox(x))
                 try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
                 except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
         # Oct 28 (HQ 12:28 PM): rows the water map did not answer for are re-checked once more at the end, after a pause
@@ -2924,6 +2950,7 @@ def main():
             pass   # Oct 28 6:57 PM: no waiting on a down server (the saved / bulk tiles are read first; a missing one stays NOT SURE)
             for x in again:
                 if late(): break
+                evict(sbox(x))
                 WATER_MARK.clear()
                 try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
                 except Exception as e: lc = 'not checked'; LOG.append(f"water again {x['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -2935,6 +2962,7 @@ def main():
                     n['still not checked'] -= 1
             n['re-checked at the end'] = len(again)
         n['water retries (won / tries)'] = f"{WATER_RETRY['won']} / {WATER_RETRY['tries']}"
+        n['memory (MB now / cap; caches dropped for memory)'] = f"{rss_mb():.0f} / {MEM_MB:.0f}; {EVICT_N['memory']}"
         mark(f'water re-check of {len(cand)} spots + {len(same)} same-land rows')
         # Oct 28 11 PM (Fable's 'store not read' check found DE 43, VA 13, PA 1 rows): a water-route row made while the water was missing
         # is a PLACEHOLDER (water_unchecked) that no later pass made again; once its tiles are saved it is made again HERE and decided
