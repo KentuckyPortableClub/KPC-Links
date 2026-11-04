@@ -141,12 +141,15 @@ SRC['CL'] = [('Chile SIMBIO protected areas (MMA)', 'arcgis', 'https://arcgis.mm
              ('Chile SIMBIO protected areas, layer 2 (MMA)', 'arcgis', 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2')]
 # Oct 30 (chat 2, Brandon 9:48 'Yes'): approved world layers (chat 11 YES / chat 10 AUTO-2), wired by kpc_key_layers.py (BOT W)
 # into data/world-key/extra-layers.json {CC: [{label, url, where?}]}; ArcGIS layers only, a URL already listed above is skipped.
+EXTRA_URLS = {}   # Nov 4 PM fix bundle (item 6): (CC, url lower) -> the url as listed in SRC, for the layers added from extra-layers.json
 try:
     for _cc, _ls in (json.load(open('data/world-key/extra-layers.json')).get('countries') or {}).items():
         _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
         for _l in _ls:
             _u = str(_l.get('url') or '').rstrip('/')
-            if _u and _u.lower() not in _have: SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
+            if _u and _u.lower() not in _have:
+                SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
+                EXTRA_URLS[(_cc, _u.lower())] = _u
 except FileNotFoundError: pass
 except Exception as _e: print(f'::notice title=World key::extra-layers.json not read: {_e}', flush=True)  # noqa: BLE001
 # Nov 1 (chat 2, Brandon's filled sheet KPC_World_Keys_filled.xlsx): countries whose official ArcGIS layer Brandon found, in
@@ -160,6 +163,16 @@ for _cc, _v in SHEET.items():
     _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
     for _l in _v.get('layers') or []:
         _u = str(_l.get('url') or '').rstrip('/')
+        # Nov 4 PM fix bundle (item 6; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): BOT W wired 35 of the sheet's own
+        # layers into extra-layers.json on Nov 2, so the sheet layer was skipped as 'already listed' and its park-name field (namef)
+        # and type field were lost. Where the name field is not a *name* field (BS AREANAM, CV designacao, NC NOM, BW Label) every
+        # park became a pin (the Nov 4 world build: BS 23 -> 0, CV 29 -> 0, NC 19 -> 0, BW 6 -> 0 joined). The sheet's namef now
+        # applies to the same layer when extra-layers.json listed it first (the layer is read once, as before).
+        _same = EXTRA_URLS.get((_cc, _u.lower())) if _u else None
+        if _same:
+            SHEET_URLS.add(_same)
+            if _l.get('namef'): LAYER_NAMEF.setdefault(_same, _l['namef'])   # one entry per url (shared FWS / NPS layers: first stays)
+            continue
         if not _u or _u.lower() in _have: continue
         SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or _v.get('country') or _cc)[:90], 'arcgis', _u)]
         SHEET_URLS.add(_u)
