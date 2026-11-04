@@ -55,8 +55,8 @@ def test_tract_exception_list_and_grouping():
         assert t['approved_by'] and t['approved'] and t['build']
         assert 'Salinas Pueblo Missions National Monument' in KR.tract_note(t) and tr in KR.tract_note(t)
     assert KR.tract_entry('US-0001') is None
-    assert KR.tract_label(KR.tract_entry('US-0961')) == 'Salinas Pueblo Missions NM, Gran Quivira tract (NPS boundary piece)'
-    assert KR.tract_note(KR.tract_entry('US-11813')).startswith('Salinas Pueblo Missions NM, Abo tract (NPS boundary piece).')
+    assert KR.tract_label(KR.tract_entry('US-0961')) == 'Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)'
+    assert KR.tract_note(KR.tract_entry('US-11813')).startswith('Salinas Pueblo Missions NM, Abo tract (PAD-US fee piece).')
     # an overrides 'tract' entry needs a person's name; without one it is ignored
     assert KR.tract_entry('US-0001', {'tract': {'record': 'X', 'tract': 'Y'}}) is None
     assert KR.tract_entry('US-0001', {'tract': {'record': 'X', 'tract': 'Y', 'approved_by': 'Brandon'}})['tract'] == 'Y'

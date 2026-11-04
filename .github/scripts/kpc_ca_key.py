@@ -12,6 +12,10 @@ SVC = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer
 OUT = pathlib.Path('data/ca-key'); OUT.mkdir(parents=True, exist_ok=True)
 UA = 'KPC (kentuckyportableclub.github.io)'
 import gzip
+# Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_host_pace  # noqa: E402
+kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
 # before) | use | refresh | only (no network). All of Canada is read at once, so it is saved as ONE file.
@@ -190,7 +194,19 @@ def rec_oid(a, li):
     return a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
 # area_ha: the agency's own area when the record has one, so acres do not come from the 0.02 degree (about 2 km) saved shape
 #   (Brookvale 1,339 vs 2,628 ac; Burnt Cape 485 vs 897). Only fields whose unit is certain; DFRP land_area is hectares.
-_HA = [('o_area_ha', 1), ('area_ha', 1), ('hectares', 1), ('superficie_ha', 1), ('superficie_km2', 100), ('area_km2', 100)]
+# Nov 3 addendum (CA-2359, Quality spot-check): 'ha_legal' = MELCCFP Aires protégées 'Superficie (ha)' (legal hectares).
+_HA = [('o_area_ha', 1), ('area_ha', 1), ('hectares', 1), ('superficie_ha', 1), ('ha_legal', 1), ('superficie_km2', 100), ('area_km2', 100)]
+def area_fields(li):
+    """The layer's own area fields (names from _HA), to ask for with the name fields."""
+    want = {f for f, _ in _HA}
+    return [f['name'] for f in (li or {}).get('fields', []) if str(f.get('name', '')).lower() in want]
+def rec_ha(a, li, url=''):
+    """Nov 3 addendum (CA-2359: key 1,891 ac vs ZEC Z-031D 0.52 km2 = 52 ha): the agency's area of a record read by arc_pull.
+    arc_pull set 'ha': 0 for every record, so acres came from the 0.02-degree (about 2 km) saved shape, which blows a narrow
+    river strip (a salmon ZEC) up many times. Québec's MRNF MapServer answers with field ALIASES as keys ('Superficie (km2)'),
+    so the aliases are mapped back to the field names first."""
+    al = {str(f.get('alias') or ''): f['name'] for f in (li or {}).get('fields', []) if f.get('alias') and f.get('name')}
+    return area_ha({al.get(k, k): v for k, v in (a or {}).items()}, url)
 def area_ha(a, url=''):
     low = {str(k).lower(): v for k, v in (a or {}).items()}
     for f, mul in _HA + ([('land_area', 1)] if 'DFRP' in str(url) else []):
@@ -236,7 +252,7 @@ if recs is not None and CMODE == 'use':
                         # Nov 2 evening: was 'no OBJECTID -> skip', which dropped all 21 Québec réserves fauniques (QC 440 -> 427)
                         _ov = rec_oid(_a, _li)
                         _lab = f'{_p} (live top-up)'
-                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': area_ha(_a, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
+                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': rec_ha(_a, _li, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
                         _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); recs.append(_r); _got += 1
                     time.sleep(.4)
                 _msg.append(f'{_p}: {_got - _n0}')
@@ -323,7 +339,7 @@ if recs is None:
             while True:
                 try:
                     if ids is None:
-                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names + [f for f in area_fields(li) if f not in names]), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
                                                 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
                     else:
                         if off >= len(ids): break
@@ -340,7 +356,7 @@ if recs is None:
                     a = f.get('attributes') or {}; g = f.get('geometry') or {}
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
                     if not nm: continue
-                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': rec_ha(a, li, lu), '_g': g, '_bb': bbox(g), 'src': label}
                     r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                     got.append(r)
                 if ids is not None: off += 100; time.sleep(.4); continue
@@ -470,6 +486,19 @@ if recs is None:
             for r in saved:
                 r['oid'] = pids[0] + ':' + str(r.get('oid', '')).split(':', 1)[-1]; recs.append(r); topped += 1
         if topped: notice('Canada key', f'{topped} areas of layers that did not answer this run were taken from the saved copy ({", ".join(sorted(ERRLAB))[:200]})')
+        # Nov 3 step 3 (Quality drops-27: the 13 Québec réserves fauniques are still pins in CA-41635613151; the MRNF layer answers
+        # today, so the read failed in the run): a refresh run has no saved copy on disk, so a layer that did not answer simply
+        # vanished, counted but never named. Each such layer is now named, with the parks that lose an outline because of it.
+        _lost = sorted(lab for lab in ERRLAB if lab not in have and not any(r.get('src') == lab for r in recs))
+        if _lost:
+            _was = []
+            for _pv in PROVS:
+                try: _pk = json.load(open(OUT / f'CA-{_pv}.json')).get('parks') or {}
+                except Exception: continue  # noqa: BLE001
+                _pre = {v for (l2, _u), v in _PID.items() if l2 in _lost}
+                _was += [r for r, q in _pk.items() if any(str(x[0]).split(':', 1)[0] in _pre for x in q.get('m') or [])]
+            notice('Canada key', f"{len(_lost)} layers did not answer and there is no saved copy in this mode ({CMODE}): " + ' | '.join(_lost)[:300]
+                   + (f"; parks joined to them in the last key, now likely pins until the next good read: {', '.join(sorted(_was)[:30])}" if _was else ''))
         if CMODE in ('use', 'refresh') and not topped: csave(recs)
 # Oct 26 (gap hunt, HQ): POTA's 'New Brunswick #24 Wildlife Management Area' parks are New Brunswick's numbered WILDLIFE
 # MANAGEMENT ZONES (OpenData/WMZ, one number field, 27 zones). A probe found 23 of the 25 pins inside the zone of their own
@@ -671,6 +700,13 @@ for pv, parks_in in sorted(by.items()):
             if c and all(q[3].startswith('the POTA pin is inside') for q in c):
                 site = sorted((q for q in c if not re.search(r'buffer zone|closure|\bsfa\b|marine refuge|fishing area|fishery', q[1], re.I)), key=lambda q: q[2])[:2]; c = []
         if ov.get('none'): c = []   # a person looked: no official outline for this park
+        # Nov 3 (rules sort §9 conflict 2; proposed rule 21: "a no means the record never joins that park on any build path"): the
+        # 'no' list was only applied to the name joins above, so a hand join written by name, the hard-look YES, an alias or the
+        # check list could still bring a NO'd record back. Applied last, to every list, by id or exact name.
+        if ov.get('no'):
+            _no = {str(q) for q in ov['no']}; _non = {_nf(q) for q in ov['no']}
+            _isno = lambda q: str(q[0]) in _no or _nf(q[1]) in _non
+            m = [q for q in m if not _isno(q)]; c = [q for q in c if not _isno(q)]; site = [q for q in site if not _isno(q)]
         used.update(q[0] for q in m)
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda q: -q[2]), 'c': c}
         if site: parks[ref]['a'] = site

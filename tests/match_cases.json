@@ -334,6 +334,26 @@
    "b": "Salinas Pueblo Missions National Monument",
    "same": false,
    "why": "batch 1b: the piece test alone (the whole monument does not name Quarai); the tract exception, not the name, gives Quarai its outline."
+  },
+  {
+   "a": "Porcupine Hills Public Land Use Zone",
+   "b": "Porcupine Hills",
+   "layer": "Alberta Public Land Use Zones",
+   "same": true,
+   "why": "Nov 3 step 3 (CA-6125): 'zone' is the AB PLUZ layer's own type, not a piece."
+  },
+  {
+   "a": "Porcupine Hills Public Land Use Zone",
+   "b": "Porcupine Hills",
+   "same": true,
+   "why": "Nov 3 step 3: 'Land Use Zone' is a kind of place, not a piece called 'use'."
+  },
+  {
+   "a": "Las Palomas WMA Anacua Unit",
+   "b": "Las Palomas WMA",
+   "layer": "Wildlife Management Units",
+   "same": false,
+   "why": "Nov 3 step 3: a named unit stays a piece even on a layer whose type word is 'units'."
   }
  ]
 }

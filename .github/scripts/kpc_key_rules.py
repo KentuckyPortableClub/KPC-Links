@@ -91,7 +91,14 @@ def is_no(ov, oid, name=None, acres=None, by_name=None):
     n = nf(name)
     if n in {nf(x) for x in (ov.get('no') or [])}: return True
     if by_name if by_name is not None else on('KPC_NO_BY_NAME'):
-        for v in (ov.get('nofp') or {}).values():
+        # Nov 3 step 3 (US-7896 Standing Boy Creek SP: a NO on PAD-US 195158 also knocked out the state's own record sggab59, the
+        # one a person joined, because both carry the same name and about the same acres): a NO fingerprint stands for a
+        # renumbered copy of the SAME layer's record (the same id family: PAD-US numbers, 'sgga', 'wsa' ...), never another
+        # layer's record, and never a record a person joined by its id.
+        if str(oid) in {str(x) for x in (ov.get('join') or [])}: return False
+        fam = re.match(r'\D*', str(oid)).group()
+        for k, v in (ov.get('nofp') or {}).items():
+            if re.match(r'\D*', str(k)).group() != fam: continue
             if v and nf(v[0]) == n and _acres_close(acres, v[1] if len(v) > 1 else None): return True
     return False
 
@@ -230,7 +237,8 @@ def _close5(a, b):
 _PIECE = r'(?:sub ?unit|unit|tract|parcel|zone|division)'
 _PIECE_SKIP = {'the', 'of', 'a', 'an', 'sub', 'state', 'national', 'wildlife', 'management', 'area', 'park', 'forest', 'refuge',
                'blm', 'recreation', 'special', 'wma',
-               'forever', 'wild'}   # batch 1b (Quality): Alabama's 'Forever Wild Tract' is a program name, not a piece (US-12740, US-13081)
+               'forever', 'wild',
+               'use'}   # Nov 3 step 3: 'Public Land USE Zone' (Alberta PLUZ, CA-6125) is a kind of place, not a piece called 'use'   # batch 1b (Quality): Alabama's 'Forever Wild Tract' is a program name, not a piece (US-12740, US-13081)
 _COMPASS = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west', 'ne': 'northeast', 'nw': 'northwest', 'se': 'southeast', 'sw': 'southwest'}
 _PIECE_WORD = re.compile(_PIECE)
 
@@ -255,13 +263,18 @@ def _plain_words(t):
     return _compass(re.findall(r'[a-z0-9]+', t))
 
 
-def piece_words(park_name):
+def piece_words(park_name, layer=''):
     """The words that name a piece in a POTA name: 'Abo' in 'Salinas Pueblo Missions, Abo Unit National Monument', 'Hilliard'
-    in '... Hilliard Tract WMA', '2' in '... Unit 2'. Empty when the name names no piece."""
+    in '... Hilliard Tract WMA', '2' in '... Unit 2'. Empty when the name names no piece.
+    Nov 3 step 3 (Quality, CA-6125 Porcupine Hills PLUZ / NV herd areas): `layer` = the record layer's own label ('Public Land
+    Use Zones', 'Wildlife Management Units'). A piece word that is part of the layer's own type ('zone' on a land-use-ZONE layer)
+    says what KIND of place every record there is, not which piece: it is skipped."""
     w = _plain_words(park_name)
+    lw = {x.rstrip('s') for x in _plain_words(layer)} if layer else set()
     out = set()
     for i, x in enumerate(w):
         if not re.fullmatch(_PIECE, x) and not (x == 'sub' and i + 1 < len(w) and w[i + 1] == 'unit'): continue
+        if x in lw and i >= 1 and w[i - 1].rstrip('s') in lw: continue   # the layer's own type PHRASE ('land use zone'), not a piece; 'Anacua Unit' on a 'Management Units' layer is still a piece
         if x == 'sub': continue
         j = i - 1
         if j >= 0 and w[j] == 'sub': j -= 1
@@ -279,10 +292,10 @@ def _ed1(a, b):
     return any(a == b[:i] + b[i + 1:] for i in range(len(b)))
 
 
-def piece_ok(park_name, rec_name, rec_name2=None):
+def piece_ok(park_name, rec_name, rec_name2=None, layer=''):
     """(ok, why). ok unless the park names a piece and the record carries none of that piece's own words (a one-letter
-    spelling difference in a long word counts: 'Dimmitt' / 'Dimmit')."""
-    pw = piece_words(park_name)
+    spelling difference in a long word counts: 'Dimmitt' / 'Dimmit'). `layer`: see piece_words."""
+    pw = piece_words(park_name, layer)
     if not pw: return True, ''
     have = set(_plain_words(rec_name)) | set(_plain_words(rec_name2))
     miss = [p for p in sorted(pw) if p not in have and not (not p.isdigit() and any(_ed1(p, h) for h in have))]
@@ -300,15 +313,15 @@ _SAPU = {'record': 'Salinas Pueblo Missions National Monument', 'park': 'Salinas
          'approved_by': 'Brandon (via Super Head Bot)', 'approved': '2026-11-02 8:38 PM CST',
          'build': 'KPC-Links 635d37f / KPC-Data c12914e7 (batch 1b, re-based); first built on KPC-Links 688c152 / KPC-Data 8fb4237b; Quality research read the key at KPC-Data 8a9d04f7',
          'source': 'NPS Land Resources Division boundary + tracts (SAPU) and USGS PAD-US 4.1 Fee'}
-TRACT_SPLITS = {   # 'label' = the plain label Brandon asked for (8:38 PM CST): POTA's unit name + "tract (NPS boundary piece)"
-    'US-11813': dict(_SAPU, tract='Abo', label='Salinas Pueblo Missions NM, Abo tract (NPS boundary piece)'),
-    'US-11814': dict(_SAPU, tract='Quarai', label='Salinas Pueblo Missions NM, Quarai tract (NPS boundary piece)'),
-    'US-0961': dict(_SAPU, tract='Gran Quivira', label='Salinas Pueblo Missions NM, Gran Quivira tract (NPS boundary piece)'),
+TRACT_SPLITS = {   # 'label' = the plain label Brandon asked for (8:38 PM CST): POTA's unit name + "tract (PAD-US fee piece)" (Quality grade-1b, Nov 3: the outline is the PAD-US 4.1 Fee piece, not the NPS boundary)
+    'US-11813': dict(_SAPU, tract='Abo', label='Salinas Pueblo Missions NM, Abo tract (PAD-US fee piece)'),
+    'US-11814': dict(_SAPU, tract='Quarai', label='Salinas Pueblo Missions NM, Quarai tract (PAD-US fee piece)'),
+    'US-0961': dict(_SAPU, tract='Gran Quivira', label='Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)'),
 }
 
 
 def tract_label(t):
-    """The plain label shown for the tract outline, e.g. 'Salinas Pueblo Missions NM, Gran Quivira tract (NPS boundary piece)'."""
+    """The plain label shown for the tract outline, e.g. 'Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)'."""
     return t.get('label') or f"{t.get('park') or t.get('record')}, {t.get('tract')} tract (official boundary piece)"
 
 

@@ -1615,11 +1615,11 @@
   },
   "CA-2218": {
    "none": true,
-   "why": "a different place, not this park (hand review Oct 22) | Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2",
-   "join": [
+   "why": "a different place, not this park (hand review Oct 22) | Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2 | Nov 3: dropped to pin (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); on the ASK BRANDON list; no trim or join applied",
+   "no": [
+    "Québec Réser:n-Réserve faunique de Rimouski",
     "Réserve faunique de Rimouski"
-   ],
-   "atpin": true
+   ]
   },
   "CA-2220": {
    "join": [
@@ -2280,6 +2280,36 @@
     "Riverview Park"
    ],
    "why": "2026-11-03 12:26: question row YES (auto (T1 map-match STRONG); applied by kpc_ca_answers)"
+  },
+  "CA-2137": {
+   "join": [
+    "Québec prote:4336",
+    "Québec recog:4336",
+    "14578"
+   ],
+   "why": "PROPOSED Nov 3 2026 (Mapping addendum, for Quality to grade): same place, POTA misspells the name ('Lichtfield' for Lac-Litchfield). Québec register #4336 'Réserve naturelle des Milieux-Humides-du-Lac-Litchfield' 106.58 ha = CPCAD 14578 106.58 ha, LOC 11 Quebec; checked live on the official layers",
+   "when": "2026-11-03"
+  },
+  "CA-2007": {
+   "join": [
+    "Québec prote:4180",
+    "15849",
+    "15873"
+   ],
+   "why": "PROPOSED Nov 3 2026 (Mapping addendum, for Quality to grade): Québec register #4180 'Réserve marine de l'Estuaire-de-la-Rivière-Bonaventure' 180.4 ha = CPCAD 15849 (112.1 ha) + 15873 (68.3 ha), both LOC 11 Quebec; only the kind differs (marine reserve vs POTA 'Nature Reserve'); CPCAD Bonaventure look-alikes are other places (rule 18 checked)",
+   "when": "2026-11-03"
+  },
+  "CA-2227": {
+   "no": [
+    "Québec prote:2496",
+    "Québec recog:2496",
+    "Québec prote:5246",
+    "Québec recog:5246",
+    "Réserve naturelle de la Rivière-Malbaie (Conservation de la nature - Québec)",
+    "Réserve naturelle de la Rivière-Malbaie (Sec. SCCN / Par. Stallman)"
+   ],
+   "none": true,
+   "why": "Nov 3: dropped to pin (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); on the ASK BRANDON list; no trim or join applied"
   }
  }
 }

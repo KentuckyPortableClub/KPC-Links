@@ -15,6 +15,10 @@ import json, sys, os, re, time, unicodedata, urllib.parse, urllib.request, pathl
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist_ok=True)
 import gzip
+# Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_host_pace  # noqa: E402
+kpc_host_pace.install()
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
 
@@ -897,9 +901,13 @@ for cc in COUNTRIES:
         ov = WOV.get(ref) or {}
         if ov:
             no = {low(x) for x in ov.get('no', [])}
-            m = [q for q in m if low(q[1]) not in no]
+            # Nov 3 step 3 (proposed rule 21: "a no means the record never joins that park on any build path"): a 'no' written as a
+            # record id was not matched (names only), and a hand join by name could bring a NO'd record back. Both fixed.
+            _isno = lambda rid, rn: low(str(rid)) in no or low(rn) in no
+            m = [q for q in m if not _isno(q[0], q[1])]
             for want in ov.get('join', []):
                 for r in nearby(la, lo):
+                    if _isno(r['id'], r['n']): continue
                     if low(r['n']) == low(want) and (la is None or near(la, lo, r['_bb'], .6)) and not any(q[0] == r['id'] for q in m):
                         m.append([r['id'], r['n'], r['src'], 'reviewed'])
         pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []

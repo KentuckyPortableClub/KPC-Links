@@ -28,6 +28,15 @@ OVR, LEDGER, STATES = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY 
 PAD = 'edits.nationalmap.gov/arcgis/rest/services/pad-us/pad_us/mapserver/0'
 FWS = 'fwsinterest_simplified_authoritative/featureserver/0'
 DRY = '--dry' in sys.argv
+# Nov 3 (rules sort §9 conflict 1; proposed rule 21, accepted by Brandon Nov 3 11:44 AM CST: "only Brandon's decisions go in
+# overrides.json; a checker's per-record YES goes in the answer sheet"). KPC_ANSWERS_TO=sheet writes each new checker YES / NO
+# as a row of data/us-key/answers-for-sheet.csv (answer-sheet columns, status YES or NO, not signed) and leaves overrides.json
+# alone; Super moves the rows into KPC-Data data/answer-sheet/US.csv through a batch. Default 'overrides' = today's behaviour,
+# until the answer-sheet reader (kpc_us_key R1-R4) and the seed are merged; then flip the default here.
+TO = (os.environ.get('KPC_ANSWERS_TO') or 'overrides').strip().lower()
+SHEET_OUT = KEY / 'answers-for-sheet.csv'
+SHEET_COLS = ['ref', 'key_id', 'record_id', 'layer', 'record_name', 'fp', 'status', 'quality_yes', 'approved_by', 'approved_date',
+              'evidence', 'last_checked', 'seed_from', 'note']
 # Nov 2 (Brandon, before the 3:17 AM run): question files BOT A must NOT read. map-audit.json holds the map audit's answers, and
 # almost all of them are pattern answers ("pattern NEAR / SPILL / OUTSIDE ...", one verdict for a whole group of rows), not a
 # person's look at that row; its "NO ... PIN" means "show the pin until fixed", not "ban this record for ever". Applied here they
@@ -98,6 +107,27 @@ def st_of(row):
     return m.group(1) if m else ''
 
 
+_AUTO_RX = re.compile(r'\(auto\b|\bauto \(T1|checked_by.?auto', re.I)
+# Nov 3 addendum (Quality grade of the recut; Super relayed Brandon 7:11-7:12 PM CST, item 4): Mapping's own notes and calls are a
+# bot desk's, never a person's answer. Same pattern as kpc_precheck.DESK (a test keeps the two in step).
+DESK_RX = re.compile(r"\(Mapping(?:,|\)|'s\b| addendum\b| desk\b)|\bMapping, (?:Oct|Nov|Dec)\b|\bMapping's (?:own )?call\b|\bMapping addendum\b|^\s*Mapping[:,]|\bMapping desk\b")
+
+
+def is_bot_row(row):
+    """A bot's answer (auto T1 map-match and the like), not a person's."""
+    return bool(row.get('auto')) or str(row.get('checked_by') or '').strip().lower().startswith('auto')
+
+
+def has_person_answer(v):
+    """Nov 3 (Brandon, relayed by Super 6:52 PM CST, Q6): a person's answer always wins. True when the park's overrides entry
+    holds anything a person (or chat 11 / a hand review) decided: an entry with a 'why' note that is not only bot (auto) notes,
+    or a join / no / none / alias with no note at all. Mapping's own notes and calls (DESK_RX) never count as a person's."""
+    if not v: return False
+    notes = [x for x in str(v.get('why') or '').split(' · ') if x.strip()]
+    if notes: return any(not _AUTO_RX.search(x) and not DESK_RX.search(x) for x in notes)
+    return any(v.get(k) for k in ('join', 'no', 'none', 'alias', 'alias_all'))
+
+
 def main():
     D = data_dir()
     if D is None:
@@ -106,7 +136,7 @@ def main():
     ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
     led = load(LEDGER, {})
     today = dt.date.today().isoformat(); stamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M')
-    n_yes = n_no = n_alias = n_skip = n_same = n_none = 0; skipped = []; states = set(); touched = set()
+    n_yes = n_no = n_alias = n_skip = n_same = n_none = n_bot = 0; skipped = []; bot_held = []; states = set(); touched = set(); sheet_rows = {}
     # last answer wins: rows are read file by file (sorted), in file order; the latest row for a (file, ref, id) is the one applied
     skipped_files = []
     for f in sorted(glob.glob(str(D / 'data/waiting/questions/*.json'))):
@@ -124,9 +154,27 @@ def main():
             if not ans: continue                                     # NOT SURE / blank: nothing changes
             lk = f'{name}:{ref}:{kid}'
             if (led.get(lk) or {}).get('answer') == ans: n_same += 1; continue
-            v = P.setdefault(ref, {})
             nm = str(row.get('record_name') or '').strip()
             ac = row.get('acres') if row.get('acres') is not None else row.get('acres_approx')
+            if TO == 'sheet':
+                kind_alias = ans == 'YES' and str(row.get('kind') or '').lower() == 'alias'
+                sheet_rows[(ref, kid)] = {
+                    'ref': ref, 'key_id': kid, 'record_id': str(row.get('record')), 'layer': str(row.get('layer') or ''), 'record_name': nm,
+                    'fp': json.dumps([nm, round(float(ac)) if ac not in (None, '') else 0], ensure_ascii=False), 'status': ans,
+                    'quality_yes': f"{row.get('checked_by') or 'chat 11'} ({name}.json, {stamp})", 'approved_by': '', 'approved_date': '',
+                    'evidence': str(row.get('evidence') or row.get('why') or '')[:300], 'last_checked': today, 'seed_from': f'kpc_key_answers {name}',
+                    'note': '; '.join(x for x in ('alias name YES (the key joins it only with the pin inside)' if kind_alias else '',
+                                                 'bot YES (auto T1), not a person: rule 22, a person always beats a bot' if row.get('auto') or str(row.get('checked_by') or '').lower().startswith('auto') else '') if x)}
+                if ans == 'YES': n_yes += 1
+                else: n_no += 1
+                led[lk] = {'answer': ans, 'checked_by': row.get('checked_by'), 'applied': stamp, 'to': 'answer sheet'}
+                touched.add(ref); st = st_of(row); states.add(st) if st else None
+                continue
+            # Nov 3 guard (Brandon Q6, relayed 6:52 PM CST): a bot's YES / NO never changes a park a person already answered (BOT A's
+            # auto-T1 rows overturned person answers on US-4118, 13298, 11217, 11218, 4477 ... on Nov 3). It is counted and listed instead.
+            if is_bot_row(row) and has_person_answer(P.get(ref)):
+                n_bot += 1; bot_held.append(f"{ref} {kid}"); continue
+            v = P.setdefault(ref, {})
             if ans == 'YES':
                 if str(row.get('kind') or '').lower() == 'alias' and nm:
                     v.setdefault('alias', [])
@@ -163,16 +211,40 @@ def main():
             led[lk] = {'answer': ans, 'checked_by': row.get('checked_by'), 'applied': stamp}
             touched.add(ref); st = st_of(row); states.add(st) if st else None
     # the same for parks a YES reached BEFORE this fix (the ledger skips them now): their last note is this bot's YES join
+    # Nov 3 (Quality, Canada key fixes grade: US-7383, US-7854): a later NO from this bot on a DIFFERENT record (its name is not a
+    # joined record's name) does not undo the YES, so it is stepped over. A NO on the joined record itself, or any note that is
+    # not this bot's (a map-audit "PIN until fixed"), stops the walk: that is a person's call (US-10025, US-1080, US-7145).
+    def _yes_is_last(v):
+        jn = {str(x) for x in v.get('join') or []}
+        if jn & {str(x) for x in v.get('no') or []}: return False
+        names = [str(x[0]).lower() for x in (v.get('fp') or {}).values() if x] + [x.lower() for x in jn]
+        for note in reversed(str(v.get('why') or '').split(' · ')):
+            if 'applied by kpc_key_answers' not in note: return False
+            if re.search(r" row YES '", note): return True
+            m = re.search(r" row NO '([^']*)'", note)
+            if not m: return False
+            nm = m.group(1).strip().lower()
+            if not nm or any(x.startswith(nm) or nm.startswith(x) for x in names): return False   # a NO on the joined record
+        return False
     for ref, v in P.items():
-        last = str(v.get('why') or '').rsplit(' · ', 1)[-1]
-        if v.get('none') and v.get('join') and re.search(r" row YES '", last) and 'applied by kpc_key_answers' in last:
+        if v.get('none') and v.get('join') and _yes_is_last(v):
             v.pop('none'); n_none += 1; touched.add(ref)
             v['why'] = v['why'] + f" · {stamp}: the older 'none' (no outline of its own) is replaced by this YES join"
     msg = f"{n_yes} yes / {n_no} no / {n_alias} alias applied on {len(touched)} parks; {n_same} already applied; {n_skip} skipped; {n_none} old 'none' notes replaced by a YES join; states: {' '.join(sorted(states)) or '-'}"
+    if n_bot: msg += f"; {n_bot} bot (auto) answers NOT applied because a person already answered the park: {' '.join(bot_held[:10])}"
     if skipped_files: msg += f"; files not read (KPC_ANSWERS_SKIP): {' '.join(skipped_files)}"
     if DRY:
         print('DRY ' + msg); [print('  skip ' + s) for s in skipped[:20]]; return
-    if touched:
+    if touched and TO == 'sheet':
+        import csv
+        old_rows = list(csv.DictReader(open(SHEET_OUT, encoding='utf-8'))) if SHEET_OUT.exists() else []
+        keep = [r for r in old_rows if (r.get('ref'), r.get('key_id')) not in sheet_rows]   # the newest answer for a (park, record) wins
+        with open(SHEET_OUT, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=SHEET_COLS, extrasaction='ignore'); w.writeheader()
+            for r in keep + [sheet_rows[k] for k in sorted(sheet_rows)]: w.writerow(r)
+        save_json(LEDGER, led, 1)
+        msg += f"; written to {SHEET_OUT} for the answer sheet (overrides.json not touched)"
+    elif touched:
         save_json(OVR, ovr, 1); save_json(LEDGER, led, 1)
     # Oct 30 (chat 2): ADD to tonight's list, never replace it (other bots and hand fixes put states there too); the key's join
     # job takes the states it rebuilt off the list after saving

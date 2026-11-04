@@ -118,19 +118,6 @@
    "when": "2026-11-02",
    "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece · 2026-11-02 12:49: layers row YES 'KALAUPAPA NATIONAL HISTORICAL PARK' (chat 11; applied by kpc_key_answers)"
   },
-  "US-0054": {
-   "fp": {
-    "sgakd1187": [
-     "Nez Perce National Historical Park",
-     4209
-    ]
-   },
-   "join": [
-    "sgakd1187"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 12:26: layers row YES 'Nez Perce National Historical Park' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
-  },
   "US-0063": {
    "no": [
     "fsod24"
@@ -639,16 +626,20 @@
   },
   "US-0329": {
    "fp": {
-    "4343": [
+    "5300": [
      "Silvio O. Conte National Fish And Wildlife Refuge",
-     7496
+     7893
     ]
    },
    "join": [
+    "5300"
+   ],
+   "no": [
     "4343"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Silvio O. Conte National Fish And Wildlife Refuge' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Silvio O. Conte National Fish And Wildli' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "note": "Silvio O. Conte NWR is one refuge in many divisions. Outlines here: Silvio O. Conte NWR, Pondicherry Division (NH) (PAD-US 5300) and Nulhegan Basin Division (VT) (PAD-US 4344/5301).",
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Silvio O. Conte National Fish And Wildlife Refuge' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Silvio O. Conte National Fish And Wildli' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03: NO 4343: 4343 is a duplicate of 5300 (same Pondicherry Division land; Quality) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-03: JOIN 5300 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-0335": {
    "no": [
@@ -818,19 +809,6 @@
    },
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: aliases-oct31 row NO 'Grass Lake National Wildlife Refuge' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  },
-  "US-0405": {
-   "fp": {
-    "sgmtd81": [
-     "CSKT Bison Range",
-     18732
-    ]
-   },
-   "join": [
-    "sgmtd81"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 18:41: gis-hunter row YES 'CSKT Bison Range' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
   },
   "US-0421": {
    "no": [
@@ -5594,7 +5572,12 @@
   },
   "US-10763": {
    "approx": true,
-   "fp": {
+   "no": [
+    "56512",
+    "9204",
+    "56513"
+   ],
+   "nofp": {
     "56512": [
      "Fishing Bay Wma",
      28873
@@ -5608,17 +5591,16 @@
      5588
     ]
    },
-   "join": [
-    "56512",
-    "9204",
-    "56513"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 56512, 9204, 56513: Fishing Bay WMA (28,873 / 5,588 / 239 ac) surrounds the natural area; MD DNR's own Natural Areas record sgmdb12 'Fishing Bay Marshes' (16,784 ac, pin inside) is the park (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-10765": {
    "approx": true,
-   "fp": {
+   "no": [
+    "56550",
+    "56548"
+   ],
+   "nofp": {
     "56548": [
      "Millington Wildlife Management Area",
      132
@@ -5628,12 +5610,8 @@
      3759
     ]
    },
-   "join": [
-    "56550",
-    "56548"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 56550, 56548: Millington WMA is not this park (Quality: keep dropped) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-1077": {
    "fp": {
@@ -5712,17 +5690,17 @@
   },
   "US-10787": {
    "approx": true,
-   "fp": {
+   "no": [
+    "71083"
+   ],
+   "nofp": {
     "71083": [
      "Weinberg-King State Fish and Wildlife Area",
      1529
     ]
    },
-   "join": [
-    "71083"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 71083: rule 18 piece: the whole Weinberg-King SFWA is not the Scripps Unit (Quality: outcome right) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-10788": {
    "alias": [
@@ -7781,47 +7759,18 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Manti Meadows WMA' (chat 11; applied by kpc_key_answers)"
   },
-  "US-11215": {
-   "fp": {
-    "sgmtd209": [
-     "Bear Paw Battlefield",
-     1114
-    ]
-   },
-   "join": [
-    "sgmtd209"
-   ],
-   "when": "2026-11-03",
-   "why": "2026-11-03 13:41: layers row YES 'Bear Paw Battlefield' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Bear Paw Battlefield' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
-  },
   "US-11217": {
-   "fp": {
-    "sgmtd2999": [
-     "Bluewater Springs Trout Hatchery",
-     50
-    ]
-   },
-   "join": [
-    "sgmtd2999"
-   ],
-   "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03 18:41: gis-hunter row YES 'Bluewater Springs Trout Hatchery' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "none": true,
+   "when": "2026-10-22",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-11218": {
-   "fp": {
-    "sgmtd3396": [
-     "Fort Peck Hatchery",
-     71
-    ]
-   },
-   "join": [
-    "sgmtd3396"
-   ],
    "no": [
     "2572"
    ],
-   "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03 18:41: gis-hunter row YES 'Fort Peck Hatchery' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "none": true,
+   "when": "2026-10-29",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-1122": {
    "fp": {
@@ -9143,18 +9092,13 @@
     "sgakh568": [
      "Red Hills",
      9889
-    ],
-    "sgcad462": [
-     "Red Hills",
-     9894
     ]
    },
    "join": [
-    "sgakh568",
-    "sgcad462"
+    "sgakh568"
    ],
-   "when": "2026-11-03",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Red Hills' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Red Hills' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-10-29",
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Red Hills' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-11584": {
    "no": [
@@ -12001,9 +11945,8 @@
    "join": [
     "Buena Vista SWA (Fishing Easement)"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:22 PM (Brandon, G-ID2): POTA numbered the fishing easement itself: its official record (41-45 ac) is the outline"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:22 PM (Brandon, G-ID2): POTA numbered the fishing easement itself: its official record (41-45 ac) is the outline · 2026-11-03: none cleared (a park with a reviewed join has an outline): Brandon G-ID2 (Oct 29): the fishing easement record is the outline"
   },
   "US-1219": {
    "fp": {
@@ -13407,40 +13350,20 @@
    "why": "2026-11-02 12:49: layers row YES 'Nile Springs' (chat 11; applied by kpc_key_answers)"
   },
   "US-12545": {
-   "fp": {
-    "sgwab1371": [
-     "Island",
-     0
-    ],
-    "sgwaf1371": [
-     "Island",
-     0
-    ]
-   },
-   "join": [
+   "no": [
     "sgwab1371",
     "sgwaf1371"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03: NO sgwab1371, sgwaf1371: WDFW 'Island' 1371 is 7.5 km from the pin, not Cottonwood Island (pin-far rule; same record Quality ruled NO for US-12549) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-12549": {
-   "fp": {
-    "sgwab1371": [
-     "Island",
-     0
-    ],
-    "sgwaf1371": [
-     "Island",
-     0
-    ]
-   },
-   "join": [
+   "no": [
     "sgwab1371",
     "sgwaf1371"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Island' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Island' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03: NO sgwab1371, sgwaf1371: WDFW 'Island' unit 1371 is Skagit WA land 7.5 km away, not Leque Island (Quality NO) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-12551": {
    "no": [
@@ -13710,17 +13633,17 @@
   },
   "US-12630": {
    "approx": true,
-   "fp": {
+   "no": [
+    "1980"
+   ],
+   "nofp": {
     "1980": [
      "Upper Missouri River Breaks National Monument Field Office",
      374614
     ]
    },
-   "join": [
-    "1980"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 1980: office/monument record: a wild and scenic river is never the monument around it (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-12640": {
    "no": [
@@ -16475,17 +16398,17 @@
   },
   "US-13245": {
    "approx": true,
-   "fp": {
+   "no": [
+    "2377"
+   ],
+   "nofp": {
     "2377": [
      "Flaming Gorge Reservoir National Recreation Area",
      44237
     ]
    },
-   "join": [
-    "2377"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 2377: Flaming Gorge NRA is the whole NRA, not this park (Quality: keep dropped) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-13247": {
    "fp": {
@@ -16725,8 +16648,8 @@
    "no": [
     "sgila1422"
    ],
-   "when": "2026-11-03",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Adeline Jay Geo-Karis Illinois Beach Sta' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'North Point Marina' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'North Point Marina' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Adeline Jay Geo-Karis Illinois Beach Sta' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'North Point Marina' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-1330": {
    "fp": {
@@ -19765,8 +19688,17 @@
    "join": [
     "mid331"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Grand Haven State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "157666"
+   ],
+   "nofp": {
+    "157666": [
+     "Grand Haven State Game Area",
+     929
+    ]
+   },
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Grand Haven State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 157666: Grand Haven State Game Area 5.2 km away; the park keeps its own records (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-1500": {
    "fp": {
@@ -20200,8 +20132,11 @@
    "join": [
     "mid532"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Silver Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "71255"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Silver Lake State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71255: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-1539": {
    "fp": {
@@ -20226,8 +20161,12 @@
    "join": [
     "mid117"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sleepy Hollow State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "71257",
+    "71260"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Sleepy Hollow State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71257, 71260: zero-area shapes (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-1541": {
    "fp": {
@@ -20984,8 +20923,11 @@
    "join": [
     "sgdea24"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Alapocas Run State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "60658"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Alapocas Run State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 60658: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-1731": {
    "fp": {
@@ -24468,18 +24410,16 @@
     "sgnyb442": [
      "Franny Reese Preserve",
      243
-    ],
-    "sgnyb443": [
-     "Franny Reese Preserve",
-     0
     ]
    },
    "join": [
-    "sgnyb442",
+    "sgnyb442"
+   ],
+   "no": [
     "sgnyb443"
    ],
-   "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Franny Reese Preserve' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Franny Reese Preserve' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Franny Reese Preserve' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Franny Reese Preserve' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Franny Reese Preserve' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Franny Reese Preserve' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Franny Reese Preserve' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO sgnyb443: zero-area copy of sgnyb442 (Quality: keep dropped) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-2058": {
    "fp": {
@@ -26744,17 +26684,17 @@
    "why": "2026-11-02 12:49: layers row YES 'Banner Lakes At Summerset State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-2283": {
-   "fp": {
-    "sgiaa34168": [
-     "CEDAR ROCK WILDLIFE AREA",
-     152
-    ]
-   },
-   "join": [
+   "no": [
     "sgiaa34168"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'CEDAR ROCK WILDLIFE AREA' (chat 11; applied by kpc_key_answers)"
+   "nofp": {
+    "sgiaa34168": [
+     "CEDAR ROCK WILDLIFE AREA",
+     153
+    ]
+   },
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'CEDAR ROCK WILDLIFE AREA' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO sgiaa34168: IA DNR lists CEDAR ROCK STATE PARK (109 ac) and CEDAR ROCK WILDLIFE AREA (153 ac) as two separate areas; the park keeps IA DNR Public Areas 'Cedar Rock' (pin inside). This overturns chat 11's YES of Nov 2 12:49 UTC (6:49 AM CST, before the 9:37 AM CST restart); Mapping's call, not a person's ruling (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-03 19:12 CST: Brandon confirmed this drop (relayed by Super 7:11-7:12 PM CST; to confirm on the PR)"
   },
   "US-2284": {
    "fp": {
@@ -27277,8 +27217,13 @@
    "join": [
     "sgmea182"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Baxter State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "58906",
+    "58908",
+    "206521"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Baxter State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 58906, 58908, 206521: tiny copies (0.1 ac each, 4-41 km from the pin) that add nothing to the 184,000 ac park outline (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-2383": {
    "fp": {
@@ -30210,17 +30155,17 @@
    "why": "2026-11-02 12:49: layers row YES 'Colt State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-2873": {
-   "fp": {
+   "no": [
+    "57170"
+   ],
+   "nofp": {
     "57170": [
      "Fisherman's",
      80
     ]
    },
-   "join": [
-    "57170"
-   ],
-   "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Fisherman's' = YES (chat 11, rechecked by chat 2) · 2026-10-29 23:15: key-pieces row YES 'Fisherman's' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Fisherman's' = YES (chat 11, rechecked by chat 2) · 2026-10-29 23:15: key-pieces row YES 'Fisherman's' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers) · 2026-11-03: NO 57170: 'Fisherman's' 57170 is not this park (Quality NO) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-2875": {
    "fp": {
@@ -31939,8 +31884,11 @@
    "join": [
     "mid394"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fayette State Park' (chat 11; applied by kpc_key_answers)"
+   "no": [
+    "71520"
+   ],
+   "when": "2026-11-03",
+   "why": "2026-11-02 12:49: layers row YES 'Fayette State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71520: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-3310": {
    "fp": {
@@ -37040,30 +36988,40 @@
    "fp": {
     "sgila1142": [
      "Washington County State Natural Area",
-     1459
+     1465
+    ],
+    "sgild124": [
+     "Washington County",
+     2559
     ]
    },
    "join": [
-    "sgila1142"
+    "sgila1142",
+    "sgild124"
    ],
-   "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-11-02 12:49: layers row YES 'Washington County State Natural Area' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-11-02 12:49: layers row YES 'Washington County State Natural Area' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03: JOIN sgild124, sgila1142 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4106": {
    "join": [
     "Weinberg-King State Fish and Wildlife Area"
    ],
    "no": [
-    "sgila1154"
+    "sgila1154",
+    "70886"
    ],
    "nofp": {
+    "70886": [
+     "Weinberg-King State Fish and Wildlife Area",
+     862
+    ],
     "sgila1154": [
      "Weinberg-King State Fish and Wildlife Area",
      2390.3
     ]
    },
-   "when": "2026-11-02",
-   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on sgila1154 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ )"
+   "when": "2026-11-03",
+   "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on sgila1154 (NO (chat 11, Nov 2, pattern CONFLICT): PIN. Name and kind both differ ) · 2026-11-03: NO 70886: 70886 is the Spunky Bottoms unit (US-11351, pin 20 m), not the main Weinberg-King park (Quality); 71083 left as is (NOT SURE, Brandon) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4107": {
    "fp": {
@@ -37169,8 +37127,8 @@
    "no": [
     "sgila1404"
    ],
-   "when": "2026-11-03",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Pere Marquette State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Copperhead Hollow' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Copperhead Hollow' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Pere Marquette State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Copperhead Hollow' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4119": {
    "fp": {
@@ -37553,16 +37511,21 @@
   "US-4153": {
    "no": [
     "sgila1080",
-    "sgild149"
+    "sgild149",
+    "sgild54"
    ],
    "nofp": {
     "sgild149": [
      "Shelbyville",
      6229
+    ],
+    "sgild54": [
+     "Shelbyville",
+     1
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Shelbyville State Fish and Wildlife Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row NO 'Shelbyville' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Shelbyville State Fish and Wildlife Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row NO 'Shelbyville' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03: NO sgild54: IDNR BaseLayers/11 #54 'Shelbyville' is a 0.65 ac sliver (SFWA), not the Kaskaskia unit; read live Nov 3 5:36 PM CST (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4154": {
    "no": [
@@ -38458,17 +38421,17 @@
   },
   "US-4246": {
    "approx": true,
-   "fp": {
+   "no": [
+    "272403"
+   ],
+   "nofp": {
     "272403": [
      "Whitefish Dunes State Park",
      869
     ]
    },
-   "join": [
-    "272403"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272403: Whitefish Dunes State Park surrounds the SNA (rule 18: the SNA is a piece of the park) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4247": {
    "fp": {
@@ -38574,7 +38537,11 @@
   },
   "US-4255": {
    "approx": true,
-   "fp": {
+   "no": [
+    "272637",
+    "78186"
+   ],
+   "nofp": {
     "272637": [
      "Lodi Marsh Wildlife Area",
      1190
@@ -38584,12 +38551,8 @@
      37
     ]
    },
-   "join": [
-    "272637",
-    "78186"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272637, 78186: Lodi Marsh Wildlife Area surrounds the SNA (natural<->wma cap kept) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4256": {
    "fp": {
@@ -38645,7 +38608,13 @@
   },
   "US-4262": {
    "approx": true,
-   "fp": {
+   "no": [
+    "Menominee River State Recreation Area",
+    "Menominee River State Park & Recreation Area",
+    "78268",
+    "272355"
+   ],
+   "nofp": {
     "272355": [
      "Menominee River State Recreation Area",
      4785
@@ -38655,12 +38624,8 @@
      41
     ]
    },
-   "join": [
-    "272355",
-    "78268"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO Menominee River State Recreation Area, Menominee River State Park & Recreation Area: rule 18: POTA names a unit of the Menominee River SRA (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4263": {
    "approx": true,
@@ -39629,21 +39594,52 @@
   },
   "US-4342": {
    "approx": true,
-   "fp": {
+   "join": [
+    "wid702688"
+   ],
+   "no": [
+    "Wolf River Bottoms Wildlife Area",
+    "273010"
+   ],
+   "nofp": {
     "273010": [
      "Wolf River Bottoms Wildlife Area",
      3141
     ]
    },
-   "join": [
-    "273010",
-    "wid702688"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO Wolf River Bottoms Wildlife Area: rule 18: POTA names a unit (Herb Behnke) of Wolf River Bottoms WA (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4344": {
    "fp": {
+    "273012": [
+     "Wolf River Wildlife Area",
+     1984
+    ],
+    "sgwia713546": [
+     "Wolf River Wildlife Area",
+     1981
+    ],
+    "wid713546": [
+     "Wolf River Wildlife Area",
+     1981
+    ]
+   },
+   "join": [
+    "273012",
+    "wid713546",
+    "sgwia713546"
+   ],
+   "no": [
+    "273010",
+    "wid713547",
+    "sgwia713547",
+    "Wolf River Bottoms Wildlife Area",
+    "sgwia710027",
+    "wid710027",
+    "sgwid19720470"
+   ],
+   "nofp": {
     "273010": [
      "Wolf River Bottoms Wildlife Area",
      3141
@@ -39652,28 +39648,25 @@
      "Wolf River Bottoms Wildlife Area",
      3138
     ],
+    "sgwia713547": [
+     "Wolf River Bottoms Wildlife Area",
+     3138
+    ],
     "sgwid19720470": [
      "Wolf River Bottoms Wildlife Area",
      73
     ],
-    "wid710026": [
-     "Wolf River Wildlife Area",
-     1969
-    ],
     "wid710027": [
+     "Wolf River Bottoms Wildlife Area",
+     3138
+    ],
+    "wid713547": [
      "Wolf River Bottoms Wildlife Area",
      3138
     ]
    },
-   "join": [
-    "273010",
-    "wid710027",
-    "sgwia710027",
-    "sgwid19720470",
-    "wid710026"
-   ],
-   "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Wolf River Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Wolf River Bottoms Wildlife Area' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Wolf River Bottoms Wildlife Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Wolf River Wildlife Area' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 273010, wid713547, sgwia713547, Wolf River Bottoms Wildlife Area: Wolf River Bottoms is a different property (Quality); the park is Wolf River WA 273012 / wid713546 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-03: JOIN 273012, wid713546, sgwia713546 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4345": {
    "fp": {
@@ -40237,7 +40230,7 @@
     ],
     "sgidd187": [
      "Idaho Panhandle National Forests",
-     2482918
+     2481543
     ]
    },
    "join": [
@@ -40248,8 +40241,8 @@
     "St. Joe National Forest",
     "Idaho Panhandle National Forests"
    ],
-   "when": "2026-11-03",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:41: gis-hunter row YES 'Idaho Panhandle National Forests' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4478": {
    "no": [
@@ -40437,8 +40430,8 @@
      10151
     ]
    },
-   "when": "2026-11-03",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-10-29 23:15: gis-hunter row NO 'Hanford Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Hanford Reach National Monument, McGee R' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Hanford Reach National Monument' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'Hanford Reach National Monument' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-10-29 23:15: gis-hunter row NO 'Hanford Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Hanford Reach National Monument, McGee R' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Hanford Reach National Monument' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4560": {
    "approx": true,
@@ -40977,8 +40970,8 @@
    "join": [
     "sggad1017"
    ],
-   "when": "2026-11-03",
-   "why": "2026-11-02 13:05: layers row YES 'HITCHITI' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: gis-hunter row YES 'HITCHITI' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'HITCHITI' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
   },
   "US-4650": {
    "join": [
@@ -41133,8 +41126,9 @@
    "join": [
     "9291"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Pocomoke River State Forest' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Pocomoke River State Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "note": "Pocomoke River State Forest tract (PAD-US 9291; MD DNR OBJECTID 130).",
+   "when": "2026-11-03",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Pocomoke River State Forest' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Pocomoke River State Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03: JOIN 9291 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4772": {
    "join": [
@@ -44162,9 +44156,8 @@
    "join": [
     "sgmoc683"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:30 PM: the agency's own page states 969 ac, the record has 933.7 ac (chat 9 page check): same land, joined by record id"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:30 PM: the agency's own page states 969 ac, the record has 933.7 ac (chat 9 page check): same land, joined by record id · 2026-11-03: none cleared (a park with a reviewed join has an outline): agency page 969 ac vs record 933.7 ac: same land (chat 9 page check)"
   },
   "US-5713": {
    "fp": {
@@ -45358,11 +45351,17 @@
   },
   "US-6129": {
    "approx": true,
-   "join": [
+   "no": [
     "rst10719"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "nofp": {
+    "rst10719": [
+     "National Historic Trails SRMA",
+     217
+    ]
+   },
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO rst10719: pin far outside (Quality: keep dropped) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-6132": {
    "join": [
@@ -50334,9 +50333,8 @@
    "no": [
     "2756"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Tonto Creek Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Tonto National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Tonto Creek Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Tonto National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgazc6 (Tonto Creek Hatchery) came first; the later NO was on PAD-US 2756, a different record"
   },
   "US-7389": {
    "join": [
@@ -52194,17 +52192,17 @@
   },
   "US-7782": {
    "approx": true,
-   "fp": {
+   "no": [
+    "56554"
+   ],
+   "nofp": {
     "56554": [
      "Nanjemoy Wma",
      1370
     ]
    },
-   "join": [
-    "56554"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 56554: rule 18: POTA names a parcel of Nanjemoy WMA (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-7783": {
    "no": [
@@ -52606,9 +52604,8 @@
    "no": [
     "71478"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Molasses River Flooding No.2 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Molasses River Flooding No.1 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Molasses River Flooding No.2 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Molasses River Flooding No.1 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgmib145 came first; the later NO was on PAD-US 71478, a different record"
   },
   "US-7863": {
    "fp": {
@@ -54514,18 +54511,20 @@
   },
   "US-8209": {
    "approx": true,
-   "fp": {
+   "join": [
+    "wid702483"
+   ],
+   "no": [
+    "272522"
+   ],
+   "nofp": {
     "272522": [
      "Dewey Marsh Wildlife Area",
      6048
     ]
    },
-   "join": [
-    "272522",
-    "wid702483"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272522: Dewey Marsh Wildlife Area surrounds the SNA, which keeps sgwic6887 (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-8210": {
    "fp": {
@@ -54620,17 +54619,17 @@
   },
   "US-8219": {
    "approx": true,
-   "fp": {
+   "no": [
+    "272589"
+   ],
+   "nofp": {
     "272589": [
      "Jackson Marsh Wildlife Area",
      2472
     ]
    },
-   "join": [
-    "272589"
-   ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-03",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272589: Jackson Marsh Wildlife Area surrounds the SNA, which keeps its own record (Quality) (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-8220": {
    "join": [
@@ -56558,8 +56557,11 @@
    "join": [
     "190969"
    ],
-   "when": "2026-10-25",
-   "why": "Oct 25 round 5 hand check (outside research bot)"
+   "no": [
+    "sgfld747"
+   ],
+   "when": "2026-11-03",
+   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-03: NO sgfld747: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-8681": {
    "fp": {
@@ -57008,9 +57010,8 @@
    "join": [
     "St John Ponds"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 59 m from the edge; 3883.4 ac)"
+   "when": "2026-11-03",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 59 m from the edge; 3883.4 ac) · 2026-11-03: none cleared (a park with a reviewed join has an outline): name-match PASS + chat 2 review: St John Ponds is the park"
   },
   "US-9176": {
    "join": [

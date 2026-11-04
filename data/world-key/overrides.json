@@ -11254,6 +11254,14 @@
    ],
    "join": [],
    "why": "Nov 2 chat 12 KEY YES: keep as pin (wrong record: different place / kind or one record for two parks)"
+  },
+  "SE-0797": {
+   "no": [
+    "32410",
+    "2000283 Kungsberget"
+   ],
+   "none": true,
+   "why": "Nov 3: dropped to pin (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); on the ASK BRANDON list; no trim or join applied"
   }
  }
 }

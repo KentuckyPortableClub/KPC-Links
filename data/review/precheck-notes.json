@@ -1,0 +1,68 @@
+{
+ "note": "Read by .github/scripts/kpc_precheck.py (never a key file; no build reads it). mapping_checked: Mapping's check of a bad-POTA-pin park whose name matches but whose area could not be tested offline (Brandon's 6:54 PM CST Nov 3 ruling, relayed by Super via Quality: the outline stays pending Mapping's check). ask_brandon: a question for Brandon with a proposal that is NOT applied until he answers (a REVIEW_PILE row, never held).",
+ "mapping_checked": {
+  "CA-0120": {
+   "result": "PASS: CPCAD 22036 'Sable Island National Park Reserve Of Canada' is LOC 7 Nova Scotia; POTA's CA-SI (Sable Island) is part of NS; bbox -60.17,43.93,-59.62,44.06 is the island",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-0122": {
+   "result": "PASS: CPCAD 22345 'St. Paul Island National Wildlife Area' is LOC 7 Nova Scotia; POTA's CA-SP (St. Paul Island) is part of NS; bbox -60.17,47.18,-60.14,47.22 is the island",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-1930": {
+   "result": "PASS: CPCAD 12168 'Baie-aux-Feuilles National Park Reserve (Québec)' is LOC 11 Quebec (Nunavik, bbox -70.87,58.37,-68.98,59.34)",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-1940": {
+   "result": "PASS: CPCAD 22092 + 22091 'Bird Rocks Bird Sanctuary' are LOC 11 Quebec (Magdalen Islands, bbox -61.17,47.83,-61.14,47.85)",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-1986": {
+   "result": "PASS: CPCAD 22125 + 22124 'Corossol Island Bird Sanctuary' are LOC 11 Quebec (Sept-Îles, bbox -66.41,50.08,-66.37,50.10)",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-2078": {
+   "result": "PASS: CPCAD 12142 'Karst-de-Saint-Elzéar Biodiversity Reserve' is LOC 11 Quebec (Gaspésie, bbox -65.42,48.22,-65.29,48.30)",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "CA-2134": {
+   "result": "PASS: CPCAD 12645 'Météorite Biodiversity Reserve' is LOC 11 Quebec (Manicouagan, bbox -68.60,51.34,-68.35,51.58)",
+   "by": "Mapping, Nov 3 2026 7:09 PM CST, CPCAD live"
+  },
+  "SE-0797": {
+   "result": "NOT DONE: the joined record '2000283 Kungsberget' is from the EEA Natura 2000 layer (many countries); Sweden's own layer (Naturvårdsverket) was not read in this addendum",
+   "by": "Mapping, Nov 3 2026"
+  }
+ },
+ "ask_brandon": {
+  "CA-2227": {
+   "ask": "POTA's name 'Riviere Malbaie (CNC/Stallman) Nature Reserve' names only the Stallman tract (Québec register #2496 'Sec. SCCN / Par. Stallman', 17.9 ha; SCCN = CNC), but the outline joins both #2496 and #5246 '(Conservation de la nature - Québec)', 309.8 ha, another holder (Quality spot-check Nov 3). Trim to Stallman, or does POTA mean the whole reserve (then label each tract per the split-tract ruling)? Dropped to pin (both tracts said no); trim to Stallman, take the whole reserve, or leave it a pin?",
+   "proposal_text": "rule 18 default: trim to the Stallman tract = data/ca-key/overrides.json CA-2227 {\"no\": [\"Québec prote:5246\", \"Québec recog:5246\"]} (kept: Québec prote:2496, Québec recog:2496)",
+   "proposal": {
+    "no": [
+     "Québec prote:5246",
+     "Québec recog:5246"
+    ]
+   },
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026, from Quality's spot-check PULL",
+   "dropped_to_pin": true
+  },
+  "SE-0797": {
+   "ask": "SE-0797 has a 0,0 POTA pin and its outline is joined to the EEA Natura 2000 record '2000283 Kungsberget' by name only. Mapping could NOT check the area: Sweden's own layer (Naturvårdsverket) was not read. Keep the outline, or should a person check it against Sweden's own layer first? Dropped to pin until a person checks it against Sweden's own layer.",
+   "proposal_text": "nothing is changed: the outline stays, flagged BAD_POTA_PIN_NAME_ONLY, until a person answers",
+   "proposal": {},
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026 7:2x PM CST",
+   "dropped_to_pin": true
+  },
+  "CA-2218": {
+   "ask": "CA-2218 Rimouski Reserve Nature Reserve: the key record 'Réserve faunique de Rimouski' (Québec Réser:n-Réserve faunique de Rimouski) says 180,344 ac, but the saved outline data/canada-bounds/CA-2218.json draws only 195 ac, so the saved outline is suspect (it is probably one small piece). Rebuild the outline from the record, or check it by hand? Quality (Nov 3 grade): the record is a wildlife reserve (réserve faunique), another kind, so the hand join (Oct 25, on main) is probably wrong. Dropped to pin; restore it?",
+   "proposal_text": "nothing is changed: the saved outline stays, flagged, until a person answers (Mapping's lean: rebuild it from the official record on a normal CA fill run)",
+   "proposal": {},
+   "status": "ASK BRANDON; DROPPED TO PIN by overrides (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); the proposal below is NOT applied",
+   "by": "Mapping, Nov 3 2026 7:2x PM CST",
+   "dropped_to_pin": true
+  }
+ }
+}
