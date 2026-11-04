@@ -1,72 +1,6 @@
 {
- "updated": "2026-11-03T12:26:42Z",
+ "updated": "2026-11-04T12:02:20Z",
  "week": [
-  {
-   "name": "Classic Exchange, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhqod",
-   "when": "1400Z, Nov 1 to 0800Z, Nov 2 and 1400Z, Mar 3 to 0800Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-01T14:00Z",
-     "2026-11-02T08:00Z"
-    ],
-    [
-     "2027-03-03T14:00Z",
-     "2026-11-04T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Tuesday's Telegraphy Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwbw4",
-   "when": "1930Z-2030Z, Nov 3",
-   "segs": [
-    [
-     "2026-11-03T19:30Z",
-     "2026-11-03T20:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "QRP Fox Hunt",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gx6jq",
-   "when": "0200Z-0330Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T02:00Z",
-     "2026-11-04T03:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Phone Weekly Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gqbox",
-   "when": "0230Z-0300Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T02:30Z",
-     "2026-11-04T03:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "A1Club AWT",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gr6nf",
@@ -470,9 +404,1611 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
+  },
+  {
+   "name": "Worldwide Sideband Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gpols",
+   "when": "0100Z-0159Z, Nov 10",
+   "segs": [
+    [
+     "2026-11-10T01:00Z",
+     "2026-11-10T01:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gnr74",
+   "when": "0300Z-0400Z, Nov 10",
+   "segs": [
+    [
+     "2026-11-10T03:00Z",
+     "2026-11-10T04:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "DARC FT4 Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g66i1",
+   "when": "1900Z-2029Z, Nov 10",
+   "segs": [
+    [
+     "2026-11-10T19:00Z",
+     "2026-11-10T20:29Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Tuesday's Telegraphy Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwjlw",
+   "when": "1930Z-2030Z, Nov 10",
+   "segs": [
+    [
+     "2026-11-10T19:30Z",
+     "2026-11-10T20:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
   }
  ],
- "month": [],
+ "month": [
+  {
+   "name": "QRP ARCI Topband Sprint",
+   "url": "https://qrparci.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-03T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-03T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "144",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigwalk40",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-04T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "7",
+   "exch": "Max 13 WPM; RST, SPC, name, mbr or pwr"
+  },
+  {
+   "name": "NRAU 10m Activity Contest",
+   "url": "https://nrau.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-03T18:00Z",
+     "2026-12-03T22:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "28",
+   "exch": "RS(T), 6-char grid"
+  },
+  {
+   "name": "SKCC Sprint Europe",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-03T20:00Z",
+     "2026-12-03T22:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "ARRL 160-Meter Contest",
+   "url": "https://www.arrl.org/160-meter",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-04T22:00Z",
+     "2026-12-06T16:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "W/VE: RST, ARRL/RAC Section; DX: RST"
+  },
+  {
+   "name": "Kalbar Contest",
+   "url": "https://kalbarcontest.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-05T00:00Z",
+     "2026-12-07T00:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS, serial"
+  },
+  {
+   "name": "Wake-Up! QRP Sprint",
+   "url": "https://qrp.ru/contest/wakeup",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-05T06:00Z",
+     "2026-12-05T08:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "7,14",
+   "exch": "RST, serial, suffix of previous QSO"
+  },
+  {
+   "name": "PRO CW Contest",
+   "url": "https://proradiocontestclub.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-05T12:00Z",
+     "2026-12-06T12:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, serial, \"/M\" if mbr"
+  },
+  {
+   "name": "INORC Contest",
+   "url": "https://www.inorc.it",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-05T14:00Z",
+     "2026-12-06T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-14,21",
+   "exch": "RST, club, mbr or serial"
+  },
+  {
+   "name": "FT Challenge",
+   "url": "https://www.rttycontesting.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-05T18:00Z",
+     "2026-12-07T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "Signal report, 4-char grid"
+  },
+  {
+   "name": "ARS Spartan Sprint",
+   "url": "https://ars-qrp.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-08T01:00Z",
+     "2026-12-08T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, SPC, pwr"
+  },
+  {
+   "name": "DARC CW-Training Contest",
+   "url": "https://www.darc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-08T18:00Z",
+     "2026-12-08T19:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "RST, DOK/\"NM\" or serial"
+  },
+  {
+   "name": "NAQCC CW Sprint",
+   "url": "https://naqcc.info",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-09T01:30Z",
+     "2026-12-09T03:31Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-10T00:00Z",
+     "2026-12-10T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "432",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "ARRL 10-Meter Contest",
+   "url": "https://www.arrl.org/contest-calendar",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T00:00Z",
+     "2026-12-14T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "28",
+   "exch": "RST, state/province/ITU Region or serial www.arrl.org/10-meter"
+  },
+  {
+   "name": "PODXS 070 Club Triple Play Low Band Sprint",
+   "url": "https://www.podxs070.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T00:00Z",
+     "2026-12-15T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-7",
+   "exch": "RST, SPC"
+  },
+  {
+   "name": "TRC Digi Contest",
+   "url": "https://trcdx.org/rules-trc-digi",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T06:00Z",
+     "2026-12-13T18:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, serial, \"TRC\" if mbr"
+  },
+  {
+   "name": "SKCC Weekend Sprintathon",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T12:00Z",
+     "2026-12-14T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "ARI 40/80 Contest",
+   "url": "https://www.ari.it",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T13:00Z",
+     "2026-12-13T13:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7",
+   "exch": "RS(T), 2-letter province code"
+  },
+  {
+   "name": "International Naval Contest",
+   "url": "https://www.marinefreunde.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-12T16:00Z",
+     "2026-12-13T16:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), club, mbr or serial"
+  },
+  {
+   "name": "QRP ARCI Holiday Homebrew Sprint",
+   "url": "https://qrparci.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-13T20:00Z",
+     "2026-12-13T23:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "4 States QRP Group Second Sunday Sprint",
+   "url": "https://www.4sqrp.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-14T01:00Z",
+     "2026-12-14T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RS(T), SPC, mbr or pwr"
+  },
+  {
+   "name": "NAQCC CW Sprint",
+   "url": "https://naqcc.info",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-16T01:30Z",
+     "2026-12-16T03:31Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-17T00:00Z",
+     "2026-12-17T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "1296",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigwalk20",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-17T00:00Z",
+     "2026-12-18T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "14",
+   "exch": "Max 13 WPM; RST, SPC, name, mbr or pwr"
+  },
+  {
+   "name": "NTC QSO Party",
+   "url": "https://pi4ntc.nl",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-17T19:00Z",
+     "2026-12-17T20:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "Max 25 WPM; RST, name, mbr or \"NM\""
+  },
+  {
+   "name": "AGB-Party Contest",
+   "url": "https://www.ev5agb.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-18T16:00Z",
+     "2026-12-18T17:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7",
+   "exch": "RST, serial, mbr"
+  },
+  {
+   "name": "Feld Hell Sprint",
+   "url": "https://sites.google.com/site/feldhellclub",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-19T00:00Z",
+     "2026-12-20T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "See rules"
+  },
+  {
+   "name": "OK DX RTTY Contest",
+   "url": "https://okrtty.crk.cz",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-19T00:00Z",
+     "2026-12-20T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, CQ zone"
+  },
+  {
+   "name": "Croatian DX Contest",
+   "url": "https://www.hamradio.hr",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-19T14:00Z",
+     "2026-12-20T14:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RS(T), 9A county or ITU zone"
+  },
+  {
+   "name": "ARRL Rookie Roundup, CW",
+   "url": "https://www.arrl.org/rookie-roundup",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-20T18:00Z",
+     "2026-12-21T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "Name, 2-digit year first licensed, SPC"
+  },
+  {
+   "name": "Run for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigrun",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-20T23:00Z",
+     "2026-12-21T01:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "SKCC Sprint",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-23T00:00Z",
+     "2026-12-23T02:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "DARC Christmas Contest",
+   "url": "https://www.darc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-26T08:30Z",
+     "2026-12-26T11:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7",
+   "exch": "RS(T), DOK or \"NM,\" serial"
+  },
+  {
+   "name": "Stew Perry Topband Challenge",
+   "url": "https://www.kkn.net/stew",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-26T15:00Z",
+     "2026-12-27T15:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Original QRP Contest",
+   "url": "https://www.qrpcc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-26T15:00Z",
+     "2026-12-27T15:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "RST, serial, \"/,\" pwr category"
+  },
+  {
+   "name": "RAEM Contest",
+   "url": "https://raem.srr.ru",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-27T00:00Z",
+     "2026-12-27T12:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "See rules"
+  },
+  {
+   "name": "RAC Winter Contest",
+   "url": "https://www.rac.ca",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-27T00:00Z",
+     "2026-12-28T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50,144",
+   "exch": "RS(T), province/territory or serial"
+  },
+  {
+   "name": "YOTA Contest",
+   "url": "https://yotacontest.mrasz.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-12-28T10:00Z",
+     "2026-12-28T22:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), age (avg age for multiops)"
+  },
+  {
+   "name": "UKEICC 80m Contest",
+   "url": "https://www.ukeicc.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-04T20:00Z",
+     "2026-11-04T21:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "6-char grid"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-05T00:00Z",
+     "2026-11-05T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "144",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigwalk40",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-05T00:00Z",
+     "2026-11-06T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "7",
+   "exch": "Max 13 WPM: RST, SPC, name, mbr or pwr"
+  },
+  {
+   "name": "NRAU 10m Activity Contest",
+   "url": "https://nrau.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-05T18:00Z",
+     "2026-11-05T22:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "28",
+   "exch": "RS(T), 6-char grid"
+  },
+  {
+   "name": "SKCC Sprint Europe",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-05T20:00Z",
+     "2026-11-05T22:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "YBDXPI FT8 Contest",
+   "url": "https://contest.ybdxpi.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-07T00:00Z",
+     "2026-11-09T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "IPARC Contest, CW",
+   "url": "https://www.iparc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-07T06:00Z",
+     "2026-11-07T18:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, serial, \"IPA\" (if mbr), state (if US)"
+  },
+  {
+   "name": "ARRL November Sweepstakes, CW",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-07T21:00Z",
+     "2026-11-09T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "Serial, precedence, your call, check, ARRL/RAC Section"
+  },
+  {
+   "name": "IPARC Contest, SSB",
+   "url": "https://www.iparc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-08T06:00Z",
+     "2026-11-08T18:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, serial, \"IPA\" (if mbr), state (if US)"
+  },
+  {
+   "name": "FIRAC HF Contest",
+   "url": "https://www.firac.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-08T07:00Z",
+     "2026-11-08T17:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), serial, \"F\" (if mbr)"
+  },
+  {
+   "name": "4 States QRP Group Second Sunday Sprint",
+   "url": "https://www.4sqrp.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-09T01:00Z",
+     "2026-11-09T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RS(T), SPC, mbr or pwr"
+  },
+  {
+   "name": "DARC FT4 Contest",
+   "url": "https://www.darc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-10T19:00Z",
+     "2026-11-10T20:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7",
+   "exch": "Signal report, 4-char grid"
+  },
+  {
+   "name": "RSGB 80m Autumn Series, SSB",
+   "url": "https://www.rsgbcc.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-11T20:00Z",
+     "2026-11-11T21:31Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "RS, serial"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-12T00:00Z",
+     "2026-11-12T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "432",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "WAE DX Contest, RTTY",
+   "url": "https://www.darc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T00:00Z",
+     "2026-11-16T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RST, serial"
+  },
+  {
+   "name": "PODXS 070 Club Triple Play Low Band Sprint",
+   "url": "https://www.podxs070.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T00:00Z",
+     "2026-11-17T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-7",
+   "exch": "RST, SPC"
+  },
+  {
+   "name": "10-10 International Fall Contest, Digital",
+   "url": "https://www.ten-ten.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T00:01Z",
+     "2026-11-16T00:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "28",
+   "exch": "Name, mbr or \"0,\" SPC"
+  },
+  {
+   "name": "JIDX Phone Contest",
+   "url": "https://www.jidx.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T07:00Z",
+     "2026-11-15T13:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, JA prefecture no. or CQ zone"
+  },
+  {
+   "name": "OK/OM DX Contest, CW",
+   "url": "https://okomdx.crk.cz",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T12:00Z",
+     "2026-11-15T12:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, OK/OM county or serial"
+  },
+  {
+   "name": "SKCC Weekend Sprintathon",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T12:00Z",
+     "2026-11-16T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "CQ-WE Contest",
+   "url": "https://w8zpf.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T19:00Z",
+     "2026-11-16T05:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50,144,432",
+   "exch": "Name, location code, years of service"
+  },
+  {
+   "name": "AWA Bruce Kelley 1929 QSO Party",
+   "url": "https://antiquewireless.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-14T23:00Z",
+     "2026-11-23T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-14",
+   "exch": "RST, name, QTH, equipment year, xmtr type, pwr"
+  },
+  {
+   "name": "Homebrew and Oldtime Equipment Party",
+   "url": "https://www.qrpcc.de",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-15T13:00Z",
+     "2026-11-15T17:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7",
+   "exch": "RST, serial, class"
+  },
+  {
+   "name": "Classic Exchange, Phone",
+   "url": "https://www.classicexchange.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-15T14:00Z",
+     "2026-11-18T08:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50,144",
+   "exch": "Name, RS, SPC, rcvr/xmtr model"
+  },
+  {
+   "name": "Run for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigrun",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-15T23:00Z",
+     "2026-11-16T01:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "RSGB FT4 Contest",
+   "url": "https://www.rsgbcc.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-16T20:00Z",
+     "2026-11-16T22:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "Signal report"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://ft8activity-na.net",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-19T00:00Z",
+     "2026-11-19T05:01Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "1296",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://qrpcontest.com/pigwalk20",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-19T00:00Z",
+     "2026-11-20T03:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "CORRAL",
+   "bands": "14",
+   "exch": "Max 13 WPM: RST, SPC, name, mbr or pwr"
+  },
+  {
+   "name": "NAQCC CW Sprint",
+   "url": "https://naqcc.info/sprint_rules.html",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-19T01:30Z",
+     "2026-11-19T03:31Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "RST, SPC, mbr or pwr"
+  },
+  {
+   "name": "NTC QSO Party",
+   "url": "https://pi4ntc.nl/ntcqp",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-19T19:00Z",
+     "2026-11-19T20:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "CORRAL",
+   "bands": "3.5-14",
+   "exch": "Max 25 WPM: RST, mbr or \"NM\""
+  },
+  {
+   "name": "LZ DX Contest",
+   "url": "https://lzdx.bfra.bg",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T12:00Z",
+     "2026-11-22T12:01Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5-28",
+   "exch": "RS(T), 2-letter LZ district or ITU zone"
+  },
+  {
+   "name": "All Austrian 160-Meter Contest",
+   "url": "https://www.oevsv.at",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T16:00Z",
+     "2026-11-22T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "RST, serial, district code (if OE)"
+  },
+  {
+   "name": "REF 160-Meter Contest",
+   "url": "https://concours.r-e-f.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T17:00Z",
+     "2026-11-22T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "RST, serial, department code"
+  },
+  {
+   "name": "South American Integration Contest CW",
+   "url": "https://sacw.cwsp.com.br",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T18:00Z",
+     "2026-11-22T21:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5,7,21,28",
+   "exch": "RST, \"M\" (if mbr) or \"QRP\" or \"YL\" or ITU zone"
+  },
+  {
+   "name": "Feld Hell Sprint",
+   "url": "https://sites.google.com/site/feldhellclub",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T19:00Z",
+     "2026-11-21T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "See rules"
+  },
+  {
+   "name": "RSGB 1.8 MHz Contest",
+   "url": "https://www.rsgbcc.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T20:00Z",
+     "2026-11-21T23:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8",
+   "exch": "RST, serial, district code (if UK)"
+  },
+  {
+   "name": "ARRL November Sweepstakes, SSB",
+   "url": "https://www.arrl.org/sweepstakes",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-21T21:00Z",
+     "2026-11-23T03:01Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "Serial, precedence, your call, check, ARRL/RAC Section"
+  },
+  {
+   "name": "SKCC Sprint",
+   "url": "https://www.skccgroup.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-25T00:00Z",
+     "2026-11-25T02:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28,50",
+   "exch": "RST, SPC, name, mbr or \"none\""
+  },
+  {
+   "name": "UKEICC 80m Contest",
+   "url": "https://www.ukeicc.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-25T20:00Z",
+     "2026-11-25T21:01Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "6-char grid"
+  },
+  {
+   "name": "RSGB 80m Autumn Series, CW",
+   "url": "https://www.rsgbcc.org",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-26T20:00Z",
+     "2026-11-26T21:31Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "3.5",
+   "exch": "RST, serial"
+  },
+  {
+   "name": "ARRL EME Contest",
+   "url": "https://www.arrl.org/eme-contest",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-28T00:00Z",
+     "2026-11-30T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "CORRAL",
+   "bands": "50-1296",
+   "exch": "4-char grid"
+  },
+  {
+   "name": "CQ Worldwide DX Contest, CW",
+   "url": "https://www.cqww.com",
+   "when": "",
+   "segs": [
+    [
+     "2026-11-28T00:00Z",
+     "2026-11-30T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "CORRAL",
+   "bands": "1.8-28",
+   "exch": "RST, CQ zone"
+  }
+ ],
  "big": [
   {
    "name": "ARRL November Sweepstakes (CW)",
@@ -1250,6 +2786,6 @@
  ],
  "status": {
   "WA7BNM": "ok (30)",
-  "CORRAL": "ok (0)"
+  "CORRAL": "ok (82)"
  }
 }
