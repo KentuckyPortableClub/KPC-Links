@@ -40,9 +40,10 @@ jobs:
     timeout-minutes: 10
     outputs:
       groups: ${{ steps.p.outputs.groups }}
+      full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = the default ALL list was built (the join stamps the rules hash only then)
     steps:
       - uses: actions/checkout@v5
-      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM) - a held build chat 11 has not graded, or graded and not yet released, means no new build
+      - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         env:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
@@ -53,7 +54,9 @@ jobs:
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
-          if [ "$SCHED" = "7 10 * * *" ]; then
+          # Nov 4 (links-04): RULES_CHANGED=1 (the newest world build was not a full build on the current rules) = build ALL tonight
+          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=World key tonight::RULES CHANGED since the newest build: every country is built on the current rules (no force needed)"
+          elif [ "$SCHED" = "7 10 * * *" ]; then
             L=$(cat data/world-key/answers-countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
             if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layer(s) for: $L"; fi
           fi
@@ -64,6 +67,7 @@ jobs:
         run: |
           if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
           [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
+          if [ -z "${COUNTRIES:-}" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04)
           SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
           export ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
@@ -207,6 +211,7 @@ jobs:
         if: ${{ steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
           KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
+          KPC_FULL_BUILD: ${{ needs.plan.outputs.full == '1' && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Save
         if: ${{ always() && steps.tonight.outputs.built != '0' }}
