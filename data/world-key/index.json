@@ -358,19 +358,19 @@
    "thin": 60
   },
   "DE": {
-   "areas": 23904,
-   "check": 297,
+   "areas": 23783,
+   "check": 289,
    "detail": 0.01,
-   "matched": 683,
-   "none": 285,
+   "matched": 641,
+   "none": 335,
    "parks": 1265,
    "pin_no_shape": 0,
-   "pin_outside": 127,
+   "pin_outside": 132,
    "pin_swap": 0,
-   "pin_well_outside": 1,
-   "saved_outlines": 670,
-   "shadow_add": 33,
-   "shadow_demote": 12,
+   "pin_well_outside": 6,
+   "saved_outlines": 628,
+   "shadow_add": 29,
+   "shadow_demote": 28,
    "shadow_other_place": 0,
    "thin": 60
   },
@@ -1164,7 +1164,7 @@
    "none": 26,
    "parks": 90,
    "pin_no_shape": 0,
-   "pin_outside": 8,
+   "pin_outside": 9,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "saved_outlines": 0,
@@ -1412,8 +1412,10 @@
    "thin": 60
   }
  },
- "build": "W-41895532587",
- "built": "2026-11-04 21:24 UTC",
+ "previous_build": "W-41895532587",
+ "previous_built": "2026-11-04 21:24 UTC",
+ "build": "W-41901828387",
+ "built": "2026-11-04 23:45 UTC",
  "failed": [
   "AU"
  ],
