@@ -752,7 +752,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - RO-0640 Poiana Negrii Recreation Site (Recreation Site)
 - RO-0641 Dealul Tătaru Recreation Site (Recreation Site)
 - RO-0643 Pepiniera Silhoasa Natural Area (Natural Area)
-- RO-0644 Râul Ilva National Wild & Scenic River (National Wild & Scenic River)
+- RO-0644 Râul Ilva National Wild and Scenic River (National Wild & Scenic River)
 - RO-0645 Vârful Păltâneasa Natural Area (Natural Area)
 - RO-0646 Ciosa National Landscape (National Landscape)
 - RO-0647 Tășuleasa Social Nature Recreation Area (Nature Recreation Area)

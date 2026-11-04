@@ -1,20 +1,20 @@
 # AE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data. **8 of 109** joined (same name + same kind), **11** to check, **90** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: ProtectedAreas. **8 of 109** joined (same name + same kind), **11** to check, **90** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **AE-0002** Al Wathba Wetland Reserve (Wetland Reserve) → Wathba Wetland Reserve (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, similar name)
-- **AE-0011** Green Mubazzarah Nature Recreation Area (Nature Recreation Area) → Jabal Hafit National Park (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0032** Yaw Al Debsa Protected Area (Protected Area) → Yaw Al Dibsa Protected Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0033** Barqa Al Soqour Protected Area (Protected Area) → Barqat Al Soqour Protected Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0034** Bida' Hazza' Protected Area (Protected Area) → Beda Hazaa Protected Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0035** Al Houbara Protected Area (Protected Area) → Houbarah Protected Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0040** Bul Sayayeef Marine Protected Area (Marine Protected Area) → Bul Syayeef MPA (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0041** Al Ghada Protected Area (Protected Area) → Marzoum Protected Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0042** Al Beda'a Protected Area (Protected Area) → Bidaa Reserved Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0044** Al Delfaowiyyah Protected Area (Protected Area) → Dilfawya Reserved Area (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
-- **AE-0110** Jebel Hafit Desert Park (Park) → Jabal Hafit National Park (United Arab Emirates: Environment Agency – Abu Dhabi (EAD), via Abu Dhabi SDI Open Data, the POTA pin is inside it (different name))
+- **AE-0002** Al Wathba Wetland Reserve (Wetland Reserve) → Wathba Wetland Reserve (ProtectedAreas, similar name)
+- **AE-0011** Green Mubazzarah Nature Recreation Area (Nature Recreation Area) → Jabal Hafit National Park (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0032** Yaw Al Debsa Protected Area (Protected Area) → Yaw Al Dibsa Protected Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0033** Barqa Al Soqour Protected Area (Protected Area) → Barqat Al Soqour Protected Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0034** Bida' Hazza' Protected Area (Protected Area) → Beda Hazaa Protected Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0035** Al Houbara Protected Area (Protected Area) → Houbarah Protected Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0040** Bul Sayayeef Marine Protected Area (Marine Protected Area) → Bul Syayeef MPA (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0041** Al Ghada Protected Area (Protected Area) → Marzoum Protected Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0042** Al Beda'a Protected Area (Protected Area) → Bidaa Reserved Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0044** Al Delfaowiyyah Protected Area (Protected Area) → Dilfawya Reserved Area (ProtectedAreas, the POTA pin is inside it (different name))
+- **AE-0110** Jebel Hafit Desert Park (Park) → Jabal Hafit National Park (ProtectedAreas, the POTA pin is inside it (different name))
 
 ## Nothing found
 

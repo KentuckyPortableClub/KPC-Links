@@ -1,6 +1,6 @@
 # ES: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **1789 of 2497** joined (same name + same kind), **359** to check, **349** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **1789 of 2498** joined (same name + same kind), **359** to check, **350** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -387,6 +387,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - ES-0775 Cueva del Humero Natura 2000 (Natura 2000)
 - ES-0806 Meandros del Ebro Natura 2000 (Natura 2000)
 - ES-0881 Rio Jucar sobre Alarcon Natura 2000 (Natura 2000)
+- ES-1004 Camino Real de la Valdavia National Recreation Trail (National Recreation Trail)
 - ES-1229 La Burgalesa National Historic Trail (National Historic Trail)
 - ES-1304 Ses Pallisses Natura 2000 (Natura 2000)
 - ES-1451 Palacio Real de Madrid National Historic Site (National Historic Site)

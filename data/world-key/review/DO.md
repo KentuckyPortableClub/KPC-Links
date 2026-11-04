@@ -1,25 +1,25 @@
 # DO: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host. **120 of 200** joined (same name + same kind), **16** to check, **64** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Areas Protegidas. **120 of 200** joined (same name + same kind), **16** to check, **64** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **DO-0001** Dicayagua Scientific Reserve (Scientific Reserve) → Dicayagua (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0009** Bancos de la Plata y de la Navidad Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Santuario de los Bancos de La Plata y La Navidad (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0042** Monte Cristi Submarine National Park (Submarine National Park) → Submarino Monte Cristi (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0062** Dr. José de Jesús Jiménez Almonte (Pico Diego de Ocampo) Natural Monument (Natural Monument) → Diego de Ocampo (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0065** Río Cumayasa y Cuevas de Las Maravillas Natural Monument (Natural Monument) → Río Cumayasa y Cueva de las Maravillas (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0094** del Norte Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Santuario Marino del Norte (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name)); La Hispaniola (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0096** La Caleta Submarine National Park (Submarine National Park) → Submarino La Caleta (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0097** Humedales de Nigua Ecological Reserve (Ecological Reserve) → Boca de Nigua (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0113** Cayo Levantado National Recreation Area (National Recreation Area) → Santuario de los Bancos de La Plata y La Navidad (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0124** Aceitillar-Cabo Rojo Protected Landscape (Protected Landscape) → Jaragua (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0131** Arrecifes del Suroeste Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Arrecifes del Suroeste (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0137** Arrecifes del Sureste Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Arrecifes del Sureste (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0142** Cerros Chacuey Forest Reserve (Forest Reserve) → Cerro Chacuey (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0150** Autovía Santo Domingo - Samana - Boulevard del Atlántico Protected Landscape (Protected Landscape) → Autovia Santo Domingo - Samana - Boulevar del Atlantico (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, similar name)
-- **DO-0158** Guaigüí Nature Recreation Area (Nature Recreation Area) → Guagui (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
-- **DO-0173** Ingenio Diego Caballero National Monument (National Monument) → Boca de Nigua (Dominican Republic: Ministerio de Medio Ambiente y Recursos Naturales (SINAP) – layer host, the POTA pin is inside it (different name))
+- **DO-0001** Dicayagua Scientific Reserve (Scientific Reserve) → Dicayagua (Areas Protegidas, similar name)
+- **DO-0009** Bancos de la Plata y de la Navidad Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Santuario de los Bancos de La Plata y La Navidad (Areas Protegidas, similar name)
+- **DO-0042** Monte Cristi Submarine National Park (Submarine National Park) → Submarino Monte Cristi (Areas Protegidas, similar name)
+- **DO-0062** Dr. José de Jesús Jiménez Almonte (Pico Diego de Ocampo) Natural Monument (Natural Monument) → Diego de Ocampo (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0065** Río Cumayasa y Cuevas de Las Maravillas Natural Monument (Natural Monument) → Río Cumayasa y Cueva de las Maravillas (Areas Protegidas, similar name)
+- **DO-0094** del Norte Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Santuario Marino del Norte (Areas Protegidas, the POTA pin is inside it (different name)); La Hispaniola (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0096** La Caleta Submarine National Park (Submarine National Park) → Submarino La Caleta (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0097** Humedales de Nigua Ecological Reserve (Ecological Reserve) → Boca de Nigua (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0113** Cayo Levantado National Recreation Area (National Recreation Area) → Santuario de los Bancos de La Plata y La Navidad (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0124** Aceitillar-Cabo Rojo Protected Landscape (Protected Landscape) → Jaragua (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0131** Arrecifes del Suroeste Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Arrecifes del Suroeste (Areas Protegidas, similar name)
+- **DO-0137** Arrecifes del Sureste Marine Mammal Sanctuary (Marine Mammal Sanctuary) → Arrecifes del Sureste (Areas Protegidas, similar name)
+- **DO-0142** Cerros Chacuey Forest Reserve (Forest Reserve) → Cerro Chacuey (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0150** Autovía Santo Domingo - Samana - Boulevard del Atlántico Protected Landscape (Protected Landscape) → Autovia Santo Domingo - Samana - Boulevar del Atlantico (Areas Protegidas, similar name)
+- **DO-0158** Guaigüí Nature Recreation Area (Nature Recreation Area) → Guagui (Areas Protegidas, the POTA pin is inside it (different name))
+- **DO-0173** Ingenio Diego Caballero National Monument (National Monument) → Boca de Nigua (Areas Protegidas, the POTA pin is inside it (different name))
 
 ## Nothing found
 

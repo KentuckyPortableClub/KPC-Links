@@ -1,13 +1,13 @@
 # MP: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa. **1 of 13** joined (same name + same kind), **4** to check, **8** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: marine_protected_areas. **1 of 13** joined (same name + same kind), **4** to check, **8** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **MP-0004** Kagman National Conservation Area (National Conservation Area) → Forbidden Island Marine Sanctuary (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, the POTA pin is inside it (different name))
-- **MP-0005** Bird Island National Conservation Area (National Conservation Area) → Bird Island Marine Sanctuary (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, similar name); Bird Island Sea Cucumber Sanctuary (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, similar name); Bird Island Marine Sanctuary - The Grotto (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, similar name)
-- **MP-0009** Tinian Commonwealth Marine Reserve (Commonwealth Marine Reserve) → Tinian Marine Reserve Boundaries (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, the POTA pin is inside it (different name))
-- **MP-0010** Sasanhaya Bay Commonwealth Marine Reserve (Commonwealth Marine Reserve) → Sasanhaya Bay Fish Reserve (Northern Mariana Islands: CNMI Bureau of Environmental & Coastal Quality - Division of Coa, similar name)
+- **MP-0004** Kagman National Conservation Area (National Conservation Area) → Forbidden Island Marine Sanctuary (marine_protected_areas, the POTA pin is inside it (different name))
+- **MP-0005** Bird Island National Conservation Area (National Conservation Area) → Bird Island Marine Sanctuary (marine_protected_areas, similar name); Bird Island Sea Cucumber Sanctuary (marine_protected_areas, similar name); Bird Island Marine Sanctuary - The Grotto (marine_protected_areas, similar name)
+- **MP-0009** Tinian Commonwealth Marine Reserve (Commonwealth Marine Reserve) → Tinian Marine Reserve Boundaries (marine_protected_areas, the POTA pin is inside it (different name))
+- **MP-0010** Sasanhaya Bay Commonwealth Marine Reserve (Commonwealth Marine Reserve) → Sasanhaya Bay Fish Reserve (marine_protected_areas, similar name)
 
 ## Nothing found
 

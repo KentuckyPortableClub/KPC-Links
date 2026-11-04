@@ -1,6 +1,6 @@
 # BE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **164 of 593** joined (same name + same kind), **285** to check, **144** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Réserves naturelles domaniales, Réserves naturelles agréées, Zones humides d'intérêt biologique. **164 of 594** joined (same name + same kind), **285** to check, **145** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -272,7 +272,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **BE-0545** CATSELT National Park (National Park) → NBP-VB-21-0228 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0546** Ossebroeken-Swinnebroeken National Park (National Park) → NBP-AN-22-0252 type 2 (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0549** De Sashul Natuurgebied en de Vuurtorenweide National Park (National Park) → De Baai van Heist, Sashul, Vuurtorenweide en Kleiputten van Heist (EEA nationally designated areas, similar name); NBP-WV-21-0305 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **BE-0555** VALLEI VAN DE GROTE BEEK National Park (National Park) → Genemeer-Grote Beek (EEA nationally designated areas, similar name); NBP/LI/20/0231 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **BE-0555** Vallei Van De Grote Beek Nature Reserve (National Park) → Genemeer-Grote Beek (EEA nationally designated areas, similar name); NBP/LI/20/0231 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0557** elsenbos National Park (National Park) → NBP-AN-21-0146 type 2 (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0558** Frasnes-les-bassins National Park (National Park) → Bassins de décantation de la sucrerie de Frasnes-lez-Anvaing (EEA nationally designated areas, similar name)
 - **BE-0560** West-Vlaamse Scheldemeersen National Park (National Park) → De West-Vlaamse Scheldevallei (EEA nationally designated areas, similar name)
@@ -436,3 +436,4 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - BE-0592 bos van houthulst (vrijbos) Natural Area (Natural Area)
 - BE-0593 Domaine provincial d’Hélécine Nature Park (Nature Park)
 - BE-0594 Zonnebeke Park Nature Park (Nature Park)
+- BE-0595 Heuvelpark Provincial Park (Provincial Park)

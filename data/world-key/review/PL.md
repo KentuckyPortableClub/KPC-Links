@@ -1,6 +1,6 @@
 # PL: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2691 of 2982** joined (same name + same kind), **176** to check, **115** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2695 of 2989** joined (same name + same kind), **179** to check, **115** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -180,6 +180,9 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **PL-2958** ZPK w miejcowości Solinka Nature and Landscape Complex (Nature and Landscape Complex) → Bieszczady (EEA Natura 2000, the POTA pin is inside it (different name)); Ciśniańsko-Wetliński Park Krajobrazowy (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-2961** Uroczysko koło Garbicza im. Michała Poklewskiego-Koziełł Nature Reserve (Nature Reserve) → Rynna Jezior Torzymskich (EEA Natura 2000, the POTA pin is inside it (different name)); Puszcza nad Pliszką (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-2989** Buchnik Las Nature Reserve (Nature Reserve) → Warszawski (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PL-2990** Dolina Sztoły Nature Reserve (Nature Reserve) → Dolinki Krakowskie (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PL-2991** Januszkowa Góra Nature Reserve (Nature Reserve) → Jaroszowiec (EEA Natura 2000, the POTA pin is inside it (different name)); Orlich Gniazd (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PL-2995** Dolina Rzeki Małej Nature Reserve (Nature Reserve) → Chojnowski Park Krajobrazowy (EEA nationally designated areas, the POTA pin is inside it (different name))
 
 ## Nothing found
 

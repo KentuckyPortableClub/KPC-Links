@@ -1,14 +1,14 @@
 # PY: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP. **29 of 39** joined (same name + same kind), **5** to check, **5** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Areas_Silvestres_Protegidas. **29 of 39** joined (same name + same kind), **5** to check, **5** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **PY-0014** Tte. Agripino Enciso National Park (National Park) → TENIENTE AGRIPINO ENCISO (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, similar name); GRAN CHACO (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, the POTA pin is inside it (different name))
-- **PY-0023** Cerro Chororí Nature Monument (Nature Monument) → CERRO CHORORI (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, similar name); LAGO YPACARAI (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, the POTA pin is inside it (different name))
-- **PY-0030** Mbaracayú Biological Reserve (Biological Reserve) → REFUGIO BIOLÓGICO MBARACAYÚ (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, similar name)
-- **PY-0037** Isla Carrizal Protected Landscape (Protected Landscape) → RESERVA PARA PARQUE NACIONAL ISLA CARRIZAL (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, similar name)
-- **PY-0038** Carrizales del Parana Protected Landscape (Protected Landscape) → RESERVA PARA PARQUE NACIONAL CARRIZALES DEL PARANÁ (Paraguay: INFONA (Instituto Forestal Nacional) / SINASIP, similar name)
+- **PY-0014** Tte. Agripino Enciso National Park (National Park) → TENIENTE AGRIPINO ENCISO (Areas_Silvestres_Protegidas, similar name); GRAN CHACO (Areas_Silvestres_Protegidas, the POTA pin is inside it (different name))
+- **PY-0023** Cerro Chororí Nature Monument (Nature Monument) → CERRO CHORORI (Areas_Silvestres_Protegidas, similar name); LAGO YPACARAI (Areas_Silvestres_Protegidas, the POTA pin is inside it (different name))
+- **PY-0030** Mbaracayú Biological Reserve (Biological Reserve) → REFUGIO BIOLÓGICO MBARACAYÚ (Areas_Silvestres_Protegidas, similar name)
+- **PY-0037** Isla Carrizal Protected Landscape (Protected Landscape) → RESERVA PARA PARQUE NACIONAL ISLA CARRIZAL (Areas_Silvestres_Protegidas, similar name)
+- **PY-0038** Carrizales del Parana Protected Landscape (Protected Landscape) → RESERVA PARA PARQUE NACIONAL CARRIZALES DEL PARANÁ (Areas_Silvestres_Protegidas, similar name)
 
 ## Nothing found
 

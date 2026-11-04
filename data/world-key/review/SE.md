@@ -1,6 +1,6 @@
 # SE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **2016 of 2224** joined (same name + same kind), **123** to check, **85** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **2042 of 2257** joined (same name + same kind), **125** to check, **90** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -40,7 +40,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **SE-1114** Domsten-Viken Nature Park (Nature Park) → Domsten-Viken (EEA nationally designated areas, same name, more than one kind of area); 2001464 Domsten-Viken (EEA nationally designated areas, same name, more than one kind of area)
 - **SE-1136** Solbergadalen Nature Reserve (Nature Reserve) → 2000312 Solbergadalens domänreservat (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **SE-1183** Idegransreservatet Nature Park (Nature Park) → Idegransreservatet (EEA nationally designated areas, same name, more than one kind of area); 2002287 Idegransreservatet (EEA nationally designated areas, same name, more than one kind of area)
-- **SE-1347** Limberget Natura 2000 (Natura 2000) → Tures äng (EEA Natura 2000, the POTA pin is inside it (different name)); Tures äng (EEA nationally designated areas, the POTA pin is inside it (different name)); Strictly protected (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **SE-1408** Häckeberga Protected Landscape (Protected Landscape) → 2001557 Häckeberga (EEA nationally designated areas, same name, more than one kind of area); 2001823 Häckeberga naturvårdsområde (EEA nationally designated areas, same name, more than one kind of area)
 - **SE-1430** Dättern I Frugårdssund Nature Reserve (Nature Reserve) → Dättern (EEA Natura 2000, similar name); Dättern (EEA nationally designated areas, similar name); Dättern (EEA nationally designated areas, similar name); 2000407 Dättern I (EEA nationally designated areas, similar name)
 - **SE-1441** Ålleberg National Reserve (National Reserve) → Ålleberg (EEA nationally designated areas, same name, more than one kind of area); 2002868 Ålleberg (EEA nationally designated areas, same name, more than one kind of area)
@@ -127,9 +126,13 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **SE-2201** Fröå gruva National Heritage Area (National Heritage Area) → 2065585 Fröå gruva (EEA nationally designated areas, similar name)
 - **SE-2213** Falkenberg 4:1 Historic Site (Historic Site) → Ätran (EEA Natura 2000, the POTA pin is inside it (different name))
 - **SE-2222** Sollentuna 141:1 Historic Site (Historic Site) → 2002740 Östra Järvafältet (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **SE-2248** Påls Benning Natura 2000 (Natura 2000) → 2022112 Pålsbenning (EEA nationally designated areas, the POTA pin is inside it (different name)); Strictly protected (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **SE-2257** Kägel berget Natura 2000 (Natura 2000) → Kägelberget (EEA Natura 2000, the POTA pin is inside it (different name)); Kägelberget (EEA nationally designated areas, the POTA pin is inside it (different name)); 2002755 Kägelberget (EEA nationally designated areas, the POTA pin is inside it (different name)); Strictly protected (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **SE-2261** Sollentuna 234:1 Historic Site (Historic Site) → 2002740 Östra Järvafältet (EEA nationally designated areas, the POTA pin is inside it (different name))
 
 ## Nothing found
 
+- SE-0797 Kungsberget Nature Reserve (Nature Reserve)
 - SE-0899 Husebymaden National Nature Reserve (National Nature Reserve)
 - SE-1003 Magnehult Natura 2000 (Natura 2000)
 - SE-1006 Lundbäcksskogen Nature Reserve (Nature Reserve)
@@ -141,7 +144,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - SE-1187 Jordhamn-Gillberga Natura 2000 (Natura 2000)
 - SE-1283 Toppbjär Nature Reserve (Nature Reserve)
 - SE-1314 Sandhammaren-Kåseberga Natura 2000 (Natura 2000)
-- SE-1346 Limberget National Reserve (National Reserve)
+- SE-1346 Limberget Nature Reserve (National Reserve)
 - SE-1613 Dalbotorpsravinerna Nature Reserve (Nature Reserve)
 - SE-1623 Jönasskogen Natura 2000 (Natura 2000)
 - SE-1632 Frustuna 223:1 Fornborg Historic Site (Historic Site)
@@ -215,3 +218,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - SE-2219 Burshälls fornborg Lundby Historic Site (Historic Site)
 - SE-2220 Varbergs fästning Historic Site (Historic Site)
 - SE-2225 Moralundsskiftet Nature Reserve (Nature Reserve)
+- SE-2242 Reals bo Natura 2000 (Natura 2000)
+- SE-2254 Täby 100:1 Historic Site (Historic Site)
+- SE-2260 Örjasaenget Natura 2000 (Natura 2000)
+- SE-2266 Utter dalen Natura 2000 (Natura 2000)

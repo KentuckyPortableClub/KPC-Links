@@ -1,6 +1,6 @@
 # SK: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **83 of 352** joined (same name + same kind), **23** to check, **246** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **83 of 351** joined (same name + same kind), **23** to check, **245** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -154,7 +154,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - SK-0219 Park Štefana Moysesa - National Monument (National Monument)
 - SK-0220 Park Kaštieľ Hliník nad Hronom - National Monument (National Monument)
 - SK-0221 Mestský park Lučenec - National Monument (National Monument)
-- SK-0222 Park Kaštieľ Kamenica nad Cirochou - National Monument (National Monument)
 - SK-0224 Park Kaštieľ Lučivná - National Monument (National Monument)
 - SK-0225 Park Kaštieľ Demjata - National Monument (National Monument)
 - SK-0227 Lesík delostrelcov - National Monument (National Monument)

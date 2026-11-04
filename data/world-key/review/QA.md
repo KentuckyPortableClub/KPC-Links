@@ -1,6 +1,6 @@
 # QA: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Qatar: Ministry of Environment and Climate Change / GIS Qatar (MME). **4 of 16** joined (same name + same kind), **0** to check, **12** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: ProtectedAreas. **4 of 16** joined (same name + same kind), **0** to check, **12** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 

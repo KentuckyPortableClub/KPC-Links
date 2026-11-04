@@ -1,6 +1,6 @@
 # JP: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **185 of 1217** joined (same name + same kind), **1** to check, **1031** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **187 of 1240** joined (same name + same kind), **1** to check, **1052** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -669,6 +669,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1706 Chikuho Ryokuchi Prefectural Park (Prefectural Park)
 - JP-1707 Chikugo Regional Prefectural Park (Prefectural Park)
 - JP-1708 Kurokamiyama Prefectural Nature Park (Prefectural Nature Park)
+- JP-1709 Taradake Prefectural Nature Park (Prefectural Nature Park)
 - JP-1710 Tenzan Prefectural Nature Park (Prefectural Nature Park)
 - JP-1711 Hachimandake Prefectural Nature Park (Prefectural Nature Park)
 - JP-1712 Sefuri Hokusan Prefectural Nature Park (Prefectural Nature Park)
@@ -676,6 +677,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1714 Yoshinogari Historical Prefectural Park (Prefectural Park)
 - JP-1715 Sagajo Prefectural Park (Prefectural Park)
 - JP-1716 Shinrin Prefectural Park (Prefectural Park)
+- JP-1718 Nomo Hanto Prefectural Nature Park (Prefectural Nature Park)
 - JP-1721 Nishisonogi Hanto Prefectural Nature Park (Prefectural Nature Park)
 - JP-1723 Hirado Prefectural Park (Prefectural Park)
 - JP-1724 Tabira Prefectural Park (Prefectural Park)
@@ -921,6 +923,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-2013 Forest Park Tottori Deainomori Prefectural Park (Prefectural Park)
 - JP-2014 Forest Park 21st Century Prefectural Park (Prefectural Park)
 - JP-2015 Tottori Mukibanda Historic Site Prefectural Park (Prefectural Park)
+- JP-2016 Miyajima Prefectural Park (Prefectural Park)
 - JP-2017 Ehime Kodomonoshiro Prefectural Park (Prefectural Park)
 - JP-2019 Miyazaki Seaside Prefectural Park (Prefectural Park)
 - JP-2020 Miyazaki Prefectural Aoshima Subtropical Botanic Garden Prefectural Park (Prefectural Park)
@@ -1039,3 +1042,21 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-2138 Fujinokuni Tagonoura Port Prefectural Park (Prefectural Park)
 - JP-2139 Suzukawa Seaside Sports Prefectural Park (Prefectural Park)
 - JP-2140 Akogiura Seaside Prefectural Park (Prefectural Park)
+- JP-2141 Kokubu seaside Prefectural Park (Prefectural Park)
+- JP-2142 Kanazawa Minato cyuou Prefectural Park (Prefectural Park)
+- JP-2143 Odaira touge Prefectural Forest (Prefectural Forest)
+- JP-2144 Ookagou Prefectural Park (Prefectural Park)
+- JP-2149 Shirokokou Ryokuchi Prefectural Park (Prefectural Park)
+- JP-2150 Kana Garden Prefectural Park (Prefectural Park)
+- JP-2152 Shouyouju no Mori Prefectural Forest (Prefectural Forest)
+- JP-2153 Matsubara Yamate Prefectural Forest (Prefectural Forest)
+- JP-2155 Seiryu Nagaragawa Ayu Prefectural Park (Prefectural Park)
+- JP-2156 Hiroshima Kenmin no Mori Prefectural Forest (Prefectural Forest)
+- JP-2157 Mominoki Prefectural Forest (Prefectural Forest)
+- JP-2158 Kenmin-no-Hama Beach Prefectural Park (Prefectural Park)
+- JP-2159 Chuo Shinrin Prefectural Forest (Prefectural Forest)
+- JP-2160 Tamba Nenrin-no-Sato Prefectural Park (Prefectural Park)
+- JP-2161 Koshienhama Seaside Prefectural Park (Prefectural Park)
+- JP-2162 Santokuen Prefectural Park (Prefectural Park)
+- JP-2163 Shimin-no-Mori Ryokuchi Prefectural Park (Prefectural Park)
+- JP-2164 Fukui Prefectural Children’s Science Museum(Angel Land Fukui） Park (Park)
