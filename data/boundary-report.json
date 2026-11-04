@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11611,
-   "far": 3931,
+   "matched": 11632,
+   "far": 4079,
    "noshape": 0,
-   "edge": 3820,
+   "edge": 3968,
    "out": 111,
    "swap": 0
   },
@@ -108,26 +108,26 @@
    {
     "st": "DE",
     "matched": 84,
-    "far": 15,
+    "far": 29,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 15
+    "edge": 29
    },
    {
     "st": "FL",
-    "matched": 437,
-    "far": 64,
+    "matched": 436,
+    "far": 194,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 63
+    "edge": 193
    },
    {
     "st": "GA",
@@ -275,15 +275,15 @@
    },
    {
     "st": "MN",
-    "matched": 292,
-    "far": 68,
+    "matched": 313,
+    "far": 72,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 62
+    "edge": 66
    },
    {
     "st": "MO",
@@ -311,7 +311,7 @@
    },
    {
     "st": "MT",
-    "matched": 244,
+    "matched": 245,
     "far": 78,
     "noshape": 0,
     "out": 0,
@@ -808,11 +808,11 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4318,
-   "far": 1710,
-   "noshape": 40,
-   "edge": 1593,
-   "out": 77,
+   "matched": 4383,
+   "far": 1636,
+   "noshape": 38,
+   "edge": 1522,
+   "out": 76,
    "swap": 0
   },
   "states": [
@@ -830,15 +830,15 @@
    },
    {
     "st": "CA-BC",
-    "matched": 1213,
-    "far": 447,
+    "matched": 1219,
+    "far": 350,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 441
+    "edge": 344
    },
    {
     "st": "CA-MB",
@@ -854,43 +854,43 @@
    },
    {
     "st": "CA-NB",
-    "matched": 305,
-    "far": 154,
+    "matched": 320,
+    "far": 163,
     "noshape": 0,
-    "out": 28,
+    "out": 27,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 126
+    "edge": 136
    },
    {
     "st": "CA-NL",
     "matched": 74,
-    "far": 31,
-    "noshape": 7,
+    "far": 28,
+    "noshape": 6,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 23
+    "edge": 21
    },
    {
     "st": "CA-NS",
-    "matched": 322,
-    "far": 89,
-    "noshape": 1,
+    "matched": 359,
+    "far": 107,
+    "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 86
+    "edge": 105
    },
    {
     "st": "CA-NT",
-    "matched": 17,
+    "matched": 18,
     "far": 4,
     "noshape": 0,
     "out": 1,
@@ -914,15 +914,15 @@
    },
    {
     "st": "CA-ON",
-    "matched": 959,
-    "far": 397,
+    "matched": 951,
+    "far": 389,
     "noshape": 27,
     "out": 7,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 363
+    "edge": 355
    },
    {
     "st": "CA-PE",
@@ -938,15 +938,15 @@
    },
    {
     "st": "CA-QC",
-    "matched": 428,
-    "far": 161,
+    "matched": 442,
+    "far": 168,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 156
+    "edge": 163
    },
    {
     "st": "CA-SI",
@@ -1006,6 +1006,12 @@
     "The Kananaskis Country"
    ],
    [
+    "CA-BC",
+    "CA-3900",
+    "Nisga'a Memorial Lava Bed Corridor Protected Area",
+    "NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA"
+   ],
+   [
     "CA-MB",
     "CA-2441",
     "Lee Lake Wildlife Management Area",
@@ -1022,12 +1028,6 @@
     "CA-4443",
     "McCluskey Brook Protected Area",
     "McCluskey Brook"
-   ],
-   [
-    "CA-NB",
-    "CA-5204",
-    "Nashwaaksis Stream Nature Park",
-    "Nashwaaksis Stream"
    ],
    [
     "CA-NB",
