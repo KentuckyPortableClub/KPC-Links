@@ -2,7 +2,7 @@
 
    1) MAILER (doPost): the website's Discord relay (GitHub Actions) sends it a post; it emails Groups.io and the
       email-updates list from this Gmail.
-   2) WATCHER (kpcWatch, runs every 5 minutes): starts the relay on GitHub, so posts go out within about 10 minutes
+   2) WATCHER (kpcWatch, runs every 5 minutes): starts the relay on GitHub, so posts go out within about 30 minutes (Nov 4 fix bundle; was about 10)
       instead of waiting for GitHub's own 15-minute timer (which often runs late). PR3 (Nov 2): it starts the relay only
       when the newest relay run is 8+ minutes old (28+ at night), about 115 starts a day instead of ~280. It does NOT read Discord itself:
       Discord blocks Google's servers (error 40333 "internal network error", found Oct 15), so GitHub does the reading.
@@ -17,7 +17,7 @@
 
 var REPO = 'KentuckyPortableClub/KPC-Links';
 var WORKFLOW = 'kpc-discord-relay.yml';
-var MIN_GAP_MIN = 8;     // PR3: start the relay only when its newest run is at least this old (daytime)
+var MIN_GAP_MIN = 28;    // Nov 4 fix bundle (item 12): every ~30 min, was 8 (PR3: start the relay only when its newest run is at least this old, daytime). Takes effect only when this code is pasted into the Apps Script and deployed again
 var QUIET_GAP_MIN = 28;  // PR3: the same at night, 11 PM-6 AM Central (no email goes out then anyway)
 
 function doPost(e) {

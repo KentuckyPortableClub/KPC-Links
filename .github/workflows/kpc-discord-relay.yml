@@ -1,13 +1,13 @@
 name: KPC Discord relay
 # Shares posts from the private Discord channel to the website, Facebook Page, other Discord server(s), Groups.io,
 # the email-updates list, the Events calendar and park warnings. Edits/deletes follow. How posts are read (tags):
-# see the top of .github/scripts/kpc_discord_relay.py. Started every 15 min here, and within ~1 minute of a new post
+# see the top of .github/scripts/kpc_discord_relay.py. Started every 30 min here (Nov 4 fix bundle; was 15), and within ~1 minute of a new post
 # by the watcher in the KPC Mailer Apps Script (kpcwebhost@gmail.com), which calls workflow_dispatch with dry_run=false.
 # PR3 (Nov 2): a started run first takes a few-second look and ends there when nothing is new (kpc_relay_peek.py); the full
-# work still runs at least every ~15 min. It is also the outside heartbeat that restarts KPC-Data's watchdog (see the end).
+# work still runs at least every ~30 min (Nov 4 fix bundle; was ~15). It is also the outside heartbeat that restarts KPC-Data's watchdog (see the end).
 on:
   schedule:
-    - cron: '5,20,35,50 * * * *'   # G9 Nov 2: was '7,22,37,52 * * * *' (spread the start times; now 2 min earlier)
+    - cron: '5,35 * * * *'   # Nov 4 fix bundle (item 12; Brandon's yes relayed via Super Head Bot 4:53 PM CST): every 30 min, was '5,20,35,50 * * * *' (every 15). G9 Nov 2: was '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       # PR3 (Nov 2): the Apps Script starts this relay every few minutes; most starts find nothing new. On those STARTED runs
-      # a few-second look decides: a new Discord message, a waiting email, a due post, or 14+ min since the last full run =
+      # a few-second look decides: a new Discord message, a waiting email, a due post, or 29+ min since the last full run (Nov 4: was 14+) =
       # the full run; else the run ends here (the heartbeat below still runs). Scheduled runs and practice runs always go full.
       - name: Anything new? (started runs only, PR3)
         id: peek
@@ -119,7 +119,7 @@ jobs:
           if [ "$age" -gt 9000 ]; then
             gh api -X POST "repos/${{ github.repository }}/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main && echo "::notice title=Watchdog heartbeat::the watchdog had not run for $((age / 60)) min: started it once (from the relay)"
           else echo "watchdog ran $((age / 60)) min ago: nothing to do"; fi
-          true   # ok: a missed heartbeat is retried 15 min later by the next relay run
+          true   # ok: a missed heartbeat is retried 30 min later by the next relay run (Nov 4: was 15)
       # PR3 (Nov 2): KPC-Data's own timers stopped firing at 7:26 AM CT Nov 2, and every KPC-Data backup (its watchdog, the
       # engine / map-audit chains) lives inside KPC-Data, so nothing from outside could start it again. This relay runs many
       # times an hour from KPC-Links, so it is the outside heartbeat: when KPC-Data's watchdog is 2 h 15 min old it starts it

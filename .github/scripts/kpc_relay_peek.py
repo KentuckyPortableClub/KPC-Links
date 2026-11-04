@@ -4,8 +4,8 @@ The KPC Mailer Apps Script starts the Discord relay every few minutes so a club 
 nothing new, but each one still installed tools, read 100 Discord messages and ran three more Discord bots. This look runs
 first on STARTED (workflow_dispatch) runs only and decides in a few seconds:
   FULL run  when the relay channel has a message newer than the last one shared (Discord's last_message_id), an email is
-            waiting in the queue (6 AM-9 PM Central), a scheduled post is due, the last FULL run is 14+ minutes old (so edits,
-            deletes and the club-room helpers still run at least every ~15 min even when GitHub skips the relay's own timer),
+            waiting in the queue (6 AM-9 PM Central), a scheduled post is due, the last FULL run is 29+ minutes old (Nov 4: was 14+; so edits,
+            deletes and the club-room helpers still run at least every ~30 min even when GitHub skips the relay's own timer),
             the run was started with full=true, or anything here cannot be read (when in doubt, do the full run);
   QUICK end otherwise (writes skip=1 for the workflow; the heartbeat and the report still run).
 Scheduled runs never call this: they always do the full run. Never prints a secret. Never fails (any error = full run).
@@ -15,7 +15,7 @@ from zoneinfo import ZoneInfo
 
 CT = ZoneInfo('America/Chicago')
 NOW = dt.datetime.now(dt.timezone.utc)
-FULL_EVERY_MIN = 14
+FULL_EVERY_MIN = 29   # Nov 4 fix bundle (item 12, Brandon's yes relayed via Super Head Bot 4:53 PM CST): every ~30 min, was 14
 UA = 'KPC-Relay (https://kentuckyportableclub.github.io/KPC-Links/, 2.0)'
 
 
