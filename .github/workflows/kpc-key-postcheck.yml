@@ -57,6 +57,14 @@ jobs:
           mkdir -p kpcdata/data && ln -sfn "$GITHUB_WORKSPACE/data/world-key" kpcdata/data/world-key
           OUT=/tmp/kpc-precheck DATA=kpcdata python3 .github/scripts/kpc_precheck.py > /tmp/kpc-precheck.log 2>&1 || echo "::warning title=Key check::the pre-check stopped (exit $?); its flags are left out of the report"
           grep '^::' /tmp/kpc-precheck.log | tail -n 3 || true   # ok: only shows the pre-check's own summary line
+      - name: Queued pre-check re-runs (fix bundle item 11b; the first is due now - the German build ddd815b34 counts)
+        # Nov 4 PM fix bundle item 11b (Brandon's yes relayed via Super Head Bot 4:53 PM CST): no new cron; keeps the pre-check
+        # above for each entry of data/status/key-check/precheck-queue.json once its key file was rebuilt (saved with the report)
+        continue-on-error: true
+        env:
+          PRECHECK_OUT: /tmp/kpc-precheck
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 .github/scripts/kpc_precheck_queue.py || echo "::warning title=Pre-check queue::stopped (exit $?); the queue waits for the next key build"
       - name: Compare the new key with the previous build
         continue-on-error: true
         env:
