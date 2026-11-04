@@ -1,117 +1,163 @@
 {
- "updated": "2026-10-28",
+ "updated": "2026-11-04",
  "states": {
   "AK": {
-   "n": 71,
-   "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); services1.arcgis.com \u00b7 PARK_FACILITY_PT (85)",
-   "updated": "2026-10-28"
+   "n": 105,
+   "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facilities (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facilities (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84) (+16 more)",
+   "updated": "2026-11-04"
+  },
+  "AZ": {
+   "n": 103,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
   },
   "CA": {
-   "n": 356,
-   "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
-   "updated": "2026-10-28"
+   "n": 568,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+12 more)",
+   "updated": "2026-11-04"
+  },
+  "CO": {
+   "n": 97,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
   },
   "FL": {
    "n": 149,
    "source": "services3.arcgis.com \u00b7 Recreation_Points_Website_Staging (170)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
+  },
+  "GA": {
+   "n": 2,
+   "source": "apps.fs.usda.gov \u00b7 Recreation Sites INFRA (5021)",
+   "updated": "2026-11-04"
   },
   "HI": {
    "n": 8,
    "source": "geodata.hawaii.gov \u00b7 Campsites - Hawaii State Parks (11)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "IA": {
    "n": 94,
    "source": "programs.iowadnr.gov \u00b7 Recreation Amenities (185); programs.iowadnr.gov \u00b7 Recreation Amenities (176); programs.iowadnr.gov \u00b7 Recreation Amenities (176)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
+  },
+  "ID": {
+   "n": 1154,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+14 more)",
+   "updated": "2026-11-04"
   },
   "IN": {
    "n": 17,
    "source": "gisdata.in.gov \u00b7 Camping (17)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "MI": {
    "n": 377,
    "source": "services3.arcgis.com \u00b7 Michigan State Park Campgrounds (260); services3.arcgis.com \u00b7 Campgrounds on Michigan State Forest Land (144); services3.arcgis.com \u00b7 ParksAndTrails_Camping_Join (105)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "MN": {
    "n": 53,
    "source": "enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54) (+1 more)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
+  },
+  "MT": {
+   "n": 76,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
+  },
+  "ND": {
+   "n": 2,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
   },
   "NE": {
    "n": 6,
    "source": "services5.arcgis.com \u00b7 CAMS_Camping_Facility (90); services5.arcgis.com \u00b7 CAMS_Camping_Facility (2)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "NH": {
    "n": 12,
    "source": "nhgeodata.unh.edu \u00b7 Recreation Inventory: Points (12)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
+  },
+  "NM": {
+   "n": 52,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
+  },
+  "NV": {
+   "n": 53,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+12 more)",
+   "updated": "2026-11-04"
   },
   "NY": {
    "n": 140,
    "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services6.arcgis.com \u00b7 DEC_OPRHP_camground_centriods (112); services.arcgis.com \u00b7 Point (59)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "OH": {
    "n": 62,
    "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
+  },
+  "OR": {
+   "n": 180,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+16 more)",
+   "updated": "2026-11-04"
   },
   "PA": {
    "n": 81,
-   "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); www.gis.dcnr.state.pa.us \u00b7 Campground Entrances (65) (+1 more)",
-   "updated": "2026-10-28"
+   "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); gis.dcnr.pa.gov \u00b7 Campground Entrances (65) (+1 more)",
+   "updated": "2026-11-04"
+  },
+  "SD": {
+   "n": 3,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+11 more)",
+   "updated": "2026-11-04"
   },
   "TN": {
    "n": 267,
    "source": "services5.arcgis.com \u00b7 Park Assets (214); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (120) (+3 more)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "TX": {
    "n": 329,
    "source": "services1.arcgis.com \u00b7 Campground Area (439)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "UT": {
-   "n": 13,
-   "source": "services.arcgis.com \u00b7 DWR_Cabins (13)",
-   "updated": "2026-10-28"
+   "n": 169,
+   "source": "services.arcgis.com \u00b7 DWR_Cabins (13); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302) (+36 more)",
+   "updated": "2026-11-04"
   },
   "VA": {
    "n": 40,
    "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (70)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "VT": {
    "n": 147,
    "source": "anrmaps.vermont.gov \u00b7 Outdoor Recreation Sites Inventory (155)",
-   "updated": "2026-10-28"
+   "updated": "2026-11-04"
   },
   "WA": {
-   "n": 66,
-   "source": "services5.arcgis.com \u00b7 Campsites (77)",
-   "updated": "2026-10-28"
+   "n": 91,
+   "source": "gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302); gis.blm.gov \u00b7 BLM Recreation Facilities (611) (+17 more)",
+   "updated": "2026-11-04"
   },
   "WY": {
-   "n": 90,
-   "source": "services1.arcgis.com \u00b7 Campsites_0926 (19); services1.arcgis.com \u00b7 Campgrounds_Statewide (98)",
-   "updated": "2026-10-28"
+   "n": 160,
+   "source": "services1.arcgis.com \u00b7 Campsites_0926 (19); services1.arcgis.com \u00b7 Campgrounds_Statewide (98); gis.blm.gov \u00b7 BLM Natl Facilities Camping and Cabins (302) (+13 more)",
+   "updated": "2026-11-04"
   }
  },
  "none": [
   "AL",
   "AR",
-  "AZ",
-  "CO",
   "CT",
   "DC",
   "DE",
-  "GA",
-  "ID",
   "IL",
   "KS",
   "LA",
@@ -120,30 +166,20 @@
   "ME",
   "MO",
   "MS",
-  "MT",
   "NC",
-  "ND",
   "NJ",
-  "NM",
-  "NV",
   "OK",
-  "OR",
   "RI",
   "SC",
-  "SD",
   "WI",
   "WV"
  ],
  "none_why": {
   "AL": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "AR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "AZ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "CO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "CT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "DC": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "DE": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "GA": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "ID": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "IL": "1 layer(s) looked promising but held no camp / cabin / lodge records",
   "KS": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "LA": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
@@ -152,26 +188,18 @@
   "ME": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "MO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "MS": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "MT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "ND": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NJ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "NM": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "NV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "OK": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "OR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "RI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "SC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "SD": "the state GIS server did not answer from GitHub (Expecting value: line 1 column 1 (char 0); Expecting value: line 1 column 1 (char 0); <url); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
  },
  "gate": {
-  "result": "FAIL",
-  "checked": 1,
-  "missing": [
-   "TN Fall Creek Falls"
-  ],
-  "date": "2026-10-28"
+  "result": "PASS",
+  "checked": 6,
+  "missing": [],
+  "date": "2026-11-04"
  }
 }
