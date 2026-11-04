@@ -67,6 +67,18 @@ jobs:
           ANSWER_SHEET: kpcdata/data/answer-sheet
           PRECHECK_OUT: /tmp/kpc-precheck
         run: python3 .github/scripts/kpc_key_postcheck.py
+      - name: Dropped parks, split by reason (links-07)
+        # per Brandon via Super Head Bot (relayed), 6:05 AM CST Nov 4: every park this build left with no outline, one CSV per
+        # reason + no-boundary.csv + index.json under data/status/key-check/<key>-<build>/dropped/, and a count table in the .md.
+        # Read-only like the step above; one notice, a warning only for a system problem (a sudden jump in drops).
+        continue-on-error: true
+        env:
+          KEY: ${{ inputs.key }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          FORCE: ${{ inputs.force }}
+          ANSWER_SHEET: kpcdata/data/answer-sheet
+          PRECHECK_OUT: /tmp/kpc-precheck
+        run: python3 .github/scripts/kpc_key_dropped.py
       - name: Save the report (one save per run)
         continue-on-error: true
         run: |
