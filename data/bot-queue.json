@@ -5,15 +5,6 @@
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "CT ID ME ND OH TN WV"
-   },
-   "why": "US outlines, live refresh: CT ID ME ND OH TN WV",
-   "every": 14,
-   "next": "2026-11-05T06:00+00:00"
-  },
-  {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
     "states": "AK DC IL MI NE OK TX WY"
    },
    "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
@@ -81,6 +72,15 @@
    "why": "US outlines, live refresh: CO IA MD NC NY SD WI",
    "every": 14,
    "next": "2026-11-17T06:30+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CT ID ME ND OH TN WV"
+   },
+   "why": "US outlines, live refresh: CT ID ME ND OH TN WV",
+   "every": 14,
+   "next": "2026-11-19T07:02+00:00"
   }
  ]
 }
