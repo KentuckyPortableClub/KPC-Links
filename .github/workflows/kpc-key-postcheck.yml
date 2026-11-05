@@ -21,6 +21,9 @@ on:
       force:
         description: 'yes = write a report even if this build was already checked'
         default: ''
+      health:
+        description: 'yes = also run the key health diff (Nov 6 improvements 3; by hand only, never on workflow_run)'
+        default: ''
 permissions:
   contents: write
 concurrency:
@@ -49,6 +52,7 @@ jobs:
           sparse-checkout: |
             data/answer-sheet
             data/world-bounds
+            data/acres.json
           persist-credentials: false
       - name: Pre-check (REVIEW_PILE, RULE 18, bad-pin flags) into a temp folder
         continue-on-error: true
@@ -75,6 +79,18 @@ jobs:
           ANSWER_SHEET: kpcdata/data/answer-sheet
           PRECHECK_OUT: /tmp/kpc-precheck
         run: python3 .github/scripts/kpc_key_postcheck.py
+      - name: Key health diff (Nov 6 improvements 3; OPTIONAL, workflow_dispatch with health=yes only)
+        # Brandon directly in Mapping's chat, 4:58 PM CST Nov 5. Read-only like the steps above: compares this key with the previous
+        # build commit and writes data/status/key-check/health-<key>/ (health.csv, summary.json/.md, ledger-proposals.csv). The
+        # proposals are 'pile-enter' rows for KPC-Data's agreement ledger; they are NOT written there from here (KPC-Data's
+        # kpc_ledger_flow.py import appends them; a different agent confirms). No schedule, no workflow_run start of its own.
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.health == 'yes' }}
+        id: kept_green_health
+        continue-on-error: true
+        env:
+          KEY: ${{ inputs.key }}
+          OFFICIAL_ACRES: kpcdata/data/acres.json
+        run: python3 .github/scripts/kpc_key_health.py || { kpc_rc=$?; echo "::warning title=Key health::stopped (exit $kpc_rc); the key check above is not affected"; }
       - name: Dropped parks, split by reason (links-07)
         # per Brandon via Super Head Bot (relayed), 6:05 AM CST Nov 4: every park this build left with no outline, one CSV per
         # reason + no-boundary.csv + index.json under data/status/key-check/dropped-<key>/latest/ (links-11: plus previous/, the set
