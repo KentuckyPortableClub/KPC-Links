@@ -59,6 +59,6 @@ try:
 finally:
     PC.name_how = real
 src = (HERE / '.github/scripts/kpc_precheck.py').read_text()
-check("name_how_general(p.get('n') or '', x[1])" in src and "rule18_differs(p.get('n') or '', x[1], False)" in src and 'rule18_differs(park, rec, True)' in src
+check("name_how_general(p.get('n') or '', x[1])" in src and ("rule18_differs(p.get('n') or '', x[1], False)" in src or "rule18_differs(p.get('n') or '', x[1], False, cc=" in src) and 'rule18_differs(park, rec, True)' in src
       and "rule18_differs(pota_name or '', x[1], True)" in src, 'wiring: the general test uses brackets off; the bad-pin test (name_how r18 + name_area_backs) keeps brackets=True')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

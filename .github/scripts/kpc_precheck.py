@@ -108,15 +108,39 @@ _R18_CODE = re.compile(r'\b([A-Z]{2}\d{7})\b|\b(\d{4}-\d{3})\b')
 def _r18_unbracket_numbers(t): return _R18_NOBRK.sub(lambda m: ' ' + m.group(1) + ' ', str(t or ''))
 
 
+def _r18_norm_num(x, allow_leading_zeros=False):
+    """'046'/'46' -> '46' (when allow_leading_zeros); keep a letter suffix. None for 5+ digit ids.
+    No./n°/# captures with leading zeros are registry ids (ZNIEFF), so callers pass allow_leading_zeros=False."""
+    s = str(x or '')
+    m = re.match(r'^(0*)(\d+)([a-z]?)$', s, re.I)
+    if not m: return None
+    zeros, dig, suf = m.group(1), m.group(2), m.group(3).lower()
+    if len(dig) >= 5: return None
+    if zeros and not allow_leading_zeros: return None
+    return (dig.lstrip('0') or '0') + suf
+
+
+def _r18_piece_nos(t):
+    """No./n°/# piece numbers in t, normalised. ZNIEFF registry ids (leading zeros / 5+ digits) dropped
+    (Quality v3 C5 should-fix: FR-5453, FR-11445, FR-7968, FR-8493)."""
+    out = set()
+    for x in _R18_NO.findall(str(t or '')):
+        n = _r18_norm_num(x, allow_leading_zeros=False)
+        if n: out.add(n)
+    return out
+
+
 def _r18_extra(park, rec):
-    """the next-round C5 differences ('' when none)"""
-    na, nb = set(x.lower() for x in _R18_NO.findall(park)), set(x.lower() for x in _R18_NO.findall(rec))
+    """the next-round C5 differences ('' when none). Quality v3 should-fix: ZNIEFF registry n° 00000… and
+    leading-zero equals ('PA 046' vs '#46': US-8745, US-8784) are not piece clashes."""
+    na, nb = _r18_piece_nos(park), _r18_piece_nos(rec)
     if na and nb and not (na & nb):
         return f"rule 18: number {' '.join(sorted(na))} vs {' '.join(sorted(nb))} are different pieces"
     if bool(na) != bool(nb):
         one = na or nb
-        other = set(x.lower() for x in re.findall(r'\b(\d+[a-z]?)\b', rec if na else park))
-        if one <= other: return ''   # 'Area #3' vs 'Area 3': the same number, written without 'No.'
+        other = {n for x in re.findall(r'\b(\d+[a-z]?)\b', rec if na else park)
+                 if (n := _r18_norm_num(x, allow_leading_zeros=True))}
+        if one <= other: return ''   # 'Area #3' vs 'Area 3'; 'PA 046' vs '#46'
         return (f"rule 18: 'No. {' '.join(sorted(one))}' names a piece in one name only ("
                 f"{'the park' if na else 'the record'}): the other name does not name that piece")
     ca = {a or b for a, b in _R18_CODE.findall(str(park or '').upper())}
@@ -126,12 +150,12 @@ def _r18_extra(park, rec):
     return ''
 
 
-def rule18_differs(park, rec, brackets=False):
-    w = _rule18_differs(park, rec, brackets)
+def rule18_differs(park, rec, brackets=False, cc=None):
+    w = _rule18_differs(park, rec, brackets, cc=cc)
     return w or _r18_extra(_r18_unbracket_numbers(park), _r18_unbracket_numbers(rec))
 
 
-def _rule18_differs(park, rec, brackets=False):
+def _rule18_differs(park, rec, brackets=False, cc=None):
     """'' when nothing tells the two names apart as pieces; else a plain reason. Uses the key's own rule 18 piece test
     (KR.piece_ok: 'Unit 2' vs 'Unit 3', 'Abo Unit') plus clashing piece words. brackets=True (the bad-pin name test only) also
     asks for a bracketed POTA qualifier ('(CNC/Stallman)').
@@ -149,8 +173,8 @@ def _rule18_differs(park, rec, brackets=False):
     if not brackets:
         u = (unbracket(park) or park, unbracket(rec) or rec)
         if u != (park, rec):
-            w = _rule18_core(park, rec, False)
-            if w and _rule18_core(*u, False): return _rule18_core(*u, False)
+            w = _rule18_core(park, rec, False, cc=cc)
+            if w and _rule18_core(*u, False, cc=cc): return _rule18_core(*u, False, cc=cc)
             if w and _bracket_text(park) and _bracket_text(rec) and ("' vs '" in w or 'number' in w):
                 return w + ' (both names carry a different bracketed piece)'
             # links-11 (Nov 4, Quality's v2 grade, should-fix 3, YES'd by Super's 7:15 AM CST relay): a compass / position word that
@@ -163,13 +187,13 @@ def _rule18_differs(park, rec, brackets=False):
                 if inb: return (f"rule 18: '{' '.join(sorted(inb))}' names a piece in one name but sits only inside the other name's bracket "
                                 f"({_bracket_text(rec if pa else park)}): check it is the same piece")
             return ''
-    return _rule18_core(park, rec, brackets)
+    return _rule18_core(park, rec, brackets, cc=cc)
 
 
 def _bracket_text(t): return ' '.join(a or b for a, b in re.findall(r'\(([^)]*)\)|\[([^\]]*)\]', str(t or ''))).strip()
 
 
-def _rule18_core(park, rec, brackets):
+def _rule18_core(park, rec, brackets, cc=None):
     ok, why = KR.piece_ok(park, rec)
     if not ok: return why
     a, b = set(KR._plain_words(park)), set(KR._plain_words(rec))
@@ -189,7 +213,7 @@ def _rule18_core(park, rec, brackets):
     if na and nb and not (na & nb): return f"rule 18: number {' '.join(sorted(na))} vs {' '.join(sorted(nb))} are different pieces"
     # next round v3 C10 (Quality's grade of v2, must-fix): a number in ONE name only is another piece (AU-7265 'Mount Stanley State
     # Forest' vs 'Mount Stanley 1'). kpc_number_rules.py, its switch ONE_SIDE_NUMBER (default 'strict') and what counts as a number.
-    one = KN.why(park, rec)
+    one = KN.why(park, rec, cc=cc)
     if one: return one
     for q in (re.findall(r'\(([^)]*)\)', str(park or '')) if brackets else []):
         qw = {w for w in KR._plain_words(q) if len(w) >= 3 and w not in KR._STOP}
@@ -513,7 +537,7 @@ def main():
             # Brandon, relayed by Super 7:26 PM CST Nov 3: rule 18 in the general name test too. A record whose name matches but that
             # rule 18 tells apart (North/South Fork, Unit 2/3, Upper/Lower, a bracketed POTA qualifier) is another piece: review pile
             # + flag RULE18_PIECE. Not a doubt, so it is never held (the hold switch stays off by default either way).
-            r18p = [(x, why18) for x, h in nh if h != 'other' for why18 in [rule18_differs(p.get('n') or '', x[1], False)] if why18]   # v5 (Brandon, relayed 7:43 PM CST): bracketed place qualifiers ('(Lewis County)') no longer count here
+            r18p = [(x, why18) for x, h in nh if h != 'other' for why18 in [rule18_differs(p.get('n') or '', x[1], False, cc=area)] if why18]   # v5 (Brandon, relayed 7:43 PM CST): bracketed place qualifiers ('(Lewis County)') no longer count here
             for _x, _w in r18p[:1]: cnt['rule18_by_' + ('qualifier' if 'qualifier' in _w else 'one-side word' if 'names only one piece' in _w else 'number' if 'number' in _w else 'piece word' if "' vs '" in _w else 'piece test')] += 1
             if r18p: flags.append('RULE18_PIECE'); why.append('rule 18: the joined record may be another piece: ' + '; '.join(f'{x[0]} {x[1]} ({w})' for x, w in r18p[:3]))
             wk = [x for x in m if kind_ok(p.get('t') or p.get('n'), x[1]) is False]

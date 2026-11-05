@@ -16,9 +16,7 @@ What counts as a number in a name:
     'L.I.V.I.A.'), a word (Slovene / Czech 'V' = 'in') or a king ('King George V'). Lower-case 'ii' / 'vi' are words, not numbers,
     and so is a word with an apostrophe in it (CA-4007 'Kt'ii/Racey' = 'KT'II/RACEY CONSERVANCY');
   - NOT a number: 'Natura 2000'; a decimal ('2588.27 Acre Parcel' is a measure); the WA CALM Act section of a reserve, written '5(1)(h) Reserve' in CAPAD and shortened by POTA to
-    '5 Reserve' at the end of a name (AU-3037 'Wellington Discovery Forest 5 Reserve' = CAPAD 12895 'Wellington Discovery Forest',
-    TYPE '5(1)(h) Reserve'; AU-6700 'Buntine 5 Reserve' = CAPAD 1577 'Buntine', TYPE '5(1)(h) Reserve'; read from the official
-    CAPAD layer on Nov 5 2026).
+    '5 Reserve' at the end of a name (AU-3037, AU-6700). Quality v3 should-fix: that strip runs ONLY when cc starts with AU.
 A number counts as 'on both sides' when the other name carries it anywhere: as a plain number, inside brackets ('... 25' vs CAPAD-like
 '... (25)', FR-5626; 'n° 28' vs '(n° 28)', FR-5526), as a one-letter Roman numeral, or written out in English ('9 Mile' / 'Nine Mile').
 A number that only sits inside brackets never refuses on its own (rule 18 v5: bracket text does not count).
@@ -61,12 +59,16 @@ def roman(w):
     return _ROMAN.get(w) if w and w == w.upper() else None
 
 
-def _clean(t):
+def _clean(t, cc=None):
+    """Strip network / measure / AU-WA CALM '5 Reserve' noise before scanning numbers.
+    Quality v3 should-fix: the '5 Reserve' / '5(1)(h)' strip applies only to AU (WA CALM Act), not every country."""
     t = str(t or '')
     t = re.sub(r'(?i)natura\s*2000', ' ', t)                                # a network, not a number
     t = re.sub(r'\d+[.,]\d+', ' ', t)                                       # a measure, not a piece ('2588.27 Acre Parcel', US-12306)
-    t = re.sub(r'\b\d+\s*\(\s*\d+\s*\)\s*\(\s*[a-zA-Z]\s*\)', ' ', t)      # WA CALM Act section '5(1)(h)', a kind of reserve
-    t = re.sub(r'(?i)\b5\s+reserve\s*$', ' Reserve', t)                     # ... and POTA's short form of it, '... 5 Reserve'
+    au = (cc or '').upper().startswith('AU')
+    if au:
+        t = re.sub(r'\b\d+\s*\(\s*\d+\s*\)\s*\(\s*[a-zA-Z]\s*\)', ' ', t)  # WA CALM Act section '5(1)(h)'
+        t = re.sub(r'(?i)\b5\s+reserve\s*$', ' Reserve', t)                 # POTA short form '... 5 Reserve' (AU-3037, AU-6700)
     t = re.sub(r'(?i)(?:\bno|\bn[º°]|#)\s*\.?\s*(?=\d)', ' ', t)          # 'No2', 'No.2', 'n° 28', '#2' -> ' 2'
     t = re.sub(r'\bn(?=\d{1,3}\b)', ' ', t)                                  # POTA's 'n9' = 'n°9' with the ° lost (FR-5508); lower-case only
     return t
@@ -84,10 +86,10 @@ def _scan(t):
     return strong, weak
 
 
-def numbers(t):
+def numbers(t, cc=None):
     """{'bare': numbers outside brackets, 'weak': one-letter Roman numerals outside brackets, 'brk': every number inside brackets,
     'words': the folded words (for numbers written out)}"""
-    c = _clean(t)
+    c = _clean(t, cc=cc)
     inner = ' '.join(a or b for a, b in _BRK.findall(c))
     bare, weak = _scan(_BRK.sub(' ', c))
     bs, bw = _scan(inner)
@@ -117,7 +119,7 @@ def _alt(a, b):
     return None
 
 
-def one_side(a, b, mode=None):
+def one_side(a, b, mode=None, cc=None):
     """the numbers (sorted, as text) that only ONE of the two names carries and that refuse the join; [] = no refusal.
     a = the POTA name, b = the official record's name. mode: see ONE_SIDE_NUMBER (default: the constant)."""
     mode = mode or ONE_SIDE_NUMBER
@@ -128,7 +130,7 @@ def one_side(a, b, mode=None):
     else:
         alt = _alt(b, a)
         if alt is not None: a = alt
-    A, B = numbers(a), numbers(b)
+    A, B = numbers(a, cc=cc), numbers(b, cc=cc)
     a_only = {n for n in A['bare'] if not _has(n, B)}
     b_only = {n for n in B['bare'] if not _has(n, A)}
     if mode in ('counter-ok', 'both-ok') and not (B['bare'] or B['weak'] or B['brk']): a_only = set()
@@ -136,7 +138,7 @@ def one_side(a, b, mode=None):
     return sorted(a_only | b_only, key=int)
 
 
-def why(a, b, mode=None):
+def why(a, b, mode=None, cc=None):
     """'' = no refusal; else the plain reason (the wording ends in '(rule 18)')."""
-    one = one_side(a, b, mode)
+    one = one_side(a, b, mode, cc=cc)
     return f"number {' '.join(one)} is in one name only ('{a}' vs '{b}'): a different piece (rule 18)" if one else ''

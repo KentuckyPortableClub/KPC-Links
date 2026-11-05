@@ -122,6 +122,39 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
       }
     }
   } catch (e) { console.error('trail lines: ' + e.message); }
+  // Part A v2 (Quality separate finding): data/trails/ is gitignored on Links (lives on KPC-Data).
+  // A Links-only KY rebuild used to drop US-3791 / US-4572 / US-11181. Keep previous key's trl
+  // tracts when the trail file is not present locally (same idea as transferred-park keep).
+  if (prev) {
+    for (const r of Object.keys(parks)) {
+      if ((parks[r].tracts || []).some(t => t[0] === 'trl')) continue;
+      const old = (prev.parks || {})[r];
+      if (!old || !(old.tracts || []).some(t => t[0] === 'trl')) continue;
+      parks[r].tracts = old.tracts.filter(t => t[0] === 'trl').map(t => t.slice());
+      parks[r].line = old.line || 1;
+      if (old.trl) parks[r].trl = old.trl;
+      parks[r].trail_kept = 'previous key (data/trails not present on this checkout)';
+    }
+  }
+  // Also try KPC-Data trails when DATA/KPC_DATA is set (optional live attach)
+  try {
+    const fs_ = require('fs'), path_ = require('path');
+    const roots = [process.env.DATA, process.env.KPC_DATA].filter(Boolean);
+    for (const root of roots) {
+      const ix = [].concat(...['index.json', 'index-state.json'].map(f => {
+        try { return JSON.parse(fs_.readFileSync(path_.join(root, 'data/trails', f), 'utf8')); } catch (e) { return []; }
+      }));
+      const off = new Map(ix.filter(x => x.kind !== 'WSR' && (x.official || /service|bureau|agency|department|usfs|nps|blm/i.test(String(x.by)))).map(x => [x.ref, x]));
+      for (const x of P) {
+        const pk = parks[x.c];
+        const tf = path_.join(root, 'data/trails', x.c + '.json');
+        if (pk && (!pk.tracts.length || pk.tracts.every(t => t[0] === 'btrail') || pk.trail_kept) && off.has(x.c) && fs_.existsSync(tf)) {
+          pk.tracts = [['trl', off.get(x.c).name || x.n, 0, `official trail line (${off.get(x.c).by || 'agency'})`, 1]];
+          pk.line = 1; pk.trl = 'data/trails/' + x.c + '.json'; delete pk.trail_kept;
+        }
+      }
+    }
+  } catch (e) { console.error('trail lines (DATA): ' + e.message); }
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
   for (const r in parks) parks[r].tracts.sort((a, b) => b[2] - a[2]);

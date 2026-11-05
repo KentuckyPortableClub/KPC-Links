@@ -52,6 +52,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
 import kpc_owned as KO
 import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
+import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate
+from kpc_fers_key_status import key_line_match, load_key_status, KEY_STATUS  # noqa: E402
 
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
@@ -252,8 +254,8 @@ def official_parks(PIN):
                 m = p.get('m') or []
                 m0, m = m, _no(ref, m, 'world')
                 if m0 and not m: continue
-                if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-                if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+                if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+                if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
                 if _bad(ref): continue
                 if ref not in PIN: skip['no pin'] += 1; continue
                 parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m}
@@ -266,8 +268,10 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'us')
             if m0 and not m: continue
-            if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-            if any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
+            if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+            # Nov 6 (Quality 2-fer grade): the key's g=approximate counts even when the join how-tag is plain 'words'/'name'
+            # (US-12459 Housatonic River Southern Fields: g=approximate, how=words). A key PIN never enters an area 2-fer.
+            if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
                 skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if _bad(ref): continue
             if ref not in PIN: skip['no pin'] += 1; continue
@@ -287,8 +291,8 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'ca')
             if m0 and not m: continue
-            if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-            if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+            if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+            if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if _bad(ref): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
@@ -2511,11 +2515,17 @@ def water_date(s):
     elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
 
 
+
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
     refs = s['refs']
     s['checked'] = today
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
+    # Nov 6 / Part A v2: area/same-land follow key PIN/approximate PER STATE (weakest if area unknown)
+    _areas = {r: (st_of(r) if callable(st_of) else '') for r in refs}
+    _klm = key_line_match(refs, s.get('kind'), areas=_areas)
+    if _klm:
+        s['status'] = _klm; return
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
     if any(r in saved_only for r in refs):
         s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
