@@ -41,7 +41,7 @@ KEEP = [('Ecrevisse A Pattes Blanches Et Faune Patrimoniale Associee 25 Conserva
         ('Rangataua No2 Conservation Area', 'Rangataua No.2 Conservation Area', 'NZ'),           # NZ-0408: 'No2' glued
         ('Trehörningen Nature Reserve', '2000542 Risveden etapp 1 (Trehörningen)', 'SE'),        # SE-0054: the park is the bracket name
         ('Kroksjön Nature Reserve', '2000558 Risveden etapp 2 (Kroksjön)', 'SE'),                # SE-0123
-        ('Wellington Discovery Forest 5 Reserve', 'Wellington Discovery Forest', 'AU'),          # AU-3037: CAPAD TYPE '5(1)(h) Reserve'
+        ('Wellington Discovery Forest 5 Reserve', 'Wellington Discovery Forest', 'AU'),          # AU-3037: CAPAD TYPE '5(1)(h) Reserve' (Quality v3: strip AU-only; pass cc)
         ('Buntine 5 Reserve', 'Buntine', 'AU'),                                                  # AU-6700: CAPAD TYPE '5(1)(h) Reserve'
         ('Bagno Wizna II Nature Reserve', 'Bagno Wizna 2', 'PL'), ('Tenayuca III', 'Tenayuca 3', 'MX'),   # Roman = arabic
         ('Bagno Wizna I Nature Reserve', 'Bagno Wizna 1', 'PL'),
@@ -61,7 +61,7 @@ def test_the_module_refuses_and_keeps():
     KN = _kn()
     assert KN.ONE_SIDE_NUMBER == 'strict', 'the default is the letter of rule 18'
     for a, b, _ in REFUSE: assert KN.one_side(a, b), (a, b)
-    for a, b, _ in KEEP: assert KN.one_side(a, b) == [], (a, b, KN.one_side(a, b))
+    for a, b, cc in KEEP: assert KN.one_side(a, b, cc=cc) == [], (a, b, cc, KN.one_side(a, b, cc=cc))
     assert KN.one_side('Mount Stanley State Forest', 'Mount Stanley 1') == ['1']
     assert KN.one_side('Foo Reserve', 'Foo 2 (Reserve)') == ['2'], 'a bracket of kind words is not the park name'
     assert KN.why('Fish Lake', 'Fish Lake 2').endswith('(rule 18)') and 'in one name only' in KN.why('Fish Lake', 'Fish Lake 2')
@@ -71,7 +71,7 @@ def test_precheck_flags_au7265_and_not_the_false_refusals():
     for a, b, _ in REFUSE[:2]:
         w = PC.rule18_differs(a, b)
         assert w and 'number 1' in w and w.endswith('(rule 18)'), (a, b, w)
-    for a, b, _ in KEEP: assert PC.rule18_differs(a, b) == '', (a, b, PC.rule18_differs(a, b))
+    for a, b, cc in KEEP: assert PC.rule18_differs(a, b, cc=cc) == '', (a, b, cc, PC.rule18_differs(a, b, cc=cc))
     assert PC.rule18_differs('Ławski Las 2 Nature Reserve', 'Ławski Las II') == '', "'2' vs 'II' is one piece (the both-sides test)"
     assert 'different pieces' in PC.rule18_differs('Ławski Las 2 Nature Reserve', 'Ławski Las III')
 

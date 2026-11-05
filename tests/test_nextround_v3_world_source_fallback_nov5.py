@@ -108,10 +108,22 @@ def test_a_failed_source_with_no_saved_records_holds_the_country():
     assert held == ['DE'] and not on and any('no saved copy' in n for n in notes)
 
 
-def test_a_truly_empty_layer_with_nothing_saved_is_not_a_failure():
-    old = _rec(NSG, 300) + _rec(NP, 105)
-    recs, saved, _, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, old)
-    assert on and not held and len(recs) == 405 and len(saved) == 1
+def test_an_empty_source_with_saved_records_uses_the_saved_copy():
+    """Empty live read, but the saved copy has that source's records: use them, do not hold."""
+    old = _rec(NSG, 300) + _rec(NP, 105) + _rec(NAT, 16)
+    recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, old)
+    assert on and not held and _by(recs, NAT) == 16 and any('returned 0 records' in n for n in notes)
+
+
+def test_an_empty_source_with_no_saved_records_holds_the_country():
+    """Quality v3 Part 5 should-fix: EMPTY (0 records) + no saved copy for that source = HOLD (previous key stays)."""
+    old = _rec(NSG, 300) + _rec(NP, 105)   # no NAT in the saved copy
+    recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, old)
+    assert held == ['DE'] and not on and saved == [], 'empty + no saved NAT records: hold, no file written'
+    assert any('HELD' in n and 'BfN Nationalparke' in n for n in notes)
+    # no saved copy at all
+    recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, None)
+    assert held == ['DE'] and not on and any('no saved copy' in n for n in notes)
 
 
 def test_the_script_exits_3_when_a_country_is_held():

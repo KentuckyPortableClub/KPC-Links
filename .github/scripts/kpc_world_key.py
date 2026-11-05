@@ -405,7 +405,7 @@ def same_name(cc, a, b):
     # next round v3 C10 (Quality's grade of v2, must-fix): a number in ONE name only is a different piece (rule 18 -> PIN):
     # AU-7265 'Mount Stanley State Forest' is not DESI 'Mount Stanley State Forest 1' (nor CAPAD 'Mount Stanley 1'). The test and its
     # switch (ONE_SIDE_NUMBER, default 'strict') are in kpc_number_rules.py. Japan: none (norm() joins the words there).
-    if cc != 'JP' and KN.one_side(a, b): return False
+    if cc != 'JP' and KN.one_side(a, b, cc=cc): return False
     if cc == 'AU':
         ca, cb = codes(a), codes(b)
         if ca and cb and not (ca & cb): return False      # 'Nullan I106' is not 'Nullan I108' (Oct 18 review)
@@ -904,8 +904,9 @@ for cc in COUNTRIES:
         # takes the saved copy's records FOR THAT SOURCE, matched by its SOURCE ID (kind, address, layer), not by its label: DE has
         # two 'Naturpark' sources (LUBW, Niedersachsen) and AU two 'Protected areas and forests of Queensland'. A saved copy from
         # before this change has no source ids: its records are used only when the label is unique among the country's sources.
-        # A source that FAILED with no saved records HOLDS the country: no file is written, so the previous key stays (the
-        # workflow lists the country as failed). A read in which a source failed is never saved over the saved copy.
+        # A source that FAILED or came back EMPTY with no saved records HOLDS the country (Quality v3 Part 5 should-fix): no file
+        # is written, so the previous key stays (the workflow lists the country as failed). A read in which a source failed is
+        # never saved over the saved copy.
         _old, short = None, []   # the saved copy, read only once a source fails or comes back empty (as before: only then)
         _labels = collections.Counter(x[0] for x in SRC.get(cc, []))
         for s in SRC.get(cc, []):
@@ -927,7 +928,7 @@ for cc in COUNTRIES:
             if mine:
                 recs += mine; failed = True
                 notice(f'World key {cc}', f'{s[0]} [{s[2]}] {how}: its {len(mine)} records came from the saved copy (matched by source id; nothing dropped; the saved copy is not overwritten)')
-            elif how != 'returned 0 records': held.append(f'{s[0]} [{s[2]}]')
+            else: held.append(f'{s[0]} [{s[2]}]')  # Quality v3 Part 5 should-fix: EMPTY (0 records) with no saved copy HOLDs too
         if held:
             notice(f'World key {cc}', f"HELD: {'; '.join(held)} FAILED and the saved copy has no records from it (by source id"
                                       f"{'' if _old else '; no saved copy'}): {cc} is not rebuilt, its previous key stays (listed as failed)")
