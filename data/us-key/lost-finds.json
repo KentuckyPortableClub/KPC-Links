@@ -1,8 +1,8 @@
 {
- "made": "2026-11-05 07:13 UTC",
+ "made": "2026-11-05 12:29 UTC",
  "counts": {
-  "A_decided_not_in_key": 108,
-  "B_sure_area_not_asked": 11,
+  "A_decided_not_in_key": 107,
+  "B_sure_area_not_asked": 10,
   "C_sure_line_not_drawn": 21
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
@@ -391,13 +391,6 @@
    "Kamp Kill Kare State Park",
    "alias",
    "that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Burton Island State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
-   "US-3124",
-   "VT",
-   "Knight Island State Park",
-   "join",
-   "2026-11-02 12:49: layers row YES 'Knight Island State Park' (chat 11; applied by kpc_key_answers)"
   ],
   [
    "US-3140",
@@ -813,13 +806,6 @@
    "Galena Creek Fish Hatchery State Historical Monument",
    "GALENA CREEK REGIONAL PARK",
    "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
-  ],
-  [
-   "US-3124",
-   "VT",
-   "Knight Island State Park",
-   "Knight Island State Park",
-   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38"
   ],
   [
    "US-3492",
