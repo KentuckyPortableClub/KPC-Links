@@ -18065,6 +18065,19 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Keystone State Park' (chat 11; applied by kpc_key_answers)"
   },
+  "US-13650": {
+   "fp": {
+    "sgmnf5368": [
+     "Darwin S. Myers WMA",
+     739
+    ]
+   },
+   "join": [
+    "sgmnf5368"
+   ],
+   "when": "2026-11-05",
+   "why": "2026-11-05 18:58: layers row YES 'Darwin S. Myers WMA' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+  },
   "US-1366": {
    "fp": {
     "sgpaa45": [
@@ -33666,6 +33679,19 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Lower Wekiva River Preserve State Park' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-3635": {
+   "fp": {
+    "sgfla81": [
+     "Madira Bickel Mound State Archaeological Site",
+     9
+    ]
+   },
+   "join": [
+    "sgfla81"
+   ],
+   "when": "2026-11-05",
+   "why": "2026-11-05 18:58: layers row YES 'Madira Bickel Mound State Archaeological' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
   },
   "US-3636": {
    "fp": {

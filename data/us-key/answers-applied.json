@@ -7584,6 +7584,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-13650:sgmnf5368": {
+  "answer": "YES",
+  "applied": "2026-11-05 18:58",
+  "checked_by": "auto (T1 map-match STRONG)"
+ },
  "layers:US-1365:sgpaa25": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -13118,6 +13123,11 @@
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
+ },
+ "layers:US-3635:sgfla81": {
+  "answer": "YES",
+  "applied": "2026-11-05 18:58",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "layers:US-3636:sgfla136": {
   "answer": "YES",
