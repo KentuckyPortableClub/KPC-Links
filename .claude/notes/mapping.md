@@ -2,6 +2,8 @@
 
 **Older notes (Oct 14-19) are in `.claude/notes/archive/mapping-2026-10-14-to-19.md`** (Map Rep Tool Box rules in full, the Am I in the Park / Kit / Info Finder / planner builds, Kentucky access points, 2-fers, trails plan, first answer keys). Read it when you touch one of those tools.
 
+- **Nov 5:** Mapping Rep Tool Box "Could this be a park?" (kpc-maprep-check.js) checks a name, park number, GPS or dropped pin against the published Kentucky layers in the browser. Official facts first, then POTA status, then club notes. The live land-database search stays underneath as a backup. Newfoundland, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not drawn. Still members-only; not linked from the public Tool Box.
+
 ## WHERE THINGS ARE (summary written Oct 25 2026, chat 2)
 - **Owner:** chat 2 = boundaries + answer keys (KY / US / Canada / world), data/state-gis.json, trails, outlines, camping DATA (state camps bot + data/campstate*), closure SOURCES, 2-fers, Park Control, trip planners, Am I in the Park, Map Rep, Info Finder, Kit, and every bot that BUILDS park data. Only chat 2 starts key / boundary / trails / camping / access runs (HQ Oct 25).
 - **Shared code:** `kpc-bounds.js` (window.KPCB) = every outline the tools draw: KY files (`kyFor`, `landAt`), US (`usKey`, `usOutline`: checked key first, 'Approximate' labels), Canada (`canada` → saved file if any, else `caKey` = the Canada key fetched live by id), world (`worldKey`, `worldByName`), `retired()`. Bump `?v=` on every page when it changes. `kpc-map-tools.js` (KPCTA type-ahead, KPCLayers, KPCPin, KPCLocate, KPCFull, KPCHere), `kpc-padus-layer.js` (PAD-US picture), `kpc-trails-layer.js` (national + state trails + Wild and Scenic Rivers).
