@@ -88,7 +88,7 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           if os.environ.get('FROZEN') == '1':
-              print('groups=[]'); print(f"::notice title=US key plan::FROZEN: build {os.environ.get('FROZEN_BUILD')} waits for chat 11 / its release; nothing builds (BOT A's answers were still saved)"); raise SystemExit(0)
+              print('groups=[]'); print(f"::notice title=US key plan::FROZEN: build {os.environ.get('FROZEN_BUILD')} waits for chat 11 / its release; nothing builds (BOT A's answers were still saved)", file=__import__('sys').stderr); raise SystemExit(0)
           # Nov 3 (Brandon YES 5:29 PM): a nightly/backup start (or the watchdog's late restart of one) does nothing when a build
           # already FINISHED today after 09:17 UTC (the nightly time). Nov 3 had 4 builds: the backup and two late restarts rebuilt
           # the same states. The monthly run and by-hand runs with states are never skipped.
@@ -103,6 +103,8 @@ jobs:
           if _rules and _given and _given.upper() != 'ALL':
               print(f"::warning title=US key plan::RULES CHANGED since the newest build: the states input '{_given}' is OVERRIDDEN - building ALL states on the current rules (a partial build would mix rules)", file=__import__('sys').stderr)
           elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)', file=__import__('sys').stderr)
+          # Next round C2 (Nov 5, Brandon's yes relayed via Super): EVERY message of this step goes to stderr (FROZEN, already built today,
+          # no new answers, the job split), not only the two rules lines below; stdout is only the step outputs.
           # Key hotfix 3 (Nov 5): these two go to stderr = the run log. stdout is >> $GITHUB_OUTPUT, so a ::notice printed there is
           # never shown (the plan job of 41984527710 has no 'US key plan' annotation at all).
           if not _rules and os.environ.get('SCHED') in ('17 9 * * *', '46 11 * * *') and not (os.environ.get('STATES') or '').strip():
@@ -112,7 +114,7 @@ jobs:
               try: _bt = _dt.datetime.strptime(_b, '%Y-%m-%d %H:%M UTC').replace(tzinfo=_dt.timezone.utc)
               except Exception: _bt = None
               if _bt and _now >= _t0 and _bt >= _t0:
-                  print('groups=[]'); print(f"::notice title=US key plan::a build already finished today at {_b} (after the 09:17 UTC nightly time): this {os.environ.get('SCHED')} start does nothing"); raise SystemExit(0)
+                  print('groups=[]'); print(f"::notice title=US key plan::a build already finished today at {_b} (after the 09:17 UTC nightly time): this {os.environ.get('SCHED')} start does nothing", file=__import__('sys').stderr); raise SystemExit(0)
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
           want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
           if want == ['ALL'] or _rules or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / rules changed / the MONTHLY cron = every state
@@ -121,7 +123,7 @@ jobs:
               try: st = [x for x in open('data/us-key/answers-states.txt').read().split() if x != 'KY']
               except Exception: st = []
               if not st:
-                  print('groups=[]'); print('::notice title=US key plan::no new answers and no states given: nothing to rebuild'); raise SystemExit(0)
+                  print('groups=[]'); print('::notice title=US key plan::no new answers and no states given: nothing to rebuild', file=__import__('sys').stderr); raise SystemExit(0)
           n = max(1, min(3, int(os.environ.get('NJOBS') or 3), len(st)))
           try: sec = {k: (v.get('seconds') or 60) for k, v in json.load(open('data/us-key/index.json'))['states'].items()}
           except Exception: sec = {}
@@ -130,7 +132,7 @@ jobs:
               i = load.index(min(load)); g[i].append(s); load[i] += sec.get(s, 60)
           print('groups=' + json.dumps([{'i': i, 'states': ' '.join(sorted(x))} for i, x in enumerate(g) if x]))
           print('full=' + ('1' if set(st) >= set(ALL) else '0'))
-          print(f'::notice title=US key plan::{n} jobs: ' + ' | '.join(f'{" ".join(sorted(x))} (~{l // 60} min)' for x, l in zip(g, load)))
+          print(f'::notice title=US key plan::{n} jobs: ' + ' | '.join(f'{" ".join(sorted(x))} (~{l // 60} min)' for x, l in zip(g, load)), file=__import__('sys').stderr)
           PY
   build:
     needs: plan

@@ -104,7 +104,7 @@ jobs:
           G = [{'i': k, 'countries': ' '.join(x), 'cmin': ''} for k, x in enumerate(g) if x]
           G += [{'i': n + j, 'countries': c, 'cmin': os.environ.get('SLOW_MIN') or '300'} for j, c in enumerate(slow)]
           print('groups=' + json.dumps(G))
-          print(f"::notice title=World key plan::{len(G)} job(s): " + ' | '.join(x['countries'] + (f" (own job, limit {x['cmin']} min)" if x['cmin'] else '') for x in G))
+          print(f"::notice title=World key plan::{len(G)} job(s): " + ' | '.join(x['countries'] + (f" (own job, limit {x['cmin']} min)" if x['cmin'] else '') for x in G), file=__import__('sys').stderr)   # next round C2: the run log, not $GITHUB_OUTPUT
           PY
   build:
     needs: plan
