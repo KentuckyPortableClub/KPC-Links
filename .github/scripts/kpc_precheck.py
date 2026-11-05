@@ -92,7 +92,45 @@ def unbracket(t):
     return re.sub(r'\s+', ' ', re.sub(r'\([^)]*\)|\[[^\]]*\]', ' ', str(t or ''))).strip()
 
 
+# Next round C5 (Nov 5; Brandon's yes relayed via Super; Quality's r18 probe, grade of fix bundle 2): three rule-18 misses.
+#  1. a bracketed number piece ('(No.2)', '[No. 3]') is a piece, not a place qualifier: it is read as if it had no brackets
+#     (CA-3900: POTA 'Nisga'a Memorial Lava Bed Corridor Protected Area' vs record '... PROTECTED AREA (No.2)');
+#  2. 'No. 1' (No / Nº / # + a number) on ONE side only ('Fish Lake No. 1' vs 'Fish Lake'): a piece the other name does not name;
+#  3. two DIFFERENT Natura 2000 / FFH site codes ('FR4201797' vs 'FR4211810', 'FFH 5131-301' vs 'FFH 5131-302'). A code on one
+#     side only stays a pass (a site code is often added to one name only).
+# All three are review-pile flags like every rule-18 difference here (never a hold); bad-pin test (brackets=True) included.
+_R18_NOBRK = re.compile(r'[(\[]\s*((?:no|n[º°o]|#)\.?\s*\d+[a-z]?)\s*[)\]]', re.I)
+_R18_NO = re.compile(r'(?:(?<=\s)|^)(?:no|n[º°]|n(?=\d{1,3}\b)|#)\.?\s*(\d+[a-z]?)\b', re.I)   # v3: 'n9' = 'n°9' (FR-5508)
+_R18_CODE = re.compile(r'\b([A-Z]{2}\d{7})\b|\b(\d{4}-\d{3})\b')
+
+
+def _r18_unbracket_numbers(t): return _R18_NOBRK.sub(lambda m: ' ' + m.group(1) + ' ', str(t or ''))
+
+
+def _r18_extra(park, rec):
+    """the next-round C5 differences ('' when none)"""
+    na, nb = set(x.lower() for x in _R18_NO.findall(park)), set(x.lower() for x in _R18_NO.findall(rec))
+    if na and nb and not (na & nb):
+        return f"rule 18: number {' '.join(sorted(na))} vs {' '.join(sorted(nb))} are different pieces"
+    if bool(na) != bool(nb):
+        one = na or nb
+        other = set(x.lower() for x in re.findall(r'\b(\d+[a-z]?)\b', rec if na else park))
+        if one <= other: return ''   # 'Area #3' vs 'Area 3': the same number, written without 'No.'
+        return (f"rule 18: 'No. {' '.join(sorted(one))}' names a piece in one name only ("
+                f"{'the park' if na else 'the record'}): the other name does not name that piece")
+    ca = {a or b for a, b in _R18_CODE.findall(str(park or '').upper())}
+    cb = {a or b for a, b in _R18_CODE.findall(str(rec or '').upper())}
+    if ca and cb and not (ca & cb):
+        return f"rule 18: site code {' '.join(sorted(ca))} vs {' '.join(sorted(cb))} are different sites"
+    return ''
+
+
 def rule18_differs(park, rec, brackets=False):
+    w = _rule18_differs(park, rec, brackets)
+    return w or _r18_extra(_r18_unbracket_numbers(park), _r18_unbracket_numbers(rec))
+
+
+def _rule18_differs(park, rec, brackets=False):
     """'' when nothing tells the two names apart as pieces; else a plain reason. Uses the key's own rule 18 piece test
     (KR.piece_ok: 'Unit 2' vs 'Unit 3', 'Abo Unit') plus clashing piece words. brackets=True (the bad-pin name test only) also
     asks for a bracketed POTA qualifier ('(CNC/Stallman)').
