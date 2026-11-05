@@ -22,6 +22,7 @@ import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind 
 kpc_host_pace.install()
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+import kpc_number_rules as KN  # noqa: E402  (next round v3 C10: a number in one name only; a world-key rule file)
 
 # Oct 25 (round 5 hand checks): a person's decisions per park, {ref: {join: [official names], no: [names], why}}
 try:
@@ -400,6 +401,10 @@ def _side(cc, s):
 
 
 def same_name(cc, a, b):
+    # next round v3 C10 (Quality's grade of v2, must-fix): a number in ONE name only is a different piece (rule 18 -> PIN):
+    # AU-7265 'Mount Stanley State Forest' is not DESI 'Mount Stanley State Forest 1' (nor CAPAD 'Mount Stanley 1'). The test and its
+    # switch (ONE_SIDE_NUMBER, default 'strict') are in kpc_number_rules.py. Japan: none (norm() joins the words there).
+    if cc != 'JP' and KN.one_side(a, b): return False
     if cc == 'AU':
         ca, cb = codes(a), codes(b)
         if ca and cb and not (ca & cb): return False      # 'Nullan I106' is not 'Nullan I108' (Oct 18 review)

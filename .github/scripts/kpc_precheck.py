@@ -36,6 +36,7 @@ import collections, csv, glob, gzip, json, os, pathlib, re, sys, time
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import kpc_key_rules as KR  # noqa: E402
+import kpc_number_rules as KN  # noqa: E402  (next round v3 C10: a number in one name only; NOT a US-key rule file)
 
 OUT = pathlib.Path(os.environ.get('OUT') or 'data/review/precheck')
 DATA = pathlib.Path(os.environ.get('DATA') or 'kpcdata')
@@ -182,8 +183,14 @@ def _rule18_core(park, rec, brackets):
         cw = _R18_ONESIDE; pa, pb = (a & cw) - b, (b & cw) - a
         if (pa or pb) and not (pa and pb): return f"rule 18: '{' '.join(sorted(pa or pb))}' names only one piece"
     nat = lambda x: set(KR._plain_words(re.sub(r'(?i)natura\s*2000', ' ', str(x or ''))))   # 'Natura 2000' is a network, not a piece number
-    na = {str(int(w)) if w.isdigit() else w for w in nat(park) if w.isdigit() or _ROMAN.match(w)}; nb = {str(int(w)) if w.isdigit() else w for w in nat(rec) if w.isdigit() or _ROMAN.match(w)}
+    # next round v3 C10: a Roman numeral is compared by its value ('2' vs 'II' is one piece, not two; it used to read 'ii' as text)
+    _n = lambda w: str(int(w)) if w.isdigit() else str(KN.roman(w.upper()) or w)
+    na = {_n(w) for w in nat(park) if w.isdigit() or _ROMAN.match(w)}; nb = {_n(w) for w in nat(rec) if w.isdigit() or _ROMAN.match(w)}
     if na and nb and not (na & nb): return f"rule 18: number {' '.join(sorted(na))} vs {' '.join(sorted(nb))} are different pieces"
+    # next round v3 C10 (Quality's grade of v2, must-fix): a number in ONE name only is another piece (AU-7265 'Mount Stanley State
+    # Forest' vs 'Mount Stanley 1'). kpc_number_rules.py, its switch ONE_SIDE_NUMBER (default 'strict') and what counts as a number.
+    one = KN.why(park, rec)
+    if one: return one
     for q in (re.findall(r'\(([^)]*)\)', str(park or '')) if brackets else []):
         qw = {w for w in KR._plain_words(q) if len(w) >= 3 and w not in KR._STOP}
         if qw and not (qw & b) and not any(KR._ed1(w, h) for w in qw for h in b):
