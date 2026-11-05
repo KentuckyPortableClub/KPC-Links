@@ -99,7 +99,10 @@ with tempfile.TemporaryDirectory() as tmp:
         check(j['runs_checked'] == 3 and j['runs_unread'] == 1 and j['with_hidden'][0]['errors'] == 2, 'data/status/hidden-failures.json: the runs read and each job with hidden errors')
     finally: os.chdir(cwd)
 bt = docs['kpc-bot-health.yml'][1]
-check((bt.get('permissions') or {}).get('checks') == 'read', "kpc-bot-health.yml: 'checks: read' (the annotations)")
+# next round v3 (Quality's grade of v2): 'checks: read' on the check job only; the job's block repeats the workflow's three, adds nothing else
+check('checks' not in (bt.get('permissions') or {}), "kpc-bot-health.yml: no 'checks: read' at workflow level")
+check((bt['jobs']['check'].get('permissions') or {}) == dict(bt.get('permissions') or {}, checks='read'),
+      "kpc-bot-health.yml: the check job has the workflow's permissions + 'checks: read' (the annotations), nothing else")
 check('git add data/status/hidden-failures.json' in docs['kpc-bot-health.yml'][0], 'kpc-bot-health.yml saves data/status/hidden-failures.json')
 src = (HERE / '.github/scripts/kpc_bot_health.py').read_text()
 check("notes.append({'chat': owner(x['workflow'])" in src and 'problems.append((tag + f.name, f"{x' not in src, 'hidden failures are notes in the check-up (never a new problem: no email)')

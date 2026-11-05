@@ -33,7 +33,6 @@ permissions:
   contents: write
   issues: write
   actions: read
-  checks: read   # next round C4: the G8 'Hidden failures' lines (data/status/hidden-failures.json)
 concurrency:
   group: kpc-bot-health
   cancel-in-progress: true
@@ -41,6 +40,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    # next round v3 (Quality's grade of v2, Nov 5): 'checks: read' sits on this job only, not the whole workflow. A job's own block
+    # replaces the workflow's, so the workflow's three are repeated here unchanged (no other permission is added).
+    permissions:
+      contents: write
+      issues: write
+      actions: read
+      checks: read   # next round C4: the G8 'Hidden failures' lines (data/status/hidden-failures.json)
     steps:
       - uses: actions/checkout@v5
         with:
