@@ -2,15 +2,13 @@
  "open": [
   "KPC-Data/kpc-storage.yml",
   "kpc-band-alerts.yml",
-  "kpc-fb-comments.yml",
+  "kpc-boards.yml",
   "kpc-hunters.json",
-  "kpc-watchdog.yml",
-  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-05T11:06+00:00",
+ "checked": "2026-11-05T17:39+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -119,16 +117,16 @@
    "b": 31590
   },
   "L:data/us-key": {
-   "b": 14137172
+   "b": 14154115
   },
   "L:data/ca-key": {
    "b": 2504160
   },
   "L:data/world-key": {
-   "b": 17376756
+   "b": 17391742
   },
   "L:data/pota": {
-   "b": 5665146
+   "b": 5665722
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -146,7 +144,7 @@
    "b": 105760
   },
   "L:data/boundary-score.json": {
-   "b": 974340
+   "b": 974770
   },
   "L:data/campfed": {
    "b": 643240
@@ -200,7 +198,7 @@
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 85174
+   "b": 117221
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -213,10 +211,10 @@
    "b": 39695136
   },
   "D:data/detective": {
-   "b": 72867
+   "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1194372
+   "b": 1192172
   }
  }
 }
