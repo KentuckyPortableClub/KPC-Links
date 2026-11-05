@@ -323,16 +323,13 @@
     const gpsIn = [name, town].find(x => parseLoc(x));
     if (gpsIn || (looksAddress(name) && !town)) { const v = gpsIn || name; if ($('mrLoc')) $('mrLoc').value = v; if (gpsIn === town && name && !parseLoc(name)) $('mrLoc').value = v; return locSearch(v); }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
-    /* Published layers first (works when the live land database misses a name or a park number). */
+    /* The checker searches the published layers, then PAD-US, and still explains a miss. */
     if (window.KPCMapCheck) {
-      const found = await KPCMapCheck.find(name);
-      if (found && found.length) {
-        if ($('mrCheckQ')) $('mrCheckQ').value = name;
-        $('mrList').innerHTML = '';
-        await KPCMapCheck.showQuery(name);
-        const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
+      if ($('mrCheckQ')) $('mrCheckQ').value = name;
+      $('mrList').innerHTML = '';
+      await KPCMapCheck.showQuery(name);
+      const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
     if (!st) {   /* no state picked: find out where that name (and town) is, and take the state from there */
       msg('Finding out which state that is in…');
