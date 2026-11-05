@@ -48,7 +48,7 @@ jobs:
           KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
-        run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_key_freeze.py check us-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: BOT A, the answers writer (Fable Oct 29 11:15 PM; plan KPC_Key_And_2fer_Automation_Plan.md)
         # chat 11's YES / NO rows in KPC-Data data/waiting/questions/*.json -> data/us-key/overrides.json (join / no / alias) +
         # the ledger answers-applied.json + answers-states.txt (the states to rebuild). Saved first, so the build jobs read it.
@@ -162,7 +162,7 @@ jobs:
           DEBUG_REFS: ${{ inputs.debug }}
           MINUTES: '300'
         run: |
-          pip install --quiet --break-system-packages pyshp pyproj shapely || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"   # Oct 28: zipped-shapefile layers (Mississippi)
+          pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           mkdir -p part
           for st in $STATES; do [ -f data/us-key/US-$st.json ] && cp data/us-key/US-$st.json part/; done
@@ -187,6 +187,21 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
   join:
     needs: [plan, build]
@@ -249,7 +264,7 @@ jobs:
         run: |
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .lf 2>/dev/null \
             && git -C .lf sparse-checkout set --no-cone data/intake/external-results.json 'data/waiting/questions/*.json' 2>/dev/null && git -C .lf checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
-          DATA=.lf python3 .github/scripts/kpc_lost_finds.py || echo "::error title=kpc_lost_finds.py::stopped with an error (exit $?), see the log above"
+          DATA=.lf python3 .github/scripts/kpc_lost_finds.py || { kpc_rc=$?; echo "::error title=kpc_lost_finds.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_lost_finds.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           rm -rf .lf
       - name: Review issue
         env:
@@ -258,14 +273,14 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"
+        run: python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
         run: |
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data live 2>/dev/null \
             && git -C live sparse-checkout set --no-cone data/us-key 2>/dev/null && git -C live checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
-          python3 - <<'PY' || echo "::error title=inline Python::stopped with an error (exit $?), see the log above"
+          python3 - <<'PY' || { kpc_rc=$?; echo "::error title=inline Python::stopped with an error (exit $kpc_rc), see the log above"; echo "inline Python - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           import glob, json, os, time
           def parks(d):
               o = {}
@@ -304,7 +319,7 @@ jobs:
           # Nov 3 (Brandon YES 5:29 PM): the list was NEVER cleared: GROUPS is a reserved bash variable (the user's group ids), so
           # 'export GROUPS=...' did nothing and python read nothing. Now KPC_DONE_GROUPS. And only a FINISHED build clears it: this run's
           # stamp (US-<run id>) must be in data/us-key/index.json; parts named 'failed' in the stamp stay on the list.
-          python3 - <<'PY' || true
+          python3 - <<'PY' || { kpc_rc=$?; echo "::warning title=Rebuild list::the 'rebuild tonight' list was not cleared (exit $kpc_rc); the next finished build clears it"; echo "Rebuild list - the 'rebuild tonight' list was not cleared (exit $kpc_rc); the next finished build clears it" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # next round C4: was '|| true'
           import json, os
           try: d = json.load(open('data/us-key/index.json', encoding='utf-8'))
           except Exception: d = {}
@@ -336,7 +351,7 @@ jobs:
               python3 -c "p='.claude/inbox/chat-11.md'; s=open(p).read(); l=open('/tmp/botc-line.txt').read(); open(p,'w').write(s.replace('## OPEN','## OPEN\n'+l,1))"
               git commit -qam 'BOT C: key check line for chat 11' && git push -q && { saved=1; break; }
               sleep $((i*7))
-            done; [ "$saved" = 1 ] || echo "::warning title=Save::the line for the inbox was not saved after every try"
+            done; [ "$saved" = 1 ] || { kpc_rc=$?; echo "::warning title=Save::the line for the inbox was not saved after every try"; echo "Save - the line for the inbox was not saved after every try" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
@@ -351,6 +366,21 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
   postcheck:
     # Key hotfix Nov 5 (Brandon's approval relayed via Super Head Bot 4:21 AM CST): a run started with the GITHUB_TOKEN (the boundary
@@ -369,7 +399,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started (this run was started by github-actions[bot])" || echo "::warning title=US key::could not start the post-key check (exit $?): start 'KPC key check (after a key build)' by hand with key=us"
+          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started (this run was started by github-actions[bot])" || { kpc_rc=$?; echo "::warning title=US key::could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us"; echo "US key - could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
   chain:
     # Next round C1 (Nov 5; Brandon's yes relayed via Super, 4:32 AM CST Nov 5): the Canada and world keys follow the US key through
     # workflow_run, which a GITHUB_TOKEN-started run (the boundary bot queue, the watchdog: triggering actor github-actions[bot])
@@ -389,5 +419,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           for k in ca world; do
-            gh workflow run "kpc-$k-key.yml" -R "$GITHUB_REPOSITORY" --ref main -f chained=us-key && echo "::notice title=US key::$k key started as a chained start (this run was started by github-actions[bot])" || echo "::warning title=US key::could not start the $k key (exit $?): start it by hand if a new-rules build is waiting"
+            gh workflow run "kpc-$k-key.yml" -R "$GITHUB_REPOSITORY" --ref main -f chained=us-key && echo "::notice title=US key::$k key started as a chained start (this run was started by github-actions[bot])" || { kpc_rc=$?; echo "::warning title=US key::could not start the $k key (exit $kpc_rc): start it by hand if a new-rules build is waiting"; echo "US key - could not start the $k key (exit $kpc_rc): start it by hand if a new-rules build is waiting" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           done

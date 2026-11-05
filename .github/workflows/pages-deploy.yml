@@ -48,8 +48,8 @@ jobs:
         run: |
           if [ "$EV" != schedule ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
           # the commit that is live now: the newest github-pages deployment, else the newest successful run of this workflow
-          LIVE=$(gh api "repos/$R/deployments?environment=github-pages&per_page=1" --jq '.[0].sha // empty' 2>/dev/null || true)
-          [ -n "$LIVE" ] || LIVE=$(gh api "repos/$R/actions/workflows/pages-deploy.yml/runs?status=success&per_page=1" --jq '.workflow_runs[0].head_sha // empty' 2>/dev/null || true)
+          LIVE=$(gh api "repos/$R/deployments?environment=github-pages&per_page=1" --jq '.[0].sha // empty' 2>/dev/null || true)   # ok: an optional lookup (empty: the next line tries the last good run)
+          [ -n "$LIVE" ] || LIVE=$(gh api "repos/$R/actions/workflows/pages-deploy.yml/runs?status=success&per_page=1" --jq '.workflow_runs[0].head_sha // empty' 2>/dev/null || true)   # ok: an optional lookup (empty: the next line publishes, with a notice)
           if [ -z "$LIVE" ]; then echo "::notice title=Pages timer::could not find the live copy's commit: publishing"; echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
           if [ "$LIVE" = "$HEAD_SHA" ]; then echo "::notice title=Pages timer::the live copy is main (${HEAD_SHA:0:8}): nothing to publish"; echo "go=no" >> "$GITHUB_OUTPUT"; exit 0; fi
           gh api "repos/$R/compare/$LIVE...$HEAD_SHA?per_page=300" --jq '.files[].filename' > /tmp/files.txt 2>/dev/null || { echo "::notice title=Pages timer::could not compare ${LIVE:0:8}...${HEAD_SHA:0:8}: publishing"; echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; }

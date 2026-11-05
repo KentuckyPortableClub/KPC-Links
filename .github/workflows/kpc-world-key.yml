@@ -59,7 +59,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
         run: |
-          python3 .github/scripts/kpc_key_freeze.py check world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+          python3 .github/scripts/kpc_key_freeze.py check world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           if grep -q '^FROZEN=1' "$GITHUB_ENV" 2>/dev/null; then echo "SKIP=1" >> "$GITHUB_ENV"; fi
       - name: BUILD ORDER (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4) - after a rules change US, then Canada, then the world; a key whose turn has not come skips cleanly and is started again by workflow_run
         env:
@@ -134,7 +134,7 @@ jobs:
           CMIN: ${{ matrix.g.cmin || vars.KPC_WORLD_COUNTRY_MIN || '100' }}   # Nov 4 PM fix bundle (item 5): a slow country's own limit
           MINE: ${{ matrix.g.countries }}
         run: |
-          pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"
+          pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
           # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp names it (chat 11 must not grade it as a full build)
           # Nov 3: each country also has its own time limit (CMIN minutes); one that hangs is stopped and written down the same way
@@ -177,6 +177,21 @@ jobs:
           bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
           for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
           print(f'{len(bad)} hidden step failure(s)')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
   join:
     needs: [plan, build]
@@ -240,7 +255,7 @@ jobs:
         env:
           KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
           KPC_FULL_BUILD: ${{ needs.plan.outputs.full == '1' && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
-        run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: ${{ always() && steps.tonight.outputs.built != '0' }}
         run: |
@@ -262,7 +277,7 @@ jobs:
         run: |
           [ -d data/world-bounds ] || exit 0
           B=/tmp/wb; rm -rf $B; mkdir -p $B
-          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || echo "::warning title=download::a branch could not be read; this run uses what it has (exit $?)"    # what the branch holds now
+          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || { kpc_rc=$?; echo "::warning title=download::a branch could not be read; this run uses what it has (exit $kpc_rc)"; echo "download - a branch could not be read; this run uses what it has (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }    # what the branch holds now
           for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; mkdir -p $B/data/world-bounds; cp -r $d $B/data/world-bounds/$c; done
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
             && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
@@ -280,4 +295,19 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY

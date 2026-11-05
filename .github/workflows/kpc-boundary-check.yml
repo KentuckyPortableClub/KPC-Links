@@ -87,7 +87,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p cache/us
-          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 2 review, Mapping #7) - no US key rebuild while chat 11 grades a held build
         # Before: only kpc-us-key.yml asked. This nightly run rebuilt US-CA, US-CO and US-OR on Nov 2 while the US key was frozen.
         # Frozen = the rebuild, the outline upload and the stamp below are skipped; the report and the second witness still run.
@@ -95,7 +95,7 @@ jobs:
         env:
           KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
           GH_TOKEN: ${{ github.token }}
-        run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_key_freeze.py check us-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Rebuild those keys with the check
         if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' && env.RULES_CHANGED != '1' }}
         id: kept_green_2
@@ -109,13 +109,13 @@ jobs:
           GEO_DETAIL: '0.001'
           GEO_PAGE: '200'
         run: |
-          pip install --quiet --break-system-packages pyshp pyproj || echo "::warning title=install::an install step failed (exit $?); the next steps may not work"   # Oct 28: zipped-shapefile layers (Mississippi)
-          if [ -n "$STATES" ]; then echo "::notice title=Boundary check::rebuilding $STATES"; python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || echo "::warning title=step::a script stopped with an error (exit $?)"; fi
+          pip install --quiet --break-system-packages pyshp pyproj || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
+          if [ -n "$STATES" ]; then echo "::notice title=Boundary check::rebuilding $STATES"; python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || { kpc_rc=$?; echo "::warning title=step::a script stopped with an error (exit $kpc_rc)"; echo "step - a script stopped with an error (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           if [ -n "$REFRESH" ]; then
             echo "::notice title=Boundary check::re-reading the saved outlines of $REFRESH from the agencies (monthly rotation)"
             for s in $REFRESH; do [ -f cache/us/US-$s.json.gz ] && cp cache/us/US-$s.json.gz cache/us/prev-US-$s.json.gz; done
-            STATES="$REFRESH" GEO_CACHE_MODE=refresh python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key.log; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || echo "::warning title=kpc_us_key.py::stopped with an error (exit $rc), see the log above"
-            python3 - <<'PY' || echo "::error title=inline Python::stopped with an error (exit $?), see the log above"
+            STATES="$REFRESH" GEO_CACHE_MODE=refresh python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key.log; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_us_key.py::stopped with an error (exit $rc), see the log above"; echo "kpc_us_key.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            python3 - <<'PY' || { kpc_rc=$?; echo "::error title=inline Python::stopped with an error (exit $kpc_rc), see the log above"; echo "inline Python - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           import json, os, pathlib, time
           p = pathlib.Path('data/us-key/refresh.json')
           try: d = json.loads(p.read_text(encoding='utf-8'))
@@ -138,7 +138,7 @@ jobs:
         # key workflow (kpc-us-key.yml) stamps now: kpc_us_key.py's own index write is undone here, and the save skips index.json.
         if: always()
         run: |
-          git checkout -q HEAD -- data/us-key/index.json 2>/dev/null && echo "::notice title=Boundary check::data/us-key/index.json kept as committed (no new build id; only the US answer key workflow stamps)" || echo "::warning title=Boundary check::could not restore data/us-key/index.json (exit $?); the save skips it anyway"
+          git checkout -q HEAD -- data/us-key/index.json 2>/dev/null && echo "::notice title=Boundary check::data/us-key/index.json kept as committed (no new build id; only the US answer key workflow stamps)" || { kpc_rc=$?; echo "::warning title=Boundary check::could not restore data/us-key/index.json (exit $kpc_rc); the save skips it anyway"; echo "Boundary check - could not restore data/us-key/index.json (exit $kpc_rc); the save skips it anyway" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Keep any newly saved outlines
         if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' && env.RULES_CHANGED != '1' }}
         id: kept_green_3
@@ -147,8 +147,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
-            gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"
-          ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"
+            gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Second witness (how sure is each outline?)
         id: kept_green_4
         continue-on-error: true
@@ -157,14 +157,14 @@ jobs:
         run: |
           # Oct 26 (HQ boundary plan 2b): name, agency, a second map, POTA pin -> data/boundary-score.json
           mkdir -p cache/us
-          ls cache/us/US-*.json.gz >/dev/null 2>&1 || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || echo "::warning title=download::a download failed (exit $?); results may use old or missing files"
-          python3 .github/scripts/kpc_outline_score.py || echo "::error title=kpc_outline_score.py::stopped with an error (exit $?), see the log above"
+          ls cache/us/US-*.json.gz >/dev/null 2>&1 || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_outline_score.py || { kpc_rc=$?; echo "::error title=kpc_outline_score.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_outline_score.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Write up what it found
         id: kept_green_5
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 .github/scripts/kpc_boundary_report.py || echo "::error title=kpc_boundary_report.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_boundary_report.py || { kpc_rc=$?; echo "::error title=kpc_boundary_report.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_boundary_report.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         id: kept_green_6
         continue-on-error: true
@@ -180,6 +180,7 @@ jobs:
         if: always()
         env:
           KPC_STEPS: ${{ toJSON(steps) }}
+          KPC_FAIL_SAFE: ${{ vars.KPC_HIDDEN_RED != 'off' && '1' || '0' }}   # next round C4: red on a caught error (safe: this job starts nothing after it)
         run: |
           python3 - <<'PY'
           import json, os
@@ -189,4 +190,19 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY

@@ -72,7 +72,7 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_ask.py || echo "::error title=kpc_discord_ask.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_discord_ask.py || { kpc_rc=$?; echo "::error title=kpc_discord_ask.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_discord_ask.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Keep an eye on the rooms
         if: steps.peek.outputs.skip != '1'
         id: kept_green_2
@@ -83,7 +83,7 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MODE: watch
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_discord_mod.py || { kpc_rc=$?; echo "::error title=kpc_discord_mod.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_discord_mod.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Do anything asked for in the staff room
         if: steps.peek.outputs.skip != '1'
         id: kept_green_3
@@ -94,14 +94,14 @@ jobs:
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
           MODE: commands
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
-        run: python3 .github/scripts/kpc_discord_mod.py || echo "::error title=kpc_discord_mod.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_discord_mod.py || { kpc_rc=$?; echo "::error title=kpc_discord_mod.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_discord_mod.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: steps.peek.outputs.skip != '1'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 25: a state file whose only change is a time stamp is put back, so a quiet run commits nothing
-          python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || echo "::error title=kpc_save_filter.py::stopped with an error (exit $?), see the log above"
+          python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || { kpc_rc=$?; echo "::error title=kpc_save_filter.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_save_filter.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json; do if [ -e "$f" ]; then git add "$f"; fi; done
           git add -A photos/announce 2>/dev/null || true   # ok: an optional path may not exist
           # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-announcements.json, kpc-conditions.json, kpc-events-auto.json, kpc-events-submitted.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
@@ -138,12 +138,12 @@ jobs:
           age() { last=$(gh api "repos/$D/actions/workflows/$1/runs?per_page=1" --jq '.workflow_runs[0].created_at // "1970-01-01T00:00:00Z"') || return 1; echo $(( $(date -u +%s) - $(date -u -d "$last" +%s) )); }
           a=$(age kpc-watchdog.yml) || { echo "::warning title=KPC-Data heartbeat::could not read KPC-Data's runs (token?)"; exit 0; }
           if [ "$a" -gt 8100 ]; then
-            gh api -X POST "repos/$D/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::KPC-Data's watchdog had not run for $((a / 60)) min: started it" || echo "::error title=KPC-Data heartbeat::could not start KPC-Data's watchdog (token?)"
+            gh api -X POST "repos/$D/actions/workflows/kpc-watchdog.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::KPC-Data's watchdog had not run for $((a / 60)) min: started it" || { kpc_rc=$?; echo "::error title=KPC-Data heartbeat::could not start KPC-Data's watchdog (token?)"; echo "KPC-Data heartbeat - could not start KPC-Data's watchdog (token?)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           else echo "KPC-Data watchdog ran $((a / 60)) min ago"; fi
           M=$(gh api repos/$D/git/ref/heads/main --jq .object.sha 2>/dev/null); S=$(gh api repos/$D/git/ref/heads/site --jq .object.sha 2>/dev/null)
           p=$(age kpc-pages-sync.yml) || p=0
           if [ -n "$M" ] && [ "$M" != "$S" ] && [ "$p" -gt 2400 ]; then
-            gh api -X POST "repos/$D/actions/workflows/kpc-pages-sync.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::website copy bot $((p / 60)) min old and site != main: started it" || echo "::error title=KPC-Data heartbeat::could not start kpc-pages-sync (token?)"
+            gh api -X POST "repos/$D/actions/workflows/kpc-pages-sync.yml/dispatches" -f ref=main >/dev/null && echo "::notice title=KPC-Data heartbeat::website copy bot $((p / 60)) min old and site != main: started it" || { kpc_rc=$?; echo "::error title=KPC-Data heartbeat::could not start kpc-pages-sync (token?)"; echo "KPC-Data heartbeat - could not start kpc-pages-sync (token?)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           fi
           true   # ok: the next relay run tries again
       - name: Report hidden failures (Nov 2 review, G8)
@@ -159,4 +159,19 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
