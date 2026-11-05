@@ -285,23 +285,13 @@
   "kpc-reports.yml|2026-11-05T09:29:00+00:00": "2026-11-05T11:06+00:00 started",
   "kpc-ses.yml|2026-11-05T10:41:00+00:00": "2026-11-05T11:06+00:00 started",
   "kpc-us-key.yml|2026-11-05T09:17:00+00:00": "2026-11-05T11:06+00:00 started",
-  "kpc-world-key.yml|2026-11-05T10:07:00+00:00": "2026-11-05T11:06+00:00 started"
+  "kpc-world-key.yml|2026-11-05T10:07:00+00:00": "2026-11-05T11:06+00:00 started",
+  "kpc-boards.yml|2026-11-05T11:44:00+00:00": "2026-11-05T12:09+00:00 started",
+  "kpc-park-alerts.yml|2026-11-05T11:03:00+00:00": "2026-11-05T12:09+00:00 started"
  },
- "last": "2026-11-05T11:06+00:00",
+ "last": "2026-11-05T12:09+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 05 10:18 UTC)",
-  "kpc-boards.yml (missed Nov 05 10:14 UTC)",
-  "kpc-bot-health.yml (missed Nov 05 09:44 UTC)",
-  "kpc-bot-queue.yml (missed Nov 05 10:22 UTC)",
-  "kpc-ca-key.yml (missed Nov 05 09:49 UTC)",
-  "kpc-canada.yml (missed Nov 05 08:53 UTC)",
-  "kpc-discord-watch.yml (missed Nov 05 09:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 05 10:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 05 10:07 UTC)",
-  "kpc-pota-discord.yml (missed Nov 05 10:19 UTC)",
-  "kpc-reports.yml (missed Nov 05 09:29 UTC)",
-  "kpc-ses.yml (missed Nov 05 10:41 UTC)",
-  "kpc-us-key.yml (missed Nov 05 09:17 UTC)",
-  "kpc-world-key.yml (missed Nov 05 10:07 UTC)"
+  "kpc-boards.yml (missed Nov 05 11:44 UTC)",
+  "kpc-park-alerts.yml (missed Nov 05 11:03 UTC)"
  ]
 }
