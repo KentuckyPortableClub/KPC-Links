@@ -323,6 +323,17 @@
     const gpsIn = [name, town].find(x => parseLoc(x));
     if (gpsIn || (looksAddress(name) && !town)) { const v = gpsIn || name; if ($('mrLoc')) $('mrLoc').value = v; if (gpsIn === town && name && !parseLoc(name)) $('mrLoc').value = v; return locSearch(v); }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
+    /* Published layers first (works when the live land database misses a name or a park number). */
+    if (window.KPCMapCheck) {
+      const found = await KPCMapCheck.find(name);
+      if (found && found.length) {
+        if ($('mrCheckQ')) $('mrCheckQ').value = name;
+        $('mrList').innerHTML = '';
+        await KPCMapCheck.showQuery(name);
+        const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
     if (!st) {   /* no state picked: find out where that name (and town) is, and take the state from there */
       msg('Finding out which state that is in…');
       const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : ''), format: 'jsonv2', countrycodes: 'us,ca', addressdetails: 1, limit: 5 })).catch(() => null);
@@ -945,6 +956,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
      degrees + decimal minutes 37 12.845 N 84 11.868 W, and Google / Apple Maps links (…@37.21,-84.19,15z / ?q=37.21,-84.19 / ll=). */
   function parseLoc(t0) {
     let t = String(t0 || '').trim(); if (!t) return null;
+    t = t.replace(/[−–—]/g, '-').replace(/[º˚]/g, '°').replace(/\b(latitude|longitude|lat|lon|long)\b/ig, ' ');
     const fix = (la, lo, ns, ew) => { if (/s/i.test(ns || '')) la = -Math.abs(la); if (/w/i.test(ew || '')) lo = -Math.abs(lo); else if (!/e/i.test(ew || '') && lo > 60 && la > 15) lo = -lo; if (Math.abs(la) > 90 && Math.abs(lo) <= 90) [la, lo] = [lo, la]; return isFinite(la) && isFinite(lo) && Math.abs(la) <= 90 && Math.abs(lo) <= 180 && (la || lo) ? [la, lo] : null; };
     try { t = decodeURIComponent(t); } catch (e) {}
     let m = t.match(/@(-?\d{1,2}\.\d+),\s*(-?\d{1,3}\.\d+)/) || t.match(/[?&](?:q|query|ll|sll|destination|daddr|center|mlat)=(-?\d{1,2}\.\d+)(?:,|\s|%2C|&mlon=)\s*(-?\d{1,3}\.\d+)/i);
@@ -988,6 +1000,15 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     $('mrList').innerHTML = '';
     let la, lo, label;
     const P = parseLoc(t);
+    if (!P && window.KPCMapCheck) {
+      const found = await KPCMapCheck.find(t);
+      if (found && found.length) {
+        if ($('mrCheckQ')) $('mrCheckQ').value = t;
+        await KPCMapCheck.showQuery(t);
+        const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
     if (P) {
       la = P[0]; lo = P[1];
       label = 'GPS ' + la.toFixed(6) + ', ' + lo.toFixed(6);
@@ -1000,6 +1021,11 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
       la = +h.lat; lo = +h.lon; label = h.display_name;
     }
     if (!isFinite(la) || !isFinite(lo) || Math.abs(la) > 90 || Math.abs(lo) > 180) { msg('Those GPS numbers don\'t look right. Example: 37.84520, -86.97550'); return; }
+    if (window.KPCMapCheck) {
+      const inKy = la > 36.4 && la < 39.25 && lo > -89.7 && lo < -81.85;
+      const r = await KPCMapCheck.showPoint(la, lo);
+      if (r && (r.hit || inKy)) return;
+    }
     msg('Checking the official land database at ' + esc(label) + '…');
     let st = '';
     try { const c = await B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`); st = (((c.results || [])[0]) || {}).state_code || ''; } catch (e) {}
@@ -1061,6 +1087,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
+    if (window.KPCMapCheck) KPCMapCheck.mount();
     if ($('mrState').value) agencies($('mrState').value);
     const P = new URLSearchParams(location.search);
     if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }

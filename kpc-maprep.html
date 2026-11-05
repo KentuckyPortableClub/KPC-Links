@@ -156,18 +156,51 @@ body.field .page-jump-nav{display:none!important}
 .mr-agree a,.mr-src .mr-help a{color:#1d5a3a;text-decoration:underline;font-weight:700}.mr-agree ol,.mr-agree ul{margin:6px 0 0;padding-left:22px;font-size:14.5px;line-height:1.55}.mr-agree li{margin:4px 0}.mr-agree h3{margin:18px 0 4px;font:900 12px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a}.mr-agree summary{cursor:pointer;font:900 15px Arial,sans-serif;letter-spacing:.8px;color:#171717}.mr-agree .mr-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}.mr-agree .mr-two>div{padding:12px 14px;border-radius:10px;border:1.5px solid #d8cfbf;background:#fff}.mr-agree .mr-two b{display:block;font:900 11.5px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:4px}.mr-agree .mr-two .k-off{border-color:#1d5a3a}.mr-agree .mr-two .k-off b{color:#1d5a3a}.mr-agree .mr-two .k-un{border-style:dashed}.mr-agree .mr-two .k-un b{color:#5b5648}@media(max-width:600px){.mr-agree .mr-two{grid-template-columns:1fr}}
 .mr-bar .nav-inner{justify-content:space-between}.mr-bar .brand-text{font-size:17px}.mr-bar .brand-text small{letter-spacing:1.5px;font-size:10px}.mr-bar .nav-inner{flex-wrap:nowrap;gap:8px 12px}.mr-bar .brand{min-width:0;flex:1 1 auto}.mr-bar .brand-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mr-bar .nav-links,.mr-bar .kpc-theme-btn{flex:0 0 auto}@media(max-width:480px){.mr-bar .brand-text small{display:none}.mr-bar .brand-text{font-size:15px}.mr-bar .nav-links a{padding:8px 6px;font-size:12px}}.mr-bar .menu-toggle{display:none!important}.mr-bar .nav-links{position:static!important;display:flex!important;flex-direction:row!important;background:none!important;border:0!important;padding:0!important;max-height:none!important;transform:none!important;opacity:1!important;visibility:visible!important;width:auto!important}.mr-foot .footer-actions a{font-size:12px}
 .mr-beta{margin:0 0 14px;padding:12px 14px;border-radius:10px;background:#fff6e0;border:2px solid #c98a00;color:#5a3d00;font-size:14px;line-height:1.5}.mr-beta b:first-child{display:block;font:900 12px Arial,sans-serif;letter-spacing:1.4px;margin-bottom:3px}
+.mr-checkf{display:grid;gap:10px}
+.mr-checkf input{min-height:48px;width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif}
+.mr-check-btns{display:flex;flex-wrap:wrap;gap:8px}
+.mr-check-btns button{min-height:48px;padding:10px 16px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:.4px;cursor:pointer}
+.mr-check-btns button.alt{background:#fff;color:#171717;border:1.5px solid #171717}
+#mrDrop{height:380px;border-radius:10px;border:1px solid #d8cfbf;margin-top:12px;z-index:0}
+#mrCheckCard h2{margin:4px 0 8px;font:700 30px/1.15 Georgia,serif}
+.mr-kv{display:grid;grid-template-columns:minmax(150px,32%) minmax(0,1fr);gap:3px 12px;padding:8px 0;border-bottom:1px solid #eee3cc}
+.mr-kv dt{font:900 11px Arial,sans-serif;letter-spacing:.4px;color:#5b5648}
+.mr-kv dd{margin:0;font-size:15.5px;line-height:1.45}
+.mr-unit{margin:0 0 10px;padding:8px 12px;border:1px solid #d8cfbf;border-radius:10px;background:#fbf8ef}
+.mr-unit h4{margin:0;font:700 20px Georgia,serif}
+.mr-send{font-weight:800;color:#1d5a3a;overflow-wrap:anywhere}
+.mr-ov{margin-top:8px;padding:10px 12px;background:#fff7df;border-left:4px solid #d5a63a;border-radius:8px}
+.mr-filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+#mrLayerToggles{display:flex;flex-direction:column;gap:6px;padding:4px 0 10px}
+#mrLayerToggles label{display:flex;gap:8px;align-items:flex-start;font:700 14px/1.4 Arial,sans-serif;background:#fff;border:1px solid #e0d5bd;border-radius:8px;padding:8px 10px}
+#mrSpot{margin-top:14px}
+@media(max-width:760px){#mrDrop{height:260px}.mr-kv{grid-template-columns:1fr}.mr-kv dt{margin-top:6px}.mr-check-btns button{flex:1 1 100%}#mrCheckCard h2{font-size:26px}}
 </style>
 <header class="site-nav mr-bar"><div class="nav-inner"><a class="brand" href="#" onclick="return false"><img src="KPC-logo.png" alt="" width="58" height="58"><span class="brand-text">Mapping Rep Tool Box<small>KENTUCKY PORTABLE CLUB · HELPER</small></span></a><nav class="nav-links" id="kpc-main-nav" aria-label="Tool"></nav></div></header>
 <main>
 <section class="tool-head th-map"><div class="wrap mr-top"><img class="mr-logo" src="KPC-logo.png" alt="Kentucky Portable Club" width="150" height="150">
 <p class="eyebrow">POTA PARK ADDITIONS · UNITED STATES &amp; CANADA</p>
 <h1>Mapping Representative's <span>Tool Box</span></h1>
-<p class="sub">Search by the park's address or GPS (best), or by its name. It finds the land in the national public land database, checks it against POTA's rules for adding a park, and gives a yes, no or check-it-yourself for each rule, with the official links and a boundary map.</p>
+<p class="sub">Type a place name, a park number, or coordinates, or drop a pin. The check reads Kentucky’s published layers on this site, then says whether the land could be a park. Official information comes first.</p>
 </div></section>
 <div class="mr-wrap">
 <div class="mr-beta"><b>BETA · A HELPER, NOT THE FINAL WORD.</b> This tool is the <b>start</b> of your research. It reads public map databases (USGS, the agencies, OpenStreetMap) that can be out of date, incomplete or wrong. Always confirm with the agency's own page and map and with the program's rules: only <b>government sources</b> count as evidence (every link here is tagged OFFICIAL or UNOFFICIAL so you can see for yourself). The program volunteers make the final decision.</div>
 <section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This tool is for invited Mapping helpers.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
 <div id="mrApp" hidden>
+<section class="mr-card" id="mrCheckCard">
+<p class="eyebrow" style="letter-spacing:2px">COULD THIS BE A PARK?</p>
+<h2>Check a place</h2>
+<p class="mr-help">Type a park name, a park number such as US-7958, or coordinates. Or drop a pin on the map. The answer uses Kentucky’s published layers already on this site, with the point checked in your browser. Official information is listed first, then POTA status, then club notes.</p>
+<form id="mrCheckForm" class="mr-checkf">
+<label for="mrCheckQ">PLACE, PARK NUMBER, OR COORDINATES</label>
+<input id="mrCheckQ" autocomplete="off" placeholder="Cumberland Falls SP, US-7958, or 36.8404, -84.3398" aria-label="Place, park number, or coordinates">
+<div class="mr-check-btns"><button type="submit">CHECK</button><button type="button" class="alt" id="mrCheckGps">USE MY GPS</button><button type="button" class="alt" id="mrCheckAll">CHECK ALL IN KENTUCKY</button></div>
+</form>
+<div id="mrDrop" role="application" aria-label="Map. Tap to drop a pin."></div>
+<p class="mr-help">Tap the map to drop a pin. Drag the pin to move it. Street map: © OpenStreetMap contributors, ODbL.</p>
+<details class="mr-agd" id="mrLayers"><summary>KENTUCKY LAYERS YOU CAN TURN ON</summary><div id="mrLayerToggles"></div></details>
+<div id="mrSpot"></div>
+</section>
 <section class="mr-card">
 <form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE<select id="mrState"></select></label><button type="submit">CHECK IT</button></form>
 <p class="mr-help">With a state picked (or found for you), the search looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from the POTA Mapping Representative Agreement (Rev. Sept 1 2026) and POTA's Knowledge Bank ("Park Additions and Edits", docs.pota.app); <a href="#mrAgree">the Agreement in plain words is at the bottom of this page</a>. The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. It's a helper that gathers the facts and links; the decision is yours.</p>
@@ -220,5 +253,6 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer mr-foot"><div><div class="kpc-footer-brand">MAPPING REP TOOL BOX</div><div class="kpc-footer-tag">A private research helper from the Kentucky Portable Club</div></div><div class="footer-actions"><a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA KNOWLEDGE BANK ↗</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html" target="_blank" rel="noopener">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">A research helper, not an official source. We make mistakes: do your own research and check the agency's own pages and maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;.</div>
 <script src="kpc-bounds.js?v=20261102t" defer></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261027a" defer></script>
-<script src="kpc-maprep.js?v=20261028b" defer></script>
+<script src="kpc-maprep-check.js?v=20261105a" defer></script>
+<script src="kpc-maprep.js?v=20261105a" defer></script>
 </body></html>
