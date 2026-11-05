@@ -1,14 +1,4 @@
 {
- "about": "Kentucky key: tracts a person said NO to (map audit, chat 11). kpc_ky_key.js drops them. 'layer:outline name' as in data/ky-answer-key.json tracts.",
- "parks": {
-  "US-7958": [
-   "bsnp:Tom Dorman State Nature Preserve"
-  ],
-  "US-7957": [
-   "bsnp:Vernon-Douglas State Nature Preserve"
-  ],
-  "US-10103": [
-   "bwild:Cumberland River Wild River"
-  ]
- }
+ "about": "Kentucky key: tracts a person said NO to (map audit, chat 11). kpc_ky_key.js drops them. 'layer:outline name' as in data/ky-answer-key.json tracts. · 2026-11-06: US-7957/7958/10103 cleared per Brandon ruling 4:14 PM CST Nov 5 (relayed via Super; KPC-Links #36).",
+ "parks": {}
 }
