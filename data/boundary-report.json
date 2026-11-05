@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11621,
-   "far": 4004,
+   "matched": 11624,
+   "far": 4073,
    "noshape": 0,
-   "edge": 3893,
+   "edge": 3962,
    "out": 111,
    "swap": 0
   },
@@ -12,14 +12,14 @@
    {
     "st": "AK",
     "matched": 136,
-    "far": 55,
+    "far": 54,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 50
+    "edge": 49
    },
    {
     "st": "AL",
@@ -156,26 +156,26 @@
    {
     "st": "IA",
     "matched": 180,
-    "far": 31,
+    "far": 72,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 30
+    "edge": 71
    },
    {
     "st": "ID",
-    "matched": 225,
-    "far": 31,
+    "matched": 226,
+    "far": 71,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 30
+    "edge": 70
    },
    {
     "st": "IL",
@@ -551,15 +551,15 @@
    },
    {
     "st": "VT",
-    "matched": 91,
-    "far": 43,
+    "matched": 93,
+    "far": 32,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 40
+    "edge": 29
    },
    {
     "st": "WA",
@@ -785,6 +785,12 @@
     "US-5828",
     "Dark Canyon BLM Special Recreation Management Area",
     "Dark Canyon"
+   ],
+   [
+    "VT",
+    "US-5553",
+    "Camels Hump State Forest",
+    "Camel's Hump State Forest"
    ],
    [
     "WY",
