@@ -1,6 +1,6 @@
 # PL: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2695 of 2989** joined (same name + same kind), **179** to check, **115** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2694 of 2989** joined (same name + same kind), **180** to check, **115** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -50,6 +50,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **PL-0976** Dolina Górnej Wkry Protected Landscape Area (Protected Landscape Area) → Doliny Górnej Wkry (EEA nationally designated areas, similar name)
 - **PL-0989** Przedborski Protected Landscape Area (Protected Landscape Area) → Przedborski (łódzkie) (EEA nationally designated areas, same name, more than one kind of area); Przedborski (świętokrzyskie) (EEA nationally designated areas, same name, more than one kind of area); Przedborski Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area)
 - **PL-0991** Dolina Mrogi Nature and Landscape Complex (Nature and Landscape Complex) → Mrogi i Mrożycy (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PL-0992** Osiek II Nature Reserve (Nature Reserve) → Osiek (EEA nationally designated areas, similar name); Słobicki (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-0997** Uroczysko Kowadza Ecological Site (Ecological Site) → Bielańsko-Tyniecki Park Krajobrazowy (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1001** Rochna Nature and Landscape Complex (Nature and Landscape Complex) → Mrogi i Mrożycy (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1011** Otuliny WPK - Słup Protected Landscape Area (Protected Landscape Area) → Otuliny Welskiego Parku Krajobrazowego - Słup (EEA nationally designated areas, similar name)

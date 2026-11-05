@@ -104,6 +104,7 @@
  "Public conservation land": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0",
  "Puerto Rico: Puerto Rico Planning Board (Junta de Planificación, SIGE) – PACAT prot": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/5",
  "Přírodní park": "https://gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer/0",
+ "QLD State Forest (Queensland Government)": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77",
  "Queensland heritage register boundary": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer/78",
  "REFLOA_RF": "https://sigservices.icnf.pt/server/rest/services/BDG/refloa_p/MapServer/0",
  "RNAP - Limites": "https://sigservices.icnf.pt/server/rest/services/BDG/RNAP/MapServer/0",

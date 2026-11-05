@@ -42,7 +42,7 @@
    "none": 65,
    "parks": 420,
    "pin_no_shape": 0,
-   "pin_outside": 65,
+   "pin_outside": 66,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "saved_outlines": 0,
@@ -467,7 +467,7 @@
    "none": 45,
    "parks": 1838,
    "pin_no_shape": 0,
-   "pin_outside": 391,
+   "pin_outside": 393,
    "pin_swap": 0,
    "pin_well_outside": 14,
    "saved_outlines": 0,
@@ -495,19 +495,19 @@
   },
   "FR": {
    "areas": 29980,
-   "check": 777,
+   "check": 796,
    "detail": 0.01,
-   "matched": 13100,
+   "matched": 13081,
    "none": 433,
    "parks": 14310,
    "pin_no_shape": 0,
-   "pin_outside": 3552,
+   "pin_outside": 3535,
    "pin_swap": 0,
-   "pin_well_outside": 151,
-   "saved_outlines": 10113,
-   "shadow_add": 203,
-   "shadow_demote": 96,
-   "shadow_other_place": 10,
+   "pin_well_outside": 150,
+   "saved_outlines": 10108,
+   "shadow_add": 210,
+   "shadow_demote": 84,
+   "shadow_other_place": 9,
    "thin": 60
   },
   "GA": {
@@ -1040,7 +1040,7 @@
   "NO": {
    "areas": 6983,
    "check": 58,
-   "detail": 0.01,
+   "detail": 0.002,
    "matched": 3044,
    "none": 235,
    "parks": 3337,
@@ -1052,7 +1052,7 @@
    "shadow_add": 4,
    "shadow_demote": 6,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 250
   },
   "NZ": {
    "areas": 23385,
@@ -1064,7 +1064,7 @@
    "pin_no_shape": 0,
    "pin_outside": 102,
    "pin_swap": 0,
-   "pin_well_outside": 11,
+   "pin_well_outside": 12,
    "saved_outlines": 0,
    "shadow_add": 13,
    "shadow_demote": 11,
@@ -1141,9 +1141,9 @@
   },
   "PL": {
    "areas": 3264,
-   "check": 179,
+   "check": 180,
    "detail": 0.01,
-   "matched": 2695,
+   "matched": 2694,
    "none": 115,
    "parks": 2989,
    "pin_no_shape": 0,
@@ -1151,7 +1151,7 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "saved_outlines": 0,
-   "shadow_add": 24,
+   "shadow_add": 25,
    "shadow_demote": 9,
    "shadow_other_place": 1,
    "thin": 60
@@ -1412,20 +1412,27 @@
    "thin": 60
   }
  },
- "previous_build": "W-41901828387",
- "previous_built": "2026-11-04 23:45 UTC",
- "rules_of_run": "487a51327b86",
- "inputs": {
-  "us-key": "US-42016221491",
-  "ca-key": "CA-41889018960"
- },
- "build": "W-42037731597",
- "built": "2026-11-05 16:56 UTC",
+ "previous_build": "W-42037731597",
+ "previous_built": "2026-11-05 16:56 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
   ".github/scripts/kpc_match.py",
   ".github/scripts/kpc_world_key.py",
   ".github/key-rules-version.json"
- ]
+ ],
+ "rules_of_run": "af63fd711174",
+ "inputs": {
+  "us-key": "US-42016221491",
+  "ca-key": "CA-41889018960"
+ },
+ "build": "W-42074896607",
+ "built": "2026-11-05 22:28 UTC",
+ "failed": [
+  "AU",
+  "BM",
+  "CH",
+  "ZA"
+ ],
+ "complete": false
 }
