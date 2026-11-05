@@ -118,6 +118,35 @@ def last_commit_age(path):
 
 
 WF = {}
+# Next round C4 (Nov 5; Brandon's yes relayed via Super): errors a step caught itself and kept green. Each job's G8 step leaves one
+# 'Hidden failures' annotation ("<e> error(s) and <w> warning(s) caught inside steps, <k> step(s) failed but kept green (job <j>)");
+# the last timed run of every timed bot is read here and the list is kept in data/status/hidden-failures.json (shown as notes in
+# the check-up, never as a new problem, so it emails nobody). Needs 'checks: read'.
+HIDDEN_FILE = pathlib.Path('data/status/hidden-failures.json')
+HIDDEN = []
+HID_RE = re.compile(r'(\d+) error\(s\) and (\d+) warning\(s\) caught inside steps, (\d+) step\(s\) failed but kept green \(job ([^)]*)\)')
+
+
+def hidden_in(repo, wf, run):
+    """the 'Hidden failures' lines of one run (one per job), or None when they could not be read"""
+    jobs = gh(f"repos/{repo}/actions/runs/{run['id']}/jobs?per_page=100")
+    if jobs is None: return None
+    out = []
+    for j in jobs.get('jobs') or []:
+        for a in gh(f"repos/{repo}/check-runs/{j['id']}/annotations?per_page=100") or []:
+            m = HID_RE.search(a.get('message') or '') if (a.get('title') or '') == 'Hidden failures' else None
+            if m: out.append({'job': m.group(4), 'errors': int(m.group(1)), 'warnings': int(m.group(2)), 'kept_green_steps': int(m.group(3))})
+    return out
+
+
+def write_hidden(checked, unread):
+    HIDDEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+    d = {'about': "Errors and warnings a step caught itself (kept green), from each timed bot's last timed run (G8 'Hidden failures' lines). "
+                  "Written by the check-up (kpc_bot_health.py); next round C4, Nov 5. A job marked safe to fail goes red on a caught error "
+                  "(repo variable KPC_HIDDEN_RED=off turns that off).",
+         'checked': NOW.isoformat(timespec='minutes'), 'runs_checked': checked, 'runs_unread': unread,
+         'with_hidden': sorted(HIDDEN, key=lambda x: (-x['errors'], x['workflow']))}
+    HIDDEN_FILE.write_text(json.dumps(d, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
 
 
 def api_age(repo, path):
@@ -180,6 +209,8 @@ def outputs(st):
 
 def main():
     problems, ok = [], []
+    global HC
+    HC = [0, 0]
     # Oct 27 (storage step B5): bots that moved to KPC-Data are checked too (the workflow checks its files out into kpcdata-wf/)
     srcs = [(f, REPO, '') for f in sorted(pathlib.Path('.github/workflows').glob('*.yml'))]
     srcs += [(f, 'KentuckyPortableClub/KPC-Data', 'KPC-Data/') for f in sorted(pathlib.Path('kpcdata-wf/.github/workflows').glob('*.yml'))]
@@ -201,6 +232,11 @@ def main():
             else: ok.append(f'{name} · waiting for its first timed run')
             continue
         last = done[0]
+        h = hidden_in(repo, f.name, last)
+        HC[0 if h is not None else 1] += 1
+        for x in h or []:
+            if x['errors'] or x['warnings'] or x['kept_green_steps']:
+                HIDDEN.append(dict(x, workflow=tag + f.name, run=last.get('html_url', ''), created=last.get('created_at', ''), conclusion=last.get('conclusion')))
         age = (NOW - dt.datetime.fromisoformat(last['created_at'].replace('Z', '+00:00'))).total_seconds() / 3600
         late = age > max(need * 2.5, need + 3)
         if last.get('conclusion') not in ('success', 'skipped', 'neutral', 'cancelled'):
@@ -248,6 +284,12 @@ def main():
     except Exception as e:  # noqa: BLE001
         oi, on, table = [], [{'chat': 5, 'msg': f'output check stopped: {e}'}], ''
     items += oi; notes += on
+    try:
+        write_hidden(HC[0], HC[1])
+        for x in HIDDEN[:40]:
+            notes.append({'chat': owner(x['workflow']), 'msg': f"{x['workflow']} (job {x['job']}): {x['errors']} error(s), {x['warnings']} warning(s) caught inside steps, {x['kept_green_steps']} step(s) kept green in its last timed run {x['run']}"})
+    except Exception as e:  # noqa: BLE001
+        notes.append({'chat': 5, 'msg': f'hidden-failure list stopped: {e}'})
     keys = sorted({x['key'] for x in items})
     new = [k for k in keys if k not in st.get('open', [])]
     st['open'] = keys; st['checked'] = NOW.isoformat(timespec='minutes')

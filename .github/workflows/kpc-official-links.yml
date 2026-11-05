@@ -42,7 +42,7 @@ jobs:
           RIDB_API_KEY: ${{ (github.event_name == 'workflow_dispatch' && !inputs.as_schedule) && secrets.RIDB_API_KEY || '' }}   # Oct 29 (Brandon 9:34 AM): no recurring keyed calls
           MINUTES: '150'
           ONLY: ${{ inputs.only }}
-        run: python3 .github/scripts/kpc_link_harvest.py || echo "::error title=kpc_link_harvest.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_link_harvest.py || { kpc_rc=$?; echo "::error title=kpc_link_harvest.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_link_harvest.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: always()
         id: kept_green_2
@@ -68,6 +68,21 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
   maps:
     if: ${{ inputs.only != 'linkcheck' && inputs.only != 'agency' }}
@@ -82,7 +97,7 @@ jobs:
         env:
           MAX: ${{ inputs.pages || '600' }}
           MINUTES: '150'
-        run: python3 .github/scripts/kpc_map_finder.py || echo "::error title=kpc_map_finder.py::stopped with an error (exit $?), see the log above"
+        run: python3 .github/scripts/kpc_map_finder.py || { kpc_rc=$?; echo "::error title=kpc_map_finder.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_map_finder.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: always()
         id: kept_green_4
@@ -108,6 +123,21 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY
   linkcheck:
     # Oct 26 (research desk + HQ): every map link must load before a tool shows it; held links are cleared only when they load
@@ -124,8 +154,8 @@ jobs:
         env:
           MINUTES: '120'
         run: |
-          git pull -q || echo "::warning title=git fetch::git could not fetch or merge the newest main (exit $?)"
-          python3 .github/scripts/kpc_map_linkcheck.py || echo "::error title=kpc_map_linkcheck.py::stopped with an error (exit $?), see the log above"
+          git pull -q || { kpc_rc=$?; echo "::warning title=git fetch::git could not fetch or merge the newest main (exit $kpc_rc)"; echo "git fetch - git could not fetch or merge the newest main (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_map_linkcheck.py || { kpc_rc=$?; echo "::error title=kpc_map_linkcheck.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_map_linkcheck.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: always()
         id: kept_green_6
@@ -151,4 +181,19 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY

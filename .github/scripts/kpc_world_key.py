@@ -15,6 +15,7 @@ import json, sys, os, re, time, unicodedata, urllib.parse, urllib.request, pathl
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist_ok=True)
 import gzip
+import collections  # next round v3 C11 (source labels counted per country)
 # Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_host_pace  # noqa: E402
@@ -22,6 +23,7 @@ import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind 
 kpc_host_pace.install()
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+import kpc_number_rules as KN  # noqa: E402  (next round v3 C10: a number in one name only; a world-key rule file)
 
 # Oct 25 (round 5 hand checks): a person's decisions per park, {ref: {join: [official names], no: [names], why}}
 try:
@@ -121,8 +123,19 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
 SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
                          (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'))] \
                       + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
+# Next round C7 (Nov 5; Brandon's yes relayed via Super; outside research round 2): Queensland's state forests are in the layer KPC
+# already has, 'Protected areas and forests of Queensland' (DESI, CC BY 4.0; fields estatename / esttype), as esttype='SF' (402
+# features on Nov 5). The old source searched the cadastre map service (LandParcelPropertyFramework) for a layer NAMED 'state forest |
+# timber reserve' and matched no park in the last AU build (332 QLD state-forest parks without an outline). The same layer, approved
+# whole in extra-layers.json, is then read for everything ELSE (QLD_REST), so no record comes twice.
+QLD_PAF = 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77'
+QLD_SF = "esttype='SF'"
+QLD_REST = "esttype<>'SF' OR esttype IS NULL"
+# the same DESI layer is published twice (MapServer/10 under ParksTerrestrialProtectedAreas: 402 SF too) and extra-layers.json lists
+# both: each is read without its SF, so a state forest is read once, from QLD_PAF
+QLD_LAYERS = {QLD_PAF.lower(), 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/environment/parksterrestrialprotectedareas/mapserver/10'}
 SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
-                         ('QLD State Forest (Queensland Government)', 'arcgisfind', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer', r'state forest|timber reserve')]
+                         ('QLD State Forest (Queensland Government)', 'arcgis', QLD_PAF, [QLD_SF])]
 # Oct 25 (outside research bot, other countries round 2): Victoria DEECA + Western Australia DBCA state forest tenure, the
 # Śląskie voivodeship copy of Poland's nature-and-landscape complexes, and Japan's NATIONAL A10 file (FY2010) whose park-name
 # CODES (A10_005 -> KSJ codelist NaturalParkNameCd) name the areas the per-prefecture A10 files leave blank. Licences: VIC = same
@@ -147,7 +160,10 @@ try:
         _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
         for _l in _ls:
             _u = str(_l.get('url') or '').rstrip('/')
-            if _u and _u.lower() not in _have:
+            if _cc == 'AU' and _u.lower() in QLD_LAYERS and not _l.get('where'):   # next round C7: the rest of the QLD layer (its SF are above)
+                SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u, [QLD_REST])]
+                EXTRA_URLS[(_cc, _u.lower())] = _u
+            elif _u and _u.lower() not in _have:
                 SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
                 EXTRA_URLS[(_cc, _u.lower())] = _u
 except FileNotFoundError: pass
@@ -386,6 +402,10 @@ def _side(cc, s):
 
 
 def same_name(cc, a, b):
+    # next round v3 C10 (Quality's grade of v2, must-fix): a number in ONE name only is a different piece (rule 18 -> PIN):
+    # AU-7265 'Mount Stanley State Forest' is not DESI 'Mount Stanley State Forest 1' (nor CAPAD 'Mount Stanley 1'). The test and its
+    # switch (ONE_SIDE_NUMBER, default 'strict') are in kpc_number_rules.py. Japan: none (norm() joins the words there).
+    if cc != 'JP' and KN.one_side(a, b): return False
     if cc == 'AU':
         ca, cb = codes(a), codes(b)
         if ca and cb and not (ca & cb): return False      # 'Nullan I106' is not 'Nullan I108' (Oct 18 review)
@@ -859,6 +879,14 @@ try:
     if __name__ == '__main__':   # not when the golden tests load this file
         save_json(OUT / 'layers.json', {x[0]: x[2] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}, indent=1)
 except Exception as e: notice('World key layers', e)  # noqa: BLE001
+HELD = []   # next round v3 C11: countries not rebuilt because a source failed with no saved records (exit 3 at the end)
+
+
+def src_id(s):
+    """next round v3 C11: a source's id = (kind, address, layer); the label is not unique (DE 'Naturpark' x2)."""
+    return repr((s[1], s[2], s[3] if len(s) > 3 else None))
+
+
 for cc in COUNTRIES:
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
     except Exception: notice(f'World key {cc}', 'no park list yet (data/parkinfo); skipped'); continue  # noqa: BLE001
@@ -871,19 +899,44 @@ for cc in COUNTRIES:
         print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
     if recs is None:
         recs, failed = [], False
+        # Next round v3 C11 (Quality's grade of v2, Nov 5; DE build 6d8d79b2 lost BfN Naturparke + Nationalparke, ~0.5% of the areas,
+        # under the old 3% test, and the short read was saved over the good copy). Per source: one that FAILED or came back EMPTY
+        # takes the saved copy's records FOR THAT SOURCE, matched by its SOURCE ID (kind, address, layer), not by its label: DE has
+        # two 'Naturpark' sources (LUBW, Niedersachsen) and AU two 'Protected areas and forests of Queensland'. A saved copy from
+        # before this change has no source ids: its records are used only when the label is unique among the country's sources.
+        # A source that FAILED with no saved records HOLDS the country: no file is written, so the previous key stays (the
+        # workflow lists the country as failed). A read in which a source failed is never saved over the saved copy.
+        _old, short = None, []   # the saved copy, read only once a source fails or comes back empty (as before: only then)
+        _labels = collections.Counter(x[0] for x in SRC.get(cc, []))
         for s in SRC.get(cc, []):
+            sid = src_id(s)
             try:
                 if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
                 got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_a10n(s[0], s[2]) if s[1] == 'a10n' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
+                for r in got: r['sid'] = sid
                 recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
+                if not got: short.append((s, 'returned 0 records'))
             except Exception as e:  # noqa: BLE001
-                notice(f'World key {cc}', f'{s[0]} FAILED: {e}'); failed = True
-        # Oct 22: a source that did not answer must not cost the country its parks: use the last saved copy instead,
-        # and never save a half-read copy over a good one
-        old = wload(cc) if failed else None
+                notice(f'World key {cc}', f'{s[0]} FAILED: {e}'); failed = True; short.append((s, f'FAILED ({type(e).__name__})'))
+        if short: _old = wload(cc)
+        held = []
+        for s, how in short:
+            sid = src_id(s)
+            mine = [r for r in _old or [] if r.get('sid') == sid]
+            if not mine and _labels[s[0]] == 1: mine = [r for r in _old or [] if 'sid' not in r and r.get('src') == s[0]]   # a saved copy from before source ids
+            if mine:
+                recs += mine; failed = True
+                notice(f'World key {cc}', f'{s[0]} [{s[2]}] {how}: its {len(mine)} records came from the saved copy (matched by source id; nothing dropped; the saved copy is not overwritten)')
+            elif how != 'returned 0 records': held.append(f'{s[0]} [{s[2]}]')
+        if held:
+            notice(f'World key {cc}', f"HELD: {'; '.join(held)} FAILED and the saved copy has no records from it (by source id"
+                                      f"{'' if _old else '; no saved copy'}): {cc} is not rebuilt, its previous key stays (listed as failed)")
+            HELD.append(cc); continue
+        # Oct 22: a source that did not answer must not cost the country its parks: if the read is still SHORT, use the whole saved copy
+        old = _old if failed else None
         if old and len(recs) < .97 * len(old):   # only when the read came back SHORT (see the US key)
             notice(f'World key {cc}', f'a source did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
-        elif recs and CMODE in ('use', 'refresh'): wsave(cc, recs)
+        elif recs and not failed and CMODE in ('use', 'refresh'): wsave(cc, recs)   # never save a read in which a source failed
     if not recs: continue
     if cc == 'JP':
         for r in recs:
@@ -1245,3 +1298,6 @@ for cc in COUNTRIES:
     save_json(OUT / 'index.json', _with_old_stamp({'countries': idx}))
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")
+if HELD:   # next round v3 C11: the workflow lists a held country as failed and keeps its previous key (data/world-key/<CC>.json)
+    print(f"::warning title=World key held::{' '.join(HELD)}: a source failed and the saved copy has no records from it; previous key kept", flush=True)
+    sys.exit(3)

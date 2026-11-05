@@ -14,6 +14,8 @@ RULES_CHANGED) waits until every key it follows (WAIT_FOR) has finished its own 
       * KPC-Links without links-04 (no rules hash): no order at all, the run goes on as before (never a key that waits forever)
       * Nov 4 PM fix bundle (item 2): a workflow_run start whose newest build (read from the NEWEST main when KPC_INDEX_REF is set)
         has the current rules_of_run and the same inputs is a DUPLICATE and skips (DUPLICATE=1), even when that build failed a part
+      * next round C1 (Nov 5): a workflow_dispatch with KPC_CHAINED=us-key / ca-key (the input 'chained', set only by the key before
+        it after a bot-started run) is checked as a workflow_run start
 To change or extend the order, edit WAIT_FOR (one line per key)."""
 import json, os, pathlib, sys
 
@@ -75,6 +77,13 @@ def same_build_exists(kind, root='.'):
 def check(kind, env=os.environ, root='.'):
     """-> 'go' | 'wait' | 'skip' (also written to $GITHUB_ENV as SKIP=1 for wait / skip)"""
     ev = env.get('GITHUB_EVENT_NAME') or ''
+    # Next round C1 (Nov 5; Brandon's yes relayed via Super, 4:32 AM CST Nov 5): a run started with the GITHUB_TOKEN fires no
+    # workflow_run, so a bot-started US (or Canada) key DISPATCHES the keys after it with chained=<that key>. Such a start is a
+    # chained start exactly like a workflow_run one (catch-up only; a duplicate or an up-to-date key skips cleanly). A by-hand
+    # dispatch (chained blank) still builds.
+    chained = (env.get('KPC_CHAINED') or '').strip().lower()
+    if ev == 'workflow_dispatch' and chained in NAMES and chained in WAIT_FOR.get(kind, ()):
+        notice(f'{NAMES[kind]} key: started by the {NAMES[chained]} key (a bot-started run fires no workflow_run): checked as a chained start'); ev = 'workflow_run'
     if (env.get('FORCE') or '').lower() == 'yes':
         notice(f'{NAMES[kind]} key: FORCE=yes by hand: the build order is not checked'); return 'go'
     try:

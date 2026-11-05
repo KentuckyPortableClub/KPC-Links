@@ -31,15 +31,16 @@ jobs:
         run: |
           git config user.name "KPC bot"
           git config user.email "kpc-bot@users.noreply.github.com"
-          python3 .github/scripts/kpc_refcheck_guard.py || echo "::error title=kpc_refcheck_guard.py::stopped with an error (exit $?), see the log above"   # Nov 2 (chat 5's WRONG list): a park lost that POTA did not retire / an emptied map file = put back
+          python3 .github/scripts/kpc_refcheck_guard.py || { kpc_rc=$?; echo "::error title=kpc_refcheck_guard.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_refcheck_guard.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Nov 2 (chat 5's WRONG list): a park lost that POTA did not retire / an emptied map file = put back
           git add -A kpc-ky-data.json locations-ky.json locations.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true   # ok: an optional path may not exist
           if git diff --cached --quiet; then echo "nothing to save"; exit 0; fi
           git commit -q -m "Retired parks taken off every list (reference check)"
-          { saved=0; for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; sleep 10; done; [ "$saved" = 1 ] || echo "::error title=Save::not saved after every try; the next run tries again"; }
+          { saved=0; for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; sleep 10; done; [ "$saved" = 1 ] || { kpc_rc=$?; echo "::error title=Save::not saved after every try; the next run tries again"; echo "Save - not saved after every try; the next run tries again" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
           KPC_STEPS: ${{ toJSON(steps) }}
+          KPC_FAIL_SAFE: ${{ vars.KPC_HIDDEN_RED != 'off' && '1' || '0' }}   # next round C4: red on a caught error (safe: this job starts nothing after it)
         run: |
           python3 - <<'PY'
           import json, os
@@ -49,4 +50,19 @@ jobs:
           print(f'{len(bad)} hidden step failure(s)')
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
           PY

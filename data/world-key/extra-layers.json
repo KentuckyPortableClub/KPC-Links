@@ -89,13 +89,6 @@
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    },
    {
-    "label": "Protected areas and forests of Queensland",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/10",
-    "name_field": "estatename",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
     "label": "World heritage areas of Queensland",
     "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/25",
     "name_field": "name",
