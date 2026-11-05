@@ -72,7 +72,7 @@ check(bad['X-1']['bk'][4] == 'noshape', 'one park failing never stops the stamp'
 
 # 6. the builders call it before they save, and the DE WFS id fix
 us = (S / 'kpc_us_key.py').read_text(encoding='utf-8'); ca = (S / 'kpc_ca_key.py').read_text(encoding='utf-8'); wd = (S / 'kpc_world_key.py').read_text(encoding='utf-8')
-check('KF.stamp(' in us and us.index('KF.stamp(') < us.rindex('_selfchk(st, parks, recs)'), 'US builder stamps before its self check and save')
+check('KF.stamp(' in us and us.rindex('_selfchk(st, parks, recs)') < us.index('KF.stamp(') < us.rindex("save_json(OUT / f'US-{st}.json'"), 'US builder runs its self check, then stamps bk, then saves (fix bundle 11a order)')
 check("'bk_about': KF.ABOUT" in us and 'Des_Tp' in us[us.index('def _bklook'):us.index('def _bklook') + 400], 'US kind comes from PAD-US Des_Tp')
 check('KF.stamp(' in ca and ca.index('KF.stamp(') < ca.rindex('for _pv, _o, _rp, _rt in PENDING'), 'CA builder stamps before its save loop')
 check("r.get('src')" in ca[ca.index('def _bklook'):ca.index('def _bklook') + 500], "CA: designation only for CPCAD rows (no 'src'; others carry a label)")

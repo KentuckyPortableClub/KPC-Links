@@ -69,8 +69,9 @@ bc = yaml.safe_load(open(W / 'kpc-boundary-check.yml'))
 names = [s.get('name', s.get('uses', '')) for s in bc['jobs']['check']['steps']]
 i_sync = next((i for i, n in enumerate(names) if n.startswith('Start from the NEWEST main')), -1)
 i_ov = next(i for i, n in enumerate(names) if n.startswith('Read the moved data'))
-i_st = next(i for i, n in enumerate(names) if n.startswith('Stamp the rebuilt key'))
-check(0 < i_sync < i_ov < i_st, 'boundary check: starts from the newest main right after checkout, before the overlay, the rebuild and the stamp')
+# key hotfix Nov 5: the boundary check no longer stamps; it puts the committed index back instead (test_hotfix_boundary_no_stamp_nov5.py)
+i_st = next(i for i, n in enumerate(names) if n.startswith('Never write or stamp the US key index'))
+check(0 < i_sync < i_ov < i_st, 'boundary check: starts from the newest main right after checkout, before the overlay, the rebuild and the index restore')
 check('git reset -q --hard FETCH_HEAD' in bc['jobs']['check']['steps'][i_sync]['run'], 'boundary check: the sync is a fetch + reset to the fetched main')
 for f, n in (('kpc-us-key.yml', 1), ('kpc-ca-key.yml', 2), ('kpc-world-key.yml', 2), ('kpc-boundary-check.yml', 1)):
     y = yaml.safe_load(open(W / f)); c = sum(1 for j in y['jobs'].values() for s in j.get('steps', []) if (s.get('env') or {}).get('KPC_INDEX_REF') == 'origin/main')

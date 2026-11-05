@@ -94,9 +94,17 @@ jobs:
           # the same states. The monthly run and by-hand runs with states are never skipped.
           import datetime as _dt
           # Nov 4 (links-04): RULES_CHANGED=1 (the freeze check: the newest build was not a full build on the current rules) = this start
-          # builds EVERY state and is never skipped as 'already built today' (states given by hand still win).
-          _rules = os.environ.get('RULES_CHANGED') == '1' and not (os.environ.get('STATES') or '').strip()
-          if _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)')
+          # builds EVERY state and is never skipped as 'already built today'.
+          # Key hotfix Nov 5 (Brandon's approval relayed via Super Head Bot 4:21 AM CST): WHATEVER the states input says. The boundary bot
+          # queue (41984445602) dispatched 41984527710 with STATES=CT ID ME ND OH TN WV; the freeze check saw RULES CHANGED 6bb847b4f6cd ->
+          # 3dc53f70256a, but the states input won (KPC_FULL_BUILD 0): 7 states on the new rules, the index kept rules=6bb847b4f6cd.
+          _rules = os.environ.get('RULES_CHANGED') == '1'
+          _given = ' '.join((os.environ.get('STATES') or '').split())
+          if _rules and _given and _given.upper() != 'ALL':
+              print(f"::warning title=US key plan::RULES CHANGED since the newest build: the states input '{_given}' is OVERRIDDEN - building ALL states on the current rules (a partial build would mix rules)", file=__import__('sys').stderr)
+          elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)', file=__import__('sys').stderr)
+          # Key hotfix 3 (Nov 5): these two go to stderr = the run log. stdout is >> $GITHUB_OUTPUT, so a ::notice printed there is
+          # never shown (the plan job of 41984527710 has no 'US key plan' annotation at all).
           if not _rules and os.environ.get('SCHED') in ('17 9 * * *', '46 11 * * *') and not (os.environ.get('STATES') or '').strip():
               try: _b = json.load(open('data/us-key/index.json', encoding='utf-8')).get('built') or ''
               except Exception: _b = ''
@@ -342,3 +350,21 @@ jobs:
           if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
               open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
           PY
+  postcheck:
+    # Key hotfix Nov 5 (Brandon's approval relayed via Super Head Bot 4:21 AM CST): a run started with the GITHUB_TOKEN (the boundary
+    # bot queue, the watchdog: triggering actor github-actions[bot]) fires NO workflow_run event, so 'KPC key check (after a key
+    # build)' never started after 41984527710 (all 11 post-key checks so far followed runs started by KentuckyPortableClub). A
+    # workflow_dispatch is the one start the GITHUB_TOKEN may make. A person's run still starts it through workflow_run, as before.
+    needs: [plan, join]
+    if: ${{ always() && github.triggering_actor == 'github-actions[bot]' && needs.join.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Start the post-key check (a bot-started run fires no workflow_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started (this run was started by github-actions[bot])" || echo "::warning title=US key::could not start the post-key check (exit $?): start 'KPC key check (after a key build)' by hand with key=us"

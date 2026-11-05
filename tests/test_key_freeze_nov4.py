@@ -180,8 +180,16 @@ sts, full, out = plan(RULES_CHANGED='1', SCHED='17 9 * * *', NJOBS='3')
 check(len(sts) == 50 and 'KY' not in sts and full == '1', f'US plan, rules changed, nightly start, a build already finished today: ALL {len(sts)} states (not skipped), full=1')
 sts, full, out = plan(SCHED='17 9 * * *', NJOBS='3')
 check(sts == [] or sts == ['TN'], f'US plan, same rules: the old nightly behaviour (skip / answers-states only): {sts}')
+# Key hotfix 3 (Nov 5; follows hotfix 2, Brandon's approval relayed via Super Head Bot 4:21 AM CST): when the rules changed, the
+# states input no longer wins; the plan builds ALL states as a full build and warns (in the run log = stderr) that it overrode it.
 sts, full, out = plan(RULES_CHANGED='1', STATES='TN OH', NJOBS='3')
-check(sts == ['OH', 'TN'] and full == '0', 'US plan: states given by hand still win (and it is not a full build)')
+check(len(sts) == 50 and 'KY' not in sts and full == '1', f'US plan, rules changed + states given by hand: ALL {len(sts)} states, full=1 (the states input is overridden)')
+_e = {k: v for k, v in os.environ.items() if k not in ('FROZEN', 'RULES_CHANGED', 'STATES', 'SCHED')}; _e.update(RULES_CHANGED='1', STATES='TN OH', NJOBS='3')
+with tempfile.TemporaryDirectory() as _t: _r = subprocess.run([sys.executable, '-c', code], cwd=_t, env=_e, capture_output=True, text=True)
+check("states input 'TN OH' is OVERRIDDEN" in _r.stderr and '::warning' in _r.stderr and 'OVERRIDDEN' not in _r.stdout,
+      'US plan: the override is a ::warning in the run log (stderr), naming the states input; not written into GITHUB_OUTPUT')
+sts, full, out = plan(STATES='TN OH', NJOBS='3')
+check(sts == ['OH', 'TN'] and full == '0', 'US plan: same rules, states given by hand still win (and it is not a full build)')
 sts, full, out = plan(RULES_CHANGED='1', FROZEN='1', NJOBS='3')
 check(sts == [], 'US plan: FROZEN still builds nothing')
 check(not (base := subprocess.run(['git', 'show', f'{BASE}:.github/workflows/kpc-us-key.yml'], cwd=HERE, capture_output=True, text=True).stdout)
