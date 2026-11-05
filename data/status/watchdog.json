@@ -287,11 +287,15 @@
   "kpc-us-key.yml|2026-11-05T09:17:00+00:00": "2026-11-05T11:06+00:00 started",
   "kpc-world-key.yml|2026-11-05T10:07:00+00:00": "2026-11-05T11:06+00:00 started",
   "kpc-boards.yml|2026-11-05T11:44:00+00:00": "2026-11-05T12:09+00:00 started",
-  "kpc-park-alerts.yml|2026-11-05T11:03:00+00:00": "2026-11-05T12:09+00:00 started"
+  "kpc-park-alerts.yml|2026-11-05T11:03:00+00:00": "2026-11-05T12:09+00:00 started",
+  "kpc-discord-watch.yml|2026-11-05T11:47:00+00:00": "2026-11-05T12:39+00:00 started",
+  "kpc-hunters.yml|2026-11-05T12:07:00+00:00": "2026-11-05T12:39+00:00 started",
+  "kpc-us-key.yml|2026-11-05T11:46:00+00:00": "2026-11-05T12:39+00:00 started"
  },
- "last": "2026-11-05T12:09+00:00",
+ "last": "2026-11-05T12:39+00:00",
  "last_restarted": [
-  "kpc-boards.yml (missed Nov 05 11:44 UTC)",
-  "kpc-park-alerts.yml (missed Nov 05 11:03 UTC)"
+  "kpc-discord-watch.yml (missed Nov 05 11:47 UTC)",
+  "kpc-hunters.yml (missed Nov 05 12:07 UTC)",
+  "kpc-us-key.yml (missed Nov 05 11:46 UTC)"
  ]
 }
