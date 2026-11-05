@@ -37,6 +37,20 @@ KEYS = {
 }
 # Brandon 7:33 PM CST Nov 3 (relayed by Super via Quality: 'When in doubt drop it put it on a list'): these must come out as PINS.
 MUST_PIN = {'ca': ['CA-2218', 'CA-2227'], 'world': ['SE-0797']}
+# Next round v2 C11 (Quality, German pre-check '6 vs 722', Nov 5): a source layer lost in a build shows up here as many parks of ONE
+# country going outline -> pin at once (W-41901828387: DE 42, all BfN Naturparke / Nationalparke). 10 per country is above every
+# whole-key US / Canada count in the saved reports (US 4 and 0, Canada 8 and 2) and well under the DE loss. A WARNING only: a person
+# looks; the build is never failed.
+PIN_JUMP = 10
+
+
+def pin_jump(ch, limit=PIN_JUMP):
+    """{country: outline -> pin count} for every country (the part of the park number before '-') at or over the limit."""
+    n = {}
+    for r in ch.get('outline_to_pin') or []: n[str(r).split('-')[0]] = n.get(str(r).split('-')[0], 0) + 1
+    return {c: k for c, k in sorted(n.items(), key=lambda x: (-x[1], x[0])) if k >= limit}
+
+
 FLAT_M2 = 100.0          # an outline file under 100 m2 (0.025 ac) is 'flat'
 LIST_MAX = 40            # rows shown per section in the .md (the .json has them all)
 
@@ -412,6 +426,11 @@ def run(env=None, cwd='.'):
                       'overrides not followed': len(rep['overrides']),
                       'overrides not followed, dated before the build (a real miss)': sum(1 for x in rep['overrides'] if x.get('newer_than_build') is False), 'pre-check HOLD still outline': len(pre['hold_still_outline']), 'RULE 18 flags': len(pre['rule18']),
                       'must-be-pin not yet pin': sum(1 for x in rep['must_pin'] if x['result'] != 'PASS (pin)')}
+    rep['pin_jump'] = pj = pin_jump(ch)
+    rep['summary'][f'countries with {PIN_JUMP}+ outline -> pin (a lost source layer?)'] = len(pj)
+    if pj:
+        notes.append(f"outline -> pin jumped in {', '.join(f'{c} {n}' for c, n in pj.items())} ({PIN_JUMP}+ in one country): check that build's source reads before trusting it")
+        note('warning', f"{k} key {build}: outline -> pin jumped in {', '.join(f'{c} {n}' for c, n in pj.items())} ({PIN_JUMP}+ in one country; a source layer may have been lost)")
     out_dir.mkdir(parents=True, exist_ok=True)
     base = out_dir / f'{k}-{build}'
     json.dump(rep, open(f'{base}.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
