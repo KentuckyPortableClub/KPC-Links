@@ -8,9 +8,14 @@ def check(what, got, want):
     good = got == want; ok &= good
     print(('PASS ' if good else 'FAIL ') + f'{what}: got {got!r}' + ('' if good else f', want {want!r}'))
 q0 = json.load(open(R / 'data/status/key-check/precheck-queue.json'))
-e0 = q0['queue'][0]
-check('the queue has the German entry, waiting, due AT OR AFTER the DE build on main (ddd815b34 counts)', (e0['id'], e0['area'], e0['key_file'], e0['state'], e0.get('from_commit'), 'after_commit' in e0),
-      ('de-after-german-rebuild', 'DE', 'data/world-key/DE.json', 'waiting', 'ddd815b34', False))
+live = q0['queue'][0]
+# Next round (Nov 5, item B): the live German entry is DONE since the 12:30 UTC Nov 5 key check (build 6d8d79b2a84f). The test no longer
+# asks the LIVE file to be 'waiting': it checks the entry is there, due at or after ddd815b34, and either still waiting or done WITH its
+# build commit and kept counts. The scenarios below start from a fresh 'waiting' copy of the entry (the bot's own fields taken off).
+check('the queue has the German entry, due AT OR AFTER the DE build on main (ddd815b34 counts)', (live['id'], live['area'], live['key_file'], live.get('from_commit'), 'after_commit' in live),
+      ('de-after-german-rebuild', 'DE', 'data/world-key/DE.json', 'ddd815b34', False))
+check('the live entry is waiting, or done with its build commit, date and kept counts', live['state'] == 'waiting' or (live['state'] == 'done' and bool(live.get('build_commit')) and bool(live.get('done')) and isinstance(live.get('kept'), dict)), True)
+e0 = {k: v for k, v in live.items() if k not in ('done', 'build_commit', 'kept', 'run', 'last_try')}; e0['state'] = 'waiting'
 wf = open(R / '.github/workflows/kpc-key-postcheck.yml').read()
 check('the key check runs the queue step after the pre-check, before the save', wf.index('Pre-check (REVIEW_PILE') < wf.index('kpc_precheck_queue.py') < wf.index('Save the report'), True)
 check('the key check still has no schedule', re.search(r'^\s*schedule:', wf, re.M) is None, True)
