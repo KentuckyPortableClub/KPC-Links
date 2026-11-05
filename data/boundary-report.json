@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11633,
-   "far": 4029,
+   "matched": 11621,
+   "far": 4004,
    "noshape": 0,
-   "edge": 3918,
+   "edge": 3893,
    "out": 111,
    "swap": 0
   },
@@ -12,14 +12,14 @@
    {
     "st": "AK",
     "matched": 136,
-    "far": 54,
+    "far": 55,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 49
+    "edge": 50
    },
    {
     "st": "AL",
@@ -107,15 +107,15 @@
    },
    {
     "st": "DE",
-    "matched": 84,
-    "far": 29,
+    "matched": 85,
+    "far": 27,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 29
+    "edge": 27
    },
    {
     "st": "FL",
@@ -131,63 +131,63 @@
    },
    {
     "st": "GA",
-    "matched": 226,
-    "far": 27,
+    "matched": 225,
+    "far": 63,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 27
+    "edge": 63
    },
    {
     "st": "HI",
     "matched": 88,
-    "far": 19,
+    "far": 32,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 19
+    "edge": 32
    },
    {
     "st": "IA",
     "matched": 180,
-    "far": 72,
+    "far": 31,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 71
+    "edge": 30
    },
    {
     "st": "ID",
-    "matched": 226,
-    "far": 71,
+    "matched": 225,
+    "far": 31,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 70
+    "edge": 30
    },
    {
     "st": "IL",
-    "matched": 213,
-    "far": 73,
+    "matched": 211,
+    "far": 72,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 73
+    "edge": 72
    },
    {
     "st": "IN",
@@ -239,7 +239,7 @@
    },
    {
     "st": "MD",
-    "matched": 176,
+    "matched": 175,
     "far": 57,
     "noshape": 0,
     "out": 2,
@@ -311,7 +311,7 @@
    },
    {
     "st": "MT",
-    "matched": 245,
+    "matched": 244,
     "far": 78,
     "noshape": 0,
     "out": 0,
@@ -456,14 +456,14 @@
    {
     "st": "PA",
     "matched": 487,
-    "far": 84,
+    "far": 85,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 83
+    "edge": 84
    },
    {
     "st": "RI",
@@ -480,14 +480,14 @@
    {
     "st": "SC",
     "matched": 160,
-    "far": 83,
+    "far": 84,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 83
+    "edge": 84
    },
    {
     "st": "SD",
@@ -551,15 +551,15 @@
    },
    {
     "st": "VT",
-    "matched": 93,
-    "far": 32,
+    "matched": 91,
+    "far": 43,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 29
+    "edge": 40
    },
    {
     "st": "WA",
@@ -575,15 +575,15 @@
    },
    {
     "st": "WI",
-    "matched": 336,
-    "far": 116,
+    "matched": 333,
+    "far": 114,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 114
+    "edge": 112
    },
    {
     "st": "WV",
@@ -599,15 +599,15 @@
    },
    {
     "st": "WY",
-    "matched": 215,
-    "far": 71,
+    "matched": 213,
+    "far": 69,
     "noshape": 0,
     "out": 9,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 62
+    "edge": 60
    }
   ],
   "swaps": [],
@@ -787,12 +787,6 @@
     "Dark Canyon"
    ],
    [
-    "VT",
-    "US-5553",
-    "Camels Hump State Forest",
-    "Camel's Hump State Forest"
-   ],
-   [
     "WY",
     "US-10890",
     "Sinks Canyon BLM Recreation Management Area",
@@ -808,10 +802,10 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4383,
-   "far": 1636,
+   "matched": 4392,
+   "far": 1644,
    "noshape": 38,
-   "edge": 1522,
+   "edge": 1530,
    "out": 76,
    "swap": 0
   },
@@ -914,15 +908,15 @@
    },
    {
     "st": "CA-ON",
-    "matched": 951,
-    "far": 389,
+    "matched": 960,
+    "far": 398,
     "noshape": 27,
     "out": 7,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 355
+    "edge": 364
    },
    {
     "st": "CA-PE",
@@ -939,14 +933,14 @@
    {
     "st": "CA-QC",
     "matched": 442,
-    "far": 168,
+    "far": 167,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 163
+    "edge": 162
    },
    {
     "st": "CA-SI",
@@ -1153,12 +1147,12 @@
  },
  "World": {
   "totals": {
-   "matched": 42417,
-   "far": 10515,
+   "matched": 42821,
+   "far": 10072,
    "noshape": 0,
-   "edge": 9527,
-   "out": 988,
-   "swap": 97
+   "edge": 9756,
+   "out": 316,
+   "swap": 1
   },
   "states": [
    {
@@ -1176,9 +1170,9 @@
    {
     "st": "AS",
     "matched": 2,
-    "far": 1,
+    "far": 0,
     "noshape": 0,
-    "out": 1,
+    "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -1187,15 +1181,15 @@
    },
    {
     "st": "AT",
-    "matched": 273,
-    "far": 67,
+    "matched": 282,
+    "far": 65,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 62
+    "edge": 60
    },
    {
     "st": "AU",
@@ -1247,15 +1241,15 @@
    },
    {
     "st": "BS",
-    "matched": 23,
-    "far": 7,
+    "matched": 0,
+    "far": 0,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 7
+    "edge": 0
    },
    {
     "st": "BT",
@@ -1271,7 +1265,7 @@
    },
    {
     "st": "BW",
-    "matched": 6,
+    "matched": 0,
     "far": 0,
     "noshape": 0,
     "out": 0,
@@ -1283,15 +1277,15 @@
    },
    {
     "st": "BZ",
-    "matched": 49,
-    "far": 15,
+    "matched": 42,
+    "far": 14,
     "noshape": 0,
-    "out": 5,
+    "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 10
+    "edge": 11
    },
    {
     "st": "CC",
@@ -1343,15 +1337,15 @@
    },
    {
     "st": "CL",
-    "matched": 157,
-    "far": 47,
+    "matched": 167,
+    "far": 51,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 43
+    "edge": 47
    },
    {
     "st": "CM",
@@ -1379,15 +1373,15 @@
    },
    {
     "st": "CV",
-    "matched": 29,
-    "far": 10,
+    "matched": 0,
+    "far": 0,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 10
+    "edge": 0
    },
    {
     "st": "CX",
@@ -1415,15 +1409,15 @@
    },
    {
     "st": "DE",
-    "matched": 683,
-    "far": 679,
+    "matched": 641,
+    "far": 132,
     "noshape": 0,
-    "out": 677,
-    "swap": 96,
+    "out": 6,
+    "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 2
+    "edge": 126
    },
    {
     "st": "DK",
@@ -1511,15 +1505,15 @@
    },
    {
     "st": "FR",
-    "matched": 13102,
-    "far": 3553,
+    "matched": 13100,
+    "far": 3552,
     "noshape": 0,
     "out": 151,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3402
+    "edge": 3401
    },
    {
     "st": "GA",
@@ -1535,15 +1529,27 @@
    },
    {
     "st": "GB",
-    "matched": 3288,
-    "far": 1073,
+    "matched": 3654,
+    "far": 1174,
     "noshape": 0,
-    "out": 12,
+    "out": 15,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 1061
+    "edge": 1159
+   },
+   {
+    "st": "GE",
+    "matched": 33,
+    "far": 14,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 14
    },
    {
     "st": "GL",
@@ -1643,27 +1649,27 @@
    },
    {
     "st": "IE",
-    "matched": 96,
-    "far": 22,
+    "matched": 103,
+    "far": 24,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 22
+    "edge": 24
    },
    {
     "st": "IM",
-    "matched": 3,
-    "far": 1,
+    "matched": 4,
+    "far": 2,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 1
+    "edge": 2
    },
    {
     "st": "IT",
@@ -1691,15 +1697,15 @@
    },
    {
     "st": "JP",
-    "matched": 185,
-    "far": 22,
+    "matched": 187,
+    "far": 18,
     "noshape": 0,
-    "out": 7,
+    "out": 6,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 15
+    "edge": 12
    },
    {
     "st": "KE",
@@ -1774,6 +1780,18 @@
     "edge": 0
    },
    {
+    "st": "MK",
+    "matched": 6,
+    "far": 5,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 5
+   },
+   {
     "st": "MP",
     "matched": 1,
     "far": 0,
@@ -1787,15 +1805,15 @@
    },
    {
     "st": "MT",
-    "matched": 27,
-    "far": 16,
+    "matched": 33,
+    "far": 21,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 16
+    "edge": 21
    },
    {
     "st": "MV",
@@ -1823,15 +1841,15 @@
    },
    {
     "st": "NC",
-    "matched": 19,
-    "far": 7,
+    "matched": 0,
+    "far": 0,
     "noshape": 0,
-    "out": 3,
+    "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 4
+    "edge": 0
    },
    {
     "st": "NF",
@@ -1844,6 +1862,18 @@
     "detail": "~1.1 km",
     "thin": 60,
     "edge": 0
+   },
+   {
+    "st": "NI",
+    "matched": 47,
+    "far": 11,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 8
    },
    {
     "st": "NL",
@@ -1860,26 +1890,38 @@
    {
     "st": "NO",
     "matched": 3044,
-    "far": 514,
+    "far": 506,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 506
+   },
+   {
+    "st": "NZ",
+    "matched": 814,
+    "far": 102,
+    "noshape": 0,
+    "out": 11,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 91
+   },
+   {
+    "st": "OM",
+    "matched": 4,
+    "far": 1,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 513
-   },
-   {
-    "st": "NZ",
-    "matched": 805,
-    "far": 99,
-    "noshape": 0,
-    "out": 10,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 89
+    "edge": 0
    },
    {
     "st": "PA",
@@ -1919,7 +1961,7 @@
    },
    {
     "st": "PL",
-    "matched": 2691,
+    "matched": 2695,
     "far": 402,
     "noshape": 0,
     "out": 0,
@@ -1944,14 +1986,14 @@
    {
     "st": "PT",
     "matched": 223,
-    "far": 54,
+    "far": 51,
     "noshape": 0,
-    "out": 10,
+    "out": 9,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 44
+    "edge": 42
    },
    {
     "st": "PY",
@@ -2003,27 +2045,27 @@
    },
    {
     "st": "SE",
-    "matched": 2016,
-    "far": 697,
+    "matched": 2042,
+    "far": 700,
     "noshape": 0,
     "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 689
+    "edge": 692
    },
    {
     "st": "SI",
     "matched": 137,
-    "far": 46,
+    "far": 45,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 45
+    "edge": 44
    },
    {
     "st": "SJ",
@@ -2087,7 +2129,7 @@
    },
    {
     "st": "VI",
-    "matched": 5,
+    "matched": 7,
     "far": 2,
     "noshape": 0,
     "out": 1,
@@ -2100,696 +2142,29 @@
    {
     "st": "ZA",
     "matched": 70,
-    "far": 29,
+    "far": 28,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 25
+    "edge": 24
    }
   ],
-  "swaps": [
-   [
-    "DE",
-    "DE-0004",
-    "S\u00fcdschwarzwald Nature Park",
-    "S\u00fcdschwarzwald",
-    "S\u00fcdschwarzwald"
-   ],
-   [
-    "DE",
-    "DE-0006",
-    "Augsburg Westliche W\u00e4lder Nature Park",
-    "Augsburg - westliche W\u00e4lder",
-    "Augsburg - Westliche W\u00e4lder"
-   ],
-   [
-    "DE",
-    "DE-0008",
-    "Sch\u00f6nbuch Nature Park",
-    "Sch\u00f6nbuch",
-    "Sch\u00f6nbuch"
-   ],
-   [
-    "DE",
-    "DE-0011",
-    "Bayerischer Wald Nature Park",
-    "Bayerischer Wald",
-    "LSG \\\"Bayerischer Wald\\\""
-   ],
-   [
-    "DE",
-    "DE-0012",
-    "Bayerischer Wald National Park",
-    "Bayerischer Wald",
-    "LSG \\\"Bayerischer Wald\\\""
-   ],
-   [
-    "DE",
-    "DE-0028",
-    "Bayerischer Spessart Nature Park",
-    "Spessart",
-    "Spessart"
-   ],
-   [
-    "DE",
-    "DE-0029",
-    "Soonwald-Nahe Nature Park",
-    "Soonwald-Nahe",
-    "Soonwald"
-   ],
-   [
-    "DE",
-    "DE-0031",
-    "Fichtelgebirge Nature Park",
-    "Fichtelgebirge",
-    "LSG \\\"Fichtelgebirge\\\""
-   ],
-   [
-    "DE",
-    "DE-0038",
-    "Bayerische Rhoen Nature Park",
-    "Bayerische Rh\u00f6n",
-    "LSG \\\"Bayerische Rh\u00f6n\\\""
-   ],
-   [
-    "DE",
-    "DE-0043",
-    "Thueringer Wald UNESCO Biosphere Reserve",
-    "Th\u00fcringer Wald",
-    "Th\u00fcringer Wald"
-   ],
-   [
-    "DE",
-    "DE-0052",
-    "Hainich National Park",
-    "Hainich",
-    "Hainich"
-   ],
-   [
-    "DE",
-    "DE-0053",
-    "Kellerwald-Edersee National Park",
-    "Kellerwald Edersee",
-    "Kellerwald-Edersee"
-   ],
-   [
-    "DE",
-    "DE-0059",
-    "Kyffhaeuser Nature Park",
-    "Kyffh\u00e4user",
-    "Kyffh\u00e4user (ohne Sachs. - Anh.)"
-   ],
-   [
-    "DE",
-    "DE-0061",
-    "Arnsberger Wald Nature Park",
-    "Arnsberger Wald",
-    "NSG Arnsberger Wald"
-   ],
-   [
-    "DE",
-    "DE-0064",
-    "D\u00fcbener Heide Nature Park",
-    "D\u00fcbener Heide",
-    "D\u00fcbener Heide"
-   ],
-   [
-    "DE",
-    "DE-0070",
-    "Harz Niedersachsen Nature Park",
-    "Harz",
-    "Harz (Landkreis Goslar)"
-   ],
-   [
-    "DE",
-    "DE-0074",
-    "Schlaubetal Nature Park",
-    "Schlaubetal",
-    "Schlaubetal"
-   ],
-   [
-    "DE",
-    "DE-0076",
-    "Dahme-Heideseen Nature Park",
-    "Dahme-Heideseen",
-    "Dahme-Heideseen"
-   ],
-   [
-    "DE",
-    "DE-0080",
-    "Steinhuder Meer Nature Park",
-    "Steinhuder Meer",
-    "Steinhuder Meer"
-   ],
-   [
-    "DE",
-    "DE-0081",
-    "Ohre-Dr\u00f6mling Biosphere Reserve",
-    "Biosph\u00e4renreservat Dr\u00f6mling",
-    "Vogelschutzgebiet Dr\u00f6mling"
-   ],
-   [
-    "DE",
-    "DE-0082",
-    "D\u00fcmmer Nature Park",
-    "D\u00fcmmer",
-    "D\u00fcmmer"
-   ],
-   [
-    "DE",
-    "DE-0085",
-    "Westhavelland Nature Park",
-    "Westhavelland",
-    "Westhavelland"
-   ],
-   [
-    "DE",
-    "DE-0098",
-    "Nossentiner Heide Nature Park",
-    "Nossentiner/Schwinzer Heide",
-    "Nossentiner/Schwinzer Heide"
-   ],
-   [
-    "DE",
-    "DE-0099",
-    "Mecklenburgische Schweiz und Kummerower See Nature Park",
-    "Mecklenburgische Schweiz und Kummerower See",
-    "Mecklenburgische Schweiz und Kummerower See"
-   ],
-   [
-    "DE",
-    "DE-0113",
-    "Schlei Nature Park",
-    "Schlei",
-    "Schlei"
-   ],
-   [
-    "DE",
-    "DE-0119",
-    "Teufelsmoor Nature Reserve",
-    "Teufelsmoor",
-    "Teufelsmoor"
-   ],
-   [
-    "DE",
-    "DE-0139",
-    "Arendsee Recreation Site",
-    "Arendsee",
-    "Arendsee"
-   ],
-   [
-    "DE",
-    "DE-0162",
-    "S\u00fcdharz Nature Park",
-    "S\u00fcdharz",
-    "S\u00fcdharz"
-   ],
-   [
-    "DE",
-    "DE-0177",
-    "Unteres Odertal National Park",
-    "Unteres Odertal",
-    "Unteres Odertal"
-   ],
-   [
-    "DE",
-    "DE-0190",
-    "Schweimker Moor und L\u00fcderbruch Nature Reserve Wilderness Area",
-    "Schweimker Moor und L\u00fcderbruch",
-    "Schweimker Moor und L\u00fcderbruch"
-   ],
-   [
-    "DE",
-    "DE-0199",
-    "Donnersberg Landscape Reserve",
-    "Donnersberg",
-    "Donnersberg"
-   ],
-   [
-    "DE",
-    "DE-0218",
-    "Grunewald Historical Reserve",
-    "Grunewald",
-    "Grunewald"
-   ],
-   [
-    "DE",
-    "DE-0247",
-    "Kalbescher Werder Natura 2000",
-    "Kalbescher Werder bei Vienau",
-    "Kalbescher Werder bei Vienau"
-   ],
-   [
-    "DE",
-    "DE-0255",
-    "Luneplate Nature Reserve",
-    "Luneplate",
-    "Luneplate"
-   ],
-   [
-    "DE",
-    "DE-0272",
-    "\u00d6stliche Chiemgauer Alpen National Park",
-    "\u00d6stliche Chiemgauer Alpen",
-    "\u00d6stliche Chiemgauer Alpen"
-   ],
-   [
-    "DE",
-    "DE-0350",
-    "Laacher See Nature Reserve",
-    "Laacher See",
-    "Laacher See"
-   ],
-   [
-    "DE",
-    "DE-0366",
-    "Kn\u00fcll Nature Park",
-    "Kn\u00fcll",
-    "Kn\u00fcll"
-   ],
-   [
-    "DE",
-    "DE-0436",
-    "Ohligser Heide Nature Park",
-    "Ohligser Heide",
-    "NSG Ohligser Heide"
-   ],
-   [
-    "DE",
-    "DE-0459",
-    "Ellbach- und Kirchseemoor Natura 2000",
-    "Ellbach- und Kirchseemoor",
-    "Ellbach- und Kirchseemoor"
-   ],
-   [
-    "DE",
-    "DE-0464",
-    "Hoher Ifen National Park",
-    "Hoher Ifen",
-    "Hoher Ifen"
-   ],
-   [
-    "DE",
-    "DE-0489",
-    "Binnend\u00fcnen Nordoe Natura 2000",
-    "Binnend\u00fcnen Nordoe",
-    "Binnend\u00fcnen Nordoe"
-   ],
-   [
-    "DE",
-    "DE-0499",
-    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df Natura 2000",
-    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df",
-    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df"
-   ],
-   [
-    "DE",
-    "DE-0507",
-    "Buchen- und Bruchwaelder bei Einsiedelei und Apollmicke Natura 2000",
-    "Buchen- und Bruchw\u00e4lder bei Einsiedelei und Apollmicke",
-    "NSG Buchen- und Bruchw\u00e4lder bei Einsiedelei und Apollmicke"
-   ],
-   [
-    "DE",
-    "DE-0511",
-    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen Natura 2000",
-    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen",
-    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen"
-   ],
-   [
-    "DE",
-    "DE-0539",
-    "Fischbeker Heide Nature Park",
-    "Fischbeker Heide",
-    "Fischbeker Heide"
-   ],
-   [
-    "DE",
-    "DE-0547",
-    "Bislicher Insel Nature Reserve",
-    "NSG Bislicher Insel",
-    "LSG-Bislicher Insel"
-   ],
-   [
-    "DE",
-    "DE-0565",
-    "Attlesee Natura 2000",
-    "Attlesee",
-    "Attlesee"
-   ],
-   [
-    "DE",
-    "DE-0579",
-    "Mittlere Oder Natura 2000",
-    "Mittlere Oder",
-    "Mittlere Oder"
-   ],
-   [
-    "DE",
-    "DE-0618",
-    "K\u00f6nigsbr\u00fccker Heide National Nature Reserve",
-    "K\u00f6nigsbr\u00fccker Heide",
-    "K\u00f6nigsbr\u00fccker Heide"
-   ],
-   [
-    "DE",
-    "DE-0632",
-    "Alter Flugplatz Karlsruhe Natura 2000",
-    "Alter Flugplatz Karlsruhe",
-    "Alter Flugplatz Karlsruhe"
-   ],
-   [
-    "DE",
-    "DE-0643",
-    "Bentheimer Wald Natura 2000",
-    "Bentheimer Wald",
-    "Bentheimer Wald"
-   ],
-   [
-    "DE",
-    "DE-0661",
-    "Pfrunger-Burgweiler Ried Natura 2000",
-    "Pfrunger und Burgweiler Ried",
-    "Pfrunger-Burgweiler Ried"
-   ],
-   [
-    "DE",
-    "DE-0688",
-    "Moritzburger Kleinkuppenlandschaft Natura 2000",
-    "Moritzburger Kleinkuppenlandschaft",
-    "Moritzburger Kleinkuppenlandschaft"
-   ],
-   [
-    "DE",
-    "DE-0689",
-    "LSG \u00d6rtze Natura 2000",
-    "\u00d6rtze mit Nebenb\u00e4chen",
-    "\u00d6rtze mit Nebenb\u00e4chen"
-   ],
-   [
-    "DE",
-    "DE-0719",
-    "Duvenstedter Brook National Nature Reserve",
-    "Duvenstedter Brook",
-    "Duvenstedter Brook"
-   ],
-   [
-    "DE",
-    "DE-0720",
-    "Wurzacher Ried National Nature Reserve",
-    "Wurzacher Ried",
-    "Wurzacher Ried"
-   ],
-   [
-    "DE",
-    "DE-0721",
-    "Neust\u00e4dter Binnenwasser Natura 2000",
-    "NSG Neust\u00e4dter Binnenwasser",
-    "Neust\u00e4dter Binnenwasser"
-   ],
-   [
-    "DE",
-    "DE-0730",
-    "Hessische Rh\u00f6n Nature Park",
-    "Hessische Rh\u00f6n",
-    "Hessische Rh\u00f6n"
-   ],
-   [
-    "DE",
-    "DE-0731",
-    "Bodenm\u00f6ser Natura 2000",
-    "Bodenm\u00f6ser",
-    "Bodenm\u00f6ser"
-   ],
-   [
-    "DE",
-    "DE-0762",
-    "Kanalwiesen Wendisch Rietz Flora and Fauna Reserve",
-    "Kanalwiesen Wendisch- Rietz",
-    "Kanalwiesen Wendisch Rietz"
-   ],
-   [
-    "DE",
-    "DE-0765",
-    "Leineaue zwischen Ruthe und Hannover National Nature Reserve",
-    "Leineaue zwischen Hannover und Ruthe",
-    "Leineaue zwischen Hannover und Ruthe"
-   ],
-   [
-    "DE",
-    "DE-0778",
-    "Buschschleuse National Nature Reserve",
-    "Buschschleuse",
-    "Buschschleuse"
-   ],
-   [
-    "DE",
-    "DE-0784",
-    "Teufelsbad National Nature Reserve",
-    "Teufelsbad",
-    "Teufelsbad"
-   ],
-   [
-    "DE",
-    "DE-0844",
-    "Elstersteilh\u00e4nge n\u00f6rdlich Plauen National Nature Reserve",
-    "Elstersteilh\u00e4nge",
-    "Elstersteilh\u00e4nge"
-   ],
-   [
-    "DE",
-    "DE-0845",
-    "Schaalsee UNESCO Biosphere Reserve",
-    "Biosph\u00e4renreservat Schaalsee",
-    "Schaalsee"
-   ],
-   [
-    "DE",
-    "DE-0857",
-    "Vogelfreist\u00e4tte Mittlere Isarstauseen Natura 2000",
-    "Naturschutzgebiet 'Vogelfreist\u00e4tte Mittlere Isarstauseen'",
-    "Vogelfreist\u00e4tte Mittlere Isarstauseen"
-   ],
-   [
-    "DE",
-    "DE-0867",
-    "Sulzschneider Moore Natura 2000",
-    "Sulzschneider Moore",
-    "Sulzschneider Moore"
-   ],
-   [
-    "DE",
-    "DE-0901",
-    "Lenorenwald Natura 2000",
-    "Lenorenwald",
-    "Lenorenwald"
-   ],
-   [
-    "DE",
-    "DE-0916",
-    "Warndt Nature Reserve",
-    "Naturschutzgebiet \\\"Warndt\\\" (N 6706-301)",
-    "Warndt"
-   ],
-   [
-    "DE",
-    "DE-0918",
-    "Steilh\u00e4nge der Saar Nature Reserve",
-    "Naturschutzgebiet \\\"Steilh\u00e4nge der Saar\\\" (N 6505-301)",
-    "Steilh\u00e4nge der Saar"
-   ],
-   [
-    "DE",
-    "DE-0921",
-    "Ostertal Nature Reserve",
-    "Naturschutzgebiet \\\"Ostertal\\\" (N 6509-301)",
-    "Ostertal"
-   ],
-   [
-    "DE",
-    "DE-0923",
-    "Prims Nature Reserve",
-    "Naturschutzgebiet \\\"Prims\\\" (N 6507-301)",
-    "Prims"
-   ],
-   [
-    "DE",
-    "DE-0956",
-    "Gevelsberger Stadtwald Natura 2000",
-    "Gevelsberger Stadtwald",
-    "NSG Gevelsberger Stadtwald"
-   ],
-   [
-    "DE",
-    "DE-0971",
-    "K\u00fchlung Flora and Fauna Reserve",
-    "K\u00fchlung",
-    "K\u00fchlung"
-   ],
-   [
-    "DE",
-    "DE-0973",
-    "Estergebirge Flora and Fauna Reserve",
-    "Estergebirge",
-    "Estergebirge"
-   ],
-   [
-    "DE",
-    "DE-0974",
-    "Ammergebirge National Nature Reserve",
-    "Ammergebirge",
-    "Ammergebirge"
-   ],
-   [
-    "DE",
-    "DE-1021",
-    "Eriskircher Ried National Nature Reserve",
-    "Eriskircher Ried",
-    "Eriskircher Ried"
-   ],
-   [
-    "DE",
-    "DE-1035",
-    "Granitz Flora and Fauna Reserve",
-    "Granitz",
-    "Granitz"
-   ],
-   [
-    "DE",
-    "DE-1065",
-    "Starnberger See Flora and Fauna Reserve",
-    "Starnberger See",
-    "Starnberger See"
-   ],
-   [
-    "DE",
-    "DE-1078",
-    "Ostfriesische Seemarsch zwischen Norden und Esens Bird Sanctuary",
-    "Ostfriesische Seemarsch zwischen Norden und Esens",
-    "Ostfriesische Seemarsch zwischen Norden und Esens"
-   ],
-   [
-    "DE",
-    "DE-1079",
-    "Westermarsch Bird Sanctuary",
-    "Westermarsch",
-    "Westermarsch"
-   ],
-   [
-    "DE",
-    "DE-1109",
-    "Donauried Bird Sanctuary",
-    "Donauried",
-    "Donauried"
-   ],
-   [
-    "DE",
-    "DE-1126",
-    "Herrenholz und Sch\u00f6ppinger Berg Flora and Fauna Reserve",
-    "Herrenholz und Sch\u00f6ppinger Berg",
-    "NSG Herrenholz und Schoeppinger Berg"
-   ],
-   [
-    "DE",
-    "DE-1143",
-    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche Flora and Fauna Reserve",
-    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche",
-    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche"
-   ],
-   [
-    "DE",
-    "DE-1145",
-    "W\u00e4lder im Donautal Flora and Fauna Reserve",
-    "W\u00e4lder im Donautal",
-    "W\u00e4lder im Donautal"
-   ],
-   [
-    "DE",
-    "DE-1161",
-    "Gleichberge Flora and Fauna Reserve",
-    "Gleichberge",
-    "Gleichberge"
-   ],
-   [
-    "DE",
-    "DE-1180",
-    "Elstertal zwischen Greiz und W\u00fcnschendorf Flora and Fauna Reserve",
-    "Elstertal zwischen Greiz und W\u00fcnschendorf",
-    "Elstertal zwischen Greiz und W\u00fcnschendorf"
-   ],
-   [
-    "DE",
-    "DE-1183",
-    "Leipziger Auwald Bird Sanctuary",
-    "Leipziger Auwald",
-    "Leipziger Auwald"
-   ],
-   [
-    "DE",
-    "DE-1184",
-    "Bleicher\u00f6der Berge Flora and Fauna Reserve",
-    "Bleicher\u00f6der Berge",
-    "Bleicher\u00f6der Berge"
-   ],
-   [
-    "DE",
-    "DE-1185",
-    "Westliche Hainleite - W\u00f6belsburg Flora and Fauna Reserve",
-    "Westliche Hainleite - W\u00f6belsburg",
-    "Westliche Hainleite - W\u00f6belsburg"
-   ],
-   [
-    "DE",
-    "DE-1192",
-    "Untere Haseniederung Nature Reserve",
-    "Untere Haseniederung",
-    "Natura 2000-Untere Haseniederung"
-   ],
-   [
-    "DE",
-    "DE-1205",
-    "Tegeler Flie\u00dftal Flora and Fauna Reserve",
-    "Tegeler Flie\u00dftal",
-    "Tegeler Flie\u00dftal"
-   ],
-   [
-    "DE",
-    "DE-1214",
-    "Mehlinger Heide Nature Reserve",
-    "Mehlinger Heide",
-    "Mehlinger Heide"
-   ],
-   [
-    "DE",
-    "DE-1222",
-    "G\u00fcltlinger und Holzbronner Heiden Nature Reserve",
-    "G\u00fcltlinger und Holzbronner Heiden (8 Teilgebiete)",
-    "G\u00fcltlinger und Holzbronner Heiden"
-   ],
-   [
-    "DE",
-    "DE-1232",
-    "Bacht\u00e4ler im Kaufunger Wald Flora and Fauna Reserve",
-    "Bacht\u00e4ler im Kaufunger Wald",
-    "Bacht\u00e4ler im Kaufunger Wald"
-   ],
-   [
-    "DE",
-    "DE-1269",
-    "Kuppendorfer B\u00f6hrde Bird Sanctuary",
-    "Kuppendorfer B\u00f6hrde",
-    "Kuppendorfer B\u00f6hrde"
-   ]
-  ],
+  "swaps": [],
   "well_outside": [
    [
-    "AS",
-    "AS-0001",
-    "American Samoa National Park",
-    "National Park of American Samoa"
+    "AT",
+    "AT-0029",
+    "Kaunergrat Nature Reserve",
+    "Naturpark Kaunergrat"
+   ],
+   [
+    "AT",
+    "AT-0388",
+    "Soboth - Radlpass Landscape Reserve",
+    "Soboth; Radlpa\u00df"
    ],
    [
     "AU",
@@ -2907,12 +2282,6 @@
    ],
    [
     "BZ",
-    "BZ-0033",
-    "Maya Mountain Forest Reserve",
-    "Maya Mountain"
-   ],
-   [
-    "BZ",
     "BZ-0034",
     "Sibun Forest Reserve",
     "Sibun"
@@ -2922,12 +2291,6 @@
     "BZ-0035",
     "Sittee River Forest Reserve",
     "Sittee River"
-   ],
-   [
-    "BZ",
-    "BZ-0056",
-    "Man of War Caye Bird Sanctuary",
-    "Man of War Caye"
    ],
    [
     "CL",
@@ -2955,189 +2318,9 @@
    ],
    [
     "DE",
-    "DE-0001",
-    "Berchtesgaden National Park",
-    "Berchtesgaden"
-   ],
-   [
-    "DE",
     "DE-0002",
     "Nagelfluhkette Nature Park",
     "Nagelfluhkette"
-   ],
-   [
-    "DE",
-    "DE-0003",
-    "Ammergauer Alpen Nature Park",
-    "Ammergauer Alpen"
-   ],
-   [
-    "DE",
-    "DE-0005",
-    "Obere Donau Nature Park",
-    "Obere Donau"
-   ],
-   [
-    "DE",
-    "DE-0007",
-    "Schwarzwald National Park",
-    "Schwarzwald"
-   ],
-   [
-    "DE",
-    "DE-0009",
-    "Schwarzwald Mitte/Nord Nature Park",
-    "Schwarzwald Mitte/Nord"
-   ],
-   [
-    "DE",
-    "DE-0010",
-    "Altm\u00fchltal Nature Park",
-    "Altm\u00fchltal"
-   ],
-   [
-    "DE",
-    "DE-0013",
-    "Stromberg-Heuchelberg Nature Park",
-    "Stromberg-Heuchelberg"
-   ],
-   [
-    "DE",
-    "DE-0014",
-    "Schwaebisch-Fraenkischer Wald Nature Park",
-    "Schw\u00e4bisch-Fr\u00e4nkischer-Wald"
-   ],
-   [
-    "DE",
-    "DE-0015",
-    "Oberer Bayerischer Wald Nature Park",
-    "Oberer Bayerischer Wald"
-   ],
-   [
-    "DE",
-    "DE-0016",
-    "Pf\u00e4lzerwald Nature Park",
-    "Pf\u00e4lzerwald-Nordvogesen"
-   ],
-   [
-    "DE",
-    "DE-0017",
-    "Oberpf\u00e4lzer Wald Nature Park",
-    "Oberpf\u00e4lzer Wald"
-   ],
-   [
-    "DE",
-    "DE-0018",
-    "Hirschwald Nature Park",
-    "Hirschwald"
-   ],
-   [
-    "DE",
-    "DE-0019",
-    "Frankenh\u00f6he Nature Park",
-    "Frankenh\u00f6he"
-   ],
-   [
-    "DE",
-    "DE-0020",
-    "Neckartal-Odenwald Nature Park",
-    "Neckartal-Odenwald"
-   ],
-   [
-    "DE",
-    "DE-0021",
-    "Bergstrasse-Odenwald Nature Park",
-    "Bergstra\u00dfe"
-   ],
-   [
-    "DE",
-    "DE-0022",
-    "Saar-Hunsrueck Nature Park",
-    "Saar-Hunsr\u00fcck"
-   ],
-   [
-    "DE",
-    "DE-0023",
-    "Steigerwald Nature Park",
-    "Steigerwald"
-   ],
-   [
-    "DE",
-    "DE-0024",
-    "Noerdlicher Oberpfaelzer Wald Nature Park",
-    "N\u00f6rdlicher Oberpf\u00e4lzer Wald"
-   ],
-   [
-    "DE",
-    "DE-0025",
-    "Fr\u00e4nkische Schweiz Nature Park",
-    "Fr\u00e4nkische Schweiz-Veldensteiner Forst"
-   ],
-   [
-    "DE",
-    "DE-0026",
-    "Hunsr\u00fcck-Hochwald National Park",
-    "Hunsr\u00fcck-Hochwald"
-   ],
-   [
-    "DE",
-    "DE-0027",
-    "Steinwald Nature Park",
-    "Steinwald"
-   ],
-   [
-    "DE",
-    "DE-0030",
-    "S\u00fcdeifel Nature Park",
-    "S\u00fcdeifel"
-   ],
-   [
-    "DE",
-    "DE-0032",
-    "Hassberge Nature Park",
-    "Ha\u00dfberge"
-   ],
-   [
-    "DE",
-    "DE-0033",
-    "Hessischer Spessart Nature Park",
-    "Hessischer Spessart"
-   ],
-   [
-    "DE",
-    "DE-0035",
-    "Rhein-Taunus Nature Park",
-    "Rhein-Taunus"
-   ],
-   [
-    "DE",
-    "DE-0036",
-    "Frankenwald Nature Park",
-    "Frankenwald"
-   ],
-   [
-    "DE",
-    "DE-0037",
-    "Nassau Nature Park",
-    "Nassau"
-   ],
-   [
-    "DE",
-    "DE-0039",
-    "Hohes Venn-Eifel Nature Park",
-    "Hohes Venn-Eifel (Nordeifel)"
-   ],
-   [
-    "DE",
-    "DE-0040",
-    "Erzgebirge Vogtland Nature Park",
-    "Erzgebirge / Vogtland"
-   ],
-   [
-    "DE",
-    "DE-0041",
-    "Rhein-Westerwald Nature Park",
-    "Rhein-Westerwald"
    ],
    [
     "DE",
@@ -3147,483 +2330,15 @@
    ],
    [
     "DE",
-    "DE-0044",
-    "Thueringer Schiefergebirge/Obere Saale Nature Park",
-    "Th\u00fcringer Schiefergebirge/Obere Saale"
-   ],
-   [
-    "DE",
-    "DE-0045",
-    "Eifel National Park",
-    "Nationalpark Eifel"
-   ],
-   [
-    "DE",
-    "DE-0046",
-    "Siebengebirge Nature Park",
-    "Siebengebirge"
-   ],
-   [
-    "DE",
-    "DE-0047",
-    "Lahn-Dill Bergland Nature Park",
-    "Lahn-Dill-Bergland"
-   ],
-   [
-    "DE",
-    "DE-0048",
-    "Rheinland Nature Park",
-    "Rheinland"
-   ],
-   [
-    "DE",
-    "DE-0049",
-    "Zittauer Gebirge Nature Park",
-    "Zittauer Gebirge"
-   ],
-   [
-    "DE",
-    "DE-0051",
-    "Bergisches Land Nature Park",
-    "Bergisches Land"
-   ],
-   [
-    "DE",
-    "DE-0054",
-    "Sauerland-Rothaargebirge Nature Park",
-    "Sauerland-Rothaargebirge"
-   ],
-   [
-    "DE",
-    "DE-0056",
-    "Saale-Unstrut-Triasland Nature Park",
-    "Saale-Unstrut-Triasland"
-   ],
-   [
-    "DE",
-    "DE-0057",
-    "Eichsfeld-Hainich-Werratal Nature Park",
-    "Eichsfeld - Hainich - Werratal"
-   ],
-   [
-    "DE",
-    "DE-0058",
-    "Habichtswald Nature Park",
-    "Habichtswald"
-   ],
-   [
-    "DE",
-    "DE-0060",
-    "Muenden Nature Park",
-    "M\u00fcnden"
-   ],
-   [
-    "DE",
-    "DE-0062",
-    "Reinhardswald Nature Park",
-    "Reinhardswald"
-   ],
-   [
-    "DE",
-    "DE-0063",
-    "Niederlausitzer Heidelandschaft Nature Park",
-    "Niederlausitzer Heidelandschaft"
-   ],
-   [
-    "DE",
-    "DE-0065",
-    "Harz Sachsen-Anhalt Nature Park",
-    "Harz Sachsen-Anhalt (Mansfelder Land)"
-   ],
-   [
-    "DE",
-    "DE-0066",
-    "Unteres Saaletal Nature Park",
-    "Unteres Saaletal"
-   ],
-   [
-    "DE",
-    "DE-0067",
-    "Solling-Vogler Nature Park",
-    "Solling-Vogler im Weserbergland"
-   ],
-   [
-    "DE",
-    "DE-0068",
-    "Niederlausitzer Landruecken Nature Park",
-    "Niederlausitzer Landr\u00fccken"
-   ],
-   [
-    "DE",
-    "DE-0069",
-    "Harz National Park",
-    "Harz"
-   ],
-   [
-    "DE",
-    "DE-0071",
-    "Fl\u00e4ming Nature Park",
-    "Fl\u00e4ming"
-   ],
-   [
-    "DE",
-    "DE-0072",
-    "Teutoburger Wald Nature Park",
-    "Teutoburger Wald/Eggegebirge"
-   ],
-   [
-    "DE",
-    "DE-0073",
-    "Nuthe-Nieplitz Nature Park",
-    "Nuthe - Nieplitz"
-   ],
-   [
-    "DE",
     "DE-0075",
     "Hoher Fl\u00e4ming Nature Park",
     "Hoher Fl\u00e4ming"
    ],
    [
     "DE",
-    "DE-0077",
-    "Elm-Lappwald Nature Park",
-    "Elm-Lappwald"
-   ],
-   [
-    "DE",
-    "DE-0078",
-    "Weserbergland Nature Park",
-    "Weserbergland"
-   ],
-   [
-    "DE",
-    "DE-0083",
-    "M\u00e4rkische Schweiz Nature Park",
-    "M\u00e4rkische Schweiz"
-   ],
-   [
-    "DE",
-    "DE-0084",
-    "Bourtanger Moor-Bargerveen Nature Park",
-    "Bourtanger Moor-Bargerveen"
-   ],
-   [
-    "DE",
-    "DE-0086",
-    "Barnim Nature Park",
-    "Barnim"
-   ],
-   [
-    "DE",
-    "DE-0087",
-    "S\u00fcdheide Nature Park",
-    "S\u00fcdheide"
-   ],
-   [
-    "DE",
-    "DE-0088",
-    "Wildeshauser Geest Nature Park",
-    "Wildeshauser Geest"
-   ],
-   [
-    "DE",
-    "DE-0089",
-    "H\u00fcmmling Nature Park",
-    "H\u00fcmmling"
-   ],
-   [
-    "DE",
-    "DE-0090",
-    "Stechlin-Ruppiner Land Nature Park",
-    "Stechlin-Ruppiner Land"
-   ],
-   [
-    "DE",
-    "DE-0092",
-    "L\u00fcneburger Heide Nature Park",
-    "L\u00fcneburger Heide"
-   ],
-   [
-    "DE",
-    "DE-0093",
-    "Elbh\u00f6hen-Wendland Nature Park",
-    "Elbh\u00f6hen-Wendland"
-   ],
-   [
-    "DE",
-    "DE-0094",
-    "Nieders\u00e4chsisches Wattenmeer National Park",
-    "Nieders\u00e4chsisches Wattenmeer"
-   ],
-   [
-    "DE",
-    "DE-0095",
-    "Mecklenburgisches Elbetal UNESCO Biosphere Reserve",
-    "Mecklenburgisches Elbetal"
-   ],
-   [
-    "DE",
     "DE-0097",
     "M\u00fcritz National Park",
-    "M\u00fcritz-Nationalpark"
-   ],
-   [
-    "DE",
-    "DE-0100",
-    "Lauenburgische Seen Nature Park",
-    "Lauenburgische Seen"
-   ],
-   [
-    "DE",
-    "DE-0101",
-    "Stettiner Haff Nature Park",
-    "Am Stettiner Haff"
-   ],
-   [
-    "DE",
-    "DE-0102",
-    "Sternberger Seenland Nature Park",
-    "Sternberger Seenland"
-   ],
-   [
-    "DE",
-    "DE-0103",
-    "Flusslandschaft Peenetal Nature Park",
-    "Flusslandschaft Peenetal"
-   ],
-   [
-    "DE",
-    "DE-0104",
-    "Hamburgisches Wattenmeer National Park",
-    "Hamburgisches Wattenmeer"
-   ],
-   [
-    "DE",
-    "DE-0105",
-    "Insel Usedom Nature Park",
-    "Insel Usedom"
-   ],
-   [
-    "DE",
-    "DE-0106",
-    "Aukrug Nature Park",
-    "Aukrug"
-   ],
-   [
-    "DE",
-    "DE-0107",
-    "Holsteinische Schweiz Nature Park",
-    "Holsteinische Schweiz"
-   ],
-   [
-    "DE",
-    "DE-0108",
-    "Westensee Nature Park",
-    "Westensee"
-   ],
-   [
-    "DE",
-    "DE-0109",
-    "Schleswig-Holsteinisches Wattenmeer National Park",
-    "Schleswig-Holsteinisches Wattenmeer"
-   ],
-   [
-    "DE",
-    "DE-0110",
-    "H\u00fcttener Berge Nature Park",
-    "H\u00fcttener Berge"
-   ],
-   [
-    "DE",
-    "DE-0111",
-    "Vorpommersche Boddenlandschaft National Park",
-    "Vorpommersche Boddenlandschaft"
-   ],
-   [
-    "DE",
-    "DE-0112",
-    "Jasmund National Park",
-    "Jasmund"
-   ],
-   [
-    "DE",
-    "DE-0116",
-    "Ewiges Meer Nature Reserve",
-    "Ewiges Meer"
-   ],
-   [
-    "DE",
-    "DE-0118",
-    "Molberger Dose Nature Reserve",
-    "Molberger Dose"
-   ],
-   [
-    "DE",
-    "DE-0120",
-    "Holzurburg Bederkesaer See Nature Reserve",
-    "Holzurburg am Bederkesaer See"
-   ],
-   [
-    "DE",
-    "DE-0121",
-    "Schnuckenheide Repke Nature Reserve",
-    "Schnuckenheide"
-   ],
-   [
-    "DE",
-    "DE-0122",
-    "Altwarmbuechener See Recreation Park",
-    "Altwarmb\u00fcchener See"
-   ],
-   [
-    "DE",
-    "DE-0126",
-    "Lummenfelsen der Insel Helgoland Nature Reserve",
-    "Lummenfelsen der Insel Helgoland"
-   ],
-   [
-    "DE",
-    "DE-0127",
-    "Nordfriesisches Wattenmeer Nature Reserve",
-    "Nordfriesisches Wattenmeer"
-   ],
-   [
-    "DE",
-    "DE-0128",
-    "Froeruper Berge Nature Reserve",
-    "Wald-, Moor- und Heidelandschaft der Fr\u00f6ruper Berge und Umgebung"
-   ],
-   [
-    "DE",
-    "DE-0129",
-    "Braderuper Heide Nature Reserve",
-    "Braderuper Heide / Sylt"
-   ],
-   [
-    "DE",
-    "DE-0130",
-    "Halbinsel Holnis Nature Reserve",
-    "Halbinsel Holnis"
-   ],
-   [
-    "DE",
-    "DE-0131",
-    "Beltringharder Koog Nature Reserve",
-    "Beltringharder Koog"
-   ],
-   [
-    "DE",
-    "DE-0138",
-    "Westerweiden, S\u00fcderelbpark und Finkenwerder S\u00fcderelbe Nature Reserve",
-    "Westerweiden"
-   ],
-   [
-    "DE",
-    "DE-0147",
-    "Neandertal Nature Reserve",
-    "NSG Neandertal <A>"
-   ],
-   [
-    "DE",
-    "DE-0161",
-    "Wasserkuppe und Rh\u00f6n Biosphere Reserve",
-    "Biosph\u00e4renreservat Rh\u00f6n"
-   ],
-   [
-    "DE",
-    "DE-0166",
-    "Werbeliner See Nature Reserve",
-    "Werbeliner See"
-   ],
-   [
-    "DE",
-    "DE-0175",
-    "Riedensee Nature Reserve",
-    "Riedensee"
-   ],
-   [
-    "DE",
-    "DE-0179",
-    "Osterberg Recreation Park",
-    "Osterberg"
-   ],
-   [
-    "DE",
-    "DE-0180",
-    "Gallberg Recreation Park",
-    "Gallberg"
-   ],
-   [
-    "DE",
-    "DE-0181",
-    "Finkenberg/Lerchenberg Recreation Park",
-    "Finkenberg/ Lerchenberg"
-   ],
-   [
-    "DE",
-    "DE-0187",
-    "Rickelsbueller Koog Nature Reserve",
-    "Rickelsb\u00fcller Koog"
-   ],
-   [
-    "DE",
-    "DE-0188",
-    "Kudensee Recreation Park",
-    "Kudensee"
-   ],
-   [
-    "DE",
-    "DE-0191",
-    "Heiliger Hain Nature Reserve",
-    "Heiliger Hain"
-   ],
-   [
-    "DE",
-    "DE-0194",
-    "L\u00fcneburger Ilmenauniederung Recreation Park",
-    "L\u00fcneburger Ilmenauniederung mit Tiergarten"
-   ],
-   [
-    "DE",
-    "DE-0195",
-    "Ebenberg Nature Park",
-    "Ebenberg"
-   ],
-   [
-    "DE",
-    "DE-0196",
-    "Kleine Kalmit Landscape Reserve",
-    "Kleine Kalmit"
-   ],
-   [
-    "DE",
-    "DE-0198",
-    "Beversee Nature Reserve",
-    "NSG Beversee"
-   ],
-   [
-    "DE",
-    "DE-0200",
-    "Maulbeeraue Natura 2000",
-    "Maulbeeraue"
-   ],
-   [
-    "DE",
-    "DE-0201",
-    "Krofdorfer Forst Natura 2000",
-    "Krofdorfer Forst"
-   ],
-   [
-    "DE",
-    "DE-0202",
-    "Am\u00f6neburger Becken Natura 2000",
-    "Am\u00f6neburger Becken"
-   ],
-   [
-    "DE",
-    "DE-0203",
-    "Schw\u00e4bische Alb Biosphere Reserve",
-    "Schw\u00e4bische Alb"
+    "M\u00fcritz"
    ],
    [
     "DE",
@@ -3636,2808 +2351,6 @@
     "DE-0208",
     "Diemelsee Nature Park",
     "Diemelsee"
-   ],
-   [
-    "DE",
-    "DE-0209",
-    "Mittleres Innerstetal mit Kanstein Nature Reserve",
-    "Mittleres Innerstetal mit Kanstein"
-   ],
-   [
-    "DE",
-    "DE-0210",
-    "K\u00f6llnischfeld Br\u00f6hn Nature Reserve",
-    "K\u00f6llnischfeld"
-   ],
-   [
-    "DE",
-    "DE-0211",
-    "Leineaue zwischen Ruthe und Koldingen Nature Reserve",
-    "Leineaue zwischen Ruthe und Koldingen"
-   ],
-   [
-    "DE",
-    "DE-0212",
-    "Ith Nature Reserve",
-    "Ith"
-   ],
-   [
-    "DE",
-    "DE-0213",
-    "Gro\u00dfer Fallstein Nature Reserve",
-    "Gro\u00dfer Fallstein"
-   ],
-   [
-    "DE",
-    "DE-0219",
-    "Sandgrube im Jagen 86 des Grunewaldes Nature Reserve",
-    "Sandgrube im Jagen 86"
-   ],
-   [
-    "DE",
-    "DE-0220",
-    "Grunewaldsee Recreation Park",
-    "Grunewaldsee (s\u00fcdl. Teil)"
-   ],
-   [
-    "DE",
-    "DE-0223",
-    "Isarauen zwischen Hangenham und Moosburg Landscape Park",
-    "Isarauen zwischen Hangenham und Moosburg"
-   ],
-   [
-    "DE",
-    "DE-0224",
-    "Freisinger Buckl Nature Park",
-    "Freisinger Buckl"
-   ],
-   [
-    "DE",
-    "DE-0227",
-    "Allg\u00e4uer Hochalpen Nature Reserve",
-    "Allg\u00e4uer Hochalpen"
-   ],
-   [
-    "DE",
-    "DE-0235",
-    "Volkspark Rehberge Recreation Park",
-    "Volkspark Rehberge"
-   ],
-   [
-    "DE",
-    "DE-0239",
-    "Dummersdorfer Ufer Natura 2000",
-    "Dummersdorfer Ufer"
-   ],
-   [
-    "DE",
-    "DE-0244",
-    "Rostocker Heide Nature Reserve",
-    "Rostocker Heide"
-   ],
-   [
-    "DE",
-    "DE-0245",
-    "Heerter See und Heerter Strauchholz Nature Reserve",
-    "Heerter See und Waldgebiet Heerter Strauchholz"
-   ],
-   [
-    "DE",
-    "DE-0246",
-    "Tagebau Haverlahwiese Nature Reserve",
-    "Tagebau Haverlahwiese"
-   ],
-   [
-    "DE",
-    "DE-0248",
-    "Oberlausitzer Heide- und Teichlandschaft UNESCO Biosphere Reserve",
-    "Oberlausitzer Heide- und Teichlandschaft"
-   ],
-   [
-    "DE",
-    "DE-0251",
-    "Boberger Niederung Nature Reserve",
-    "Boberger Niederung"
-   ],
-   [
-    "DE",
-    "DE-0256",
-    "Amrumer D\u00fcnen Nature Reserve",
-    "Amrumer D\u00fcnen"
-   ],
-   [
-    "DE",
-    "DE-0257",
-    "Wildes Moor Nature Reserve",
-    "Wildes Moor bei Schwabstedt"
-   ],
-   [
-    "DE",
-    "DE-0258",
-    "Schwansener See Nature Reserve",
-    "Schwansener See"
-   ],
-   [
-    "DE",
-    "DE-0263",
-    "Hadelner und Belumer Au\u00dfendeich Nature Reserve",
-    "Hadelner und Belumer Au\u00dfendeich"
-   ],
-   [
-    "DE",
-    "DE-0264",
-    "Cuxhavener K\u00fcstenheiden National Nature Reserve",
-    "Cuxhavener K\u00fcstenheiden"
-   ],
-   [
-    "DE",
-    "DE-0265",
-    "Leyh\u00f6rn Nature Reserve",
-    "Leyh\u00f6rn"
-   ],
-   [
-    "DE",
-    "DE-0266",
-    "Esterweger Dose Habitat Protection Area",
-    "Esterweger Dose"
-   ],
-   [
-    "DE",
-    "DE-0267",
-    "Obere W\u00fcmmeniederung Nature Reserve",
-    "Obere W\u00fcmmeniederung"
-   ],
-   [
-    "DE",
-    "DE-0269",
-    "Gr\u00fcner Brink Nature Reserve",
-    "Gr\u00fcner Brink"
-   ],
-   [
-    "DE",
-    "DE-0271",
-    "Barker Heide Nature Reserve",
-    "Barker Heide"
-   ],
-   [
-    "DE",
-    "DE-0274",
-    "Eggst\u00e4tt-Hemhofer Seenplatte Aquatic Reserve",
-    "Eggst\u00e4tt-Hemhofer Seenplatte"
-   ],
-   [
-    "DE",
-    "DE-0275",
-    "Kendlm\u00fchlfilzen National Park",
-    "Kendlm\u00fchlfilzen"
-   ],
-   [
-    "DE",
-    "DE-0276",
-    "Geigelstein National Park",
-    "Geigelstein"
-   ],
-   [
-    "DE",
-    "DE-0277",
-    "Karwendel und Karwendelvorgebirge National Park",
-    "Karwendel und Karwendelvorgebirge"
-   ],
-   [
-    "DE",
-    "DE-0288",
-    "Hirschau und Obere Isarau Nature Reserve",
-    "Hirschau und Obere Isarau"
-   ],
-   [
-    "DE",
-    "DE-0291",
-    "H\u00fctter Klosterteiche Nature Reserve",
-    "H\u00fctter Klosterteiche"
-   ],
-   [
-    "DE",
-    "DE-0292",
-    "Bergener Moos Recreation Park",
-    "Bergener Moos"
-   ],
-   [
-    "DE",
-    "DE-0293",
-    "Seeoner Seen Recreation Park",
-    "Seeoner Seen"
-   ],
-   [
-    "DE",
-    "DE-0294",
-    "Sossauer Filz und Wildmoos Nature Reserve",
-    "Sossauer Filz und Wildmoos"
-   ],
-   [
-    "DE",
-    "DE-0295",
-    "Hacken und Rottauer Filz Nature Reserve",
-    "Hacken und Rottauer Filz"
-   ],
-   [
-    "DE",
-    "DE-0297",
-    "Untere Alz Natura 2000",
-    "Untere Alz"
-   ],
-   [
-    "DE",
-    "DE-0298",
-    "Vogelfreist\u00e4tte Innstausee bei Attel und Freiham Nature Reserve",
-    "Vogelfreist\u00e4tte Innstausee bei Attel und Freiham"
-   ],
-   [
-    "DE",
-    "DE-0299",
-    "Moore im Salzach-H\u00fcgelland Natura 2000",
-    "Moore im Salzach-H\u00fcgelland"
-   ],
-   [
-    "DE",
-    "DE-0300",
-    "H\u00fctter Wohld Recreation Park",
-    "H\u00fctter Wohld und Kleingew\u00e4sserlandschaft westlich Hanstorf"
-   ],
-   [
-    "DE",
-    "DE-0301",
-    "Lutter Nature Reserve",
-    "Lutter"
-   ],
-   [
-    "DE",
-    "DE-0311",
-    "Endmor\u00e4nenweiher s\u00fcdlich Asten Nature Reserve",
-    "Endmor\u00e4nenweiher s\u00fcdlich Asten"
-   ],
-   [
-    "DE",
-    "DE-0314",
-    "Hohenstein Recreation Park",
-    "LSG-Hohenstein"
-   ],
-   [
-    "DE",
-    "DE-0321",
-    "Donauauen zwischen Ingolstadt und Weltenburg Flora and Fauna Reserve",
-    "Donauauen zwischen Ingolstadt und Weltenburg"
-   ],
-   [
-    "DE",
-    "DE-0345",
-    "An der Panne Nature Reserve",
-    "NSG An der Panne"
-   ],
-   [
-    "DE",
-    "DE-0348",
-    "Gerolsteiner Dolomiten Nature Reserve",
-    "Gerolsteiner Dolomiten (Auberg,Munterlay,Hustlay,Papenkaule,Juddenkirc"
-   ],
-   [
-    "DE",
-    "DE-0349",
-    "Sch\u00f6necker Schweiz Nature Reserve",
-    "Sch\u00f6necker Schweiz"
-   ],
-   [
-    "DE",
-    "DE-0351",
-    "Ahrschleife bei Altenahr Natura 2000",
-    "Ahrschleife bei Altenahr"
-   ],
-   [
-    "DE",
-    "DE-0352",
-    "Mattheiser Wald Nature Reserve",
-    "Mattheiser Wald"
-   ],
-   [
-    "DE",
-    "DE-0353",
-    "Mehlenbachtal Nature Reserve",
-    "Mehlenbachtal zwischen Gondenbrett und Weinsfeld"
-   ],
-   [
-    "DE",
-    "DE-0354",
-    "Rheinh\u00e4nge von Burg Gutenfels bis zur Loreley Nature Reserve",
-    "Rheinh\u00e4nge von Burg Gutenfels bis zur Loreley"
-   ],
-   [
-    "DE",
-    "DE-0355",
-    "Dauner Maare Nature Reserve",
-    "Dauner Maare"
-   ],
-   [
-    "DE",
-    "DE-0362",
-    "Zwillbrocker Venn Nature Reserve",
-    "NSG Zwillbrocker Venn"
-   ],
-   [
-    "DE",
-    "DE-0370",
-    "Schwabelsberger Weiher Recreation Park",
-    "LSG \\\"Schwabelsberger Weiher\\\""
-   ],
-   [
-    "DE",
-    "DE-0374",
-    "Wittelsbacher Park Recreation Park",
-    "LSG Wittelsbacherpark"
-   ],
-   [
-    "DE",
-    "DE-0391",
-    "Billetal Nature Reserve",
-    "Billetal"
-   ],
-   [
-    "DE",
-    "DE-0394",
-    "Elbtal zwischen Sch\u00f6na und M\u00fchlberg Natura 2000",
-    "Elbtal zwischen Sch\u00f6na und M\u00fchlberg"
-   ],
-   [
-    "DE",
-    "DE-0396",
-    "Blankenburger Holz Recreation Park",
-    "Blankenburger Holz und Klostermark"
-   ],
-   [
-    "DE",
-    "DE-0399",
-    "Bahndammgel\u00e4nde Krusenbusch Provincial Park",
-    "Bahndammgel\u00e4nde Krusenbusch"
-   ],
-   [
-    "DE",
-    "DE-0408",
-    "Hohe Mark Nature Park",
-    "Hohe Mark-Westm\u00fcnsterland"
-   ],
-   [
-    "DE",
-    "DE-0410",
-    "Kaltes Feld mit Hornberg, Galgenberg und Eierberg Provincial Recreation Area",
-    "Kaltes Feld mit Hornberg, Galgenberg und Eierberg"
-   ],
-   [
-    "DE",
-    "DE-0411",
-    "Emsaue bei Telgte Natura 2000",
-    "NSG Emsaue bei Telgte"
-   ],
-   [
-    "DE",
-    "DE-0413",
-    "Roberner See Recreation Site",
-    "Roberner See"
-   ],
-   [
-    "DE",
-    "DE-0415",
-    "Unteres B\u00fchlertal Nature Reserve",
-    "Unteres B\u00fchlertal"
-   ],
-   [
-    "DE",
-    "DE-0416",
-    "Stammberg Nature Reserve",
-    "Stammberg"
-   ],
-   [
-    "DE",
-    "DE-0421",
-    "Nonnenmattweiher Landscape Reserve",
-    "Nonnenmattweiher"
-   ],
-   [
-    "DE",
-    "DE-0423",
-    "Schwenninger Moos Provincial Recreation Area",
-    "Schwenninger Moos"
-   ],
-   [
-    "DE",
-    "DE-0426",
-    "Palingener Heide und Halbinsel Teschow Provincial Park Reserve",
-    "Palingener Heide und Halbinsel Teschow"
-   ],
-   [
-    "DE",
-    "DE-0427",
-    "Uedemer Hochwald National Recreation Trail",
-    "NSG Uedemer Hochwald"
-   ],
-   [
-    "DE",
-    "DE-0431",
-    "Kermeter National Nature Reserve",
-    "NSG Kermeter <EU>"
-   ],
-   [
-    "DE",
-    "DE-0433",
-    "Schavener Heide National Military Park",
-    "NSG Schavener Heide"
-   ],
-   [
-    "DE",
-    "DE-0440",
-    "M\u00fcndung der Tiroler Achen Nature Park",
-    "M\u00fcndung der Tiroler Achen"
-   ],
-   [
-    "DE",
-    "DE-0445",
-    "LSG \"Oberes Saalachtal mit Wendelberg und Kienberg, Gemeinde Schneizlreuth\" Landscape Reserve",
-    "LSG \\\"Oberes Saalachtal mit Wendelberg und Kienberg, Gemeinde Schneizlreuth\\\""
-   ],
-   [
-    "DE",
-    "DE-0446",
-    "Alz vom Chiemsee bis Altenmarkt Landscape Reserve",
-    "Alz vom Chiemsee bis Altenmarkt"
-   ],
-   [
-    "DE",
-    "DE-0447",
-    "Salzach und Unterer Inn Natura 2000",
-    "Salzach und Unterer Inn"
-   ],
-   [
-    "DE",
-    "DE-0448",
-    "Untersberg Natura 2000",
-    "Untersberg"
-   ],
-   [
-    "DE",
-    "DE-0452",
-    "Federsee und Blinder See bei Kanzach Natura 2000",
-    "Federsee und Blinder See bei Kanzach"
-   ],
-   [
-    "DE",
-    "DE-0453",
-    "Himmelmoor Historical Reserve",
-    "Himmelmoor"
-   ],
-   [
-    "DE",
-    "DE-0454",
-    "Moore um Raubling Nature Reserve",
-    "Moore um Raubling"
-   ],
-   [
-    "DE",
-    "DE-0455",
-    "Mangfallgebirge Natura 2000",
-    "Mangfallgebirge"
-   ],
-   [
-    "DE",
-    "DE-0456",
-    "Taubenberg Natura 2000",
-    "Taubenberg"
-   ],
-   [
-    "DE",
-    "DE-0457",
-    "Wattersdorfer Moor Natura 2000",
-    "Wattersdorfer Moor"
-   ],
-   [
-    "DE",
-    "DE-0458",
-    "Osterseen Nature Reserve",
-    "Osterseen"
-   ],
-   [
-    "DE",
-    "DE-0460",
-    "Vogelfreist\u00e4tte Eggelburger See Nature Reserve",
-    "Vogelfreist\u00e4tte Eggelburger See"
-   ],
-   [
-    "DE",
-    "DE-0461",
-    "Schachen und Reintal National Park",
-    "Schachen und Reintal"
-   ],
-   [
-    "DE",
-    "DE-0462",
-    "Murnauer Moos Nature Reserve",
-    "Murnauer Moos"
-   ],
-   [
-    "DE",
-    "DE-0463",
-    "Westlicher Staffelsee mit angrenzenden Mooren Nature Reserve",
-    "Westlicher Staffelsee mit angrenzenden Mooren"
-   ],
-   [
-    "DE",
-    "DE-0465",
-    "Ebersberger und Gro\u00dfhaager Forst Natura 2000",
-    "Ebersberger und Gro\u00dfhaager Forst"
-   ],
-   [
-    "DE",
-    "DE-0466",
-    "Stadtwald Augsburg Nature Park",
-    "Stadtwald Augsburg"
-   ],
-   [
-    "DE",
-    "DE-0467",
-    "Stadtwald G\u00f6ttingen und Kerstlinger\u00f6der Feld Provincial Park Reserve",
-    "Stadtwald G\u00f6ttingen und Kerstlinger\u00f6der Feld"
-   ],
-   [
-    "DE",
-    "DE-0470",
-    "Tennenloher Forst Forest Reserve",
-    "Tennenloher Forst"
-   ],
-   [
-    "DE",
-    "DE-0473",
-    "\u00d6berauer Donauschleife Nature Reserve",
-    "\u00d6berauer Donauschleife"
-   ],
-   [
-    "DE",
-    "DE-0474",
-    "Bogenberg Nature Reserve",
-    "Bogenberg"
-   ],
-   [
-    "DE",
-    "DE-0478",
-    "Isarm\u00fcndung Natura 2000",
-    "Isarm\u00fcndung"
-   ],
-   [
-    "DE",
-    "DE-0479",
-    "Sacrower See und K\u00f6nigswald Provincial Recreation Area",
-    "Sacrower See und K\u00f6nigswald"
-   ],
-   [
-    "DE",
-    "DE-0481",
-    "Sch\u00f6nower Heide State Wildlife Area",
-    "Sch\u00f6nower Heide"
-   ],
-   [
-    "DE",
-    "DE-0483",
-    "L\u00f6cknitztal National Recreation Trail",
-    "L\u00f6cknitztal"
-   ],
-   [
-    "DE",
-    "DE-0484",
-    "Biosph\u00e4renreservat Schorfheide-Chorin UNESCO Biosphere Reserve",
-    "Biosph\u00e4renreservat Schorfheide - Chorin"
-   ],
-   [
-    "DE",
-    "DE-0485",
-    "Kalten National Recreation Area",
-    "Kalten"
-   ],
-   [
-    "DE",
-    "DE-0486",
-    "Mittelelbe Biosphere Reserve",
-    "Mittelelbe"
-   ],
-   [
-    "DE",
-    "DE-0490",
-    "Gro\u00dfe H\u00f6he Provincial Recreation Area",
-    "Gro\u00dfe H\u00f6he"
-   ],
-   [
-    "DE",
-    "DE-0491",
-    "Auer Weidmoos Nature Reserve",
-    "Auer Weidmoos"
-   ],
-   [
-    "DE",
-    "DE-0498",
-    "Fredersdorfer M\u00fchlenflie\u00df, Langes Luch und Breites Luch Flora and Fauna Reserve",
-    "Fredersdorfer M\u00fchlenflie\u00df, Langes Luch und Breites Luch"
-   ],
-   [
-    "DE",
-    "DE-0503",
-    "Ebbemoore Nature Reserve",
-    "Ebbemoore"
-   ],
-   [
-    "DE",
-    "DE-0508",
-    "Heiden und Magerrasen Trupbach Natura 2000",
-    "Heiden und Magerrasen Trupbach"
-   ],
-   [
-    "DE",
-    "DE-0509",
-    "Naturschutzgebiet Waldenburg Nature Reserve",
-    "NSG Waldenburg"
-   ],
-   [
-    "DE",
-    "DE-0514",
-    "Spielburg Nature Reserve",
-    "Spielburg"
-   ],
-   [
-    "DE",
-    "DE-0519",
-    "Greifenberg und Waltenhofener H\u00e4nge Nature Reserve",
-    "Greifenberg und Waltenhofener H\u00e4nge"
-   ],
-   [
-    "DE",
-    "DE-0525",
-    "Rosensteinpark Recreation Park",
-    "Rosensteinpark"
-   ],
-   [
-    "DE",
-    "DE-0530",
-    "Wernauer Baggerseen Nature Reserve",
-    "Wernauer Baggerseen"
-   ],
-   [
-    "DE",
-    "DE-0534",
-    "Obere Allerniederung bei Celle National Nature Reserve",
-    "Obere Allerniederung bei Celle"
-   ],
-   [
-    "DE",
-    "DE-0537",
-    "H\u00f6ltigbaum Nature Park",
-    "H\u00f6ltigbaum"
-   ],
-   [
-    "DE",
-    "DE-0538",
-    "Balksee und Randmoore, Nordahner Holz Natura 2000",
-    "Balksee und Randmoore, Nordahner Holz"
-   ],
-   [
-    "DE",
-    "DE-0542",
-    "Barger Heide National Nature Reserve",
-    "Barger Heide"
-   ],
-   [
-    "DE",
-    "DE-0560",
-    "Eichhalde Nature Reserve",
-    "Eichhalde"
-   ],
-   [
-    "DE",
-    "DE-0561",
-    "Randecker Maar mit Zipfelbachschlucht Nature Reserve",
-    "Randecker Maar mit Zipfelbachschlucht"
-   ],
-   [
-    "DE",
-    "DE-0562",
-    "Limburg Nature Reserve",
-    "Limburg"
-   ],
-   [
-    "DE",
-    "DE-0564",
-    "Kempter Wald Natura 2000",
-    "Kempter Wald mit Oberem Rottachtal"
-   ],
-   [
-    "DE",
-    "DE-0566",
-    "Wertachschlucht Natura 2000",
-    "Wertachschlucht"
-   ],
-   [
-    "DE",
-    "DE-0567",
-    "Emsaue \u00f6stlich Warendorf Nature Reserve",
-    "NSG Emsaue"
-   ],
-   [
-    "DE",
-    "DE-0568",
-    "Schwalenberger Wald National Recreation Area",
-    "NSG Schwalenberger Wald"
-   ],
-   [
-    "DE",
-    "DE-0573",
-    "Stadtwald Bad Salzuflen Recreation Park",
-    "NSG Stadtwald"
-   ],
-   [
-    "DE",
-    "DE-0577",
-    "Taubergie\u00dfen Natura 2000",
-    "Taubergie\u00dfen"
-   ],
-   [
-    "DE",
-    "DE-0578",
-    "Kaisergarten Recreation Park",
-    "LSG-Kaisergarten"
-   ],
-   [
-    "DE",
-    "DE-0581",
-    "Hohe Wann Nature Reserve",
-    "Hohe Wann"
-   ],
-   [
-    "DE",
-    "DE-0585",
-    "Schwarzh\u00f6lzl Nature Reserve",
-    "Schwarzh\u00f6lzl"
-   ],
-   [
-    "DE",
-    "DE-0589",
-    "Mainaue bei Augsfeld Nature Recreation Reserve",
-    "Mainaue bei Augsfeld"
-   ],
-   [
-    "DE",
-    "DE-0591",
-    "Amperauen mit Leitenw\u00e4lder Nature Reserve",
-    "Amperauen mit Leitenw\u00e4lder zwischen F\u00fcrstenfeldbruck und Sch\u00f6ngeising"
-   ],
-   [
-    "DE",
-    "DE-0593",
-    "L\u00e4ngenb\u00fchl Nature Reserve",
-    "L\u00e4ngenb\u00fchl"
-   ],
-   [
-    "DE",
-    "DE-0615",
-    "Gr\u00f6nauer Heide, Gr\u00f6nauer Moor und Blankensee National Conservation Area",
-    "Gr\u00f6nauer Heide, Gr\u00f6nauer Moor und Blankensee"
-   ],
-   [
-    "DE",
-    "DE-0617",
-    "S\u00fcdlicher Priwall National Nature Reserve",
-    "S\u00fcdlicher Priwall"
-   ],
-   [
-    "DE",
-    "DE-0631",
-    "Sachsenwald National Historical Park",
-    "Sachsenwald-Gebiet"
-   ],
-   [
-    "DE",
-    "DE-0633",
-    "Speyerer Wald Natura 2000",
-    "Speyerer Wald, Nonnenwald und Bachauen zw. Geinsheim u.Hanhofen"
-   ],
-   [
-    "DE",
-    "DE-0634",
-    "Haardtrand Natura 2000",
-    "Haardtrand"
-   ],
-   [
-    "DE",
-    "DE-0635",
-    "Bellheimer Wald Natura 2000",
-    "Offenbacher Wald, Bellheimer Wald und Queichwiesen"
-   ],
-   [
-    "DE",
-    "DE-0636",
-    "Bienwald Natura 2000",
-    "Bienwald und Viehstrichwiesen"
-   ],
-   [
-    "DE",
-    "DE-0638",
-    "Naafbachtal Natura 2000",
-    "Naafbachtal"
-   ],
-   [
-    "DE",
-    "DE-0639",
-    "Wahner Heide Natura 2000",
-    "Wahner Heide"
-   ],
-   [
-    "DE",
-    "DE-0644",
-    "Heidfeld Nature Reserve",
-    "Heidfeld"
-   ],
-   [
-    "DE",
-    "DE-0645",
-    "Neukloster Forst Forest Reserve",
-    "Neukloster Forst"
-   ],
-   [
-    "DE",
-    "DE-0646",
-    "Agger Natura 2000",
-    "Agger"
-   ],
-   [
-    "DE",
-    "DE-0648",
-    "L\u00f6\u00dfnig-D\u00f6litz Recreation Park",
-    "L\u00f6\u00dfnig-D\u00f6litz"
-   ],
-   [
-    "DE",
-    "DE-0652",
-    "Rotwildpark Stuttgart Wildlife Reserve",
-    "Rotwildpark bei Stuttgart"
-   ],
-   [
-    "DE",
-    "DE-0654",
-    "Waldpark und Rei\u00dfinsel National Nature Reserve",
-    "Rei\u00dfinsel"
-   ],
-   [
-    "DE",
-    "DE-0657",
-    "Brandmoos Natura 2000",
-    "Brandmoos"
-   ],
-   [
-    "DE",
-    "DE-0658",
-    "Weiherlandschaft bei Wiesenfelden Natura 2000",
-    "Weiherlandschaft bei Wiesenfelden"
-   ],
-   [
-    "DE",
-    "DE-0659",
-    "Pfatterer Au Nature Reserve",
-    "Pfatterer Au"
-   ],
-   [
-    "DE",
-    "DE-0662",
-    "Pfrunger Ried und Seen bei Illmensee Natura 2000",
-    "Pfrunger Ried und Seen bei Illmensee"
-   ],
-   [
-    "DE",
-    "DE-0673",
-    "Rheinniederung von Philippsburg bis Mannheim Flora and Fauna Reserve",
-    "Rheinniederung von Philippsburg bis Mannheim"
-   ],
-   [
-    "DE",
-    "DE-0674",
-    "Haseldorfer Binnenelbe mit Elbvorland National Nature Reserve",
-    "Haseldorfer Binnenelbe mit Elbvorland"
-   ],
-   [
-    "DE",
-    "DE-0675",
-    "Lachte National Nature Reserve",
-    "Lachte"
-   ],
-   [
-    "DE",
-    "DE-0676",
-    "Riddagshausen National Recreation Area",
-    "Riddagshausen"
-   ],
-   [
-    "DE",
-    "DE-0680",
-    "Hochmoor am Kesselsee National Nature Reserve",
-    "Hochmoor am Kesselsee"
-   ],
-   [
-    "DE",
-    "DE-0682",
-    "Vilstal bei Marklkofen National Nature Reserve",
-    "Vilstal bei Marklkofen"
-   ],
-   [
-    "DE",
-    "DE-0683",
-    "Schwarzwassertal National Nature Reserve",
-    "Schwarzwassertal"
-   ],
-   [
-    "DE",
-    "DE-0693",
-    "Biosph\u00e4re Bliesgau Biosphere Reserve",
-    "Biosph\u00e4re Bliesgau"
-   ],
-   [
-    "DE",
-    "DE-0698",
-    "Hohenstein Nature Reserve",
-    "Hohenstein"
-   ],
-   [
-    "DE",
-    "DE-0702",
-    "Ruppersdorfer See Nature Reserve",
-    "Ruppersdorfer See"
-   ],
-   [
-    "DE",
-    "DE-0703",
-    "Bockmerholz und Gaim Nature Reserve",
-    "Bockmerholz, Gaim"
-   ],
-   [
-    "DE",
-    "DE-0704",
-    "Isarauen bei Goben Landscape Park",
-    "Isarauen bei Goben"
-   ],
-   [
-    "DE",
-    "DE-0722",
-    "Besenhorster Sandberge und Elbinsel Natura 2000",
-    "Besenhorster Sandberge und Elbinsel"
-   ],
-   [
-    "DE",
-    "DE-0729",
-    "Vogelfreist\u00e4tte Ammersee-S\u00fcdufer Bird Sanctuary",
-    "Vogelfreist\u00e4tte Ammersee-S\u00fcdufer"
-   ],
-   [
-    "DE",
-    "DE-0733",
-    "Hochsimmer Nature Reserve",
-    "Hochsimmer"
-   ],
-   [
-    "DE",
-    "DE-0734",
-    "Aachtobel Nature Reserve",
-    "Aachtobel"
-   ],
-   [
-    "DE",
-    "DE-0735",
-    "Aggenstein Nature Reserve",
-    "Aggenstein"
-   ],
-   [
-    "DE",
-    "DE-0738",
-    "Wei\u00dfenh\u00e4user Br\u00f6k Nature Reserve",
-    "Wei\u00dfenh\u00e4user Br\u00f6k"
-   ],
-   [
-    "DE",
-    "DE-0740",
-    "Th\u00fcringer Wald Nature Park",
-    "Th\u00fcringer Wald"
-   ],
-   [
-    "DE",
-    "DE-0741",
-    "Geltinger Birk Nature Reserve",
-    "Geltinger Birk"
-   ],
-   [
-    "DE",
-    "DE-0745",
-    "Malchower Aue Nature Reserve",
-    "Malchower Aue"
-   ],
-   [
-    "DE",
-    "DE-0749",
-    "Hardtwald zwischen Karlsruhe und Muggensturm National Forest",
-    "Hardtwald zwischen Karlsruhe und Muggensturm"
-   ],
-   [
-    "DE",
-    "DE-0750",
-    "Gro\u00dfes Torfmoor Natura 2000",
-    "NSG Grosses Torfmoor"
-   ],
-   [
-    "DE",
-    "DE-0751",
-    "Alt-Sternberg und Steinberg Nature Reserve",
-    "NSG Alt-Sternberg und Steinberg"
-   ],
-   [
-    "DE",
-    "DE-0752",
-    "K\u00f6nigsdorfer Forst Nature Reserve",
-    "NSG Koenigsdorfer Forst"
-   ],
-   [
-    "DE",
-    "DE-0754",
-    "\u00d6stlicher Teutoburger Wald (NSG Ochsenberg) Nature Reserve",
-    "NSG Oestlicher Teutoburger Wald (LP Bielefeld-Ost)"
-   ],
-   [
-    "DE",
-    "DE-0755",
-    "Rheinniederung von Karlsruhe bis Philippsburg Natura 2000",
-    "Rheinniederung von Karlsruhe bis Philippsburg"
-   ],
-   [
-    "DE",
-    "DE-0756",
-    "Falkenberger Krugwiesen Landscape Reserve",
-    "Falkenberger Krugwiesen"
-   ],
-   [
-    "DE",
-    "DE-0760",
-    "Storkower Kanal Nature Reserve",
-    "Storkower Kanal"
-   ],
-   [
-    "DE",
-    "DE-0761",
-    "Binnend\u00fcne Waltersberge Nature Reserve",
-    "Binnend\u00fcne Waltersberge"
-   ],
-   [
-    "DE",
-    "DE-0763",
-    "Damm\u00fchlenflie\u00dfniederung Nature Reserve",
-    "Damm\u00fchlenflie\u00dfniederung"
-   ],
-   [
-    "DE",
-    "DE-0767",
-    "K\u00f6nigsforst National Nature Reserve",
-    "K\u00f6nigsforst"
-   ],
-   [
-    "DE",
-    "DE-0768",
-    "Bodenseeufer (Bodman-Ludwigshafen) National Nature Reserve",
-    "Bodenseeufer (Bodman-Ludwigshafen)"
-   ],
-   [
-    "DE",
-    "DE-0770",
-    "Emsauen zwischen Herbrum und Vellage National Nature Reserve",
-    "Emsauen zwischen Herbrum und Vellage"
-   ],
-   [
-    "DE",
-    "DE-0774",
-    "Diersfordter Wald National Recreation Area",
-    "NSG Diersfordter Wald"
-   ],
-   [
-    "DE",
-    "DE-0776",
-    "Bergbaufolgelandschaft Geiseltal National Nature Reserve",
-    "Bergbaufolgelandschaft Geiseltal"
-   ],
-   [
-    "DE",
-    "DE-0779",
-    "Schwarzberge und Spreeniederung National Nature Reserve",
-    "Schwarzberge und Spreeniederung"
-   ],
-   [
-    "DE",
-    "DE-0780",
-    "Leineaue zwischen Gronau und Burgstemmen National Nature Reserve",
-    "Leineaue zwischen Gronau und Burgstemmen"
-   ],
-   [
-    "DE",
-    "DE-0782",
-    "Saupark National Nature Reserve",
-    "Saupark"
-   ],
-   [
-    "DE",
-    "DE-0786",
-    "Stillgew\u00e4sser bei Kluse National Nature Reserve",
-    "Stillgew\u00e4sser bei Kluse"
-   ],
-   [
-    "DE",
-    "DE-0789",
-    "Isaraltwasser- und Brennenbereich bei Mamming National Nature Reserve",
-    "Isaraltwasser- und Brennenbereich bei Mamming"
-   ],
-   [
-    "DE",
-    "DE-0790",
-    "Volkspark Sodingen National Historical Park",
-    "NSG Volkspark Sodingen."
-   ],
-   [
-    "DE",
-    "DE-0794",
-    "Unteres Warnowland National Nature Reserve",
-    "Unteres Warnowland"
-   ],
-   [
-    "DE",
-    "DE-0796",
-    "K\u00f6sterbeck National Nature Reserve",
-    "K\u00f6sterbeck"
-   ],
-   [
-    "DE",
-    "DE-0798",
-    "Ismaninger Speichersee und ehemalige Fischteiche Nature Reserve",
-    "Ismaninger Speichersee und Fischteiche"
-   ],
-   [
-    "DE",
-    "DE-0800",
-    "Deggendorfer Himmelreich Nature Reserve",
-    "Deggendorfer Himmelreich"
-   ],
-   [
-    "DE",
-    "DE-0801",
-    "Isaraltwasser bei Neutiefenweg National Nature Reserve",
-    "Isaraltwasser bei Neutiefenweg"
-   ],
-   [
-    "DE",
-    "DE-0803",
-    "Im Siesack Nature Reserve",
-    "NSG Im Siesack"
-   ],
-   [
-    "DE",
-    "DE-0804",
-    "Hungerbrunnen-, Sacken- und Lonetal Flora and Fauna Reserve",
-    "Hungerbrunnen-, Sacken- und Lonetal"
-   ],
-   [
-    "DE",
-    "DE-0812",
-    "Mallertshofer Holz Nature Reserve",
-    "Mallertshofer Holz mit Heiden"
-   ],
-   [
-    "DE",
-    "DE-0813",
-    "Steigerwald Erfurt Recreation Park",
-    "Steigerwald"
-   ],
-   [
-    "DE",
-    "DE-0814",
-    "Grainberg- Kalbenstein und Saupurzel Nature Reserve",
-    "Grainberg-Kalbenstein und Saupurzel"
-   ],
-   [
-    "DE",
-    "DE-0823",
-    "In den Eichen Nature Reserve",
-    "In den Eichen"
-   ],
-   [
-    "DE",
-    "DE-0824",
-    "Heinsener Klippen, Graupenburg Nature Reserve",
-    "Heinsener Klippen, Graupenburg"
-   ],
-   [
-    "DE",
-    "DE-0828",
-    "H\u00fclser Bruch Nature Reserve",
-    "NSG Huelser Bruch"
-   ],
-   [
-    "DE",
-    "DE-0833",
-    "Chiemsee und Ufergebiete Landscape Reserve",
-    "Chiemsee"
-   ],
-   [
-    "DE",
-    "DE-0846",
-    "Bergbaufolgelandschaft bei Hoyerswerda Natura 2000",
-    "Bergbaufolgelandschaft bei Hoyerswerda"
-   ],
-   [
-    "DE",
-    "DE-0847",
-    "Osterzgebirgst\u00e4ler Natura 2000",
-    "Osterzgebirgst\u00e4ler"
-   ],
-   [
-    "DE",
-    "DE-0848",
-    "Wei\u00dferitzt\u00e4ler Natura 2000",
-    "Wei\u00dferitzt\u00e4ler"
-   ],
-   [
-    "DE",
-    "DE-0849",
-    "T\u00e4ler in Mittelsachsen Natura 2000",
-    "T\u00e4ler in Mittelsachsen"
-   ],
-   [
-    "DE",
-    "DE-0850",
-    "Vereinigte Mulde Natura 2000",
-    "Vereinigte Mulde und Muldeauen"
-   ],
-   [
-    "DE",
-    "DE-0851",
-    "Tal der Zwickauer Mulde Natura 2000",
-    "Tal der Zwickauer Mulde"
-   ],
-   [
-    "DE",
-    "DE-0852",
-    "Linkselbische Bacht\u00e4ler Natura 2000",
-    "Linkselbische Bacht\u00e4ler"
-   ],
-   [
-    "DE",
-    "DE-0853",
-    "Elbtal zwischen M\u00fchlberg und Greudnitz Natura 2000",
-    "Elbtal zwischen M\u00fchlberg und Greudnitz"
-   ],
-   [
-    "DE",
-    "DE-0854",
-    "Wermsdorfer Teich- und Waldgebiet Natura 2000",
-    "Wermsdorfer Teich- und Waldgebiet"
-   ],
-   [
-    "DE",
-    "DE-0855",
-    "Vogtl\u00e4ndische P\u00f6hle und T\u00e4ler Natura 2000",
-    "Vogtl\u00e4ndische P\u00f6hle"
-   ],
-   [
-    "DE",
-    "DE-0856",
-    "Nei\u00dfetal Natura 2000",
-    "Nei\u00dfetal"
-   ],
-   [
-    "DE",
-    "DE-0860",
-    "Riede und Gew\u00e4sser bei Mengen und Pfullendorf Natura 2000",
-    "Riede und Gew\u00e4sser bei Mengen und Pfullendorf"
-   ],
-   [
-    "DE",
-    "DE-0861",
-    "Versmolder Bruch National Nature Reserve",
-    "NSG Versmolder Bruch"
-   ],
-   [
-    "DE",
-    "DE-0862",
-    "Feuchtwiesen H\u00f6rste National Nature Reserve",
-    "NSG Feuchtwiesen Hoerste"
-   ],
-   [
-    "DE",
-    "DE-0864",
-    "Puhlbruch - Silberkuhle Nature Reserve",
-    "NSG Puhlbruch / Silberkuhle"
-   ],
-   [
-    "DE",
-    "DE-0865",
-    "Illerdurchbruch zwischen Reicholzried und Lautrach Natura 2000",
-    "Illerdurchbruch zwischen Reicholzried und Lautrach"
-   ],
-   [
-    "DE",
-    "DE-0866",
-    "K\u00fcrnacher Wald Natura 2000",
-    "K\u00fcrnacher Wald"
-   ],
-   [
-    "DE",
-    "DE-0869",
-    "Aplerbecker Wald National Nature Reserve",
-    "NSG Aplerbecker Wald"
-   ],
-   [
-    "DE",
-    "DE-0870",
-    "Fuhsetal Nature Reserve",
-    "Fuhsetal"
-   ],
-   [
-    "DE",
-    "DE-0871",
-    "Lippeaue von Wethmar bis L\u00fcnen Nature Reserve",
-    "NSG Lippeaue von Wethmar bis L\u00fcnen"
-   ],
-   [
-    "DE",
-    "DE-0874",
-    "Grenzwiesen F\u00fcrstenau und F\u00fcrstenwalde Nature Reserve",
-    "Grenzwiesen F\u00fcrstenau und F\u00fcrstenwalde"
-   ],
-   [
-    "DE",
-    "DE-0875",
-    "Linkselbische Fels- und Waldgebiete Natura 2000",
-    "Linkselbische Fels- und Waldgebiete"
-   ],
-   [
-    "DE",
-    "DE-0876",
-    "Hohwald und Valtenberg Natura 2000",
-    "Hohwald und Valtenberg"
-   ],
-   [
-    "DE",
-    "DE-0877",
-    "Czorneboh und Hochstein Natura 2000",
-    "Czorneboh und Hochstein"
-   ],
-   [
-    "DE",
-    "DE-0878",
-    "Buchenwaldgebiet Wilthen Natura 2000",
-    "Buchenwaldgebiet Wilthen"
-   ],
-   [
-    "DE",
-    "DE-0879",
-    "Polenztal Natura 2000",
-    "Polenztal"
-   ],
-   [
-    "DE",
-    "DE-0880",
-    "Sebnitzer Wald und Kaiserberg Natura 2000",
-    "Sebnitzer Wald und Kaiserberg"
-   ],
-   [
-    "DE",
-    "DE-0881",
-    "Bosel und Elbh\u00e4nge n\u00f6rdlich Mei\u00dfen Natura 2000",
-    "Bosel und Elbh\u00e4nge n\u00f6rdlich Mei\u00dfen"
-   ],
-   [
-    "DE",
-    "DE-0882",
-    "Tafelberge und Felsreviere der linkselbischen S\u00e4chsischen Schweiz Natura 2000",
-    "Tafelberge und Felsreviere der linkselbischen S\u00e4chsischen Schweiz"
-   ],
-   [
-    "DE",
-    "DE-0883",
-    "Mittelerzgebirgische Basaltberge Natura 2000",
-    "Mittelerzgebirgische Basaltberge"
-   ],
-   [
-    "DE",
-    "DE-0888",
-    "Staffelwald bei Irsee und Lehmgrube Hammerschmiede Natura 2000",
-    "Staffelwald bei Irsee und Lehmgrube Hammerschmiede"
-   ],
-   [
-    "DE",
-    "DE-0889",
-    "Marzoller Au Flora and Fauna Reserve",
-    "Marzoller Au"
-   ],
-   [
-    "DE",
-    "DE-0890",
-    "Elbtalh\u00e4nge zwischen Loschwitz und Bonnewitz Natura 2000",
-    "Elbtalh\u00e4nge zwischen Loschwitz und Bonnewitz"
-   ],
-   [
-    "DE",
-    "DE-0891",
-    "Basalt- und Phonolithkuppen der \u00f6stlichen Oberlausitz Natura 2000",
-    "Basalt- und Phonolithkuppen der \u00f6stlichen Oberlausitz"
-   ],
-   [
-    "DE",
-    "DE-0892",
-    "Wesenitz unterhalb Buschm\u00fchle Natura 2000",
-    "Wesenitz unterhalb Buschm\u00fchle"
-   ],
-   [
-    "DE",
-    "DE-0893",
-    "P\u00f6belbachtal und Hofeh\u00fcbel Natura 2000",
-    "P\u00f6belbachtal und Hofeh\u00fcbel"
-   ],
-   [
-    "DE",
-    "DE-0894",
-    "Gottleubatal und angrenzende Laubw\u00e4lder Natura 2000",
-    "Gottleubatal und angrenzende Laubw\u00e4lder"
-   ],
-   [
-    "DE",
-    "DE-0898",
-    "Aller-Leinetal Nature Reserve",
-    "Aller-Leinetal"
-   ],
-   [
-    "DE",
-    "DE-0899",
-    "Kurler Busch Nature Reserve",
-    "NSG Kurler Busch"
-   ],
-   [
-    "DE",
-    "DE-0902",
-    "Sonnenberg bei Parchim Natura 2000",
-    "Sonnenberg bei Parchim"
-   ],
-   [
-    "DE",
-    "DE-0903",
-    "Tollensetal mit Zufl\u00fcssen Natura 2000",
-    "Tollensetal mit Zufl\u00fcssen"
-   ],
-   [
-    "DE",
-    "DE-0904",
-    "Recknitz- und Trebeltal mit Zufl\u00fcssen Natura 2000",
-    "Recknitz- und Trebeltal mit Zufl\u00fcssen"
-   ],
-   [
-    "DE",
-    "DE-0905",
-    "Paar und Ecknach Natura 2000",
-    "Paar und Ecknach"
-   ],
-   [
-    "DE",
-    "DE-0906",
-    "Im Ru\u00dfland und in der Kuhweide bei Lindheim Nature Reserve",
-    "Im Ru\u00dfland und in der Kuhweide bei Lindheim"
-   ],
-   [
-    "DE",
-    "DE-0907",
-    "Hainberg Nature Reserve",
-    "Hainberg"
-   ],
-   [
-    "DE",
-    "DE-0908",
-    "Mei\u00dfendorfer Teiche - Bannetzer Moor Nature Reserve",
-    "Mei\u00dfendorfer Teiche"
-   ],
-   [
-    "DE",
-    "DE-0909",
-    "Huvenhoopsmoor Nature Reserve",
-    "Huvenhoopsmoor"
-   ],
-   [
-    "DE",
-    "DE-0910",
-    "Ochsenweide, Schafhauser Wald und Feuchtwiesen bei Esens Nature Reserve",
-    "Ochsenweide, Schafhauser Wald und Feuchtwiesen bei Esens"
-   ],
-   [
-    "DE",
-    "DE-0913",
-    "Greutterwald Nature Reserve",
-    "Greutterwald"
-   ],
-   [
-    "DE",
-    "DE-0914",
-    "Weidach- und Zettachwald National Wildlife Area",
-    "Weidach- und Zettachwald"
-   ],
-   [
-    "DE",
-    "DE-0917",
-    "Limbacher und Spieser Wald Nature Reserve",
-    "Naturschutzgebiet \\\"Limbacher und Spieser Wald\\\" (N 6609-301)"
-   ],
-   [
-    "DE",
-    "DE-0919",
-    "Woogbachtal Nature Reserve",
-    "Naturschutzgebiet \\\"Woogbachtal\\\" (N 6708-305)"
-   ],
-   [
-    "DE",
-    "DE-0920",
-    "Nied Nature Reserve",
-    "Naturschutzgebiet \\\"Nied\\\" (N 6605-301)"
-   ],
-   [
-    "DE",
-    "DE-0922",
-    "Taubental Nature Reserve",
-    "Taubental (Biosph\u00e4ren-Kernzone)"
-   ],
-   [
-    "DE",
-    "DE-0925",
-    "Blau und Kleine Lauter Natura 2000",
-    "Blau und Kleine Lauter"
-   ],
-   [
-    "DE",
-    "DE-0940",
-    "Feuchtgebiete bei Waldburg und Ki\u00dflegg Flora and Fauna Reserve",
-    "Feuchtgebiete bei Waldburg und Ki\u00dflegg"
-   ],
-   [
-    "DE",
-    "DE-0946",
-    "Steinheimer Becken Flora and Fauna Reserve",
-    "Steinheimer Becken"
-   ],
-   [
-    "DE",
-    "DE-0957",
-    "Hahnheide Nature Reserve",
-    "Hahnheide"
-   ],
-   [
-    "DE",
-    "DE-0960",
-    "Rheinniederung Wittenweier bis Kehl Flora and Fauna Reserve",
-    "Rheinniederung von Wittenweier bis Kehl"
-   ],
-   [
-    "DE",
-    "DE-0961",
-    "Schutter und Unditz Flora and Fauna Reserve",
-    "Untere Schutter und Unditz"
-   ],
-   [
-    "DE",
-    "DE-0970",
-    "Conventer Niederung Flora and Fauna Reserve",
-    "Conventer Niederung"
-   ],
-   [
-    "DE",
-    "DE-0975",
-    "Hochriesgebiet und Hangw\u00e4lder im Aschauer Tal Flora and Fauna Reserve",
-    "Hochriesgebiet und Hangw\u00e4lder im Aschauer Tal"
-   ],
-   [
-    "DE",
-    "DE-0976",
-    "Flyschberge bei Bad Wiessee Flora and Fauna Reserve",
-    "Flyschberge bei Bad Wiessee"
-   ],
-   [
-    "DE",
-    "DE-0977",
-    "Rottachberg und Rottachschlucht Flora and Fauna Reserve",
-    "Rottachberg und Rottachschlucht"
-   ],
-   [
-    "DE",
-    "DE-0978",
-    "Falkenstein, Alatsee, Faulenbacher- und Lechtal Flora and Fauna Reserve",
-    "Falkenstein, Alatsee, Faulenbacher- und Lechtal"
-   ],
-   [
-    "DE",
-    "DE-0979",
-    "Oberes Isartal Flora and Fauna Reserve",
-    "Oberes Isartal"
-   ],
-   [
-    "DE",
-    "DE-0980",
-    "Isarauen von Unterf\u00f6hring bis Landshut Flora and Fauna Reserve",
-    "Isarauen von Unterf\u00f6hring bis Landshut"
-   ],
-   [
-    "DE",
-    "DE-0981",
-    "Kesselberggebiet Flora and Fauna Reserve",
-    "Kesselberggebiet"
-   ],
-   [
-    "DE",
-    "DE-0982",
-    "Schlappolt Flora and Fauna Reserve",
-    "Schlappolt"
-   ],
-   [
-    "DE",
-    "DE-0983",
-    "Mittenwalder Buckelwiesen Flora and Fauna Reserve",
-    "Mittenwalder Buckelwiesen"
-   ],
-   [
-    "DE",
-    "DE-0984",
-    "Innauen und Leitenw\u00e4lder Flora and Fauna Reserve",
-    "Innauen und Leitenw\u00e4lder"
-   ],
-   [
-    "DE",
-    "DE-0985",
-    "Leitzachtal Flora and Fauna Reserve",
-    "Leitzachtal"
-   ],
-   [
-    "DE",
-    "DE-0986",
-    "Mangfalltal Flora and Fauna Reserve",
-    "Mangfalltal"
-   ],
-   [
-    "DE",
-    "DE-0987",
-    "Nagelfluhkette Hochgrat-Steineberg Flora and Fauna Reserve",
-    "Nagelfluhkette Hochgrat-Steineberg"
-   ],
-   [
-    "DE",
-    "DE-0989",
-    "Moore bei Sittensen Bird Sanctuary",
-    "Moore bei Sittensen"
-   ],
-   [
-    "DE",
-    "DE-0994",
-    "H\u00f6ftland Bockholmwik und angrenzende Steilk\u00fcsten Nature Reserve",
-    "H\u00f6ftland Bockholmwik und angrenzende Steilk\u00fcsten"
-   ],
-   [
-    "DE",
-    "DE-0995",
-    "Crailsheimer Hart und Reusenberg Flora and Fauna Reserve",
-    "Crailsheimer Hart und Reusenberg"
-   ],
-   [
-    "DE",
-    "DE-0997",
-    "Rhein-Fischschutzzonen zwischen Emmerich und Bad Honnef Flora and Fauna Reserve",
-    "Rhein-Fischschutzzonen zwischen Emmerich und Bad Honnef"
-   ],
-   [
-    "DE",
-    "DE-0998",
-    "Ilvericher Altrheinschlinge Flora and Fauna Reserve",
-    "Ilvericher Altrheinschlinge"
-   ],
-   [
-    "DE",
-    "DE-0999",
-    "Latumer Bruch mit Buersbach, Stadtgr\u00e4ben und Wasserwerk Flora and Fauna Reserve",
-    "Latumer Bruch mit Buersbach, Stadtgr\u00e4ben und Wasserwerk"
-   ],
-   [
-    "DE",
-    "DE-1000",
-    "Oldenburger Bruch Nature Reserve",
-    "Oldenburger Bruch"
-   ],
-   [
-    "DE",
-    "DE-1003",
-    "Berchtesgadener Land Biosphere Reserve",
-    "Berchtesgadener Land"
-   ],
-   [
-    "DE",
-    "DE-1004",
-    "Eybtal mit Teilen des L\u00e4ngen- und Rohrachtales National Nature Reserve",
-    "Eybtal mit Teilen des L\u00e4ngen- und Rohrachtales"
-   ],
-   [
-    "DE",
-    "DE-1011",
-    "Erpetal Provincial Nature Reserve",
-    "Erpetal"
-   ],
-   [
-    "DE",
-    "DE-1012",
-    "Brexbach- und Saynbachtal Flora and Fauna Reserve",
-    "Brexbach- und Saynbachtal"
-   ],
-   [
-    "DE",
-    "DE-1022",
-    "Ammersbek-Niederung Nature Reserve",
-    "Ammersbek-Niederung"
-   ],
-   [
-    "DE",
-    "DE-1026",
-    "Vorland der mittleren Schw\u00e4bischen Alb Bird Sanctuary",
-    "Vorland der mittleren Schw\u00e4bischen Alb"
-   ],
-   [
-    "DE",
-    "DE-1029",
-    "Vilstal zwischen Vilsbiburg und Marklkofen Flora and Fauna Reserve",
-    "Vilstal zwischen Vilsbiburg und Marklkofen"
-   ],
-   [
-    "DE",
-    "DE-1030",
-    "Nymphenburger Park mit Allee und Kapuzinerh\u00f6lzl Flora and Fauna Reserve",
-    "Nymphenburger Park mit Allee und Kapuzinerh\u00f6lzl"
-   ],
-   [
-    "DE",
-    "DE-1031",
-    "Altbachgebiet s\u00fcdwestlich Triftern Flora and Fauna Reserve",
-    "Altbachgebiet s\u00fcdwestlich Triftern"
-   ],
-   [
-    "DE",
-    "DE-1032",
-    "Woja- und Haidleite Flora and Fauna Reserve",
-    "Woja- und Haidleite"
-   ],
-   [
-    "DE",
-    "DE-1033",
-    "Waldnaabtal zwischen Tirschenreuth und Windisch-Eschenbach Flora and Fauna Reserve",
-    "Waldnaabtal zwischen Tirschenreuth und Windisch-Eschenbach"
-   ],
-   [
-    "DE",
-    "DE-1034",
-    "Trockenh\u00e4nge am Donaurandbruch Flora and Fauna Reserve",
-    "Trockenh\u00e4nge am Donaurandbruch"
-   ],
-   [
-    "DE",
-    "DE-1037",
-    "Beuche - Wethautal Natura 2000",
-    "Beuche - Wethautal"
-   ],
-   [
-    "DE",
-    "DE-1039",
-    "Hochstein Nature Reserve",
-    "Hochstein"
-   ],
-   [
-    "DE",
-    "DE-1040",
-    "M\u00fcggelspree-M\u00fcggelsee Flora and Fauna Reserve",
-    "M\u00fcggelspree-M\u00fcggelsee"
-   ],
-   [
-    "DE",
-    "DE-1041",
-    "Holter Wald Nature Reserve",
-    "NSG Holter Wald"
-   ],
-   [
-    "DE",
-    "DE-1042",
-    "Schaichtal Nature Reserve",
-    "Schaichtal"
-   ],
-   [
-    "DE",
-    "DE-1043",
-    "Mittleres Altm\u00fchltal mit Wellheimer Trockental und Schambachtal Flora and Fauna Reserve",
-    "Mittleres Altm\u00fchltal mit Wellheimer Trockental und Schambachtal"
-   ],
-   [
-    "DE",
-    "DE-1048",
-    "K\u00f6nigsberg Flora and Fauna Reserve",
-    "K\u00f6nigsberg"
-   ],
-   [
-    "DE",
-    "DE-1049",
-    "Nettetal Flora and Fauna Reserve",
-    "Nettetal"
-   ],
-   [
-    "DE",
-    "DE-1050",
-    "Ahrgebirge Bird Sanctuary",
-    "Ahrgebirge"
-   ],
-   [
-    "DE",
-    "DE-1051",
-    "Irtenberger und Guttenberger Wald Flora and Fauna Reserve",
-    "Irtenberger und Guttenberger Wald"
-   ],
-   [
-    "DE",
-    "DE-1052",
-    "Laubw\u00e4lder um W\u00fcrzburg Flora and Fauna Reserve",
-    "Laubw\u00e4lder um W\u00fcrzburg"
-   ],
-   [
-    "DE",
-    "DE-1053",
-    "Gramschatzer Wald Flora and Fauna Reserve",
-    "Gramschatzer Wald"
-   ],
-   [
-    "DE",
-    "DE-1054",
-    "Altm\u00fchltal mit Brunst-Schwaigau und Altm\u00fchlsee Bird Sanctuary",
-    "Altm\u00fchltal mit Brunst-Schwaigau und Altm\u00fchlsee"
-   ],
-   [
-    "DE",
-    "DE-1055",
-    "W\u00f6rnitztal Flora and Fauna Reserve",
-    "W\u00f6rnitztal"
-   ],
-   [
-    "DE",
-    "DE-1056",
-    "Lechauen zwischen K\u00f6nigsbrunn und Augsburg Flora and Fauna Reserve",
-    "Lechauen zwischen K\u00f6nigsbrunn und Augsburg"
-   ],
-   [
-    "DE",
-    "DE-1057",
-    "Lech zwischen Landsberg und K\u00f6nigsbrunn mit Auen und Leite Flora and Fauna Reserve",
-    "Lech zwischen Landsberg und K\u00f6nigsbrunn mit Auen und Leite"
-   ],
-   [
-    "DE",
-    "DE-1058",
-    "Lech zwischen Hirschau und Landsberg mit Auen und Leiten Flora and Fauna Reserve",
-    "Lech zwischen Hirschau und Landsberg mit Auen und Leiten"
-   ],
-   [
-    "DE",
-    "DE-1059",
-    "Ammer vom Alpenrand b. zum NSG 'Vogelfreist\u00e4tte Ammersee-S\u00fcdufer' Flora and Fauna Reserve",
-    "Ammer vom Alpenrand b. zum NSG 'Vogelfreist\u00e4tte Ammersee-S\u00fcdufer'"
-   ],
-   [
-    "DE",
-    "DE-1060",
-    "Ammerseegebiet Bird Sanctuary",
-    "Ammerseegebiet"
-   ],
-   [
-    "DE",
-    "DE-1061",
-    "Ammerseeufer und Leitenw\u00e4lder Flora and Fauna Reserve",
-    "Ammerseeufer und Leitenw\u00e4lder"
-   ],
-   [
-    "DE",
-    "DE-1062",
-    "Ampertal Flora and Fauna Reserve",
-    "Ampertal"
-   ],
-   [
-    "DE",
-    "DE-1066",
-    "Moore und W\u00e4lder der Endmor\u00e4ne bei Starnberg Flora and Fauna Reserve",
-    "Moore und W\u00e4lder der Endmor\u00e4ne bei Starnberg"
-   ],
-   [
-    "DE",
-    "DE-1067",
-    "Mor\u00e4nenlandschaft zwischen Ammersee und Starnberger See Flora and Fauna Reserve",
-    "Mor\u00e4nenlandschaft zwischen Ammersee und Starnberger See"
-   ],
-   [
-    "DE",
-    "DE-1068",
-    "Bayerisches Bodenseeufer Flora and Fauna Reserve",
-    "Bayerisches Bodenseeufer"
-   ],
-   [
-    "DE",
-    "DE-1069",
-    "Obere Argen und Seitent\u00e4ler Flora and Fauna Reserve",
-    "Obere Argen und Seitent\u00e4ler"
-   ],
-   [
-    "DE",
-    "DE-1070",
-    "Untere Argen und Seitent\u00e4ler Flora and Fauna Reserve",
-    "Untere Argen und Seitent\u00e4ler"
-   ],
-   [
-    "DE",
-    "DE-1071",
-    "\u00dcberlinger See des Bodensees Bird Sanctuary",
-    "\u00dcberlinger See des Bodensees"
-   ],
-   [
-    "DE",
-    "DE-1072",
-    "Bodenseeufer westlich Friedrichshafen Flora and Fauna Reserve",
-    "Bodenseeufer westlich Friedrichshafen"
-   ],
-   [
-    "DE",
-    "DE-1073",
-    "Bodanr\u00fcck und westl. Bodensee Flora and Fauna Reserve",
-    "Bodanr\u00fcck und westl. Bodensee"
-   ],
-   [
-    "DE",
-    "DE-1074",
-    "Schiener Berg und westlicher Untersee Flora and Fauna Reserve",
-    "Schiener Berg und westlicher Untersee"
-   ],
-   [
-    "DE",
-    "DE-1075",
-    "Leiten der Unteren Isar Flora and Fauna Reserve",
-    "Leiten der Unteren Isar"
-   ],
-   [
-    "DE",
-    "DE-1076",
-    "Unteres Isartal zwischen Niederviehbach und Landau Flora and Fauna Reserve",
-    "Unteres Isartal zwischen Niederviehbach und Landau"
-   ],
-   [
-    "DE",
-    "DE-1077",
-    "Untere Isar zwischen Landau und Plattling Flora and Fauna Reserve",
-    "Untere Isar zwischen Landau und Plattling"
-   ],
-   [
-    "DE",
-    "DE-1080",
-    "Krummh\u00f6rn Bird Sanctuary",
-    "Krummh\u00f6rn"
-   ],
-   [
-    "DE",
-    "DE-1081",
-    "Wangerland Bird Sanctuary",
-    "Wangerland"
-   ],
-   [
-    "DE",
-    "DE-1082",
-    "Rheiderland Bird Sanctuary",
-    "Rheiderland"
-   ],
-   [
-    "DE",
-    "DE-1083",
-    "Ostfriesische Meere Bird Sanctuary",
-    "Ostfriesische Meere"
-   ],
-   [
-    "DE",
-    "DE-1084",
-    "Marschen am Jadebusen Bird Sanctuary",
-    "Marschen am  Jadebusen"
-   ],
-   [
-    "DE",
-    "DE-1085",
-    "Butjadingen Bird Sanctuary",
-    "Butjadingen"
-   ],
-   [
-    "DE",
-    "DE-1086",
-    "Unterems und Au\u00dfenems Flora and Fauna Reserve",
-    "Unterems und Au\u00dfenems"
-   ],
-   [
-    "DE",
-    "DE-1090",
-    "Flusslandschaft Elbe - Brandenburg Biosphere Reserve",
-    "Flusslandschaft Elbe"
-   ],
-   [
-    "DE",
-    "DE-1091",
-    "B\u00f6rnicke Flora and Fauna Reserve",
-    "B\u00f6rnicke"
-   ],
-   [
-    "DE",
-    "DE-1094",
-    "\u00d6stlicher Neuburger Wald und Innleiten bis Vornbach Flora and Fauna Reserve",
-    "\u00d6stlicher Neuburger Wald und Innleiten bis Vornbach"
-   ],
-   [
-    "DE",
-    "DE-1095",
-    "Donauleiten von Passau bis Jochenstein Flora and Fauna Reserve",
-    "Donauleiten von Passau bis Jochenstein"
-   ],
-   [
-    "DE",
-    "DE-1096",
-    "Laufenbachtal Flora and Fauna Reserve",
-    "Laufenbachtal"
-   ],
-   [
-    "DE",
-    "DE-1097",
-    "Moore im Bereich Sonnen-Wegscheid mit Abschnitten des Rannatals Flora and Fauna Reserve",
-    "Moore im Bereich Sonnen-Wegscheid mit Abschnitten des Rannatals"
-   ],
-   [
-    "DE",
-    "DE-1098",
-    "Erlau Flora and Fauna Reserve",
-    "Erlau"
-   ],
-   [
-    "DE",
-    "DE-1099",
-    "Unteres Vilstal Flora and Fauna Reserve",
-    "Unteres Vilstal"
-   ],
-   [
-    "DE",
-    "DE-1100",
-    "Tal der Gro\u00dfen Laaber zwischen Sandsbach und Unterdeggenbach Flora and Fauna Reserve",
-    "Tal der Gro\u00dfen Laaber zwischen Sandsbach und Unterdeggenbach"
-   ],
-   [
-    "DE",
-    "DE-1101",
-    "Sallingbachtal Flora and Fauna Reserve",
-    "Sallingbachtal"
-   ],
-   [
-    "DE",
-    "DE-1102",
-    "Loisach-Kochelsee-Moore Bird Sanctuary",
-    "Loisach-Kochelsee-Moore"
-   ],
-   [
-    "DE",
-    "DE-1103",
-    "Moore um Penzberg Flora and Fauna Reserve",
-    "Moore um Penzberg"
-   ],
-   [
-    "DE",
-    "DE-1104",
-    "Moore s\u00fcdlich K\u00f6nigsdorf, Rothenrainer Moore und K\u00f6nigsdorfer Alm Flora and Fauna Reserve",
-    "Moore s\u00fcdlich K\u00f6nigsdorf, Rothenrainer Moore und K\u00f6nigsdorfer Alm"
-   ],
-   [
-    "DE",
-    "DE-1105",
-    "Moore zwischen Dietramszell und Deining Flora and Fauna Reserve",
-    "Moore zwischen Dietramszell und Deining"
-   ],
-   [
-    "DE",
-    "DE-1106",
-    "Gennachhauser Moor Flora and Fauna Reserve",
-    "Gennachhauser Moor"
-   ],
-   [
-    "DE",
-    "DE-1107",
-    "Ilz-Talsystem Flora and Fauna Reserve",
-    "Ilz-Talsystem"
-   ],
-   [
-    "DE",
-    "DE-1108",
-    "Donau-Auen zwischen Thalfingen und H\u00f6chst\u00e4dt Flora and Fauna Reserve",
-    "Donau-Auen zwischen Thalfingen und H\u00f6chst\u00e4dt"
-   ],
-   [
-    "DE",
-    "DE-1110",
-    "Schw\u00e4bisches Donaumoos Bird Sanctuary",
-    "Schw\u00e4bisches Donaumoos"
-   ],
-   [
-    "DE",
-    "DE-1111",
-    "Untere Illerauen Flora and Fauna Reserve",
-    "Untere Illerauen"
-   ],
-   [
-    "DE",
-    "DE-1112",
-    "Obenhausener Ried und Muschelb\u00e4che im Rothtal Flora and Fauna Reserve",
-    "Obenhausener Ried und Muschelb\u00e4che im Rothtal"
-   ],
-   [
-    "DE",
-    "DE-1113",
-    "Donau zwischen Munderkingen und Ulm und n\u00f6rdliche Iller Flora and Fauna Reserve",
-    "Donau zwischen Munderkingen und Ulm und n\u00f6rdliche Iller"
-   ],
-   [
-    "DE",
-    "DE-1114",
-    "Rot, Bellamonter Rottum und D\u00fcrnach Flora and Fauna Reserve",
-    "Rot,  Bellamonter Rottum und D\u00fcrnach"
-   ],
-   [
-    "DE",
-    "DE-1115",
-    "Schussenbecken mit Tobelw\u00e4ldern s\u00fcdlich Blitzenreute Flora and Fauna Reserve",
-    "Schussenbecken mit Tobelw\u00e4ldern s\u00fcdlich Blitzenreute"
-   ],
-   [
-    "DE",
-    "DE-1116",
-    "Blitzenreuter Seenplatte mit Altshauser Weiher Bird Sanctuary",
-    "Blitzenreuter Seenplatte mit Altshauser Weiher"
-   ],
-   [
-    "DE",
-    "DE-1117",
-    "Feuchtgebiete um Altshausen Flora and Fauna Reserve",
-    "Feuchtgebiete um Altshausen"
-   ],
-   [
-    "DE",
-    "DE-1118",
-    "Altdorfer Wald Flora and Fauna Reserve",
-    "Altdorfer Wald"
-   ],
-   [
-    "DE",
-    "DE-1119",
-    "Isental mit Nebenb\u00e4chen Flora and Fauna Reserve",
-    "Isental mit Nebenb\u00e4chen"
-   ],
-   [
-    "DE",
-    "DE-1120",
-    "Strogn mit Hammerbach und K\u00f6llinger B\u00e4chlein Flora and Fauna Reserve",
-    "Strogn mit Hammerbach und K\u00f6llinger B\u00e4chlein"
-   ],
-   [
-    "DE",
-    "DE-1121",
-    "Unterlauf der Rott von Bayerbach bis zur M\u00fcndung Flora and Fauna Reserve",
-    "Unterlauf der Rott von Bayerbach bis zur M\u00fcndung"
-   ],
-   [
-    "DE",
-    "DE-1122",
-    "K\u00fcstenbereiche Flensburger F\u00f6rde von Flensburg bis Geltinger Birk Flora and Fauna Reserve",
-    "K\u00fcstenbereiche Flensburger F\u00f6rde von Flensburg bis Geltinger Birk"
-   ],
-   [
-    "DE",
-    "DE-1123",
-    "Treene Winderatter See bis Friedrichstadt und Bollingstedter Au Flora and Fauna Reserve",
-    "Treene Winderatter See bis Friedrichstadt und\u00a0Bollingstedter\u00a0Au"
-   ],
-   [
-    "DE",
-    "DE-1124",
-    "S\u00fcderl\u00fcgumer Binnend\u00fcnen Flora and Fauna Reserve",
-    "S\u00fcderl\u00fcgumer Binnend\u00fcnen"
-   ],
-   [
-    "DE",
-    "DE-1125",
-    "Bagno mit Steinfurter Aa Flora and Fauna Reserve",
-    "Bagno mit Steinfurter Aa"
-   ],
-   [
-    "DE",
-    "DE-1127",
-    "Emsdettener Venn und Wiesen am Max-Clemens-Kanal Flora and Fauna Reserve",
-    "Emsdettener Venn und Wiesen am Max-Clemens-Kanal"
-   ],
-   [
-    "DE",
-    "DE-1128",
-    "Moosheide Nature Reserve",
-    "NSG Moosheide <PB>"
-   ],
-   [
-    "DE",
-    "DE-1129",
-    "Schweinfurter Becken und n\u00f6rdliches Steigerwaldvorland Bird Sanctuary",
-    "Schweinfurter Becken und n\u00f6rdliches Steigerwaldvorland"
-   ],
-   [
-    "DE",
-    "DE-1130",
-    "Forst Dianenslust und Stadtwald Schweinfurt Flora and Fauna Reserve",
-    "Forst Dianenslust und Stadtwald Schweinfurt"
-   ],
-   [
-    "DE",
-    "DE-1131",
-    "Maintal zwischen Schweinfurt und Dettelbach Bird Sanctuary",
-    "Maintal zwischen Schweinfurt und Dettelbach"
-   ],
-   [
-    "DE",
-    "DE-1134",
-    "Heidefl\u00e4chen und Lohw\u00e4lder n\u00f6rdlich von M\u00fcnchen Flora and Fauna Reserve",
-    "Heidefl\u00e4chen und Lohw\u00e4lder n\u00f6rdlich von M\u00fcnchen"
-   ],
-   [
-    "DE",
-    "DE-1135",
-    "Allacher Forst und Angerlohe Flora and Fauna Reserve",
-    "Allacher Forst und Angerlohe"
-   ],
-   [
-    "DE",
-    "DE-1136",
-    "Haspelmoor Flora and Fauna Reserve",
-    "Haspelmoor"
-   ],
-   [
-    "DE",
-    "DE-1137",
-    "Feilenmoos mit N\u00f6ttinger Viehweide Flora and Fauna Reserve",
-    "Feilenmoos mit N\u00f6ttinger Viehweide"
-   ],
-   [
-    "DE",
-    "DE-1138",
-    "Forstmoos Flora and Fauna Reserve",
-    "Forstmoos"
-   ],
-   [
-    "DE",
-    "DE-1139",
-    "Trockenh\u00e4nge bei Regensburg Flora and Fauna Reserve",
-    "Trockenh\u00e4nge bei Regensburg"
-   ],
-   [
-    "DE",
-    "DE-1140",
-    "Flanken des Naabdurchbruchtals zwischen Kallm\u00fcnz und Mariaort Flora and Fauna Reserve",
-    "Flanken des Naabdurchbruchtals zwischen Kallm\u00fcnz und Mariaort"
-   ],
-   [
-    "DE",
-    "DE-1141",
-    "Trockenh\u00e4nge bei Kallm\u00fcnz Flora and Fauna Reserve",
-    "Trockenh\u00e4nge bei Kallm\u00fcnz"
-   ],
-   [
-    "DE",
-    "DE-1142",
-    "M\u00fcnchshofener Berg Flora and Fauna Reserve",
-    "M\u00fcnchshofener Berg"
-   ],
-   [
-    "DE",
-    "DE-1144",
-    "Bacht\u00e4ler im Falkensteiner Vorwald Flora and Fauna Reserve",
-    "Bacht\u00e4ler im Falkensteiner Vorwald"
-   ],
-   [
-    "DE",
-    "DE-1146",
-    "Schwarze Laaber Flora and Fauna Reserve",
-    "Schwarze Laaber"
-   ],
-   [
-    "DE",
-    "DE-1147",
-    "Binnend\u00fcnen und Albtrauf bei Neumarkt Flora and Fauna Reserve",
-    "Binnend\u00fcnen und Albtrauf bei Neumarkt"
-   ],
-   [
-    "DE",
-    "DE-1148",
-    "Frauenforst \u00f6stlich Ihrlerstein und westlich D\u00fcrnstetten Flora and Fauna Reserve",
-    "Frauenforst \u00f6stlich Ihrlerstein und westlich D\u00fcrnstetten"
-   ],
-   [
-    "DE",
-    "DE-1149",
-    "Kaltenkirchener Heide Flora and Fauna Reserve",
-    "Kaltenkirchener Heide"
-   ],
-   [
-    "DE",
-    "DE-1150",
-    "Oberlauf der Ohe Nature Reserve",
-    "Oberlauf der Ohe"
-   ],
-   [
-    "DE",
-    "DE-1154",
-    "Hardtwald Natura 2000",
-    "Hardtwald n\u00f6rdlich von Karlsruhe"
-   ],
-   [
-    "DE",
-    "DE-1155",
-    "Schluchten und Moore am oberen Furlbach Nature Reserve",
-    "NSG Schluchten und Moore am oberen Furlbach"
-   ],
-   [
-    "DE",
-    "DE-1156",
-    "Rietberger Emsniederung mit Steinhorster Becken Bird Sanctuary",
-    "VSG 'Rietberger Emsniederung mit Steinhorster Becken'"
-   ],
-   [
-    "DE",
-    "DE-1157",
-    "Muschelkalkzug von den Langen Bergen bis nach Wei\u00dfenbrunn v. Wald Flora and Fauna Reserve",
-    "Muschelkalkzug von den Langen Bergen bis nach Wei\u00dfenbrunn v. Wald"
-   ],
-   [
-    "DE",
-    "DE-1158",
-    "Veste Coburg, Bausenberger und Callenberger Forst Flora and Fauna Reserve",
-    "Veste Coburg, Bausenberger und Callenberger Forst"
-   ],
-   [
-    "DE",
-    "DE-1159",
-    "T\u00e4ler von Oberem Main, Unterer Rodach und Steinach Bird Sanctuary",
-    "T\u00e4ler von Oberem Main, Unterer Rodach und Steinach"
-   ],
-   [
-    "DE",
-    "DE-1160",
-    "Itz-, Rodach- und Baunachaue Bird Sanctuary",
-    "Itz-, Rodach- und Baunachaue"
-   ],
-   [
-    "DE",
-    "DE-1162",
-    "Muschelkalkh\u00e4nge nord\u00f6stlich Bayreuth Flora and Fauna Reserve",
-    "Muschelkalkh\u00e4nge nord\u00f6stlich Bayreuth"
-   ],
-   [
-    "DE",
-    "DE-1163",
-    "Mainaue und Muschelkalkh\u00e4nge zwischen Kauerndorf und Trebgast Flora and Fauna Reserve",
-    "Mainaue und Muschelkalkh\u00e4nge zwischen Kauerndorf und Trebgast"
-   ],
-   [
-    "DE",
-    "DE-1164",
-    "Muschelkalkh\u00e4nge der westlichen Saaleplatte Bird Sanctuary",
-    "Muschelkalkh\u00e4nge der westlichen Saaleplatte"
-   ],
-   [
-    "DE",
-    "DE-1165",
-    "Ackerh\u00fcgelland n\u00f6rdlich Weimar mit Ettersberg Bird Sanctuary",
-    "Ackerh\u00fcgelland n\u00f6rdlich Weimar mit Ettersberg"
-   ],
-   [
-    "DE",
-    "DE-1166",
-    "Kernberge - W\u00f6llmisse Flora and Fauna Reserve",
-    "Kernberge - W\u00f6llmisse"
-   ],
-   [
-    "DE",
-    "DE-1167",
-    "Gro\u00dfer Gleisberg - Jenzig Flora and Fauna Reserve",
-    "Gro\u00dfer Gleisberg - Jenzig"
-   ],
-   [
-    "DE",
-    "DE-1168",
-    "Tautenburger Forst - Hohe Lehde - Gleistalh\u00e4nge Flora and Fauna Reserve",
-    "Tautenburger Forst - Hohe Lehde - Gleistalh\u00e4nge"
-   ],
-   [
-    "DE",
-    "DE-1169",
-    "N\u00f6rdliches Erdinger Moos Bird Sanctuary",
-    "N\u00f6rdliches Erdinger Moos"
-   ],
-   [
-    "DE",
-    "DE-1170",
-    "Moselh\u00e4nge und Nebent\u00e4ler der unteren Mosel Flora and Fauna Reserve",
-    "Moselh\u00e4nge und Nebent\u00e4ler der unteren Mosel"
-   ],
-   [
-    "DE",
-    "DE-1171",
-    "W\u00e4lder zwischen Wittlich und Cochem Bird Sanctuary",
-    "W\u00e4lder zwischen Wittlich und Cochem"
-   ],
-   [
-    "DE",
-    "DE-1174",
-    "Ackerh\u00fcgelland westlich Erfurt mit Fahnerscher H\u00f6he Bird Sanctuary",
-    "Ackerh\u00fcgelland westlich Erfurt mit Fahnerscher H\u00f6he"
-   ],
-   [
-    "DE",
-    "DE-1175",
-    "Waldecker Schlo\u00dfgrund - Langes Tal Flora and Fauna Reserve",
-    "Waldecker Schlo\u00dfgrund - Langes Tal"
-   ],
-   [
-    "DE",
-    "DE-1176",
-    "An den Ziegenb\u00f6cken Flora and Fauna Reserve",
-    "An den Ziegenb\u00f6cken"
-   ],
-   [
-    "DE",
-    "DE-1177",
-    "Am Schwertstein - Himmelsgrund Flora and Fauna Reserve",
-    "Am Schwertstein - Himmelsgrund"
-   ],
-   [
-    "DE",
-    "DE-1178",
-    "Zeitzgrund - Teufelstal - Hermsdorfer Moore Flora and Fauna Reserve",
-    "Zeitzgrund - Teufelstal - Hermsdorfer Moore"
-   ],
-   [
-    "DE",
-    "DE-1179",
-    "Hainberg - Weinberg Flora and Fauna Reserve",
-    "Hainberg - Weinberg"
-   ],
-   [
-    "DE",
-    "DE-1181",
-    "P\u00f6llwitzer Wald Bird Sanctuary",
-    "P\u00f6llwitzer Wald"
-   ],
-   [
-    "DE",
-    "DE-1182",
-    "Saale-Elster-Aue s\u00fcdlich Halle Bird Sanctuary",
-    "Saale-Elster-Aue s\u00fcdlich Halle"
-   ],
-   [
-    "DE",
-    "DE-1187",
-    "Mittlerer D\u00fcn Flora and Fauna Reserve",
-    "Mittlerer D\u00fcn"
-   ],
-   [
-    "DE",
-    "DE-1188",
-    "Donaumoosb\u00e4che, Zucheringer W\u00f6rth und Brucker Forst Flora and Fauna Reserve",
-    "Donaumoosb\u00e4che, Zucheringer W\u00f6rth und Brucker Forst"
-   ],
-   [
-    "DE",
-    "DE-1189",
-    "Donauauen mit Gerolfinger Eichenwald Flora and Fauna Reserve",
-    "Donauauen mit Gerolfinger Eichenwald"
-   ],
-   [
-    "DE",
-    "DE-1190",
-    "Lechauen n\u00f6rdlich Augsburg Flora and Fauna Reserve",
-    "Lechauen n\u00f6rdlich Augsburg"
-   ],
-   [
-    "DE",
-    "DE-1191",
-    "Muschelkalkgebiet s\u00fcd\u00f6stlich Erfurt Bird Sanctuary",
-    "Muschelkalkgebiet s\u00fcd\u00f6stlich Erfurt"
-   ],
-   [
-    "DE",
-    "DE-1193",
-    "Aschendorfer Obermoor / Wildes Moor Nature Reserve",
-    "Aschendorfer Obermoor / Wildes Moor"
-   ],
-   [
-    "DE",
-    "DE-1194",
-    "Theikenmeer Nature Reserve",
-    "Theikenmeer"
-   ],
-   [
-    "DE",
-    "DE-1195",
-    "Melmmoor/Kuhdammoor Nature Reserve",
-    "Melmmoor/ Kuhdammoor"
-   ],
-   [
-    "DE",
-    "DE-1196",
-    "Ferbitzer Bruch Nature Reserve",
-    "Ferbitzer Bruch"
-   ],
-   [
-    "DE",
-    "DE-1202",
-    "Fort Hahneberg Historic Site",
-    "Fort Hahneberg"
-   ],
-   [
-    "DE",
-    "DE-1206",
-    "Eper-Graeser Venn Nature Reserve",
-    "NSG Eper-Graeser Venn"
-   ],
-   [
-    "DE",
-    "DE-1213",
-    "Talsperre Th\u00fclsfeld Nature Reserve",
-    "Talsperre Th\u00fclsfeld"
-   ],
-   [
-    "DE",
-    "DE-1215",
-    "Odertal Frankfurt-Lebus mit Pontischen H\u00e4ngen Nature Reserve",
-    "Odertal Frankfurt-Lebus mit Pontischen H\u00e4ngen"
-   ],
-   [
-    "DE",
-    "DE-1216",
-    "Auenw\u00e4lder und Feuchtwiesen westlich von \u00d6tigheim Nature Reserve",
-    "Auenw\u00e4lder und Feuchtwiesen westlich von \u00d6tigheim"
-   ],
-   [
-    "DE",
-    "DE-1218",
-    "Unterer Neckar Heidelberg - Mannheim Flora and Fauna Reserve",
-    "Unterer Neckar Heidelberg - Mannheim"
-   ],
-   [
-    "DE",
-    "DE-1219",
-    "Gotteskoog-Gebiet Bird Sanctuary",
-    "Gotteskoog-Gebiet"
-   ],
-   [
-    "DE",
-    "DE-1223",
-    "Ohrn-, Kupfer- und Forellental Flora and Fauna Reserve",
-    "Ohrn-, Kupfer- und Forellental"
-   ],
-   [
-    "DE",
-    "DE-1224",
-    "Schw\u00e4bisch Haller Bucht Flora and Fauna Reserve",
-    "Schw\u00e4bisch Haller Bucht"
-   ],
-   [
-    "DE",
-    "DE-1225",
-    "Kochertal Schw\u00e4bisch Hall - K\u00fcnzelsau Natura 2000",
-    "Kochertal Schw\u00e4bisch Hall - K\u00fcnzelsau"
-   ],
-   [
-    "DE",
-    "DE-1229",
-    "Werra- und Wehretal Flora and Fauna Reserve",
-    "Werra- und Wehretal"
-   ],
-   [
-    "DE",
-    "DE-1230",
-    "Oberes B\u00fchlertal Flora and Fauna Reserve",
-    "Oberes B\u00fchlertal"
-   ],
-   [
-    "DE",
-    "DE-1231",
-    "Niestetal und Niesteh\u00e4nge Flora and Fauna Reserve",
-    "Niestetal und Niesteh\u00e4nge"
-   ],
-   [
-    "DE",
-    "DE-1233",
-    "Biosph\u00e4renreservat S\u00fcdost-R\u00fcgen Biosphere Reserve",
-    "S\u00fcdost-R\u00fcgen"
-   ],
-   [
-    "DE",
-    "DE-1234",
-    "Neuensiener und Selliner See Nature Reserve",
-    "Neuensiener und Selliner See: Neuensiener See"
-   ],
-   [
-    "DE",
-    "DE-1235",
-    "Spyckerscher See und Mittelsee Nature Reserve",
-    "Spyckerscher See und Mittelsee"
-   ],
-   [
-    "DE",
-    "DE-1236",
-    "Roter See bei Glowe Nature Reserve",
-    "Roter See bei Glowe"
-   ],
-   [
-    "DE",
-    "DE-1237",
-    "Steilk\u00fcste und Blockgr\u00fcnde Wittow Flora and Fauna Reserve",
-    "Steilk\u00fcste und Blockgr\u00fcnde Wittow"
-   ],
-   [
-    "DE",
-    "DE-1238",
-    "Nordr\u00fcgensche Boddenlandschaft Flora and Fauna Reserve",
-    "Nordr\u00fcgensche Boddenlandschaft"
-   ],
-   [
-    "DE",
-    "DE-1239",
-    "Dar\u00df Flora and Fauna Reserve",
-    "Dar\u00df"
-   ],
-   [
-    "DE",
-    "DE-1240",
-    "Kleiner Jasmunder Bodden mit Halbinseln und Schmaler Heide Flora and Fauna Reserve",
-    "Kleiner Jasmunder Bodden mit Halbinseln und Schmaler Heide"
-   ],
-   [
-    "DE",
-    "DE-1241",
-    "M\u00f6nchgut: Zicker Nature Reserve",
-    "M\u00f6nchgut: Zicker"
-   ],
-   [
-    "DE",
-    "DE-1247",
-    "Oberes Rhinluch Nature Reserve",
-    "Oberes Rhinluch"
-   ],
-   [
-    "DE",
-    "DE-1248",
-    "Kremmener Luch Nature Reserve",
-    "Kremmener Luch"
-   ],
-   [
-    "DE",
-    "DE-1250",
-    "Alte Sorge-Schleife Nature Reserve",
-    "Alte Sorge-Schleife"
-   ],
-   [
-    "DE",
-    "DE-1251",
-    "NSG Lippeaue Nature Reserve",
-    "NSG Lippeaue"
-   ],
-   [
-    "DE",
-    "DE-1253",
-    "Bibert und Haselbach Flora and Fauna Reserve",
-    "Bibert und Haselbach"
-   ],
-   [
-    "DE",
-    "DE-1255",
-    "H\u00f6rselberge Flora and Fauna Reserve",
-    "H\u00f6rselberge"
-   ],
-   [
-    "DE",
-    "DE-1256",
-    "Plesse-Konstein-Karnberg Flora and Fauna Reserve",
-    "Plesse-Konstein-Karnberg"
-   ],
-   [
-    "DE",
-    "DE-1261",
-    "Rednitztal Flora and Fauna Reserve",
-    "Rednitztal - Mitte"
-   ],
-   [
-    "DE",
-    "DE-1262",
-    "Zenn von St\u00f6ckach bis zur M\u00fcndung Flora and Fauna Reserve",
-    "Zenn von St\u00f6ckach bis zur M\u00fcndung"
-   ],
-   [
-    "DE",
-    "DE-1263",
-    "Rodacher Wald mit Ruhh\u00fcgel Flora and Fauna Reserve",
-    "Rodacher Wald mit Ruhh\u00fcgel"
-   ],
-   [
-    "DE",
-    "DE-1264",
-    "Lundener Niederung Nature Reserve",
-    "Lundener Niederung"
-   ],
-   [
-    "DE",
-    "DE-1265",
-    "Gro\u00dfe Wiese Nature Reserve",
-    "NSG Grosse Wiese"
-   ],
-   [
-    "DE",
-    "DE-1266",
-    "B\u00fchlertal Vellberg - Geislingen Flora and Fauna Reserve",
-    "B\u00fchlertal Vellberg - Geislingen"
-   ],
-   [
-    "DE",
-    "DE-1267",
-    "Jagsttal D\u00f6rzbach - Krautheim Flora and Fauna Reserve",
-    "Jagsttal D\u00f6rzbach - Krautheim"
-   ],
-   [
-    "DE",
-    "DE-1268",
-    "Flutgrabenaue Waltersdorf Nature Reserve",
-    "Flutgrabenaue Waltersdorf"
-   ],
-   [
-    "DE",
-    "DE-1270",
-    "Werra-Aue zwischen Breitungen und Creuzburg Bird Sanctuary",
-    "Werra-Aue zwischen Breitungen und Creuzburg"
-   ],
-   [
-    "DE",
-    "DE-1271",
-    "Jagsttal Langenburg - Mulfingen Flora and Fauna Reserve",
-    "Jagsttal Langenburg - Mulfingen"
-   ],
-   [
-    "DE",
-    "DE-1272",
-    "Emsaue westlich Warendorf Nature Reserve",
-    "NSG Emsaue westlich Warendorf"
-   ],
-   [
-    "DE",
-    "DE-1273",
-    "Jagsttal bei Sch\u00f6ntal und Klosterwald Flora and Fauna Reserve",
-    "Jagsttal bei Sch\u00f6ntal und Klosterwald"
-   ],
-   [
-    "DE",
-    "DE-1274",
-    "Wetterau Bird Sanctuary",
-    "Wetterau"
    ],
    [
     "DO",
@@ -7551,9 +3464,21 @@
    ],
    [
     "GB",
-    "GB-0287",
-    "Rainham Marshes RSPB Reserve",
-    "RAINHAM MARSHES"
+    "GB-0114",
+    "Elmley Marshes National Nature Reserve",
+    "ELMLEY MARSHES"
+   ],
+   [
+    "GB",
+    "GB-0228",
+    "Mersey Estuary SPA/SAC/Ramsar (and RSPB) Protected Area",
+    "MERSEY ESTUARY"
+   ],
+   [
+    "GB",
+    "GB-0774",
+    "Binevenagh Area of Outstanding Natural Beauty",
+    "Binevenagh"
    ],
    [
     "GB",
@@ -7566,6 +3491,12 @@
     "GB-0904",
     "Hirsel Country Park",
     "The Hirsel"
+   ],
+   [
+    "GB",
+    "GB-4973",
+    "Drumkeeragh National Park",
+    "Drumkeeragh"
    ],
    [
     "GB",
@@ -7584,12 +3515,6 @@
     "GT-0005",
     "Yaxh\u00e1 National Park",
     "Yaxh\u00e1"
-   ],
-   [
-    "JP",
-    "JP-0007",
-    "Towada-Hachimantai National Park",
-    "towada hachimantai"
    ],
    [
     "JP",
@@ -7736,22 +3661,22 @@
     "Sierra de \u00c1lamos-R\u00edo Cuchujaqui"
    ],
    [
-    "NC",
-    "NC-0023",
-    "parc provincial de la rivi\u00e8re Bleue Nature Reserve",
-    "Rivi\u00e8re bleue"
+    "NI",
+    "NI-0013",
+    "Chocoyero-El Brujo Nature Reserve",
+    "Chocoyero El Brujo"
    ],
    [
-    "NC",
-    "NC-0025",
-    "Reserve Naturelle de la Haute Pourina Nature Reserve",
-    "Haute Pourina"
+    "NI",
+    "NI-0024",
+    "Cerro Arenal Nature Reserve",
+    "Cerro Arenal"
    ],
    [
-    "NC",
-    "NC-0049",
-    "Mont DO Nature Reserve",
-    "Mont Do"
+    "NI",
+    "NI-0057",
+    "R\u00edo Escalante \u2013 Chacocente Nature Reserve",
+    "R\u00edo Escalante Chacocente"
    ],
    [
     "NL",
@@ -7760,10 +3685,10 @@
     "Voordelta"
    ],
    [
-    "NO",
-    "NO-2977",
-    "Hjerkinn/Kongsvoll/Drivdalen Landscape Reserve",
-    "Hjerkinn"
+    "NZ",
+    "NZ-0015",
+    "Orere Point Regional Park",
+    "Orere Point Road"
    ],
    [
     "NZ",
@@ -7824,6 +3749,12 @@
     "NZ-0862",
     "Taupiri Scenic Reserve",
     "Taupiri Recreation Reserve"
+   ],
+   [
+    "OM",
+    "OM-0005",
+    "Al Rustaq Wildlife Reserve",
+    "Al Rustaq Wildlife Reserve"
    ],
    [
     "PA",
@@ -7890,12 +3821,6 @@
     "PT-0318",
     "Machico Protected Area",
     "Machico"
-   ],
-   [
-    "PT",
-    "PT-0382",
-    "Litoral Norte Protected Landscape Area",
-    "Litoral Norte"
    ],
    [
     "PT",

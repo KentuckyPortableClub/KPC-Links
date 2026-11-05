@@ -1,9 +1,10 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **177 of 181** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **180 of 181** parks joined to official land (same name + same kind of place). **1** to check by hand, **0** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0367** Northern Tallgrass Prairie National Wildlife Refuge (National Wildlife Refuge) → Northern Tallgrass Prairie National Wildlife Refuge (~876 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline)); Northern Tallgrass Prairie National Wildlife Refuge (~763 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline)); Northern Tallgrass Prairie National Wildlife Refuge (~159 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline)); Northern Tallgrass Prairie National Wildlife Refuge (~114 ac, same name far from the pin, no join at the pin (Nov 1: check, never an outline))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -12,9 +13,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-0367 Northern Tallgrass Prairie National Wildlife Refuge (National Wildlife Refuge)
-- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
-- US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

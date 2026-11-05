@@ -1,4 +1,6 @@
 {
+ "previous_build": "US-41984527710",
+ "previous_built": "2026-11-05 07:13 UTC",
  "states": {
   "AK": {
    "check": 14,
@@ -230,41 +232,41 @@
   },
   "IA": {
    "check": 1,
-   "detail": 0.01,
+   "detail": 0.001,
    "matched": 180,
    "none": 0,
-   "nonum": 7618,
-   "padus": 9086,
+   "nonum": 7636,
+   "padus": 9104,
    "parks": 181,
    "pin_no_shape": 0,
-   "pin_outside": 72,
+   "pin_outside": 31,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 4910,
-   "seconds": 255,
+   "seconds": 334,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
    "site": 2
   },
   "ID": {
-   "check": 16,
-   "detail": 0.01,
-   "matched": 226,
-   "none": 33,
+   "check": 17,
+   "detail": 0.001,
+   "matched": 225,
+   "none": 25,
    "nonum": 6537,
    "padus": 7125,
    "parks": 362,
    "pin_no_shape": 0,
-   "pin_outside": 73,
+   "pin_outside": 33,
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 1662,
-   "seconds": 251,
+   "seconds": 293,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 90
+   "site": 98
   },
   "IL": {
    "check": 7,
@@ -960,6 +962,6 @@
   ".github/key-rules-version.json"
  ],
  "rules_of_run": "3dc53f70256a",
- "build": "US-41984527710",
- "built": "2026-11-05 07:13 UTC"
+ "build": "US-41995722306",
+ "built": "2026-11-05 08:46 UTC"
 }
