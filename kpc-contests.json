@@ -1,100 +1,6 @@
 {
- "updated": "2026-11-04T18:15:25Z",
+ "updated": "2026-11-05T11:08:05Z",
  "week": [
-  {
-   "name": "VHF-UHF FT8 Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9lwi",
-   "when": "1700Z-2100Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T17:00Z",
-     "2026-11-04T21:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gs1if",
-   "when": "1700Z-1759Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T17:00Z",
-     "2026-11-04T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 80",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gswdk",
-   "when": "1800Z-1859Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T18:00Z",
-     "2026-11-04T18:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ggw42",
-   "when": "1900Z-2000Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T19:00Z",
-     "2026-11-04T20:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fa8on",
-   "when": "2000Z-2100Z, Nov 4",
-   "segs": [
-    [
-     "2026-11-04T20:00Z",
-     "2026-11-04T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "VHF-UHF FT8 Activity Contest-NA",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ga94w",
-   "when": "0000Z-0500Z, Nov 5",
-   "segs": [
-    [
-     "2026-11-05T00:00Z",
-     "2026-11-05T05:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
   {
    "name": "Walk for the Bacon QRP Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gaw7v",
@@ -113,38 +19,6 @@
    "kinds": [
     "QRP"
    ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghqz6",
-   "when": "0300Z-0400Z, Nov 5",
-   "segs": [
-    [
-     "2026-11-05T03:00Z",
-     "2026-11-05T04:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gilua",
-   "when": "0700Z-0800Z, Nov 5",
-   "segs": [
-    [
-     "2026-11-05T07:00Z",
-     "2026-11-05T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
    "src": "WA7BNM"
   },
   {
@@ -430,6 +304,146 @@
     ]
    ],
    "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gxe9i",
+   "when": "0200Z-0330Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T02:00Z",
+     "2026-11-11T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gqjep",
+   "when": "0230Z-0300Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T02:30Z",
+     "2026-11-11T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gred7",
+   "when": "1145Z-1300Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T11:45Z",
+     "2026-11-11T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gg8yq",
+   "when": "1300Z-1400Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T13:00Z",
+     "2026-11-11T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9tma",
+   "when": "1700Z-2100Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T17:00Z",
+     "2026-11-11T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gs987",
+   "when": "1700Z-1759Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T17:00Z",
+     "2026-11-11T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gt43c",
+   "when": "1800Z-1859Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T18:00Z",
+     "2026-11-11T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gh3tu",
+   "when": "1900Z-2000Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T19:00Z",
+     "2026-11-11T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "RSGB 80m Autumn Series, SSB",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g8bfv",
+   "when": "2000Z-2130Z, Nov 11",
+   "segs": [
+    [
+     "2026-11-11T20:00Z",
+     "2026-11-11T21:30Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1193,44 +1207,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RS(T), age (avg age for multiops)"
-  },
-  {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.ukeicc.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-04T20:00Z",
-     "2026-11-04T21:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5",
-   "exch": "6-char grid"
-  },
-  {
-   "name": "VHF-UHF FT8 Activity Contest-NA",
-   "url": "https://ft8activity-na.net",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-05T00:00Z",
-     "2026-11-05T05:01Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "CORRAL",
-   "bands": "144",
-   "exch": "4-char grid"
   },
   {
    "name": "Walk for the Bacon QRP Contest",
@@ -2755,7 +2731,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (28)",
-  "CORRAL": "ok (82)"
+  "WA7BNM": "ok (29)",
+  "CORRAL": "ok (80)"
  }
 }
