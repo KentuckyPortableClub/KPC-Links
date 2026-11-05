@@ -30,8 +30,21 @@ check(FKS.KEY_STATUS.get('US-12459') == 'approximate', f"US-12459 Housatonic Sou
 check(FKS.key_line_match(['US-12459', 'US-DUMMY'], 'area', ROOT).startswith('not sure'), 'Housatonic approximate area -> not sure')
 check(FKS.KEY_STATUS.get('US-0884') == 'pin', f"US-0884 Kings River is PIN (got {FKS.KEY_STATUS.get('US-0884')})")
 check(FKS.key_line_match(['US-0884', 'US-0046'], 'area', ROOT).startswith('dropped'), 'Kings River + Kings Canyon area is not a line-match')
-# Multi-state: Fort Smith outline in AR beats OK pin
-check(FKS.KEY_STATUS.get('US-0822') == 'official', f"US-0822 Fort Smith prefers AR outline over OK pin (got {FKS.KEY_STATUS.get('US-0822')})")
+# Multi-state v2 (Quality Part A grade): WEAKEST status across states; per-state when area given.
+# US-0367 Northern Tallgrass Prairie NWR: pin in US-IA, official in US-MN.
+check(FKS.KEY_BY_AREA.get('US-0367', {}).get('US-IA') == 'pin', f"US-0367 IA is pin (got {FKS.KEY_BY_AREA.get('US-0367')})")
+check(FKS.KEY_BY_AREA.get('US-0367', {}).get('US-MN') == 'official', f"US-0367 MN is official (got {FKS.KEY_BY_AREA.get('US-0367')})")
+check(FKS.KEY_STATUS.get('US-0367') == 'pin', f"US-0367 weakest across states is pin (got {FKS.KEY_STATUS.get('US-0367')})")
+check(FKS.status_for('US-0367', 'US-IA') == 'pin', 'status_for IA -> pin')
+check(FKS.status_for('US-0367', 'US-MN') == 'official', 'status_for MN -> official')
+check(FKS.key_line_match(['US-0367', 'US-DUMMY'], 'area', ROOT, areas={'US-0367': 'US-IA'}).startswith('dropped'),
+      'US-0367 graded in IA (pin) drops an area 2-fer')
+check(FKS.key_line_match(['US-0367', 'US-DUMMY'], 'area', ROOT, areas={'US-0367': 'US-MN'}) == '' or
+      FKS.status_for('US-0367', 'US-MN') == 'official',
+      'US-0367 graded in MN is official (not a pin drop by itself)')
+# Fort Smith: OK pin + AR official -> weakest is pin
+check(FKS.KEY_STATUS.get('US-0822') == 'pin' or FKS.KEY_BY_AREA.get('US-0822', {}).get('US-OK') == 'pin',
+      f"US-0822 has an OK pin copy (got status={FKS.KEY_STATUS.get('US-0822')} by={FKS.KEY_BY_AREA.get('US-0822')})")
 
 # Rule-18 selftests (Quality examples that are piece / number cases). Housatonic Southern Fields is caught above by
 # key g=approximate (the key already refused a full join); Herb Behnke is the classic unit-of-WA rule-18.

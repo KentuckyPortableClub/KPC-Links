@@ -2518,13 +2518,14 @@ def water_date(s):
 
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
-    # Nov 6 (Quality 2-fer grade): area/same-land must follow the current key's PIN / approximate status
-    _klm = key_line_match(s.get('refs') or [], s.get('kind'))
-    if _klm:
-        s['status'] = _klm; return
     refs = s['refs']
     s['checked'] = today
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
+    # Nov 6 / Part A v2: area/same-land follow key PIN/approximate PER STATE (weakest if area unknown)
+    _areas = {r: (st_of(r) if callable(st_of) else '') for r in refs}
+    _klm = key_line_match(refs, s.get('kind'), areas=_areas)
+    if _klm:
+        s['status'] = _klm; return
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
     if any(r in saved_only for r in refs):
         s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
