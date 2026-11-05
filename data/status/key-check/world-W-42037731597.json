@@ -1,0 +1,5021 @@
+{
+ "key": "world",
+ "build": "W-42037731597",
+ "built": "2026-11-05 16:56 UTC",
+ "checked": "2026-11-05 16:57",
+ "new_ref": "d7eff9e10099",
+ "new_what": "the checked-out files (main as the build left it, plus any later commits)",
+ "prev_ref": "6d8d79b2a84f",
+ "changes": {
+  "gained": [],
+  "lost": [],
+  "outline_to_pin": [
+   "DE-0095"
+  ],
+  "pin_to_outline": [
+   "BS-0001",
+   "BS-0002",
+   "BS-0003",
+   "BS-0005",
+   "BS-0006",
+   "BS-0007",
+   "BS-0009",
+   "BS-0011",
+   "BS-0012",
+   "BS-0013",
+   "BS-0014",
+   "BS-0015",
+   "BS-0016",
+   "BS-0017",
+   "BS-0018",
+   "BS-0019",
+   "BS-0020",
+   "BS-0021",
+   "BS-0022",
+   "BS-0023",
+   "BS-0024",
+   "BS-0032",
+   "BS-0050",
+   "BW-0001",
+   "BW-0002",
+   "BW-0004",
+   "BW-0005",
+   "BW-0006",
+   "BW-0007",
+   "BZ-0017",
+   "BZ-0033",
+   "BZ-0044",
+   "BZ-0051",
+   "BZ-0053",
+   "BZ-0056",
+   "BZ-0058",
+   "BZ-0073",
+   "BZ-0075",
+   "BZ-0077",
+   "BZ-0078",
+   "CV-0002",
+   "CV-0003",
+   "CV-0006",
+   "CV-0007",
+   "CV-0008",
+   "CV-0009",
+   "CV-0010",
+   "CV-0011",
+   "CV-0012",
+   "CV-0013",
+   "CV-0014",
+   "CV-0015",
+   "CV-0016",
+   "CV-0019",
+   "CV-0020",
+   "CV-0021",
+   "CV-0023",
+   "CV-0024",
+   "CV-0025",
+   "CV-0026",
+   "CV-0027",
+   "CV-0028",
+   "CV-0029",
+   "CV-0030",
+   "CV-0031",
+   "CV-0032",
+   "CV-0033",
+   "CV-0034",
+   "CV-0035",
+   "DE-0003",
+   "DE-0005",
+   "DE-0007",
+   "DE-0009",
+   "DE-0010",
+   "DE-0014",
+   "DE-0017",
+   "DE-0020",
+   "DE-0021",
+   "DE-0022",
+   "DE-0024",
+   "DE-0030",
+   "DE-0033",
+   "DE-0035",
+   "DE-0037",
+   "DE-0039",
+   "DE-0040",
+   "DE-0041",
+   "DE-0045",
+   "DE-0047",
+   "DE-0048",
+   "DE-0051",
+   "DE-0054",
+   "DE-0057",
+   "DE-0058",
+   "DE-0062",
+   "DE-0065",
+   "DE-0066",
+   "DE-0068",
+   "DE-0071",
+   "DE-0073",
+   "DE-0084",
+   "DE-0086",
+   "DE-0093",
+   "DE-0098",
+   "DE-0100",
+   "DE-0101",
+   "DE-0102",
+   "DE-0103",
+   "DE-0106",
+   "DE-0108",
+   "DE-0110",
+   "GB-0780",
+   "GB-0787",
+   "GB-0791",
+   "GB-0802",
+   "GB-0804",
+   "GB-2585",
+   "GB-2998",
+   "GB-3007",
+   "GB-3016",
+   "GB-4136",
+   "GB-4436",
+   "GB-4594",
+   "GB-4638",
+   "GB-5553",
+   "GB-5931",
+   "GB-6728",
+   "GB-6778",
+   "GB-7192",
+   "GB-7196",
+   "NC-0004",
+   "NC-0023",
+   "NC-0024",
+   "NC-0025",
+   "NC-0026",
+   "NC-0027",
+   "NC-0029",
+   "NC-0030",
+   "NC-0032",
+   "NC-0033",
+   "NC-0034",
+   "NC-0039",
+   "NC-0040",
+   "NC-0046",
+   "NC-0047",
+   "NC-0049",
+   "NC-0050",
+   "NC-0052",
+   "NC-0055"
+  ],
+  "outline_changed": [
+   "BZ-0001",
+   "BZ-0002",
+   "BZ-0003",
+   "BZ-0004",
+   "BZ-0005",
+   "BZ-0006",
+   "BZ-0007",
+   "BZ-0008",
+   "BZ-0009",
+   "BZ-0010",
+   "BZ-0011",
+   "BZ-0012",
+   "BZ-0015",
+   "BZ-0016",
+   "BZ-0018",
+   "BZ-0020",
+   "BZ-0028",
+   "BZ-0029",
+   "BZ-0031",
+   "BZ-0032",
+   "BZ-0034",
+   "BZ-0035",
+   "BZ-0036",
+   "BZ-0037",
+   "BZ-0038",
+   "BZ-0042",
+   "BZ-0045",
+   "BZ-0046",
+   "BZ-0047",
+   "BZ-0048",
+   "BZ-0049",
+   "BZ-0050",
+   "BZ-0055",
+   "BZ-0060",
+   "BZ-0062",
+   "BZ-0063",
+   "BZ-0076",
+   "BZ-0080",
+   "DE-0001",
+   "DE-0002",
+   "DE-0004",
+   "DE-0006",
+   "DE-0008",
+   "DE-0011",
+   "DE-0012",
+   "DE-0013",
+   "DE-0015",
+   "DE-0018",
+   "DE-0019",
+   "DE-0023",
+   "DE-0025",
+   "DE-0026",
+   "DE-0027",
+   "DE-0028",
+   "DE-0029",
+   "DE-0031",
+   "DE-0032",
+   "DE-0036",
+   "DE-0038",
+   "DE-0042",
+   "DE-0044",
+   "DE-0046",
+   "DE-0049",
+   "DE-0050",
+   "DE-0052",
+   "DE-0053",
+   "DE-0056",
+   "DE-0059",
+   "DE-0060",
+   "DE-0061",
+   "DE-0063",
+   "DE-0064",
+   "DE-0067",
+   "DE-0069",
+   "DE-0070",
+   "DE-0072",
+   "DE-0074",
+   "DE-0075",
+   "DE-0076",
+   "DE-0077",
+   "DE-0078",
+   "DE-0080",
+   "DE-0082",
+   "DE-0083",
+   "DE-0085",
+   "DE-0087",
+   "DE-0088",
+   "DE-0089",
+   "DE-0090",
+   "DE-0091",
+   "DE-0092",
+   "DE-0094",
+   "DE-0096",
+   "DE-0097",
+   "DE-0099",
+   "DE-0104",
+   "DE-0105",
+   "DE-0107",
+   "DE-0109",
+   "DE-0111",
+   "DE-0112",
+   "DE-0113",
+   "DE-0162",
+   "DE-0177",
+   "DE-0207",
+   "DE-0208",
+   "DE-0366",
+   "DE-0408",
+   "DE-0730",
+   "DE-0740",
+   "DO-0019",
+   "DO-0024",
+   "DO-0026",
+   "DO-0030",
+   "DO-0038",
+   "DO-0039",
+   "DO-0047",
+   "DO-0050",
+   "DO-0055",
+   "DO-0057",
+   "DO-0060",
+   "DO-0061",
+   "DO-0076",
+   "DO-0084",
+   "DO-0110",
+   "DO-0140",
+   "DO-0145",
+   "DO-0157",
+   "DO-0160",
+   "DO-0161",
+   "DO-0162",
+   "PR-0057"
+  ]
+ },
+ "flat": [],
+ "pins_outside": [
+  {
+   "park": "AT-0029",
+   "area": "AT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AT-0196",
+   "area": "AT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AT-0308",
+   "area": "AT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AT-0388",
+   "area": "AT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AT-0414",
+   "area": "AT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-0016",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-0312",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-0345",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-0448",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-3273",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-3672",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-3923",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-4021",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-4022",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-5170",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-5171",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-5172",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-5809",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-7029",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-7183",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-7318",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-7445",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "AU-9788",
+   "area": "AU",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "BZ-0015",
+   "area": "BZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "BZ-0033",
+   "area": "BZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "BZ-0034",
+   "area": "BZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "BZ-0035",
+   "area": "BZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "BZ-0056",
+   "area": "BZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CH-0225",
+   "area": "CH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CH-0226",
+   "area": "CH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CL-0012",
+   "area": "CL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CL-0037",
+   "area": "CL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CL-0049",
+   "area": "CL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "CL-0110",
+   "area": "CL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DE-0084",
+   "area": "DE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DO-0027",
+   "area": "DO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DO-0085",
+   "area": "DO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DO-0095",
+   "area": "DO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DO-0117",
+   "area": "DO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "DO-0132",
+   "area": "DO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "EE-0015",
+   "area": "EE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "EE-0060",
+   "area": "EE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0033",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0044",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0058",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0198",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0737",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0785",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-0832",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-1477",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-1665",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-1717",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ES-1740",
+   "area": "ES",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0100",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0103",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0108",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0238",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0378",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0528",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-0590",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1086",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1417",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1461",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1519",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1582",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1593",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FI-1723",
+   "area": "FI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-10270",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-10432",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-10548",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11106",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11182",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11218",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11230",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11644",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11649",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11650",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11822",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11879",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11889",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11912",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11913",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11914",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11931",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-11941",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12077",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12099",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12129",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12133",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12171",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12251",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12255",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12257",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12279",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12299",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12310",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12328",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12351",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12352",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12355",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12360",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12366",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12400",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12401",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12419",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12420",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12432",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12439",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12448",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12464",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12472",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12491",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12495",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12513",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12518",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12520",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12522",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12528",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12540",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12542",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12543",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12553",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12554",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12573",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12574",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12580",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12583",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12585",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12602",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12634",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12640",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12641",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12653",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12722",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12826",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12900",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-12975",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13008",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13057",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13063",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13148",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13203",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13308",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13422",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13627",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13748",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13779",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13795",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13803",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-13968",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14015",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14049",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14064",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14144",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14356",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14400",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14402",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14434",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14437",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14446",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14462",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14476",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14477",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14478",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14479",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14482",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14483",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14487",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14495",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14496",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14497",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14629",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14631",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14637",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14647",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14648",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14650",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14651",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14652",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14656",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14667",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14704",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14857",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14903",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14939",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14968",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14969",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14979",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-14994",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15145",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15165",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15184",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15204",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15296",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15347",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-15350",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-16532",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-1954",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-2560",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-2929",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3060",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3061",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3156",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3401",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3530",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3611",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3625",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3638",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3773",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-3912",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-4414",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-4445",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-6023",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-6035",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-6682",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-9421",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-9428",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "FR-9661",
+   "area": "FR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GA-0001",
+   "area": "GA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0056",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0114",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0228",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0774",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0836",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0849",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0858",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0904",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-0955",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-1060",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-4973",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-4987",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-5213",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-5531",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GB-7057",
+   "area": "GB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "GT-0005",
+   "area": "GT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-0114",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-0148",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-0151",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-1110",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-1114",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "JP-1720",
+   "area": "JP",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "KE-0009",
+   "area": "KE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "KE-0018",
+   "area": "KE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "KE-0022",
+   "area": "KE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "KE-0023",
+   "area": "KE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "LK-0026",
+   "area": "LK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "LK-0027",
+   "area": "LK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "LR-0006",
+   "area": "LR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0016",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0140",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0141",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0145",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0147",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0176",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0180",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0181",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0186",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0191",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "MX-0221",
+   "area": "MX",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NC-0023",
+   "area": "NC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NC-0025",
+   "area": "NC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NC-0049",
+   "area": "NC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NI-0013",
+   "area": "NI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NI-0024",
+   "area": "NI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NI-0057",
+   "area": "NI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NL-0204",
+   "area": "NL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0015",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0022",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0051",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0143",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0210",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0520",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0576",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0661",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0720",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0818",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "NZ-0862",
+   "area": "NZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "OM-0005",
+   "area": "OM",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PA-0043",
+   "area": "PA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PA-0044",
+   "area": "PA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PA-0048",
+   "area": "PA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0015",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0063",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0137",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0146",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0262",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0263",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0283",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0318",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PT-0414",
+   "area": "PT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PY-0008",
+   "area": "PY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PY-0032",
+   "area": "PY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "PY-0033",
+   "area": "PY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-0322",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-0450",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-0573",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-0880",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-0883",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "RO-1019",
+   "area": "RO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-0199",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-0266",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-1574",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-1575",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-2042",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-2138",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-2179",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SE-2180",
+   "area": "SE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SI-0361",
+   "area": "SI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SK-0300",
+   "area": "SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "SV-0003",
+   "area": "SV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "UY-0049",
+   "area": "UY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "VI-0006",
+   "area": "VI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ZA-0075",
+   "area": "ZA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ZA-0085",
+   "area": "ZA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ZA-0156",
+   "area": "ZA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "ZA-0157",
+   "area": "ZA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  }
+ ],
+ "pins_at_edge": [],
+ "bad_pins": [
+  {
+   "park": "MX-0228",
+   "area": "MX",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "MX-0242",
+   "area": "MX",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  }
+ ],
+ "answer_sheet": {
+  "read": true,
+  "rows": 13490,
+  "signed": 0,
+  "signed_disagree": [],
+  "proposed_disagree": 5288
+ },
+ "overrides": [
+  {
+   "park": "BZ-0051",
+   "area": "BZ",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "laughing bird caye"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CH-0010",
+   "area": "CH",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Naturpark Gantrisch",
+    "Gantrisch"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CV-0012",
+   "area": "CV",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "monumento natural monte estância"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "DO-0110",
+   "area": "DO",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "vía panorámica costa azul"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "GB-1064",
+   "area": "GB",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "morfa harlech"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "ID-0060",
+   "area": "ID",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "ca kawah ijen"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "NZ-0150",
+   "area": "NZ",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "lake sumner forest park"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "NZ-0624",
+   "area": "NZ",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "atuanui scenic reserve"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "NZ-0676",
+   "area": "NZ",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "lake alexandrina wildlife refuge"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "PA-0001",
+   "area": "PA",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "san lorenzo (sur)"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "PA-0054",
+   "area": "PA",
+   "problem": "an id/name in overrides 'no' is still joined",
+   "ids": [
+    "san lorenzo (sur)"
+   ],
+   "when": "",
+   "newer_than_build": null
+  }
+ ],
+ "precheck": {
+  "read": true,
+  "counts": {
+   "ASK_BRANDON": 1,
+   "BAD_POTA_PIN_NO_OUTLINE": 1,
+   "MISNAMED": 4,
+   "NAME_MISMATCH": 73,
+   "NO_OFFICIAL_BOUNDARY": 1,
+   "PIN_WAY_OUT": 316,
+   "POTA_0_0": 1,
+   "RULE18_PIECE": 60,
+   "WRONG_KIND": 1
+  },
+  "hold_still_outline": [
+   {
+    "park": "AT-0029",
+    "area": "AT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AT-0196",
+    "area": "AT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AT-0308",
+    "area": "AT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AT-0388",
+    "area": "AT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AT-0414",
+    "area": "AT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-0016",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-0312",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-0345",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-0448",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-0495",
+    "area": "AU",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: BIG DESERT STATE FOREST; BIG DESERT STATE FOREST is another kind of place than a Wilderness Park"
+   },
+   {
+    "park": "AU-3273",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-3672",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-3923",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-4021",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-4022",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-5170",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-5171",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-5172",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-5809",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-7029",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-7183",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-7318",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-7445",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "AU-9788",
+    "area": "AU",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "BZ-0015",
+    "area": "BZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "BZ-0033",
+    "area": "BZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "BZ-0034",
+    "area": "BZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "BZ-0035",
+    "area": "BZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "BZ-0056",
+    "area": "BZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CH-0225",
+    "area": "CH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CH-0226",
+    "area": "CH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CL-0012",
+    "area": "CL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CL-0037",
+    "area": "CL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CL-0049",
+    "area": "CL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CL-0110",
+    "area": "CL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DE-0084",
+    "area": "DE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DO-0027",
+    "area": "DO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DO-0085",
+    "area": "DO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DO-0095",
+    "area": "DO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DO-0117",
+    "area": "DO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "DO-0132",
+    "area": "DO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "EE-0015",
+    "area": "EE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "EE-0060",
+    "area": "EE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0033",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0044",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0058",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0198",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0737",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0785",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-0832",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-1477",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-1665",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-1717",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ES-1740",
+    "area": "ES",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0100",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0103",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0108",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0238",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0378",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0528",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-0590",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1086",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1417",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1461",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1519",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1582",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1593",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FI-1723",
+    "area": "FI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-10270",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-10432",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-10548",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11106",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11182",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11218",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11230",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11644",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11649",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11650",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11822",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11879",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11889",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11912",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11913",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11914",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11931",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-11941",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12077",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12099",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12129",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12133",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12171",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12251",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12255",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12257",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12279",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12299",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12310",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12328",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12351",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12352",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12355",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12360",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12366",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12400",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12401",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12419",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12420",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12432",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12439",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12448",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12464",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12472",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12491",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12495",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12513",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12518",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12520",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12522",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12528",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12540",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12542",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12543",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12553",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12554",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12573",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12574",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12580",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12583",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12585",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12602",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12634",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12640",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12641",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12653",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12722",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12826",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12900",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-12975",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13008",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13057",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13063",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13148",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13203",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13308",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13422",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13627",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13748",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13779",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13795",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13803",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-13968",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14015",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14049",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14064",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14144",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14356",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14400",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14402",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14434",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14437",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14446",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14462",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14476",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14477",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14478",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14479",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14482",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14483",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14487",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14495",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14496",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14497",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14629",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14631",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14637",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14647",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14648",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14650",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14651",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14652",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14656",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14667",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14704",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14857",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14903",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14939",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14968",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14969",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14979",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-14994",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15145",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15165",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15184",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15204",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15296",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15347",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-15350",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-16532",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT MISNAMED",
+    "why": "the POTA pin is well outside the joined land | POTA spells the name differently from the agency record (same place): 10623 AGRIATE"
+   },
+   {
+    "park": "FR-1954",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-2560",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT NAME_MISMATCH",
+    "why": "the POTA pin is well outside the joined land | joined record shares no real word with the park name: 6799 Orquevaux"
+   },
+   {
+    "park": "FR-2786",
+    "area": "FR",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 13099 Massif du Tanargue, sources de l'Ardèche et de la Borne"
+   },
+   {
+    "park": "FR-2929",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3060",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3061",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3156",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3401",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3530",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3611",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3625",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3638",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3773",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-3912",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-4414",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-4445",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-6023",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-6035",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-6682",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-9421",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-9428",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "FR-9661",
+    "area": "FR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GA-0001",
+    "area": "GA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0056",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0114",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0228",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0774",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0836",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0849",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0858",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0904",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-0955",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-1060",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-4973",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-4987",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-5213",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-5531",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GB-7057",
+    "area": "GB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "GT-0005",
+    "area": "GT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "HU-0009",
+    "area": "HU",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 62381 Körös–Maros Nemzeti Park"
+   },
+   {
+    "park": "HU-0046",
+    "area": "HU",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 62381 Körös–Maros Nemzeti Park"
+   },
+   {
+    "park": "JP-0017",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 5232 chuubu sangaku; 5244 chuubu sangaku; 5245 chuubu sangaku"
+   },
+   {
+    "park": "JP-0110",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:04:a001040020160211:68 funagata renpou   zaou   zaou kougen   futakuchi kyoukoku; a10:04:a001040020160"
+   },
+   {
+    "park": "JP-0114",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "JP-0148",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "JP-0151",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "JP-1047",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:04:a001040020160211:68 funagata renpou   zaou   zaou kougen   futakuchi kyoukoku; a10:04:a001040020160"
+   },
+   {
+    "park": "JP-1051",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:04:a001040020160211:69 suzuri ueyama mangoku ura   minamisanriku kinkasan   rikuchuu kaigan"
+   },
+   {
+    "park": "JP-1060",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:05:a001050020160211:19 hachimori iwadate"
+   },
+   {
+    "park": "JP-1061",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:05:a001050020160211:17 tashiro gaku"
+   },
+   {
+    "park": "JP-1071",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:04:a001040020160212:616 funagata renpou   zaou   zaou kougen   futakuchi kyoukoku"
+   },
+   {
+    "park": "JP-1108",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:08:a001080020160211:3 oota; a10:08:a001080020160212:15 oota; a10:08:a001080020160212:16 oota"
+   },
+   {
+    "park": "JP-1110",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT MISNAMED",
+    "why": "the POTA pin is well outside the joined land | POTA spells the name differently from the agency record (same place): a10:08:a001080020160211:22 ooarai; a10:08:a"
+   },
+   {
+    "park": "JP-1114",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "JP-1115",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:08:a001080020160211:15 mito"
+   },
+   {
+    "park": "JP-1146",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1147",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1148",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1149",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:2 hiki kyuuryou; a10:11:a001110020160211:4 hiki kyuuryou"
+   },
+   {
+    "park": "JP-1150",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1164",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1175",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:4 hiki kyuuryou"
+   },
+   {
+    "park": "JP-1288",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 2073 ogasawara"
+   },
+   {
+    "park": "JP-1334",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4694 fuji hakone izu"
+   },
+   {
+    "park": "JP-1349",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:15:a001150020160211:20 bandai asahi   tai ka niou ko"
+   },
+   {
+    "park": "JP-1350",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:15:a001150020160211:9 agano kawa rain"
+   },
+   {
+    "park": "JP-1356",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:15:a001150020160211:4 choku minematsu yuki yama ren ike"
+   },
+   {
+    "park": "JP-1544",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3556 setonaikai"
+   },
+   {
+    "park": "JP-1626",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:35:a001350020160211:77 nagato kyou"
+   },
+   {
+    "park": "JP-1627",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:35:a001350020160211:82 nishinaka kuni sanchi"
+   },
+   {
+    "park": "JP-1628",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:35:a001350020160211:72 iwaki yama"
+   },
+   {
+    "park": "JP-1653",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3273 setonaikai"
+   },
+   {
+    "park": "JP-1660",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:38:a001380020160211:246 shinoyama"
+   },
+   {
+    "park": "JP-1665",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:39:a001390020160211:0 oku mononobe chiiki kenzan"
+   },
+   {
+    "park": "JP-1667",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:39:a001390020160211:23 yokokura yama"
+   },
+   {
+    "park": "JP-1684",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:39:a001390020160211:52 irino"
+   },
+   {
+    "park": "JP-1717",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:42:a001420020160211:67 tara gaku"
+   },
+   {
+    "park": "JP-1719",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:42:a001420020160211:28 saikai"
+   },
+   {
+    "park": "JP-1720",
+    "area": "JP",
+    "flags": "PIN_WAY_OUT MISNAMED",
+    "why": "the POTA pin is well outside the joined land | POTA spells the name differently from the agency record (same place): a10:42:a001420020160211:54 oomurawan"
+   },
+   {
+    "park": "JP-1725",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:42:a001420020160211:54 oomurawan"
+   },
+   {
+    "park": "JP-1728",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:43:a001430020160211:10 mitake"
+   },
+   {
+    "park": "JP-1729",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:43:a001430020160211:9 shou tai yama"
+   },
+   {
+    "park": "JP-1731",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:43:a001430020160211:15 ashi hokkai kishi"
+   },
+   {
+    "park": "JP-1737",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:43:a001430020160211:10 mitake"
+   },
+   {
+    "park": "JP-1744",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:44:a001440020160211:5 aso kujuu chiiki yaba hita hidehiko sanchi"
+   },
+   {
+    "park": "JP-1768",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 125 kiri shima kinkou wan"
+   },
+   {
+    "park": "JP-1828",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3783 chichibu tama kai"
+   },
+   {
+    "park": "JP-1830",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7249 fuji hakone izu"
+   },
+   {
+    "park": "JP-1831",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7218 fuji hakone izu"
+   },
+   {
+    "park": "JP-1832",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7237 fuji hakone izu"
+   },
+   {
+    "park": "JP-1857",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1858",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:11:a001110020160211:6 chichibu tama   ryoukami   bukou   nishi chichibu   uetake"
+   },
+   {
+    "park": "JP-1859",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4560 nikkou"
+   },
+   {
+    "park": "JP-1860",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4613 nikkou"
+   },
+   {
+    "park": "JP-1861",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4613 nikkou"
+   },
+   {
+    "park": "JP-1867",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4548 bandai asahi"
+   },
+   {
+    "park": "JP-1871",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 4473 bandai asahi"
+   },
+   {
+    "park": "JP-1881",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:05:a001050020160211:20 tazawako hou kaeri"
+   },
+   {
+    "park": "JP-1930",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:15:a001150020160211:20 bandai asahi   tai ka niou ko"
+   },
+   {
+    "park": "JP-1936",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:04:a001040020160211:68 funagata renpou   zaou   zaou kougen   futakuchi kyoukoku"
+   },
+   {
+    "park": "JP-1947",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3814 chichibu tama kai"
+   },
+   {
+    "park": "JP-1948",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3712 chichibu tama kai"
+   },
+   {
+    "park": "JP-1972",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:08:a001080020160211:15 mito"
+   },
+   {
+    "park": "JP-2011",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 2668 san'in kaigan"
+   },
+   {
+    "park": "JP-2018",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: a10:38:a001380020160211:137 sara ke mine renpou"
+   },
+   {
+    "park": "JP-2023",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 170 kiri shima kinkou wan"
+   },
+   {
+    "park": "JP-2046",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 3374 setonaikai"
+   },
+   {
+    "park": "JP-2090",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 2568 san'in kaigan"
+   },
+   {
+    "park": "JP-2145",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7200 fuji hakone izu"
+   },
+   {
+    "park": "JP-2146",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7200 fuji hakone izu"
+   },
+   {
+    "park": "JP-2147",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7200 fuji hakone izu"
+   },
+   {
+    "park": "JP-2148",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 7200 fuji hakone izu"
+   },
+   {
+    "park": "JP-2151",
+    "area": "JP",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 202 kiri shima kinkou wan"
+   },
+   {
+    "park": "KE-0009",
+    "area": "KE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "KE-0018",
+    "area": "KE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "KE-0022",
+    "area": "KE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "KE-0023",
+    "area": "KE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "LK-0026",
+    "area": "LK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "LK-0027",
+    "area": "LK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "LR-0006",
+    "area": "LR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "LT-0012",
+    "area": "LT",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 126155 Varnių regioninis parkas"
+   },
+   {
+    "park": "LT-0031",
+    "area": "LT",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 129537 Verkių regioninis parkas"
+   },
+   {
+    "park": "MX-0016",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0140",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0141",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0145",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0147",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0176",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0180",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0181",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0186",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0191",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "MX-0221",
+    "area": "MX",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NC-0023",
+    "area": "NC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NC-0025",
+    "area": "NC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NC-0049",
+    "area": "NC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NI-0013",
+    "area": "NI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NI-0024",
+    "area": "NI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NI-0057",
+    "area": "NI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NL-0204",
+    "area": "NL",
+    "flags": "PIN_WAY_OUT MISNAMED",
+    "why": "the POTA pin is well outside the joined land | POTA spells the name differently from the agency record (same place): 124231 Voordelta"
+   },
+   {
+    "park": "NZ-0015",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0022",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0051",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0143",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0210",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0520",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0576",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0661",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0720",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0818",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "NZ-0862",
+    "area": "NZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "OM-0005",
+    "area": "OM",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PA-0043",
+    "area": "PA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PA-0044",
+    "area": "PA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PA-0048",
+    "area": "PA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PL-1911",
+    "area": "PL",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 21114 Ostoja Wełtyńska"
+   },
+   {
+    "park": "PT-0015",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0063",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0137",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0146",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0262",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0263",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0283",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0318",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PT-0414",
+    "area": "PT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PY-0008",
+    "area": "PY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PY-0032",
+    "area": "PY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "PY-0033",
+    "area": "PY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-0322",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-0450",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-0573",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-0880",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-0883",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "RO-1019",
+    "area": "RO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-0199",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-0266",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-1574",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-1575",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-2042",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-2138",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-2179",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SE-2180",
+    "area": "SE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SI-0361",
+    "area": "SI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SK-0300",
+    "area": "SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "SV-0003",
+    "area": "SV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "UY-0049",
+    "area": "UY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "VI-0006",
+    "area": "VI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ZA-0075",
+    "area": "ZA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ZA-0085",
+    "area": "ZA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ZA-0156",
+    "area": "ZA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "ZA-0157",
+    "area": "ZA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   }
+  ],
+  "rule18": [
+   {
+    "park": "AT-0190",
+    "area": "AT",
+    "why": "rule 18: the joined record may be another piece: 113284 LSG Floridsdorf, Teil F, Donauinsel Nord (rule 18: 'nord' names only one piece)"
+   },
+   {
+    "park": "AU-0436",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 17084 Deep Lead Nature Conservation Reserve (No. 1) (rule 18: number 2 vs 1 are different pieces (both names ca"
+   },
+   {
+    "park": "AU-0437",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1821 Deep Lead Nature Conservation Reserve (No. 2) (rule 18: number 1 vs 2 are different pieces (both names car"
+   },
+   {
+    "park": "AU-2209",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 7396 Bimberi (the park is the piece 'wilderness' of a bigger area; 'Bimberi' does not name that piece (rule 18)"
+   },
+   {
+    "park": "AU-2665",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1505 Gerang Gerung (south) F.R (rule 18: 'south' names a piece in one name but sits only inside the other name'"
+   },
+   {
+    "park": "AU-7112",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1242 NTWA Bushland covenant (0189) (rule 18: number 130 vs 189 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-7113",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1958 NTWA Bushland covenant (0147) (rule 18: number 144 vs 147 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-7114",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 5530 NTWA Bushland covenant (0149) (rule 18: number 148 vs 149 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-7115",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 4365 NTWA Bushland covenant (0168) (rule 18: number 152 vs 168 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-7117",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1242 NTWA Bushland covenant (0189) (rule 18: number 164 vs 189 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-7118",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1808 NTWA Bushland covenant (0037) (rule 18: number 168 vs 37 are different pieces (both names carry a differen"
+   },
+   {
+    "park": "AU-7559",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 9944 NTWA Bushland covenant (0102) (rule 18: number 149 vs 102 are different pieces (both names carry a differe"
+   },
+   {
+    "park": "AU-8396",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 9502 STRZELECKI STATE FOREST DEVON NORTH BLOCK (rule 18: 'north' names a piece in one name but sits only inside"
+   },
+   {
+    "park": "AU-8404",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 18003 STRZELECKI STATE FOREST MIDDLE CREEK BLOCK (rule 18: 'middle' names a piece in one name but sits only ins"
+   },
+   {
+    "park": "AU-8613",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 8627 Bowen (the park is the piece 'wilderness' of a bigger area; 'Bowen' does not name that piece (rule 18))"
+   },
+   {
+    "park": "AU-8614",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 8429 Buchan Headwaters (the park is the piece 'wilderness' of a bigger area; 'Buchan Headwaters' does not name "
+   },
+   {
+    "park": "AU-8615",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 16808 Cape Howe (the park is the piece 'wilderness' of a bigger area; 'Cape Howe' does not name that piece (rul"
+   },
+   {
+    "park": "AU-8616",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 9954 Chinaman Flat (the park is the piece 'wilderness' of a bigger area; 'Chinaman Flat' does not name that pie"
+   },
+   {
+    "park": "AU-8617",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 2654 Cobberas (the park is the piece 'wilderness' of a bigger area; 'Cobberas' does not name that piece (rule 1"
+   },
+   {
+    "park": "AU-8618",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 435 Galpunga (the park is the piece 'wilderness' of a bigger area; 'Galpunga' does not name that piece (rule 18"
+   },
+   {
+    "park": "AU-8619",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 5013 Genoa (the park is the piece 'wilderness' of a bigger area; 'Genoa' does not name that piece (rule 18))"
+   },
+   {
+    "park": "AU-8620",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 9367 Indi (the park is the piece 'wilderness' of a bigger area; 'Indi' does not name that piece (rule 18))"
+   },
+   {
+    "park": "AU-8621",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 5789 Minook (the park is the piece 'wilderness' of a bigger area; 'Minook' does not name that piece (rule 18))"
+   },
+   {
+    "park": "AU-8622",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 1016 Mount Cowra (the park is the piece 'wilderness' of a bigger area; 'Mount Cowra' does not name that piece ("
+   },
+   {
+    "park": "AU-8623",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 9670 Mount Darling - Snowy Bluff (the park is the piece 'wilderness' of a bigger area; 'Mount Darling - Snowy B"
+   },
+   {
+    "park": "AU-8624",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 7838 North Wyperfeld (the park is the piece 'wilderness' of a bigger area; 'North Wyperfeld' does not name that"
+   },
+   {
+    "park": "AU-8625",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 12684 Razor - Viking (the park is the piece 'wilderness' of a bigger area; 'Razor - Viking' does not name that "
+   },
+   {
+    "park": "AU-8626",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 698 Sandpatch (the park is the piece 'wilderness' of a bigger area; 'Sandpatch' does not name that piece (rule "
+   },
+   {
+    "park": "AU-8627",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 7090 Snowy River (the park is the piece 'wilderness' of a bigger area; 'Snowy River' does not name that piece ("
+   },
+   {
+    "park": "AU-8628",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 6397 South Wyperfeld (the park is the piece 'wilderness' of a bigger area; 'South Wyperfeld' does not name that"
+   },
+   {
+    "park": "AU-8630",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 15563 Tingaringy (the park is the piece 'wilderness' of a bigger area; 'Tingaringy' does not name that piece (r"
+   },
+   {
+    "park": "AU-8631",
+    "area": "AU",
+    "why": "rule 18: the joined record may be another piece: 13643 Wilsons Promontory (the park is the piece 'wilderness' of a bigger area; 'Wilsons Promontory' does not na"
+   },
+   {
+    "park": "FR-11349",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: znieff1.11114 Quères des Petites Pyrénées (partie sud) (rule 18: 'nord' vs 'sud' are different pieces (both nam"
+   },
+   {
+    "park": "FR-11350",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: znieff1.12125 Quères des Petites Pyrénées (partie nord) (rule 18: 'sud' vs 'nord' are different pieces (both na"
+   },
+   {
+    "park": "FR-2673",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12383 Pelouses, bois acides à neutrocalcicoles, landes nord-atlantiques du plateau d'Helfaut et système alluvia"
+   },
+   {
+    "park": "FR-3003",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12667 Marais de Brouage (et marais nord d'Oléron) (rule 18: 'nord' names a piece in one name but sits only insi"
+   },
+   {
+    "park": "FR-3082",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 14415 Forêt Territoriale de Rospa-Sorba (partie sud-est) (rule 18: 'est sud' names a piece in one name but sits"
+   },
+   {
+    "park": "FR-3102",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 13591 Forêt territoriale du Fium'Orbu (partie sud-est) (rule 18: 'est sud' names a piece in one name but sits o"
+   },
+   {
+    "park": "FR-3532",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12108 Marais tourbeux du plateau de Langres (secteur Sud-Ouest) (rule 18: 'ouest sud' names a piece in one name"
+   },
+   {
+    "park": "FR-3533",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12109 Marais tufeux du plateau de Langres (secteur Sud-Est) (rule 18: 'est sud' names a piece in one name but s"
+   },
+   {
+    "park": "FR-3534",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12110 Marais tufeux du plateau de Langres (secteur Nord) (rule 18: 'nord' names a piece in one name but sits on"
+   },
+   {
+    "park": "FR-3560",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12146 Massif forestier de la Montagne de Reims (versant sud) et étangs associés (rule 18: 'sud' names a piece i"
+   },
+   {
+    "park": "FR-5616",
+    "area": "FR",
+    "why": "rule 18: the joined record may be another piece: 12645 Cap Sizun (rule 18: 'nord' names only one piece)"
+   },
+   {
+    "park": "GB-0030",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 163 MOOR HOUSE-UPPER TEESDALE (rule 18: 'upper' names only one piece)"
+   },
+   {
+    "park": "GB-0053",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 42 GOWK BANK (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "GB-0073",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 156 SCOLT HEAD ISLAND (rule 18: 'north' names only one piece); 441 Scolt Head Island (rule 18: 'north' names on"
+   },
+   {
+    "park": "GB-0100",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 55 HOLKHAM (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "GB-0132",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 18 Isle Of Wight (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "GB-0191",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 1 WINTERTON DUNES (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "GB-0195",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 49 HOLME DUNES (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "GB-0289",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 76 NORTH MEADOW, CRICKLADE (rule 18: 'north' names a piece in one name but sits only inside the other name's br"
+   },
+   {
+    "park": "GB-0669",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 420 Bodmin Moor, North SSSI (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "GB-2563",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 1421 VALLEY GARDENS AND SOUTH CLIFF GARDENS (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "GB-2729",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: spa.1006 Papa Westray (North Hill and Holm) (rule 18: 'north' names a piece in one name but sits only inside th"
+   },
+   {
+    "park": "GB-3352",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: 14601 Two bowl barrows and a saucer barrow 360m south of the Club House on Petersfield Heath Common, part of th"
+   },
+   {
+    "park": "GB-6967",
+    "area": "GB",
+    "why": "rule 18: the joined record may be another piece: sssi.13368 Fair Isle (rule 18: 'north' names only one piece); sac.995 Fair Isle (rule 18: 'north' names only on"
+   },
+   {
+    "park": "NZ-0381",
+    "area": "NZ",
+    "why": "rule 18: the joined record may be another piece: 73280 Ruahine Forest (West) Conservation Area (rule 18: 'east' vs 'west' are different pieces (both names carry"
+   },
+   {
+    "park": "NZ-0855",
+    "area": "NZ",
+    "why": "rule 18: the joined record may be another piece: 31927 Conservation Area - Hauturu east (rule 18: 'east' names only one piece)"
+   },
+   {
+    "park": "PL-1474",
+    "area": "PL",
+    "why": "rule 18: the joined record may be another piece: 118251 Park Krajobrazowy Góra Św. Anny (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "SE-1697",
+    "area": "SE",
+    "why": "rule 18: the joined record may be another piece: 41283 2000801 Änggårdsbergen (rule 18: number 1 190 vs 2000801 are different pieces)"
+   }
+  ],
+  "bad_pin_flags": {
+   "BAD_POTA_PIN_NO_OUTLINE": 9,
+   "BAD_POTA_PIN_NAME_MATCH": 3
+  }
+ },
+ "must_pin": [
+  {
+   "park": "SE-0797",
+   "result": "PASS (pin)"
+  }
+ ],
+ "notes": [
+  "answer sheet: 13490 rows, 0 signed by a person; 5288 PROPOSED rows name another record (bot proposals: counted, not used)"
+ ],
+ "summary": {
+  "parks now": 60451,
+  "parks before": 60451,
+  "gained": 0,
+  "lost": 0,
+  "outline -> pin": 1,
+  "pin -> outline": 149,
+  "outline changed": 132,
+  "flat outlines": 0,
+  "flat outlines new or changed this build": 0,
+  "pins outside outline": 316,
+  "pins outside, new or changed this build": 9,
+  "pins just outside, key says 'edge' (not listed)": 0,
+  "0,0 / impossible pins": 2,
+  "signed sheet answers not followed": 0,
+  "overrides not followed": 11,
+  "overrides not followed, dated before the build (a real miss)": 0,
+  "pre-check HOLD still outline": 389,
+  "RULE 18 flags": 60,
+  "must-be-pin not yet pin": 0
+ }
+}
