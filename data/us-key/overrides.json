@@ -1606,7 +1606,7 @@
     "sgaki387660"
    ],
    "when": "2026-11-04",
-   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-06: multi-state (OK pin + AR outline); postcheck prefers the outline copy (fers-and-pile)"
   },
   "US-0824": {
    "fp": {
@@ -39632,10 +39632,7 @@
    "why": "2026-11-02 12:49: layers row YES 'White River Marsh Wildlife Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-4342": {
-   "approx": true,
-   "join": [
-    "wid702688"
-   ],
+   "join": [],
    "no": [
     "Wolf River Bottoms Wildlife Area",
     "273010"
@@ -39646,8 +39643,8 @@
      3141
     ]
    },
-   "when": "2026-11-03",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO Wolf River Bottoms Wildlife Area: rule 18: POTA names a unit (Herb Behnke) of Wolf River Bottoms WA (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "when": "2026-11-06",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO Wolf River Bottoms Wildlife Area: rule 18: POTA names a unit (Herb Behnke) of Wolf River Bottoms WA (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: join wid702688 is gone from WI DNR managed lands (OBJECTID renumbered; no 'Behnke'/'Herb' property in the live layer on Nov 6). Rule 18 keeps the whole Wolf River Bottoms WA in 'no'. Park stays a PIN until a separate Herb Behnke outline appears. (fers-and-pile)"
   },
   "US-4344": {
    "fp": {
@@ -54549,9 +54546,8 @@
    "why": "2026-11-02 12:49: layers row YES 'Shaw Marsh Wildlife Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-8209": {
-   "approx": true,
    "join": [
-    "wid702483"
+    "sgwic6887"
    ],
    "no": [
     "272522"
@@ -54562,8 +54558,14 @@
      6048
     ]
    },
-   "when": "2026-11-03",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272522: Dewey Marsh Wildlife Area surrounds the SNA, which keeps sgwic6887 (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "when": "2026-11-06",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272522: Dewey Marsh Wildlife Area surrounds the SNA, which keeps sgwic6887 (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: join wid702483 is gone from WI DNR managed lands (renumbered; Dewey Marsh WA is now OBJECTID 713342). Override join is the SNA record sgwic6887 already in the key (same intent as the Nov 3 note). (fers-and-pile)",
+   "fp": {
+    "sgwic6887": [
+     "Dewey Marsh",
+     1222
+    ]
+   }
   },
   "US-8210": {
    "fp": {
@@ -56594,13 +56596,29 @@
   },
   "US-8679": {
    "join": [
-    "190969"
+    "190969",
+    "sgfld222",
+    "fnl755"
    ],
    "no": [
     "sgfld747"
    ],
-   "when": "2026-11-03",
-   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-03: NO sgfld747: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "when": "2026-11-06",
+   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-03: NO sgfld747: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: PAD-US 190969 still live (Devil's Hammock, 3254 ac); fingerprint added. Agency ids already in the key (sgfld222, fnl755) listed as joins too so the postcheck matches before the next US rebuild. (fers-and-pile)",
+   "fp": {
+    "190969": [
+     "Devil's Hammock",
+     3254
+    ],
+    "sgfld222": [
+     "DEVIL'S HAMMOCK",
+     4214
+    ],
+    "fnl755": [
+     "Devil's Hammock",
+     3620
+    ]
+   }
   },
   "US-8681": {
    "fp": {

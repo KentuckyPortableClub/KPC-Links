@@ -99,10 +99,16 @@ def load_tree(k, ref=None, cwd='.'):
 
 
 def parks_of(tree):
+    """{ref: park}. Multi-state parks appear in every crossed state; prefer a copy with an outline over a pin
+    (Nov 6: US-0822 Fort Smith was OK=pin with joined_in AR, and AR had the outline — last-wins kept the pin and
+    flagged a false override miss)."""
     P = {}
-    for area, d in tree.items():
+    def _outline(p): return bool(p and p.get('m')) and p.get('g') != 'pin'
+    for area, d in sorted((tree or {}).items()):
         for r, p in ((d or {}).get('parks') or {}).items():
-            if isinstance(p, dict): P[r] = dict(p, _area=area)
+            if not isinstance(p, dict): continue
+            q = dict(p, _area=area)
+            if r not in P or (_outline(q) and not _outline(P[r])): P[r] = q
     return P
 
 
