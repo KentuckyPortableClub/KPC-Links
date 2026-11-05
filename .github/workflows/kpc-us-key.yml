@@ -370,3 +370,24 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started (this run was started by github-actions[bot])" || echo "::warning title=US key::could not start the post-key check (exit $?): start 'KPC key check (after a key build)' by hand with key=us"
+  chain:
+    # Next round C1 (Nov 5; Brandon's yes relayed via Super, 4:32 AM CST Nov 5): the Canada and world keys follow the US key through
+    # workflow_run, which a GITHUB_TOKEN-started run (the boundary bot queue, the watchdog: triggering actor github-actions[bot])
+    # never fires. Like the postcheck job above, a bot-started run DISPATCHES them, marked chained=us-key, so each is checked as a
+    # chained start (kpc_key_order.py: catch-up only; a duplicate or an up-to-date key skips cleanly). A person's run is left to
+    # workflow_run as before, so no key is started twice for one US run. Runs whatever the build's result was, as workflow_run does.
+    needs: [plan, join]
+    if: ${{ always() && github.triggering_actor == 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Start the Canada and world keys (a bot-started run fires no workflow_run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for k in ca world; do
+            gh workflow run "kpc-$k-key.yml" -R "$GITHUB_REPOSITORY" --ref main -f chained=us-key && echo "::notice title=US key::$k key started as a chained start (this run was started by github-actions[bot])" || echo "::warning title=US key::could not start the $k key (exit $?): start it by hand if a new-rules build is waiting"
+          done

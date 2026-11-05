@@ -19,6 +19,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      chained:
+        description: "Set by the key before this one only (us-key / ca-key): a chained start after a bot-started run (blank = a normal by-hand run)"
+        required: false
+        default: ''
       as_schedule:
         description: 'Set by the watchdog only: run as the missed scheduled run of this cron (empty = a normal by-hand run)'
         required: false
@@ -60,6 +64,7 @@ jobs:
       - name: BUILD ORDER (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4) - after a rules change US, then Canada, then the world; a key whose turn has not come skips cleanly and is started again by workflow_run
         env:
           KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout
+          KPC_CHAINED: ${{ inputs.chained }}   # next round C1: set only when the key before this one dispatched it
           FORCE: ${{ inputs.force }}
         run: |
           if [ "${SKIP:-}" != 1 ]; then python3 .github/scripts/kpc_key_order.py check world-key || { echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Key build order::the order check stopped (exit $?): this start waits"; }; fi
