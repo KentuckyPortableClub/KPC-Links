@@ -97,7 +97,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_key_freeze.py check us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
       - name: Rebuild those keys with the check
-        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' && env.RULES_CHANGED != '1' }}
         id: kept_green_2
         continue-on-error: true
         env:
@@ -126,15 +126,21 @@ jobs:
           p.write_text(json.dumps(d, indent=1, sort_keys=True) + '\n', encoding='utf-8')
           PY
           fi
-      - name: Stamp the rebuilt key (Nov 2 review, Mapping #7) - a rebuild is a new build, so it gets its own build id
-        # Only when a state file really changed; the rebuild keeps the old id as previous_build (kpc_us_key.py).
-        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
+      - name: Rules changed - no partial rebuild here (key hotfix Nov 5, Brandon's approval relayed via Super Head Bot 4:21 AM CST)
+        # The freeze check above sets RULES_CHANGED=1 when the newest US build is not a full build on the current rules. A 2-state
+        # rebuild here would mix rules; the US answer key workflow now builds EVERY state then (kpc-us-key.yml plan).
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' && env.RULES_CHANGED == '1' }}
         run: |
-          if [ -n "$(git status --porcelain -- 'data/us-key/US-*.json')" ]; then
-            python3 .github/scripts/kpc_key_freeze.py stamp us-key || echo "::error title=kpc_key_freeze.py::stopped with an error (exit $?), see the log above"
-          else echo "::notice title=Boundary check::no US key state file changed: no new build id"; fi
+          echo "::notice title=Boundary check::RULES CHANGED since the newest US build: no rebuild or re-read here; the US answer key workflow builds every state"
+      - name: Never write or stamp the US key index (key hotfix Nov 5, Brandon's approval relayed via Super Head Bot 4:21 AM CST)
+        # Nov 5: run 41995722306 (2:36 AM CST, a watchdog dispatch) rebuilt IA + ID and its 'Stamp the rebuilt key' step stamped the
+        # LIVE US index as US-41995722306 (fb01-02 only kept the rules hash; this step still gave a new build id). Only the US answer
+        # key workflow (kpc-us-key.yml) stamps now: kpc_us_key.py's own index write is undone here, and the save skips index.json.
+        if: always()
+        run: |
+          git checkout -q HEAD -- data/us-key/index.json 2>/dev/null && echo "::notice title=Boundary check::data/us-key/index.json kept as committed (no new build id; only the US answer key workflow stamps)" || echo "::warning title=Boundary check::could not restore data/us-key/index.json (exit $?); the save skips it anyway"
       - name: Keep any newly saved outlines
-        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') && env.FROZEN != '1' && env.RULES_CHANGED != '1' }}
         id: kept_green_3
         continue-on-error: true
         env:
@@ -168,7 +174,7 @@ jobs:
           git add data/us-key data/boundary-report.json data/boundary-score.json 2>/dev/null || true   # ok: an optional path may not exist
           git add data/status 2>/dev/null || true   # ok: an optional file or tidy step (Oct 25 storage plan: when each file last changed)
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
-          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" \
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/index.json data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'Boundary check: are the joins in the right place?' - -- data/us-key data/boundary-report.json data/boundary-score.json data/status
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()

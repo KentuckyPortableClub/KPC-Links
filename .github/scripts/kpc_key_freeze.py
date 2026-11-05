@@ -247,8 +247,26 @@ def _committed_rules(kind):
     return {k: o[k] for k in ('rules', 'rules_files') if isinstance(o, dict) and o.get(k)}
 
 
+# Key hotfix (Nov 5; Brandon's approval relayed via Super Head Bot 4:21 AM CST): only a key's own answer key workflow stamps it (the
+# by-hand key measure with commit=yes too). In GitHub Actions (GITHUB_WORKFLOW_REF set) any other workflow is refused: the boundary
+# check stamped the live US index as US-41995722306 at 2:36 AM CST Nov 5.
+STAMPERS = {'us-key': ('kpc-us-key.yml', 'kpc-key-measure.yml'), 'ca-key': ('kpc-ca-key.yml', 'kpc-key-measure.yml'),
+            'world-key': ('kpc-world-key.yml', 'kpc-key-measure.yml')}
+
+
+def may_stamp(kind, ref=None):
+    ref = os.environ.get('GITHUB_WORKFLOW_REF', '') if ref is None else ref
+    if not ref: return True   # a local run / the tests
+    wf = ref.split('@')[0].rsplit('/', 1)[-1]
+    return wf in STAMPERS.get(kind, ())
+
+
 def stamp(kind):
     p = f'data/{kind}/index.json'
+    if not may_stamp(kind):
+        print(f"::error title=kpc_key_freeze.py::{kind} NOT stamped: {os.environ.get('GITHUB_WORKFLOW_REF')} is not this key's answer key workflow "
+              f"({' / '.join(STAMPERS.get(kind, ()))}); the index is left as it is")
+        return
     try: d = json.load(open(p, encoding='utf-8'))
     except Exception: d = {}  # noqa: BLE001
     # Nov 4 PM fix bundle (item 1): links-04 meant 'a partial build keeps the previous rules', but the builders' index write drops
