@@ -406,6 +406,8 @@
      official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes
      straight from that agency's map by id. A join made on the pin alone is labelled approximate. */
   const wkCache = {}; let WLAY = null;
+  /* the licence label an NC source must show with each outline (data/CREDITS-NC.md): WA DBCA layers on SLIP, by address or label */
+  const ncLabel = (url, label) => (/^https?:\/\/public-services\.slip\.wa\.gov\.au\//i.test(String(url || '')) || /\bDBCA\b/.test(String(label || ''))) ? 'CC BY-NC 4.0, DBCA' : '';
   const wlayers = () => WLAY || (WLAY = dfetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
   async function worldKey(ref) {
     const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
@@ -423,6 +425,9 @@
       if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + (b.d && b.d > 5 ? ' (saved by KPC, simplified to about ' + b.d + ' m: a very big park)' : ' (saved by KPC)') });
     }
     if (!fs.length) return { state: 'error' };
+    /* Next round v2 (Brandon's 10 answers, item 1, 'Yes, go with your picks', relayed via Super 8:55 AM CST Nov 5; NC ruling 8:00 AM
+       CST Nov 5): a WA DBCA outline (CC BY-NC 4.0) carries its own licence label in the popup; see data/CREDITS-NC.md */
+    fs.forEach(f => { const nc = ncLabel(L[f._src] || '', f._src); if (nc && String(f._src).indexOf(nc) < 0) f._src = f._src + ' \u00b7 ' + nc; });
     const nm = (m.find(x => L[x[2]]) || m[0])[1], how = m.map(x => String(x[3] || ''));
     const approx = !how.some(h => /^(name|same name|exact name)/.test(h)), why = approx ? 'the official name is written differently, so this was matched by where the park\u2019s pin sits' : '';
     fs.forEach(f => { f._nm = f._nm || nm; f._bb = bbox(f.geometry); f._approx = approx; f._why = why; f._info = f._info || ''; f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }); });
@@ -519,5 +524,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
