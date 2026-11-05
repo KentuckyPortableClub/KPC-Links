@@ -22,7 +22,10 @@ check(len(sf) == 1 and sf[0][1:] == ('arcgis', PAF, ["esttype='SF'"]), f'QLD sta
 check(not any('LandParcelPropertyFramework' in str(s[2]) for s in AU), 'the old cadastre layer-name search is gone (it matched no park)')
 for u in (PAF, MS10):
     rest = [s for s in AU if str(s[2]).rstrip('/').lower() == u.lower() and s[0] != 'QLD State Forest (Queensland Government)']
-    check(len(rest) == 1 and rest[0][3] == ["esttype<>'SF' OR esttype IS NULL"], f'{u.split("/services/")[1]}: the approved whole layer is read once, without its SF ({rest})')
+    # v2 C12 (Brandon's item 6): MapServer/10, the duplicate copy, is no longer in extra-layers.json; if it is listed again it is
+    # still read without its SF
+    check((len(rest) == 1 or (u == MS10 and not rest)) and all(r[3] == ["esttype<>'SF' OR esttype IS NULL"] for r in rest),
+          f'{u.split("/services/")[1]}: the approved whole layer is read at most once, without its SF ({rest})')
 sf_reads = [s for s in AU if 'qld.gov.au' in str(s[2]) and any("esttype='SF'" == w for w in (s[3] if len(s) > 3 else ['1=1']))]
 check(len(sf_reads) == 1, 'a state forest is read from one source only')
 others = [s for s in AU if 'qld.gov.au' not in str(s[2])]
