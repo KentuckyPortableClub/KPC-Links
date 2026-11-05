@@ -1,0 +1,59 @@
+{
+ "status": "green",
+ "parks": 79459,
+ "full": 78308,
+ "PIN_WAY_OUT": 503,
+ "NO_OFFICIAL_BOUNDARY": 20942,
+ "LOST_FIND": 128,
+ "light": 1151,
+ "MISNAMED": 271,
+ "rule18_by_one-side word": 60,
+ "RULE18_PIECE": 116,
+ "rule18_pile_added": 113,
+ "rule18_by_piece test": 42,
+ "NAME_MISMATCH": 78,
+ "WRONG_KIND": 12,
+ "rule18_by_piece word": 4,
+ "TRAIL_CHECK": 2,
+ "POTA_0_0": 216,
+ "BAD_POTA_PIN_NAME_MATCH": 167,
+ "BAD_POTA_PIN_NO_OUTLINE": 40,
+ "BAD_POTA_PIN_NAME_ONLY": 9,
+ "ASK_BRANDON": 3,
+ "rule18_by_number": 10,
+ "review_pile": 705,
+ "review_pile_keep": 3,
+ "hold": 584,
+ "hold_us_ca": 195,
+ "hold_us_ca_to_pin": 192,
+ "hold_us_ca_pieces_only": 3,
+ "hold_world_listed_only": 389,
+ "bad_pin_name_area": {
+  "BAD_POTA_PIN_NAME_MATCH": 167,
+  "BAD_POTA_PIN_NAME_ONLY": 9
+ },
+ "bad_pin_flags": 216,
+ "bad_pin_flags_by_flag": {
+  "BAD_POTA_PIN_NAME_MATCH": 167,
+  "BAD_POTA_PIN_NO_OUTLINE": 40,
+  "BAD_POTA_PIN_NAME_ONLY": 9
+ },
+ "bad_pin_flags_held": 0,
+ "ask_brandon": [
+  "CA-2218",
+  "CA-2227",
+  "SE-0797"
+ ],
+ "ask_brandon_not_in_key": [],
+ "trail_check": [
+  "US-9905",
+  "US-9906"
+ ],
+ "lost_finds": 138,
+ "lost_find_parks": 126,
+ "lost_routed": {
+  "PROPOSED": 85,
+  "NEEDS_RESEARCH": 53
+ },
+ "seconds": 11.2
+}

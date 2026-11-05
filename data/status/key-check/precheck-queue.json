@@ -7,7 +7,14 @@
    "key_file": "data/world-key/DE.json",
    "from_commit": "ddd815b34",
    "why": "Quality follow-up (health check Nov 4 PM): re-run the pre-check after the German rebuild (links-10 DE ids; DE BROKEN_ROW 677 -> 1, about 722 expected). from_commit = the DE.json build on main at f11401d52 (3:24 PM CST Nov 4), which COUNTS as the real rebuild (Brandon, relayed via Super Head Bot 5:36 PM CST Nov 4: \"yes to your questions\"), so the entry is due on the next key check (at or after ddd815b34).",
-   "state": "waiting"
+   "state": "done",
+   "done": "2026-11-05 12:30 UTC",
+   "build_commit": "6d8d79b2a84f",
+   "kept": {
+    "review-pile.csv": 6,
+    "BAD_POTA_PIN_FLAGS.csv": 0
+   },
+   "run": "https://github.com/KentuckyPortableClub/KPC-Links/actions/runs/42027582649"
   }
  ]
 }
