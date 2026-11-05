@@ -127,7 +127,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 14273,
-   "seconds": 284,
+   "seconds": 237,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -260,7 +260,7 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 1662,
-   "seconds": 322,
+   "seconds": 251,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -393,7 +393,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 6623,
-   "seconds": 94,
+   "seconds": 124,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -526,7 +526,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 768,
-   "seconds": 67,
+   "seconds": 65,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -659,7 +659,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 7626,
-   "seconds": 136,
+   "seconds": 302,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -792,7 +792,7 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 2157,
-   "seconds": 92,
+   "seconds": 103,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -925,7 +925,7 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 1459,
-   "seconds": 33,
+   "seconds": 36,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -951,8 +951,6 @@
    "site": 46
   }
  },
- "build": "US-41876470145",
- "built": "2026-11-04 18:37 UTC",
  "rules": "6bb847b4f6cd",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -960,5 +958,8 @@
   ".github/scripts/kpc_match.py",
   ".github/scripts/kpc_us_key.py",
   ".github/key-rules-version.json"
- ]
+ ],
+ "rules_of_run": "3dc53f70256a",
+ "build": "US-41984527710",
+ "built": "2026-11-05 07:13 UTC"
 }
