@@ -121,8 +121,19 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
 SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
                          (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'))] \
                       + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
+# Next round C7 (Nov 5; Brandon's yes relayed via Super; outside research round 2): Queensland's state forests are in the layer KPC
+# already has, 'Protected areas and forests of Queensland' (DESI, CC BY 4.0; fields estatename / esttype), as esttype='SF' (402
+# features on Nov 5). The old source searched the cadastre map service (LandParcelPropertyFramework) for a layer NAMED 'state forest |
+# timber reserve' and matched no park in the last AU build (332 QLD state-forest parks without an outline). The same layer, approved
+# whole in extra-layers.json, is then read for everything ELSE (QLD_REST), so no record comes twice.
+QLD_PAF = 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77'
+QLD_SF = "esttype='SF'"
+QLD_REST = "esttype<>'SF' OR esttype IS NULL"
+# the same DESI layer is published twice (MapServer/10 under ParksTerrestrialProtectedAreas: 402 SF too) and extra-layers.json lists
+# both: each is read without its SF, so a state forest is read once, from QLD_PAF
+QLD_LAYERS = {QLD_PAF.lower(), 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/environment/parksterrestrialprotectedareas/mapserver/10'}
 SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
-                         ('QLD State Forest (Queensland Government)', 'arcgisfind', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer', r'state forest|timber reserve')]
+                         ('QLD State Forest (Queensland Government)', 'arcgis', QLD_PAF, [QLD_SF])]
 # Oct 25 (outside research bot, other countries round 2): Victoria DEECA + Western Australia DBCA state forest tenure, the
 # Śląskie voivodeship copy of Poland's nature-and-landscape complexes, and Japan's NATIONAL A10 file (FY2010) whose park-name
 # CODES (A10_005 -> KSJ codelist NaturalParkNameCd) name the areas the per-prefecture A10 files leave blank. Licences: VIC = same
@@ -147,7 +158,10 @@ try:
         _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
         for _l in _ls:
             _u = str(_l.get('url') or '').rstrip('/')
-            if _u and _u.lower() not in _have:
+            if _cc == 'AU' and _u.lower() in QLD_LAYERS and not _l.get('where'):   # next round C7: the rest of the QLD layer (its SF are above)
+                SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u, [QLD_REST])]
+                EXTRA_URLS[(_cc, _u.lower())] = _u
+            elif _u and _u.lower() not in _have:
                 SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
                 EXTRA_URLS[(_cc, _u.lower())] = _u
 except FileNotFoundError: pass
