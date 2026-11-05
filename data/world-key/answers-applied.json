@@ -15928,5 +15928,100 @@
   "answer": "NO",
   "checked_by": "chat 11 (Oct 30)",
   "applied": "2026-11-02 12:49"
+ },
+ "GB-4594:alport height": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-3016:assynt - coigach": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-6778:camp in chase wood": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-4436:panshanger": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-5553:balls park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-5931:duffield castle": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-4638:taylor park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-3007:the small isles": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-4136:mowbray park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-7192:ballycastle forest": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-0787:drum manor forest park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-0791:oxford island": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-0802:kilbroney": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-0804:gosford forest park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-7196:iniscarn": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-0780:burntollet wood": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-2585:ness wood country park": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-6728:wareham": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
+ },
+ "GB-2998:river earn (comrie to st fillans)": {
+  "answer": "YES",
+  "checked_by": "auto recheck (AUTO-1W)",
+  "applied": "2026-11-05 07:03"
  }
 }

@@ -11262,6 +11262,120 @@
    ],
    "none": true,
    "why": "Nov 3: dropped to pin (Brandon 7:33 PM CST Nov 3, relayed by Super via Quality: 'When in doubt drop it put it on a list.'); on the ASK BRANDON list; no trim or join applied"
+  },
+  "GB-4594": {
+   "join": [
+    "Alport Height"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-3016": {
+   "join": [
+    "Assynt - Coigach"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-6778": {
+   "join": [
+    "Camp in Chase Wood"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-4436": {
+   "join": [
+    "PANSHANGER"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-5553": {
+   "join": [
+    "BALLS PARK"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-5931": {
+   "join": [
+    "Duffield Castle"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-4638": {
+   "join": [
+    "TAYLOR PARK"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-3007": {
+   "join": [
+    "The Small Isles"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-4136": {
+   "join": [
+    "MOWBRAY PARK"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-7192": {
+   "join": [
+    "Ballycastle Forest"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-0787": {
+   "join": [
+    "Drum Manor Forest Park"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-0791": {
+   "join": [
+    "Oxford Island"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-0802": {
+   "join": [
+    "Kilbroney"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-0804": {
+   "join": [
+    "Gosford Forest Park"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-7196": {
+   "join": [
+    "Iniscarn"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-0780": {
+   "join": [
+    "Burntollet Wood"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-2585": {
+   "join": [
+    "Ness Wood Country Park"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-6728": {
+   "join": [
+    "Wareham"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "GB-2998": {
+   "join": [
+    "River Earn (Comrie to St Fillans)"
+   ],
+   "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
   }
  }
 }
