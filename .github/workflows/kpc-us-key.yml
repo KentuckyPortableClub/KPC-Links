@@ -101,8 +101,10 @@ jobs:
           _rules = os.environ.get('RULES_CHANGED') == '1'
           _given = ' '.join((os.environ.get('STATES') or '').split())
           if _rules and _given and _given.upper() != 'ALL':
-              print(f"::warning title=US key plan::RULES CHANGED since the newest build: the states input '{_given}' is OVERRIDDEN - building ALL states on the current rules (a partial build would mix rules)")
-          elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)')
+              print(f"::warning title=US key plan::RULES CHANGED since the newest build: the states input '{_given}' is OVERRIDDEN - building ALL states on the current rules (a partial build would mix rules)", file=__import__('sys').stderr)
+          elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)', file=__import__('sys').stderr)
+          # Key hotfix 3 (Nov 5): these two go to stderr = the run log. stdout is >> $GITHUB_OUTPUT, so a ::notice printed there is
+          # never shown (the plan job of 41984527710 has no 'US key plan' annotation at all).
           if not _rules and os.environ.get('SCHED') in ('17 9 * * *', '46 11 * * *') and not (os.environ.get('STATES') or '').strip():
               try: _b = json.load(open('data/us-key/index.json', encoding='utf-8')).get('built') or ''
               except Exception: _b = ''

@@ -29,7 +29,7 @@ def plan(**env):
         r = subprocess.run([sys.executable, '-B', '-c', code], cwd=t, env=e, capture_output=True, text=True)
     out = dict(l.split('=', 1) for l in r.stdout.splitlines() if '=' in l and not l.startswith('::'))
     st = {s for g in json.loads(out.get('groups') or '[]') for s in g['states'].split()}
-    return out.get('full'), st, r.stdout
+    return out.get('full'), st, r.stdout + r.stderr   # hotfix 3: the plan's log lines go to stderr (stdout is GITHUB_OUTPUT)
 
 
 Q = 'CT ID ME ND OH TN WV'
