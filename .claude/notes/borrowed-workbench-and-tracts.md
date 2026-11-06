@@ -36,3 +36,17 @@ The world key is already one file per country (92 files, 18 MB); the weight is i
 and in `index.json`. A lean split = an extra `continent` field per country in `index.json` + `index-<continent>.json` written next to it
 by the join step, so a page can load one continent's list. That changes what the pages read, so it waits for Brandon; follow-up:
 "world key: index per continent (join step only, flag KPC_WORLD_CONTINENT_INDEX)".
+
+## Workbench v2 "FIND NEW" (BDW-Coils PR #2, merged Nov 6) — what we borrowed and what waits
+Built (report only, this follow-up PR): `kpc_pin_cover.py` (0.25 mi pin coverage, the workbench's CAND_NEAR_MI rule, on the keys'
+`bk` distance), `kpc_name_match.py` (the workbench's NAME_STOP / normName / nameMatch, accents folded for worldwide names) used by
+`kpc_two_name_check.py`, `kpc_also_in.py` (which official layers a park's joined land comes from), and a test that the recorded-acres
+field per source matches the workbench's candInfo() order (GIS_Acres -> ACRES_CAL -> ACRES -> ABSOLUTE_ACREAGE).
+For later (not keys):
+- Mapping Rep Tool Box: the whole FIND NEW flow (public land in view with no POTA pin inside or within 0.25 mi, 9 sources, filters for
+  closed / private / small / local, "named like an existing park" flag, lead export), the owner privacy scrub (scrubOwner), and
+  "pin vs this". Still no drawing tools for reps.
+- Guest tools (Trip Planner / Park Commander cards): OPEN / RESTRICTED / CLOSED access badges from Pub_Access / PUB_ACCESS / AreaOpen
+  (candAccess), and "also in" layer credits on a park card.
+- Keys, possible next step (needs Brandon): feed `pin-cover-*.json` `unjoined_near` (unjoined parks with an official record under
+  0.25 mi) into the hand-check queue; today it is a list only.
