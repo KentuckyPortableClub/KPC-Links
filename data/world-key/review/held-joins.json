@@ -1,9 +1,45 @@
 {
  "key": "world",
- "count": 7,
+ "count": 12,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
+  {
+   "park": "DO-0027",
+   "area": "DO",
+   "name": "Los Haitises National Park",
+   "pin_km": 33.12,
+   "was_g": null,
+   "held_ids": "59 | 59",
+   "held_names": "Los Haitises | Los Haitises",
+   "reason": "the nearest part of the joined outline is 33.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "DO-0117",
+   "area": "DO",
+   "name": "Autopista Juan Bosch Protected Landscape",
+   "pin_km": 43.64,
+   "was_g": null,
+   "held_ids": "19",
+   "held_names": "Autopista Juan Bosch",
+   "reason": "the nearest part of the joined outline is 43.6 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "DO-0132",
+   "area": "DO",
+   "name": "Alto Mao Forest Reserve",
+   "pin_km": 18.5,
+   "was_g": null,
+   "held_ids": "54 | 54 | 54 | 54",
+   "held_names": "Alto Mao | Alto Mao | Alto Mao | Alto Mao",
+   "reason": "the nearest part of the joined outline is 18.5 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
   {
    "park": "MX-0140",
    "area": "MX",
@@ -85,6 +121,30 @@
    "held_ids": "157",
    "held_names": "Pacífico Mexicano Profundo",
    "reason": "the nearest part of the joined outline is 71.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "ZA-0075",
+   "area": "ZA",
+   "name": "Baviaanskloof Conservation Area",
+   "pin_km": 45.82,
+   "was_g": null,
+   "held_ids": "1331 | 1270 | 35326",
+   "held_names": "Baviaanskloof Nature Reserve | Baviaanskloof Nature Reserve | Baviaanskloof Nature Reserve",
+   "reason": "the nearest part of the joined outline is 45.8 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "ZA-0156",
+   "area": "ZA",
+   "name": "Waters Meeting Nature Reserve",
+   "pin_km": 20.65,
+   "was_g": null,
+   "held_ids": "329 | 34331",
+   "held_names": "Waters Meeting Nature Reserve | Waters Meeting Nature Reserve",
+   "reason": "the nearest part of the joined outline is 20.6 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   }
