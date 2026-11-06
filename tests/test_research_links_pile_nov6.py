@@ -63,6 +63,17 @@ check(by['US-1274']['problem'] == 'missing' and 'parks.ky.gov' in by['US-1274'][
       'US-1274 is missing an official page and the suggestion is the state parks finder')
 check(by['US-0727']['problem'] == 'broken' and 'HTTP 404' in by['US-0727']['detail'],
       'US-0727 is a broken official link (stored HTTP 404), not a new fetch')
+check(all(r.get('suggestion') == 'suggestion, never auto-replace' for r in flagged),
+      'every suggestion is labelled suggestion, never auto-replace')
+acadia = {'ref': 'US-0047', 'area': 'US-ME', 'name': 'Acadia National Park', 'kind': 'National Park',
+          'owner': 'National Park Service', 'web': '', 'map_check': {}}
+before = json.dumps(acadia, sort_keys=True)
+got = RS.link_postcheck([acadia], ag)[0]
+check(got['suggest_agency'] == 'National Park Service' and 'nps.gov' in got['suggest_url'],
+      f'Acadia suggests the National Park Service, not a Maine page ({got.get("suggest_agency")} {got.get("suggest_url")})')
+check('Maine' not in got['suggest_agency'], 'Acadia is not sent to the Maine state agency')
+check(json.dumps(acadia, sort_keys=True) == before and acadia['web'] == '',
+      'the suggestion is not written back onto the park link')
 check(json.dumps(sample, sort_keys=True) == raw, 'report mode: the key row bytes stay identical')
 
 ranked = RS.rank_outlines('Allegan SGA', [

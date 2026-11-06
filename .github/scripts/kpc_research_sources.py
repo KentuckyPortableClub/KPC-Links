@@ -446,15 +446,47 @@ def _place_code(area):
     return parts[-1] if len(parts[-1]) <= 3 else a
 
 
+SUGGESTION = 'suggestion, never auto-replace'
+# Public homepages. Used only as a labelled suggestion. Nothing copies these onto a park.
+FEDERAL = (
+    ('CA', re.compile(r'national wildlife area|migratory bird sanctuary|\beccc\b|canadian wildlife service', re.I),
+     'Canadian Wildlife Service', 'https://www.canada.ca/en/environment-climate-change.html'),
+    ('CA', re.compile(r'parks canada|national park|national historic site|national marine', re.I),
+     'Parks Canada', 'https://parks.canada.ca/'),
+    ('US', re.compile(r'fish and wildlife|fish & wildlife|\bfws\b|\busfws\b|national wildlife refuge|waterfowl production', re.I),
+     'U.S. Fish and Wildlife Service', 'https://www.fws.gov/'),
+    ('US', re.compile(r'forest service|national forest|national grassland', re.I),
+     'USDA Forest Service', 'https://www.fs.usda.gov/'),
+    ('US', re.compile(r'\bblm\b|bureau of land management', re.I),
+     'Bureau of Land Management', 'https://www.blm.gov/'),
+    ('US', re.compile(r'national park service|\bnps\b|national park\b|national monument|national historic|national seashore|'
+                      r'national lakeshore|national battlefield|national memorial|national preserve|national recreation area', re.I),
+     'National Park Service', 'https://www.nps.gov/'),
+)
+
+
 def _role_for(kind, name):
     blob = fold(f'{kind or ""} {name or ""}')
     if any(w in blob for w in ('nature preserve', 'natural area', 'heritage land')):
         return 'preserves'
     if any(w in blob for w in ('wildlife', 'game land', 'refuge', ' wma')):
         return 'wildlife'
-    if 'forest' in blob:
+    if 'forest' in blob and 'national forest' not in blob:
         return 'forestry'
     return 'parks'
+
+
+def _federal(area, kind, name, owner):
+    """The federal agency when the owner or the designation says so. State pages are not used then."""
+    blob = ' '.join(str(x or '') for x in (owner, kind, name))
+    if not blob.strip():
+        return None
+    country = 'CA' if str(area or '').upper().startswith('CA') else 'US'
+    for cc, rx, agency, url in FEDERAL:
+        if cc == country and rx.search(blob):
+            return {'place': 'federal', 'agency': agency, 'role': 'federal', 'url': url, 'verified': True,
+                    'label': SUGGESTION}
+    return None
 
 
 def load_agencies(path=None):
@@ -471,8 +503,11 @@ def _page(block):
     return str(block.get('url') or ''), bool(block.get('verified'))
 
 
-def suggest_agency(area, kind='', name='', agencies=None):
-    """The state or province agency page that matches this park's kind. '' when the file has none."""
+def suggest_agency(area, kind='', name='', agencies=None, owner=''):
+    """A page someone might open. Never written onto the park. Federal owner or designation wins over the state page."""
+    fed = _federal(area, kind, name, owner)
+    if fed:
+        return fed
     places = (agencies or load_agencies()).get('places') or {}
     place = places.get(_place_code(area))
     if not place:
@@ -497,7 +532,7 @@ def suggest_agency(area, kind='', name='', agencies=None):
     home, hv = _page(pick.get('home'))
     url, verified = (finder, fv) if finder and fv else (home, hv) if home and hv else (finder or home, fv or hv)
     return {'place': place.get('name') or _place_code(area), 'agency': pick.get('name') or '',
-            'role': role, 'url': url, 'verified': bool(verified and url)}
+            'role': role, 'url': url, 'verified': bool(verified and url), 'label': SUGGESTION}
 
 
 def _link_problem(rec):
@@ -533,7 +568,7 @@ def link_postcheck(rows, agencies=None):
         problem, official, detail = _link_problem(row)
         if not problem:
             continue
-        sug = suggest_agency(row.get('area'), row.get('kind'), row.get('name'), agencies)
+        sug = suggest_agency(row.get('area'), row.get('kind'), row.get('name'), agencies, owner=row.get('owner') or '')
         out.append({
             'ref': row.get('ref') or '',
             'area': row.get('area') or '',
@@ -545,6 +580,7 @@ def link_postcheck(rows, agencies=None):
             'suggest_agency': sug.get('agency') or '',
             'suggest_url': sug.get('url') or '',
             'suggest_verified': bool(sug.get('verified')),
+            'suggestion': SUGGESTION,
         })
     return out
 
@@ -594,8 +630,9 @@ def scan_link_postcheck(root=None):
         area, name, kind = names.get(ref, ('', '', ''))
         if not area and str(ref).startswith('CA-'):
             area = 'CA'
-        rows.append({'ref': ref, 'area': area, 'name': name, 'kind': kind, 'web': rec.get('web') or '',
-                     'agency_page': rec.get('agency_page') or '', 'map_check': rec.get('map_check') or {}})
+        rows.append({'ref': ref, 'area': area, 'name': name, 'kind': kind, 'owner': rec.get('agency') or '',
+                     'web': rec.get('web') or '', 'agency_page': rec.get('agency_page') or '',
+                     'map_check': rec.get('map_check') or {}})
     return link_postcheck(rows)
 
 

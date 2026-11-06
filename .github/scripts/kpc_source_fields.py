@@ -66,10 +66,15 @@ SOURCES = [
          about='EEA nationally designated areas (CDDA, 2025 Reportnet layer): no cddaId any more; inspireIDLocalId (else nationalId), siteArea in hectares (checked Nov 6: Triglav 83,982 ha)'),
     dict(key='capad', match=r'CAPAD', id='PA_PID', parent='PA_ID', acres='GIS_AREA', unit=HA, owner='AUTHORITY', verified=False,
          about='Australia CAPAD: PA_ID, PA_PID, GIS_AREA in hectares'),
-    # --- Nov 6 research packs (KPC_RESEARCH_SOURCES). These match the new file / Hub / REST urls only.
-    # The live layers the keys already query (QLD ParksTerrestrial MapServer/10, WA DBCA MapServer/15, the CAPAD
-    # MapServer above) are not repeated here, so a default build asks for the same fields it asked for before.
-    # OBJECTID is never the stable id. verified=False: names come from the pack, not a fresh field-list read.
+]
+
+# Research-pack field names (Nov 6). Registered here so the names are in one file, but NOT in SOURCES.
+# find() / mapping() / extra_fields() never read this list, whether KPC_RESEARCH_SOURCES is off or report.
+# Builders keep requesting the same fields, and tract records keep the same src. A side report may call
+# research_find(); that result is never written into a key or a tract file.
+# Saskatchewan is the gis.saskatchewan.ca Planning service only. It must not match St John's
+# Mapcentre/Planning/MapServer/5 or WA Property_and_Planning/MapServer/15.
+RESEARCH_SOURCES = [
     dict(key='usfs_surface', match=r'BdyOwn_LSRS_SurfaceOwnership', acres='GIS_ACRES', unit=AC, owner='OWNERCLASSIFICATION',
          parent='FORESTNAME', verified=False,
          about='Forest Service Surface Ownership detailed gdb (data.fs.usda.gov). Field names follow the Basic Ownership sibling; the gdb was not opened in this repo.'),
@@ -91,8 +96,9 @@ SOURCES = [
          parent='CORESPONSA', verified=False, about='Quebec protected-areas register. Name field NOM.'),
     dict(key='qc_trq', match=r'TRQ_WMS/MapServer/(6|16)', id='CODE_ADMINISTRATIF', acres='SUPERFICIE_KM2', unit=KM2, verified=False,
          about='Quebec recreation territories (regional parks layer 6, ZECs layer 16). Name field NOM_OFFICIEL.'),
-    dict(key='sk_whpa', match=r'items/1ffa27744fd04ee6986de4bee7ad4052|Planning/MapServer', owner='PROP_OWN', access='PUBLICCL', verified=False,
-         about='Saskatchewan WHPA / planning lands. Name field PUBLICNM. OBJECTID is not used as the stable id.'),
+    dict(key='sk_whpa', match=r'gis\.saskatchewan\.ca/arcgis/rest/services/Planning/MapServer(?:/\d+)?(?:\?|$)|items/1ffa27744fd04ee6986de4bee7ad4052',
+         owner='PROP_OWN', access='PUBLICCL', verified=False,
+         about='Saskatchewan Planning MapServer on gis.saskatchewan.ca, or that Hub item. Not any other Planning/MapServer.'),
     dict(key='ga_conservation', match=r'FrameWork/Conservation/FeatureServer/5', owner='ownr_categ', verified=False,
          about='Georgia DNR conservation lands. Name field name.'),
     dict(key='me_ecoreserve', match=r'MEBPL_Lands_Ecoreserve/MapServer/1', acres='Total_Acres', unit=AC, verified=False,
@@ -130,14 +136,24 @@ AUTO_PARENT = re.compile(r'^(parent_?id|wdpa_?pid|pa_?pid|parent|parent_?code|un
 AUTO_ACCESS = re.compile(r'^(pub_?access|public_?access|access)$', re.I)
 
 
-def find(url='', label=''):
-    """The explicit SOURCES row for a layer url / world source label, or None."""
-    for s in SOURCES:
+def _match_row(rows, url='', label=''):
+    for s in rows:
         for part in re.split(r'\|(?=label:)', s['match']):
             if part.startswith('label:'):
                 if label and re.search(part[6:], label, re.I): return s
             elif url and re.search(part, url): return s
     return None
+
+
+def find(url='', label=''):
+    """The explicit SOURCES row for a layer url / world source label, or None.
+    Research-pack rows are not included. The flag does not change this."""
+    return _match_row(SOURCES, url, label)
+
+
+def research_find(url='', label=''):
+    """A research-pack field row, for a side report only. mapping() does not call this."""
+    return _match_row(RESEARCH_SOURCES, url, label)
 
 
 def _ci(fields, name):
