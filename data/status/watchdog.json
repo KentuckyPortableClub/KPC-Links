@@ -405,15 +405,6 @@
   "kpc-pota-discord.yml|2026-11-06T18:19:00+00:00": "2026-11-06T19:16+00:00 started",
   "pages-deploy.yml|2026-11-06T18:41:00+00:00": "2026-11-06T19:16+00:00 started"
  },
- "last": "2026-11-06T19:16+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 06 18:48 UTC)",
-  "kpc-boards.yml (missed Nov 06 18:44 UTC)",
-  "kpc-bot-queue.yml (missed Nov 06 18:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 06 18:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 06 18:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-park-notes.yml (missed Nov 06 18:41 UTC)",
-  "kpc-pota-discord.yml (missed Nov 06 18:19 UTC)",
-  "pages-deploy.yml (missed Nov 06 18:41 UTC)"
- ]
+ "last": "2026-11-06T19:38+00:00",
+ "last_restarted": []
 }
