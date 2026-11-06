@@ -175,6 +175,7 @@ body.field .page-jump-nav{display:none!important}
 .mr-say b{display:block;margin:0 0 4px;font-size:13px;letter-spacing:.3px}
 .mr-say p{margin:6px 0 0}
 .mr-head-note{margin:14px 0 0;max-width:720px;color:#efe6d2;font-size:15px;line-height:1.45}
+.mr-padlook{margin:0 0 8px;color:#3d3422;font-size:14.5px;line-height:1.45}
 .mr-recbox{margin:8px 0;padding:8px 10px;border:1px solid #d8cfbf;border-radius:8px;background:#fff}
 .mr-recbox th{text-align:left;padding:3px 8px 3px 0;color:#5b5648;font-weight:700;vertical-align:top}
 .mr-recbox td{padding:3px 0;overflow-wrap:anywhere}
@@ -215,13 +216,6 @@ body.field .page-jump-nav{display:none!important}
 </details>
 <div id="mrSpot"></div>
 </section>
-<section class="mr-card">
-<form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE<select id="mrState"></select></label><button type="submit">CHECK IT</button></form>
-<p class="mr-help">With a state picked (or found for you), the search looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from the POTA Mapping Representative Agreement (Rev. Sept 1 2026) and POTA's Knowledge Bank ("Park Additions and Edits", docs.pota.app); <a href="#mrAgree">the Agreement in plain words is at the bottom of this page</a>. The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. It's a helper that gathers the facts and links; the decision is yours.</p>
-<div id="mrAg"></div>
-<div id="mrList"></div>
-</section>
-<div id="mrOut"></div>
 <section class="mr-card mr-agree" id="mrAgree"><details open><summary>📜 THE RULES YOU AGREED TO · POTA MAPPING REPRESENTATIVE AGREEMENT (REV. SEPT 1 2026), IN PLAIN WORDS</summary>
 <div class="mr-say"><b>How this page decides, and what it can miss.</b> We match the spot to published government outlines (PAD-US and our state layers), then look at owner, manager, designation and public access, and compare that with POTA’s published rules. We can miss a new tract, a joint owner, an easement, a private inholding or a name change. We don’t have every detail, so the official agency page and the PAD-US record always win over our summary.</div>
 <p class="mr-help">Your job is to apply the published rules the same way everywhere, not to find a way to make a park qualify. Sometimes the right answer is no, even for a friend or your club: that is the standard talking, not you. Unclear or unusual? Ask your Mapping Representative Lead; you are not expected to solve it alone.</p>
@@ -268,6 +262,6 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer mr-foot"><div><div class="kpc-footer-brand">MAPPING REP TOOL BOX</div><div class="kpc-footer-tag">A private research helper from the Kentucky Portable Club</div></div><div class="footer-actions"><a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA KNOWLEDGE BANK ↗</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html" target="_blank" rel="noopener">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">A research helper, not an official source. We make mistakes: do your own research and check the agency's own pages and maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;.</div>
 <script src="kpc-bounds.js?v=20261102t" defer></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261027a" defer></script>
-<script src="kpc-maprep-check.js?v=20261105d" defer></script>
-<script src="kpc-maprep.js?v=20261105a" defer></script>
+<script src="kpc-maprep-check.js?v=20261106a" defer></script>
+<script src="kpc-maprep.js?v=20261106a" defer></script>
 </body></html>

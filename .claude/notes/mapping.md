@@ -2,6 +2,7 @@
 
 **Older notes (Oct 14-19) are in `.claude/notes/archive/mapping-2026-10-14-to-19.md`** (Map Rep Tool Box rules in full, the Am I in the Park / Kit / Info Finder / planner builds, Kentucky access points, 2-fers, trails plan, first answer keys). Read it when you touch one of those tools.
 
+- **Nov 6:** The Mapping Rep page is one check. The old name form, the “how to search” essay, the agency-picker list and “find parks to add” are gone. Next to the PAD-US record, one sentence says to look at the owner, the manager, the designation, the acres, and public access.
 - **Nov 5:** Mapping Rep Tool Box "Could this be a park?" (kpc-maprep-check.js). Kentucky outlines are saved on the site. Any other state loads that state's answer key when asked, then PAD-US for that state (GAP status included). The state comes from the pin, the name, or the menu. Canada is listed (CPCAD, the province list) and not queried. A short disclaimer sits by the official links: the page is a helper, and the agency page and PAD-US record win. WMA / W.M.A. / SP / SNP match. Each rule is pass, fail or unknown from a named field (joint state-and-county ownership stays unknown). Order: official info, POTA status, rules, club notes. Newfoundland, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not drawn. Still members-only.
 
 ## WHERE THINGS ARE (summary written Oct 25 2026, chat 2)
