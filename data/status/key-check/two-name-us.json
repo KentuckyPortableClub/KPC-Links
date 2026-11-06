@@ -1,8 +1,8 @@
 {
  "key": "us",
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
- "two_name_parks": 591,
- "half_outlined": 17,
+ "two_name_parks": 590,
+ "half_outlined": 18,
  "parks": [
   {
    "area": "US-AL",
@@ -15,6 +15,9 @@
    "missing": "Portersville Bay State Fish and Wildlife Area",
    "missing_words": [
     "portersville"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -29,6 +32,10 @@
    "missing": "Waveland Park) National Recreation Area",
    "missing_words": [
     "waveland"
+   ],
+   "also_in": [
+    "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5) (land, state GIS table)",
+    "PAD-US"
    ]
   },
   {
@@ -43,6 +50,9 @@
    "missing_words": [
     "mcnee",
     "ranch"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -57,6 +67,12 @@
    "missing": "Chesapeake",
    "missing_words": [
     "chesapeake"
+   ],
+   "also_in": [
+    "Delaware DNREC (land, state GIS table)",
+    "Delaware Fish & Wildlife (DNREC) (wild, state GIS table)",
+    "Delaware public protected lands (DNREC) (land, state GIS table)",
+    "PAD-US"
    ]
   },
   {
@@ -70,6 +86,9 @@
    "missing": "Donnelley",
    "missing_words": [
     "donnelley"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -84,6 +103,10 @@
    "missing_words": [
     "frances",
     "slocum"
+   ],
+   "also_in": [
+    "Indiana DNR (land, state GIS table)",
+    "Indiana DNR properties"
    ]
   },
   {
@@ -98,6 +121,11 @@
    "missing_words": [
     "neck",
     "stodders"
+   ],
+   "also_in": [
+    "MassGIS / Executive Office of Energy and Environmental Affai (land, state GIS table)",
+    "Massachusetts DCR (DCRStateParks account, mass-eoeea org) (land, state GIS table)",
+    "PAD-US"
    ]
   },
   {
@@ -111,6 +139,9 @@
    "missing": "Ralph",
    "missing_words": [
     "ralph"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -125,6 +156,9 @@
    "missing_words": [
     "anderson",
     "ft"
+   ],
+   "also_in": [
+    "NC Natural Heritage Program, NC Dept of Natural and Cultural (preserve, state GIS table)"
    ]
   },
   {
@@ -138,6 +172,9 @@
    "missing": "Pasture Wildlife Management Area",
    "missing_words": [
     "pasture"
+   ],
+   "also_in": [
+    "Nevada Department of Wildlife (wild, state GIS table)"
    ]
   },
   {
@@ -151,6 +188,10 @@
    "missing": "Day Use State Recreation Area",
    "missing_words": [
     "day"
+   ],
+   "also_in": [
+    "New York State DEC (land, state GIS table)",
+    "PAD-US"
    ]
   },
   {
@@ -164,6 +205,10 @@
    "missing": "Day Use State Recreation Site",
    "missing_words": [
     "day"
+   ],
+   "also_in": [
+    "New York State DEC (land, state GIS table)",
+    "PAD-US"
    ]
   },
   {
@@ -178,6 +223,9 @@
    "missing_words": [
     "della",
     "gates"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -192,6 +240,12 @@
    "missing": "McGuire Islands State Recreation Area",
    "missing_words": [
     "mcguire"
+   ],
+   "also_in": [
+    "Oregon Parks & Recreation Department (park, state GIS table)",
+    "Oregon Parks and Recreation Department (AGOL owner orstateparks) (park, state GIS table)",
+    "PAD-US",
+    "State of Oregon (Oregon parklands) (park, state GIS table)"
    ]
   },
   {
@@ -206,6 +260,11 @@
    "missing": "Angelus Tracts Wildlife Management Area",
    "missing_words": [
     "angelus"
+   ],
+   "also_in": [
+    "PAD-US",
+    "South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table)",
+    "South Carolina Department of Natural Resources (credit: SCDNR) (land, state GIS table)"
    ]
   },
   {
@@ -219,6 +278,27 @@
    "missing": "Redwash BLM Recreation Management Area",
    "missing_words": [
     "redwash"
+   ],
+   "also_in": [
+    "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+    "BLM recreation areas",
+    "BLM recreation management areas · official (BLM planning area)"
+   ]
+  },
+  {
+   "area": "US-WI",
+   "park": "US-4244",
+   "name": "Big Bay Sand Spit and Bog State Natural Area",
+   "joined": [
+    "Big Bay State Park"
+   ],
+   "named": "Big Bay Sand Spit",
+   "missing": "Bog State Natural Area",
+   "missing_words": [
+    "bog"
+   ],
+   "also_in": [
+    "PAD-US"
    ]
   },
   {
@@ -233,6 +313,10 @@
    "missing_words": [
     "pathway",
     "pinedale"
+   ],
+   "also_in": [
+    "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+    "BLM recreation management areas · official (BLM planning area)"
    ]
   }
  ]
