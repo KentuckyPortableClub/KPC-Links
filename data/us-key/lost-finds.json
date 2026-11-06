@@ -1,5 +1,5 @@
 {
- "made": "2026-11-05 12:29 UTC",
+ "made": "2026-11-06 01:51 UTC",
  "counts": {
   "A_decided_not_in_key": 107,
   "B_sure_area_not_asked": 10,
@@ -484,13 +484,6 @@
    "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
   ],
   [
-   "US-4342",
-   "WI",
-   "Herb Behnke Unit of Wolf River Bottoms State Wildlife Area",
-   "join",
-   " a unit (Herb Behnke) of Wolf River Bottoms WA (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
-  ],
-  [
    "US-5564",
    "VT",
    "Essex Nursery State Forest",
@@ -748,6 +741,13 @@
    "Grenada State Wildlife Area",
    "alias",
    " 11 YES (pin 850 m from the edge, 6094.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+  ],
+  [
+   "US-9678",
+   "CO",
+   "Windy Gap Watchable State Wildlife Area",
+   "join",
+   "same place, another name (hand review Oct 22 (waiting list))"
   ],
   [
    "US-9683",
