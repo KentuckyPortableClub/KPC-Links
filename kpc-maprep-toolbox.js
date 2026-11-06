@@ -36,6 +36,10 @@
     if (!r.ok) throw new Error('catalog');
     catalog = await r.json();
     try {
+      const ag = await fetch('data/maprep/agencies.json');
+      if (ag.ok && Lgc()) Lgc().loadAgencies(await ag.json());
+    } catch (e) {}
+    try {
       const a = await fetch('data/maprep/abbreviations.json');
       if (a.ok) { const j = await a.json(); if (Lgc()) Lgc().loadRows(j.rows || []); }
     } catch (e) {}
@@ -56,6 +60,19 @@
     if (!seen.has('KY')) places.unshift('KY');
     sel.innerHTML = places.map(p => `<option value="${esc(p)}">${esc(p)}${p === 'CA' ? ' · Canada national' : ''}</option>`).join('');
     sel.value = seen.has('KY') ? 'KY' : places[0];
+    sel.onchange = paintDirectory;
+    paintDirectory();
+  }
+  function paintDirectory() {
+    const host = $('mrDeskDir');
+    const G = Lgc();
+    if (!host || !G || !G.agencyMatches) return;
+    const code = placeCode();
+    const rows = G.agencyMatches(code, '');
+    host.innerHTML = '<details class="mr-agd" open><summary>AGENCY DIRECTORY · ' + esc(code) + '</summary>' + (rows.length ? rows.map(a => {
+      const one = (label, slot) => (slot && slot.url) ? `<a href="${esc(slot.url)}" target="_blank" rel="noopener">${esc(label)}${slot.verified ? '' : ' (unverified)'}</a>` : `<span>${esc(label)}: not stored</span>`;
+      return `<p class="mr-help"><b>${esc(a.name)}</b><br>${one('Home', a.home)} · ${one('Finder', a.finder)} · ${one('GIS', a.gis)}</p>`;
+    }).join('') : '<p class="mr-help">No directory row for this place.</p>') + '</details>';
   }
   function featName(src, props) {
     const keys = [src.nameField, 'NAME', 'Name', 'Unit_Nm', 'AREANAME', 'PUBLIC_NAM', 'MANAME', 'PROP_NAME', 'NAME_E'].filter(Boolean);
@@ -161,6 +178,10 @@
     if (!G) return '';
     const owner = (extra && extra.owner) || src.agency || '';
     const tier = /county|city/i.test(owner) ? 'local' : /private/i.test(owner) ? 'private' : 'state';
+    const dir = (G.agencyMatches ? G.agencyMatches(src.place || placeCode(), [name, src.kind, src.agency, src.title].join(' ')) : []).map(a => {
+      const one = (label, slot) => (slot && slot.url) ? `<a href="${esc(slot.url)}" target="_blank" rel="noopener">${esc(label)}${slot.verified ? '' : ' (unverified)'}</a>` : '';
+      return `<p class="mr-help"><b>${esc(a.name)}</b> · ${[one('home', a.home), one('finder', a.finder), one('GIS', a.gis)].filter(Boolean).join(' · ') || 'no URL stored'}</p>`;
+    }).join('');
     const rep = G.rulesCheck({
       publicLand: tier !== 'private',
       owner: owner,
@@ -179,7 +200,7 @@
       + (rep.overlap.length ? 'Overlaps ' + rep.overlap.map(p => esc(p.ref + ' ' + p.name)).join('; ') + '. ' : 'No POTA park from this check sits on it. ')
       + (rep.missing.length ? 'Missing: ' + esc(rep.missing.join(', ')) + '. ' : '')
       + (rep.sendLink ? 'Link to send with a POTA note: <a href="' + esc(rep.sendLink) + '" target="_blank" rel="noopener">' + esc(rep.sendLink) + '</a>.' : '')
-      + '</div>';
+      + '</div>' + dir;
   }
 
   async function searchAll() {

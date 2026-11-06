@@ -89,6 +89,32 @@
     const rows = ((agTable().SA || {})[code]) || [];
     return rows.map(([label, host]) => [label, /^https?:/i.test(host) ? host : 'https://' + host.replace(/^\/\//, '')]);
   }
+  let agP = null;
+  function ensureAgencies() {
+    if (window.KPCMapLogic && KPCMapLogic.agenciesReady && KPCMapLogic.agenciesReady()) return Promise.resolve();
+    if (!agP) {
+      const get = (window.KPCB && KPCB.jget) ? (p => KPCB.jget(p)) : (p => fetch(p).then(r => { if (!r.ok) throw new Error('agencies'); return r.json(); }));
+      agP = get('data/maprep/agencies.json').then(j => { if (window.KPCMapLogic && j) KPCMapLogic.loadAgencies(j); return j; }).catch(() => null);
+    }
+    return agP;
+  }
+  function slotLink(label, slot) {
+    if (!slot || !slot.url) return '';
+    const tag = slot.verified ? '' : ' (unverified)';
+    return `<a class="k-off" href="${esc(slot.url)}" target="_blank" rel="noopener"><b>${esc(label + tag)}</b><span>${esc(slot.url)}</span></a>`;
+  }
+  function directoryBlock(code, blob) {
+    const G = window.KPCMapLogic;
+    if (!G || !G.agencyMatches) return '';
+    const rows = G.agencyMatches(code || '', blob || '');
+    if (!rows.length) return '<p class="mr-help">No agency directory row is stored for this place.</p>';
+    const head = rows[0].matched ? 'Matching agencies' : 'Land agencies for this place';
+    const note = rows[0].matched ? 'Picked from the directory by this place and the designation, even when the layer has no page of its own.' : 'The designation did not name an agency, so every land agency stored for this place is listed.';
+    return `<h4 style="margin:12px 0 6px">${head}</h4><p class="mr-help">${note}</p>` + rows.map(a => {
+      const links = [slotLink(a.name + ' — home', a.home), slotLink(a.name + ' — finder', a.finder), slotLink(a.name + ' — GIS', a.gis)].filter(Boolean).join('');
+      return links ? `<div class="mr-links">${links}</div>` : `<p class="mr-help">${esc(a.name)}: no URL stored.</p>`;
+    }).join('');
+  }
   function fillStateMenu() {
     const sel = $('mrCheckSt'); if (!sel || sel.dataset.ready) return;
     loadStates().then(rows => {
@@ -697,7 +723,8 @@
       + (ctx.edgeNote ? kv('Pin and the boundary', esc(ctx.edgeNote)) : '')
       + `<h4 style="margin:12px 0 6px">Links</h4>${linkBlock}`
       + (ctx.padExact ? `<h4 style="margin:12px 0 6px">PAD-US record</h4>${padTable(ctx.padExact)}` : `<h4 style="margin:12px 0 6px">PAD-US</h4>${PAD_LOOK}<p class="mr-help">No PAD-US record in ${esc(place)} matched this name${ctx.pin ? ' or this pin' : ''}. The search link above opens the same query.</p>`)
-      + (ctx.padNear && ctx.padNear.length ? `<p class="mr-help"><b>Other PAD-US names (not an exact hit):</b> ${ctx.padNear.slice(0, 5).map(a => `<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a>`).join(', ')}.</p>` : '');
+      + (ctx.padNear && ctx.padNear.length ? `<p class="mr-help"><b>Other PAD-US names (not an exact hit):</b> ${ctx.padNear.slice(0, 5).map(a => `<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a>`).join(', ')}.</p>` : '')
+      + directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, L.k, ctx.padExact && ctx.padExact.Des_Tp, ctx.padExact && ctx.padExact.Mang_Name, ctx.padExact && ctx.padExact.Unit_Nm].filter(Boolean).join(' '));
     const vClass = R.summary === 'YES' || R.summary === 'ALREADY' ? 'yes' : R.summary === 'NO' ? 'no' : 'maybe';
     const potaBody = pota.length
       ? pota.map(x => `<a href="https://pota.app/#/park/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)}</a> ${esc(x.name)}`).join('<br>')
@@ -708,7 +735,7 @@
 <div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}</p></div>
 <div class="mr-sec mr-official"><h3>1 · Official information</h3>${official}</div>
 <div class="mr-sec"><h3>2 · POTA status</h3><div class="mr-v ${vClass}" data-mr-verdict="${esc(summaryWord(R.summary))}"><b>${esc(summaryWord(R.summary))}</b></div><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
-<div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${rulesHtml(R)}</div>
+<div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, ctx.padExact && ctx.padExact.Des_Tp].filter(Boolean).join(' '))}${rulesHtml(R)}</div>
 <div class="mr-sec"><h3>4 · KPC notes</h3>${L.note ? `<p>${esc(L.note)}</p>` : ''}${ctx.county ? `<p>County: ${esc(ctx.county)}. ` : '<p>'}${Number.isFinite(ctx.la) ? `Grid ${esc(grid(ctx.la, ctx.lo))}.` : ''}</p>
 ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p><p class="mr-help">Street map tiles are © OpenStreetMap contributors, ODbL. ${st.local ? 'Kentucky outlines on this page are the club’s published copies of agency layers.' : 'This state’s outline, when we have one, comes from the published answer key or from PAD-US. It is fetched for this place only.'}</p></div>
 </section>`;
@@ -769,6 +796,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     return `<section class="mr-res" data-mr-result="canada"><div class="mr-head"><div class="mr-k">OUTSIDE THE UNITED STATES</div><h2>This pin is not in a US state</h2></div><div class="mr-sec"><p>This pin is not inside a US state, so this check does not guess a province. Provinces and territories: ${esc(list)}.</p><p class="mr-help">Pick the province in the Mapping desk to query CPCAD and the provincial layers that are marked ok. Newfoundland and Labrador outlines, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not fetched.</p></div></section>`;
   }
   async function showPoint(la, lo) {
+    await ensureAgencies();
     lastPin = { la: la, lo: lo };
     const my = ++gen;
     const box = $('mrSpot');
@@ -827,6 +855,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
   }
 
   async function showHit(h) {
+    await ensureAgencies();
     await ready();
     mount();
     const b = B();
@@ -903,6 +932,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
   }
 
   async function showQuery(q) {
+    await ensureAgencies();
     const my = ++gen;
     const box = $('mrSpot');
     const st = await chosenState(q);
@@ -947,7 +977,7 @@ ${padExact.length ? '<h4>PAD-US records with this name</h4>' + padBtns : (padNea
 ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
 </div>
 <div class="mr-sec"><h3>2 · POTA status</h3><p>${elseNames.length ? 'Similar names elsewhere, not this place: ' + elseNames.map(x => esc(x.ref + ' ' + x.name)).join('; ') : 'No similar park in the list was close enough to call a match.'}</p></div>
-<div class="mr-sec"><h3>3 · Rules checklist</h3>${rulesHtml(rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null }))}</div>
+<div class="mr-sec"><h3>3 · Rules checklist</h3>${directoryBlock(st.code, name)}${rulesHtml(rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null }))}</div>
 <div class="mr-sec"><h3>4 · KPC notes</h3><p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p></div>
 </section>`;
     if (box) box.querySelectorAll('[data-near]').forEach(btn => btn.onclick = () => showHit(near[+btn.dataset.near]));
@@ -977,6 +1007,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     return rows;
   }
   async function showAll() {
+    await ensureAgencies();
     const box = $('mrSpot');
     if (box) box.innerHTML = '<p class="mr-msg">Reading every published Kentucky layer…</p>';
     mount();

@@ -36,6 +36,32 @@
   const PUBLIC_WORDS = /\b(city|county|counties|fiscal court|state|commonwealth|kentucky|united states|national|federal|department|dept|division|office|district|university|college|authority|board|parks?|recreation|commission|corps|service|government|town|conservancy|land trust|foundation|society|association|nature|audubon|wildlife|resources|forestry|cabinet)\b/i;
 
   let compiled = [];
+  let AGENCIES = null;
+  const ROLE_RULES = [
+    ['wildlife', /wildlife|fish|game|\bwma\b|hunting|refuge|waterfowl/i],
+    ['parks', /state park|\bparks\b|historic site|recreation/i],
+    ['preserves', /nature preserve|natural area|natural heritage|\bpreserve\b/i],
+    ['forestry', /forest/i],
+    ['heritage', /heritage|historic/i],
+    ['lands', /trust land|state land|land board|land office/i]
+  ];
+  function loadAgencies(doc) {
+    AGENCIES = doc && doc.places ? doc : { places: (doc && doc.places) || {} };
+    return true;
+  }
+  function agenciesReady() { return !!(AGENCIES && AGENCIES.places); }
+  /* Links for this state, chosen by the designation. If the designation names no agency, every agency for the place is returned. */
+  function agencyMatches(code, text) {
+    if (!agenciesReady()) return [];
+    const place = AGENCIES.places[code];
+    if (!place) return [];
+    const roles = ROLE_RULES.filter(([, re]) => re.test(String(text || ''))).map(([r]) => r);
+    const all = place.agencies || [];
+    let rows = all.filter(a => (a.roles || [a.role]).some(r => roles.indexOf(r) >= 0));
+    const matched = rows.length > 0;
+    if (!matched) rows = all.slice();
+    return rows.map(a => ({ name: a.name, role: a.role, roles: a.roles || [a.role], home: a.home || {}, finder: a.finder || {}, gis: a.gis || {}, matched: matched }));
+  }
 
   function compile(rows) {
     const map = new Map();
@@ -349,6 +375,16 @@
       { name: 'Tiny', access: 'open', acres: 1, private: false, local: false }
     ], { closed: false, small: false });
     ok(kept.length === 1 && kept[0].name === 'Open', 'find-new filters');
+    if (typeof require !== 'undefined') {
+      const fs2 = require('fs'), path2 = require('path');
+      const ag = JSON.parse(fs2.readFileSync(path2.join(__dirname, 'data', 'maprep', 'agencies.json'), 'utf8'));
+      loadAgencies(ag);
+      const need = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY AB BC MB NB NL NT NS NU ON PE QC SK YT'.split(' ');
+      need.forEach(code => ok(ag.places[code] && ag.places[code].agencies && ag.places[code].agencies.length > 0, 'agency row for ' + code));
+      const ky = agencyMatches('KY', 'Blackford Oaks Wildlife Management Area');
+      ok(ky.some(a => a.matched && a.role === 'wildlife' && a.finder && a.finder.url), 'KY WMA uses the wildlife directory');
+      ok(!JSON.stringify(ag).includes('33TOOklri9xpic7U'), 'directory has no banned server');
+    }
     if (fails.length) {
       console.log(fails.join('\n'));
       console.log('SOME FAILED');
@@ -364,7 +400,8 @@
     pinDistance: pinDistance, formatDistance: formatDistance, isBanned: isBanned, isParcel: isParcel,
     blockedPlace: blockedPlace, servicesHost: servicesHost, publicFields: publicFields, scrubOwner: scrubOwner,
     rulesCheck: rulesCheck, alreadyPark: alreadyPark, filterCandidates: filterCandidates, exportLeads: exportLeads,
-    servicesDiff: servicesDiff, tractLinks: tractLinks, layerWords: layerWords, selftest: selftest
+    servicesDiff: servicesDiff, tractLinks: tractLinks, layerWords: layerWords,
+    loadAgencies: loadAgencies, agenciesReady: agenciesReady, agencyMatches: agencyMatches, selftest: selftest
   };
 });
 

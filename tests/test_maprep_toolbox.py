@@ -45,10 +45,22 @@ check(all('33TOOklri9xpic7U' not in ((s.get('rest') or '') + (s.get('download') 
 check(all(s.get('place') not in ('CO', 'TN') for s in live), 'Colorado and Tennessee are not queried live')
 check(cat['regions']['US']['enabled'] and cat['regions']['CA']['enabled'] and not cat['regions']['AU']['enabled'], 'US and Canada on, other countries off')
 
-diff = subprocess.run(['git', 'diff', '--name-only', 'main', '--', '.github/scripts', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json'],
+have = subprocess.run(['git', 'rev-parse', '--verify', 'origin/main'], cwd=ROOT, capture_output=True, text=True, timeout=20)
+if have.returncode != 0:
+    fetch = subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=ROOT, capture_output=True, text=True, timeout=60)
+    check(fetch.returncode == 0, 'fetched origin/main: ' + ((fetch.stderr or fetch.stdout or 'fetch failed').strip().splitlines() or ['?'])[-1])
+diff = subprocess.run(['git', 'diff', '--name-only', 'origin/main...HEAD', '--', '.github/scripts', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json'],
                       cwd=ROOT, capture_output=True, text=True, timeout=30)
 names = [ln for ln in diff.stdout.splitlines() if ln.strip()]
 check(diff.returncode == 0 and not names, 'answer-key scripts and key files are unchanged' + ((' ' + ', '.join(names[:8])) if names else ''))
+
+ag = json.loads((ROOT / 'data/maprep/agencies.json').read_text())
+NEED = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY AB BC MB NB NL NT NS NU ON PE QC SK YT'.split()
+missing_place = [c for c in NEED if not (ag.get('places', {}).get(c) or {}).get('agencies')]
+check(not missing_place, 'every state and province has an agency row' + ((' missing ' + ', '.join(missing_place)) if missing_place else ''))
+check('33TOOklri9xpic7U' not in json.dumps(ag), 'agency directory does not list the banned server')
+gaps = ROOT / 'docs/maprep-agency-gaps.txt'
+check(gaps.exists() and gaps.stat().st_size > 40, 'gap list for the outside researcher exists')
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
