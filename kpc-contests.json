@@ -1,104 +1,6 @@
 {
- "updated": "2026-11-05T11:08:05Z",
+ "updated": "2026-11-06T12:02:23Z",
  "week": [
-  {
-   "name": "Walk for the Bacon QRP Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gaw7v",
-   "when": "0000Z-0100Z, Nov 5 and 0200Z-0300Z, Nov 6",
-   "segs": [
-    [
-     "2026-11-05T00:00Z",
-     "2026-11-05T01:00Z"
-    ],
-    [
-     "2026-11-06T02:00Z",
-     "2026-11-06T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "SKCC Sprint Europe",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g96fp",
-   "when": "2000Z-2200Z, Nov 5",
-   "segs": [
-    [
-     "2026-11-05T20:00Z",
-     "2026-11-05T22:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC FT4 Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gum4l",
-   "when": "0100Z-0130Z, Nov 6",
-   "segs": [
-    [
-     "2026-11-06T01:00Z",
-     "2026-11-06T01:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Weekly RTTY Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gvh01",
-   "when": "0145Z-0215Z, Nov 6",
-   "segs": [
-    [
-     "2026-11-06T01:45Z",
-     "2026-11-06T02:15Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "QRP Fox Hunt",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gyok6",
-   "when": "0200Z-0330Z, Nov 6",
-   "segs": [
-    [
-     "2026-11-06T02:00Z",
-     "2026-11-06T03:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gtqq4",
-   "when": "0230Z-0300Z, Nov 6",
-   "segs": [
-    [
-     "2026-11-06T02:30Z",
-     "2026-11-06T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "K1USN Slow Speed Test",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkjfd",
@@ -443,6 +345,56 @@
    ],
    "modes": [
     "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gaguo",
+   "when": "0000Z-0500Z, Nov 12",
+   "segs": [
+    [
+     "2026-11-12T00:00Z",
+     "2026-11-12T05:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghyoy",
+   "when": "0300Z-0400Z, Nov 12",
+   "segs": [
+    [
+     "2026-11-12T03:00Z",
+     "2026-11-12T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gitk2",
+   "when": "0700Z-0800Z, Nov 12",
+   "segs": [
+    [
+     "2026-11-12T07:00Z",
+     "2026-11-12T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
    ],
    "kinds": [],
    "src": "WA7BNM"
@@ -1207,64 +1159,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RS(T), age (avg age for multiops)"
-  },
-  {
-   "name": "Walk for the Bacon QRP Contest",
-   "url": "https://qrpcontest.com/pigwalk40",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-05T00:00Z",
-     "2026-11-06T03:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "CORRAL",
-   "bands": "7",
-   "exch": "Max 13 WPM: RST, SPC, name, mbr or pwr"
-  },
-  {
-   "name": "NRAU 10m Activity Contest",
-   "url": "https://nrau.net",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-05T18:00Z",
-     "2026-11-05T22:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE",
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "28",
-   "exch": "RS(T), 6-char grid"
-  },
-  {
-   "name": "SKCC Sprint Europe",
-   "url": "https://www.skccgroup.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-05T20:00Z",
-     "2026-11-05T22:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50",
-   "exch": "RST, SPC, name, mbr or \"none\""
   },
   {
    "name": "YBDXPI FT8 Contest",
@@ -2728,10 +2622,31 @@
    "src": "RULE",
    "by": "ARRL",
    "exch": "RS(T) + ARRL section (KY)"
+  },
+  {
+   "name": "ARRL 10-Meter Contest",
+   "url": "https://www.arrl.org/10-meter",
+   "when": "Usual dates (ARRL); check the rules",
+   "segs": [
+    [
+     "2027-12-11T00:00Z",
+     "2027-12-13T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "ARRL",
+   "exch": "RS(T) + state (KY)"
   }
  ],
  "status": {
-  "WA7BNM": "ok (29)",
-  "CORRAL": "ok (80)"
+  "WA7BNM": "ok (26)",
+  "CORRAL": "ok (77)"
  }
 }
