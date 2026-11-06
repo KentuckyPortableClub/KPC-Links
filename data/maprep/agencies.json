@@ -1,0 +1,3327 @@
+{
+ "built": "2026-11-06",
+ "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed.",
+ "places": {
+  "AL": {
+   "name": "Alabama",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Alabama State Parks",
+     "home": {
+      "url": "https://alapark.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://alapark.com/parks/gulf-state-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Alabama Wildlife & Freshwater Fisheries (DCNR)",
+     "home": {
+      "url": "https://outdooralabama.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://outdooralabama.com/public-lands",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AK": {
+   "name": "Alaska",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Alaska State Parks (DNR)",
+     "home": {
+      "url": "https://dnr.alaska.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Alaska Department of Fish & Game",
+     "home": {
+      "url": "https://adfg.alaska.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AZ": {
+   "name": "Arizona",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Arizona State Parks & Trails",
+     "home": {
+      "url": "https://azstateparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://azstateparks.com/find-a-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Arizona Game & Fish Department",
+     "home": {
+      "url": "https://azgfd.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Arizona State Land Department",
+     "home": {
+      "url": "https://land.az.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AR": {
+   "name": "Arkansas",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Arkansas State Parks",
+     "home": {
+      "url": "https://arkansasstateparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Arkansas Game & Fish Commission",
+     "home": {
+      "url": "https://agfc.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "heritage",
+     "roles": [
+      "heritage",
+      "preserves"
+     ],
+     "name": "Arkansas Natural Heritage Commission",
+     "home": {
+      "url": "https://naturalheritage.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "CA": {
+   "name": "California",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "California State Parks",
+     "home": {
+      "url": "https://parks.ca.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.parks.ca.gov/Find-a-Park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "California Department of Fish & Wildlife",
+     "home": {
+      "url": "https://wildlife.ca.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://cdfwmarine.wordpress.com/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "CO": {
+   "name": "Colorado",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Colorado Parks & Wildlife",
+     "home": {
+      "url": "https://cpw.state.co.us/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Colorado State Land Board",
+     "home": {
+      "url": "https://slb.colorado.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "CT": {
+   "name": "Connecticut",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks",
+      "wildlife"
+     ],
+     "name": "Connecticut DEEP (state parks, forests, wildlife areas)",
+     "home": {
+      "url": "https://portal.ct.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "DE": {
+   "name": "Delaware",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Delaware State Parks",
+     "home": {
+      "url": "https://destateparks.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Delaware Fish & Wildlife (DNREC)",
+     "home": {
+      "url": "https://dnrec.delaware.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://dnrec.delaware.gov/dnrec-open-data/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "DC": {
+   "name": "District of Columbia",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "National Park Service (most DC parkland)",
+     "home": {
+      "url": "https://nps.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://nps.gov/subjects/abandonedplaces/index.htm",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://opendata.dc.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "DC Department of Parks and Recreation (district land: not eligible)",
+     "home": {
+      "url": "https://dpr.dc.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://opendata.dc.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "FL": {
+   "name": "Florida",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Florida State Parks",
+     "home": {
+      "url": "https://floridastateparks.org/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://geodata.dep.state.fl.us/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Florida Fish & Wildlife Conservation Commission",
+     "home": {
+      "url": "https://myfwc.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "Florida Forest Service",
+     "home": {
+      "url": "https://fdacs.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "GA": {
+   "name": "Georgia",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Georgia State Parks & Historic Sites",
+     "home": {
+      "url": "https://gastateparks.org/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://gastateparks.org/state-parks-blog",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Georgia DNR Wildlife Resources Division",
+     "home": {
+      "url": "https://georgiawildlife.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://georgiawildlife.com/allwmas",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://maps.itos.uga.edu/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "HI": {
+   "name": "Hawaii",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Hawaii Division of State Parks (DLNR)",
+     "home": {
+      "url": "https://dlnr.hawaii.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "wildlife"
+     ],
+     "name": "Hawaii Division of Forestry & Wildlife (DLNR)",
+     "home": {
+      "url": "https://dlnr.hawaii.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "ID": {
+   "name": "Idaho",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Idaho Parks & Recreation",
+     "home": {
+      "url": "https://parksandrecreation.idaho.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://parksandrecreation.idaho.gov/find-a-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://www.fs.usda.gov/visit/maps",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Idaho Fish & Game",
+     "home": {
+      "url": "https://idfg.idaho.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Idaho Department of Lands",
+     "home": {
+      "url": "https://idl.idaho.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.idl.idaho.gov/about-forestry/idaho-state-forestry-contest/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://www.idl.idaho.gov/idl-gis-program-idaho-maps-and-land-records/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "IL": {
+   "name": "Illinois",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Illinois DNR (state parks, fish & wildlife areas)",
+     "home": {
+      "url": "https://dnr.illinois.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "IN": {
+   "name": "Indiana",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Indiana DNR (state parks, fish & wildlife areas)",
+     "home": {
+      "url": "https://in.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://www.indianamap.org/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "IA": {
+   "name": "Iowa",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Iowa DNR (state parks, wildlife areas)",
+     "home": {
+      "url": "https://iowadnr.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://geodata.iowa.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "KS": {
+   "name": "Kansas",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Kansas Department of Wildlife & Parks",
+     "home": {
+      "url": "https://ksoutdoors.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://hub.kansasgis.org/pages/data-sharing",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "KY": {
+   "name": "Kentucky",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Kentucky State Parks",
+     "home": {
+      "url": "https://parks.ky.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://parks.ky.gov/parks/find-a-park",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://kygeonet.ky.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Kentucky Department of Fish & Wildlife Resources",
+     "home": {
+      "url": "https://fw.ky.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://app.fw.ky.gov/Public_Lands_Search/default.aspx",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://kygeonet.ky.gov/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "preserves"
+     ],
+     "name": "Kentucky Energy & Environment Cabinet (nature preserves, forestry)",
+     "home": {
+      "url": "https://eec.ky.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://eec.ky.gov/Natural-Resources/Forestry/Pages/default.aspx",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://kygeonet.ky.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     }
+    },
+    {
+     "role": "preserves",
+     "roles": [
+      "preserves",
+      "heritage"
+     ],
+     "name": "Office of Kentucky Nature Preserves",
+     "home": {
+      "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "gis": {
+      "url": "https://kygeonet.ky.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "LA": {
+   "name": "Louisiana",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Louisiana State Parks",
+     "home": {
+      "url": "https://lastateparks.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Louisiana Department of Wildlife & Fisheries",
+     "home": {
+      "url": "https://wlf.louisiana.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://www.wlf.louisiana.gov/page/wildlife-management-areas",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://www.wlf.louisiana.gov/page/wma-gis-data-download",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "ME": {
+   "name": "Maine",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Maine Bureau of Parks & Lands",
+     "home": {
+      "url": "https://maine.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://www.maine.gov/geolib/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Maine Inland Fisheries & Wildlife",
+     "home": {
+      "url": "https://maine.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://maine.hub.arcgis.com/datasets/1adcd31a16134741b014f39a9d04d8f6_0/about",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "MD": {
+   "name": "Maryland",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Maryland DNR (state parks, wildlife management areas)",
+     "home": {
+      "url": "https://dnr.maryland.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://imap.maryland.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "MA": {
+   "name": "Massachusetts",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks"
+     ],
+     "name": "Massachusetts DCR (state parks, forests)",
+     "home": {
+      "url": "https://mass.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://www.mass.gov/info-details/massgis-frequently-asked-questions",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "MassWildlife",
+     "home": {
+      "url": "https://mass.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://www.mass.gov/orgs/massgis-bureau-of-geographic-information",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "MI": {
+   "name": "Michigan",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks",
+      "wildlife"
+     ],
+     "name": "Michigan DNR (state parks, game areas, forests)",
+     "home": {
+      "url": "https://michigan.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gis-midnr.opendata.arcgis.com",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "MN": {
+   "name": "Minnesota",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks",
+      "wildlife"
+     ],
+     "name": "Minnesota DNR (state parks, WMAs, forests, SNAs)",
+     "home": {
+      "url": "https://dnr.state.mn.us/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "MS": {
+   "name": "Mississippi",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Mississippi Wildlife, Fisheries & Parks",
+     "home": {
+      "url": "https://mdwfp.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://mdwfp.com/wildlife-hunting/wma-draw-hunts",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "MO": {
+   "name": "Missouri",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Missouri State Parks",
+     "home": {
+      "url": "https://mostateparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://mostateparks.com/park/crowder-state-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Missouri Department of Conservation",
+     "home": {
+      "url": "https://mdc.mo.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "MT": {
+   "name": "Montana",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Montana Fish, Wildlife & Parks",
+     "home": {
+      "url": "https://fwp.mt.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://fwp.mt.gov/stateparks/find-a-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://fwp.mt.gov/conservation/gis",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Montana DNRC (state trust land)",
+     "home": {
+      "url": "https://dnrc.mt.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gis.dnrc.mt.gov/apps/StAGE/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "NE": {
+   "name": "Nebraska",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Nebraska Game & Parks Commission",
+     "home": {
+      "url": "https://outdoornebraska.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://data-outdoornebraska.opendata.arcgis.com/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "NV": {
+   "name": "Nevada",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Nevada State Parks",
+     "home": {
+      "url": "https://parks.nv.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://parks.nv.gov/galleries/cave-lake-state-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Nevada Department of Wildlife",
+     "home": {
+      "url": "https://ndow.org/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NH": {
+   "name": "New Hampshire",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New Hampshire State Parks",
+     "home": {
+      "url": "https://nhstateparks.org/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.nhstateparks.org/nh-state-park-lotteries",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "New Hampshire Fish & Game",
+     "home": {
+      "url": "https://wildlife.nh.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NJ": {
+   "name": "New Jersey",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New Jersey State Park Service (DEP)",
+     "home": {
+      "url": "https://nj.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "New Jersey Fish & Wildlife (DEP)",
+     "home": {
+      "url": "https://dep.nj.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NM": {
+   "name": "New Mexico",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New Mexico State Parks (EMNRD)",
+     "home": {
+      "url": "https://emnrd.nm.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://emnrd.nm.gov/spd/climate-change-in-new-mexico-state-parks/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://www.emnrd.nm.gov/sfd/gis-and-maps/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "New Mexico Department of Game & Fish",
+     "home": {
+      "url": "https://wildlife.dgf.nm.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wildlife.dgf.nm.gov/conservation/public-land-user-stamp/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://wildlife.dgf.nm.gov/hunting/maps/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "New Mexico State Land Office",
+     "home": {
+      "url": "https://nmstatelands.org/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NY": {
+   "name": "New York",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New York State Parks",
+     "home": {
+      "url": "https://parks.ny.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://parks.ny.gov/parks/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://dec.ny.gov/about/website-usage-and-policies",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "wildlife"
+     ],
+     "name": "New York State DEC (WMAs, state forests)",
+     "home": {
+      "url": "https://dec.ny.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NC": {
+   "name": "North Carolina",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "North Carolina State Parks",
+     "home": {
+      "url": "https://ncparks.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://ncparks.gov/state-parks",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "North Carolina Wildlife Resources Commission",
+     "home": {
+      "url": "https://ncwildlife.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://ncwildlife.gov/wildlife-habitat/game-lands-program",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://www.nconemap.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "North Carolina Forest Service",
+     "home": {
+      "url": "https://ncforestservice.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://ncforestservice.gov/divisions/nc-forest-service/state-forests",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "ND": {
+   "name": "North Dakota",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "North Dakota Parks & Recreation",
+     "home": {
+      "url": "https://parks.nd.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "North Dakota Game & Fish",
+     "home": {
+      "url": "https://gf.nd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gf.nd.gov/maps",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "North Dakota Trust Lands",
+     "home": {
+      "url": "https://land.nd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "OH": {
+   "name": "Ohio",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks",
+      "wildlife",
+      "preserves"
+     ],
+     "name": "Ohio DNR (state parks, wildlife areas, forests, preserves)",
+     "home": {
+      "url": "https://ohiodnr.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "OK": {
+   "name": "Oklahoma",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Oklahoma State Parks (Tourism & Recreation Dept)",
+     "home": {
+      "url": "https://travelok.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://travelok.com/state-parks",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://data.ok.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Oklahoma Department of Wildlife Conservation",
+     "home": {
+      "url": "https://wildlifedepartment.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wildlifedepartment.com/hunting/wma",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://data.ok.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "OR": {
+   "name": "Oregon",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Oregon State Parks",
+     "home": {
+      "url": "https://stateparks.oregon.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://stateparks.oregon.gov/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Oregon Department of Fish & Wildlife",
+     "home": {
+      "url": "https://myodfw.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "Oregon Department of Forestry",
+     "home": {
+      "url": "https://oregon.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "PA": {
+   "name": "Pennsylvania",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks"
+     ],
+     "name": "Pennsylvania DCNR (state parks, forests)",
+     "home": {
+      "url": "https://dcnr.pa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://dcnr.pa.gov/services/dcnr/bid-on-state-forest-timber-sales",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Pennsylvania Game Commission",
+     "home": {
+      "url": "https://pgc.pa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://pgc.pa.gov/agencies/pgc/habitat-management/state-game-lands-management",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://pgc.pa.gov/agencies/pgc/maps",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Pennsylvania Fish & Boat Commission",
+     "home": {
+      "url": "https://fishandboat.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "RI": {
+   "name": "Rhode Island",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Rhode Island DEM (state parks, management areas)",
+     "home": {
+      "url": "https://dem.ri.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Rhode Island State Parks",
+     "home": {
+      "url": "https://riparks.ri.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "SC": {
+   "name": "South Carolina",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "South Carolina State Parks",
+     "home": {
+      "url": "https://southcarolinaparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://southcarolinaparks.com/stories/tee-off-at-two-newly-renovated-south-carolina-state-park-golf-courses",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://data-scdnr.opendata.arcgis.com/",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "South Carolina DNR",
+     "home": {
+      "url": "https://dnr.sc.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://public-lands-scdnr.hub.arcgis.com/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    }
+   ]
+  },
+  "SD": {
+   "name": "South Dakota",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "South Dakota Game, Fish & Parks",
+     "home": {
+      "url": "https://gfp.sd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gfp.sd.gov/maps",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "South Dakota School & Public Lands",
+     "home": {
+      "url": "https://sdpubliclands.sd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "TN": {
+   "name": "Tennessee",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Tennessee State Parks",
+     "home": {
+      "url": "https://tnstateparks.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://tnstateparks.com/parks",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Tennessee Wildlife Resources Agency",
+     "home": {
+      "url": "https://tn.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "preserves"
+     ],
+     "name": "Tennessee Division of Forestry / Natural Areas",
+     "home": {
+      "url": "https://tn.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "TX": {
+   "name": "Texas",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "parks"
+     ],
+     "name": "Texas Parks & Wildlife Department",
+     "home": {
+      "url": "https://tpwd.texas.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://tpwd.texas.gov/state-parks/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://tpwd.texas.gov/gis/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Texas General Land Office",
+     "home": {
+      "url": "https://glo.texas.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://glo.texas.gov/land/gis-maps-and-data",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "UT": {
+   "name": "Utah",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Utah State Parks",
+     "home": {
+      "url": "https://stateparks.utah.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Utah Division of Wildlife Resources",
+     "home": {
+      "url": "https://wildlife.utah.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wildlife.utah.gov/wmas",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://goo.gl/maps/SxLW1paZ9T7DDK2w5",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Utah Trust Lands Administration",
+     "home": {
+      "url": "https://trustlands.utah.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "VT": {
+   "name": "Vermont",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Vermont State Parks",
+     "home": {
+      "url": "https://vtstateparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://vtstateparks.com/news/vermont-state-parks-seeks-public-input-2026-rules-and-regulations",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Vermont Fish & Wildlife",
+     "home": {
+      "url": "https://vtfishandwildlife.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://vtfishandwildlife.com/hunt/find-a-place-to-hunt/find-a-wildlife-management-area/st-johnsbury-district-wmas/nek-and-kingdom-heritage-lands-road-conditions",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "VA": {
+   "name": "Virginia",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Virginia State Parks (DCR)",
+     "home": {
+      "url": "https://dcr.virginia.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://dcr.virginia.gov/state-parks/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Virginia Department of Wildlife Resources",
+     "home": {
+      "url": "https://dwr.virginia.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "Virginia Department of Forestry",
+     "home": {
+      "url": "https://dof.virginia.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "WA": {
+   "name": "Washington",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Washington State Parks",
+     "home": {
+      "url": "https://parks.wa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.parks.wa.gov/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Washington Department of Fish & Wildlife",
+     "home": {
+      "url": "https://wdfw.wa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wdfw.wa.gov/places-to-go",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "Washington DNR (state forests, trust land, NRCAs)",
+     "home": {
+      "url": "https://dnr.wa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://dnr.wa.gov/natural-areas",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://dnr.wa.gov/washington-geological-survey/publications-and-data/geology-gis-data-and-databases",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "WV": {
+   "name": "West Virginia",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "West Virginia State Parks",
+     "home": {
+      "url": "https://wvstateparks.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "West Virginia DNR Wildlife Resources",
+     "home": {
+      "url": "https://wvdnr.gov/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://wvgis.wvu.edu/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "WI": {
+   "name": "Wisconsin",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks",
+      "wildlife"
+     ],
+     "name": "Wisconsin DNR (state parks, wildlife areas, forests)",
+     "home": {
+      "url": "https://dnr.wisconsin.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "WY": {
+   "name": "Wyoming",
+   "country": "US",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Wyoming State Parks, Historic Sites & Trails",
+     "home": {
+      "url": "https://wyoparks.wyo.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wyoparks.wyo.gov/index.php/places-to-go/boysen",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Wyoming Game & Fish Department",
+     "home": {
+      "url": "https://wgfd.wyo.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://wgfd.wyo.gov/fishing-boating/places-fish-wyoming",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Wyoming Office of State Lands",
+     "home": {
+      "url": "https://lands.wyo.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://lands.wyo.gov/resources/maps-records",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "AB": {
+   "name": "Alberta",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Alberta Parks",
+     "home": {
+      "url": "https://albertaparks.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://www.albertaparks.ca/albertaparks-ca/visit/our-parks/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://geospatial.alberta.ca/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Alberta Environment and Protected Areas",
+     "home": {
+      "url": "https://alberta.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "BC": {
+   "name": "British Columbia",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "BC Parks",
+     "home": {
+      "url": "https://bcparks.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://bcparks.ca/find-a-park/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://catalogue.data.gov.bc.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "BC Ministry of Water, Land and Resource Stewardship",
+     "home": {
+      "url": "https://gov.bc.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://catalogue.data.gov.bc.ca/dataset/tantalis-wildlife-management-areas/resource/05f663c3-896a-44a8-a911-84bcece987ff",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "MB": {
+   "name": "Manitoba",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Manitoba Parks",
+     "home": {
+      "url": "https://gov.mb.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.travelmanitoba.com/places-to-go/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://geoportal.gov.mb.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Manitoba Natural Resources (wildlife management areas)",
+     "home": {
+      "url": "https://gov.mb.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.travelmanitoba.com/places-to-go/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://geoportal.gov.mb.ca/",
+      "verified": false,
+      "source": "research pack; not re-fetched (crawl delay)"
+     }
+    }
+   ]
+  },
+  "NB": {
+   "name": "New Brunswick",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New Brunswick Parks",
+     "home": {
+      "url": "https://parcsnbparks.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://geonb.snb.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "preserves",
+     "roles": [
+      "preserves",
+      "wildlife"
+     ],
+     "name": "New Brunswick Natural Resources (protected natural areas)",
+     "home": {
+      "url": "https://gnb.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NL": {
+   "name": "Newfoundland and Labrador",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Newfoundland and Labrador Parks",
+     "home": {
+      "url": "https://gov.nl.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "wildlife"
+     ],
+     "name": "NL Fisheries, Forestry and Agriculture (wildlife reserves)",
+     "home": {
+      "url": "https://gov.nl.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NT": {
+   "name": "Northwest Territories",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "NWT Parks",
+     "home": {
+      "url": "https://nwtparks.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://nwtparks.ca/find-a-park",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://www.geomatics.gov.nt.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "NWT Environment and Climate Change",
+     "home": {
+      "url": "https://gov.nt.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NS": {
+   "name": "Nova Scotia",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Nova Scotia Parks",
+     "home": {
+      "url": "https://parks.novascotia.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://data.novascotia.ca/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Nova Scotia Natural Resources (wilderness areas, nature reserves)",
+     "home": {
+      "url": "https://novascotia.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NU": {
+   "name": "Nunavut",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Nunavut Parks",
+     "home": {
+      "url": "https://nunavutparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://nunavutparks.com/parks/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://nunavutparks.com/parks/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Government of Nunavut Environment",
+     "home": {
+      "url": "https://gov.nu.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "ON": {
+   "name": "Ontario",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Ontario Parks",
+     "home": {
+      "url": "https://ontarioparks.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "https://www.ontarioparks.ca/park-locator",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "gis": {
+      "url": "https://geohub.lio.gov.on.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Ontario Ministry of Natural Resources (conservation reserves, Crown land)",
+     "home": {
+      "url": "https://ontario.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "PE": {
+   "name": "Prince Edward Island",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "PEI Provincial Parks",
+     "home": {
+      "url": "https://tourismpei.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://data.princeedwardisland.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "PEI Environment, Energy and Climate Action",
+     "home": {
+      "url": "https://princeedwardisland.ca/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/wildlife-management-areas",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    }
+   ]
+  },
+  "QC": {
+   "name": "Quebec",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Sépaq (parcs nationaux du Québec)",
+     "home": {
+      "url": "https://sepaq.com/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "https://www.sepaq.com/pq/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     },
+     "gis": {
+      "url": "https://www.donneesquebec.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Québec Environnement (réserves fauniques, aires protégées)",
+     "home": {
+      "url": "https://quebec.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "SK": {
+   "name": "Saskatchewan",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Saskatchewan Parks",
+     "home": {
+      "url": "https://saskparks.com/",
+      "verified": true,
+      "source": "confirmed by a plain read"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gis.saskatchewan.ca/",
+      "verified": true,
+      "source": "link on the official homepage, confirmed by a plain read"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Saskatchewan Environment (wildlife lands)",
+     "home": {
+      "url": "https://saskatchewan.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://gisappl.saskatchewan.ca/Html5Ext/Resources/GOS_Standard_Unrestricted_Use_Data_Licence_v2.0.pdf",
+      "verified": false,
+      "source": "research pack sources.csv (robots ok)"
+     }
+    }
+   ]
+  },
+  "YT": {
+   "name": "Yukon",
+   "country": "CA",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Yukon Parks",
+     "home": {
+      "url": "https://yukon.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://open.yukon.ca/",
+      "verified": false,
+      "source": "research pack or state GIS portal list"
+     }
+    },
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife"
+     ],
+     "name": "Yukon Environment (habitat protection areas)",
+     "home": {
+      "url": "https://yukon.ca/",
+      "verified": false,
+      "source": "site agency table"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  }
+ }
+}

@@ -165,6 +165,14 @@ def save(path, d):
         save_json(path, d)
     except Exception:  # noqa: BLE001
         path.write_text(json.dumps(d, ensure_ascii=False, sort_keys=True, separators=(',', ':')), encoding='utf-8')
+    # Nov 6 research packs. KPC_RESEARCH_SOURCES defaults to off: note_saved returns without reading or writing,
+    # and it does not change `d` or this file. Report mode writes a side report only (kpc_research_sources.py,
+    # not a rule file). The US / Canada / world rule scripts are not edited, so their rules hashes stay put.
+    try:
+        import kpc_research_sources as _RS
+        _RS.note_saved(path, d)
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def load(path):
