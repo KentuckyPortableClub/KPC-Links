@@ -45,9 +45,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gsa.state.al.us/apps/CAGDV/Metadata/Political/Wildlife_Management_Areas.txt",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.gsa.state.al.us/apps/CAGDV/Metadata/Political/Wildlife_Management_Areas.txt",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -98,6 +118,22 @@
       "url": "https://soa-adfg.opendata.arcgis.com",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gis.adfg.alaska.gov/ags/rest/services/dfg_public/LDA/MapServer/0",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     }
    ]
@@ -235,14 +271,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://arkansasheritage.com/arkansas-natural-heritage/naturalareas/natural-heritage-natural-areas/view-natural-heritage-areas",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://gis.arkansas.gov/product/natural-areas-polygon/",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://arkansasheritage.com/arkansas-natural-heritage/naturalareas/natural-heritage-natural-areas/view-natural-heritage-areas",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     }
    ]
@@ -390,8 +446,8 @@
      "name": "Delaware State Parks",
      "home": {
       "url": "https://destateparks.com/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "",
@@ -399,9 +455,25 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -543,9 +615,25 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://geodata.fdacs.gov/datasets/florida-state-forests-/about",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://geodata.fdacs.gov/datasets/florida-state-forests-/about",
+      "actions": [
+       {
+        "field": "home",
+        "result": "skipped-answer-not-confirmed"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -685,18 +773,38 @@
      "name": "Idaho Fish & Game",
      "home": {
       "url": "https://idfg.idaho.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://idfg.idaho.gov/data/app/wildlife-management-areas",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://data-idfggis.opendata.arcgis.com/maps/IDFGgis::wildlife-management-areas",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://data-idfggis.opendata.arcgis.com/maps/IDFGgis::wildlife-management-areas",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -740,14 +848,30 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dnr.illinois.gov/parks/allparks.html",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://dnr.illinois.gov/parks/allparks.html",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -769,14 +893,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://in.gov/dnr/fish-and-wildlife/properties",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
-      "url": "https://www.indianamap.org/",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "replaced-unverified"
+       }
+      ]
      }
     }
    ]
@@ -1081,14 +1225,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.mass.gov/get-involved-with-dcr/locations?page=5",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://www.mass.gov/info-details/massgis-frequently-asked-questions",
       "verified": true,
       "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.mass.gov/get-involved-with-dcr/locations?page=5",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     },
     {
@@ -1103,14 +1267,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.mass.gov/how-to/masswildlife-lands-viewer",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://www.mass.gov/orgs/massgis-bureau-of-geographic-information",
       "verified": true,
       "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.mass.gov/how-to/masswildlife-lands-viewer",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     }
    ]
@@ -1225,9 +1409,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/layers",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/layers",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -1238,8 +1442,8 @@
      "name": "Missouri Department of Conservation",
      "home": {
       "url": "https://mdc.mo.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "",
@@ -1250,6 +1454,18 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://mdc.mo.gov/",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       }
+      ]
      }
     }
    ]
@@ -1355,9 +1571,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/layers",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/layers",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -1452,12 +1688,32 @@
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "round-4 finder unverified (parks/maps move notice); not used"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://mapsdep.nj.gov/arcgis/rest/services/Features/Land/MapServer/68",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace; GIS layer only; the finder was not used"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://mapsdep.nj.gov/arcgis/rest/services/Features/Land/MapServer/68",
+      "actions": [
+       {
+        "field": "gis",
+        "result": "filled"
+       },
+       {
+        "field": "finder",
+        "result": "unverified-not-used"
+       },
+       {
+        "field": "home",
+        "result": "already"
+       }
+      ]
      }
     },
     {
@@ -1591,8 +1847,8 @@
      "name": "New York State DEC (WMAs, state forests)",
      "home": {
       "url": "https://dec.ny.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "",
@@ -1600,9 +1856,25 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.ny.gov/",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gisservices.dec.ny.gov/arcgis/rest/services/dil/dil_land_activities/MapServer/2 | https://dec.ny.gov/maps/interactive-maps",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -1695,14 +1967,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.parkrec.nd.gov/search",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://www.gis.nd.gov/",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.parkrec.nd.gov/search",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     },
     {
@@ -1766,8 +2058,8 @@
      "name": "Ohio DNR (state parks, wildlife areas, forests, preserves)",
      "home": {
       "url": "https://ohiodnr.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "",
@@ -1775,9 +2067,25 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_Basemap_Streets_103_2/MapServer/6",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_Basemap_Streets_103_2/MapServer/6",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -1844,18 +2152,38 @@
      "name": "Oregon State Parks",
      "home": {
       "url": "https://stateparks.oregon.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "https://stateparks.oregon.gov/",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://catalog.data.gov/dataset/oregon-state-parks",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://catalog.data.gov/dataset/oregon-state-parks",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "verified"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -1875,9 +2203,29 @@
       "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://myodfw.com/articles/maps",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://myodfw.com/articles/maps | https://nrimp.dfw.state.or.us/DataClearinghouse/default.aspx?p=202&XMLname=861.xml",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -1892,14 +2240,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.oregon.gov/odf/recreation",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://www.oregon.gov/ODF/AboutODF/Pages/MapsData.aspx",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.oregon.gov/odf/recreation",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     }
    ]
@@ -1990,18 +2358,38 @@
      "name": "Rhode Island DEM (state parks, management areas)",
      "home": {
       "url": "https://dem.ri.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://riparks.ri.gov/find",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "https://dem.ri.gov/maps/",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://riparks.ri.gov/find",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     },
     {
@@ -2117,14 +2505,34 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://sdpubliclands.sd.gov/Surface/public-surface-areas.aspx",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://sdpubliclands.sd.gov/Surface/surface-acres.aspx",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://sdpubliclands.sd.gov/Surface/surface-acres.aspx | https://sdpubliclands.sd.gov/Surface/public-surface-areas.aspx",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -2141,18 +2549,38 @@
      "name": "Tennessee State Parks",
      "home": {
       "url": "https://tnstateparks.com/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "https://tnstateparks.com/parks",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace; TDEC REST only; a non-agency mirror was not used"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer | https://reserve.tnstateparks.com/",
+      "actions": [
+       {
+        "field": "gis",
+        "result": "filled"
+       },
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "verified"
+       }
+      ]
      }
     },
     {
@@ -2265,18 +2693,34 @@
      "name": "Utah State Parks",
      "home": {
       "url": "https://stateparks.utah.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://stateparks.utah.gov/parks/",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://stateparks.utah.gov/parks/",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2346,9 +2790,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://geodata.vermont.gov/datasets/VTANR::anr-land-dataset-unit",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://catalog.data.gov/dataset/anr-land-dataset-unit | https://geodata.vermont.gov/datasets/VTANR::anr-land-dataset-unit",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2368,9 +2832,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://geodata.vermont.gov/datasets/VTANR::anr-land-dataset-unit",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://catalog.data.gov/dataset/anr-land-dataset-unit | https://geodata.vermont.gov/datasets/VTANR::anr-land-dataset-unit",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -2396,9 +2880,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dcr.virginia.gov/natural-heritage/clinfo",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://dcr.virginia.gov/natural-heritage/clinfo",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2418,9 +2922,29 @@
       "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://services.dwr.virginia.gov/arcgis/rest/services/Public/DGIF_WMAs/MapServer/0",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://services.dwr.virginia.gov/arcgis/rest/services/Public/DGIF_WMAs/MapServer/0 | https://dwr.virginia.gov/gis/werms/",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2431,18 +2955,34 @@
      "name": "Virginia Department of Forestry",
      "home": {
       "url": "https://dof.virginia.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dof.virginia.gov/state-forests",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "gis": {
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://dof.virginia.gov/state-forests | https://dof.virginia.gov/about",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "filled"
+       }
+      ]
      }
     }
    ]
@@ -2490,9 +3030,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/MapServer",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/MapServer",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2531,8 +3091,8 @@
      "name": "West Virginia State Parks",
      "home": {
       "url": "https://wvstateparks.com/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "https://wvstateparks.com/parks/",
@@ -2540,9 +3100,29 @@
       "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://wvgis.wvu.edu/metadata_waf/state_park_utm83.html",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://wvgis.wvu.edu/metadata_waf/state_park_utm83.html",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2620,9 +3200,29 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.deq.wyo.gov/arcgis/rest/services/WYSPHST_pts/MapServer/info/iteminfo",
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://gis.deq.wyo.gov/arcgis/rest/services/WYSPHST_pts/MapServer/info/iteminfo",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "finder",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "filled"
+       }
+      ]
      }
     },
     {
@@ -2957,8 +3557,8 @@
      "name": "NWT Environment and Climate Change",
      "home": {
       "url": "https://gov.nt.ca/",
-      "verified": false,
-      "source": "site agency table"
+      "verified": true,
+      "source": "round-4 confirmed 2026-11-06; suggestion, never auto-replace"
      },
      "finder": {
       "url": "",
@@ -2969,6 +3569,22 @@
       "url": "https://www.gov.nt.ca/ecc/en/services/research-and-data-nwt/view-and-share-data",
       "verified": true,
       "source": "confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/layers",
+      "actions": [
+       {
+        "field": "home",
+        "result": "verified"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     }
    ]
@@ -3247,6 +3863,22 @@
       "url": "https://gis.saskatchewan.ca/",
       "verified": true,
       "source": "link on the official homepage, confirmed by a plain read"
+     },
+     "round4": {
+      "confirmed": true,
+      "date": "2026-11-06",
+      "suggestion": "suggestion, never auto-replace",
+      "source_url": "https://open.canada.ca/data/en/dataset/65f14e41-c6c7-512e-e231-aa1079978b12",
+      "actions": [
+       {
+        "field": "home",
+        "result": "already"
+       },
+       {
+        "field": "gis",
+        "result": "already"
+       }
+      ]
      }
     },
     {

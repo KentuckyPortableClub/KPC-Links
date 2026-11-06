@@ -1,0 +1,117 @@
+{
+ "about": "Round-4 confirmed examples for tests only. No answer-key file is written from these. Synthetic squares stand in for outlines that were not downloaded.",
+ "joint": [
+  {
+   "jurisdiction": "US-KY",
+   "park_or_area": "Cane Creek Wildlife Management Area (Daniel Boone National Forest)",
+   "owners": "USFS and KDFWR (assumed same pattern as Mill Creek)",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://fs.usda.gov/r08/danielboone/recreation/cane-creek-wildlife-management-area",
+   "notes": "URL surfaced in search results only; page content NOT fetched or read. Include only as candidate to verify.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Official USFS page (fetched) says Cane Creek WMA is 'cooperatively managed with the Kentucky Department of Fish and Wildlife Resources'; contact listed is KY Dept of Fish & Wildlife Resources; hunting must follow Kentucky regulations. Page does NOT state land ownership (USFS land inside Daniel Boone NF is implied by the page sitting under the forest, but not stated). Supports joint management, not joint title."
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "park_or_area": "Rouge National Urban Park",
+   "owners": "Parks Canada; lands transferred from Province of Ontario, municipalities (e.g. City of Pickering) and others",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://parks.canada.ca/pn-np/on/rouge/info/establishment/jalons-milestones | https://www.canada.ca/en/parks-canada/news/2017/10/governments_of_canadaandontarioannouncehistoricrougenationalurba.html",
+   "notes": "Only search-result titles seen (Ontario land transfer 2017; Pickering transfer 2018); pages not read, TRCA role not verified. Candidate for a 'multiple prior owners now federal' case.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Parks Canada milestones page (fetched) shows Rouge National Urban Park land came from several prior owners: Transport Canada (19.1 km2 on 2015-04-01; 21 km2 on 2017-04-01), Province of Ontario (22.8 km2 on 2017-10-21), Toronto and Region Conservation Authority (190+ ha 2018-11-01; 18.5 km2 on 2019-06-15; more 2023-09-26), City of Pickering (10 parcels, 8.22 ha, 2018-05-04). Dec 2014 land assembly agreement with TRCA, Toronto, Markham, Pickering, York and Durham. Also Canada.ca 2017 release: Ontario released its interest in 15.2 km2 of TRCA-managed land and 1.1 km2 managed by City of Markham. TRCA role verified: prior owner/manager, now transferred; park is federally owned by Parks Canada."
+  },
+  {
+   "jurisdiction": "US-CA",
+   "park_or_area": "Santa Monica Mountains National Recreation Area (tract layer)",
+   "owners": "NPS plus other public and private owners (mixed-ownership NRA)",
+   "how_shown_in_gis": "Verified for this one tract layer: attributes PUBLIC_ (alias Owner), GENPUBLIC (General Ownership), Manager, Park_Label, Specific_Label, TRACT (alias Tract No.). PAD-US coding not verified.",
+   "source_url": "https://www.nps.gov/samo/learn/management/statistics.htm | https://www.nps.gov/samo/learn/news/parkland_added_to_samo.htm",
+   "notes": "Layer description: maps NPS tract boundaries, public and private, within SMMNRA plus major local parkland outside; contiguous parcels owned by one entity grouped into one tract; ownership current Feb 2018; coverage outside NRA incomplete. Shows Owner and Manager as separate fields.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "NPS stats page: NPS owns and manages 23,648 acres inside the NRA boundary versus 153,785 gross acres (FY2009), so most land is non-NPS. NPS release (2011): NRA jointly managed by California State Parks, Mountains Recreation and Conservation Authority, Santa Monica Mountains Conservancy and NPS; ~79,491 acres public parkland of ~153,250 total. Tract layer fields not covered."
+  }
+ ],
+ "nested": [
+  {
+   "jurisdiction": "US-NPS",
+   "parent_name": "NPS unit boundary (any unit) in the Land Resources Division 'nps_tracts' dataset",
+   "child_or_tract_name": "tract-level polygons (parcels; fee or other interest e.g. easement)",
+   "relationship": "unit boundary polygon contains tract polygons; some tracts lie outside boundary",
+   "source_url": "https://catalog.data.gov/dataset/crater-lake-national-park-tract-and-boundary-data",
+   "notes": "Page says tract data should be used with boundary data; page documents NO attribute field names (my attempt to read the NPS feature service fields failed: Invalid URL). So national tract-id and unit-code field names are NOT verified.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Data.gov catalog record (NPS, Land Resources Division): 'authoritative NPS tract and boundary geospatial data'; tracts numbered to align with Land Status Maps; covers NPS-owned land and lesser interests (scenic easements, rights of way). Field names and tract-vs-boundary containment NOT stated on page."
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "West Kentucky Wildlife Management Area",
+   "child_or_tract_name": "'A Tracts' (lettered tract groups)",
+   "relationship": "WMA subdivided into tracts used in closure notices",
+   "source_url": "https://fw.ky.gov/News/Pages/PSA-Portion-of-West-Kentucky-WMA-A-Tracts-closed-to-public-access.aspx",
+   "notes": "Only search title seen (Portion of West Kentucky WMA A Tracts closed to public access); body not read. Tract names are in public notices, not necessarily GIS.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "KDFWR notice refers to 'the A Tracts' at West Kentucky WMA (McCracken County) and names 'Tract 1A and Tract 7A' on the eastern boundary; tracts are subdivisions of the WMA used in closure notices."
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Big Rivers Wildlife Management Area and State Forest",
+   "child_or_tract_name": "Wildlife Management Area designation / State Forest designation",
+   "relationship": "one parcel with two overlapping designations",
+   "source_url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Big-Rivers-Wildlife-Management-Area-and-State-Forest.aspx",
+   "notes": "One name, two designations; an exact-name join to either 'Big Rivers WMA' or 'Big Rivers State Forest' should match.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Official KY EEC Forestry page (fetched): 'The Kentucky Division of Forestry and the Kentucky Department of Fish and Wildlife Resources have jointly acquired' the 6,732-acre property, 'now known as the Big Rivers Wildlife Management Area and State Forest'. One parcel, two designations, two joint agencies. Page does not say which agency manages which part."
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Daniel Boone National Forest",
+   "child_or_tract_name": "Mill Creek Wildlife Management Area; Cane Creek WMA; Redbird WMA",
+   "relationship": "WMAs inside a National Forest (park-inside-park)",
+   "source_url": "https://fs.usda.gov/r08/danielboone/about-area | https://fs.usda.gov/r08/danielboone/recreation/cane-creek-wildlife-management-area",
+   "notes": "Mill Creek page read (listed as recreation site within DBNF); Cane Creek and Redbird URLs surfaced in search only.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Partly confirmed on official USFS pages (fetched). DBNF 'about area' page: the forest has five wildlife management areas 'managed in cooperation with the Kentucky Department of Fish and Wildlife Resources'; forest parcels are 'intermixed among state, private and other federal lands'. Cane Creek WMA page sits under the DBNF recreation site and says it is cooperatively managed with KDFWR. The Mill Creek and Redbird pages could not be fetched this pass (not on allowlist), so those two are not confirmed by name here."
+  },
+  {
+   "jurisdiction": "US-SC",
+   "parent_name": "SCDNR Wildlife Management Area program",
+   "child_or_tract_name": "Heritage Preserves (many)",
+   "relationship": "Heritage Preserve nested in or administered as WMA",
+   "source_url": "https://www.dnr.sc.gov/mlands/hpprogram.html",
+   "notes": "Page: 'many preserves are included in the Wildlife Management Area Program'; no preserve names on page.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "SCDNR Heritage Preserve page: 'Many are included in the WMA Program, with hunting and fishing allowed according to state regulations.' No preserve names on page."
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "parent_name": "Gwaii Haanas",
+   "child_or_tract_name": "National Park Reserve; National Marine Conservation Area Reserve; Haida Heritage Site",
+   "relationship": "three designations coexisting under one board",
+   "source_url": "https://www.parks.canada.ca/pn-np/bc/gwaiihaanas/info/coop/amb",
+   "notes": "Spatial overlap of the three not verified.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Parks Canada: Archipelago Management Board governs planning, operations and management of Gwaii Haanas National Park Reserve, the National Marine Conservation Area Reserve and Haida Heritage Site; members split evenly federal/Haida. Spatial overlap not stated."
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "parent_name": "Saguenay-St. Lawrence Marine Park",
+   "child_or_tract_name": "Type III and Type IV zones (zoning)",
+   "relationship": "zones inside the marine park",
+   "source_url": "https://laws-lois.justice.gc.ca/eng/acts/S-1.3/page-1.html",
+   "notes": "Act s.7 mentions reductions to Type III or IV zones; schedule/boundary details not in excerpt I read.",
+   "origin": "sourced",
+   "spot_status": "confirmed",
+   "answer": "Justice Laws, Saguenay-St. Lawrence Marine Park Act s.5(2): park has zone types incl. general protection zones (Type III) and general use zones (Type IV); s.7(1) concerns reducing Type III/IV zones; s.17 regulations set zone characteristics (note: s.7 is boundary-reduction process, not the zoning definition)."
+  }
+ ]
+}

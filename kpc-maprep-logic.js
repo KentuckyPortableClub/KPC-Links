@@ -52,7 +52,7 @@
     { name: 'Muddygut WMA', state: 'KY', id: '9729', url: 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9729' },
     { name: 'Crow Creek WMA', state: 'KY', id: '9731', url: 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9731' }
   ];
-  const BANNED = [/33TOOklri9xpic7U/i, /Grant_County_Interactive_Parcel_Map/i];
+  const BANNED = [/33TOOklri9xpic7U/i, /Grant_County_Interactive_Parcel_Map/i, /ncnhde\.natureserve\.org/i];
   const BLOCKED_PLACES = { CO: 1, TN: 1 };
   const PRIVATE_FIELD = /(owner|own_nm|^name$|mail|addr|street|grantee|taxpayer|^city$|^zip|^account|^deed|address)/i;
   const STOP = /\b(the|of|and|at|state|national|natural|nature|historic|historical|site|park|parks|wildlife|management|area|areas|wma|preserve|forest|recreation|recreational|refuge|sanctuary|center|fee|tract|unit|ky|resort|fishing|public|hunting|commission|corps|engineers|us)\b/g;
@@ -97,6 +97,8 @@
     /* CORE is the existing Tool Box list. A later row is added beside it and never replaces it. */
     CORE.forEach(([t, e]) => add(t, e));
     (rows || []).forEach(r => {
+      /* Name forms and spelling pairs are stored with their source. They are not expansions. */
+      if (r.expand === false) return;
       const token = String(r.token || '').toLowerCase().replace(/\./g, '');
       const expansion = String(r.expansion || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
       if (token.length >= 2 && expansion) add(token, expansion);

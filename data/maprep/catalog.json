@@ -33,7 +33,8 @@
   "TN"
  ],
  "banned": [
-  "services.arcgis.com/33TOOklri9xpic7U"
+  "services.arcgis.com/33TOOklri9xpic7U",
+  "ncnhde.natureserve.org"
  ],
  "kyServices": {
   "folder": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services",
@@ -499,30 +500,6 @@
    "accessField": "",
    "licence": "unknown - see terms page",
    "credit": "Michigan DNR · unknown - see terms page",
-   "whyNotLive": "no REST url; download link only",
-   "origin": "research-ok"
-  },
-  {
-   "id": "us-nc-managed-areas-marea-shapefile-quarterly",
-   "region": "US",
-   "enabled": true,
-   "place": "NC",
-   "agency": "NC Dept of Natural and Cultural Resources - Natural Heritage Program",
-   "title": "Managed Areas (MAREA) shapefile, quarterly",
-   "kind": "natural_area",
-   "rest": "",
-   "download": "https://ncnhde.natureserve.org/system/files/marea_ManagedArea_2026-10.zip",
-   "live": false,
-   "findNew": false,
-   "hub": false,
-   "nameField": "",
-   "idField": "",
-   "acresField": "",
-   "ownerField": "",
-   "parentField": "",
-   "accessField": "",
-   "licence": "unknown - see terms page",
-   "credit": "NC Dept of Natural and Cultural Resources - Natural Heritage Program · unknown - see terms page",
    "whyNotLive": "no REST url; download link only",
    "origin": "research-ok"
   },
@@ -3590,7 +3567,7 @@
   {
    "jurisdiction": "US-NC",
    "title": "Managed Areas (MAREA) shapefile, quarterly",
-   "why": "duplicate url"
+   "why": "do_not_ingest"
   },
   {
    "jurisdiction": "US-NC",
@@ -4826,6 +4803,21 @@
    "jurisdiction": "US-NL",
    "title": "Provincial_Protected_Areas_NL · wild",
    "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "SCDNR Public Lands Viewer layers 3 and 4",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "OPRHP Boundary (NYSDOT dev portal)",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Wildlife Refuges and WMA trails live services.arcgis.com REST",
+   "why": "do_not_ingest"
   }
  ],
  "counts": {
@@ -4842,8 +4834,8 @@
    "robots disallow": 91,
    "robots unknown": 24,
    "parcel layer": 2,
-   "do_not_ingest": 4,
-   "duplicate url": 80,
+   "do_not_ingest": 8,
+   "duplicate url": 79,
    "services*.arcgis.com treated as disallow": 137,
    "robots-blocked state": 6,
    "not an agency-host layer with an id": 2

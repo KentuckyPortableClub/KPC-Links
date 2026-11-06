@@ -43,6 +43,9 @@ BANNED = (
     'YgrExeJfxG5F4At7',
     'Coillte_Biodiversity',
     'gisportaldev.dot.ny.gov',  # NY OPRHP dev portal: do_not_ingest
+    'ncnhde.natureserve.org',  # NC MAREA: AI-bot robots disallow; do_not_ingest
+    'DEV_-_SCDNR_Public_Lands_Viewer',  # SC Public Lands layers 3 and 4: banned services.arcgis.com replica
+    'services.arcgis.com',  # robots 403 is a disallow; Hub/geoportal download is the alternative
 )
 
 KIND_TAILS = (
@@ -565,14 +568,84 @@ SEPARATE_UNITS = (
      'why': 'Frances Slocum State Forest is a separate property. Report only; the join is not changed.'},
     {'ref': 'US-3891', 'pair': 'Campbells Crossroads / Angelus',
      'why': 'Angelus is a separate tract from Campbells Crossroads. Report only; the join is not changed.'},
+    {'ref': 'US-12143', 'pair': "Devil's Playground / Redwash",
+     'why': "Separate units, and the Devil's Playground page may be the wrong page for Redwash. Report only; the join is not changed."},
+)
+
+# Round-4 confirmed one-unit names. A hyphen or a slash in the official title is still one place.
+# Report only. Joins are not changed and nothing is auto-renamed.
+ONE_UNITS = (
+    {'ref': 'US-0990', 'pair': 'Donnelley / DePue',
+     'why': 'One managed complex, two locations. The original page answered HTTP 200 on 2026-11-06. Report only; the join is not changed.'},
+    {'ref': 'CA-4000', 'pair': 'Qudes / Gillard-Jimmy Judd Island',
+     'why': 'Hyphenated official title, one unit. Report only; the join is not changed.'},
+    {'ref': 'CA-5653', 'pair': 'Pottawatomi / Jones Falls',
+     'why': 'Hyphenated official title, one unit. Report only; the join is not changed.'},
+    {'ref': 'CA-5877', 'pair': 'Chateau De Ramezay / India House',
+     'why': 'Hyphenated official title, one unit. Report only; the join is not changed.'},
+)
+
+# Georgia DNR rename. Report-only alias. The old name stays a match target. Keys are never rewritten.
+NAME_ALIASES = (
+    {
+        'area': 'US-GA',
+        'old_name': 'Stephen C. Foster State Park',
+        'new_name': 'Okefenokee State Park',
+        'effective': '2026-09-01',
+        'source': 'https://gastateparks.org/press-release-parks/Stephen-C-Foster-State-Park-Officially-Renamed-Okefenokee-State-Park',
+        'also': 'https://gastateparks.org/Okefenokee',
+        'note': 'Formerly Stephen C. Foster State Park. Official Georgia State Parks / DNR page.',
+        'report_only': True,
+        'auto_rename': False,
+    },
 )
 
 
 def separate_units(key=None):
-    """Two-name pairs the round-3 return says are separate units. Report only. Joins are not changed."""
+    """Two-name pairs the research returns say are separate units. Report only. Joins are not changed."""
     if key not in (None, '', 'us'):
         return []
-    return [dict(x, report_only=True, joins_changed=False) for x in SEPARATE_UNITS]
+    return [dict(x, report_only=True, joins_changed=False, claim='SEPARATE_UNITS') for x in SEPARATE_UNITS]
+
+
+def one_units(key=None):
+    """Two-name titles the round-4 return says are one unit. Report only. Joins are not changed."""
+    if key in (None, ''):
+        picked = ONE_UNITS
+    elif key == 'us':
+        picked = [x for x in ONE_UNITS if x['ref'].startswith('US-')]
+    elif key == 'ca':
+        picked = [x for x in ONE_UNITS if x['ref'].startswith('CA-')]
+    else:
+        picked = []
+    return [dict(x, report_only=True, joins_changed=False, claim='ONE_UNIT') for x in picked]
+
+
+def name_aliases(report=None):
+    """Rename notes. Empty unless report mode. auto_rename is false. Nothing here edits a key."""
+    if report is None:
+        report = mode() == 'report'
+    if not report:
+        return []
+    return [dict(x) for x in NAME_ALIASES]
+
+
+def alias_names(name, report=None):
+    """The given name, plus a report-only alias when one applies. The input is not rewritten."""
+    if report is None:
+        report = mode() == 'report'
+    given = '' if name is None else str(name)
+    if not report:
+        return [given]
+    folded = fold(given)
+    out = [given]
+    for alias in NAME_ALIASES:
+        names = (alias['old_name'], alias['new_name'])
+        if folded and folded in {fold(n) for n in names}:
+            for n in names:
+                if n not in out:
+                    out.append(n)
+    return out
 
 
 def official_pages():
@@ -613,6 +686,8 @@ def official_suggestions():
                 'agency': r.get('agency') or '', 'suggestion': SUGGESTION}
         if ref in {x['ref'] for x in SEPARATE_UNITS}:
             item['two_name'] = 'separate units, report only'
+        elif ref in {x['ref'] for x in ONE_UNITS}:
+            item['two_name'] = 'one unit, report only'
         if 'possible_wrong_page' in (r.get('two_name_flag') or ''):
             item['suggest_note'] = 'possible wrong page; suggestion only, never auto-replace'
         out.append(item)
@@ -716,6 +791,8 @@ def link_postcheck(rows, agencies=None):
         }
         if (row.get('ref') or '') in {x['ref'] for x in SEPARATE_UNITS}:
             item['two_name'] = 'separate units, report only'
+        elif (row.get('ref') or '') in {x['ref'] for x in ONE_UNITS}:
+            item['two_name'] = 'one unit, report only'
         if off and 'possible_wrong_page' in (off.get('two_name') or ''):
             item['suggest_note'] = 'possible wrong page; suggestion only, never auto-replace'
         out.append(item)
