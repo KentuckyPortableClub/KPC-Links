@@ -1,0 +1,4981 @@
+{
+ "key": "us",
+ "build": "US-42138063969",
+ "built": "2026-11-06 01:51 UTC",
+ "checked": "2026-11-06 01:52",
+ "new_ref": "bc6b6eef438f",
+ "new_what": "the checked-out files (main as the build left it, plus any later commits)",
+ "prev_ref": "b18f13e72f65",
+ "changes": {
+  "gained": [],
+  "lost": [],
+  "outline_to_pin": [
+   "US-0150",
+   "US-10281",
+   "US-11401",
+   "US-11748",
+   "US-12028",
+   "US-13039",
+   "US-3917",
+   "US-4894",
+   "US-4933",
+   "US-4934",
+   "US-4955",
+   "US-5782",
+   "US-5789",
+   "US-5869",
+   "US-6197",
+   "US-6202",
+   "US-9678"
+  ],
+  "pin_to_outline": [],
+  "outline_changed": [
+   "US-0184",
+   "US-0185",
+   "US-0188",
+   "US-0190",
+   "US-0195",
+   "US-10532",
+   "US-10533",
+   "US-10534",
+   "US-10535",
+   "US-10539",
+   "US-10540",
+   "US-11885",
+   "US-11886",
+   "US-11888",
+   "US-11889",
+   "US-11891",
+   "US-11892",
+   "US-11893",
+   "US-11894",
+   "US-11895",
+   "US-11899",
+   "US-11917",
+   "US-11919",
+   "US-11920",
+   "US-11923",
+   "US-11924",
+   "US-11925",
+   "US-11926",
+   "US-11938",
+   "US-11939",
+   "US-11940",
+   "US-12129",
+   "US-12133",
+   "US-12140",
+   "US-1216",
+   "US-1217",
+   "US-12170",
+   "US-12171",
+   "US-12172",
+   "US-12176",
+   "US-1218",
+   "US-12185",
+   "US-1219",
+   "US-1220",
+   "US-1221",
+   "US-1222",
+   "US-1223",
+   "US-1224",
+   "US-1225",
+   "US-1226",
+   "US-1228",
+   "US-1229",
+   "US-1230",
+   "US-1231",
+   "US-1232",
+   "US-1233",
+   "US-1234",
+   "US-1235",
+   "US-12353",
+   "US-12354",
+   "US-12355",
+   "US-1236",
+   "US-1237",
+   "US-1238",
+   "US-1239",
+   "US-1240",
+   "US-1241",
+   "US-1242",
+   "US-1243",
+   "US-1244",
+   "US-1245",
+   "US-12456",
+   "US-1246",
+   "US-1247",
+   "US-1248",
+   "US-1249",
+   "US-1250",
+   "US-12586",
+   "US-12588",
+   "US-12682",
+   "US-12683",
+   "US-12707",
+   "US-12755",
+   "US-12756",
+   "US-12757",
+   "US-12758",
+   "US-12759",
+   "US-13084",
+   "US-13108",
+   "US-13109",
+   "US-13110",
+   "US-13111",
+   "US-13569",
+   "US-13573",
+   "US-13574",
+   "US-13575",
+   "US-13650",
+   "US-1887",
+   "US-3614",
+   "US-3618",
+   "US-3635",
+   "US-4620",
+   "US-4627",
+   "US-4633",
+   "US-4640",
+   "US-4646",
+   "US-5250",
+   "US-5513",
+   "US-6291",
+   "US-6296",
+   "US-6321",
+   "US-6327",
+   "US-7845",
+   "US-8296",
+   "US-9329",
+   "US-9642",
+   "US-9643",
+   "US-9644",
+   "US-9645",
+   "US-9646",
+   "US-9647",
+   "US-9648",
+   "US-9649",
+   "US-9650",
+   "US-9651",
+   "US-9653",
+   "US-9654",
+   "US-9655",
+   "US-9656",
+   "US-9658",
+   "US-9659",
+   "US-9660",
+   "US-9662",
+   "US-9663",
+   "US-9664",
+   "US-9665",
+   "US-9666",
+   "US-9667",
+   "US-9668",
+   "US-9669",
+   "US-9670",
+   "US-9671",
+   "US-9672",
+   "US-9673",
+   "US-9674",
+   "US-9675",
+   "US-9676",
+   "US-9677",
+   "US-9772"
+  ]
+ },
+ "flat": [
+  {
+   "park": "US-0637",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0652",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0675",
+   "area": "US-NE",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0681",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0732",
+   "area": "US-OH",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0773",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0790",
+   "area": "US-PA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0802",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0805",
+   "area": "US-DC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0813",
+   "area": "US-OH",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0814",
+   "area": "US-DC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0848",
+   "area": "US-DC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0851",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0865",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0899",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0909",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-0977",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10018",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10028",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10039",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10056",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10069",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10071",
+   "area": "US-ID",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10084",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10143",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10176",
+   "area": "US-MT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10236",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10277",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10335",
+   "area": "US-ID",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10337",
+   "area": "US-ID",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10338",
+   "area": "US-ID",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10345",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1035",
+   "area": "US-AL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10372",
+   "area": "US-SD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10412",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10424",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10474",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10475",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10481",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10485",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10505",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10510",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10518",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10605",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10623",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10681",
+   "area": "US-DE",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10683",
+   "area": "US-DE",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10732",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10751",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10756",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10758",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10759",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10762",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10764",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10765",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10767",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10768",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10769",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10770",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10771",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10773",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10775",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10780",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1080",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10830",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1084",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10841",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10843",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10901",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10928",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10930",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10931",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10933",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10934",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10937",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10938",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10939",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10940",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10942",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10943",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10944",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10945",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10972",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1098",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10982",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-10985",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11012",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11017",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11028",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11046",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11049",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11093",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11094",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11097",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11172",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11173",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11174",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11213",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11236",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11244",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11353",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11589",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11598",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11615",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11638",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11727",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11734",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11747",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11753",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11755",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11760",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11779",
+   "area": "US-NM",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11870",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11873",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11884",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11896",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11898",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11914",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11942",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11959",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11970",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11977",
+   "area": "US-PA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11979",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11985",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-11987",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12080",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12097",
+   "area": "US-FL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12137",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12144",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12145",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12148",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12255",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12271",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12307",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12317",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12336",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12461",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12469",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12484",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12570",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12679",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12708",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12724",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12730",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12732",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12733",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12766",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12857",
+   "area": "US-MT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12909",
+   "area": "US-MT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12956",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12970",
+   "area": "US-AL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-12991",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13066",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13067",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13071",
+   "area": "US-OR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13216",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13226",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13255",
+   "area": "US-NJ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13258",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13341",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13360",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13361",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13364",
+   "area": "US-TN",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13383",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13384",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13392",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13393",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13394",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13396",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13400",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13401",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13402",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13542",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13553",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13554",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13556",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13567",
+   "area": "US-TN",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-13588",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1660",
+   "area": "US-CT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1698",
+   "area": "US-CT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-1744",
+   "area": "US-DE",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2227",
+   "area": "US-HI",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2232",
+   "area": "US-ID",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2334",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2385",
+   "area": "US-ME",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2441",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2568",
+   "area": "US-MT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2644",
+   "area": "US-NH",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2650",
+   "area": "US-NH",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2669",
+   "area": "US-NH",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2774",
+   "area": "US-OK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2778",
+   "area": "US-OK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2781",
+   "area": "US-OK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-2806",
+   "area": "US-OK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3072",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3075",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3157",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3203",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3269",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3349",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3354",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3365",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3367",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3406",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3459",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3500",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3572",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3589",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3597",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3602",
+   "area": "US-AL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3668",
+   "area": "US-FL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-3678",
+   "area": "US-AL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4433",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4434",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4435",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4436",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4541",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4542",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4552",
+   "area": "US-NM",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4555",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-4565",
+   "area": "US-HI",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5310",
+   "area": "US-NY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5717",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5780",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5791",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5796",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5798",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5821",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5824",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5828",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5833",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5836",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5837",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5847",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5848",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5850",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5854",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5861",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5864",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5868",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5874",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5879",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5880",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5888",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5890",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5891",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5893",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5897",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5902",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5916",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5922",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5926",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5929",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5932",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5956",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5978",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-5980",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6024",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6030",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6031",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6032",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6037",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6069",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6085",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6088",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6096",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6099",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6105",
+   "area": "US-UT",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6117",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6136",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6150",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6214",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6225",
+   "area": "US-WY",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6332",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6419",
+   "area": "US-HI",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6472",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6529",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6546",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6561",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-6600",
+   "area": "US-TX",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7139",
+   "area": "US-GA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7151",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7154",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7156",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7161",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7166",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7169",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7189",
+   "area": "US-MO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7190",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7264",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7271",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7272",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7273",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7274",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7275",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7276",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7286",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7290",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7297",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7299",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7303",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7304",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7305",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7306",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7307",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7309",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7310",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7313",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7314",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7315",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7317",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7327",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7332",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7336",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7340",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7345",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7348",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7352",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7353",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7354",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7357",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7358",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7359",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7372",
+   "area": "US-IL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7379",
+   "area": "US-CA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7382",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7383",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7397",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7412",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7439",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7440",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7524",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7712",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7721",
+   "area": "US-RI",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7783",
+   "area": "US-MD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7844",
+   "area": "US-SD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7862",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7887",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7892",
+   "area": "US-DC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7893",
+   "area": "US-GA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7932",
+   "area": "US-KS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-7982",
+   "area": "US-ME",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8195",
+   "area": "US-SD",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8228",
+   "area": "US-NM",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8287",
+   "area": "US-ME",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8297",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8298",
+   "area": "US-AZ",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8317",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8424",
+   "area": "US-MA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8459",
+   "area": "US-ME",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8621",
+   "area": "US-NM",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-8664",
+   "area": "US-WA",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9164",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9167",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9168",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9171",
+   "area": "US-ME",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9237",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9238",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9241",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9242",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9245",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9248",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9249",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9252",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9254",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9255",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9257",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9260",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9262",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9264",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9265",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9267",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9272",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9273",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9274",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9275",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9276",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9281",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9282",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9283",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9284",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9285",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9287",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9288",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9289",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9292",
+   "area": "US-NV",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9388",
+   "area": "US-MN",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9593",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9594",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9595",
+   "area": "US-CO",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9680",
+   "area": "US-AR",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9701",
+   "area": "US-AK",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  },
+  {
+   "park": "US-9916",
+   "area": "US-AL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area)"
+  }
+ ],
+ "pins_outside": [
+  {
+   "park": "US-0185",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0191",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0211",
+   "area": "US-CA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0361",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0384",
+   "area": "US-AL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0573",
+   "area": "US-VA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0680",
+   "area": "US-NJ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-0723",
+   "area": "US-LA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-10717",
+   "area": "US-MI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-10816",
+   "area": "US-WY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-10890",
+   "area": "US-WY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land"
+  },
+  {
+   "park": "US-10972",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-11007",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-11023",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-11115",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-11631",
+   "area": "US-MA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-11913",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-12027",
+   "area": "US-OK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-12152",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-12185",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-1249",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-12717",
+   "area": "US-NC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13018",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13132",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13134",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13138",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13145",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13194",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-13354",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-1696",
+   "area": "US-CT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-3523",
+   "area": "US-CA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-3660",
+   "area": "US-FL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-3701",
+   "area": "US-AL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-4236",
+   "area": "US-IA",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-4868",
+   "area": "US-NH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-4886",
+   "area": "US-NH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-4926",
+   "area": "US-NH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5532",
+   "area": "US-VT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5538",
+   "area": "US-VT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5553",
+   "area": "US-VT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5616",
+   "area": "US-ID",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5758",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5828",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5833",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-5897",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6007",
+   "area": "US-UT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6090",
+   "area": "US-AZ",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6135",
+   "area": "US-WY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6204",
+   "area": "US-WY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6218",
+   "area": "US-WY",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6275",
+   "area": "US-TN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6332",
+   "area": "US-AK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-6361",
+   "area": "US-OK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7027",
+   "area": "US-WV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7043",
+   "area": "US-WV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7191",
+   "area": "US-AK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7242",
+   "area": "US-AK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7271",
+   "area": "US-AR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7274",
+   "area": "US-AR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7682",
+   "area": "US-OK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7707",
+   "area": "US-ND",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7749",
+   "area": "US-MD",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-7760",
+   "area": "US-MD",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-8140",
+   "area": "US-OK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9159",
+   "area": "US-OR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9246",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9273",
+   "area": "US-NV",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9387",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9388",
+   "area": "US-MN",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9470",
+   "area": "US-OH",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9594",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9605",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9620",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9622",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9631",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9632",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9635",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9638",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9639",
+   "area": "US-CO",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9758",
+   "area": "US-NC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9800",
+   "area": "US-WI",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "US-9993",
+   "area": "US-OR",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  }
+ ],
+ "pins_at_edge": [],
+ "bad_pins": [],
+ "answer_sheet": {
+  "read": true,
+  "rows": 7536,
+  "signed": 0,
+  "signed_disagree": [],
+  "proposed_disagree": 537
+ },
+ "overrides": [
+  {
+   "park": "US-0025",
+   "area": "US-AL",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki383567"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0042",
+   "area": "US-AL",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "166719",
+    "sgaki379681"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0491",
+   "area": "US-OK",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgmng979"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0621",
+   "area": "US-PA",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "74544",
+    "249819"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0623",
+   "area": "US-PA",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "74602",
+    "249881"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0778",
+   "area": "US-NY",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgakd935"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0908",
+   "area": "US-AZ",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgakd1125"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0915",
+   "area": "US-CA",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgakd1220"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-0958",
+   "area": "US-LA",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgakd1143"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10179",
+   "area": "US-IN",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "10 O'clock Line Nature Preserve"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10431",
+   "area": "US-ID",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "199838"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10483",
+   "area": "US-OR",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "wsa31291",
+    "wsa31325"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10487",
+   "area": "US-OR",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "wsa31224"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10575",
+   "area": "US-MO",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Walnut Woods Conservation Area"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10610",
+   "area": "US-OR",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgide837"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10921",
+   "area": "US-HI",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki395518"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10922",
+   "area": "US-HI",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400944"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10971",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9214"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10973",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9254"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10975",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9266"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-10976",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9695"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11089",
+   "area": "US-ID",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "199756"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11222",
+   "area": "US-OK",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "116910"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11376",
+   "area": "US-AL",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Battleship Memorial Park"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11746",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "wsa30522",
+    "wsa30599"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11778",
+   "area": "US-OK",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki386929"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11788",
+   "area": "US-MN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Toad River State Aquatic Management Area (Becker/Otter Tail)"
+   ],
+   "when": "2026-10-18",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-11823",
+   "area": "US-NM",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "80742"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-12122",
+   "area": "US-FL",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Paradise Run"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-12176",
+   "area": "US-CO",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "cow350"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-12979",
+   "area": "US-OR",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgide861"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-13000",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki401149"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-13178",
+   "area": "US-NV",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "wbl4778"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-13183",
+   "area": "US-NV",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki397402"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-13251",
+   "area": "US-NV",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki397680"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-1507",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid425"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2005",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb533"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2025",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb530"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2076",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb786"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2108",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb534"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2109",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb523"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2140",
+   "area": "US-NY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnyb536"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2228",
+   "area": "US-ID",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "199934",
+    "199935"
+   ],
+   "when": "2026-10-25",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2238",
+   "area": "US-ID",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "199938"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2242",
+   "area": "US-ID",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "199788",
+    "199789"
+   ],
+   "when": "2026-10-25",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2540",
+   "area": "US-MS",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgide876"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-2674",
+   "area": "US-NH",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "64271"
+   ],
+   "when": "2026-10-25",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3305",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid507"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3315",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid194"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3316",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid47"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3320",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid688"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3321",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid440"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3322",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid521"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3326",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid877"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3333",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid177"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3334",
+   "area": "US-MI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mid385"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3375",
+   "area": "US-NE",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "103429"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3492",
+   "area": "US-NE",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400205"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3862",
+   "area": "US-NC",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Nags Head Woods Ecological Preserve"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-3863",
+   "area": "US-NC",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "214405"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4009",
+   "area": "US-MO",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Ozark National Scenic Riverways"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4036",
+   "area": "US-NE",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "118464"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4379",
+   "area": "US-OR",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg69"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4391",
+   "area": "US-CA",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg44"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4425",
+   "area": "US-AR",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg94"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4427",
+   "area": "US-AZ",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgidd189"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4458",
+   "area": "US-CA",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg67"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4533",
+   "area": "US-WI",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg107"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4535",
+   "area": "US-WY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgnvg36"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-4560",
+   "area": "US-AL",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "3552"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5656",
+   "area": "US-NE",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "117508"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5682",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Moore's Creek State Recreation Area",
+    "Moores Creek State Recreation Area"
+   ],
+   "when": "2026-10-30",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5684",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Allens Creek State Recreation Area",
+    "sgide2417"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5686",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Fairfax State Recreation Area"
+   ],
+   "when": "2026-10-30",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5687",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgide2419"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5688",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Salt Creek State Recreation Area"
+   ],
+   "when": "2026-10-30",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-5999",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400083"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6012",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9208"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6025",
+   "area": "US-UT",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgute9216"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6150",
+   "area": "US-WY",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "wsa29626",
+    "wsa29640"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6157",
+   "area": "US-WY",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "wsa29617"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6335",
+   "area": "US-OK",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400286"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6336",
+   "area": "US-OK",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400282"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6392",
+   "area": "US-MD",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "mdd3177"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6460",
+   "area": "US-AL",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "sgide611"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6462",
+   "area": "US-NJ",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "225338"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-6532",
+   "area": "US-NY",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sggae34"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-7304",
+   "area": "US-AR",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Madison County"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-7768",
+   "area": "US-MD",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "16458"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-7842",
+   "area": "US-IN",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Red  Bridge State Recreation Area",
+    "Red Bridge State Recreation Area"
+   ],
+   "when": "2026-10-30",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-7843",
+   "area": "US-IN",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgide2900"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-7974",
+   "area": "US-MD",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki382060"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8532",
+   "area": "US-ND",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki379041"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8536",
+   "area": "US-ND",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400132"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8544",
+   "area": "US-ND",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400204"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8555",
+   "area": "US-ND",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki383579"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8559",
+   "area": "US-ND",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki379181"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-8663",
+   "area": "US-WA",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "138321"
+   ],
+   "when": "2026-10-29",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-9190",
+   "area": "US-KS",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgaki400284"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-9678",
+   "area": "US-CO",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "cow909"
+   ],
+   "when": "2026-10-22",
+   "newer_than_build": false
+  },
+  {
+   "park": "US-9683",
+   "area": "US-CO",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "sgakd1244"
+   ],
+   "when": "2026-11-02",
+   "newer_than_build": false
+  }
+ ],
+ "precheck": {
+  "read": true,
+  "counts": {
+   "MISNAMED": 1,
+   "NAME_MISMATCH": 3,
+   "NO_OFFICIAL_BOUNDARY": 6,
+   "PIN_WAY_OUT": 91,
+   "RULE18_PIECE": 129,
+   "TRAIL_CHECK": 2,
+   "WRONG_KIND": 10
+  },
+  "hold_still_outline": [
+   {
+    "park": "US-0015",
+    "area": "US-MD",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0185",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0191",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0211",
+    "area": "US-CA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0292",
+    "area": "US-KS",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Kirwin Reservoir is another kind of place than a National Wildlife Refuge"
+   },
+   {
+    "park": "US-0361",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0384",
+    "area": "US-AL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0456",
+    "area": "US-NJ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0573",
+    "area": "US-VA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0614",
+    "area": "US-WY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Pathfinder Reservoir; Pathfinder Reservoir is another kind of place than a National Wildlife Refuge"
+   },
+   {
+    "park": "US-0680",
+    "area": "US-NJ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0723",
+    "area": "US-LA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-0733",
+    "area": "US-DE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-10083",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Lake George Wild Forest; Lake George Wild Forest; Lake George Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-10295",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Independence River Wild Forest; Independence River Wild Forest; Independence River Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-10717",
+    "area": "US-MI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-10816",
+    "area": "US-WY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-10890",
+    "area": "US-WY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-11007",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-11023",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-11631",
+    "area": "US-MA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-11913",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-12027",
+    "area": "US-OK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-12070",
+    "area": "US-TN",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Garrett Lake State Forest is another kind of place than a State Fishing Lake"
+   },
+   {
+    "park": "US-12152",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-12185",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-1249",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-12601",
+    "area": "US-IL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-12715",
+    "area": "US-TN",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Gibson County State Forest is another kind of place than a State Fishing Lake"
+   },
+   {
+    "park": "US-12717",
+    "area": "US-NC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13018",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT RULE18_PIECE",
+    "why": "the POTA pin is well outside the joined land | rule 18: the joined record may be another piece: hab1 Black Rock Range East (rule 18: 'west' names only one piece"
+   },
+   {
+    "park": "US-13132",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13134",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13138",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13145",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13194",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13354",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-13446",
+    "area": "US-WA",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 157269 Northlake Park"
+   },
+   {
+    "park": "US-1696",
+    "area": "US-CT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-3523",
+    "area": "US-CA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-3660",
+    "area": "US-FL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-3701",
+    "area": "US-AL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4236",
+    "area": "US-IA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4383",
+    "area": "US-CA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4457",
+    "area": "US-CA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4475",
+    "area": "US-ID",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4524",
+    "area": "US-SD",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4868",
+    "area": "US-NH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4886",
+    "area": "US-NH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-4926",
+    "area": "US-NH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5532",
+    "area": "US-VT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5538",
+    "area": "US-VT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5553",
+    "area": "US-VT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5616",
+    "area": "US-ID",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5691",
+    "area": "US-IN",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: sginc3262 Cecil M. Harden Lake"
+   },
+   {
+    "park": "US-5694",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Balsam Lake Mountain Wild Forest; Balsam Lake Mountain Wild Forest; Balsam Lake Mountain Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-5758",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5828",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5833",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-5897",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6007",
+    "area": "US-UT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6090",
+    "area": "US-AZ",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6135",
+    "area": "US-WY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6204",
+    "area": "US-WY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6218",
+    "area": "US-WY",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6275",
+    "area": "US-TN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6332",
+    "area": "US-AK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-6361",
+    "area": "US-OK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7027",
+    "area": "US-WV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7043",
+    "area": "US-WV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7191",
+    "area": "US-AK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7242",
+    "area": "US-AK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7271",
+    "area": "US-AR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7274",
+    "area": "US-AR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7682",
+    "area": "US-OK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7707",
+    "area": "US-ND",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7749",
+    "area": "US-MD",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-7760",
+    "area": "US-MD",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-8073",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Bluestone Wild Forest; Bluestone Wild Forest; Bluestone Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-8074",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Overlook Mountain Wild Forest; Overlook Mountain Wild Forest; Overlook Mountain Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-8075",
+    "area": "US-NY",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Colgate Lake Wild Forest; Colgate Lake Wild Forest; Colgate Lake Wild Forest is another kind of place than a State Forest"
+   },
+   {
+    "park": "US-8140",
+    "area": "US-OK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-8396",
+    "area": "US-MA",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9159",
+    "area": "US-OR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9246",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9273",
+    "area": "US-NV",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9387",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9388",
+    "area": "US-MN",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9470",
+    "area": "US-OH",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9473",
+    "area": "US-OH",
+    "flags": "MISNAMED NAME_MISMATCH",
+    "why": "POTA spells the name differently from the agency record (same place): 157772 Lake Park Wildlife Area | joined record shares no real word with the park name: sgo"
+   },
+   {
+    "park": "US-9594",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9605",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9620",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9622",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9631",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9632",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9635",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9638",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9639",
+    "area": "US-CO",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9758",
+    "area": "US-NC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9800",
+    "area": "US-WI",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "US-9993",
+    "area": "US-OR",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   }
+  ],
+  "rule18": [
+   {
+    "park": "US-0171",
+    "area": "US-AR",
+    "why": "rule 18: the joined record may be another piece: 79011 White River National Wildlife Refuge 13 (number 13 is in one name only ('White River National Wildlife Re"
+   },
+   {
+    "park": "US-0215",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: 79009 Stone Lakes National Wildlife Refuge 2 (number 2 is in one name only ('Stone Lakes National Wildlife Refu"
+   },
+   {
+    "park": "US-0454",
+    "area": "US-NJ",
+    "why": "rule 18: the joined record may be another piece: 79008 Great Swamp National Wildlife Refuge 3 (number 3 is in one name only ('Great Swamp National Wildlife Refu"
+   },
+   {
+    "park": "US-0471",
+    "area": "US-NV",
+    "why": "rule 18: the joined record may be another piece: 79020 Stillwater National Wildlife Refuge 17 (number 17 is in one name only ('Stillwater National Wildlife Refu"
+   },
+   {
+    "park": "US-0550",
+    "area": "US-TX",
+    "why": "rule 18: the joined record may be another piece: sgtxb1730 Lower Rio Grande Valley NWR-La Casita East (rule 18: 'east' names only one piece)"
+   },
+   {
+    "park": "US-0654",
+    "area": "US-DC",
+    "why": "rule 18: the joined record may be another piece: 3536 National Capital Parks (rule 18: 'east' names only one piece)"
+   },
+   {
+    "park": "US-0796",
+    "area": "US-DC",
+    "why": "rule 18: the joined record may be another piece: 3279 World War I Memorial (number 2 is in one name only ('World War II National Memorial' vs 'World War I Memor"
+   },
+   {
+    "park": "US-0974",
+    "area": "US-NV",
+    "why": "rule 18: the joined record may be another piece: sgnvd6 Tule Springs Fossil Beds National Monument South (rule 18: 'south' names only one piece); sgnvb6 Tule Sp"
+   },
+   {
+    "park": "US-10186",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78288 Kinnickinnic River Fishery Area 9 (number 9 is in one name only ('Kinnickinnic River State Fish and Wildl"
+   },
+   {
+    "park": "US-1034",
+    "area": "US-AL",
+    "why": "rule 18: the joined record may be another piece: sgalb111 Blue Springs State Park - West Addition (rule 18: 'west' names only one piece)"
+   },
+   {
+    "park": "US-10565",
+    "area": "US-FL",
+    "why": "rule 18: the joined record may be another piece: 190447 Stuarts Landing Conservation Area (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "US-10566",
+    "area": "US-FL",
+    "why": "rule 18: the joined record may be another piece: 190447 Stuarts Landing Conservation Area (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "US-10615",
+    "area": "US-FL",
+    "why": "rule 18: the joined record may be another piece: 190420 Cypress Creek Conservation Area (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "US-10627",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: sgwab1283 4-O Ranch (number 0 is in one name only ('4-0 Ranch Wildlife Area' vs '4-O Ranch'): a different piece"
+   },
+   {
+    "park": "US-10656",
+    "area": "US-CT",
+    "why": "rule 18: the joined record may be another piece: 79440 Barn Island Wildlife Management Area 3 (number 3 is in one name only ('Barn Island Wildlife Management Ar"
+   },
+   {
+    "park": "US-10786",
+    "area": "US-IL",
+    "why": "rule 18: the joined record may be another piece: sgila1569 Siloam Springs State Park (the park is the piece 'buckhorn' of a bigger area; 'Siloam Springs State P"
+   },
+   {
+    "park": "US-10996",
+    "area": "US-UT",
+    "why": "rule 18: the joined record may be another piece: wsa762 Escalante Canyons Tract 1 (number 1 is in one name only ('Escalante Canyon WSA BLM Wilderness Area' vs '"
+   },
+   {
+    "park": "US-11043",
+    "area": "US-IL",
+    "why": "rule 18: the joined record may be another piece: sgild1 Burning Star No. 5 (number 5 is in one name only ('Burning Star State Fish and Wildlife Area' vs 'Burnin"
+   },
+   {
+    "park": "US-1126",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcab878 Anza-Borrego Desert SW (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "US-1161",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcab710 Henry W. Coe SW (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "US-1167",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcab886 Limekiln SW (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "US-1177",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcab830 Mount San Jacinto SW (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "US-11806",
+    "area": "US-NM",
+    "why": "rule 18: the joined record may be another piece: rst14034 Johnson (Gordy's) Hill North (rule 18: 'north' names only one piece); rst13973 Johnson (Gordy's) Hill "
+   },
+   {
+    "park": "US-11866",
+    "area": "US-NM",
+    "why": "rule 18: the joined record may be another piece: rst13994 Rio Bonito Acquired Lands Tract 4 (the park is the piece 'salazar' of a bigger area; 'Rio Bonito Acqui"
+   },
+   {
+    "park": "US-11889",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: sgcoa224 Piceance SWA - North Ridge Unit (rule 18: 'north' names only one piece); sgcoc619 Piceance SWA - North"
+   },
+   {
+    "park": "US-11906",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: rst10911 Bangs - Zone 4 (number 4 is in one name only ('Bangs BLM Special Recreation Management Area' vs 'Bangs"
+   },
+   {
+    "park": "US-11916",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: sgakg10797 Dolores River Canyon, Zone 2 (number 2 is in one name only ('Dolores River Canyon BLM Wilderness Are"
+   },
+   {
+    "park": "US-11931",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78287 Emmons Creek Fishery Area 2 (number 2 is in one name only ('Emmons Creek State Fish and Wildlife Area' vs"
+   },
+   {
+    "park": "US-11932",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78289 Radley Creek Fishery Area 3 (number 3 is in one name only ('Radley Creek State Fish and Wildlife Area' vs"
+   },
+   {
+    "park": "US-11952",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: rst10797 Dolores River Canyon, Zone 2 (number 2 is in one name only ('Dolores River Canyon BLM Recreation Manag"
+   },
+   {
+    "park": "US-1197",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcab839 Sinkyone SW (rule 18: 'southwest' names only one piece)"
+   },
+   {
+    "park": "US-1223",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: cow432 James M. Robb - Colorado River State Park - 34 Road section (number 34 is in one name only ('James M. Ro"
+   },
+   {
+    "park": "US-12285",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: wdw158 Shillapoo (rule 18: 'south' names only one piece); wdw159 Shillapoo (rule 18: 'south' names only one pie"
+   },
+   {
+    "park": "US-12286",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: wdw158 Shillapoo (rule 18: 'north' names only one piece); wdw159 Shillapoo (rule 18: 'north' names only one pie"
+   },
+   {
+    "park": "US-12306",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: 78900 Oak Creek 2014 - 2588.27 Acre Parcel (number 2014 is in one name only ('Oak Creek State Wildlife Area' vs"
+   },
+   {
+    "park": "US-12538",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: 78902 Scotch Creek 2012 (number 2012 is in one name only ('Scotch Creek State Wildlife Area' vs 'Scotch Creek 2"
+   },
+   {
+    "park": "US-12556",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: sgwab608 Skokomish 101 (number 101 is in one name only ('Skokomish State Wildlife Area' vs 'Skokomish 101'): a "
+   },
+   {
+    "park": "US-12643",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: 78890 Big Bend - 2015 (number 2015 is in one name only ('Big Bend State Wildlife Area' vs 'Big Bend - 2015'): a"
+   },
+   {
+    "park": "US-12646",
+    "area": "US-MT",
+    "why": "rule 18: the joined record may be another piece: 78877 Seven Sisters Wildlife Management Area 4 (number 4 is in one name only ('Seven Sisters Wildlife Managemen"
+   },
+   {
+    "park": "US-12685",
+    "area": "US-MN",
+    "why": "rule 18: the joined record may be another piece: sgmnf5469 Mallard Marsh WMA (the park is the piece 'gombold' of a bigger area; 'Mallard Marsh WMA' does not nam"
+   },
+   {
+    "park": "US-12918",
+    "area": "US-MT",
+    "why": "rule 18: the joined record may be another piece: 78877 Seven Sisters Wildlife Management Area 4 (number 4 is in one name only ('Seven Sisters State Fish and Wil"
+   },
+   {
+    "park": "US-13018",
+    "area": "US-NV",
+    "why": "the POTA pin is well outside the joined land | rule 18: the joined record may be another piece: hab1 Black Rock Range East (rule 18: 'west' names only one piece"
+   },
+   {
+    "park": "US-13049",
+    "area": "US-NV",
+    "why": "rule 18: the joined record may be another piece: hma118 Shawave Mountains II (number 2 is in one name only ('Shawave Mountains BLM Herd Management Area' vs 'Sha"
+   },
+   {
+    "park": "US-13153",
+    "area": "US-NV",
+    "why": "rule 18: the joined record may be another piece: rst11399 Zone 4 Porter Springs RMZ (number 4 is in one name only ('Porter Springs BLM Recreation Management Are"
+   },
+   {
+    "park": "US-13203",
+    "area": "US-MN",
+    "why": "rule 18: the joined record may be another piece: sgmnf5309 Roberts-Wickstrom WMA (the park is the piece 'east' of a bigger area; 'Roberts-Wickstrom WMA' does no"
+   },
+   {
+    "park": "US-13221",
+    "area": "US-MN",
+    "why": "rule 18: the joined record may be another piece: 208844 Gordon W. Yeager State Wildlife Management Area (the park is the piece 'southeast' of a bigger area; 'Go"
+   },
+   {
+    "park": "US-13270",
+    "area": "US-NY",
+    "why": "rule 18: the joined record may be another piece: sgnya67655 Otis Pike Pine Barrens State Forest - East (rule 18: 'east' names only one piece); sgnya67814 Otis P"
+   },
+   {
+    "park": "US-13517",
+    "area": "US-NH",
+    "why": "rule 18: the joined record may be another piece: sgnhc2419 Richard Sargent Management Area 2 (number 2 is in one name only ('Richard Sargent Wildlife Management"
+   },
+   {
+    "park": "US-13614",
+    "area": "US-NE",
+    "why": "rule 18: the joined record may be another piece: 215872 Kirkpatrick Basin Wildlife Management Area (rule 18: 'north' names only one piece); 215762 Kirkpatrick B"
+   },
+   {
+    "park": "US-13615",
+    "area": "US-NE",
+    "why": "rule 18: the joined record may be another piece: 215872 Kirkpatrick Basin Wildlife Management Area (rule 18: 'south' names only one piece); 215762 Kirkpatrick B"
+   },
+   {
+    "park": "US-1439",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78254 Big Bay State Park 4 (number 4 is in one name only ('Big Bay State Park' vs 'Big Bay State Park 4'): a di"
+   },
+   {
+    "park": "US-1443",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78256 Buckhorn State Park 3 (number 3 is in one name only ('Buckhorn State Park' vs 'Buckhorn State Park 3'): a"
+   },
+   {
+    "park": "US-1446",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78257 Copper Falls State Park 3 (number 3 is in one name only ('Copper Falls State Park' vs 'Copper Falls State"
+   },
+   {
+    "park": "US-1454",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78260 Harrington Beach State Park 2 (number 2 is in one name only ('Harrington Beach State Park' vs 'Harrington"
+   },
+   {
+    "park": "US-1546",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71265 Thompson's Harbor State Park 1 (number 1 is in one name only ('Thompson's Harbor State Park' vs 'Thompson"
+   },
+   {
+    "park": "US-1583",
+    "area": "US-MD",
+    "why": "rule 18: the joined record may be another piece: 83709 Matthew Henson State Park Unit #4 (number 4 is in one name only ('Matthew Henson State Park' vs 'Matthew "
+   },
+   {
+    "park": "US-2359",
+    "area": "US-LA",
+    "why": "rule 18: the joined record may be another piece: 203112 Chicot State Park District II (number 2 is in one name only ('Chicot State Park' vs 'Chicot State Park D"
+   },
+   {
+    "park": "US-2375",
+    "area": "US-LA",
+    "why": "rule 18: the joined record may be another piece: 203126 Sam Houston Jones State Park District II (number 2 is in one name only ('Sam Houston Jones State Park' v"
+   },
+   {
+    "park": "US-2997",
+    "area": "US-TX",
+    "why": "rule 18: the joined record may be another piece: sgtxa81 Choke Canyon - South Shore Unit (rule 18: 'south' names only one piece); sgtxa82 Choke Canyon - North S"
+   },
+   {
+    "park": "US-3000",
+    "area": "US-TX",
+    "why": "rule 18: the joined record may be another piece: 261824 Cooper Lake State Park - South Sulphur Unit (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "US-3168",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: 79467 Cama Beach 5 (number 5 is in one name only ('Cama Beach State Park' vs 'Cama Beach 5'): a different piece"
+   },
+   {
+    "park": "US-3182",
+    "area": "US-WA",
+    "why": "rule 18: the joined record may be another piece: 78913 Dosewallips 4 (number 4 is in one name only ('Dosewallips State Park' vs 'Dosewallips 4'): a different pi"
+   },
+   {
+    "park": "US-3319",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 78279 Menominee River State Park & Recreation Area 2 (number 2 is in one name only ('Menominee River State Recr"
+   },
+   {
+    "park": "US-3524",
+    "area": "US-CA",
+    "why": "rule 18: the joined record may be another piece: sgcad449 Ocotillo Wells East (rule 18: 'east' names only one piece)"
+   },
+   {
+    "park": "US-3711",
+    "area": "US-AL",
+    "why": "rule 18: the joined record may be another piece: sgalb141 Weeks Bay Reserve - Meadows Phase 2 Addition (number 2 is in one name only ('Weeks Bay Reserve Nationa"
+   },
+   {
+    "park": "US-3714",
+    "area": "US-AL",
+    "why": "rule 18: the joined record may be another piece: 166141 Yates Lake West Wildlife Management Area (rule 18: 'west' names only one piece); 166140 Yates Lake West "
+   },
+   {
+    "park": "US-3969",
+    "area": "US-TN",
+    "why": "rule 18: the joined record may be another piece: sgtne96 Wolf River WMA Unit 1 (number 1 is in one name only ('Wolf River Wildlife Management Area' vs 'Wolf Riv"
+   },
+   {
+    "park": "US-4038",
+    "area": "US-NE",
+    "why": "rule 18: the joined record may be another piece: sgnea12 Wolf-Wildcat #12 Recreation Area (NRD) (number 12 is in one name only ('Wolf-Wildcat Wildlife Managemen"
+   },
+   {
+    "park": "US-4092",
+    "area": "US-IL",
+    "why": "rule 18: the joined record may be another piece: sgila2162 Apple River Canyon State Park (the park is the piece 'salem' of a bigger area; 'Apple River Canyon St"
+   },
+   {
+    "park": "US-4123",
+    "area": "US-IL",
+    "why": "rule 18: the joined record may be another piece: sgilb854 Franklin Creek Nature Preserve Addition #2 (number 2 is in one name only ('Franklin Creek State Natura"
+   },
+   {
+    "park": "US-4192",
+    "area": "US-IN",
+    "why": "rule 18: the joined record may be another piece: 200786 Crooked Lake Nature Preserve Addition #2 (number 2 is in one name only ('Crooked Lake State Nature Prese"
+   },
+   {
+    "park": "US-4243",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78863 Sauk Prairie Recreation Area 1 (number 1 is in one name only ('Sauk Prairie State Recreation Area' vs 'Sa"
+   },
+   {
+    "park": "US-4271",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78173 Beaver Brook Wildlife Area 4 (number 4 is in one name only ('Beaver Brook State Wildlife Area' vs 'Beaver"
+   },
+   {
+    "park": "US-4278",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78177 Crex Meadows Wildlife Area 5 (number 5 is in one name only ('Crex Meadows State Wildlife Area' vs 'Crex M"
+   },
+   {
+    "park": "US-4281",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78180 Dell Creek Wildlife Area 2 (number 2 is in one name only ('Dell Creek State Wildlife Area' vs 'Dell Creek"
+   },
+   {
+    "park": "US-4283",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78182 Dunnville Wildlife Area 8 (number 8 is in one name only ('Dunnville State Wildlife Area' vs 'Dunnville Wi"
+   },
+   {
+    "park": "US-4289",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78184 Goose Lake Wildlife Area 3 (number 3 is in one name only ('Goose Lake State Wildlife Area' vs 'Goose Lake"
+   },
+   {
+    "park": "US-4299",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78185 Kimberly Clark Wildlife Area 4 (number 4 is in one name only ('Kimberly Clark State Wildlife Area' vs 'Ki"
+   },
+   {
+    "park": "US-4305",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78187 Loon Lake Wildlife Area 6 (number 6 is in one name only ('Loon Lake State Wildlife Area' vs 'Loon Lake Wi"
+   },
+   {
+    "park": "US-4318",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78191 New Wood Wildlife Area 1 (number 1 is in one name only ('New Wood State Wildlife Area' vs 'New Wood Wildl"
+   },
+   {
+    "park": "US-4322",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78197 Pine Island Wildlife Area 3 (number 3 is in one name only ('Pine Island State Wildlife Area' vs 'Pine Isl"
+   },
+   {
+    "park": "US-4331",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78198 Swan Lake Wildlife Area 5 (number 5 is in one name only ('Swan Lake State Wildlife Area' vs 'Swan Lake Wi"
+   },
+   {
+    "park": "US-4343",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 273010 Wolf River Bottoms Wildlife Area (the park is the piece 'lasage' of a bigger area; 'Wolf River Bottoms W"
+   },
+   {
+    "park": "US-4348",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78317 Black River State Forest 6 (number 6 is in one name only ('Black River State Forest' vs 'Black River Stat"
+   },
+   {
+    "park": "US-4349",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78320 Flambeau River State Forest 1 (number 1 is in one name only ('Flambeau River State Forest' vs 'Flambeau R"
+   },
+   {
+    "park": "US-4350",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78321 Governor Knowles State Forest 1 (number 1 is in one name only ('Governor Knowles State Forest' vs 'Govern"
+   },
+   {
+    "park": "US-4354",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78328 Point Beach State Forest 1 (number 1 is in one name only ('Point Beach State Forest' vs 'Point Beach Stat"
+   },
+   {
+    "park": "US-4664",
+    "area": "US-IA",
+    "why": "rule 18: the joined record may be another piece: sgiaa34320 YELLOW RIVER STATE FOREST - LOST 40 UNIT (number 40 is in one name only ('Yellow River State Forest'"
+   },
+   {
+    "park": "US-5577",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78318 Brule River State Forest 1 (number 1 is in one name only ('Brule River State Forest' vs 'Brule River Stat"
+   },
+   {
+    "park": "US-5750",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: wsa130 Black Ridge Canyons West E (rule 18: 'west' names only one piece)"
+   },
+   {
+    "park": "US-5846",
+    "area": "US-UT",
+    "why": "rule 18: the joined record may be another piece: wsa978 Horseshoe Canyon (North) (rule 18: 'south' vs 'north' are different pieces (both names carry a different"
+   },
+   {
+    "park": "US-5953",
+    "area": "US-UT",
+    "why": "rule 18: the joined record may be another piece: wsa794 Paria-Hackberry (number 202 is in one name only ('Paria Hackberry 202 BLM Wilderness Area' vs 'Paria-Hac"
+   },
+   {
+    "park": "US-6010",
+    "area": "US-UT",
+    "why": "rule 18: the joined record may be another piece: wbl257 Deep Creek North (rule 18: 'north' names only one piece); wbl268 Deep Creek North (rule 18: 'north' name"
+   },
+   {
+    "park": "US-6011",
+    "area": "US-UT",
+    "why": "rule 18: the joined record may be another piece: wbl303 Deep Creek (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "US-6367",
+    "area": "US-OK",
+    "why": "rule 18: the joined record may be another piece: sgokb300 Ouachita Wildlife Management Area (the park is the piece 'mccurtain' of a bigger area; 'Ouachita Wildl"
+   },
+   {
+    "park": "US-6571",
+    "area": "US-TX",
+    "why": "rule 18: the joined record may be another piece: 263433 Las Palomas Wildlife Management Area (the park is the piece 'anacua' of a bigger area; 'Las Palomas Wild"
+   },
+   {
+    "park": "US-6596",
+    "area": "US-TX",
+    "why": "rule 18: the joined record may be another piece: sgtxb1677 Richland Creek WMA - South Unit (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "US-6615",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71207 Allegan State Game Area 6 (number 6 is in one name only ('Allegan State Game Land' vs 'Allegan State Game"
+   },
+   {
+    "park": "US-6634",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71351 Brookfield Township No. 1 State Game Area (number 1 is in one name only ('Brookfield Township State Game "
+   },
+   {
+    "park": "US-6638",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71449 Cannon Creek Flooding No. 1 State Wildlife Management Area (number 1 is in one name only ('Cannon Creek F"
+   },
+   {
+    "park": "US-6675",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: sgmib78 Fraser Township No. 1 State Game Area (number 1 is in one name only ('Fraser State Game Land' vs 'Frase"
+   },
+   {
+    "park": "US-6782",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71215 Shiawassee River State Game Area 5 (number 5 is in one name only ('Shiawassee River State Game Land' vs '"
+   },
+   {
+    "park": "US-6806",
+    "area": "US-MI",
+    "why": "rule 18: the joined record may be another piece: 71231 Wigwam Bay State Wildlife Area 2 (number 2 is in one name only ('Wigwam Bay State Wildlife Area' vs 'Wigw"
+   },
+   {
+    "park": "US-7396",
+    "area": "US-KS",
+    "why": "rule 18: the joined record may be another piece: sgksc968 Pottawatomie State Fishing Lake (number 1 is in one name only ('Pottawatomie No 1 State Fishing Lake' "
+   },
+   {
+    "park": "US-7397",
+    "area": "US-KS",
+    "why": "rule 18: the joined record may be another piece: sgksc969 Pottawatomie State Fishing Lake (number 2 is in one name only ('Pottawatomie No 2 State Fishing Lake' "
+   },
+   {
+    "park": "US-7568",
+    "area": "US-TN",
+    "why": "rule 18: the joined record may be another piece: sgtne598 Barkley WMA-UNIT 1 (number 1 is in one name only ('Barkley Wildlife Management Area' vs 'Barkley WMA-U"
+   },
+   {
+    "park": "US-7722",
+    "area": "US-RI",
+    "why": "rule 18: the joined record may be another piece: 57199 Scarborough State Beach (rule 18: 'north' names only one piece)"
+   },
+   {
+    "park": "US-7872",
+    "area": "US-IL",
+    "why": "rule 18: the joined record may be another piece: sgilb551 Stemler Cave Woods Nature Preserve Addition #2 (number 2 is in one name only ('Stemler Cave Woods Stat"
+   },
+   {
+    "park": "US-7906",
+    "area": "US-GA",
+    "why": "rule 18: the joined record may be another piece: 195025 Chattahoochee Fall Line Wildlife Management Area (the park is the piece 'almo' of a bigger area; 'Chatta"
+   },
+   {
+    "park": "US-7907",
+    "area": "US-GA",
+    "why": "rule 18: the joined record may be another piece: sggac840 CLARKS HILL WMA - EAST (rule 18: 'east' names only one piece); sggac964 CLARKS HILL WMA - WEST (rule 1"
+   },
+   {
+    "park": "US-7914",
+    "area": "US-GA",
+    "why": "rule 18: the joined record may be another piece: sggaa90 SANDHILLS WMA (rule 18: 'east' names only one piece); sggac821 SANDHILLS WMA (rule 18: 'east' names onl"
+   },
+   {
+    "park": "US-8400",
+    "area": "US-MA",
+    "why": "rule 18: the joined record may be another piece: sgmaa700052 Beaver Brook North Reservation (rule 18: 'north' names only one piece); sgmaa692087 Beaver Brook No"
+   },
+   {
+    "park": "US-8670",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78205 Vernon Wildlife Area 4 (number 4 is in one name only ('Vernon State Wildlife Area' vs 'Vernon Wildlife Ar"
+   },
+   {
+    "park": "US-8671",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78199 Tichigan Wildlife Area 1 (number 1 is in one name only ('Tichigan State Wildlife Area' vs 'Tichigan Wildl"
+   },
+   {
+    "park": "US-9146",
+    "area": "US-OR",
+    "why": "rule 18: the joined record may be another piece: sgora81 Lakeside 1 - Fall Creek (number 1 is in one name only ('Fall Creek State Recreation Area' vs 'Lakeside "
+   },
+   {
+    "park": "US-9311",
+    "area": "US-IA",
+    "why": "rule 18: the joined record may be another piece: 198827 Keg Creek I-29 Wildlife Management Area (number 29 is in one name only ('Keg Creek lake Wildlife Managem"
+   },
+   {
+    "park": "US-9462",
+    "area": "US-OH",
+    "why": "rule 18: the joined record may be another piece: 71724 Fallsville Wildlife Area (rule 18: 'south' names only one piece); sgohb74 FALLSVILLE (FallsvllWA) (rule 1"
+   },
+   {
+    "park": "US-9629",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: sgcoa63 Cherokee SWA - Upper Unit (rule 18: 'upper' names only one piece); sgcoc204 Cherokee SWA - Upper Unit ("
+   },
+   {
+    "park": "US-9648",
+    "area": "US-CO",
+    "why": "rule 18: the joined record may be another piece: sgcoa116 Escalante SWA - Lower Roubideau Tract (rule 18: 'lower' names only one piece); sgcoc326 Escalante SWA "
+   },
+   {
+    "park": "US-9795",
+    "area": "US-GA",
+    "why": "rule 18: the joined record may be another piece: sggaa90 SANDHILLS WMA (rule 18: 'west' names only one piece); sggac821 SANDHILLS WMA (rule 18: 'west' names onl"
+   },
+   {
+    "park": "US-9797",
+    "area": "US-GA",
+    "why": "rule 18: the joined record may be another piece: 195025 Chattahoochee Fall Line Wildlife Management Area (the park is the piece 'hilliard' of a bigger area; 'Ch"
+   },
+   {
+    "park": "US-9837",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78174 C.D. (Buzz) Besadny Fish And Wildlife Area 6 (number 6 is in one name only ('Buzz Besadny State Fish and "
+   },
+   {
+    "park": "US-9857",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78102 NEW MUNSTER WILDLIFE AREA 1 (Mud Lake Wildlife Area) (number 1 is in one name only ('New Munster State Wi"
+   },
+   {
+    "park": "US-9862",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78192 Peter Helland Wildlife Area 10 (number 10 is in one name only ('Peter Helland State Wildlife Area' vs 'Pe"
+   },
+   {
+    "park": "US-9867",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78201 Tiffany Wildlife Area 6 (number 6 is in one name only ('Tiffany State Wildlife Area' vs 'Tiffany Wildlife"
+   },
+   {
+    "park": "US-9871",
+    "area": "US-WI",
+    "why": "rule 18: the joined record may be another piece: 78208 Waterloo Wildlife Area 16 (number 16 is in one name only ('Waterloo State Wildlife Area' vs 'Waterloo Wil"
+   },
+   {
+    "park": "US-9916",
+    "area": "US-AL",
+    "why": "rule 18: the joined record may be another piece: sgalb193 Blackwater River - South (rule 18: 'south' names only one piece)"
+   },
+   {
+    "park": "US-9940",
+    "area": "US-VA",
+    "why": "rule 18: the joined record may be another piece: wld45 Brush Mountain East Wilderness (rule 18: 'east' names only one piece); sgvae500504 Brush Mountain East NF"
+   },
+   {
+    "park": "US-9941",
+    "area": "US-VA",
+    "why": "rule 18: the joined record may be another piece: wld46 Brush Mountain Wilderness (rule 18: 'east' names only one piece)"
+   }
+  ],
+  "bad_pin_flags": {}
+ },
+ "must_pin": [],
+ "notes": [
+  "answer sheet: 7536 rows, 0 signed by a person; 537 PROPOSED rows name another record (bot proposals: counted, not used)",
+  "outline -> pin jumped in US 17 (10+ in one country): check that build's source reads before trusting it"
+ ],
+ "summary": {
+  "parks now": 12857,
+  "parks before": 12857,
+  "gained": 0,
+  "lost": 0,
+  "outline -> pin": 17,
+  "pin -> outline": 0,
+  "outline changed": 149,
+  "flat outlines": 393,
+  "flat outlines new or changed this build": 0,
+  "pins outside outline": 82,
+  "pins outside, new or changed this build": 3,
+  "pins just outside, key says 'edge' (not listed)": 0,
+  "0,0 / impossible pins": 0,
+  "signed sheet answers not followed": 0,
+  "overrides not followed": 101,
+  "overrides not followed, dated before the build (a real miss)": 101,
+  "pre-check HOLD still outline": 102,
+  "RULE 18 flags": 129,
+  "must-be-pin not yet pin": 0,
+  "countries with 10+ outline -> pin (a lost source layer?)": 1
+ },
+ "pin_jump": {
+  "US": 17
+ }
+}
