@@ -1,0 +1,239 @@
+{
+ "key": "us",
+ "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
+ "two_name_parks": 591,
+ "half_outlined": 17,
+ "parks": [
+  {
+   "area": "US-AL",
+   "park": "US-3692",
+   "name": "Heron Bay and Portersville Bay State Fish and Wildlife Area",
+   "joined": [
+    "The Heron Bay Wetlands Tract"
+   ],
+   "named": "Heron Bay",
+   "missing": "Portersville Bay State Fish and Wildlife Area",
+   "missing_words": [
+    "portersville"
+   ]
+  },
+  {
+   "area": "US-AR",
+   "park": "US-4373",
+   "name": "Blue Mountain Lake (Outlet Area and Waveland Park) National Recreation Area",
+   "joined": [
+    "Blue Mountain Lake",
+    "Blue Mountain Recreation Area"
+   ],
+   "named": "Blue Mountain Lake (Outlet Area",
+   "missing": "Waveland Park) National Recreation Area",
+   "missing_words": [
+    "waveland"
+   ]
+  },
+  {
+   "area": "US-CA",
+   "park": "US-3475",
+   "name": "Montara Beach and McNee Ranch State Beach",
+   "joined": [
+    "Montara State Beach"
+   ],
+   "named": "Montara Beach",
+   "missing": "McNee Ranch State Beach",
+   "missing_words": [
+    "mcnee",
+    "ranch"
+   ]
+  },
+  {
+   "area": "US-DE",
+   "park": "US-7648",
+   "name": "Chesapeake and Delaware Canal Conservation Area",
+   "joined": [
+    "C&D Canal Conservation Area",
+    "C&D Canal Wildlife Area"
+   ],
+   "named": "Delaware Canal Conservation Area",
+   "missing": "Chesapeake",
+   "missing_words": [
+    "chesapeake"
+   ]
+  },
+  {
+   "area": "US-IL",
+   "park": "US-0990",
+   "name": "Donnelley/DePue State Park",
+   "joined": [
+    "Lake DePue State Fish and Wildlife Area"
+   ],
+   "named": "DePue State Park",
+   "missing": "Donnelley",
+   "missing_words": [
+    "donnelley"
+   ]
+  },
+  {
+   "area": "US-IN",
+   "park": "US-4224",
+   "name": "Salamonie River and Frances Slocum State Forest",
+   "joined": [
+    "Salamonie River State Forest"
+   ],
+   "named": "Salamonie River",
+   "missing": "Frances Slocum State Forest",
+   "missing_words": [
+    "frances",
+    "slocum"
+   ]
+  },
+  {
+   "area": "US-MA",
+   "park": "US-8393",
+   "name": "Stodder's Neck & Abigail Adams State Park",
+   "joined": [
+    "Abigail Adams State Park"
+   ],
+   "named": "Abigail Adams State Park",
+   "missing": "Stodder's Neck",
+   "missing_words": [
+    "neck",
+    "stodders"
+   ]
+  },
+  {
+   "area": "US-MO",
+   "park": "US-7656",
+   "name": "Ralph and Martha Perry Memorial State Wildlife Area",
+   "joined": [
+    "Perry (R. And M.) Memorial Conservation Area"
+   ],
+   "named": "Martha Perry Memorial State Wildlife Area",
+   "missing": "Ralph",
+   "missing_words": [
+    "ralph"
+   ]
+  },
+  {
+   "area": "US-NC",
+   "park": "US-6834",
+   "name": "Brunswick Town/Ft. Anderson State Historic Site",
+   "joined": [
+    "Brunswick Town State Historic Site"
+   ],
+   "named": "Brunswick Town",
+   "missing": "Ft. Anderson State Historic Site",
+   "missing_words": [
+    "anderson",
+    "ft"
+   ]
+  },
+  {
+   "area": "US-NV",
+   "park": "US-10345",
+   "name": "Carson Lake and Pasture Wildlife Management Area",
+   "joined": [
+    "Carson Lake WMA"
+   ],
+   "named": "Carson Lake",
+   "missing": "Pasture Wildlife Management Area",
+   "missing_words": [
+    "pasture"
+   ]
+  },
+  {
+   "area": "US-NY",
+   "park": "US-11860",
+   "name": "Lake Durant Campground and Day Use State Recreation Area",
+   "joined": [
+    "Lake Durant Campground"
+   ],
+   "named": "Lake Durant Campground",
+   "missing": "Day Use State Recreation Area",
+   "missing_words": [
+    "day"
+   ]
+  },
+  {
+   "area": "US-NY",
+   "park": "US-11861",
+   "name": "Nick’s Lake Campground and Day Use State Recreation Site",
+   "joined": [
+    "Nicks Lake Campground"
+   ],
+   "named": "Nick’s Lake Campground",
+   "missing": "Day Use State Recreation Site",
+   "missing_words": [
+    "day"
+   ]
+  },
+  {
+   "area": "US-OH",
+   "park": "US-9457",
+   "name": "Della Gates & Edward Charles Bott State Wildlife Area",
+   "joined": [
+    "Bott Wildlife Area"
+   ],
+   "named": "Edward Charles Bott State Wildlife Area",
+   "missing": "Della Gates",
+   "missing_words": [
+    "della",
+    "gates"
+   ]
+  },
+  {
+   "area": "US-OR",
+   "park": "US-9551",
+   "name": "Government, Lemon, and McGuire Islands State Recreation Area",
+   "joined": [
+    "Government Island",
+    "Government Island State Recreation Area"
+   ],
+   "named": "Government, Lemon,",
+   "missing": "McGuire Islands State Recreation Area",
+   "missing_words": [
+    "mcguire"
+   ]
+  },
+  {
+   "area": "US-SC",
+   "park": "US-3891",
+   "name": "Campbells Crossroads and Angelus Tracts Wildlife Management Area",
+   "joined": [
+    "Campbells Crossroads WMA",
+    "Campbells Crossroads Wildlife Management Area"
+   ],
+   "named": "Campbells Crossroads",
+   "missing": "Angelus Tracts Wildlife Management Area",
+   "missing_words": [
+    "angelus"
+   ]
+  },
+  {
+   "area": "US-UT",
+   "park": "US-12143",
+   "name": "Devil's Playground / Redwash BLM Recreation Management Area",
+   "joined": [
+    "Red Wash (AKA Devils Playground)"
+   ],
+   "named": "Devil's Playground",
+   "missing": "Redwash BLM Recreation Management Area",
+   "missing_words": [
+    "redwash"
+   ]
+  },
+  {
+   "area": "US-WY",
+   "park": "US-10849",
+   "name": "CCC Ponds/Pinedale Pathway BLM Recreation Management Area",
+   "joined": [
+    "CCC Ponds SRMA"
+   ],
+   "named": "CCC Ponds",
+   "missing": "Pinedale Pathway BLM Recreation Management Area",
+   "missing_words": [
+    "pathway",
+    "pinedale"
+   ]
+  }
+ ]
+}
