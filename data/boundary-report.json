@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11624,
-   "far": 4073,
+   "matched": 11623,
+   "far": 4072,
    "noshape": 0,
-   "edge": 3962,
+   "edge": 3961,
    "out": 111,
    "swap": 0
   },
@@ -71,15 +71,15 @@
    },
    {
     "st": "CO",
-    "matched": 265,
-    "far": 140,
+    "matched": 264,
+    "far": 139,
     "noshape": 0,
     "out": 13,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 127
+    "edge": 126
    },
    {
     "st": "CT",
@@ -614,6 +614,18 @@
   "well_outside": [
    [
     "AK",
+    "US-0150",
+    "Kodiak National Wildlife Refuge",
+    ""
+   ],
+   [
+    "AK",
+    "US-10281",
+    "White Mountains National Recreation Area BLM Recreation Management Area",
+    ""
+   ],
+   [
+    "AK",
     "US-6332",
     "Hatcher Pass State Natural Area",
     "Hatcher Pass"
@@ -664,7 +676,7 @@
     "MA",
     "US-11401",
     "Cummington Wildlife Management Area",
-    "Cummington WMA"
+    ""
    ],
    [
     "MD",
@@ -710,15 +722,39 @@
    ],
    [
     "NH",
+    "US-4894",
+    "Davis-White State Forest",
+    ""
+   ],
+   [
+    "NH",
+    "US-4933",
+    "Merrimack River State Forest",
+    ""
+   ],
+   [
+    "NH",
+    "US-4934",
+    "Merriman State Forest",
+    ""
+   ],
+   [
+    "NH",
     "US-4955",
     "Saltmarsh Pond State Forest",
-    "Saltmarsh Pond State Forest"
+    ""
    ],
    [
     "NV",
     "US-13018",
     "Black Rock Range East/West BLM Herd Management Area",
     "Black Rock Range East"
+   ],
+   [
+    "NV",
+    "US-13039",
+    "Owyhee River Wilderness Area",
+    ""
    ],
    [
     "OH",
@@ -736,7 +772,7 @@
     "OK",
     "US-12028",
     "Barren Fork Wildlife Management Area",
-    "Barren Fork"
+    ""
    ],
    [
     "OR",
@@ -772,19 +808,31 @@
     "UT",
     "US-11748",
     "Cedar Mesa BLM Special Recreation Management Area",
-    "Cedar Mesa"
+    ""
    ],
    [
     "UT",
     "US-5782",
     "Indian Creek BLM Special Recreation Management Area",
-    "Indian Creek"
+    ""
+   ],
+   [
+    "UT",
+    "US-5789",
+    "Behind the Rocks Wilderness Area",
+    ""
    ],
    [
     "UT",
     "US-5828",
     "Dark Canyon BLM Special Recreation Management Area",
     "Dark Canyon"
+   ],
+   [
+    "UT",
+    "US-5869",
+    "9 Mile Canyon BLM Recreation Management Area",
+    ""
    ],
    [
     "VT",
@@ -803,6 +851,18 @@
     "US-4475",
     "Caribou-Targhee National Forest",
     "Caribou-Targhee National Forest (Targhee National Forest)"
+   ],
+   [
+    "WY",
+    "US-6197",
+    "Popo Agie Wilderness Area",
+    ""
+   ],
+   [
+    "WY",
+    "US-6202",
+    "North Absaroka Wilderness Area",
+    ""
    ]
   ]
  },
@@ -1001,9 +1061,21 @@
   "well_outside": [
    [
     "CA-AB",
+    "CA-0109",
+    "Waterton Biosphere Reserve",
+    ""
+   ],
+   [
+    "CA-AB",
     "CA-6112",
     "Kananaskis Country Provincial Park",
     "The Kananaskis Country"
+   ],
+   [
+    "CA-BC",
+    "CA-3408",
+    "Denetiah Corridor Protected Area",
+    ""
    ],
    [
     "CA-BC",
@@ -1153,10 +1225,10 @@
  },
  "World": {
   "totals": {
-   "matched": 42821,
-   "far": 10072,
+   "matched": 42949,
+   "far": 10090,
    "noshape": 0,
-   "edge": 9756,
+   "edge": 9774,
    "out": 316,
    "swap": 1
   },
@@ -1188,14 +1260,14 @@
    {
     "st": "AT",
     "matched": 282,
-    "far": 65,
+    "far": 66,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 60
+    "edge": 61
    },
    {
     "st": "AU",
@@ -1247,15 +1319,15 @@
    },
    {
     "st": "BS",
-    "matched": 0,
-    "far": 0,
+    "matched": 23,
+    "far": 7,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 0
+    "edge": 7
    },
    {
     "st": "BT",
@@ -1271,7 +1343,7 @@
    },
    {
     "st": "BW",
-    "matched": 0,
+    "matched": 6,
     "far": 0,
     "noshape": 0,
     "out": 0,
@@ -1283,15 +1355,15 @@
    },
    {
     "st": "BZ",
-    "matched": 42,
-    "far": 14,
+    "matched": 53,
+    "far": 15,
     "noshape": 0,
-    "out": 3,
+    "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 11
+    "edge": 10
    },
    {
     "st": "CC",
@@ -1379,15 +1451,15 @@
    },
    {
     "st": "CV",
-    "matched": 0,
-    "far": 0,
+    "matched": 29,
+    "far": 10,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 0
+    "edge": 10
    },
    {
     "st": "CX",
@@ -1415,10 +1487,10 @@
    },
    {
     "st": "DE",
-    "matched": 641,
-    "far": 132,
+    "matched": 682,
+    "far": 127,
     "noshape": 0,
-    "out": 6,
+    "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -1488,14 +1560,14 @@
    {
     "st": "FI",
     "matched": 1592,
-    "far": 391,
+    "far": 393,
     "noshape": 0,
     "out": 14,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 377
+    "edge": 379
    },
    {
     "st": "FO",
@@ -1511,15 +1583,15 @@
    },
    {
     "st": "FR",
-    "matched": 13100,
-    "far": 3552,
+    "matched": 13081,
+    "far": 3535,
     "noshape": 0,
-    "out": 151,
+    "out": 150,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3401
+    "edge": 3385
    },
    {
     "st": "GA",
@@ -1535,15 +1607,15 @@
    },
    {
     "st": "GB",
-    "matched": 3654,
-    "far": 1174,
+    "matched": 3673,
+    "far": 1187,
     "noshape": 0,
     "out": 15,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 1159
+    "edge": 1172
    },
    {
     "st": "GE",
@@ -1847,15 +1919,15 @@
    },
    {
     "st": "NC",
-    "matched": 0,
-    "far": 0,
+    "matched": 19,
+    "far": 7,
     "noshape": 0,
-    "out": 0,
+    "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 0
+    "edge": 4
    },
    {
     "st": "NF",
@@ -1901,8 +1973,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 506
    },
    {
@@ -1910,12 +1982,12 @@
     "matched": 814,
     "far": 102,
     "noshape": 0,
-    "out": 11,
+    "out": 12,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 91
+    "edge": 90
    },
    {
     "st": "OM",
@@ -1967,7 +2039,7 @@
    },
    {
     "st": "PL",
-    "matched": 2695,
+    "matched": 2694,
     "far": 402,
     "noshape": 0,
     "out": 0,
@@ -1980,14 +2052,14 @@
    {
     "st": "PR",
     "matched": 41,
-    "far": 9,
+    "far": 8,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 9
+    "edge": 8
    },
    {
     "st": "PT",
@@ -2288,6 +2360,12 @@
    ],
    [
     "BZ",
+    "BZ-0033",
+    "Maya Mountain Forest Reserve",
+    "Maya Mountain"
+   ],
+   [
+    "BZ",
     "BZ-0034",
     "Sibun Forest Reserve",
     "Sibun"
@@ -2297,6 +2375,12 @@
     "BZ-0035",
     "Sittee River Forest Reserve",
     "Sittee River"
+   ],
+   [
+    "BZ",
+    "BZ-0056",
+    "Man of War Caye Bird Sanctuary",
+    "Man of War Caye"
    ],
    [
     "CL",
@@ -2324,39 +2408,9 @@
    ],
    [
     "DE",
-    "DE-0002",
-    "Nagelfluhkette Nature Park",
-    "Nagelfluhkette"
-   ],
-   [
-    "DE",
-    "DE-0042",
-    "Hoher Vogelsberg Nature Park",
-    "Hoher Vogelsberg"
-   ],
-   [
-    "DE",
-    "DE-0075",
-    "Hoher Fl\u00e4ming Nature Park",
-    "Hoher Fl\u00e4ming"
-   ],
-   [
-    "DE",
-    "DE-0097",
-    "M\u00fcritz National Park",
-    "M\u00fcritz"
-   ],
-   [
-    "DE",
-    "DE-0207",
-    "Vulkaneifel Nature Park",
-    "Vulkaneifel"
-   ],
-   [
-    "DE",
-    "DE-0208",
-    "Diemelsee Nature Park",
-    "Diemelsee"
+    "DE-0084",
+    "Bourtanger Moor-Bargerveen Nature Park",
+    "Bourtanger Moor-Bargerveen"
    ],
    [
     "DO",
@@ -2561,12 +2615,6 @@
     "FR-10432",
     "Tannes d'arceau Conservation Park",
     "Tannes d'arceau"
-   ],
-   [
-    "FR",
-    "FR-10548",
-    "CAP DE SAINT-TROPEZ 2 Marine Conservation Area",
-    "CAP DE SAINT-TROPEZ"
    ],
    [
     "FR",
@@ -3610,19 +3658,19 @@
     "MX",
     "MX-0140",
     "Arrecife de Puerto Morelos National Park",
-    "Arrecife de Puerto Morelos"
+    ""
    ],
    [
     "MX",
     "MX-0141",
     "Arrecifes de Sian Ka'an Biosphere Reserve",
-    "Arrecifes de Sian Ka'an"
+    ""
    ],
    [
     "MX",
     "MX-0145",
     "Banco Chinchorro Biosphere Reserve",
-    "Banco Chinchorro"
+    ""
    ],
    [
     "MX",
@@ -3634,7 +3682,7 @@
     "MX",
     "MX-0176",
     "Lacan-Tun Biosphere Reserve",
-    "Lacan-Tun"
+    ""
    ],
    [
     "MX",
@@ -3646,13 +3694,13 @@
     "MX",
     "MX-0181",
     "Los Petenes Biosphere Reserve",
-    "Los Petenes"
+    ""
    ],
    [
     "MX",
     "MX-0186",
     "Marismas Nacionales Biosphere Reserve",
-    "Marismas Nacionales Nayarit"
+    ""
    ],
    [
     "MX",
@@ -3665,6 +3713,24 @@
     "MX-0221",
     "Sierra de \u00c1lamos-R\u00edo Cuchujaqui Biosphere Reserve",
     "Sierra de \u00c1lamos-R\u00edo Cuchujaqui"
+   ],
+   [
+    "NC",
+    "NC-0023",
+    "parc provincial de la rivi\u00e8re Bleue Nature Reserve",
+    "Rivi\u00e8re bleue"
+   ],
+   [
+    "NC",
+    "NC-0025",
+    "Reserve Naturelle de la Haute Pourina Nature Reserve",
+    "Haute Pourina"
+   ],
+   [
+    "NC",
+    "NC-0049",
+    "Mont DO Nature Reserve",
+    "Mont Do"
    ],
    [
     "NI",
@@ -3713,6 +3779,12 @@
     "NZ-0143",
     "Kakaunui Conservation Area",
     "Kakaunui Conservation Area"
+   ],
+   [
+    "NZ",
+    "NZ-0191",
+    "Rangataua Conservation Area",
+    "Rangataua Conservation Area"
    ],
    [
     "NZ",
