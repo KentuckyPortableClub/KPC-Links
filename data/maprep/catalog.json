@@ -4848,5 +4848,19 @@
    "robots-blocked state": 6,
    "not an agency-host layer with an id": 2
   }
+ },
+ "folders": {
+  "KY": {
+   "folder": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services",
+   "services": [
+    "Ky_Public_Hunting_Areas_WGS84WM",
+    "Ky_State_Parks_Features_WGS84WM",
+    "Ky_KNP_State_Nature_Preserves_WGS84WM",
+    "Ky_KNP_Natural_Areas_WGS84WM"
+   ],
+   "credit": "Kentucky Geography Network, kygisserver.ky.gov",
+   "robots": "ok",
+   "note": "Open ArcGIS Server folder. The checker compares the live folder to this list. It does not add a service by itself."
+  }
  }
 }

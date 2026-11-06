@@ -1,6 +1,7 @@
-/* Mapping desk on kpc-maprep.html. US first. Canada is on. Other countries stay in the catalog and are not queried.
+/* Mapping desk on kpc-maprep.html. United States, Canada, and GB, Ireland, Australia, New Zealand.
    No drawing tools. Exports are a candidate list, not boundaries.
-   Live queries are user-started, one place at a time, and only layers the catalog marks live. */
+   Live queries are user-started, one place at a time, and only layers the catalog marks live.
+   Tract notes stay in code. They are not shown unless KPCMapLogic.tractsOn() is true. */
 (function () {
   'use strict';
   const $ = id => document.getElementById(id);
@@ -14,7 +15,7 @@
   }
   function placeCode() {
     const sel = $('mrDeskPlace');
-    return sel && sel.value ? sel.value : 'KY';
+    return sel && sel.value ? sel.value : '';
   }
   function regionOf(code) {
     if (!catalog) return 'US';
@@ -47,20 +48,14 @@
   }
   function fillPlaces() {
     const sel = $('mrDeskPlace');
-    if (!sel || !catalog || sel.dataset.ready) return;
+    const G = Lgc();
+    if (!sel || !G || !G.placeRows || sel.dataset.ready) return;
     sel.dataset.ready = '1';
-    const places = [];
-    const seen = new Set();
-    catalog.sources.forEach(s => {
-      if (!s.enabled || seen.has(s.place)) return;
-      seen.add(s.place);
-      places.push(s.place);
-    });
-    places.sort((a, b) => a.localeCompare(b));
-    if (!seen.has('KY')) places.unshift('KY');
-    sel.innerHTML = places.map(p => `<option value="${esc(p)}">${esc(p)}${p === 'CA' ? ' · Canada national' : ''}</option>`).join('');
-    sel.value = seen.has('KY') ? 'KY' : places[0];
-    sel.onchange = paintDirectory;
+    const blank = sel.querySelector('option[value=""]');
+    const blankText = blank ? blank.textContent : 'From the pin or the name';
+    sel.innerHTML = `<option value="">${esc(blankText)}</option>` + G.placeRows().map(p => `<option value="${esc(p.code)}">${esc(p.name)} (${esc(p.code)})</option>`).join('');
+    sel.value = '';
+    sel.onchange = () => { paintDirectory(); if (window.KPCMapCheck && KPCMapCheck.syncPlace) KPCMapCheck.syncPlace(sel.value); };
     paintDirectory();
   }
   function paintDirectory() {
@@ -209,18 +204,18 @@
     if (q.length < 2) { out('<p class="mr-msg">Type a place name. Abbreviations such as W.M.A. and SNP are fine.</p>'); return; }
     busy = true;
     const code = placeCode();
-    out('<p class="mr-msg">Searching ' + esc(code) + '…</p>');
+    out('<p class="mr-msg">Searching ' + esc(code || 'every loaded region') + '…</p>');
     try {
       await loadCatalog();
       const G = Lgc();
       const local = [];
       (G ? G.watchHits(q) : []).forEach(h => local.push(h));
       if (window.KPCMapCheck && KPCMapCheck.find) {
-        const saved = await KPCMapCheck.find(q, { q: q, code: code === 'CA' ? '' : code, local: code === 'KY', name: code }).catch(() => []);
+        const saved = await KPCMapCheck.find(q, code ? { q: q, code: code, local: false, name: code } : { q: q, code: '', all: true, name: '' }).catch(() => []);
         (saved || []).forEach(h => { if (!local.some(x => x.name === h.name && x.ref === h.ref)) local.push(h); });
       }
       const words = G ? G.layerWords(q) : [];
-      const layers = layersFor(code, false);
+      const layers = code ? layersFor(code, false) : [];
       const live = layers.filter(s => s.live);
       const quiet = layers.filter(s => !s.live);
       const got = await pool(live, 4, async src => {
@@ -233,7 +228,7 @@
         return { src, status: feats.length ? 'match' : 'none', feats: feats };
       });
       const matches = got.filter(x => x && x.status === 'match');
-      let html = '<section class="mr-res"><div class="mr-head"><div class="mr-k">SEARCH ALL LAYERS</div><h2>' + esc(q) + '</h2><p>' + esc(code) + ' · ' + live.length + ' live layers, ' + quiet.length + ' listed but not queried.</p></div><div class="mr-sec">';
+      let html = '<section class="mr-res"><div class="mr-head"><div class="mr-k">SEARCH ALL LAYERS</div><h2>' + esc(q) + '</h2><p>' + esc(code || 'Every loaded region, by name') + (code ? ' · ' + live.length + ' live layers, ' + quiet.length + ' listed but not queried.' : '. Pick a place to query that place’s live layers.') + '</p></div><div class="mr-sec">';
       if (local.length) {
         html += '<h3>Names on this site</h3>' + local.slice(0, 8).map(h => '<p><b>' + esc(h.name) + '</b>' + (h.ref ? ' · ' + esc(h.ref) : '') + (h.url ? ' · <a href="' + esc(h.url) + '" target="_blank" rel="noopener">official page</a>' : '') + '</p>').join('');
       }
@@ -399,26 +394,38 @@
     a.download = 'maprep-leads.json';
     a.click();
   }
-  async function kyUpdate() {
+  function folderFor(code) {
+    const folders = (catalog && catalog.folders) || {};
+    const row = folders[code];
+    if (row && row.folder && row.robots === 'ok' && !/services\d*\.arcgis\.com/i.test(row.folder) && !/33TOOklri9xpic7U/i.test(row.folder)) return row;
+    if (code === 'KY' && catalog && catalog.kyServices && catalog.kyServices.folder) {
+      return { folder: catalog.kyServices.folder, services: catalog.kyServices.services || [], credit: 'Kentucky Geography Network, kygisserver.ky.gov', robots: 'ok' };
+    }
+    return null;
+  }
+  async function folderUpdate() {
     await loadCatalog();
-    const known = (catalog.kyServices && catalog.kyServices.services) || [];
-    const folder = catalog.kyServices && catalog.kyServices.folder;
-    if (!folder) { out('<p class="mr-msg">No Kentucky folder is stored.</p>'); return; }
-    out('<p class="mr-msg">Asking the Kentucky GIS folder which services it has…</p>');
+    const code = placeCode();
+    if (!code) { out('<p class="mr-msg">Pick a state, province, or country first. This checks that place’s GIS folder, when one is stored.</p>'); return; }
+    const row = folderFor(code);
+    if (!row) { out('<p class="mr-msg">No robots-ok GIS folder is stored for ' + esc(code) + '.</p>'); return; }
+    out('<p class="mr-msg">Asking the GIS folder for ' + esc(code) + ' which services it has…</p>');
     try {
-      const r = await fetch(folder + '?f=json');
+      const r = await fetch(row.folder + '?f=json');
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const j = await r.json();
       const names = (j.services || []).map(s => s.name).filter(Boolean);
+      const known = row.services || [];
       const diff = Lgc().servicesDiff(known, names);
-      let html = '<section class="mr-res"><div class="mr-head"><div class="mr-k">KENTUCKY GIS UPDATES</div><h2>' + names.length + ' services in the folder</h2><p>Compared with the ' + known.length + ' services this page already reads. Nothing is added by itself.</p></div><div class="mr-sec">';
+      let html = '<section class="mr-res"><div class="mr-head"><div class="mr-k">GIS FOLDER</div><h2>' + names.length + ' services in the folder</h2><p>Compared with the ' + known.length + ' services this page already reads for ' + esc(code) + '. Nothing is added by itself.</p></div><div class="mr-sec">';
       html += '<p><b>New since our list:</b> ' + (diff.added.length ? esc(diff.added.join(', ')) : 'none') + '</p>';
       html += '<p><b>On our list but not in the folder:</b> ' + (diff.missing.length ? esc(diff.missing.join(', ')) : 'none') + '</p>';
-      html += '<p class="mr-help">Credit: Kentucky Geography Network, kygisserver.ky.gov. This check reads the folder list only.</p></div></section>';
+      html += '<p class="mr-help">Credit: ' + esc(row.credit || row.folder) + '. This check reads the folder list only.</p></div></section>';
       out(html);
-    } catch (e) { out('<p class="mr-msg">The Kentucky folder did not answer (' + esc(e.message || e) + ').</p>'); }
+    } catch (e) { out('<p class="mr-msg">The folder for ' + esc(code) + ' did not answer (' + esc(e.message || e) + ').</p>'); }
   }
   async function showTracts() {
+    if (!Lgc() || !Lgc().tractsOn()) return;
     const ref = ($('mrDeskRef') && $('mrDeskRef').value || '').trim().toUpperCase();
     const code = placeCode();
     if (!/^([A-Z]{2})-\d{1,5}$/.test(ref)) { out('<p class="mr-msg">Type a park number such as US-7958, and pick that park’s state.</p>'); return; }
@@ -442,6 +449,12 @@
     } catch (e) { out('<p class="mr-msg">' + esc(e.message || e) + '</p>'); }
   }
 
+  function syncPlace(code) {
+    const sel = $('mrDeskPlace');
+    if (!sel || !sel.dataset.ready) return;
+    if ([...sel.options].some(o => o.value === (code || ''))) sel.value = code || '';
+    paintDirectory();
+  }
   function wire() {
     const root = $('mrDesk');
     if (!root || root.dataset.wired) return;
@@ -453,11 +466,11 @@
     b('mrDeskPin', pinVs);
     b('mrDeskNew', findNew);
     b('mrDeskExport', exportLeads);
-    b('mrDeskKy', kyUpdate);
-    b('mrDeskTracts', showTracts);
+    b('mrDeskFolder', folderUpdate);
+    if (Lgc() && Lgc().tractsOn()) b('mrDeskTracts', showTracts);
   }
   function mount() { wire(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire);
   else wire();
-  window.KPCMapDesk = { mount: mount, searchAll: searchAll, pinVs: pinVs, findNew: findNew };
+  window.KPCMapDesk = { mount: mount, searchAll: searchAll, pinVs: pinVs, findNew: findNew, syncPlace: syncPlace };
 })();

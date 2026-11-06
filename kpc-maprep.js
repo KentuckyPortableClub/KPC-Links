@@ -130,7 +130,7 @@
     const grp = t => AGL.filter(a => a.t === t);
     const chip = a => `<button type="button" class="mr-ag${agPick.has(agKey(a)) ? ' on' : ''}" data-k="${esc(agKey(a))}">${esc(a.loc)}${a.loc !== (AG[a.code] || a.code) && AG[a.code] ? ' <small>' + esc(AG[a.code]) + '</small>' : ''}</button>`;
     $('mrAg').innerHTML = `<details class="mr-agd"${AGL.length && agPick.size ? ' open' : ''}><summary>AGENCIES SEARCHED IN ${esc(st)}: ${grp('FED').length} FEDERAL · ${grp('STAT').length} ${isCA() ? 'PROVINCIAL / TERRITORIAL' : 'STATE'} ${agPick.size ? '· ONLY ' + agPick.size + ' PICKED' : '· ALL'} (TAP TO SEE)</summary>
-<p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', Kentucky\'s own state boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo.</p>
+<p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', this state\'s own boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo.</p>
 <h4>FEDERAL</h4><div class="mr-ags">${grp('FED').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div><h4>STATE</h4><div class="mr-ags">${grp('STAT').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div></details>`;
     $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
   }
@@ -346,7 +346,7 @@
       if (iso && codes().includes(iso)) { st = iso; $('mrState').value = st; agencies(st); }
       else { msg('<b>Which ' + (isCA() ? 'province' : 'state') + ' is it in?</b> Pick it (or add the town) and search again. Each one has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
     }
-    msg('Searching ' + esc(st) + ': ' + (isCA() ? 'Canada\'s protected and conserved areas database (CPCAD: every federal, provincial and territorial agency)' : 'the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps') + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
+    msg('Searching ' + esc(st) + ': ' + (isCA() ? 'Canada\'s protected and conserved areas database (CPCAD: every federal, provincial and territorial agency)' : 'the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps') + (st === 'KY' ? ', this state\'s boundary files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
     const w0 = words(name).slice(0, 3), w = w0.length ? w0 : [name.replace(/[^A-Za-z0-9' ]/g, ' ').trim()];
     let rows = [], box = null;
     const agOK = r => !agPick.size || [...agPick].some(k => { const [t, code] = k.split('|'); const a = AGL.find(x => agKey(x) === k); const loc = (r.Loc_Mang && !/^unknown$/i.test(r.Loc_Mang)) ? r.Loc_Mang : (AG[r.Mang_Name] || r.Mang_Name); return r.Mang_Type === t && r.Mang_Name === code && (!a || a.loc.toLowerCase() === String(loc).toLowerCase()); });
@@ -1096,7 +1096,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     if (P.get('name') && window.KPCMapCheck) {
       const q = P.get('name');
       if ($('mrCheckQ')) $('mrCheckQ').value = [q, P.get('town'), P.get('state')].filter(Boolean).join(', ');
-      if (P.get('state') && $('mrCheckSt')) $('mrCheckSt').value = P.get('state').toUpperCase();
+      if (P.get('state') && KPCMapCheck.syncPlace) KPCMapCheck.syncPlace(P.get('state').toUpperCase());
       KPCMapCheck.showQuery(q);
     } else if (P.get('name') && $('mrName')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state') && $('mrState')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }

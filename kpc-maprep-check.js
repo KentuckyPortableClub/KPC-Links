@@ -1,7 +1,7 @@
 /* Could this be a park? — check for the Mapping Rep Tool Box.
-   The region is data: the United States uses PAD-US, and each state can add a published key.
-   Kentucky is the state whose outlines are saved in this repo. Other states load that one
-   answer key when a search asks for them. Canada (CPCAD) is listed and not queried.
+   Outlines come from that place's published key (US, Canada, or the world key for
+   GB, Ireland, Australia and New Zealand). A US place also uses PAD-US.
+   A name with no place searches every loaded region. It does not assume one state.
    No map token, no keyed API, no spoofed User-Agent. Newfoundland, Tokyo, Japan A10,
    South Africa SAPAD and Colorado CNHP outlines are never requested and never drawn. */
 (function () {
@@ -68,21 +68,37 @@
     }
     return null;
   }
+  function placeList() {
+    const G = window.KPCMapLogic;
+    return (G && G.placeRows) ? G.placeRows() : [];
+  }
+  function keyFile(code) {
+    const row = placeList().find(r => r.code === code);
+    const region = row ? row.region : 'US';
+    if (region === 'CA') return 'data/ca-key/CA-' + code + '.json';
+    if (region === 'world') return 'data/world-key/' + code + '.json';
+    return 'data/us-key/US-' + code + '.json';
+  }
   async function chosenState(q) {
     const rows = await loadStates();
+    const places = placeList();
     const sel = $('mrCheckSt');
     const picked = sel && sel.value;
     if (picked) {
-      const row = rows.find(r => r.a === picked);
-      if (row) return { q: String(q || '').trim(), code: row.a, name: row.n, local: isLocal(row.a), picked: true };
+      const row = places.find(r => r.code === picked) || rows.find(r => r.a === picked);
+      if (row) return { q: String(q || '').trim(), code: row.code || row.a, name: row.name || row.n, local: isLocal(row.code || row.a), region: row.region || 'US', picked: true };
     }
-    const parsed = parseState(q, rows);
+    const parsed = parseState(q, places.length ? places.map(r => ({ a: r.code, n: r.name })) : rows);
     if (parsed) return parsed;
-    return { q: String(q || '').trim(), code: 'KY', name: 'Kentucky', local: true, assumed: true };
+    if (lastPin) {
+      const at = stateAt(lastPin.la, lastPin.lo, rows);
+      if (at) return { q: String(q || '').trim(), code: at.code, name: at.name, local: at.local, region: 'US', fromPin: true };
+    }
+    return { q: String(q || '').trim(), code: '', name: '', local: false, region: '', all: true };
   }
   async function stateKey(code) {
-    if (!code || isLocal(code)) return null;
-    if (!keyCache[code]) keyCache[code] = B().jget('data/us-key/US-' + code + '.json').catch(() => null);
+    if (!code) return null;
+    if (!keyCache[code]) keyCache[code] = B().jget(keyFile(code)).catch(() => null);
     return keyCache[code];
   }
   function homesFor(code) {
@@ -115,18 +131,33 @@
       return links ? `<div class="mr-links">${links}</div>` : `<p class="mr-help">${esc(a.name)}: no URL stored.</p>`;
     }).join('');
   }
+  function paintPlaceButton() {
+    const btn = $('mrCheckAll'); if (!btn) return;
+    const sel = $('mrCheckSt');
+    const code = sel && sel.value;
+    const row = placeList().find(r => r.code === code);
+    btn.textContent = row ? ('CHECK ALL IN ' + row.name.toUpperCase()) : 'CHECK ALL IN THIS PLACE';
+  }
   function fillStateMenu() {
     const sel = $('mrCheckSt'); if (!sel || sel.dataset.ready) return;
-    loadStates().then(rows => {
-      if (sel.dataset.ready) return;
-      sel.dataset.ready = '1';
-      rows.forEach(r => {
-        const o = document.createElement('option');
-        o.value = r.a;
-        o.textContent = r.n + (isLocal(r.a) ? ' (layers saved here)' : '');
-        sel.appendChild(o);
-      });
+    const rows = placeList();
+    if (!rows.length) return;
+    sel.dataset.ready = '1';
+    rows.forEach(r => {
+      const o = document.createElement('option');
+      o.value = r.code;
+      o.textContent = r.name + ' (' + r.code + ')';
+      sel.appendChild(o);
     });
+    sel.value = '';
+    sel.onchange = () => { paintPlaceButton(); if (window.KPCMapDesk && KPCMapDesk.syncPlace) KPCMapDesk.syncPlace(sel.value); buildToggles(); };
+    paintPlaceButton();
+  }
+  function syncPlace(code) {
+    const sel = $('mrCheckSt');
+    if (sel && sel.dataset.ready && [...sel.options].some(o => o.value === code)) sel.value = code || '';
+    paintPlaceButton();
+    buildToggles();
   }
 
   function acresOf(g) {
@@ -552,7 +583,17 @@
     const st = state || await chosenState(q);
     const name = st.q || q;
     const hits = [];
-    const useLocal = !st.code || st.local || st.assumed;
+    const useLocal = st.code === 'KY';
+    if (!st.code) {
+      const rows = await loadLocations();
+      rows.forEach(r => {
+        const nm = r[2] || '';
+        if (BLOCKED.test(nm)) return;
+        const score = ref && r[1] === ref ? 100 : nameScore(name, nm);
+        if (score < 52) return;
+        hits.push({ score, ref: r[1], name: nm, la: +r[3], lo: +r[4], web: r[5] || '', kind: 'pota', state: String(r[1] || '').split('-')[0] });
+      });
+    }
     if (useLocal) {
       const parks = (b.kyData() && b.kyData().parks) || [];
       parks.forEach(p => {
@@ -569,7 +610,7 @@
         hits.push({ score, ref: (f.properties || {}).ref || '', name: n, la: null, lo: null, web: urlOf(f), kind: 'land', f, state: 'KY' });
       });
     }
-    if (st.code && !st.local) {
+    if (st.code && st.code !== 'KY') {
       const key = await stateKey(st.code);
       const parks = (key && key.parks) || {};
       const idx = await loadLocations().then(rows => { const m = new Map(); rows.forEach(r => m.set(r[1], r)); return m; });
@@ -582,7 +623,7 @@
         hits.push({ score, ref: id, name: p.n, la: row ? +row[3] : null, lo: row ? +row[4] : null, web: row ? (row[5] || '') : '', kind: 'key', state: st.code });
       });
     }
-    if (window.KPCMapLogic && (!st.code || st.code === 'KY' || st.local)) {
+    if (window.KPCMapLogic && st.code === 'KY') {
       KPCMapLogic.watchHits(name).forEach(w => {
         if (hits.some(h => nameScore(h.name, w.name) >= 90)) return;
         hits.push({ score: nameScore(name, w.name), ref: '', name: w.name, la: null, lo: null, web: w.url, kind: 'watch', state: 'KY' });
@@ -691,8 +732,8 @@
     const f = ctx.f, p = (f && f.properties) || {}, L = (f && f._L) || {};
     const R = rulesFor(ctx);
     const acres = ctx.acres || (f ? acresOfFeat(f) : 0) || (ctx.padExact && +ctx.padExact.GIS_Acres) || 0;
-    const st = ctx.state || { code: 'KY', name: 'Kentucky', local: true };
-    const place = st.name || 'Kentucky';
+    const st = ctx.state || { code: '', name: '', local: false };
+    const place = st.name || 'this place';
     const title = (f && f._nm) || (ctx.padExact && ctx.padExact.Unit_Nm) || ctx.title || ('No published ' + place + ' layer for this name');
     const kv = (k, v) => `<div class="mr-kv"><dt>${esc(k)}</dt><dd>${v}</dd></div>`;
     const links = agencyLinks(f, ctx.owner, st, ctx.padExact);
@@ -737,7 +778,7 @@
 <div class="mr-sec"><h3>2 · POTA status</h3><div class="mr-v ${vClass}" data-mr-verdict="${esc(summaryWord(R.summary))}"><b>${esc(summaryWord(R.summary))}</b></div><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
 <div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, ctx.padExact && ctx.padExact.Des_Tp].filter(Boolean).join(' '))}${rulesHtml(R)}</div>
 <div class="mr-sec"><h3>4 · KPC notes</h3>${L.note ? `<p>${esc(L.note)}</p>` : ''}${ctx.county ? `<p>County: ${esc(ctx.county)}. ` : '<p>'}${Number.isFinite(ctx.la) ? `Grid ${esc(grid(ctx.la, ctx.lo))}.` : ''}</p>
-${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p><p class="mr-help">Street map tiles are © OpenStreetMap contributors, ODbL. ${st.local ? 'Kentucky outlines on this page are the club’s published copies of agency layers.' : 'This state’s outline, when we have one, comes from the published answer key or from PAD-US. It is fetched for this place only.'}</p></div>
+${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p><p class="mr-help">Street map tiles are © OpenStreetMap contributors, ODbL. Outlines come from this place’s published key. A US place also uses PAD-US.</p></div>
 </section>`;
     box.hidden = false;
     const dl = box.querySelector('[data-dl]');
@@ -788,7 +829,8 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
   async function stateObj(code) {
     const rows = await loadStates();
     const row = rows.find(r => r.a === code);
-    return row ? { code: row.a, name: row.n, local: isLocal(row.a) } : { code: code || 'KY', name: code || 'Kentucky', local: isLocal(code || 'KY') };
+    const known = placeList().find(r => r.code === code);
+    return row ? { code: row.a, name: row.n, local: isLocal(row.a), region: 'US' } : (known || { code: code || '', name: code || '', local: false, region: '' });
   }
   function canadaHtml() {
     const names = agTable().PROVN || {};
@@ -803,6 +845,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     if (box) box.innerHTML = '<p class="mr-msg">Finding which state this pin is in…</p>';
     mount();
     const st = stateAt(la, lo, await loadStates());
+    if (st && $('mrCheckSt')) { $('mrCheckSt').value = st.code; paintPlaceButton(); if (window.KPCMapDesk && KPCMapDesk.syncPlace) KPCMapDesk.syncPlace(st.code); buildToggles(); }
     if (!st) {
       if (box) box.innerHTML = canadaHtml();
       const q0 = $('mrCheckQ'); if (q0 && document.activeElement !== q0) q0.value = la.toFixed(5) + ', ' + lo.toFixed(5);
@@ -922,7 +965,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
       if (h.la != null && Number.isFinite(+h.la)) drawOnMap(+h.la, +h.lo, [], []);
       return { hit: false };
     }
-    const stHit = h.state ? await stateObj(h.state) : { code: 'KY', name: 'Kentucky', local: true };
+    const stHit = h.state ? await stateObj(h.state) : await chosenState(h.name);
     const ctx = await contextFromFeature(feats[0], { la: h.la != null && Number.isFinite(+h.la) ? +h.la : undefined, lo: h.lo != null && Number.isFinite(+h.lo) ? +h.lo : undefined, query: h.name, state: stHit });
     ctx.state = stHit;
     ctx.feats = feats;
@@ -1009,7 +1052,18 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   async function showAll() {
     await ensureAgencies();
     const box = $('mrSpot');
-    if (box) box.innerHTML = '<p class="mr-msg">Reading every published Kentucky layer…</p>';
+    const stAll = await chosenState('');
+    if (!stAll.code) { if (box) box.innerHTML = '<p class="mr-msg">Pick a state, province, or country. Check all reads that place’s published key. A name with no place searches every loaded region.</p>'; return []; }
+    if (stAll.code !== 'KY') {
+      if (box) box.innerHTML = '<p class="mr-msg">Reading the published key for ' + esc(stAll.name) + '…</p>';
+      const key = await stateKey(stAll.code);
+      const parks = (key && key.parks) || {};
+      const ids = Object.keys(parks);
+      const shown = ids.slice(0, 400);
+      if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'Canada' : 'US')} key. ${stAll.region === 'US' || !stAll.region ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. ${shown.length < ids.length ? 'The first ' + shown.length + ' names are listed.' : ''}</p>${shown.map(id => `<p><b>${esc((parks[id] && parks[id].n) || id)}</b> · ${esc(id)}</p>`).join('') || '<p>No published key for this place is on the site yet.</p>'}</div></section>`;
+      return ids;
+    }
+    if (box) box.innerHTML = '<p class="mr-msg">Reading the published outlines for ' + esc(stAll.name) + '…</p>';
     mount();
     await ready();
     const rows = classifyAll();
@@ -1017,9 +1071,9 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     rows.forEach(r => { counts[r.v] = (counts[r.v] || 0) + 1; });
     const lab = { YES: 'Yes', MAYBE: 'Maybe', NO: 'No', ALREADY: 'Already a park' };
     if (!box) return rows;
-    box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · KENTUCKY</div><h2>Published layers</h2><p>${rows.length} named places. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land.</p></div>
+    box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published layers</h2><p>${rows.length} named places. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land.</p></div>
 <div class="mr-sec"><div class="mr-filters" id="mrFilters">${['YES', 'MAYBE', 'NO', 'ALREADY'].map(k => `<button type="button" class="mr-ag${k === 'YES' ? ' on' : ''}" data-f="${k}">${lab[k]} · ${counts[k] || 0}</button>`).join('')}</div>
-<p class="mr-help">This list is only the outlines saved on the site, which are Kentucky’s. For any other state, check one place from the menu above. Newfoundland and Labrador, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not shown.</p>
+<p class="mr-help">These outlines are the published copy saved for this place. Other places use their own published key, and a US place also uses PAD-US. Newfoundland and Labrador, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not shown.</p>
 <div id="mrAllRows"></div></div></section>`;
     const paint = (which) => {
       const host = $('mrAllRows'); if (!host) return;
@@ -1036,7 +1090,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
 
   function mount() {
     const el = $('mrDrop'); if (!el || map || !window.L) return;
-    map = L.map(el, { scrollWheelZoom: true }).setView([37.5, -85.3], 7);
+    map = L.map(el, { scrollWheelZoom: true }).setView([39.8, -96.5], 4);
     if (window.KPCLayers) KPCLayers(map, 'Street');
     else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap contributors, ODbL' }).addTo(map);
     if (window.KPCPin) {
@@ -1057,36 +1111,17 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   async function buildToggles() {
-    const host = $('mrLayerToggles'); if (!host || host.childElementCount) return;
-    await ready();
-    const b = B();
-    const layers = {};
-    pack.feats.forEach(f => {
-      const k = (f._L && f._L.k) || 'other';
-      (layers[k] = layers[k] || { name: (f._L && f._L.name) || k, agency: (f._L && f._L.agency) || '', feats: [] }).feats.push(f);
-    });
-    host.innerHTML = Object.keys(layers).map(k => {
-      const Lr = layers[k];
-      const nc = b.ncLabel ? b.ncLabel('', Lr.agency + ' ' + Lr.name) : '';
-      return `<label class="mr-ag"><input type="checkbox" data-ly="${esc(k)}"> ${esc(Lr.name)} <small>${esc(Lr.agency)}${nc ? ' · ' + esc(nc) : ''} · ${Lr.feats.length}</small></label>`;
-    }).join('') + '<p class="mr-help">These are Kentucky’s published layers. A WA DBCA outline, if one is ever shown, is labelled CC BY-NC 4.0, DBCA. OpenStreetMap outlines are credited ODbL. CONANP outlines are credited “Fuente: CONANP”. Newfoundland and Labrador, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not on this map.</p>';
-    host.querySelectorAll('[data-ly]').forEach(inp => inp.onchange = () => {
-      const k = inp.dataset.ly;
-      if (overlayLayers[k]) { map.removeLayer(overlayLayers[k]); delete overlayLayers[k]; }
-      if (!inp.checked || !map) return;
-      const feats = layers[k].feats.filter(f => !blocked(f));
-      overlayLayers[k] = L.geoJSON({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { name: f._nm }, geometry: f.geometry })) }, {
-        style: { color: '#1d5a3a', weight: 1, fillOpacity: 0.08 }
-      }).addTo(map);
-      overlayLayers[k].eachLayer(layer => {
-        if (!layer.feature) return;
-        layer.bindTooltip(layer.feature.properties.name || '', { sticky: true });
-        layer.on('click', ev => {
-          if (L.DomEvent) L.DomEvent.stopPropagation(ev);
-          layer.bindPopup('<b>' + esc(layer.feature.properties.name || '') + '</b><br>' + esc(Lr.name) + '<br><small>' + esc(Lr.agency || '') + ' · view only</small>').openPopup();
-        });
-      });
-    });
+    const host = $('mrLayerToggles'); if (!host) return;
+    const summary = host.parentElement && host.parentElement.querySelector ? host.parentElement.querySelector('summary') : null;
+    const code = (($('mrCheckSt') && $('mrCheckSt').value) || ($('mrDeskPlace') && $('mrDeskPlace').value) || '');
+    const row = placeList().find(r => r.code === code);
+    if (summary) summary.textContent = row ? ('LAYERS YOU CAN TURN ON · ' + row.name.toUpperCase()) : 'LAYERS YOU CAN TURN ON';
+    if (!code) { host.innerHTML = '<p class="mr-help">Pick a state, province, or country. This list is that place’s live layers.</p>'; return; }
+    let cat = null;
+    try { cat = await fetch('data/maprep/catalog.json').then(r => r.ok ? r.json() : null); } catch (e) { cat = null; }
+    const live = ((cat && cat.sources) || []).filter(s => s.place === code && s.live && s.enabled !== false && s.rest && !/services\d*\.arcgis\.com/i.test(s.rest) && !/33TOOklri9xpic7U/i.test(s.rest));
+    if (!live.length) { host.innerHTML = '<p class="mr-help">No live layer is stored for ' + esc(code) + '.</p>'; return; }
+    host.innerHTML = live.map(s => `<label class="mr-ag"><input type="checkbox" data-rest="${esc(s.rest)}" data-title="${esc(s.title)}"> ${esc(s.title)} <small>${esc(s.agency || '')}${s.credit ? ' · ' + esc(s.credit) : ''}</small></label>`).join('') + '<p class="mr-help">These are the live layers stored for this place. Search or pin vs this queries the ones you leave on. OpenStreetMap outlines are credited ODbL.</p>';
   }
 
   function wire() {
@@ -1111,5 +1146,5 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   wire();
-  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, map: () => map, pin: () => lastPin };
+  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, syncPlace, map: () => map, pin: () => lastPin };
 })();

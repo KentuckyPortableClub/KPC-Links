@@ -22,7 +22,31 @@
     ['srp', 'state resort park'],
     ['zec', 'zone d exploitation controlee']
   ];
-  /* Names the club is watching. Muddygut is not in the saved Kentucky file yet (KDFWR id 9729). */
+  /* The desk covers the United States, Canada, and the English-speaking countries.
+     Tract notes stay in this file. The page shows them only when tractsOn() is true. */
+  const US_PLACES = [['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['DC','District of Columbia'],['FL','Florida'],['GA','Georgia'],['HI','Hawaii'],['ID','Idaho'],['IL','Illinois'],['IN','Indiana'],['IA','Iowa'],['KS','Kansas'],['KY','Kentucky'],['LA','Louisiana'],['ME','Maine'],['MD','Maryland'],['MA','Massachusetts'],['MI','Michigan'],['MN','Minnesota'],['MS','Mississippi'],['MO','Missouri'],['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],['NH','New Hampshire'],['NJ','New Jersey'],['NM','New Mexico'],['NY','New York'],['NC','North Carolina'],['ND','North Dakota'],['OH','Ohio'],['OK','Oklahoma'],['OR','Oregon'],['PA','Pennsylvania'],['RI','Rhode Island'],['SC','South Carolina'],['SD','South Dakota'],['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],['VA','Virginia'],['WA','Washington'],['WV','West Virginia'],['WI','Wisconsin'],['WY','Wyoming']];
+  const CA_PLACES = [['AB','Alberta'],['BC','British Columbia'],['MB','Manitoba'],['NB','New Brunswick'],['NL','Newfoundland and Labrador'],['NT','Northwest Territories'],['NS','Nova Scotia'],['NU','Nunavut'],['ON','Ontario'],['PE','Prince Edward Island'],['QC','Quebec'],['SK','Saskatchewan'],['YT','Yukon']];
+  const WORLD_PLACES = [['GB','United Kingdom'],['IE','Ireland'],['AU','Australia'],['NZ','New Zealand']];
+  function places() { return { us: US_PLACES, ca: CA_PLACES, world: WORLD_PLACES }; }
+  function placeRows() {
+    const out = [];
+    US_PLACES.forEach(([code, name]) => out.push({ code: code, name: name, region: 'US' }));
+    CA_PLACES.forEach(([code, name]) => out.push({ code: code, name: name, region: 'CA' }));
+    WORLD_PLACES.forEach(([code, name]) => out.push({ code: code, name: name, region: 'world' }));
+    return out;
+  }
+  function placeByCode(code) {
+    return placeRows().find(r => r.code === String(code || '').toUpperCase()) || null;
+  }
+  /* Hidden. Default off. ?tracts=1 or localStorage kpcMapTracts=1 turns the tract box on. */
+  function tractsOn() {
+    try {
+      if (typeof location !== 'undefined' && location && /(?:\?|&)tracts=1(?:&|$)/.test(String(location.search || ''))) return true;
+      if (typeof localStorage !== 'undefined' && localStorage && localStorage.getItem('kpcMapTracts') === '1') return true;
+    } catch (e) {}
+    return false;
+  }
+  /* Names the club is watching. Muddygut is not in the saved state file yet (KDFWR id 9729). */
   const WATCH = [
     { name: 'Blackford Oaks WMA', state: 'KY', id: '9719', url: 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9719' },
     { name: 'Muddygut WMA', state: 'KY', id: '9729', url: 'https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9729' },
@@ -355,6 +379,8 @@
       const dir = path.join(__dirname, 'data', 'maprep');
       const ab = JSON.parse(fs.readFileSync(path.join(dir, 'abbreviations.json'), 'utf8'));
       loadRows(ab.rows);
+      ok(places().us.length === 51 && places().ca.length === 13 && places().world.map(x => x[0]).join() === 'GB,IE,AU,NZ', 'place list is the US, Canada, and GB IE AU NZ');
+      ok(tractsOn() === false, 'tract notes are off unless the hidden switch is on');
       ok(nameScore('Foo SPA', 'Foo Special Protection Area') === 96, 'Foo SPA vs Foo Special Protection Area scores 96');
       ok(nameScore('Foo SPA', 'Foo State Preservation Area') === 96, 'Louisiana SPA is kept beside Special Protection Area');
       const cat = JSON.parse(fs.readFileSync(path.join(dir, 'catalog.json'), 'utf8'));
@@ -439,6 +465,7 @@
     blockedPlace: blockedPlace, servicesHost: servicesHost, publicFields: publicFields, scrubOwner: scrubOwner,
     rulesCheck: rulesCheck, alreadyPark: alreadyPark, filterCandidates: filterCandidates, exportLeads: exportLeads,
     servicesDiff: servicesDiff, tractLinks: tractLinks, layerWords: layerWords,
+    places: places, placeRows: placeRows, placeByCode: placeByCode, tractsOn: tractsOn,
     loadAgencies: loadAgencies, agenciesReady: agenciesReady, agencyMatches: agencyMatches, selftest: selftest
   };
 });
