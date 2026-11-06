@@ -372,6 +372,12 @@
   function layerWords(query) {
     return tokens(canon(query).core).slice(0, 3);
   }
+  /* KY fishing-lake shore outlines. Report data only. The hidden tract switch is the
+     existing off-by-default gate, so these are not drawn and do not replace a key outline. */
+  function shoreOverlays(doc) {
+    if (!tractsOn()) return [];
+    return ((doc && doc.overlays) || []).filter(f => f && f.geometry && f.properties && f.properties.role === 'shore-outline');
+  }
 
   function selftest() {
     const fails = [];
@@ -402,6 +408,16 @@
       ok(cat.sources.some(s => s.origin === 'camp-layers' && s.place === 'IA'), 'Iowa camp-style layer');
       ok(cat.sources.some(s => s.origin === 'camp-layers' && s.place === 'MN'), 'Minnesota camp-style layer');
       ok(cat.sources.some(s => s.origin === 'camp-layers' && s.place === 'WI'), 'Wisconsin camp-style layer');
+      const shore = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'research-sources', 'ky-fishing-shore.json'), 'utf8'));
+      const blob = JSON.stringify(shore);
+      ok(shore.source_label === 'county tax parcel, KDFWR owner, not a survey', 'shore source label');
+      ok(shore.report_only === true && shore.applied_to_key === false && shore.shared_outline === false, 'shore overlay stays off the key');
+      ok(!blob.includes('33TOOklri9xpic7U'), 'shore file does not use the banned server');
+      ok(shoreOverlays(shore).length === 0, 'shore overlays stay off unless the hidden switch is on');
+      const outlines = (shore.overlays || []).filter(f => f.properties && f.properties.role === 'shore-outline');
+      ok(outlines.map(f => f.properties.ref).join() === 'US-13599,US-13600', 'Kingfisher and Carpenter are separate shore outlines');
+      const pieces = (shore.overlays || []).filter(f => f.properties && f.properties.role === 'parcel-piece');
+      ok(pieces.length === 3 && new Set(pieces.map(f => f.properties.ref)).size === 2, 'three parcel pieces, not one shared outline');
     }
     ok(nameScore('Blackford Oaks W.M.A.', 'Blackford Oaks WMA') >= 90, 'Blackford Oaks W.M.A.');
     ok(nameScore('Blackford Oaks WMA', 'Blackford Oaks Wildlife Management Area') >= 90, 'Blackford Oaks WMA words');
@@ -467,7 +483,7 @@
     blockedPlace: blockedPlace, servicesHost: servicesHost, publicFields: publicFields, scrubOwner: scrubOwner,
     rulesCheck: rulesCheck, alreadyPark: alreadyPark, filterCandidates: filterCandidates, exportLeads: exportLeads,
     servicesDiff: servicesDiff, tractLinks: tractLinks, layerWords: layerWords,
-    places: places, placeRows: placeRows, placeByCode: placeByCode, tractsOn: tractsOn,
+    places: places, placeRows: placeRows, placeByCode: placeByCode, tractsOn: tractsOn, shoreOverlays: shoreOverlays,
     loadAgencies: loadAgencies, agenciesReady: agenciesReady, agencyMatches: agencyMatches, selftest: selftest
   };
 });
