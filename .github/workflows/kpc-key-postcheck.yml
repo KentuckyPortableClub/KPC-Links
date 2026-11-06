@@ -116,6 +116,10 @@ jobs:
         run: |
           python3 .github/scripts/kpc_key_trend.py || echo "::warning title=Key trend::stopped (exit $?); report only"
           python3 .github/scripts/kpc_two_name_check.py || echo "::warning title=Two-name check::stopped (exit $?); report only"
+          # Nov 6 follow-up (Brandon [pt449u]; KY GIS Workbench FIND NEW): 0.25 mi pin coverage + 'also in' layer notes. Report only:
+          # writes data/status/key-check/pin-cover-<key>.json and also-in-<key>.json; reads the built keys, changes no join.
+          python3 .github/scripts/kpc_pin_cover.py || echo "::warning title=Pin cover::stopped (exit $?); report only"
+          python3 .github/scripts/kpc_also_in.py || echo "::warning title=Also in::stopped (exit $?); report only"
       - name: Save the report (one save per run)
         continue-on-error: true
         run: |

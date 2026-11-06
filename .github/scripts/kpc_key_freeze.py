@@ -52,7 +52,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_join_check.py',
              # Nov 6 big patch (Quality grade FIX, Links #44): the source-field table and the tract side-file writer only write
              # data/*/tracts/ side files (KPC_TRACT_STORE) and never decide a join, so they stay out of the rules hash.
-             'kpc_source_fields.py', 'kpc_tracts.py', 'kpc_pin_edge.py'}   # Nov 6 improvements 4 (v2): holds far joins after the builder, before the stamp; kept out of the rules hash on purpose (5:28 PM CST Nov 5: US stays 3dc53f70256a)
+             'kpc_source_fields.py', 'kpc_tracts.py', 'kpc_pin_edge.py',
+             # Nov 6 follow-up (report only, post-key check): 0.25 mi pin cover, 'also in' notes, the workbench name matcher
+             'kpc_pin_cover.py', 'kpc_also_in.py', 'kpc_name_match.py'}   # Nov 6 improvements 4 (v2): holds far joins after the builder, before the stamp; kept out of the rules hash on purpose (5:28 PM CST Nov 5: US stays 3dc53f70256a)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
