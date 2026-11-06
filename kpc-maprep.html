@@ -211,10 +211,45 @@ body.field .page-jump-nav{display:none!important}
 <div id="mrDrop" role="application" aria-label="Map. Tap to drop a pin."></div>
 <p class="mr-help">Tap the map to drop a pin. Drag the pin to move it. Street map: © OpenStreetMap contributors, ODbL.</p>
 <details class="mr-agd" id="mrLayers"><summary>KENTUCKY LAYERS YOU CAN TURN ON</summary><div id="mrLayerToggles"></div></details>
-<details class="mr-agd" id="mrCanada"><summary>CANADA · NOT TURNED ON</summary>
-<p class="mr-help">This check is the United States. Canada comes later. The source will be CPCAD, the Canadian Protected and Conserved Areas Database (Environment and Climate Change Canada). Nothing is queried there now. Provinces and territories: Alberta (AB), British Columbia (BC), Manitoba (MB), New Brunswick (NB), Newfoundland and Labrador (NL), Northwest Territories (NT), Nova Scotia (NS), Nunavut (NU), Ontario (ON), Prince Edward Island (PE), Quebec (QC), Saskatchewan (SK), Yukon (YT).</p>
+<details class="mr-agd" id="mrCanada"><summary>CANADA</summary>
+<p class="mr-help">A pin that is not inside a US state does not guess a province. Pick a province in the Mapping desk below. That desk queries CPCAD and the provincial layers whose robots check was ok. Nothing is fetched until you ask.</p>
 </details>
 <div id="mrSpot"></div>
+</section>
+<section class="mr-card" id="mrDesk">
+<p class="eyebrow" style="letter-spacing:2px">MAPPING DESK</p>
+<h2>Search the official layers</h2>
+<p class="mr-help">United States first. Canada is on: pick a province, or CA for the national CPCAD layer. Other countries are in the catalog and are not queried. No drawing tools. A lead export is a candidate list, not a boundary.</p>
+<form id="mrDeskForm" class="mr-checkf">
+<label for="mrDeskPlace">STATE OR PROVINCE</label>
+<select id="mrDeskPlace" aria-label="State or province"><option value="KY">KY</option></select>
+<label for="mrDeskQ">PLACE NAME</label>
+<input id="mrDeskQ" autocomplete="off" placeholder="Blackford Oaks W.M.A. or Muddygut WMA" aria-label="Place name">
+<div class="mr-check-btns">
+<button type="submit">SEARCH ALL LAYERS</button>
+<button type="button" class="alt" id="mrDeskPin">PIN VS THIS</button>
+<button type="button" class="alt" id="mrDeskNew">PARKS YOU COULD ADD</button>
+<button type="button" class="alt" id="mrDeskExport">EXPORT LEADS</button>
+<button type="button" class="alt" id="mrDeskKy">CHECK KY GIS UPDATES</button>
+</div>
+</form>
+<div class="mr-filters" id="mrDeskFilters">
+<label class="mr-ag"><input type="checkbox" id="mrFClosed"> Show closed land</label>
+<label class="mr-ag"><input type="checkbox" id="mrFPriv"> Show private land</label>
+<label class="mr-ag"><input type="checkbox" id="mrFSmall" checked> Show under 5 acres</label>
+<label class="mr-ag"><input type="checkbox" id="mrFLocal" checked> Show city and county land</label>
+<label class="mr-ag"><input type="checkbox" id="mrFNamed"> Hide land named like an existing park</label>
+<label class="mr-ag"><input type="checkbox" id="mrDeskBounds" checked> Boundaries (view only)</label>
+</div>
+<p class="mr-help">Pin vs this uses the pin on the map and does not need a name. Parks you could add lists public land near that pin that is not already a POTA park. Export leads downloads that list. It does not download outlines.</p>
+<form id="mrTractForm" class="mr-checkf" onsubmit="return false">
+<label for="mrDeskRef">PARK NUMBER FOR TRACTS</label>
+<input id="mrDeskRef" autocomplete="off" placeholder="US-7958" aria-label="Park number">
+<div class="mr-check-btns"><button type="button" class="alt" id="mrDeskTracts">SHOW TRACTS</button></div>
+</form>
+<p class="mr-help">Tract notes show the pieces, the parent, and parks inside parks when that state’s tract file is on the site. Kentucky’s tract file is not on the site yet.</p>
+<div id="mrDeskDir"></div>
+<div id="mrDeskOut"></div>
 </section>
 </div>
 </div>
@@ -222,6 +257,8 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer mr-foot"><div><div class="kpc-footer-brand">MAPPING REP TOOL BOX</div><div class="kpc-footer-tag">A private research helper from the Kentucky Portable Club</div></div><div class="footer-actions"><a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA KNOWLEDGE BANK ↗</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html" target="_blank" rel="noopener">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">A research helper, not an official source. We make mistakes: do your own research and check the agency's own pages and maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;.</div>
 <script src="kpc-bounds.js?v=20261102t" defer></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261106b" defer></script>
-<script src="kpc-maprep-check.js?v=20261106b" defer></script>
-<script src="kpc-maprep.js?v=20261106b" defer></script>
+<script src="kpc-maprep-logic.js?v=20261106d" defer></script>
+<script src="kpc-maprep-check.js?v=20261106d" defer></script>
+<script src="kpc-maprep-toolbox.js?v=20261106d" defer></script>
+<script src="kpc-maprep.js?v=20261106d" defer></script>
 </body></html>
