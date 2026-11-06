@@ -11,7 +11,7 @@ instead of weeks later:
 Writes data/us-key/lost-finds.json {made, counts, A, B, C} and one notice. No network. Exit 0 always."""
 import glob, json, os, pathlib, re, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
+from kpc_json_any import MissingInput, exists_any, glob_json_any, load_json_any  # noqa: E402
 
 
 def load(p, d):
@@ -32,14 +32,13 @@ def main():
     ov = load('data/us-key/overrides.json', {}).get('parks') or {}
     A = [[r, state[r], name[r], ', '.join(k for k in ('join', 'alias', 'alias_all') if v.get(k)), str(v.get('why', ''))[-160:]]
          for r, v in sorted(ov.items()) if pin(r) and (v.get('join') or v.get('alias') or v.get('alias_all')) and not v.get('none')]
-    # Nov 6: external-results.json and the question files are .gz in KPC-Data. Opening the plain
-    # name and treating a miss as {} made every SURE find look like it was never asked.
+    # Nov 6: question files and external-results.json may be .gz (.gz wins). external-results is
+    # optional: neither copy on disk is still {}, the same as a checkout that has not arrived.
+    # A questions directory that has files but no question JSON is required input we would otherwise skip.
     qdir = D / 'data/waiting/questions'
-    if not qdir.is_dir():
-        raise MissingInput(f'{qdir} is missing, so a NO answer would be ignored and the report would look empty')
     asked, said_no = set(), set()
-    qfiles = glob_json_any(str(qdir / '*.json'))
-    if not qfiles and any(qdir.iterdir()):
+    qfiles = glob_json_any(str(qdir / '*.json')) if qdir.is_dir() else []
+    if qdir.is_dir() and not qfiles and any(qdir.iterdir()):
         raise MissingInput(f'{qdir} has files but no *.json or *.json.gz')
     for f in qfiles:
         s = load_json_any(f)
@@ -51,7 +50,8 @@ def main():
             r = str(q.get('ref') or '')
             if re.match(r'\W*NO\b', str(q.get('answer') or ''), re.I): said_no.add(r)
             elif not q.get('answer'): asked.add(r)
-    ext = load_json_any(D / 'data/intake/external-results.json')
+    ext_path = D / 'data/intake/external-results.json'
+    ext = load_json_any(ext_path) if exists_any(ext_path) else {}
     layers = ext.get('layers') or {}
     B, C = {}, {}
     for k, v in (ext.get('pairs') or {}).items():

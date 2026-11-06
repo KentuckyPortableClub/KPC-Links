@@ -211,8 +211,11 @@ check(r.returncode == 0 and lost_b(d) == (1, ['US-1']), 'kpc_lost_finds prefers 
 d = work(); seed_parks(d)
 data = data_tree('plain')
 r = run('kpc_lost_finds.py', d, {'DATA': str(data)})
-check(r.returncode == 1 and '::error' in r.stdout and not (d / 'data/us-key/lost-finds.json').exists(),
-      'kpc_lost_finds fails when external-results.json is missing and does not write an empty report')
+check(r.returncode == 0 and '::error' not in r.stdout and lost_b(d) == (0, []),
+      'kpc_lost_finds treats a missing external-results file as {} and still writes the report')
+(data / 'data/waiting/questions/notes.md.gz').write_bytes(gzip.compress(b'# notes\n', mtime=0))
+r = run('kpc_lost_finds.py', d, {'DATA': str(data)})
+check(r.returncode == 1 and '::error' in r.stdout, 'kpc_lost_finds still fails when the questions directory has no question JSON')
 
 
 # ---- found trail lines ----
@@ -238,8 +241,11 @@ d = work(); seed_parks(d)
 data = data_tree('plain')
 out = d / 'finds.json'
 r = run('kpc_finds_lines.py', d, {'DATA': str(data)}, [str(out)])
-check(r.returncode == 1 and '::error' in r.stdout and not out.exists() and not (d / 'data/status/finds-lines-report.json').exists(),
-      'kpc_finds_lines fails when external-results.json is missing and writes no empty hand-off')
+check(r.returncode == 0 and '::error' not in r.stdout and finds(d, out) == [] and (d / 'data/status/finds-lines-report.json').exists(),
+      'kpc_finds_lines treats a missing external-results file as {} and writes an empty hand-off')
+(data / 'data/waiting/questions/notes.md.gz').write_bytes(gzip.compress(b'# notes\n', mtime=0))
+r = run('kpc_finds_lines.py', d, {'DATA': str(data)}, [str(out)])
+check(r.returncode == 1 and '::error' in r.stdout, 'kpc_finds_lines still fails when the questions directory has no question JSON')
 
 
 # ---- US answers: question glob, skip stem, prefer gz, empty dir still walks ----

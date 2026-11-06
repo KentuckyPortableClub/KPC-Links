@@ -13,7 +13,7 @@ wiring bot (BOT W) skips line layers and the trail bots only read fixed lists. O
 Writes the list to argv[1] (default /tmp/finds-lines.json) and data/status/finds-lines-report.json. No network. Exit 0 always."""
 import glob, json, os, pathlib, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
+from kpc_json_any import MissingInput, exists_any, glob_json_any, load_json_any  # noqa: E402
 
 FED = re.compile(r'nps\.gov|fs\.usda\.gov|fs\.fed\.us|blm\.gov|fws\.gov|fBc8EJBxQRMcHlei', re.I)
 # Nov 2 (PR 4, Official trail lines; Brandon: official sources only): picks that are NOT an agency's own layer, so never wired.
@@ -35,8 +35,9 @@ def load(p, d):
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else '/tmp/finds-lines.json'
     D = pathlib.Path(os.environ.get('DATA') or 'kpcdata')
-    # Nov 6: external-results.json is .gz in KPC-Data. The old load() turned a gz-only file into {}.
-    ext = load_json_any(D / 'data/intake/external-results.json')
+    # Nov 6: external-results.json may be .gz (.gz wins). Neither copy on disk is still {}, as before.
+    ext_path = D / 'data/intake/external-results.json'
+    ext = load_json_any(ext_path) if exists_any(ext_path) else {}
     pairs, layers = ext.get('pairs') or {}, ext.get('layers') or {}
     pins, names, typ = {}, {}, {}
     for f in glob.glob('data/parkinfo/US-*.json'):
@@ -49,11 +50,9 @@ def main():
             seen.add(r)
             if p.get('m'): joined.add(r)
     qdir = D / 'data/waiting/questions'
-    if not qdir.is_dir():
-        raise MissingInput(f'{qdir} is missing, so a NO answer would be ignored and a rejected line would be handed on')
-    qfiles = glob_json_any(str(qdir / '*.json'))
-    if not qfiles and any(qdir.iterdir()):
-        raise MissingInput(f'{qdir} has files but no *.json or *.json.gz')
+    qfiles = glob_json_any(str(qdir / '*.json')) if qdir.is_dir() else []
+    if qdir.is_dir() and not qfiles and any(qdir.iterdir()):
+        raise MissingInput(f'{qdir} has files but no *.json or *.json.gz, so a NO answer would be ignored')
     no = set()
     for f in qfiles:
         s = load_json_any(f)

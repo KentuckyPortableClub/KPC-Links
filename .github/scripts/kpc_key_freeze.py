@@ -57,7 +57,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_pin_cover.py', 'kpc_also_in.py', 'kpc_name_match.py',
              # Nov 6 research packs: catalog, name abbreviations and the would-change side report. Off by default
              # (KPC_RESEARCH_SOURCES). It never decides a join, so it stays out of the rules hash (Links #44/#45).
-             'kpc_research_sources.py'}   # Nov 6 improvements 4 (v2): holds far joins after the builder, before the stamp; kept out of the rules hash on purpose (5:28 PM CST Nov 5: US stays 3dc53f70256a)
+             'kpc_research_sources.py',   # Nov 6 improvements 4 (v2): holds far joins after the builder, before the stamp; kept out of the rules hash on purpose (5:28 PM CST Nov 5: US stays 3dc53f70256a)
+             # Nov 6 (Links #53): reads a Data path or that path plus .gz. It never decides a join.
+             'kpc_json_any.py'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
