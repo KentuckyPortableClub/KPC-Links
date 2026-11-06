@@ -112,14 +112,24 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     let m = null;
     const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const EV = (opts && opts.on) || 'click';   /* Oct 17: Park Control drops pins on long-press / right-click only ('contextmenu') */
-    map.on(EV, e => {
-      if (opts && opts.skip && opts.skip(e)) return;
-      const la = e.latlng.lat.toFixed(6), lo = e.latlng.lng.toFixed(6);
-      if (m) m.remove();
+    /* place() also returns from KPCPin so a page can drop the same pin (Street View, directions, copy GPS) without a tap. fromUser runs opts.onDrop. */
+    function place(latlng, fromUser) {
+      const la = (+latlng.lat).toFixed(6), lo = (+latlng.lng).toFixed(6);
+      if (m) {
+        const p = m.getLatLng();
+        if (Math.abs(p.lat - latlng.lat) < 1e-6 && Math.abs(p.lng - latlng.lng) < 1e-6) { if (!m.isPopupOpen()) m.openPopup(); return m; }
+        m.remove(); m = null;
+      }
       const dir = ios ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
       const html = `<div class="kpin-pop"><b>Dropped pin</b>${la}, ${lo}<a class="g" href="${dir}" target="_blank" rel="noopener">DIRECTIONS (MAP APP) ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la},${lo}" target="_blank" rel="noopener">STREET VIEW ↗</a>${ios ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${la},${lo}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a>` : ''}<button type="button" data-copy="${la}, ${lo}">COPY GPS</button><button type="button" data-rm="1">REMOVE PIN</button></div>`;
-      m = L.marker(e.latlng, { draggable: true }).addTo(map).bindPopup(opts && opts.extra ? html.replace(/<\/div>$/, opts.extra(la, lo) + '</div>') : html).openPopup();
+      m = L.marker(latlng, { draggable: true }).addTo(map).bindPopup(opts && opts.extra ? html.replace(/<\/div>$/, opts.extra(la, lo) + '</div>') : html).openPopup();
       m.on('dragend', () => { const p = m.getLatLng(); m.remove(); m = null; map.fire(EV, { latlng: p }); });
+      if (fromUser && opts && opts.onDrop) opts.onDrop(+la, +lo);
+      return m;
+    }
+    map.on(EV, e => {
+      if (opts && opts.skip && opts.skip(e)) return;
+      place(e.latlng, true);
     });
     map.on('popupopen', ev => {
       const el = ev.popup.getElement(); if (!el) return;
@@ -127,6 +137,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { if (m) { m.remove(); m = null; } });
       if (opts && opts.onPop) opts.onPop(el, m);
     });
+    return { drop(latlng) { return place(latlng, false); } };
   }
   /* base maps + terrain: Street, Satellite, USGS Topo (US), Terrain (OpenTopoMap, worldwide), plus a Hillshade overlay */
   function layers(map, first, lo) {   /* lo (Oct 17): {padKey, padOn} = its own PAD-US on/off memory + default */

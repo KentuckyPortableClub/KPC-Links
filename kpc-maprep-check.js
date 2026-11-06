@@ -14,7 +14,7 @@
   /* ids only — never draw these outlines (data/CREDITS-NC.md) */
   const BLOCKED = /newfoundland|tokyo|\bA10\b|sapad|cnhp|colorado natural heritage/i;
 
-  let pack = null, map = null, drawLayer = null, pinMarker = null, overlayLayers = {}, gen = 0;
+  let pack = null, map = null, drawLayer = null, pinMarker = null, pinCtl = null, overlayLayers = {}, gen = 0;
   /* Which country this check runs, and which states have outlines saved on the site. */
   const REGION = {
     us: { enabled: true, source: 'PAD-US', local: ['KY'] },
@@ -639,13 +639,17 @@
     if (fc.features.length) L.geoJSON(fc, { style: { color: '#8a5a00', weight: 3, fillColor: '#d5a63a', fillOpacity: 0.18 } }).addTo(drawLayer);
     if (ov.features.length) L.geoJSON(ov, { style: { color: '#6b4a10', weight: 2, dashArray: '6 4', fillOpacity: 0 } }).addTo(drawLayer);
     drawLayer.addTo(map);
-    if (pinMarker) pinMarker.remove();
-    pinMarker = L.marker([la, lo], { draggable: true, title: 'Dropped pin' }).addTo(map);
-    pinMarker.on('dragend', () => { const p = pinMarker.getLatLng(); showPoint(p.lat, p.lng); });
     const b = L.latLngBounds([[la, lo]]);
     try { if (fc.features.length) b.extend(L.geoJSON(fc).getBounds()); } catch (e) {}
     map.fitBounds(b.pad(0.3), { maxZoom: 14 });
-    setTimeout(() => map.invalidateSize(), 60);
+    const dropPin = () => {
+      if (pinCtl) { pinCtl.drop(L.latLng(la, lo)); return; }
+      if (pinMarker) pinMarker.remove();
+      pinMarker = L.marker([la, lo], { draggable: true, title: 'Dropped pin' }).addTo(map);
+      pinMarker.on('dragend', () => { const p = pinMarker.getLatLng(); showPoint(p.lat, p.lng); });
+    };
+    dropPin();
+    setTimeout(() => { if (map) { map.invalidateSize(); dropPin(); } }, 80);
   }
 
   function renderContext(ctx) {
@@ -993,11 +997,18 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     map = L.map(el, { scrollWheelZoom: true }).setView([37.5, -85.3], 7);
     if (window.KPCLayers) KPCLayers(map, 'Street');
     else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap contributors, ODbL' }).addTo(map);
-    map.on('click', e => {
-      const t = e.originalEvent && e.originalEvent.target;
-      if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return;
-      showPoint(e.latlng.lat, e.latlng.lng);
-    });
+    if (window.KPCPin) {
+      pinCtl = KPCPin(map, {
+        skip: e => { const t = e.originalEvent && e.originalEvent.target; return !!(t && t.closest && t.closest('.leaflet-control, .leaflet-popup')); },
+        onDrop: (la, lo) => showPoint(la, lo)
+      });
+    } else {
+      map.on('click', e => {
+        const t = e.originalEvent && e.originalEvent.target;
+        if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return;
+        showPoint(e.latlng.lat, e.latlng.lng);
+      });
+    }
     setTimeout(() => { if (map) map.invalidateSize(); }, 80);
     buildToggles();
     fillStateMenu();
