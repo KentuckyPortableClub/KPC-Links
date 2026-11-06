@@ -104,6 +104,18 @@ jobs:
           ANSWER_SHEET: kpcdata/data/answer-sheet
           PRECHECK_OUT: /tmp/kpc-precheck
         run: python3 .github/scripts/kpc_key_dropped.py
+      - name: Key trend + two-name parks (Nov 6 big key / 2-fer patch; report only)
+        # Brandon [pt437u] Nov 6: a trend kept build to build (far pins, acres off, pins outside the outline, held joins) with a
+        # ::warning on a jump, and the slash / two-name park check. Read-only on the keys; writes only data/status/key-check/
+        # trend-<key>.json and two-name-<key>.json (saved with the report below).
+        continue-on-error: true
+        env:
+          KEY: ${{ inputs.key }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          OFFICIAL_ACRES: kpcdata/data/acres.json
+        run: |
+          python3 .github/scripts/kpc_key_trend.py || echo "::warning title=Key trend::stopped (exit $?); report only"
+          python3 .github/scripts/kpc_two_name_check.py || echo "::warning title=Two-name check::stopped (exit $?); report only"
       - name: Save the report (one save per run)
         continue-on-error: true
         run: |
