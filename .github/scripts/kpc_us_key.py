@@ -241,11 +241,15 @@ def piece_why(name, a):
     return '' if ok else why
 
 
-# Nov 6 (big key / 2-fer patch): KPC_US_PUBACCESS = off | report (default: count only, the key is unchanged) | on (a record PAD-US
-# marks closed to the public, or tribal / military land not marked open, is not joined; it goes to 'check'). The same test as the
-# 2-fer program's pad_use() (kpc_fers.py), so the key and the 2-fers agree once it is on. Report: 'pub_access' in data/us-key/tracts/US-XX.json.
+# Nov 6 (big key / 2-fer patch; Quality grade FIX 7:10 AM CST): KPC_US_PUBACCESS = off | report (default). REPORT ONLY: it never
+# changes a join and never drops a POTA park. A joined PAD-US piece marked closed to the public (Pub_Access XA), or tribal / military
+# land not marked open (the same test as the 2-fer program's pad_use() in kpc_fers.py), is only NOTED: the park is flagged and its
+# closed pieces listed in 'pub_access' in data/us-key/tracts/US-XX.json (RI US-6981 / DE US-10670 are mostly UK land with one small XA
+# piece). Whether closed pieces should ever leave the outline is Brandon's call (piece-level vs park-level); 'on' is not a mode.
 PUBACC = (os.environ.get('KPC_US_PUBACCESS') or 'report').strip().lower()
-PUBACC = PUBACC if PUBACC in ('off', 'report', 'on') else 'report'
+if PUBACC not in ('off', 'report'):
+    print(f'::warning title=US key::KPC_US_PUBACCESS={PUBACC!r} is not a mode (report only, Nov 6 Quality grade): using report', flush=True)
+    PUBACC = 'report'
 PUBACC_HIT = []
 def closed_why(a):
     acc = str(a.get('Pub_Access') or ''); own = str(a.get('Own_Type') or '')
@@ -1180,13 +1184,21 @@ def _tract_store(st, parks, recs):
             if ts: PT[ref] = ts
             if rg: shapes[ref] = rg
         nested = TR.nested_geometry(shapes)
-        extra = {'pub_access': {'mode': PUBACC, 'joins_it_would_change': [x for x in PUBACC_HIT if x['st'] == st]}}
+        _hits = [x for x in PUBACC_HIT if x['st'] == st]
+        _flag = {}
+        for x in _hits:
+            f = _flag.setdefault(x['park'], {'park': x['park'], 'closed_pieces': [], 'closed_acres': 0})
+            f['closed_pieces'].append({'rid': x['rid'], 'name': x['name'], 'acres': x['acres'], 'why': x['why']}); f['closed_acres'] += x['acres'] or 0
+        for f in _flag.values():
+            f['joined_acres'] = sum(round(t.get('ac') or 0) for t in PT.get(f['park']) or [])
+            f['note'] = 'flag only: the park and every join are kept (report only; piece-level vs park-level policy = Brandon)'
+        extra = {'pub_access': {'mode': PUBACC + ' (report only: never changes a join, never drops a park)', 'parks_flagged': sorted(_flag.values(), key=lambda f: f['park'])}}
         d = TR.doc(f'US-{st}', PT, nested, 'US: PAD-US, USFWS, the federal layers and the state-agency layers the key reads.')
         d.update(extra); d['ac_measured_detail_deg'] = DETAIL   # measured acres come from the outline the key read (0.01 deg = coarse)
         TR.save(OUT / 'tracts' / f'US-{st}.json', d)
         if any(x['st'] == st for x in PUBACC_HIT):
             notice(f'US key {st}', f"public access ({PUBACC}): {sum(1 for x in PUBACC_HIT if x['st'] == st)} join(s) are to land PAD-US marks closed / not open"
-                                   + (' (NOT joined)' if PUBACC == 'on' else ' (still joined; KPC_US_PUBACCESS=on would move them to check)'))
+                                   + f" in {len({x['park'] for x in PUBACC_HIT if x['st'] == st})} park(s): flagged only, every join kept")
     except Exception as _e:  # noqa: BLE001
         notice(f'US key {st}', f'tract records skipped: {type(_e).__name__}: {str(_e)[:160]}')
 
@@ -1275,9 +1287,7 @@ def run(st):
             if how and PUBACC != 'off':   # Nov 6: the 2-fer program's public-access rule (kpc_fers.pad_use), here behind a switch
                 _cl = closed_why(a)
                 if _cl:
-                    PUBACC_HIT.append({'st': st, 'park': ref, 'rid': a['OBJECTID'], 'name': nm, 'why': _cl, 'mode': PUBACC})
-                    if PUBACC == 'on':
-                        c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _cl + ' (KPC_US_PUBACCESS=on: not joined)']); continue
+                    PUBACC_HIT.append({'st': st, 'park': ref, 'rid': a['OBJECTID'], 'name': nm, 'why': _cl, 'acres': round(a.get('GIS_Acres') or 0)})   # noted only; the join below is unchanged
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])

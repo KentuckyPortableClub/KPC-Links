@@ -28,7 +28,7 @@ add that to the notes for them". This note is for the chats and bots that pick t
   acres, measured acres, owner, parent, access, pieces, box), plus `nested` (park inside park, from shapes) and `same_area` (source
   parent links such as CPCAD PARENT_ID: separate zones of ONE official area, not nesting).
 - 2-fer count switch: `KPC_FERS_COUNT_MODE` = whole_park (default, today) | tracts | nested (labels only; see kpc_fers_count.py).
-- Switches (all default OFF = today's keys): `KPC_US_PUBACCESS=on` (drop joins to closed land), `KPC_US_FS_OWNED=1` (note
+- Switches (all defaults = today's keys): `KPC_US_PUBACCESS=report` (default; REPORT ONLY: flags parks with closed PAD pieces, never drops a join or a park), `KPC_US_FS_OWNED=1` (note
   FS-owned-only on National Forest parks), `KPC_WORLD_ACRES=1` (world key gets official acres), `KPC_TRACT_STORE=0` (no side files).
 
 ## World key continent split (design only; not built)

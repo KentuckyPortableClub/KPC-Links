@@ -16,5 +16,8 @@ check('no join list for AU-8945 (nothing forced in)', not e.get('join'))
 src = (ROOT / '.github/scripts/kpc_world_key.py').read_text()
 check("the builder matches a 'no' by record id or name (rule 21)", "_isno = lambda rid, rn: low(str(rid)) in no or low(rn) in no" in src)
 r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_key_freeze.py'), 'rules', 'world-key'], capture_output=True, text=True, cwd=ROOT)
-check('overrides.json is data, not a rules file: world rules hash stays 463bcf9e8e3f', r.stdout.strip() == '463bcf9e8e3f')
+# Nov 6 big patch (Links #44): kpc_world_key.py (a rule file) gained the tract side-file call + KPC_WORLD_ACRES (default off), so
+# the world rules hash moved 463bcf9e8e3f -> 1b50faf1dfe8 on purpose (a full world rebuild is due on merge). The point of this check
+# stays: overrides.json is data, so the hash equals the hash of the rule files alone.
+check('overrides.json is data, not a rules file: world rules hash stays 1b50faf1dfe8 (463bcf9e8e3f before Links #44)', r.stdout.strip() == '1b50faf1dfe8')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
