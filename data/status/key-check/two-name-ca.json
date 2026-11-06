@@ -1,0 +1,88 @@
+{
+ "key": "ca",
+ "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
+ "two_name_parks": 179,
+ "half_outlined": 6,
+ "parks": [
+  {
+   "area": "CA-BC",
+   "park": "CA-4000",
+   "name": "Qudes / Gillard-Jimmy Judd Island Conservancy Protected Area",
+   "joined": [
+    "QUDƏS/GILLARD-JIMMY JUDD ISLAND CONSERVANCY"
+   ],
+   "named": "Gillard-Jimmy Judd Island Conservancy Protected Area",
+   "missing": "Qudes",
+   "missing_words": [
+    "qudes"
+   ]
+  },
+  {
+   "area": "CA-MB",
+   "park": "CA-2375",
+   "name": "Asatiwisipe Aki (Poplar/Nanowin Rivers) Wildlife Management Area",
+   "joined": [
+    "Asatiwisipe Aki Traditional Use Planning Area"
+   ],
+   "named": "Asatiwisipe Aki (Poplar",
+   "missing": "Nanowin Rivers) Wildlife Management Area",
+   "missing_words": [
+    "nanowin"
+   ]
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-1597",
+   "name": "Rockcliffe Park and the Rockeries Natural Area",
+   "joined": [
+    "Rockcliffe Park"
+   ],
+   "named": "Rockcliffe Park",
+   "missing": "the Rockeries Natural Area",
+   "missing_words": [
+    "rockeries"
+   ]
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-5653",
+   "name": "Pottawatomi and Jones Falls Conservation Area",
+   "joined": [
+    "Pottawatomi"
+   ],
+   "named": "Pottawatomi",
+   "missing": "Jones Falls Conservation Area",
+   "missing_words": [
+    "jones"
+   ]
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-5658",
+   "name": "Spirit Rock & McNeill Estate Conservation Area",
+   "joined": [
+    "Spirit Rock"
+   ],
+   "named": "Spirit Rock",
+   "missing": "McNeill Estate Conservation Area",
+   "missing_words": [
+    "estate",
+    "mcneill"
+   ]
+  },
+  {
+   "area": "CA-QC",
+   "park": "CA-5877",
+   "name": "Château De Ramezay / India House National Historic Site",
+   "joined": [
+    "Château De Ramezay"
+   ],
+   "named": "Château De Ramezay",
+   "missing": "India House National Historic Site",
+   "missing_words": [
+    "house",
+    "india"
+   ]
+  }
+ ]
+}

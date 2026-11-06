@@ -1,0 +1,254 @@
+{
+ "key": "ca",
+ "about": "Key trend file, build to build (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Read-only on the keys; REPORT ONLY.",
+ "rows": [
+  {
+   "build": "CA-41739774609",
+   "checked": "2026-11-04 17:50",
+   "far_pins": 76,
+   "pins_outside": 185,
+   "outline_to_pin": 8,
+   "flat_outlines": 13,
+   "overrides_missed": 13,
+   "backfill": true
+  },
+  {
+   "build": "CA-41889018960",
+   "checked": "2026-11-04 19:18",
+   "far_pins": 76,
+   "pins_outside": 185,
+   "outline_to_pin": 2,
+   "flat_outlines": 13,
+   "overrides_missed": 8,
+   "backfill": true
+  },
+  {
+   "build": "CA-42138066664",
+   "checked": "2026-11-06 01:09",
+   "far_pins": 74,
+   "pins_outside": 183,
+   "outline_to_pin": 2,
+   "flat_outlines": 13,
+   "overrides_missed": 8,
+   "backfill": true
+  },
+  {
+   "build": "CA-42252274247",
+   "checked": "2026-11-06 17:06",
+   "far_pins": 74,
+   "pins_outside": 183,
+   "outline_to_pin": 0,
+   "flat_outlines": 13,
+   "overrides_missed": 8,
+   "held_joins": 2,
+   "acres_off": 29,
+   "acres_checked": 1983
+  }
+ ],
+ "acres_off_latest": [
+  {
+   "area": "CA-NS",
+   "park": "CA-0454",
+   "key_acres": 320,
+   "official_acres": 43,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0476",
+   "key_acres": 445,
+   "official_acres": 214,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0479",
+   "key_acres": 708,
+   "official_acres": 299,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0484",
+   "key_acres": 410,
+   "official_acres": 95,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0881",
+   "key_acres": 95,
+   "official_acres": 4,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0882",
+   "key_acres": 328,
+   "official_acres": 41,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0892",
+   "key_acres": 6,
+   "official_acres": 17,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0898",
+   "key_acres": 223,
+   "official_acres": 94,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0902",
+   "key_acres": 54,
+   "official_acres": 22,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0921",
+   "key_acres": 10,
+   "official_acres": 21,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0925",
+   "key_acres": 8,
+   "official_acres": 20,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0936",
+   "key_acres": 386,
+   "official_acres": 42,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0939",
+   "key_acres": 391,
+   "official_acres": 190,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0946",
+   "key_acres": 24,
+   "official_acres": 53,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-0947",
+   "key_acres": 430,
+   "official_acres": 144,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-1793",
+   "key_acres": 410,
+   "official_acres": 198,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-1805",
+   "key_acres": 6,
+   "official_acres": 22,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-1866",
+   "key_acres": 485,
+   "official_acres": 230,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-1882",
+   "key_acres": 4,
+   "official_acres": 16,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-5434",
+   "key_acres": 376,
+   "official_acres": 38,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-6232",
+   "key_acres": 52,
+   "official_acres": 128,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-6483",
+   "key_acres": 36,
+   "official_acres": 98,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-6568",
+   "key_acres": 382,
+   "official_acres": 165,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-6570",
+   "key_acres": 26,
+   "official_acres": 111,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-NS",
+   "park": "CA-6572",
+   "key_acres": 447,
+   "official_acres": 196,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-1043",
+   "key_acres": 107,
+   "official_acres": 266,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-1046",
+   "key_acres": 239,
+   "official_acres": 611,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-1440",
+   "key_acres": 719,
+   "official_acres": 1464,
+   "from": "tract side file"
+  },
+  {
+   "area": "CA-ON",
+   "park": "CA-5564",
+   "key_acres": 79,
+   "official_acres": 177,
+   "from": "tract side file"
+  }
+ ],
+ "last_jumps": []
+}
