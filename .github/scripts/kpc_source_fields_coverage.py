@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_source_fields as SF  # noqa: E402
 
 ROLES = ('id', 'acres', 'owner', 'parent')
+PROV = set('AB BC MB NB NL NS NT NU ON PE QC SK YT'.split())
 
 
 def world_src():
@@ -30,12 +31,12 @@ def layers():
         if os.path.exists(f):
             for st, ls in (json.load(open(f)).get('states') or {}).items():
                 for x in ls:
-                    if x.get('url'): out.append(('US', 'US-' + st, x.get('ag') or x.get('kind') or '', x['url'], 'arcgis'))
+                    if x.get('url'): out.append(('CA', 'CA-' + st, x.get('ag') or x.get('kind') or '', x['url'], 'arcgis') if st in PROV else ('US', 'US-' + st, x.get('ag') or x.get('kind') or '', x['url'], 'arcgis'))
             break
     if os.path.exists('data/ca-key/layers.json'):
         for k, v in json.load(open('data/ca-key/layers.json')).items():
             u = v[0] if isinstance(v, list) else v
-            out.append(('CA', 'CA-' + k[:2], k, re.sub(r'/query$', '', u), 'arcgis'))
+            out.append(('CA', 'CA-' + k[:2] if k[:2] in PROV else 'CA (national / other)', k, re.sub(r'/query$', '', u), 'arcgis'))
     try:
         for cc, ls in world_src().items():
             for x in ls: out.append(('world', cc, x[0], x[2], x[1]))
@@ -59,7 +60,7 @@ def main():
         r['table_row'] = key['key'] if key else None
         if kind not in ('arcgis', 'arcgis_alt'): r['probe'] = f'not probed ({kind})'; rows.append(r); continue
         if 'services.arcgis.com/33TOOklri9xpic7U' in url: r['probe'] = 'never (banned server)'; rows.append(r); continue
-        if url in seen: fl = seen[url]
+        if url in seen: fl, r['probe'] = seen[url]
         elif time.time() > end: r['probe'] = 'not probed (time)'; rows.append(r); continue
         else:
             fl = None
@@ -72,7 +73,7 @@ def main():
                 else: r['probe'] = 'not probed (robots)' if KM.robots_block(st) else f'no answer ({st})'
             except Exception as e:  # noqa: BLE001
                 r['probe'] = f'error {type(e).__name__}'
-            seen[url] = fl
+            seen[url] = (fl, r.get('probe'))
         if fl:
             mp = SF.mapping(url, label, fl)
             r['how'] = mp['how']
