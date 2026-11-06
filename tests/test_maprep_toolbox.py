@@ -55,7 +55,7 @@ names = [ln for ln in diff.stdout.splitlines() if ln.strip()]
 # This guard is for a Tool Box-only branch. After #48 merged, this test lives on main and runs on every branch,
 # so a key PR (which changes key scripts on purpose and has its own replay tests) must not trip it.
 _all = subprocess.run(['git', 'diff', '--name-only', 'origin/main...HEAD'], cwd=ROOT, capture_output=True, text=True, timeout=30)
-_toolbox = [ln for ln in _all.stdout.splitlines() if 'maprep' in ln.lower() or 'toolbox' in ln.lower()]
+_toolbox = [ln for ln in _all.stdout.splitlines() if ('maprep' in ln.lower() or 'toolbox' in ln.lower()) and ln != 'tests/test_maprep_toolbox.py']
 if names and not _toolbox:
     print('SKIP answer-key guard: this branch is not a Tool Box change (' + ', '.join(names[:3]) + ' are covered by that PR\'s own tests)')
 else:
