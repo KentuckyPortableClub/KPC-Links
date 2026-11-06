@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-04",
+  "date": "2026-11-06",
   "result": "PASS"
  },
- "previous_build": "CA-41739774609",
- "previous_built": "2026-11-03 23:49 UTC",
+ "previous_build": "CA-41889018960",
+ "previous_built": "2026-11-04 19:17 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -189,8 +189,6 @@
    "site": 7
   }
  },
- "build": "CA-41889018960",
- "built": "2026-11-04 19:17 UTC",
  "rules": "1d309938ff7e",
  "rules_files": [
   ".github/scripts/kpc_ca_fill_bounds.py",
@@ -198,5 +196,11 @@
   ".github/scripts/kpc_ca_key.py",
   ".github/scripts/kpc_key_facts.py",
   ".github/key-rules-version.json"
- ]
+ ],
+ "rules_of_run": "1d309938ff7e",
+ "inputs": {
+  "us-key": "US-42016221491"
+ },
+ "build": "CA-42138066664",
+ "built": "2026-11-06 01:08 UTC"
 }

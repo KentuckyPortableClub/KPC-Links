@@ -1,0 +1,3 @@
+park,area,name,pin_km,was_g,held_ids,held_names,reason,decided_by,to_keep_it
+CA-0109,CA-AB,Waterton Biosphere Reserve,28.92,official,Alberta Park:433,Waterton Lakes,the nearest part of the joined outline is 28.9 km from the POTA pin (over 15 km),Brandon standing rule 2026-11-05 verify-then-fix,a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)
+CA-3408,CA-BC,Denetiah Corridor Protected Area,29.51,official,20365 | BC BC Parks :727,DENETIAH CORRIDOR PROTECTED AREA | DENETIAH CORRIDOR PROTECTED AREA,the nearest part of the joined outline is 29.5 km from the POTA pin (over 15 km),Brandon standing rule 2026-11-05 verify-then-fix,a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)

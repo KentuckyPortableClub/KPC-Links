@@ -1,0 +1,32 @@
+{
+ "key": "ca",
+ "count": 2,
+ "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+ "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
+ "parks": [
+  {
+   "park": "CA-0109",
+   "area": "CA-AB",
+   "name": "Waterton Biosphere Reserve",
+   "pin_km": 28.92,
+   "was_g": "official",
+   "held_ids": "Alberta Park:433",
+   "held_names": "Waterton Lakes",
+   "reason": "the nearest part of the joined outline is 28.9 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "CA-3408",
+   "area": "CA-BC",
+   "name": "Denetiah Corridor Protected Area",
+   "pin_km": 29.51,
+   "was_g": "official",
+   "held_ids": "20365 | BC BC Parks :727",
+   "held_names": "DENETIAH CORRIDOR PROTECTED AREA | DENETIAH CORRIDOR PROTECTED AREA",
+   "reason": "the nearest part of the joined outline is 29.5 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  }
+ ]
+}

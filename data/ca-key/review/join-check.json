@@ -1,0 +1,179 @@
+{
+ "key": "ca",
+ "mode": "hold",
+ "files_checked": 3,
+ "joined_parks": 1633,
+ "suspect": 14,
+ "held": 2,
+ "files_changed": 2,
+ "official_acres_known": 0,
+ "approved_parks_known": 708,
+ "answer_sheet": ".as/data/answer-sheet/CA.csv",
+ "rule": {
+  "hold_far_km": 15.0,
+  "distance": "pin to the nearest part of the joined outline",
+  "acres_ratio": [
+   0.5,
+   2.0
+  ],
+  "zero_acres": true
+ },
+ "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+ "note": "far joins HELD before the stamp (records kept in c), others marked; nothing deleted",
+ "rows": [
+  {
+   "park": "CA-0109",
+   "area": "CA-AB",
+   "name": "Waterton Biosphere Reserve",
+   "outline_ac": 123216,
+   "official_ac": "",
+   "pin_km": 28.92,
+   "suspect": "the nearest joined record is 28.9 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3376",
+   "area": "CA-BC",
+   "name": "Coutts Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3408",
+   "area": "CA-BC",
+   "name": "Denetiah Corridor Protected Area",
+   "outline_ac": 33916,
+   "official_ac": "",
+   "pin_km": 29.51,
+   "suspect": "the nearest joined record is 29.5 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3422",
+   "area": "CA-BC",
+   "name": "Discovery Town Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3508",
+   "area": "CA-BC",
+   "name": "Fleetwood Meadows Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3518",
+   "area": "CA-BC",
+   "name": "Fortress Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.01,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3642",
+   "area": "CA-BC",
+   "name": "John Lawson Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3699",
+   "area": "CA-BC",
+   "name": "Klee Wyck Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.01,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3860",
+   "area": "CA-BC",
+   "name": "Murdo Frazer Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.75,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-3882",
+   "area": "CA-BC",
+   "name": "Navvy Jack Point Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-4106",
+   "area": "CA-BC",
+   "name": "Skyline Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.02,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-4798",
+   "area": "CA-BC",
+   "name": "Twin Falls Tea House National Historic Site",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.51,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-5320",
+   "area": "CA-BC",
+   "name": "Britannia Shipyard National Historic Site",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.07,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "CA-5322",
+   "area": "CA-BC",
+   "name": "Benvoulin Heritage Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  }
+ ]
+}
