@@ -56,6 +56,7 @@ jobs:
           KPC_ANSWERS_WHILE_FROZEN: ${{ vars.KPC_ANSWERS_WHILE_FROZEN || 'no' }}
           KPC_ANSWERS_SKIP: ${{ vars.KPC_ANSWERS_SKIP || 'map-audit' }}
         run: |
+          # Nov 6: those two directories include the .gz copies (questions/*.json.gz, ready.json.gz). The readers prefer .gz.
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata 2>/dev/null \
             && git -C kpcdata sparse-checkout set --no-cone data/waiting/questions data/intake 2>/dev/null && git -C kpcdata checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
           # Nov 2 review: the four writers go in one file so the save can run them AGAIN on top of the newest main (save by overwrite).
@@ -345,8 +346,9 @@ jobs:
         id: kept_green_2
         continue-on-error: true
         run: |
+          # Nov 6: the plain names do not match the .gz copies. List both. A missing external-results file stays an empty read; a .gz file that is there is read.
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .lf 2>/dev/null \
-            && git -C .lf sparse-checkout set --no-cone data/intake/external-results.json 'data/waiting/questions/*.json' 2>/dev/null && git -C .lf checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
+            && git -C .lf sparse-checkout set --no-cone data/intake/external-results.json data/intake/external-results.json.gz 'data/waiting/questions/*.json' 'data/waiting/questions/*.json.gz' 2>/dev/null && git -C .lf checkout -q 2>/dev/null || true   # ok: optional git step; the next step reports
           DATA=.lf python3 .github/scripts/kpc_lost_finds.py || { kpc_rc=$?; echo "::error title=kpc_lost_finds.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_lost_finds.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           rm -rf .lf
       - name: Review issue

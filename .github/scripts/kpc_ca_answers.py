@@ -11,6 +11,8 @@ Rules: only countries the world key builds (a data/parkinfo/<CC>.json park list 
 compilation layer (EEA) is skipped (W-2: EEA = a candidate for chat 11 only, never joined by a bot). Exit 0 always.
 """
 import datetime as dt, json, os, pathlib, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
 
 KEY = pathlib.Path('data/ca-key')
 OVR, LEDGER, CCS = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY / 'answers-provinces.txt'
@@ -34,9 +36,14 @@ def main():
     D = data_dir()
     if D is None: print('::notice title=Canada answers::no KPC-Data checkout: nothing applied'); return
     q = []
-    for f in sorted((D / 'data/waiting/questions').glob('*.json')):   # every question file: gis-hunter, key-pieces… (Canada rows only)
-        if f.stem.lower() in SKIP: continue   # Nov 2: the map audit's pattern answers are not a person's (see kpc_key_answers.py SKIP)
-        j = load(f, {}); x = j.get('questions') if isinstance(j, dict) else j
+    qdir = D / 'data/waiting/questions'
+    # Nov 6: *.json.gz as well as *.json. .gz wins. The stem used for KPC_ANSWERS_SKIP stays the plain name.
+    files = sorted(glob_json_any(str(qdir / '*.json')))
+    if not files and any(qdir.iterdir()):
+        raise MissingInput(f'{qdir} has files but no *.json or *.json.gz')
+    for f in files:   # every question file: gis-hunter, key-pieces… (Canada rows only)
+        if pathlib.Path(f).stem.lower() in SKIP: continue   # Nov 2: the map audit's pattern answers are not a person's (see kpc_key_answers.py SKIP)
+        j = load_json_any(f); x = j.get('questions') if isinstance(j, dict) else j
         q += [r for r in (list(x.values()) if isinstance(x, dict) else (x or [])) if isinstance(r, dict) and str(r.get('ref', '')).startswith('CA-')]
     ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
     led = load(LEDGER, {})
@@ -82,5 +89,8 @@ def main():
 
 if __name__ == '__main__':
     try: main()
+    except MissingInput as e:
+        print(f'::error title=Canada answers::{e}')
+        sys.exit(1)
     except Exception as e: print(f'::notice title=Canada answers::stopped: {str(e)[:200]}')  # noqa: BLE001
     sys.exit(0)

@@ -5,13 +5,16 @@ answers. Every row chat 11 says YES to is added here to data/state-gis.json (the
 and its state goes into data/us-key/answers-states.txt, so the same night's key rebuild reads it. No hand step.
 
 Reads  <DATA>/data/waiting/questions/layers.json (rows: {area or st, url, name_field, agency, kind?, answer, checked_by, ref?})
-         (also accepts data/intake/queue.json rows with the same fields; whichever exists)
+         (also accepts data/intake/queue.json and data/intake/ready.json rows with the same fields; whichever exists)
+         A path or that path plus .gz; .gz wins when both are on disk. None of the three on disk is an error, not an empty read.
 Writes data/state-gis.json (appends {kind, ag, nm, url, host:'agency', lic, note}); data/us-key/answers-states.txt (adds the state)
 Rules (bookkeeping only): YES only; the URL must end in /MapServer/N or /FeatureServer/N (a polygon layer the key can page) or it is
 listed as skipped; a URL already in the state's list is skipped; kind = the row's kind if it is one of park/wild/forest/preserve/land,
 else 'land'. Canada areas (CA-XX / provinces) go under their province code like the existing entries. Exit 0 always.
 """
 import json, os, pathlib, re, sys, datetime as dt
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_json_any import MissingInput, exists_any, load_json_any  # noqa: E402
 
 KINDS = {'park', 'wild', 'forest', 'preserve', 'land'}
 US = set('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split())
@@ -42,10 +45,15 @@ def st_of(r):
 def main():
     D = data_dir()
     if D is None: print('::notice title=Layer wiring::no KPC-Data checkout: nothing wired'); return
-    src = [p for p in (D / 'data/waiting/questions/layers.json', D / 'data/intake/queue.json', D / 'data/intake/ready.json') if p.exists()]
+    # Nov 6: layers.json and ready.json are stored as .gz in KPC-Data. exists() on the plain name
+    # missed them, and the old load() then treated a missing file as {}. queue.json stays plain.
+    wanted = (D / 'data/waiting/questions/layers.json', D / 'data/intake/queue.json', D / 'data/intake/ready.json')
+    src = [p for p in wanted if exists_any(p)]
+    if not src:
+        raise MissingInput('none of questions/layers.json, intake/queue.json, intake/ready.json is on disk as that path or that path plus .gz')
     rows = []
     for p in src:
-        for r in rows_of(load(p, {})):
+        for r in rows_of(load_json_any(p)):
             r['_intake'] = 'intake' in str(p); rows.append(r)
     # Oct 30 9:45 AM (chat 10 AUTO-2): an intake READY row with approved: true counts as a YES; its name field is in probe.name_field
     for r in rows:
@@ -124,5 +132,8 @@ def main():
 
 if __name__ == '__main__':
     try: main()
+    except MissingInput as e:
+        print(f'::error title=Layer wiring::{e}')
+        sys.exit(1)
     except Exception as e: print(f'::notice title=Layer wiring::stopped: {str(e)[:200]}')  # noqa: BLE001
     sys.exit(0)

@@ -5,6 +5,7 @@ exactly the way chat 2 did by hand on Oct 29. It MOVES decisions; it never makes
 nothing, a layer the key does not read is skipped and listed, and a later answer on the same park + piece replaces the earlier one.
 
 Reads  <DATA>/data/waiting/questions/*.json   (KPC-Data checkout; env DATA, default ../kpcdata, then ../kpc-data)
+         also *.json.gz; .gz wins when both copies of a file exist. The ledger key stays the plain stem.
          rows: {ref, record, record_name, answer, checked_by, [layer], [acres|acres_approx], [kind]}  under 'questions' (list or dict)
        data/us-key/layers.json                 (key prefix per layer URL: a gis-hunter 'record' is a layer OBJECTID)
 Writes data/us-key/overrides.json  parks[ref]: YES -> join += [id], fp[id] = [record_name, acres], (id taken out of 'no')
@@ -16,9 +17,10 @@ Prints one ::notice line. Exit 0 always (a bot step never goes red for a missing
   python3 kpc_key_answers.py            apply
   python3 kpc_key_answers.py --dry      show what would change, write nothing
 """
-import datetime as dt, glob, json, os, pathlib, re, sys
+import datetime as dt, json, os, pathlib, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
 try: from kpc_save import save_json
 except Exception:  # noqa: BLE001
     def save_json(p, o, indent=1): json.dump(o, open(p, 'w'), indent=indent, ensure_ascii=False); return True
@@ -139,11 +141,18 @@ def main():
     n_yes = n_no = n_alias = n_skip = n_same = n_none = n_bot = 0; skipped = []; bot_held = []; states = set(); touched = set(); sheet_rows = {}
     # last answer wins: rows are read file by file (sorted), in file order; the latest row for a (file, ref, id) is the one applied
     skipped_files = []
-    for f in sorted(glob.glob(str(D / 'data/waiting/questions/*.json'))):
+    qdir = D / 'data/waiting/questions'
+    # Nov 6: question files are .gz in KPC-Data. A glob of *.json missed them and applied nothing.
+    # An empty directory is still "no new rows" (the override walk below still runs). A directory
+    # that has files but no question JSON is a missed checkout, not an empty read.
+    files = sorted(glob_json_any(str(qdir / '*.json')))
+    if not files and any(qdir.iterdir()):
+        raise MissingInput(f'{qdir} has files but no *.json or *.json.gz')
+    for f in files:
         name = pathlib.Path(f).stem
         if name.lower() in SKIP: skipped_files.append(name); continue   # Nov 2: see SKIP above
         latest = {}
-        for row in rows_of(load(f, {})):
+        for row in rows_of(load_json_any(f)):
             kid, why = key_id(row, lmap)
             if not kid:
                 if answer_of(row): n_skip += 1; skipped.append(f"{row.get('ref')} {why}")
@@ -256,7 +265,11 @@ def main():
 if __name__ == '__main__':
     # Nov 2 review (loud failures): a stop is an ::error (red in the run summary), not a quiet notice. KPC_LOUD_FAIL=1 also
     # exits 1 so the job goes red; default 0 keeps today's exit code (the save step is loud on its own).
+    # Nov 6: a missing expected question file exits 1. Treating it as no rows applied nothing and looked green.
     try: main()
+    except MissingInput as e:
+        print(f'::error title=Key answers::{e}')
+        sys.exit(1)
     except Exception as e:  # noqa: BLE001
         print(f'::error title=Key answers::stopped, chat 11\'s answers were NOT applied: {type(e).__name__}: {str(e)[:200]}')
         if os.environ.get('KPC_LOUD_FAIL', '0') == '1': sys.exit(1)

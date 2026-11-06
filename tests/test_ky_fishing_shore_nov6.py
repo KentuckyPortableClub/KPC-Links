@@ -54,13 +54,26 @@ kept = [
     'data/ky-answer-key.json', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson',
     '.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py',
     '.github/scripts/kpc_match.py', '.github/scripts/kpc_key_facts.py',
-    '.github/key-rules-version.json', '.github/workflows',
+    '.github/key-rules-version.json',
 ]
 diff = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *kept],
                       cwd=ROOT, capture_output=True, text=True, timeout=30)
 changed = [ln for ln in diff.stdout.splitlines() if ln.strip()]
-check(diff.returncode == 0 and not changed, 'KY key outlines, rule files and workflows are unchanged'
+check(diff.returncode == 0 and not changed, 'KY key outlines and rule files are unchanged'
       + ((' (' + ', '.join(changed) + ')') if changed else ''))
+# Links #53: the Canada and US key workflows checkout .gz and materialize hardlook.json. Those two files may differ from main.
+allowed_wf = {'.github/workflows/kpc-ca-key.yml', '.github/workflows/kpc-us-key.yml'}
+wf = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/workflows'],
+                    cwd=ROOT, capture_output=True, text=True, timeout=30)
+changed_wf = [ln.strip() for ln in wf.stdout.splitlines() if ln.strip()]
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf]
+check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
+      + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
+if set(changed_wf) & allowed_wf:
+    body = subprocess.run(['git', 'diff', 'origin/main', '--', *sorted(allowed_wf)],
+                          cwd=ROOT, capture_output=True, text=True, timeout=30).stdout
+    check('hardlook.json.gz' in body and '--materialize' in body and 'external-results.json.gz' in body,
+          'the Canada and US workflow diff is the gzip checkout and the hard-look materialize')
 
 check(RS.mode() == 'off', 'KPC_RESEARCH_SOURCES still defaults to off')
 check(RS.fishing_shore_overlays() == [], 'flag off: shore overlays are not offered')
