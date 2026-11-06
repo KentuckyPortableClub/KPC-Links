@@ -195,7 +195,7 @@ jobs:
               done < /tmp/shape-short-live.txt
               if [ -n "$recover" ]; then
                 STATES="$recover" GEO_CACHE_MODE=only python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key-${{ matrix.g.i }}.log \
-                  || echo "::error title=Shape guard::saved-copy refill failed"
+                  || { kpc_rc=$?; echo "::error title=Shape guard::saved-copy refill failed (exit $kpc_rc), see the log above"; echo "Shape guard - saved-copy refill failed (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
               fi
               python3 .github/scripts/kpc_shape_guard.py --built data/us-key --live-index .livekey/data/us-key/index.json --states "$STATES" > /tmp/shape-short.txt && sc=0 || sc=$?
               # The live read was short either way: the job fails after upload so it is not a silent pin drop.
