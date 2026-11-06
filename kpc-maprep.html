@@ -157,7 +157,7 @@ body.field .page-jump-nav{display:none!important}
 .mr-bar .nav-inner{justify-content:space-between}.mr-bar .brand-text{font-size:17px}.mr-bar .brand-text small{letter-spacing:1.5px;font-size:10px}.mr-bar .nav-inner{flex-wrap:nowrap;gap:8px 12px}.mr-bar .brand{min-width:0;flex:1 1 auto}.mr-bar .brand-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mr-bar .nav-links,.mr-bar .kpc-theme-btn{flex:0 0 auto}@media(max-width:480px){.mr-bar .brand-text small{display:none}.mr-bar .brand-text{font-size:15px}.mr-bar .nav-links a{padding:8px 6px;font-size:12px}}.mr-bar .menu-toggle{display:none!important}.mr-bar .nav-links{position:static!important;display:flex!important;flex-direction:row!important;background:none!important;border:0!important;padding:0!important;max-height:none!important;transform:none!important;opacity:1!important;visibility:visible!important;width:auto!important}.mr-foot .footer-actions a{font-size:12px}
 .mr-beta{margin:0 0 14px;padding:12px 14px;border-radius:10px;background:#fff6e0;border:2px solid #c98a00;color:#5a3d00;font-size:14px;line-height:1.5}.mr-beta b:first-child{display:block;font:900 12px Arial,sans-serif;letter-spacing:1.4px;margin-bottom:3px}
 .mr-checkf{display:grid;gap:10px}
-.mr-checkf input{min-height:48px;width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif}
+.mr-checkf input,.mr-checkf select{min-height:48px;width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:8px 12px;font:16px Arial,sans-serif;background:#fff}
 .mr-check-btns{display:flex;flex-wrap:wrap;gap:8px}
 .mr-check-btns button{min-height:48px;padding:10px 16px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:.4px;cursor:pointer}
 .mr-check-btns button.alt{background:#fff;color:#171717;border:1.5px solid #171717}
@@ -189,7 +189,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="tool-head th-map"><div class="wrap mr-top"><img class="mr-logo" src="KPC-logo.png" alt="Kentucky Portable Club" width="150" height="150">
 <p class="eyebrow">POTA PARK ADDITIONS · UNITED STATES &amp; CANADA</p>
 <h1>Mapping Representative's <span>Tool Box</span></h1>
-<p class="sub">Type a place name, a park number, or coordinates, or drop a pin. The check reads Kentucky’s published layers on this site, then says whether the land could be a park. Official information comes first.</p>
+<p class="sub">Type a place name, a park number, or coordinates, or drop a pin. Kentucky’s outlines are saved on this site. Any other state loads that state’s published key when you ask, then PAD-US. Official information comes first.</p>
 <p class="mr-head-note">A helper, not the final word. Click the official links and check the land yourself before you submit a park.</p>
 </div></section>
 <div class="mr-wrap">
@@ -199,8 +199,10 @@ body.field .page-jump-nav{display:none!important}
 <section class="mr-card" id="mrCheckCard">
 <p class="eyebrow" style="letter-spacing:2px">COULD THIS BE A PARK?</p>
 <h2>Check a place</h2>
-<p class="mr-help">Type a park name, a park number such as US-7958, or coordinates. Or drop a pin on the map. The answer uses Kentucky’s published layers already on this site, with the point checked in your browser. Official information is listed first, then POTA status, then club notes.</p>
+<p class="mr-help">Type a park name, a park number such as US-7958, or coordinates. Or drop a pin on the map. The state comes from the pin, from the name (“Fall Creek Falls, TN”), or from the menu. Kentucky is the state with outlines saved here. Other states load one answer key at a time. Official information is listed first, then POTA status, then club notes.</p>
 <form id="mrCheckForm" class="mr-checkf">
+<label for="mrCheckSt">STATE</label>
+<select id="mrCheckSt" aria-label="State"><option value="">From the name or the pin. A name alone uses the saved Kentucky layers.</option></select>
 <label for="mrCheckQ">PLACE, PARK NUMBER, OR COORDINATES</label>
 <input id="mrCheckQ" autocomplete="off" placeholder="Cumberland Falls SP, US-7958, or 36.8404, -84.3398" aria-label="Place, park number, or coordinates">
 <div class="mr-check-btns"><button type="submit">CHECK</button><button type="button" class="alt" id="mrCheckGps">USE MY GPS</button><button type="button" class="alt" id="mrCheckAll">CHECK ALL IN KENTUCKY</button></div>
@@ -208,6 +210,9 @@ body.field .page-jump-nav{display:none!important}
 <div id="mrDrop" role="application" aria-label="Map. Tap to drop a pin."></div>
 <p class="mr-help">Tap the map to drop a pin. Drag the pin to move it. Street map: © OpenStreetMap contributors, ODbL.</p>
 <details class="mr-agd" id="mrLayers"><summary>KENTUCKY LAYERS YOU CAN TURN ON</summary><div id="mrLayerToggles"></div></details>
+<details class="mr-agd" id="mrCanada"><summary>CANADA · NOT TURNED ON</summary>
+<p class="mr-help">This check is the United States. Canada comes later. The source will be CPCAD, the Canadian Protected and Conserved Areas Database (Environment and Climate Change Canada). Nothing is queried there now. Provinces and territories: Alberta (AB), British Columbia (BC), Manitoba (MB), New Brunswick (NB), Newfoundland and Labrador (NL), Northwest Territories (NT), Nova Scotia (NS), Nunavut (NU), Ontario (ON), Prince Edward Island (PE), Quebec (QC), Saskatchewan (SK), Yukon (YT).</p>
+</details>
 <div id="mrSpot"></div>
 </section>
 <section class="mr-card">
@@ -263,6 +268,6 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer mr-foot"><div><div class="kpc-footer-brand">MAPPING REP TOOL BOX</div><div class="kpc-footer-tag">A private research helper from the Kentucky Portable Club</div></div><div class="footer-actions"><a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA KNOWLEDGE BANK ↗</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html" target="_blank" rel="noopener">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">A research helper, not an official source. We make mistakes: do your own research and check the agency's own pages and maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;.</div>
 <script src="kpc-bounds.js?v=20261102t" defer></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261027a" defer></script>
-<script src="kpc-maprep-check.js?v=20261105c" defer></script>
+<script src="kpc-maprep-check.js?v=20261105d" defer></script>
 <script src="kpc-maprep.js?v=20261105a" defer></script>
 </body></html>
