@@ -1,0 +1,102 @@
+{
+ "key": "world",
+ "mode": "hold",
+ "files_checked": 1,
+ "joined_parks": 148,
+ "suspect": 7,
+ "held": 7,
+ "files_changed": 1,
+ "official_acres_known": 0,
+ "approved_parks_known": 13514,
+ "answer_sheet": ".as/data/answer-sheet/world.csv",
+ "rule": {
+  "hold_far_km": 15.0,
+  "distance": "pin to the nearest part of the joined outline",
+  "acres_ratio": [
+   0.5,
+   2.0
+  ],
+  "zero_acres": true
+ },
+ "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+ "note": "far joins HELD before the stamp (records kept in c), others marked; nothing deleted",
+ "rows": [
+  {
+   "park": "MX-0140",
+   "area": "MX",
+   "name": "Arrecife de Puerto Morelos National Park",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 29.03,
+   "suspect": "the nearest joined record is 29.0 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0141",
+   "area": "MX",
+   "name": "Arrecifes de Sian Ka'an Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 16.63,
+   "suspect": "the nearest joined record is 16.6 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0145",
+   "area": "MX",
+   "name": "Banco Chinchorro Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 40.08,
+   "suspect": "the nearest joined record is 40.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0176",
+   "area": "MX",
+   "name": "Lacan-Tun Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 28.06,
+   "suspect": "the nearest joined record is 28.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0181",
+   "area": "MX",
+   "name": "Los Petenes Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 36.78,
+   "suspect": "the nearest joined record is 36.8 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0186",
+   "area": "MX",
+   "name": "Marismas Nacionales Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 27.49,
+   "suspect": "the nearest joined record is 27.5 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "MX-0196",
+   "area": "MX",
+   "name": "Pacífico Mexicano Profundo Biosphere Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 71.41,
+   "suspect": "the nearest joined record is 71.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "key": "world",
+ "count": 7,
+ "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+ "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
+ "parks": [
+  {
+   "park": "MX-0140",
+   "area": "MX",
+   "name": "Arrecife de Puerto Morelos National Park",
+   "pin_km": 29.03,
+   "was_g": null,
+   "held_ids": "145",
+   "held_names": "Arrecife de Puerto Morelos",
+   "reason": "the nearest part of the joined outline is 29.0 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0141",
+   "area": "MX",
+   "name": "Arrecifes de Sian Ka'an Biosphere Reserve",
+   "pin_km": 16.63,
+   "was_g": null,
+   "held_ids": "113",
+   "held_names": "Arrecifes de Sian Ka'an",
+   "reason": "the nearest part of the joined outline is 16.6 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0145",
+   "area": "MX",
+   "name": "Banco Chinchorro Biosphere Reserve",
+   "pin_km": 40.08,
+   "was_g": null,
+   "held_ids": "143",
+   "held_names": "Banco Chinchorro",
+   "reason": "the nearest part of the joined outline is 40.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0176",
+   "area": "MX",
+   "name": "Lacan-Tun Biosphere Reserve",
+   "pin_km": 28.06,
+   "was_g": null,
+   "held_ids": "59",
+   "held_names": "Lacan-Tun",
+   "reason": "the nearest part of the joined outline is 28.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0181",
+   "area": "MX",
+   "name": "Los Petenes Biosphere Reserve",
+   "pin_km": 36.78,
+   "was_g": null,
+   "held_ids": "131",
+   "held_names": "Los Petenes",
+   "reason": "the nearest part of the joined outline is 36.8 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0186",
+   "area": "MX",
+   "name": "Marismas Nacionales Biosphere Reserve",
+   "pin_km": 27.49,
+   "was_g": null,
+   "held_ids": "71",
+   "held_names": "Marismas Nacionales Nayarit",
+   "reason": "the nearest part of the joined outline is 27.5 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "MX-0196",
+   "area": "MX",
+   "name": "Pacífico Mexicano Profundo Biosphere Reserve",
+   "pin_km": 71.41,
+   "was_g": null,
+   "held_ids": "157",
+   "held_names": "Pacífico Mexicano Profundo",
+   "reason": "the nearest part of the joined outline is 71.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  }
+ ]
+}
