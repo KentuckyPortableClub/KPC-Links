@@ -13,8 +13,9 @@ never decides a join, and the key scripts are not edited, so the rules hashes st
 
 Catalog: data/research-sources/catalog.json (rows whose robots_status was ok, then a live
 kpc_manners check on the file or Hub URL). Skipped rows: data/research-sources/skipped.json.
-Geometries are not stored in this repo. matching_only rows (WA CC BY-NC, NL "matching only",
-NCNHP permission) are name notes only and must not be republished.
+Catalog geometries are not stored here. matching_only rows (WA CC BY-NC, NL "matching only",
+NCNHP permission) are name notes only and must not be republished. The KY fishing-lake shore
+file is report-only overlay data (fishing_shore_overlays); it is not a key outline.
 
 The builders already call kpc_tracts.save. That calls note_saved after the tract file is written.
 
@@ -27,6 +28,9 @@ Same flag, still report-only:
   rank_outlines                         Tool Box name matcher plus these abbreviations. The pile
                                         solver that would call it is in KPC-Data; see
                                         docs/kpc-pile-solver-research-report.patch. Auto stays false.
+  fishing_shore_overlays                KY fishing-lake shore outlines (data/research-sources/
+                                        ky-fishing-shore.json). Empty unless this flag is report.
+                                        They are not the KY key's outlines.
 """
 import csv, json, os, pathlib, re, unicodedata
 
@@ -859,6 +863,38 @@ def scan_link_postcheck(root=None):
                      'web': rec.get('web') or '', 'agency_page': rec.get('agency_page') or '',
                      'map_check': rec.get('map_check') or {}})
     return link_postcheck(rows)
+
+
+def _shore_doc():
+    return _load_json('ky-fishing-shore.json', {})
+
+
+def fishing_shore_overlays(report=None):
+    """Shore and access-land outlines for the KY fishing lakes.
+
+    Off unless KPC_RESEARCH_SOURCES=report (the same switch as the rest of this file).
+    Report mode returns the stored overlays and does not edit a key, a pin, or a water outline.
+    The source line on each outline is a county tax parcel, not a survey.
+    """
+    if report is None:
+        report = mode() == 'report'
+    if not report:
+        return []
+    return [dict(f) for f in (_shore_doc().get('overlays') or []) if isinstance(f, dict)]
+
+
+def fishing_shore_report(report=None):
+    """The acre and piece report. None unless report mode. The key files are not read or written."""
+    if report is None:
+        report = mode() == 'report'
+    if not report:
+        return None
+    doc = _shore_doc()
+    if not doc:
+        return None
+    out = dict(doc)
+    out.pop('overlays', None)
+    return out
 
 
 def builder_of(jurisdiction):
