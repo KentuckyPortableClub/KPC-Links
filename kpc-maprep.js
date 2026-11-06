@@ -72,13 +72,15 @@
   const msg = h => {
     clearInterval(tick); { const jb = $('mrJump'); if (jb) jb.classList.remove('on'); }
     const busy = /…$/.test(h.replace(/<[^>]+>/g, '').trim());
-    $('mrOut').innerHTML = `<div class="mr-msg${busy ? ' busy' : ''}">${busy ? '<span class="mr-spin" aria-hidden="true">🧭</span>' : ''}<div>${h}${busy ? '<small class="mr-sec-n">Still searching… 0 s</small>' : ''}</div></div>`;
+    const host = $('mrOut'); if (!host) return;
+    host.innerHTML = `<div class="mr-msg${busy ? ' busy' : ''}">${busy ? '<span class="mr-spin" aria-hidden="true">🧭</span>' : ''}<div>${h}${busy ? '<small class="mr-sec-n">Still searching… 0 s</small>' : ''}</div></div>`;
     if (busy) { const t0 = Date.now(); tick = setInterval(() => { const e = document.querySelector('.mr-sec-n'); if (!e) { clearInterval(tick); return; } e.textContent = 'Still searching… ' + Math.round((Date.now() - t0) / 1000) + ' s'; }, 1000); }
   };
 
   /* COUNTRY: US or Canada (Brandon Oct 24). The pick fills the state/province list, is remembered, and the GPS / address / name searches switch it by themselves. */
   function fillStates() {
-    const sel = $('mrState'), keep = sel.value;
+    const sel = $('mrState'); if (!sel) return;
+    const keep = sel.value;
     sel.innerHTML = `<option value="">Pick a ${isCA() ? 'province' : 'state'} (or let it find out)</option>` + codes().map(c => `<option value="${c}">${c}${isCA() ? ' · ' + PROVN[c] : ''}</option>`).join('');
     if (codes().includes(keep)) sel.value = keep;
     const lab = sel.closest('label'); if (lab && lab.firstChild && lab.firstChild.nodeType === 3) lab.firstChild.textContent = isCA() ? 'PROVINCE' : 'STATE';
@@ -87,19 +89,20 @@
   }
   function setCountry(c) {
     CTRY = c === 'CA' ? 'CA' : 'US'; try { localStorage.setItem('kpcMrCountry', CTRY); } catch (e) {}
-    fillStates(); TYPE.STAT = isCA() ? 'Provincial / territorial' : 'State'; TYPE.LOC = isCA() ? 'Local (municipal)' : 'Local (county / city)'; $('mrAg').innerHTML = ''; AGL = []; agPick = new Set();
-    const v = $('mrState').value; if (v) agencies(v);
+    fillStates(); TYPE.STAT = isCA() ? 'Provincial / territorial' : 'State'; TYPE.LOC = isCA() ? 'Local (municipal)' : 'Local (county / city)'; const agBox = $('mrAg'); if (agBox) agBox.innerHTML = ''; AGL = []; agPick = new Set();
+    const stSel = $('mrState'); if (stSel && stSel.value) agencies(stSel.value);
   }
   const sorry = where => msg(`<b>Sorry, this tool only serves the United States and Canada${where ? ' (that spot looks like it is in ' + esc(where) + ')' : ''}.</b> Those are the two countries whose national land databases it can read (USGS PAD-US and Canada's CPCAD).`);
   (function countryPick() {
-    const stLab = $('mrState').closest('label'); if (!stLab || $('mrCountry')) return;
+    const stEl = $('mrState'); if (!stEl) return;
+    const stLab = stEl.closest('label'); if (!stLab || $('mrCountry')) return;
     const lab = document.createElement('label'); lab.innerHTML = 'COUNTRY<select id="mrCountry"><option value="US">United States</option><option value="CA">Canada</option></select>';
     stLab.parentNode.insertBefore(lab, stLab);
     $('mrCountry').value = CTRY;
     $('mrCountry').addEventListener('change', e => setCountry(e.target.value));
   })();
   fillStates(); TYPE.STAT = isCA() ? 'Provincial / territorial' : 'State'; TYPE.LOC = isCA() ? 'Local (municipal)' : 'Local (county / city)';
-  try { const v = localStorage.getItem('kpcMrState'); if (v && codes().includes(v)) $('mrState').value = v; } catch (e) {}
+  try { const v = localStorage.getItem('kpcMrState'); const stSaved = $('mrState'); if (v && stSaved && codes().includes(v)) stSaved.value = v; } catch (e) {}
   const NPSQ = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query';
   const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
   const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
@@ -109,7 +112,8 @@
   let AGL = [], agPick = new Set();
   const agKey = a => a.t + '|' + a.code + '|' + a.loc;
   async function agencies(st) {
-    const box = $('mrAg'); AGL = []; agPick = new Set();
+    const box = $('mrAg'); if (!box) return;
+    AGL = []; agPick = new Set();
     if (!st) { box.innerHTML = ''; return; }
     try { localStorage.setItem('kpcMrState', st); } catch (e) {}
     box.innerHTML = '<p class="mr-help">Loading the ' + (isCA() ? 'federal and provincial/territorial' : 'federal and state') + ' agencies that own land in ' + esc(st) + '…</p>';
@@ -130,7 +134,7 @@
 <h4>FEDERAL</h4><div class="mr-ags">${grp('FED').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div><h4>STATE</h4><div class="mr-ags">${grp('STAT').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div></details>`;
     $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
   }
-  $('mrState').addEventListener('change', e => agencies(e.target.value));
+  const stPick = $('mrState'); if (stPick) stPick.addEventListener('change', e => agencies(e.target.value));
 
   /* ---------- extra official sources + OpenStreetMap backup, made to look like PAD-US rows ---------- */
   const acresOf = g => { let a = 0; B.ringsOf(g).forEach(poly => poly.forEach((r, n) => { let s2 = 0; for (let i = 0, k = r.length - 1; i < r.length; k = i++) s2 += (r[k][0] + r[i][0]) * (r[k][1] - r[i][1]); const lat = r[0][1] * Math.PI / 180; const m2 = Math.abs(s2 / 2) * 111320 * 111320 * Math.cos(lat); a += n ? -m2 : m2; })); return a / 4046.86; };
@@ -1079,16 +1083,21 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     const oh = await osmHtml(osmP, st); if (oh && $('mrList').querySelector('[data-i]')) { $('mrList').insertAdjacentHTML('beforeend', oh); osmWire(); }
     else if (ALL.length === 1 && !oh) { $('mrList').innerHTML = ''; open(ALL[0]); }
   }
-  $('mrForm').addEventListener('submit', e => { e.preventDefault(); search(); });
+  const oldForm = $('mrForm'); if (oldForm) oldForm.addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
   const HASH = '04801b98a434eac10dc37a3bb1a503b473e7a97687e982dff47e6b20266f565e';
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
     if (window.KPCMapCheck) KPCMapCheck.mount();
-    if ($('mrState').value) agencies($('mrState').value);
+    const stNow = $('mrState'); if (stNow && stNow.value) agencies(stNow.value);
     const P = new URLSearchParams(location.search);
-    if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
+    if (P.get('name') && window.KPCMapCheck) {
+      const q = P.get('name');
+      if ($('mrCheckQ')) $('mrCheckQ').value = [q, P.get('town'), P.get('state')].filter(Boolean).join(', ');
+      if (P.get('state') && $('mrCheckSt')) $('mrCheckSt').value = P.get('state').toUpperCase();
+      KPCMapCheck.showQuery(q);
+    } else if (P.get('name') && $('mrName')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state') && $('mrState')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }
   let ok = !!$('mrPublic'); /* the public Suggest page uses the same engine with no password */
   if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH || localStorage.getItem('kpcMember') === 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; } catch (e) {} /* one member sign-in opens it too */
