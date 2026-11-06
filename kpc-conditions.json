@@ -350,24 +350,6 @@
    "expires": "2026-12-05"
   },
   {
-   "id": "pa-nps-B489F041-FD1B-40F2-992D-9D36C841B7E5-US-7951",
-   "ref": "US-7951",
-   "kind": "Park alert",
-   "details": "Green River Ferry Temporarily Out of Service — The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
-   "seen": "2026-10-21",
-   "call": "KPC BOT",
-   "expires": "2026-12-05"
-  },
-  {
-   "id": "pa-nps-B489F041-FD1B-40F2-992D-9D36C841B7E5-US-1259",
-   "ref": "US-1259",
-   "kind": "Park alert",
-   "details": "Green River Ferry Temporarily Out of Service — The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
-   "seen": "2026-10-21",
-   "call": "KPC BOT",
-   "expires": "2026-12-05"
-  },
-  {
    "id": "pa-nps-3FDA6968-C4B7-4A28-8169-B0E4B1272765-US-0050",
    "ref": "US-0050",
    "kind": "Burn or forest work",

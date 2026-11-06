@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05 18:01",
+ "updated": "2026-11-05 18:43",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -38,22 +38,6 @@
    "announced": true,
    "refs": [],
    "routine": true
-  },
-  "nps-B489F041-FD1B-40F2-992D-9D36C841B7E5": {
-   "who": "MACA",
-   "title": "Green River Ferry Temporarily Out of Service",
-   "text": "The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
-   "link": "https://www.nps.gov/",
-   "cat": "Park Closure",
-   "first": "2026-10-21",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": [
-    "US-1259",
-    "US-7951"
-   ],
-   "routine": false
   },
   "nps-F322E0B6-54E5-4887-A604-7F59C4F08765": {
    "who": "MACA",
@@ -881,9 +865,9 @@
    "routine": false,
    "cat": "park closure",
    "first": "2026-11-05",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
