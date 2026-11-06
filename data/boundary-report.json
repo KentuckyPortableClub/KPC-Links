@@ -2,10 +2,10 @@
  "United States": {
   "totals": {
    "matched": 11623,
-   "far": 4072,
+   "far": 4125,
    "noshape": 0,
-   "edge": 3961,
-   "out": 111,
+   "edge": 4013,
+   "out": 112,
    "swap": 0
   },
   "states": [
@@ -576,14 +576,14 @@
    {
     "st": "WI",
     "matched": 333,
-    "far": 114,
+    "far": 167,
     "noshape": 0,
-    "out": 2,
+    "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 112
+    "edge": 164
    },
    {
     "st": "WV",
@@ -839,6 +839,12 @@
     "US-5553",
     "Camels Hump State Forest",
     "Camel's Hump State Forest"
+   ],
+   [
+    "WI",
+    "US-4352",
+    "Kettle Moraine State Forest",
+    "Kettle Moraine State Forest"
    ],
    [
     "WY",
@@ -1225,7 +1231,7 @@
  },
  "World": {
   "totals": {
-   "matched": 42949,
+   "matched": 42950,
    "far": 10090,
    "noshape": 0,
    "edge": 9774,
@@ -2219,7 +2225,7 @@
    },
    {
     "st": "ZA",
-    "matched": 70,
+    "matched": 71,
     "far": 28,
     "noshape": 0,
     "out": 4,
@@ -2416,7 +2422,7 @@
     "DO",
     "DO-0027",
     "Los Haitises National Park",
-    "Los Haitises"
+    ""
    ],
    [
     "DO",
@@ -2434,13 +2440,13 @@
     "DO",
     "DO-0117",
     "Autopista Juan Bosch Protected Landscape",
-    "Autopista Juan Bosch"
+    ""
    ],
    [
     "DO",
     "DO-0132",
     "Alto Mao Forest Reserve",
-    "Alto Mao"
+    ""
    ],
    [
     "EE",
@@ -4042,7 +4048,7 @@
     "ZA",
     "ZA-0075",
     "Baviaanskloof Conservation Area",
-    "Baviaanskloof Nature Reserve"
+    ""
    ],
    [
     "ZA",
@@ -4054,7 +4060,7 @@
     "ZA",
     "ZA-0156",
     "Waters Meeting Nature Reserve",
-    "Waters Meeting Nature Reserve"
+    ""
    ],
    [
     "ZA",
