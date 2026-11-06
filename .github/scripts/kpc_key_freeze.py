@@ -50,6 +50,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
+             # Nov 6: after the US builder. A state whose shape read is zero or under half the live key fails
+             # the job instead of publishing pins. It does not decide a join (US rules hash stays a066624520b4).
+             'kpc_shape_guard.py',
              # Nov 6 big patch (Quality grade FIX, Links #44): the source-field table and the tract side-file writer only write
              # data/*/tracts/ side files (KPC_TRACT_STORE) and never decide a join, so they stay out of the rules hash.
              'kpc_source_fields.py', 'kpc_tracts.py', 'kpc_pin_edge.py',

@@ -161,20 +161,101 @@ jobs:
           STATES: ${{ matrix.g.states }}
           DEBUG_REFS: ${{ inputs.debug }}
           MINUTES: '300'
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -o pipefail
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
+          # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
+          # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
+          # (1,585 shapes vs 80,934 live): 18 parks went outline -> pin with bk=noshape. Refill a short state
+          # from the saved outlines (boundary-cache, offline). If that is still short, put the live state file
+          # back and fail after the artifact upload (the short read is not what gets saved).
+          rm -f /tmp/shape-guard-fail /tmp/shape-short.txt
+          rm -rf .livekey
+          if GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .livekey \
+              && git -C .livekey sparse-checkout set --no-cone data/us-key/index.json \
+              && git -C .livekey checkout -q; then
+            python3 .github/scripts/kpc_shape_guard.py --built data/us-key --live-index .livekey/data/us-key/index.json --states "$STATES" > /tmp/shape-short.txt && sc=0 || sc=$?
+            if [ "$sc" = 3 ]; then
+              echo "::error title=Shape guard::the live US key index was not readable"
+              echo "live US key index not readable" >> /tmp/shape-guard-fail
+            elif [ "$sc" = 2 ]; then
+              cp /tmp/shape-short.txt /tmp/shape-short-live.txt
+              mkdir -p cache/us
+              recover=""
+              while read -r st got live; do
+                [ -n "$st" ] || continue
+                echo "::error title=US key $st::shape source returned $got vs $live in the last live key (zero or under half). Refilling from the saved outlines so parks are not dropped to pins."
+                if gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber; then
+                  recover="$recover $st"
+                else
+                  echo "::error title=US key $st::saved outlines US-$st.json.gz were not on the boundary-cache release"
+                fi
+              done < /tmp/shape-short-live.txt
+              if [ -n "$recover" ]; then
+                STATES="$recover" GEO_CACHE_MODE=only python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key-${{ matrix.g.i }}.log \
+                  || echo "::error title=Shape guard::saved-copy refill failed"
+              fi
+              python3 .github/scripts/kpc_shape_guard.py --built data/us-key --live-index .livekey/data/us-key/index.json --states "$STATES" > /tmp/shape-short.txt && sc=0 || sc=$?
+              # The live read was short either way: the job fails after upload so it is not a silent pin drop.
+              # sc 0 = the saved outlines refilled the state (that file is what gets saved).
+              # anything else = still short, so put the live key's state file back (or drop the short file).
+              if [ "$sc" = 0 ]; then
+                while read -r st got live; do
+                  [ -n "$st" ] || continue
+                  echo "::error title=US key $st::live shape source was $got vs $live. The saved outlines were used. This job fails so that drop is not silent."
+                  echo "$st live shape source $got vs $live; refilled from the saved outlines (not published as pins)" >> /tmp/shape-guard-fail
+                done < /tmp/shape-short-live.txt
+              else
+                src=/tmp/shape-short.txt
+                [ -s "$src" ] || src=/tmp/shape-short-live.txt
+                while read -r st got live; do
+                  [ -n "$st" ] || continue
+                  if git -C .livekey sparse-checkout add "data/us-key/US-$st.json" && git -C .livekey checkout -q \
+                      && [ -s ".livekey/data/us-key/US-$st.json" ]; then
+                    cp ".livekey/data/us-key/US-$st.json" "data/us-key/US-$st.json"
+                    rm -f "data/us-key/tracts/US-$st.json"   # the short read's tract file does not match the live key
+                    echo "::error title=US key $st::shape source still $got vs $live after the saved-copy refill. The live key's US-$st.json is what will be saved, not the short read."
+                    echo "$st shape source $got vs live $live; saved the live key file instead of the short read" >> /tmp/shape-guard-fail
+                  else
+                    rm -f "data/us-key/US-$st.json"   # do not upload the short read
+                    echo "::error title=US key $st::shape source $got vs live $live and the live state file was not read. This short read will not be uploaded."
+                    echo "$st shape source $got vs live $live; short read not uploaded" >> /tmp/shape-guard-fail
+                  fi
+                done < "$src"
+              fi
+            elif [ "$sc" != 0 ]; then
+              echo "::error title=Shape guard::stopped (exit $sc)"
+              echo "shape guard stopped (exit $sc)" >> /tmp/shape-guard-fail
+            fi
+          else
+            echo "::error title=Shape guard::KPC-Data live US key index was not read, so a short shape source cannot be judged"
+            echo "live US key index not read" >> /tmp/shape-guard-fail
+          fi
+          rm -rf .livekey
           mkdir -p part
           for st in $STATES; do [ -f data/us-key/US-$st.json ] && cp data/us-key/US-$st.json part/; done
           mkdir -p part/tracts; for st in $STATES; do [ -f data/us-key/tracts/US-$st.json ] && cp data/us-key/tracts/US-$st.json part/tracts/; done   # Nov 6: tract side files
           cp data/us-key/index.json part/index.json; cp data/us-key/layers.json part/layers.json 2>/dev/null || true   # ok: nothing to do is fine
           cp data/us-key/zip-*.json part/ 2>/dev/null || true   # ok: nothing to do is fine
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
+          if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
       - uses: actions/upload-artifact@v4
         with:
           name: us-key-part-${{ matrix.g.i }}
           path: part/
           retention-days: 3
+      - name: Shape source guard (loud fail)
+        # The build step uploads the artifact first (a refilled or live-key state file, never the short read).
+        # A short source that could not be refilled fails the job here so it is not a silent pin drop.
+        run: |
+          if [ -s part/shape-guard-fail ]; then
+            echo "::error title=US key shape source::$(tr '\n' ' ' < part/shape-guard-fail)"
+            cat part/shape-guard-fail
+            exit 1
+          fi
+          echo "shape source guard: every state in this job is at least half the last live key"
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
