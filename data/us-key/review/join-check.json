@@ -1,9 +1,9 @@
 {
  "key": "us",
  "mode": "hold",
- "files_checked": 50,
- "joined_parks": 11617,
- "suspect": 407,
+ "files_checked": 91,
+ "joined_parks": 10149,
+ "suspect": 406,
  "held": 16,
  "files_changed": 40,
  "official_acres_known": 0,
@@ -1348,17 +1348,6 @@
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.03,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-10681",
-   "area": "US-DE",
-   "name": "Masseys Millpond State Fishing Lake",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.02,
    "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
