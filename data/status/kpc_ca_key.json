@@ -33,6 +33,21 @@
 "data/ca-key/review/CA-SI.md": "2026-10-25",
 "data/ca-key/review/CA-SK.md": "2026-11-04",
 "data/ca-key/review/CA-SP.md": "2026-10-25",
-"data/ca-key/review/CA-YT.md": "2026-11-03"
+"data/ca-key/review/CA-YT.md": "2026-11-03",
+"data/ca-key/tracts/CA-AB.json": "2026-11-06",
+"data/ca-key/tracts/CA-BC.json": "2026-11-06",
+"data/ca-key/tracts/CA-MB.json": "2026-11-06",
+"data/ca-key/tracts/CA-NB.json": "2026-11-06",
+"data/ca-key/tracts/CA-NL.json": "2026-11-06",
+"data/ca-key/tracts/CA-NS.json": "2026-11-06",
+"data/ca-key/tracts/CA-NT.json": "2026-11-06",
+"data/ca-key/tracts/CA-NU.json": "2026-11-06",
+"data/ca-key/tracts/CA-ON.json": "2026-11-06",
+"data/ca-key/tracts/CA-PE.json": "2026-11-06",
+"data/ca-key/tracts/CA-QC.json": "2026-11-06",
+"data/ca-key/tracts/CA-SI.json": "2026-11-06",
+"data/ca-key/tracts/CA-SK.json": "2026-11-06",
+"data/ca-key/tracts/CA-SP.json": "2026-11-06",
+"data/ca-key/tracts/CA-YT.json": "2026-11-06"
 }
 }
