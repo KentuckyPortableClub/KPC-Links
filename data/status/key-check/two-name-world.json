@@ -3,6 +3,7 @@
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
  "two_name_parks": 2594,
  "half_outlined": 153,
+ "separate_units": [],
  "parks": [
   {
    "area": "FR",

@@ -3,6 +3,43 @@
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
  "two_name_parks": 591,
  "half_outlined": 17,
+ "separate_units": [
+  {
+   "ref": "US-3692",
+   "pair": "Heron Bay / Portersville",
+   "why": "Two separate tracts a few miles apart. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false
+  },
+  {
+   "ref": "US-4373",
+   "pair": "Outlet Area / Waveland",
+   "why": "Outlet Area and Waveland Park are separate recreation areas. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false
+  },
+  {
+   "ref": "US-3475",
+   "pair": "Montara / McNee Ranch",
+   "why": "McNee Ranch is a separate unit from Montara State Beach. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false
+  },
+  {
+   "ref": "US-4224",
+   "pair": "Salamonie / Frances Slocum",
+   "why": "Frances Slocum State Forest is a separate property. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false
+  },
+  {
+   "ref": "US-3891",
+   "pair": "Campbells Crossroads / Angelus",
+   "why": "Angelus is a separate tract from Campbells Crossroads. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false
+  }
+ ],
  "parks": [
   {
    "area": "US-AL",
@@ -15,7 +52,8 @@
    "missing": "Portersville Bay State Fish and Wildlife Area",
    "missing_words": [
     "portersville"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-AR",
@@ -29,7 +67,8 @@
    "missing": "Waveland Park) National Recreation Area",
    "missing_words": [
     "waveland"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-CA",
@@ -43,7 +82,8 @@
    "missing_words": [
     "mcnee",
     "ranch"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-DE",
@@ -84,7 +124,8 @@
    "missing_words": [
     "frances",
     "slocum"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-MA",
@@ -206,7 +247,8 @@
    "missing": "Angelus Tracts Wildlife Management Area",
    "missing_words": [
     "angelus"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-UT",

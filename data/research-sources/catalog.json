@@ -1374,5 +1374,31 @@
   "content_type": "application/json;charset=UTF-8",
   "pack": "next",
   "already_in_builder": false
+ },
+ {
+  "id": "ca-pe-geolinc-wildlife-management-area",
+  "builder": "ca",
+  "area": "CA-PE",
+  "title": "WildlifeManagementArea2025 (GeoLinc)",
+  "kind": "wildlife",
+  "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0?f=json",
+  "priority": "rest",
+  "use": "report",
+  "republish": false,
+  "licence": "not stated on layer page",
+  "licence_url": "",
+  "name_field": "NAME_E",
+  "id_field": "ZONE_ID",
+  "acres_field": "O_AREA_HA",
+  "acres_unit": "ha",
+  "owner_field": "OWNER_E",
+  "parent_field": "PARENT_ID",
+  "access_field": "Hunting",
+  "robots_csv": "ok",
+  "fetch_status": null,
+  "content_type": "",
+  "pack": "round3",
+  "already_in_builder": false,
+  "note": "Robots.txt on gis.princeedwardisland.ca answered HTTP 404, which is allowed. Report only. The layer body was not downloaded and polygons are not stored in this repo."
  }
 ]

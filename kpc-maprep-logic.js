@@ -65,11 +65,17 @@
 
   function compile(rows) {
     const map = new Map();
-    CORE.forEach(([t, e]) => map.set(t, e));
+    const add = (token, expansion) => {
+      const list = map.get(token) || [];
+      if (list.indexOf(expansion) < 0) list.push(expansion);
+      map.set(token, list);
+    };
+    /* CORE is the existing Tool Box list. A later row is added beside it and never replaces it. */
+    CORE.forEach(([t, e]) => add(t, e));
     (rows || []).forEach(r => {
       const token = String(r.token || '').toLowerCase().replace(/\./g, '');
       const expansion = String(r.expansion || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
-      if (token.length >= 2 && expansion) map.set(token, expansion);
+      if (token.length >= 2 && expansion) add(token, expansion);
     });
     compiled = [...map.entries()].sort((a, b) => b[0].length - a[0].length);
   }
@@ -77,20 +83,38 @@
 
   function loadRows(rows) { compile(rows); return compiled.length; }
 
-  function expandName(s) {
+  function expandVariants(s) {
     let t = String(s || '').toLowerCase().replace(/&/g, ' and ');
     t = t.replace(/\b([a-z](?:\.[a-z]){1,6})\.?\b/g, m => m.replace(/\./g, ''));
-    compiled.forEach(([tok, exp]) => {
+    let outs = [t];
+    compiled.forEach(([tok, exps]) => {
+      const list = exps && exps.length ? exps : [];
       const re = new RegExp('(?<![a-z0-9])' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![a-z0-9])', 'g');
-      t = t.replace(re, ' ' + exp + ' ');
+      const next = [];
+      outs.forEach(cur => {
+        re.lastIndex = 0;
+        if (!re.test(cur)) { next.push(cur); return; }
+        list.forEach(exp => {
+          re.lastIndex = 0;
+          next.push(cur.replace(re, ' ' + exp + ' '));
+        });
+      });
+      outs = next.slice(0, 8);
     });
-    return t.replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    return outs.map(x => x.replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim());
+  }
+  /* The first expansion is the one the Tool Box already had. Later meanings are extra choices. */
+  function expandName(s) {
+    const v = expandVariants(s);
+    return v.length ? v[0] : '';
   }
 
-  function canon(s) {
-    const full = expandName(s);
+  function canonFrom(full) {
     const core = full.replace(/\b(wildlife|management|area|state|national|park|parks|nature|preserve|natural|forest|refuge|the|of|and|site|historic|historical|recreational|recreation|resort)\b/g, ' ').replace(/\s+/g, ' ').trim();
     return { full: full, core: core || full };
+  }
+  function canon(s) {
+    return canonFrom(expandName(s));
   }
   function tokens(s) { return String(s || '').split(' ').filter(w => w.length > 2); }
   function dice(a, b) {
@@ -117,8 +141,7 @@
     const S = sh.join(' ');
     return lo.slice(0, sh.length).join(' ') === S || lo.slice(-sh.length).join(' ') === S;
   }
-  function nameScore(query, candidate) {
-    const q = canon(query), c = canon(candidate);
+  function scoreCanon(q, c, query, candidate) {
     if (!q.core || !c.core) return 0;
     if (q.core === c.core || q.full === c.full) return 96;
     const qt = tokens(q.core), ct = tokens(c.core);
@@ -131,6 +154,19 @@
     if (d >= 0.72 && shared.length) return 58;
     if (shared.some(w => w.length >= 6) && d >= 0.45) return 52;
     return 0;
+  }
+  function nameScore(query, candidate) {
+    const qs = expandVariants(query).map(canonFrom);
+    const cs = expandVariants(candidate).map(canonFrom);
+    let best = 0;
+    for (let i = 0; i < qs.length; i++) {
+      for (let j = 0; j < cs.length; j++) {
+        const s = scoreCanon(qs[i], cs[j], query, candidate);
+        if (s > best) best = s;
+        if (best === 96) return 96;
+      }
+    }
+    return best;
   }
   function searchNames(query, list) {
     return (list || []).map(item => {
@@ -319,6 +355,8 @@
       const dir = path.join(__dirname, 'data', 'maprep');
       const ab = JSON.parse(fs.readFileSync(path.join(dir, 'abbreviations.json'), 'utf8'));
       loadRows(ab.rows);
+      ok(nameScore('Foo SPA', 'Foo Special Protection Area') === 96, 'Foo SPA vs Foo Special Protection Area scores 96');
+      ok(nameScore('Foo SPA', 'Foo State Preservation Area') === 96, 'Louisiana SPA is kept beside Special Protection Area');
       const cat = JSON.parse(fs.readFileSync(path.join(dir, 'catalog.json'), 'utf8'));
       ok(ab.rows.length >= 60, 'abbreviation table is thin');
       cat.sources.forEach(s => {

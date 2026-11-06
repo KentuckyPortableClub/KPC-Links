@@ -20,7 +20,10 @@
 +
 +def research_rank(park_name, recs):
 +    """When KPC_RESEARCH_SOURCES=report, remember a ranked list of the outlines already read.
-+    The verdict below is unchanged. Pile-solver auto is not turned on."""
++    The verdict below is unchanged. Pile-solver auto is not turned on.
++    Rank uses the sourced rows in KPC-Links data/research-sources/abbreviations.csv, including the
++    round-3 additions (KY WMA / NF, LA SHS, SC HP, BC and NS and PEI class words). The word game
++    stays in the name core, so a state game area stays distinct from a state wildlife area."""
 +    if (os.environ.get('KPC_RESEARCH_SOURCES') or 'off').strip().lower() != 'report':
 +        return
 +    try:
@@ -50,7 +53,7 @@
 +    if RESEARCH_RANKS and (os.environ.get('KPC_RESEARCH_SOURCES') or 'off').strip().lower() == 'report':
 +        side = root / 'data' / 'pile-solver' / 'research-rank.json'
 +        side.parent.mkdir(parents=True, exist_ok=True)
-+        side.write_text(json.dumps({'auto': False, 'about': 'Report only. Abbreviations + Tool Box name matcher. auto stays false.',
++        side.write_text(json.dumps({'auto': False, 'about': 'Report only. Sourced abbreviations in data/research-sources/abbreviations.csv (round 3 included) + Tool Box name matcher. The word game stays distinguishing. auto stays false.',
 +                                    'ranks': RESEARCH_RANKS}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
 +        written.append(str(side))
      nov, novp = override_report(root, ov, inpile, written)

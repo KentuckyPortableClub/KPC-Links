@@ -1,17 +1,14 @@
 Agency directory gaps for the outside researcher
 Built 2026-11-06. Each line is a URL the Tool Box does not have, or a URL a plain read could not confirm.
 missing = no URL stored. unverified = a URL is stored, but robots.txt or the site did not let a plain read confirm it.
+Round-3 confirmed URLs are filled in. Blocked, broken and unverified URLs from that return are not stored.
 Do not use services.arcgis.com/33TOOklri9xpic7U. A robots 403 on services*.arcgis.com is a disallow. ArcGIS Hub needs a 60 second crawl delay.
 
-Places with at least one missing or unverified URL (64 of 64): AL, AK, AZ, AR, CA, CO, CT, DE, DC, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, AB, BC, MB, NB, NL, NT, NS, NU, ON, PE, QC, SK, YT
+Places with at least one missing or unverified URL (60 of 64): AL, AK, AZ, AR, CO, DE, DC, FL, GA, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, UT, VT, VA, WA, WV, WI, WY, AB, BC, MB, NB, NL, NT, NS, NU, ON, PE, QC, SK, YT
 
 AL | Alabama State Parks | gis | missing
 AL | Alabama Wildlife & Freshwater Fisheries (DCNR) | gis | missing
-AK | Alaska State Parks (DNR) | home | unverified | https://dnr.alaska.gov/
-AK | Alaska State Parks (DNR) | finder | missing
-AK | Alaska State Parks (DNR) | gis | missing
 AK | Alaska Department of Fish & Game | finder | missing
-AK | Alaska Department of Fish & Game | gis | missing
 AZ | Arizona State Parks & Trails | gis | missing
 AZ | Arizona Game & Fish Department | home | unverified | https://azgfd.com/
 AZ | Arizona Game & Fish Department | finder | missing
@@ -19,46 +16,26 @@ AZ | Arizona Game & Fish Department | gis | missing
 AZ | Arizona State Land Department | home | unverified | https://land.az.gov/
 AZ | Arizona State Land Department | finder | missing
 AZ | Arizona State Land Department | gis | missing
-AR | Arkansas State Parks | finder | missing
-AR | Arkansas State Parks | gis | missing
 AR | Arkansas Game & Fish Commission | home | unverified | https://agfc.com/
-AR | Arkansas Game & Fish Commission | finder | missing
-AR | Arkansas Game & Fish Commission | gis | missing
-AR | Arkansas Natural Heritage Commission | home | unverified | https://naturalheritage.com/
 AR | Arkansas Natural Heritage Commission | finder | missing
-AR | Arkansas Natural Heritage Commission | gis | missing
-CA | California State Parks | gis | missing
-CA | California Department of Fish & Wildlife | gis | missing
 CO | Colorado Parks & Wildlife | home | unverified | https://cpw.state.co.us/
-CO | Colorado Parks & Wildlife | finder | missing
-CO | Colorado Parks & Wildlife | gis | missing
 CO | Colorado State Land Board | home | unverified | https://slb.colorado.gov/
 CO | Colorado State Land Board | finder | missing
 CO | Colorado State Land Board | gis | missing
-CT | Connecticut DEEP (state parks, forests, wildlife areas) | finder | missing
-CT | Connecticut DEEP (state parks, forests, wildlife areas) | gis | missing
 DE | Delaware State Parks | home | unverified | https://destateparks.com/
 DE | Delaware State Parks | finder | missing
 DE | Delaware State Parks | gis | missing
-DE | Delaware Fish & Wildlife (DNREC) | finder | missing
 DC | National Park Service (most DC parkland) | gis | unverified | https://opendata.dc.gov/
 DC | DC Department of Parks and Recreation (district land: not eligible) | home | unverified | https://dpr.dc.gov/
-DC | DC Department of Parks and Recreation (district land: not eligible) | finder | missing
 DC | DC Department of Parks and Recreation (district land: not eligible) | gis | unverified | https://opendata.dc.gov/
 FL | Florida State Parks | home | unverified | https://floridastateparks.org/
 FL | Florida State Parks | finder | missing
 FL | Florida State Parks | gis | unverified | https://geodata.dep.state.fl.us/
 FL | Florida Fish & Wildlife Conservation Commission | home | unverified | https://myfwc.com/
-FL | Florida Fish & Wildlife Conservation Commission | finder | missing
-FL | Florida Fish & Wildlife Conservation Commission | gis | missing
 FL | Florida Forest Service | home | unverified | https://fdacs.gov/
 FL | Florida Forest Service | finder | missing
 FL | Florida Forest Service | gis | missing
 GA | Georgia State Parks & Historic Sites | gis | missing
-HI | Hawaii Division of State Parks (DLNR) | finder | missing
-HI | Hawaii Division of State Parks (DLNR) | gis | missing
-HI | Hawaii Division of Forestry & Wildlife (DLNR) | finder | missing
-HI | Hawaii Division of Forestry & Wildlife (DLNR) | gis | missing
 ID | Idaho Fish & Game | home | unverified | https://idfg.idaho.gov/
 ID | Idaho Fish & Game | finder | missing
 ID | Idaho Fish & Game | gis | missing
@@ -67,18 +44,12 @@ IL | Illinois DNR (state parks, fish & wildlife areas) | gis | missing
 IN | Indiana DNR (state parks, fish & wildlife areas) | finder | missing
 IN | Indiana DNR (state parks, fish & wildlife areas) | gis | unverified | https://www.indianamap.org/
 IA | Iowa DNR (state parks, wildlife areas) | home | unverified | https://iowadnr.gov/
-IA | Iowa DNR (state parks, wildlife areas) | finder | missing
-IA | Iowa DNR (state parks, wildlife areas) | gis | unverified | https://geodata.iowa.gov/
 KS | Kansas Department of Wildlife & Parks | home | unverified | https://ksoutdoors.gov/
 KS | Kansas Department of Wildlife & Parks | finder | unverified | https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas
 KS | Kansas Department of Wildlife & Parks | gis | unverified | https://hub.kansasgis.org/pages/data-sharing
 KY | Kentucky State Parks | home | unverified | https://parks.ky.gov/
-KY | Kentucky State Parks | finder | unverified | https://parks.ky.gov/parks/find-a-park
 KY | Kentucky Department of Fish & Wildlife Resources | home | unverified | https://fw.ky.gov/
 KY | Kentucky Energy & Environment Cabinet (nature preserves, forestry) | home | unverified | https://eec.ky.gov/
-KY | Kentucky Energy & Environment Cabinet (nature preserves, forestry) | finder | unverified | https://eec.ky.gov/Natural-Resources/Forestry/Pages/default.aspx
-KY | Office of Kentucky Nature Preserves | home | unverified | https://eec.ky.gov/Nature-Preserves/Pages/default.aspx
-KY | Office of Kentucky Nature Preserves | finder | unverified | https://eec.ky.gov/Nature-Preserves/Pages/default.aspx
 LA | Louisiana State Parks | home | unverified | https://lastateparks.com/
 LA | Louisiana State Parks | finder | missing
 LA | Louisiana State Parks | gis | missing
@@ -92,7 +63,6 @@ ME | Maine Inland Fisheries & Wildlife | home | unverified | https://maine.gov/
 ME | Maine Inland Fisheries & Wildlife | finder | missing
 ME | Maine Inland Fisheries & Wildlife | gis | unverified | https://maine.hub.arcgis.com/datasets/1adcd31a16134741b014f39a9d04d8f6_0/about
 MD | Maryland DNR (state parks, wildlife management areas) | home | unverified | https://dnr.maryland.gov/
-MD | Maryland DNR (state parks, wildlife management areas) | finder | missing
 MD | Maryland DNR (state parks, wildlife management areas) | gis | unverified | https://imap.maryland.gov/
 MA | Massachusetts DCR (state parks, forests) | finder | missing
 MA | MassWildlife | finder | missing
@@ -100,15 +70,12 @@ MI | Michigan DNR (state parks, game areas, forests) | home | unverified | https
 MI | Michigan DNR (state parks, game areas, forests) | finder | missing
 MI | Michigan DNR (state parks, game areas, forests) | gis | unverified | https://gis-midnr.opendata.arcgis.com
 MN | Minnesota DNR (state parks, WMAs, forests, SNAs) | home | unverified | https://dnr.state.mn.us/
-MN | Minnesota DNR (state parks, WMAs, forests, SNAs) | finder | missing
-MN | Minnesota DNR (state parks, WMAs, forests, SNAs) | gis | missing
 MS | Mississippi Wildlife, Fisheries & Parks | gis | missing
 MO | Missouri State Parks | gis | missing
 MO | Missouri Department of Conservation | home | unverified | https://mdc.mo.gov/
 MO | Missouri Department of Conservation | finder | missing
 MO | Missouri Department of Conservation | gis | missing
 MT | Montana Fish, Wildlife & Parks | gis | unverified | https://fwp.mt.gov/conservation/gis
-MT | Montana DNRC (state trust land) | finder | missing
 NE | Nebraska Game & Parks Commission | home | unverified | https://outdoornebraska.gov/
 NE | Nebraska Game & Parks Commission | finder | missing
 NE | Nebraska Game & Parks Commission | gis | unverified | https://data-outdoornebraska.opendata.arcgis.com/
@@ -116,7 +83,6 @@ NV | Nevada State Parks | gis | missing
 NV | Nevada Department of Wildlife | home | unverified | https://ndow.org/
 NV | Nevada Department of Wildlife | finder | missing
 NV | Nevada Department of Wildlife | gis | missing
-NH | New Hampshire State Parks | gis | missing
 NH | New Hampshire Fish & Game | home | unverified | https://wildlife.nh.gov/
 NH | New Hampshire Fish & Game | finder | missing
 NH | New Hampshire Fish & Game | gis | missing
@@ -129,17 +95,13 @@ NM | New Mexico State Land Office | finder | missing
 NM | New Mexico State Land Office | gis | missing
 NY | New York State Parks | home | unverified | https://parks.ny.gov/
 NY | New York State Parks | finder | unverified | https://parks.ny.gov/parks/
-NY | New York State Parks | gis | unverified | https://dec.ny.gov/about/website-usage-and-policies
 NY | New York State DEC (WMAs, state forests) | home | unverified | https://dec.ny.gov/
 NY | New York State DEC (WMAs, state forests) | finder | missing
 NY | New York State DEC (WMAs, state forests) | gis | missing
 NC | North Carolina State Parks | gis | missing
 NC | North Carolina Wildlife Resources Commission | gis | unverified | https://www.nconemap.gov/
 NC | North Carolina Forest Service | gis | missing
-ND | North Dakota Parks & Recreation | home | unverified | https://parks.nd.gov/
 ND | North Dakota Parks & Recreation | finder | missing
-ND | North Dakota Parks & Recreation | gis | missing
-ND | North Dakota Game & Fish | finder | missing
 ND | North Dakota Trust Lands | finder | missing
 ND | North Dakota Trust Lands | gis | missing
 OH | Ohio DNR (state parks, wildlife areas, forests, preserves) | home | unverified | https://ohiodnr.gov/
@@ -150,23 +112,17 @@ OK | Oklahoma Department of Wildlife Conservation | gis | unverified | https://d
 OR | Oregon State Parks | home | unverified | https://stateparks.oregon.gov/
 OR | Oregon State Parks | finder | unverified | https://stateparks.oregon.gov/
 OR | Oregon State Parks | gis | missing
-OR | Oregon Department of Fish & Wildlife | finder | missing
 OR | Oregon Department of Fish & Wildlife | gis | missing
 OR | Oregon Department of Forestry | finder | missing
-OR | Oregon Department of Forestry | gis | missing
-PA | Pennsylvania DCNR (state parks, forests) | gis | missing
 PA | Pennsylvania Fish & Boat Commission | finder | missing
 PA | Pennsylvania Fish & Boat Commission | gis | missing
 RI | Rhode Island DEM (state parks, management areas) | home | unverified | https://dem.ri.gov/
 RI | Rhode Island DEM (state parks, management areas) | finder | missing
-RI | Rhode Island DEM (state parks, management areas) | gis | missing
 RI | Rhode Island State Parks | home | unverified | https://riparks.ri.gov/
 RI | Rhode Island State Parks | finder | missing
 RI | Rhode Island State Parks | gis | missing
 SC | South Carolina State Parks | gis | unverified | https://data-scdnr.opendata.arcgis.com/
-SC | South Carolina DNR | finder | missing
 SC | South Carolina DNR | gis | unverified | https://public-lands-scdnr.hub.arcgis.com/
-SD | South Dakota Game, Fish & Parks | finder | missing
 SD | South Dakota School & Public Lands | finder | missing
 SD | South Dakota School & Public Lands | gis | missing
 TN | Tennessee State Parks | home | unverified | https://tnstateparks.com/
@@ -178,7 +134,6 @@ TN | Tennessee Wildlife Resources Agency | gis | missing
 TN | Tennessee Division of Forestry / Natural Areas | home | unverified | https://tn.gov/
 TN | Tennessee Division of Forestry / Natural Areas | finder | missing
 TN | Tennessee Division of Forestry / Natural Areas | gis | missing
-TX | Texas General Land Office | finder | missing
 UT | Utah State Parks | home | unverified | https://stateparks.utah.gov/
 UT | Utah State Parks | finder | missing
 UT | Utah State Parks | gis | missing
@@ -188,7 +143,6 @@ UT | Utah Trust Lands Administration | gis | missing
 VT | Vermont State Parks | gis | missing
 VT | Vermont Fish & Wildlife | gis | missing
 VA | Virginia State Parks (DCR) | gis | missing
-VA | Virginia Department of Wildlife Resources | finder | missing
 VA | Virginia Department of Wildlife Resources | gis | missing
 VA | Virginia Department of Forestry | home | unverified | https://dof.virginia.gov/
 VA | Virginia Department of Forestry | finder | missing
@@ -196,15 +150,11 @@ VA | Virginia Department of Forestry | gis | missing
 WA | Washington State Parks | gis | missing
 WA | Washington Department of Fish & Wildlife | gis | missing
 WV | West Virginia State Parks | home | unverified | https://wvstateparks.com/
-WV | West Virginia State Parks | finder | missing
 WV | West Virginia State Parks | gis | missing
 WV | West Virginia DNR Wildlife Resources | home | unverified | https://wvdnr.gov/
-WV | West Virginia DNR Wildlife Resources | finder | missing
 WI | Wisconsin DNR (state parks, wildlife areas, forests) | finder | missing
 WI | Wisconsin DNR (state parks, wildlife areas, forests) | gis | missing
 WY | Wyoming State Parks, Historic Sites & Trails | gis | missing
-WY | Wyoming Game & Fish Department | gis | missing
-WY | Wyoming Office of State Lands | finder | missing
 AB | Alberta Parks | home | unverified | https://albertaparks.ca/
 AB | Alberta Parks | finder | unverified | https://www.albertaparks.ca/albertaparks-ca/visit/our-parks/
 AB | Alberta Environment and Protected Areas | home | unverified | https://alberta.ca/
@@ -212,40 +162,22 @@ AB | Alberta Environment and Protected Areas | finder | missing
 AB | Alberta Environment and Protected Areas | gis | missing
 BC | BC Parks | gis | unverified | https://catalogue.data.gov.bc.ca/
 BC | BC Ministry of Water, Land and Resource Stewardship | home | unverified | https://gov.bc.ca/
-BC | BC Ministry of Water, Land and Resource Stewardship | finder | missing
 BC | BC Ministry of Water, Land and Resource Stewardship | gis | unverified | https://catalogue.data.gov.bc.ca/dataset/tantalis-wildlife-management-areas/resource/05f663c3-896a-44a8-a911-84bcece987ff
 MB | Manitoba Parks | gis | unverified | https://geoportal.gov.mb.ca/
 MB | Manitoba Natural Resources (wildlife management areas) | gis | unverified | https://geoportal.gov.mb.ca/
 NB | New Brunswick Parks | home | unverified | https://parcsnbparks.ca/
-NB | New Brunswick Parks | finder | missing
-NB | New Brunswick Parks | gis | unverified | https://geonb.snb.ca/
 NB | New Brunswick Natural Resources (protected natural areas) | home | unverified | https://gnb.ca/
-NB | New Brunswick Natural Resources (protected natural areas) | finder | missing
-NB | New Brunswick Natural Resources (protected natural areas) | gis | missing
 NL | Newfoundland and Labrador Parks | home | unverified | https://gov.nl.ca/
-NL | Newfoundland and Labrador Parks | finder | missing
-NL | Newfoundland and Labrador Parks | gis | missing
 NL | NL Fisheries, Forestry and Agriculture (wildlife reserves) | home | unverified | https://gov.nl.ca/
-NL | NL Fisheries, Forestry and Agriculture (wildlife reserves) | finder | missing
-NL | NL Fisheries, Forestry and Agriculture (wildlife reserves) | gis | missing
-NT | NWT Parks | gis | unverified | https://www.geomatics.gov.nt.ca/
 NT | NWT Environment and Climate Change | home | unverified | https://gov.nt.ca/
 NT | NWT Environment and Climate Change | finder | missing
-NT | NWT Environment and Climate Change | gis | missing
-NS | Nova Scotia Parks | finder | missing
 NS | Nova Scotia Natural Resources (wilderness areas, nature reserves) | home | unverified | https://novascotia.ca/
-NS | Nova Scotia Natural Resources (wilderness areas, nature reserves) | finder | missing
-NS | Nova Scotia Natural Resources (wilderness areas, nature reserves) | gis | missing
 NU | Government of Nunavut Environment | home | unverified | https://gov.nu.ca/
 NU | Government of Nunavut Environment | finder | missing
 NU | Government of Nunavut Environment | gis | missing
 ON | Ontario Parks | gis | unverified | https://geohub.lio.gov.on.ca/
-ON | Ontario Ministry of Natural Resources (conservation reserves, Crown land) | finder | missing
-ON | Ontario Ministry of Natural Resources (conservation reserves, Crown land) | gis | missing
 PE | PEI Provincial Parks | home | unverified | https://tourismpei.com/
-PE | PEI Provincial Parks | finder | missing
 PE | PEI Provincial Parks | gis | unverified | https://data.princeedwardisland.ca/
-PE | PEI Environment, Energy and Climate Action | finder | missing
 QC | Sépaq (parcs nationaux du Québec) | home | unverified | https://sepaq.com/
 QC | Sépaq (parcs nationaux du Québec) | finder | unverified | https://www.sepaq.com/pq/
 QC | Sépaq (parcs nationaux du Québec) | gis | unverified | https://www.donneesquebec.ca/
@@ -254,7 +186,6 @@ QC | Québec Environnement (réserves fauniques, aires protégées) | finder | m
 QC | Québec Environnement (réserves fauniques, aires protégées) | gis | missing
 SK | Saskatchewan Parks | finder | missing
 SK | Saskatchewan Environment (wildlife lands) | home | unverified | https://saskatchewan.ca/
-SK | Saskatchewan Environment (wildlife lands) | finder | missing
 SK | Saskatchewan Environment (wildlife lands) | gis | unverified | https://gisappl.saskatchewan.ca/Html5Ext/Resources/GOS_Standard_Unrestricted_Use_Data_Licence_v2.0.pdf
 YT | Yukon Parks | home | unverified | https://yukon.ca/
 YT | Yukon Parks | finder | missing

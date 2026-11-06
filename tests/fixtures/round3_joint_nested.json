@@ -1,0 +1,157 @@
+{
+ "about": "Round-3 sourced examples for tests only. No answer-key file is written from these. Synthetic squares stand in for outlines that were not downloaded.",
+ "joint": [
+  {
+   "jurisdiction": "US-KY",
+   "park_or_area": "Big Rivers Wildlife Management Area and State Forest (Union/Crittenden Co.)",
+   "owners": "KY Division of Forestry and KY Dept of Fish and Wildlife Resources (jointly acquired 6,732 acres)",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified. Not verified; see PAD-US dictionary notes.",
+   "source_url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Big-Rivers-Wildlife-Management-Area-and-State-Forest.aspx",
+   "notes": "Page says agencies 'jointly acquired'; does not say which agency manages which part. PAD-US 2.1 data dictionary (https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/PADUS2_1_DataDictionary.pdf) read: Own_Type and Mang_Type have a 'Joint' category; Own_Name/Mang_Name text does not address joint arrangements; Mang_Name preferred for federal lands. ",
+   "origin": "sourced_page_seen",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "park_or_area": "Livingston County WMA and State Natural Area",
+   "owners": "KDFWR, KY State Nature Preserves Commission, Livingston County Fiscal Court (joint agreement)",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/livingston-county-wma-and-state-natural-area/",
+   "notes": "Page text: owned and managed through a joint agreement; hosted on TNC site but TNC not stated as owner/manager. Good test for state + county + commission.",
+   "origin": "sourced_page_seen",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "park_or_area": "Lake Cumberland WMA (shoreline surrounding Lake Cumberland)",
+   "owners": "Owned by US Army Corps of Engineers; hunting/fishing regs by KDFWR",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf",
+   "notes": "Federal-owned land with state wildlife management role; the formal manager arrangement was NOT stated in the document. Adjacent separate areas: Beaver Creek, Buck Creek, R.F. Tarter, Meadow Creek WMAs; Lake Cumberland State Resort Park.",
+   "origin": "sourced_page_seen",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "park_or_area": "Mill Creek Wildlife Management Area (Daniel Boone National Forest)",
+   "owners": "USFS (ownership not explicitly stated on page) cooperatively managed with KDFWR",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://www.fs.usda.gov/r08/danielboone/recreation/mill-creek-wildlife-management-area",
+   "notes": "Page: listed as recreation site within Daniel Boone NF; 'cooperatively managed with the Kentucky Department of Fish and Wildlife Resources'. Expect Own=USFS, Mang=USFS or State in PAD-US; not verified.",
+   "origin": "sourced_page_seen",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "park_or_area": "Gwaii Haanas National Park Reserve, National Marine Conservation Area Reserve and Haida Heritage Site",
+   "owners": "Government of Canada (Parks Canada, DFO) and Haida Nation (Council of the Haida Nation) via Archipelago Management Board",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://www.parks.canada.ca/pn-np/bc/gwaiihaanas/info/coop/amb",
+   "notes": "Page: board has equal number of members from Canada and Haida Nation; oversees park reserve, NMCA reserve and Haida Heritage Site. Three designations under one board.",
+   "origin": "sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "park_or_area": "Saguenay-St. Lawrence Marine Park",
+   "owners": "Government of Canada and Government of Quebec (1990 agreement; federal Act and Quebec Act)",
+   "how_shown_in_gis": "PAD-US/agency GIS representation: not verified.",
+   "source_url": "https://laws-lois.justice.gc.ca/eng/acts/S-1.3/page-1.html",
+   "notes": "Federal Act s.2, 5, 6, 8-9, 15, 16: park established under 1990 federal-Quebec agreement; enlargement only over Quebec public lands; management plan prepared jointly. Zones Type I-IV mentioned (see nested file).",
+   "origin": "sourced",
+   "spot_status": "confirmed"
+  }
+ ],
+ "nested": [
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Big Rivers Wildlife Management Area and State Forest",
+   "child_or_tract_name": "Wildlife Management Area designation / State Forest designation",
+   "relationship": "one parcel with two overlapping designations",
+   "source_url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Big-Rivers-Wildlife-Management-Area-and-State-Forest.aspx",
+   "notes": "One name, two designations; an exact-name join to either 'Big Rivers WMA' or 'Big Rivers State Forest' should match.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Livingston County WMA and State Natural Area",
+   "child_or_tract_name": "State Natural Area",
+   "relationship": "natural area designation inside/overlapping WMA",
+   "source_url": "https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/livingston-county-wma-and-state-natural-area/",
+   "notes": "Whether SNA is a sub-polygon or whole-site is NOT verified.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Lake Cumberland WMA",
+   "child_or_tract_name": "Fishing Creek Area; Poynter, Clifty, Coldwater and Caney Fork creek access areas",
+   "relationship": "named sub-areas with detail maps (not formal tracts)",
+   "source_url": "https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf",
+   "notes": "Map 1, 2, 3 are map sheets, not units. Neighbouring WMAs (Beaver Creek, Buck Creek, R.F. Tarter, Meadow Creek) shown as separate areas.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-KY",
+   "parent_name": "Daniel Boone National Forest",
+   "child_or_tract_name": "Mill Creek Wildlife Management Area; Cane Creek WMA; Redbird WMA",
+   "relationship": "WMAs inside a National Forest (park-inside-park)",
+   "source_url": "https://www.fs.usda.gov/r08/danielboone/recreation/mill-creek-wildlife-management-area",
+   "notes": "Mill Creek page read (listed as recreation site within DBNF); Cane Creek and Redbird URLs surfaced in search only.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "parent_name": "SCDNR Wildlife Management Area program",
+   "child_or_tract_name": "Heritage Preserves (many)",
+   "relationship": "Heritage Preserve nested in or administered as WMA",
+   "source_url": "https://www.dnr.sc.gov/mlands/hpprogram.html",
+   "notes": "Page: 'many preserves are included in the Wildlife Management Area Program'; no preserve names on page.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "parent_name": "Gwaii Haanas",
+   "child_or_tract_name": "National Park Reserve; National Marine Conservation Area Reserve; Haida Heritage Site",
+   "relationship": "three designations coexisting under one board",
+   "source_url": "https://www.parks.canada.ca/pn-np/bc/gwaiihaanas/info/coop/amb",
+   "notes": "Spatial overlap of the three not verified.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "parent_name": "Saguenay-St. Lawrence Marine Park",
+   "child_or_tract_name": "Type III and Type IV zones (zoning)",
+   "relationship": "zones inside the marine park",
+   "source_url": "https://laws-lois.justice.gc.ca/eng/acts/S-1.3/page-1.html",
+   "notes": "Act s.7 mentions reductions to Type III or IV zones; schedule/boundary details not in excerpt I read.",
+   "origin": "partially_sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "parent_name": "Port L'Hebert",
+   "child_or_tract_name": "Port L'Hebert Provincial Park (Queens); Port L'Hebert Nature Reserve (Shelburne)",
+   "relationship": "same place-name, separate designations in different counties (NOT nested; name-collision case)",
+   "source_url": "https://novascotia.ca/nse/protectedareas/consult/areas.aspx",
+   "notes": "Verified as listed on page (IDs 708 and 142).",
+   "origin": "sourced",
+   "spot_status": "confirmed"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "parent_name": "Campbells Crossroads WMA (SCDNR)",
+   "child_or_tract_name": "Campbells Crossroads tract / Angelus tract",
+   "relationship": "Named WMA with two non-contiguous tracts (314.5 + 50.3 ac, ex-Carolina Sandhills NWR land swap 1986); SCDNR layer 3 is tract-level (PropertyTract, GIS_TractAcres, ParentPropertyID, RelatedPropertyID), layer 4 is dissolved per property",
+   "source_url": "https://data-scdnr.opendata.arcgis.com/datasets/71032ca80ffa4e3195504d51accbcabe_3/about",
+   "notes": "Field names verified from Hub API 2026-11-06; tract acreages from a third-party lease listing quoting SCDNR text (not verified on an SCDNR page).",
+   "origin": "sourced",
+   "spot_status": "confirmed"
+  }
+ ]
+}

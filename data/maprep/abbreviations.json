@@ -1,5 +1,5 @@
 {
- "note": "Both research abbreviation tables, plus the short codes the page already used.",
+ "note": "Both research abbreviation tables, plus the short codes the page already used. Round-3 sourced short codes that do not collide with an existing expansion are included. The word game is not a kind word that gets dropped.",
  "rows": [
   {
    "token": "provpreg",
@@ -572,6 +572,12 @@
    "where": "GB-NIR"
   },
   {
+   "token": "spa",
+   "dotted": "SPA",
+   "expansion": "State Preservation Area",
+   "where": "US-LA"
+  },
+  {
    "token": "srp",
    "dotted": "SRP",
    "expansion": "State Resort Park",
@@ -648,6 +654,18 @@
    "dotted": "SP",
    "expansion": "State Park",
    "where": "AU"
+  },
+  {
+   "token": "shs",
+   "dotted": "SHS",
+   "expansion": "State Historic Site",
+   "where": "US-LA"
+  },
+  {
+   "token": "hp",
+   "dotted": "HP",
+   "expansion": "Heritage Preserve",
+   "where": "US-SC"
   }
  ]
 }

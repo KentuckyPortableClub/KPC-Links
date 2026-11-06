@@ -123,6 +123,9 @@ RESEARCH_SOURCES = [
     dict(key='nz_pcl', match=r'items/72354ba9bf7a4706af3fdfe60f86eea1|Public_Conservation_Land/MapServer|Hauraki/Marine_Reserves/MapServer',
          id='NaPALIS_ID', acres='Recorded_Area', unit=HA, verified=False,
          about='DOC public conservation land and the Hauraki marine-reserves copy. Name field Name. Te Urewera is not Crown PCL.'),
+    dict(key='pe_wma', match=r'GeoLinc_Wildlife_Management_Area/MapServer', id='ZONE_ID', acres='O_AREA_HA', unit=HA,
+         owner='OWNER_E', parent='PARENT_ID', verified=False,
+         about='PEI GeoLinc wildlife management areas. Name field NAME_E. Report only. Licence was not stated on the layer page.'),
 ]
 
 # AUTO: the field list of any other layer (names are matched without case)

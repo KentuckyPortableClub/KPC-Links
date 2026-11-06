@@ -69,6 +69,12 @@ def main():
     key = key_of()
     if not key: note('notice', 'two-name check: no key given'); return
     d, g = KEYS[key]
+    try:
+        import kpc_research_sources as RS
+        sep = RS.separate_units(key)
+    except Exception:  # noqa: BLE001
+        sep = []
+    sep_refs = {x['ref'] for x in sep}
     rows, n = [], 0
     for f in sorted(glob.glob(os.path.join(d, g))):
         for r, p in ((_j(f) or {}).get('parks') or {}).items():
@@ -76,11 +82,16 @@ def main():
             nm = p.get('n') or ''
             if halves(nm): n += 1
             c = check(nm, [x[1] for x in (p.get('m') or []) if len(x) > 1])
-            if c: rows.append(dict({'area': pathlib.Path(f).stem, 'park': r, 'name': nm, 'joined': sorted({x[1] for x in p['m'] if len(x) > 1})[:5]}, **c,
-                                   also_in=also_in(key, p)))
+            if c:
+                row = dict({'area': pathlib.Path(f).stem, 'park': r, 'name': nm, 'joined': sorted({x[1] for x in p['m'] if len(x) > 1})[:5]}, **c,
+                           also_in=also_in(key, p))
+                if r in sep_refs:
+                    row['looks_like_separate_units'] = True
+                rows.append(row)
     out = DIR / f'two-name-{key}.json'
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({'key': key, 'about': __doc__.split('\n\n')[0], 'two_name_parks': n, 'half_outlined': len(rows), 'parks': rows},
+    out.write_text(json.dumps({'key': key, 'about': __doc__.split('\n\n')[0], 'two_name_parks': n, 'half_outlined': len(rows),
+                               'separate_units': sep, 'parks': rows},
                               indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     note('notice', f'{key}: {n} parks have two names; {len(rows)} have only one half outlined (listed in {out}; joins unchanged)')
 

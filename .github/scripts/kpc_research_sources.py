@@ -20,8 +20,10 @@ The builders already call kpc_tracts.save. That calls note_saved after the tract
 
 Same flag, still report-only:
   link_postcheck / scan_link_postcheck  key rows whose official page is missing or whose stored
-                                        link check failed, plus the matching state agency page
-                                        from data/maprep/agencies.json (toolbox PR 48, vendored).
+                                        link check failed. A confirmed official park page is suggested
+                                        first, then the federal agency, then the state page in
+                                        data/maprep/agencies.json (one file, Tool Box and this report).
+                                        Every suggestion is labelled suggestion, never auto-replace.
   rank_outlines                         Tool Box name matcher plus these abbreviations. The pile
                                         solver that would call it is in KPC-Data; see
                                         docs/kpc-pile-solver-research-report.patch. Auto stays false.
@@ -40,6 +42,7 @@ BANNED = (
     'aT1T0pU1ZdpuDk1t',
     'YgrExeJfxG5F4At7',
     'Coillte_Biodiversity',
+    'gisportaldev.dot.ny.gov',  # NY OPRHP dev portal: do_not_ingest
 )
 
 KIND_TAILS = (
@@ -124,18 +127,26 @@ def fold(s):
 
 
 def _abbrev_tokens():
-    """Short agency abbreviations (ZEC, WMA, SNP, SAC, NNR, ...). Phrases are not expanded."""
-    out = []
+    """Short agency abbreviations (ZEC, WMA, SNP, SAC, NNR, ...). Phrases are not expanded.
+    Each token keeps every expansion. The first row stays first, so a later SPA
+    (State Preservation Area) is added beside Special Protection Area and does not replace it."""
+    seen = {}
+    order = []
     p = DATA / 'abbreviations.csv'
     if not p.is_file():
-        return out
+        return []
     for r in csv.DictReader(p.open(encoding='utf-8')):
         ab = fold(r.get('abbrev') or '')
         ex = fold(r.get('expansion') or '')
-        if re.fullmatch(r'[a-z]{2,8}', ab) and ex and ex != ab:
-            out.append((ab, ex))
+        if not (re.fullmatch(r'[a-z]{2,8}', ab) and ex and ex != ab):
+            continue
+        if ab not in seen:
+            seen[ab] = []
+            order.append(ab)
+        if ex not in seen[ab]:
+            seen[ab].append(ex)
     # longest token first so a short one does not eat a longer one
-    return sorted(set(out), key=lambda x: -len(x[0]))
+    return sorted(((ab, seen[ab]) for ab in order), key=lambda x: -len(x[0]))
 
 
 _ABBREV = None
@@ -159,8 +170,8 @@ def canon_name(s, report=None):
     t = t.replace('natrue', 'nature')
     if re.search(r'\bzec\b', t) and t.endswith('nature reserve'):
         t = re.sub(r'\s+nature reserve$', '', t).strip()
-    for ab, ex in abbrev_tokens():
-        t = re.sub(rf'\b{re.escape(ab)}\b', ex, t)
+    for ab, exps in abbrev_tokens():
+        t = re.sub(rf'\b{re.escape(ab)}\b', exps[0], t)
     return re.sub(r'\s+', ' ', t).strip()
 
 
@@ -338,10 +349,11 @@ def note_saved(path, doc):
 
 
 # Workbench name matcher (Mapping Rep Tool Box, kpc-maprep-check.js nameScore / canon).
-# Kind words dropped the same way. Abbreviations from the research packs are applied only in report mode.
+# Kind words dropped the same way, except 'game', which stays a distinguishing word so a state
+# game area does not collapse into a state wildlife area. Abbreviations apply only in report mode.
 _CORE_DROP = ('wildlife', 'management', 'area', 'state', 'national', 'park', 'parks', 'nature', 'preserve',
               'natural', 'forest', 'refuge', 'the', 'of', 'and', 'site', 'historic', 'historical',
-              'recreational', 'recreation', 'resort', 'game')
+              'recreational', 'recreation', 'resort')
 _GENERIC = {'creek', 'lake', 'river', 'fork', 'branch', 'ridge', 'county', 'hunting', 'public',
             'north', 'south', 'east', 'west'}
 # Pile solver lives in KPC-Data, not this repo. The patch in docs/ does not turn auto on.
@@ -390,12 +402,48 @@ def workbench_canon(s, report=None):
     return t, core
 
 
-def name_score(query, candidate, report=None):
-    """0-96, same steps as the Tool Box nameScore. 0 means it would not be offered."""
-    if report is None:
-        report = mode() == 'report'
-    qf, qc = workbench_canon(query, report=report)
-    cf, cc = workbench_canon(candidate, report=report)
+def _prepared(s, report):
+    """Folded name before abbreviation choices. Report mode fixes Natrue and the ZEC suffix."""
+    t = fold(s)
+    if not report:
+        return t
+    t = t.replace('natrue', 'nature')
+    if re.search(r'\bzec\b', t) and t.endswith('nature reserve'):
+        t = re.sub(r'\s+nature reserve$', '', t).strip()
+    return t
+
+
+def _expand_choices(s, report):
+    """Every expansion of a code, first row first. A later meaning is an extra choice, not a replacement."""
+    variants = [_prepared(s, report)]
+    if report:
+        for ab, exps in abbrev_tokens():
+            nxt = []
+            rx = re.compile(rf'\b{re.escape(ab)}\b')
+            for cur in variants:
+                if not rx.search(cur):
+                    nxt.append(cur)
+                    continue
+                for ex in exps:
+                    nxt.append(rx.sub(ex, cur))
+            variants = nxt[:8]
+    done = []
+    for t in variants:
+        t = t.replace('w m a', ' wildlife management area ')
+        t = re.sub(r'\bwma\b', ' wildlife management area ', t)
+        t = re.sub(r'\bsnp\b', ' state nature preserve ', t)
+        t = re.sub(r'\bsna\b', ' state natural area ', t)
+        t = re.sub(r'\bsp\b', ' state park ', t)
+        t = re.sub(r'\s+', ' ', t).strip()
+        core = t
+        for w in _CORE_DROP:
+            core = re.sub(rf'\b{w}\b', ' ', core)
+        core = re.sub(r'\s+', ' ', core).strip() or t
+        done.append((t, core))
+    return done
+
+
+def _score_pair(qf, qc, cf, cc):
     if not qc or not cc:
         return 0
     if qc == cc or qf == cf:
@@ -413,6 +461,20 @@ def name_score(query, candidate, report=None):
     if any(len(w) >= 6 for w in shared) and d >= 0.45:
         return 52
     return 0
+
+
+def name_score(query, candidate, report=None):
+    """0-96, same steps as the Tool Box nameScore. 0 means it would not be offered.
+    When a code has more than one expansion, the best score is kept. The first expansion is not replaced."""
+    if report is None:
+        report = mode() == 'report'
+    best = 0
+    for qf, qc in _expand_choices(query, report):
+        for cf, cc in _expand_choices(candidate, report):
+            best = max(best, _score_pair(qf, qc, cf, cc))
+            if best == 96:
+                return 96
+    return best
 
 
 def rank_outlines(park_name, candidates, report=None):
@@ -485,8 +547,76 @@ def _federal(area, kind, name, owner):
     for cc, rx, agency, url in FEDERAL:
         if cc == country and rx.search(blob):
             return {'place': 'federal', 'agency': agency, 'role': 'federal', 'url': url, 'verified': True,
-                    'label': SUGGESTION}
+                    'label': SUGGESTION, 'from': 'federal'}
     return None
+
+
+
+# Round-3 confirmed official pages. A suggestion only. Nothing copies these onto a park.
+_OFFICIAL = None
+SEPARATE_UNITS = (
+    {'ref': 'US-3692', 'pair': 'Heron Bay / Portersville',
+     'why': 'Two separate tracts a few miles apart. Report only; the join is not changed.'},
+    {'ref': 'US-4373', 'pair': 'Outlet Area / Waveland',
+     'why': 'Outlet Area and Waveland Park are separate recreation areas. Report only; the join is not changed.'},
+    {'ref': 'US-3475', 'pair': 'Montara / McNee Ranch',
+     'why': 'McNee Ranch is a separate unit from Montara State Beach. Report only; the join is not changed.'},
+    {'ref': 'US-4224', 'pair': 'Salamonie / Frances Slocum',
+     'why': 'Frances Slocum State Forest is a separate property. Report only; the join is not changed.'},
+    {'ref': 'US-3891', 'pair': 'Campbells Crossroads / Angelus',
+     'why': 'Angelus is a separate tract from Campbells Crossroads. Report only; the join is not changed.'},
+)
+
+
+def separate_units(key=None):
+    """Two-name pairs the round-3 return says are separate units. Report only. Joins are not changed."""
+    if key not in (None, '', 'us'):
+        return []
+    return [dict(x, report_only=True, joins_changed=False) for x in SEPARATE_UNITS]
+
+
+def official_pages():
+    """Confirmed official park pages from the round-3 return. Blocked and broken rows are not in the file."""
+    global _OFFICIAL
+    if _OFFICIAL is None:
+        _OFFICIAL = {}
+        p = DATA / 'official_park_pages.csv'
+        if p.is_file():
+            for r in csv.DictReader(p.open(encoding='utf-8')):
+                st = (r.get('status') or 'confirmed').strip().lower()
+                if st not in ('', 'confirmed'):
+                    continue
+                ref = (r.get('park_id') or '').strip()
+                url = (r.get('official_page_url') or '').strip()
+                if ref and url.startswith('http') and not _banned(url):
+                    _OFFICIAL[ref] = r
+    return _OFFICIAL
+
+
+def suggest_official(ref):
+    """The confirmed page for this park, labelled as a suggestion. None when this return has no confirmed page."""
+    r = official_pages().get((ref or '').strip())
+    if not r:
+        return None
+    return {'place': r.get('jurisdiction') or '', 'agency': r.get('agency') or '', 'role': 'official_page',
+            'url': r.get('official_page_url') or '', 'verified': True, 'label': SUGGESTION, 'from': 'official_page',
+            'two_name': (r.get('two_name_flag') or '').strip()}
+
+
+def official_suggestions():
+    """Every confirmed official page, as a suggestion. Empty unless report mode. Nothing is written onto a park."""
+    if mode() != 'report':
+        return []
+    out = []
+    for ref, r in official_pages().items():
+        item = {'ref': ref, 'name': r.get('name') or '', 'url': r.get('official_page_url') or '',
+                'agency': r.get('agency') or '', 'suggestion': SUGGESTION}
+        if ref in {x['ref'] for x in SEPARATE_UNITS}:
+            item['two_name'] = 'separate units, report only'
+        if 'possible_wrong_page' in (r.get('two_name_flag') or ''):
+            item['suggest_note'] = 'possible wrong page; suggestion only, never auto-replace'
+        out.append(item)
+    return out
 
 
 def load_agencies(path=None):
@@ -532,7 +662,7 @@ def suggest_agency(area, kind='', name='', agencies=None, owner=''):
     home, hv = _page(pick.get('home'))
     url, verified = (finder, fv) if finder and fv else (home, hv) if home and hv else (finder or home, fv or hv)
     return {'place': place.get('name') or _place_code(area), 'agency': pick.get('name') or '',
-            'role': role, 'url': url, 'verified': bool(verified and url), 'label': SUGGESTION}
+            'role': role, 'url': url, 'verified': bool(verified and url), 'label': SUGGESTION, 'from': 'agency'}
 
 
 def _link_problem(rec):
@@ -568,8 +698,9 @@ def link_postcheck(rows, agencies=None):
         problem, official, detail = _link_problem(row)
         if not problem:
             continue
-        sug = suggest_agency(row.get('area'), row.get('kind'), row.get('name'), agencies, owner=row.get('owner') or '')
-        out.append({
+        off = suggest_official(row.get('ref'))
+        sug = off or suggest_agency(row.get('area'), row.get('kind'), row.get('name'), agencies, owner=row.get('owner') or '')
+        item = {
             'ref': row.get('ref') or '',
             'area': row.get('area') or '',
             'name': row.get('name') or '',
@@ -580,8 +711,14 @@ def link_postcheck(rows, agencies=None):
             'suggest_agency': sug.get('agency') or '',
             'suggest_url': sug.get('url') or '',
             'suggest_verified': bool(sug.get('verified')),
+            'suggest_from': sug.get('from') or '',
             'suggestion': SUGGESTION,
-        })
+        }
+        if (row.get('ref') or '') in {x['ref'] for x in SEPARATE_UNITS}:
+            item['two_name'] = 'separate units, report only'
+        if off and 'possible_wrong_page' in (off.get('two_name') or ''):
+            item['suggest_note'] = 'possible wrong page; suggestion only, never auto-replace'
+        out.append(item)
     return out
 
 
