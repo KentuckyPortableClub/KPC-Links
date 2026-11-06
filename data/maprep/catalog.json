@@ -3070,6 +3070,30 @@
    "credit": "Canadian Protected and Conserved Areas Database, Environment and Climate Change Canada",
    "whyNotLive": "",
    "origin": "cpcad"
+  },
+  {
+   "id": "ca-pe-geolinc-wildlife-management-area",
+   "region": "CA",
+   "enabled": true,
+   "place": "PE",
+   "agency": "PEI Forests, Fish and Wildlife Division",
+   "title": "Wildlife management areas (GeoLinc)",
+   "kind": "wildlife",
+   "rest": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0",
+   "download": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/wildlife-management-areas",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NAME_E",
+   "idField": "ZONE_ID",
+   "acresField": "O_AREA_HA",
+   "ownerField": "OWNER_E",
+   "parentField": "PARENT_ID",
+   "accessField": "Hunting",
+   "licence": "not stated on layer page",
+   "credit": "PEI Forests, Fish and Wildlife Division · GeoLinc WildlifeManagementArea2025",
+   "whyNotLive": "",
+   "origin": "round3"
   }
  ],
  "skipped": [
@@ -4823,6 +4847,20 @@
    "services*.arcgis.com treated as disallow": 137,
    "robots-blocked state": 6,
    "not an agency-host layer with an id": 2
+  }
+ },
+ "folders": {
+  "KY": {
+   "folder": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services",
+   "services": [
+    "Ky_Public_Hunting_Areas_WGS84WM",
+    "Ky_State_Parks_Features_WGS84WM",
+    "Ky_KNP_State_Nature_Preserves_WGS84WM",
+    "Ky_KNP_Natural_Areas_WGS84WM"
+   ],
+   "credit": "Kentucky Geography Network, kygisserver.ky.gov",
+   "robots": "ok",
+   "note": "Open ArcGIS Server folder. The checker compares the live folder to this list. It does not add a service by itself."
   }
  }
 }

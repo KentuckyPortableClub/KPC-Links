@@ -1,0 +1,745 @@
+{
+ "when": "2026-11-06 17:44 UTC",
+ "manners": {
+  "requests": 117,
+  "robots": 3,
+  "strikes": 3,
+  "errors": 0,
+  "rested": 1,
+  "arcgis_exempt": 0,
+  "robots_unreadable": 3,
+  "dropped_queued": 1
+ },
+ "results": [
+  {
+   "jurisdiction": "US-FED",
+   "title": "Surface Ownership Parcels, detailed (SurfaceOwnership) - BdyOwn_LSRS_SurfaceOwnership",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://data.fs.usda.gov/geodata/edw/edw_resources/fc/BdyOwn_LSRS_SurfaceOwnership.gdb.zip",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "AU-NSW",
+   "title": "NPWS Estate (dissolved internal boundaries)",
+   "pri": "file",
+   "status": "robots-unreadable",
+   "why": "robots not readable (robots.txt answered 202)",
+   "content_type": "",
+   "fetch_url": "https://datasets.seed.nsw.gov.au/dataset/9bad468a-c2a6-4c90-bfaa-8ae8af72e925/resource/aa8fe8b1-7ff1-4486-b621-cf592605d237/download/tenure_npws_estate.zip",
+   "secs": 0.1
+  },
+  {
+   "jurisdiction": "AU-NSW",
+   "title": "NSW National Parks and Wildlife Service (NPWS) Estate (internal boundaries)",
+   "pri": "file",
+   "status": "robots-unreadable",
+   "why": "robots not readable (robots.txt answered 202)",
+   "content_type": "",
+   "fetch_url": "https://datasets.seed.nsw.gov.au/dataset/9bad468a-c2a6-4c90-bfaa-8ae8af72e925/resource/33fb1ee3-9090-4cae-a4e7-c4e3c83ba5c8/download/tenure_npws_estateinternalboundaries.zip",
+   "secs": 0.0
+  },
+  {
+   "jurisdiction": "GB-ENG",
+   "title": "Ancient Woodland (England)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://environment.data.gov.uk/api/file/download?fileDataSetId=008cdfcf-893b-48f6-937a-3891a2a698c9&fileName=Ancient_Woodland_England.shp.zip",
+   "secs": 5.5
+  },
+  {
+   "jurisdiction": "AU-NT",
+   "title": "NT Parks and Reserves",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ftp-dlrm.nt.gov.au/main.html?download&weblink=d4ceb3403ce21662e3a32efbf9df0018&realfilename=NT_Parks_and_Reserves.zip",
+   "secs": 2.8
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Provincial parks",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/x-zip-compressed",
+   "fetch_url": "https://geonb.snb.ca/downloads/prov_parks/geonb_provincialparks-parcsprovinciaux_shp.zip",
+   "secs": 10.1
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "WMA_Boundaries_2022 (DNR property boundaries KMZ)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/vnd.google-earth.kmz",
+   "fetch_url": "https://georgiawildlife.com/sites/default/files/WMA_Boundaries_2022.kmz",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Nature Legacy protected areas",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://gnb.socrata.com/api/geospatial/d86v-fxcx?method=export&format=Shapefile",
+   "secs": 5.8
+  },
+  {
+   "jurisdiction": "AU-TAS",
+   "title": "Tasmanian Reserve Estate",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://listdata.thelist.tas.gov.au/opendata/data/LIST_TASMANIAN_RESERVE_ESTATE_STATEWIDE.zip",
+   "secs": 2.8
+  },
+  {
+   "jurisdiction": "GB-SCT",
+   "title": "Cairngorms National Park designated boundary",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/x-zip-compressed",
+   "fetch_url": "https://maps.gov.scot/ATOM/shapefiles/SG_CairngormsNationalPark_2010.zip",
+   "secs": 2.3
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed Areas (MAREA) shapefile, quarterly",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ncnhde.natureserve.org/system/files/marea_ManagedArea_2026-10.zip",
+   "secs": 10.7
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed Areas (marea_ManagedArea_2026-10.zip)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ncnhde.natureserve.org/system/files/marea_ManagedArea_2026-10.zip",
+   "secs": 9.8
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Coillte Clearfell Licence Application Spatial Extract (FLV_COILLTE_CF_EXTRACT)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/geopackage+sqlite3",
+   "fetch_url": "https://opendata.agriculture.gov.ie/dataset/7063f35f-49df-4190-a9ea-3c2d06759a99/resource/202f9345-bd62-4749-86fe-fcec4efdf08d/download/flv_coillte_cf_extract-coillte-clearfell.gpkg",
+   "secs": 2.9
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "Protected and Recreational OpenSpace (OPENSPACE_POLY)",
+   "pri": "file",
+   "status": "robots-unreadable",
+   "why": "robots not readable (robots.txt answered 403)",
+   "content_type": "",
+   "fetch_url": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/openspace.zip",
+   "secs": 0.0
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Conservation Reserve Regulated",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/CONRVREG.zip",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Park Regulated",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/PROVPREG.zip",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Park Regulated (PROVPREG)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/PROVPREG.zip",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-AB",
+   "title": "Parks and Protected Areas of Alberta (Protected Area Designations)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/x-zip-compressed",
+   "fetch_url": "https://www.albertaparks.ca/media/6492787/protected-area-kmz-outline.zip",
+   "secs": 2.5
+  },
+  {
+   "jurisdiction": "CA-AB",
+   "title": "Parks and Protected Areas of Alberta - Protected Area Designations",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/x-zip-compressed",
+   "fetch_url": "https://www.albertaparks.ca/media/6492787/protected-area-kmz-outline.zip",
+   "secs": 1.6
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas (NL) shapefile",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://www.gov.nl.ca/eccc/files/GNL_Provincial_Protected_Areas_ESRI_Shapefile_Format.zip",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas NL (2016 zip)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://www.gov.nl.ca/tcar/files/ProvincialProtectedAreasNL.zip",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas NL (ECCC GIS data page)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://www.gov.nl.ca/eccc/files/GNL_Provincial_Protected_Areas_ESRI_Shapefile_Format.zip",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Natural Heritage Areas (NHA) boundaries - ITM",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://www.npws.ie/sites/default/files/files/NHA_ITM_2019_06%282%29.zip",
+   "secs": 10.2
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Special Areas of Conservation (SAC) boundaries - ITM",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://www.npws.ie/sites/default/files/files/SAC_ITM_2026_01.zip",
+   "secs": 10.0
+  },
+  {
+   "jurisdiction": "AU-SA",
+   "title": "Conservation Reserve Boundaries (NPWSA Reserves)",
+   "pri": "file",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/x-zip-compressed",
+   "fetch_url": "https://www.waterconnect.sa.gov.au/Content/Downloads/DEWNR/CONSERVATION_NpwsaReserves_SHP.zip",
+   "secs": 4.1
+  },
+  {
+   "jurisdiction": "US-LA",
+   "title": "LDWF WMA/Refuge boundaries",
+   "pri": "file",
+   "status": "robots-unreadable",
+   "why": "robots not readable (robots.txt answered 403)",
+   "content_type": "",
+   "fetch_url": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "secs": 0.0
+  },
+  {
+   "jurisdiction": "AU-ACT",
+   "title": "ACTGOV Public Land Reserves (Hub item da83e065513747f3aa46ade410ccf959)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://actmapi-actgov.opendata.arcgis.com/api/download/v1/items/da83e065513747f3aa46ade410ccf959/shapefile?layers=0",
+   "secs": 62.3
+  },
+  {
+   "jurisdiction": "NZ",
+   "title": "DOC Public Conservation Land (Hub dataset; ArcGIS item 72354ba9bf7a4706af3fdfe60f86eea1)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://doc-deptconservation.opendata.arcgis.com/api/download/v1/items/72354ba9bf7a4706af3fdfe60f86eea1/shapefile?layers=0",
+   "secs": 120.5
+  },
+  {
+   "jurisdiction": "AU",
+   "title": "CAPAD 2024 Marine - Shapefile (data.gov.au resource dab73f99...)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://fed.dcceew.gov.au/api/download/v1/items/0b6e7b6c48a64a3a82c225fa48aee13d/shapefile?layers=1",
+   "secs": 64.3
+  },
+  {
+   "jurisdiction": "AU",
+   "title": "CAPAD 2024 Terrestrial - GeoJSON (data.gov.au resource ab116ef0...)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json",
+   "fetch_url": "https://fed.dcceew.gov.au/api/download/v1/items/ec356a872d8048459fe78fc80213dc70/geojson?layers=0",
+   "secs": 60.1
+  },
+  {
+   "jurisdiction": "AU",
+   "title": "CAPAD 2024 Terrestrial - Shapefile (data.gov.au resource 90c42908..., fed.dcceew.gov.au API download)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://fed.dcceew.gov.au/api/download/v1/items/ec356a872d8048459fe78fc80213dc70/shapefile?layers=0",
+   "secs": 59.5
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Wildlife Habitat Protection Act (WHPA) lands",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://geohub.saskatchewan.ca/api/download/v1/items/1ffa27744fd04ee6986de4bee7ad4052/shapefile?layers=0",
+   "secs": 64.2
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Protected Natural Areas",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://hub.arcgis.com/api/download/v1/items/be8127efc1fc459c8c204bf48d5396f6/shapefile?layers=0",
+   "secs": 61.2
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Wildlife Refuges (incl. Wildlife Management Areas)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://hub.arcgis.com/api/download/v1/items/5706f19aa80f4e35b73f594a0760f180/shapefile?layers=0",
+   "secs": 65.2
+  },
+  {
+   "jurisdiction": "GB",
+   "title": "National Forest Estate Subcompartments GB",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://hub.arcgis.com/api/download/v1/items/a29f272bb2014c658d3d9940bfd1de16/shapefile?layers=0",
+   "secs": 58.5
+  },
+  {
+   "jurisdiction": "GB-ENG",
+   "title": "Registered Parks and Gardens GIS Data",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/octet-stream",
+   "fetch_url": "https://hub.arcgis.com/api/download/v1/items/767f279327a24845bf47dfe5eae9862b/shapefile?layers=7",
+   "secs": 61.9
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Conserved Lands (Maine Conserved Lands)",
+   "pri": "hub",
+   "status": "rest",
+   "why": "manners status rest",
+   "content_type": "",
+   "fetch_url": "https://maine.hub.arcgis.com/api/download/v1/items/ad59f27a21f24f19bb005868a04b65a3/shapefile?layers=0",
+   "secs": 120.2
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Wildlife Management Areas (hub dataset)",
+   "pri": "hub",
+   "status": "rest",
+   "why": "manners status rest",
+   "content_type": "",
+   "fetch_url": "https://maine.hub.arcgis.com/api/download/v1/items/1adcd31a16134741b014f39a9d04d8f6/shapefile?layers=0",
+   "secs": 60.0
+  },
+  {
+   "jurisdiction": "US-DC",
+   "title": "Parks and Recreation Areas (Recreation_WebMercator layer 9)",
+   "pri": "hub",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/zip",
+   "fetch_url": "https://opendata.dc.gov/api/download/v1/items/287eaa2ecbff4d699762bbc6795ffdca/shapefile?layers=9",
+   "secs": 60.8
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Registre des aires protegees et des AMCE au Quebec (AP_REG_S)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "MA DFW Wildlife Management Zones",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.eea.mass.gov/server/rest/services/DFG/MA_DFW_Wildlife_Management_Zones/MapServer?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "AU",
+   "title": "Indigenous Protected Areas (IPA) - Dedicated",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/Indigenous_Protected_Areas/FeatureServer/0?f=json",
+   "secs": 3.0
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "MEBPL_Lands_Ecoreserve",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.maine.gov/arcgis/rest/services/bpl/MEBPL_Lands_Ecoreserve/MapServer/1?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Maine Conservation Lands (Maine_DEP_Outstanding_National_Resource_Waters layer 5)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.maine.gov/arcgis/rest/services/dep/Maine_DEP_Outstanding_National_Resource_Waters/MapServer/5?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Ecological Reserves (Planning MapServer layer 6)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/MapServer?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Fish and Wildlife Development Fund Lands (Planning MapServer layer 7)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/MapServer?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Protected and Conserved Area Network (PCAN) (Planning MapServer layer 20)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/MapServer?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "DEC Lands (reference MapServer layer 2)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://gisservices.dec.ny.gov/arcgis/rest/services/reference/MapServer/2?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "dil/dil_land_activities (layer 2: Wildlife Management Areas)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://gisservices.dec.ny.gov/arcgis/rest/services/dil/dil_land_activities/MapServer/2?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "GB-SCT",
+   "title": "National Parks (Cairngorms; Loch Lomond and The Trossachs) map service",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://maps.data.gov.scot/arcgis/rest/services/NationalParks/MapServer?f=json",
+   "secs": 2.3
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Conservation Lands of Georgia (DNR) (layer 5)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://maps.itos.uga.edu/arcgis/rest/services/FrameWork/Conservation/FeatureServer/5?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "AU-VIC",
+   "title": "Public Land Management (PLM25)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/xml",
+   "fetch_url": "https://opendata.maps.vic.gov.au/geoserver/wfs?request=GetCapabilities&service=WFS?f=json",
+   "secs": 2.9
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "BC Parks, Ecological Reserves, and Protected Areas (WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW)",
+   "pri": "rest",
+   "status": 404,
+   "why": "HTTP 404",
+   "content_type": "application/json; charset=utf-8",
+   "fetch_url": "https://openmaps.gov.bc.ca/geo/pub/WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW/ows?service=WMS&request=GetCapabilities&layers=pub:WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW&legend_format=image/png&feature_info_type=text/plain?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "TANTALIS - Wildlife Management Areas (WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW)",
+   "pri": "rest",
+   "status": 404,
+   "why": "HTTP 404",
+   "content_type": "application/json; charset=utf-8",
+   "fetch_url": "https://openmaps.gov.bc.ca/geo/pub/WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW/ows?service=WMS&request=GetCapabilities&layers=pub:WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW&legend_format=image/png&feature_info_type=text/plain?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "AU-WA",
+   "title": "DBCA - Legislated Lands and Waters (DBCA-011)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15?f=json",
+   "secs": 2.3
+  },
+  {
+   "jurisdiction": "NZ",
+   "title": "Marine Reserves (Hauraki/Marine_Reserves MapServer layer 0)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://seasketch.doc.govt.nz/arcgis/rest/services/Hauraki/Marine_Reserves/MapServer/0?f=json",
+   "secs": 3.0
+  },
+  {
+   "jurisdiction": "NZ",
+   "title": "Public conservation land (National/Public_Conservation_Land MapServer layer 0)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0?f=json",
+   "secs": 1.9
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "Kansas_Natural_Resource_Planner/Protected_Areas (layer 0: Protected Areas)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://services.kars.geoplatform.ku.edu/arcgis/rest/services/Kansas_Natural_Resource_Planner/Protected_Areas/MapServer/0?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "AU-TAS",
+   "title": "LIST Land Tenure (OpenDataWFS layer 26)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://services.thelist.tas.gov.au/arcgis/rest/services/Public/OpenDataWFS/MapServer/26?f=json",
+   "secs": 2.8
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV Nature Areas (layer 9)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/9?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV State Forests (layer 11)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/11?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV State Parks (layer 10)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/10?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV Wildlife Management Areas (layer 6)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/6?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Territoires recreatifs du Quebec - Zone d'exploitation controlee (TRQ_WMS layer 16)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://servicescarto.mffp.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Couche des territoires recreatifs du Quebec (TRQ) 1/100 000",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Territoires recreatifs du Quebec - Parc regional (TRQ_WMS layer 6)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json; charset=UTF-8",
+   "fetch_url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6?f=json",
+   "secs": 2.2
+  },
+  {
+   "jurisdiction": "AU-QLD",
+   "title": "Protected areas of Queensland - boundaries",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/10?f=json",
+   "secs": 2.9
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Conservation Reserve Regulated (CONRVREG)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2?f=json",
+   "secs": 2.1
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Established Territorial Park (Environment_LCC layer 204)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/204?f=json",
+   "secs": 2.3
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Established Territorial Park (Environment_LCC layer 204) - POINTS",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/204?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Federal/Territorial Conservation Areas (Environment_LCC layer 195)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "NWT Proposed Protected and Conservation Areas",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/200?f=json",
+   "secs": 2.0
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Terrestrial Protected Areas (Environment_LCC layer 193)",
+   "pri": "rest",
+   "status": 200,
+   "why": "ok",
+   "content_type": "application/json;charset=UTF-8",
+   "fetch_url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/193?f=json",
+   "secs": 2.0
+  }
+ ]
+}

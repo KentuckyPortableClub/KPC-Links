@@ -1,0 +1,61 @@
+--- a/.github/scripts/kpc_pile_solver.py	2026-11-06 17:51:41.882840179 +0000
++++ b/.github/scripts/kpc_pile_solver.py	2026-11-06 17:51:41.662840136 +0000
+@@ -48,6 +48,9 @@
+      ('US-TN US-CO'; blank = every area with rows to do) · MAX_PARKS (0 = no cap) · MINUTES (50) · MODE=backfill|auto (auto: only
+      when data/pile-solver/state.json says auto=true) · FREEZE (a folder: save every fetched answer there as a selftest fixture)
+      · REPORT_ONLY=1 (write outputs to OUT_DIR, not into the repo: the PR check run)
++     · KPC_RESEARCH_SOURCES=report (KPC-Links): rank candidate outlines with the research-pack abbreviations
++       and the Mapping Rep Tool Box name matcher, and write data/pile-solver/research-rank.json. It does not
++       change a verdict, a key, or data/pile-solver/state.json "auto" (that stays false until a person sets it).
+      --selftest  offline, frozen fixtures in tests/fixtures/pile_solver/
+ """
+ import csv, datetime as dt, glob, hashlib, io, json, math, os, pathlib, re, subprocess, sys, time, urllib.parse
+@@ -320,6 +323,23 @@
+ def kind_words(t): return ' '.join(sorted(PC.tags(t) | DET.classes(t))) or ''
+ 
+ 
++# Nov 6 research packs (KPC-Links). Report only. Never sets state['auto'].
++RESEARCH_RANKS = []
++
++
++def research_rank(park_name, recs):
++    """When KPC_RESEARCH_SOURCES=report, remember a ranked list of the outlines already read.
++    The verdict below is unchanged. Pile-solver auto is not turned on.
++    Rank uses the sourced rows in KPC-Links data/research-sources/abbreviations.csv, including the
++    round-3 additions (KY WMA / NF, LA SHS, SC HP, BC and NS and PEI class words). The word game
++    stays in the name core, so a state game area stays distinct from a state wildlife area."""
++    if (os.environ.get('KPC_RESEARCH_SOURCES') or 'off').strip().lower() != 'report':
++        return
++    try:
++        import kpc_research_sources as RS
++    except Exception:  # noqa: BLE001
++        return
++    ranked = RS.rank_outlines(park_name, [{'id': r.get('id'), 'name': r.get('name') or ''} for r in recs or []])
++    RESEARCH_RANKS.append({'park': park_name, 'ranked': ranked, 'auto': False})
++
++
+ # ------------------------------------------------------------------ fetching (every read goes through kpc_manners)
+ class Fetch:
+     """Polite reads through Manners. In --selftest a FixtureManners stands in for Manners (same .get), so the code path is the same."""
+@@ -547,6 +567,7 @@
+         recs.append(r)
+     if errs and not recs:
+         return done(row, 'NEEDS-PERSON', 'no joined record could be read: ' + '; '.join(errs[:3]), 'a person to open the record(s) by hand: ' + '; '.join(errs[:2]))
++    research_rank(pname, recs)   # side rank only; best and the verdict below are the same as before
+     best = min(recs, key=lambda r: (r['d'] is None, r['d'] or 0))
+     row.update(candidate_layer_url=best['layer'], record_id=best['id'], record_name=best['name'], agency=' + '.join(sorted({r['agency'] for r in recs}))[:160],
+                distance_m='' if best['d'] is None else best['d'], kind_record=kind_words(best['name']),
+@@ -783,6 +804,13 @@
+         left = [p for p in pile_rows if p['area'] == a and p['ref'] not in rows]
+         state.setdefault('areas', {})[a] = {'rows': sum(1 for p in pile_rows if p['area'] == a), 'left': len(left)}
+     written = write_outputs(root, rows, os.environ.get('KEY_BUILD') or '', pile_sha)
++    # Side file only. state['auto'] is not written here and is not set to true.
++    if RESEARCH_RANKS and (os.environ.get('KPC_RESEARCH_SOURCES') or 'off').strip().lower() == 'report':
++        side = root / 'data' / 'pile-solver' / 'research-rank.json'
++        side.parent.mkdir(parents=True, exist_ok=True)
++        side.write_text(json.dumps({'auto': False, 'about': 'Report only. Sourced abbreviations in data/research-sources/abbreviations.csv (round 3 included) + Tool Box name matcher. The word game stays distinguishing. auto stays false.',
++                                    'ranks': RESEARCH_RANKS}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
++        written.append(str(side))
+     nov, novp = override_report(root, ov, inpile, written)
+     stats.update(overrides_not_from_brandon=nov, of_them_in_pile=novp)
+     nq = add_questions(root, done_now)

@@ -65,6 +65,24 @@ def check(name, recs, matcher=None):
     return None
 
 
+def stamp_separate(key, rows):
+    """Round-3 pairs that look like separate units. The next report run adds these.
+    Report only: nothing here changes a join."""
+    try:
+        import kpc_research_sources as RS
+        sep = RS.separate_units(key)
+    except Exception:  # noqa: BLE001
+        sep = []
+    refs = {x['ref'] for x in sep}
+    out = []
+    for row in rows or []:
+        row = dict(row)
+        if row.get('park') in refs:
+            row['looks_like_separate_units'] = True
+        out.append(row)
+    return sep, out
+
+
 def main():
     key = key_of()
     if not key: note('notice', 'two-name check: no key given'); return
@@ -76,11 +94,14 @@ def main():
             nm = p.get('n') or ''
             if halves(nm): n += 1
             c = check(nm, [x[1] for x in (p.get('m') or []) if len(x) > 1])
-            if c: rows.append(dict({'area': pathlib.Path(f).stem, 'park': r, 'name': nm, 'joined': sorted({x[1] for x in p['m'] if len(x) > 1})[:5]}, **c,
-                                   also_in=also_in(key, p)))
+            if c:
+                rows.append(dict({'area': pathlib.Path(f).stem, 'park': r, 'name': nm, 'joined': sorted({x[1] for x in p['m'] if len(x) > 1})[:5]}, **c,
+                                  also_in=also_in(key, p)))
+    sep, rows = stamp_separate(key, rows)
     out = DIR / f'two-name-{key}.json'
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({'key': key, 'about': __doc__.split('\n\n')[0], 'two_name_parks': n, 'half_outlined': len(rows), 'parks': rows},
+    out.write_text(json.dumps({'key': key, 'about': __doc__.split('\n\n')[0], 'two_name_parks': n, 'half_outlined': len(rows),
+                               'separate_units': sep, 'parks': rows},
                               indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     note('notice', f'{key}: {n} parks have two names; {len(rows)} have only one half outlined (listed in {out}; joins unchanged)')
 
@@ -98,6 +119,12 @@ if __name__ == '__main__':
         assert check('Dale Hollow Lake / Wolf River WMA', ['Dale Hollow Lake State Resort Park'])['missing_words'] == ['wolf']
         assert check('Blue Ridge / Smith Mountain Lake State Park', ['Smith Mountain Lake State Park', 'Blue Ridge Overlook']) is None
         assert halves('South Hill (Delaware and Otsego County) State Forest') is None
+        want = {'US-3692', 'US-4373', 'US-3475', 'US-4224', 'US-3891'}
+        sep, stamped = stamp_separate('us', [{'park': ref, 'name': 'x'} for ref in sorted(want)] + [{'park': 'US-0001', 'name': 'other'}])
+        assert {r['park'] for r in stamped if r.get('looks_like_separate_units')} == want
+        assert all(x.get('joins_changed') is False and x.get('report_only') is True for x in sep)
+        sep_ca, ca_rows = stamp_separate('ca', [{'park': 'CA-1', 'name': 'y'}])
+        assert sep_ca == [] and 'looks_like_separate_units' not in ca_rows[0]
         print('two-name self-test OK'); sys.exit(0)
     try: main()
     except Exception as e:  # noqa: BLE001

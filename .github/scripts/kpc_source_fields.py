@@ -68,6 +68,66 @@ SOURCES = [
          about='Australia CAPAD: PA_ID, PA_PID, GIS_AREA in hectares'),
 ]
 
+# Research-pack field names (Nov 6). Registered here so the names are in one file, but NOT in SOURCES.
+# find() / mapping() / extra_fields() never read this list, whether KPC_RESEARCH_SOURCES is off or report.
+# Builders keep requesting the same fields, and tract records keep the same src. A side report may call
+# research_find(); that result is never written into a key or a tract file.
+# Saskatchewan is the gis.saskatchewan.ca Planning service only. It must not match St John's
+# Mapcentre/Planning/MapServer/5 or WA Property_and_Planning/MapServer/15.
+RESEARCH_SOURCES = [
+    dict(key='usfs_surface', match=r'BdyOwn_LSRS_SurfaceOwnership', acres='GIS_ACRES', unit=AC, owner='OWNERCLASSIFICATION',
+         parent='FORESTNAME', verified=False,
+         about='Forest Service Surface Ownership detailed gdb (data.fs.usda.gov). Field names follow the Basic Ownership sibling; the gdb was not opened in this repo.'),
+    dict(key='nb_pna', match=r'items/be8127efc1fc459c8c204bf48d5396f6', id='PNA_CODE', acres='HECTARES', unit=HA, owner='OWNER', verified=False,
+         about='New Brunswick protected natural areas. Name field NAME.'),
+    dict(key='nb_parks', match=r'geonb_provincialparks-parcsprovinciaux', acres='SHAPE.AREA', unit=M2, owner='HOLDER', verified=False,
+         about='GeoNB provincial parks shapefile. Area is SHAPE.AREA in square metres. REST has no name field.'),
+    dict(key='nb_wildlife', match=r'items/5706f19aa80f4e35b73f594a0760f180', acres='SHAPE.AREA', unit=M2, access='W_CLASS', verified=False,
+         about='New Brunswick wildlife refuges, including WMAs. Name field NAME.'),
+    dict(key='nt_parks', match=r'Environment_LCC/MapServer/204', verified=False, about='NWT established territorial parks. Name field NAME. No acres field in the pack.'),
+    dict(key='nt_protected', match=r'Environment_LCC/MapServer/(193|195)', acres='Size_Km2', unit=KM2, verified=False,
+         about='NWT terrestrial protected areas and federal/territorial conservation areas. Name field Name. Size_Km2 is square kilometres.'),
+    dict(key='on_conrvreg', match=r'LIO_Open03/MapServer/2|CONRVREG\.zip', id='PROTECTED_SITE_IDENT',
+         owner='OWNER_ENG', parent='PARENTID', verified=False,
+         about='Ontario regulated conservation reserves. Name field PROTECTED_AREA_NAME_ENG. REGULATED_AREA is present but the pack did not say the unit, so it is not converted.'),
+    dict(key='on_provpreg', match=r'PROVPREG\.zip', verified=False,
+         about='Ontario regulated provincial parks shapefile (OGL-Ontario). Field names were not in the pack; AUTO applies once the file is read.'),
+    dict(key='qc_ap_reg', match=r'Biodiversite/Aires_protegees/MapServer', id='MACODE', acres='HA_LEGAL', unit=HA, owner='RESPONSABL',
+         parent='CORESPONSA', verified=False, about='Quebec protected-areas register. Name field NOM.'),
+    dict(key='qc_trq', match=r'TRQ_WMS/MapServer/(6|16)', id='CODE_ADMINISTRATIF', acres='SUPERFICIE_KM2', unit=KM2, verified=False,
+         about='Quebec recreation territories (regional parks layer 6, ZECs layer 16). Name field NOM_OFFICIEL.'),
+    dict(key='sk_whpa', match=r'gis\.saskatchewan\.ca/arcgis/rest/services/Planning/MapServer(?:/\d+)?(?:\?|$)|items/1ffa27744fd04ee6986de4bee7ad4052',
+         owner='PROP_OWN', access='PUBLICCL', verified=False,
+         about='Saskatchewan Planning MapServer on gis.saskatchewan.ca, or that Hub item. Not any other Planning/MapServer.'),
+    dict(key='ga_conservation', match=r'FrameWork/Conservation/FeatureServer/5', owner='ownr_categ', verified=False,
+         about='Georgia DNR conservation lands. Name field name.'),
+    dict(key='me_ecoreserve', match=r'MEBPL_Lands_Ecoreserve/MapServer/1', acres='Total_Acres', unit=AC, verified=False,
+         about='Maine BPL ecological reserves. Name field Unit.'),
+    dict(key='nc_marea', match=r'marea_ManagedArea_', id='MA_ID', acres='ACRES', unit=AC, owner='OWNER', verified=False,
+         about='NC NHP managed areas. Matching only until NCNHP says a public map is allowed. Name field MA_NAME. Do not republish the file.'),
+    dict(key='ny_dec_lands', match=r'gisservices\.dec\.ny\.gov/arcgis/rest/services/reference/MapServer/2', id='LANDS_UID', acres='ACRES', unit=AC,
+         owner='MANAGE_BY', access='PUBLICUSE', verified=False, about='NY DEC lands reference layer. Name field FACILITY.'),
+    dict(key='ny_wma', match=r'dil_land_activities/MapServer/2', verified=False, about='NY DEC wildlife management areas. Name field WMA. OBJECTID is not the stable id.'),
+    dict(key='wv_protected', match=r'wv_protected_lands/MapServer/(6|9|10|11)', id='Source_PAID', acres='GIS_Acres', unit=AC, owner='Own_Name',
+         access='Pub_Access', verified=False, about='West Virginia protected-lands layers (PAD-US style fields). Name field Unit_Nm.'),
+    dict(key='capad_file', match=r'fed\.dcceew\.gov\.au/api/download', id='PA_ID', acres='GIS_AREA', acres2='GAZ_AREA', unit=HA, owner='AUTHORITY',
+         verified=False, about='CAPAD 2024 file download (terrestrial and marine). The live CAPAD MapServer still uses the capad row above.'),
+    dict(key='au_ipa', match=r'Indigenous_Protected_Areas/FeatureServer', acres='GIS_AREA', acres2='GAZ_AREA', unit=HA, owner='AUTHORITY', verified=False,
+         about='Australia Indigenous Protected Areas. Name field NAME.'),
+    dict(key='act_reserves', match=r'items/da83e065513747f3aa46ade410ccf959', id='ZONE_OVERLAY_AREA_ID', verified=False,
+         about='ACT public land reserves. Name field Reserve_Name.'),
+    dict(key='gb_subcompartments', match=r'items/a29f272bb2014c658d3d9940bfd1de16', id='SUBCOMPTID', verified=False,
+         about='National Forest Estate subcompartments (England). Name field FOREST.'),
+    dict(key='ie_nha', match=r'NHA_ITM_', acres='Ha', unit=HA, verified=False, about='NPWS Natural Heritage Areas (ITM). Name field was not in the pack.'),
+    dict(key='ie_sac', match=r'SAC_ITM_', acres='Ha', unit=HA, verified=False, about='NPWS Special Areas of Conservation (ITM). Name field was not in the pack.'),
+    dict(key='nz_pcl', match=r'items/72354ba9bf7a4706af3fdfe60f86eea1|Public_Conservation_Land/MapServer|Hauraki/Marine_Reserves/MapServer',
+         id='NaPALIS_ID', acres='Recorded_Area', unit=HA, verified=False,
+         about='DOC public conservation land and the Hauraki marine-reserves copy. Name field Name. Te Urewera is not Crown PCL.'),
+    dict(key='pe_wma', match=r'GeoLinc_Wildlife_Management_Area/MapServer', id='ZONE_ID', acres='O_AREA_HA', unit=HA,
+         owner='OWNER_E', parent='PARENT_ID', verified=False,
+         about='PEI GeoLinc wildlife management areas. Name field NAME_E. Report only. Licence was not stated on the layer page.'),
+]
+
 # AUTO: the field list of any other layer (names are matched without case)
 AUTO_ID = re.compile(r'^(wdpa_?pid|wdpaid|site_?code|cdda_?id|zone_?id|unit_?code|parcel_?id|tract_?id|area_?id|site_?id|park_?id|unit_?id|'
                      r'[a-z]{2,16}_id|[a-z]{2,16}id|code|loc_?code|nationalid|natcode|cod_?\w*)$', re.I)
@@ -79,14 +139,24 @@ AUTO_PARENT = re.compile(r'^(parent_?id|wdpa_?pid|pa_?pid|parent|parent_?code|un
 AUTO_ACCESS = re.compile(r'^(pub_?access|public_?access|access)$', re.I)
 
 
-def find(url='', label=''):
-    """The explicit SOURCES row for a layer url / world source label, or None."""
-    for s in SOURCES:
+def _match_row(rows, url='', label=''):
+    for s in rows:
         for part in re.split(r'\|(?=label:)', s['match']):
             if part.startswith('label:'):
                 if label and re.search(part[6:], label, re.I): return s
             elif url and re.search(part, url): return s
     return None
+
+
+def find(url='', label=''):
+    """The explicit SOURCES row for a layer url / world source label, or None.
+    Research-pack rows are not included. The flag does not change this."""
+    return _match_row(SOURCES, url, label)
+
+
+def research_find(url='', label=''):
+    """A research-pack field row, for a side report only. mapping() does not call this."""
+    return _match_row(RESEARCH_SOURCES, url, label)
 
 
 def _ci(fields, name):

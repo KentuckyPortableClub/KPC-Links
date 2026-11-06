@@ -1,6 +1,6 @@
 {
  "built": "2026-11-06",
- "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed.",
+ "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed. Round-3 confirmed URLs (2026-11-06) are stored in this same file. The Tool Box and the research link post-check both read it.",
  "places": {
   "AL": {
    "name": "Alabama",
@@ -63,19 +63,19 @@
      ],
      "name": "Alaska State Parks (DNR)",
      "home": {
-      "url": "https://dnr.alaska.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "url": "https://dnr.alaska.gov/parks/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dnr.alaska.gov/parks/aspunits/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dnr.alaska.gov/commis/pic/maps",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -95,9 +95,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://soa-adfg.opendata.arcgis.com",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -190,14 +190,14 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://arkansasstateparks.com/parks",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.arkansas.gov/product/public-land-boundary-polygon/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -212,14 +212,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://agfc.com/en/hunting/where-hunt/wildlife-management-areas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.arkansas.gov/2019/10/22/data-updates-anhc-agfc/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -230,9 +230,9 @@
      ],
      "name": "Arkansas Natural Heritage Commission",
      "home": {
-      "url": "https://naturalheritage.com/",
-      "verified": false,
-      "source": "site agency table"
+      "url": "https://www.arkansasheritage.com/arkansas-natural-heritage",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "finder": {
       "url": "",
@@ -240,9 +240,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.arkansas.gov/product/natural-areas-polygon/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -268,9 +268,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://catalog.data.gov/dataset/park-boundaries",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -290,9 +290,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://wildlife.ca.gov/Data/GIS/Clearinghouse",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -314,14 +314,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://cpw.state.co.us/placestogo/parks/Pages/WildlifeAreaMap.aspx",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://cpw.state.co.us/maps-and-gis",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -366,14 +366,14 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://portal.ct.gov/deep/state-parks/listing-of-state-parks",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://portal.ct.gov/deep/gis-and-maps/geographic-information-systems",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -416,9 +416,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dnrec.delaware.gov/fish-wildlife/wildlife-areas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://dnrec.delaware.gov/dnrec-open-data/",
@@ -466,9 +466,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dpr.dc.gov/service/find-park",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://opendata.dc.gov/",
@@ -516,14 +516,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://myfwc.com/recreation/wmas/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://myfwc.com/research/gis/maps-data/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -616,14 +616,14 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dlnr.hawaii.gov/dsp/about-our-parks",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://planning.hawaii.gov/?p=2137",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -639,14 +639,14 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dlnr.hawaii.gov/dofaw/lands",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://planning.hawaii.gov/?p=2137",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -798,14 +798,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://iowadnr.gov/Hunting/Places-to-Hunt-Shoot/Wildlife-Management-Areas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "https://geodata.iowa.gov/",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://programs.iowadnr.gov/maps/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -855,9 +855,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "https://parks.ky.gov/parks/find-a-park",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://parks.ky.gov/parks/find",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://kygeonet.ky.gov/",
@@ -900,9 +900,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "https://eec.ky.gov/Natural-Resources/Forestry/Pages/default.aspx",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/default.aspx",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://kygeonet.ky.gov/",
@@ -918,14 +918,14 @@
      ],
      "name": "Office of Kentucky Nature Preserves",
      "home": {
-      "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx",
-      "verified": false,
-      "source": "site agency table"
+      "url": "https://eec.ky.gov/Nature-Preserves/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "https://eec.ky.gov/Nature-Preserves/Pages/default.aspx",
-      "verified": false,
-      "source": "site agency table"
+      "url": "https://eec.ky.gov/Nature-Preserves/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://kygeonet.ky.gov/",
@@ -1052,9 +1052,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dnr.maryland.gov/wildlife/pages/publiclands/allbyregion.aspx",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://imap.maryland.gov/",
@@ -1163,14 +1163,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.dnr.state.mn.us/wmas/index.html",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gisdata.mn.gov/organization/us-mn-state-dnr",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -1293,9 +1293,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.dnrc.mt.gov/TrustLand/public-use/Access_and_maps",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://gis.dnrc.mt.gov/apps/StAGE/",
@@ -1405,9 +1405,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://ftp.granit.unh.edu/GRANIT_Data/Vector_Data/Environment_and_Conservation/d-conservation/consnh_Lite.html",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -1577,9 +1577,9 @@
       "source": "research pack or state GIS portal list"
      },
      "gis": {
-      "url": "https://dec.ny.gov/about/website-usage-and-policies",
-      "verified": false,
-      "source": "research pack sources.csv (robots ok)"
+      "url": "https://gis.ny.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -1690,9 +1690,9 @@
      ],
      "name": "North Dakota Parks & Recreation",
      "home": {
-      "url": "https://parks.nd.gov/",
-      "verified": false,
-      "source": "site agency table"
+      "url": "https://www.parkrec.nd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "finder": {
       "url": "",
@@ -1700,9 +1700,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gis.nd.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -1717,9 +1717,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gf.nd.gov/wma-listing",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://gf.nd.gov/maps",
@@ -1870,9 +1870,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://myodfw.com/visit-odfw-wildlife-areas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "",
@@ -1897,9 +1897,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.oregon.gov/ODF/AboutODF/Pages/MapsData.aspx",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -1926,9 +1926,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gis.dcnr.pa.gov/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -1999,9 +1999,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dem.ri.gov/maps/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -2066,9 +2066,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.dnr.sc.gov/mlands/wmaprogram.html",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://public-lands-scdnr.hub.arcgis.com/",
@@ -2095,9 +2095,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://gfp.sd.gov/hunting-areas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://gfp.sd.gov/maps",
@@ -2241,9 +2241,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.glo.texas.gov/es/node/891",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://glo.texas.gov/land/gis-maps-and-data",
@@ -2413,9 +2413,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://dwr.virginia.gov/wma/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "",
@@ -2535,9 +2535,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://wvstateparks.com/parks/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "",
@@ -2557,9 +2557,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://wvdnr.gov/wildlife-management-areas/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://wvgis.wvu.edu/",
@@ -2642,9 +2642,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://wgfd.wyo.gov/geospatial-data",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -2659,9 +2659,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://lands.wyo.gov/resources/recreation",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://lands.wyo.gov/resources/maps-records",
@@ -2759,9 +2759,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/wildlife/wildlife-habitats/conservation-lands/wma/wmas-list",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://catalogue.data.gov.bc.ca/dataset/tantalis-wildlife-management-areas/resource/05f663c3-896a-44a8-a911-84bcece987ff",
@@ -2837,14 +2837,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://tourismnewbrunswick.ca/parks",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "https://geonb.snb.ca/",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://www.snb.ca/geonb1/e/DC/ProtectedA.asp",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -2860,14 +2860,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gnb.ca/en/topic/environment-resources/biodiversity-conservation/protected-areas.html",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www2.gnb.ca/content/gnb/en/departments/erd/open-data/conservation-biodiversity.html",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -2888,14 +2888,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gov.nl.ca/tcar/parks/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gov.nl.ca/tcar/parks/gis-data/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -2911,14 +2911,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gov.nl.ca/ecc/natural-areas/wer/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gov.nl.ca/tcar/parks/gis-data/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -2944,9 +2944,9 @@
       "source": "link on the official homepage, confirmed by a plain read"
      },
      "gis": {
-      "url": "https://www.geomatics.gov.nt.ca/",
-      "verified": false,
-      "source": "research pack or state GIS portal list"
+      "url": "https://www.geomatics.gov.nt.ca/en/services/spatial-data/spatial-data-iso-categories",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     },
     {
@@ -2966,9 +2966,9 @@
       "source": ""
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.gov.nt.ca/ecc/en/services/research-and-data-nwt/view-and-share-data",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -2989,9 +2989,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://parks.novascotia.ca/parks",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://data.novascotia.ca/",
@@ -3011,14 +3011,14 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://novascotia.ca/nse/protectedareas/consult/areas.aspx",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://novascotia.ca/natr/landscape/",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -3111,14 +3111,14 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.ontario.ca/page/crown-land-use-policy-atlas",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://data.ontario.ca/en/dataset/conservation-reserve-land",
+      "verified": true,
+      "source": "confirmed by a plain read"
      }
     }
    ]
@@ -3139,9 +3139,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.princeedwardisland.ca/en/information/tourism-pei/provincial-parks-and-beaches",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://data.princeedwardisland.ca/",
@@ -3161,9 +3161,9 @@
       "source": "confirmed by a plain read"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/public-lands",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/wildlife-management-areas",
@@ -3261,9 +3261,9 @@
       "source": "site agency table"
      },
      "finder": {
-      "url": "",
-      "verified": false,
-      "source": ""
+      "url": "https://www.saskatchewan.ca/Business/Agriculture-Natural-Resources-and-Industry/Land-Management/protected-and-conserved-areas-network/designated-area-types-definitions",
+      "verified": true,
+      "source": "confirmed by a plain read"
      },
      "gis": {
       "url": "https://gisappl.saskatchewan.ca/Html5Ext/Resources/GOS_Standard_Unrestricted_Use_Data_Licence_v2.0.pdf",

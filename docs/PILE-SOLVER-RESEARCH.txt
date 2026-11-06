@@ -1,0 +1,11 @@
+Pile solver research rank (report only)
+
+The review pile solver is not in this repo. It lives in KentuckyPortableClub/KPC-Data at .github/scripts/kpc_pile_solver.py. This PR does not change that repo.
+
+docs/kpc-pile-solver-research-report.patch is the change to apply there, on top of main. It does three things:
+
+- When KPC_RESEARCH_SOURCES=report, it ranks the outlines the solver already read, using the abbreviation list and the Mapping Rep Tool Box name matcher (kpc_research_sources.rank_outlines in KPC-Links).
+- It writes that rank to data/pile-solver/research-rank.json. It does not change a verdict, a key, or the solver CSV.
+- It does not set data/pile-solver/state.json "auto" to true. Automatic pile solving stays off until a person turns it on.
+
+With the flag off (the default), the patched solver writes nothing extra.

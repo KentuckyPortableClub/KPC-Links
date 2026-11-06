@@ -1,0 +1,219 @@
+jurisdiction,abbrev,expansion,agency,example_names,notes
+CA-QC,ZEC,Zone d'exploitation controlee,MRNF,,Seen in TRQ dataset description (as 'zecs')
+CA-QC,Reserve faunique,Reserve faunique (wildlife reserve),MRNF / Sepaq,,Layer in TRQ; Sepaq operates reserves (sepaq.com/rf)
+CA-QC,Parc national,Parc national du Quebec (Sepaq) / du Canada,Sepaq / Parks Canada,,TRQ lists 'Parcs nationaux du Quebec et du Canada'
+CA-QC,Parc regional,Parc regional,Regional (municipal) bodies,,TRQ lists 'parcs regionaux'; abbreviation PNR not verified
+CA-QC,Parc marin,Parc marin,,,Listed in TRQ
+CA-QC,Reserve ecologique,Reserve ecologique,MELCCFP,,Listed in TRQ; DESIG_NO 001 = reserve ecologique in aires protegees data structure
+CA-QC,AFC,Aire faunique communautaire,MRNF,,TRQ component
+CA-QC,PLA,Petit lac amenage,MRNF,,TRQ component
+CA-QC,ROM,Refuge d'oiseaux migrateurs,ECCC,,TRQ component
+CA-QC,AMCE,Autre mesure de conservation efficace (OECM),MELCCFP,,In registry title 'Registre des aires protegees et des AMCE'
+CA-QC,Sepaq,Societe des etablissements de plein air du Quebec,Sepaq,,Expansion not verified on fetched page; organisation name seen in search results
+CA-ON,Conservation Reserve,Conservation reserve (regulated),Ontario Parks,,Layer 'Conservation Reserve Regulated'; CR abbreviation not verified
+CA-ON,Provincial Park,Provincial park (regulated),Ontario Parks,,"Classes: Wilderness, Nature Reserve, Cultural Heritage, Natural Environment, Waterway, Recreational; PP abbreviation not verified"
+CA-MB,WMA,Wildlife Management Area,Manitoba,,Layer name in Wildlife Lands MAP-2024
+CA-MB,SCA,Special Conservation Area,Manitoba,,Same source
+CA-MB,GHA,Game Hunting Area,Manitoba,,Same source
+CA-MB,NUCPA,Near-Urban Centrefire Prohibition Area,Manitoba,,Same source
+CA-NL,Ecological Reserve,Ecological Reserve,NL ECCC,,"Among provincial protected area types on NL GIS page; also Wilderness Reserve, Wildlife Reserve, Wildlife Park, Special Management Area"
+CA-BC,WMA,Wildlife Management Area,BC,,TANTALIS - Wildlife Management Areas
+US-MA,WMA,Wildlife Management Area,MassWildlife (DFW),Marconi WMA; Barre Falls WMA; Great Marsh North WMA,Names end in 'WMA' on mass.gov pages (verified)
+US-MA,WCE,Wildlife Conservation Easement,MassWildlife (DFW),,"MassWildlife holds access rights, landowner keeps title"
+US-MA,Access Area,Access Areas,MassWildlife (DFW),,Lands giving access to water bodies or conserved land
+US-MA,OWNER_ABRV / MANAGR_ABRV,Owner / manager abbreviation fields in OpenSpace layer,MassGIS,,Field names verified; code values not verified
+US-CT,State park scenic reserve / State park trail / Natural area preserve / Historic preserve / Wildlife sanctuary / Wildlife area,DEEP Property type categories,CT DEEP,,Listed on CT ECO DEEP Property guide; actual attribute codes not verified
+US-NY,,"DEC Lands categories: Wildlife Management Areas, Unique Areas, State Forests, Forest Preserve",NYS DEC,,From layer description; State Parks are OPRHP and not in this layer.
+US-NE,WPA,Waterfowl Production Areas,USFWS (in NGPC Conservation Partner Lands),,Per NGPC hub description of Conservation Partner Lands.
+US-NC,,Game Lands,NCWRC,,NCWRC uses the term 'Game Lands' (not WMA).
+US-MI,SGA,State Game Area,Michigan DNR,Allegan State Game Area; Barry SGA,"Used on michigan.gov state-wildlife-game-areas-list (link label ""Barry SGA""; map PDFs *_SGA_map.pdf); not formally defined"
+US-MI,SWA,State Wildlife Area,Michigan DNR,Boyle Lake State Wildlife Area,Seen in map file name Boyle_Lake_SWA_map.pdf paired with full name on same page
+US-MI,SWRA,State Wildlife Research Area,Michigan DNR,Beaver Islands State Wildlife Research Area,File name Beaver_Islands_SWRA_map.pdf
+US-MI,WPA,Waterfowl Production Area,Michigan DNR,Edgar Waterfowl Production Area,File name Edgar_WPA_map.pdf
+US-GA,WMA,Wildlife Management Area,Georgia DNR WRD,,Defined on georgiawildlife.com/land
+US-GA,PFA,Public Fishing Area,Georgia DNR WRD,,Defined on georgiawildlife.com/land (11 PFAs)
+US-LA,WMA,Wildlife Management Area,LDWF,Atchafalaya Delta WMA; Alexander State Forest WMA,wlf.louisiana.gov WMAs page intro spells out wildlife management areas
+US-OK,WMA,Wildlife Management Area,ODWC,Barren Fork WMA,Page wildlifedepartment.com/hunting/wma/all titled Wildlife Management Areas
+CA-SK,WHPA,Wildlife Habitat Protection Act,Saskatchewan Ministry of Environment,,Layer title 'Wildlife Habitat Protection (WHPA)'
+CA-SK,PCAN,Protected and Conserved Areas Network,"Saskatchewan Fish, Wildlife and Lands Branch",,Metadata title
+CA-NB,PNA,Protected Natural Area,NB Natural Resources and Energy Development,,GeoNB 'Protected Natural Areas'; 'Candidate PNA map viewer'
+CA-QC,TRQ,Territoires recreatifs du Quebec,Quebec MRNF,,Dataset name
+CA-ON,PROVPREG,Provincial Park Regulated (LIO dataset code),Ontario MNR LIO,,From PROVPREG.zip download name
+CA-PE,WMA,Wildlife Management Area,"PEI Forests, Fish and Wildlife Division",Dingwells Mills WMA; Mt. Stewart Marsh WMA; St. Chrysostome WMA,Seen on princeedwardisland.ca WMA page
+CA-MB,D of S / DofS,Director of Surveys Plan number,Manitoba Maps,,Field DofS / D_OF_S / D_OF_S_PLA
+CA-NS,NSTDB,Nova Scotia Topographic Database,GeoNOVA / NS Geographic Data Directory,,
+CA-NT,NWTCG,NWT Centre for Geomatics,GNWT,,geomatics.gov.nt.ca
+CA-NT,ENR,Department of Environment and Natural Resources (now ECC),GNWT,,Copyright text on Environment_LCC layers
+CA-NT,SDW,Spatial Data Warehouse,GNWT NWT Centre for Geomatics,,Web viewer https://www.maps.geomatics.gov.nt.ca/Html5Viewer_PROD/index.html?viewer=SDW
+CA-NB,WMZ,Wildlife Management Zone,NB Natural Resources and Energy Development,,"Hunting admin zone, NOT a protected area; distinct from Wildlife Management Areas (in WildlifeRefuge layer)"
+CA-NB,NAMF / NOM,French-language name field,GeoNB,,NAMF in WildlifeRefuge; NOM in PNAs
+US-SC,HP,Heritage Preserve,SCDNR,Bald Rock HP; Bennetts Bay HP; Henderson HP and WMA; Botany Bay HP and WMA,Seen in SCDNR Public Lands hub page titles (public-lands-scdnr.hub.arcgis.com/pages/bald-rock-hp etc.); dnr.sc.gov text spells out 'Heritage Preserve'
+US-SC,WMA,Wildlife Management Area,SCDNR,Tall Pines WMA; Wambaw WMA; Keowee WMA; Fants Grove WMA,https://www.dnr.sc.gov/wma/maps.html title 'Wildlife Management Area Maps'; hub page titles
+US-OK,PHA,Public Hunting Area,ODWC,Okmulgee PHA; Atoka PHA; Spavinaw PHA; Cherokee PHA; Fort Gibson PHA,Defined on https://www.wildlifedepartment.com/hunting/wma/northeast/okmulgee-pha FAQ: most wildlife harvest allowed under statewide regs
+US-OK,GMA,Game Management Area,ODWC,Okmulgee GMA,Same page: more tightly regulated than PHA
+US-KS,SFL,State Fishing Lake,KDWP,Washington SFL & WA; Kingman SFL & WA; Leavenworth SFL; Bourbon SFL,KDWP brochure file names on ksoutdoors.gov (e.g. 'WASHINGTON SFL & WA.pdf'); web page spells out 'Washington State Fishing Lake'
+US-KS,WA,Wildlife Area,KDWP,Goodman SFL & WA; Smoky Hill Wildlife Area,KDWP brochure names 'SFL & WA'; page 'Washington State Fishing Lake and Wildlife Area'
+US-KS,WIHA,Walk-In Hunting Access,KDWP,(private-land contracts),"Layer KDWP_WIHA_AREAS; KDWP web map 'KDWP: 2026-2027 WIHA'; private land, not public areas"
+US-NY,WMA,Wildlife Management Area,NYS DEC Bureau of Wildlife,(~125 WMAs),https://dec.ny.gov/outdoor/7768.html defines WMA; DEC Lands CATEGORY and WMA layer field 'WMA'
+US-NY,SF,State Forest,NYS DEC Division of Lands and Forests,(DEC Lands CATEGORY 'STATE FOREST'),"https://dec.ny.gov/nature/forests-trees/state-forests: State Forests include Reforestation Areas, Multiple-Use Areas, Unique Areas, State Nature and Historic Preserves; 'SF' abbreviation itself not seen on DEC pages"
+US-NY,MUA,Multiple Use Area,NYS DEC,(part of WMA system / State Forests),Spelled out on DEC pages; abbreviation MUA not seen on DEC pages
+US-NY,UA,Unique Area,NYS DEC,(part of WMA system / State Forests),Spelled out on DEC pages; abbreviation UA not seen on DEC pages
+US-NC,GL,Game Land,NCWRC,Sandhills Game Land (SGL),"NCWRC Sandhills Game Land Management Plan uses 'SGL' and 'Sandhills GL'; service fields prefixed GML_ (GML_TRACT, GML_OWN, GML_TYPE)"
+US-MI,SWMA,State Wildlife/Waterfowl Management Area,Michigan DNR Wildlife Division,Addis Creek Flooding Wildlife Management Area; Au Train Basin State Waterfowl Management Area,Map file name Addis_Creek_Flooding_SWMA_map.pdf; expansion inferred from area names on page
+US-MI,SFWA,State Fish and Wildlife Area,Michigan DNR,Augusta Creek State Fish and Wildlife Area,Appears in map file names on same page
+AU,AA,Aboriginal Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,ACCP,Conservation Covenant,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,ASMA,Antarctic Specially Managed Areas,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,ASPA,Antarctic Specially Protected Areas,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,BG,Botanic Gardens (Commonwealth),DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CA,Conservation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CCA,Coordinated Conservation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CCAZ1,CCA Zone 1 National Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CCAZ3,CCA Zone 3 State Conservation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,COR,Coastal Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CP,Conservation Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CPA,Conservation Park Aboriginal,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,CR,Conservation Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,FLR,Flora Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,FR,Forest Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,GR,Game Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HA,Heritage Agreement,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HIR,Historical Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HPOT,Biodiversity Hotspot,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HR,Heritage River,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HS,Historic Site,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,HTR,Hunting Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,IPA,Indigenous Protected Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,KCR,Karst Conservation Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,MAA,Management Agreement Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,MCP,National Parks Act Schedule 4 park or reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,MNP,Marine National Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,MR,Miscellaneous Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,MS,Marine Sanctuary,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NAP,Nature Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NCA,Natural Catchment Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NCR,Nature Conservation Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NFR,Natural Features Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NP,National Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NPA,National Park Aboriginal,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NPC,National Park (Commonwealth),DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NPR,National Park (Recovery),DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NPRA,National Park (Recovery) Aboriginal,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NR,Nature Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NRA,Nature Recreation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NREF,Nature Refuge,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NRS,"NRS Addition, Gazettal in Progress",DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,NS,National Park (Scientific),DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,OCA,Other Conservation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,OCA/NAP,Other Conservation Area / Nature Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,OP,Other PA,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,PNPA,Proposed National Parks Act park or park addition,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,PNR,Private Nature Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,PPP,Permanent Park Preserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,PS,Private Sanctuary,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,RA,Reference Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,REP,Regional Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,RNA,Remote and Natural Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,RP,Recreation Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,RR,Regional Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,RSR,Resources Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,S5G,5(1)(g) Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,S5H,5(1)(h) Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,SCA,State Conservation Area,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,SP,State Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,SR,State Reserve,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,WA,Wilderness Protection Area,DCCEEW CAPAD,,"CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values; note CAPAD code 'WA' = Wilderness Protection Area, not Western Australia"
+AU,WP,Wilderness Park,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,WZ,Wilderness Zone,DCCEEW CAPAD,,CAPAD TYPE_ABBR coded value; verified on DCCEEW CAPAD national_base_map_V2 MapServer/112 (gis.environment.gov.au) TYPE_ABBR coded values
+AU,IUCN Ia,Strict Nature Reserve,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN Ib,Wilderness Area,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN II,National Park,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN III,Natural Monument or Feature,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN IV,Habitat/Species Management Area,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN V,Protected Landscape/Seascape,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN VI,Protected area with sustainable use of natural resources,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN NR,Not Reported,DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN NA,Not Applicable (does not meet NRS/IUCN definition but complementary management),DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,IUCN NAS,Not Assigned (meets definition; provider chose not to use IUCN categories),DCCEEW CAPAD,,CAPAD IUCN field value; verified on CAPAD 2020 Terrestrial ArcGIS metadata (arcgis.com item 18fa96882848426cb1b778703f8137ab)
+AU,GOVERNANCE G/C/J/P,Government / Community / Joint / Private,DCCEEW CAPAD,,Verified CAPAD 2020 metadata
+AU,ENVIRON T/B/M,Terrestrial / Both / Marine,DCCEEW CAPAD,,Verified CAPAD 2020 metadata
+AU,NRS_PA Y/I/N/ND,In National Reserve System / Interim / Does not meet NRS criteria / Does not meet but complements NRS,DCCEEW CAPAD,,Verified national_base_map_V2 layer 112 field list
+AU,MGT_PLAN P/D/S/I/M/R/N,In preparation / Draft / Statutory / Management intent / Management plan / Regional plan / Unknown,DCCEEW CAPAD,,Verified layer 112
+AU,OVERLAP 1/2,1 primary area; 2 completely overlapped by another area,DCCEEW CAPAD,,Verified layer 112; filter OVERLAP=1 to avoid double counting
+AU,GAZ_AREA/GIS_AREA,"Gazetted area / GIS-calculated area, both hectares",DCCEEW CAPAD,,Verified layer 112 + IPA metadata
+AU,CAPAD,Collaborative Australian Protected Areas Database,DCCEEW,,Current to 30 June 2024 (2024 release)
+AU,SF,State Forest (NOT a CAPAD TYPE_ABBR code; appears in agency datasets/signage),Forestry Corporation NSW / Qld / Vic / WA,,UNVERIFIED as abbreviation on any agency page I fetched; CAPAD 2018-era code list has no SF. WA DBCA layer says 'State forest' tenure category in prose.
+AU-VIC,PLM25,Public Land Management 1:25000,DEECA,,Verified DataVic page
+AU-QLD,QPWS,Queensland Parks and Wildlife Service,DESI,,Verified qpwsreg field label (QPWS region) in QFES-hosted metadata
+AU-QLD,DCDB,Digital Cadastral Database,DESI,,Verified in Qld metadata
+AU-QLD,IJMA,Indigenous joint management area,DESI,,Field 'ijma' label seen in Qld metadata
+GB-SCT,SSSI,Site of Special Scientific Interest,NatureScot,,"nature.scot national-designations page: 1,400+ in Scotland; designated by NatureScot"
+GB-SCT,NNR,National Nature Reserve,NatureScot,,43 in Scotland per NatureScot page
+GB-SCT,NP,National Park,NatureScot,Cairngorms; Loch Lomond and The Trossachs,abbreviation 'NP' used on NatureScot page
+GB-SCT,MPA,Marine Protected Area,NatureScot,,Designated by Scottish Ministers
+GB-SCT,FLS,Forestry and Land Scotland,Forestry and Land Scotland,,Scottish Government agency formed 2019 from Forestry Commission Scotland and Forest Enterprise Scotland; the page does not define 'FLS' itself (inferred from name)
+GB-NIR,ASSI,Area of Special Scientific Interest,DAERA,,abbreviation shown on DAERA protected-areas page
+GB-NIR,SAC,Special Area of Conservation,DAERA,,DAERA page gives full name only; abbreviation appears elsewhere (DAERA dataset list)
+GB-NIR,SPA,Special Protection Area,DAERA,,DAERA page gives full name only
+GB-NIR,AONB,Area of Outstanding Natural Beauty,DAERA,,still named AONB in NI per DAERA page
+GB-ENG,SSSI,Site of Special Scientific Interest,Natural England / gov.uk,,gov.uk guidance: Natural England consent needed for operations; also used by Forestry Commission annual report
+GB-ENG,LNR,Local Nature Reserve,Natural England / gov.uk,,gov.uk: nature reserves declared by local authorities are called local nature reserves; page itself does not spell out the abbreviation (appears in email name)
+GB-ENG,LWS,Local Wildlife Site,Defra/Natural England (gov.uk Local Sites guidance),,non-statutory Local Sites selected by local partnerships; gov.uk page uses 'LWS (Local Wildlife Sites)'; not a national dataset
+GB-ENG,LGS,Local Geological Site,Natural England (gov.uk),,page does not give the abbreviation; expansion verified only
+GB-ENG,FE,Forestry England,Forestry Commission,,Annual report names Forestry England in full only; 'FE' not defined there (unverified abbreviation)
+GB-ENG,FC,Forestry Commission,gov.uk,,abbreviation 'FC (Forestry Commission)' in annual report foreword
+GB-WLS,SSSI,Site of Special Scientific Interest,Natural Resources Wales,,"NRW: over 1,000, ~12% of Wales"
+GB-WLS,NNR,National Nature Reserve,Natural Resources Wales,,
+GB-WLS,SAC,Special Area of Conservation,Natural Resources Wales,,
+GB-WLS,SPA,Special Protection Area,Natural Resources Wales,,NRW also writes 'Special Protected Areas' on one page
+GB-WLS,AONB,Area of Outstanding Natural Beauty,Natural Resources Wales,,NRW page still uses AONB; councils report England and Wales AONBs renamed National Landscapes 22 Nov 2023
+GB,National Landscape,Area of Outstanding Natural Beauty (renamed),Somerset Council release quoting Natural England chair,Mendip Hills; Quantock Hills; Blackdown Hills,All AONBs in England and Wales carry the name National Landscapes from 22 Nov 2023
+GB-WLS,MCZ,Marine Conservation Zone,Natural Resources Wales,,
+IE,NPWS,National Parks and Wildlife Service,NPWS,,"Irish: An tSeirbhis Pairceanna Naisiunta agus Fiadhulra, abbrev SPNF (npws 2024 review Gaeilge PDF)"
+IE,SAC,Special Area of Conservation,NPWS,,"Irish: Limistear faoi Chaomhnu Speisialta, abbrev LCS (Glenveagh management strategy PDF, nationalparks.ie)"
+IE,SPA,Special Protection Area,NPWS,,"Irish: Limistear faoi Chosaint Speisialta, abbrev LfCS"
+IE,NHA,Natural Heritage Area,NPWS,,Irish: Limistear Oidhreachta Nadurtha (npws 2024 review Gaeilge PDF)
+IE,pNHA,proposed Natural Heritage Area,NPWS,,Non-statutory; field value/ name seen in shapefile filename pNHA_ITM_2015_11.zip. Irish not seen
+IE,NP,National Park,NPWS,,Irish: Pairc Naisiunta; plural Pairceanna Naisiunta. 'NP' as abbreviation not seen on agency pages; Glenveagh genitive Pairc Naisiunta Ghleann Bheatha
+IE,NR,Nature Reserve,NPWS,,Irish: Anaclann Dulra (npws 2024 review Gaeilge PDF; English gloss not on page). 'NR' abbreviation not verified on agency page
+IE,WFS,Wildfowl Sanctuary (codes WFS-01 to WFS-68),NPWS,,Code prefix seen on npws.ie/protected-sites/wildfowl-sanctuaries; not to be confused with Web Feature Service
+IE,Coillte,Coillte Teoranta (state forestry company; Coillte CGA),Coillte,,Irish for 'forests'; name used unchanged in Irish text
+IE,ITM,Irish Transverse Mercator (EPSG:2157),NPWS / Coillte,,CRS of NPWS and Coillte downloads
+IE,DAFM,"Department of Agriculture, Food and the Marine",DAFM,,Forest Service publishes at opendata.agriculture.gov.ie
+IE,OPW,Office of Public Works,OPW,,Heritage sites; no GIS dataset found
+IE,ISDE,Irish Spatial Data Exchange (geonetwork catalogue),,,NPWS metadata records hosted at isde.ie
+NZ,DOC,Department of Conservation (Te Papa Atawhai),DOC,,Layer copyright text 'Department of Conservation'; Crown copyright wording 'Department of Conservation Te Papa Atawhai'
+NZ,PCL,Public Conservation Land,DOC,,DOC Hub page: 'Public Conservation Land (PCL) is land administered by the Department of Conservation'
+NZ,LINZ,Land Information New Zealand,LINZ,,Named in layer description
+NZ,NaPALIS,National Property and Land Information System,DOC/LINZ,,Source database of PCL attributes (DOC layer description)
+NZ,Aoraki/Mount Cook,dual Maori/English name written with a slash,DOC,Aoraki/Mount Cook National Park; Aoraki/Mt Cook National Park,Both forms on doc.govt.nz/aorakinationalpark
+NZ,Te Wahipounamu,Te Wāhipounamu - South West New Zealand World Heritage Area,DOC,Aoraki/Mt Cook National Park,"Macron spelling seen on DOC media release; one DOC page extract showed 'Te Waipounamu' (likely extraction noise, unverified)"
+US-KY,WMA,Wildlife Management Area,KY Dept of Fish and Wildlife Resources (KDFWR),Big Rivers WMA; Lake Cumberland WMA; Mill Creek WMA,"round-3 confirmed. Source: https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf. V: verified this session at https://fw.ky.gov/More/Documents/LakeCumberlandWMA_ALL.pdf ; owner varies (Corps, USFS, state); see joint_ownership file. Also 'WMA' appears inside compound names ('WMA and State Forest', 'WMA and State Natural Area'), which breaks single-suffix stripping"
+US-KY,WMA and State Forest,Combined dual designation in one name,KY Division of Forestry + KDFWR,Big Rivers Wildlife Management Area and State Forest,"round-3 confirmed. Source: https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Big-Rivers-Wildlife-Management-Area-and-State-Forest.aspx. V: verified this session at https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Big-Rivers-Wildlife-Management-Area-and-State-Forest.aspx ; one name, two designations, 'and' joiner"
+US-KY,WMA and State Natural Area,Combined dual designation in one name,KDFWR + KY State Nature Preserves Commission + county,Livingston County WMA and State Natural Area,round-3 confirmed. Source: https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/livingston-county-wma-and-state-natural-area/. V: verified this session at https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/livingston-county-wma-and-state-natural-area/ (title only; TNC-hosted page)
+US-KY,NF,National Forest,USFS,Daniel Boone National Forest,round-3 confirmed. Source: https://www.fs.usda.gov/r08/danielboone/recreation/mill-creek-wildlife-management-area. V: verified this session at https://www.fs.usda.gov/r08/danielboone/recreation/mill-creek-wildlife-management-area (page is on Daniel Boone NF site)
+US-LA,SHS,State Historic Site,LA OSP,Los Adaes SHS; Locust Grove SHS; Rosedown Plantation State Historic Site,round-3 sourced_via_sibling_page. V: verified this session at same Title 25 PDF
+US-LA,SPA,State Preservation Area,LA OSP,,round-3 sourced_via_sibling_page. V: verified this session at Title 25 PDF names the class but I saw no individual areas
+US-LA,D'Arbonne / DArbonne,Apostrophe in French-derived name,LA OSP,Lake D'Arbonne State Park,round-3 sourced_via_sibling_page. V: verified this session at Title 25 PDF spells 'Lake D'Arbonne'; USGS sometimes 'Lake DArbonne'
+US-LA,Chemin-A-Haut / Chemin-a-Haut,"Hyphenated French name, capital A in agency list",LA OSP,Chemin-A-Haut State Park,round-3 sourced_via_sibling_page. V: verified this session at Title 25 PDF 'Chemin-A-Haut'; GNIS variants may differ in case
+US-LA,St. / Saint,Saint,LA OSP / NPS,St. Bernard State Park; Fort St. Jean Baptiste State Historic Site,round-3 sourced_via_sibling_page. V: verified this session at St. Bernard State Park in Title 25 PDF; Fort St. Jean Baptiste is M
+US-LA,Poverty Point Reservoir SP,Poverty Point Reservoir State Park (distinct from Poverty Point World Heritage Site / SHS),LA OSP,Poverty Point Reservoir State Park; Poverty Point World Heritage Site,round-3 sourced_via_sibling_page. V: verified this session at Title 25 PDF; near-duplicate names for separate units
+US-SC,HP,Heritage Preserve,SC Dept of Natural Resources (SCDNR) Heritage Trust Program,Lewis Ocean Bay Heritage Preserve; Forty Acre Rock Heritage Preserve; Peachtree Rock Heritage Preserve,"round-3 confirmed. Source: https://www.dnr.sc.gov/mlands/hpprogram.html. V: verified this session at https://www.dnr.sc.gov/mlands/hpprogram.html (defines Heritage Preserve, boundaries marked with white signs); example names M"
+US-SC,HP/WMA,Heritage Preserve also in WMA program (slash),SCDNR,,round-3 sourced_via_sibling_page. V: verified this session at same page: 'many preserves are included in the Wildlife Management Area Program'; slash or dual-name join
+CA-BC,Conservancy,Conservancy (provincial designation),BC Parks,,"round-3 confirmed. Source: https://bcparks.ca/about/our-mission-responsibilities/types-parks-protected-areas/. V: verified this session at https://bcparks.ca/about/our-mission-responsibilities/types-parks-protected-areas/ ; page defines Conservancy, Class A/B/C Provincial Park, Protected Area, Ecological Reserve, Recreation Area but gives no example names"
+CA-BC,Class A Provincial Park,Class A provincial park,BC Parks,Strathcona Provincial Park,round-3 sourced_no_url. V: verified this session at same BC Parks page (Strathcona named there)
+CA-BC,Ecological Reserve,Ecological reserve,BC Parks,,round-3 sourced_no_url. V: verified this session at same BC Parks page
+CA-BC,Rec Area / Recreation Area,Recreation area,BC Parks,,round-3 sourced_no_url. V: verified this session at same BC Parks page
+CA-NS,Wilderness Area,Wilderness Area (Wilderness Areas Protection Act),NS Environment and Climate Change,St. Andrews River Wilderness Area; Kluscap Wilderness Area,round-3 confirmed. Source: https://novascotia.ca/nse/protectedareas/consult/areas.aspx. V: verified this session at https://novascotia.ca/nse/protectedareas/consult/areas.aspx and https://novascotia.ca/nse/protectedareas/legislation.asp
+CA-NS,Nature Reserve,Nature Reserve,NS Environment and Climate Change,Port L'Hebert Nature Reserve; St. Margarets Bay Islands Nature Reserve; Cheticamp Island Nature Reserve,round-3 confirmed. Source: https://novascotia.ca/nse/protectedareas/consult/areas.aspx. V: verified this session at https://novascotia.ca/nse/protectedareas/consult/areas.aspx
+CA-NS,Provincial Park,Provincial Park,NS DNR / Lands and Forestry,St. Anns Provincial Park; Mount William Provincial Park; Bras d'Or Provincial Park; Shubenacadie Canal Provincial Park,round-3 sourced_no_url. V: verified this session at same areas.aspx page
+CA-NS,Conservation Lands,Conservation Lands,NS Environment and Climate Change,St. Marys River Conservation Lands,round-3 sourced_no_url. V: verified this session at same areas.aspx page
+CA-NS,Port L'Hebert,"Same name, two designations in different counties (Provincial Park in Queens; Nature Reserve in Shelburne)",NS,Port L'Hebert Provincial Park; Port L'Hebert Nature Reserve,round-3 sourced_no_url. V: verified this session at same areas.aspx page; name-only join will collide
+CA-NS,St. Anns / St. Ann's,"Saint, apostrophe dropped",NS,St. Anns Provincial Park; St. Margarets Bay Islands Nature Reserve; St. Marys River Conservation Lands,round-3 sourced_no_url. V: verified this session at agency omits possessive apostrophe; GNIS/OSM often 'St. Ann's'
+CA-NS,Bras d'Or,French-derived name with apostrophe,NS,Bras d'Or Provincial Park,"round-3 sourced_via_sibling_page. V: verified this session at same page; variants 'Bras d`Or', 'Bras dOr'"
+CA-NS,Mount William,Mount spelled out,NS,Mount William Provincial Park,round-3 sourced_via_sibling_page. V: verified this session at same page
+CA-NS,Sand Hills Beach Provicial Park,Misspelled 'Provicial' in agency page,NS,Sand Hills Beach Provincial Park,round-3 sourced_via_sibling_page. V: verified this session at same page shows typo 'Provicial'; fuzzy matching needed
+CA-PE,Natural Area,"Natural Area (Natural Areas Protection Act, NAPA)","PEI Dept of Environment, Energy and Climate Action",Docs Marsh/Forest Hills; Acadian Marshes - Percival River; Strathgartney Woodlands; Fullertons Marsh,round-3 sourced_not_spotchecked. Source: https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/natural-areas. V: verified this session at https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/natural-areas
+CA-PE,Docs Marsh/Forest Hills,Slash name; also listed as 'Docs Marsh' alone,PEI,Docs Marsh/Forest Hills; Docs Marsh,round-3 sourced_via_sibling_page. V: verified this session at same page lists both forms
+CA-PE,Acadian Marshes - Percival River,Dash-separated compound name (hyphen/en-dash variants),PEI,Acadian Marshes - Percival River,round-3 sourced_via_sibling_page. V: verified this session at same page
+CA-PE,Fullertons / Fullerton's,Possessive without apostrophe,PEI,Fullertons Marsh,round-3 sourced_via_sibling_page. V: verified this session at same page; possible 'Fullerton's Marsh' variants elsewhere
