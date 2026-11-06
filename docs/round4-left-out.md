@@ -171,6 +171,13 @@ Brandon said later. No user-agent trick. A robots 403 on services*.arcgis.com is
 - AU-WA SLIP
 - PEI parks (no open copy found)
 
+## Review list
+
+Round 4 left these two-name claims unclear, so they are not in SEPARATE_UNITS and the tests do not assert them.
+
+- US-3475 Montara / McNee — round 4 UNCLEAR, needs official confirmation
+- US-3891 Campbells / Angelus — round 4 UNCLEAR, needs official confirmation
+
 ## Held on purpose
 
 - Georgia's rename is a report-only alias (Stephen C. Foster State Park to Okefenokee State Park, effective 2026-09-01). The keys are not renamed.

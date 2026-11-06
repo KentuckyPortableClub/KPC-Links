@@ -562,14 +562,18 @@ SEPARATE_UNITS = (
      'why': 'Two separate tracts a few miles apart. Report only; the join is not changed.'},
     {'ref': 'US-4373', 'pair': 'Outlet Area / Waveland',
      'why': 'Outlet Area and Waveland Park are separate recreation areas. Report only; the join is not changed.'},
-    {'ref': 'US-3475', 'pair': 'Montara / McNee Ranch',
-     'why': 'McNee Ranch is a separate unit from Montara State Beach. Report only; the join is not changed.'},
     {'ref': 'US-4224', 'pair': 'Salamonie / Frances Slocum',
      'why': 'Frances Slocum State Forest is a separate property. Report only; the join is not changed.'},
-    {'ref': 'US-3891', 'pair': 'Campbells Crossroads / Angelus',
-     'why': 'Angelus is a separate tract from Campbells Crossroads. Report only; the join is not changed.'},
     {'ref': 'US-12143', 'pair': "Devil's Playground / Redwash",
      'why': "Separate units, and the Devil's Playground page may be the wrong page for Redwash. Report only; the join is not changed."},
+)
+
+# Round 4 left these two-name claims unclear. They are not separate-unit assertions.
+REVIEW = (
+    {'ref': 'US-3475', 'pair': 'Montara / McNee',
+     'why': 'round 4 UNCLEAR, needs official confirmation'},
+    {'ref': 'US-3891', 'pair': 'Campbells Crossroads / Angelus',
+     'why': 'round 4 UNCLEAR, needs official confirmation'},
 )
 
 # Round-4 confirmed one-unit names. A hyphen or a slash in the official title is still one place.
@@ -606,6 +610,13 @@ def separate_units(key=None):
     if key not in (None, '', 'us'):
         return []
     return [dict(x, report_only=True, joins_changed=False, claim='SEPARATE_UNITS') for x in SEPARATE_UNITS]
+
+
+def review_list(key=None):
+    """Two-name pairs round 4 left unclear. Not a separate-unit assertion. Joins are not changed."""
+    if key not in (None, '', 'us'):
+        return []
+    return [dict(x, report_only=True, joins_changed=False) for x in REVIEW]
 
 
 def one_units(key=None):

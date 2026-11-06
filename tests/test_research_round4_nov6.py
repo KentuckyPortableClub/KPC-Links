@@ -79,6 +79,11 @@ sep = {x['ref'] for x in RS.separate_units('us')}
 check('US-12143' in sep and one['US-0990']['claim'] == 'ONE_UNIT' and one['CA-4000']['joins_changed'] is False,
       'the two-name report code carries SEPARATE_UNITS and ONE_UNIT')
 check(RS.separate_units('ca') == [], 'Canada separate-unit list stays empty')
+check('US-3475' not in sep and 'US-3891' not in sep, 'Montara and Campbells are not asserted as separate units')
+review = {x['ref']: x['why'] for x in RS.review_list('us')}
+check(review == {'US-3475': 'round 4 UNCLEAR, needs official confirmation',
+                 'US-3891': 'round 4 UNCLEAR, needs official confirmation'},
+      'Montara and Campbells are on the review list')
 aliases = RS.name_aliases()
 check(len(aliases) == 1 and aliases[0]['old_name'] == 'Stephen C. Foster State Park'
       and aliases[0]['new_name'] == 'Okefenokee State Park' and aliases[0]['effective'] == '2026-09-01'
@@ -128,7 +133,8 @@ check(any('A Tracts' in r['child_or_tract_name'] for r in fix['nested']), 'West 
 
 left = (ROOT / 'docs/round4-left-out.md').read_text(encoding='utf-8')
 for phrase in ('partly_sourced', 'cleanairtn', 'Montara', 'services.arcgis.com', 'ScienceBase PAD-US',
-               'ncnhde.natureserve.org', 'KPC_RESEARCH_SOURCES stays off', 'Okefenokee'):
+               'ncnhde.natureserve.org', 'KPC_RESEARCH_SOURCES stays off', 'Okefenokee',
+               'round 4 UNCLEAR, needs official confirmation'):
     check(phrase in left, 'left-out list mentions ' + phrase)
 
 os.environ.pop('KPC_RESEARCH_SOURCES', None)

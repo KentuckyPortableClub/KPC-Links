@@ -107,12 +107,13 @@ def main():
     try:
         import kpc_research_sources as RS
         one = RS.one_units(key)
+        review = RS.review_list(key)
     except Exception:  # noqa: BLE001
-        one = []
+        one, review = [], []
     out = DIR / f'two-name-{key}.json'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({'key': key, 'about': __doc__.split('\n\n')[0], 'two_name_parks': n, 'half_outlined': len(rows),
-                               'separate_units': sep, 'one_units': one, 'parks': rows},
+                               'separate_units': sep, 'one_units': one, 'review': review, 'parks': rows},
                               indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     note('notice', f'{key}: {n} parks have two names; {len(rows)} have only one half outlined (listed in {out}; joins unchanged)')
 
@@ -130,9 +131,15 @@ if __name__ == '__main__':
         assert check('Dale Hollow Lake / Wolf River WMA', ['Dale Hollow Lake State Resort Park'])['missing_words'] == ['wolf']
         assert check('Blue Ridge / Smith Mountain Lake State Park', ['Smith Mountain Lake State Park', 'Blue Ridge Overlook']) is None
         assert halves('South Hill (Delaware and Otsego County) State Forest') is None
-        want = {'US-3692', 'US-4373', 'US-3475', 'US-4224', 'US-3891', 'US-12143'}
-        sep, stamped = stamp_separate('us', [{'park': ref, 'name': 'x'} for ref in sorted(want)] + [{'park': 'US-0990', 'name': 'one'}, {'park': 'US-0001', 'name': 'other'}])
+        want = {'US-3692', 'US-4373', 'US-4224', 'US-12143'}
+        sep, stamped = stamp_separate('us', [{'park': ref, 'name': 'x'} for ref in sorted(want)] + [{'park': 'US-3475', 'name': 'unclear'}, {'park': 'US-3891', 'name': 'unclear'}, {'park': 'US-0990', 'name': 'one'}, {'park': 'US-0001', 'name': 'other'}])
         assert {r['park'] for r in stamped if r.get('looks_like_separate_units')} == want
+        assert 'US-3475' not in want and 'US-3891' not in want
+        import kpc_research_sources as RS
+        review = {x['ref']: x['why'] for x in RS.review_list('us')}
+        assert review == {'US-3475': 'round 4 UNCLEAR, needs official confirmation',
+                          'US-3891': 'round 4 UNCLEAR, needs official confirmation'}
+        assert all(not r.get('looks_like_separate_units') for r in stamped if r.get('park') in review)
         assert all(x.get('joins_changed') is False and x.get('report_only') is True for x in sep)
         assert any(r.get('park') == 'US-0990' and r.get('looks_like_one_unit') and 'looks_like_separate_units' not in r for r in stamped)
         sep_ca, ca_rows = stamp_separate('ca', [{'park': 'CA-4000', 'name': 'q'}, {'park': 'CA-1', 'name': 'y'}])
