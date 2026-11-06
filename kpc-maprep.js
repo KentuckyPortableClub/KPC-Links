@@ -219,6 +219,8 @@
   };
   const FEDA_CA = [['Parks Canada', 'pc.gc.ca', /parks canada|parcs canada|national park|lieu historique|national marine conservation/i], ['Environment and Climate Change Canada (national wildlife areas, migratory bird sanctuaries)', 'canada.ca', /environment and climate change|canadian wildlife service|national wildlife area|migratory bird/i], ['Fisheries and Oceans Canada', 'dfo-mpo.gc.ca', /fisheries and oceans|marine protected/i]];
   const FEDA = [['National Park Service', 'nps.gov', /national park service|\bNPS\b/i], ['U.S. Fish & Wildlife Service', 'fws.gov', /fish (&|and) wildlife service|\bFWS\b|wildlife refuge/i], ['U.S. Forest Service', 'fs.usda.gov', /\bu\.?s\.? forest service|\bUSFS\b|national forest/i], ['Bureau of Land Management', 'blm.gov', /land management|\bBLM\b/i], ['Bureau of Reclamation', 'usbr.gov', /reclamation|\bBOR\b/i], ['U.S. Army Corps of Engineers', 'usace.army.mil', /corps of engineers|\bUSACE\b/i], ['Tennessee Valley Authority', 'tva.com', /tennessee valley|\bTVA\b/i]];
+  /* The park check reads this table. Canada is listed and not queried from that check. */
+  window.KPCMapAg = { SA: SA, FEDA: FEDA, PROV: PROV, PROVN: PROVN, CPCAD: CPCAD };
   /* which of the state's agencies fit this manager / owner text */
   const agFor = (txt, st) => {
     const t = String(txt || ''), L = SA[st] || [], kinds = [];
@@ -323,16 +325,13 @@
     const gpsIn = [name, town].find(x => parseLoc(x));
     if (gpsIn || (looksAddress(name) && !town)) { const v = gpsIn || name; if ($('mrLoc')) $('mrLoc').value = v; if (gpsIn === town && name && !parseLoc(name)) $('mrLoc').value = v; return locSearch(v); }
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
-    /* Published layers first (works when the live land database misses a name or a park number). */
+    /* The checker searches the published layers, then PAD-US, and still explains a miss. */
     if (window.KPCMapCheck) {
-      const found = await KPCMapCheck.find(name);
-      if (found && found.length) {
-        if ($('mrCheckQ')) $('mrCheckQ').value = name;
-        $('mrList').innerHTML = '';
-        await KPCMapCheck.showQuery(name);
-        const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
+      if ($('mrCheckQ')) $('mrCheckQ').value = name;
+      $('mrList').innerHTML = '';
+      await KPCMapCheck.showQuery(name);
+      const spot = $('mrSpot'); if (spot) spot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
     if (!st) {   /* no state picked: find out where that name (and town) is, and take the state from there */
       msg('Finding out which state that is in…');
@@ -1022,9 +1021,8 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     }
     if (!isFinite(la) || !isFinite(lo) || Math.abs(la) > 90 || Math.abs(lo) > 180) { msg('Those GPS numbers don\'t look right. Example: 37.84520, -86.97550'); return; }
     if (window.KPCMapCheck) {
-      const inKy = la > 36.4 && la < 39.25 && lo > -89.7 && lo < -81.85;
       const r = await KPCMapCheck.showPoint(la, lo);
-      if (r && (r.hit || inKy)) return;
+      if (r && (r.hit || r.region === 'US' || r.region === 'off')) return;
     }
     msg('Checking the official land database at ' + esc(label) + '…');
     let st = '';
