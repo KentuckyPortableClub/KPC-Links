@@ -14,7 +14,7 @@
   /* ids only — never draw these outlines (data/CREDITS-NC.md) */
   const BLOCKED = /newfoundland|tokyo|\bA10\b|sapad|cnhp|colorado natural heritage/i;
 
-  let pack = null, map = null, drawLayer = null, pinMarker = null, pinCtl = null, overlayLayers = {}, gen = 0;
+  let pack = null, map = null, drawLayer = null, pinMarker = null, pinCtl = null, overlayLayers = {}, gen = 0, lastPin = null;
   /* Which country this check runs, and which states have outlines saved on the site. */
   const REGION = {
     us: { enabled: true, source: 'PAD-US', local: ['KY'] },
@@ -146,6 +146,7 @@
   }
   /* W.M.A. / WMA / Wildlife Management Area, SP / State Park, SNP / State Nature Preserve, and the same for case and punctuation. */
   function canon(s) {
+    if (window.KPCMapLogic) return KPCMapLogic.canon(s);
     let t = String(s || '').toLowerCase().replace(/&/g, ' and ');
     t = t.replace(/w\s*\.\s*m\s*\.\s*a\.?/g, ' wma ');
     t = t.replace(/\bwma\b/g, ' wildlife management area ');
@@ -170,6 +171,7 @@
     return (2 * inter) / (na + nb || 1);
   }
   function nameScore(query, candidate) {
+    if (window.KPCMapLogic) return KPCMapLogic.nameScore(query, candidate);
     const q = canon(query), c = canon(candidate);
     if (!q.core || !c.core) return 0;
     if (q.core === c.core || q.full === c.full) return 96;
@@ -554,6 +556,12 @@
         hits.push({ score, ref: id, name: p.n, la: row ? +row[3] : null, lo: row ? +row[4] : null, web: row ? (row[5] || '') : '', kind: 'key', state: st.code });
       });
     }
+    if (window.KPCMapLogic && (!st.code || st.code === 'KY' || st.local)) {
+      KPCMapLogic.watchHits(name).forEach(w => {
+        if (hits.some(h => nameScore(h.name, w.name) >= 90)) return;
+        hits.push({ score: nameScore(name, w.name), ref: '', name: w.name, la: null, lo: null, web: w.url, kind: 'watch', state: 'KY' });
+      });
+    }
     if (ref && ref.indexOf('US-') === 0 && !hits.some(h => h.ref === ref && h.score >= 100)) {
       const rows = await loadLocations();
       const row = rows.find(r => r[1] === ref);
@@ -758,9 +766,10 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
   function canadaHtml() {
     const names = agTable().PROVN || {};
     const list = Object.keys(names).length ? Object.keys(names).map(k => names[k] + ' (' + k + ')').join(', ') : 'Alberta (AB), British Columbia (BC), Manitoba (MB), New Brunswick (NB), Newfoundland and Labrador (NL), Northwest Territories (NT), Nova Scotia (NS), Nunavut (NU), Ontario (ON), Prince Edward Island (PE), Quebec (QC), Saskatchewan (SK), Yukon (YT)';
-    return `<section class="mr-res" data-mr-result="canada"><div class="mr-head"><div class="mr-k">OUTSIDE THE UNITED STATES</div><h2>This pin is not in a US state</h2></div><div class="mr-sec"><p>This check covers the United States. Canada is listed and not turned on. When it is, the source will be CPCAD, the Canadian Protected and Conserved Areas Database. Provinces and territories: ${esc(list)}.</p><p class="mr-help">Nothing was sent to CPCAD. Newfoundland and Labrador, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not fetched.</p></div></section>`;
+    return `<section class="mr-res" data-mr-result="canada"><div class="mr-head"><div class="mr-k">OUTSIDE THE UNITED STATES</div><h2>This pin is not in a US state</h2></div><div class="mr-sec"><p>This pin is not inside a US state, so this check does not guess a province. Provinces and territories: ${esc(list)}.</p><p class="mr-help">Pick the province in the Mapping desk to query CPCAD and the provincial layers that are marked ok. Newfoundland and Labrador outlines, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not fetched.</p></div></section>`;
   }
   async function showPoint(la, lo) {
+    lastPin = { la: la, lo: lo };
     const my = ++gen;
     const box = $('mrSpot');
     if (box) box.innerHTML = '<p class="mr-msg">Finding which state this pin is in…</p>';
@@ -804,7 +813,9 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
       const ctx = await contextFromFeature(f, { la, lo, state: st, pota, query: best.Unit_Nm, pad: pad.map(a => Object.assign({ _score: a.OBJECTID === best.OBJECTID ? 100 : 60 }, a)) });
       ctx.state = st;
       ctx.pin = true;
-      ctx.edgeNote = /proclamation/i.test(best.Category || '') ? 'PAD-US Category is Proclamation for this record. The line is the administrative boundary. Land inside it is not all public.' : 'Your pin is on this PAD-US record in ' + st.name + '.';
+      const edge = B().edge(la, lo, f.geometry);
+      const insideLine = B().inside(la, lo, f.geometry);
+      ctx.edgeNote = (/proclamation/i.test(best.Category || '') ? 'PAD-US Category is Proclamation for this record. The line is the administrative boundary. Land inside it is not all public. ' : '') + (insideLine ? 'Your pin is inside this outline. The nearest edge is about ' + feetOrMi(edge.km) + ' away.' : 'Your pin is about ' + feetOrMi(edge.km) + ' from this outline.') + ' No name was required.';
       renderContext(ctx);
     } else if (best) {
       renderContext({ title: best.Unit_Nm, la, lo, f: null, pota, padExact: best, padNear: pad.slice(1, 5), pin: true, state: st, query: best.Unit_Nm, edgeNote: 'PAD-US has a record at this pin in ' + st.name + '.' });
@@ -1036,7 +1047,14 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
       overlayLayers[k] = L.geoJSON({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { name: f._nm }, geometry: f.geometry })) }, {
         style: { color: '#1d5a3a', weight: 1, fillOpacity: 0.08 }
       }).addTo(map);
-      overlayLayers[k].eachLayer(layer => { if (layer.feature) layer.bindTooltip(layer.feature.properties.name || '', { sticky: true }); });
+      overlayLayers[k].eachLayer(layer => {
+        if (!layer.feature) return;
+        layer.bindTooltip(layer.feature.properties.name || '', { sticky: true });
+        layer.on('click', ev => {
+          if (L.DomEvent) L.DomEvent.stopPropagation(ev);
+          layer.bindPopup('<b>' + esc(layer.feature.properties.name || '') + '</b><br>' + esc(Lr.name) + '<br><small>' + esc(Lr.agency || '') + ' · view only</small>').openPopup();
+        });
+      });
     });
   }
 
@@ -1062,5 +1080,5 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   wire();
-  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, map: () => map };
+  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, map: () => map, pin: () => lastPin };
 })();

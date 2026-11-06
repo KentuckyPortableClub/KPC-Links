@@ -1090,6 +1090,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
     if (window.KPCMapCheck) KPCMapCheck.mount();
+    if (window.KPCMapDesk) KPCMapDesk.mount();
     const stNow = $('mrState'); if (stNow && stNow.value) agencies(stNow.value);
     const P = new URLSearchParams(location.search);
     if (P.get('name') && window.KPCMapCheck) {

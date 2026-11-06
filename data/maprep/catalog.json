@@ -1,0 +1,4828 @@
+{
+ "built": "2026-11-06",
+ "note": "Only robots-ok research rows, Kentucky services this page already uses, and Iowa / Minnesota / Wisconsin agency hosts (the camp-layer approach). services*.arcgis.com is not queried. Grant County NM is banned. Hub links are not fetched (60 second crawl delay). Canada is on. Other countries are stored and not queried.",
+ "regions": {
+  "US": {
+   "enabled": true,
+   "label": "United States"
+  },
+  "CA": {
+   "enabled": true,
+   "label": "Canada",
+   "national": "CPCAD"
+  },
+  "AU": {
+   "enabled": false,
+   "label": "Australia"
+  },
+  "GB": {
+   "enabled": false,
+   "label": "United Kingdom"
+  },
+  "IE": {
+   "enabled": false,
+   "label": "Ireland"
+  },
+  "NZ": {
+   "enabled": false,
+   "label": "New Zealand"
+  }
+ },
+ "blockedLiveStates": [
+  "CO",
+  "TN"
+ ],
+ "banned": [
+  "services.arcgis.com/33TOOklri9xpic7U"
+ ],
+ "kyServices": {
+  "folder": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services",
+  "note": "Names this page already reads. The checker compares the live folder to this list. It does not add a service by itself.",
+  "services": [
+   "Ky_Public_Hunting_Areas_WGS84WM",
+   "Ky_State_Parks_Features_WGS84WM",
+   "Ky_KNP_State_Nature_Preserves_WGS84WM",
+   "Ky_KNP_Natural_Areas_WGS84WM"
+  ]
+ },
+ "sources": [
+  {
+   "id": "ca-qc-couche-des-territoires-recreatifs-du-quebec-trq-1-100-000",
+   "region": "CA",
+   "enabled": true,
+   "place": "QC",
+   "agency": "Ministere des Ressources naturelles et des Forets (MRNF)",
+   "title": "Couche des territoires recreatifs du Quebec (TRQ) 1/100 000",
+   "kind": "other",
+   "rest": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/",
+   "download": "https://www.donneesquebec.ca/recherche/dataset/couche-des-territoires-recreatifs-du-quebec/resource/73093d38-c975-4cb6-8faa-dacf1508b21c",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Quebec CC BY 4.0",
+   "credit": "Ministere des Ressources naturelles et des Forets (MRNF) · Quebec CC BY 4.0",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-qc-registre-des-aires-protegees-et-des-amce-au-quebec-ap-reg-s",
+   "region": "CA",
+   "enabled": true,
+   "place": "QC",
+   "agency": "Ministere de l'Environnement (MELCCFP) - Registre des aires protegees",
+   "title": "Registre des aires protegees et des AMCE au Quebec (AP_REG_S)",
+   "kind": "natural_area",
+   "rest": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer",
+   "download": "https://www.donneesquebec.ca/recherche/dataset/aires-protegees-au-quebec/resource/06db89de-c102-464f-9260-8a0c3bc402bb",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "NOM",
+   "idField": "MACODE",
+   "acresField": "HA_LEGAL",
+   "ownerField": "RESPONSABL",
+   "parentField": "CORESPONSA",
+   "accessField": "",
+   "licence": "Quebec CC BY 4.0",
+   "credit": "Ministere de l'Environnement (MELCCFP) - Registre des aires protegees · Quebec CC BY 4.0",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-on-provincial-park-regulated",
+   "region": "CA",
+   "enabled": true,
+   "place": "ON",
+   "agency": "Ontario Ministry of the Environment, Conservation and Parks (LIO)",
+   "title": "Provincial Park Regulated",
+   "kind": "state_park",
+   "rest": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4",
+   "download": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/PROVPREG.zip",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-Ontario",
+   "credit": "Ontario Ministry of the Environment, Conservation and Parks (LIO) · OGL-Ontario",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-on-conservation-reserve-regulated",
+   "region": "CA",
+   "enabled": true,
+   "place": "ON",
+   "agency": "Ontario Ministry of the Environment, Conservation and Parks (LIO)",
+   "title": "Conservation Reserve Regulated",
+   "kind": "natural_area",
+   "rest": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2",
+   "download": "https://ws.gisetl.lrc.gov.on.ca/fmedatadownload/Packages/CONRVREG.zip",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-Ontario",
+   "credit": "Ontario Ministry of the Environment, Conservation and Parks (LIO) · OGL-Ontario",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nl-provincial-protected-areas-nl-shapefile",
+   "region": "CA",
+   "enabled": true,
+   "place": "NL",
+   "agency": "NL Dept. of Environment and Climate Change - Natural Areas",
+   "title": "Provincial Protected Areas (NL) shapefile",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://www.gov.nl.ca/eccc/files/GNL_Provincial_Protected_Areas_ESRI_Shapefile_Format.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "NL Dept. of Environment and Climate Change - Natural Areas · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-bc-bc-parks-ecological-reserves-and-protected-areas-whse-tantalis-ta-park-eco",
+   "region": "CA",
+   "enabled": true,
+   "place": "BC",
+   "agency": "BC Parks / Government of British Columbia",
+   "title": "BC Parks, Ecological Reserves, and Protected Areas (WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://catalogue.data.gov.bc.ca/dataset/bc-parks-ecological-reserves-and-protected-areas/resource/ee6bf892-9ba1-4992-b765-a9c25fd57306",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-BC",
+   "credit": "BC Parks / Government of British Columbia · OGL-BC",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-bc-tantalis-wildlife-management-areas-whse-tantalis-ta-wildlife-mgmt-areas-sv",
+   "region": "CA",
+   "enabled": true,
+   "place": "BC",
+   "agency": "BC Crown Lands Registry / BC Parks",
+   "title": "TANTALIS - Wildlife Management Areas (WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://catalogue.data.gov.bc.ca/dataset/tantalis-wildlife-management-areas/resource/05f663c3-896a-44a8-a911-84bcece987ff",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-BC",
+   "credit": "BC Crown Lands Registry / BC Parks · OGL-BC",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-ab-parks-and-protected-areas-of-alberta-protected-area-designations",
+   "region": "CA",
+   "enabled": true,
+   "place": "AB",
+   "agency": "Alberta Parks, Government of Alberta",
+   "title": "Parks and Protected Areas of Alberta (Protected Area Designations)",
+   "kind": "state_park",
+   "rest": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0",
+   "download": "https://www.albertaparks.ca/media/6492787/protected-area-kmz-outline.zip",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-Alberta",
+   "credit": "Alberta Parks, Government of Alberta · OGL-Alberta",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-fed-nps-land-resources-division-boundary-and-tract-data-service-nps-tracts-la",
+   "region": "US",
+   "enabled": true,
+   "place": "FED",
+   "agency": "National Park Service, Land Resources Division",
+   "title": "NPS Land Resources Division Boundary and Tract Data Service - nps_tracts (layer 1; fee/easement tracts) and nps_boundary (layer 2)",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://ngda-cadastre-geoplatform.hub.arcgis.com/api/download/v1/items/c8d60ffcbf5c4030a17762fe10e81c6a/geopackage?layers=1",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "National Park Service, Land Resources Division · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-wv-wv-protected-lands-wv-wildlife-management-areas-layer-6",
+   "region": "US",
+   "enabled": true,
+   "place": "WV",
+   "agency": "WV DNR via WV GIS Technical Center",
+   "title": "wv_protected_lands - WV Wildlife Management Areas (layer 6)",
+   "kind": "wildlife",
+   "rest": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/6",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Unit_Nm",
+   "idField": "Source_PAID",
+   "acresField": "GIS_Acres",
+   "ownerField": "Own_Name",
+   "parentField": "Mang_Name",
+   "accessField": "Pub_Access",
+   "licence": "unknown - see terms page",
+   "credit": "WV DNR via WV GIS Technical Center · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-wv-wv-protected-lands-wv-state-parks-layer-10",
+   "region": "US",
+   "enabled": true,
+   "place": "WV",
+   "agency": "WV DNR via WV GIS Technical Center",
+   "title": "wv_protected_lands - WV State Parks (layer 10)",
+   "kind": "state_park",
+   "rest": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/10",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Unit_Nm",
+   "idField": "Source_PAID",
+   "acresField": "GIS_Acres",
+   "ownerField": "Own_Name",
+   "parentField": "Mang_Name",
+   "accessField": "Pub_Access",
+   "licence": "unknown - see terms page",
+   "credit": "WV DNR via WV GIS Technical Center · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-wv-wv-protected-lands-wv-state-forests-layer-11",
+   "region": "US",
+   "enabled": true,
+   "place": "WV",
+   "agency": "WV DNR via WV GIS Technical Center",
+   "title": "wv_protected_lands - WV State Forests (layer 11)",
+   "kind": "forest",
+   "rest": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/11",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Unit_Nm",
+   "idField": "Source_PAID",
+   "acresField": "GIS_Acres",
+   "ownerField": "Own_Name",
+   "parentField": "Mang_Name",
+   "accessField": "Pub_Access",
+   "licence": "unknown - see terms page",
+   "credit": "WV DNR via WV GIS Technical Center · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-wv-wv-protected-lands-wv-nature-areas-layer-9",
+   "region": "US",
+   "enabled": true,
+   "place": "WV",
+   "agency": "WV DNR via WV GIS Technical Center",
+   "title": "wv_protected_lands - WV Nature Areas (layer 9)",
+   "kind": "natural_area",
+   "rest": "https://services.wvgis.wvu.edu/arcgis/rest/services/Boundaries/wv_protected_lands/MapServer/9",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Unit_Nm",
+   "idField": "Source_PAID",
+   "acresField": "GIS_Acres",
+   "ownerField": "Own_Name",
+   "parentField": "Mang_Name",
+   "accessField": "Pub_Access",
+   "licence": "unknown - see terms page",
+   "credit": "WV DNR via WV GIS Technical Center · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-dc-parks-and-recreation-areas-recreation-webmercator-layer-9",
+   "region": "US",
+   "enabled": true,
+   "place": "DC",
+   "agency": "DC Department of Parks and Recreation (DC GIS / OCTO)",
+   "title": "Parks and Recreation Areas (Recreation_WebMercator layer 9)",
+   "kind": "other",
+   "rest": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Recreation_WebMercator/MapServer/9",
+   "download": "https://opendata.dc.gov/api/download/v1/items/287eaa2ecbff4d699762bbc6795ffdca/shapefile?layers=9",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "DC Department of Parks and Recreation (DC GIS / OCTO) · CC BY 4.0",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ma-protected-and-recreational-openspace-openspace-poly",
+   "region": "US",
+   "enabled": true,
+   "place": "MA",
+   "agency": "MassGIS (EEA)",
+   "title": "Protected and Recreational OpenSpace (OPENSPACE_POLY)",
+   "kind": "other",
+   "rest": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/FeatureServer/0",
+   "download": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/openspace.zip",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "SITE_NAME",
+   "idField": "POLY_ID",
+   "acresField": "GIS_ACRES",
+   "ownerField": "FEE_OWNER",
+   "parentField": "MANAGER",
+   "accessField": "PUB_ACCESS",
+   "licence": "Public domain (MassGIS FAQ statement)",
+   "credit": "MassGIS (EEA) · Public domain (MassGIS FAQ statement)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ma-ma-dfw-wildlife-management-zones",
+   "region": "US",
+   "enabled": true,
+   "place": "MA",
+   "agency": "MassWildlife (DFW)",
+   "title": "MA DFW Wildlife Management Zones",
+   "kind": "wildlife",
+   "rest": "https://gis.eea.mass.gov/server/rest/services/DFG/MA_DFW_Wildlife_Management_Zones/MapServer",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "MassWildlife (DFW) · unknown - see terms page",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-me-conserved-lands-maine-conserved-lands",
+   "region": "US",
+   "enabled": true,
+   "place": "ME",
+   "agency": "Maine Natural Areas Program (DACF) / Maine GeoLibrary",
+   "title": "Conserved Lands (Maine Conserved Lands)",
+   "kind": "other",
+   "rest": "",
+   "download": "https://maine.hub.arcgis.com/datasets/ad59f27a21f24f19bb005868a04b65a3/explore",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Maine Natural Areas Program (DACF) / Maine GeoLibrary · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ga-georgia-2015-esi-parks-managed-areas",
+   "region": "US",
+   "enabled": true,
+   "place": "GA",
+   "agency": "NOAA Office of Response and Restoration",
+   "title": "Georgia 2015 ESI Parks/Managed Areas",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://response.restoration.noaa.gov/esi_download",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC0 1.0 (per data.gov record)",
+   "credit": "NOAA Office of Response and Restoration · CC0 1.0 (per data.gov record)",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-mi-michigan-dnr-open-data-portal-hub-link-only",
+   "region": "US",
+   "enabled": true,
+   "place": "MI",
+   "agency": "Michigan DNR",
+   "title": "Michigan DNR open data portal (hub, link only)",
+   "kind": "other",
+   "rest": "",
+   "download": "https://gis-midnr.opendata.arcgis.com",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Michigan DNR · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-nc-managed-areas-marea-shapefile-quarterly",
+   "region": "US",
+   "enabled": true,
+   "place": "NC",
+   "agency": "NC Dept of Natural and Cultural Resources - Natural Heritage Program",
+   "title": "Managed Areas (MAREA) shapefile, quarterly",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://ncnhde.natureserve.org/system/files/marea_ManagedArea_2026-10.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "NC Dept of Natural and Cultural Resources - Natural Heritage Program · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ny-dec-lands-reference-mapserver-layer-2",
+   "region": "US",
+   "enabled": true,
+   "place": "NY",
+   "agency": "NYS DEC",
+   "title": "DEC Lands (reference MapServer layer 2)",
+   "kind": "wildlife",
+   "rest": "https://gisservices.dec.ny.gov/arcgis/rest/services/reference/MapServer/2",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "FACILITY",
+   "idField": "LANDS_UID",
+   "acresField": "ACRES",
+   "ownerField": "MANAGE_BY",
+   "parentField": "UNIT",
+   "accessField": "PUBLICUSE",
+   "licence": "unknown - see terms page",
+   "credit": "NYS DEC · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ok-oklahoma-wmas-wmaboundaries-all-zip",
+   "region": "US",
+   "enabled": true,
+   "place": "OK",
+   "agency": "Oklahoma Dept of Wildlife Conservation (hosted by USGS ScienceBase)",
+   "title": "Oklahoma WMAs (WMABoundaries_all.zip)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://sciencebase.gov/catalog/item/55f03dabe4b0dacf699ea03a",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Oklahoma Dept of Wildlife Conservation (hosted by USGS ScienceBase) · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ok-oklahoma-state-parks-list-no-geometry",
+   "region": "US",
+   "enabled": true,
+   "place": "OK",
+   "agency": "Oklahoma Tourism and Recreation Department",
+   "title": "Oklahoma State Parks (list, no geometry)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://data.ok.gov/dataset/08830e47-e651-4dc6-b753-79d5383a1389/resource/72a040b6-a838-40c4-9c5b-ed5fa4dd6cdc/download/data-oklahoma-state-parks.csv",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Oklahoma Tourism and Recreation Department · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-sc-scdnr-geospatial-open-data-hub-link-only",
+   "region": "US",
+   "enabled": true,
+   "place": "SC",
+   "agency": "SC Dept of Natural Resources",
+   "title": "SCDNR Geospatial Open Data (hub, link only)",
+   "kind": "other",
+   "rest": "",
+   "download": "https://data-scdnr.opendata.arcgis.com/",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "SCDNR says GIS data is available free of charge to the public; no formal licence seen",
+   "credit": "SC Dept of Natural Resources · SCDNR says GIS data is available free of charge to the public; no formal licence seen",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-la-ldwf-wma-refuge-boundaries",
+   "region": "US",
+   "enabled": true,
+   "place": "LA",
+   "agency": "Louisiana Department of Wildlife and Fisheries",
+   "title": "LDWF WMA/Refuge boundaries",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Louisiana Department of Wildlife and Fisheries · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-me-maine-conservation-lands-maine-dep-outstanding-national-resource-waters-la",
+   "region": "US",
+   "enabled": true,
+   "place": "ME",
+   "agency": "Maine DEP (copy of MEGIS Maine Conserved Lands)",
+   "title": "Maine Conservation Lands (Maine_DEP_Outstanding_National_Resource_Waters layer 5)",
+   "kind": "other",
+   "rest": "https://gis.maine.gov/arcgis/rest/services/dep/Maine_DEP_Outstanding_National_Resource_Waters/MapServer/5",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "PARCEL_NAME",
+   "idField": "",
+   "acresField": "CALC_AC",
+   "ownerField": "HOLD1_NAME",
+   "parentField": "PROJECT",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Maine DEP (copy of MEGIS Maine Conserved Lands) · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-me-mebpl-lands-ecoreserve",
+   "region": "US",
+   "enabled": true,
+   "place": "ME",
+   "agency": "Maine Bureau of Parks and Lands",
+   "title": "MEBPL_Lands_Ecoreserve",
+   "kind": "natural_area",
+   "rest": "https://gis.maine.gov/arcgis/rest/services/bpl/MEBPL_Lands_Ecoreserve/MapServer/1",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Unit",
+   "idField": "",
+   "acresField": "Total_Acres",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Maine Bureau of Parks and Lands · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-me-wildlife-management-areas-hub-dataset",
+   "region": "US",
+   "enabled": true,
+   "place": "ME",
+   "agency": "Maine Department of Inland Fisheries and Wildlife",
+   "title": "Wildlife Management Areas (hub dataset)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://maine.hub.arcgis.com/datasets/1adcd31a16134741b014f39a9d04d8f6_0/about",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Maine Department of Inland Fisheries and Wildlife · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ga-conservation-lands-of-georgia-dnr-layer-5",
+   "region": "US",
+   "enabled": true,
+   "place": "GA",
+   "agency": "Georgia DNR WRD via Georgia GIS Clearinghouse (UGA ITOS)",
+   "title": "Conservation Lands of Georgia (DNR) (layer 5)",
+   "kind": "other",
+   "rest": "https://maps.itos.uga.edu/arcgis/rest/services/FrameWork/Conservation/FeatureServer/5",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "name",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "ownr_categ",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Georgia DNR WRD via Georgia GIS Clearinghouse (UGA ITOS) · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ga-wma-boundaries-2022-dnr-property-boundaries-kmz",
+   "region": "US",
+   "enabled": true,
+   "place": "GA",
+   "agency": "Georgia DNR Wildlife Resources Division",
+   "title": "WMA_Boundaries_2022 (DNR property boundaries KMZ)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://georgiawildlife.com/sites/default/files/WMA_Boundaries_2022.kmz",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Georgia DNR Wildlife Resources Division · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-sk-ecological-reserves-planning-mapserver-layer-6",
+   "region": "CA",
+   "enabled": true,
+   "place": "SK",
+   "agency": "Saskatchewan Ministry of Environment",
+   "title": "Ecological Reserves (Planning MapServer layer 6)",
+   "kind": "natural_area",
+   "rest": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/MapServer",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "PUBLICNM",
+   "idField": "OBJECTID",
+   "acresField": "",
+   "ownerField": "PROP_OWN",
+   "parentField": "",
+   "accessField": "PUBLICCL",
+   "licence": "unknown - see terms page",
+   "credit": "Saskatchewan Ministry of Environment · unknown - see terms page",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-ns-the-nova-scotia-protected-areas-system",
+   "region": "CA",
+   "enabled": true,
+   "place": "NS",
+   "agency": "NS Dept of Natural Resources and Renewables / NS Open Data",
+   "title": "The Nova Scotia Protected Areas System",
+   "kind": "other",
+   "rest": "",
+   "download": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=Shapefile",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence - Nova Scotia v1.1",
+   "credit": "NS Dept of Natural Resources and Renewables / NS Open Data · Open Government Licence - Nova Scotia v1.1",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-provincial-parks",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Natural Resources and Energy Development (GeoNB)",
+   "title": "Provincial parks",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://www.gnb.ca/en/campaign/geonb/data-catalogue/provincial-parks.html",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence - New Brunswick v2",
+   "credit": "NB Natural Resources and Energy Development (GeoNB) · Open Government Licence - New Brunswick v2",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-protected-natural-areas",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Natural Resources and Energy Development",
+   "title": "Protected Natural Areas",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://gnb.socrata.com/api/geospatial/bv9d-7nra?method=export&format=Shapefile",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence - New Brunswick v2",
+   "credit": "NB Natural Resources and Energy Development · Open Government Licence - New Brunswick v2",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-nature-legacy-protected-areas",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Natural Resources and Energy Development",
+   "title": "Nature Legacy protected areas",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://gnb.socrata.com/api/geospatial/d86v-fxcx?method=export&format=Shapefile",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence - New Brunswick v2",
+   "credit": "NB Natural Resources and Energy Development · Open Government Licence - New Brunswick v2",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-yt-parks-and-protected-areas-polygon-surveyed",
+   "region": "CA",
+   "enabled": true,
+   "place": "YT",
+   "agency": "Government of Yukon (GeoYukon)",
+   "title": "Parks and Protected Areas Polygon - Surveyed",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://open.yukon.ca/data/parks-and-protected-areas-polygon-surveyed/resource/e943f126-d169-3d6a-b607-685c1669c5a7",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence - Yukon",
+   "credit": "Government of Yukon (GeoYukon) · Open Government Licence - Yukon",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nt-federal-territorial-conservation-areas-environment-lcc-layer-195",
+   "region": "CA",
+   "enabled": true,
+   "place": "NT",
+   "agency": "GNWT Environment and Climate Change",
+   "title": "Federal/Territorial Conservation Areas (Environment_LCC layer 195)",
+   "kind": "other",
+   "rest": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Name",
+   "idField": "OBJECTID",
+   "acresField": "Size_Km2",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "GNWT Environment and Climate Change · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nt-established-territorial-park-environment-lcc-layer-204",
+   "region": "CA",
+   "enabled": true,
+   "place": "NT",
+   "agency": "GNWT Environment and Climate Change",
+   "title": "Established Territorial Park (Environment_LCC layer 204)",
+   "kind": "state_park",
+   "rest": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/204",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "OBJECTID",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "GNWT Environment and Climate Change · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nl-provincial-protected-areas-nl-2016-zip",
+   "region": "CA",
+   "enabled": true,
+   "place": "NL",
+   "agency": "NL Tourism, Culture, Arts and Recreation (Parks)",
+   "title": "Provincial Protected Areas NL (2016 zip)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://www.gov.nl.ca/tcar/files/ProvincialProtectedAreasNL.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "matching only",
+   "credit": "NL Tourism, Culture, Arts and Recreation (Parks) · matching only",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-bc-bc-parks-ecological-reserves-and-protected-areas-whse-tantalis-ta-park-eco",
+   "region": "CA",
+   "enabled": true,
+   "place": "BC",
+   "agency": "BC Parks",
+   "title": "BC Parks, Ecological Reserves, and Protected Areas (WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW)",
+   "kind": "state_park",
+   "rest": "https://openmaps.gov.bc.ca/geo/pub/WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW/ows?service=WMS&request=GetCapabilities&layers=pub:WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW&legend_format=image/png&feature_info_type=text/plain",
+   "download": "https://catalogue.data.gov.bc.ca/dataset/bc-parks-ecological-reserves-and-protected-areas/resource/ee6bf892-9ba1-4992-b765-a9c25fd57306",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "PROTECTED_LANDS_NAME",
+   "idField": "PROTECTED_LANDS_CODE",
+   "acresField": "OFFICIAL_AREA_HA",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-BC",
+   "credit": "BC Parks · OGL-BC",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-bc-tantalis-wildlife-management-areas-whse-tantalis-ta-wildlife-mgmt-areas-sv",
+   "region": "CA",
+   "enabled": true,
+   "place": "BC",
+   "agency": "BC Ministry of Water, Land and Resource Stewardship",
+   "title": "TANTALIS - Wildlife Management Areas (WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW)",
+   "kind": "wildlife",
+   "rest": "https://openmaps.gov.bc.ca/geo/pub/WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW/ows?service=WMS&request=GetCapabilities&layers=pub:WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW&legend_format=image/png&feature_info_type=text/plain",
+   "download": "https://catalogue.data.gov.bc.ca/dataset/tantalis-wildlife-management-areas/resource/05f663c3-896a-44a8-a911-84bcece987ff",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-BC",
+   "credit": "BC Ministry of Water, Land and Resource Stewardship · OGL-BC",
+   "whyNotLive": "REST root has no layer id; not queried",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-qc-territoires-recreatifs-du-quebec-zone-d-exploitation-controlee-trq-wms-lay",
+   "region": "CA",
+   "enabled": true,
+   "place": "QC",
+   "agency": "Quebec MRNF",
+   "title": "Territoires recreatifs du Quebec - Zone d'exploitation controlee (TRQ_WMS layer 16)",
+   "kind": "wildlife",
+   "rest": "https://servicescarto.mffp.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16",
+   "download": "https://www.donneesquebec.ca/recherche/dataset/couche-des-territoires-recreatifs-du-quebec/resource/73093d38-c975-4cb6-8faa-dacf1508b21c",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NOM_OFFICIEL",
+   "idField": "CODE_ADMINISTRATIF",
+   "acresField": "SUPERFICIE_KM2",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "NATURE_DU_DROIT_OCTROYÉ",
+   "licence": "CC BY 4.0",
+   "credit": "Quebec MRNF · CC BY 4.0",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-qc-territoires-recreatifs-du-quebec-parc-regional-trq-wms-layer-6",
+   "region": "CA",
+   "enabled": true,
+   "place": "QC",
+   "agency": "Quebec MRNF",
+   "title": "Territoires recreatifs du Quebec - Parc regional (TRQ_WMS layer 6)",
+   "kind": "other",
+   "rest": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6",
+   "download": "https://www.donneesquebec.ca/recherche/dataset/couche-des-territoires-recreatifs-du-quebec/resource/73093d38-c975-4cb6-8faa-dacf1508b21c",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NOM_OFFICIEL",
+   "idField": "CODE_ADMINISTRATIF",
+   "acresField": "SUPERFICIE_KM2",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "Quebec MRNF · CC BY 4.0",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-pe-od0130-provincial-parks",
+   "region": "CA",
+   "enabled": true,
+   "place": "PE",
+   "agency": "Government of Prince Edward Island (PEI Open Data portal, Socrata)",
+   "title": "OD0130 Provincial Parks",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://data.princeedwardisland.ca/Environment-and-Food/OD0130-Provincial-Parks/qvkz-zyzs",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "PEI open data (Open Government Licence - Prince Edward Island v1.0)",
+   "credit": "Government of Prince Edward Island (PEI Open Data portal, Socrata) · PEI open data (Open Government Licence - Prince Edward Island v1.0)",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-pe-wildlife-management-areas-natural-areas-no-gis-download-found",
+   "region": "CA",
+   "enabled": true,
+   "place": "PE",
+   "agency": "PEI Forests, Fish and Wildlife Division (Dept of Environment, Energy and Climate Action)",
+   "title": "Wildlife Management Areas / Natural Areas (no GIS download found)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://www.princeedwardisland.ca/en/information/environment-energy-and-climate-action/wildlife-management-areas",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "PEI Forests, Fish and Wildlife Division (Dept of Environment, Energy and Climate Action) · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-mb-wildlife-management-areas-web-map-only",
+   "region": "CA",
+   "enabled": true,
+   "place": "MB",
+   "agency": "Manitoba Wildlife and Fisheries Branch (Manitoba Maps)",
+   "title": "Wildlife Management Areas (web map only)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://www.arcgis.com/apps/webappviewer/index.html?id=d67c565bcfd7401cb78a25f03f2d6c86",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OpenMB",
+   "credit": "Manitoba Wildlife and Fisheries Branch (Manitoba Maps) · OpenMB",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-mb-ecological-reserves-no-gis-layer-found",
+   "region": "CA",
+   "enabled": true,
+   "place": "MB",
+   "agency": "Manitoba Parks and Protected Spaces",
+   "title": "Ecological Reserves (no GIS layer found)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://www.gov.mb.ca/sd/parks/park-facilities-and-services/ecological_reserves/index.html",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Manitoba Parks and Protected Spaces · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-ns-the-nova-scotia-protected-areas-system",
+   "region": "CA",
+   "enabled": true,
+   "place": "NS",
+   "agency": "Nova Scotia Environment and Climate Change (NS Open Data portal)",
+   "title": "The Nova Scotia Protected Areas System",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=GeoJSON",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "NS OGL (Open Government Licence - Nova Scotia)",
+   "credit": "Nova Scotia Environment and Climate Change (NS Open Data portal) · NS OGL (Open Government Licence - Nova Scotia)",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nt-terrestrial-protected-areas-environment-lcc-layer-193",
+   "region": "CA",
+   "enabled": true,
+   "place": "NT",
+   "agency": "GNWT NWT Centre for Geomatics / ECC Conservation Planning",
+   "title": "Terrestrial Protected Areas (Environment_LCC layer 193)",
+   "kind": "natural_area",
+   "rest": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/193",
+   "download": "https://www.geomatics.gov.nt.ca/en/nwt-established-protected-and-conservation-areas",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "Name",
+   "idField": "",
+   "acresField": "Size_Km2",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "GNWT (Open Government Licence - Northwest Territories v1.0)",
+   "credit": "GNWT NWT Centre for Geomatics / ECC Conservation Planning · GNWT (Open Government Licence - Northwest Territories v1.0)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nt-nwt-proposed-protected-and-conservation-areas",
+   "region": "CA",
+   "enabled": true,
+   "place": "NT",
+   "agency": "GNWT NWT Centre for Geomatics",
+   "title": "NWT Proposed Protected and Conservation Areas",
+   "kind": "natural_area",
+   "rest": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/200",
+   "download": "https://www.geomatics.gov.nt.ca/en/nwt-proposed-protected-and-conservation-areas",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "GNWT (Open Government Licence - Northwest Territories v1.0)",
+   "credit": "GNWT NWT Centre for Geomatics · GNWT (Open Government Licence - Northwest Territories v1.0)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-wildlife-refuges-incl-wildlife-management-areas",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Natural Resources and Energy Development (GeoNB / ERD open data)",
+   "title": "Wildlife Refuges (incl. Wildlife Management Areas)",
+   "kind": "wildlife",
+   "rest": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer/0",
+   "download": "https://hub.arcgis.com/datasets/5706f19aa80f4e35b73f594a0760f180_0/about?locale=en",
+   "live": true,
+   "findNew": true,
+   "hub": true,
+   "nameField": "NAME",
+   "idField": "",
+   "acresField": "SHAPE.AREA",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "W_CLASS",
+   "licence": "OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "credit": "NB Natural Resources and Energy Development (GeoNB / ERD open data) · OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-protected-natural-areas",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Natural Resources and Energy Development (GeoNB / ERD open data)",
+   "title": "Protected Natural Areas",
+   "kind": "natural_area",
+   "rest": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/MapServer/0",
+   "download": "https://hub.arcgis.com/datasets/be8127efc1fc459c8c204bf48d5396f6_0/about?locale=en",
+   "live": true,
+   "findNew": true,
+   "hub": true,
+   "nameField": "NAME",
+   "idField": "PNA_CODE",
+   "acresField": "HECTARES",
+   "ownerField": "OWNER",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "credit": "NB Natural Resources and Energy Development (GeoNB / ERD open data) · OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nb-provincial-parks",
+   "region": "CA",
+   "enabled": true,
+   "place": "NB",
+   "agency": "NB Dept of Energy and Resource Development (GeoNB)",
+   "title": "Provincial parks",
+   "kind": "state_park",
+   "rest": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Parks/MapServer/0",
+   "download": "https://geonb.snb.ca/downloads/prov_parks/geonb_provincialparks-parcsprovinciaux_shp.zip",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "SHAPE.AREA",
+   "ownerField": "HOLDER",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "credit": "NB Dept of Energy and Resource Development (GeoNB) · OGL-Canada-derived (Open Government Licence - New Brunswick v2)",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ks-kdwp-wihaareas-dasc-staff-layer-0-dasc-staff-kdwp-wiha-areas",
+   "region": "US",
+   "enabled": true,
+   "place": "KS",
+   "agency": "Kansas Dept of Wildlife & Parks (KDWP) via Kansas DASC / KGS (KU)",
+   "title": "KDWP/WIHAAREAS_DASC_STAFF (layer 0: DASC_STAFF.KDWP_WIHA_AREAS)",
+   "kind": "other",
+   "rest": "https://services.kgs.ku.edu/arcgis15/rest/services/KDWP/WIHAAREAS_DASC_STAFF/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": false,
+   "hub": false,
+   "nameField": "CONTRACTNAME",
+   "idField": "AREAID",
+   "acresField": "ACRES",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "WEAPONS_REST",
+   "licence": "unknown - see terms page",
+   "credit": "Kansas Dept of Wildlife & Parks (KDWP) via Kansas DASC / KGS (KU) · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok",
+   "note": "WIHA is not eligible as a new park. Shown only if a name search hits it."
+  },
+  {
+   "id": "us-ks-kansas-natural-resource-planner-protected-areas-layer-0-protected-areas",
+   "region": "US",
+   "enabled": true,
+   "place": "KS",
+   "agency": "Kansas Applied Remote Sensing (KARS, Univ. of Kansas) - Kansas Natural Resource Planner",
+   "title": "Kansas_Natural_Resource_Planner/Protected_Areas (layer 0: Protected Areas)",
+   "kind": "other",
+   "rest": "https://services.kars.geoplatform.ku.edu/arcgis/rest/services/Kansas_Natural_Resource_Planner/Protected_Areas/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Kansas Applied Remote Sensing (KARS, Univ. of Kansas) - Kansas Natural Resource Planner · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ks-google-earth-file-smoky-hill-wildlife-area-refuge-boundary",
+   "region": "US",
+   "enabled": true,
+   "place": "KS",
+   "agency": "Kansas Dept of Wildlife & Parks (KDWP)",
+   "title": "Google Earth File - Smoky Hill Wildlife Area Refuge Boundary",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas/Northwest/Smoky-Hill-Kanopolis/Area-News/Google-Earth-File-Smoky-Hill-Wildlife-Area-Refuge-Boundary",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page ('general reference only; posted signs are true boundary')",
+   "credit": "Kansas Dept of Wildlife & Parks (KDWP) · unknown - see terms page ('general reference only; posted signs are true boundary')",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ny-dil-dil-land-activities-layer-0-dec-lands",
+   "region": "US",
+   "enabled": true,
+   "place": "NY",
+   "agency": "NYS Department of Environmental Conservation (DEC)",
+   "title": "dil/dil_land_activities (layer 0: DEC Lands)",
+   "kind": "forest",
+   "rest": "https://gisservices.dec.ny.gov/arcgis/rest/services/dil/dil_land_activities/MapServer/0",
+   "download": "https://data.gis.ny.gov/api/download/v1/items/84b4cce8a8974c31a1c5584540f3aaae/shapefile?layers=0",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "FACILITY",
+   "idField": "LANDS_UID",
+   "acresField": "ACRES",
+   "ownerField": "MANAGE_BY",
+   "parentField": "UNIT",
+   "accessField": "PUBLICUSE",
+   "licence": "unknown - see terms page (hub mirror lists 'No License Provided')",
+   "credit": "NYS Department of Environmental Conservation (DEC) · unknown - see terms page (hub mirror lists 'No License Provided')",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-ny-dil-dil-land-activities-layer-2-wildlife-management-areas",
+   "region": "US",
+   "enabled": true,
+   "place": "NY",
+   "agency": "NYS Department of Environmental Conservation (DEC) Bureau of Wildlife",
+   "title": "dil/dil_land_activities (layer 2: Wildlife Management Areas)",
+   "kind": "wildlife",
+   "rest": "https://gisservices.dec.ny.gov/arcgis/rest/services/dil/dil_land_activities/MapServer/2",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "WMA",
+   "idField": "OBJECTID",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "NYS Department of Environmental Conservation (DEC) Bureau of Wildlife · unknown - see terms page",
+   "whyNotLive": "",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-nc-game-lands-boundaries-statewide-kmz",
+   "region": "US",
+   "enabled": true,
+   "place": "NC",
+   "agency": "NC Wildlife Resources Commission (NCWRC)",
+   "title": "Game Lands boundaries - statewide KMZ",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://www.ncwildlife.gov/gamelandskmz/download?attachment",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page (page: boundaries approximate, not for regulatory purposes)",
+   "credit": "NC Wildlife Resources Commission (NCWRC) · unknown - see terms page (page: boundaries approximate, not for regulatory purposes)",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-sc-scdnr-public-lands-hub-heritage-preserves-wma-property-pages",
+   "region": "US",
+   "enabled": true,
+   "place": "SC",
+   "agency": "SC Department of Natural Resources (SCDNR)",
+   "title": "SCDNR Public Lands hub (Heritage Preserves / WMA property pages)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://public-lands-scdnr.hub.arcgis.com/",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page (dnr.sc.gov/gis.html: 'GIS data produced and maintained by SCDNR is available free of charge to the public')",
+   "credit": "SC Department of Natural Resources (SCDNR) · unknown - see terms page (dnr.sc.gov/gis.html: 'GIS data produced and maintained by SCDNR is available free of charge to the public')",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-sc-wma-maps-pdf-10-sheets",
+   "region": "US",
+   "enabled": true,
+   "place": "SC",
+   "agency": "SC Department of Natural Resources (SCDNR)",
+   "title": "WMA maps (PDF, 10 sheets)",
+   "kind": "wildlife",
+   "rest": "",
+   "download": "https://www.dnr.sc.gov/wma/maps.html",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "SC Department of Natural Resources (SCDNR) · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ca-nu-territorial-parks-no-official-gis-layer-found",
+   "region": "CA",
+   "enabled": true,
+   "place": "NU",
+   "agency": "Nunavut Parks and Special Places, GN Department of Environment",
+   "title": "Territorial Parks (no official GIS layer found)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://nunavutparks.com/parks/",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Nunavut Parks and Special Places, GN Department of Environment · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-capad-2024-terrestrial-shapefile-data-gov-au-resource-90c42908-fed-dcceew-gov",
+   "region": "AU",
+   "enabled": false,
+   "place": "AU",
+   "agency": "DCCEEW (Australian Government)",
+   "title": "CAPAD 2024 Terrestrial - Shapefile (data.gov.au resource 90c42908..., fed.dcceew.gov.au API download)",
+   "kind": "federal",
+   "rest": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0",
+   "download": "https://fed.dcceew.gov.au/api/download/v1/items/ec356a872d8048459fe78fc80213dc70/shapefile?layers=0",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "PA_ID",
+   "acresField": "GAZ_AREA;GIS_AREA",
+   "ownerField": "AUTHORITY",
+   "parentField": "TYPE",
+   "accessField": "",
+   "licence": "CC BY 4.0 (stated on CAPAD 2022 service page; data.gov.au 2024 resource licence field says 'Not Specified' but site footer says CC BY 4.0)",
+   "credit": "DCCEEW (Australian Government) · CC BY 4.0 (stated on CAPAD 2022 service page; data.gov.au 2024 resource licence field says 'Not Specified' but site footer says CC BY 4.0)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-capad-2024-terrestrial-geojson-data-gov-au-resource-ab116ef0",
+   "region": "AU",
+   "enabled": false,
+   "place": "AU",
+   "agency": "DCCEEW (Australian Government)",
+   "title": "CAPAD 2024 Terrestrial - GeoJSON (data.gov.au resource ab116ef0...)",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://fed.dcceew.gov.au/api/download/v1/items/ec356a872d8048459fe78fc80213dc70/geojson?layers=0",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "PA_ID",
+   "acresField": "GAZ_AREA;GIS_AREA",
+   "ownerField": "AUTHORITY",
+   "parentField": "TYPE",
+   "accessField": "",
+   "licence": "CC BY 4.0 (site footer; dataset licence field 'Not Specified')",
+   "credit": "DCCEEW (Australian Government) · CC BY 4.0 (site footer; dataset licence field 'Not Specified')",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-capad-2024-marine-shapefile-data-gov-au-resource-dab73f99",
+   "region": "AU",
+   "enabled": false,
+   "place": "AU",
+   "agency": "DCCEEW (Australian Government)",
+   "title": "CAPAD 2024 Marine - Shapefile (data.gov.au resource dab73f99...)",
+   "kind": "federal",
+   "rest": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/1",
+   "download": "https://fed.dcceew.gov.au/api/download/v1/items/0b6e7b6c48a64a3a82c225fa48aee13d/shapefile?layers=1",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "PA_ID",
+   "acresField": "GAZ_AREA;GIS_AREA",
+   "ownerField": "AUTHORITY",
+   "parentField": "TYPE",
+   "accessField": "",
+   "licence": "CC BY 4.0 (site footer; dataset licence field 'Not Specified')",
+   "credit": "DCCEEW (Australian Government) · CC BY 4.0 (site footer; dataset licence field 'Not Specified')",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-indigenous-protected-areas-ipa-dedicated",
+   "region": "AU",
+   "enabled": false,
+   "place": "AU",
+   "agency": "DCCEEW / NIAA",
+   "title": "Indigenous Protected Areas (IPA) - Dedicated",
+   "kind": "federal",
+   "rest": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/Indigenous_Protected_Areas/FeatureServer/0",
+   "download": "https://www.arcgis.com/sharing/rest/content/items/75c48afce3bb445f9ce58633467e21ed/info/metadata/metadata.xml?format=default&output=html",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "",
+   "acresField": "GAZ_AREA;GIS_AREA",
+   "ownerField": "AUTHORITY",
+   "parentField": "TYPE",
+   "accessField": "",
+   "licence": "CC BY (Australia) as stated in metadata",
+   "credit": "DCCEEW / NIAA · CC BY (Australia) as stated in metadata",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-nsw-nsw-national-parks-and-wildlife-service-npws-estate-internal-boundaries",
+   "region": "AU",
+   "enabled": false,
+   "place": "NSW",
+   "agency": "NSW DCCEEW / National Parks and Wildlife Service",
+   "title": "NSW National Parks and Wildlife Service (NPWS) Estate (internal boundaries)",
+   "kind": "state_park",
+   "rest": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/EDP/Estate/MapServer",
+   "download": "https://datasets.seed.nsw.gov.au/dataset/9bad468a-c2a6-4c90-bfaa-8ae8af72e925/resource/33fb1ee3-9090-4cae-a4e7-c4e3c83ba5c8/download/tenure_npws_estateinternalboundaries.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 per SEED/data.nsw dataset page (service/KML resource pages say CC BY 3.0 AU)",
+   "credit": "NSW DCCEEW / National Parks and Wildlife Service · CC BY 4.0 per SEED/data.nsw dataset page (service/KML resource pages say CC BY 3.0 AU)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-nsw-npws-estate-dissolved-internal-boundaries",
+   "region": "AU",
+   "enabled": false,
+   "place": "NSW",
+   "agency": "NSW DCCEEW / National Parks and Wildlife Service",
+   "title": "NPWS Estate (dissolved internal boundaries)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://datasets.seed.nsw.gov.au/dataset/9bad468a-c2a6-4c90-bfaa-8ae8af72e925/resource/aa8fe8b1-7ff1-4486-b621-cf592605d237/download/tenure_npws_estate.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 (dataset page)",
+   "credit": "NSW DCCEEW / National Parks and Wildlife Service · CC BY 4.0 (dataset page)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-qld-protected-areas-of-queensland-boundaries",
+   "region": "AU",
+   "enabled": false,
+   "place": "QLD",
+   "agency": "Queensland Dept of Environment, Tourism, Science and Innovation (QPWS) via Qld Government spatial-gis server",
+   "title": "Protected areas of Queensland - boundaries",
+   "kind": "state_park",
+   "rest": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/10",
+   "download": "https://www.data.qld.gov.au/dataset/protected-areas-of-queensland-series",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "estatename",
+   "idField": "sysintcode",
+   "acresField": "gazareaha",
+   "ownerField": "",
+   "parentField": "qpwsreg (QPWS region)",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "Queensland Dept of Environment, Tourism, Science and Innovation (QPWS) via Qld Government spatial-gis server · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-qld-queensland-state-forests-and-timber-reserves-qpws-via-wetlandinfo-metadat",
+   "region": "AU",
+   "enabled": false,
+   "place": "QLD",
+   "agency": "Queensland Dept of Environment, Science and Innovation",
+   "title": "Queensland state forests and timber reserves (QPWS) - via wetlandinfo metadata",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://wetlandinfo.detsi.qld.gov.au/wetlands/facts-maps/get-mapping-help/metadata/state-forest",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Queensland Dept of Environment, Science and Innovation · unknown - see terms page",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-vic-public-land-management-plm25",
+   "region": "AU",
+   "enabled": false,
+   "place": "VIC",
+   "agency": "Victorian DEECA",
+   "title": "Public Land Management (PLM25)",
+   "kind": "other",
+   "rest": "https://opendata.maps.vic.gov.au/geoserver/wfs?request=GetCapabilities&service=WFS",
+   "download": "https://datashare.maps.vic.gov.au/search?md=7cb9cfb1-86ff-5432-bf9b-e3070d04f507",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "Victorian DEECA · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-wa-dbca-legislated-lands-and-waters-dbca-011",
+   "region": "AU",
+   "enabled": false,
+   "place": "WA",
+   "agency": "WA DBCA",
+   "title": "DBCA - Legislated Lands and Waters (DBCA-011)",
+   "kind": "state_park",
+   "rest": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15",
+   "download": "https://data-downloads.slip.wa.gov.au/DBCA-011/Shapefile",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "leg_name",
+   "idField": "leg_pin",
+   "acresField": "leg_poly_area",
+   "ownerField": "leg_vesting",
+   "parentField": "leg_class",
+   "accessField": "",
+   "licence": "CC BY-NC 4.0 (non-commercial!)",
+   "credit": "WA DBCA · CC BY-NC 4.0 (non-commercial!)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-sa-conservation-reserve-boundaries-npwsa-reserves",
+   "region": "AU",
+   "enabled": false,
+   "place": "SA",
+   "agency": "SA Dept for Environment and Water",
+   "title": "Conservation Reserve Boundaries (NPWSA Reserves)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://www.waterconnect.sa.gov.au/Content/Downloads/DEWNR/CONSERVATION_NpwsaReserves_SHP.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "SA Dept for Environment and Water · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-tas-tasmanian-reserve-estate",
+   "region": "AU",
+   "enabled": false,
+   "place": "TAS",
+   "agency": "Tasmanian NRE / LIST",
+   "title": "Tasmanian Reserve Estate",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://listdata.thelist.tas.gov.au/opendata/data/LIST_TASMANIAN_RESERVE_ESTATE_STATEWIDE.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 3.0 AU",
+   "credit": "Tasmanian NRE / LIST · CC BY 3.0 AU",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-tas-list-land-tenure-opendatawfs-layer-26",
+   "region": "AU",
+   "enabled": false,
+   "place": "TAS",
+   "agency": "Tasmanian Dept NRE / LIST",
+   "title": "LIST Land Tenure (OpenDataWFS layer 26)",
+   "kind": "other",
+   "rest": "https://services.thelist.tas.gov.au/arcgis/rest/services/Public/OpenDataWFS/MapServer/26",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "FEAT_NAME",
+   "idField": "LIST_GUID",
+   "acresField": "SHAPE.AREA",
+   "ownerField": "ACT",
+   "parentField": "TEN_CLASS",
+   "accessField": "",
+   "licence": "CC BY 3.0 AU",
+   "credit": "Tasmanian Dept NRE / LIST · CC BY 3.0 AU",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-nt-nt-parks-and-reserves",
+   "region": "AU",
+   "enabled": false,
+   "place": "NT",
+   "agency": "NT Dept of Environment, Parks and Water Security",
+   "title": "NT Parks and Reserves",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://ftp-dlrm.nt.gov.au/main.html?download&weblink=d4ceb3403ce21662e3a32efbf9df0018&realfilename=NT_Parks_and_Reserves.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "NT Dept of Environment, Parks and Water Security · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-act-act-reserves-open-data",
+   "region": "AU",
+   "enabled": false,
+   "place": "ACT",
+   "agency": "ACT Government",
+   "title": "ACT Reserves (Open Data)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://www.data.act.gov.au/d/bbmq-c2dp",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 (ACT) stated in dataset description; no structured licence field",
+   "credit": "ACT Government · CC BY 4.0 (ACT) stated in dataset description; no structured licence field",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "au-act-actgov-public-land-reserves-hub-item-da83e065513747f3aa46ade410ccf959",
+   "region": "AU",
+   "enabled": false,
+   "place": "ACT",
+   "agency": "ACT Government Geospatial",
+   "title": "ACTGOV Public Land Reserves (Hub item da83e065513747f3aa46ade410ccf959)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://actmapi-actgov.opendata.arcgis.com/api/download/v1/items/da83e065513747f3aa46ade410ccf959/shapefile?layers=0",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "Reserve_Name",
+   "idField": "ZONE_OVERLAY_AREA_ID",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "Territory_Plan_Overlay",
+   "accessField": "",
+   "licence": "CC BY 4.0 (Australian Capital Territory)",
+   "credit": "ACT Government Geospatial · CC BY 4.0 (Australian Capital Territory)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-eng-ancient-woodland-england",
+   "region": "GB",
+   "enabled": false,
+   "place": "ENG",
+   "agency": "Natural England",
+   "title": "Ancient Woodland (England)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://environment.data.gov.uk/api/file/download?fileDataSetId=008cdfcf-893b-48f6-937a-3891a2a698c9&fileName=Ancient_Woodland_England.shp.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence v3.0",
+   "credit": "Natural England · Open Government Licence v3.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-eng-registered-parks-and-gardens-gis-data",
+   "region": "GB",
+   "enabled": false,
+   "place": "ENG",
+   "agency": "Historic England",
+   "title": "Registered Parks and Gardens GIS Data",
+   "kind": "other",
+   "rest": "",
+   "download": "https://hub.arcgis.com/api/download/v1/items/767f279327a24845bf47dfe5eae9862b/shapefile?layers=7",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Historic England Open Data Hub Terms and Conditions (data.gov.uk lists OGL v3)",
+   "credit": "Historic England · Historic England Open Data Hub Terms and Conditions (data.gov.uk lists OGL v3)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-eng-forestry-commission-open-data-portal-national-forest-estate-boundaries-re",
+   "region": "GB",
+   "enabled": false,
+   "place": "ENG",
+   "agency": "Forestry Commission (Forestry England)",
+   "title": "Forestry Commission Open Data portal - National Forest Estate (boundaries, recreation features, roads)",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://data-forestry.opendata.arcgis.com/",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL v3 site-wide 'except where otherwise stated' (per data.gov.uk/gov.uk pages); CKAN resource says No licence provided",
+   "credit": "Forestry Commission (Forestry England) · OGL v3 site-wide 'except where otherwise stated' (per data.gov.uk/gov.uk pages); CKAN resource says No licence provided",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-national-forest-estate-subcompartments-gb",
+   "region": "GB",
+   "enabled": false,
+   "place": "GB",
+   "agency": "Forestry Commission / Forest Research (custodians FC, Forest Enterprise Scotland)",
+   "title": "National Forest Estate Subcompartments GB",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://hub.arcgis.com/api/download/v1/items/a29f272bb2014c658d3d9940bfd1de16/shapefile?layers=0",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "FOREST",
+   "idField": "SUBCOMPTID",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "COMPARTMNT",
+   "accessField": "",
+   "licence": "Open Government Licence v3.0 (Forestry Commission acknowledgement required)",
+   "credit": "Forestry Commission / Forest Research (custodians FC, Forest Enterprise Scotland) · Open Government Licence v3.0 (Forestry Commission acknowledgement required)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-national-nature-reserves-scotland",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "NatureScot",
+   "title": "National Nature Reserves - Scotland",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://gis-downloads.nature.scot/NNR_SCOTLAND_SHP_27700.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CKAN resource says 'No licence provided'; NatureScot GIS download service listing also 'No Licence Provided' - confirm on NatureScot terms (OGL widely assumed, not verified here)",
+   "credit": "NatureScot · CKAN resource says 'No licence provided'; NatureScot GIS download service listing also 'No Licence Provided' - confirm on NatureScot terms (OGL widely assumed, not verified here)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-local-nature-reserves-scotland-naturescot",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "NatureScot",
+   "title": "Local Nature Reserves - Scotland (NatureScot)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://gis-downloads.nature.scot/LNR_SCOTLAND_SHP_27700.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CKAN resource says 'No Licence Provided'; separate Spatial Hub record (Improvement Service) states Open Government Licence",
+   "credit": "NatureScot · CKAN resource says 'No Licence Provided'; separate Spatial Hub record (Improvement Service) states Open Government Licence",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-naturescot-owned-land",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "NatureScot",
+   "title": "NatureScot owned land",
+   "kind": "other",
+   "rest": "",
+   "download": "https://gis-downloads.nature.scot/NSLAND_SCOTLAND_SHP_27700.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "No Licence Provided on CKAN resource - unknown, see NatureScot terms",
+   "credit": "NatureScot · No Licence Provided on CKAN resource - unknown, see NatureScot terms",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-ancient-woodland-inventory-scotland",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "NatureScot",
+   "title": "Ancient Woodland Inventory (Scotland)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://opendata.nature.scot/datasets/ancient-woodland-inventory/explore",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "No Licence Provided on CKAN resource - unknown, see NatureScot Open Data terms",
+   "credit": "NatureScot · No Licence Provided on CKAN resource - unknown, see NatureScot Open Data terms",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-cairngorms-national-park-designated-boundary",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "Scottish Government (Cairngorms National Park Authority)",
+   "title": "Cairngorms National Park designated boundary",
+   "kind": "other",
+   "rest": "https://maps.gov.scot/server/rest/services/ScotGov/ProtectedSites/MapServer/0",
+   "download": "https://maps.gov.scot/ATOM/shapefiles/SG_CairngormsNationalPark_2010.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Page licence field 'Not set'; site footer OGL v3; attribution to Scottish Government + Ordnance Survey required",
+   "credit": "Scottish Government (Cairngorms National Park Authority) · Page licence field 'Not set'; site footer OGL v3; attribution to Scottish Government + Ordnance Survey required",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-national-parks-cairngorms-loch-lomond-and-the-trossachs-map-service",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "Scottish Government",
+   "title": "National Parks (Cairngorms; Loch Lomond and The Trossachs) map service",
+   "kind": "other",
+   "rest": "https://maps.data.gov.scot/arcgis/rest/services/NationalParks/MapServer",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Open Government Licence (attribution '(c) Scottish Government, contains Ordnance Survey data (c) Crown copyright and database right [year]')",
+   "credit": "Scottish Government · Open Government Licence (attribution '(c) Scottish Government, contains Ordnance Survey data (c) Crown copyright and database right [year]')",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-sct-national-forest-estate-ownership-scotland-2019",
+   "region": "GB",
+   "enabled": false,
+   "place": "SCT",
+   "agency": "Scottish Government SpatialData.gov.scot (FLS/Forestry Commission)",
+   "title": "National Forest Estate Ownership Scotland 2019",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://www.data.gov.uk/dataset/national-forest-estate-ownership-scotland-2019",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "TITLE",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL v3 site footer 'except where otherwise stated'; Crown copyright/OS acknowledgement on hard copy",
+   "credit": "Scottish Government SpatialData.gov.scot (FLS/Forestry Commission) · OGL v3 site footer 'except where otherwise stated'; Crown copyright/OS acknowledgement on hard copy",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-wls-national-parks-nrw-national-park",
+   "region": "GB",
+   "enabled": false,
+   "place": "WLS",
+   "agency": "Natural Resources Wales (DataMapWales)",
+   "title": "National Parks (NRW_NATIONAL_PARK)",
+   "kind": "other",
+   "rest": "",
+   "download": "https://datamap.gov.wales/layers/inspire-nrw:NRW_NATIONAL_PARK/metadata_detail",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL v3 ('Contains Natural Resources Wales information' attribution)",
+   "credit": "Natural Resources Wales (DataMapWales) · OGL v3 ('Contains Natural Resources Wales information' attribution)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-wls-national-forest-for-wales",
+   "region": "GB",
+   "enabled": false,
+   "place": "WLS",
+   "agency": "Natural Resources Wales (DataMapWales)",
+   "title": "National Forest for Wales",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://datamap.gov.wales/layers/geonode:nrw_national_forest/metadata_detail",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "OGL v3",
+   "credit": "Natural Resources Wales (DataMapWales) · OGL v3",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-wls-country-parks-wales",
+   "region": "GB",
+   "enabled": false,
+   "place": "WLS",
+   "agency": "DataMapWales (Welsh Government)",
+   "title": "Country Parks (Wales)",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://datamap.gov.wales/layers/geonode:country_parks",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "UK Open Government Licence (OGL) per CKAN resource",
+   "credit": "DataMapWales (Welsh Government) · UK Open Government Licence (OGL) per CKAN resource",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-wls-nrw-woodland-sub-compartment-data-nrw-productised-scdb-lle",
+   "region": "GB",
+   "enabled": false,
+   "place": "WLS",
+   "agency": "Natural Resources Wales",
+   "title": "NRW woodland sub-compartment data (NRW_PRODUCTISED_SCDB_LLE)",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://datamap.gov.wales/layers/inspire-nrw:NRW_PRODUCTISED_SCDB_LLE",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "No Licence Provided on CKAN resource (updated 2023-10-27) - unknown, see DataMapWales terms",
+   "credit": "Natural Resources Wales · No Licence Provided on CKAN resource (updated 2023-10-27) - unknown, see DataMapWales terms",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "gb-nir-daera-digital-datasets-sac-spa-ramsar-and-assi-nnr",
+   "region": "GB",
+   "enabled": false,
+   "place": "NIR",
+   "agency": "DAERA / NIEA",
+   "title": "DAERA digital datasets: SAC, SPA, Ramsar (and ASSI, NNR)",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://www.daera-ni.gov.uk/articles/download-digital-datasets",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Per DAERA terms: OGL for Natural Environment datasets (attribution (c) NIEA, 2019)",
+   "credit": "DAERA / NIEA · Per DAERA terms: OGL for Natural Environment datasets (attribution (c) NIEA, 2019)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-special-areas-of-conservation-sac-boundaries-itm",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "National Parks and Wildlife Service (NPWS), Dept of Housing, Local Government and Heritage",
+   "title": "Special Areas of Conservation (SAC) boundaries - ITM",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://www.npws.ie/sites/default/files/files/SAC_ITM_2026_01.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "Ha",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 (data.gov.ie / EPA catalogue); NPWS Open Data Policy page says it aims to publish as CC BY 4.0, terms in embedded metadata",
+   "credit": "National Parks and Wildlife Service (NPWS), Dept of Housing, Local Government and Heritage · CC BY 4.0 (data.gov.ie / EPA catalogue); NPWS Open Data Policy page says it aims to publish as CC BY 4.0, terms in embedded metadata",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-natural-heritage-areas-nha-boundaries-itm",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "National Parks and Wildlife Service (NPWS), Dept of Housing, Local Government and Heritage",
+   "title": "Natural Heritage Areas (NHA) boundaries - ITM",
+   "kind": "natural_area",
+   "rest": "",
+   "download": "https://www.npws.ie/sites/default/files/files/NHA_ITM_2019_06%282%29.zip",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "Ha",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 (data.gov.ie natural-heritage-areas is a WMS-only record, licence not re-verified here; pNHA record is CC BY 4.0)",
+   "credit": "National Parks and Wildlife Service (NPWS), Dept of Housing, Local Government and Heritage · CC BY 4.0 (data.gov.ie natural-heritage-areas is a WMS-only record, licence not re-verified here; pNHA record is CC BY 4.0)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-coillte-forest-entrances",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "Coillte CGA",
+   "title": "Coillte Forest Entrances",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://data.gov.ie/dataset/coillte-forest-entrances",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "Coillte CGA · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-coillte-life-and-millenium-sites-forest-road-datasets-felling-licences",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "Coillte CGA",
+   "title": "Coillte Life and Millenium Sites; Forest Road Datasets; Felling Licences",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://data.gov.ie/organization/coillte",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "CC BY 4.0 (per Coillte dataset pages seen; not individually verified for these three)",
+   "credit": "Coillte CGA · CC BY 4.0 (per Coillte dataset pages seen; not individually verified for these three)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-coillte-clearfell-licence-application-spatial-extract-flv-coillte-cf-extract",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "Dept of Agriculture, Food and the Marine (Forest Service)",
+   "title": "Coillte Clearfell Licence Application Spatial Extract (FLV_COILLTE_CF_EXTRACT)",
+   "kind": "forest",
+   "rest": "",
+   "download": "https://opendata.agriculture.gov.ie/dataset/7063f35f-49df-4190-a9ea-3c2d06759a99/resource/202f9345-bd62-4749-86fe-fcec4efdf08d/download/flv_coillte_cf_extract-coillte-clearfell.gpkg",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - License not specified on resource page",
+   "credit": "Dept of Agriculture, Food and the Marine (Forest Service) · unknown - License not specified on resource page",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ie-opw-heritage-sites-no-gis-dataset",
+   "region": "IE",
+   "enabled": false,
+   "place": "IE",
+   "agency": "Office of Public Works (OPW)",
+   "title": "OPW heritage sites - no GIS dataset",
+   "kind": "other",
+   "rest": "",
+   "download": "https://assets.gov.ie/static/documents/opw-heritage-site-details.pdf",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "Office of Public Works (OPW) · unknown - see terms page",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "nz-doc-public-conservation-land-hub-dataset-arcgis-item-72354ba9bf7a4706af3fdfe6",
+   "region": "NZ",
+   "enabled": false,
+   "place": "NZ",
+   "agency": "Department of Conservation Te Papa Atawhai (DOC)",
+   "title": "DOC Public Conservation Land (Hub dataset; ArcGIS item 72354ba9bf7a4706af3fdfe60f86eea1)",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://doc-deptconservation.opendata.arcgis.com/datasets/72354ba9bf7a4706af3fdfe60f86eea1_0",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "Name",
+   "idField": "NaPALIS_ID",
+   "acresField": "Recorded_Area",
+   "ownerField": "",
+   "parentField": "Legislation",
+   "accessField": "",
+   "licence": "CC BY 4.0 (stated on backing FeatureServer; also requires 'Crown Copyright: Department of Conservation Te Papa Atawhai [year]' acknowledgement)",
+   "credit": "Department of Conservation Te Papa Atawhai (DOC) · CC BY 4.0 (stated on backing FeatureServer; also requires 'Crown Copyright: Department of Conservation Te Papa Atawhai [year]' acknowledgement)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "nz-public-conservation-land-national-public-conservation-land-mapserver-layer-0",
+   "region": "NZ",
+   "enabled": false,
+   "place": "NZ",
+   "agency": "Department of Conservation (DOC) - SeaSketch/marine GIS server",
+   "title": "Public conservation land (National/Public_Conservation_Land MapServer layer 0)",
+   "kind": "federal",
+   "rest": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "Name",
+   "idField": "NaPALIS_ID",
+   "acresField": "Recorded_Area",
+   "ownerField": "",
+   "parentField": "Legislation",
+   "accessField": "",
+   "licence": "unknown - see terms page (layer copyright text: 'There are no credits.')",
+   "credit": "Department of Conservation (DOC) - SeaSketch/marine GIS server · unknown - see terms page (layer copyright text: 'There are no credits.')",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "nz-protected-areas-lds-layer-53564",
+   "region": "NZ",
+   "enabled": false,
+   "place": "NZ",
+   "agency": "Land Information New Zealand (LINZ) - data from DOC/NaPALIS",
+   "title": "Protected Areas (LDS layer 53564)",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://data.linz.govt.nz/layer/53564-protected-areas/",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "name",
+   "idField": "napalis_id",
+   "acresField": "recorded_area",
+   "ownerField": "ctrl_mg_vst",
+   "parentField": "legislation",
+   "accessField": "",
+   "licence": "CC BY 4.0",
+   "credit": "Land Information New Zealand (LINZ) - data from DOC/NaPALIS · CC BY 4.0",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "nz-marine-reserves-hauraki-marine-reserves-mapserver-layer-0",
+   "region": "NZ",
+   "enabled": false,
+   "place": "NZ",
+   "agency": "Department of Conservation (DOC) - Hauraki SeaSketch server",
+   "title": "Marine Reserves (Hauraki/Marine_Reserves MapServer layer 0)",
+   "kind": "other",
+   "rest": "https://seasketch.doc.govt.nz/arcgis/rest/services/Hauraki/Marine_Reserves/MapServer/0",
+   "download": "",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "Name",
+   "idField": "NaPALIS_ID",
+   "acresField": "Recorded_Area",
+   "ownerField": "",
+   "parentField": "Legislation",
+   "accessField": "",
+   "licence": "unknown - see terms page (copyright text blank)",
+   "credit": "Department of Conservation (DOC) - Hauraki SeaSketch server · unknown - see terms page (copyright text blank)",
+   "whyNotLive": "region not turned on (US and Canada first)",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-fed-nps-land-resources-division-boundary-and-tract-data-service-nps-tracts-la",
+   "region": "US",
+   "enabled": true,
+   "place": "FED",
+   "agency": "National Park Service - Land Resources Division",
+   "title": "NPS Land Resources Division Boundary and Tract Data Service - nps_tracts (layer 1; fee/easement tracts) and nps_boundary (layer 2)",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://ngda-cadastre-geoplatform.hub.arcgis.com/api/download/v1/items/c8d60ffcbf5c4030a17762fe10e81c6a/shapefile?layers=1",
+   "live": false,
+   "findNew": false,
+   "hub": true,
+   "nameField": "",
+   "idField": "TRACT_ID",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page (AmeriGEOSS mirror: \"No License Provided\"; per-park data.gov records say public domain)",
+   "credit": "National Park Service - Land Resources Division · unknown - see terms page (AmeriGEOSS mirror: \"No License Provided\"; per-park data.gov records say public domain)",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-fed-administrative-boundaries-of-national-park-system-units",
+   "region": "US",
+   "enabled": true,
+   "place": "FED",
+   "agency": "National Park Service",
+   "title": "Administrative Boundaries of National Park System Units",
+   "kind": "federal",
+   "rest": "",
+   "download": "https://www.arcgis.com/home/item.html?id=e62a2420170b4452b4a334db92130220",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "National Park Service · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "us-nc-nc-state-parks-boundaries",
+   "region": "US",
+   "enabled": true,
+   "place": "NC",
+   "agency": "NC Department of Natural and Cultural Resources",
+   "title": "NC State Parks Boundaries",
+   "kind": "state_park",
+   "rest": "",
+   "download": "https://www.arcgis.com/home/item.html?id=4003ab82c17f49c2bf3b81b7e0484e48",
+   "live": false,
+   "findNew": false,
+   "hub": false,
+   "nameField": "",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "unknown - see terms page",
+   "credit": "NC Department of Natural and Cultural Resources · unknown - see terms page",
+   "whyNotLive": "no REST url; download link only",
+   "origin": "research-ok"
+  },
+  {
+   "id": "ky-kdfwr-hunting",
+   "region": "US",
+   "enabled": true,
+   "place": "KY",
+   "agency": "Kentucky Fish & Wildlife",
+   "title": "Kentucky Fish & Wildlife public hunting areas",
+   "kind": "wildlife",
+   "rest": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/1",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "AREANAME",
+   "idField": "KDFWR_ID",
+   "acresField": "ACRES_CAL",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Kentucky state GIS",
+   "credit": "Kentucky Fish & Wildlife · Kentucky Geography Network (kygisserver.ky.gov)",
+   "whyNotLive": "",
+   "origin": "ky-live"
+  },
+  {
+   "id": "ky-state-parks",
+   "region": "US",
+   "enabled": true,
+   "place": "KY",
+   "agency": "Kentucky State Parks",
+   "title": "Kentucky State Parks",
+   "kind": "state_park",
+   "rest": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer/8",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "PUBLIC_NAM",
+   "idField": "",
+   "acresField": "ABSOLUTE_ACREAGE",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Kentucky state GIS",
+   "credit": "Kentucky State Parks · Kentucky Geography Network (kygisserver.ky.gov)",
+   "whyNotLive": "",
+   "origin": "ky-live"
+  },
+  {
+   "id": "ky-snp",
+   "region": "US",
+   "enabled": true,
+   "place": "KY",
+   "agency": "Office of Kentucky Nature Preserves",
+   "title": "Kentucky State Nature Preserves",
+   "kind": "natural_area",
+   "rest": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "MANAME",
+   "idField": "",
+   "acresField": "ACRES",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Kentucky state GIS",
+   "credit": "Office of Kentucky Nature Preserves · Kentucky Geography Network (kygisserver.ky.gov)",
+   "whyNotLive": "",
+   "origin": "ky-live"
+  },
+  {
+   "id": "ky-sna",
+   "region": "US",
+   "enabled": true,
+   "place": "KY",
+   "agency": "Office of Kentucky Nature Preserves",
+   "title": "Kentucky Natural Areas",
+   "kind": "natural_area",
+   "rest": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "MANAME",
+   "idField": "",
+   "acresField": "ACRES",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "Kentucky state GIS",
+   "credit": "Office of Kentucky Nature Preserves · Kentucky Geography Network (kygisserver.ky.gov)",
+   "whyNotLive": "",
+   "origin": "ky-live"
+  },
+  {
+   "id": "camp-ia-2fe3a015",
+   "region": "US",
+   "enabled": true,
+   "place": "IA",
+   "agency": "Iowa DNR",
+   "title": "Iowa DNR · wild",
+   "kind": "wild",
+   "rest": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "AREA_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Iowa DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-ia-f275df2f",
+   "region": "US",
+   "enabled": true,
+   "place": "IA",
+   "agency": "Iowa DNR",
+   "title": "Iowa DNR · park",
+   "kind": "park",
+   "rest": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Iowa DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-ia-c92052ce",
+   "region": "US",
+   "enabled": true,
+   "place": "IA",
+   "agency": "Iowa DNR",
+   "title": "Iowa DNR · land",
+   "kind": "land",
+   "rest": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Iowa DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-ia-fde5f9f9",
+   "region": "US",
+   "enabled": true,
+   "place": "IA",
+   "agency": "Iowa DNR (credit: Iowa Department of Natural Resources)",
+   "title": "Iowa DNR (credit: Iowa Department of Natural Resources) · land",
+   "kind": "land",
+   "rest": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NameUnit",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "credit line only",
+   "credit": "Iowa DNR (credit: Iowa Department of Natural Resources) · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-mn-2e447918",
+   "region": "US",
+   "enabled": true,
+   "place": "MN",
+   "agency": "Minnesota DNR",
+   "title": "Minnesota DNR · wild",
+   "kind": "wild",
+   "rest": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "name",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Minnesota DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-mn-b72e9d56",
+   "region": "US",
+   "enabled": true,
+   "place": "MN",
+   "agency": "Minnesota DNR",
+   "title": "Minnesota DNR · forest",
+   "kind": "forest",
+   "rest": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "name",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Minnesota DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-mn-dc21f0a2",
+   "region": "US",
+   "enabled": true,
+   "place": "MN",
+   "agency": "Minnesota DNR",
+   "title": "Minnesota DNR · preserve",
+   "kind": "preserve",
+   "rest": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "unit_name",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Minnesota DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-mn-fcecbc8e",
+   "region": "US",
+   "enabled": true,
+   "place": "MN",
+   "agency": "Minnesota DNR (state land admin: parks and trails)",
+   "title": "Minnesota DNR (state land admin: parks and trails) · park",
+   "kind": "park",
+   "rest": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "mgtprjname",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Minnesota DNR (state land admin: parks and trails) · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-mn-c1d05166",
+   "region": "US",
+   "enabled": true,
+   "place": "MN",
+   "agency": "DNR Management Units",
+   "title": "DNR Management Units · forest",
+   "kind": "forest",
+   "rest": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "UNIT_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see layer",
+   "credit": "DNR Management Units · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-wi-d66bcb00",
+   "region": "US",
+   "enabled": true,
+   "place": "WI",
+   "agency": "Wisconsin DNR",
+   "title": "Wisconsin DNR · land",
+   "kind": "land",
+   "rest": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "PROP_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Wisconsin DNR · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-wi-c8945fa6",
+   "region": "US",
+   "enabled": true,
+   "place": "WI",
+   "agency": "Wisconsin State Parks (DNR)",
+   "title": "Wisconsin State Parks (DNR) · park",
+   "kind": "park",
+   "rest": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "PROP_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Wisconsin State Parks (DNR) · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-wi-274beb54",
+   "region": "US",
+   "enabled": true,
+   "place": "WI",
+   "agency": "Wisconsin DNR Natural Heritage Conservation",
+   "title": "Wisconsin DNR Natural Heritage Conservation · preserve",
+   "kind": "preserve",
+   "rest": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "SNA_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Wisconsin DNR Natural Heritage Conservation · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-wi-c7de4dc1",
+   "region": "US",
+   "enabled": true,
+   "place": "WI",
+   "agency": "Wisconsin DNR Bureau of Facilities and Lands",
+   "title": "Wisconsin DNR Bureau of Facilities and Lands · land",
+   "kind": "land",
+   "rest": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "PROP_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "see the agency layer",
+   "credit": "Wisconsin DNR Bureau of Facilities and Lands · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "camp-wi-f3c51aa4",
+   "region": "US",
+   "enabled": true,
+   "place": "WI",
+   "agency": "Wisconsin DNR (county forests, from the counties)",
+   "title": "Wisconsin DNR (county forests, from the counties) · forest",
+   "kind": "forest",
+   "rest": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "FR_PROP_NAME",
+   "idField": "",
+   "acresField": "",
+   "ownerField": "",
+   "parentField": "",
+   "accessField": "",
+   "licence": "public, no use constraints",
+   "credit": "Wisconsin DNR (county forests, from the counties) · agency host (camp-layer approach)",
+   "whyNotLive": "",
+   "origin": "camp-layers"
+  },
+  {
+   "id": "ca-cpcad",
+   "region": "CA",
+   "enabled": true,
+   "place": "CA",
+   "agency": "Environment and Climate Change Canada",
+   "title": "Canadian Protected and Conserved Areas Database (CPCAD)",
+   "kind": "natural_area",
+   "rest": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0",
+   "download": "",
+   "live": true,
+   "findNew": true,
+   "hub": false,
+   "nameField": "NAME_E",
+   "idField": "ZONE_ID",
+   "acresField": "O_AREA_HA",
+   "ownerField": "OWNER_E",
+   "parentField": "PARENT_ID",
+   "accessField": "",
+   "licence": "open government",
+   "credit": "Canadian Protected and Conserved Areas Database, Environment and Climate Change Canada",
+   "whyNotLive": "",
+   "origin": "cpcad"
+  }
+ ],
+ "skipped": [
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Parks_AGOL FeatureServer",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-PE",
+   "title": "Provincial Parks (nat_parks) GIS Data Layer",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Parks",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Provincial Forests - Version 6",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Wildlife Lands MAP-2024",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "NPS per-unit Tract and Boundary Data (IRMA DataStore), e.g. White House WHHO_tracts.zip",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "Surface Ownership Parcels (BasicOwnership) - BdyOwn_LSRS_BasicOwnership",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "Surface Ownership Parcels, detailed (SurfaceOwnership) - BdyOwn_LSRS_SurfaceOwnership",
+   "why": "parcel layer"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Tracts ('Interest'; lands administered by FWS incl. fee and easement interests)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Boundaries (dissolved external boundary of lands where FWS holds a real estate interest)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Approved Acquisition Boundaries (FWSApproved)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV State Park Boundaries (2017 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV State Forest Boundaries (2017 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV DNR Managed Lands (2017 archive, includes WMAs)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV Wildlife Management Areas (2011 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "DEEP Property",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "Protected Open Space View (2011 Protected Open Space Mapping)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Other State Lands 2014 (other_state14.shp)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "State Parks (FeatureServer)",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR Parks District Boundary (DNR Management Boundaries open data)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed Areas (All)",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Game Lands (2003 edition)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Park Areas",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "NGPC Properties 2024-2025",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Conservation Partner Lands",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Federal Lands PAA",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "NYS DEC Lands",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "State Park boundaries",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "PAD-OK Protected Areas of Oklahoma",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR Parks Unit Boundary (DNRManagementBoundariesOPENDATA layer 8)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR LOTS Parcels - Managed Lands / Ownership All Lands (layer 2)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "State Park Area",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Fish and Wildlife Development Fund Lands (Planning MapServer layer 7)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Wildlife Habitat Protection Act (WHPA) lands",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Protected and Conserved Area Network (PCAN) (Planning MapServer layer 20)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas NL (ECCC GIS data page)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-AB",
+   "title": "Parks and Protected Areas of Alberta - Protected Area Designations",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Conservation Reserve Regulated (CONRVREG)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Park Regulated (PROVPREG)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Parks",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Special Conservation Areas",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Wildlife Refuges (Shelters)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "Provincial Parks (full layer NOT found)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "Crown Land",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Established Territorial Park (Environment_LCC layer 204) - POINTS",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NU",
+   "title": "Territorial Parks (no official GIS layer found)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "NPS Tract and Boundary Data (NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service: 1 nps_tracts, 2 nps_boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Approved Acquisition Boundaries (FWSApproved)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Tracts (FWSInterest; fee/easement interests)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Boundaries (FWSBoundaries / USFWS_National_Realty_Boundaries)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Public_WMA_Boundaries (layer 1: Public_WMA_Boundaries_10202026)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "WMA_AdminBoundaries (layer 1: WMABoundaries)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma State Parks (CSV list)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "NYS_Park_Polygons (layer 0: NYS_Park_Polygon) / hub 'NY State Parks Property'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "gamelands_detail (layer 22: Game Lands - detail) / NC OneMap 'NCWRC Game Lands - detail'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed_Areas_All (layer 0: Managed Areas (All)) / MAREA shapefile",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRWILDLandsOPENDATA (layer 2: Wildlife Property Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRManagementBoundariesOPENDATA (layer 8: DNR Parks Unit Boundary) / hub 'Michigan DNR Parks Unit Boundary'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRBoundariesParksHuntableLandsOPENDATA (layer 2: DNR Parks Hunting Land Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Mi_State_Forest (layer 6: Mi State Forest - Compartments) / hub 'Michigan Forest Inventory - Compartments'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Couche des territoires recreatifs du Quebec (TRQ) 1/100 000",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Registre des aires protegees et des AMCE au Quebec (AP_REG_S)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Park Regulated",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Conservation Reserve Regulated",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Parks_AGOL FeatureServer",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-PE",
+   "title": "Provincial Parks (nat_parks) GIS Data Layer",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Parks",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Provincial Forests - Version 6",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Wildlife Lands MAP-2024",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas (NL) shapefile",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "BC Parks, Ecological Reserves, and Protected Areas (WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "TANTALIS - Wildlife Management Areas (WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-AB",
+   "title": "Parks and Protected Areas of Alberta (Protected Area Designations)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "NPS Land Resources Division Boundary and Tract Data Service - nps_tracts (layer 1; fee/easement tracts) and nps_boundary (layer 2)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "NPS per-unit Tract and Boundary Data (IRMA DataStore), e.g. White House WHHO_tracts.zip",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "Surface Ownership Parcels (BasicOwnership) - BdyOwn_LSRS_BasicOwnership",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "Surface Ownership Parcels, detailed (SurfaceOwnership) - BdyOwn_LSRS_SurfaceOwnership",
+   "why": "parcel layer"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Tracts ('Interest'; lands administered by FWS incl. fee and easement interests)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Boundaries (dissolved external boundary of lands where FWS holds a real estate interest)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Approved Acquisition Boundaries (FWSApproved)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV Wildlife Management Areas (layer 6)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV State Parks (layer 10)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV State Forests (layer 11)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "wv_protected_lands - WV Nature Areas (layer 9)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV State Park Boundaries (2017 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV State Forest Boundaries (2017 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV DNR Managed Lands (2017 archive, includes WMAs)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "WV Wildlife Management Areas (2011 archive)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-DC",
+   "title": "Parks and Recreation Areas (Recreation_WebMercator layer 9)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "DEEP Property",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "Protected Open Space View (2011 Protected Open Space Mapping)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "Protected and Recreational OpenSpace (OPENSPACE_POLY)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "MA DFW Wildlife Management Zones",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Conserved Lands (Maine Conserved Lands)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Other State Lands 2014 (other_state14.shp)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Georgia 2015 ESI Parks/Managed Areas",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR Parks District Boundary (DNR Management Boundaries open data)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Michigan DNR open data portal (hub, link only)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed Areas (MAREA) shapefile, quarterly",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Game Lands (2003 edition)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Park Areas",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "NGPC Properties 2024-2025",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Conservation Partner Lands",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Federal Lands PAA",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "NYS DEC Lands",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "DEC Lands (reference MapServer layer 2)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "State Park boundaries",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "PAD-OK Protected Areas of Oklahoma",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma WMAs (WMABoundaries_all.zip)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma State Parks (list, no geometry)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "SCDNR Geospatial Open Data (hub, link only)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR Parks Unit Boundary (DNRManagementBoundariesOPENDATA layer 8)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR LOTS Parcels - Managed Lands / Ownership All Lands (layer 2)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-LA",
+   "title": "LDWF WMA/Refuge boundaries",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Maine Conservation Lands (Maine_DEP_Outstanding_National_Resource_Waters layer 5)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "MEBPL_Lands_Ecoreserve",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "Wildlife Management Areas (hub dataset)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Conservation Lands of Georgia (DNR) (layer 5)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "WMA_Boundaries_2022 (DNR property boundaries KMZ)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "State Park Area",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Ecological Reserves (Planning MapServer layer 6)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Fish and Wildlife Development Fund Lands (Planning MapServer layer 7)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Wildlife Habitat Protection Act (WHPA) lands",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-SK",
+   "title": "Protected and Conserved Area Network (PCAN) (Planning MapServer layer 20)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "The Nova Scotia Protected Areas System",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Provincial parks",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Protected Natural Areas",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Nature Legacy protected areas",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-YT",
+   "title": "Parks and Protected Areas Polygon - Surveyed",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Federal/Territorial Conservation Areas (Environment_LCC layer 195)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Established Territorial Park (Environment_LCC layer 204)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas NL (2016 zip)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NL",
+   "title": "Provincial Protected Areas NL (ECCC GIS data page)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "BC Parks, Ecological Reserves, and Protected Areas (WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-BC",
+   "title": "TANTALIS - Wildlife Management Areas (WHSE_TANTALIS.TA_WILDLIFE_MGMT_AREAS_SVW)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-AB",
+   "title": "Parks and Protected Areas of Alberta - Protected Area Designations",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Conservation Reserve Regulated (CONRVREG)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Park Regulated (PROVPREG)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Territoires recreatifs du Quebec - Zone d'exploitation controlee (TRQ_WMS layer 16)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-QC",
+   "title": "Territoires recreatifs du Quebec - Parc regional (TRQ_WMS layer 6)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-PE",
+   "title": "OD0130 Provincial Parks",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-PE",
+   "title": "Wildlife Management Areas / Natural Areas (no GIS download found)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Parks",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Wildlife Management Areas (web map only)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Special Conservation Areas",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Wildlife Refuges (Shelters)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Ecological Reserves (no GIS layer found)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "The Nova Scotia Protected Areas System",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "Provincial Parks (full layer NOT found)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "CA-NS",
+   "title": "Crown Land",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Terrestrial Protected Areas (Environment_LCC layer 193)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "Established Territorial Park (Environment_LCC layer 204) - POINTS",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NT",
+   "title": "NWT Proposed Protected and Conservation Areas",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Wildlife Refuges (incl. Wildlife Management Areas)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Protected Natural Areas",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "CA-NB",
+   "title": "Provincial parks",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "NPS Tract and Boundary Data (NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service: 1 nps_tracts, 2 nps_boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Approved Acquisition Boundaries (FWSApproved)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Tracts (FWSInterest; fee/easement interests)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Boundaries (FWSBoundaries / USFWS_National_Realty_Boundaries)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Public_WMA_Boundaries (layer 1: Public_WMA_Boundaries_10202026)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "WMA_AdminBoundaries (layer 1: WMABoundaries)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma State Parks (CSV list)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "KDWP/WIHAAREAS_DASC_STAFF (layer 0: DASC_STAFF.KDWP_WIHA_AREAS)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "Kansas_Natural_Resource_Planner/Protected_Areas (layer 0: Protected Areas)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "Google Earth File - Smoky Hill Wildlife Area Refuge Boundary",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "NYS_Park_Polygons (layer 0: NYS_Park_Polygon) / hub 'NY State Parks Property'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "dil/dil_land_activities (layer 0: DEC Lands)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "dil/dil_land_activities (layer 2: Wildlife Management Areas)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "gamelands_detail (layer 22: Game Lands - detail) / NC OneMap 'NCWRC Game Lands - detail'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Game Lands boundaries - statewide KMZ",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed_Areas_All (layer 0: Managed Areas (All)) / MAREA shapefile",
+   "why": "do_not_ingest"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRWILDLandsOPENDATA (layer 2: Wildlife Property Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRManagementBoundariesOPENDATA (layer 8: DNR Parks Unit Boundary) / hub 'Michigan DNR Parks Unit Boundary'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRBoundariesParksHuntableLandsOPENDATA (layer 2: DNR Parks Hunting Land Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Mi_State_Forest (layer 6: Mi State Forest - Compartments) / hub 'Michigan Forest Inventory - Compartments'",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "SCDNR Public Lands hub (Heritage Preserves / WMA property pages)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "WMA maps (PDF, 10 sheets)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "AU-NSW",
+   "title": "State Forest (dedicated legal boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "GB-ENG",
+   "title": "Ancient woodland (planning.data.gov.uk)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "GB-ENG",
+   "title": "Historic parks and gardens (Register of Parks and Gardens of Special Historic Interest)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "GB-NIR",
+   "title": "Areas of Special Scientific Interest (ASSI)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "GB-NIR",
+   "title": "National Nature Reserves (NI)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Special Protection Areas (SPA) boundaries - ITM",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "proposed Natural Heritage Areas (pNHA) boundaries - ITM",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "NPWS Designated Areas web services (SAC=layer 3 on MapServer; WMS/ArcGIS)",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "National Parks (Ireland) - legacy data.gov.ie record",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Nature Reserves (statutory, ministerial order) - legacy data.gov.ie record",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "RAMSAR Wetland Sites - legacy data.gov.ie record",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Wildfowl Sanctuaries (WFS-01..WFS-68) and Biogenetic Reserves",
+   "why": "robots unknown"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Coillte Boundaries (business units, forests, property, compartments)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "IE",
+   "title": "Coillte Recreation Information (trails, parking, Forest Parks)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNRBoundariesParksHuntableLandsOPENDATA (layer 2: DNR Parks Hunting Land Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "DNR LOTS Parcels - Managed Lands / Ownership All Lands (layer 2)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "DEEP Property",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-FED",
+   "title": "FWS National Realty Tracts - Simplified (FWSInterest_Simplified)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-MB",
+   "title": "Manitoba Parks",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "CA-ON",
+   "title": "Provincial Parks_AGOL FeatureServer",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "State Parks Boundary (StateParks_GeneralBoundaries)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "WRD_WMA_Public (layer 14: Boundary)",
+   "why": "robots disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Managed Areas (marea_ManagedArea_2026-10.zip)",
+   "why": "duplicate url"
+  },
+  {
+   "jurisdiction": "US-AK",
+   "title": "Alaska DNR Division of Forestry (Alaska DNR AGOL org) · forest",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AK",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AR",
+   "title": "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CA",
+   "title": "California Department of Fish & Wildlife · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CA",
+   "title": "California State Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CA",
+   "title": "US Fish and Wildlife Service (approved boundary) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CA",
+   "title": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "Colorado Parks & Wildlife · wild",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "Colorado Parks & Wildlife · park",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "Colorado Parks and Wildlife (credit: CPW GIS Unit, CPW Real Estate Unit) · land",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "BLM recreation SITE polygons (national, 3,478) · land",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-CO",
+   "title": "BLM Areas of Critical Environmental Concern (national, 1,120) · land",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-FL",
+   "title": "Florida Forest Service · forest",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-FL",
+   "title": "Suwannee River Water Management District · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-FL",
+   "title": "St. Johns River Water Management District · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-FL",
+   "title": "US Fish and Wildlife Service (approved boundary) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Georgia DNR Wildlife Resources Division · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Georgia State Parks (DNR) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-GA",
+   "title": "National_Heritage_Areas_Updated2023 · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-HI",
+   "title": "Hawaii State Parks (DLNR) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-HI",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ID",
+   "title": "Idaho Fish & Game · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ID",
+   "title": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ID",
+   "title": "Recreation Area · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "KDWPT (owner jjones_KDWPT) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-KS",
+   "title": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-LA",
+   "title": "Louisiana Department of Wildlife & Fisheries · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-LA",
+   "title": "LDWF (owner LDWF_ArcGIS1), Sep 2025 edition · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-LA",
+   "title": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Michigan DNR Parks & Recreation · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Michigan Department of Natural Resources (AGOL owner MichiganDNR) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MI",
+   "title": "Michigan State Park Boundaries · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MN",
+   "title": "Minnesota State Parks (DNR) · park",
+   "why": "not an agency-host layer with an id"
+  },
+  {
+   "jurisdiction": "US-MN",
+   "title": "FWSBoundaries · wild",
+   "why": "not an agency-host layer with an id"
+  },
+  {
+   "jurisdiction": "US-MT",
+   "title": "Montana Fish, Wildlife & Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MT",
+   "title": "Montana Fish, Wildlife & Parks · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MT",
+   "title": "Montana Fish, Wildlife & Parks · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ND",
+   "title": "North Dakota Game & Fish · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ND",
+   "title": "North Dakota Parks & Recreation · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ND",
+   "title": "North Dakota Parks and Recreation Department (credit) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NJ",
+   "title": "New Jersey DEP (state-owned open space) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NM",
+   "title": "New Mexico Department of Game & Fish · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NM",
+   "title": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NM",
+   "title": "BLM Natl Recreation Site Polygons · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NV",
+   "title": "Nevada Department of Wildlife · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NV",
+   "title": "Nevada Division of State Parks (AGOL org owner NDSP_1PARK; copyright Nevada Division of State Lands; UsingAgenc NDSP) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "New York State DEC · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "New York State Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NY",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma State Parks (ODOT GIS) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "Oklahoma Department of Wildlife Conservation (ODOT GIS) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OK",
+   "title": "ODWC (owner ODWC_GIS) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OR",
+   "title": "Oregon Parks and Recreation Department (AGOL owner orstateparks) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OR",
+   "title": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OR",
+   "title": "State of Oregon (all state owned and managed lands) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-PA",
+   "title": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-PA",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-RI",
+   "title": "Rhode Island DEM · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-RI",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee State Parks (TDEC) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee State Natural Areas (TDEC) · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Wildlife Resources Agency · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Department of Agriculture, Division of Forestry · forest",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Department of Environment and Conservation (TDEC public lands) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee State Parks (TDEC state park boundaries) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Natural Areas (TDEC, non-state-park natural areas) · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Wildlife Resources Agency (credit: TWRA) · wild",
+   "why": "robots-blocked state"
+  },
+  {
+   "jurisdiction": "US-TN",
+   "title": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TX",
+   "title": "Texas Parks & Wildlife Department (state parks) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TX",
+   "title": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-TX",
+   "title": "Texas Parks and Wildlife (public conservation lands) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-UT",
+   "title": "Utah State Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-UT",
+   "title": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-UT",
+   "title": "Utah (National Historic Landmarks) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-UT",
+   "title": "state_park_boundaries_dissolved · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia Department of Forestry · forest",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia DCR Natural Heritage · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia State Parks (DCR) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia DCR State Parks (tracts) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia DCR (Virginia's conservation lands) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-VA",
+   "title": "Virginia DCR (local parks 2023) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WA",
+   "title": "Washington State Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WA",
+   "title": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WA",
+   "title": "Hanford Reach · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "West Virginia DNR · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WV",
+   "title": "West Virginia State Forests (DNR) · forest",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WY",
+   "title": "Wyoming State Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WY",
+   "title": "Wyoming State Parks, Historic Sites & Trails · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WY",
+   "title": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-WY",
+   "title": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-OH",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "South Carolina DNR (WMAs, heritage preserves) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "South Carolina State Parks (PRT) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "South Carolina DNR (heritage preserves) · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SC",
+   "title": "South Carolina Department of Natural Resources (credit: SCDNR) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "State of Maine conserved lands (Bureau of Parks and Lands / IFW) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ME",
+   "title": "WMA_Boundaries · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "Arizona State Parks & Trails · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "Arizona Game and Fish Department (AZGFD_GIS org) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "Arizona Game and Fish Department (AZGFD_GIS org) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "US Fish and Wildlife Service (approved boundary) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "Arizona State Parks and Trails (park boundaries) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-AZ",
+   "title": "BLM Natl NLCS National Monuments National Conservation Areas Polygons · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "Connecticut DEEP · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "CT DEEP (deepgis account) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-CT",
+   "title": "CT DEEP (credit: Department of Energy & Environmental Protection) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-IL",
+   "title": "Illinois Department of Natural Resources · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-IL",
+   "title": "Illinois Department of Natural Resources · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "Massachusetts DCR (DCRStateParks account, mass-eoeea org) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-MA",
+   "title": "National Park Service (property boundaries) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Nebraska Game and Parks Commission · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "NGPC (owner NGPC.GISAdmin) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NE",
+   "title": "Nebraska Game and Parks Commission · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "NCWRC (owner ncwildlife.gov) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "Game Lands - detail · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NC",
+   "title": "ParkBoundaries · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NH",
+   "title": "New Hampshire Fish and Game Department (NHFG AGOL org) · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NS",
+   "title": "Nova Scotia Environment (Parks and Protected Areas System) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NS",
+   "title": "NS_Lands_Proposed_or_Pending_Protection · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NS",
+   "title": "NS_Lands_Proposed_or_Pending_Protection · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NS",
+   "title": "HRM Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-QC",
+   "title": "PoleConnectivite_CIMA_2025 · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Niagara Peninsula Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Ausable Bayfield Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Essex Region Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Lower Thames Valley Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Kawartha Region Conservation Authority (Kawartha Conservation) · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Credit Valley Conservation · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Toronto and Region Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Lower Trent Conservation · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Mississippi Valley Conservation Authority · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-ON",
+   "title": "Cataraqui Conservation · land",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NB",
+   "title": "Parks · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NB",
+   "title": "Parks · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-PE",
+   "title": "NCC_AT_Nature_Reserves_Public_Map · preserve",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-SD",
+   "title": "National Park Service (legal boundary) · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-BC",
+   "title": "RegionalParksBoundaries_OpenData · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-BC",
+   "title": "BC Parks EcoRes and PAs · park",
+   "why": "services*.arcgis.com treated as disallow"
+  },
+  {
+   "jurisdiction": "US-NL",
+   "title": "Provincial_Protected_Areas_NL · wild",
+   "why": "services*.arcgis.com treated as disallow"
+  }
+ ],
+ "counts": {
+  "listed": 126,
+  "live": 45,
+  "usLive": 32,
+  "caLive": 13,
+  "byOrigin": {
+   "research-ok": 26,
+   "ky-live": 4,
+   "camp-layers": 14
+  },
+  "skipped": {
+   "robots disallow": 91,
+   "robots unknown": 24,
+   "parcel layer": 2,
+   "do_not_ingest": 4,
+   "duplicate url": 80,
+   "services*.arcgis.com treated as disallow": 137,
+   "robots-blocked state": 6,
+   "not an agency-host layer with an id": 2
+  }
+ }
+}
