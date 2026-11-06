@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06 16:36",
+ "updated": "2026-11-06 17:56",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -877,9 +877,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/barren-fork-horse-camp-surrounding-trails-closed-prescribed-burn-0",
    "routine": true,
    "first": "2026-11-06",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
