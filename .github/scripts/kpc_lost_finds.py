@@ -10,6 +10,8 @@ instead of weeks later:
      that bot or the trail run failed)
 Writes data/us-key/lost-finds.json {made, counts, A, B, C} and one notice. No network. Exit 0 always."""
 import glob, json, os, pathlib, re, sys, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
 
 
 def load(p, d):
@@ -30,9 +32,17 @@ def main():
     ov = load('data/us-key/overrides.json', {}).get('parks') or {}
     A = [[r, state[r], name[r], ', '.join(k for k in ('join', 'alias', 'alias_all') if v.get(k)), str(v.get('why', ''))[-160:]]
          for r, v in sorted(ov.items()) if pin(r) and (v.get('join') or v.get('alias') or v.get('alias_all')) and not v.get('none')]
+    # Nov 6: external-results.json and the question files are .gz in KPC-Data. Opening the plain
+    # name and treating a miss as {} made every SURE find look like it was never asked.
+    qdir = D / 'data/waiting/questions'
+    if not qdir.is_dir():
+        raise MissingInput(f'{qdir} is missing, so a NO answer would be ignored and the report would look empty')
     asked, said_no = set(), set()
-    for f in glob.glob(str(D / 'data/waiting/questions/*.json')):
-        s = load(f, {})
+    qfiles = glob_json_any(str(qdir / '*.json'))
+    if not qfiles and any(qdir.iterdir()):
+        raise MissingInput(f'{qdir} has files but no *.json or *.json.gz')
+    for f in qfiles:
+        s = load_json_any(f)
         rows = (s.get('open') or s.get('questions') or s.get('rows') or []) if isinstance(s, dict) else s
         rows = list(rows.values()) if isinstance(rows, dict) else rows
         if not isinstance(rows, list): continue
@@ -41,7 +51,7 @@ def main():
             r = str(q.get('ref') or '')
             if re.match(r'\W*NO\b', str(q.get('answer') or ''), re.I): said_no.add(r)
             elif not q.get('answer'): asked.add(r)
-    ext = load(D / 'data/intake/external-results.json', {})
+    ext = load_json_any(D / 'data/intake/external-results.json')
     layers = ext.get('layers') or {}
     B, C = {}, {}
     for k, v in (ext.get('pairs') or {}).items():
@@ -61,5 +71,8 @@ def main():
 
 if __name__ == '__main__':
     try: main()
+    except MissingInput as e:
+        print(f'::error title=Lost finds::{e}')
+        sys.exit(1)
     except Exception as e: print(f'::notice title=Lost finds::stopped: {str(e)[:200]}')  # noqa: BLE001
     sys.exit(0)

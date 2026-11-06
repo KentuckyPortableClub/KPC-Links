@@ -11,6 +11,8 @@ Rules: only countries the world key builds (a data/parkinfo/<CC>.json park list 
 compilation layer (EEA) is skipped (W-2: EEA = a candidate for chat 11 only, never joined by a bot). Exit 0 always.
 """
 import datetime as dt, json, os, pathlib, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_json_any import MissingInput, load_json_any  # noqa: E402
 
 KEY = pathlib.Path('data/world-key')
 OVR, LEDGER, CCS = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY / 'answers-countries.txt'
@@ -31,7 +33,8 @@ def load(p, d):
 def main():
     D = data_dir()
     if D is None: print('::notice title=World answers::no KPC-Data checkout: nothing applied'); return
-    j = load(D / 'data/waiting/questions/world-finder.json', {})
+    # Nov 6: world-finder.json is .gz in KPC-Data. A missing file is an error, not zero rows.
+    j = load_json_any(D / 'data/waiting/questions/world-finder.json')
     q = j.get('questions') if isinstance(j, dict) else j
     q = list(q.values()) if isinstance(q, dict) else (q or [])
     ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
@@ -80,5 +83,8 @@ def main():
 
 if __name__ == '__main__':
     try: main()
+    except MissingInput as e:
+        print(f'::error title=World answers::{e}')
+        sys.exit(1)
     except Exception as e: print(f'::notice title=World answers::stopped: {str(e)[:200]}')  # noqa: BLE001
     sys.exit(0)

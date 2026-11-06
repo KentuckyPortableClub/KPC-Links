@@ -98,6 +98,7 @@ KPC_STAMP_PY
 }
 # Nov 2 review (Quality 5a): files that several bots write are MERGED with main's copy instead of copied over it whole:
 #   data/waiting/*.jsonl (append-only)  main's lines + this job's lines that main does not have yet (no line is lost)
+#                                       a .jsonl.gz is the same log (KPC-Data stores verdicts.jsonl.gz); .gz wins when both exist
 #   data/waiting/verdicts.json          results by file path: this job's result wins; main's result is kept while that file is still held
 #   data/waiting/verdicts-last.json     by path, this job wins
 #   data/waiting/held-since.json        by path, the EARLIER date wins; a file that is gone from data/waiting/in/, or that this job
@@ -105,22 +106,39 @@ KPC_STAMP_PY
 # Anything that cannot be read is copied as before (this job's copy). KPC_SAVE_MERGE=off switches it off.
 kpc_merge_shared() {   # $1 = dir holding main's copies; run in the repo after this job's files are copied on top
 KPC_MAIN="$1" python3 - "${CH[@]}" <<'KPC_MERGE_PY' || true
-import json, os, sys
+import gzip, json, os, sys
 M = os.environ['KPC_MAIN']
 def load(p):
     with open(p, encoding='utf-8') as fh: return json.load(fh)
+def read_text(path):
+    # Nov 6: verdicts.jsonl is stored as verdicts.jsonl.gz. Opening the gz bytes as text drops every line.
+    # .gz wins when both the plain path and the .gz sibling are on disk.
+    gz = path if path.endswith('.gz') else path + '.gz'
+    plain = path[:-3] if path.endswith('.gz') else path
+    use = gz if os.path.isfile(gz) else plain
+    if not os.path.isfile(use):
+        raise FileNotFoundError(path + ' (plain or .gz)')
+    if use.endswith('.gz'):
+        with gzip.open(use, 'rt', encoding='utf-8') as fh: return fh.read()
+    with open(use, encoding='utf-8') as fh: return fh.read()
+def write_text(path, text):
+    if path.endswith('.gz'):
+        with gzip.open(path, 'wt', encoding='utf-8') as fh: fh.write(text)
+    else:
+        with open(path, 'w', encoding='utf-8') as fh: fh.write(text)
 def held(path): return os.path.exists(os.path.join('data/waiting/in', path))
 n = 0
 for f in sys.argv[1:]:
     mf = os.path.join(M, f)
     if not os.path.isfile(mf) or not os.path.isfile(f): continue
     try:
-        if f.startswith('data/waiting/') and f.count('/') == 2 and f.endswith('.jsonl'):
-            main = open(mf, encoding='utf-8').read().splitlines(); ours = open(f, encoding='utf-8').read().splitlines()
+        logical = f[:-3] if f.endswith('.gz') else f
+        if logical.startswith('data/waiting/') and logical.count('/') == 2 and logical.endswith('.jsonl'):
+            main = read_text(mf).splitlines(); ours = read_text(f).splitlines()
             have = set(main); add = [l for l in ours if l not in have]
             out = main + add
             if out != ours:
-                with open(f, 'w', encoding='utf-8') as fh: fh.write('\n'.join(out) + ('\n' if out else ''))
+                write_text(f, '\n'.join(out) + ('\n' if out else ''))
                 n += 1
         elif f == 'data/waiting/verdicts.json':
             a, b = load(mf), load(f)
@@ -150,7 +168,7 @@ for f in sys.argv[1:]:
                 with open(f, 'w', encoding='utf-8') as fh: json.dump(c, fh, indent=1)
                 n += 1
     except Exception as e:  # noqa: BLE001
-        print(f'merge: {f} copied as this job wrote it ({type(e).__name__}: {str(e)[:120]})')
+        print(f'::error title=Save merge::{f} could not be read ({type(e).__name__}: {str(e)[:120]}); this job\'s copy was kept')
 if n: print(f'merge: {n} shared file(s) merged with the newest main instead of overwritten')
 KPC_MERGE_PY
 }
@@ -164,7 +182,7 @@ for i in 1 2 3 4 5 6; do
   if git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD; then
     M=$(mktemp -d)
     if [ "${KPC_SAVE_MERGE:-on}" != off ]; then
-      for f in "${CH[@]}"; do case "$f" in data/waiting/*.jsonl|data/waiting/verdicts.json|data/waiting/verdicts-last.json|data/waiting/held-since.json)
+      for f in "${CH[@]}"; do case "$f" in data/waiting/*.jsonl|data/waiting/*.jsonl.gz|data/waiting/verdicts.json|data/waiting/verdicts-last.json|data/waiting/held-since.json)
         [ -f "$f" ] && mkdir -p "$M/$(dirname "$f")" && cp -a "$f" "$M/$f" ;; esac; done
     fi
     cp -a "$T"/. . 2>/dev/null
