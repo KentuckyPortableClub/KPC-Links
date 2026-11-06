@@ -1412,8 +1412,8 @@
    "thin": 60
   }
  },
- "previous_build": "W-42141862922",
- "previous_built": "2026-11-06 06:10 UTC",
+ "previous_build": "W-42205818250",
+ "previous_built": "2026-11-06 15:52 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1423,13 +1423,12 @@
  ],
  "rules_of_run": "1b50faf1dfe8",
  "inputs": {
-  "us-key": "US-42138063969",
-  "ca-key": "CA-42138066664"
+  "us-key": "US-42230313177",
+  "ca-key": "CA-42252274247"
  },
- "build": "W-42205818250",
- "built": "2026-11-06 15:52 UTC",
+ "build": "W-42217201742",
+ "built": "2026-11-06 17:08 UTC",
  "failed": [
-  "AU",
   "AX",
   "CH",
   "NO"
