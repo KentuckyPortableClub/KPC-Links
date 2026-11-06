@@ -1,11 +1,11 @@
 {
  "key": "world",
  "mode": "hold",
- "files_checked": 3,
- "joined_parks": 339,
- "suspect": 12,
- "held": 12,
- "files_changed": 3,
+ "files_checked": 79,
+ "joined_parks": 219,
+ "suspect": 9,
+ "held": 9,
+ "files_changed": 2,
  "official_acres_known": 0,
  "approved_parks_known": 13514,
  "answer_sheet": ".as/data/answer-sheet/world.csv",
@@ -21,39 +21,6 @@
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "note": "far joins HELD before the stamp (records kept in c), others marked; nothing deleted",
  "rows": [
-  {
-   "park": "DO-0027",
-   "area": "DO",
-   "name": "Los Haitises National Park",
-   "outline_ac": "",
-   "official_ac": "",
-   "pin_km": 33.12,
-   "suspect": "the nearest joined record is 33.1 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "DO-0117",
-   "area": "DO",
-   "name": "Autopista Juan Bosch Protected Landscape",
-   "outline_ac": "",
-   "official_ac": "",
-   "pin_km": 43.64,
-   "suspect": "the nearest joined record is 43.6 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "DO-0132",
-   "area": "DO",
-   "name": "Alto Mao Forest Reserve",
-   "outline_ac": "",
-   "official_ac": "",
-   "pin_km": 18.5,
-   "suspect": "the nearest joined record is 18.5 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
   {
    "park": "MX-0140",
    "area": "MX",
