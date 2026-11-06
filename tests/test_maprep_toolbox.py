@@ -52,7 +52,14 @@ if have.returncode != 0:
 diff = subprocess.run(['git', 'diff', '--name-only', 'origin/main...HEAD', '--', '.github/scripts', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json'],
                       cwd=ROOT, capture_output=True, text=True, timeout=30)
 names = [ln for ln in diff.stdout.splitlines() if ln.strip()]
-check(diff.returncode == 0 and not names, 'answer-key scripts and key files are unchanged' + ((' ' + ', '.join(names[:8])) if names else ''))
+# This guard is for a Tool Box-only branch. After #48 merged, this test lives on main and runs on every branch,
+# so a key PR (which changes key scripts on purpose and has its own replay tests) must not trip it.
+_all = subprocess.run(['git', 'diff', '--name-only', 'origin/main...HEAD'], cwd=ROOT, capture_output=True, text=True, timeout=30)
+_toolbox = [ln for ln in _all.stdout.splitlines() if 'maprep' in ln.lower() or 'toolbox' in ln.lower()]
+if names and not _toolbox:
+    print('SKIP answer-key guard: this branch is not a Tool Box change (' + ', '.join(names[:3]) + ' are covered by that PR\'s own tests)')
+else:
+    check(diff.returncode == 0 and not names, 'answer-key scripts and key files are unchanged' + ((' ' + ', '.join(names[:8])) if names else ''))
 
 ag = json.loads((ROOT / 'data/maprep/agencies.json').read_text())
 NEED = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY AB BC MB NB NL NT NS NU ON PE QC SK YT'.split()
