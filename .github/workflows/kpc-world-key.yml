@@ -170,6 +170,7 @@ jobs:
             grep -qx "$c" part/failed.txt 2>/dev/null || [ -f data/world-key/$c.json ] || echo "$c" >> part/failed.txt
             [ -f data/world-key/$c.json ] && cp data/world-key/$c.json part/world-key/
             [ -f data/world-key/review/$c.md ] && cp data/world-key/review/$c.md part/world-key/review/
+            [ -f data/world-key/tracts/$c.json ] && mkdir -p part/world-key/tracts && cp data/world-key/tracts/$c.json part/world-key/tracts/   # Nov 6: tract side file
             [ -d data/world-bounds/$c ] && cp -r data/world-bounds/$c part/world-bounds/
           done
           for f in index.json layers.json eea-designations.json jp-wikidata.json outline-test.json; do [ -f data/world-key/$f ] && cp data/world-key/$f part/world-key/; done
@@ -240,6 +241,7 @@ jobs:
                   if os.path.exists(f'{d}/world-key/{c}.json'):
                       shutil.copy(f'{d}/world-key/{c}.json', f'{O}/{c}.json'); n += 1
                       if os.path.exists(f'{d}/world-key/review/{c}.md'): shutil.copy(f'{d}/world-key/review/{c}.md', f'{O}/review/{c}.md')
+                      if os.path.exists(f'{d}/world-key/tracts/{c}.json'): os.makedirs(f'{O}/tracts', exist_ok=True); shutil.copy(f'{d}/world-key/tracts/{c}.json', f'{O}/tracts/{c}.json')   # Nov 6
                       if os.path.isdir(f'{d}/world-bounds/{c}'):
                           shutil.rmtree(f'data/world-bounds/{c}', ignore_errors=True); shutil.copytree(f'{d}/world-bounds/{c}', f'data/world-bounds/{c}')
                       if c in pi: idx[c] = pi[c]

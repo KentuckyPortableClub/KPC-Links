@@ -50,6 +50,12 @@ import numpy as np
 import cv2
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
+import kpc_fers_count as FCOUNT  # noqa: E402  Nov 6: 2-fer count switch, KPC_FERS_COUNT_MODE (default whole_park = today, untouched)
+_save_json_raw = save_json
+
+
+def save_json(p, d, *a, **k):  # noqa: F811
+    return _save_json_raw(p, FCOUNT.apply(p, d), *a, **k)
 import kpc_owned as KO
 import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
 import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate

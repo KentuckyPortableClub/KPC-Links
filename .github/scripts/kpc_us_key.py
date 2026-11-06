@@ -241,6 +241,25 @@ def piece_why(name, a):
     return '' if ok else why
 
 
+# Nov 6 (big key / 2-fer patch; Quality grade FIX 7:10 AM CST): KPC_US_PUBACCESS = off | report (default). REPORT ONLY: it never
+# changes a join and never drops a POTA park. A joined PAD-US piece marked closed to the public (Pub_Access XA), or tribal / military
+# land not marked open (the same test as the 2-fer program's pad_use() in kpc_fers.py), is only NOTED: the park is flagged and its
+# closed pieces listed in 'pub_access' in data/us-key/tracts/US-XX.json (RI US-6981 / DE US-10670 are mostly UK land with one small XA
+# piece). Whether closed pieces should ever leave the outline is Brandon's call (piece-level vs park-level); 'on' is not a mode.
+PUBACC = (os.environ.get('KPC_US_PUBACCESS') or 'report').strip().lower()
+if PUBACC not in ('off', 'report'):
+    print(f'::warning title=US key::KPC_US_PUBACCESS={PUBACC!r} is not a mode (report only, Nov 6 Quality grade): using report', flush=True)
+    PUBACC = 'report'
+PUBACC_HIT = []
+def closed_why(a):
+    acc = str(a.get('Pub_Access') or ''); own = str(a.get('Own_Type') or '')
+    mang = str(a.get('Mang_Name') or '') + ' ' + str(a.get('Own_Name') or '')
+    if acc == 'XA': return 'closed to the public (PAD-US Pub_Access XA)'
+    if (own == 'TRIB' or re.search(r'\bDOD\b|\bARMY\b|\bNAVY\b|\bUSAF\b|\bUSMC\b', mang)) and acc and acc != 'OA':
+        return f'tribal / military land not open to the public (PAD-US Pub_Access {acc})'
+    return None
+
+
 def _office(t):
     """A name that is an office or district, not a place ('Eastern Interior Field Office', 'Ranger District')."""
     return bool(t) and (KM.is_admin(t) or bool(re.search(r'field office|district office|ranger district', str(t), re.I)))
@@ -303,7 +322,9 @@ def fields():
         except Exception: have = set()  # noqa: BLE001
         # Nov 2 (mapping agent): + Agg_Src, the data provider of each record (FWS PAD-US 3.0 / 4.0, a state's list, TNC...): the
         # KPC_PADUS_DEDUPE switch needs it, and a saved copy only carries it once it was read with this list (GEO_CACHE_MODE=refresh)
-        want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category,Agg_Src'.split(',')
+        # Nov 6 (big key / 2-fer patch): + Source_PAID (the provider's own STABLE id), Own_Name, Loc_Own (the owner) for the tract
+        # records (kpc_tracts.py; field names from kpc_source_fields.py). Only fields the layer lists are asked for (below).
+        want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Own_Name,Loc_Own,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category,Agg_Src,Source_PAID'.split(',')
         FIELDS = ','.join(w for w in want if not have or w in have)
         notice('PAD-US fields', FIELDS + (' (field list not read)' if not have else ''))
     return FIELDS
@@ -361,6 +382,7 @@ def fetch_geo(url, q, timeout=180):
 
 
 FWS = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
+FWS_EXTRA = [',ORGCODE,INTTYPE1']   # Nov 6: kpc_source_fields 'fws_interest' (stable org code + fee / easement kind); dropped if refused
 STB = None
 def st_box(st):
     global STB
@@ -380,10 +402,12 @@ def fws_state(st, have):
     out, off = [], 0
     while True:
         q = {'where': "INTTYPE1<>'E'", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
+             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES' + FWS_EXTRA[0], 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
         try:
             j, pg = fetch_geo(FWS, q)
         except Exception as e:  # noqa: BLE001
+            if FWS_EXTRA[0] and off == 0:   # Nov 6: the added source fields (ORGCODE, INTTYPE1) refused: ask again without them
+                notice(f'US key {st}', f'USFWS source fields refused ({str(e)[:80]}); read without them'); FWS_EXTRA[0] = ''; continue
             notice(f'US key {st}', f'USFWS land not read ({e})'); FAILED_READ.add(st); return out
         fs = j.get('features', [])
         for f in fs:
@@ -392,7 +416,8 @@ def fws_state(st, have):
             g = f.get('geometry') or {}
             out.append({'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': 'FWS',
                         'Loc_Mang': 'U.S. Fish & Wildlife Service (own map)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0, 'Category': 'Fee',
-                        '_bb': bbox(g), '_g': g, '_k': kinds(nm) | kinds(a.get('RSL_TYPE')) | {'nwr'}})
+                        '_bb': bbox(g), '_g': g, '_k': kinds(nm) | kinds(a.get('RSL_TYPE')) | {'nwr'},
+                        **({'SA': {k: a[k] for k in ('ORGCODE', 'INTTYPE1', 'SUM_GISACRES') if a.get(k) not in (None, '')}} if a.get('ORGCODE') or a.get('INTTYPE1') else {})})
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
         off += len(fs); time.sleep(.5)
     return out
@@ -484,6 +509,10 @@ try:
                        {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or ''}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
+SFIELDS = {}   # Nov 6: prefix -> the layer's field list (read by resolve(), which already asks the layer for it)
+SFMAP = {}     # Nov 6: prefix -> kpc_source_fields mapping
+import kpc_source_fields as SF  # noqa: E402
+import kpc_tracts as TR  # noqa: E402
 def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
@@ -494,6 +523,7 @@ def resolve(pre, url, nf, af):
         if 'Polygon' not in str(L.get('geometryType', '')): raise RuntimeError('not a polygon layer')
         oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
         acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
+        SFIELDS[pre] = [f['name'] for f in flds if f.get('name')]   # Nov 6: for kpc_source_fields AUTO (no extra request)
         RESOLVED[pre] = (url, nf, acres, oid)
         return RESOLVED[pre]
     if pre in RESOLVED: return RESOLVED[pre]
@@ -506,6 +536,7 @@ def resolve(pre, url, nf, af):
     name = next((f for f in strs if re.search(r'(^|_)(NAME|NM)(_|$)|NAME', f, re.I) and not re.search(r'admin|state|county|office|agency|own|mgr|manag|type|desig|file', f, re.I)), strs[0] if strs else '')
     acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
     oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
+    SFIELDS[pre] = [f['name'] for f in flds if f.get('name')]
     RESOLVED[pre] = (f'{svc}/{lid}/query', name, acres, oid)
     notice('US key layer found', f'{pre}: {svc}/{lid} [{pick[0].get("name")}] name={name} acres={acres} oid={oid}')
     return RESOLVED[pre]
@@ -648,15 +679,22 @@ def extra_state(st, have, only=None):
         except Exception as e:  # noqa: BLE001
             notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         off, n = 0, 0
+        # Nov 6 (big key / 2-fer patch): the layer's stable id / official acres / owner / parent fields (kpc_source_fields: the one
+        # table, or AUTO from the field list a state layer already gave resolve()). ADDED to this same query; refused = asked without.
+        _sfm = SF.mapping(url, x[5], SFIELDS.get(pre))
+        _sfx = [f for f in SF.extra_fields(_sfm) if f and f.lower() not in {str(q).lower() for q in (oidf, nf, af, opt.get('nm2')) if q}]
+        SFMAP[pre] = _sfm
         order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
         seen_ids = set()
         while True:
             q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2')) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
+                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
                  **({'orderByFields': oidf} if order else {})}
             try:
                 j, pg = fetch_geo(url, q)
             except Exception as e:  # noqa: BLE001
+                if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
+                    _sfx = []; continue
                 if order and off == 0:   # a server that cannot sort: read it the old way
                     order = False; continue
                 notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
@@ -678,7 +716,8 @@ def extra_state(st, have, only=None):
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                             'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
-                            **({'Water': 1} if opt.get('water') else {})})
+                            **({'Water': 1} if opt.get('water') else {}),
+                            **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
                 n += 1
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
             off += len(fs); time.sleep(.5)
@@ -1099,6 +1138,82 @@ def _selfchk(st, parks, recs):
 
 
 P_ALL = {}
+PAD_MAP = SF.mapping('PAD-US/PAD_US/MapServer')
+FWS_MAP = SF.mapping(FWS)
+NPS_CODES = None
+def _nps_code(name):
+    """NPS UNIT_CODE from the Park Service's own unit list (data/nps-units.json, NPS API parkCode = the 4-letter UNIT_CODE), by full name."""
+    global NPS_CODES
+    if NPS_CODES is None:
+        try: NPS_CODES = {_nf(u['name']): u['code'] for u in json.load(open('data/nps-units.json'))['units']}
+        except Exception: NPS_CODES = {}  # noqa: BLE001
+    return NPS_CODES.get(_nf(name))
+
+
+def _tract_store(st, parks, recs):
+    """Nov 6 (big key / 2-fer patch): the side file data/us-key/tracts/US-<st>.json (kpc_tracts.py): one tract record per official
+    record joined to a park (source, stable id, official + measured acres, owner, access, fee / easement / approved boundary), and
+    parks inside parks. KPC_TRACT_STORE=0 turns it off. Never changes the key."""
+    if not TR.on(): return
+    try:
+        byid = {_oid(a): a for a in recs}
+        PT, shapes = {}, {}
+        for ref, p in parks.items():
+            ts, rg = [], []
+            for q in p.get('m') or []:
+                a = byid.get(str(q[0]))
+                if a is None:
+                    ts.append(TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', src_key='other', ac_key=q[2] if len(q) > 2 else None)); continue
+                oid = str(a.get('OBJECTID'))
+                if isinstance(a.get('OBJECTID'), int): mp, lay, attrs = PAD_MAP, PADVER[0], a
+                elif oid.startswith('fws'): mp, lay, attrs = FWS_MAP, 'U.S. Fish & Wildlife Service (own map)', dict(a.get('SA') or {}, SUM_GISACRES=a.get('GIS_Acres'))
+                else:
+                    pre = re.match(r'[a-z]*', oid).group(0)
+                    _x = next((x for x in XS if x[0] == pre), None)
+                    # a saved copy (GEO_CACHE_MODE use / only) did not ask the layer for its fields this run: the fields saved with the
+                    # record (SA) are the field list, the table row is found by the layer url
+                    mp = SFMAP.get(pre) or SF.mapping(_x[1] if _x else '', _x[5] if _x else '', SFIELDS.get(pre) or list((a.get('SA') or {}).keys()))
+                    if not mp.get('key') or mp.get('key') == 'auto': mp = dict(mp, key=pre)   # AUTO / no table row: the layer's own prefix
+                    lay, attrs = a.get('Loc_Mang') or pre, dict(a.get('SA') or {})
+                t = TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', attrs, mp, rings(a.get('_g')), lay)
+                if t.get('ac') is None and a.get('GIS_Acres'): t['ac'] = round(float(a['GIS_Acres']), 1)
+                if str(a.get('Mang_Name') or '') == 'NPS' or re.search(r'park service', str(a.get('Loc_Mang') or ''), re.I):
+                    _uc = _nps_code(q[1]) or _nps_code(p.get('n'))
+                    if _uc: t['unit_code'] = _uc
+                ts.append(t); rg += rings(a.get('_g'))
+            if ts: PT[ref] = ts
+            if rg: shapes[ref] = rg
+        nested = TR.nested_geometry(shapes)
+        _hits = [x for x in PUBACC_HIT if x['st'] == st]
+        _flag = {}
+        for x in _hits:
+            f = _flag.setdefault(x['park'], {'park': x['park'], 'closed_pieces': [], 'closed_acres': 0})
+            f['closed_pieces'].append({'rid': x['rid'], 'name': x['name'], 'acres': x['acres'], 'why': x['why']}); f['closed_acres'] += x['acres'] or 0
+        for f in _flag.values():
+            f['joined_acres'] = sum(round(t.get('ac') or 0) for t in PT.get(f['park']) or [])
+            f['note'] = 'flag only: the park and every join are kept (report only; piece-level vs park-level policy = Brandon)'
+        extra = {'pub_access': {'mode': PUBACC + ' (report only: never changes a join, never drops a park)', 'parks_flagged': sorted(_flag.values(), key=lambda f: f['park'])}}
+        d = TR.doc(f'US-{st}', PT, nested, 'US: PAD-US, USFWS, the federal layers and the state-agency layers the key reads.')
+        d.update(extra); d['ac_measured_detail_deg'] = DETAIL   # measured acres come from the outline the key read (0.01 deg = coarse)
+        TR.save(OUT / 'tracts' / f'US-{st}.json', d)
+        if any(x['st'] == st for x in PUBACC_HIT):
+            notice(f'US key {st}', f"public access ({PUBACC}): {sum(1 for x in PUBACC_HIT if x['st'] == st)} join(s) are to land PAD-US marks closed / not open"
+                                   + f" in {len({x['park'] for x in PUBACC_HIT if x['st'] == st})} park(s): flagged only, every join kept")
+    except Exception as _e:  # noqa: BLE001
+        notice(f'US key {st}', f'tract records skipped: {type(_e).__name__}: {str(_e)[:160]}')
+
+
+# Nov 6 (big key / 2-fer patch): KPC_US_FS_OWNED = 0 (default: today) | 1: a National Forest / Grassland park gets the same
+# 'owned_only' marker the KY answer key gives Daniel Boone, so the website and the 2-fer program both say 'Forest Service-owned land
+# only (Basic Ownership map, OWNERCLASSIFICATION = USDA FOREST SERVICE)'. The 2-fer program already masks by it (kpc_owned.py).
+FS_OWNED = (os.environ.get('KPC_US_FS_OWNED') or '0').strip().lower() not in ('0', 'off', 'no', '')
+def _fs_owned_note(parks):
+    if not FS_OWNED: return
+    for p in parks.values():
+        if p.get('m') and re.search(r'national (forest|grassland)s?\b', str(p.get('n') or ''), re.I):
+            p['owned_only'] = 'Forest Service-owned land only (Basic Ownership map: OWNERCLASSIFICATION = USDA FOREST SERVICE)'
+
+
 def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
@@ -1169,6 +1284,10 @@ def run(st):
             if not close: continue
             if a.get('Water') and (la is None or not near(la, lo, a['_bb'], .02)): continue   # Oct 25: lake names repeat (Washington has dozens of Lost Lakes): a lake surface joins only right at the pin
             how = join_how(name, kp, a, near(la, lo, a['_bb'], .1) if la is not None else False)
+            if how and PUBACC != 'off':   # Nov 6: the 2-fer program's public-access rule (kpc_fers.pad_use), here behind a switch
+                _cl = closed_why(a)
+                if _cl:
+                    PUBACC_HIT.append({'st': st, 'park': ref, 'rid': a['OBJECTID'], 'name': nm, 'why': _cl, 'acres': round(a.get('GIS_Acres') or 0)})   # noted only; the join below is unchanged
             if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
@@ -1871,6 +1990,8 @@ def run(st):
     L += ['## Biggest federal / state places with no POTA park joined (first 60)', ''] + [f"- {x[1]} · {x[2]} · {x[3]} · ~{x[4]:,} ac" for x in nonum[:60]]
     save_text(R / f'US-{st}.md', '\n'.join(L) + '\n')
     for r_ in DBG & set(parks): dbg(r_, 'E saved', {k: parks[r_].get(k) for k in ('m', 'c', 'g', 'kept', 'far')})
+    _fs_owned_note(parks)
+    _tract_store(st, parks, recs)
     save_json(OUT / f'US-{st}.json', out)
     return counts
 
