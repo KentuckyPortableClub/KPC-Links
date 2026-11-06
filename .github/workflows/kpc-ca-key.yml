@@ -113,6 +113,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_ca_key_issue.py
+      - name: Join check (Nov 6 improvements 4, v2) - HOLD joins whose nearest outline part is over 15 km from the pin (not person-approved, not a trail) before the stamp; mark acres outside 0.5x-2x 'suspect'
+        if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
+        id: kept_green_joincheck
+        continue-on-error: true
+        env:
+          KEY: ca
+          ANSWER_SHEET: .as/data/answer-sheet
+        run: |
+          # v2 (Quality L04 NO, 5:28 PM CST Nov 5): held joins -> data/ca-key/review/held-joins.csv + held-joins-ledger.csv (pile-enter
+          # proposals); the answer sheet (KPC-Data, read only, sparse) exempts joins a person signed off. KPC_JOIN_HOLD=mark = v1.
+          # v2.1 (Quality): READ-ONLY, PUBLIC, NO TOKEN: an anonymous https clone (no credential helper, no auth header, no prompt),
+          # never pushed, removed after the check; a failed read is LOUD (answer-sheet exemptions empty = more joins held, fail-safe)
+          GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
+          rm -rf .as
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
         if: ${{ env.SKIP != '1' && inputs.outline_test != 'yes' }}
         run: |

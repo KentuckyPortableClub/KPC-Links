@@ -11376,6 +11376,16 @@
     "River Earn (Comrie to St Fillans)"
    ],
    "why": "2026-11-05 07:03: world-finder row YES (auto recheck (AUTO-1W); applied by kpc_world_answers)"
+  },
+  "AU-8945": {
+   "no": [
+    "805",
+    "Godwin Beach",
+    "Scarborough Beach"
+   ],
+   "when": "2026-11-05",
+   "why": "2026-11-05 verify-then-fix: QLD Places FeatureServer/11 objectid 805 is official Godwin Beach, not Scarborough State Beach; pin -27.1987,153.117 is 11.7 km from record 805. The chat-11 approved join keyed Scarborough Beach is wrong (Mapping improvements v2 sample, Quality v2 grade MUST-ADD).",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix"
   }
  }
 }
