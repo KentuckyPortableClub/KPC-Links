@@ -1,0 +1,653 @@
+{
+ "note": "Both research abbreviation tables, plus the short codes the page already used.",
+ "rows": [
+  {
+   "token": "provpreg",
+   "dotted": "PROVPREG",
+   "expansion": "Provincial Park Regulated (LIO dataset code)",
+   "where": "CA-ON"
+  },
+  {
+   "token": "coillte",
+   "dotted": "Coillte",
+   "expansion": "Coillte Teoranta (state forestry company; Coillte CGA)",
+   "where": "IE"
+  },
+  {
+   "token": "napalis",
+   "dotted": "NaPALIS",
+   "expansion": "National Property and Land Information System",
+   "where": "NZ"
+  },
+  {
+   "token": "capad",
+   "dotted": "CAPAD",
+   "expansion": "Collaborative Australian Protected Areas Database",
+   "where": "AU"
+  },
+  {
+   "token": "ccaz1",
+   "dotted": "CCAZ1",
+   "expansion": "CCA Zone 1 National Park",
+   "where": "AU"
+  },
+  {
+   "token": "ccaz3",
+   "dotted": "CCAZ3",
+   "expansion": "CCA Zone 3 State Conservation Area",
+   "where": "AU"
+  },
+  {
+   "token": "nstdb",
+   "dotted": "NSTDB",
+   "expansion": "Nova Scotia Topographic Database",
+   "where": "CA-NS"
+  },
+  {
+   "token": "nucpa",
+   "dotted": "NUCPA",
+   "expansion": "Near-Urban Centrefire Prohibition Area",
+   "where": "CA-MB"
+  },
+  {
+   "token": "nwtcg",
+   "dotted": "NWTCG",
+   "expansion": "NWT Centre for Geomatics",
+   "where": "CA-NT"
+  },
+  {
+   "token": "plm25",
+   "dotted": "PLM25",
+   "expansion": "Public Land Management 1:25000",
+   "where": "AU-VIC"
+  },
+  {
+   "token": "sepaq",
+   "dotted": "Sepaq",
+   "expansion": "Societe des etablissements de plein air du Quebec",
+   "where": "CA-QC"
+  },
+  {
+   "token": "accp",
+   "dotted": "ACCP",
+   "expansion": "Conservation Covenant",
+   "where": "AU"
+  },
+  {
+   "token": "amce",
+   "dotted": "AMCE",
+   "expansion": "Autre mesure de conservation efficace (OECM)",
+   "where": "CA-QC"
+  },
+  {
+   "token": "aonb",
+   "dotted": "AONB",
+   "expansion": "Area of Outstanding Natural Beauty",
+   "where": "GB-NIR"
+  },
+  {
+   "token": "asma",
+   "dotted": "ASMA",
+   "expansion": "Antarctic Specially Managed Areas",
+   "where": "AU"
+  },
+  {
+   "token": "aspa",
+   "dotted": "ASPA",
+   "expansion": "Antarctic Specially Protected Areas",
+   "where": "AU"
+  },
+  {
+   "token": "assi",
+   "dotted": "ASSI",
+   "expansion": "Area of Special Scientific Interest",
+   "where": "GB-NIR"
+  },
+  {
+   "token": "dafm",
+   "dotted": "DAFM",
+   "expansion": "Department of Agriculture, Food and the Marine",
+   "where": "IE"
+  },
+  {
+   "token": "dcdb",
+   "dotted": "DCDB",
+   "expansion": "Digital Cadastral Database",
+   "where": "AU-QLD"
+  },
+  {
+   "token": "hpot",
+   "dotted": "HPOT",
+   "expansion": "Biodiversity Hotspot",
+   "where": "AU"
+  },
+  {
+   "token": "ijma",
+   "dotted": "IJMA",
+   "expansion": "Indigenous joint management area",
+   "where": "AU-QLD"
+  },
+  {
+   "token": "isde",
+   "dotted": "ISDE",
+   "expansion": "Irish Spatial Data Exchange (geonetwork catalogue)",
+   "where": "IE"
+  },
+  {
+   "token": "linz",
+   "dotted": "LINZ",
+   "expansion": "Land Information New Zealand",
+   "where": "NZ"
+  },
+  {
+   "token": "npra",
+   "dotted": "NPRA",
+   "expansion": "National Park (Recovery) Aboriginal",
+   "where": "AU"
+  },
+  {
+   "token": "npws",
+   "dotted": "NPWS",
+   "expansion": "National Parks and Wildlife Service",
+   "where": "IE"
+  },
+  {
+   "token": "nref",
+   "dotted": "NREF",
+   "expansion": "Nature Refuge",
+   "where": "AU"
+  },
+  {
+   "token": "pcan",
+   "dotted": "PCAN",
+   "expansion": "Protected and Conserved Areas Network",
+   "where": "CA-SK"
+  },
+  {
+   "token": "pnha",
+   "dotted": "pNHA",
+   "expansion": "proposed Natural Heritage Area",
+   "where": "IE"
+  },
+  {
+   "token": "pnpa",
+   "dotted": "PNPA",
+   "expansion": "Proposed National Parks Act park or park addition",
+   "where": "AU"
+  },
+  {
+   "token": "qpws",
+   "dotted": "QPWS",
+   "expansion": "Queensland Parks and Wildlife Service",
+   "where": "AU-QLD"
+  },
+  {
+   "token": "sfwa",
+   "dotted": "SFWA",
+   "expansion": "State Fish and Wildlife Area",
+   "where": "US-MI"
+  },
+  {
+   "token": "sssi",
+   "dotted": "SSSI",
+   "expansion": "Site of Special Scientific Interest",
+   "where": "GB-SCT"
+  },
+  {
+   "token": "swma",
+   "dotted": "SWMA",
+   "expansion": "State Wildlife/Waterfowl Management Area",
+   "where": "US-MI"
+  },
+  {
+   "token": "swra",
+   "dotted": "SWRA",
+   "expansion": "State Wildlife Research Area",
+   "where": "US-MI"
+  },
+  {
+   "token": "whpa",
+   "dotted": "WHPA",
+   "expansion": "Wildlife Habitat Protection Act",
+   "where": "CA-SK"
+  },
+  {
+   "token": "wiha",
+   "dotted": "WIHA",
+   "expansion": "Walk-In Hunting Access",
+   "where": "US-KS"
+  },
+  {
+   "token": "afc",
+   "dotted": "AFC",
+   "expansion": "Aire faunique communautaire",
+   "where": "CA-QC"
+  },
+  {
+   "token": "cca",
+   "dotted": "CCA",
+   "expansion": "Coordinated Conservation Area",
+   "where": "AU"
+  },
+  {
+   "token": "cor",
+   "dotted": "COR",
+   "expansion": "Coastal Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "cpa",
+   "dotted": "CPA",
+   "expansion": "Conservation Park Aboriginal",
+   "where": "AU"
+  },
+  {
+   "token": "doc",
+   "dotted": "DOC",
+   "expansion": "Department of Conservation (Te Papa Atawhai)",
+   "where": "NZ"
+  },
+  {
+   "token": "enr",
+   "dotted": "ENR",
+   "expansion": "Department of Environment and Natural Resources (now ECC)",
+   "where": "CA-NT"
+  },
+  {
+   "token": "flr",
+   "dotted": "FLR",
+   "expansion": "Flora Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "fls",
+   "dotted": "FLS",
+   "expansion": "Forestry and Land Scotland",
+   "where": "GB-SCT"
+  },
+  {
+   "token": "gha",
+   "dotted": "GHA",
+   "expansion": "Game Hunting Area",
+   "where": "CA-MB"
+  },
+  {
+   "token": "gma",
+   "dotted": "GMA",
+   "expansion": "Game Management Area",
+   "where": "US-OK"
+  },
+  {
+   "token": "hir",
+   "dotted": "HIR",
+   "expansion": "Historical Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "htr",
+   "dotted": "HTR",
+   "expansion": "Hunting Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "ipa",
+   "dotted": "IPA",
+   "expansion": "Indigenous Protected Area",
+   "where": "AU"
+  },
+  {
+   "token": "itm",
+   "dotted": "ITM",
+   "expansion": "Irish Transverse Mercator (EPSG:2157)",
+   "where": "IE"
+  },
+  {
+   "token": "kcr",
+   "dotted": "KCR",
+   "expansion": "Karst Conservation Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "lgs",
+   "dotted": "LGS",
+   "expansion": "Local Geological Site",
+   "where": "GB-ENG"
+  },
+  {
+   "token": "lnr",
+   "dotted": "LNR",
+   "expansion": "Local Nature Reserve",
+   "where": "GB-ENG"
+  },
+  {
+   "token": "lws",
+   "dotted": "LWS",
+   "expansion": "Local Wildlife Site",
+   "where": "GB-ENG"
+  },
+  {
+   "token": "maa",
+   "dotted": "MAA",
+   "expansion": "Management Agreement Area",
+   "where": "AU"
+  },
+  {
+   "token": "mcp",
+   "dotted": "MCP",
+   "expansion": "National Parks Act Schedule 4 park or reserve",
+   "where": "AU"
+  },
+  {
+   "token": "mcz",
+   "dotted": "MCZ",
+   "expansion": "Marine Conservation Zone",
+   "where": "GB-WLS"
+  },
+  {
+   "token": "mnp",
+   "dotted": "MNP",
+   "expansion": "Marine National Park",
+   "where": "AU"
+  },
+  {
+   "token": "mpa",
+   "dotted": "MPA",
+   "expansion": "Marine Protected Area",
+   "where": "GB-SCT"
+  },
+  {
+   "token": "mua",
+   "dotted": "MUA",
+   "expansion": "Multiple Use Area",
+   "where": "US-NY"
+  },
+  {
+   "token": "nap",
+   "dotted": "NAP",
+   "expansion": "Nature Park",
+   "where": "AU"
+  },
+  {
+   "token": "nca",
+   "dotted": "NCA",
+   "expansion": "Natural Catchment Area",
+   "where": "AU"
+  },
+  {
+   "token": "ncr",
+   "dotted": "NCR",
+   "expansion": "Nature Conservation Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "nfr",
+   "dotted": "NFR",
+   "expansion": "Natural Features Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "nha",
+   "dotted": "NHA",
+   "expansion": "Natural Heritage Area",
+   "where": "IE"
+  },
+  {
+   "token": "nnr",
+   "dotted": "NNR",
+   "expansion": "National Nature Reserve",
+   "where": "GB-SCT"
+  },
+  {
+   "token": "npa",
+   "dotted": "NPA",
+   "expansion": "National Park Aboriginal",
+   "where": "AU"
+  },
+  {
+   "token": "npc",
+   "dotted": "NPC",
+   "expansion": "National Park (Commonwealth)",
+   "where": "AU"
+  },
+  {
+   "token": "npr",
+   "dotted": "NPR",
+   "expansion": "National Park (Recovery)",
+   "where": "AU"
+  },
+  {
+   "token": "nra",
+   "dotted": "NRA",
+   "expansion": "Nature Recreation Area",
+   "where": "AU"
+  },
+  {
+   "token": "nrs",
+   "dotted": "NRS",
+   "expansion": "NRS Addition, Gazettal in Progress",
+   "where": "AU"
+  },
+  {
+   "token": "nwr",
+   "dotted": "NWR",
+   "expansion": "National Wildlife Refuge",
+   "where": "core"
+  },
+  {
+   "token": "oca",
+   "dotted": "OCA",
+   "expansion": "Other Conservation Area",
+   "where": "AU"
+  },
+  {
+   "token": "opw",
+   "dotted": "OPW",
+   "expansion": "Office of Public Works",
+   "where": "IE"
+  },
+  {
+   "token": "pcl",
+   "dotted": "PCL",
+   "expansion": "Public Conservation Land",
+   "where": "NZ"
+  },
+  {
+   "token": "pfa",
+   "dotted": "PFA",
+   "expansion": "Public Fishing Area",
+   "where": "US-GA"
+  },
+  {
+   "token": "pha",
+   "dotted": "PHA",
+   "expansion": "Public Hunting Area",
+   "where": "US-OK"
+  },
+  {
+   "token": "pla",
+   "dotted": "PLA",
+   "expansion": "Petit lac amenage",
+   "where": "CA-QC"
+  },
+  {
+   "token": "pna",
+   "dotted": "PNA",
+   "expansion": "Protected Natural Area",
+   "where": "CA-NB"
+  },
+  {
+   "token": "pnr",
+   "dotted": "PNR",
+   "expansion": "Private Nature Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "ppp",
+   "dotted": "PPP",
+   "expansion": "Permanent Park Preserve",
+   "where": "AU"
+  },
+  {
+   "token": "rep",
+   "dotted": "REP",
+   "expansion": "Regional Park",
+   "where": "AU"
+  },
+  {
+   "token": "rna",
+   "dotted": "RNA",
+   "expansion": "Remote and Natural Area",
+   "where": "AU"
+  },
+  {
+   "token": "rom",
+   "dotted": "ROM",
+   "expansion": "Refuge d'oiseaux migrateurs",
+   "where": "CA-QC"
+  },
+  {
+   "token": "rsr",
+   "dotted": "RSR",
+   "expansion": "Resources Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "s5g",
+   "dotted": "S5G",
+   "expansion": "5(1)(g) Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "s5h",
+   "dotted": "S5H",
+   "expansion": "5(1)(h) Reserve",
+   "where": "AU"
+  },
+  {
+   "token": "sac",
+   "dotted": "SAC",
+   "expansion": "Special Area of Conservation",
+   "where": "GB-NIR"
+  },
+  {
+   "token": "sca",
+   "dotted": "SCA",
+   "expansion": "Special Conservation Area",
+   "where": "CA-MB"
+  },
+  {
+   "token": "sdw",
+   "dotted": "SDW",
+   "expansion": "Spatial Data Warehouse",
+   "where": "CA-NT"
+  },
+  {
+   "token": "sfl",
+   "dotted": "SFL",
+   "expansion": "State Fishing Lake",
+   "where": "US-KS"
+  },
+  {
+   "token": "sga",
+   "dotted": "SGA",
+   "expansion": "State Game Area",
+   "where": "US-MI"
+  },
+  {
+   "token": "sna",
+   "dotted": "SNA",
+   "expansion": "State Natural Area",
+   "where": "core"
+  },
+  {
+   "token": "snp",
+   "dotted": "SNP",
+   "expansion": "State Nature Preserve",
+   "where": "core"
+  },
+  {
+   "token": "spa",
+   "dotted": "SPA",
+   "expansion": "Special Protection Area",
+   "where": "GB-NIR"
+  },
+  {
+   "token": "srp",
+   "dotted": "SRP",
+   "expansion": "State Resort Park",
+   "where": "core"
+  },
+  {
+   "token": "swa",
+   "dotted": "SWA",
+   "expansion": "State Wildlife Area",
+   "where": "US-MI"
+  },
+  {
+   "token": "trq",
+   "dotted": "TRQ",
+   "expansion": "Territoires recreatifs du Quebec",
+   "where": "CA-QC"
+  },
+  {
+   "token": "wce",
+   "dotted": "WCE",
+   "expansion": "Wildlife Conservation Easement",
+   "where": "US-MA"
+  },
+  {
+   "token": "wfs",
+   "dotted": "WFS",
+   "expansion": "Wildfowl Sanctuary (codes WFS-01 to WFS-68)",
+   "where": "IE"
+  },
+  {
+   "token": "wma",
+   "dotted": "WMA",
+   "expansion": "Wildlife Management Area",
+   "where": "CA-MB"
+  },
+  {
+   "token": "wmz",
+   "dotted": "WMZ",
+   "expansion": "Wildlife Management Zone",
+   "where": "CA-NB"
+  },
+  {
+   "token": "wpa",
+   "dotted": "WPA",
+   "expansion": "Waterfowl Production Areas",
+   "where": "US-NE"
+  },
+  {
+   "token": "zec",
+   "dotted": "ZEC",
+   "expansion": "Zone d'exploitation controlee",
+   "where": "CA-QC"
+  },
+  {
+   "token": "nf",
+   "dotted": "NF",
+   "expansion": "National Forest",
+   "where": "core"
+  },
+  {
+   "token": "np",
+   "dotted": "NP",
+   "expansion": "National Park",
+   "where": "AU"
+  },
+  {
+   "token": "sf",
+   "dotted": "SF",
+   "expansion": "State Forest",
+   "where": "US-NY"
+  },
+  {
+   "token": "sp",
+   "dotted": "SP",
+   "expansion": "State Park",
+   "where": "AU"
+  }
+ ]
+}
