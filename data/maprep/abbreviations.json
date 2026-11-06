@@ -1,5 +1,5 @@
 {
- "note": "Both research abbreviation tables, plus the short codes the page already used. Round-3 sourced short codes that do not collide with an existing expansion are included. The word game is not a kind word that gets dropped.",
+ "note": "Both research abbreviation tables, plus the short codes the page already used. Round-3 sourced short codes that do not collide with an existing expansion are included. Round-4 confirmed rows are appended with source_url. A second expansion is added beside the first and does not replace it. Name forms and spelling pairs are stored with expand false so they are not matcher replacements. The word game is not a kind word that gets dropped.",
  "rows": [
   {
    "token": "provpreg",
@@ -666,6 +666,231 @@
    "dotted": "HP",
    "expansion": "Heritage Preserve",
    "where": "US-SC"
+  },
+  {
+   "token": "snp",
+   "dotted": "SNP",
+   "expansion": "State Nature Preserve",
+   "where": "US-KY",
+   "source_url": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx | https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx",
+   "round": 4,
+   "note": "KY official pages use State Nature Preserve only. State Natural Park was not seen. The existing expansion stays first."
+  },
+  {
+   "token": "sna",
+   "dotted": "SNA",
+   "expansion": "State Natural Area",
+   "where": "US-KY",
+   "source_url": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx | https://eec.ky.gov/Nature-Preserves/Locations/Pages/Livingston-County.aspx",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "nap",
+   "dotted": "NAP",
+   "expansion": "Natural Area Preserve",
+   "where": "US-KY",
+   "source_url": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "round": 4,
+   "note": "Not a Kentucky statutory term. Confirmed as a negative check on the KSNPC FAQ. It is not a second meaning of SNP."
+  },
+  {
+   "token": "nrra",
+   "dotted": "NRRA",
+   "expansion": "National River and Recreation Area",
+   "where": "US-KY",
+   "source_url": "https://www.nps.gov/BISO",
+   "round": 4
+  },
+  {
+   "token": "c&o canal nhp",
+   "dotted": "C&O Canal NHP",
+   "expansion": "Chesapeake and Ohio Canal National Historical Park",
+   "where": "US-DC",
+   "source_url": "https://www.nps.gov/choh/index.htm | https://www.nps.gov/articles/cocanal.htm",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "natl",
+   "dotted": "Nat'l / Natl",
+   "expansion": "National",
+   "where": "US-DC",
+   "source_url": "https://www.nps.gov/nama/index.htm",
+   "round": 4,
+   "note": "The Mall page spells National in full. Nat'l and Natl are both stored and neither replaces the other."
+  },
+  {
+   "token": "sf",
+   "dotted": "SF",
+   "expansion": "State Forest",
+   "where": "US-CT",
+   "source_url": "https://portal.ct.gov/deep/state-parks/listing-of-state-parks | https://portal.ct.gov/DEEP/State-Parks/Locate-Park-Forest/Other-State-Parks-and-Forests",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "wma",
+   "dotted": "WMA",
+   "expansion": "Wildlife Management Area",
+   "where": "US-CT",
+   "source_url": "https://portal.ct.gov/-/media/DEEP/wildlife/pdf_files/habitat/yfshrubinitiative/trailguidepdf.pdf",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "devils",
+   "dotted": "Devil's / Devils",
+   "expansion": "Devils",
+   "where": "US-CT",
+   "source_url": "https://portal.ct.gov/deep/state-parks/listing-of-state-parks",
+   "round": 4,
+   "expand": false,
+   "note": "Both Devil's and Devils are kept. This row is not a second expansion."
+  },
+  {
+   "token": "peoples",
+   "dotted": "People's / Peoples",
+   "expansion": "Peoples",
+   "where": "US-CT",
+   "source_url": "https://portal.ct.gov/deep/state-parks/listing-of-state-parks",
+   "round": 4,
+   "expand": false,
+   "note": "Both People's and Peoples are kept. This row is not a second expansion."
+  },
+  {
+   "token": "mt",
+   "dotted": "Mt. / Mount",
+   "expansion": "Mount",
+   "where": "US-CT",
+   "source_url": "https://portal.ct.gov/deep/state-parks/listing-of-state-parks | https://portal.ct.gov/DEEP/State-Parks/Locate-Park-Forest/Other-State-Parks-and-Forests",
+   "round": 4
+  },
+  {
+   "token": "pfa",
+   "dotted": "PFA",
+   "expansion": "Public Fishing Area",
+   "where": "US-GA",
+   "source_url": "https://gadnrle.org/marben-pfa | https://gadnr.org/AllPFAs",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "wma",
+   "dotted": "WMA",
+   "expansion": "Wildlife Management Area",
+   "where": "US-GA",
+   "source_url": "https://georgiawildlife.com/oaky-woods-wma",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "shs",
+   "dotted": "SHS",
+   "expansion": "State Historic Site",
+   "where": "US-GA",
+   "source_url": "https://gastateparks.org/",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "fd",
+   "dotted": "F.D.",
+   "expansion": "Franklin Delano",
+   "where": "US-GA",
+   "source_url": "https://gastateparks.org/FDRoosevelt",
+   "round": 4
+  },
+  {
+   "token": "stephen c foster",
+   "dotted": "Stephen C. Foster",
+   "expansion": "Stephen C. Foster",
+   "where": "US-GA",
+   "source_url": "https://gastateparks.org/press-release-parks/Stephen-C-Foster-State-Park-Officially-Renamed-Okefenokee-State-Park | https://gastateparks.org/stephen-c-foster-state-park-re-open-may-26 | https://gastateparks.org/Okefenokee",
+   "round": 4,
+   "expand": false,
+   "note": "Report-only alias of Okefenokee State Park, effective 2026-09-01. The old name stays a match target. Keys are not renamed."
+  },
+  {
+   "token": "wma",
+   "dotted": "WMA",
+   "expansion": "Wildlife Management Area",
+   "where": "US-SC",
+   "source_url": "https://dnr.sc.gov/hunting/wmadirections.html | https://dnr.sc.gov/news/2017/mar/mar23_BonneauFerry.html",
+   "round": 4,
+   "note": "Same expansion as an earlier row. This row adds the confirmed source and does not replace it."
+  },
+  {
+   "token": "st",
+   "dotted": "St.",
+   "expansion": "Saint",
+   "where": "US-SC",
+   "source_url": "https://www.nps.gov/places/south-carolina-penn-center.htm",
+   "round": 4
+  },
+  {
+   "token": "ts'yl-os",
+   "dotted": "Ts'yl-os",
+   "expansion": "Ts'yl-os",
+   "where": "CA-BC",
+   "source_url": "https://apps.gov.bc.ca/pub/bcgnws/names/41080.html",
+   "round": 4,
+   "expand": false,
+   "note": "BC Geographical Names: the page title is Ts'yl-os; the official name is Ts'ilʔos. Both forms stay. Nothing is auto-renamed."
+  },
+  {
+   "token": "provincial park",
+   "dotted": "Provincial Park",
+   "expansion": "Provincial Park",
+   "where": "CA-NL",
+   "source_url": "https://www.parksnl.ca/?p=134 | https://www.parksnl.ca/files/Map-of-Provincial-Parks-2020.pdf",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "ecological reserve",
+   "dotted": "Ecological Reserve",
+   "expansion": "Ecological Reserve",
+   "where": "CA-NL",
+   "source_url": "https://www.gov.nl.ca/releases/2026/eccc/0508n05/ | https://www.gov.nl.ca/ecc/natural-areas/wer/r-csme/",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "cape st mary's / st mary's",
+   "dotted": "Cape St. Mary's / St. Mary's",
+   "expansion": "Cape St. Mary's",
+   "where": "CA-NL",
+   "source_url": "https://www.gov.nl.ca/ecc/natural-areas/wer/r-csme/",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "frenchman's cove",
+   "dotted": "Frenchman's Cove",
+   "expansion": "Frenchman's Cove",
+   "where": "CA-NL",
+   "source_url": "https://www.parksnl.ca/?p=134 | https://www.parksnl.ca/files/Map-of-Provincial-Parks-2020.pdf",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "recreation site",
+   "dotted": "Recreation Site",
+   "expansion": "Recreation Site",
+   "where": "CA-SK",
+   "source_url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/2 | https://open.canada.ca/data/en/dataset/65f14e41-c6c7-512e-e231-aa1079978b12",
+   "round": 4,
+   "expand": false
+  },
+  {
+   "token": "interprovincial park",
+   "dotted": "Interprovincial Park",
+   "expansion": "Interprovincial Park",
+   "where": "CA-SK",
+   "source_url": "https://albertaparks.ca/parks/south/cypress-hills-pp/park-research-management/",
+   "round": 4,
+   "expand": false
   }
  ]
 }

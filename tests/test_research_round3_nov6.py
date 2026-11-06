@@ -71,26 +71,32 @@ check('game' in game and game != wild, f'game stays a distinguishing word ({game
 
 os.environ['KPC_RESEARCH_SOURCES'] = 'report'
 pages = RS.official_suggestions()
-check(len(pages) == 19 and all(p['suggestion'] == 'suggestion, never auto-replace' for p in pages),
-      f'19 confirmed official pages are suggestions ({len(pages)})')
-check(sum(1 for p in pages if p.get('two_name') == 'separate units, report only') == 5,
-      'the five two-name pairs are marked separate units on the page list')
+check(len(pages) == 22 and all(p['suggestion'] == 'suggestion, never auto-replace' for p in pages),
+      f'confirmed official pages are suggestions ({len(pages)})')
+check(sum(1 for p in pages if p.get('two_name') == 'separate units, report only') == 4,
+      'the separate-unit pairs are marked on the page list')
 row = RS.link_postcheck([{'ref': 'US-3475', 'area': 'US-CA', 'name': 'Montara Beach and McNee Ranch State Beach',
                           'kind': 'State Beach', 'web': '', 'map_check': {}}], ag)[0]
 check(row['suggest_url'].startswith('https://parks.ca.gov/') and row['suggestion'] == 'suggestion, never auto-replace'
-      and row.get('two_name') == 'separate units, report only',
-      'Montara suggests the confirmed page and is flagged as separate units')
+      and row.get('two_name') != 'separate units, report only',
+      'Montara suggests the confirmed page and is not flagged as separate units')
 before = {'ref': 'US-3475', 'web': ''}
 RS.link_postcheck([dict(before)], ag)
 check(before == {'ref': 'US-3475', 'web': ''}, 'the suggestion is not written back onto the park')
 import kpc_two_name_check as TN
 sep = {x['ref'] for x in RS.separate_units('us')}
-check(sep == {'US-3692', 'US-4373', 'US-3475', 'US-4224', 'US-3891'}, 'the two-name report lists the five separate pairs')
+check(sep == {'US-3692', 'US-4373', 'US-4224', 'US-12143'},
+      'the two-name report lists the separate pairs, including Devil\'s Playground / Redwash')
+check('US-3475' not in sep and 'US-3891' not in sep, 'Montara and Campbells are not asserted as separate units')
+review = {x['ref']: x['why'] for x in RS.review_list('us')}
+check(review == {'US-3475': 'round 4 UNCLEAR, needs official confirmation',
+                 'US-3891': 'round 4 UNCLEAR, needs official confirmation'},
+      'Montara and Campbells are on the review list')
 check(RS.separate_units('ca') == [], 'Canada has none of those pairs')
 stamped_sep, stamped = TN.stamp_separate('us', [{'park': ref} for ref in sorted(sep)] + [{'park': 'US-0001'}])
 flagged = {r['park'] for r in stamped if r.get('looks_like_separate_units')}
 check(flagged == sep and all(x.get('joins_changed') is False for x in stamped_sep),
-      'the two-name report code flags those five and does not change joins')
+      'the two-name report code flags those separate pairs and does not change joins')
 raw_report = (ROOT / 'data/status/key-check/two-name-us.json').read_text(encoding='utf-8')
 check('<<<<<<' not in raw_report, 'the generated two-name report is main\'s file, not a hand edit')
 

@@ -104,7 +104,7 @@ RESEARCH_SOURCES = [
     dict(key='me_ecoreserve', match=r'MEBPL_Lands_Ecoreserve/MapServer/1', acres='Total_Acres', unit=AC, verified=False,
          about='Maine BPL ecological reserves. Name field Unit.'),
     dict(key='nc_marea', match=r'marea_ManagedArea_', id='MA_ID', acres='ACRES', unit=AC, owner='OWNER', verified=False,
-         about='NC NHP managed areas. Matching only until NCNHP says a public map is allowed. Name field MA_NAME. Do not republish the file.'),
+         about='NC NHP managed areas. do_not_ingest: ncnhde.natureserve.org disallows AI bots. Do not request this host. Name field MA_NAME.'),
     dict(key='ny_dec_lands', match=r'gisservices\.dec\.ny\.gov/arcgis/rest/services/reference/MapServer/2', id='LANDS_UID', acres='ACRES', unit=AC,
          owner='MANAGE_BY', access='PUBLICUSE', verified=False, about='NY DEC lands reference layer. Name field FACILITY.'),
     dict(key='ny_wma', match=r'dil_land_activities/MapServer/2', verified=False, about='NY DEC wildlife management areas. Name field WMA. OBJECTID is not the stable id.'),
@@ -126,6 +126,15 @@ RESEARCH_SOURCES = [
     dict(key='pe_wma', match=r'GeoLinc_Wildlife_Management_Area/MapServer', id='ZONE_ID', acres='O_AREA_HA', unit=HA,
          owner='OWNER_E', parent='PARENT_ID', verified=False,
          about='PEI GeoLinc wildlife management areas. Name field NAME_E. Report only. Licence was not stated on the layer page.'),
+    dict(key='ga_other_state14', match=r'other_state14\.zip', id='OTHER_ST_1', acres='AREA', unit=M2, verified=False,
+         about='Georgia other_state14 zip. NAME is often a code. AREA is square metres, not acres. Report only.'),
+    dict(key='ns_protected', match=r'ticv-5du5', acres='ha_gis', unit=HA, verified=False,
+         about='Nova Scotia Protected Areas GeoJSON. Name field pro_name. objectid is not a stable id. Report only.'),
+    dict(key='mb_refuges', match=r'25b9a5e1781c4bd58d5c8dc8bde07401', verified=False,
+         about='Manitoba wildlife refuges via the geoportal download. Live services.arcgis.com REST is do_not_ingest. Fields were not read. Report only.'),
+    dict(key='ie_np_boundary', match=r'(Killarney|Connemara|Glenveagh|Burren|Wicklow-Mountains)-National-Park-Boundary',
+         id='SITECODE', verified=False,
+         about='NPWS per-park boundary zips. Killarney and Wicklow have SITE_NAME. Connemara, Glenveagh and Burren have no name or id field. Report only.'),
 ]
 
 # AUTO: the field list of any other layer (names are matched without case)
