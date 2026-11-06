@@ -49,6 +49,51 @@ WUSED, WSAVED, WMETA = [], [], {}
 def wcache_file(cc): return WCACHE / f'W-{cc}.json.gz'
 
 
+# Nov 6 (big key / 2-fer patch; Brandon: 'this program is worldwide'): tract records through the ONE source table (kpc_source_fields:
+# WDPA WDPAID / WDPA_PID, Natura 2000 SITECODE + Area_ha, CDDA cddaId + siteArea, CAPAD, and AUTO for every national layer read here).
+# Side file data/world-key/tracts/<CC>.json; the key file is unchanged. KPC_WORLD_ACRES = 0 (default: today, the world key carries no
+# acres) | 1: a park gets 'ac' = the sum of its joined records' OFFICIAL areas (hectares / km2 converted), only when every joined
+# record has one. The counts go in the side file either way ('acres_would_add').
+import kpc_source_fields as SF  # noqa: E402
+import kpc_tracts as TR  # noqa: E402
+WORLD_ACRES = (os.environ.get('KPC_WORLD_ACRES') or '0').strip().lower() not in ('0', 'off', 'no', '')
+
+
+def _world_tracts(cc, parks, recs):
+    if not TR.on() and not WORLD_ACRES: return
+    try:
+        rid = {(r.get('src'), r.get('id')): r for r in recs if r.get('id') is not None}
+        urls = {x[0]: x[2] for v in SRC.values() for x in v if len(x) > 2}
+        maps, PT, SH, add = {}, {}, {}, 0
+        for ref, p in parks.items():
+            ts, rg = [], []
+            for q in p.get('m') or []:
+                r = rid.get((q[2], q[0])) if len(q) > 2 else None
+                if r is None: ts.append(TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', src_key='other')); continue
+                a = r.get('_a') if isinstance(r.get('_a'), dict) else {}
+                k = r.get('src') or ''
+                if k not in maps:
+                    mp = SF.mapping(str(urls.get(k) or ''), k, list(a.keys()))
+                    if not mp.get('key') or mp.get('key') == 'auto': mp = dict(mp, key=re.sub(r'[^a-z0-9]+', '_', k.lower()).strip('_')[:40] or 'unknown')
+                    maps[k] = mp
+                t = TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', a, maps[k], r.get('_r'), k)
+                ts.append(t); rg += r.get('_r') or []
+            if ts: PT[ref] = ts
+            if rg: SH[ref] = rg
+            if ts and all(t.get('ac') is not None for t in ts):
+                add += 1
+                if WORLD_ACRES: p['ac'] = round(sum(t['ac'] for t in ts))
+        if TR.on():
+            d = TR.doc(cc, PT, TR.nested_geometry(SH), f'{cc}: the official layers the world key reads.')
+            d['acres_would_add'] = {'parks': add, 'mode': 'on' if WORLD_ACRES else 'off (KPC_WORLD_ACRES=1 writes them as ac in the key)'}
+            d['ac_measured_detail'] = 'outline as the world key keeps it (thinned)'
+            TR.save(OUT / 'tracts' / f'{cc}.json', d)
+        notice(f'World key {cc}', f'tract records: {sum(len(v) for v in PT.values())} for {len(PT)} parks; official acres for {add} parks'
+                                  + (' (written as ac)' if WORLD_ACRES else ' (not written: KPC_WORLD_ACRES=0)'))
+    except Exception as e:  # noqa: BLE001
+        notice(f'World key {cc}', f'tract records skipped: {type(e).__name__}: {str(e)[:160]}')
+
+
 def wsave(cc, recs):
     WCACHE.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -1286,6 +1331,7 @@ for cc in COUNTRIES:
         _bkk, _ = KF.stamp(parks, lambda ref: tuple((P.get(ref) or [None] * 7)[5:7]) if len(P.get(ref) or []) > 6 else None, _bklook)
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'pin distance / kind (bk) skipped: {type(e).__name__}: {str(e)[:200]}')
+    _world_tracts(cc, parks, recs)   # Nov 6: tract side file (+ KPC_WORLD_ACRES)
     save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks,
                                    'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t}})
     L = [f'# {cc}: POTA parks vs official land', '', f"Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: {', '.join(s[0] for s in SRC[cc])}. "

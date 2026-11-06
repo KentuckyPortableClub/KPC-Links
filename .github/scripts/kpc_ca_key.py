@@ -16,6 +16,8 @@ import gzip
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_host_pace  # noqa: E402
 import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind per park, 'bk')
+import kpc_source_fields as SF  # noqa: E402  (Nov 6: the one source-field table)
+import kpc_tracts as TR  # noqa: E402  (Nov 6: tract records + parks inside parks, side file)
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
@@ -28,6 +30,7 @@ USED_DETAIL = DETAIL
 
 
 def ccache_file(): return CCACHE / 'CA-ALL.json.gz'
+CA_SFMAP = {}   # Nov 6: layer prefix -> kpc_source_fields mapping
 
 
 def csave(recs):
@@ -273,7 +276,10 @@ if recs is None:
     pick = lambda *ns: next((f for n in ns for f in names if f.lower() == n.lower()), None)
     F = {'oid': info.get('objectIdField') or pick('OBJECTID', 'FID'), 'name': pick('NAME_E', 'NAME_EN', 'NAME'), 'namef': pick('NAME_F', 'NAME_FR'),
          'type': pick('TYPE_E', 'TYPE_EN', 'TYPE'), 'owner': pick('OWNER_E', 'OWNER_EN', 'OWNER'), 'mgr': pick('MGMT_E', 'MGMT_EN', 'MGMT'),
-         'area': pick('O_AREA_HA', 'O_AREA', 'AREA_HA', 'SHAPE_Area')}
+         'area': pick('O_AREA_HA', 'O_AREA', 'AREA_HA', 'SHAPE_Area'),
+         # Nov 6 (big key / 2-fer patch): CPCAD's own zone id, the protected area it belongs to, and the owner type (kpc_source_fields
+         # 'cpcad'): tract records + parks inside parks (side file data/ca-key/tracts/). Only fields the layer lists are asked for.
+         'zone': pick('ZONE_ID'), 'parent': pick('PARENT_ID'), 'owt': pick('OWNER_TYPE')}
     notice('CPCAD layer', f'layer {lid}, fields {F}')
     mx = int(info.get('maxRecordCount') or 1000)
     mx = min(mx, 1000 if DETAIL >= 0.02 else 250)     # finer outlines = heavier pages: ask for fewer at a time
@@ -286,7 +292,9 @@ if recs is None:
         for f in fs:
             a = f.get('attributes') or {}; g = f.get('geometry') or {}
             r = {'oid': a.get(F['oid']), 'n': a.get(F['name']) or '', 'nf': a.get(F['namef']) or '', 'ty': a.get(F['type']) or '', 'ow': a.get(F['owner']) or '',
-                 'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g)}
+                 'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g),
+                 **({'SA': {k: a.get(F[q]) for q, k in (('zone', 'ZONE_ID'), ('parent', 'PARENT_ID'), ('owt', 'OWNER_TYPE'), ('owner', 'OWNER_E'), ('area', 'O_AREA_HA'))
+                            if F.get(q) and a.get(F[q]) not in (None, '')}} if F.get('zone') or F.get('parent') else {})}
             r['_k'] = kinds(r['n']) | kinds(r['nf']) | kinds(r['ty'])
             recs.append(r)
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
@@ -332,6 +340,9 @@ if recs is None:
             fl = [f['name'] for f in li.get('fields', [])]
             names = name_fields(fl, nf)
             oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+            # Nov 6: the layer's stable id / acres / owner / parent (kpc_source_fields, the one table or AUTO from this field list)
+            _sfm = SF.mapping(lu, label, fl); CA_SFMAP[pid] = _sfm
+            _sfx = [f for f in SF.extra_fields(_sfm) if f in fl and f not in names and f != oidf and f not in area_fields(li)]
             # Oct 25 (round 5 hand checks): Québec's MRNF MapServer answers objectIds queries with the field ALIASES as keys,
             # so a.get('OBJECTID') was None and every ZEC / réserve / parc got the id 'None' (one shared, wrong shape)
             oida = {oidf.lower(), 'objectid', 'fid'} | {str(f.get('alias') or '').lower() for f in li.get('fields', []) if f.get('name') == oidf}
@@ -340,7 +351,7 @@ if recs is None:
             while True:
                 try:
                     if ids is None:
-                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names + [f for f in area_fields(li) if f not in names]), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names + [f for f in area_fields(li) if f not in names] + _sfx), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
                                                 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
                     else:
                         if off >= len(ids): break
@@ -358,6 +369,8 @@ if recs is None:
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
                     if not nm: continue
                     r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': rec_ha(a, li, lu), '_g': g, '_bb': bbox(g), 'src': label}
+                    _sa = {f: a.get(f) for f in SF.extra_fields(_sfm) if a.get(f) not in (None, '', ' ')}
+                    if _sa: r['SA'] = _sa
                     r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                     got.append(r)
                 if ids is not None: off += 100; time.sleep(.4); continue
@@ -785,7 +798,47 @@ for _pv, _o, _rp, _rt in PENDING:
         _bkk, _ = KF.stamp(_o['parks'], lambda ref: BKPIN.get(ref), _bklook)
         _o['bk_about'] = KF.ABOUT; _o['bk_kinds'] = {c: t for c, t in _bkk.items() if c != t}
     except Exception as _e: notice(f'Canada key {_pv}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')  # noqa: BLE001
+CPCAD_MAP = SF.mapping(SVC + '/0')
+_CALY = {}
+def _ca_layers():   # a saved-copy run never built LAYERS: the layer urls the website reads (data/ca-key/layers.json)
+    if not _CALY:
+        try: _CALY.update(json.load(open(OUT / 'layers.json')))
+        except Exception: pass  # noqa: BLE001
+    return _CALY
+def _ca_tracts(pv, parks):
+    """Nov 6 (big key / 2-fer patch): data/ca-key/tracts/CA-<pv>.json (kpc_tracts.py): one tract per joined record with its source's
+    stable id (CPCAD ZONE_ID, a province layer's own id), official + measured acres, owner, and parks inside parks (CPCAD PARENT_ID
+    -> another park's ZONE_ID, and by shape). KPC_TRACT_STORE=0 turns it off. The key file is not changed."""
+    if not TR.on(): return
+    try:
+        PT, SH = {}, {}
+        for ref, p in parks.items():
+            ts, rg = [], []
+            for q in p.get('m') or []:
+                r = RID.get(str(q[0]))
+                if r is None:
+                    ts.append(TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', src_key='other', ac_key=q[2] if len(q) > 2 else None)); continue
+                if not r.get('src'): mp, lay = CPCAD_MAP, 'CPCAD'
+                else:
+                    pid = str(r['oid']).split(':', 1)[0]
+                    _LY = globals().get('LAYERS') or _ca_layers()
+                    mp = CA_SFMAP.get(pid) or SF.mapping(str((_LY.get(pid) or [''])[0]), r.get('src') or '', list((r.get('SA') or {}).keys()))
+                    if not mp.get('key') or mp.get('key') == 'auto': mp = dict(mp, key=re.sub(r'[^a-z0-9]+', '_', pid.lower()).strip('_'))
+                    lay = r.get('src')
+                t = TR.tract(q[0], q[1], q[3] if len(q) > 3 else '', dict(r.get('SA') or {}), mp, rings(r.get('_g')), lay)
+                if t.get('ac') is None and r.get('ha'):
+                    try: t['ac'] = round(float(r['ha']) * SF.HA, 1)
+                    except (TypeError, ValueError): pass
+                if r.get('ow') and not t.get('own'): t['own'] = r['ow']
+                ts.append(t); rg += rings(r.get('_g'))
+            if ts: PT[ref] = ts
+            if rg: SH[ref] = rg
+        d = TR.doc(f'CA-{pv}', PT, TR.nested_geometry(SH), 'Canada: CPCAD + the provincial / Parks Canada layers the key reads.')
+        d['ac_measured_detail_deg'] = DETAIL
+        TR.save(OUT / 'tracts' / f'CA-{pv}.json', d)
+    except Exception as _e: notice(f'Canada key {pv}', f'tract records skipped: {type(_e).__name__}: {str(_e)[:160]}')  # noqa: BLE001
 for _pv, _o, _rp, _rt in PENDING:
+    _ca_tracts(_pv, _o.get('parks') or {})
     save_json(OUT / f'CA-{_pv}.json', _o)
     _rp.parent.mkdir(exist_ok=True); save_text(_rp, _rt)
 notice('Canada key GATE ' + GATE['result'], f"{len(GATE_REFS) - len(_bad)} of {len(GATE_REFS)} well-known parks keep an outline (" + ', '.join(GATE_REFS.values()) + ')'

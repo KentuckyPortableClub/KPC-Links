@@ -166,6 +166,7 @@ jobs:
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           mkdir -p part
           for st in $STATES; do [ -f data/us-key/US-$st.json ] && cp data/us-key/US-$st.json part/; done
+          mkdir -p part/tracts; for st in $STATES; do [ -f data/us-key/tracts/US-$st.json ] && cp data/us-key/tracts/US-$st.json part/tracts/; done   # Nov 6: tract side files
           cp data/us-key/index.json part/index.json; cp data/us-key/layers.json part/layers.json 2>/dev/null || true   # ok: nothing to do is fine
           cp data/us-key/zip-*.json part/ 2>/dev/null || true   # ok: nothing to do is fine
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
@@ -231,6 +232,7 @@ jobs:
               pi = json.load(open(f'{d}/index.json')).get('states', {})
               for st in sts:
                   if os.path.exists(f'{d}/US-{st}.json'): shutil.copy(f'{d}/US-{st}.json', f'data/us-key/US-{st}.json'); n += 1
+                  if os.path.exists(f'{d}/tracts/US-{st}.json'): os.makedirs('data/us-key/tracts', exist_ok=True); shutil.copy(f'{d}/tracts/US-{st}.json', f'data/us-key/tracts/US-{st}.json')   # Nov 6
                   if st in pi: idx[st] = pi[st]
               try: LJ.update(json.load(open(f'{d}/layers.json')))
               except Exception: pass

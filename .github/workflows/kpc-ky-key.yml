@@ -29,14 +29,27 @@ jobs:
           out=$(node .github/scripts/kpc_ky_key.js)
           echo "$out" | head -1 | sed 's/^/::notice title=KY answer key::/'
           python3 .github/scripts/kpc_ky_key_issue.py "$(echo "$out" | tail -1)"
+      - name: Tract records + parks inside parks (Nov 6 big key / 2-fer patch; side file data/tracts/US-KY.json, the key is unchanged)
+        # one attribute-only request per Kentucky state layer, through kpc_manners (robots.txt obeyed); KPC_TRACT_STORE=0 turns it off
+        id: kept_green_tracts
+        continue-on-error: true
+        env:
+          KPC_TRACT_STORE: ${{ vars.KPC_TRACT_STORE || '1' }}
+          KPC_MANNERS_DIR: .kpcm/.github/scripts
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .kpcm 2>/dev/null \
+            && git -C .kpcm sparse-checkout set --no-cone .github/scripts/kpc_manners.py 2>/dev/null && git -C .kpcm checkout -q 2>/dev/null || echo '::notice title=KY tracts::kpc_manners not read: tracts written without the live ids'
+          python3 .github/scripts/kpc_ky_tracts.py || { kpc_rc=$?; echo "::warning title=kpc_ky_tracts.py::stopped (exit $kpc_rc)"; echo "kpc_ky_tracts.py - stopped (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          rm -rf .kpcm
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ky-answer-key.json
+          [ -f data/tracts/US-KY.json ] && git add data/tracts/US-KY.json
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
-            bash .github/scripts/kpc_save_overwrite.sh --copy 'KY answer key' - -- data/ky-answer-key.json
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'KY answer key' - -- data/ky-answer-key.json $([ -f data/tracts/US-KY.json ] && echo data/tracts/US-KY.json)
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
