@@ -7,7 +7,7 @@ that is missing the expected file exits 1 and does not pretend the file was empt
 
 kpc_ca_hardlook.py is part of the Canada rules hash, so it is not edited. The workflow
 materializes the preferred bytes onto the plain path first. That path is tested here.
-Rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8 (f4ca4c79811e since the Nov 7 world rebuild).
+Rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8 (6a5969a25d2c since the Nov 7 world rebuild).
 KPC_RESEARCH_SOURCES stays off. Offline.
 """
 import gzip, json, os, pathlib, subprocess, sys, tempfile
@@ -80,9 +80,9 @@ def question(ref, answer, **extra):
 
 # ---- rules hash and the research switch are untouched ----
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
-# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> f4ca4c79811e. US and CA stay; this check still pins all three.
-check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', 'f4ca4c79811e'),
-      'rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world f4ca4c79811e')
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
+check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', '6a5969a25d2c'),
+      'rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c')
 check(RS.mode() == 'off', 'KPC_RESEARCH_SOURCES still defaults to off')
 check(any(str(p).endswith('kpc_ca_hardlook.py') for p in KZ.RULE_FILES['ca-key']),
       'Canada hard look stays a rules file (this patch does not edit it)')

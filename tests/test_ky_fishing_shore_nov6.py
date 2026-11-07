@@ -48,8 +48,8 @@ def samples(geom, n=9):
 check(KF.rules_hash('us-key') == 'a066624520b4', 'US rules hash stays a066624520b4')
 check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccbb7d9ee')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
-# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> f4ca4c79811e. US and CA stay; this check still pins all three.
-check(KF.rules_hash('world-key') == 'f4ca4c79811e', 'world rules hash stays f4ca4c79811e')
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
+check(KF.rules_hash('world-key') == '6a5969a25d2c', 'world rules hash stays 6a5969a25d2c')
 check('kpc_research_sources.py' in KF.NOT_RULES, 'the shore reader is not a rule file')
 
 kept = [

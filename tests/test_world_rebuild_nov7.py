@@ -391,13 +391,28 @@ PREV = b'{"cc": "CL", "previous": "key from the last good build"}\n'
 IDX = b'{"build": "W-1", "countries": {"CL": {"parks": 1}}}\n'
 
 
+def e2e_dir():
+    t = pathlib.Path(tempfile.mkdtemp()); (t / 'data/parkinfo').mkdir(parents=True); (t / 'data/world-key').mkdir(parents=True)
+    json.dump({'parks': {'CL-0001': ['Torres del Paine National Park', '', 'National Park', '', '', -51.0, -73.0]}}, open(t / 'data/parkinfo/CL.json', 'w'))
+    json.dump({'countries': {}}, open(t / 'data/world-key/extra-layers.json', 'w'))
+    (t / 'data/world-key/CL.json').write_bytes(PREV); (t / 'data/world-key/index.json').write_bytes(IDX)
+    (t / 'runner.py').write_text(RUNNER, encoding='utf-8')
+    return t
+
+
+def saved_copy(t):
+    """cache/world/W-CL.json.gz with records for layer 2 (by source id), as the boundary-cache release would provide."""
+    sid = repr(('arcgis', L2, None)); (t / 'cache/world').mkdir(parents=True, exist_ok=True)
+    recs = [{'id': 900 + i, 'n': f'Rio guardado {i}', 'ty': '', 'src': 'Chile SIMBIO protected areas, layer 2 (MMA)', '_bb': [-73.5, -51.5, -72.5, -50.5],
+             '_r': [[[-73.5, -51.5], [-72.5, -51.5], [-72.5, -50.5], [-73.5, -51.5]]], '_a': {}, 'code': '', 'dc': '', 'sid': sid} for i in range(3)]
+    with gzip.open(t / 'cache/world/W-CL.json.gz', 'wt', encoding='utf-8') as f: json.dump({'cc': 'CL', 'detail': 0.01, 'thin': 60, 'recs': recs}, f)
+
+
+L2 = 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2'
+
+
 def e2e(mode, t=None):
-    if t is None:
-        t = pathlib.Path(tempfile.mkdtemp()); (t / 'data/parkinfo').mkdir(parents=True); (t / 'data/world-key').mkdir(parents=True)
-        json.dump({'parks': {'CL-0001': ['Torres del Paine National Park', '', 'National Park', '', '', -51.0, -73.0]}}, open(t / 'data/parkinfo/CL.json', 'w'))
-        json.dump({'countries': {}}, open(t / 'data/world-key/extra-layers.json', 'w'))
-        (t / 'data/world-key/CL.json').write_bytes(PREV); (t / 'data/world-key/index.json').write_bytes(IDX)
-        (t / 'runner.py').write_text(RUNNER, encoding='utf-8')
+    t = t or e2e_dir()
     log = t / f'requests-{mode}.jsonl'; log.write_text('')
     env = dict(os.environ, COUNTRIES='CL', PYTHONDONTWRITEBYTECODE='1', KPC_WORLD_LAYER_MIN_URLS='{"featureserver/2": 0.12}', FAKE_LOG=str(log))
     for k in ('GEO_CACHE_MODE', 'GEO_CACHE', 'WB_DIR', 'KPC_WORLD_PARTS', 'KPC_WORLD_PART_DAYS'): env.pop(k, None)
@@ -428,7 +443,7 @@ def required_test_6_held_country_publishes_nothing_then_reuses_finished_layers()
     check(not [q for q in l0 if q[0].endswith('/query')] and len(l0) == 1,
           f'REQUIRED 6b: no feature request for the finished layer 0 (only its one metadata request, to check the layer key): {l0}')
     check(l2q and all('OBJECTID >' in (q[1] or '') for q in l2q), f'REQUIRED 6b: layer 2 resumed from its checkpoint, never from page 1 ({l2q[:2]})')
-    check(not list(t.glob('cache/world/parts/CL/*')), 'REQUIRED 6b: once CL is written, every checkpoint of CL is deleted')
+    check(not list(t.glob('cache/world/parts/CL/*')), 'REQUIRED 6b: once CL is written, its finished checkpoints (here: all of them) are deleted')
 
 
 def required_test_7_no_deletion_when_the_key_write_fails():
@@ -439,7 +454,27 @@ def required_test_7_no_deletion_when_the_key_write_fails():
           f'REQUIRED 7 (delete only after the key is written): the key write fails (exit {r.returncode}): the checkpoints stay')
 
 
+
+def required_test_9_written_country_keeps_in_progress_checkpoint():
+    # run 1: layer 2 stalls but its saved copy covers it, so CL IS written; only the finished checkpoint (layer 0) is deleted
+    t = e2e_dir(); saved_copy(t)
+    t, r, _ = e2e('stall', t); out = r.stdout + r.stderr; st = states(t)
+    check(r.returncode == 0 and (t / 'data/world-key/CL.json').read_bytes() != PREV and 'came from the saved copy' in out,
+          f'REQUIRED 9a (written country keeps in-progress checkpoint): CL is written with layer 2 from its saved copy (exit {r.returncode})'
+          + ('' if r.returncode == 0 else ': ' + out[-400:]))
+    check(len(st) == 1 and not st[0].get('done') and st[0]['pages'] >= 1,
+          f"REQUIRED 9a: after the write the finished checkpoint (layer 0) is gone and layer 2's in-progress one remains ({[(x['pages'], bool(x.get('done'))) for x in st]})")
+    n = st[0]['n'] if st else -1
+    # run 2: layer 2 resumes from the saved page, finishes, CL is written, and the now-finished checkpoint is deleted
+    t, r, reqs = e2e('finish', t)
+    l2q = [q for q in reqs if q[0].endswith('FeatureServer/2/query')]
+    check(r.returncode == 0 and l2q and l2q[0][1] == f'(1=1) AND OBJECTID > {n}',
+          f'REQUIRED 9b: next run resumes layer 2 from the saved page: first feature request {l2q[:1]} (checkpoint held {n} records)')
+    check(r.returncode == 0 and not list(t.glob('cache/world/parts/CL/*')), 'REQUIRED 9b: layer 2 finished and CL written: its checkpoint is deleted too')
+
+
 required_test_6_held_country_publishes_nothing_then_reuses_finished_layers()
+required_test_9_written_country_keeps_in_progress_checkpoint()
 required_test_7_no_deletion_when_the_key_write_fails()
 t, r, _ = e2e('ok')
 key = json.load(open(t / 'data/world-key/CL.json')) if r.returncode == 0 else {}
@@ -450,7 +485,7 @@ check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not li
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
 check(KZ.rules_hash('us-key') == 'a066624520b4' and KZ.rules_hash('ca-key') == '8feccbb7d9ee', 'US a066624520b4 and CA 8feccbb7d9ee rules hashes unchanged')
-check(KZ.rules_hash('world-key') == 'f4ca4c79811e', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> f4ca4c79811e (now {KZ.rules_hash('world-key')})")
+check(KZ.rules_hash('world-key') == '6a5969a25d2c', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> 6a5969a25d2c (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 check(ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the scripts (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')

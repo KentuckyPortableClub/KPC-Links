@@ -299,8 +299,9 @@ except Exception: LAYER_MIN_URLS = {}  # noqa: BLE001
 # workflow carries between runs for the slow-country job. The key covers the address, where, label, name field, detail, thinning,
 # object-id field, geometry type, field list, last edit date and page size, so a changed layer never resumes from an old read.
 # Resume only CONTINUES the read; the layer counts only when it is complete. A FINISHED layer's checkpoint is kept (marked done) and
-# reused without reading its pages again (one metadata request checks the layer key) until the whole country is written; then every
-# checkpoint of that country is deleted (Brandon, Nov 7). A held country still publishes nothing: saved layers only avoid re-reading.
+# reused without reading its pages again (one metadata request checks the layer key) until the whole country is written; then the
+# country's FINISHED checkpoints are deleted (Brandon, Nov 7). An IN-PROGRESS one (a stalled layer covered by its saved copy this run)
+# stays, so that layer resumes where it stopped. A held country still publishes nothing: saved layers only avoid re-reading.
 # A checkpoint older than PART_DAYS (7) or with another layer key is thrown away and the layer is read fresh.
 PARTS_ON = (os.environ.get('KPC_WORLD_PARTS') or '1').strip().lower() not in ('0', 'off', 'no')
 PART_DAYS = _envf('KPC_WORLD_PART_DAYS', 7)
@@ -763,10 +764,16 @@ def part_state(sig, s):
 
 
 def parts_clear_country(cc):
-    """Every checkpoint of one country: called only after its key file was written."""
-    import shutil
+    """The FINISHED checkpoints of one country: called only after its key file was written. In-progress ones stay (their layer
+    resumes next run) until the layer finishes, the checkpoint turns PART_DAYS old or its layer key changes."""
     d = WCACHE / 'parts' / str(cc)
-    if d.is_dir(): shutil.rmtree(d, ignore_errors=True)
+    for st in (d.glob('*.state.json') if d.is_dir() else []):
+        try:
+            if not json.load(open(st, encoding='utf-8')).get('done'): continue
+        except Exception: continue  # noqa: BLE001  (unreadable: thrown away by part_load / the age sweep)
+        for f in (st, st.with_name(st.name[:-len('.state.json')] + '.jsonl.gz')):
+            try: f.unlink()
+            except FileNotFoundError: pass
 
 
 def pull_arcgis1(label, url, where):
@@ -1566,7 +1573,7 @@ for cc in COUNTRIES:
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
                               f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
     save_json(OUT / 'index.json', _with_old_stamp({'countries': idx}))
-    parts_clear_country(cc)   # Nov 7: the country's key is written, so its layer checkpoints (finished or not) are no longer needed
+    parts_clear_country(cc)   # Nov 7: the country's key is written, so its FINISHED layer checkpoints are no longer needed
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")
 if HELD:   # next round v3 C11: the workflow lists a held country as failed and keeps its previous key (data/world-key/<CC>.json)

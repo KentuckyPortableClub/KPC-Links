@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Nov 6: the US shape-source guard. A state that comes back with zero shapes, or under half
 the last live key, is short (Wisconsin run 42230313177: 1,585 vs 80,934). The guard does not
-decide a join, so the rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8 (f4ca4c79811e since the Nov 7 world rebuild).
+decide a join, so the rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8 (6a5969a25d2c since the Nov 7 world rebuild).
 No network. Does not read or write the real key files."""
 import gzip, json, os, pathlib, subprocess, sys, tempfile
 
@@ -65,8 +65,8 @@ with tempfile.TemporaryDirectory() as d:
 check('US rules hash is unchanged', KF.rules_hash('us-key') == 'a066624520b4')
 check('Canada rules hash is unchanged', KF.rules_hash('ca-key') == '8feccbb7d9ee')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
-# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> f4ca4c79811e. US and CA stay; this check still pins all three.
-check('world rules hash is unchanged', KF.rules_hash('world-key') == 'f4ca4c79811e')
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
+check('world rules hash is unchanged', KF.rules_hash('world-key') == '6a5969a25d2c')
 check('the guard is not a US rule file', 'kpc_shape_guard.py' not in KF.RULE_FILES['us-key'])
 check('the guard is listed as not a rule', 'kpc_shape_guard.py' in KF.NOT_RULES)
 
