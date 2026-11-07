@@ -116,7 +116,7 @@
       const n = near.find(r => r.refs.length) || near[0];
       v = ['no', `<h2>✕ NOT INSIDE A PARK OR WWFF AREA</h2>${n ? `<p>Nearest: <b>${esc(n.L.name)}</b>${n.refs.length ? ' (' + n.refs.map(r => esc(r.ref)).join(', ') + ')' : ''}, about <b>${B.dist(n.e.km)}</b> to the <b>${B.dir(la, lo, n.e.lat, n.e.lon)}</b>.</p>` : '<p>No park boundary within about 5 miles.</p>'}`];
     }
-    if (!A.padusOk && !A.kyOk) v = ['maybe', '<h2>NO SIGNAL FOR THE BOUNDARY SERVICE</h2><p>We could not load the official boundaries. ' + (B.inKY(la, lo) ? 'Open this page once with signal (or save Park Commander for offline) so the Kentucky boundaries are stored on your phone.' : 'Try again when you have signal.') + '</p>'];
+    if (!A.padusOk && !A.kyOk) v = ['maybe', '<h2>NO SIGNAL FOR THE BOUNDARY SERVICE</h2><p>We could not load the official boundaries. ' + (B.inKY(la, lo) ? 'Open this page once with a signal (or save Park Commander for offline use) so the outlines are stored on your phone.' : 'Try again when you have signal.') + '</p>'];
     st.v = v; st.progHit = progHits.length > 0; st.accLine = `<p class="ip-acc">${accTxt}</p>`;
     say(v[0], v[1] + `<p class="ip-acc">${accTxt} ${how === 'watch' ? 'Updated ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' }) + '.' : ''}</p>`);
     sotaPanel();

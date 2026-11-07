@@ -212,7 +212,7 @@ body.field .page-jump-nav{display:none!important}
 <section class="section" id="storage"><div class="wrap">
 <div class="sec-head"><div><div class="kicker">SIZE</div><h2>Storage</h2></div></div>
 <div class="cp-grid" id="cp-storage"></div>
-<p class="cp-note">Lines: website repo 650 MB, data repo 400 MB.</p>
+<p class="cp-note">Limits: website 650 MB, data store 400 MB.</p>
 <p class="cp-note">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </div></section>
 </main>
@@ -259,9 +259,9 @@ body.field .page-jump-nav{display:none!important}
     tile(le,n((l.intake||{}).approved),'layers approved');tile(le,n((l.intake||{}).READY),'layers ready');tile(le,n(l['queue rows']),'layers queued to test');
     tile(le,n(l['finders found']),'found by the GIS finders');tile(le,n(c['world countries done'])+' / '+n(c['world countries started']),'world countries, first pass done');tile(le,n(c['world candidates']),'world finds');
     var st=p.storage||{},se=document.getElementById('cp-storage');
-    var meter=function(v,line,lab){se.insertAdjacentHTML('beforeend','<div class="cp-tile"><b>'+n(v)+' MB</b><span>'+esc(lab)+' (line '+line+' MB)'+(v>line?' ⚠️ over':'')+'</span><div class="cp-meter"><i class="'+(v>line?'hi':'')+'" style="width:'+Math.min(100,v/line*100).toFixed(0)+'%"></i></div></div>');};
-    if(st['KPC-Links'])meter(st['KPC-Links'],650,'website repo');
-    if(st['KPC-Data'])meter(st['KPC-Data'],400,'data repo');
+    var meter=function(v,line,lab){se.insertAdjacentHTML('beforeend','<div class="cp-tile"><b>'+n(v)+' MB</b><span>'+esc(lab)+' (limit '+line+' MB)'+(v>line?' ⚠️ over':'')+'</span><div class="cp-meter"><i class="'+(v>line?'hi':'')+'" style="width:'+Math.min(100,v/line*100).toFixed(0)+'%"></i></div></div>');};
+    if(st['KPC-Links'])meter(st['KPC-Links'],650,'website');
+    if(st['KPC-Data'])meter(st['KPC-Data'],400,'data store');
     if(st.date)tile(se,day(st.date),'last measured');
   }).catch(function(){document.getElementById('cp-made').textContent='The numbers could not be read right now (they are made each night).';});
 })();
@@ -269,7 +269,7 @@ body.field .page-jump-nav{display:none!important}
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 
 <script src="kpc-translate.js?v=20261028a" defer></script>
-<script src="kpc-search.js?v=20261031s" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

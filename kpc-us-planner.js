@@ -384,7 +384,7 @@ async function overpass(q,key){if(ovpCache[key])return ovpCache[key];const why=[
  const one=(u,i)=>new Promise((ok,no)=>{const t=setTimeout(()=>ctl[i].abort(),22000);
   fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:ctl[i].signal})
    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{if(j&&Array.isArray(j.elements))ok(j);else throw new Error('bad answer')})
-   .catch(e=>{why.push(OVPN[i]+': '+(e.name==='AbortError'?'timed out after 22 s':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (server overloaded)','503':' (server unavailable)','400':' (query not accepted)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'blocked or unreachable from this browser ('+(e.message||e.name)+')'));no(e)})
+   .catch(e=>{why.push(OVPN[i]+': '+(e.name==='AbortError'?'took too long to answer':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (the map service is busy)','503':' (server unavailable)','400':' (the map service refused the request)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'could not be reached from this browser (an ad blocker or firewall may be blocking it) ('+(e.message||e.name)+')'));no(e)})
    .finally(()=>clearTimeout(t))});
  try{const j=await Promise.any(OVP.map(one));ctl.forEach(c=>{try{c.abort()}catch(e){}});ovpCache[key]=j;return j}catch(e){}
  const err=new Error('all servers failed');err.why=why;throw err}

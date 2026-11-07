@@ -464,7 +464,7 @@
     },
     async test() {   /* ACTION=STATUS: is the key good? (needs the relay to see the answer) */
       if (!Z.key) return { ok: false, msg: 'No QRZ logbook key saved.' };
-      const t = await viaRelay('STATUS'); if (t == null) return { ok: null, msg: 'A web page can\'t see QRZ\'s answer without the KPC QRZ relay, so this test can\'t run yet. Log one contact and check your QRZ logbook.' };
+      const t = await viaRelay('STATUS'); if (t == null) return { ok: null, msg: 'This test cannot run from a web page. Log one contact and check your QRZ logbook.' };
       if (/RESULT=OK/.test(t)) { const n = (/COUNT=(\d+)/.exec(t) || [])[1], c = (/CALLSIGN=([^&]*)/.exec(t) || [])[1]; return { ok: true, msg: `Key works${c ? ' for ' + decodeURIComponent(c) : ''}${n ? ' · ' + n + ' contacts in that logbook' : ''}.` }; }
       return { ok: false, msg: 'QRZ said: ' + (reasonOf(t) || t.slice(0, 120)) + (/AUTH/.test(t) ? ' (check the key: QRZ.com → Logbook → Settings → API key; it needs a QRZ subscription that includes the logbook API)' : '') };
     },

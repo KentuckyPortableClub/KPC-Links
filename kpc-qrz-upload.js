@@ -33,7 +33,7 @@
     if (busy || !recs.length) return;
     $('quGo').hidden = false;
     const u = await relay();
-    if (!u) { say('The N4KPC uploader is not switched on yet. Ask Brandon (KZ4CP).', true); return; }
+    if (!u) { say('The club upload service is not available right now. Try again later, or email the club.', true); return; }
     busy = true; stop = false; $('quSend').hidden = true; $('quStop').hidden = false; $('quFile').disabled = true;
     const c = { ok: 0, dup: 0, bad: 0 }, why = {};
     for (let i = 0; i < recs.length && !stop; i++) {
