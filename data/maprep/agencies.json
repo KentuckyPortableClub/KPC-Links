@@ -3954,6 +3954,1065 @@
      }
     }
    ]
+  },
+  "GB": {
+   "name": "United Kingdom (UK-wide bodies)",
+   "country": "GB",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "National Parks UK (umbrella for the 15 UK national park authorities)",
+     "home": {
+      "url": "https://nationalparks.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://nationalparks.uk/parks/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "National Trust (landowner, not a government agency; GUESS: POTA lists NT land only where it is a designated park or reserve, not confirmed)",
+     "home": {
+      "url": "https://www.nationaltrust.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.nationaltrust.org.uk/visit",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Woodland Trust (landowner/charity, not a government agency; GUESS: POTA counts its woods only if they are a listed park or reserve, not confirmed)",
+     "home": {
+      "url": "https://www.woodlandtrust.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.woodlandtrust.org.uk/visiting-woods/find-woods/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands",
+      "preserves"
+     ],
+     "name": "RSPB (landowner/charity, not a government agency; GUESS: POTA counts RSPB reserves only where they are a listed park or protected area, not confirmed)",
+     "home": {
+      "url": "https://www.rspb.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://web-cdn.rspb.org.uk/days-out/reserves",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Canal & River Trust (charity, not a government agency; waterways, towpaths, reservoirs in England and Wales; GUESS: POTA counts only where a listed park)",
+     "home": {
+      "url": "https://canalrivertrust.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://canalrivertrust.org.uk/canals-and-rivers/places-to-visit",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://data-canalrivertrust.opendata.arcgis.com/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    }
+   ]
+  },
+  "GB-ENG": {
+   "name": "England",
+   "country": "GB",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "preserves"
+     ],
+     "name": "Natural England (NNRs, SSSIs, National Landscapes advice; Defra body)",
+     "home": {
+      "url": "https://www.gov.uk/government/organisations/natural-england",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://naturalengland-defra.opendata.arcgis.com/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks"
+     ],
+     "name": "Forestry England (public forest estate; agency of the Forestry Commission)",
+     "home": {
+      "url": "https://www.forestryengland.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.forestryengland.uk/visit",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://www.data.gov.uk/dataset/3d279869-555d-45c2-a859-d029dab1fc39/forestry-england-recreation-areas",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "National Landscapes Association (AONB / National Landscapes teams; designation, not landowner)",
+     "home": {
+      "url": "https://national-landscapes.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Broads Authority (The Broads National Park)",
+     "home": {
+      "url": "https://www.broads-authority.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.broads-authority.gov.uk/visiting",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Exmoor National Park Authority",
+     "home": {
+      "url": "https://www.exmoor-nationalpark.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.exmoor-nationalpark.gov.uk/exmoor-for-everyone/plan-your-visit",
+      "verified": false,
+      "unverified_block": true,
+      "source": "unverified_block: robots allowed but a plain read got HTTP 403"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Lake District National Park Authority",
+     "home": {
+      "url": "https://lakedistrict.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://lakedistrict.gov.uk/explore/visitor-facilities/car-parks-and-parking/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "New Forest National Park Authority",
+     "home": {
+      "url": "https://www.newforestnpa.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Northumberland National Park Authority",
+     "home": {
+      "url": "https://www.northumberlandnationalpark.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.northumberlandnationalpark.org.uk/discover-explore/places-to-visit/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Peak District National Park Authority",
+     "home": {
+      "url": "https://www.peakdistrict.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "South Downs National Park Authority",
+     "home": {
+      "url": "https://www.southdowns.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Yorkshire Dales National Park Authority",
+     "home": {
+      "url": "https://www.yorkshiredales.org.uk/",
+      "verified": false,
+      "unverified_block": true,
+      "source": "unverified_block: robots allowed but a plain read got a bot-challenge page"
+     },
+     "finder": {
+      "url": "https://www.yorkshiredales.org.uk/plan-your-visit/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "GB-SCT": {
+   "name": "Scotland",
+   "country": "GB",
+   "agencies": [
+    {
+     "role": "wildlife",
+     "roles": [
+      "wildlife",
+      "preserves"
+     ],
+     "name": "NatureScot (National Nature Reserves, nature reserves; partner-managed NNRs listed separately)",
+     "home": {
+      "url": "https://www.nature.scot/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.nature.scot/nnr",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks"
+     ],
+     "name": "Forestry and Land Scotland (national forests and land, 6 forest parks)",
+     "home": {
+      "url": "https://forestryandland.gov.scot/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://forestryandland.gov.scot/visit",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://www.data.gov.uk/dataset/f46d4abe-d97a-425d-97e3-be18d10f22df/national-forest-estate-recreation-areas-gb",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands",
+      "heritage"
+     ],
+     "name": "National Trust for Scotland (charity landowner, not a government agency; GUESS: POTA counts its NNRs/country parks only where separately listed)",
+     "home": {
+      "url": "https://www.nts.org.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Cairngorms National Park Authority",
+     "home": {
+      "url": "https://cairngorms.co.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Loch Lomond & The Trossachs National Park Authority",
+     "home": {
+      "url": "https://www.lochlomond-trossachs.org/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "GB-WLS": {
+   "name": "Wales",
+   "country": "GB",
+   "agencies": [
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "wildlife",
+      "parks"
+     ],
+     "name": "Natural Resources Wales (Welsh Government forests, NNRs, visitor sites)",
+     "home": {
+      "url": "https://naturalresources.wales/splash?orig=/&lang=cy",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://naturalresources.wales/days-out/places-to-visit/?lang=en",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://datamap.gov.wales/layers/inspire-nrw:pilot_nft_nrw_forest_carparks",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Bannau Brycheiniog (Brecon Beacons) National Park Authority",
+     "home": {
+      "url": "https://beacons-npa.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Eryri (Snowdonia) National Park Authority",
+     "home": {
+      "url": "https://eryri.gov.wales/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://eryri.gov.wales/visit/plan-your-visit/information-centres/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Pembrokeshire Coast National Park Authority",
+     "home": {
+      "url": "https://www.pembrokeshirecoast.wales/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "GB-NIR": {
+   "name": "Northern Ireland",
+   "country": "GB",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "forestry",
+      "wildlife"
+     ],
+     "name": "DAERA / Northern Ireland Environment Agency (DAERA-owned forest parks, country parks, nature reserves; some trails run by councils)",
+     "home": {
+      "url": "https://www.daera-ni.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.nidirect.gov.uk/information-and-services/forests/public-forests-northern-ireland",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://www.opendatani.gov.uk/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    }
+   ]
+  },
+  "IE": {
+   "name": "Ireland",
+   "country": "IE",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife",
+      "preserves"
+     ],
+     "name": "National Parks and Wildlife Service (national parks, nature reserves, protected sites)",
+     "home": {
+      "url": "https://www.npws.ie",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.npws.ie/national-parks",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "parks"
+     ],
+     "name": "Coillte (state-owned forestry company: 260 recreation sites, 12 forest parks)",
+     "home": {
+      "url": "https://www.coillte.ie/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.coillte.ie/our-business/our-products/recreation/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "heritage",
+     "roles": [
+      "heritage",
+      "lands"
+     ],
+     "name": "Office of Public Works (OPW) Heritage Ireland (heritage sites, some parks and gardens, e.g. Phoenix Park)",
+     "home": {
+      "url": "https://heritageireland.ie/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://heritageireland.ie/visit/places-to-visit/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AU": {
+   "name": "Australia (Commonwealth)",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Parks Australia (Director of National Parks: Kakadu, Uluru-Kata Tjuta, Booderee, Christmas Island, Pulu Keeling, Norfolk Island, ANBG, Commonwealth marine parks)",
+     "home": {
+      "url": "https://parksaustralia.gov.au/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://parksaustralia.gov.au/national-parks/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AU-NSW": {
+   "name": "New South Wales",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife",
+      "preserves"
+     ],
+     "name": "NSW National Parks and Wildlife Service (national parks, nature reserves, state conservation areas)",
+     "home": {
+      "url": "https://www.nationalparks.nsw.gov.au/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.nationalparks.nsw.gov.au/visit-a-park",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://data.nsw.gov.au/data/dataset/nsw-national-parks-and-wildlife-service-npws-estate3f9e7",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry"
+     ],
+     "name": "Forestry Corporation of NSW (state forests; recreation and camping)",
+     "home": {
+      "url": "https://www.forestrycorporation.com.au",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.forestrycorporation.com.au/visiting",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AU-VIC": {
+   "name": "Victoria",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife"
+     ],
+     "name": "Parks Victoria (national, state and regional parks, 3,369 listed sites)",
+     "home": {
+      "url": "https://www.parks.vic.gov.au/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.parks.vic.gov.au/places-to-see/parks",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "forestry",
+     "roles": [
+      "forestry",
+      "lands"
+     ],
+     "name": "Victorian DEECA (state forests and recreation sites, DEECA-maintained)",
+     "home": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://discover.data.vic.gov.au/dataset/recreation-sites",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    }
+   ]
+  },
+  "AU-SA": {
+   "name": "South Australia",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife"
+     ],
+     "name": "National Parks and Wildlife Service South Australia (Department for Environment and Water)",
+     "home": {
+      "url": "https://www.parks.sa.gov.au",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.parks.sa.gov.au/find-a-park",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AU-WA": {
+   "name": "Western Australia",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "forestry",
+      "wildlife"
+     ],
+     "name": "Parks and Wildlife Service WA (Department of Biodiversity, Conservation and Attractions; national parks, conservation parks, state forests)",
+     "home": {
+      "url": "https://exploreparks.dbca.wa.gov.au/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://exploreparks.dbca.wa.gov.au/park-finder-map",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://catalogue.data.wa.gov.au/dataset/dbca-legislated-lands-and-waters",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    }
+   ]
+  },
+  "AU-TAS": {
+   "name": "Tasmania",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife",
+      "preserves"
+     ],
+     "name": "Tasmania Parks and Wildlife Service (national parks, state reserves, conservation areas, regional reserves)",
+     "home": {
+      "url": "https://parks.tas.gov.au/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://parks.tas.gov.au/explore-our-parks",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "AU-NT": {
+   "name": "Northern Territory",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife"
+     ],
+     "name": "Parks and Wildlife Commission of the Northern Territory (80+ parks and reserves)",
+     "home": {
+      "url": "https://nt.gov.au/parks",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://nt.gov.au/parks/find-a-park",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    }
+   ]
+  },
+  "NZ": {
+   "name": "New Zealand",
+   "country": "NZ",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife",
+      "preserves"
+     ],
+     "name": "Department of Conservation / Te Papa Atawhai (national parks, conservation parks, public conservation land)",
+     "home": {
+      "url": "https://www.doc.govt.nz/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/auckland",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://www.doc.govt.nz/maps",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Land Information New Zealand (LINZ Data Service: cadastral/crown land, parcels; not a park manager)",
+     "home": {
+      "url": "https://www.linz.govt.nz/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Auckland Council (28 regional parks)",
+     "home": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://data-aucklandcouncil.opendata.arcgis.com/datasets/park-extents/explore",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Greater Wellington Regional Council (Belmont, Queen Elizabeth, Kaitoke and other regional parks and forests)",
+     "home": {
+      "url": "https://www.gw.govt.nz/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "finder": {
+      "url": "https://www.gw.govt.nz/parks/",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "gis": {
+      "url": "https://opendata.gw.govt.nz/datasets/greater-wellington-regional-parks-and-forests-boundaries",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Environment Canterbury (regional council; GUESS: few regional parks, most Canterbury parks are district or city council)",
+     "home": {
+      "url": "https://www.ecan.govt.nz/",
+      "verified": false,
+      "unverified_block": true,
+      "source": "unverified_block: robots allowed but a plain read got a bot-challenge page"
+     },
+     "finder": {
+      "url": "",
+      "verified": false,
+      "source": ""
+     },
+     "gis": {
+      "url": "https://opendata.canterburymaps.govt.nz/datasets/ecan::parks/explore",
+      "verified": true,
+      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     }
+    }
+   ]
   }
  }
 }

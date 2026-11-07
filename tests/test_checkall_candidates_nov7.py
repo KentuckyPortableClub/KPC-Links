@@ -105,7 +105,7 @@ Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'data/maprep/agencies.jso
   o.groups.forEach(g => g.items.forEach(i => { if (i.slot === 'finder') out.keptFinders++; }));
 });
 out.dropAL = C.dropdownHtml('AL', 'US', FEDA, 'Alabama');
-out.dropGB = C.dropdownHtml('GB', 'world', FEDA, 'United Kingdom');
+out.dropGB = C.dropdownHtml('FR', 'world', FEDA, 'France');
 out.feda = FEDA.map(f => f[1]);
 process.stdout.write(JSON.stringify(out));
 '''
@@ -235,7 +235,7 @@ src = (ROOT / 'kpc-maprep-candidates.js').read_text(encoding='utf-8')
 check('BLM and Reclamation URLs carry an UNVERIFIED code comment', all(re.search(re.escape(h) + r".*UNVERIFIED", src) for h in ("'blm.gov'", "'usbr.gov'")))
 check('federal names and hosts come from FEDA in kpc-maprep.js (no second table)', {'nps.gov', 'fws.gov', 'fs.usda.gov', 'blm.gov', 'usbr.gov', 'usace.army.mil'} <= set(o['feda']))
 check('Canada and world get no federal US group', all(g['label'] != 'Federal land agencies' for g in o['agMB']['groups'] + o['agGB']['groups']))
-check('GB (no directory row) says so instead of an empty menu', 'No agency directory row for this place.' in o['dropGB'] and 'mrAgSel' not in o['dropGB'])
+check('FR (no directory row) says so instead of an empty menu', 'No agency directory row for this place.' in o['dropGB'] and 'mrAgSel' not in o['dropGB'])
 check('the dropdown is added to Check all without the switch', "let html = C.dropdownHtml(" in chk and chk.count('${extrasHtml(stAll)}') == 2)
 
 # 11. no cap
