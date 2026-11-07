@@ -113,7 +113,8 @@ def new_ns(layer=None, clock=None, parts=None, cc='AU'):
 
 
 URL = 'https://services.ga.gov.au/gis/rest/services/Example/MapServer/2'
-OLD = subprocess.run(['git', 'show', 'origin/main:.github/scripts/kpc_world_key.py'], capture_output=True, text=True, cwd=ROOT).stdout
+BASE = os.environ.get('KPC_WORLD_BASE', '8620939')  # main before #55 (the world rebuild)
+OLD = subprocess.run(['git', 'show', BASE + ':.github/scripts/kpc_world_key.py'], capture_output=True, text=True, cwd=ROOT).stdout
 
 
 def old_read(layer, where='1=1'):
@@ -141,7 +142,7 @@ if OLD:
     check(diff == {'CH': ['EEA Natura 2000'], 'NO': ['EEA Natura 2000']} and not any(added.values()) and set(g0['SRC']) == set(g['SRC']),
           f'B6: vs origin/main only CH and NO lose one source, EEA Natura 2000; nothing else changes ({diff})')
     check(g0['EXTRA_URLS'] == g['EXTRA_URLS'] and g0['LAYER_NAMEF'] == g['LAYER_NAMEF'], 'every approved extra layer is still read (extra-layers.json untouched)')
-check(subprocess.run(['git', 'diff', '--quiet', 'origin/main', '--', 'data/world-key/extra-layers.json'], cwd=ROOT).returncode == 0,
+check(subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/world-key/extra-layers.json'], cwd=ROOT).returncode == 0,
       'data/world-key/extra-layers.json is byte-unchanged vs origin/main')
 # no data loss: neither key joins or lists a record from the Natura 2000 source
 for base in [ROOT] + ([pathlib.Path(os.environ['DATA'])] if os.environ.get('DATA') else []):
@@ -487,7 +488,7 @@ import kpc_key_freeze as KZ  # noqa: E402
 check(KZ.rules_hash('us-key') == 'a066624520b4' and KZ.rules_hash('ca-key') == '8feccbb7d9ee', 'US a066624520b4 and CA 8feccbb7d9ee rules hashes unchanged')
 check(KZ.rules_hash('world-key') == '6a5969a25d2c', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> 6a5969a25d2c (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
-ch = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
+ch = subprocess.run(['git', 'diff', '--name-only', BASE, '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 # Only RULE files matter here: other patches combined with this one (e.g. Tracts Part 1) may change NOT_RULES scripts.
 _rules = set(sum(KZ.RULE_FILES.values(), []))
 ch = [c for c in ch if c in _rules]
