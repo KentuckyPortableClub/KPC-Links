@@ -4,6 +4,33 @@
  "two_name_parks": 179,
  "half_outlined": 6,
  "separate_units": [],
+ "one_units": [
+  {
+   "ref": "CA-4000",
+   "pair": "Qudes / Gillard-Jimmy Judd Island",
+   "why": "Hyphenated official title, one unit. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "ONE_UNIT"
+  },
+  {
+   "ref": "CA-5653",
+   "pair": "Pottawatomi / Jones Falls",
+   "why": "Hyphenated official title, one unit. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "ONE_UNIT"
+  },
+  {
+   "ref": "CA-5877",
+   "pair": "Chateau De Ramezay / India House",
+   "why": "Hyphenated official title, one unit. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "ONE_UNIT"
+  }
+ ],
+ "review": [],
  "parks": [
   {
    "area": "CA-BC",
@@ -16,7 +43,12 @@
    "missing": "Qudes",
    "missing_words": [
     "qudes"
-   ]
+   ],
+   "also_in": [
+    "CPCAD (federal)"
+   ],
+   "looks_like_one_unit": true,
+   "one_unit_note": "Hyphenated official title, one unit. Report only; the join is not changed."
   },
   {
    "area": "CA-MB",
@@ -29,6 +61,9 @@
    "missing": "Nanowin Rivers) Wildlife Management Area",
    "missing_words": [
     "nanowin"
+   ],
+   "also_in": [
+    "CPCAD (federal)"
    ]
   },
   {
@@ -42,6 +77,9 @@
    "missing": "the Rockeries Natural Area",
    "missing_words": [
     "rockeries"
+   ],
+   "also_in": [
+    "CPCAD (federal)"
    ]
   },
   {
@@ -55,7 +93,12 @@
    "missing": "Jones Falls Conservation Area",
    "missing_words": [
     "jones"
-   ]
+   ],
+   "also_in": [
+    "CPCAD (federal)"
+   ],
+   "looks_like_one_unit": true,
+   "one_unit_note": "Hyphenated official title, one unit. Report only; the join is not changed."
   },
   {
    "area": "CA-ON",
@@ -69,6 +112,9 @@
    "missing_words": [
     "estate",
     "mcneill"
+   ],
+   "also_in": [
+    "CPCAD (federal)"
    ]
   },
   {
@@ -83,7 +129,12 @@
    "missing_words": [
     "house",
     "india"
-   ]
+   ],
+   "also_in": [
+    "QC-IPC Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec"
+   ],
+   "looks_like_one_unit": true,
+   "one_unit_note": "Hyphenated official title, one unit. Report only; the join is not changed."
   }
  ]
 }
