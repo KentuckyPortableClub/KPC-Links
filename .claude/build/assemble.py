@@ -23,6 +23,8 @@ d = "Kentucky Portable Club news, activation reports and field tips — coming s
 assert head.count(d) == 2
 head = head.replace(d, desc.replace('"', '&quot;'))
 main = open(mainf, encoding='utf-8').read()
+if '<script src="kpc-search.js' not in footer:
+    sys.exit('assemble.py: news.html footer has no <script src="kpc-search.js ...> tail (nothing to split on)')
 foot_html = footer.split('<script src="kpc-search.js')[0].rstrip()
 tail = '<script src="kpc-search.js' + footer.split('<script src="kpc-search.js', 1)[1]
 tail_scripts = tail.rsplit('</body></html>', 1)[0]
@@ -30,14 +32,19 @@ main = main.replace('@@CSS@@', open(os.path.join(here,'page-css.html'),encoding=
 main = main.replace('@@HEADER@@', header).replace('@@FOOTER@@', foot_html)
 ov = {}
 ovf = os.path.join(os.path.dirname(os.path.abspath(mainf)), 'overrides.json')  # optional, per page (only maprep has one)
-if os.path.isfile(ovf):
+if os.path.isfile(ovf) and not os.environ.get('KPC_ASSEMBLE_NO_OVERRIDES'):  # env flag: tests turn the hook off
     import json
     ov = json.load(open(ovf, encoding='utf-8'))
+page = os.path.basename(os.path.dirname(os.path.abspath(mainf)))
 if ov.get('drop_tail'):
+    if not tail_scripts.strip():
+        sys.exit('assemble.py: %s overrides.json drop_tail has nothing to drop (news.html tail scripts not found)' % page)
     tail_scripts = ''
 text = head + '\n' + nav_css + '\n' + main.rstrip() + '\n' + (tail_scripts.rstrip() + '\n' if tail_scripts else '') + '</body></html>\n'
-for a, b in ov.get('replace', []):
-    assert text.count(a) == 1, ('override must match once', a)
+for n, (a, b) in enumerate(ov.get('replace', []), 1):
+    c = text.count(a)
+    if c != 1:
+        sys.exit('assemble.py: %s overrides.json replace entry #%d matches %d times (must be exactly 1): %r' % (page, n, c, a[:100]))
     text = text.replace(a, b)
 open(repo + out, 'w', encoding='utf-8', newline='').write(text)
 print('wrote', out)

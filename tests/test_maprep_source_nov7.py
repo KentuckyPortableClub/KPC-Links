@@ -43,6 +43,10 @@ try:
         else:
             extra = 'line counts differ: %d vs %d' % (len(a), len(b))
     check('assembled maprep == committed kpc-maprep.html (byte-equal)', same, extra)
+    robots = re.findall(r'<meta name="robots" content="([^"]*)"', built)
+    check('committed page keeps the noindex meta (Tool Box stays out of search)', len(robots) == 1 and robots[0].startswith('noindex'), repr(robots))
+    robots2 = re.findall(r'<meta name="robots" content="([^"]*)"', out)
+    check('assembled page keeps the noindex meta', robots2 == robots, repr(robots2))
     check('no CR added', '\r' not in out or '\r' in built)
     print('sha256', hashlib.sha256(built.encode('utf-8')).hexdigest()[:12])
 finally:
