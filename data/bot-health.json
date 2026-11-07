@@ -1,15 +1,26 @@
 {
  "open": [
   "KPC-Data/kpc-collector.yml",
+  "KPC-Data/kpc-copy-from-links.yml",
+  "KPC-Data/kpc-docs-merge.yml",
+  "KPC-Data/kpc-intake.yml",
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
-  "kpc-boards.yml",
+  "KPC-Data/kpc-waiting-room.yml",
+  "KPC-Data/kpc-wdpa-phonebook.yml",
+  "KPC-Data/kpc-world-finder.yml",
+  "kpc-band-alerts.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
+  "kpc-hunters.yml",
+  "kpc-pota-discord.yml",
+  "kpc-watchdog.yml",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-06T16:56+00:00",
+ "checked": "2026-11-07T12:11+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -112,7 +123,7 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2915
+   "b": 2912
   },
   "L:data/ky-answer-key.json": {
    "b": 31624
@@ -121,13 +132,13 @@
    "b": 31650169
   },
   "L:data/ca-key": {
-   "b": 2517345
+   "b": 5695364
   },
   "L:data/world-key": {
-   "b": 17442149
+   "b": 29137372
   },
   "L:data/pota": {
-   "b": 5665775
+   "b": 5665831
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -163,7 +174,7 @@
    "b": 21042
   },
   "L:kpc-special-events.json": {
-   "b": 25918
+   "b": 25400
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -187,7 +198,7 @@
    "b": 25903884
   },
   "D:data/access": {
-   "b": 5358767
+   "b": 5358732
   },
   "D:data/wwff": {
    "b": 11738578
@@ -199,7 +210,7 @@
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 133010
+   "b": 133775
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -215,7 +226,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1191816
+   "b": 1186939
   }
  }
 }
