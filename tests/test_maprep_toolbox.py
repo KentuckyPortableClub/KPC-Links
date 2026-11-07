@@ -151,10 +151,10 @@ if have.returncode != 0:
     check(fetch.returncode == 0, 'fetched origin/main: ' + ((fetch.stderr or fetch.stdout or 'fetch failed').strip().splitlines() or ['?'])[-1])
 # Nov 7 world rebuild: the declaration file now exists (the approved world-key change). In place of '#49 does not add it', check that
 # the declaration covers the world key only: US and CA rules equal origin/main and no key file changed, even while the guard is EXEMPT.
-_decl = (ROOT / DECL_REL).read_text(encoding='utf-8').splitlines()[0] if (ROOT / DECL_REL).exists() else ''
+_decl = (ROOT / DECL_REL).read_text(encoding='utf-8') if (ROOT / DECL_REL).exists() else ''
 _keys = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *KEY_PATHS], cwd=ROOT, capture_output=True, text=True, timeout=30).stdout.split()
-check(not _decl or (_decl.startswith('Nov 7 world rebuild') and not _keys and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
-      'docs/key-rules-change.txt declares only the Nov 7 world rebuild: US / CA rules equal origin/main, key files unchanged')
+check(not _decl or (_decl.strip() and re.search(r'KPC-Links #\d+', _decl) and not _keys and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
+      'docs/key-rules-change.txt is non-empty and names a PR (KPC-Links #N): US / CA rules equal origin/main, key files unchanged')
 passed, msg = answer_key_guard(ROOT)
 check(passed, 'this branch passes the real answer-key guard (' + msg + ')')
 

@@ -1114,6 +1114,12 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
      own_park mode (switch file tract_mode, the POTA rule may change): every other tract of a park is listed as a possible new park;
      the tract that holds the key's pin record (bk[0]) keeps the number (GUESS; else the largest tract). */
   const PAGE_ALL = 400;
+  /* Nov 7 Quality fix 4: a tract is shown as '<Park name>, <X> tract' (X = the tract's own name when it differs from the park's,
+     else its number n from the id '<ref>#<n>'); the id itself stays '<ref>#<n>'. */
+  const tractLabel = (park, t) => {
+    const n = String(t.id || '').split('#').pop(), own = t.name && String(t.name).trim() && String(t.name).trim() !== String(park).trim();
+    return `${park}, ${own ? String(t.name).trim() : n} tract`;
+  };
   async function showAllTracts(stAll, key, parks, ids, box) {
     const K = B(), reg = stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'CA' : 'US';
     const doc = await K.tractDoc(K.tractPath(stAll.code, reg)).catch(() => null);
@@ -1121,15 +1127,15 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     const rows = [];
     ids.forEach(id => {
       const p = parks[id] || {}, ts = K.splitRecs(id, side[id], p.twin), par = nest.find(x => x.child === id);
-      rows.push({ kind: 'park', id, name: p.n || id, tracts: ts.length, parent: par ? par.parent : '' });
+      rows.push({ kind: 'park', id, name: p.n || id, tracts: ts.length, labels: ts.length > 1 ? ts.map(t => tractLabel(p.n || id, t)) : [], parent: par ? par.parent : '' });
       if (own && ts.length > 1) {
         const pinRid = p.bk && p.bk.length ? String(p.bk[0]) : null, keep = ts.find(t => pinRid != null && String(t.rid) === pinRid) || ts[0];
-        ts.forEach(t => { if (t !== keep) rows.push({ kind: 'tract', id: t.id, of: id, name: t.name || p.n || id, ac: t.ac }); });
+        ts.forEach(t => { if (t !== keep) rows.push({ kind: 'tract', id: t.id, of: id, name: tractLabel(p.n || id, t), ac: t.ac }); });
       }
     });
     const rowHtml = r => r.kind === 'tract'
       ? `<p><b>${esc(r.name)}</b> · ${esc(r.id)} · possible new park (tract of ${esc(r.of)})${r.ac ? ' · ' + Math.round(r.ac).toLocaleString() + ' acres' : ''}</p>`
-      : `<p><b>${esc(r.name)}</b> · ${esc(r.id)}${r.tracts > 1 ? ' · ' + r.tracts + ' tracts' : ''}${r.parent ? ' · inside ' + esc(r.parent) : ''}</p>`;
+      : `<p><b>${esc(r.name)}</b> · ${esc(r.id)}${r.tracts > 1 ? ' · ' + r.tracts + ' tracts: ' + r.labels.map(esc).join('; ') : ''}${r.parent ? ' · inside ' + esc(r.parent) : ''}</p>`;
     const extras = extrasHtml(stAll);   /* the same agency dropdown (and candidate list, when its own switch is on) as the plain list */
     if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(reg === 'world' ? 'world' : reg === 'CA' ? 'Canada' : 'US')} key. ${reg === 'US' ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. Tracts and parks inside parks come from its tract file${doc ? '' : ' (none on the site yet for this place)'}; ${own ? 'each other tract is shown as a possible new park.' : 'every tract shares the park’s one number.'}</p><div id="mrAllKeyRows"></div><div id="mrAllKeyMore"></div></div>${extras}</section>`;
     let shown = 0;

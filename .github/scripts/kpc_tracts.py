@@ -375,6 +375,13 @@ def twins_for(tract_file):
     return {r: [str(x) for x in v.get('twin') or []] for r, v in (k.get('parks') or {}).items() if isinstance(v, dict) and v.get('twin')}
 
 
+def label(park, t):
+    """Nov 7 Quality fix 4: '<Park name>, <X> tract' (X = the tract's own name when it differs from the park's, else its number
+    from the id '<ref>#<n>'). The id stays '<ref>#<n>'."""
+    nm = str(t.get('name') or '').strip(); n = str(t.get('id') or '').rsplit('#', 1)[-1]
+    return f"{park}, {nm if nm and nm != str(park).strip() else n} tract"
+
+
 def tracts_of_ref(IDX, ref):
     """The read-time tracts of one park from an index() result, cached on the entry (labels only)."""
     e = IDX.get(ref) or {}

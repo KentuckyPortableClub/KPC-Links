@@ -74,7 +74,7 @@
     return "KPC_" + x + "_parks_" + date + "." + ext;     // state pack
   }
 
-  // ---------------- geometry: rings, simplification (same algorithm as kpc_gpspacks.py) ----------------
+  // ---------------- geometry: rings, simplification (same algorithm as kpc_gpspacks.py only when no tracts are passed; with tracts it differs) ----------------
   function closeRing(r) {
     var out = [];
     for (var i = 0; i < r.length; i++) {

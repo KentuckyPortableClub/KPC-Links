@@ -19,6 +19,8 @@ Nov 7 Part 1 (KEY / 2-FER / WORLD handoff; whole_park is still untouched and sti
             else by its box as before ('tract_basis' counts which); when the spot's centre is in no tract, its own outline points are
             tried. 'count_parks' = distinct park combos among candidate spots; 'count' = count_tracts when KPC_TRACT_MODE=own_park
             (each tract may be its own park), else count_parks (one_park, today's rules); 'tract_mode' says which.
+          own_park only (Nov 7 Quality fix): a combo touching a GUESSED tract (approx_split, or box-only tracts sharing one box
+          with an even acre share) is not counted; it is listed in 'tract_flagged' with flag 'guessed tract'.
   nested  - 'nested_pairs' also lists parent + child pairs of this file's area that have NO spot row (spots: 0), so a child park
             filtered out by size or status is not lost.
 """
@@ -70,6 +72,20 @@ def _tracts_at(ref, la, lo, IDX, spot=None, basis=None):
     return []
 
 
+def _park_name(ref, IDX):
+    """The park's name for a tract label: the largest tract record's name (the spot rows carry no park name), else the ref."""
+    ts = _TR().tracts_of_ref(IDX, ref)
+    return str(ts[0].get('name') or '').strip() or ref if ts else ref
+
+
+def _guessed_ids(ref, IDX):
+    """Tract ids of `ref` whose split is a guess: approx_split, or box-only tracts that share one box (even acre share)."""
+    ts = _TR().tracts_of_ref(IDX, ref); boxes = {}
+    for t in ts:
+        if not t.get('shape') and t.get('box'): boxes.setdefault(tuple(t['box']), []).append(t['id'])
+    return {t['id'] for t in ts if t.get('approx_split')} | {i for v in boxes.values() if len(v) > 1 for i in v}
+
+
 def _area_of(d, path):
     st = str(d.get('st') or pathlib.Path(str(path)).name.split('.')[0])
     return st[2:] if st.startswith('W-') else st
@@ -82,7 +98,8 @@ def apply(path, d, mode=None, IDX=None):
     IDX = index() if IDX is None else IDX
     if not IDX: return d
     if mode == 'tracts':
-        combos, parks, basis = set(), set(), {}
+        combos, parks, basis, guessed = set(), set(), {}, set()
+        tm = _TR().tract_mode()
         for s in d['spots']:
             if s.get('status') == 'candidate' and s.get('refs'): parks.add(tuple(sorted(s['refs'])))
             at = _at(s)
@@ -91,10 +108,16 @@ def apply(path, d, mode=None, IDX=None):
             lab = {r: v for r, v in lab.items() if v}
             if lab:
                 s['tracts'] = lab
-                if s.get('status') == 'candidate': combos.add(tuple(sorted('|'.join(v) for v in lab.values())))
-        tm = _TR().tract_mode()
+                names = dict(zip(s.get('refs') or [], s.get('names') or []))   # Nov 7 Quality fix 4: '<Park name>, <X> tract'
+                s['tract_labels'] = {t['id']: _TR().label(names.get(r) or _park_name(r, IDX), t) for r in lab for t in _TR().tracts_of_ref(IDX, r) if t['id'] in lab[r]}
+                if s.get('status') == 'candidate':
+                    combo = tuple(sorted('|'.join(v) for v in lab.values()))
+                    if tm == 'own_park' and any(t in _guessed_ids(r, IDX) for r, v in lab.items() for t in v): guessed.add(combo)
+                    else: combos.add(combo)
         d['count_mode'] = 'tracts'; d['count_tracts'] = len(combos); d['count_parks'] = len(parks)
         d['tract_mode'] = tm; d['count'] = len(combos) if tm == 'own_park' else len(parks); d['tract_basis'] = basis
+        if tm == 'own_park' and guessed:   # Nov 7 Quality fix 2: guessed tracts are not separate 2-fers; left out and flagged
+            d['tract_flagged'] = [{'tracts': list(c), 'flag': 'guessed tract'} for c in sorted(guessed - combos)]
     elif mode == 'nested':
         pairs = {}
         for s in d['spots']:
