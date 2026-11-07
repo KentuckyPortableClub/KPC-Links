@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T14:23:13+00:00",
+ "updated": "2026-11-07T13:25:56+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
@@ -233,39 +233,6 @@
    "la": 44.1451,
    "lo": -96.384,
    "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13630",
-   "prog": "pota",
-   "name": "Flatsedge Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 41.2247,
-   "lo": -97.4832,
-   "found": "2026-10-31"
-  },
-  {
-   "ref": "US-13629",
-   "prog": "pota",
-   "name": "Killdeer Lake Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.6771,
-   "lo": -96.7617,
-   "found": "2026-10-31"
-  },
-  {
-   "ref": "US-13628",
-   "prog": "pota",
-   "name": "Two Rivers Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 41.2125,
-   "lo": -96.349,
-   "found": "2026-10-31"
   }
  ]
 }
