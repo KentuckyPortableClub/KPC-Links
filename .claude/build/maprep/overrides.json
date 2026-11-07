@@ -1,0 +1,22 @@
+{
+  "note": "Optional, read only by assemble.py for this page. The built Map Rep page differs from news.html's head and tail in these ways (it is a private standalone page: noindex, no menu scripts, older nav CSS). Each replace pair must match exactly once in the assembled text; drop_tail leaves off news.html's closing script block.",
+  "replace": [
+    [
+      "<meta charset=\"UTF-8\">\n",
+      "<meta charset=\"UTF-8\">\n<meta name=\"robots\" content=\"noindex,nofollow\">\n"
+    ],
+    [
+      "<!-- storage plan Step B (Oct 27): KPC.dataUrl(path) tries KentuckyPortableClub/KPC-Data first, falls back to this site's own copy of the same path. Same helper everywhere; new pages get it from here via assemble.py. --><meta name=\"viewport\"",
+      "<meta name=\"viewport\""
+    ],
+    [
+      "<meta property=\"og:title\" content=\"Mapping Representative's Tool Box | KPC\">",
+      "<meta property=\"og:title\" content=\"Mapping Representative's Tool Box \">"
+    ],
+    [
+      "<link rel=\"stylesheet\" href=\"kpc-nav.css?v=20261030a\">\n<style id=\"kpc-hero-logo-fix\">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>\n",
+      "<link rel=\"stylesheet\" href=\"kpc-nav.css?v=20261015a\">\n"
+    ]
+  ],
+  "drop_tail": true
+}

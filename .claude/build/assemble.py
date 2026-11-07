@@ -28,5 +28,16 @@ tail = '<script src="kpc-search.js' + footer.split('<script src="kpc-search.js',
 tail_scripts = tail.rsplit('</body></html>', 1)[0]
 main = main.replace('@@CSS@@', open(os.path.join(here,'page-css.html'),encoding='utf-8').read()).replace('@@COMPARE@@', open(os.path.join(here,'compare.html'),encoding='utf-8').read())
 main = main.replace('@@HEADER@@', header).replace('@@FOOTER@@', foot_html)
-open(repo + out, 'w', encoding='utf-8').write(head + '\n' + nav_css + '\n' + main.rstrip() + '\n' + tail_scripts.rstrip() + '\n</body></html>\n')
+ov = {}
+ovf = os.path.join(os.path.dirname(os.path.abspath(mainf)), 'overrides.json')  # optional, per page (only maprep has one)
+if os.path.isfile(ovf):
+    import json
+    ov = json.load(open(ovf, encoding='utf-8'))
+if ov.get('drop_tail'):
+    tail_scripts = ''
+text = head + '\n' + nav_css + '\n' + main.rstrip() + '\n' + (tail_scripts.rstrip() + '\n' if tail_scripts else '') + '</body></html>\n'
+for a, b in ov.get('replace', []):
+    assert text.count(a) == 1, ('override must match once', a)
+    text = text.replace(a, b)
+open(repo + out, 'w', encoding='utf-8', newline='').write(text)
 print('wrote', out)
