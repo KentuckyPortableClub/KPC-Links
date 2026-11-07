@@ -4138,7 +4138,9 @@
        "template": "https://www.forestryengland.uk/car-parks/parking-at-{slug}",
        "slug": "forest name, e.g. sneaton-forest (seen for 2 forests; New Forest and Forest of Dean use other addresses)",
        "verified": false,
-       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)",
+       "for_types": "^(forest reserve|national forest|royal forest)\\b",
+       "for_types_note": "GUESS (Nov 7 check): only parks whose POTA park TYPE matches this build the guessed page; other parks get the agency links only"
       }
      }
     },
@@ -4712,7 +4714,9 @@
        "template": "https://www.coillte.ie/site/{slug}/",
        "slug": "full name, e.g. donadea-forest-park (seen for 6 sites)",
        "verified": false,
-       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)",
+       "for_types": "^(national forest|forest reserve)\\b",
+       "for_types_note": "GUESS (Nov 7 check): only parks whose POTA park TYPE matches this build the guessed page; other parks get the agency links only"
       }
      }
     },
@@ -4835,7 +4839,9 @@
        "template": "https://www.nationalparks.nsw.gov.au/visit-a-park/parks/{slug}/visitor-info",
        "slug": "full name, e.g. royal-national-park (seen for 3 parks)",
        "verified": false,
-       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)",
+       "for_types": "^(national park|nature reserve|state conservation area|regional park|karst conservation reserve|historic site|aboriginal area)\\b",
+       "for_types_note": "GUESS (Nov 7 check): only parks whose POTA park TYPE matches this build the guessed page; other parks get the agency links only"
       }
      }
     },
@@ -4955,7 +4961,9 @@
        "template": "https://parks.qld.gov.au/parks/{slug}/visiting-safely",
        "slug": "name without the park type, e.g. conondale, porcupine-gorge (seen for 10 parks)",
        "verified": false,
-       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)",
+       "for_types": "^(national park|conservation park)\\b",
+       "for_types_note": "GUESS (Nov 7 check): only parks whose POTA park TYPE matches this build the guessed page; other parks get the agency links only"
       }
      }
     }
