@@ -13,12 +13,15 @@
   let BP = null;
   function needB() {   /* pages without kpc-bounds.js (the KY trip planner) load it the first time a file is made */
     if (window.KPCB) return Promise.resolve(window.KPCB);
-    return BP || (BP = new Promise(res => { const s = document.createElement('script'); s.src = 'kpc-bounds.js?v=20261101f'; s.onload = () => res(window.KPCB || null); s.onerror = () => res(null); document.head.appendChild(s); }));
+    return BP || (BP = new Promise(res => { const s = document.createElement('script'); s.src = 'kpc-bounds.js?v=20261107t'; s.onload = () => res(window.KPCB || null); s.onerror = () => res(null); document.head.appendChild(s); }));
   }
   const LK = {};
   const look = ref => LK[ref] || (LK[ref] = needB().then(K => K && K.lookup ? K.lookup(ref) : null).catch(() => null));
   const areaOf = o => (o && o.us && /^[A-Z]{2}$/.test(o.st || '')) ? 'US-' + o.st : null;
-  const fc = fs => ({ type: 'FeatureCollection', features: fs.filter(f => f && f.geometry).map(f => ({ type: 'Feature', properties: { name: f._nm || '' }, geometry: f.geometry })) });
+  /* Nov 7 (tracts, hidden): a feature read while the tract switch was on carries properties.tract / tracts_total / parent; keep them
+     (switch off: no such property, so the file is exactly as before) */
+  const tprops = f => { const p = f.properties || {}; return p.tract ? Object.assign({ tract: p.tract, tracts_total: p.tracts_total }, p.parent ? { parent: p.parent } : {}) : {}; };
+  const fc = fs => ({ type: 'FeatureCollection', features: fs.filter(f => f && f.geometry).map(f => ({ type: 'Feature', properties: Object.assign({ name: f._nm || '' }, tprops(f)), geometry: f.geometry })) });
   const agencies = fs => [...new Set(fs.map(f => (f._L && f._L.agency) || f._src).filter(Boolean))].join(' and ');
   const bad = s => /WDPA|Protected Planet|OpenStreetMap|OSM/i.test(String(s || ''));
   async function outline(ref, park) {

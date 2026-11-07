@@ -429,7 +429,9 @@
     const ref = ($('mrDeskRef') && $('mrDeskRef').value || '').trim().toUpperCase();
     const code = placeCode();
     if (!/^([A-Z]{2})-\d{1,5}$/.test(ref)) { out('<p class="mr-msg">Type a park number such as US-7958, and pick that park’s state.</p>'); return; }
-    const path = regionOf(code) === 'CA' ? 'data/ca-key/tracts/CA-' + code + '.json' : 'data/us-key/tracts/US-' + code + '.json';
+    /* Nov 7: world places (GB, IE, AU, NZ) read data/world-key/tracts/<CC>.json too (kpc_world_tracts.py / the world key) */
+    const pr = Lgc().placeByCode ? Lgc().placeByCode(code) : null, reg = pr ? pr.region : regionOf(code);
+    const path = reg === 'CA' ? 'data/ca-key/tracts/CA-' + code + '.json' : reg === 'world' ? 'data/world-key/tracts/' + code + '.json' : 'data/us-key/tracts/US-' + code + '.json';
     out('<p class="mr-msg">Reading tract notes for ' + esc(code) + '…</p>');
     try {
       const get = window.KPCB && KPCB.jget;

@@ -1,0 +1,6 @@
+{
+  "about": "Tract switch (Nov 7 2026, KEY / 2-FER / WORLD handoff Part 1). Hidden, OFF. on: show tract labels to members on every page (one shared KPCB.tractsOn() in kpc-bounds.js; ?tracts=1 or localStorage kpcMapTracts=1 turns it on for one device; guests never). mode: which 2-fer count the pages show (whole_park | tracts | nested); the 2-fer bot itself only reads its env KPC_FERS_COUNT_MODE, so this file never changes a published spot file. tract_mode: one_park (today's rules: every tract shares the one POTA number) | own_park (each tract may be its own possible new park); bots: env KPC_TRACT_MODE first. See .github/scripts/kpc_tracts.py.",
+  "on": false,
+  "mode": "whole_park",
+  "tract_mode": "one_park"
+}

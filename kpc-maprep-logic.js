@@ -38,8 +38,11 @@
   function placeByCode(code) {
     return placeRows().find(r => r.code === String(code || '').toUpperCase()) || null;
   }
-  /* Hidden. Default off. ?tracts=1 or localStorage kpcMapTracts=1 turns the tract box on. */
+  /* Hidden. Default off. ?tracts=1 or localStorage kpcMapTracts=1 turns the tract box on.
+     Nov 7: in a page with kpc-bounds.js the ONE shared switch decides (KPCB.tractsOn(): members only, + data/tract-switch.json);
+     the rule below is kept for node (selftest, no window). */
   function tractsOn() {
+    if (typeof window !== 'undefined' && window && window.KPCB && typeof window.KPCB.tractsOn === 'function') return !!window.KPCB.tractsOn();
     try {
       if (typeof location !== 'undefined' && location && /(?:\?|&)tracts=1(?:&|$)/.test(String(location.search || ''))) return true;
       if (typeof localStorage !== 'undefined' && localStorage && localStorage.getItem('kpcMapTracts') === '1') return true;
@@ -233,9 +236,16 @@
     return ins;
   }
   function insideGeom(lat, lon, g) {
+    if (tractsOn()) return insideAny(lat, lon, g);   /* Nov 7: tract switch on -> per polygon (off: even-odd, as before) */
     let n = 0;
     ringsOf(g).forEach(r => { if (r && r.length > 2 && insideRing(lon, lat, r)) n++; });
     return n % 2 === 1;
+  }
+  /* Nov 7: inside ANY polygon and outside that polygon's holes (the rule kpc-bounds.js inside() uses). Even-odd over every ring of a
+     MultiPolygon reads a point where two tracts overlap as OUTSIDE; this does not. */
+  function insideAny(lat, lon, g) {
+    const polys = !g ? [] : g.type === 'Polygon' ? [g.coordinates || []] : g.type === 'MultiPolygon' ? (g.coordinates || []) : [];
+    return polys.some(p => p && p[0] && p[0].length > 2 && insideRing(lon, lat, p[0]) && !p.slice(1).some(h => h && h.length > 2 && insideRing(lon, lat, h)));
   }
   /* Metres from the pin to the nearest outline edge. No name is required. */
   function pinDistance(lat, lon, g) {
@@ -330,6 +340,11 @@
       if (d.inside || (d.miles != null && d.miles <= limit)) return p;
     }
     return null;
+  }
+  /* Nov 7: EVERY pin inside or within `miles` (a parent park and the child park inside it both show), in pin order */
+  function alreadyParks(geom, pins, miles) {
+    const limit = miles == null ? 0.25 : miles;
+    return (pins || []).filter(p => { const d = pinDistance(+p.lat, +p.lon, geom); return d.inside || (d.miles != null && d.miles <= limit); });
   }
   function filterCandidates(rows, opt) {
     opt = opt || {};
@@ -454,6 +469,11 @@
     ok(!out.inside && out.meters > 80 && out.meters < 160, 'pin north of the square is about 111 m out, got ' + (out.meters && out.meters.toFixed(1)));
     const hit = alreadyPark(square, [{ ref: 'US-1', name: 'In', lat: 0, lon: 0 }]);
     ok(hit && hit.ref === 'US-1', 'pin inside counts as already a park');
+    const both = alreadyParks(square, [{ ref: 'US-2', lat: 0, lon: 0 }, { ref: 'US-9', lat: 5, lon: 5 }, { ref: 'US-3', lat: 0.0005, lon: 0 }]);
+    ok(both.map(p => p.ref).join() === 'US-2,US-3' && alreadyPark(square, [{ ref: 'US-2', lat: 0, lon: 0 }, { ref: 'US-3', lat: 0.0005, lon: 0 }]).ref === 'US-2', 'alreadyParks lists every pin; alreadyPark still the first');
+    const over = { type: 'MultiPolygon', coordinates: [[[[0, 0], [2, 0], [2, 2], [0, 2], [0, 0]]], [[[1, 1], [3, 1], [3, 3], [1, 3], [1, 1]]], [[[5, 5], [8, 5], [8, 8], [5, 8], [5, 5]], [[6, 6], [7, 6], [7, 7], [6, 7], [6, 6]]]] };
+    ok(insideAny(1.5, 1.5, over) && !insideGeom(1.5, 1.5, over), 'two overlapping tracts: inside by polygon (switch on); even-odd (switch off) unchanged');
+    ok(!insideAny(6.5, 6.5, over) && insideAny(5.5, 5.5, over) && !insideAny(4, 4, over), 'a hole stays a hole');
     const leads = exportLeads([{ name: 'X', agency: 'A', geometry: { type: 'Polygon' }, pin: [1, 2], owner: 'Smith Family', ownerType: '' }]);
     ok(leads.length === 1 && !leads[0].geometry && leads[0].owner === 'private party (withheld)' && leads[0].note.indexOf('not a boundary') >= 0, 'export is a lead list');
     const diff = servicesDiff(['Ky_A', 'Ky_B'], ['Ky_B', 'Ky_C']);
@@ -494,7 +514,7 @@
     fuzzySame: fuzzySame, nameScore: nameScore, searchNames: searchNames, watchHits: watchHits,
     pinDistance: pinDistance, formatDistance: formatDistance, isBanned: isBanned, isParcel: isParcel,
     blockedPlace: blockedPlace, servicesHost: servicesHost, publicFields: publicFields, scrubOwner: scrubOwner,
-    rulesCheck: rulesCheck, alreadyPark: alreadyPark, filterCandidates: filterCandidates, exportLeads: exportLeads,
+    rulesCheck: rulesCheck, alreadyPark: alreadyPark, alreadyParks: alreadyParks, insideAny: insideAny, filterCandidates: filterCandidates, exportLeads: exportLeads,
     servicesDiff: servicesDiff, tractLinks: tractLinks, layerWords: layerWords,
     places: places, placeRows: placeRows, placeByCode: placeByCode, tractsOn: tractsOn, shoreOverlays: shoreOverlays,
     loadAgencies: loadAgencies, agenciesReady: agenciesReady, agencyMatches: agencyMatches, selftest: selftest
