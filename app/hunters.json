@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-06T23:05+00:00",
+ "updated": "2026-11-07T22:10+00:00",
  "note": "Busiest POTA times, Central time, from KPC counts of POTA spots",
  "windows": [
   {
    "days": [
     6
    ],
-   "from": "14:00",
-   "to": "17:00",
+   "from": "10:00",
+   "to": "13:00",
    "note": "POTA is at its busiest about now (Sat), mostly on 20m"
   },
   {
@@ -30,8 +30,8 @@
    "days": [
     5
    ],
-   "from": "15:00",
-   "to": "18:00",
+   "from": "11:00",
+   "to": "14:00",
    "note": "POTA is at its busiest about now (Fri), mostly on 20m"
   }
  ]
