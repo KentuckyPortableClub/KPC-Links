@@ -1,6 +1,6 @@
 {
  "built": "2026-11-06",
- "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed. Round-3 confirmed URLs (2026-11-06) are stored in this same file. The Tool Box and the research link post-check both read it.",
+ "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed. Round-3 confirmed URLs (2026-11-06) are stored in this same file. The Tool Box and the research link post-check both read it. Round 3 (2026-11-07): GB, IE, AU and NZ places added. Only URLs that passed a robots.txt-allowed plain read (HTTP 200) are kept (a 403 or block page is kept as unverified_block); robots-blocked and dead ones are left out. The access block (fees, parking, entrances, hours) holds official-site addresses only; no stored claim about any fee or hour. No per-park page addresses are built.",
  "places": {
   "AL": {
    "name": "Alabama",
@@ -4120,6 +4120,20 @@
       "url": "https://www.data.gov.uk/dataset/3d279869-555d-45c2-a859-d029dab1fc39/forestry-england-recreation-areas",
       "verified": true,
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "access": {
+      "parking": {
+       "url": "https://www.forestryengland.uk/new-forest/parking-information",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "New Forest parking charges and hours only"
+      },
+      "hours": {
+       "url": "https://www.forestryengland.uk/car-parks/parking-in-the-new-forest",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "New Forest car parks, open 4am to 11pm"
+      }
      }
     },
     {
@@ -4595,6 +4609,20 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "access": {
+      "entrances": {
+       "url": "https://www.npws.ie/places-visit",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "parks, reserves and trails open to the public"
+      },
+      "hours": {
+       "url": "https://www.npws.ie/contact-us/national-parks",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "contacts and visitor centres for the national parks and nature reserves"
+      }
      }
     },
     {
@@ -4618,6 +4646,20 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.coillte.ie/our-forests/explore/",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "car parking fee at some recreation forests; annual card"
+      },
+      "parking": {
+       "url": "https://www.coillte.ie/our-forests/explore/",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "each forest page lists car park hours and fee"
+      }
      }
     },
     {
@@ -4699,6 +4741,20 @@
       "url": "https://data.nsw.gov.au/data/dataset/nsw-national-parks-and-wildlife-service-npws-estate3f9e7",
       "verified": true,
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.nationalparks.nsw.gov.au/passes-and-fees/fee-collecting-parks",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "which of 45 parks charge vehicle entry"
+      },
+      "hours": {
+       "url": "https://www.nationalparks.nsw.gov.au/visit-a-park",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "each park page has hours, entry points and parking under visitor info (page address pattern in park_page)"
+      }
      }
     },
     {
@@ -4750,6 +4806,14 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.parks.vic.gov.au/about-us/fees-and-charges",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "fees schedule (camping and services); day entry to most parks is free"
+      }
      }
     },
     {
@@ -4802,6 +4866,20 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.parks.sa.gov.au/book-and-pay/parks-passes",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "vehicle entry fees; most parks free"
+      },
+      "entrances": {
+       "url": "https://www.parks.sa.gov.au/book-and-pay/frequently-asked-questions",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "how day entry is paid"
+      }
      }
     }
    ]
@@ -4832,6 +4910,20 @@
       "url": "https://catalogue.data.wa.gov.au/dataset/dbca-legislated-lands-and-waters",
       "verified": true,
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "access": {
+      "fees": {
+       "url": "https://exploreparks.dbca.wa.gov.au/park-entry-fees",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "vehicle entry fees at ~30 parks"
+      },
+      "entrances": {
+       "url": "https://exploreparks.dbca.wa.gov.au/park-passes",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "passes cover unlimited vehicle entry"
+      }
      }
     }
    ]
@@ -4862,6 +4954,14 @@
       "url": "",
       "verified": false,
       "source": ""
+     },
+     "access": {
+      "fees": {
+       "url": "https://parks.tas.gov.au/explore-our-parks/know-before-you-go/park-passes-and-entry-fees",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "a parks pass is needed in all national parks"
+      }
      }
     }
    ]
@@ -4921,6 +5021,14 @@
       "url": "https://www.doc.govt.nz/maps",
       "verified": true,
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-stay/stay-at-a-campsite/facilities-and-fees/",
+       "verified": true,
+       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
+       "scope": "campsite fees by category; day entry to conservation land is free"
+      }
      }
     },
     {
@@ -5014,5 +5122,6 @@
     }
    ]
   }
- }
+ },
+ "round3": "2026-11-07"
 }

@@ -2,7 +2,7 @@
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
-/* KPC Trip Planner — v20261010l
+/* US Trip Planner — v20261010l
    Close-up map (zoom 19, satellite + roads), official boundaries and trails,
    drop-a-pin spots with an inside-boundary check, and a reorderable trip
    that opens in Google Maps, shares as a link, and downloads as GPX.
@@ -178,7 +178,7 @@ function makeMap(){
   const ts=lb.section('Trails (POTA)');ts.innerHTML='<div class="gis-row">'+Object.entries(T).map(([k,s])=>`<label><input type="checkbox" data-l="t_${k}" ${shown('t_'+k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div id="lyrStat" class="kx-stat">Loading boundaries…</div>';
   lb.panel.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});
   psec=lb.section('Parking, entrances & Park Overlaps')}
- // parking & entrance markers + Park Overlaps (shared with KY Park Commander)
+ // parking & entrance markers + Park Overlaps (shared with Park Commander)
  if(window.KPCX){X=KPCX.attach(m,{key:'plan',addStop:true,parks:D.parks,busy:()=>adding,panel:psec});if(LB){X.onChange(()=>LB.recount());LB.recount()}
   X.onChange(s=>{if(!!s.O!==!!on.two){on.two=s.O?1:0;const b=document.querySelector('#prog_ [data-k=two]');if(b)b.setAttribute('aria-pressed',String(!!on.two));if(origin)run(false)}});
   on.two=X.overlapsOn()?1:0;
@@ -253,7 +253,7 @@ function readShared(code){try{const o=JSON.parse(decodeURIComponent(escape(atob(
  return {o:Array.isArray(o.o)?o.o:null,s:out.slice(0,MAXSTOPS)}}catch(e){return null}}
 function gpx(){const x=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
  const pts=trip.map((s,i)=>({la:s.la,lo:s.lo,n:`${i+1}. ${s.n}`,d:[s.ref,s.note].filter(Boolean).join(' · ')}));
- return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club Trip Planner" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>KPC trip</name><time>${new Date().toISOString()}</time></metadata>\n`+
+ return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Trip Planner (Kentucky Portable Club)" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>KPC trip</name><time>${new Date().toISOString()}</time></metadata>\n`+
   pts.map(p=>`<wpt lat="${p.la}" lon="${p.lo}"><name>${x(p.n)}</name>${p.d?`<desc>${x(p.d)}</desc>`:''}</wpt>`).join('\n')+
   `\n<rte><name>KPC trip</name>\n`+pts.map(p=>`<rtept lat="${p.la}" lon="${p.lo}"><name>${x(p.n)}</name></rtept>`).join('\n')+`\n</rte>\n</gpx>\n`}
 function flash(msg){const n=$('tripMsg');n.textContent=msg;n.hidden=false;clearTimeout(flash.t);flash.t=setTimeout(()=>n.hidden=true,4000)}
@@ -295,7 +295,7 @@ function run(fit){ALL=ALL||items();if(RT)return runRoute(fit);const R=+$('rad').
  <div class="dist">${x.d.toFixed(1)}<small>MILES</small></div></div>`).join(''):`<div class="empty">${kmHid?'Everything in range is hidden by NEW TO ME / ATNO. Turn a filter off or try a bigger distance.':'Nothing in range. Try a bigger distance.'}</div>`;
  $('list').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.onchange=()=>{const x=res[+cb.dataset.i];if(cb.checked){if(!canAdd()){cb.checked=false;return}addPark(x)}else{trip=trip.filter(s=>s.ref!==x.ref);changed()}});
  $('list').querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const x=res[+b.dataset.zoom];showInfo(x.ref);map.setView([x.la,x.lo],15);$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'})})}
-/* ---------------- park details box (same facts as KY Park Commander's cards) ---------------- */
+/* ---------------- park details box (same facts as Park Commander's cards) ---------------- */
 function grid6(lat,lon){lat=+lat+90;lon=+lon+180;if(!(lat>=0&&lat<=180&&lon>=0&&lon<=360))return '';const A='ABCDEFGHIJKLMNOPQR',a='abcdefghijklmnopqrstuvwx';return A[Math.floor(lon/20)]+A[Math.floor(lat/10)]+Math.floor((lon%20)/2)+Math.floor(lat%10)+a[Math.floor((lon%2)*12)]+a[Math.floor((lat%1)*24)]}
 function coTxt(co){if(!co||/official|see /i.test(co))return '';const l=String(co).replace(/\?/g,'').split('/').map(s=>s.trim()).filter(Boolean);return l.length>3?'Multi-county ('+l.length+' counties)':l.length>1?l.join(' / ')+' counties':l[0]+' County'}
 const HOSTL=[[/parks\.ky\.gov/,'Kentucky State Parks page'],[/fw\.ky\.gov/,'KDFWR area page'],[/eec\.ky\.gov/,'Nature Preserves page'],[/nps\.gov/,'National Park Service page'],[/fs\.usda\.gov/,'Forest Service page'],[/fws\.gov/,'Fish & Wildlife Service page']];
@@ -340,12 +340,12 @@ function pinCard(x){const inTrip=trip.some(s=>s.ref===x.ref),P=PROG[x.k]||PROG.p
  ${x.two&&x.two.length?`<div class="kx-d" style="margin-top:5px"><span class="kx-badge g">Possible POTA 2-Fer</span><br>with ${x.two.slice(0,4).map(r=>`<b>${esc(r[0])}</b> ${esc(r[1]||'')}`).join(', ')}${x.two.length>4?` and ${x.two.length-4} more`:''}. Do your own research before activating.</div>`:''}
  ${x.also&&x.also.length?`<div class="kx-d">Also: ${esc(x.also.join(' · '))}</div>`:''}
  <div class="kx-acts"><button type="button" class="pri" data-add="${x.ref}" ${inTrip?'disabled':''}>${inTrip?'✓ IN TRIP':'+ ADD TO TRIP'}</button><button type="button" data-info="${esc(x.ref)}">DETAILS ↓</button><a href="${KPC.links.dir(x.dest[0],x.dest[1],origin)}" target="_blank" rel="noopener">DIRECTIONS</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}" target="_blank" rel="noopener">🚶 STREET VIEW</a>${(x.links||[]).slice(0,1).map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('')}</div>
- ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in KY Park Commander →</a>`:''}</div>`}
+ ${x.k==='pota'?`<a href="finder.html?q=${x.ref}" style="display:inline-block;margin-top:6px;font-weight:700;font-size:12px">Open in Park Commander →</a>`:''}</div>`}
 /* start box: a town, or a park / summit / KFF by name or number (US-1286, K-1286, 1286, W4K/EC-001, KFF-1286) */
 /* ---------------- along a route (start + finish + distance) ----------------
    Ends: a Kentucky town/park/number from the list, GPS ("37.57, -84.29"), or any US place via OpenStreetMap search.
    Drive from the public OSRM server (straight line if busy). Every spot within the distance of the route is listed
-   in the order you reach it. Kentucky data only: the KPC Trip Planner covers other states. */
+   in the order you reach it. Kentucky data only: the US Trip Planner covers other states. */
 function parseLL(q){const m=String(q).trim().match(/^([NS])?\s*(-?\d{1,2}(?:\.\d+)?)\s*°?\s*([NS])?\s*[,;\s]\s*([EW])?\s*(-?\d{1,3}(?:\.\d+)?)\s*°?\s*([EW])?$/i);if(!m)return null;
  let la=+m[2],lo=+m[5];const ns=(m[1]||m[3]||'').toUpperCase(),ew=(m[4]||m[6]||'').toUpperCase();if(ns==='S')la=-Math.abs(la);if(ew==='W')lo=-Math.abs(lo);
  if(!ew&&lo>60&&la>15&&la<72)lo=-lo;if(Math.abs(la)>90||Math.abs(lo)>180)return null;return{la,lo,n:la.toFixed(4)+', '+lo.toFixed(4)}}
@@ -372,7 +372,7 @@ async function findRoute(){const fv=$('rtFrom').value,tv=$('rtTo').value,w=+$('r
 function runRoute(fit){const w=RT.w=+$('rtW').value;
  res=kmPick(ALL.filter(x=>on[x.k]&&(!on.two||x.ov)).map(x=>{const r=offRoute(x);return r.off<=w?{...x,d:r.at,off:r.off}:null}).filter(Boolean).sort((a,b)=>a.d-b.d));
  const c={pota:0,sota:0,kff:0};res.forEach(x=>c[x.k]++);const h=RT.hrs?`, about ${Math.floor(RT.hrs)} h ${Math.round(RT.hrs%1*60)} min`:'';
- $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">KPC Trip Planner</a>.`;
+ $('where').innerHTML=`Along your ${Math.round(RT.road?RT.mi:RT.total)}-mile ${RT.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(RT.A.n)}</b> to <b>${esc(RT.B.n)}</b>, within ${w} miles: <b>${c.pota}</b> POTA parks • <b>${c.sota}</b> summits • <b>${c.kff}</b> KFF-only references${kmNote()}. In the order you reach them. Kentucky spots only: for other states use the <a href="kpc-planner-us.html">US Trip Planner</a>.`;
  layer.clearLayers();const end=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end" role="img" aria-label="${t==='A'?'Route start':'Route end'}" title="${t==='A'?'Route start':'Route end'}">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
  L.polyline(RT.pts,{color:'#171717',weight:8,opacity:.5,interactive:false}).addTo(layer);L.polyline(RT.pts,{color:'#d5a63a',weight:4,interactive:false,dashArray:RT.road?null:'8 8'}).addTo(layer);end(RT.A,'A').addTo(layer);end(RT.B,'B').addTo(layer);
  res.forEach(x=>{const two=x.two&&x.two.length;
@@ -458,7 +458,7 @@ async function farPick(inp,h){let la=h.la,lo=h.lo,name=h.v;inp._seq=(inp._seq||0
  if(inp.id!=='town'){inp.value=la.toFixed(5)+', '+lo.toFixed(5);if(inp.id==='rtFrom'&&!$('rtTo').value.trim())$('rtTo').focus();else if($('rtFrom').value.trim()&&$('rtTo').value.trim())findRoute();return}
  RT=null;origin=[la,lo,name];save();run();map.setView([la,lo],Math.max(map.getZoom(),10));
  const q=h.ref||name;setTimeout(()=>{$('where').innerHTML=`<b>${esc(name)}</b> is outside Kentucky. This planner lists Kentucky parks, summits and KFF references only. `+
-  `<a href="kpc-planner-us.html?q=${encodeURIComponent(q)}" style="font-weight:800">See every park around it in the KPC Trip Planner ›</a>`},400)}
+  `<a href="kpc-planner-us.html?q=${encodeURIComponent(q)}" style="font-weight:800">See every park around it in the US Trip Planner ›</a>`},400)}
 suggest($('town'),$('townSug'),()=>pickTown());
 suggest($('rtFrom'),$('routeSug'),()=>$('rtTo').value.trim()?null:$('rtTo').focus());
 suggest($('rtTo'),$('routeSug'),()=>{if($('rtFrom').value.trim())findRoute()});

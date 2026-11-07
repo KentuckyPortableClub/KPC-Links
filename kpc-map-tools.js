@@ -200,7 +200,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
       return b; } });
     new C().addTo(map);
   }
-  /* Oct 17: KPCPin(map, {extra(la, lo) → more popup html, onPop(el, marker)}) (Kentucky Park Control: + ADD THIS SPOT TO MY TRIP) */
+  /* Oct 17: KPCPin(map, {extra(la, lo) → more popup html, onPop(el, marker)}) (Kentucky Park Map: + ADD THIS SPOT TO MY TRIP) */
   /* ---- Oct 17: KPCHere(map, {piece, onRef}) = tap an outline (zoom 10+) → 'What land is here?' (KY: KPCB.landAt + Army Corps land) ---- */
   /* Oct 17 (Brandon: 'click on a boundary… tell you Name here WMA tract etc.'): tap the map = every outline at that spot, for all three programs */
   let corpsF = null;

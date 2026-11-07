@@ -4,7 +4,7 @@
      is typed once on that device (localStorage kpcMember). A new page is members only by itself; to make a page public, add its file
      name to PUBLIC (one line).
    - On public pages, guests never see links to members-only pages (menu items, cards, buttons, search results are hidden); SWAP sends
-     guests to the public version instead (Parks → Kentucky Parks, the map tools → Kentucky Park Control).
+     guests to the public version instead (Parks → Kentucky Parks, the map tools → Kentucky Park Map).
    - Only the PBKDF2-SHA256 (200,000 rounds) of 'kpc-member:' + the lowercase password is here, never the password (hardened Oct 27
      2026; was a single SHA-256 pass, per Fable's review). Client-side only: it keeps the public out, it is not real security
      (the files are in a public GitHub repo).

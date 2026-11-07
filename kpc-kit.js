@@ -150,7 +150,7 @@
       `<span>From Kentucky Fish &amp; Wildlife. ${w && w.link ? `<a href="${esc(w.link)}" target="_blank" rel="noopener">This area's hunting rules ↗</a>` : `<a href="https://fw.ky.gov/Hunt/Pages/default.aspx" target="_blank" rel="noopener">Season dates ↗</a>`}</span></div>`;
   }
   /* Other states (Oct 16): park type / how to activate / state parks site from data/parkinfo, tips from
-     kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the KPC Trip Planner) */
+     kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the US Trip Planner) */
   const jcache = {};
   const jload = u => jcache[u] || (jcache[u] = dfetch(u).then(r => r.ok ? r.json() : null).catch(() => null));
   async function usExtras(P) {

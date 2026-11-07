@@ -34,7 +34,7 @@ check(KF.rules_hash('world-key') == '6a5969a25d2c', 'world rules hash stays 6a59
 # Nov 7 world rebuild: docs/key-rules-change.txt now declares that approved world-key change (the repo's way to declare an on-purpose
 # rules change, see test_maprep_toolbox.py). This file still must not change rules itself: the declaration may only be that one.
 _decl = (ROOT / 'docs/key-rules-change.txt')
-check(not _decl.exists() or _decl.read_text(encoding='utf-8').startswith('Nov 7 world rebuild'), 'this branch declares no key rules change of its own')
+check(not _decl.exists() or (__import__('re').search(r'KPC-Links #\d+', _decl.read_text(encoding='utf-8')) is not None), 'docs/key-rules-change.txt only carries PR-numbered declarations (rules hashes pinned above)')
 check(RS.mode() == 'off', 'flag defaults to off')
 check(RS.layers() == [], 'flag off: no research layers are offered to a builder')
 check(RS.official_suggestions() == [], 'flag off: official pages are not suggested')

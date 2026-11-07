@@ -35666,16 +35666,30 @@
   },
   "US-3917": {
    "no": [
-    "sgscc59"
+    "sgscc59",
+    "254129"
    ],
    "nofp": {
     "sgscc59": [
      "Little Pee Dee State Park Bay Heritage Preserve",
      307.0
+    ],
+    "254129": [
+     "Little Pee Dee State Park Bay Heritage Preserve",
+     298
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-07: join 254041 (the Horry+Marion Little Pee Dee HP/WMA), not 254129: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away (Brandon OK Nov 7)",
+   "join": [
+    "254041"
+   ],
+   "fp": {
+    "254041": [
+     "Little Pee Dee Heritage Preserve / Wildlife Management Area",
+     10168
+    ]
+   }
   },
   "US-3918": {
    "fp": {

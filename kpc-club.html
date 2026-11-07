@@ -252,7 +252,7 @@ async function stats(){
  if(clubLayer)clubLayer.remove();const g=clubLayer=L.layerGroup().addTo(clubMap);
  D.parks.forEach(p=>{const s=parks.get(p.c),n=s?s.size:0;
   L.circleMarker([p.la,p.lo],{radius:n?7:4.5,weight:1.1,color:'#173a28',fillColor:n>1?'#1d5a3a':n?'#d5a63a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(g)})}else{document.getElementById('clubMap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
+  .bindPopup(`<b>${esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${n?'Activated by '+[...s].join(', '):'No KPC activation yet'}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in Park Commander →</a>`).addTo(g)})}else{document.getElementById('clubMap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
 /* ---------- COUNTY CHALLENGE ---------- */
 function countyChips(){$('cMembers').innerHTML=['CLUB',...M].map(m=>`<button class="chip" type="button" aria-pressed="${m===cSel}" data-m="${m}">${m==='CLUB'?'WHOLE CLUB':m}</button>`).join('');
  $('cMembers').onclick=e=>{const b=e.target.closest('button');if(!b)return;cSel=b.dataset.m;[...$('cMembers').children].forEach(x=>x.setAttribute('aria-pressed',x===b));counties()}}

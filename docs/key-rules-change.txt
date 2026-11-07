@@ -1,3 +1,6 @@
+Round 3 overrides ledger, KPC-Links #57 (Brandon OK Nov 7, 2:19 PM CST): data/us-key/overrides.json only, one hand row: US-3917 Little Pee Dee joins record 254041 (Little Pee Dee HP/WMA, Horry+Marion) in place of 254129 (Dillon Bay tract). No rule file changed; US a066624520b4, CA 8feccbb7d9ee, world 6a5969a25d2c unchanged.
+Why: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away.
+
 Nov 7 world rebuild, KPC-Links #55 (B1 B2 B3 B4 B6; Brandon OK'd the world hash move): kpc_world_key.py only; world rules 1b50faf1dfe8 -> 6a5969a25d2c; US a066624520b4 and CA 8feccbb7d9ee unchanged; no key file changed
 
 Why: run W-42259043963 failed AU (300-min limit), CH and NO (empty EEA Natura 2000 source). See world-failed-diagnosis.md sections 6-7.
