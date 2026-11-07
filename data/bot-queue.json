@@ -3,15 +3,6 @@
  "until": "2027-06-30T00:00:00Z",
  "jobs": [
   {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
-    "states": "AK DC IL MI NE OK TX WY"
-   },
-   "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
-   "every": 14,
-   "next": "2026-11-07T07:05+00:00"
-  },
-  {
    "wf": "kpc-ca-key.yml",
    "inputs": {},
    "why": "Canada: another pass",
@@ -81,6 +72,15 @@
    "why": "US outlines, live refresh: CT ID ME ND OH TN WV",
    "every": 14,
    "next": "2026-11-19T07:02+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AK DC IL MI NE OK TX WY"
+   },
+   "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
+   "every": 14,
+   "next": "2026-11-21T08:57+00:00"
   }
  ]
 }
