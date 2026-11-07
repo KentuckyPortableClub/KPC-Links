@@ -311,7 +311,7 @@ async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').valu
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${radius} miles of ${esc(label||'there')}: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}.${added?` (${added} newer POTA park${added===1?'':'s'} loaded live from POTA.)`:''}`);
  if(map){if(ctrMk)ctrMk.remove();if(ring)ring.remove();
-  ctrMk=L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div class="ctr-us"></div>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
+  ctrMk=L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div class="ctr-us" role="img" aria-label="Search point" title="Search point"></div>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
   ring=L.circle([la,lo],{radius:radius*1609.34,color:'#171717',weight:1.5,dashArray:'6 6',fill:false,interactive:false}).addTo(map);
   map.fitBounds(ring.getBounds(),{padding:[10,10]})}
  drawDots();drawNear()}
@@ -363,7 +363,7 @@ async function runRoute(){const fq=$('urf').value,tq=$('urt').value,w=+$('urw').
  RT={pts:R.pts,info:C.info,A,B,w};center=[A.la,A.lo];NEAR=C.list;
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);const h=R.hrs?`, about ${Math.floor(R.hrs)} h ${Math.round(R.hrs%1*60)} min`:'';
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${w} miles of your ${Math.round(R.road?R.mi:C.total)}-mile ${R.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(A.label)}</b> to <b>${esc(B.label)}</b>: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}. Listed in the order you reach them.`);
- if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
+ if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end" role="img" aria-label="${t==='A'?'Route start':'Route end'}" title="${t==='A'?'Route start':'Route end'}">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
   routeL=L.featureGroup([L.polyline(R.pts,{color:'#171717',weight:8,opacity:.55,interactive:false}),L.polyline(R.pts,{color:'#f0c96b',weight:4,interactive:false,dashArray:R.road?null:'8 8'}),pin(A,'A'),pin(B,'B')]).addTo(map);
   map.fitBounds(routeL.getBounds(),{padding:[24,24]})}
  drawDots();drawNear()}

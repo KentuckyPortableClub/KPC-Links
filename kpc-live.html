@@ -303,7 +303,7 @@ function drawNight(){if(!map)return;var s=sunPos(new Date());
  if(night)night.remove();night=L.layerGroup().addTo(map);
  [[6,.10],[0,.22],[-6,.18],[-12,.16],[-18,.12]].forEach(function(x){try{nightPoly(s,x[0]).forEach(function(rg){L.polygon(rg,{stroke:false,fillColor:'#0a0a2a',fillOpacity:x[1],interactive:false}).addTo(night)})}catch(e){}});
  try{nightPoly(s,0).forEach(function(rg){L.polyline(rg,{color:'#f0c96b',weight:1.5,opacity:.85,interactive:false}).addTo(night)})}catch(e){}
- [-360,0,360].forEach(function(k){L.marker([s.lat,s.lon+k],{interactive:false,icon:L.divIcon({className:'',html:'<div class="lv-sunpin"></div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(night)});
+ [-360,0,360].forEach(function(k){L.marker([s.lat,s.lon+k],{interactive:false,icon:L.divIcon({className:'',html:'<div class="lv-sunpin" role="img" aria-label="Sun position" title="Sun position"></div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(night)});
  var t=$('lv-gl-time');if(t){var n=new Date();t.textContent='Updated '+n.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}}
 function initMap(){var el=$('lv-gl-map');if(!el)return;
  if(!window.L){el.innerHTML='<p style="padding:20px;color:#ddd">The map could not load. Check your connection or try refreshing.</p>';return}
@@ -366,7 +366,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261031s" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261024a" defer></script><script src="kpc-live.js?v=20261026a" defer></script><script src="kpc-hunters-card.js?v=20261028b" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261027a" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261031s" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261107a" defer></script><script src="kpc-live.js?v=20261026a" defer></script><script src="kpc-hunters-card.js?v=20261028b" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261027a" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

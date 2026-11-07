@@ -183,7 +183,7 @@
     });
     if (me) me.remove(); if (accC) accC.remove(); if (line) line.remove();
     if (acc) accC = L.circle([la, lo], { radius: acc, color: '#1378ff', weight: 1, fillOpacity: .08, interactive: false }).addTo(map);
-    me = L.circleMarker([la, lo], { radius: 9, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).addTo(map);
+    me = L.circleMarker([la, lo], { radius: 9, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).bindTooltip('You are here').addTo(map);
     const n = (hits[0] || near[0]); if (n && n.e.km < 8) line = L.polyline([[la, lo], [n.e.lat, n.e.lon]], { color: '#1378ff', weight: 2, dashArray: '4 6', interactive: false }).addTo(map);
     if (st.here.how !== 'watch' || !st.fitted) { st.fitted = true; map.setView([la, lo], Math.max(map.getZoom(), n && n.e.km < 1 ? 16 : 14)); }
   }

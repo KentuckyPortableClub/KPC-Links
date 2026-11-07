@@ -117,7 +117,7 @@
   for(const k of Object.keys(bounds)){if(bounds[k].corps)continue;let j;try{j=await getBoundary(k)}catch(e){fails.push(bounds[k].name);continue}
    for(const f of j.features){const b=f._bb||(f._bb=bbox(f.geometry));const roughKm=Math.max(0,(b[0]-lon)*89,(lon-b[2])*89,(b[1]-lat)*111,(lat-b[3])*111);if(roughKm>40)continue;
     if(inside(lat,lon,f.geometry)){hits.push({k,f,edge:edgeKm(lat,lon,f.geometry)})}else{const d=edgeKm(lat,lon,f.geometry);if(d<40)near.push({k,f,d})}}}
-  if(hereMark)map.removeLayer(hereMark);hereMark=L.circleMarker([lat,lon],{radius:9,color:'#fff',weight:3,fillColor:'#1378ff',fillOpacity:1}).addTo(map);map.setView([lat,lon],Math.max(map.getZoom(),13));
+  if(hereMark)map.removeLayer(hereMark);hereMark=L.circleMarker([lat,lon],{radius:9,color:'#fff',weight:3,fillColor:'#1378ff',fillOpacity:1}).bindTooltip('You are here').addTo(map);map.setView([lat,lon],Math.max(map.getZoom(),13));
   const accNote=acc?` GPS accuracy about ${fmtMi(acc/1000)}.`:'';
   /* Oct 31 (Fable #17): the trail lines on the map count too: POTA's 100 ft each side of the line */
   const trl=Object.keys(routes).map(k=>{let d=Infinity;for(const pts of routes[k]||[])if(pts&&pts.length>1)d=Math.min(d,segDistKm(lat,lon,pts));return{k,d}}).filter(x=>x.d<=0.03048);

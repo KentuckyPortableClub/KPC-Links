@@ -125,7 +125,7 @@ function paintMap(){if(!window.L)return;const el=$('#kb-map');
  paintNight();paintPaths()}
 function paintNight(){if(!map)return;night.clearLayers();const s=sunPos(new Date());
  [[0,.22],[-6,.16],[-12,.16]].forEach(([h,o])=>{try{nightPoly(s,h).forEach(rg=>L.polygon(rg,{stroke:false,fillColor:'#0a0a2a',fillOpacity:o,interactive:false}).addTo(night))}catch(e){}});
- L.marker([s.lat,s.lon],{icon:L.divIcon({className:'kb-sun',html:'☀',iconSize:[26,26],iconAnchor:[13,13]}),interactive:false,keyboard:false}).addTo(night)}
+ L.marker([s.lat,s.lon],{icon:L.divIcon({className:'kb-sun',html:'<span role="img" aria-label="Sun position" title="Sun position">☀</span>',iconSize:[26,26],iconAnchor:[13,13]}),interactive:false,keyboard:false}).addTo(night)}
 function paintPaths(){if(!map)return;layers.clearLayers();let n=0,tot=0;
  const add=(rows,kind)=>{(rows||[]).forEach(r=>{const code=Number(r.band);if(sel.size&&!sel.has(code))return;const p=g4c(r.loc);if(!p)return;const c=Number(r.c);tot+=c;n++;
   const col=BCOL[code]||'#fff',nm=(BANDS.find(b=>b[0]===code)||[0,'?'])[1];

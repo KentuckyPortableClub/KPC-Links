@@ -62,7 +62,7 @@ function draw() {
     L.circleMarker([b.la, b.lo], { radius: 6, color: '#111', weight: 2, fillColor: '#d5a63a', fillOpacity: 1 }).bindTooltip(`#${i + 1}: ${Math.round(b.t)}° true`).addTo(layer);
   });
   const pts = fixes(list, rng), est = estimate(pts);
-  pts.forEach(p => L.circleMarker(p, { radius: 3, color: '#7fd39a', weight: 1, fillOpacity: .9 }).addTo(layer));
+  pts.forEach(p => L.circleMarker(p, { radius: 3, color: '#7fd39a', weight: 1, fillOpacity: .9 }).bindTooltip('Fox track point').addTo(layer));
   const e = $('btEst');
   if (est) {
     const r = Math.max(30, est.rms || 0);
@@ -99,7 +99,7 @@ function fit() {
 function showMe(p) {
   me = [p.coords.latitude, p.coords.longitude];
   if (!map) return;
-  if (!meMark) { meMark = L.circleMarker(me, { radius: 8, color: '#fff', weight: 3, fillColor: '#2b7cff', fillOpacity: 1 }).addTo(map); map.setView(me, Math.max(map.getZoom(), 14)); }
+  if (!meMark) { meMark = L.circleMarker(me, { radius: 8, color: '#fff', weight: 3, fillColor: '#2b7cff', fillOpacity: 1 }).bindTooltip('You are here').addTo(map); map.setView(me, Math.max(map.getZoom(), 14)); }
   else meMark.setLatLng(me);
   if ($('btTake')) $('btTake').disabled = heading === null;
 }

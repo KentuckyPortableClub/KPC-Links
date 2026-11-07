@@ -720,7 +720,7 @@
     const dropPin = () => {
       if (pinCtl) { pinCtl.drop(L.latLng(la, lo)); return; }
       if (pinMarker) pinMarker.remove();
-      pinMarker = L.marker([la, lo], { draggable: true, title: 'Dropped pin' }).addTo(map);
+      pinMarker = L.marker([la, lo], { draggable: true, title: 'Dropped pin' }).bindTooltip('Dropped pin (drag to move)').addTo(map);
       pinMarker.on('dragend', () => { const p = pinMarker.getLatLng(); showPoint(p.lat, p.lng); });
     };
     dropPin();
