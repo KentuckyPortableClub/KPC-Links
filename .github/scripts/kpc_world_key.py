@@ -298,9 +298,12 @@ except Exception: LAYER_MIN_URLS = {}  # noqa: BLE001
 # B4: after every page, the layer's records so far go to cache/world/parts/<CC>/<key>.jsonl.gz (+ <key>.state.json), the folder the
 # workflow carries between runs for the slow-country job. The key covers the address, where, label, name field, detail, thinning,
 # object-id field, geometry type, field list, last edit date and page size, so a changed layer never resumes from an old read.
-# Resume only CONTINUES the read; the layer counts only when it is complete, and its checkpoint is then removed.
+# Resume only CONTINUES the read; the layer counts only when it is complete. A FINISHED layer's checkpoint is kept (marked done) and
+# reused without reading its pages again (one metadata request checks the layer key) until the whole country is written; then every
+# checkpoint of that country is deleted (Brandon, Nov 7). A held country still publishes nothing: saved layers only avoid re-reading.
+# A checkpoint older than PART_DAYS (7) or with another layer key is thrown away and the layer is read fresh.
 PARTS_ON = (os.environ.get('KPC_WORLD_PARTS') or '1').strip().lower() not in ('0', 'off', 'no')
-PART_DAYS = _envf('KPC_WORLD_PART_DAYS', 3)
+PART_DAYS = _envf('KPC_WORLD_PART_DAYS', 7)
 PART_V = 1
 PART_CC = ''   # the country being read (set by the source loop)
 OID_PAGING = (os.environ.get('KPC_WORLD_OID_PAGING') or '1').strip().lower() not in ('0', 'off', 'no')
@@ -747,10 +750,23 @@ def part_save(sig, s, page):
         with gzip.GzipFile(fileobj=fh, mode='wb') as gz:
             gz.write(''.join(json.dumps(r, ensure_ascii=False, separators=(',', ':')) + '\n' for r in page).encode('utf-8'))
         fh.flush(); os.fsync(fh.fileno()); s['bytes'] = fh.tell()
+    part_state(sig, s)
+
+
+def part_state(sig, s):
+    if not PARTS_ON: return
+    st = _part_files(sig)[1]
     s['updated'] = time.time()
     tmp = st.with_suffix('.tmp')
     with open(tmp, 'w', encoding='utf-8') as fh: json.dump(s, fh, separators=(',', ':'))
     os.replace(tmp, st)
+
+
+def parts_clear_country(cc):
+    """Every checkpoint of one country: called only after its key file was written."""
+    import shutil
+    d = WCACHE / 'parts' / str(cc)
+    if d.is_dir(): shutil.rmtree(d, ignore_errors=True)
 
 
 def pull_arcgis1(label, url, where):
@@ -769,6 +785,9 @@ def pull_arcgis1(label, url, where):
     sig = ['world-layer', PART_V, str(url).rstrip('/').lower(), str(where), str(label), str(LAYER_NAMEF.get(url) or ''), url in SHEET_URLS,
            DETAIL, PREC, THIN_N, str(oidf), gtype, sorted(str(x) for x in fnames), str((info.get('editingInfo') or {}).get('lastEditDate') or ''), mx]
     st, recs = part_load(sig, label)
+    if st and st.get('done'):
+        notice(f'{label} reused', f"finished in an earlier run ({len(recs)} records, same layer key): its pages are not read again")
+        return recs
     if st:
         notice(f'{label} resumed', f"from the checkpoint: {st['pages']} pages, {len(recs)} records already read ({st['mode']} paging)")
     else:
@@ -805,7 +824,9 @@ def pull_arcgis1(label, url, where):
             if first and 'agination' in str(j.get('error')):   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported' = ask once without paging
                 for k_ in ('resultOffset', 'resultRecordCount', 'orderByFields'): qq.pop(k_, None)
                 j = fetch(url + '/query?' + urllib.parse.urlencode(qq), deadline=deadline)
-                recs += [arcgis_rec(label, url, oidf, f) for f in j.get('features', []) or []]
+                page = [arcgis_rec(label, url, oidf, f) for f in j.get('features', []) or []]
+                recs += page
+                if page: st['pages'] += 1; st['n'] = len(recs); part_save(sig, st, page)
                 break
             if first: notice(f'{label} query error', j.get('error')); break
             raise LayerStall(f"query error after page {st['pages']} ({len(recs)} records read; not used): {str(j.get('error'))[:300]}")
@@ -828,7 +849,8 @@ def pull_arcgis1(label, url, where):
             prev_ids = set(ids) if None not in ids else None
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break   # the end test of before, both modes
         time.sleep(.5)
-    part_clear(sig)   # the layer is complete: its checkpoint is no longer needed
+    if recs and PARTS_ON: st['done'] = True; part_state(sig, st)   # finished: kept until the country is written (an empty read is asked again)
+    else: part_clear(sig)
     return recs
 
 
@@ -1544,6 +1566,7 @@ for cc in COUNTRIES:
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
                               f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
     save_json(OUT / 'index.json', _with_old_stamp({'countries': idx}))
+    parts_clear_country(cc)   # Nov 7: the country's key is written, so its layer checkpoints (finished or not) are no longer needed
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")
 if HELD:   # next round v3 C11: the workflow lists a held country as failed and keeps its previous key (data/world-key/<CC>.json)

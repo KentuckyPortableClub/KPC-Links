@@ -1,6 +1,7 @@
-Nov 7 world rebuild (B1 B2 B3 B4 B6; Brandon OK'd the world hash move): kpc_world_key.py only; world rules 1b50faf1dfe8 -> 3c429df17d2c; US a066624520b4 and CA 8feccbb7d9ee unchanged; no key file changed
+Nov 7 world rebuild (B1 B2 B3 B4 B6; Brandon OK'd the world hash move): kpc_world_key.py only; world rules 1b50faf1dfe8 -> f4ca4c79811e; US a066624520b4 and CA 8feccbb7d9ee unchanged; no key file changed
 
 Why: run W-42259043963 failed AU (300-min limit), CH and NO (empty EEA Natura 2000 source). See world-failed-diagnosis.md sections 6-7.
 B1 no geometry for line/point layers; B2 per-request time limit + retries with backoff and jitter; B3 per-layer time limit + stall rule (a
 stalled layer FAILS into the existing saved-copy / HOLD path; B5 partial reads NOT approved); B4 checkpoint after every page in
-cache/world/parts/<CC>/; B6 no Natura 2000 source for CH and NO. A full world rebuild is due on merge.
+cache/world/parts/<CC>/ (finished layers reused until the country is written, then all its checkpoints deleted; 7-day limit);
+B6 no Natura 2000 source for CH and NO. A full world rebuild is due on merge.

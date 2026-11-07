@@ -78,12 +78,12 @@ sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KF
 
 # Answer-key guard. Default on every branch, never a silent skip.
-# (a) rules hashes equal origin/main (today us a066624520b4, ca 8feccbb7d9ee, world 3c429df17d2c).
-#     Nov 7 world rebuild (Brandon OK'd): world moved 1b50faf1dfe8 -> 3c429df17d2c (kpc_world_key.py only); that branch declares it in
+# (a) rules hashes equal origin/main (today us a066624520b4, ca 8feccbb7d9ee, world f4ca4c79811e).
+#     Nov 7 world rebuild (Brandon OK'd): world moved 1b50faf1dfe8 -> f4ca4c79811e (kpc_world_key.py only); that branch declares it in
 #     docs/key-rules-change.txt, so the guard is EXEMPT there and passes again with no exemption once it is on main.
 # (b) data/us-key, data/ca-key, data/world-key and data/ky-answer-key.json are byte-unchanged vs origin/main.
 # A branch that changes rules on purpose is exempt only when it adds or changes docs/key-rules-change.txt.
-EXPECTED_RULES = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '3c429df17d2c'}
+EXPECTED_RULES = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': 'f4ca4c79811e'}
 KEY_PATHS = ['data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json']
 DECL_REL = 'docs/key-rules-change.txt'
 

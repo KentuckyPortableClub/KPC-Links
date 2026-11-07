@@ -8,7 +8,8 @@ no deadline, no checkpoint), CH and NO (the empty EEA Natura 2000 source held th
   B3  one layer has a time limit and a stall rule; a stalled layer RAISES into the FAILED path: saved copy or HOLD, as before;
       its partial read is never used (B5 refused);
   B4  a checkpoint after every page (cache/world/parts/<CC>/), keyed by the layer; a stopped read resumes from its last page;
-      the checkpoint is removed when the layer completes and never stands in for a complete layer.
+      a FINISHED layer's checkpoint is kept (done) and reused without reading its pages until the country is written, then all of
+      that country's checkpoints are deleted; a held country publishes nothing; older than 7 days or another layer key = read fresh.
 Offline: stand-in servers, a stand-in clock, temporary folders. Never writes the repo. Plain script (check / ALL PASS)."""
 import gzip, json, os, pathlib, re, subprocess, sys, tempfile, textwrap, urllib.parse, urllib.request
 
@@ -265,9 +266,9 @@ ns, held, wsaved, notes, hydro = source_loop(None, tmpd)
 check(held == ['AU'] and not ns['went_on'] and wsaved == [], 'B3 -> HOLD: the stalled layer FAILS; no saved copy -> AU is HELD, nothing written, the previous key stays')
 check(any('Surface_HydroLines_National FAILED' in n and 'limit' in n for n in notes) and any('HELD' in n for n in notes),
       'B3 -> HOLD: logged as FAILED (over its limit) and HELD')
-st = list(pathlib.Path(tmpd, 'parts', 'AU').glob('*.state.json'))
-check(len(st) == 1 and json.load(open(st[0]))['pages'] == len(hydro.queries) - 1,
-      f'B3: the stalled layer keeps its checkpoint for the next run ({json.load(open(st[0]))["pages"] if st else 0} pages); NSW (complete) has none')
+st = sorted((bool(x.get('done')), x['pages'], x['n']) for x in (json.load(open(f)) for f in pathlib.Path(tmpd, 'parts', 'AU').glob('*.state.json')))
+check(st == [(False, len(hydro.queries) - 1, 1000 * (len(hydro.queries) - 1)), (True, 1, 300)],
+      f'B3: the stalled layer keeps its in-progress checkpoint, NSW (complete) a finished one; the country is still held ({st})')
 sid = ns['src_id'](HYDRO)
 saved = [{'src': HYDRO[0], 'id': f'saved-{i}', 'n': f'River {i}', 'sid': sid} for i in range(40)]
 ns, held, wsaved, notes, _ = source_loop(saved, tempfile.mkdtemp())
@@ -292,7 +293,7 @@ for mode, kw in (('object-id', {}), ('resultOffset', {'order': False})):
     got = ns['pull_arcgis1']('Example layer', URL, '1=1')
     full = full or got
     check(seen == [0, 1, 2, 3, 4] and got == full and len(got) == 4300, f'B4 ({mode}): a checkpoint is written after every page (pages seen before each request: {seen})')
-    check(parts_of(d) == [], f'B4 ({mode}): the checkpoint is removed when the layer completes')
+    check((state_of(d) or {}).get('done') is True and state_of(d)['n'] == 4300, f'B4 ({mode}): the finished layer keeps its checkpoint, marked done (until the country is written)')
     d = tempfile.mkdtemp(); lay = Layer(4300, kill_on=4, **kw); ns, _, notes = new_ns(lay, parts=d)
     try: ns['pull_arcgis1']('Example layer', URL, '1=1')
     except Kill: pass
@@ -305,7 +306,7 @@ for mode, kw in (('object-id', {}), ('resultOffset', {'order': False})):
     right = ("OBJECTID > 3000" in q1['where'] and 'resultOffset' not in q1) if not kw else (q1.get('resultOffset') == '3000' and '>' not in q1['where'])
     check(right and len(lay.queries) == 2, f"B4 ({mode}): the next run resumes at page 4 (first query: {q1.get('where')!r} offset {q1.get('resultOffset')})")
     check(got == full and any('resumed' in n for n in notes), f'B4 ({mode}): resumed read = the uninterrupted read, record for record (a half-written page is dropped)')
-    check(parts_of(d) == [], f'B4 ({mode}): cleared after the resumed layer completes')
+    check((state_of(d) or {}).get('done') is True and state_of(d)['n'] == 4300, f'B4 ({mode}): marked done after the resumed layer completes')
 
 # the AU case: the layer limit stops the read, the next run continues it, nothing partial is ever returned
 d = tempfile.mkdtemp(); lay = Layer(4300, page_secs=180.0); ns, clock, _ = new_ns(lay, parts=d); ns['LAYER_MIN'] = 10   # 3 pages fit in 10 min
@@ -313,7 +314,7 @@ try: got = ns['pull_arcgis1']('Example layer', URL, '1=1'); raised = None
 except ns['LayerStall'] as e: raised, got = e, None
 check(raised is not None and got is None and state_of(d)['pages'] == 3, 'B4+B3: over the limit after 3 pages: LayerStall (no records returned), checkpoint kept')
 lay = Layer(4300); ns, _, _ = new_ns(lay, parts=d)
-check(ns['pull_arcgis1']('Example layer', URL, '1=1') == full and len(lay.queries) == 2 and parts_of(d) == [],
+check(ns['pull_arcgis1']('Example layer', URL, '1=1') == full and len(lay.queries) == 2 and (state_of(d) or {}).get('done') is True and state_of(d)['n'] == 4300,
       'B4+B3: the next run reads only pages 4-5 and returns the whole layer')
 
 # a changed layer never resumes from an old read
@@ -334,9 +335,9 @@ check('>' not in lay.queries[0]['where'] and got == full and any('layer key diff
 d = tempfile.mkdtemp(); lay = Layer(4300, kill_on=3); ns, _, _ = new_ns(lay, parts=d)
 try: ns['pull_arcgis1']('Example layer', URL, '1=1')
 except Kill: pass
-lay = Layer(4300); ns, clock, notes = new_ns(lay, parts=d); clock.t += 4 * 86400
+lay = Layer(4300); ns, clock, notes = new_ns(lay, parts=d); clock.t += 8 * 86400
 got = ns['pull_arcgis1']('Example layer', URL, '1=1')
-check('>' not in lay.queries[0]['where'] and got == full, 'B4: a checkpoint older than KPC_WORLD_PART_DAYS (3) is ignored')
+check('>' not in lay.queries[0]['where'] and got == full, 'B4: an in-progress checkpoint older than KPC_WORLD_PART_DAYS (7) is ignored')
 d = tempfile.mkdtemp(); lay = Layer(4300, kill_on=3); ns, _, _ = new_ns(lay, parts=d); ns['PART_CC'] = 'CL'
 try: ns['pull_arcgis1']('Example layer', URL, '1=1')
 except Kill: pass
@@ -360,8 +361,9 @@ check(wf.count('path: cache/world/parts') == 2 and "WCACHE / 'parts' / (PART_CC"
 
 # ------------------------------------------------------------------ end to end: the real script, a stalled layer, exit 3, previous key kept
 RUNNER = r'''
-import json, re, sys, runpy, urllib.parse, urllib.request
+import json, os, re, sys, runpy, urllib.parse, urllib.request
 SCRIPT, MODE = sys.argv[1], sys.argv[2]
+LOG = open(os.environ['FAKE_LOG'], 'a')
 class R:
     def __init__(s, b): s.b, s.p = b, 0
     def __enter__(s): return s
@@ -370,53 +372,85 @@ class R:
 def fake(req, timeout=None):
     u = getattr(req, 'full_url', req); p = urllib.parse.urlsplit(u); q = dict(urllib.parse.parse_qsl(p.query))
     if 'mma.gob.cl' not in p.netloc: raise OSError('no network in this test: ' + p.netloc)
+    LOG.write(json.dumps([p.path, q.get('where')]) + '\n'); LOG.flush()
     if not p.path.endswith('/query'):
         return R(json.dumps({'maxRecordCount': 1000, 'objectIdField': 'OBJECTID', 'geometryType': 'esriGeometryPolygon',
                              'fields': [{'name': 'OBJECTID', 'type': 'esriFieldTypeOID'}, {'name': 'NOMBRE', 'type': 'esriFieldTypeString'}]}).encode())
     m = re.search(r'OBJECTID > (\d+)', q['where']); last = int(m.group(1)) if m else 0
-    stall = MODE == 'stall' and p.path.endswith('FeatureServer/2/query')
-    n = last + 1000 if stall else 1
-    fs = [{'attributes': {'OBJECTID': i, 'NOMBRE': 'Parque Nacional Torres del Paine' if i == 1 and not stall else f'Rio {i}'},
+    layer2 = p.path.endswith('FeatureServer/2/query')
+    stall = MODE == 'stall' and layer2                  # layer 2 pages forever (over its limit)
+    n = last + 1000 if stall else last + 5 if (MODE == 'finish' and layer2) else 1
+    fs = [{'attributes': {'OBJECTID': i, 'NOMBRE': 'Parque Nacional Torres del Paine' if i == 1 and not layer2 else f'Rio {i}'},
            'geometry': {'rings': [[[-73.5, -51.5], [-72.5, -51.5], [-72.5, -50.5], [-73.5, -51.5]]]}} for i in range(last + 1, n + 1)]
     return R(json.dumps({'features': fs, 'exceededTransferLimit': stall}).encode())
 urllib.request.urlopen = fake
 sys.argv = [SCRIPT]
 runpy.run_path(SCRIPT, run_name='__main__')
 '''
+PREV = b'{"cc": "CL", "previous": "key from the last good build"}\n'
+IDX = b'{"build": "W-1", "countries": {"CL": {"parks": 1}}}\n'
 
 
-def e2e(mode):
-    t = pathlib.Path(tempfile.mkdtemp()); (t / 'data/parkinfo').mkdir(parents=True); (t / 'data/world-key').mkdir(parents=True)
-    json.dump({'parks': {'CL-0001': ['Torres del Paine National Park', '', 'National Park', '', '', -51.0, -73.0]}}, open(t / 'data/parkinfo/CL.json', 'w'))
-    json.dump({'countries': {}}, open(t / 'data/world-key/extra-layers.json', 'w'))
-    prev = b'{"cc": "CL", "previous": "key from the last good build"}\n'
-    (t / 'data/world-key/CL.json').write_bytes(prev)
-    idx = b'{"build": "W-1", "countries": {"CL": {"parks": 1}}}\n'; (t / 'data/world-key/index.json').write_bytes(idx)
-    (t / 'runner.py').write_text(RUNNER, encoding='utf-8')
-    env = dict(os.environ, COUNTRIES='CL', PYTHONDONTWRITEBYTECODE='1', KPC_WORLD_LAYER_MIN_URLS='{"featureserver/2": 0.12}')
-    for k in ('GEO_CACHE_MODE', 'GEO_CACHE', 'WB_DIR', 'KPC_WORLD_PARTS'): env.pop(k, None)
+def e2e(mode, t=None):
+    if t is None:
+        t = pathlib.Path(tempfile.mkdtemp()); (t / 'data/parkinfo').mkdir(parents=True); (t / 'data/world-key').mkdir(parents=True)
+        json.dump({'parks': {'CL-0001': ['Torres del Paine National Park', '', 'National Park', '', '', -51.0, -73.0]}}, open(t / 'data/parkinfo/CL.json', 'w'))
+        json.dump({'countries': {}}, open(t / 'data/world-key/extra-layers.json', 'w'))
+        (t / 'data/world-key/CL.json').write_bytes(PREV); (t / 'data/world-key/index.json').write_bytes(IDX)
+        (t / 'runner.py').write_text(RUNNER, encoding='utf-8')
+    log = t / f'requests-{mode}.jsonl'; log.write_text('')
+    env = dict(os.environ, COUNTRIES='CL', PYTHONDONTWRITEBYTECODE='1', KPC_WORLD_LAYER_MIN_URLS='{"featureserver/2": 0.12}', FAKE_LOG=str(log))
+    for k in ('GEO_CACHE_MODE', 'GEO_CACHE', 'WB_DIR', 'KPC_WORLD_PARTS', 'KPC_WORLD_PART_DAYS'): env.pop(k, None)
     r = subprocess.run([sys.executable, '-B', str(t / 'runner.py'), str(SCRIPT), mode], cwd=t, env=env, capture_output=True, text=True, timeout=170)
-    return t, r, prev, idx
+    return t, r, [tuple(json.loads(x)) for x in log.read_text().splitlines()]
 
 
-t, r, prev, idx = e2e('stall')
-out = r.stdout + r.stderr
-check(r.returncode == 3 and 'HELD' in out and 'limit' in out, f'end to end: a stalled layer HOLDS the country: exit {r.returncode} (3 = held; the workflow lists it as failed)')
-check((t / 'data/world-key/CL.json').read_bytes() == prev and (t / 'data/world-key/index.json').read_bytes() == idx
-      and not (t / 'data/world-key/review/CL.md').exists() and not list(t.glob('cache/world/W-*')),
-      'end to end: previous CL key and index.json byte-unchanged, no review page, no saved copy: no partial record written')
-check(len(list(t.glob('cache/world/parts/CL/*.state.json'))) == 1, 'end to end: only the stalled layer left a checkpoint (layer 0 completed and cleared its own)')
-t, r, prev, idx = e2e('ok')
+def states(t): return [json.load(open(f)) for f in sorted(t.glob('cache/world/parts/CL/*.state.json'))]
+
+
+def required_test_6_held_country_publishes_nothing_then_reuses_finished_layers():
+    # run 1: layer 0 finishes (checkpoint kept, marked done), layer 2 stalls -> CL held, exit 3, nothing published
+    t, r, reqs = e2e('stall'); out = r.stdout + r.stderr
+    st = states(t)
+    check(r.returncode == 3 and 'HELD' in out and 'limit' in out, f'REQUIRED 6a (held with a finished layer saved): a stalled layer HOLDS CL: exit {r.returncode}')
+    check((t / 'data/world-key/CL.json').read_bytes() == PREV and (t / 'data/world-key/index.json').read_bytes() == IDX
+          and not (t / 'data/world-key/review/CL.md').exists() and not list(t.glob('cache/world/W-*')),
+          'REQUIRED 6a: previous CL key and index.json byte-identical, no review page, no saved copy: nothing published')
+    check(len(st) == 2 and sorted(bool(s.get('done')) for s in st) == [False, True],
+          f"REQUIRED 6a: checkpoints kept: layer 0 finished (done), layer 2 in progress ({[(s['pages'], bool(s.get('done'))) for s in st]})")
+    # run 2: layer 2 completes from its checkpoint; layer 0 is reused without reading its pages
+    t, r, reqs = e2e('finish', t); out = r.stdout + r.stderr
+    key = json.load(open(t / 'data/world-key/CL.json')) if r.returncode == 0 else {}
+    l0 = [q for q in reqs if '/FeatureServer/0' in q[0]]; l2q = [q for q in reqs if q[0].endswith('FeatureServer/2/query')]
+    check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and key.get('counts', {}).get('areas', 0) > 1000,
+          f"REQUIRED 6b: the next run writes CL with layer 0's saved records (exit {r.returncode}, {key.get('counts', {}).get('matched')} joined, "
+          f"{key.get('counts', {}).get('areas')} areas)" + ('' if r.returncode == 0 else ': ' + out[-500:]))
+    check(not [q for q in l0 if q[0].endswith('/query')] and len(l0) == 1,
+          f'REQUIRED 6b: no feature request for the finished layer 0 (only its one metadata request, to check the layer key): {l0}')
+    check(l2q and all('OBJECTID >' in (q[1] or '') for q in l2q), f'REQUIRED 6b: layer 2 resumed from its checkpoint, never from page 1 ({l2q[:2]})')
+    check(not list(t.glob('cache/world/parts/CL/*')), 'REQUIRED 6b: once CL is written, every checkpoint of CL is deleted')
+
+
+def required_test_7_no_deletion_when_the_key_write_fails():
+    t, r, _ = e2e('stall')
+    (t / 'data/world-key/CL.json').unlink(); (t / 'data/world-key/CL.json').mkdir()   # the key file cannot be written
+    t, r, _ = e2e('finish', t)
+    check(r.returncode not in (0, 3) and len(states(t)) == 2,
+          f'REQUIRED 7 (delete only after the key is written): the key write fails (exit {r.returncode}): the checkpoints stay')
+
+
+required_test_6_held_country_publishes_nothing_then_reuses_finished_layers()
+required_test_7_no_deletion_when_the_key_write_fails()
+t, r, _ = e2e('ok')
 key = json.load(open(t / 'data/world-key/CL.json')) if r.returncode == 0 else {}
 check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not list(t.glob('cache/world/parts/CL/*')),
-      f'end to end (control): the same run with every layer answering writes CL (exit {r.returncode}, {key.get("counts", {}).get("matched")} joined), no checkpoint left'
-      + ('' if r.returncode == 0 else ': ' + out[-600:]))
+      f'end to end (control): every layer answering writes CL in one run (exit {r.returncode}), no checkpoint left')
 
 # ------------------------------------------------------------------ rules hashes: only the world key moves (Brandon OK'd)
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
 check(KZ.rules_hash('us-key') == 'a066624520b4' and KZ.rules_hash('ca-key') == '8feccbb7d9ee', 'US a066624520b4 and CA 8feccbb7d9ee rules hashes unchanged')
-check(KZ.rules_hash('world-key') == '3c429df17d2c', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> 3c429df17d2c (now {KZ.rules_hash('world-key')})")
+check(KZ.rules_hash('world-key') == 'f4ca4c79811e', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> f4ca4c79811e (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 check(ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the scripts (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
@@ -448,9 +482,9 @@ def required_test_3_checkpoint_resume_on_a_fake_3_page_layer():
     s = state_of(d)
     lay = Layer(2500); w, _, _ = new_ns(lay, parts=d); got = w['pull_arcgis1']('L', URL, '1=1')
     check(stopped and s and s['pages'] == 2 and len(lay.queries) == 1 and 'OBJECTID > 2000' in lay.queries[0]['where']
-          and got == whole and len(got) == 2500 and parts_of(d) == [],
+          and got == whole and len(got) == 2500 and (state_of(d) or {}).get('done') is True and state_of(d)['n'] == 2500,
           'REQUIRED 3 (checkpoint resume on a fake 3-page layer): stopped in page 3 -> checkpoint of 2 pages -> the next run asks only page 3'
-          ' (OBJECTID > 2000), returns all 2,500 records identical to an unbroken read, checkpoint removed')
+          ' (OBJECTID > 2000), returns all 2,500 records identical to an unbroken read, checkpoint marked done')
 
 
 def required_test_4_stalled_layer_still_holds():
@@ -464,7 +498,24 @@ def required_test_5_us_and_ca_hashes_unchanged():
           'REQUIRED 5 (US and CA hashes unchanged): us a066624520b4, ca 8feccbb7d9ee')
 
 
-for _t in (required_test_1_ch_no_get_no_natura_source, required_test_2_line_point_layers_request_no_geometry,
+def required_test_8_finished_checkpoint_older_than_7_days_is_read_again():
+    res = {}
+    for days in (6, 8):
+        d = tempfile.mkdtemp(); new_ns(Layer(2500), parts=d)[0]['pull_arcgis1']('L', URL, '1=1')   # finished: done checkpoint
+        lay = Layer(2500); w, clock, notes = new_ns(lay, parts=d); clock.t += days * 86400
+        got = w['pull_arcgis1']('L', URL, '1=1')
+        res[days] = (len([u for u in lay.urls if '/query' in u]), len(got))
+    check(res == {6: (0, 2500), 8: (3, 2500)},
+          f'REQUIRED 8 (finished checkpoint older than 7 days): 6 days old = reused, no page read; 8 days old = ignored, all 3 pages read again {res}')
+    d = tempfile.mkdtemp(); new_ns(Layer(2500), parts=d)[0]['pull_arcgis1']('L', URL, '1=1')
+    lay = Layer(2500, edit=2); got = new_ns(lay, parts=d)[0]['pull_arcgis1']('L', URL, '1=1')
+    check(len([u for u in lay.urls if '/query' in u]) == 3 and len(got) == 2500,
+          'REQUIRED 8: a finished checkpoint of another layer version (last edit date changed) is thrown away and the layer read fresh')
+    d = tempfile.mkdtemp(); lay = Layer(0); got = new_ns(lay, parts=d)[0]['pull_arcgis1']('L', URL, '1=1')
+    check(got == [] and parts_of(d) == [], 'an empty read leaves no checkpoint (it is asked again next run, and EMPTY still holds the country)')
+
+
+for _t in (required_test_1_ch_no_get_no_natura_source, required_test_8_finished_checkpoint_older_than_7_days_is_read_again, required_test_2_line_point_layers_request_no_geometry,
            required_test_3_checkpoint_resume_on_a_fake_3_page_layer, required_test_4_stalled_layer_still_holds,
            required_test_5_us_and_ca_hashes_unchanged):
     _t()
