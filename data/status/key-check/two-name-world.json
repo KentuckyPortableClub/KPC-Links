@@ -1,12 +1,28 @@
 {
  "key": "world",
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
- "two_name_parks": 2594,
- "half_outlined": 142,
+ "two_name_parks": 2629,
+ "half_outlined": 143,
  "separate_units": [],
  "one_units": [],
  "review": [],
  "parks": [
+  {
+   "area": "AU",
+   "park": "AU-10890",
+   "name": "Boer War Memorial and park (Allora) State Heritage Area",
+   "joined": [
+    "Boer War Memorial and Park"
+   ],
+   "named": "Boer War Memorial",
+   "missing": "park (Allora) State Heritage Area",
+   "missing_words": [
+    "allora"
+   ],
+   "also_in": [
+    "Queensland heritage register boundary"
+   ]
+  },
   {
    "area": "FR",
    "park": "FR-9164",
