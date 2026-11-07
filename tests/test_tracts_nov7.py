@@ -14,7 +14,7 @@ FLAG ON fixtures (both tract modes, one_park and own_park, on the same fixtures)
   (shape vs box), overlapping tracts in one MultiPolygon, key twins; the world tract runner (kpc_world_tracts.py) = the world key's
   own _world_tracts() on the same records.
 LINKS = this checkout; DATA = a KPC-Data checkout (env DATA, default ../kpc-data). Uses node. No network. Writes only to /tmp."""
-import copy, gzip, importlib.util, json, os, pathlib, shutil, subprocess, sys, tempfile
+import copy, gzip, importlib.util, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = pathlib.Path(os.environ.get('DATA') or (ROOT.parent / 'kpc-data')).resolve()
@@ -50,8 +50,16 @@ try:
     # ------------------------------------------------------------------ 0. hashes, rule files, keys
     import kpc_key_freeze as KF
     EXP = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '1b50faf1dfe8'}
-    check('rules hashes unchanged ' + json.dumps({k: KF.rules_hash(k) for k in EXP}), all(KF.rules_hash(k) == v for k, v in EXP.items()))
+    # Combined with the Nov 7 world rebuild (Part 2, Brandon OK'd): that patch moves the world hash by editing kpc_world_key.py
+    # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
+    # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
+    _decl = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8') if (ROOT / 'docs/key-rules-change.txt').is_file() else ''
+    _wdecl = re.search(r'world rules 1b50faf1dfe8 -> ([0-9a-f]{12})', _decl)
+    _wok = {EXP['world-key']} | ({_wdecl.group(1)} if _wdecl else set())
+    check('rules hashes unchanged (world: main or the declared world rebuild) ' + json.dumps({k: KF.rules_hash(k) for k in EXP}),
+          KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)
     rels = sorted(set(sum(KF.RULE_FILES.values(), [])) | {KF.VERSION_FILE})
+    if _wdecl: rels = [r for r in rels if not r.endswith('/kpc_world_key.py')]
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
     check('rule files and key-rules-version.json are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))

@@ -488,7 +488,10 @@ check(KZ.rules_hash('us-key') == 'a066624520b4' and KZ.rules_hash('ca-key') == '
 check(KZ.rules_hash('world-key') == '6a5969a25d2c', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> 6a5969a25d2c (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
-check(ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the scripts (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
+# Only RULE files matter here: other patches combined with this one (e.g. Tracts Part 1) may change NOT_RULES scripts.
+_rules = set(sum(KZ.RULE_FILES.values(), []))
+ch = [c for c in ch if c in _rules]
+check(ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the RULE files (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
 
 
 # ================================================================== the five tests named in Brandon's Part 2 handoff (Nov 7)
