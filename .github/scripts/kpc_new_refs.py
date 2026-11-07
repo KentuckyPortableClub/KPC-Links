@@ -369,8 +369,11 @@ if ky and NOW >= START:
     else:
         ok = post_discord(title, text, link) & post_facebook(title, text, link)
         ann = load(ANN, {'items': []})
-        aid = 'nr-' + TODAY
-        ann['items'] = [a for a in ann.get('items', []) if a.get('id') != aid]
+        # round 4 review (push hook on kpc-ky-data.json): a second post on the same day gets its own id (nr-<date>-2, -3, ...),
+        # so it never replaces the morning's Club News entry. Discord / Facebook only ever get items not posted before.
+        ids = {a.get('id') for a in ann.get('items', [])}
+        aid, k = 'nr-' + TODAY, 2
+        while aid in ids: aid, k = f'nr-{TODAY}-{k}', k + 1
         ann['items'].insert(0, {'id': aid, 'date': NOW.isoformat(timespec='seconds'), 'pages': ['news'], 'text': f'{title}\n\n{text}', 'photos': []})
         ann['items'].sort(key=lambda a: a.get('date', ''), reverse=True)
         ann['items'] = ann['items'][:150]; ann['updated'] = NOW.isoformat(timespec='seconds')

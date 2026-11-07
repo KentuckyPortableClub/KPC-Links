@@ -1,0 +1,61 @@
+name: KPC app offline packs (by hand)
+# Nov 7 2026 (round 4, item 2; Brandon): BY HAND ONLY. No schedule, no workflow_run, so nothing starts it but a person.
+# Runs the two steps build_app_pack.js's header names:  bash .github/scripts/kpc_overlay.sh && node .github/scripts/build_app_pack.js
+# (the overlay lays KPC-Data's parkinfo + access over this checkout, read only), then reports the size and saves app/packs.
+# Size measured Nov 7 by a real local run: 52 files = 8.5 MB on disk, 1.7 MB gzipped (git stores them compressed; Kentucky is the largest, 2.8 MB).
+# save = commit   -> app/packs is committed to main (the app and the site read app/packs/US-XX.json from GitHub Pages as before).
+#                    A rebuild rewrites every file (each pack carries today's date), so a commit adds ~1.7 MB of history: fine for a by-hand run, not for a schedule.
+# save = release  -> nothing is committed. The packs are zipped to the 'app-packs' release (asset kpc-app-packs.zip) instead; use this if the
+#                    repo is near its storage line. GUESS: the app then has to be pointed at the release URL (not done here: off until asked).
+# save = none     -> build and report only (dry run).
+on:
+  workflow_dispatch:
+    inputs:
+      save:
+        description: 'commit (default) | release | none'
+        required: false
+        default: 'commit'
+permissions:
+  contents: write
+concurrency:
+  group: kpc-app-packs
+  cancel-in-progress: false
+jobs:
+  packs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Overlay KPC-Data and build the packs
+        run: |
+          set -e
+          bash .github/scripts/kpc_overlay.sh
+          node .github/scripts/build_app_pack.js
+      - name: Size report
+        run: |
+          N=$(ls app/packs/US-*.json 2>/dev/null | wc -l)
+          MB=$(du -sm app/packs | cut -f1)
+          GZ=$(tar czf - app/packs | wc -c)
+          echo "::notice title=App packs::$N state packs, ${MB} MB on disk, $((GZ/1024)) KB gzipped"
+          { echo "**App packs:** $N state packs, ${MB} MB on disk, $((GZ/1024)) KB gzipped (save = ${{ inputs.save || 'commit' }})"; echo; ls -l app/packs | awk 'NR>1{printf "- %s %.0f KB\n",$9,$5/1024}'; } >> "$GITHUB_STEP_SUMMARY"
+          [ "$N" -ge 40 ] || { echo "::error title=App packs::only $N state packs came out; nothing is saved"; exit 1; }
+      - name: Save (commit)
+        if: ${{ (inputs.save || 'commit') == 'commit' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A app/packs
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'App offline packs (by hand)' - -- app/packs
+      - name: Save (release asset, nothing committed)
+        if: ${{ inputs.save == 'release' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view app-packs -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+            gh release create app-packs -R "$GITHUB_REPOSITORY" --title 'KPC app offline packs' --notes 'State packs for the KPC app (built by hand: Actions, KPC app offline packs). Replaced each run.'
+          (cd app && zip -qr ../kpc-app-packs.zip packs)
+          gh release upload app-packs kpc-app-packs.zip -R "$GITHUB_REPOSITORY" --clobber
