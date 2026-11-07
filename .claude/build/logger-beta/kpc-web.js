@@ -57,6 +57,21 @@
     };
     if (window.KPCCat && KPCCat.onStatus) KPCCat.onStatus(function (t, ok) { if (ok === true) lit(false); else if (/No port answered|No USB port found|No port picked|Could not open/i.test(String(t || ''))) lit(true); });
   }
+
+  /* ---- Nov 7 (Opus; app sync to cf897a2): what only the installed app can do, said plainly instead of buttons that do nothing.
+     Contest extras: 📡 skimmers (RBN needs the app's direct connection), 📈 live score (the scoreboard does not take posts from a web page),
+     🤝 Field Day / multi-op sharing (needs the PC app's server). The ❓ HELP page says it is the website copy and leaves out the
+     app-only topics (remote, Lite). */
+  var APPONLY = { skim: 1, cos: 1, share: 1 };
+  function appOnly() {
+    [].forEach.call(document.querySelectorAll('[data-cf]'), function (b) { if (!APPONLY[b.dataset.cf] || b.dataset.kw) return; b.dataset.kw = '1'; b.disabled = true; b.classList.remove('on'); b.title = 'Only in the installed KPC app';
+      var bb = b.querySelector('b'); if (bb) bb.textContent = 'APP ONLY'; });
+    try { var cf = JSON.parse(localStorage.getItem('kpcAppCx') || 'null'); if (cf && cf.feat && (cf.feat.skim || cf.feat.cos || cf.feat.share)) { cf.feat.skim = cf.feat.cos = cf.feat.share = false; localStorage.setItem('kpcAppCx', JSON.stringify(cf)); } } catch (e) {}
+    var hp = document.getElementById('hpBody'); if (hp && !document.getElementById('kwHelp')) hp.insertAdjacentHTML('afterbegin', '<p class="kw-web" id="kwHelp">This is the <b>website copy</b> of the KPC app (beta). It runs in Chrome or Edge on a computer (or Chrome on Android) and talks to your radio over USB. Only the installed app has: the phone remote, Field Day / multi-op sharing, skimmers, live score, the rotator, and Hamlib / flrig.</p>');
+  }
+  if (window.KPCHelp && KPCHelp.topics) { for (var i = KPCHelp.topics.length - 1; i >= 0; i--) if (/^(remote|lite)$/.test(KPCHelp.topics[i].id)) KPCHelp.topics.splice(i, 1);
+    KPCHelp.topics.forEach(function (t) { if (t.id === 'net') t.h = 'Field Day / multi-op sharing needs the installed KPC app (the PC app is the hub). The website copy keeps its log in this browser.'; if (t.id === 'cos') t.h = 'Live score posting needs the installed KPC app.'; if (t.id === 'skim') t.h = 'The skimmers need the installed KPC app. The band map still shows who is spotted on the band.'; }); }
+  appOnly(); var aoT = 0; new MutationObserver(function () { if (!aoT) aoT = setTimeout(function () { aoT = 0; appOnly(); }, 400); }).observe(document.body, { childList: true, subtree: true });
   /* the members door is drawn by ../kpc-gate.js with links for the site's top folder */
   function fix(root) { [].forEach.call((root || document).querySelectorAll('#kpcDoor a[href], #kpcDoor img[src]'), function (a) { var at = a.tagName === 'IMG' ? 'src' : 'href', h = a.getAttribute(at); if (h && !/^(https?:|data:|#|\.\.\/|\/|mailto:)/.test(h)) a.setAttribute(at, '../' + h); }); }
   fix(); new MutationObserver(function () { fix(); }).observe(document.documentElement, { childList: true, subtree: true });

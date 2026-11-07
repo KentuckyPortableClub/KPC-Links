@@ -1,0 +1,20 @@
+KPC website (KPC-Links) — Nov 7 2026: web logger caught up + more radio controls in the Hunters Lounge
+
+HOW TO PUT IT IN (same as the app): unzip, open the KPC-Links-main folder inside, Ctrl+A, Ctrl+C, paste into your
+KPC-Links repo folder (GitHub Desktop → Repository → Show in Explorer), "Replace the files". Nothing to delete.
+GitHub Desktop should show about 42 files. Commit, push. The website updates by itself (GitHub Pages).
+
+WEB LOGGER (logger-beta): now the same as the app from Nov 6: More Controls, band memory, tune asks first, SWR guard,
+  the IC-7300/705 scope, noise clean-up, logging on the CONTEST screen, ❓ help, setup wizard, works on my radio.
+  App only (says so on the page): skimmers, live score, Field Day / multi-op sharing, the phone remote, rotator, Hamlib/flrig.
+  The old kpc-logger page is left as it was.
+
+HUNTERS LOUNGE radio card (📻 RADIO CONTROL on the Hunters Lounge and the CAT & QRZ tab), new parts under it:
+  🎛 MORE CONTROLS · 📍 BANDS + TUNE + SWR (band memory, 🔧 tune asks first, SWR guard) · 📡 SCOPE (Icom 7300/705/9700/7610/905)
+  🎧 HEAR THE RADIO HERE with noise clean-up (on by default) · 📖 SETUP GUIDE + 📝 WORKS ON MY RADIO
+  Chrome or Edge on a computer, radio on USB, same as the Lounge's radio control today.
+
+TESTED HERE: Lounge radio 25/25 (pretend IC-7300 on a pretend USB port) · logger-beta loads with no page errors ·
+  the app's tests still pass. NOT tried on a real radio yet.
+
+The app also gets one small file (kpc-nr.js) in KPC-App-update-nov7.zip.

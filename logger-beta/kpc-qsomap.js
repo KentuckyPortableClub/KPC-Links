@@ -10,6 +10,8 @@
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const S = Object.assign({ scope: 'log', sat: false }, LS('kpcAppQmap', {}));
+  /* Nov 1 (Brandon: 'map use a sat map'): start on SATELLITE + STREETS (once for everyone; KPCMap shows the plain map when there is no signal) */
+  if (S.satv !== 1) { S.sat = true; S.satv = 1; try { localStorage.setItem('kpcAppQmap', JSON.stringify(S)); } catch (e) {} }
   const save = () => SV('kpcAppQmap', S);
   /* state centres (rough, for a contact we only know the state of) */
   const ST = { AL: [32.8, -86.8], AK: [61.4, -152.3], AZ: [34.2, -111.7], AR: [34.9, -92.4], CA: [37.2, -119.5], CO: [39.0, -105.5], CT: [41.6, -72.7], DE: [39.0, -75.5], DC: [38.9, -77.0], FL: [28.6, -82.4],

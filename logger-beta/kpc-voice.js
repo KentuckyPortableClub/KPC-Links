@@ -47,12 +47,14 @@
   const i16toF = (b64) => { const bin = atob(b64), n = bin.length >> 1, o = new Float32Array(n); for (let i = 0; i < n; i++) { let v = bin.charCodeAt(2 * i) | (bin.charCodeAt(2 * i + 1) << 8); if (v > 32767) v -= 65536; o[i] = v / 32768; } return o; };
   const fToI16 = f => { let s = ''; for (let i = 0; i < f.length; i++) { const v = Math.max(-1, Math.min(1, f[i])) * 32767 | 0, u = v < 0 ? v + 65536 : v; s += String.fromCharCode(u & 255, u >> 8); } return btoa(s); };
   const up48 = f => { const o = new Float32Array(f.length * 3); for (let i = 0; i < f.length; i++) { const a = f[i], b = i + 1 < f.length ? f[i + 1] : a; o[3 * i] = a; o[3 * i + 1] = a + (b - a) / 3; o[3 * i + 2] = a + 2 * (b - a) / 3; } return o; };
+  /* Oct 27: 🎙 VOICE LEVEL (STATION → Sound, S.vdb) scales the memory before it goes out — apart from the FT8 TX LEVEL */
+  const vlevel = f => { const g = Math.pow(10, (+AP.S.vdb || 0) / 20); if (Math.abs(g - 1) < 0.01) return f; const o = new Float32Array(f.length); for (let i = 0; i < f.length; i++) { const v = f[i] * g; o[i] = v > 1 ? 1 : v < -1 ? -1 : v; } return o; };
   async function play(i, quiet) {
     const w = whyNot(); if (w) { if (!quiet) AP.toast(esc(w), 5000, 'bad'); return false; }
     if (PLAYING >= 0 || AP.txing()) { if (!quiet) AP.toast('Something is already transmitting.', 2500); return false; }
     const m = await get(i); if (!m || !m.pcm) { if (!quiet) AP.toast('Memory ' + (i + 1) + ' is empty: record it first.', 3000); return false; }
     PLAYING = i; stopFlag = false; draw(); say('📡 Sending ' + S.names[i] + '…');
-    try { await AP.pttOn(true, { voice: true }); const r = await A.play(up48(i16toF(m.pcm)), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
+    try { await AP.pttOn(true, { voice: true }); const r = await A.play(vlevel(up48(i16toF(m.pcm))), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
     catch (e) { AP.toast('The voice keyer could not send: ' + esc(e.message || e), 5000, 'bad'); return false; }
     finally { await AP.pttOn(false, { voice: true }); PLAYING = -1; draw(); if (!AUTO) say(''); }
   }

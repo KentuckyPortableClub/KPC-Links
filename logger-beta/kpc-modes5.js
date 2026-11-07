@@ -41,9 +41,28 @@
      whole time the CW screen is up (a radio in CW ignores its USB sound), so a key tap or typed CW goes out at once — no mode swap and
      1 s wait on every first dit. Stations on the CW dial still land on the PITCH. The DTR / RTS key line and the CAT keyer keep CW mode. */
   const toneCw = () => S.cw.via === 'audio' || !S.cw.via;
-  const dialOut = m => (m || MODE) === 'CW' && toneCw() ? Math.round((dialK('CW') - (S.cw.tone || S.cw.hz || 600) / 1000) * 1000) / 1000 : dialK(m);
+  /* Oct 27 (Fable; Brandon: 'auto change-over CW to DATA for CW … nice clean audio in and out'): S.cw.park = 'cw' (default) = the radio
+     LISTENS in CW mode (its own narrow CW filter), and flips to DATA one tone low only while sending (`cwArm`), back to CW 1.2 s after
+     the last element; 'data' = parked in DATA the whole time (the fastest first dit). Both only when SEND WITH = sound. */
+  const parkData = () => toneCw() && S.cw.park === 'data';
+  const dialOut = m => (m || MODE) === 'CW' && parkData() ? Math.round((dialK('CW') - (S.cw.tone || S.cw.hz || 600) / 1000) * 1000) / 1000 : dialK(m);
+  const ARM = { on: false, back: 0, t: 0, busy: null };
+  const cwTxDial = () => Math.round((dialK('CW') - (S.cw.tone || S.cw.hz || 600) / 1000) * 1000) / 1000;
+  /* flip the radio CW → DATA one tone low for an over (one write, no read-back: ~30 ms), and back to CW `hang` ms after the last call */
+  async function cwArm() {
+    clearTimeout(ARM.t); if (ARM.on || parkData() || !toneCw() || !AP.catConnected() || !G.KPCCat || !KPCCat.tuneFast) return;
+    ARM.on = true; const r = (G.KPCApp.dialNow && KPCApp.dialNow(36e5)) || null;
+    ARM.back = r && /CW/.test(r.mode || '') ? r.khz : dialK('CW');
+    if (r && /DATA/.test(r.mode || '') && Math.abs(r.khz - cwTxDial()) < 0.05) return;   /* already there */
+    await KPCCat.tuneFast(cwTxDial(), 'DATA');
+  }
+  function cwDisarm(hang) {
+    clearTimeout(ARM.t); if (!ARM.on) return;
+    ARM.t = setTimeout(async () => { if (TXB || KEY.down) { cwDisarm(hang); return; } ARM.on = false; const back = ARM.back || dialK('CW');
+      await KPCCat.tuneFast(back, 'CW'); setTimeout(async () => { const r2 = await KPCCat.read().catch(() => null); if (r2 && r2.khz && Math.abs(r2.khz - back) > 0.02) KPCCat.tuneFast(back, 'CW').catch(() => {}); if (r2) AP.fire('dial', r2); }, 700); }, hang == null ? 1200 : hang);
+  }
   const cwOff = r => (MODE === 'CW' && toneCw() && (!r || /DATA/.test(r.mode || ''))) ? Math.round(dialK('CW') * 1000 - dialOut('CW') * 1000) / 1000 : 0;   /* the kHz the dial sits below the CW frequency */
-  const radioMode = m => m === 'CW' ? (toneCw() ? 'DATA' : 'CW') : m === 'SSTV' ? (band('SSTV') === '2m (ISS)' ? 'FM' : dialK('SSTV') < 10000 ? 'DATAL' : 'SSTV') : m === 'HELL' ? 'PSK' : m;   /* DATAL = data on LSB (Fable, Oct 26): 40 / 80 m SSTV pictures through the USB sound card */
+  const radioMode = m => m === 'CW' ? (parkData() ? 'DATA' : 'CW') : m === 'SSTV' ? (band('SSTV') === '2m (ISS)' ? 'FM' : dialK('SSTV') < 10000 ? 'DATAL' : 'SSTV') : m === 'HELL' ? 'PSK' : m;   /* DATAL = data on LSB (Fable, Oct 26): 40 / 80 m SSTV pictures through the USB sound card */
   const myRef = () => { const me = AP.me(); return String(me.ref || '').split(/[\s,]+/)[0] || ''; };
   const stateOf = () => { const c = AP.myCounty && AP.myCounty(); return c ? c.split(',')[0] : ''; };
   const fill = t => String(t).replace(/\{MY\}/g, AP.myCall() || '').replace(/\{THEIR\}/g, ($('d5Call') ? $('d5Call').value : '').trim().toUpperCase()).replace(/\{REF\}/g, myRef()).replace(/\{GRID\}/g, AP.myGrid() || '').replace(/\{ST\}/g, stateOf()).replace(/\s+/g, ' ').trim();
@@ -60,6 +79,7 @@
       <span class="kv d5-cw"><i>WPM</i><b class="mono" id="d5Wpm">—</b></span>
       <button type="button" class="chip" id="d5Clr" title="Clear this mode's text">🧹 CLEAR</button>
     </div>
+    <div class="chips spstrip" id="d5Spots" hidden aria-label="Spots on this band in this mode"></div>
     <div class="wfbox d5wfb"><canvas id="d5Wf" height="150" aria-label="Waterfall: tap a signal to tune to it"></canvas><canvas id="d5Sc" height="18"></canvas>
       <div class="wfoff" id="d5Off"><button type="button" class="gold big" id="d5Start">🎧 START LISTENING</button><span>Radio on the band below; the app moves it there when CAT is connected.</span></div></div>
     <div class="d5-kb">
@@ -106,7 +126,7 @@
 
   /* ================= waterfall (its own: 2048-point FFT, 5.9 Hz bins, a new row every 1024 samples) ================= */
   const wf = $('d5Wf'), sc = $('d5Sc'), wx = wf.getContext('2d'), sx = sc.getContext('2d');
-  const N = 2048, HOP = 1024, ring = new Float32Array(N); let rn = 0, hopN = 0, VALS = null;
+  const N = 2048, HOP = 1024, ring = new Float32Array(N); let rn = 0, hopN = 0, VALS = null, BINS = null;
   const win = new Float32Array(N).map((_, i) => 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1)));
   const re = new Float64Array(N), im = new Float64Array(N);
   const F = () => RANGE[MODE] || [200, 2800];
@@ -115,6 +135,7 @@
   function spectrum() {
     for (let i = 0; i < N; i++) { re[i] = ring[(rn + i) % N] * win[i]; im[i] = 0; }
     D.fft(re, im);
+    if (MODE === 'CW') { if (!BINS) BINS = new Float32Array(N / 2); for (let k = 0; k < N / 2; k++) BINS[k] = 10 * Math.log10(re[k] * re[k] + im[k] * im[k] + 1e-12); }   /* per-bin dB for the CW gate (not tied to the canvas width) */
     const [f0, f1] = F(), W = wf.width, out = new Float32Array(W), bin = R / N;
     for (let x = 0; x < W; x++) { const a = Math.floor((f0 + x / W * (f1 - f0)) / bin), b = Math.max(a + 1, Math.floor((f0 + (x + 1) / W * (f1 - f0)) / bin)); let m = 0; for (let k = a; k < b && k < N / 2; k++) m = Math.max(m, re[k] * re[k] + im[k] * im[k]); out[x] = 10 * Math.log10(m + 1e-12); }
     return out;
@@ -220,11 +241,16 @@
   function cwGap(d) { if (d < Math.max(10, C.dit / 3) || d > 20 * C.dit) return; GAPS.push(d); if (GAPS.length > 60) GAPS.shift(); }
   /* Oct 25: a SIGNAL GATE from the waterfall — plain noise used to print as E's and T's. The CW copy only counts while a tone stands (14 dB; noise reads up to ~8, a weak −4 dB signal ~28)
      8 dB or more above the band's noise right at the pitch (checked every waterfall row, held open 1.5 s after it fades). */
-  function cwGate() { if (!VALS) return; const w = cwBwHz() / 2 + 15, srt = Array.from(VALS).sort((a, b) => a - b), med = srt[Math.floor(srt.length / 2)];
-    let mx = -1e9; for (let f = S.cw.hz - w; f <= S.cw.hz + w; f += 3) mx = Math.max(mx, valAt(f)); C.lvl = mx - med; if (mx - med > (+S.cw.sq || 14)) C.gate = R * 1.2; }
+  /* Oct 27 (Fable; Brandon in CW-U with the radio's narrow filter: 'lots of extra E's'): the reference was the median of the WHOLE waterfall, which
+     is near silence outside a 500 Hz radio filter, so the filtered noise at the pitch looked 14 dB 'loud'. Now the reference is the noise in
+     a ring right around the pitch (inside the filter), taken high (65th percentile) so a ring half outside a narrow filter does not read low. */
+  function cwGate() { if (!BINS) return; const bin = R / N, w = cwBwHz() / 2 + 15, kp = S.cw.hz / bin, R1 = Math.max(w, 70) / bin, R2 = Math.max(w * 2.5, 250) / bin, ring = [];
+    let mx = -1e9; for (let k = Math.max(1, Math.floor(kp - R2)); k <= Math.min(N / 2 - 1, Math.ceil(kp + R2)); k++) { const d = Math.abs(k - kp); if (d <= w / bin) mx = Math.max(mx, BINS[k]); else if (d > R1) ring.push(BINS[k]); }
+    ring.sort((a, b) => a - b); const med = ring.length ? ring[Math.floor(ring.length * 0.65)] : -100;
+    C.lvl = mx - med; const sq = +S.cw.sq || 14; if (mx - med > sq) C.gate = R * 1.2; }
   function cwPitch(hz) { S.cw.hz = Math.max(250, Math.min(1300, Math.round(hz))); save(); C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; drawScale(); }
   let afcN = 0;
-  function cwAfc() { if (!S.cw.afc || TXB) return; const pk = peakIn(F()[0] + 50, F()[1] - 50); if (pk && Math.abs(pk - S.cw.hz) > 25 && Math.abs(pk - S.cw.hz) < 200) { if (++afcN > 8) { cwPitch(pk); afcN = 0; } } else afcN = 0; }
+  function cwAfc() { if (!S.cw.afc || TXB) return; const pk = peakIn(F()[0] + 50, F()[1] - 50); if (pk && Math.abs(pk - S.cw.hz) > 25 && Math.abs(pk - S.cw.hz) < 350) { if (++afcN > 8) { cwPitch(pk); afcN = 0; } } else afcN = 0; }
   const elems = (t, wpm) => { const u = 1200 / wpm, out = []; for (const w of t.split(' ')) { if (!w) continue; if (out.length) out.push([0, 6 * u]); const toks = w.match(/<[A-Z]{2}>|./g) || []; toks.forEach((ch, i) => { const k = ch.length > 1 ? Object.keys(MORSE).find(x => MORSE[x] === ch) : TOM[ch]; if (!k) return; if (i) out.push([0, 2 * u]); [...k].forEach((e, j) => { if (j) out.push([0, u]); out.push([1, e === '.' ? u : 3 * u]); }); out.push([0, u]); }); } return out; };   /* letter gap = u + 2u = 3u, word gap = u + 6u = 7u */
   const CWAB = [['THANK YOU', 'TU'], ['THANKS', 'TNX'], ['PLEASE', 'PSE'], ['YOUR', 'UR'], ['YOU', 'U'], ['ARE', 'R'], ['GOOD MORNING', 'GM'], ['GOOD AFTERNOON', 'GA'], ['GOOD EVENING', 'GE'], ['REPORT', 'RPT'], ['WEATHER', 'WX'], ['ANTENNA', 'ANT'], ['AGAIN', 'AGN'], ['FOR', 'FER'], ['AND', 'ES'], ['BEST REGARDS', '73'], ['POWER', 'PWR'], ['HERE', 'HR'], ['VERY', 'VY'], ['GOOD', 'GUD']];
   const cwShort = t => { let x = ' ' + t + ' '; for (const [a, b] of CWAB) x = x.split(' ' + a + ' ').join(' ' + b + ' '); return x.replace(/\s+/g, ' ').trim(); };
@@ -369,7 +395,7 @@
     if (!AP.myCall()) return 'Put your call sign in STATION → My station first.';
     if (!AP.stdCall(AP.myCall())) return 'Sending needs your real call sign (a practice call like K4TEST must never go on the air).';
     if (MODE === 'CW' && (S.cw.via === 'cat' || S.cw.via === 'dtr' || S.cw.via === 'rts')) { if (!(AP.catConnected() || (G.KPCCat && KPCCat.get().link === 'fake'))) return 'CW by the radio\'s keyer or a key line needs the radio connected (STATION → Radio control).';
-      if (S.cw.via === 'cat' && G.KPCCat && !KPCCat.cwCan()) return 'This radio has no CAT keyer (Yaesu). Under ⚙ CW → SEND WITH pick the DTR key line (radio menu USB KEYING = DTR).'; return ''; }
+      if (S.cw.via === 'cat' && G.KPCCat && !KPCCat.cwCan()) return 'This radio has no CAT keyer (older Yaesu). Under ⚙ CW → SEND WITH pick the DTR key line (radio menu USB KEYING = DTR).'; return ''; }
     if (!AP.running()) return 'Press 🎧 START LISTENING first (the sound goes out through the radio\'s sound card).';
     if (!AP.canKey()) return AP.can.why('key');
     return '';
@@ -404,10 +430,10 @@
       if (via === 'dtr' || via === 'rts') { TXB = true; stopFlag = false; chk(); try { let t1 = performance.now(); for (const [k, d] of elems(t, wpm)) { if (stopFlag) break; await KPCCat.keyLine(!!k, via); t1 += d; const ww = t1 - performance.now(); if (ww > 0) await sleep(ww); } } finally { await KPCCat.keyLine(false, via); TXB = false; chk(); } return true; }
       /* a tone through the sound card only reaches the air in a DATA/USB mode: a radio sitting in CW ignores its USB sound (Brandon Oct 25:
          'power out but nothing in the monitor'). Put it in DATA, one tone lower, send, and put it back on CW. */
-      const tone = S.cw.tone || S.cw.hz; let back = 0;
-      if (AP.catConnected() && G.KPCCat) { const r = await KPCCat.read().catch(() => null); if (r && /CW/i.test(r.mode || '')) { back = r.khz || dialK('CW'); const ok = await KPCCat.tune(Math.round((back - tone / 1000) * 1000) / 1000, 'DATA'); if (!ok) back = 0; await sleep(150); } }
+      const tone = S.cw.tone || S.cw.hz;
+      await cwArm(); if (ARM.on) await sleep(60);
       try { return await send(cwTone(t, wpm, tone), 'CW'); }
-      finally { if (back) { await sleep(100); KPCCat.tune(back, 'CW').catch(() => {}); } }
+      finally { cwDisarm(); }
     } finally { MODE = was; } }
   }
   /* macros: CW keeps them short, the keyboard modes send whole lines */
@@ -461,7 +487,7 @@
     }
     if (!KEY.ptt) { KEY.ptt = true; A.pauseRx = false;
       /* a tone only reaches the air in DATA (Fable's rule for typed CW): the first key-down puts a radio sitting in CW into DATA one tone lower */
-      KEY.back = 0; if (AP.catConnected()) { const r = await KPCCat.read().catch(() => null); if (r && /CW/i.test(r.mode || '')) { KEY.back = r.khz; await KPCCat.tune(Math.round((r.khz - (S.cw.tone || S.cw.hz) / 1000) * 1000) / 1000, 'DATA').catch(() => {}); } }
+      await cwArm();
       const ok = await AP.pttOn(true); if (ok === false && AP.S.ptt !== 'vox') AP.toast('PTT did not answer: check the radio connection (STATION → Radio control).', 4000, 'bad'); }
     if (!AP.running()) { AP.toast('Sound is off: press START (the tone goes out through the radio\'s USB sound card).', 4000, 'bad'); }
     KEY.tone = A.tone(S.cw.tone || S.cw.hz, 8, 'key'); if (KEY.tone && KEY.tone.catch) KEY.tone.catch(() => {}); return true;
@@ -470,7 +496,7 @@
     if (!KEY.down) return; KEY.down = false; clearTimeout(KEY.safety);
     if (S.cw.via === 'dtr' || S.cw.via === 'rts') { await KPCCat.keyLine(false, S.cw.via); TXB = false; chk(); return; }
     try { await A.stopTx(); } catch (e) {}
-    clearTimeout(KEY.offT); KEY.offT = setTimeout(async () => { if (!KEY.down && KEY.ptt) { KEY.ptt = false; await AP.pttOn(false); if (KEY.back) { KPCCat.tune(KEY.back, 'CW').catch(() => {}); KEY.back = 0; } TXB = false; chk(); } }, 1200);
+    clearTimeout(KEY.offT); KEY.offT = setTimeout(async () => { if (!KEY.down && KEY.ptt) { KEY.ptt = false; await AP.pttOn(false); TXB = false; chk(); cwDisarm(0); } }, 1200);
   }
   /* PADDLES (Oct 26, Brandon: 'more key options like the CW practice room'): Iambic B / Iambic A / Ultimatic (the last paddle pressed wins
      while both are held) / Bug (the dit paddle sends dits by itself, the dah paddle is a straight key); ⇄ SWAP for left-handers; WEIGHT
@@ -576,7 +602,7 @@
   /* ================= band / radio ================= */
   function bandSel() { const L = Object.keys(DIAL[MODE] || {}); $('d5Band').innerHTML = L.map(b => `<option value="${esc(b)}"${b === band() ? ' selected' : ''}>${esc(b)}</option>`).join(''); $('d5Dial').textContent = (dialK() / 1000).toFixed(4).replace(/0$/, ''); }
   async function setBand(b) {
-    if (!(DIAL[MODE] || {})[b]) return false; S.band[MODE] = b; save(); bandSel();
+    if (!(DIAL[MODE] || {})[b]) return false; S.band[MODE] = b; save(); bandSel(); if (SP5) SP5.update();
     if (TXB) stopTx();
     if (AP.catConnected()) { const ok = await KPCCat.tune(dialOut(), radioMode(MODE)); if (!ok) AP.toast('The radio did not take ' + (dialOut() / 1000).toFixed(4) + ' MHz. Set it by hand.', 5000, 'bad'); return ok; }
     AP.toast('📻 Set the radio to ' + (dialK() / 1000).toFixed(4) + ' MHz ' + (MODE === 'CW' ? 'CW' : MODE === 'SSTV' && dialK() < 10000 ? 'LSB' : 'USB / DATA') + '.', 4000);
@@ -593,13 +619,15 @@
     const sel = (id, v, opts) => `<select id="${id}">${opts.map(([k, l]) => `<option value="${k}"${String(k) === String(v) ? ' selected' : ''}>${l}</option>`).join('')}</select>`;
     let body = '<h3 class="sh">Sound levels</h3>' + AP.lvHtml('tx') + AP.lvHtml('rx');
     if (MODE === 'CW') body += `<h3 class="sh">CW</h3><div class="grid2"><label class="e">SPEED (WPM)<input id="s5Wpm" inputmode="numeric" value="${S.cw.wpm}"></label>
-      <label class="e">SEND WITH${sel('s5Via', S.cw.via, [['dtr', 'DTR key line (Yaesu 2nd USB port, Digirig…)'], ['rts', 'RTS key line'], ['cat', 'The radio\'s own keyer over CAT (Icom, Kenwood, Elecraft, QRP Labs; not Yaesu)'], ['audio', 'Sound: a tone through the USB sound card (the app puts the radio in DATA while it sends)']])}</label>
+      <label class="e">SEND WITH${sel('s5Via', S.cw.via, [['dtr', 'DTR key line (Yaesu 2nd USB port, Digirig…)'], ['rts', 'RTS key line'], ['cat', 'The radio\'s own keyer over CAT (Icom, Kenwood, Elecraft, QRP Labs, FT-710 / 991A / FTDX10)'], ['audio', 'Sound: a tone through the USB sound card (the app puts the radio in DATA while it sends)']])}</label>
       <label class="e">FILTER${sel('s5Bw', S.cw.bw, [['auto', 'Follows their speed'], ['50', '50 Hz'], ['100', '100 Hz'], ['200', '200 Hz'], ['500', '500 Hz']])}</label>
       <label class="e">TONE I SEND (Hz, blank = the pitch I listen on)<input id="s5Tone" inputmode="numeric" value="${S.cw.tone || ''}"></label></div>
       ${ck('s5Afc', S.cw.afc, 'Follow the strongest signal (AFC)')}${ck('s5Abbr', S.cw.abbr, 'Shorten what I type to CW short-hand (THANK YOU → TU, AND → ES…)')}
+      <label class="e wide">THE RADIO WHILE SENDING BY SOUND${sel('s5Park', S.cw.park || 'cw', [['cw', 'Listen in CW (the radio\'s CW filter); flip to DATA only while sending'], ['data', 'Stay in DATA one tone below the whole time (fastest first dit)']])}</label>
       <div class="grid2"><label class="e">PADDLES${sel('s5Iam', S.cw.iam || 'B', [['B', 'Iambic B (most keyers)'], ['A', 'Iambic A'], ['U', 'Ultimatic'], ['G', 'Bug (dit paddle automatic, dah = straight key)']])}</label><label class="e">AUTO CQ GAP (s)<input id="s5Gap" inputmode="numeric" value="${S.gap5 || 6}"></label></div>
-      <label class="e">KEY LINE PORT${sel('s5Kp', (G.KPCCat && KPCCat.get().keyPort) || '', [['', 'The radio\'s 2nd USB port, found by itself (FT-710, FT-991A, FTDX10…)'], ['cat', 'The CAT port itself (a one-port cable: Digirig, SignaLink-type)']].concat((G.KPCCat && KPCCat.get().keyPort && !/^cat$/.test(KPCCat.get().keyPort)) ? [[KPCCat.get().keyPort, 'The port picked by hand']] : []))}</label>
-      <div class="row"><button type="button" class="b" id="s5KpPick">PICK THE KEY PORT BY HAND</button><span class="hint" id="s5KpSt">${esc(G.KPCCat && KPCCat.keyPortInfo ? 'Key port now: ' + KPCCat.keyPortInfo().which : '')}</span></div>
+      <label class="e catx">KEY LINE PORT${sel('s5Kp', (G.KPCCat && KPCCat.get().keyPort) || '', [['', 'The radio\'s 2nd USB port, found by itself (FT-710, FT-991A, FTDX10…)'], ['cat', 'The CAT port itself (a one-port cable: Digirig, SignaLink-type)']].concat((G.KPCCat && KPCCat.get().keyPort && !/^cat$/.test(KPCCat.get().keyPort)) ? [[KPCCat.get().keyPort, 'The port picked by hand']] : []))}</label>
+      <p class="hint" ${AP.catConnected() ? 'hidden' : ''}>The DTR / RTS key line and the radio's own keyer need the radio connected (STATION → Radio control); until then CW goes out as a tone through the sound card.</p>
+      <div class="row catx"><button type="button" class="b" id="s5KpPick">PICK THE KEY PORT BY HAND</button><span class="hint" id="s5KpSt">${esc(G.KPCCat && KPCCat.keyPortInfo ? 'Key port now: ' + KPCCat.keyPortInfo().which : '')}</span></div>
       <p class="hint">Yaesu FT-710 / FTDX10 / 991A: radio menu USB KEYING (CW) = DTR and CW BK-IN = ON; the key line is on the radio's SECOND USB port (Windows calls it 'Standard COM Port'). Yaesu radios cannot take typed CW over CAT. Tap the waterfall on a signal to listen there.</p>`;
     if (MODE === 'RTTY') body += `<h3 class="sh">RTTY</h3><div class="grid2"><label class="e">SHIFT${sel('s5Sh', S.rtty.shift, [[170, '170 Hz (ham)'], [200, '200 Hz'], [425, '425 Hz'], [850, '850 Hz']])}</label><label class="e">SPEED${sel('s5Bd', S.rtty.baud, [[45.45, '45.45 baud (ham)'], [50, '50 baud'], [75, '75 baud']])}</label></div>${ck('s5Rev', S.rtty.rev, 'Reverse (mark and space swapped)')}${ck('s5Afc', S.rtty.afc, 'Keep the pair centred (AFC)')}`;
     if (MODE === 'PSK31') body += `<h3 class="sh">PSK31</h3>${ck('s5Afc', S.psk.afc, 'Follow the signal (AFC)')}<label class="e slide">SQUELCH <b>${S.psk.sq}</b><input type="range" id="s5Sq" min="0" max="90" step="5" value="${S.psk.sq}"></label>`;
@@ -610,7 +638,7 @@
     setTimeout(() => { const b = $('s5KpPick'); if (b) b.onclick = () => { if (!G.KPCCat || !KPCCat.pickKeyPort) return; KPCCat.pickKeyPort().then(ok => { const st = $('s5KpSt'); if (st) st.textContent = ok ? 'Key port now: ' + KPCCat.keyPortInfo().which : 'No port picked.'; }); }; }, 0);
     AP.sheet(MODE + ' settings', body, () => {
       const v = id => $(id) ? $(id).value : null, c = id => $(id) ? $(id).checked : null;
-      if (MODE === 'CW') { S.cw.wpm = Math.max(8, Math.min(45, +v('s5Wpm') || 20)); S.cw.via = v('s5Via'); S.cw.bw = v('s5Bw'); const t = +v('s5Tone'); S.cw.tone = t ? Math.max(300, Math.min(1200, t)) : 0; S.cw.afc = c('s5Afc'); S.cw.abbr = c('s5Abbr'); S.cw.iam = v('s5Iam') || 'B'; PADS.forEach(p => p.draw()); S.gap5 = Math.max(2, Math.min(30, +v('s5Gap') || 6));
+      if (MODE === 'CW') { S.cw.wpm = Math.max(8, Math.min(45, +v('s5Wpm') || 20)); S.cw.via = v('s5Via'); S.cw.bw = v('s5Bw'); const t = +v('s5Tone'); S.cw.tone = t ? Math.max(300, Math.min(1200, t)) : 0; S.cw.afc = c('s5Afc'); S.cw.abbr = c('s5Abbr'); S.cw.iam = v('s5Iam') || 'B'; S.cw.park = v('s5Park') === 'data' ? 'data' : 'cw'; PADS.forEach(p => p.draw()); S.gap5 = Math.max(2, Math.min(30, +v('s5Gap') || 6));
         if (G.KPCCat && v('s5Kp') != null && v('s5Kp') !== (KPCCat.get().keyPort || '')) { KPCCat.set({ keyPort: v('s5Kp') }); KPCCat.keyPortClose && KPCCat.keyPortClose(); }
         if (AP.catConnected() && G.KPCCat) KPCCat.tune(dialOut('CW'), radioMode('CW')).catch(() => {});
         if ((S.cw.via === 'dtr' || S.cw.via === 'rts') && G.KPCCat && AP.catConnected() && KPCCat.keyPortOpen) KPCCat.keyPortOpen().then(() => { const i = KPCCat.keyPortInfo(); AP.toast('CW key line: ' + i.which + '.', 3500); }); }
@@ -633,20 +661,62 @@
     SSTV: ['SSTV', 'Slow-scan TV: receive pictures, send a photo or your card', 'SSTV: pictures start by themselves; 📤 SEND A PICTURE to send one.'],
     WSPR: ['WSPR', 'WSPR beacon: decode every 2 minutes, send your own beacon', 'WSPR: decodes every even UTC minute; tick Transmit to beacon.']
   };
+  /* spots of this mode on this band under the dial (Oct 27): tap = the radio goes to the spot (dial = the spot for a voice/DATA mode; CW/RTTY/PSK = the
+     spot is the signal, the dial sits one pitch below) and the log line fills in */
+  const MODERX = { CW: /^CW/, RTTY: /RTTY/, PSK31: /PSK/, HELL: /HELL/, SSTV: /SSTV/, WSPR: /WSPR/ };
+  let SP5 = null;
+  /* Nov 1 (Brandon: 'cw decoder broken … loud and not decoding'; 'clicking on the spot list … it took me to ft8'): ONE way to go
+     to a CW / RTTY / PSK31 / HELL spot (this screen's strip AND the SPOTS list). The dial sits one pitch below the station ONLY
+     when the radio is in DATA (sound modes); a radio IN CW MODE puts a station on its dial at its own CW pitch, so the dial =
+     the spot (before: always 600 Hz low = outside the radio's CW filter = silence). */
+  function tuneSpot(s) {
+    if (!s) return;
+    const b = Object.keys(DIAL[MODE] || {}).find(x => bandOfK(x) === bandOfK(s.khz));
+    if (b && b !== band()) { S.band[MODE] = b; save(); bandSel(); drawScale(); }
+    if (!AP.catConnected()) AP.toast('Connect the radio to go to a spot (STATION → Radio control).', 3000);
+    else {
+      const rm = radioMode(MODE), dataSide = /DATA|PSK|RTTY|SSTV/.test(rm) && rm !== 'RTTY';
+      const off = MODE === 'CW' ? (parkData() ? (S.cw.tone || S.cw.hz || 600) / 1000 : 0) : !dataSide ? 0 : MODE === 'RTTY' ? (S.rtty.center || 1500) / 1000 : MODE === 'PSK31' ? (S.psk.hz || 1000) / 1000 : MODE === 'HELL' ? (S.hell.hz || 1000) / 1000 : 0;
+      const k = Math.round((s.khz - off) * 1000) / 1000; SPOTK = s.khz;
+      KPCCat.tuneFast ? KPCCat.tuneFast(k, rm) : KPCCat.tune(k, rm); $('d5Dial').textContent = (k / 1000).toFixed(4).replace(/0$/, '');
+      if (MODE === 'CW' && !parkData()) setTimeout(pitchFromRadio, 600);
+    }
+    if ($('d5Call')) $('d5Call').value = s.call; if ($('d5Ref') && (s.refs || []).length) $('d5Ref').value = s.refs.join(' ');
+    AP.toast('📻 ' + esc(s.call) + ' ' + (s.khz / 1000).toFixed(4).replace(/0$/, '') + ' — their call is in the log row.', 3000);
+  }
+  let SPOTK = 0;
+  const BANDS_K = { '160m': [1800, 2000], '80m': [3500, 4000], '60m': [5300, 5410], '40m': [7000, 7300], '30m': [10100, 10150], '20m': [14000, 14350], '17m': [18068, 18168], '15m': [21000, 21450], '12m': [24890, 24990], '10m': [28000, 29700], '6m': [50000, 54000], '2m': [144000, 148000] };
+  const bandOfK = x => { if (typeof x === 'string') return x.replace(/\s.*$/, ''); for (const k in BANDS_K) if (x >= BANDS_K[k][0] && x <= BANDS_K[k][1]) return k; return ''; };
+  /* the radio's own CW pitch → the decoder's pitch (radio in CW mode only) */
+  let pitchAsked = 0;
+  async function pitchFromRadio(force) {
+    if (MODE !== 'CW' || parkData() || !AP.catConnected() || !G.KPCCat || !KPCCat.cwPitch || (!force && Date.now() - pitchAsked < 4000)) return;
+    pitchAsked = Date.now();
+    const hz = await KPCCat.cwPitch().catch(() => null);
+    if (hz && Math.abs(hz - S.cw.hz) > 15) { cwPitch(hz); AP.toast('🎵 CW pitch set to the radio\'s ' + hz + ' Hz, so the decoder listens where the radio puts the signal.', 4000); }
+  }
+  /* the CW / RTTY / PSK31 / HELL screen FOLLOWS the radio to another band (Brandon Nov 1: 'the radio is on 7.0590 CW, not CW's 14.0600') */
+  AP.on('dial', r => {
+    if (!r || !r.khz || !MODE || P.hidden || !/^(CW|RTTY|PSK31|HELL)$/.test(MODE) || TXB) return;
+    const b = Object.keys(DIAL[MODE] || {}).find(x => bandOfK(x) === bandOfK(r.khz));
+    if (b && b !== band()) { S.band[MODE] = b; save(); bandSel(); drawScale(); spots5(); AP.toast('📻 ' + MODE + ' follows the radio: ' + b + '.', 2500); }
+    if (MODE === 'CW' && /^CW/.test(String(r.mode || ''))) pitchFromRadio();
+  });
+  function spots5() { if (!G.KPCSpots || !KPCSpots.strip) return; if (!SP5) SP5 = KPCSpots.strip($('d5Spots'), { band: () => band(), modes: MODERX[MODE] || /./, max: 12, tap: s => tuneSpot(s) }); else SP5.update({ modes: MODERX[MODE] || /./ }); }
   function activate(id) {
     if (MODE && MODE !== id) { TXTS[MODE] = TXT; CALLSS[MODE] = CALLS; }
     TXT = TXTS[id] || ''; CALLS = CALLSS[id] || []; C.cur = '';
     MODE = id; P.dataset.m = id.toLowerCase().replace('31', ''); $('d5HzL').textContent = id === 'CW' ? 'PITCH' : id === 'RTTY' ? 'CENTER' : id === 'PSK31' ? 'CARRIER' : id === 'WSPR' ? 'MY TX' : 'TONE';
     $('d5Rs').value = id === 'SSTV' ? '595' : '599'; $('d5Rr').value = id === 'SSTV' ? '595' : '599';
-    if (id !== 'SSTV' && sstv.img) sstv.stop(); bandSel(); macDraw(); drawScale(); drawRx(); callScan(); chk(); if (id === 'WSPR') wMsg();
-    if (AP.catConnected()) KPCCat.tune(dialOut(id), radioMode(id)).catch(() => {});
+    if (id !== 'SSTV' && sstv.img) sstv.stop(); bandSel(); macDraw(); drawScale(); drawRx(); callScan(); chk(); if (id === 'WSPR') wMsg(); spots5();
+    if (AP.catConnected()) KPCCat.tune(dialOut(id), radioMode(id)).then(() => { if (id === 'CW') setTimeout(pitchFromRadio, 500); }).catch(() => {});
   }
   const lines = () => TXT.split('\n').filter(Boolean).slice(-30).map((t, i) => ({ id: i, t: Date.now(), text: t, cls: /^\[TX\]/.test(t) ? 'mine' : '' }));
   for (const id of Object.keys(INFO)) {
     G.KPCModes.add({
       id, label: INFO[id][0], panel: P, title: INFO[id][1], hello: INFO[id][2],
       bands: Object.keys(DIAL[id]), band: () => band(id), setBand: b => { if (MODE !== id) S.band[id] = b; else setBand(b); save(); return true; }, khz: () => dialK(id),
-      rx, run: () => {}, activate: () => activate(id), deactivate: () => { if (TXB) stopTx(); if (MODE === id) { TXTS[id] = TXT; CALLSS[id] = CALLS; MODE = ''; } },
+      rx, run: () => {}, activate: () => activate(id), deactivate: () => { if (TXB) stopTx(); if (id === 'CW' && ARM.on) cwDisarm(0); if (MODE === id) { TXTS[id] = TXT; CALLSS[id] = CALLS; MODE = ''; } },
       settings, lines: () => (MODE === id ? lines() : []),
       ops: { send: a => sendText(String(a.text || '')), mac: a => { const m = macros()[+a.i || 0]; if (m) sendText(m[1]); }, halt: () => stopTx() },
       buttons: /^(CW|RTTY|PSK31|HELL)$/.test(id) ? [{ op: 'mac', i: 0, label: 'F1 ' + (id === 'CW' ? 'CQ' : 'CQ POTA'), cls: 'gold' }, { op: 'halt', label: 'STOP', cls: 'halt' }] : [{ op: 'halt', label: 'STOP', cls: 'halt' }],
@@ -655,5 +725,5 @@
     });
   }
   mkRtty(); mkPsk();
-  G.KPCModes5 = { S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwReset: () => { C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
+  G.KPCModes5 = { S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwReset: () => { C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
 })(window);

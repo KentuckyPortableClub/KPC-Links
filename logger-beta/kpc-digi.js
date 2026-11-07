@@ -15,12 +15,16 @@
   };
   const S = Object.assign({
     mode: 'FT8', band: '20m', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true,
-    keepCq: false, cqw: '', wd: 2, deep: false, noGrid: false, potaOnly: false, autoClear: true, ov: {}, hl: { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 }
+    keepCq: false, cqw: '', wd: 2, runMin: 30, huntAny: false, deep: false, noGrid: false, potaOnly: false, autoClear: true, ov: {}, hl: { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 }
   }, LS('kpcAppDigi', {}));
   /* 0.3.2 (Brandon Oct 22: 'get rid of the button'): the CLEAR TX SPOT button is gone, the automatic one does the job, so it starts ON */
   if (S.acv !== 1) { S.autoClear = true; S.acv = 1; }
   /* Oct 23 (Brandon: 'auto default cq to just cq not pota'): plain CQ, once for everyone; CQ POTA stays in the ⚙ sheet */
   if (S.cqv !== 1) { S.cqw = ''; S.cqv = 1; }
+  /* Nov 1 (Brandon: 'call cq option … do it from 2 to 10 minutes'; auto 'adjust time 5 minutes to 8 hours') */
+  if (!(+S.wd >= 2)) S.wd = 2; if (+S.wd > 10) S.wd = 10;
+  /* Oct 28 (Fable, readiness review): measured on synthetic signals in noise, 'deeper decoding' copies one more dB (−18 6/6 vs 4/6, −19 4/6 vs 2/6) for ~45 ms a pass: on by default on a PC (a phone keeps it off for the battery) */
+  if (S.dpv !== 1) { if (!(G.KPCNative && KPCNative.native)) S.deep = true; S.dpv = 1; }
   const save = () => SV('kpcAppDigi', S);
 
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
@@ -407,7 +411,7 @@
     if (!other || /\.\.\./.test(other)) { AP.toast('That call is hidden (a long or odd call sign). Wait until they send it in full.', 4000); return; }
     QS.dx = other; QS.grid = x.grid || GRIDS[other] || ''; QS.rs = fmtDb(x.db); QS.rr = ''; QS.state = 'call'; QS.logged = false; QS.since = nowS();
     QS.ref = parkish(x) ? (x.cqw || '') : '';
-    QS.cq = false;
+    QS.cq = false; QS.paused = false;
     S.rxHz = x.hz; if (!S.hold) S.txHz = x.hz; S.even = x.par === 1; save();
     $('dgDx').value = QS.dx; $('dgDxG').value = QS.grid; $('dgRpt').value = QS.rs;
     gen();
@@ -447,7 +451,8 @@
 
   /* ================= the sequencer (WSJT-X auto sequence) ================= */
   function seq(sl) {
-    const me = AP.myCall(); if (!me || !S.auto) return;
+    const me = AP.myCall(); if (!me || !(S.auto || AUTO.run || AUTO.hunt)) return;
+    if ((AUTO.run || AUTO.hunt) && autoLimit()) return;
     const L = LINES.filter(x => x.sl === sl && x.me);
     let mine = L.find(x => QS.dx && x.fr === QS.dx);
     if (!mine && (QS.state === 'cq' || (QS.next === 6 && TXON)) && L.length) {
@@ -459,6 +464,7 @@
     }
     if (!mine) {
       const wd = (+S.wd || 2) * 60;
+      if (AUTO.run || AUTO.hunt) { autoIdle(sl, wd); return; }
       if (TXON && QS.since && nowS() - QS.since > wd) { halt('⏱ No answer for ' + (S.wd || 2) + ' minute' + ((+S.wd || 2) > 1 ? 's' : '') + ': transmitting is off. Change this in ⚙ ' + S.mode + '.'); QS.since = 0; }
       return;
     }
@@ -477,9 +483,104 @@
   }
   function afterQso() {
     QS.state = 'done';
-    if (S.keepCq && QS.cq) { QS.dx = ''; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'cq'; QS.since = nowS(); $('dgDx').value = ''; $('dgDxG').value = ''; gen(); nextTx(6); autoSpot(); }
+    if (AUTO.hunt) { TXON = false; chk(); autoSt(); return; }   /* the next slot's decode picks the next park */
+    if ((S.keepCq && QS.cq) || AUTO.run) { QS.dx = ''; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'cq'; QS.since = nowS(); $('dgDx').value = ''; $('dgDxG').value = ''; gen(); nextTx(6); autoSpot(); }
     else { TXON = false; chk(); }
   }
+  /* ================= AUTO RUN / AUTO HUNT (Brandon Oct 30: 'auto ft4-8 option … with longer cq') =================
+     AUTO RUN  = activating: CQ, work each caller to RR73, log, CQ again; keeps calling past the no-answer limit
+                 until the run time (⚙ RUN / HUNT FOR, 10–60 min or until STOP) is up.
+     AUTO HUNT = hunting: each slot, if no contact is in hand, call the best CQ POTA/SOTA/WWFF/KFF station not yet worked
+                 today on this band + mode (a park new to me first, then the strongest); no answer in the no-answer
+                 time → skip it for 30 min and try the next. Both stop on HALT / STOP, ENABLE TX off, or a mode change.
+     The operator stays at the radio (FCC: a control operator watches an HF data station). */
+  const AUTO = { run: false, hunt: false, mix: false, t0: 0, tried: {} };   /* mix = AUTO BOTH: run, and hunt a new park when one shows up */
+  function autoSt() {
+    const r = $('dgRun'), h = $('dgHunt'), bo = $('dgBoth'), st = $('dgAutoSt'); if (!r) return;
+    const run = AUTO.run && !AUTO.mix, mix = AUTO.run && AUTO.mix;
+    r.classList.toggle('on', run); h.classList.toggle('on', AUTO.hunt); if (bo) bo.classList.toggle('on', mix);
+    r.textContent = run ? '⏹ STOP RUN' : '🔁 AUTO RUN'; h.textContent = AUTO.hunt ? '⏹ STOP HUNT' : '🎯 AUTO HUNT'; if (bo) bo.textContent = mix ? '⏹ STOP BOTH' : '🔀 AUTO BOTH';
+    if (!st) return;
+    if (!AUTO.run && !AUTO.hunt) { st.hidden = true; return; }
+    const lim = +S.runMin || 0, left = lim ? Math.max(0, Math.ceil((AUTO.t0 + lim * 60 - nowS()) / 60)) : 0;
+    st.hidden = false;
+    st.textContent = (AUTO.mix ? '🔀 AUTO BOTH: calling CQ; a park I have not worked shows up → I work it, then CQ again' + (QS.dx && !QS.cq && QS.state !== 'done' ? ' · now ' + QS.dx : '') : AUTO.run ? '🔁 AUTO RUN: calling CQ, answering and logging by itself' : '🎯 AUTO HUNT: calling ' + (S.huntAny ? 'CQ stations' : 'parks') + ' I have not worked today' + (QS.dx && QS.state !== 'done' ? (QS.paused ? ' · ' + QS.dx + ' is working someone: waiting for its CQ' : ' · now ' + QS.dx) : ''))
+      + ' · ' + (lim ? left + ' min left' : 'until you press STOP') + '. Stay at the radio.';
+  }
+  function autoStop(why) { if (!AUTO.run && !AUTO.hunt) return; AUTO.run = false; AUTO.hunt = false; AUTO.mix = false; autoSt(); if (why) AP.toast(why, 6000); }
+  function autoLimit() {
+    const lim = +S.runMin || 0;
+    if (lim && nowS() - AUTO.t0 > lim * 60 && !(QS.dx && QS.state && QS.state !== 'done' && QS.state !== 'cq' && QS.state !== 'call')) {
+      const k = AUTO.mix ? 'AUTO BOTH' : AUTO.run ? 'AUTO RUN' : 'AUTO HUNT'; autoStop(); halt('⏱ ' + k + ' finished its ' + lim + ' minutes. Press it again to keep going.'); return true;
+    }
+    autoSt(); return false;
+  }
+  function backToCq() { QS.dx = ''; QS.grid = ''; QS.rr = ''; QS.rs = ''; QS.logged = false; QS.state = 'cq'; QS.cq = true; QS.since = nowS(); $('dgDx').value = ''; $('dgDxG').value = ''; gen(); nextTx(6); }
+  /* Nov 1 (Brandon: 'auto hunt … make it only call when the hunted say cq'): while I am calling a station that is now working
+     someone else, stop sending (TX off, 'waiting'); when it calls CQ again, call it again. The no-answer time still runs. */
+  function holdForCq(sl) {
+    if (!QS.dx || QS.cq || QS.state !== 'call') return false;
+    const me = AP.myCall(), L = LINES.filter(x => x.sl === sl && x.fr === QS.dx);
+    if (!L.length) return !!QS.paused;
+    const cq = L.some(x => x.cq), busy = L.some(x => !x.cq && x.to && x.to !== me);
+    if (busy && !cq) { if (!QS.paused) { QS.paused = true; if (TXON) { TXON = false; chk(); } autoSt(); } return true; }
+    if (cq && QS.paused) { QS.paused = false; const c = L.find(x => x.cq); S.even = c.par === 1; save(); txOn(true); autoSt(); }
+    return false;
+  }
+  function autoIdle(sl, wd) {
+    const quiet = QS.since && nowS() - QS.since > wd, slots2 = QS.since && nowS() - QS.since > slotLen() * 2 + 1;
+    if (AUTO.run) {
+      /* sent RR73 and they went quiet (no 73): the contact is complete, like WSJT-X logs it */
+      if (QS.state === 'rr73' && QS.rr && slots2) { if (!QS.logged) logIt(); backToCq(); return; }
+      if (QS.state === 'send73' && slots2) { backToCq(); return; }         /* AUTO BOTH: worked the park, sent 73: back to CQ */
+      if (QS.state !== 'cq' && quiet) { if (!QS.cq && QS.dx) AUTO.tried[QS.dx] = nowS() + 1800; QS.paused = false; backToCq(); return; }   /* a caller (or a park) went quiet: CQ again */
+      if (AUTO.mix && holdForCq(sl)) return;                                /* AUTO BOTH: the park is working someone else: wait for its next CQ */
+      if (QS.state === 'cq') { QS.since = nowS(); if (AUTO.mix && huntPick(sl)) return; }   /* the longer CQ; AUTO BOTH: a new park heard → go work it */
+      if (!TXON && !QS.paused) txOn(true);
+      return;
+    }
+    /* AUTO HUNT */
+    if (!(QS.dx && QS.state && QS.state !== 'done' && quiet) && holdForCq(sl)) return;
+    if (QS.state === 'send73' && slots2) { afterQso(); }
+    else if (QS.dx && QS.state && QS.state !== 'done' && quiet) { QS.paused = false; AUTO.tried[QS.dx] = nowS() + 1800; AP.toast('🎯 No answer from ' + esc(QS.dx) + ': trying the next one.', 3000); QS.state = 'done'; QS.dx = ''; TXON = false; chk(); }
+    if (!QS.dx || QS.state === 'done' || QS.state === '') huntPick(sl);
+  }
+  function spotRefs(call) {
+    if (!G.KPCSpots || !call) return [];
+    const b = String(call).toUpperCase().split('/').sort((a, c) => c.length - a.length)[0], k = dialK();
+    const sp = KPCSpots.all().find(x => x.call && String(x.call).toUpperCase().split('/').includes(b) && Math.abs((+x.khz || 0) - k) < 6 && (x.refs || []).length);
+    return sp ? sp.refs.slice() : [];
+  }
+  function workedToday(call) {
+    if (!G.KPCLog) return false;
+    const b = String(call).toUpperCase(), day = new Date(AP.now()).toISOString().slice(0, 10);
+    return KPCLog.qs().some(q => String(q.call || '').toUpperCase() === b && q.band === S.band && String(q.mode || '').toUpperCase() === S.mode && new Date(q.t).toISOString().slice(0, 10) === day);
+  }
+  function huntPick(sl) {
+    const now = nowS();
+    const C = LINES.filter(x => x.sl === sl && x.cq && x.fr && !/\.\.\.|[<>]/.test(x.fr) && !x.tx && !(AUTO.tried[x.fr] > now) && !workedToday(x.fr))
+      .map(x => { const refs = spotRefs(x.fr); return { x, refs, park: parkish(x) || refs.length > 0, isNew: refs.some(r => G.KPCLog && KPCLog.hunted && !KPCLog.hunted(r)) }; })
+      .filter(c => S.huntAny || c.park)
+      .sort((a, b) => (b.isNew - a.isNew) || (b.park - a.park) || (b.x.db - a.x.db));
+    if (!C.length) { autoSt(); return false; }
+    const c = C[0]; pick(c.x); QS.ref = c.refs.join(','); autoSt(); return true;
+  }
+  function autoGo(kind) {
+    const was = kind === 'both' ? (AUTO.run && AUTO.mix) : kind === 'run' ? (AUTO.run && !AUTO.mix) : AUTO.hunt;
+    const NAME = { run: 'AUTO RUN', hunt: 'AUTO HUNT', both: 'AUTO BOTH' };
+    if (was) { autoStop(); halt(NAME[kind] + ' stopped.'); return; }
+    if (AUTO.run || AUTO.hunt) { autoStop(); halt(); }
+    if (!AP.myCall()) { AP.toast('Put your call sign in STATION → My station first.', 5000, 'bad'); return; }
+    if (!AP.canKey()) { txOn(true); return; }   /* txOn says why */
+    AUTO.run = kind === 'run' || kind === 'both'; AUTO.mix = kind === 'both'; AUTO.hunt = kind === 'hunt'; AUTO.t0 = nowS(); AUTO.tried = {};
+    if (AUTO.run) { $('dgCq').onclick(); if (!TXON) { autoStop(); return; } }
+    else { if (TXON) halt(); QS.dx = ''; QS.state = ''; QS.cq = false; $('dgDx').value = ''; gen(); }
+    autoSt();
+    const lim = +S.runMin || 0;
+    AP.toast((AUTO.mix ? '🔀 AUTO BOTH on: CQ, answer callers, and work any park you have not worked today when it shows up, then CQ again' : AUTO.run ? '🔁 AUTO RUN on: CQ, answer, log, CQ again' : '🎯 AUTO HUNT on: it calls the parks it hears that you have not worked today') + ' · ' + (lim ? lim + ' minutes' : 'until you press STOP') + '. Stay at the radio.', 6000);
+  }
+  if ($('dgRun')) { $('dgRun').onclick = () => autoGo('run'); $('dgHunt').onclick = () => autoGo('hunt'); if ($('dgBoth')) $('dgBoth').onclick = () => autoGo('both'); }
+
   let LAST = { k: '', t: 0 };
   function logIt() {
     if (!QS.dx || !G.KPCLog) return;
@@ -487,7 +588,8 @@
     const k = QS.dx + '|' + S.band + '|' + S.mode;
     if (LAST.k === k && nowS() - LAST.t < 900) return;
     LAST = { k, t: nowS() };
-    const r = KPCLog.add({ call: QS.dx, khz: offBand && radioK ? radioK : dialK(), mode: S.mode, rs: QS.rs, rr: QS.rr, g: QS.grid, my: AP.myCall() });
+    const refs = /^[A-Z0-9]+-\d/.test(QS.ref || '') ? QS.ref.split(',') : spotRefs(QS.dx);   /* their park(s), from the spots, so a hunted park counts */
+    const r = KPCLog.add({ call: QS.dx, khz: offBand && radioK ? radioK : dialK(), mode: S.mode, rs: QS.rs, rr: QS.rr, g: QS.grid, my: AP.myCall(), refs });
     if (r && r.ok) AP.toast('✅ ' + esc(QS.dx) + ' logged · ' + esc(S.band) + ' ' + S.mode + ' · sent ' + esc(QS.rs) + ' rcvd ' + esc(QS.rr || '?') + ' · ' + r.n + (KPCLog.me().hunt ? ' today' : ' this activation'), 3000, 'log');
     else AP.toast('⚠️ Not logged: ' + esc((r && r.msg) || 'the log did not answer'), 5000, 'bad');
   }
@@ -509,8 +611,8 @@
     $('dgCq').classList.toggle('on', TXON && QS.next === 6);
   }
   function halt(why) { TXON = false; NOWTX = false; chk(); if (txBusy) { A.stopTx().catch(() => {}); } if (why) AP.toast(why, 4000); }
-  $('dgEn').onclick = () => txOn(!TXON);
-  $('dgHalt').onclick = () => halt('Transmitting stopped.');
+  $('dgEn').onclick = () => { if (TXON) autoStop(); txOn(!TXON); };
+  $('dgHalt').onclick = () => { autoStop(); halt('Transmitting stopped.'); };
   $('dgCq').onclick = () => {
     if (!AP.myCall()) { AP.toast('Put your call sign in STATION → My station first.', 5000, 'bad'); AP.go('station'); return; }
     QS.dx = ''; QS.grid = ''; QS.state = 'cq'; QS.logged = false; QS.cq = true; QS.ref = ''; QS.since = nowS();
@@ -664,11 +766,14 @@
     }
     offBand = false; tuneWarn(''); showDial();
   }
-  $('dgBand').onchange = () => { S.band = $('dgBand').value; if (S.ov) delete S.ov[ovKey()]; save(); showDial(); radioTune(); };
+  $('dgBand').onchange = () => { S.band = $('dgBand').value; if (S.ov) delete S.ov[ovKey()]; save(); showDial(); radioTune(); if (SPF) SPF.update(); };
   /* FT8 ↔ FT4 (the mode frame calls this when its chip is tapped, or when the remote asks) */
+  /* Oct 27: FT8 / FT4 parks spotted on this band, under the dial; a POTA spot carries the dial, not the audio spot, so a tap fills DX CALL + the log line (the decode list lights the station when it is heard) */
+  let SPF = null;
+  function spotsFt() { if (!G.KPCSpots || !KPCSpots.strip || !$('dgSpots')) return; const o = { band: () => S.band, modes: S.mode === 'FT4' ? /^FT4/ : /^FT8/, max: 12, tap: s => { if ($('dgDx')) $('dgDx').value = s.call; if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid, st: s.st }); AP.toast('🌲 ' + s.call + ' is in DX CALL; tap their line in the decode list when they show up.', 3500); } }; if (!SPF) SPF = KPCSpots.strip($('dgSpots'), o); else SPF.update(o); }
   function useMode(m, first) {
     const was = S.mode; S.mode = m; save();
-    bandOpts(); showDial(); gen(); marks(); lastDec = -1; dtAvg = [];
+    bandOpts(); showDial(); gen(); marks(); lastDec = -1; dtAvg = []; spotsFt();
     if (!first) { radioTune(); AP.toast(S.mode === 'FT4' ? 'FT4: 7.5-second slots, a wider signal. Same screen.' : 'FT8: 15-second slots.', 3000); }
     else if (was !== m) radioTune();
   }
@@ -714,7 +819,10 @@
       ${ck('shNoG', S.noGrid, '⚡ Fast contact — send my report first, no grid, and RR73 as soon as both reports are in')}
       <div class="grid2">
         <label class="e">CQ<select id="shCqw">${[['', 'CQ'], ['POTA', 'CQ POTA'], ['SOTA', 'CQ SOTA'], ['WWFF', 'CQ WWFF']].map(([v2, l]) => `<option value="${v2}"${S.cqw === v2 ? ' selected' : ''}>${l}</option>`).join('')}</select></label>
-        <label class="e">STOP CALLING AFTER NO ANSWER<select id="shWd">${[1, 2, 3, 5, 10].map(n => `<option value="${n}"${+S.wd === n ? ' selected' : ''}>${n} minute${n > 1 ? 's' : ''}</option>`).join('')}</select></label>
+        <label class="e">STOP CALLING AFTER NO ANSWER<select id="shWd">${[2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<option value="${n}"${+S.wd === n ? ' selected' : ''}>${n} minutes</option>`).join('')}</select></label>
+        <label class="e">🔁 AUTO RUN / 🎯 AUTO HUNT GO FOR<select id="shRunMin">${[5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 300, 360, 420, 480, 0].map(n => `<option value="${n}"${+S.runMin === n ? ' selected' : ''}>${!n ? 'until I press STOP' : n < 60 ? n + ' minutes' : n === 60 ? '1 hour' : (n / 60) + ' hours'}</option>`).join('')}</select></label>
+        ${ck('shHuntAny', S.huntAny, '🎯 AUTO HUNT calls any CQ, not only parks')}
+        <p class="hint">AUTO RUN keeps calling CQ the whole time (the no-answer limit above does not stop it). Stay at the radio while it runs.</p>
       </div>
       <h3 class="sh">Waterfall</h3>
       <label class="e slide">BRIGHTNESS <b id="shWfBT">${+S.wfB || 0}</b><input type="range" id="shWfB" min="-100" max="100" step="5" value="${+S.wfB || 0}"></label>
@@ -736,6 +844,7 @@
         if (rx >= 200 && rx <= 3000) S.rxHz = Math.round(rx);
         if ($('shCqw')) S.cqw = $('shCqw').value;
         if ($('shWd')) S.wd = +$('shWd').value || 2;
+        if ($('shRunMin')) S.runMin = +$('shRunMin').value; if ($('shHuntAny')) S.huntAny = $('shHuntAny').checked; autoSt();
         save(); $('dgAuto').checked = S.auto; $('dgHold').checked = S.hold; marks(); gen();
       });
     ['B', 'C'].forEach(k => { const r = $('shWf' + k); if (r) r.oninput = () => { S['wf' + k] = +r.value; $('shWf' + k + 'T').textContent = r.value; save(); }; });
@@ -767,6 +876,12 @@
     diag: () => Object.assign({}, DIAG, { lastPassAgeS: lastPass ? Math.round(nowS() - lastPass) : null, n12, t0: Math.round(t0), clkOff: AP.S.clkOff || 0, rxDb: AP.S.rxDb || 0, mode: S.mode, run: RUN, active: ACTIVE, capture: (KPCNative.audio.capture ? KPCNative.audio.capture() : null) }),
     _wedge: () => { lastPass = nowS() - 100; lastN12 = -1; }, _restarts: () => RESTARTS, _binHz: () => BINHZ,
     _hl: (x, hl) => { if (hl) S.hl = hl; spotHl.t = 0; return hlOf(x); },
+    /* test hook (Oct 30): feed made-up decoded lines for slot sl, then run the sequencer as a real pass would */
+    _feedLines: (sl, list) => { const me = AP.myCall(); for (const d of list) { const tk = d.text.split(/\s+/), to = clean(tk[0]); const fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
+        LINES.push({ t: sl * slotLen(), sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' }); }
+      seq(sl); },
+    _auto: () => ({ run: AUTO.run, hunt: AUTO.hunt, mix: AUTO.mix, cq: QS.cq, dx: QS.dx, state: QS.state, next: QS.next, tx: TXON, ref: QS.ref, logged: QS.logged }),
+    _qsSince: v => { QS.since = v; },
     _autoTest: hz => { if (!avgSpec) avgSpec = new Float32Array(HB).fill(-90); const a = Math.round((hz - 25) / BINHZ), b = Math.round((hz + 25) / BINHZ); for (let i = a; i <= b; i++) avgSpec[i] = -40; const before = S.txHz; autoSpotTick(); return { moved: S.txHz !== before, to: S.txHz }; },
     /* a small band view for the remote screen (Brandon Oct 24: 'a waterfall or band view to find a clear TX spot'): 120 steps from 200 to 2800 Hz, dB, plus the RX/TX spots */
     spectrum: () => { if (!avgSpec) return null; const N = 120, out = new Array(N), a = Math.round(200 / BINHZ), b = Math.round(2800 / BINHZ), w = (b - a) / N; for (let i = 0; i < N; i++) { let pk = -200; for (let j = Math.floor(a + i * w); j < a + (i + 1) * w; j++) if (avgSpec[j] > pk) pk = avgSpec[j]; out[i] = Math.round(pk); } return { f0: 200, f1: 2800, db: out, rx: S.rxHz, tx: S.txHz, taken: Array.from(new Set(LINES.filter(x => x.sep == null && x.t > nowS() - 120).map(x => Math.round(x.hz / 25) * 25))) }; },
@@ -782,10 +897,10 @@
   if (G.KPCModes) ['FT8', 'FT4'].forEach(id => KPCModes.add({
     id, label: id, panel: '#dgFt', title: id === 'FT4' ? 'FT4: 7.5-second slots' : 'FT8: 15-second slots',
     bands: Object.keys(DIAL[id]), band: () => S.band, setBand: b => KPCDigi.setBand(b), khz: () => dialK(),
-    rx, run: () => {}, activate: prev => { ACTIVE = true; useMode(id, !prev); }, deactivate: () => { ACTIVE = false; if (TXON || txBusy) halt('Mode changed, so transmitting stopped.'); },
+    rx, run: () => {}, activate: prev => { ACTIVE = true; useMode(id, !prev); }, deactivate: () => { ACTIVE = false; autoStop(); if (TXON || txBusy) halt('Mode changed, so transmitting stopped.'); },
     settings, lines: () => LINES, hello: '',
-    ops: { cq: () => $('dgCq').onclick(), halt: () => halt('The phone pressed HALT.'), tx: a => txOn(!!a.on), call: a => KPCDigi.call(+a.id), tune: () => $('dgTune').onclick(), txhz: a => KPCDigi.setTxHz(a.hz) },
-    buttons: [{ op: 'cq', label: '📣 CQ', cls: 'cq' }, { op: 'tx', label: 'ENABLE TX', on: 'TX IS ON', cls: 'tx', toggle: true }, { op: 'halt', label: 'HALT', cls: 'halt' }, { op: 'tune', label: 'TUNE 10 s' }],
+    ops: { cq: () => $('dgCq').onclick(), halt: () => { autoStop(); halt('The phone pressed HALT.'); }, run: () => autoGo('run'), hunt: () => autoGo('hunt'), both: () => autoGo('both'), tx: a => txOn(!!a.on), call: a => KPCDigi.call(+a.id), tune: () => $('dgTune').onclick(), txhz: a => KPCDigi.setTxHz(a.hz) },
+    buttons: [{ op: 'cq', label: '📣 CQ', cls: 'cq' }, { op: 'tx', label: 'ENABLE TX', on: 'TX IS ON', cls: 'tx', toggle: true }, { op: 'halt', label: 'HALT', cls: 'halt' }, { op: 'tune', label: 'TUNE 10 s' }, { op: 'run', label: '🔁 AUTO RUN' }, { op: 'hunt', label: '🎯 AUTO HUNT' }, { op: 'both', label: '🔀 AUTO BOTH' }],
     enabled: () => !!TXON, txing: () => !!txBusy, halt: why => halt(why), tune: () => $('dgTune').onclick(),
     state: () => ({ dx: QS.dx, state: QS.state, next: QS.next, rs: QS.rs, rr: QS.rr })
   }));

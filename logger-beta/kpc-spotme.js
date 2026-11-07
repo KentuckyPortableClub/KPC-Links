@@ -66,5 +66,54 @@
   if (chips && !$('dkSpot')) { const p = $('dkP2p'); (p || chips.lastElementChild).insertAdjacentHTML('beforebegin', '<button type="button" class="chip" id="dkSpot" title="Spot me on POTA (QRM check first)">📣 SPOT ME</button>'); $('dkSpot').onclick = () => sheet(''); }
   const showChip = () => { const c = $('dkSpot'); if (c) c.hidden = AP.me().hunt; };
   AP.on('me', showChip); showChip();
-  G.KPCSpotMe = { sheet: w => sheet(w), respot: s => sheet('', s), qrmNear, last: () => LAST, _post: postPota };
+  /* ---------------- AUTO RE-SPOT (Brandon Oct 30: 'add auto respot on pota with comments rcvd/sent report') ----------------
+     When I log a contact as a HUNTER with a POTA park (typed, a spot tap, FT8 / AUTO HUNT), the app re-spots that activator
+     on POTA by itself, with the reports in the comment ('sent -12 / rcvd -08 · TU'; a template with {SENT} {RCVD} {MODE} {CALL}).
+     Only: the switch on (STATION → Log files → 📣 AUTO RE-SPOT, on to start), my real call, signal, the contact made in the last
+     15 min (not an earlier contact typed in later, not a file or a sync), once per activator + park + band + mode per 30 min. */
+  const RS = Object.assign({ on: true, tpl: '', add: '' }, (() => { try { return JSON.parse(localStorage.getItem('kpcAppRespot') || '{}'); } catch (e) { return {}; } })());
+  const rsSave = () => { try { localStorage.setItem('kpcAppRespot', JSON.stringify(RS)); } catch (e) {} rsBtn(); };
+  const DONE = {};
+  /* Oct 30 (Brandon: 'add a line … so we can add to the comment, example 73 from KY'): RS.add goes on the end; {ST} = my state */
+  const mySt = () => { const m = AP.S.mcn || {}; return String(AP.S.st || m.st || '').toUpperCase(); };
+  const fill = t => String(t || '').replace(/\{ST\}|\{STATE\}/gi, mySt()).replace(/\{CALL\}/gi, AP.myCall());
+  function rsComment(q) { const base = rsBase(q), add = fill(RS.add).trim(); return (add ? (base ? base + ' ' : '') + add : base).replace(/\s+/g, ' ').trim().slice(0, 60); }
+  function rsBase(q) {
+    const sent = String(q.rs || '').trim(), rcvd = String(q.rr || '').trim();
+    if (RS.tpl) return fill(RS.tpl).replace(/\{SENT\}/gi, sent).replace(/\{RCVD\}/gi, rcvd).replace(/\{MODE\}/gi, modeOut(q.mode)).replace(/\{CALL\}/gi, AP.myCall()).replace(/\s+/g, ' ').trim().slice(0, 60);
+    return ([sent && 'sent ' + sent, rcvd && 'rcvd ' + rcvd].filter(Boolean).join(' / ') + ' · TU').replace(/^ · /, '').slice(0, 60);
+  }
+  async function autoRespot(q) {
+    const me = AP.myCall();
+    if (!RS.on || !q || q.d || !me || !AP.stdCall(me) || (AP.me && !AP.me().hunt && (q.myrefs || []).length)) return;
+    const pr = (q.refs || []).filter(r => sigOf(r) === 'POTA'); if (!pr.length || !(q.khz > 100)) return;
+    if (Date.now() - (+q.t || 0) > 15 * 60000) return;
+    const mode = modeOut(q.mode), k = [q.call, pr.join('+'), q.band, mode].join('|');
+    if (DONE[k] && Date.now() - DONE[k] < 30 * 60000) return;
+    if (!AP.net.online()) return;
+    DONE[k] = Date.now();
+    const com = rsComment(q);
+    try {
+      for (const ref of pr) await postPota({ activator: q.call, spotter: me, khz: q.khz, ref, mode, comment: com });
+      LAST = { t: Date.now(), khz: q.khz, auto: q.call, comment: com };
+      AP.toast('📣 Re-spotted ' + esc(q.call) + ' on POTA · ' + esc(com), 3500, 'log');
+      if (G.KPCSpots && KPCSpots.feed) KPCSpots.feed('own', [{ call: q.call, khz: q.khz, mode, refs: pr, comment: com, spotter: me, t: Date.now() }]);
+    } catch (e) { delete DONE[k]; AP.toast('The automatic re-spot did not go: ' + esc(e.message || e), 4000, 'bad'); }
+  }
+  AP.on('log', e => { if (e && e.why === 'add') (e.recs || []).forEach(q => { setTimeout(() => autoRespot(q), 800); }); });
+  function rsBtn() { const b = $('stRespot'); if (b) b.textContent = '📣 AUTO RE-SPOT: ' + (RS.on ? 'ON' : 'OFF'); }
+  function rsSheet() {
+    AP.sheet('📣 Auto re-spot', `<p class="hint">When you log a park as a <b>hunter</b>, the app re-spots that activator on POTA by itself, with the reports in the comment, so other hunters know they are still on and how they are getting out.</p>
+      <label class="ck"><input type="checkbox" id="rsOn"${RS.on ? ' checked' : ''}> Re-spot POTA activators I log (once per activator, park, band and mode per 30 minutes)</label>
+      <label class="e wide">COMMENT<input id="rsTpl" maxlength="60" value="${esc(RS.tpl)}" placeholder="sent {SENT} / rcvd {RCVD} · TU"></label>
+      <label class="e wide">ADD ON THE END<input id="rsAdd" maxlength="30" value="${esc(RS.add)}" placeholder="73 from {ST}"></label>
+      <p class="hint">Empty = 'sent -12 / rcvd -08 · TU'. You can use {SENT} {RCVD} {MODE} {CALL} {ST} (your state). POTA keeps about 60 letters. Example now: <b id="rsEx">${esc(rsComment({ rs: '59', rr: '57', mode: 'SSB' }))}</b></p>
+      <p class="hint">Never with a practice call, never for an earlier contact you type in later, and only with signal.</p>`);
+    $('rsOn').onchange = () => { RS.on = $('rsOn').checked; rsSave(); };
+    const ex = () => { $('rsEx').textContent = rsComment({ rs: '59', rr: '57', mode: 'SSB' }); };
+    $('rsTpl').oninput = () => { RS.tpl = $('rsTpl').value.trim(); rsSave(); ex(); };
+    $('rsAdd').oninput = () => { RS.add = $('rsAdd').value; rsSave(); ex(); };
+  }
+  if ($('stRespot')) { $('stRespot').onclick = rsSheet; rsBtn(); }
+  G.KPCSpotMe = { sheet: w => sheet(w), respot: s => sheet('', s), qrmNear, last: () => LAST, _post: postPota, respotSheet: rsSheet, _auto: autoRespot, _rs: RS };
 })(window);

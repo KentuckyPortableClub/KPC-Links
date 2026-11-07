@@ -4,7 +4,9 @@
 (function (G) {
   'use strict';
   let CHP, KAP;   /* plugin handles, registered once (Oct 24) */
-  const VER = '0.7.5';
+  const VER = '0.7.9';
+  /* KPC Lite (Oct 28, HQ): kpc-flavor.js (overwritten by the nightly build for the Lite APK) or ?lite=1. index.html already skipped the left-out files. */
+  const LITE = !!document.documentElement.dataset.lite, LITE_OFF = { remote: 1 };
   const $ = id => document.getElementById(id);
   const N = G.KPCNative, A = N.audio;
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
@@ -45,8 +47,9 @@
   document.querySelectorAll('[data-look]').forEach(b => { b.onclick = () => { if (b.dataset.style) { document.documentElement.dataset.style = b.dataset.style; try { localStorage.setItem('kpcStyle', b.dataset.style); } catch (e) {} } look(b.dataset.look); }; });
 
   /* ---------------- screens ---------------- */
-  const TITLE = { logs: 'My logs', log: 'Log', digi: 'Digital modes', station: 'Station', remote: 'Remote', spots: 'Spots', map: 'Contacts map' };
+  const TITLE = { logs: 'My logs', log: 'Log', digi: 'Digital modes', station: 'Station', remote: 'Remote', spots: 'Spots', map: 'Contacts map', radio: 'Radio' };
   function go(name) {
+    if (LITE && LITE_OFF[name]) name = 'log';
     document.body.dataset.screen = name; $('ttl').textContent = TITLE[name] || 'KPC';
     document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.go === name || (name === 'logs' && b.dataset.go === 'log')));
     SV('kpcScreen', name === 'logs' ? 'log' : name); fire('screen', name);
@@ -185,7 +188,7 @@
   async function stop() { RUN = false; lastBlk = 0; try { await A.stop(); } catch (e) {} $('stLvl').style.width = '0'; $('stLvlT').textContent = 'off'; state(); fire('run', false); }
   /* TX LEVEL + RX LEVEL sliders: the same two live in STATION → Sound and in the FT8 / FT4 settings (Brandon Oct 22).
      Any slider marked data-lv="tx" or "rx" works, wherever it is on screen. */
-  const LV = { tx: { k: 'db', lo: -40, hi: 0 }, rx: { k: 'rxDb', lo: -20, hi: 20 } };
+  const LV = { tx: { k: 'db', lo: -40, hi: 0 }, rx: { k: 'rxDb', lo: -20, hi: 20 }, vc: { k: 'vdb', lo: -20, hi: 30 }, mon: { k: 'monDb', lo: -30, hi: 20 } };   /* vc = VOICE LEVEL (Oct 27, apart from the FT8 TX LEVEL); mon = 🔊 HEAR THE RADIO HERE */
   const dbTxt = v => (v < 0 ? '−' : v > 0 ? '+' : '') + Math.abs(v).toFixed(1).replace('.0', '') + ' dB';
   function lvShow() {
     for (const w in LV) {
@@ -197,13 +200,15 @@
   function lvSet(w, v) {
     const L = LV[w]; S[L.k] = Math.max(L.lo, Math.min(L.hi, Math.round(v * 2) / 2)); save(); lvShow();
     if (w === 'tx') return A.setGain(Math.pow(10, S.db / 20)).catch(() => {});
+    if (w === 'mon') { if (A.monitorGain) A.monitorGain(S.monDb); return Promise.resolve(); }
+    if (w === 'vc') return Promise.resolve();
     /* Oct 25 (Brandon's reports kept showing RX LEVEL at +20, the top): say once what the slider is for */
     if (S.rxDb >= 10 && Date.now() - (lvSet.said || 0) > 600000) { lvSet.said = Date.now(); toast('RX LEVEL only turns the sound up INSIDE the app (the bar shows the level after it). For a weak signal, turn the radio\'s USB OUT / AF level up instead and keep this near 0: at +20 a normal band clips and decodes stop.', 9000); }
     return Promise.resolve();
   }
   function lvHtml(w) {
-    const L = LV[w], tx = w === 'tx';
-    return `<label class="e slide">${tx ? 'TX LEVEL' : 'RX LEVEL'} <b data-lvt="${w}">${dbTxt(+S[L.k] || 0)}</b>
+    const L = LV[w], tx = w === 'tx', nm = { tx: 'TX LEVEL (FT8 / digital tones)', rx: 'RX LEVEL (what the decoders get)', vc: '🎙 VOICE LEVEL (keyer, hold to talk)', mon: '🔊 RADIO LOUDNESS HERE' }[w];
+    return `<label class="e slide">${nm} <b data-lvt="${w}">${dbTxt(+S[L.k] || 0)}</b>
       <span class="pw"><button type="button" class="ic sm" data-lvs="${w}" data-d="-0.5" aria-label="${tx ? 'Transmit' : 'Receive'} level down">−</button><input type="range" data-lv="${w}" min="${L.lo}" max="${L.hi}" step="0.5" value="${+S[L.k] || 0}" aria-label="${tx ? 'Transmit' : 'Receive'} level in dB"><button type="button" class="ic sm" data-lvs="${w}" data-d="0.5" aria-label="${tx ? 'Transmit' : 'Receive'} level up">+</button></span></label>`;
   }
   document.addEventListener('input', e => { const w = e.target.dataset && e.target.dataset.lv; if (w) lvSet(w, +e.target.value); });
@@ -218,12 +223,13 @@
      unless a menu says otherwise (Yaesu SSB MOD SOURCE, Icom DATA OFF MOD…) — while the DATA menus are already right (FT8 works).
      So `pttOn(true, {voice: true})` reads the mode, and when it is USB / LSB puts the radio in DATA-U / DATA-L for the length of the
      transmission, then puts the sideband back (S.vmod 'data' = do that, 'mic' = leave the mode alone: the radio's own menu is set to REAR). */
-  let VMODE = '', DIALR = null;
+  let VMODE = '', VKHZ = 0, DIALR = null;
   on('dial', r => { if (r && r.khz) DIALR = { r, t: Date.now() }; });
+  const dialNow = ms => DIALR && Date.now() - DIALR.t < (ms || 15000) ? DIALR.r : null;   /* the last dial CHANGE seen (follow fires on change), if under ms old */
   async function pttOn(on, o) {
     o = o || {};
     if (on && o.voice && S.vmod === 'data' && G.KPCCat && KPCCat.connected() && KPCCat.mode && S.ptt !== 'vox' && !VMODE) {
-      try { const r = DIALR && Date.now() - DIALR.t < 1500 ? DIALR.r : await KPCCat.read();   /* a fresh dial read saves the 300 ms round trip before the voice starts */ if (r && /^(USB|LSB)$/.test(r.mode || '')) { if (await KPCCat.mode(r.mode === 'LSB' ? 'DATAL' : 'DATA')) { VMODE = r.mode; await new Promise(r2 => setTimeout(r2, 120)); } } } catch (e) {}
+      try { const r = DIALR && Date.now() - DIALR.t < 1500 ? DIALR.r : await KPCCat.read();   /* a fresh dial read saves the 300 ms round trip before the voice starts */ if (r && /^(USB|LSB)$/.test(r.mode || '')) { if (await KPCCat.mode(r.mode === 'LSB' ? 'DATAL' : 'DATA', r.khz)) { VMODE = r.mode; VKHZ = r.khz; } } } catch (e) {}
     }
     TXING = !!on; state();
     if (S.ptt === 'vox' || !G.KPCCat) { if (!on) vmodeBack(); return true; }
@@ -236,7 +242,7 @@
       return ok;
     } catch (e) { if (!on && S.follow) KPCCat.set({ follow: true }); if (!on) vmodeBack(); return false; }
   }
-  function vmodeBack() { if (!VMODE) return; const m = VMODE; VMODE = ''; setTimeout(() => { if (G.KPCCat && KPCCat.connected()) KPCCat.mode(m).catch(() => {}); }, 150); }
+  function vmodeBack() { if (!VMODE) return; const m = VMODE, k = VKHZ; VMODE = ''; VKHZ = 0; setTimeout(() => { if (G.KPCCat && KPCCat.connected()) KPCCat.mode(m, k).catch(() => {}); }, 150); }
   /* FT8 can only carry ordinary call signs (one or two letters/digits, a digit, then one to three letters) in full.
      Anything else — a practice call like K4TEST, or KZ4CP/P — goes out as a short code, and some stations' software will not answer it. */
   const stdCall = c => /^[A-Z0-9]{0,2}[0-9][A-Z]{1,3}$/.test(String(c || '').toUpperCase());
@@ -482,7 +488,15 @@
   $('stDev').onclick = () => devices().then(() => toast('Looked for sound cards again.', 2000));
   $('stIn').onchange = () => { S.inDev = $('stIn').value; const t = twin(S.inDev); if (t && $('stOut').value !== String(t.id)) { $('stOut').value = t.id; S.outDev = t.id; toast('RADIO SOUND OUT set to the same sound card: ' + esc(t.name), 4000); } save(); if (RUN) toast('Press STOP then START LISTENING to use the new sound card.', 4000); };
   $('stOut').onchange = () => { S.outDev = $('stOut').value; save(); if (RUN) toast('Press STOP then START LISTENING to use the new sound card.', 4000); };
-  $('stLevels').innerHTML = lvHtml('tx') + lvHtml('rx');
+  $('stLevels').innerHTML = lvHtml('tx') + lvHtml('vc') + lvHtml('rx') + `<div class="row monrow"><button type="button" class="b" id="stMon">🔊 HEAR THE RADIO HERE</button><select id="stMonDev" aria-label="Which speaker"><option value="">This computer's speakers</option></select></div>` + lvHtml('mon') + '<p class="hint">🔊 HEAR THE RADIO HERE plays the radio on this computer\'s speakers (never on the radio\'s own sound card): work the radio from the desk with the PC mic and speakers.</p>';
+  /* 🔊 HEAR THE RADIO HERE (Oct 27, Fable; Brandon: 'play audio out PC and talk into PC, work semi-remote from the desktop') */
+  async function monDevs() { const sel = $('stMonDev'); if (!sel || !navigator.mediaDevices) return; try { const ds = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audiooutput' && d.deviceId && d.deviceId !== 'communications' && d.deviceId !== S.outDev);
+    sel.innerHTML = '<option value="">This computer\'s speakers</option>' + ds.map(d => `<option value="${esc(d.deviceId)}"${S.monDev === d.deviceId ? ' selected' : ''}>${esc(d.deviceId === 'default' ? 'Windows default (' + (d.label || '').replace(/^Default - /, '') + ')' : d.label || 'Speaker')}</option>`).join(''); } catch (e) {} }
+  function monShow() { const b = $('stMon'); if (b) { b.classList.toggle('on', !!S.mon); b.textContent = S.mon ? '🔊 HEARING THE RADIO HERE · TAP TO STOP' : '🔊 HEAR THE RADIO HERE'; } document.querySelectorAll('[data-mon]').forEach(x => { x.classList.toggle('on', !!S.mon); x.textContent = S.mon ? '🔊 ON' : '🔊 HEAR HERE'; }); }
+  async function monSet(on) { S.mon = !!on; save(); monShow(); if (!A.monitor) return; if (S.mon && !RUN) { const ok = await start(); if (!ok) { S.mon = false; save(); monShow(); return; } } const r = await A.monitor(S.mon, S.monDev || '', S.monDb); if (S.mon && r && r.err) toast('Could not play the radio here: ' + esc(r.err), 5000, 'bad'); else if (S.mon) toast('🔊 The radio plays on ' + esc((r && r.where) || 'this computer\'s speakers') + '.', 3000); }
+  if ($('stMon')) { $('stMon').onclick = () => monSet(!S.mon); $('stMonDev').onchange = () => { S.monDev = $('stMonDev').value; save(); if (S.mon) A.monitor && A.monitor(true, S.monDev, S.monDb); }; monDevs(); monShow(); }
+  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-mon]'); if (b) monSet(!S.mon); });
+  on('run', o => { if (o && S.mon && A.monitor) setTimeout(() => A.monitor(true, S.monDev || '', S.monDb), 300); });
 
   /* ---------------- find a setting ---------------- */
   $('stQ').oninput = () => {
@@ -624,8 +638,8 @@
   async function report() {
     const s = Object.assign({}, S); delete s.rmTok; delete s.asList;
     let au = {}; try { au = await A.status(); } catch (e) {}
-    return ['KPC app report ' + new Date().toISOString(), 'version ' + VER + ' · ' + (N.native ? 'Android' : N.platform) + ' · ' + navigator.userAgent, 'screen ' + innerWidth + 'x' + innerHeight + ' · online ' + net.online() + ' · queued posts ' + NQ.length,
-      'sound: running ' + RUN + ' txing ' + TXING + ' ' + JSON.stringify(au), 'radio: ' + JSON.stringify(catLast) + (G.KPCCat ? ' ' + JSON.stringify(KPCCat.get ? KPCCat.get() : {}) : ''), 'tunes (asked → radio said, then 3 s later): ' + (G.KPCCat && KPCCat.tuneLog ? JSON.stringify(KPCCat.tuneLog()) : '-') + (G.KPCCat && KPCCat.keyPortInfo ? ' · CW key port: ' + JSON.stringify(KPCCat.keyPortInfo()) : ''),
+    return ['KPC app report ' + new Date().toISOString(), 'version ' + VER + (LITE ? ' Lite' : '') + ' · ' + (N.native ? 'Android' : N.platform) + ' · ' + navigator.userAgent, 'screen ' + innerWidth + 'x' + innerHeight + ' · online ' + net.online() + ' · queued posts ' + NQ.length,
+      'sound: running ' + RUN + ' txing ' + TXING + ' ' + JSON.stringify(au), 'radio: ' + JSON.stringify(catLast) + (G.KPCCat ? ' ' + JSON.stringify(KPCCat.get ? KPCCat.get() : {}) : ''), 'tunes (asked → radio said, then 3 s later): ' + (G.KPCCat && KPCCat.tuneLog ? JSON.stringify(KPCCat.tuneLog()) : '-') + (G.KPCCat && KPCCat.keyPortInfo ? ' · CW key port: ' + JSON.stringify(KPCCat.keyPortInfo()) : '') + (G.KPCCat && KPCCat.modeLog ? ' · dial put back after a mode change: ' + JSON.stringify(KPCCat.modeLog()) : '') + ' · voice: ' + JSON.stringify({ vmod: S.vmod || 'mic', vdb: +S.vdb || 0, mon: !!S.mon }) + (G.KPCModes5 ? ' · cw: ' + JSON.stringify({ via: KPCModes5.S.cw.via, park: KPCModes5.S.cw.park || 'cw', wpm: KPCModes5.S.cw.wpm }) : ''),
       'mode: ' + (G.KPCModes ? JSON.stringify(KPCModes.state()) : '-'), 'decoder: ' + (G.KPCDigi && KPCDigi.diag ? JSON.stringify(KPCDigi.diag()) : '-'), 'remote: ' + (G.KPCRemote ? JSON.stringify(KPCRemote.link()) : '-'), 'sound link (this end as a phone): ' + (G.KPCRemote && KPCRemote.rtcPhone ? JSON.stringify(KPCRemote.rtcPhone()) : '-'), 'sound links (this end as the PC): ' + (G.KPCRemote && KPCRemote.rtcReport ? JSON.stringify(await KPCRemote.rtcReport().catch(e => String(e))) : '-'),
       'settings: ' + JSON.stringify(s), 'log: ' + (G.KPCLog ? KPCLog.count() + ' shown / ' + KPCLog.all().size + ' kept' : '-'), '--- last console lines ---'].concat(CLOG).join('\n');
   }
@@ -637,7 +651,7 @@
     get key() { return canKey(); }, get cat() { return !!(G.KPCCat && KPCCat.connected()); }, get call() { return !!myCall(); }, get realCall() { return stdCall(myCall()); },
     get gps() { return !!navigator.geolocation; }, get mic() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia); }, get online() { return net.online(); },
     get native() { return !!N.native; }, get pc() { return N.platform === 'windows'; }, get raw() { return net.canRaw(); }, get tcp() { return net.tcp; }, get serial() { return !!(N.serial || navigator.serial || navigator.usb); },
-    get sound() { return RUN; }, get remote() { return !!(G.KPCRemote && KPCRemote.link().paired); },
+    get sound() { return RUN; }, get remote() { return !!(G.KPCRemote && KPCRemote.link().paired); }, get lite() { return LITE; },
     /* why not? one line for the dimmed button */
     why(what) { return ({ key: !myCall() ? 'Put your call sign in STATION → My station first.' : 'Nothing can key the radio yet: connect it (CAT) or pick VOX in STATION → Radio control.', cat: 'Connect the radio in STATION → Radio control first.', call: 'Put your call sign in STATION → My station first.', realCall: myCall() + ' is a practice call: this needs a real licensed call.', gps: 'This device has no GPS the app can read.', mic: 'No microphone here, or it is not allowed for KPC.', online: 'No internet right now; it will go when the signal is back.', raw: 'This needs the app (Windows or Android), not a browser tab.', tcp: 'Only the Windows app can open a TCP link.', serial: 'This device cannot talk to a USB radio.', sound: 'Press START LISTENING first.' })[what] || ''; }
   };
@@ -648,13 +662,15 @@
        PRETEND is switched back to the real radio once (?fake=1 stays as the builders' switch for the tests) */
     [3, () => { if (!/[?&]fake=1/.test(location.search)) { let was = false; try { was = !!localStorage.getItem('kpcFake'); localStorage.removeItem('kpcFake'); } catch (e) {} if (was) setTimeout(() => location.reload(), 300); } }],
     /* 0.7.1 (Oct 25): the MY RIG text box shared its id with the radio drop-down, so it was filled with the radio's short id ('ft710'); put the proper name there once */
-    [4, () => { if (S.rig && G.KPCCat && KPCCat.RADIO && KPCCat.RADIO[S.rig]) S.rig = KPCCat.RADIO[S.rig].label || S.rig; }]
+    [4, () => { if (S.rig && G.KPCCat && KPCCat.RADIO && KPCCat.RADIO[S.rig]) S.rig = KPCCat.RADIO[S.rig].label || S.rig; }],
+    /* 0.7.6 (Oct 27): RX LEVEL sat at +20 in every report (he read it as loudness; the CW decoder read 54 WPM from the clipped noise): back to 0 once */
+    [5, () => { if (+S.rxDb >= 10) { S.rxDb = 0; setTimeout(() => toast('RX LEVEL was at +' + 20 + ' dB and is back at 0: it only feeds the decoders (not loudness). To hear the radio louder here use 🔊 HEAR THE RADIO HERE under STATION → Sound.', 9000), 2500); } }]
   ];
   (function migrate() { const v = +S.ver || 1; MIG.forEach(([n, f]) => { if (v < n) { try { f(); } catch (e) {} } }); if (v < MIG[MIG.length - 1][0]) { S.ver = MIG[MIG.length - 1][0]; save(); } })();
 
   /* ---------------- backup + restore, and 'a new build is out' (Oct 22) ----------------
      The backup = every setting this app keeps (incl. the log file) in one .kpcbackup. RESTORE merges the log and puts the settings back. */
-  const BK_KEYS = ['kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters'];
+  const BK_KEYS = ['kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters', 'kpcAppCx', 'kpcAppSkim', 'kpcSkimLoc', 'kpcAppQp', 'kpcAppScope', 'kpcAppRot', 'kpcAppNr', 'kpcAppRigX', 'kpcAppBandMem', 'kpcAppWorks'];
   function backupText() { const st = {}; BK_KEYS.forEach(k => { const v = localStorage.getItem(k); if (v != null) st[k] = v; }); return JSON.stringify({ kpcbackup: 1, ver: VER, when: Date.now(), settings: st, log: G.KPCLog ? JSON.parse(KPCLog.fileText()) : null }); }
   function restoreText(txt) {
     let j; try { j = JSON.parse(txt); } catch (e) { return { ok: false, msg: 'that is not a KPC backup file' }; }
@@ -712,8 +728,21 @@
   $('utc').textContent = utc(Date.now(), true);
 
   /* ---------------- start up ---------------- */
-  $('stVer').textContent = VER + ' · ' + (N.native ? 'Android' : N.platform === 'windows' ? 'Windows' : 'browser');
+  $('stVer').textContent = VER + (LITE ? ' Lite' : '') + ' · ' + (N.native ? 'Android' : N.platform === 'windows' ? 'Windows' : 'browser');
   fields(); devices(); fillPorts(); linkUi(); keyCheck(); state();
+  /* Oct 27 (Fable; Brandon: 'does this work on all radios?'): what each radio family needs set on ITS OWN menus — the app cannot set these over CAT */
+  const TIPS = {
+    yaesu: ['Yaesu (FT-710, FTDX10, FT-991A, FT-891, FTX-1)', ['CAT RATE = the baud rate picked here (38400), CAT RTS = ON is fine (the app holds RTS up)', 'DATA: MODE DATA → DATA MOD SOURCE = REAR and REAR SELECT = USB (FT8 power comes from this)', 'SSB voice from the app (keyer, hold to talk, the phone): MODE SSB → SSB MOD SOURCE = REAR (AUTO also works on most) — then PTT from the app carries the USB sound', 'CW typed from the app: the radio\'s own keyer over CAT works on the FT-710 / FTDX10 / 991A / 891; hand keying: USB KEYING (CW) = DTR + CW BK-IN = ON (the key is on the radio\'s SECOND USB port)', 'A tone through the sound card only transmits in DATA: the app flips the radio to DATA for the over when you pick that way']],
+    icom: ['Icom (IC-7300, IC-705, IC-7100, IC-9700…)', ['CONNECTORS → CI-V: USB BAUD RATE = the one picked here, CI-V ADDRESS = the one shown here, CI-V USB ECHO BACK = OFF', 'DATA: MOD → DATA MOD = USB (FT8 power comes from this); the app uses USB-D', 'SSB voice from the app: CONNECTORS → MOD → DATA OFF MOD = USB (that is the SSB source) — or leave it MIC and turn on \'switch the radio to DATA while it sends\' under VOICE FROM THIS DEVICE', 'CW typed from the app: the radio\'s own keyer over CAT works; hand keying: CW by DTR on the USB port (CONNECTORS → USB SEND/KEYING → USB KEYING (CW) = DTR)', 'CI-V USB PORT = UNLINK FROM [REMOTE] so the USB port is a plain CAT port']],
+    kenwood: ['Kenwood (TS-590, TS-890, TS-990, TS-480)', ['Menu: baud rate for the USB / COM port = the one picked here; TX ENABLE for the data (USB) audio input', 'DATA: pick DATA (DA1) with the USB audio as the source: menu \'USB audio input level\' up, \'audio input line select\' / \'DATA VOX\' off', 'SSB voice from the app: the SSB source must be the USB (ACC2) input while sending by CAT: menu \'TX audio source (SSB)\' / \'PC audio\' = USB — or use \'switch the radio to DATA while it sends\'', 'CW typed from the app: the radio\'s own keyer over CAT (KY) works; hand keying: DTR / RTS key line on the COM port where the radio allows it']],
+    elecraft: ['Elecraft (KX2, KX3, K3, K4, KH1)', ['CONFIG: RS232 = the baud rate picked here; AUTOINF OFF', 'DATA: DATA A mode with LINE IN as the source (MIC/LINE = LINE); the KX2/KX3 take the sound card on the ACC / LINE jack', 'SSB voice from the app: MIC/LINE → LINE for the SSB source while sending from the app, or use \'switch the radio to DATA while it sends\'', 'CW typed from the app: the radio\'s own keyer over CAT (KY) works well; hand keying = a real key on the radio, or the DTR / RTS line through a Digirig']],
+    xiegu: ['Xiegu (G90, X6100, X6200, G106)', ['CI-V on the USB-C / ACC: baud 19200 (G90 default), address 70', 'DATA + voice from the app both need the sound card on the ACC / LINE IN jack (a Digirig / Xiegu DE-19): the radio has no USB sound card of its own', 'CW typed from the app over CAT is not reliable on Xiegu: use the DTR / RTS key line (Digirig) or a tone', 'Hamlib / flrig also work for these (HOW THE APP REACHES IT)']],
+    qrp: ['QRP Labs (QMX, QDX, QCX, (tr)uSDX)', ['QMX: USB SERIAL PORTS = 3 in its menu; CAT on the lowest port at 38400; the DTR line is NOT the key (the app keeps it down)', 'QDX / QMX are digital-only for the sound card (FT8 etc.); the QMX keys CW by its own keyer over CAT (KY, firmware 1_00_021+) or a paddle', 'No voice from these radios']],
+    other: ['Other radios', ['The app sends standard Kenwood-style CAT (TS-590 commands); if the radio does not answer, try Hamlib rigctld or flrig under HOW THE APP REACHES IT', 'For DATA and voice from the app the radio must take its transmit sound from the sound card you picked (its USB / LINE / ACC input); set that in the radio\'s menu', 'CW: typed CW over CAT works on radios with a KY command; otherwise the DTR / RTS key line, or a tone through the sound card']]
+  };
+  const rigFam = id => { const R = G.KPCCat && KPCCat.RADIO && KPCCat.RADIO[id]; return !R ? 'other' : R.model === 'elecraft' ? 'elecraft' : R.model === 'xiegu' ? 'xiegu' : /^(qmx|qdx|qcx|trusdx)$/.test(id) ? 'qrp' : /^yaesu/.test(R.proto) ? 'yaesu' : R.proto === 'icom' ? 'icom' : R.proto === 'kenwood' && /^ts/.test(id) ? 'kenwood' : 'other'; };
+  if ($('stRigTips')) $('stRigTips').onclick = () => { if (G.KPCHelp) { KPCHelp.guide($('stRig').value || ''); return; }   /* Nov 6: the full setup guide for this radio (kpc-help.js) */ const id = $('stRig').value || '', fam = rigFam(id);
+    const T = TIPS[fam]; sheet('📖 ' + T[0], '<p class="hint">What the radio itself has to be set to; the app cannot change these over CAT. Menu names differ a little by model: look for these words in the radio\'s manual.</p><ul class="helpl">' + T[1].map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><p class="hint">Three things every radio needs for the app: (1) CAT answers at the baud rate picked here, (2) its transmit sound comes from the sound card you picked (for DATA and for voice from the app), (3) a way to key CW: its own keyer over CAT, a DTR / RTS line, or a tone in DATA mode.</p>'); };
   if ($('stCatMore')) $('stCatMore').onclick = () => { document.body.classList.toggle('cat-more'); $('stCatMore').textContent = document.body.classList.contains('cat-more') ? '▴ FEWER RADIO SETTINGS' : '⚙ MORE RADIO SETTINGS'; catVis(); };
   setInterval(catVis, 3000); setTimeout(catVis, 300);
   go(LS('kpcScreen', 'log'));
@@ -749,8 +778,8 @@
     saveFile,
     VER, S, save, toast, sheet, shut, go, on, fire, esc, utc, toGrid,
     myCall, myGrid, dist, distUnit, toUnit, pickSerial, portLabel, chipName, native: N.native, platform: N.platform,
-    devices, start, stop, soundLost, setDb, lvHtml, lvShow, pttOn, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
-    running: () => RUN, txing: () => TXING,
+    devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
+    running: () => RUN, txing: () => TXING, rigTips: () => TIPS, rigFam: id => rigFam(id),
     audio: A, rate: A.rate, bandPlan, net, report, can, backupText, restoreText, headless: HEADLESS, now, gps, pc: PC,
     cat: () => G.KPCCat || null, catConnected: () => !!(G.KPCCat && KPCCat.connected()),
     /* station = the call that goes out on the air (SEND AS); op = who is at the key (OPERATORS); ctl = the control operator when

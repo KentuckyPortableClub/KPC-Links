@@ -40,7 +40,7 @@ small{font-size:11px}
 /* ---------- screens ---------- */
 main{max-width:1500px;margin:0 auto}
 .scr{display:none;padding:10px max(12px,env(safe-area-inset-left)) 14px max(12px,env(safe-area-inset-right))}
-body[data-screen="logs"] #scrLogs,body[data-screen="log"] #scrLog,body[data-screen="digi"] #scrDigi,body[data-screen="station"] #scrStation,body[data-screen="remote"] #scrRemote,body[data-screen="spots"] #scrSpots,body[data-screen="map"] #scrMap{display:block}
+body[data-screen="logs"] #scrLogs,body[data-screen="log"] #scrLog,body[data-screen="digi"] #scrDigi,body[data-screen="station"] #scrStation,body[data-screen="remote"] #scrRemote,body[data-screen="spots"] #scrSpots,body[data-screen="map"] #scrMap,body[data-screen="radio"] #scrRadio{display:block}
 
 /* ---------- strips, chips ---------- */
 .strip{display:flex;align-items:center;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:2px 0 6px}
@@ -703,3 +703,142 @@ body.cat-on .catmore{display:none}
 .rmvol{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(227,162,74,.45);background:var(--panel)}
 .rmvol .l{font:800 12px var(--sans);letter-spacing:.12em;color:var(--goldT);white-space:nowrap}
 .rmvol input{flex:1;height:34px;min-width:0}.rmvol b{font:800 15px var(--mono);min-width:52px;text-align:right;color:var(--goldT)}
+
+/* Oct 27 (Opus): the 📻 RADIO tab */
+#scrRadio{max-width:1200px;margin:0 auto}
+.rdoff{padding:22px;border-radius:16px;border:1px solid rgba(227,162,74,.45);background:var(--panel);text-align:center}.rdoff h2{font:700 26px Georgia,serif;color:var(--goldT);margin:0 0 8px}
+.rdtop{padding:14px;border-radius:18px;border:1px solid rgba(227,162,74,.5);background:linear-gradient(180deg,rgba(18,10,4,.85),rgba(18,10,4,.6)),var(--panel);box-shadow:var(--glow);margin-bottom:12px}
+.rdvfo{display:flex;align-items:center;gap:10px}.rdvfo .ic.big{width:64px;height:64px;font-size:30px;border-radius:16px;flex:0 0 auto}
+.rdkhz{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:center;gap:6px;padding:10px;border:1px solid rgba(227,162,74,.35);border-radius:14px;background:#0a0704;color:#ffcf7a;cursor:pointer;font:inherit}
+.rdkhz b{font:800 clamp(34px,8vw,64px)/1 var(--mono);letter-spacing:.02em;text-shadow:0 0 18px rgba(255,170,60,.35)}.rdkhz small{font:700 clamp(18px,3.5vw,30px) var(--mono);color:#c9a36a}.rdkhz i{font:800 14px var(--sans);font-style:normal;letter-spacing:.12em;color:#9be36b;margin-left:10px}
+.rdsteps,.rdbands,.rdmodes{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;justify-content:center}.rdmodes .chip{min-width:70px}
+.rdgrid{display:grid;grid-template-columns:1fr;gap:12px}@media (min-width:900px){.rdgrid{grid-template-columns:1fr 1fr}}
+.rdbig{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.rdbig .b{flex:1 1 160px;height:52px}.rdtune{border-color:var(--gold)!important;color:var(--goldT)}
+.rdvk{flex-wrap:wrap;margin-bottom:10px}
+[data-rx].on{border-color:var(--ok);color:var(--ok)}
+@media (max-width:520px){.rdvfo .ic.big{width:48px;height:56px}}
+input[type=range]{accent-color:var(--gold)}
+/* Oct 27 (Brandon on the tablet: 'spotter screen spacing can be better here, more like desktop'): mid-size screens get the band + spotter columns */
+@media (min-width:700px) and (max-width:1099px){
+  #scrSpots .sphead,#scrSpots .sp1{grid-template-columns:44px minmax(0,1.1fr) minmax(0,1fr) 40px 76px 52px 46px 110px;gap:10px;padding:0 12px}
+  #scrSpots .sphead .w,#scrSpots .sp1 .w{display:block}#scrSpots .sphead .w:nth-last-child(2),#scrSpots .sp1 .i{display:none!important}
+  #scrSpots .sp1{min-height:44px;font-size:14px}#scrSpots .sp1 .c{font-size:15px}#scrSpots .sp1 .f{font-size:14px;color:var(--goldT)}
+  #scrSpots .sp1:nth-child(odd){background:rgba(255,255,255,.015)}
+  .sp1 .bd{font:700 12px var(--mono);color:var(--sub)}.sp1 .by{font:600 12px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp1 .by small{display:block;font:600 10px var(--sans);color:var(--sub)}
+}
+.rmpcs{width:100%;margin:0 0 10px}
+.monrow{margin:8px 0 4px}.monrow select{flex:1;min-width:0}#stMon.on,[data-mon].on{border-color:var(--ok);color:var(--ok)}
+.rdlv{margin:0 0 10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(227,162,74,.35);background:var(--panel)}
+.rdkhz i{white-space:nowrap}@media (max-width:520px){.rdkhz{flex-wrap:wrap;gap:2px 6px}.rdkhz i{flex-basis:100%;text-align:center;margin:0;font-size:12px}}
+/* Oct 27: spots on this band (RADIO tab, the mode screens, the FT8 dial) */
+.spstrip{flex-wrap:wrap;gap:5px;margin:8px 0 0;justify-content:center}.spstrip .kv{height:28px}
+.chip.spc{height:28px;padding:0 9px;font:600 11px var(--mono);gap:4px}.chip.spc b{font-weight:800}.chip.spc i{font-style:normal;color:var(--sub);font-size:10px}.chip.spc em{font-style:normal}.chip.spc.np{border-color:var(--gold)}.chip.spc.wk{opacity:.6}
+.rdbands .chip{position:relative}.rdbands .bn{position:absolute;top:-6px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--gold);color:#1a1408;font:800 10px/16px var(--sans)}
+
+/* KPC Lite (Oct 28): the parts the Lite build leaves out (kpc-flavor.js / ?lite=1 sets html[data-lite]) */
+html[data-lite] [data-lite="off"] { display: none !important; }
+
+/* Oct 30: AUTO RUN / AUTO HUNT row */
+#scrDigi .btns.autob { grid-template-columns: 1fr 1fr 1fr; }
+#scrDigi .btns.autob .b.on { background: var(--gold, #e3a24a); color: #1a1206; border-color: transparent; }
+#dgAutoSt { margin-top: 4px; }
+
+/* Oct 30: 📊 MY POTA STATS tiles (the Hunters Lounge's look) */
+.ptiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin: 6px 0 10px; }
+.pt { background: var(--panel2, rgba(255,255,255,.04)); border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: 10px; padding: 8px 10px; }
+.pt b { display: block; font-size: 22px; color: var(--gold, #e3a24a); }
+.pt span { display: block; font-size: 11px; letter-spacing: .04em; opacity: .85; }
+.pt .pbar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); margin: 5px 0 3px; overflow: hidden; }
+.pt .pbar i { display: block; height: 100%; background: var(--gold, #e3a24a); }
+.pt small { font-size: 11px; opacity: .75; }
+
+/* ===== 🏆 CONTESTING (Nov 5 2026, kpc-contest.js + kpc-skim.js): the CONTEST tab, the exchange row on the LOG line, skimmers by region, band map ===== */
+body[data-screen="contest"] #scrCx{display:block}
+#scrCx{padding:10px 12px 18px}
+body.cx-on{--doch:168px}
+.cxrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:5px;padding:0 0 7px}
+.cxrow .cxname{font:700 10px var(--sans);letter-spacing:.1em;color:var(--goldT);text-transform:uppercase;align-self:center;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cxrow .cxe{flex:0 0 calc(var(--w,3) * 13px + 34px)}
+.cxrow .cxe input{height:38px;font:700 16px var(--mono);text-transform:uppercase;text-align:center;padding:0 4px}
+.cxrow .chip{height:38px}
+.cxst{flex:1 1 100%;min-height:18px;font-size:12px;line-height:1.35;color:var(--sub)}
+.cxst.dupe{color:var(--red);font-weight:700}
+.cxst.mult{color:var(--goldT);font-weight:700}
+.cxst.need{color:var(--ok)}
+.cxst .bad{color:var(--red)}
+.cxst .scp{border:1px solid var(--line);background:var(--panel2);color:var(--text);font:600 11px var(--mono);border-radius:6px;padding:2px 5px;margin:1px;cursor:pointer}
+.cxtop{margin-bottom:8px}
+.cxgrid{display:grid;grid-template-columns:1fr;gap:0 12px}
+@media (min-width:900px){.cxgrid{grid-template-columns:1fr 1fr}.cxmapc{grid-column:1 / -1}}
+.cxbig{font:800 34px var(--mono);color:var(--goldT);line-height:1.1}
+.cxsub{font:600 10px var(--sans);letter-spacing:.06em;color:var(--sub);text-transform:none;margin-left:6px}
+.cxtab{width:100%;border-collapse:collapse;margin-top:8px;font:600 12px var(--mono)}
+.cxtab th{font:700 9px var(--sans);letter-spacing:.12em;color:var(--sub);text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+.cxtab td{padding:4px 6px;border-bottom:1px solid var(--line)}
+.cxsweep{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px}
+.cxsweep span{font:700 10px var(--mono);padding:3px 4px;border-radius:4px;background:var(--panel2);color:var(--sub);min-width:30px;text-align:center}
+.cxsweep span.on{background:var(--gold);color:var(--onGold)}
+.cxwf{display:block;width:100%;height:360px;border-radius:10px;border:1px solid var(--line);touch-action:none;cursor:crosshair;margin-top:6px}
+@media (min-width:1200px){.cxwf{height:460px}}
+.cxleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;font-size:11px;color:var(--sub)}
+.cxleg span::before{content:'';display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.cxleg .m::before{background:#f5b301}.cxleg .n::before{background:#3ddc84}.cxleg .d::before{background:#6b7280}.cxleg .x::before{background:#ef4444}.cxleg .me::before{background:#e879f9}
+.cxbon{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid var(--line);font-size:13px}
+.cxbon input[type=number]{width:58px;height:34px}
+.cxbon input[type=checkbox]{width:22px;height:22px}
+.cxbon.off{opacity:.45}
+.skgr{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.skg b{font-size:13px}.skg small{color:var(--sub)}
+.skg .calls{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.skc{font:600 11px var(--mono);background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:5px;padding:2px 6px;cursor:pointer}
+.skc.guess{opacity:.65;border-style:dashed}
+.skc .snr{color:var(--ok)}
+
+/* ===== 🌊 SCOPE (kpc-scope.js) on the RADIO screen + 🧭 ROTATOR (kpc-rotor.js) in STATION (Nov 6 2026) ===== */
+.rdscope{margin-bottom:12px}
+.sccv{display:block;width:100%;height:300px;border-radius:10px;border:1px solid var(--line);background:#05080f;cursor:crosshair;touch-action:manipulation}
+@media (min-width:900px){.sccv{height:380px}}
+.rdscope .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sc-ok{color:var(--ok)}.sc-af{color:var(--rx)}.sc-warn{color:var(--goldT)}
+.rocomp{display:flex;align-items:center;gap:14px;margin:6px 0 8px}
+.rocomp svg{width:120px;height:120px;flex:0 0 auto}
+.rocomp .ring{fill:var(--panel2);stroke:var(--line);stroke-width:1.5}
+.rocomp .cd{font:700 9px var(--mono);fill:var(--sub);text-anchor:middle}
+.rocomp .nd{stroke:var(--gold);stroke-width:3.5;stroke-linecap:round}
+.rocomp .tg{stroke:var(--rx);stroke-width:2;stroke-dasharray:3 3}
+.rocomp .hub{fill:var(--gold)}
+.rocomp .roaz{font:800 34px var(--mono);color:var(--goldT)}
+.rocomp small{color:var(--rx);font:700 14px var(--mono)}
+
+/* ===== 🎚 LISTENING CLEAN-UP (kpc-nr.js, Nov 6 2026): STATION → Sound and the RADIO screen ===== */
+.nrbox{margin:10px 0;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.nrh{font:700 11px var(--sans);letter-spacing:.08em;color:var(--goldT);margin-bottom:6px}.nrh small{font-weight:500;letter-spacing:0;color:var(--sub);text-transform:none}
+.nrrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:5px 0}.nrrow>span{flex:0 0 118px;font:700 10px var(--sans);letter-spacing:.08em;color:var(--sub)}
+@media (max-width:420px){.nrrow>span{flex:1 1 100%}}
+.nrab.on{background:var(--rx)!important;color:#05080f!important}
+
+/* ===== Nov 6: log on the CONTEST screen · 🎛 more radio controls · DIGI band strip · help ===== */
+.cxent{margin-bottom:10px}
+.cxerow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px}
+.cxerow .cxecall{flex:1 1 150px;max-width:220px}
+.cxerow .cxecall input{height:46px;font:700 22px var(--mono);text-transform:uppercase}
+.cxerow .cxe{flex:0 0 calc(var(--w,3) * 15px + 40px)}
+.cxerow .cxe input{height:46px;font:700 18px var(--mono);text-transform:uppercase;text-align:center;padding:0 4px}
+.cxerow .b,.cxerow .chip{height:46px}
+.cxego{min-width:110px}
+.cxeinfo{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:6px;font-size:13px}
+.cxeon{color:var(--sub);font:600 12px var(--mono)}
+.rdmore{margin:12px 0}
+.rdmore>summary{cursor:pointer;list-style:none}.rdmore>summary::-webkit-details-marker{display:none}
+.rdmore>summary h2::after{content:' ▾';color:var(--sub)}.rdmore:not([open])>summary h2::after{content:' ▸'}
+.rdmore .rxg{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
+.rdmore .rxg .slide{flex:1 1 220px}
+.rdmore .rxg .chips{display:flex;flex-wrap:wrap;gap:5px}
+.rdmore .rxh{font:700 11px var(--sans);letter-spacing:.12em;color:var(--goldT);text-transform:uppercase;margin:14px 0 4px}
+.rdmore .btns{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.rdmore .btns .b{flex:1 1 120px}
+.rdmore .b.on{border-color:var(--gold)}
+.rdmore .tog{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:14px}
+.rdmore [hidden]{display:none!important}
+.dgstrip{margin:0 0 8px}.dgstrip canvas{display:block;width:100%;height:92px;border-radius:10px;border:1px solid var(--line);touch-action:pan-y}
+.dgstrip[hidden]{display:none}
+.cxerow .b{flex:0 0 auto}

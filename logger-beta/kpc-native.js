@@ -70,14 +70,31 @@
     /* the remote link (Windows base station): the radio's sound as a stream the PC can send to the phone,
        and a way to play the phone's voice into the radio (through the TX LEVEL gain, with a gate the PTT opens) */
     rxStream() { return wStream || null; },
+    /* 🔊 HEAR THE RADIO HERE (Oct 27, Fable): the radio's RX audio on this computer's speakers — its own AudioContext on a sink that is
+       NOT the radio's sound card (setSinkId), gain in dB; rebuilt when the sound session changes; off while transmitting (pauseRx) */
+    async monitor(on, sinkId, db) {
+      try { if (mon.ctx) { try { mon.ctx.close(); } catch (e) {} mon.ctx = null; } if (!on) return { ok: true };
+        if (!wCtx || !wStream) return { err: 'the sound is not running (press START)' };
+        const AC = G.AudioContext || G.webkitAudioContext, c = new AC(); let where = 'this computer\'s speakers';
+        if (c.setSinkId) { let id = sinkId || ''; if (!id) { try { const ds = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audiooutput' && d.deviceId && d.deviceId !== 'communications' && d.deviceId !== audio.outDevId && !/usb audio codec|usb audio device|ft-|ic-|ts-|yaesu|icom|kenwood|digirig|signalink|codec/i.test(d.label || '')); const pick = ds.find(d => d.deviceId !== 'default') || ds[0]; if (pick) { id = pick.deviceId; where = pick.label || where; } } catch (e) {} }
+          if (id) { try { await c.setSinkId(id); } catch (e) { where = 'Windows default output'; } } }
+        if (c.state === 'suspended') await c.resume();
+        const src = c.createMediaStreamSource(wStream), g = c.createGain(); g.gain.value = Math.pow(10, (+db || 0) / 20);
+        /* Nov 6: 🎚 listening clean-up (kpc-nr.js: filter, blanker, notch, NR) between the radio and the speakers — never on the decoders' path */
+        if (G.KPCNR) { await KPCNR.prepare(c); const ch = KPCNR.chain(c); src.connect(ch.input); ch.output.connect(g); } else src.connect(g);
+        g.connect(c.destination);
+        mon = { ctx: c, g, gen: stat.gen }; return { ok: true, where };
+      } catch (e) { return { err: e.message || String(e) }; }
+    },
+    monitorGain(db) { if (mon.g) mon.g.gain.value = Math.pow(10, (+db || 0) / 20); },
     /* Oct 26 (Fable; Brandon: 'volume wide open … need more volume' on the phone): what the PC SENDS the phone is a levelled copy of the
        radio's USB audio (gain + a compressor with make-up), since radio sound cards sit 20 dB down; built once per sound session */
     sendStream() {
       if (!wCtx || !wStream) return null;
       if (wSend && wSend.gen === stat.gen) return wSend.st;
-      try { const src = wCtx.createMediaStreamSource(wStream), g = wCtx.createGain(), c = wCtx.createDynamicsCompressor(), mk = wCtx.createGain(), d = wCtx.createMediaStreamDestination();
+      try { const src = wCtx.createMediaStreamSource(wStream), g = wCtx.createGain(), c = wCtx.createDynamicsCompressor(), mk = wCtx.createGain(), d = wCtx.createMediaStreamDestination(), nr = G.KPCNR ? KPCNR.chain(wCtx) : null;   /* Nov 6: the phone hears the cleaned-up sound too */
         g.gain.value = 4; c.threshold.value = -20; c.knee.value = 6; c.ratio.value = 8; c.attack.value = 0.005; c.release.value = 0.25; mk.gain.value = 1.6;
-        src.connect(g); g.connect(c); c.connect(mk); mk.connect(d); wSend = { gen: stat.gen, st: d.stream, nodes: [src, g, c, mk, d] }; return d.stream; } catch (e) { return null; }
+        if (nr) { src.connect(nr.input); nr.output.connect(g); } else src.connect(g); g.connect(c); c.connect(mk); mk.connect(d); wSend = { gen: stat.gen, st: d.stream, nodes: [src, g, c, mk, d] }; return d.stream; } catch (e) { return null; }
     },
     /* the phone's voice → the radio, through a VOICE SHAPER (Brandon Oct 22: 'contest microphones are higher pitched to break pile ups'):
        natural = straight through · punch = a little high-pass + presence · contest = tight high-pass, strong presence, hard compression (cuts through a pile-up) */
@@ -88,19 +105,21 @@
       hp.type = 'highpass'; pk.type = 'peaking'; lp.type = 'lowpass';
       const vg = wCtx.createGain(); vg.gain.value = 1;   /* Oct 27: MY VOICE LEVEL (the phone's own slider), apart from the FT8 TX LEVEL */
       src.connect(hp); hp.connect(pk); pk.connect(lp); lp.connect(comp); comp.connect(mk); mk.connect(vg); vg.connect(gate); gate.connect(wG);
+      /* Nov 1: a level reading of the phone's voice as it reaches the PC (before the gate), for the builders' report */
+      const an = wCtx.createAnalyser(); an.fftSize = 1024; src.connect(an); const abuf = new Float32Array(an.fftSize);
       const P = { natural: { hp: 80, pkHz: 2500, pkDb: 0, lp: 6000, th: -6, ratio: 1.2, mk: 1 }, punch: { hp: 250, pkHz: 2500, pkDb: 4, lp: 3400, th: -20, ratio: 4, mk: 1.3 }, contest: { hp: 350, pkHz: 2900, pkDb: 8, lp: 3000, th: -28, ratio: 10, mk: 1.8 } };
       const shape = name => { const q = P[name] || P.natural; hp.frequency.value = q.hp; pk.frequency.value = q.pkHz; pk.Q.value = 1.1; pk.gain.value = q.pkDb; lp.frequency.value = q.lp; comp.threshold.value = q.th; comp.ratio.value = q.ratio; comp.attack.value = 0.003; comp.release.value = 0.12; comp.knee.value = 6; mk.gain.value = q.mk; return name in P ? name : 'natural'; };
       shape(preset || 'natural');
-      return { gate: on => { gate.gain.value = on ? 1 : 0; }, level: db => { vg.gain.value = Math.pow(10, Math.max(-20, Math.min(30, +db || 0)) / 20); }, shape, stop: () => { try { src.disconnect(); gate.disconnect(); } catch (e) {} } };
+      return { db: () => { an.getFloatTimeDomainData(abuf); let m = 0; for (let i = 0; i < abuf.length; i++) m = Math.max(m, Math.abs(abuf[i])); return m > 0 ? Math.round(20 * Math.log10(m)) : -99; }, gate: on => { gate.gain.value = on ? 1 : 0; }, level: db => { vg.gain.value = Math.pow(10, Math.max(-20, Math.min(30, +db || 0)) / 20); }, shape, stop: () => { try { src.disconnect(); gate.disconnect(); an.disconnect(); } catch (e) {} } };
     },
     voicePresets: ['natural', 'punch', 'contest'],
     /* Android: hold the foreground service + wake lock without the app's own sound (the REMOTE link), media volume to the top */
     keepAwake(on, maxVolume) { if (!NATIVE) return Promise.resolve({ held: false }); return KA.keepAwake({ on: !!on, maxVolume: !!maxVolume }).catch(() => ({ held: false })); },
-    gain: 0.5, txing: false, onTx: null, onLost: null, pauseRx: false, session: 0   /* session = which sound start this is (Web Audio nodes die with their AudioContext) */
+    gain: 0.5, txing: false, onTx: null, onLost: null, pauseRx: false, session: 0, outDevId: ''   /* session = which sound start this is (Web Audio nodes die with their AudioContext) */
   };
 
   /* web fallback (Windows app + browsers): Web Audio with the call-mode processing turned off */
-  let wSend = null;
+  let wSend = null, mon = { ctx: null, g: null, gen: 0 };
   let wCtx = null, wStream = null, wProc = null, wG = null, wSrc = null, wHist = new Float32Array(23), FIR = null, wWorkURL = null;
   const stat = { how: '', blocks: 0, gaps: 0, anchors: 0, state: '', gen: 0 };   /* gen = which sound session (a restart = a new AudioContext: nodes from the old one are dead) */   /* for the builders' report: KPCNative.audio.capture() */
   /* the capture that runs on the audio thread: 48 kHz in → RMS/peak → 24-tap low-pass (5 kHz) + take every 4th sample → 12 kHz blocks of ~85 ms */
@@ -136,7 +155,7 @@
     const AC = G.AudioContext || G.webkitAudioContext; if (!AC || !navigator.mediaDevices) throw new Error('This browser has no sound support.');
     wCtx = new AC({ sampleRate: RATE }); if (wCtx.state === 'suspended') await wCtx.resume(); stat.state = wCtx.state; wSend = null;
     wG = wCtx.createGain(); wG.gain.value = audio.gain; wG.connect(wCtx.destination);
-    if (o.output && wCtx.setSinkId) { try { await wCtx.setSinkId(o.output); } catch (e) {} }
+    audio.outDevId = o.output || ''; if (o.output && wCtx.setSinkId) { try { await wCtx.setSinkId(o.output); } catch (e) {} }
     const c = { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 }; if (o.input) c.deviceId = { exact: o.input };
     wStream = await navigator.mediaDevices.getUserMedia({ audio: c });
     /* Oct 26 (Fable; Brandon: 'lost sound, had to reopen'): a USB sound card that drops out ends its track, and Windows can suspend the
@@ -155,6 +174,7 @@
       try {
         if (!wWorkURL) wWorkURL = URL.createObjectURL(new Blob([WORKLET_SRC], { type: 'application/javascript' }));
         await wCtx.audioWorklet.addModule(wWorkURL);
+        if (G.KPCNR) await KPCNR.prepare(wCtx);   /* Nov 6: ready for the remote link's cleaned-up sound */
         wProc = new AudioWorkletNode(wCtx, 'kpc-capture', { numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [1], channelCount: 1, channelCountMode: 'explicit' });
         const rate = wCtx.sampleRate; let base = 0, lastT = 0, lateN = 0;
         wProc.port.onmessage = e => {
@@ -196,7 +216,7 @@
     { const gen = stat.gen, ctx = wCtx; ctx.onstatechange = () => { if (stat.gen !== gen) return; stat.state = ctx.state; if (ctx.state === 'suspended') ctx.resume().catch(() => {}); if (ctx.state === 'closed' && wCtx === ctx && audio.onLost) audio.onLost('the sound engine closed'); }; }
     return { ok: true, source: 'web', latencyMs: Math.round((wCtx.baseLatency || 0.02) * 1000), rate: wCtx.sampleRate };
   }
-  async function webStop() { webStopTx(); try { wProc && wProc.port && (wProc.port.onmessage = null); } catch (e) {} try { wProc && wProc.disconnect(); } catch (e) {} try { wStream && wStream.getTracks().forEach(t => t.stop()); } catch (e) {} try { wCtx && await wCtx.close(); } catch (e) {} wCtx = wStream = wProc = wG = null; }
+  async function webStop() { webStopTx(); if (mon.ctx) { try { mon.ctx.close(); } catch (e) {} mon.ctx = null; mon.g = null; } try { wProc && wProc.port && (wProc.port.onmessage = null); } catch (e) {} try { wProc && wProc.disconnect(); } catch (e) {} try { wStream && wStream.getTracks().forEach(t => t.stop()); } catch (e) {} try { wCtx && await wCtx.close(); } catch (e) {} wCtx = wStream = wProc = wG = null; }
   function webPlay(pcm, atMs, id) {
     return new Promise((res, rej) => {
       if (!wCtx) { rej(new Error('Sound is not started.')); return; }

@@ -239,7 +239,7 @@
     say('Radio connected.', true); return true;
   }
   async function readLoop() {
-    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { rbuf.push(...value); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }
+    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { const v = S.proto === 'icom' && window.KPCScope ? KPCScope.tap(value) : value; if (v.length) rbuf.push(...v); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }   /* Nov 6: Icom scope frames (27 00) go to kpc-scope.js, never into rbuf */
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
   /* ---- WHICH PORT (Fable, Oct 23; Brandon's laptop: 'Failed to open serial port' every time after 0.6.6 saved port 9 of 10 — a Bluetooth one;
@@ -313,8 +313,11 @@
       try { const C = P.tune(khz, k); for (const b of C.slice(1)) await write(b); await write(C[0]);   /* Oct 22 (Brandon: SSB spots 'sometimes 14.283 → 14282.3'): MODE FIRST, then the frequency — a Yaesu moves the dial by the CW offset when it leaves CW, so a mode sent after the frequency knocked it 0.7 kHz off */ say(`📻 Radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true);
         /* Oct 25 (Brandon: 21.282 → the radio shows 21.2855, 7.186 → 7.1861; cause still unknown): read the dial straight back and again 3 s later,
            keep the last 12 in the report (KPCCat.tuneLog) and say it out loud when the radio sits more than 50 Hz from what was asked */
-        try { rbuf = []; await write(P.ask()); await sleep(260); const r = P.parse(String.fromCharCode(...rbuf), rbuf.slice()); const e = { at: new Date().toISOString().slice(11, 19), ask: khz, mode: k, got: r && r.khz, gotMode: r && r.mode, later: null };
+        try { rbuf = []; await write(P.ask()); await sleep(260); let r = P.parse(String.fromCharCode(...rbuf), rbuf.slice()); const e = { at: new Date().toISOString().slice(11, 19), ask: khz, mode: k, got: r && r.khz, gotMode: r && r.mode, later: null };
           TLOG.push(e); if (TLOG.length > 12) TLOG.shift();
+          /* Oct 27 (Fable; Brandon: 7286 → 7285.3 on TX): a Yaesu shifts the dial by its CW / DATA offset when the MODE changes, after the
+             frequency it was sent — so when the read-back sits more than 20 Hz off, send the frequency ONCE MORE and read again */
+          if (r && r.khz && Math.abs(r.khz - khz) > 0.02) { try { await write(C[0]); await sleep(120); rbuf = []; await write(P.ask()); await sleep(260); const r3 = P.parse(String.fromCharCode(...rbuf), rbuf.slice()); if (r3 && r3.khz) { e.fixed = r3.khz; r = r3; } } catch (e2) {} }
           if (r && r.khz && Math.abs(r.khz - khz) > 0.05) say(`⚠ Asked for ${(khz / 1000).toFixed(4)} MHz, the radio says ${(r.khz / 1000).toFixed(4)} (${((r.khz - khz) * 1000).toFixed(0)} Hz off). Copy a builders' report now (STATION → Alerts & help).`, false);
           setTimeout(() => { read().then(r2 => { e.later = r2 && r2.khz; e.laterMode = r2 && r2.mode; if (r2 && r2.khz && Math.abs(r2.khz - khz) > 0.05 && !(r && r.khz && Math.abs(r.khz - khz) > 0.05)) console.warn('tune: asked ' + khz + ' ' + k + ', radio moved to ' + r2.khz + ' ' + (r2.mode || '') + ' within 3 s (scan? dial-follow? another tune?)'); }).catch(() => {}); }, 3000); } catch (e) {}
         return true; }
@@ -325,14 +328,32 @@
   /* Oct 26 (Fable): set only the MODE, fast (no frequency, no read-back): the voice keyer / HOLD TO TALK put an SSB radio into DATA-U/L
      for the length of the transmission so the USB audio goes out (Brandon's FT-710: 'SSB no power out' = the radio's SSB MOD SOURCE is MIC;
      DATA MOD SOURCE = USB already works for FT8), then put the sideband back. */
-  function mode(k) {
+  function mode(k, keep) {
     busy = busy.then(async () => {
       if (!await connect(false)) return false;
-      k = kind(k, 0); lastMode = k;
+      k = kind(k, 0); lastMode = k; keep = +keep || 0;
       if (LINK() === 'fake') { await sleep(20); FAKE.mode = k; return true; }
       if (LINK() === 'flrig') { try { await FLRIG.call('rig.set_mode', [await FLRIG.modeFor(k)]); return true; } catch (e) { return false; } }
       const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
-      try { const C = P.tune((lastRead && lastRead.khz) || 14000, k); for (const b of C.slice(1)) await write(b); return true; } catch (e) { return false; }
+      try { const C = P.tune((lastRead && lastRead.khz) || 14000, k); for (const b of C.slice(1)) await write(b);
+        if (keep > 100) { /* the dial must not move with the mode (Oct 27): check it 150 ms later, put it back when it did */
+          await sleep(150); rbuf = []; await write(P.ask()); await sleep(200); const r = P.parse(String.fromCharCode(...rbuf), rbuf.slice());
+          if (r && r.khz && Math.abs(r.khz - keep) > 0.02) { await write(P.tune(keep, k)[0]); MLOG.push({ at: new Date().toISOString().slice(11, 19), mode: k, was: keep, moved: r.khz }); if (MLOG.length > 8) MLOG.shift(); } }
+        return true; } catch (e) { return false; }
+    }).catch(() => false);
+    return busy;
+  }
+  const MLOG = [];
+  /* mode + frequency in ONE go, no read-back (the CW screen flips CW ⇄ DATA around every over: it has to be quick) */
+  function tuneFast(khz, k) {
+    khz = +khz; if (!S.on || !khz) return Promise.resolve(false);
+    busy = busy.then(async () => {
+      if (!await connect(false)) return false;
+      k = sb(kind(k, khz), khz); lastMode = k;
+      if (LINK() === 'fake') { await sleep(15); FAKE.khz = khz; FAKE.mode = k; return true; }
+      if (LINK() === 'flrig') { try { await FLRIG.setFreqMode(khz, k); return true; } catch (e) { return false; } }
+      const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
+      try { const C = P.tune(khz, k); for (const b of C.slice(1)) await write(b); await write(C[0]); return true; } catch (e) { return false; }
     }).catch(() => false);
     return busy;
   }
@@ -366,6 +387,91 @@
   EXTRA.icom.atu = () => [icom([0x1C, 0x01, 0x02])];
   EXTRA.hamlib.atu = () => [asc('G TUNE\n')];
   EXTRA.yaesu8 = EXTRA.yaesu;
+  /* ---- MORE CONTROLS (Nov 6, Opus; Brandon: 'make sure you do all the options for more radios than I own … it needs to work for many radios').
+     The same command sets Hamlib / flrig / fldigi use, taken from each maker's CAT reference manual (Hamlib's code was not copied):
+       shift (IF SHIFT / PBT, Hz ±1200) · nrl / nbl (NR / NB level 0–100 %) · agc ('off' 'fast' 'mid' 'slow' 'auto') · att (dB) · pre (0 = off / IPO, 1, 2)
+       contour · apf · mnotch (manual notch on / off) + mnotchf (Hz) · split · rit · xit · ritoff (RIT / clarifier offset Hz, absolute; 0 = clear)
+       swap (VFO A ⇄ B) · ab (A = B) · keyspd (wpm) · bkin (0 off, 1 semi, 2 full).
+     CAPS below says which radio takes which, so the RADIO screen only shows what that radio understands. A radio not yet tried on the air
+     with KPC says 'not checked on a real radio yet' (TESTED lists the ones that have been: Brandon's 'works on my radio' reports go there). */
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, +v || 0));
+  const bcd4 = v => { const d = pad(clamp(v, 0, 9999), 4); return [parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)]; };
+  const l255 = p => Math.round(clamp(p, 0, 100) * 2.55);
+  const bcd1 = v => parseInt(pad(clamp(v, 0, 99), 2), 16);
+  const DX10 = { ftdx10: 1, ftdx101: 1, ft710: 1, ftx1: 1 };      /* Yaesu's newest CAT: IS with the extra 0, ATT 6/12/18 dB steps, CLAR instead of RT/XT */
+  const ysh = hz => { hz = Math.round(clamp(hz, -1200, 1200) / 20) * 20; const s = (hz < 0 ? '-' : '+') + pad(Math.abs(hz), 4); return asc((DX10[S.radio] ? 'IS00' : 'IS0') + s + ';'); };
+  const YAGC = { off: 0, fast: 1, mid: 2, slow: 3, auto: 4 };
+  const yatt = db => DX10[S.radio] ? Math.max(0, [0, 6, 12, 18].indexOf(+db)) : (+db > 0 ? 1 : 0);
+  const MORE = {
+    yaesu: { shift: hz => [ysh(hz)], nrl: p => [asc('RL0' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 14), 2) + ';')], nbl: p => [asc('NL0' + pad(Math.round(clamp(p, 0, 100) / 10), 3) + ';')],
+      agc: a => YAGC[a] == null ? null : [asc('GT0' + YAGC[a] + ';')], att: db => [asc('RA0' + yatt(db) + ';')], pre: n => [asc('PA0' + clamp(n, 0, 2) + ';')],
+      contour: on => [asc('CO0000' + (on ? '01' : '00') + ';')], apf: on => [asc('CO0200' + (on ? '01' : '00') + ';')],
+      mnotch: on => [asc('BP0000' + (on ? 1 : 0) + ';')], mnotchf: hz => [asc('BP01' + pad(clamp(Math.round(hz / 10), 1, 320), 3) + ';')],
+      split: on => [asc(on ? 'ST1;' : 'ST0;')], rit: on => [asc(on ? 'RT1;' : 'RT0;')], xit: on => [asc(on ? 'XT1;' : 'XT0;')],
+      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); return hz ? [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 4) + ';')] : [asc('RC;')]; },
+      swap: () => [asc('SV;')], ab: () => [asc('AB;')], keyspd: w => [asc('KS' + pad(clamp(w, 4, 60), 3) + ';')], bkin: n => [asc('BI' + (n ? 1 : 0) + ';')] },
+    kenwood: { nrl: p => [asc('RL' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 9), 2) + ';')], nbl: p => [asc('NL' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 9), 3) + ';')],
+      agc: a => S.model === 'elecraft' ? (a === 'fast' ? [asc('GT002;')] : a === 'slow' ? [asc('GT004;')] : null) : ({ off: 0, slow: 1, mid: 2, fast: 3 }[a] == null ? null : [asc('GT' + { off: 0, slow: 1, mid: 2, fast: 3 }[a] + ';')]),
+      att: db => (S.radio === 'ts890' || S.radio === 'ts990') ? [asc('RA' + Math.max(0, [0, 6, 12, 18].indexOf(+db)) + ';')] : [asc('RA0' + (+db > 0 ? 1 : 0) + ';')], pre: n => [asc('PA' + (n ? 1 : 0) + ';')],
+      apf: on => [asc('AP' + (on ? 1 : 0) + ';')],
+      split: on => S.model === 'elecraft' ? [asc(on ? 'FT1;' : 'FT0;')] : on ? [asc('FR0;'), asc('FT1;')] : [asc('FR0;'), asc('FT0;')],
+      rit: on => [asc(on ? 'RT1;' : 'RT0;')], xit: on => [asc(on ? 'XT1;' : 'XT0;')],
+      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); if (S.model === 'elecraft' || !hz) return [asc('RC;')]; return [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 5) + ';')]; },
+      ab: () => [asc('VV;')], keyspd: w => [asc('KS' + pad(clamp(w, 4, 60), 3) + ';')] },
+    icom: { shift: hz => { const l = Math.round(clamp(128 + clamp(hz, -1200, 1200) / 1200 * 127, 0, 255)); return [icom([0x14, 0x07, ...bcd4(l)]), icom([0x14, 0x08, ...bcd4(l)])]; },
+      nrl: p => [icom([0x14, 0x06, ...bcd4(l255(p))])], nbl: p => [icom([0x14, 0x12, ...bcd4(l255(p))])],
+      agc: a => a === 'off' ? [icom([0x1A, 0x04, 0x00])] : { fast: 1, mid: 2, slow: 3 }[a] ? [icom([0x16, 0x12, { fast: 1, mid: 2, slow: 3 }[a]])] : null,
+      att: db => [icom([0x11, bcd1(db)])], pre: n => [icom([0x16, 0x02, clamp(n, 0, 2)])], apf: on => [icom([0x16, 0x32, on ? 1 : 0])],
+      mnotch: on => [icom([0x16, 0x48, on ? 1 : 0])], mnotchf: hz => [icom([0x14, 0x0D, ...bcd4(Math.round(clamp((hz - 200) / 2800, 0, 1) * 255))])],
+      split: on => [icom([0x0F, on ? 1 : 0])], rit: on => [icom([0x21, 0x01, on ? 1 : 0])], xit: on => [icom([0x21, 0x02, on ? 1 : 0])],
+      ritoff: hz => { hz = Math.round(clamp(hz, -9999, 9999)); const a = Math.abs(hz), d = pad(a, 4); return [icom([0x21, 0x00, parseInt(d.slice(2), 16), parseInt(d.slice(0, 2), 16), hz < 0 ? 1 : 0])]; },
+      swap: () => [icom([0x07, 0xB0])], ab: () => [icom([0x07, 0xA0])],
+      keyspd: w => [icom([0x14, 0x0C, ...bcd4(Math.round((clamp(w, 6, 48) - 6) / 42 * 255))])], bkin: n => [icom([0x16, 0x47, clamp(n, 0, 2)])] },
+    hamlib: { shift: hz => [asc('L IF ' + Math.round(clamp(hz, -1200, 1200)) + '\n')], nrl: p => [asc('L NR ' + (clamp(p, 0, 100) / 100).toFixed(2) + '\n')], nbl: p => [asc('L NB ' + (clamp(p, 0, 100) / 100).toFixed(2) + '\n')],
+      agc: a => ({ off: 0, fast: 2, mid: 5, slow: 3, auto: 6 }[a] == null ? null : [asc('L AGC ' + { off: 0, fast: 2, mid: 5, slow: 3, auto: 6 }[a] + '\n')]),
+      att: db => [asc('L ATT ' + Math.round(+db || 0) + '\n')], pre: n => [asc('L PREAMP ' + clamp(n, 0, 2) * 10 + '\n')], apf: on => [asc('U APF ' + (on ? 1 : 0) + '\n')],
+      mnotch: on => [asc('U MN ' + (on ? 1 : 0) + '\n')], mnotchf: hz => [asc('L NOTCHF ' + Math.round(hz) + '\n')],
+      split: on => [asc(on ? 'S 1 VFOB\n' : 'S 0 VFOA\n')], rit: on => [asc('U RIT ' + (on ? 1 : 0) + '\n')], xit: on => [asc('U XIT ' + (on ? 1 : 0) + '\n')], ritoff: hz => [asc('J ' + Math.round(hz) + '\n')],
+      swap: () => [asc('G XCHG\n')], ab: () => [asc('G CPY\n')], keyspd: w => [asc('L KEYSPD ' + Math.round(clamp(w, 4, 60)) + '\n')], bkin: n => [asc('U FBKIN ' + (n === 2 ? 1 : 0) + '\n'), asc('U SBKIN ' + (n === 1 ? 1 : 0) + '\n')] }
+  };
+  MORE.yaesu8 = Object.assign({}, MORE.yaesu, { split: on => [asc(on ? 'FT3;' : 'FT2;')] });
+  EXTRA.yaesu8 = Object.assign({}, EXTRA.yaesu);   /* its own copy now: the old ones split with FT3 / FT2 */
+  Object.keys(MORE).forEach(p => { EXTRA[p] = Object.assign(EXTRA[p] || {}, MORE[p]); });
+  /* which radio takes which (the radio list's id → what to leave out, and the choices its AGC / ATT / PRE knobs have) */
+  const ALLK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'swap', 'ab', 'keyspd', 'bkin'];
+  const ICOM_NEW = { ic7300: 1, ic705: 1, ic9700: 1, ic7610: 1, ic905: 1, ic7851: 1 };
+  const ICOM_PRE2 = { ic7300: 1, ic7610: 1, ic7851: 1, ic7100: 1, ic756: 1, ic7600: 1, ic7700: 1, ic7800: 1, ic7410: 1 };
+  const ICOM_ATT = { ic7610: [0, 6, 12, 18], ic7851: [0, 6, 12, 18], ic7800: [0, 6, 12, 18], ic7700: [0, 6, 12, 18], ic756: [0, 6, 12, 18], ic9700: [0, 10], ic905: [0, 10] };
+  function caps(id) {
+    id = id == null ? S.radio : id; const r = RADIO[id] || { proto: S.proto, model: S.model };
+    const L = LINK(), pr = L === 'rigctld' ? 'hamlib' : L === 'flrig' ? 'flrig' : L === 'fake' ? 'fake' : r.proto;
+    let out = [], agc = [], att = [], pre = [];
+    if (pr === 'fake' || pr === 'hamlib') { out = ALLK.slice(); agc = ['off', 'fast', 'mid', 'slow', 'auto']; att = [0, 6, 12, 18]; pre = [0, 1, 2]; }
+    else if (pr === 'yaesu' || pr === 'yaesu8') {
+      out = ALLK.filter(k => !(DX10[id] && (k === 'rit' || k === 'xit')));
+      agc = ['off', 'fast', 'mid', 'slow', 'auto']; att = DX10[id] ? [0, 6, 12, 18] : [0, 12]; pre = (id === 'ft891' || id === 'ft450') ? [0, 1] : [0, 1, 2];
+    } else if (pr === 'icom') {
+      if (r.model === 'xiegu') { out = ['split', 'swap', 'ab', 'att', 'pre']; att = [0, 20]; pre = [0, 1]; }
+      else {
+        const old = !ICOM_NEW[id] && id !== 'ic7100';
+        const mn = ICOM_NEW[id] || /^ic(7100|7600|7700|7800|7410|756)$/.test(id);
+        out = ALLK.filter(k => k !== 'contour' && !(old && ['rit', 'xit', 'ritoff', 'apf'].includes(k)) && !(id === 'ic718' && k === 'shift') && !(!mn && (k === 'mnotch' || k === 'mnotchf')));
+        agc = ICOM_NEW[id] ? ['off', 'fast', 'mid', 'slow'] : ['fast', 'mid', 'slow']; att = ICOM_ATT[id] || [0, 20]; pre = ICOM_PRE2[id] ? [0, 1, 2] : [0, 1];
+      }
+    } else if (pr === 'kenwood') {
+      if (r.model === 'elecraft') { out = ['agc', 'att', 'pre', 'apf', 'split', 'rit', 'xit', 'ritoff', 'keyspd']; agc = ['fast', 'slow']; att = [0, 10]; pre = [0, 1]; }
+      else if (id === 'ts590') { out = ['nrl', 'nbl', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd']; att = [0, 12]; pre = [0, 1]; }
+      else if (id === 'ts890' || id === 'ts990') { out = ['agc', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd']; agc = ['off', 'slow', 'mid', 'fast']; att = [0, 6, 12, 18]; pre = [0, 1]; }
+      else if (/^ts(480|2000|570)$/.test(id)) { out = ['att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'keyspd']; att = [0, 12]; pre = [0, 1]; }
+      else if (id === 'flex') { out = ['split', 'rit', 'xit', 'ritoff', 'keyspd']; }
+      else if (/^(qmx|qdx|qcx|trusdx|tx500|discovery)$/.test(id)) { out = ['split', 'keyspd']; }
+    }
+    return { keys: out, agc, att, pre, tested: TESTED[id] || null, id, proto: pr };
+  }
+  /* radios tried on the air with these controls (Brandon's 'works on my radio' reports go in here: id → { by, date, ok: [...], bad: [...] }) */
+  const TESTED = {};
+  function cmdText(name, value) { const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}; if (!E[name]) return null; const c = E[name](value, lastMode); if (!c) return null;
+    return c.map(b => S.proto === 'icom' && LINK() !== 'rigctld' ? [...b].map(x => x.toString(16).toUpperCase().padStart(2, '0')).join(' ') : new TextDecoder().decode(b)).join(' | '); }
   const FLX = { power: p => FLRIG.call('rig.set_power', [Math.max(5, Math.min(100, Math.round(p)))]), mic: v => FLRIG.call('rig.set_micgain', [Math.max(0, Math.min(100, Math.round(v)))]), notch: on => FLRIG.call('rig.set_notch', [on ? 1 : 0]) };
   /* ---- METERS + RADIO POWER (Brandon Oct 24: 'always show ALC, with power up and down; radio power on and off' on the remote) ----
      meters() -> { alc: 0-100, po: 0-100 (of the meter scale), swr: 0-100, pwr: set power % } or null when this radio family cannot say.
@@ -381,7 +487,7 @@
       const L = LINK();
       if (L === 'fake') { if (!FAKE.on) return null; const tx = !!(window.KPCApp && KPCApp.txing && KPCApp.txing()); return { s: tx ? null : Math.round(-18 + Math.random() * 30), alc: tx ? 30 + Math.round(Math.random() * 20) : 0, po: tx ? 70 + Math.round(Math.random() * 10) : 0, swr: tx ? 12 : 0, comp: tx ? 20 : 0, idd: tx ? 55 : 8, vdd: 54, pwr: FAKE.pwr || 100 }; }
       if (L === 'flrig') { if (!flrigOn) return null; try { const pw = await FLRIG.call('rig.get_power', []); let sm = null; try { sm = sdb(+(await FLRIG.call('rig.get_smeter', [])) * 2.55, 120, 241); } catch (e) {} return { s: sm, alc: null, po: null, swr: null, pwr: +pw || null }; } catch (e) { return null; } }
-      if (!port || !writer) return null;
+      if (!port || !writer || connecting) return null;   /* Nov 6 (Opus, found by the scope tests): a meter read DURING CONNECT's probe emptied rbuf under it → 'the radio does not answer there' */
       const pr = L === 'rigctld' ? 'hamlib' : S.proto;
       try {
         if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf); const g = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? M255(+m[1]) : null; }, pc = /PC(\d{3});/.exec(t);   /* Oct 25: the FT-710 / FTDX10 answer 'RM4120000;' (value + three fixed zeros): the old 3-digit match never fitted, so the bars stayed empty */ const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }; return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pc ? +pc[1] : null }; }
@@ -389,6 +495,25 @@
         if (pr === 'hamlib') { rbuf = []; await write(asc('\\get_level ALC\n\\get_level SWR\n\\get_level RFPOWER\n\\get_level STRENGTH\n')); await sleep(340); const t = String.fromCharCode(...rbuf).split(/\s+/).map(Number).filter(x => isFinite(x)); return { s: t[3] != null ? Math.round(t[3]) : null, alc: t[0] != null ? Math.round(Math.min(100, t[0] * 100)) : null, po: null, swr: t[1] != null ? Math.round(Math.min(100, (t[1] - 1) * 50)) : null, pwr: t[2] != null ? Math.round(t[2] * 100) : null }; }
         if (pr === 'icom') { const one = async sub2 => { rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(); const i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i); const hi = d[d.length - 2], lo = d[d.length - 1]; const v = (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); return M255(v); }; const sRaw = async () => { rbuf = []; await write(icom([0x15, 0x02])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
           return { s: sdb(await sRaw(), 120, 241), alc: await one(0x13), po: await one(0x11), swr: await one(0x12), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
+      } catch (e) { return null; }
+      return null;
+    }).catch(() => null);
+    return busy;
+  }
+  /* Nov 1 (Brandon: 'cw decoder broken … loud and not decoding'): with the radio IN CW mode the station sounds at the RADIO's
+     CW pitch, so the decoder must listen there. cwPitch() → Hz or null. Yaesu KP (00-75 = 300-1050 Hz in 10s: FT-710 / 991A /
+     DX10 / DX101 / 891), Icom 0x14 0x09 (0-255 = 300-900 Hz), Hamlib CWPITCH, the pretend radio 600. */
+  function cwPitch() {
+    if (!S.on) return Promise.resolve(null);
+    busy = busy.then(async () => {
+      const L = LINK();
+      if (L === 'fake') return FAKE.on ? 600 : null;
+      if (L === 'flrig' || !port || !writer) return null;
+      const pr = L === 'rigctld' ? 'hamlib' : S.proto;
+      try {
+        if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('KP;')); await sleep(200); const m = /KP(\d{2});/.exec(String.fromCharCode(...rbuf)); return m ? 300 + 10 * +m[1] : null; }
+        if (pr === 'icom') { rbuf = []; await write(icom([0x14, 0x09])); await sleep(180); const r = rbuf.slice(); const i = r.lastIndexOf(0xFD); if (i < 6) return null; const hi = r[i - 2], lo = r[i - 1]; const v = (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); return v >= 0 && v <= 255 ? Math.round(300 + 600 * v / 255) : null; }
+        if (pr === 'hamlib') { rbuf = []; await write(asc('\\get_level CWPITCH\n')); await sleep(250); const v = parseFloat(String.fromCharCode(...rbuf)); return v > 200 && v < 1500 ? Math.round(v) : null; }
       } catch (e) { return null; }
       return null;
     }).catch(() => null);
@@ -414,8 +539,8 @@
   }
   function extras() {
     if (LINK() === 'flrig') return Object.keys(FLX);
-    if (LINK() === 'fake') return ['width', 'notch', 'nb', 'nr', 'power', 'mic', 'atu'];
-    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}; return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft') && !(k === 'atu' && (S.model === 'elecraft' || S.model === 'xiegu')));
+    if (LINK() === 'fake') return ['width', 'notch', 'nb', 'nr', 'power', 'mic', 'atu'].concat(ALLK);
+    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}, C = caps(); return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft') && !(k === 'atu' && (S.model === 'elecraft' || S.model === 'xiegu')) && (!ALLK.includes(k) || C.keys.includes(k)));
   }
   let lastMode = '';
   function extra(name, value) {
@@ -446,10 +571,15 @@
   /* ---- CW from the keyboard (Brandon Oct 17: 'cw keyboard to cw') ----
      The radio's own keyer sends the text: Kenwood / Elecraft / QRP Labs 'KY text;', Icom CI-V 0x17. Yaesu radios can't take free text
      over CAT, so for them (or anything else) the page keys the DTR or RTS line itself (Digirig etc.: DTR = key). */
+  /* Oct 27 (Fable, from POTACAT's rig table + code, checked against its FT-710 entry): the newer Yaesu (FT-710, FT-991A, FTDX10, FTX-1) DO take
+     typed CW over CAT — `KY0 <text padded to 48>;` (immediate; up to 48 a chunk), speed `KS###;`; the FTDX101 wants KM5 + KYA. Not the
+     8-digit / old ones. 'KY only plays memories' (0.7.1) was wrong for these. */
+  const YKY = { ft710: 1, ft991: 1, ftdx10: 1, ftx1: 1, ft891: 1, ft450: 1, ft2000: 1, ftdx3000: 1, ftdx101: 2 };   /* POTACAT's table: FT-450 / 2000 / DX3000 / 891 too */
   const CWOK = { kenwood: 1, icom: 1 };
-  function cwCan() { return !!CWOK[S.proto]; }
+  const yky = () => (S.proto === 'yaesu' || S.proto === 'yaesu8') && YKY[S.radio] || 0;
+  function cwCan() { return !!CWOK[S.proto] || !!yky(); }
   async function cwSpeed(wpm) { wpm = Math.max(6, Math.min(48, Math.round(wpm)));
-    if (S.proto === 'kenwood') await write(asc('KS' + pad(wpm, 3) + ';'));
+    if (S.proto === 'kenwood' || yky()) await write(asc('KS' + pad(wpm, 3) + ';'));
     if (S.proto === 'icom') { const lv = Math.round((wpm - 6) / 42 * 255), d = pad(lv, 4); await write(icom([0x14, 0x0C, parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)])); } }
   function cw(text, wpm) {
     text = String(text || '').toUpperCase().replace(/[^A-Z0-9 /?.,=+\-]/g, '');
@@ -457,14 +587,16 @@
       if (!await connect(false)) { say('Radio not connected.', false); return false; }
       if (!cwCan()) { say('This radio type can\'t take typed CW over CAT: use the DTR or RTS key line, or audio.', false); return false; }
       try { if (wpm) await cwSpeed(wpm);
-        if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
+        if (yky() === 2) { for (let i = 0; i < text.length; i += 50) { await write(asc('KM5' + text.slice(i, i + 50) + ';')); await write(asc('KYA;')); } }
+        else if (yky()) { for (let i = 0; i < text.length; i += 48) await write(asc('KY0 ' + text.slice(i, i + 48).padEnd(48, ' ') + ';')); }
+        else if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
         else { for (let i = 0; i < text.length; i += 30) await write(icom([0x17, ...asc(text.slice(i, i + 30))])); }
         return true; }
       catch (e) { say('CW did not send: ' + (e.message || e), false); return false; }
     }).catch(() => false);
     return busy;
   }
-  async function cwStop() { try { if (!port || !writer) return; if (S.proto === 'kenwood') await write(asc('RX;'));
+  async function cwStop() { try { if (!port || !writer) return; if (yky()) await write(asc('KY0 ;TX0;')); else if (S.proto === 'kenwood') await write(asc('RX;'));
     if (S.proto === 'icom') await write(icom([0x17, 0xFF])); } catch (e) {} }
   /* ---- THE KEY PORT (Fable, Oct 25; Brandon's FT-710: 'never keys up in DTR or RTS') ----
      A Yaesu with two USB serial ports (FT-710, FT-991A, FTDX10/101) takes CW keying on its SECOND port (Windows: 'Standard COM Port';
@@ -559,7 +691,8 @@
     supported: () => 'serial' in navigator || !!navigator.usb || !!NAT(), connect, disconnect, ports, usePort, pickNew, forget, connected: () => LINK() === 'flrig' ? flrigOn : LINK() === 'fake' ? FAKE.on : !!(port && writer), tune, read, follow, ptt, fake: () => FAKE,
     links: () => [{ id: 'serial', label: 'USB cable (CAT)', ok: 'serial' in navigator || !!navigator.usb || !!NAT() }, { id: 'rigctld', label: 'Hamlib rigctld (TCP)', ok: !!KN() }, { id: 'flrig', label: 'flrig (XML-RPC)', ok: true }].concat(fakeOk() ? [{ id: 'fake', label: '🧪 Pretend radio (no cable)', ok: true }] : []), link: LINK,
     profiles, saveProfile, useProfile, dropProfile, protos: PROTOS,
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, lastDial, tuneLog, meters, power, mode
+    raw(bytes) { busy = busy.then(async () => { if (LINK() !== 'serial' || !port || !writer) return false; try { await write(bytes); return true; } catch (e) { return false; } }).catch(() => false); return busy; },   /* Nov 6: kpc-scope.js turns the Icom scope on / off */
+    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, cwPitch, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, caps, cmdText, TESTED, MOREKEYS: ALLK, lastDial, tuneLog, meters, power, mode, tuneFast, modeLog: () => MLOG.slice()
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */
