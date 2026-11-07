@@ -1,9 +1,81 @@
 {
  "key": "world",
- "count": 12,
+ "count": 18,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
+  {
+   "park": "AU-0853",
+   "area": "AU",
+   "name": "Investigator Marine Park",
+   "pin_km": 23.0,
+   "was_g": null,
+   "held_ids": "358",
+   "held_names": "Investigator Group",
+   "reason": "the nearest part of the joined outline is 23.0 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "AU-1289",
+   "area": "AU",
+   "name": "Jardine River National Park",
+   "pin_km": 36.15,
+   "was_g": null,
+   "held_ids": "8024 | 8024 | 476",
+   "held_names": "Jardine River | Jardine River | Jardine River National Park",
+   "reason": "the nearest part of the joined outline is 36.1 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "AU-2854",
+   "area": "AU",
+   "name": "Jardine River Resources Area",
+   "pin_km": 19.66,
+   "was_g": null,
+   "held_ids": "8024 | 8024 | 476",
+   "held_names": "Jardine River | Jardine River | Jardine River National Park",
+   "reason": "the nearest part of the joined outline is 19.7 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "AU-5170",
+   "area": "AU",
+   "name": "Mitta Mitta River K26 Streamside Reserve",
+   "pin_km": 66.95,
+   "was_g": null,
+   "held_ids": "14220 | 17743 | 14220 | 17743",
+   "held_names": "Mitta Mitta River | Mitta Mitta River | Mitta Mitta River | Mitta Mitta River",
+   "reason": "the nearest part of the joined outline is 67.0 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "AU-5171",
+   "area": "AU",
+   "name": "Mitta Mitta River K27 Streamside Reserve",
+   "pin_km": 55.2,
+   "was_g": null,
+   "held_ids": "14220 | 17743 | 14220 | 17743",
+   "held_names": "Mitta Mitta River | Mitta Mitta River | Mitta Mitta River | Mitta Mitta River",
+   "reason": "the nearest part of the joined outline is 55.2 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "AU-5172",
+   "area": "AU",
+   "name": "Mitta Mitta River K28 Streamside Reserve",
+   "pin_km": 49.94,
+   "was_g": null,
+   "held_ids": "14220 | 17743 | 14220 | 17743",
+   "held_names": "Mitta Mitta River | Mitta Mitta River | Mitta Mitta River | Mitta Mitta River",
+   "reason": "the nearest part of the joined outline is 49.9 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
   {
    "park": "DO-0027",
    "area": "DO",

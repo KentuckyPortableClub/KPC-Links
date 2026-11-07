@@ -52,21 +52,21 @@
    "thin": 60
   },
   "AU": {
-   "areas": 24788,
-   "check": 799,
-   "detail": 0.01,
-   "matched": 7245,
-   "none": 2228,
-   "parks": 10272,
+   "areas": 364904,
+   "check": 1228,
+   "detail": 0.002,
+   "matched": 8161,
+   "none": 1921,
+   "parks": 11310,
    "pin_no_shape": 0,
-   "pin_outside": 1529,
+   "pin_outside": 1558,
    "pin_swap": 0,
-   "pin_well_outside": 18,
+   "pin_well_outside": 24,
    "saved_outlines": 0,
-   "shadow_add": 165,
-   "shadow_demote": 489,
+   "shadow_add": 178,
+   "shadow_demote": 486,
    "shadow_other_place": 2,
-   "thin": 60
+   "thin": 250
   },
   "AX": {
    "areas": 62,
@@ -666,7 +666,7 @@
   "HU": {
    "areas": 1206,
    "check": 102,
-   "detail": 0.01,
+   "detail": 0.002,
    "matched": 23,
    "none": 119,
    "parks": 244,
@@ -678,7 +678,7 @@
    "shadow_add": 3,
    "shadow_demote": 1,
    "shadow_other_place": 1,
-   "thin": 60
+   "thin": 250
   },
   "ID": {
    "areas": 35780,
@@ -1040,7 +1040,7 @@
   "NO": {
    "areas": 6983,
    "check": 58,
-   "detail": 0.002,
+   "detail": 0.01,
    "matched": 3044,
    "none": 235,
    "parks": 3337,
@@ -1052,7 +1052,7 @@
    "shadow_add": 4,
    "shadow_demote": 6,
    "shadow_other_place": 0,
-   "thin": 250
+   "thin": 60
   },
   "NZ": {
    "areas": 23385,
@@ -1412,8 +1412,8 @@
    "thin": 60
   }
  },
- "previous_build": "W-42259043963",
- "previous_built": "2026-11-06 22:10 UTC",
+ "previous_build": "W-42371359104",
+ "previous_built": "2026-11-07 17:12 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1421,20 +1421,18 @@
   ".github/scripts/kpc_world_key.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "1b50faf1dfe8",
+ "rules_of_run": "6a5969a25d2c",
  "inputs": {
-  "us-key": "US-42230313177",
+  "us-key": "US-42421328570",
   "ca-key": "CA-42252274247"
  },
- "build": "W-42371359104",
- "built": "2026-11-07 17:12 UTC",
+ "build": "W-42410527148",
+ "built": "2026-11-07 23:41 UTC",
  "failed": [
-  "AU",
   "AX",
   "CH",
   "CL",
-  "LK",
-  "NO"
+  "LK"
  ],
  "complete": false
 }
