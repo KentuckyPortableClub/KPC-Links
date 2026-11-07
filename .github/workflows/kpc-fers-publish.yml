@@ -6,6 +6,12 @@ name: KPC 2-fer and hours publish (off until GO)
 # preview = the new files are attached to the run as a download (nothing on the site changes); on = the live files are saved.
 # Started by hand only (Actions > this workflow > Run workflow). It reads KPC-Data; it never writes there. No internet look-ups.
 on:
+  # Nov 7 (round 4, item 6; OPTIONAL, inert while the four switches are off): when HQ writes new reviewed spots to kpc-fers-reviewed.json
+  # (a push to main by a person; a bot's GITHUB_TOKEN push starts nothing), the 2-fer layer / GPX / guide PDF follow by themselves, each
+  # by its own switch. The hours part is NOT started by this (it does not read the reviewed list). No cron.
+  push:
+    branches: [main]
+    paths: ['kpc-fers-reviewed.json']
   workflow_dispatch:
     inputs:
       only:
@@ -19,6 +25,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
+    # round 4 review: on a push of the reviewed list the job does not even start while the three 2-fer switches are off (a true no-op)
+    if: ${{ github.event_name != 'push' || (vars.KPC_FERS_LAYER || 'off') != 'off' || (vars.KPC_FERS_GPX || 'off') != 'off' || (vars.KPC_FERS_PDF || 'off') != 'off' }}
     runs-on: ubuntu-latest
     env:
       KPC_FERS_LAYER: ${{ vars.KPC_FERS_LAYER || 'off' }}
@@ -45,6 +53,7 @@ jobs:
           rc=0
           for part in layer pdf gpx hours; do   # pdf before gpx: both read the same hand list
             [ -n "$ONLY" ] && [ "$ONLY" != "$part" ] && continue
+            [ "${{ github.event_name }}" = push ] && [ "$part" = hours ] && continue   # round 4: a reviewed-list push never starts the hours part
             python3 .github/scripts/kpc_fers_publish.py "$part" --data kpc-data || { echo "::error title=$part::refused or stopped (exit $?); its file was not changed"; rc=1; }
           done
           exit $rc
