@@ -248,8 +248,10 @@
     writer = port.writable.getWriter(); readLoop();
     if (!quiet) { remember(); say('Radio connected' + (curName ? ': ' + curName : '') + '.', true); } return true;
   }
+  /* Nov 7 (Opus): TAP = the RF scope's reader (kpc-lounge-radio.js lifts the Icom scope frames out, everything else goes on) */
+  let TAP = null;
   async function readLoop() {
-    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { rbuf.push(...value); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }
+    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { const v = TAP ? TAP(value) : value; if (v.length) rbuf.push(...v); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
   /* ---- AUTO PORT (Oct 26, Brandon: 'the auto port would be great, leave the option to name the port'; copied from the app's 0.6.9 probe).
@@ -435,7 +437,10 @@
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); if (port && o && RF.some(x => x in o)) remember(); },
     setName, portName: () => curName,
     supported: () => 'serial' in navigator || !!navigator.usb, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt, letGo,
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, meters, sdb
+    onStatus(fn) { subs.push(fn); }, kind,
+    /* Nov 7 (Opus, from the KPC app): raw(bytes) = send these bytes in turn with the other commands (true when sent); setTap(fn | null) */
+    raw(bytes) { busy = busy.then(async () => { if (!port || !writer) return false; try { await write(bytes); return true; } catch (e) { return false; } }).catch(() => false); return busy; },
+    setTap(fn) { TAP = typeof fn === 'function' ? fn : null; }, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, meters, sdb
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */

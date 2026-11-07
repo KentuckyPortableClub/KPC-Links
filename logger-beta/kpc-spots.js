@@ -97,9 +97,13 @@
     $('spWatch').onclick = () => { const i = S.watch.indexOf(s.call); if (i < 0) S.watch.push(s.call); else S.watch.splice(i, 1); save(); AP.shut(); draw(); };
   }
   async function tune(s) {
+    AP.fire('spot-tune', s);   /* Nov 6: kpc-rotor.js turns the beam to it */
     /* on the link to the home PC (and no radio here): the PC's radio goes to the spot (Brandon Oct 22: 'click spots would be nice if you are remote') */
     if (G.KPCRemote && KPCRemote.link().paired && !AP.catConnected()) { if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid }); KPCRemote.spot(s); return; }
     const digi = /^FT[48]$/.test(s.mode) && G.KPCModes && KPCModes.get(s.mode);
+    /* Nov 1 (Brandon: 'clicking on the spot list … cw should see that and it took me to ft8 page'): a CW / RTTY / PSK31 spot opens THAT mode's screen */
+    const m5 = String(s.mode || '').toUpperCase().replace(/^PSK$/, 'PSK31'), d5 = /^(CW|RTTY|PSK31)$/.test(m5) && AP.catConnected() && G.KPCModes5 && KPCModes5.tuneSpot && G.KPCModes && KPCModes.get(m5);   /* no radio connected = log it by hand on the LOG screen, as before */
+    if (d5) { KPCModes.use(m5); AP.go('digi'); KPCModes5.tuneSpot(s); if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid, st: s.st }); return; }
     if (digi) { KPCModes.use(s.mode); const b = bandOf(s.khz); if (b) KPCModes.active().setBand(b); }
     else if (AP.catConnected()) { const ok = await KPCCat.tune(s.khz, s.mode || ''); if (!ok) AP.toast('The radio did not take ' + mhz(s.khz) + '. Set it by hand.', 4000, 'bad'); }
     else AP.toast('📻 Set the radio to ' + mhz(s.khz) + ' MHz ' + esc(s.mode || '') + ' (connect it in STATION → Radio control to have the app do it).', 5000);
@@ -194,5 +198,21 @@
   });
   AP.on('screen', s => { if (s === 'spots') draw(); });
   draw(); filtDraw();
-  G.KPCSpots = { S, save, source, feed, all: () => SP.slice(), shown, open, tune, sources: () => SRC, draw };
+  /* Oct 27 (Fable; from POTACAT's spots-on-the-panadapter idea, Brandon: 'borrow #2'): a SPOTS-ON-THIS-BAND strip for the RADIO tab and the
+     mode screens — the shown spots on one band (and, where asked, one mode group), newest first, as chips: tap = the screen's own tune.
+     KPCSpots.strip(host, { band, modes: /CW/ | null, max, tap(s) }) → redraw with strip.update(); bandCounts() = {band: n} for badges. */
+  function strip(host, o) {
+    if (!host) return null; o = o || {}; const st = { host, o };
+    st.update = (p) => { if (p) Object.assign(o, p); const band = typeof o.band === 'function' ? o.band() : o.band; if (!band) { host.hidden = true; return; }
+      const L = shown().filter(s => s.band === band && (!o.modes || o.modes.test(String(s.mode || '')))).slice(0, o.max || 14);
+      host.hidden = !L.length; if (!L.length) { host.innerHTML = ''; return; }
+      host.innerHTML = `<span class="kv"><i>ON ${esc(band)}</i><b>${L.length}</b></span>` + L.map(s => { const np = newPk(s), wk = G.KPCLog && KPCLog.worked(s.call); return `<button type="button" class="chip spc${np ? ' np' : ''}${wk ? ' wk' : ''}" data-spc="${s.id}" title="${esc([s.refs.join('+'), s.comment, age(s.t) + ' ago by ' + (s.spotter || s.src.join('+'))].filter(Boolean).join(' · '))}"><b>${esc(s.call)}</b> ${mhz(s.khz)} <i>${esc(s.mode || '')}</i>${s.refs.length ? ' <em>' + (np ? '★' : '🌲') + '</em>' : ''}${wk ? ' ✓' : ''}</button>`; }).join(''); };
+    host.addEventListener('click', e => { const b = e.target.closest('[data-spc]'); if (!b) return; const s = SP.find(x => x.id === +b.dataset.spc); if (!s) return; if (o.tap) o.tap(s); else tune(s); });
+    STRIPS.push(st); st.update(); return st;
+  }
+  const STRIPS = [];
+  const bandCounts = () => { const c = {}; shown().forEach(s => { if (s.band) c[s.band] = (c[s.band] || 0) + 1; }); return c; };
+  const redrawStrips = () => STRIPS.forEach(s => { try { s.update(); } catch (e) {} });
+  AP.on('spots', redrawStrips); AP.on('log', redrawStrips); setInterval(redrawStrips, 60000);
+  G.KPCSpots = { S, save, source, feed, all: () => SP.slice(), shown, open, tune, sources: () => SRC, draw, strip, bandCounts, redrawStrips };
 })(window);

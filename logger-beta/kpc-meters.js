@@ -41,7 +41,7 @@
     if (!S.open) { const sum = m ? keys.map(k => (k === 's' ? '' : DEF[k].label.replace('PWR OUT', 'PO') + ' ') + DEF[k].txt(m[k])).join(' · ') : 'waiting for the radio…';
       if (w.sig !== 'closed') { w.sig = 'closed'; w.el.innerHTML = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Show the meters">▸</button><b>📟</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<span class="kms mono"></span></div>`; }
       const e = w.el.querySelector('.kms'); if (e) e.textContent = (tx ? '📡 ' : '') + sum; return; }
-    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<button type="button" class="chip sm" data-kmst>${S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
+    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<button type="button" class="chip sm" data-kmst>${S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙ METERS</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
     const sig = keys.join(',') + '|' + S.style + '|' + !!(w.opts.tune && w.opts.tune.ok());
     if (w.sig !== sig) { w.sig = sig; w.el.innerHTML = head + (S.style === 'analog' ? `<div class="kmg">${keys.map(k => `<div class="kgw"><canvas data-km="${k}" width="200" height="118" aria-label="${esc(DEF[k].label)} meter"></canvas></div>`).join('')}</div>`
       : `<div class="kmd">${keys.map(k => `<div class="mrow"><span>${esc(DEF[k].label)}</span><div class="mt"><div class="mb" data-kb="${k}"></div></div><b data-kt="${k}">—</b></div>`).join('')}</div>`); w.cv = {}; }
@@ -101,13 +101,13 @@
   const host = (id, before) => { const s = $(id); if (!s || $(id + 'Met')) return null; s.insertAdjacentHTML(before ? 'afterbegin' : 'afterbegin', `<div class="kmbar" id="${id}Met" hidden></div>`); return $(id + 'Met'); };
   /* 🔧 TUNE = the radio's own antenna tuner over CAT (it transmits a carrier for a few seconds; never while the app is transmitting) */
   const ATU = { ok: () => !!(G.KPCCat && KPCCat.connected() && KPCCat.extras && KPCCat.extras().includes('atu')),
-    go: async () => { if (AP.txing()) { AP.toast('Transmitting now: tune after.', 2500, 'bad'); return; } const ok = await KPCCat.extra('atu', 1); AP.toast(ok ? '🔧 The radio\'s tuner is tuning: watch the SWR.' : 'The radio did not take the tune command (does it have a built-in tuner turned on?).', 4000, ok ? 'log' : 'bad'); } };
+    go: async () => { if (AP.txing()) { AP.toast('Transmitting now: tune after.', 2500, 'bad'); return; } if (G.KPCRigX) { KPCRigX.tuneAsk(); return; } const ok = await KPCCat.extra('atu', 1); AP.toast(ok ? '🔧 The radio\'s tuner is tuning: watch the SWR.' : 'The radio did not take the tune command (does it have a built-in tuner turned on?).', 4000, ok ? 'log' : 'bad'); } };
   const B1 = mount(host('scrLog'), { tune: ATU }), B2 = mount(host('scrDigi'), { tune: ATU });
   let busy = false, tPoll = 0;
   async function poll() {
     const on = AP.catConnected() && !(G.KPCRemote && KPCRemote.link && KPCRemote.link().on);
     [B1, B2].forEach(b => { if (b) b.el.hidden = !on; });
-    if (!on || busy || document.hidden || !/^(log|digi)$/.test(document.body.dataset.screen || '')) return;
+    if (!on || busy || document.hidden || !/^(log|digi|radio)$/.test(document.body.dataset.screen || '')) return;
     if (G.KPCRemote && KPCRemote.clients && KPCRemote.clients().length) return;   /* a phone is on: the remote link reads them already (feed) */
     const tx = AP.txing(); if (tx && AP.native) return;   /* Android: no CAT while transmitting (the USB port must be let go, Fable's rule) */
     if (Date.now() - tPoll < (tx ? 700 : 1000)) return; tPoll = Date.now();

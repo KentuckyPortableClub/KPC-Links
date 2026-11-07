@@ -69,11 +69,11 @@
      (1) 'radio is not on this mode's dial' bar: a spot tune (or the knob) can leave the radio on 7.1915 LSB while WSPR waits on 14.0956
          ('not hearing wspr'); FT8 / FT4 / WSPR need the exact dial, the other modes the same band. One tap = TUNE IT.
      (2) ❓ a help sheet per mode (Brandon: 'a help ? here and there for rtty, hell, sstv …').
-     (3) 🎤 HOLD TO TALK on every digital screen (PC: the microphone picked in the voice keyer goes to the radio through the TX LEVEL,
+     (3) [Nov 1, Brandon: 'the hold to talk button is still on digi modes': the chip is gone from the digital screens; it lives on the RADIO tab] 🎤 HOLD TO TALK on every digital screen (PC: the microphone picked in the voice keyer goes to the radio through the TX LEVEL,
          PTT while held, the talk limit lets go); only where the band plan allows voice (never on 14.074). */
   const strip0 = $('modeStrip');
   if (strip0 && !$('dgHelp')) {
-    $('dgSet').insertAdjacentHTML('afterend', '<button type="button" class="chip" id="dgHelp" title="How this mode works and how to set the radio">❓ HELP</button><button type="button" class="chip ptt5" id="dgTalk" title="Hold to talk: PTT + your microphone while held (only where voice is allowed)">🎤 HOLD TO TALK</button>');
+    $('dgSet').insertAdjacentHTML('afterend', '<button type="button" class="chip" id="dgHelp" title="How this mode works and how to set the radio">❓ HELP</button>');
     strip0.insertAdjacentHTML('afterend', '<div class="st dialw" id="dialW" hidden role="alert"><span id="dialWT"></span><button type="button" class="b gold sm" id="dialWGo">📻 TUNE IT</button></div>');
   }
   let DIAL = null;
@@ -118,7 +118,7 @@
       const mic = (G.KPCVoice && KPCVoice.S && KPCVoice.S.mic) || '';
       const st = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic ? { exact: mic } : undefined, echoCancellation: false, noiseSuppression: true, autoGainControl: true } });
       if (!TALK) { st.getTracks().forEach(t => t.stop()); return; }
-      TALK.st = st; TALK.p = AP.audio.pipe(st, AP.S.voice || 'natural'); if (!TALK.p) throw new Error('the sound is not running');
+      TALK.st = st; TALK.p = AP.audio.pipe(st, AP.S.voice || 'natural'); if (!TALK.p) throw new Error('the sound is not running'); if (TALK.p.level) TALK.p.level(+AP.S.vdb || 0);
       await AP.pttOn(true, { voice: true }); if (!TALK) { await AP.pttOn(false, { voice: true }); return; } TALK.p.gate(true);
       TALK.lim = setTimeout(() => { talkUp(); AP.toast('🎤 Talk limit reached: PTT let go.', 3000); }, Math.max(30, +AP.S.rmTalk || 180) * 1000);
     } catch (e) { AP.toast('🎤 The microphone did not open: ' + AP.esc(e.message || e) + '. Pick it in the voice keyer (🎙 → RECORD / EDIT → RECORD WITH).', 6000, 'bad'); talkUp(); }

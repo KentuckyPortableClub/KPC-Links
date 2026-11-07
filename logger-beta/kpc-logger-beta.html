@@ -7,8 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <title>KPC Logger (beta) | KPC</title>
-<link rel="stylesheet" href="app.css?v=20261027b">
-<link rel="stylesheet" href="kpc-web.css?v=202610272001">
+<link rel="stylesheet" href="app.css?v=20261106c">
+<link rel="stylesheet" href="kpc-web.css?v=202611071553">
+<script src="kpc-flavor.js?v=20261028b"></script>
+<script>try{if((window.KPC_FLAVOR&&KPC_FLAVOR.lite)||/[?&]lite=1/.test(location.search))document.documentElement.dataset.lite='1';}catch(e){}</script>
 <script>try{var t=localStorage.getItem('kpcTheme');if(t)document.documentElement.dataset.theme=t;document.documentElement.dataset.style=localStorage.getItem('kpcStyle')||'lodge';}catch(e){document.documentElement.dataset.style='lodge'}</script>
 </head>
 <body data-screen="log">
@@ -89,6 +91,7 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
       <b class="mono dial" id="dgDial">14.074</b>
       <span class="slot"><i id="dgSlotBar"></i><span id="dgSlotT">slot</span></span>
     </div>
+    <div class="chips spstrip" id="dgSpots" hidden aria-label="FT8 / FT4 parks spotted on this band"></div>
     <div class="st bad tunew" id="dgTuneW" hidden role="alert"></div>
 
     <div class="wfw">
@@ -110,6 +113,13 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
       <button type="button" class="b" id="dgTune">TUNE</button>
       <button type="button" class="b cq" id="dgCq">📣 CQ</button>
     </div>
+    <!-- Oct 30 (Brandon: 'auto ft4-8 option … with longer cq') -->
+    <div class="btns autob">
+      <button type="button" class="b" id="dgRun" title="Activating: CQ, answer each caller, log, CQ again, by itself">🔁 AUTO RUN</button>
+      <button type="button" class="b" id="dgHunt" title="Hunting: call the parks it hears that you have not worked today, by itself">🎯 AUTO HUNT</button>
+      <button type="button" class="b" id="dgBoth" title="Both: call CQ, and when a park you have not worked shows up, work it, then CQ again">🔀 AUTO BOTH</button>
+    </div>
+    <div class="st" id="dgAutoSt" hidden></div>
 
     <div class="dxrow">
       <label class="e">DX CALL<input id="dgDx" autocapitalize="characters" spellcheck="false"></label>
@@ -180,13 +190,14 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
 </section>
 
 <!-- ========================= REMOTE (the phone, when on the link to the home PC) ========================= -->
-<section class="scr" id="scrRemote" aria-label="Remote: the home PC's radio from this phone">
+<section class="scr" id="scrRemote" data-lite="off" aria-label="Remote: the home PC's radio from this phone">
   <div class="strip">
     <span class="kv"><i>STATION</i><b id="rmSt">—</b></span>
     <span class="kv"><i>LINK</i><b id="rmMs">—</b></span>
     <span class="state" id="rmState">OFF</span>
   </div>
   <div class="st" id="rmCat">Radio not connected on the PC</div>
+  <button type="button" class="b rmpcs" id="rmPcs">⚙ PC SETTINGS (change the home PC from here)</button>
   <div class="rmvol"><span class="l">🔊 VOLUME</span><input type="range" id="rmVol" min="0.2" max="10" step="0.1" value="2" aria-label="How loud the radio is here"><b id="rmVolT">200%</b></div>
   <div class="vfo">
     <button type="button" class="ic" id="rmDown" aria-label="Down one step">−</button>
@@ -293,6 +304,7 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
       <button type="button" class="b catx" id="stProfSave">💾 SAVE AS A PROFILE</button>
       <button type="button" class="b catx" id="stPortName" title="Give this port a radio's name (FT-710 shack, IC-705 field…)">✏️ NAME THIS PORT</button>
       <button type="button" class="b catmore" id="stCatMore">⚙ MORE RADIO SETTINGS</button>
+      <button type="button" class="b" id="stRigTips">📖 WHAT TO SET ON THE RADIO</button>
     </div>
     <div class="st" id="stCatT">Not connected.</div>
     <p class="hint catx">Profiles keep one radio's whole setup (type, speed, port, how it is keyed) under a name: home rig, field rig. Hamlib's rigctld and flrig are programs on the PC that know 300+ radios; pick one of them here when the radio is not in MY RADIO (rigctld needs the Windows app).</p>
@@ -324,20 +336,22 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
       <button type="button" class="b" id="stClear">🗑 CLEAR THE LOG</button>
       <button type="button" class="b" id="stCols">🧩 COLUMNS &amp; ADIF</button>
       <button type="button" class="b" id="stLook">📖 CALL LOOK-UP</button>
+      <button type="button" class="b" id="stPotaS">📊 MY POTA STATS</button>
+      <button type="button" class="b" id="stRespot">📣 AUTO RE-SPOT: ON</button>
       <button type="button" class="b" id="stPota">📄 MY POTA FILES</button>
     </div>
     <div class="row">
       <button type="button" class="b" id="stKpcSave">💾 SAVE KPC LOG FILE</button>
       <button type="button" class="b" id="stKpcAdd">📂 ADD A LOG FILE</button>
-      <button type="button" class="b" id="stUp">☁ UPLOADS</button>
+      <button type="button" class="b" id="stUp" data-lite="off">☁ UPLOADS</button>
       <input type="file" id="stKpcFile" accept=".kpclog,.adi,.adif,.json,.txt,application/json,text/plain" hidden>
     </div>
-    <div class="st" id="stUpT">No uploads turned on.</div>
+    <div class="st" id="stUpT" data-lite="off">No uploads turned on.</div>
     <p class="hint">ADIF is the file POTA, WWFF, SOTA, LoTW and QRZ all take (a 2-fer on your side = one file per park). UPLOADS sends each contact to QRZ, eQSL or Wavelog by itself when there is signal. The KPC log file carries every contact for every operator: save it here, ADD it on your other phone or PC, and the two logs merge with no doubles. The log also stays in the app until you clear it.</p>
     <textarea id="stAdifT" class="adif" readonly hidden aria-label="Your log as ADIF"></textarea>
   </section>
 
-  <section class="card" data-grp="parks offline pack download state outline am i in the park next park gps directions">
+  <section class="card" data-lite="off" data-grp="parks offline pack download state outline am i in the park next park gps directions">
     <h2>Parks on this device</h2>
     <div class="row">
       <label class="e small">STATE<select id="pkState"></select></label>
@@ -353,7 +367,7 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
     <p class="hint">Download a state once while you have signal; the parks stay on this device. Kentucky comes with every park's outline (official, or marked approximate); other states come with pins for now. AM I IN THE PARK works from GPS with no signal.</p>
   </section>
 
-  <section class="card" data-grp="remote link phone pc tailscale pair code wifi base station control operator">
+  <section class="card" data-lite="off" data-grp="remote link phone pc tailscale pair code wifi base station control operator">
     <h2>Remote</h2>
     <div id="rmBase"></div>
     <div id="rmLink"></div>
@@ -405,33 +419,35 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
   <button type="button" data-go="log" class="on"><i>📋</i><span>LOG</span></button>
   <button type="button" data-go="digi"><i>📶</i><span>DIGI</span></button>
   <button type="button" data-go="spots"><i>📍</i><span>SPOTS</span></button>
-  <button type="button" data-go="remote" hidden><i>📡</i><span>REMOTE</span></button>
+  <button type="button" data-go="remote" hidden data-lite="off"><i>📡</i><span>REMOTE</span></button>
   <button type="button" data-go="station"><i>⚙</i><span>STATION</span></button>
 </nav>
 
 <div class="sheet" id="sheet" hidden><div class="sbox" role="dialog" aria-modal="true" aria-label="Settings"><div class="shead"><b id="sheetT">Settings</b><button type="button" class="ic sm" id="sheetX" aria-label="Done">✓ DONE</button></div><div class="sbody" id="sheetB"></div></div></div>
 <div class="toast" id="toast" hidden></div>
 
-<script src="capacitor.js"></script>
-<script src="kpc-native.js?v=20261027b"></script>
-<script src="kpc-ft8-wasm.js?v=20261027b"></script><script src="kpc-ft8.js?v=20261027b"></script>
-<script src="kpc-cat.js?v=20261027b"></script>
-<script src="kpc-fake.js?v=20261027b"></script>
-<script src="kpc-app.js?v=20261027b"></script>
-<script src="kpc-log.js?v=20261027b"></script><script src="kpc-voice.js?v=20261027b"></script>
-<script src="kpc-mode.js?v=20261027b"></script>
-<script src="kpc-digi.js?v=20261027b"></script>
-<script src="kpc-ax25.js?v=20261027b"></script>
-<script src="kpc-aprs.js?v=20261027b"></script><script src="kpc-dsp.js?v=20261027b"></script><script src="kpc-modes5.js?v=20261027b"></script>
-<script src="kpc-cont.js?v=20261027b"></script><script src="kpc-spots.js?v=20261027b"></script>
-<script src="kpc-sources.js?v=20261027b"></script>
-<script src="kpc-uploads.js?v=20261027b"></script>
-<script src="kpc-map.js?v=20261027b"></script><script src="kpc-prop.js?v=20261027b"></script>
-<script src="kpc-parks.js?v=20261027b"></script>
-<script src="kpc-alerts.js?v=20261027b"></script>
-<script src="kpc-meters.js?v=20261027b"></script>
-<script src="kpc-spotme.js?v=20261027b"></script>
-<script src="kpc-qsomap.js?v=20261027b"></script>
-<script src="kpc-web.js?v=202610272001"></script>
+<script src="kpc-nr.js?v=20261106a"></script><script src="kpc-native.js?v=20261106a"></script>
+<script src="kpc-ft8-wasm.js?v=20261028b"></script><script src="kpc-ft8.js?v=20261028b"></script>
+<script src="kpc-cat.js?v=20261106b"></script>
+<script src="kpc-fake.js?v=20261028b"></script>
+<script src="kpc-app.js?v=20261106b"></script>
+<script src="kpc-log.js?v=20261105a"></script><script src="kpc-voice.js?v=20261028b"></script>
+<script src="kpc-mode.js?v=20261028b"></script>
+<script src="kpc-digi.js?v=20261101a"></script>
+<script>/* KPC Lite (kpc-flavor.js) leaves these out: APRS and the step-5 modes; uploads, park packs and the remote link below. */
+if(!document.documentElement.dataset.lite)document.write('<script src="kpc-ax25.js?v=20261028b"><\/script><script src="kpc-aprs.js?v=20261028b"><\/script><script src="kpc-dsp.js?v=20261028b"><\/script><script src="kpc-modes5.js?v=20261028b"><\/script>');</script>
+<script src="kpc-cont.js?v=20261028b"></script><script src="kpc-spots.js?v=20261106a"></script>
+<script src="kpc-sources.js?v=20261028b"></script>
+<script>if(!document.documentElement.dataset.lite)document.write('<script src="kpc-uploads.js?v=20261028b"><\/script>');</script>
+<script src="kpc-map.js?v=20261028b"></script><script src="kpc-prop.js?v=20261028b"></script>
+<script>if(!document.documentElement.dataset.lite)document.write('<script src="kpc-parks.js?v=20261028b"><\/script>');</script>
+<script src="kpc-alerts.js?v=20261028b"></script>
+<script src="kpc-meters.js?v=20261106b"></script>
+<script src="kpc-spotme.js?v=20261101a"></script>
+<script src="kpc-pota.js?v=20261101a"></script>
+<script src="kpc-radio.js?v=20261106b"></script>
+<script src="kpc-qsomap.js?v=20261028b"></script>
+<script src="kpc-contest.js?v=20261106b"></script><script src="kpc-skim.js?v=20261106b"></script><script src="kpc-scope.js?v=20261106a"></script><script src="kpc-rotor.js?v=20261106a"></script><script src="kpc-rigx.js?v=20261106c"></script><script src="kpc-help.js?v=20261106b"></script>
+<script src="kpc-web.js?v=202611071553"></script>
 </body>
 </html>

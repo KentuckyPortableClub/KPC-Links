@@ -153,8 +153,8 @@
     Object.keys(OPS).forEach(k => { by[k] = by[k] || []; });
     return Object.entries(by).map(([k, L]) => { const m = opMeta(k); return { id: k, m, n: L.length, t0: m.t0 || (L[0] && L[0].t) || 0, t1: L.length ? L[L.length - 1].t : (m.t0 || 0), parks: [...new Set(L.flatMap(q => q.myrefs || []).concat((m.stops || []).flatMap(x => x.refs || [])))] }; }).sort((a, b) => b.t1 - a.t1);
   }
-  function opNew(kind, name, refs) {
-    const id = 'o' + Date.now().toString(36) + rnd(3), t = Date.now(), me = AP.me();
+  function opNew(kind, name, refs, fixedId) {   /* Nov 5: fixedId = the same log on every device (a contest: 'cx-arrl-fd-2026') */
+    const id = fixedId || ('o' + Date.now().toString(36) + rnd(3)), t = Date.now(), me = AP.me();
     refs = refs || (kind === 'act' ? myRefs() : []);
     OPS[id] = { id, kind, name: name || (kind === 'hunt' ? '🎯 Hunting ' + dayOf(t) : kind === 'event' ? '🎪 Event ' + dayOf(t) : '🌲 ' + (refs.join(' + ') || 'Activation') + ' · ' + dayOf(t)), t0: t, stops: kind === 'act' ? [{ t, refs, grid: me.grid || '' }] : [], notes: [] };
     if (kind === 'hunt' || kind === 'act') { AP.S.role = kind; AP.save(); const r = $('stRole'); if (r) r.value = kind; }
@@ -554,6 +554,8 @@
     PF[kind] = { refs: [...refs], t: Date.now(), file: name || '' }; pfSave(); PFH = pfSet('h'); PFA = pfSet('a'); AP.fire('potafile', kind);
     return { ok: true, kind, n: refs.size };
   }
+  /* Oct 30: the POTA sign-in (kpc-pota.js) hands over the same two lists straight from pota.app */
+  function potaSet(kind, refs, label) { if (!refs || !refs.length) return; PF[kind] = { refs: [...new Set(refs)], t: Date.now(), file: label || 'pota.app' }; pfSave(); PFH = pfSet('h'); PFA = pfSet('a'); LH = LA = null; AP.fire('potafile', kind); }
   /* a park counts as hunted / activated when the POTA file says so OR a contact in this log does */
   let LH = null, LA = null;   /* parks in this log, rebuilt after any change */
   AP.on('log', () => { LH = LA = null; });
@@ -637,6 +639,7 @@
       name: o.name || '', note: o.note || '',
       mc: String(o.mc || me.cnty || ''), cn: String(o.cn || '')   /* Oct 24: counties, ADIF style 'KY,Hopkins' */
     };
+    if (o.cx && typeof o.cx === 'object') q.cx = o.cx;   /* Nov 5: a contest contact's exchange {k, c, s, r, g} (kpc-contest.js) */
     if (q.ctl === q.op) q.ctl = '';
     ALL.set(q.id, q); persist([q]); view(); draw(); AP.fire('log', { why: 'add', recs: [q] });
     const el = $('lgList').firstElementChild; if (el) el.classList.add('new');
@@ -656,7 +659,7 @@
     for (const call of calls) {
       const lh = calls.length === 1 && LKHIT && LKHIT.call === base(call) ? LKHIT : null;
       const t = D.hold && !isFT(D.mode) ? D.hold : 0;
-      r = add({ call, t, khz: D.khz, mode: D.mode, rs: $('eRs').value.trim() || rstDef(D.mode), rr: $('eRr').value.trim() || rstDef(D.mode), st: calls.length === 1 ? (st || (lh && /^[A-Z]{2}$/.test(lh.st) ? lh.st : '')) : '', refs: MORE.refs, g: calls.length === 1 ? (MORE.g || (lh ? lh.g : '')) : '', name: calls.length === 1 ? (MORE.name || (lh ? lh.name : '')) : '', note: MORE.note });
+      r = add({ call, t, khz: D.khz, mode: D.mode, rs: $('eRs').value.trim() || rstDef(D.mode), rr: $('eRr').value.trim() || rstDef(D.mode), st: calls.length === 1 ? (st || (lh && /^[A-Z]{2}$/.test(lh.st) ? lh.st : '')) : '', refs: MORE.refs, g: calls.length === 1 ? (MORE.g || (lh ? lh.g : '')) : '', name: calls.length === 1 ? (MORE.name || (lh ? lh.name : '')) : '', note: MORE.note, cx: G.KPCContest ? KPCContest.entryCx() : null });
       if (!r.ok) { AP.toast('Not logged: ' + esc(r.msg) + (calls.length > 1 ? ' (' + esc(call) + ')' : ''), 4000, 'bad'); return; }
       n++; if (D.hold) { D.hold += 60000; saveD(); }
     }
@@ -705,6 +708,7 @@
           (LO.ad.app ? f('APP_KPC_REFS', refs.join(',')) + f('APP_KPC_ID', q.id) : '') +
           (LO.ad.pwr ? f('TX_PWR', String(q.pw || '').replace(/[^0-9.]/g, '')) : '') + (LO.ad.rig ? f('MY_RIG', q.rig) + f('MY_ANTENNA', q.ant) : '') +
           (LO.ad.cnty ? f('MY_CNTY', q.mc) + f('MY_STATE', String(q.mc || '').split(',')[0].length === 2 ? String(q.mc).split(',')[0] : '') + f('CNTY', q.cn) : '') +
+          (q.cx && G.KPCContest ? KPCContest.adifTags(q) : '') +
           f('COMMENT', [LO.ad.auto ? autoNote(q, my) : '', LO.ad.note ? q.note : '', more.length ? 'also ' + more.join(' ') : ''].filter(Boolean).join(' · ')) + '<EOR>\n';
       }
     }
@@ -792,7 +796,7 @@
     worked: call => { const b = base(call); return Q.some(q => base(q.call) === b); },
     count: () => Q.length, spots: () => [], newPark: () => false,
     merge, changes, remove, edit, get: id => ALL.get(id), fileText, importText, adifParse, ready: () => ready, dev: DEV, refList,
-    hunted: r => huntedRef(r), activated: r => activatedRef(r), potaFile, potaFiles: () => PF, potaSheet: () => pfSheet(),
+    hunted: r => huntedRef(r), activated: r => activatedRef(r), potaFile, potaSet, potaFiles: () => PF, potaSheet: () => pfSheet(),
     command, ops: () => opList(), opNew, opOpen, opBreak, opNote, cur: () => CUR, shown: () => V, hold: () => D.hold || 0, holdSet, logsCard, editSheet, bands: BANDS, modes: ALLMODES, adMode, bandKhz
   };
 })(window);
