@@ -46,8 +46,15 @@
     unknown: 'manager unknown, check',
     corps: 'Corps land: check with the district'
   };
-  /* A college or university is never excluded: kept and flagged (Brandon, Nov 7 round 3; keeps Moundville). */
-  const UNIVERSITY_RE = /\buniversit(?:y|ies)\b|\bcollege\b/i;
+  /* A college or university is never excluded: kept and flagged (Brandon, Nov 7 round 3; keeps Moundville).
+     Nov 7 round 4: one rule shared with the pile-solver park-type design (same source strings in Python, re.I for WORDS).
+     WORDS (any case): University / Universities / Univ. / the "Univeristy" typo; College(s) unless a street or a town
+     ("College Street", "College Park", "College Station", "Borough of State College"); Board of Regents; Jacksonville State.
+     ABBR (all caps only, whole word): UAB, UA, UNA ... Left out on purpose: USA (the key uses it for the US government),
+     AU ("AU SABLE"), A&M ("Texas A&M Forest Service" is the state forestry agency). "Universal", "Collegeville" never match. */
+  const UNIV_WORDS_RE = /\buniv(?:ersit(?:y|ies)|eristy)?\b|(?<!of state )\bcolleges?\b(?!\s+(?:st|street|ave|avenue|rd|road|blvd|boulevard|dr|drive|ln|lane|way|pl|place|ct|court|park|station|hill|hills|heights|grove|point|corner|township|borough|area)\b)|\bboard of regents\b|\bjacksonville state\b(?!\s+(?:park|forest)\b)/i;
+  const UNIV_ABBR_RE = /\b(?:UAB|UAH|UA|UNA|UWA|AAMU|JSU|SUNY|CUNY|MSU|LSU|UGA|UK|WKU|EKU|NKU|USM)\b/;
+  function isUniversity(s) { s = String(s || ''); return UNIV_WORDS_RE.test(s) || UNIV_ABBR_RE.test(s); }
   /* Corps of Engineers land is kept (many parks are Corps lakes). The flag needs the text itself to say Corps. */
   const CORPS_RE = /\bcorps\b|\busace\b|\barmy\b/i;
   const UNKNOWN_RE = /^\s*(?:unknown|unk)?\s*$/i;
@@ -109,7 +116,7 @@
     const local = !!LOCAL_DES[des];
     const flags = [];
     if (local) flags.push('local');
-    if (UNIVERSITY_RE.test(mgr) || UNIVERSITY_RE.test(owner)) flags.push('university');
+    if (isUniversity(mgr) || isUniversity(owner)) flags.push('university');
     else {
       for (const [id, re, , localOk] of MANAGER_EXCLUDE) {
         if (local && localOk) continue;
@@ -346,6 +353,7 @@
     ok(judgeRow([1, 'X', 'LP', 'Huntsville, City of', 10]).flags.indexOf('local') >= 0, 'LP kept and flagged');
     ok(judgeRow([1, 'X', 'SCA', 'Huntsville, City of', 10]).drop === 'city', 'city land without a local code is left out');
     ok(judgeRow([1, 'X', 'LHCA', 'University of Alabama', 10]).flags.join() === 'local,university', 'university flagged, not left out');
+    ok(judgeRow([1, 'X', 'LP', 'UAB', 10]).flags.join() === 'local,university' && !isUniversity('Universal') && !isUniversity('Collegeville') && !isUniversity('College Street Park'), 'UAB is university land; Universal / Collegeville / College Street are not');
     ok(displayManager('Mobile') === 'Mobile' && displayManager('Mobile District, Corps of Engineers') === 'USACE Mobile District', 'Mobile shown raw unless Corps is in the text');
     ok(!kindsAgree(kindsOf('Little River Wildlife Management Area'), kindsOf('Little River State Forest')), 'WMA vs state forest is another kind');
     ok(hiddenLink('AL', 'Alabama State Parks', 'finder', 'https://alapark.com/parks/gulf-state-park') && !hiddenLink('AL', 'Alabama Wildlife & Freshwater Fisheries (DCNR)', 'finder', 'https://outdooralabama.com/public-lands'), 'only the one Alabama finder link is hidden');
@@ -357,7 +365,8 @@
   return {
     candidatesOn: candidatesOn, FLOOR_DEFAULT: FLOOR_DEFAULT, FLOOR_CHOICES: FLOOR_CHOICES, PAGE: PAGE,
     EXCLUDE_DES: EXCLUDE_DES, LOCAL_DES: LOCAL_DES, MANAGER_EXCLUDE: MANAGER_EXCLUDE, FLAG: FLAG, FED_URL: FED_URL, HIDE: HIDE,
-    kindsOf: kindsOf, kindsAgree: kindsAgree, displayManager: displayManager, judgeRow: judgeRow, reasonOf: reasonOf,
+    kindsOf: kindsOf, kindsAgree: kindsAgree, displayManager: displayManager, judgeRow: judgeRow,
+    isUniversity: isUniversity, UNIV_WORDS_RE: UNIV_WORDS_RE, UNIV_ABBR_RE: UNIV_ABBR_RE, reasonOf: reasonOf,
     keyNames: keyNames, sourceRows: sourceRows, fromNonum: fromNonum, flagCounts: flagCounts, pageOf: pageOf, pinCheck: pinCheck,
     federalLinks: federalLinks, hiddenLink: hiddenLink, agencyOptions: agencyOptions,
     dropdownHtml: dropdownHtml, listHtml: listHtml, selftest: selftest

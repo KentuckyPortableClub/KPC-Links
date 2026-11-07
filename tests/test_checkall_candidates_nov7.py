@@ -48,7 +48,7 @@ out.al = { floor: res.floor, from: res.from, inFile: res.inFile, total: res.tota
 out.named = {};
 ['Moundville Archeological Park', 'Metro Kiwanis Sportsplex', 'Eco Park at University Lake', 'Foscue Creek Park',
  'Walter F. George Recreation Area', 'Little River Wildlife Management Area', 'East Pinson Valley Community Park',
- 'Weeks Bay Harris And Worcester Tracts'].forEach(n => { out.named[n] = slim(by(n)); });
+ 'Weeks Bay Harris And Worcester Tracts', 'UAB Campus Green'].forEach(n => { out.named[n] = slim(by(n)); });
 out.sameNames = res.sameAsKey.map(x => x.name);
 out.floors = [0, 1, 5, 10, 40, 100].map(f => C.fromNonum(key, null, { floor: f }).rows.length);
 out.floor0Gibbin = !!C.fromNonum(key, null, { floor: 0 }).rows.find(r => r.name === 'Gibbin Park');
@@ -65,6 +65,10 @@ out.judge = {
   mobile: C.judgeRow([1, 'X Lake', 'REC', 'Mobile', 500]),
   blank: C.judgeRow([1, 'X Lake', 'SCA', '', 500])
 };
+const UNIV_CASES = JSON.parse(process.argv[2]);
+out.univ = { words: C.UNIV_WORDS_RE.source, wordsFlags: C.UNIV_WORDS_RE.flags, abbr: C.UNIV_ABBR_RE.source, abbrFlags: C.UNIV_ABBR_RE.flags,
+  hits: UNIV_CASES.map(s => C.isUniversity(s)),
+  judged: UNIV_CASES.map(s => C.judgeRow([1, 'X', 'SCA', s, 50]).flags.indexOf('university') >= 0) };
 out.mgr = {
   raw: C.displayManager('Mobile'),
   rawOwnerNotCorps: C.displayManager('Mobile', 'State of Alabama'),
@@ -106,7 +110,21 @@ out.feda = FEDA.map(f => f[1]);
 process.stdout.write(JSON.stringify(out));
 '''
 
-r = subprocess.run(['node', '-e', NODE, str(ROOT)], cwd=ROOT, capture_output=True, text=True, timeout=120)
+# Nov 7 round 4: the shared university rule (same source strings as the pile-solver design's Python copy)
+UNIV_YES = ['UAB', 'UA', 'UNA', 'UAH', 'University of Alabama', 'University of North Alabama', 'Auburn University', 'Jacksonville State',
+            'Jacksonville State University', 'Troy University', 'Jefferson State Junior College', 'Hendrix College', 'Bismarck State College',
+            'State University', 'Univ. of Kentucky', 'Univ of Kentucky', 'UK', 'Board of Regents', 'University System of Georgia Board of Regents',
+            'Univeristy of Texas A & M', 'SUNY College of Environmental Science and Forestry', 'MSU', 'WASHINGTON UNIVERSITY',
+            'Michigan College of Mining and Technology', 'University of Maine System']
+UNIV_NO = ['Universal', 'Universal Studios', 'Collegeville', 'Borough of Collegeville', 'College Street Park', 'College Park, City of',
+           'City of College Station', 'Borough of State College', 'State College Area School District', 'College Avenue Greenway',
+           'USA', 'US Army Corps of Engineers', 'Texas A&M Forest Service', 'INDEPENDENT SCHOOL DIST NO 1', 'Milford School District',
+           'Texas General Land Office - School Land Board', 'The State of Utah School and Institutional Trust Lands Administration',
+           'Ohio DNR, Office of Information Technology', 'Baxter State Park Authority', 'Jacksonville State Park', 'City of Jacksonville',
+           'Una Lake', 'Ua', 'Au Sable River', 'AU SABLE RIVER', 'Unknown', 'UNK', 'UNKL', 'Huntsville, City of', 'Mobile']
+UNIV_CASES = UNIV_YES + UNIV_NO
+
+r = subprocess.run(['node', '-e', NODE, str(ROOT), json.dumps(UNIV_CASES)], cwd=ROOT, capture_output=True, text=True, timeout=120)
 if r.returncode != 0:
     check('node ran the candidates module: ' + (r.stderr.strip().splitlines() or ['?'])[-1], False)
     print('SOME FAILED')
@@ -147,6 +165,23 @@ ep = nm['East Pinson Valley Community Park']
 check('Jefferson State Junior College is a university flag, not an exclusion', j['college']['drop'] == '' and 'university' in j['college']['flags'] and ep and 'university' in ep['flags'])
 check('no university or college manager is in the exclusion list',
       not re.search(r'universit|college', (ROOT / 'kpc-maprep-candidates.js').read_text(encoding='utf-8').split('const MANAGER_EXCLUDE', 1)[1].split('];', 1)[0], re.I))
+
+u = o['univ']
+miss = [c for c, h in zip(UNIV_CASES, u['hits']) if h != (c in UNIV_YES)]
+check(f'university rule: {len(UNIV_YES)} names match (UAB, UA, UNA, Univ., Board of Regents, Jacksonville State...), '
+      f'{len(UNIV_NO)} do not (Universal, Collegeville, College Street Park, USA, Texas A&M Forest Service...)' + (f'; wrong: {miss}' if miss else ''), not miss)
+check('judgeRow flags exactly the names the rule matches', u['judged'] == u['hits'])
+py = [bool(re.search(u['words'], c, re.I) or re.search(u['abbr'], c)) for c in UNIV_CASES]
+check('the same source strings give the same answers in Python (re.I for WORDS only; ABBR is case-sensitive)',
+      py == u['hits'] and u['wordsFlags'] == 'i' and u['abbrFlags'] == '')
+uab = nm['UAB Campus Green']
+check('UAB Campus Green (LP, manager "UAB", real row) is kept, flagged local + university',
+      uab and uab['flags'] == ['local', 'university'] and 'check, university land' in uab['flagText'])
+old_rx = re.compile(r'\buniversit(?:y|ies)\b|\bcollege\b', re.I)
+al_mgr = sorted({str(x[3]) for x in key['nonum']})
+new_hits = [m_ for m_ in al_mgr if re.search(u['words'], m_, re.I) or re.search(u['abbr'], m_)]
+check(f'Alabama managers: the new rule adds only UAB to the old rule ({new_hits})',
+      sorted(set(new_hits) - {m_ for m_ in al_mgr if old_rx.search(m_)}) == ['UAB'] and all(m_ in new_hits for m_ in al_mgr if old_rx.search(m_)))
 
 # 5. Unknown
 eco = nm['Eco Park at University Lake']
