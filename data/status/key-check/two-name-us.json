@@ -3,6 +3,66 @@
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
  "two_name_parks": 590,
  "half_outlined": 18,
+ "separate_units": [
+  {
+   "ref": "US-3692",
+   "pair": "Heron Bay / Portersville",
+   "why": "Two separate tracts a few miles apart. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "SEPARATE_UNITS"
+  },
+  {
+   "ref": "US-4373",
+   "pair": "Outlet Area / Waveland",
+   "why": "Outlet Area and Waveland Park are separate recreation areas. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "SEPARATE_UNITS"
+  },
+  {
+   "ref": "US-4224",
+   "pair": "Salamonie / Frances Slocum",
+   "why": "Frances Slocum State Forest is a separate property. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "SEPARATE_UNITS"
+  },
+  {
+   "ref": "US-12143",
+   "pair": "Devil's Playground / Redwash",
+   "why": "Separate units, and the Devil's Playground page may be the wrong page for Redwash. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "SEPARATE_UNITS"
+  }
+ ],
+ "one_units": [
+  {
+   "ref": "US-0990",
+   "pair": "Donnelley / DePue",
+   "why": "One managed complex, two locations. The original page answered HTTP 200 on 2026-11-06. Report only; the join is not changed.",
+   "report_only": true,
+   "joins_changed": false,
+   "claim": "ONE_UNIT"
+  }
+ ],
+ "review": [
+  {
+   "ref": "US-3475",
+   "pair": "Montara / McNee",
+   "why": "round 4 UNCLEAR, needs official confirmation",
+   "report_only": true,
+   "joins_changed": false
+  },
+  {
+   "ref": "US-3891",
+   "pair": "Campbells Crossroads / Angelus",
+   "why": "round 4 UNCLEAR, needs official confirmation",
+   "report_only": true,
+   "joins_changed": false
+  }
+ ],
  "parks": [
   {
    "area": "US-AL",
@@ -18,7 +78,8 @@
    ],
    "also_in": [
     "PAD-US"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-AR",
@@ -36,7 +97,8 @@
    "also_in": [
     "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5) (land, state GIS table)",
     "PAD-US"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-CA",
@@ -89,7 +151,9 @@
    ],
    "also_in": [
     "PAD-US"
-   ]
+   ],
+   "looks_like_one_unit": true,
+   "one_unit_note": "One managed complex, two locations. The original page answered HTTP 200 on 2026-11-06. Report only; the join is not changed."
   },
   {
    "area": "US-IN",
@@ -107,7 +171,8 @@
    "also_in": [
     "Indiana DNR (land, state GIS table)",
     "Indiana DNR properties"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-MA",
@@ -283,7 +348,8 @@
     "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
     "BLM recreation areas",
     "BLM recreation management areas · official (BLM planning area)"
-   ]
+   ],
+   "looks_like_separate_units": true
   },
   {
    "area": "US-WI",
