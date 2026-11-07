@@ -138,6 +138,17 @@ jobs:
             gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "W-$c.json.gz" -D cache/world --clobber 2>/dev/null || echo "::notice title=World key $c::no saved outlines (W-$c.json.gz) on the boundary-cache release: a failed source holds $c"
           done
           echo "::notice title=World key saved outlines::$(ls cache/world 2>/dev/null | grep -c 'json.gz$') of $(echo $MINE | wc -w) countries have a saved copy for the source fallback"
+      - name: Bring back this country's layer checkpoints (Nov 7, world fix part A; inert until kpc_world_key.py writes cache/world/parts)
+        # Slow (own-job) countries only. A stopped AU read can resume from the last saved page of each layer once part B of the
+        # Nov 7 world fix lands; until then the folder stays empty and the save step below is skipped. Nothing here decides a join.
+        if: ${{ matrix.g.cmin != '' }}
+        id: kept_green_parts_in
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/world/parts
+          key: world-parts-${{ matrix.g.countries }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: world-parts-${{ matrix.g.countries }}-
       - name: Build (this job's countries)
         timeout-minutes: 335   # the step stops before the job's limit, so the part below is still uploaded
         continue-on-error: true
@@ -147,19 +158,52 @@ jobs:
           WB_DIR: ${{ inputs.outline_test == 'yes' && '/tmp/wb-test' || '' }}
           CMIN: ${{ matrix.g.cmin || vars.KPC_WORLD_COUNTRY_MIN || '100' }}   # Nov 4 PM fix bundle (item 5): a slow country's own limit
           MINE: ${{ matrix.g.countries }}
+          # Nov 7 (world fix part A): a country HELD (exit 3: a source failed or came back empty with no saved records) is tried again
+          # once at the end of the job, after a wait, inside the time this step has left. Timeouts (124/137) and errors are not retried.
+          RETRIES: ${{ vars.KPC_WORLD_HELD_RETRIES || '1' }}
+          WAITMIN: ${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}
+          STEP_MIN: '335'   # = this step's timeout-minutes
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
           # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp names it (chat 11 must not grade it as a full build)
           # Nov 3: each country also has its own time limit (CMIN minutes); one that hangs is stopped and written down the same way
-          mkdir -p part; : > part/failed.txt; echo "$MINE" > part/countries.txt
+          T0=$(date +%s)
+          mkdir -p part; : > part/failed.txt; : > part/held.txt; echo "$MINE" > part/countries.txt
           for c in $MINE; do
             echo "::group::World key $c (limit ${CMIN} min)"
             rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?
             echo "::endgroup::"
             if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then echo "::warning title=World key $c::stopped after ${CMIN} min (a source stopped answering?); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
+            elif [ "$rc" = 3 ]; then echo "::warning title=World key $c::HELD (exit 3): a source failed or came back empty with no saved records; previous key kept (tried again at the end if time allows)"; echo "$c" >> part/failed.txt; echo "$c" >> part/held.txt
             elif [ "$rc" != 0 ]; then echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> part/failed.txt; fi
           done
+          # Nov 7 (world fix part A): held countries again, after a wait with jitter, never past this step's own limit
+          for n in $(seq 1 "${RETRIES:-0}"); do
+            [ -s part/held.txt ] || break
+            left=$(( STEP_MIN - 5 - ( $(date +%s) - T0 ) / 60 - WAITMIN ))
+            if [ "$left" -lt 5 ]; then echo "::notice title=World key held retry::no time left in this job; still held: $(tr '\n' ' ' < part/held.txt)"; break; fi
+            sleep $(( WAITMIN * 60 + ( WAITMIN > 0 ? RANDOM % 60 : 0 ) ))
+            again=$(cat part/held.txt); : > part/held.txt
+            for c in $again; do
+              left=$(( STEP_MIN - 5 - ( $(date +%s) - T0 ) / 60 )); lim=$(( left < CMIN ? left : CMIN ))
+              if [ "$lim" -lt 5 ]; then echo "$c" >> part/held.txt; continue; fi
+              echo "::group::World key $c (held retry $n, limit ${lim} min)"
+              rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" python3 .github/scripts/kpc_world_key.py || rc=$?
+              echo "::endgroup::"
+              if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "::notice title=World key $c::built on held retry $n"
+              elif [ "$rc" = 3 ]; then echo "$c" >> part/held.txt; echo "::warning title=World key $c::still HELD after retry $n"
+              else echo "::warning title=World key $c::held retry $n stopped (exit $rc); the build stamp lists it as failed"; fi
+            done
+          done
+      - name: Keep this country's layer checkpoints (Nov 7, world fix part A; only when kpc_world_key.py wrote some)
+        if: ${{ always() && matrix.g.cmin != '' && hashFiles('cache/world/parts/**') != '' }}
+        id: kept_green_parts_out
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: cache/world/parts
+          key: world-parts-${{ matrix.g.countries }}-${{ github.run_id }}-${{ github.run_attempt }}
       - name: This job's part
         if: always()
         run: |

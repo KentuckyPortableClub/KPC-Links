@@ -1,3 +1,5 @@
-# Known failures of KPC-Links main 66037efcff80 (Nov 5 2026 CST), read by .github/scripts/kpc_full_suite.py (the handoff gate).
+# Known failures of KPC-Links main 66037efcff80 (Nov 5 2026 CST; Nov 7 update below for main e65fa3326), read by .github/scripts/kpc_full_suite.py (the handoff gate).
 # A failure listed here does not fail the gate; anything else does. Remove a line when its test passes on main.
 tests/test_fixbundle_de0095_nov4.py   # 'on today's DE key only DE-0095 is reached: []' (fails on main and on the fers stack)
+tests/test_ky_brandon_slash_nov6.py   # known pre-existing on main (KY slash decided_by), per the Nov 7 handoff
+tests/test_override_misses_nov6.py   # known pre-existing on main (US-8209: overrides 'join' but the key has no outline), per the Nov 7 handoff

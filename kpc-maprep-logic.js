@@ -60,6 +60,7 @@
   const PUBLIC_WORDS = /\b(city|county|counties|fiscal court|state|commonwealth|kentucky|united states|national|federal|department|dept|division|office|district|university|college|authority|board|parks?|recreation|commission|corps|service|government|town|conservancy|land trust|foundation|society|association|nature|audubon|wildlife|resources|forestry|cabinet)\b/i;
 
   let compiled = [];
+  const variantCache = new Map();
   let AGENCIES = null;
   const ROLE_RULES = [
     ['wildlife', /wildlife|fish|game|\bwma\b|hunting|refuge|waterfowl/i],
@@ -103,19 +104,31 @@
       const expansion = String(r.expansion || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
       if (token.length >= 2 && expansion) add(token, expansion);
     });
-    compiled = [...map.entries()].sort((a, b) => b[0].length - a[0].length);
+    compiled = [...map.entries()].sort((a, b) => b[0].length - a[0].length)
+      .map(([tok, exps]) => [tok, exps, new RegExp('(?<![a-z0-9])' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![a-z0-9])', 'g')]);
+    variantCache.clear();
   }
   compile([]);
 
   function loadRows(rows) { compile(rows); return compiled.length; }
 
+  /* Nov 7: each token's regex is built once in compile(), and results are kept per name (Check all scores many names). */
   function expandVariants(s) {
+    const k = String(s || '');
+    let hit = variantCache.get(k);
+    if (!hit) {
+      if (variantCache.size > 20000) variantCache.clear();
+      hit = expandVariants0(k);
+      variantCache.set(k, hit);
+    }
+    return hit.slice();
+  }
+  function expandVariants0(s) {
     let t = String(s || '').toLowerCase().replace(/&/g, ' and ');
     t = t.replace(/\b([a-z](?:\.[a-z]){1,6})\.?\b/g, m => m.replace(/\./g, ''));
     let outs = [t];
-    compiled.forEach(([tok, exps]) => {
+    compiled.forEach(([tok, exps, re]) => {
       const list = exps && exps.length ? exps : [];
-      const re = new RegExp('(?<![a-z0-9])' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![a-z0-9])', 'g');
       const next = [];
       outs.forEach(cur => {
         re.lastIndex = 0;

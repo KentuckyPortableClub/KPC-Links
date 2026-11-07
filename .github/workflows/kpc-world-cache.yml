@@ -33,6 +33,9 @@ jobs:
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
           gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' \
             --notes 'Official land outlines saved for the boundary answer keys. Not a release of anything.' || { kpc_rc=$?; echo "::warning title=Release::the saved-shapes release could not be made (exit $kpc_rc)"; echo "Release - the saved-shapes release could not be made (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+      - uses: actions/checkout@v5   # Nov 7 (world fix part A): only to read data/world-key/sheet-countries.json for the list
+        with:
+          sparse-checkout: data/world-key
       - name: The list
         id: l
         env:
@@ -40,7 +43,11 @@ jobs:
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
-          ALL = 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CA'.split()
+          # Nov 7 (world fix part A): + CO ZA CL and Brandon's sheet countries (AX DO ...), the same list the world key builds, so a
+          # single-host country has a saved copy for the source fallback (a failed source no longer HOLDs it). CA stays last.
+          try: SHEETC = sorted((json.load(open('data/world-key/sheet-countries.json', encoding='utf-8')).get('countries') or {}).keys())
+          except Exception: SHEETC = []  # noqa: BLE001
+          ALL = list(dict.fromkeys('AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL'.split() + SHEETC + ['CA']))
           want = (os.environ.get('WANT') or '').upper().replace(',', ' ').split() or ALL
           print('list=' + json.dumps(want))
           PY

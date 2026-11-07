@@ -66,7 +66,10 @@ allowed_wf = {'.github/workflows/kpc-ca-key.yml', '.github/workflows/kpc-us-key.
 wf = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.github/workflows'],
                     cwd=ROOT, capture_output=True, text=True, timeout=30)
 changed_wf = [ln.strip() for ln in wf.stdout.splitlines() if ln.strip()]
-extra_wf = [ln for ln in changed_wf if ln not in allowed_wf]
+# Nov 7 world fix part A (hash-neutral; Brandon kept every approved layer): the held retry + layer checkpoints in the world key
+# workflow and the fuller saved-shapes list may differ from main too. Neither touches the KY key; the rules hashes are checked above.
+world_wf = {'.github/workflows/kpc-world-key.yml', '.github/workflows/kpc-world-cache.yml'}
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:
