@@ -1028,6 +1028,66 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
   function kvSafe(k, v) { return `<div class="mr-kv"><dt>${esc(k)}</dt><dd>${v}</dd></div>`; }
 
+  /* Nov 7: Check all adds the official agency links (on) and, behind KPCMapCands.candidatesOn() (off by default),
+     the possible new parks from the key's unmatched list. With the switch off nothing else changes. */
+  let abbrP = null;
+  function ensureAbbr() {
+    if (!abbrP) abbrP = fetch('data/maprep/abbreviations.json').then(r => r.ok ? r.json() : null).then(j => { if (j && window.KPCMapLogic) KPCMapLogic.loadRows(j.rows || []); }).catch(() => null);
+    return abbrP;
+  }
+  function extrasHtml(st) {
+    const C = window.KPCMapCands;
+    if (!C || !st || !st.code) return '';
+    let html = C.dropdownHtml(st.code, st.region || 'US', agTable().FEDA || [], st.name);
+    if (C.candidatesOn()) html += '<div id="mrCandsWrap"><p class="mr-help">Looking for possible new parks…</p></div>';
+    return html;
+  }
+  async function wireExtras(st, key) {
+    const C = window.KPCMapCands;
+    if (!C) return;
+    const sel = $('mrAgSel'), go = $('mrAgGo');
+    if (sel && go) sel.onchange = () => { go.href = sel.value; };
+    if (!C.candidatesOn()) return;
+    const wrap = $('mrCandsWrap');
+    if (!wrap) return;
+    if ((st.region || 'US') !== 'US') { wrap.innerHTML = C.listHtml(null); return; }
+    await ensureAbbr();
+    /* The full list, when the side script has written it; else the key's own list with "Show more". */
+    const side = await B().jget('data/us-key/new/US-' + st.code + '-nonum.json').catch(() => null);
+    let floor = C.FLOOR_DEFAULT, shown = C.PAGE, res = null;
+    const paint = recount => {
+      if (recount || !res) res = C.fromNonum(key, side, { floor: floor });
+      wrap.innerHTML = C.listHtml(res, shown, st.code);
+      const f = $('mrCandFloor');
+      if (f) f.onchange = () => { floor = +f.value; shown = C.PAGE; paint(true); };
+      const more = $('mrCandMore');
+      if (more) more.onclick = () => { shown += C.PAGE; paint(false); };
+      wrap.querySelectorAll('[data-pinchk]').forEach(btn => btn.onclick = () => outlineCheck(res.rows[+btn.dataset.pinchk], +btn.dataset.pinchk));
+    };
+    paint(true);
+  }
+  /* User-started, one candidate at a time: PAD-US outline by OBJECTID, then park pins inside or within 0.25 mi. */
+  async function outlineCheck(c, i) {
+    const C = window.KPCMapCands;
+    const el = document.querySelector('[data-outline="' + i + '"]');
+    if (!el || !c || !C) return;
+    const ids = c.ids.filter(id => /^\d+$/.test(String(id)));
+    if (!ids.length) { el.textContent = 'outline not checked'; return; }
+    el.textContent = 'Reading the PAD-US outline…';
+    const geoms = [];
+    for (let k = 0; k < ids.length; k += 25) {
+      const j = await B().jget(PADUS + '?' + new URLSearchParams({ objectIds: ids.slice(k, k + 25).join(','), where: '1=1', outFields: 'OBJECTID', returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0003, outSR: 4326, f: 'geojson' }), null, 15000).catch(() => null);
+      ((j && j.features) || []).forEach(f => { if (f && f.geometry) geoms.push(f.geometry); });
+    }
+    if (!geoms.length) { el.textContent = 'outline not checked (PAD-US gave no outline)'; return; }
+    let x0 = 180, y0 = 90, x1 = -180, y1 = -90;
+    geoms.forEach(g => { const bb = B().bbox(g); if (bb) { x0 = Math.min(x0, bb[0]); y0 = Math.min(y0, bb[1]); x1 = Math.max(x1, bb[2]); y1 = Math.max(y1, bb[3]); } });
+    const pad = 0.01;
+    const pins = (await loadLocations()).filter(r => r[3] != null && +r[3] >= y0 - pad && +r[3] <= y1 + pad && +r[4] >= x0 - pad && +r[4] <= x1 + pad)
+      .map(r => ({ ref: r[1], name: r[2], lat: +r[3], lon: +r[4] }));
+    el.textContent = C.pinCheck(geoms, pins).text;
+  }
+
   function classifyAll() {
     const b = B();
     const groups = new Map();
@@ -1060,7 +1120,8 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
       const parks = (key && key.parks) || {};
       const ids = Object.keys(parks);
       const shown = ids.slice(0, 400);
-      if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'Canada' : 'US')} key. ${stAll.region === 'US' || !stAll.region ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. ${shown.length < ids.length ? 'The first ' + shown.length + ' names are listed.' : ''}</p>${shown.map(id => `<p><b>${esc((parks[id] && parks[id].n) || id)}</b> · ${esc(id)}</p>`).join('') || '<p>No published key for this place is on the site yet.</p>'}</div></section>`;
+      if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'Canada' : 'US')} key. ${stAll.region === 'US' || !stAll.region ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. ${shown.length < ids.length ? 'The first ' + shown.length + ' names are listed.' : ''}</p>${shown.map(id => `<p><b>${esc((parks[id] && parks[id].n) || id)}</b> · ${esc(id)}</p>`).join('') || '<p>No published key for this place is on the site yet.</p>'}</div>${extrasHtml(stAll)}</section>`;
+      wireExtras(stAll, key);
       return ids;
     }
     if (box) box.innerHTML = '<p class="mr-msg">Reading the published outlines for ' + esc(stAll.name) + '…</p>';
@@ -1074,7 +1135,8 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published layers</h2><p>${rows.length} named places. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land.</p></div>
 <div class="mr-sec"><div class="mr-filters" id="mrFilters">${['YES', 'MAYBE', 'NO', 'ALREADY'].map(k => `<button type="button" class="mr-ag${k === 'YES' ? ' on' : ''}" data-f="${k}">${lab[k]} · ${counts[k] || 0}</button>`).join('')}</div>
 <p class="mr-help">These outlines are the published copy saved for this place. Other places use their own published key, and a US place also uses PAD-US. Newfoundland and Labrador, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not shown.</p>
-<div id="mrAllRows"></div></div></section>`;
+<div id="mrAllRows"></div></div>${extrasHtml(stAll)}</section>`;
+    stateKey(stAll.code).then(key => wireExtras(stAll, key));
     const paint = (which) => {
       const host = $('mrAllRows'); if (!host) return;
       host.innerHTML = rows.filter(r => r.v === which).map(r => `<button type="button" class="mr-pick" data-la="${r.la}" data-lo="${r.lo}"><b>${esc(r.name)}</b><span>${esc(lab[r.v])}${r.refs.length ? ' · ' + esc(r.refs.map(p => p.ref).join(', ')) : ''} · ${r.acres ? Math.round(r.acres).toLocaleString() + ' acres · ' : ''}${esc(r.agency)}${r.id ? ' · PAD-US ' + esc(String(r.id)) : ''}</span></button>`).join('') || '<p class="mr-help">None in this group.</p>';
