@@ -280,7 +280,9 @@
      {fs, label: 'official' | 'approx' | 'none', why, src, site}. Checked list first; a park it doesn't know falls back to a
      live name search, which is labelled approximate because nobody has checked it. */
   async function usOutline(ref, name, la, lo, states) {
+    const T = await tractsReady();   /* Nov 7: the tract switch, read once here (off = exactly as before) */
     let k = null; try { k = await usKey(ref, states); } catch (e) {}
+    if (k && k.state === 'ok' && T) { try { k.fs = await tractify(ref, k.fs, states); } catch (e) {} }
     if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', line: !!k.line, pinOff: !!k.pinOff, water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
     if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site, pinOff: !!k.pinOff };
     let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
@@ -397,10 +399,12 @@
   }
   async function canada(ref) {
     if (!/^CA-\d/.test(ref || '')) return [];
+    const T = await tractsReady();   /* Nov 7: the tract switch, read once here (off = exactly as before) */
+    const tr = fs => T && fs.length ? tractify(ref, fs).catch(() => fs) : fs;
     const j = await dget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null);
-    if (!j) { let k = null; try { k = await caKey(ref); } catch (e) {} return k && k.state === 'ok' ? k.fs : []; }
+    if (!j) { let k = null; try { k = await caKey(ref); } catch (e) {} return k && k.state === 'ok' ? tr(k.fs) : []; }
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
-    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
+    return tr(fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'this is the closest official land, but it is bigger than the park or shaped differently'; } return f; }));
   }
   /* Oct 22 (Brandon's schedule: 'hook the world key into KPCB like usKey'): data/world-key/XX.json lists, per park, the
      official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes
@@ -411,6 +415,7 @@
   const wlayers = () => WLAY || (WLAY = dfetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
   async function worldKey(ref) {
     const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
+    const T = await tractsReady();   /* Nov 7: the tract switch, read once here (off = exactly as before) */
     if (!(cc in wkCache)) wkCache[cc] = dfetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
     const k = await wkCache[cc], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length) return { state: 'none' };
@@ -422,7 +427,7 @@
        by the world bot in data/world-bounds/CC/<n>.json, 100 parks to a file */
     if (!fs.length) {
       const num = parseInt(String(ref).split('-')[1], 10), sh = await jget('https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/world-bounds/data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => dget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000)).catch(() => null), b = sh && sh[ref];
-      if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + (b.d && b.d > 5 ? ' (saved by KPC, simplified to about ' + b.d + ' m: a very big park)' : ' (saved by KPC)') });
+      if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: T ? ringsToPolys(b.r) : b.r.map(r => [r]) }, _src: b.s + (b.d && b.d > 5 ? ' (saved by KPC, simplified to about ' + b.d + ' m: a very big park)' : ' (saved by KPC)') });
     }
     if (!fs.length) return { state: 'error' };
     /* Next round v2 (Brandon's 10 answers, item 1, 'Yes, go with your picks', relayed via Super 8:55 AM CST Nov 5; NC ruling 8:00 AM
@@ -431,6 +436,7 @@
     const nm = (m.find(x => L[x[2]]) || m[0])[1], how = m.map(x => String(x[3] || ''));
     const approx = !how.some(h => /^(name|same name|exact name)/.test(h)), why = approx ? 'the official name is written differently, so this was matched by where the park\u2019s pin sits' : '';
     fs.forEach(f => { f._nm = f._nm || nm; f._bb = bbox(f.geometry); f._approx = approx; f._why = why; f._info = f._info || ''; f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }); });
+    if (T) { let tf = fs; try { tf = await tractify(ref, fs); } catch (e) {} return { state: 'ok', fs: tf, approx, why }; }
     return { state: 'ok', fs, approx, why };
   }
   /* any non-US official outline we know how to get: Canada file, then the checked world list, then a live Europe guess
@@ -443,6 +449,135 @@
     if (k && k.state === 'none') e.forEach(f => { f._approx = true; f._why = 'our maps did not find a sure match; this is a live guess by name'; });
     return e;
   }
+  /* ---------- Nov 7 Part 1 (KEY / 2-FER / WORLD handoff): TRACTS + PARKS INSIDE PARKS. Hidden, OFF by default. ----------
+     A tract = one separate piece of land: one side-file entry per official record, and a record whose pieces lie more than 1 km
+     apart is split into one tract per piece. Id '<ref>#<n>', largest first (.github/scripts/kpc_tracts.py split(), same rule).
+     ONE switch for every page: KPCB.tractsOn() = a member (KPCGate.member()) AND (?tracts=1, or localStorage kpcMapTracts=1, or
+     data/tract-switch.json {"on": true}). Guests never: no switch file is even read for them. It is read once, at the entry of
+     usOutline / canada / worldKey; when it is off those return exactly what they returned before (same features, same fields). */
+  const TDAY = () => new Date().toISOString().slice(0, 10);
+  const memberOk = () => { try { return !!(window.KPCGate && KPCGate.member && KPCGate.member()); } catch (e) { return false; } };
+  let TSW = null, TSWv = null;
+  function tractSwitch() {
+    if (!memberOk()) return Promise.resolve(null);
+    return TSW || (TSW = fetch('data/tract-switch.json?v=' + TDAY()).then(r => r.ok ? r.json() : null).catch(() => null).then(j => (TSWv = j && typeof j === 'object' ? j : {})));
+  }
+  function tractsOn() {
+    if (!memberOk()) return false;
+    try {
+      if (/(?:\?|&)tracts=1(?:&|$)/.test(String((window.location && location.search) || ''))) return true;
+      if (window.localStorage && localStorage.getItem('kpcMapTracts') === '1') return true;
+    } catch (e) {}
+    return !!(TSWv && TSWv.on === true);
+  }
+  async function tractsReady() { if (!memberOk()) return false; await tractSwitch(); return tractsOn(); }
+  /* one_park (default, today's rules: every tract shares the one POTA number) | own_park (each tract may be its own possible new
+     park). The switch file's tract_mode; localStorage kpcTractMode lets a member try the other mode on one device. */
+  function tractMode() { let m = ''; try { m = (window.localStorage && localStorage.getItem('kpcTractMode')) || ''; } catch (e) {} if (m !== 'one_park' && m !== 'own_park') m = TSWv && TSWv.tract_mode; return m === 'own_park' ? 'own_park' : 'one_park'; }
+  function countMode() { const m = TSWv && TSWv.mode; return m === 'tracts' || m === 'nested' ? m : 'whole_park'; }
+  /* the side file for an area: US-XX -> data/us-key/tracts (KY: data/tracts/US-KY.json), CA -> data/ca-key/tracts, else the world */
+  function tractPath(code, region) {
+    code = String(code || '').toUpperCase().replace(/^(US|CA)-/, '');
+    if (region === 'CA') return 'data/ca-key/tracts/CA-' + code + '.json';
+    if (region === 'world') return 'data/world-key/tracts/' + code + '.json';
+    return code === 'KY' ? 'data/tracts/US-KY.json' : 'data/us-key/tracts/US-' + code + '.json';
+  }
+  const tfCache = {};
+  const tractDoc = p => tfCache[p] || (tfCache[p] = dfetch(p + '?v=' + TDAY()).then(r => r.ok ? r.json() : null).catch(() => null));
+  const knows = (d, ref) => !!(d && ((d.parks && d.parks[ref]) || (d.nested || []).some(x => x.child === ref || x.parent === ref)));
+  async function tractDocFor(ref, states) {
+    ref = String(ref || '').toUpperCase(); const cc = ref.split('-')[0];
+    if (cc === 'US') { for (const st of states || []) { const d = await tractDoc(tractPath(st, 'US')); if (knows(d, ref)) return d; } return null; }
+    if (cc === 'CA') { CAREF = CAREF || dfetch('data/ca-key/refs.json?v=' + TDAY()).then(r => r.ok ? r.json() : {}).catch(() => ({})); const pv = (await CAREF)[ref]; return pv ? tractDoc(tractPath(pv, 'CA')) : null; }
+    return /^[A-Z]{2}$/.test(cc) ? tractDoc(tractPath(cc, 'world')) : null;
+  }
+  /* pieces closer than gapKm = one tract (kpc_key_rules.tracts_of, the same formula) -> groups of indexes */
+  function tractGroups(boxes, gapKm) {
+    gapKm = gapKm == null ? 1 : gapKm; const n = boxes.length, g = boxes.map((_, i) => i);
+    const find = i => { while (g[i] !== i) { g[i] = g[g[i]]; i = g[i]; } return i; };
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+      const a = boxes[i], b = boxes[j], la = (a[1] + a[3] + b[1] + b[3]) / 4;
+      const dx = Math.max(0, b[0] - a[2], a[0] - b[2]) * 111.32 * Math.cos(la * Math.PI / 180), dy = Math.max(0, b[1] - a[3], a[1] - b[3]) * 110.57;
+      if (Math.hypot(dx, dy) <= gapKm) g[find(i)] = find(j);
+    }
+    const out = {}; for (let i = 0; i < n; i++) (out[find(i)] = out[find(i)] || []).push(i);
+    return Object.values(out);
+  }
+  const recAcres = t => { const v = t.ac_measured != null ? t.ac_measured : t.ac; return isFinite(+v) && v != null ? +v : 0; };
+  /* read-time tracts from the side file alone (no shapes): the Tool Box count. Mirrors kpc_tracts.split() without a shape. */
+  function splitRecs(ref, recs, twins) {
+    const tw = new Set((twins || []).map(String)), rows = [];
+    (recs || []).forEach((t, k) => {
+      if (!t || tw.has(String(t.rid))) return;
+      const n = +t.pieces > 1 ? +t.pieces : 1, base = { rid: t.rid, sid: t.sid, name: t.name, src: t.src, box: t.box };
+      if (n > 1) for (let i = 0; i < n; i++) rows.push(Object.assign({}, base, { ac: Math.round(recAcres(t) / n * 10) / 10, part: i + 1, of: n, approx_split: true, _k: [k, i] }));
+      else rows.push(Object.assign({}, base, { ac: Math.round(recAcres(t) * 10) / 10, _k: [k, 0] }));
+    });
+    rows.sort((a, b) => (b.ac - a.ac) || (String(a.rid) < String(b.rid) ? -1 : String(a.rid) > String(b.rid) ? 1 : 0) || (a._k[0] - b._k[0]) || (a._k[1] - b._k[1]));
+    rows.forEach((x, i) => { x.id = ref + '#' + (i + 1); delete x._k; });
+    return rows;
+  }
+  /* {ref, tracts, parent, children, sameArea, doc} from the area's side file (cached per file); null when there is none */
+  async function tractsOf(ref, states, twins) {
+    const d = await tractDocFor(ref, states); if (!d) return null;
+    ref = String(ref || '').toUpperCase();
+    const nest = d.nested || [], par = nest.find(x => x.child === ref);
+    return { ref, tracts: splitRecs(ref, (d.parks || {})[ref], twins), parent: par ? par.parent : null, parentShare: par ? par.share : null,
+      children: nest.filter(x => x.parent === ref).map(x => x.child), sameArea: (d.same_area || []).filter(x => x.park === ref || x.other === ref), doc: d };
+  }
+  function polyAcres(poly) {   /* outer minus holes, flat-earth metres around the ring (good to a few % for a label) */
+    let t = 0; (poly || []).forEach((r, n) => { if (!r.length) return; const la = r[0][1] * Math.PI / 180, sx = 111320 * Math.cos(la), sy = 110540; let a = 0; for (let i = 0, j = r.length - 1; i < r.length; j = i++) a += (r[j][0] * sx) * (r[i][1] * sy) - (r[i][0] * sx) * (r[j][1] * sy); t += (n ? -1 : 1) * Math.abs(a / 2); });
+    return Math.max(0, t) / 4046.8564224;
+  }
+  const featId = f => { const p = f.properties || {}; const v = f.id != null ? f.id : p.OBJECTID != null ? p.OBJECTID : p.objectid != null ? p.objectid : p.FID; return v == null ? '' : String(v); };
+  const boxHit = (a, b) => !!(a && b && a[0] <= b[2] && b[0] <= a[2] && a[1] <= b[3] && b[1] <= a[3]);
+  function recFor(f, recs) {
+    let best = null, bs = 0; const id = featId(f), nm = norm(f._nm || (f.properties || {}).NAME || ''), bb = f._bb || bbox(f.geometry);
+    (recs || []).forEach(t => { let s = 0; if (id && String(t.rid).replace(/^[a-z]+/i, '') === id) s += 4; if (nm && norm(t.name) === nm) s += 2; if (boxHit(bb, t.box)) s += 1; if (s > bs) { bs = s; best = t; } });
+    return best;
+  }
+  /* Saved world outlines keep every ring flat ({r: [ring, ...]}): rebuild polygons so a ring inside another ring is its hole
+     (even-odd by depth). Flag ON only (GUESS: a saved outline merges every record of the park, so a whole record lying inside
+     another record of the same park would read as a hole too). */
+  function ringsToPolys(rs) {
+    rs = (rs || []).filter(r => r && r.length >= 3);
+    const bb = rs.map(r => bbox({ type: 'Polygon', coordinates: [r] })), ar = rs.map(r => polyAcres([r]));
+    const depth = rs.map((r, i) => rs.filter((o, j) => j !== i && ar[j] > ar[i] && bb[i][0] >= bb[j][0] && bb[i][2] <= bb[j][2] && bb[i][1] >= bb[j][1] && bb[i][3] <= bb[j][3] && inRing(r[0][0], r[0][1], o)).length);
+    const polys = [], at = {};
+    rs.map((r, i) => i).sort((a, b) => ar[b] - ar[a]).forEach(i => {
+      if (depth[i] % 2 === 0) { at[i] = polys.length; polys.push([rs[i]]); return; }
+      let host = -1; rs.forEach((o, j) => { if (j in at && depth[j] === depth[i] - 1 && inRing(rs[i][0][0], rs[i][0][1], o) && (host < 0 || ar[j] < ar[host])) host = j; });
+      if (host >= 0) polys[at[host]].push(rs[i]); else { at[i] = polys.length; polys.push([rs[i]]); }
+    });
+    return polys;
+  }
+  /* ON only: one feature per tract, each with properties.tract ('<ref>#<n>'), tracts_total, parent (when the park lies inside
+     another park), and the same facts as f._tract / f._tracts / f._parent for code that reads _nm / _src / _bb. */
+  async function tractify(ref, fs, states) {
+    ref = String(ref || '').toUpperCase();
+    let info = null; try { info = await tractsOf(ref, states); } catch (e) {}
+    const recs = info && info.doc && info.doc.parks ? info.doc.parks[ref] || [] : [];
+    const out = [];
+    (fs || []).forEach(f => {
+      const rec = recFor(f, recs), polys = isLine(f.geometry) ? [] : ringsOf(f.geometry).filter(p => p && p[0] && p[0].length >= 3);
+      const gs = polys.length > 1 ? tractGroups(polys.map(p => bbox({ type: 'Polygon', coordinates: [p[0]] }))) : [polys.map((_, i) => i)];
+      if (gs.length <= 1) { out.push({ f, rec, ac: rec && !(+rec.pieces > 1) ? recAcres(rec) : polys.reduce((s, p) => s + polyAcres(p), 0) }); return; }
+      gs.forEach((g, gi) => {
+        const ps = g.map(i => polys[i]), geometry = ps.length === 1 ? { type: 'Polygon', coordinates: ps[0] } : { type: 'MultiPolygon', coordinates: ps };
+        const nf = Object.assign({}, f, { geometry, properties: Object.assign({}, f.properties || {}), _bb: bbox(geometry), _part: gi + 1, _of: gs.length });
+        out.push({ f: nf, rec, ac: ps.reduce((s, p) => s + polyAcres(p), 0) });
+      });
+    });
+    out.sort((a, b) => (b.ac - a.ac) || (String(a.rec && a.rec.rid) < String(b.rec && b.rec.rid) ? -1 : String(a.rec && a.rec.rid) > String(b.rec && b.rec.rid) ? 1 : 0));
+    const parent = info && info.parent || null;
+    return out.map((x, i) => {
+      const f = x.f, id = ref + '#' + (i + 1);
+      f.properties = Object.assign(f.properties || {}, { tract: id, tracts_total: out.length }, parent ? { parent } : {});
+      f._tract = id; f._tracts = out.length; f._parent = parent; f._tractRec = x.rec ? { rid: x.rec.rid, sid: x.rec.sid || null, name: x.rec.name || '' } : null;
+      return f;
+    });
+  }
+
   /* POTA parks near a point */
   async function potaNear(la, lo, d) {
     const j = await jget(`https://api.pota.app/park/grids/${(la - d).toFixed(3)}/${(lo - d).toFixed(3)}/${(la + d).toFixed(3)}/${(lo + d).toFixed(3)}/0`, null, 15000);
@@ -502,13 +637,32 @@
 
   /* ---------- save a boundary as a map file (phones: share menu) ---------- */
   const xe = t => String(t == null ? '' : t).replace(/[<>&"']/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;' }[c]));
+  /* Nov 7: a feature carries properties.tract only when the tract switch was on where it was read (usOutline / canada / worldKey) */
+  const tractsIn = fc => (fc.features || []).some(f => f && f.properties && f.properties.tract);
+  const tractWord = f => { const p = f.properties || {}; return p.tract ? ' · tract ' + String(p.tract).split('#')[1] + ' of ' + p.tracts_total + (p.parent ? ' · inside ' + p.parent : '') : ''; };
   function toKml(fc, o) {
+    if (tractsIn(fc)) return toKmlTracts(fc, o);
     const pm = fc.features.map(f => ringsOf(f.geometry).map(poly => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.NAME || f.properties.name)) || o.name)}</name><styleUrl>#b</styleUrl><Polygon>` + poly.map((r, n) => `<${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}><LinearRing><coordinates>${r.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LinearRing></${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}>`).join('') + `</Polygon></Placemark>`).join('')).join('');
     const pts = (o.points || []).map(p => `<Placemark><name>${xe(p[2])}</name><Point><coordinates>${p[1]},${p[0]}</coordinates></Point></Placemark>`).join('')
       + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<Placemark><name>${xe((f.properties && (f.properties.Unit_Nm || f.properties.name)) || f._nm || o.name)}</name><styleUrl>#b</styleUrl><LineString><coordinates>${l.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LineString></Placemark>`).join('') : '').join('');   /* Oct 31 (Fable #29): trail lines too */
     return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${xe(o.ref + ' ' + o.name)}</name><Style id="b"><LineStyle><color>ff00b0ff</color><width>3</width></LineStyle><PolyStyle><color>3300b0ff</color></PolyStyle></Style><Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pts}${pm}</Document></kml>`;
   }
+  /* ON: the same file with each Placemark named by its tract (and 'inside <parent>') */
+  function toKmlTracts(fc, o) {
+    const pm = fc.features.map(f => ringsOf(f.geometry).map(poly => `<Placemark><name>${xe(((f.properties && (f.properties.Unit_Nm || f.properties.NAME || f.properties.name)) || o.name) + tractWord(f))}</name><styleUrl>#b</styleUrl><Polygon>` + poly.map((r, n) => `<${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}><LinearRing><coordinates>${r.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LinearRing></${n ? 'innerBoundaryIs' : 'outerBoundaryIs'}>`).join('') + `</Polygon></Placemark>`).join('')).join('');
+    const pts = (o.points || []).map(p => `<Placemark><name>${xe(p[2])}</name><Point><coordinates>${p[1]},${p[0]}</coordinates></Point></Placemark>`).join('')
+      + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<Placemark><name>${xe(((f.properties && (f.properties.Unit_Nm || f.properties.name)) || f._nm || o.name) + tractWord(f))}</name><styleUrl>#b</styleUrl><LineString><coordinates>${l.map(c => (+c[0]).toFixed(6) + ',' + (+c[1]).toFixed(6)).join(' ')}</coordinates></LineString></Placemark>`).join('') : '').join('');
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${xe(o.ref + ' ' + o.name)}</name><Style id="b"><LineStyle><color>ff00b0ff</color><width>3</width></LineStyle><PolyStyle><color>3300b0ff</color></PolyStyle></Style><Placemark><name>${xe(o.ref)}</name><Point><coordinates>${o.lo},${o.la}</coordinates></Point></Placemark>${pts}${pm}</Document></kml>`;
+  }
+  /* ON: one <trk> per polygon named by its tract, and its HOLES as extra <trkseg>s (the OFF file writes outer rings only) */
+  function toGpxTracts(fc, o) {
+    let n = 0; const tr = fc.features.map(f => ringsOf(f.geometry).map(poly => `<trk><name>${xe(o.ref + ' boundary ' + (++n) + tractWord(f))}</name>${poly.map(r => `<trkseg>${r.map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg>`).join('')}</trk>`).join('')).join('');
+    const pts = (o.points || []).map(p => `<wpt lat="${p[0]}" lon="${p[1]}"><name>${xe(p[2])}</name></wpt>`).join('')
+      + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<trk><name>${xe(o.ref + ' trail ' + (++n) + tractWord(f))}</name><trkseg>${l.map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('') : '').join('');
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Kentucky Portable Club" xmlns="http://www.topografix.com/GPX/1/1"><wpt lat="${o.la}" lon="${o.lo}"><name>${xe(o.ref + ' ' + o.name)}</name></wpt>${pts}${tr}</gpx>`;
+  }
   function toGpx(fc, o) {
+    if (tractsIn(fc)) return toGpxTracts(fc, o);
     let n = 0; const tr = fc.features.map(f => ringsOf(f.geometry).map(poly => `<trk><name>${xe(o.ref + ' boundary ' + (++n))}</name><trkseg>${poly[0].map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('')).join('');
     const pts = (o.points || []).map(p => `<wpt lat="${p[0]}" lon="${p[1]}"><name>${xe(p[2])}</name></wpt>`).join('')
       + fc.features.map(f => isLine(f.geometry) ? linesOf(f.geometry).map(l => `<trk><name>${xe(o.ref + ' trail ' + (++n))}</name><trkseg>${l.map(c => `<trkpt lat="${(+c[1]).toFixed(6)}" lon="${(+c[0]).toFixed(6)}"/>`).join('')}</trkseg></trk>`).join('') : '').join('');
@@ -524,5 +678,6 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE,
+    tractsOn, tractsReady, tractSwitch, tractMode, countMode, tractPath, tractDoc, tractsOf, splitRecs, tractGroups, tractify, ringsToPolys, toKml, toGpx };
 })();

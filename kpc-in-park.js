@@ -116,7 +116,7 @@
       const n = near.find(r => r.refs.length) || near[0];
       v = ['no', `<h2>✕ NOT INSIDE A PARK OR WWFF AREA</h2>${n ? `<p>Nearest: <b>${esc(n.L.name)}</b>${n.refs.length ? ' (' + n.refs.map(r => esc(r.ref)).join(', ') + ')' : ''}, about <b>${B.dist(n.e.km)}</b> to the <b>${B.dir(la, lo, n.e.lat, n.e.lon)}</b>.</p>` : '<p>No park boundary within about 5 miles.</p>'}`];
     }
-    if (!A.padusOk && !A.kyOk) v = ['maybe', '<h2>NO SIGNAL FOR THE BOUNDARY SERVICE</h2><p>We could not load the official boundaries. ' + (B.inKY(la, lo) ? 'Open this page once with signal (or save Park Commander for offline) so the Kentucky boundaries are stored on your phone.' : 'Try again when you have signal.') + '</p>'];
+    if (!A.padusOk && !A.kyOk) v = ['maybe', '<h2>NO SIGNAL FOR THE BOUNDARY SERVICE</h2><p>We could not load the official boundaries. ' + (B.inKY(la, lo) ? 'Open this page once with a signal (or save Park Commander for offline use) so the outlines are stored on your phone.' : 'Try again when you have signal.') + '</p>'];
     st.v = v; st.progHit = progHits.length > 0; st.accLine = `<p class="ip-acc">${accTxt}</p>`;
     say(v[0], v[1] + `<p class="ip-acc">${accTxt} ${how === 'watch' ? 'Updated ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' }) + '.' : ''}</p>`);
     sotaPanel();
@@ -183,7 +183,7 @@
     });
     if (me) me.remove(); if (accC) accC.remove(); if (line) line.remove();
     if (acc) accC = L.circle([la, lo], { radius: acc, color: '#1378ff', weight: 1, fillOpacity: .08, interactive: false }).addTo(map);
-    me = L.circleMarker([la, lo], { radius: 9, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).addTo(map);
+    me = L.circleMarker([la, lo], { radius: 9, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).bindTooltip('You are here').addTo(map);
     const n = (hits[0] || near[0]); if (n && n.e.km < 8) line = L.polyline([[la, lo], [n.e.lat, n.e.lon]], { color: '#1378ff', weight: 2, dashArray: '4 6', interactive: false }).addTo(map);
     if (st.here.how !== 'watch' || !st.fitted) { st.fitted = true; map.setView([la, lo], Math.max(map.getZoom(), n && n.e.km < 1 ? 16 : 14)); }
   }

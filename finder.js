@@ -185,7 +185,7 @@ Promise.all([dfetch('locations-ky.json').then(r=>{if(!r.ok)throw Error('no ky fi
   .catch(()=>dfetch('locations.json').then(r=>{if(!r.ok)throw Error('Missing locations.json');return r.json()}).then(j=>{fullData=true;return j})),fetch('wwff-unmapped.json').then(r=>r.ok?r.json():[])]).then(([j,u])=>{data=j;unmapped=u;buildCrossReferences();drawSaved();
   status.textContent=fullData?`Loaded ${data.length.toLocaleString()} mapped SOTA, POTA and WWFF locations. Use GPS or search for a town.`:`Loaded ${data.length.toLocaleString()} SOTA, POTA and WWFF locations in and around Kentucky. The rest of the U.S. loads when you search farther out. Use GPS or search for a town.`;
   if(!fullData){const ks=new Set(data.map(key));let miss=saved.favorites.concat(saved.trip).some(k=>!ks.has(k));try{miss=miss||loadRove().some(s=>s.t==='park'&&!ks.has(s.k))}catch(_){}if(miss)loadAll()}
-  restoreSearch();if(!center&&!$('place').value.trim())restoreLast();mergeLiveKY()}).catch(()=>{status.textContent='Could not load finder data files. Upload them beside finder.html on an HTTPS website.'});
+  restoreSearch();if(!center&&!$('place').value.trim())restoreLast();mergeLiveKY()}).catch(()=>{status.textContent='Could not load the park lists. Check your connection and refresh the page.'});
 
 
 // Offline exports contain only user-visible program data; no GPS location is transmitted by this feature.

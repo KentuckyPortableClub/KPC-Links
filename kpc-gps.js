@@ -74,7 +74,7 @@
     return "KPC_" + x + "_parks_" + date + "." + ext;     // state pack
   }
 
-  // ---------------- geometry: rings, simplification (same algorithm as kpc_gpspacks.py) ----------------
+  // ---------------- geometry: rings, simplification (same algorithm as kpc_gpspacks.py only when no tracts are passed; with tracts it differs) ----------------
   function closeRing(r) {
     var out = [];
     for (var i = 0; i < r.length; i++) {
@@ -99,6 +99,13 @@
       if (rr.length) res.push(rr);
     });
     return res;
+  }
+  // Nov 7: the tract id of each polygon polygonsOf() returns, when every feature carries properties.tract (tract switch on); else null
+  function polyTracts(geom, n) {
+    if (!geom || geom.type !== "FeatureCollection") return null;
+    var out = [], any = false;
+    (geom.features || []).forEach(function (f) { var t = f && f.properties && f.properties.tract; if (t) any = true; polygonsOf(f).forEach(function () { out.push(t || ""); }); });
+    return any && out.length === n ? out : null;
   }
   function linesOf(geom) {
     if (!geom) return [];
@@ -152,7 +159,9 @@
   function countPts(polys) { var c = 0; polys.forEach(function (p) { p.forEach(function (r) { c += r.length; }); }); return c; }
   function ringArea(r) { var xy = proj(r), a = 0; for (var i = 0; i < xy.length - 1; i++) a += xy[i][0] * xy[i + 1][1] - xy[i + 1][0] * xy[i][1]; return Math.abs(a / 2); }
   // simplify a whole outline to <= maxPts points: 5 m first, then coarser. -> {polys, tol, dropped, points}
-  function simplifyOutline(polys, maxPts) {
+  // Nov 7 (tracts, hidden): `tracts` = the tract id of each polygon (only when the outline was read with the tract switch on). Then
+  // every tract keeps its biggest outer ring before the size trim, so a small tract is never left out whole. Without it: as before.
+  function simplifyOutline(polys, maxPts, tracts) {
     maxPts = maxPts || MAX_PTS;
     var res = null, tol = TOLS[0];
     for (var t = 0; t < TOLS.length; t++) {
@@ -165,6 +174,12 @@
     res.forEach(function (p, pi) { p.forEach(function (r, ri) { pieces.push({ pi: pi, ri: ri, a: ringArea(r), n: r.length }); }); });
     pieces.sort(function (a, b) { return b.a - a.a; });
     var total = 0, keepSet = {}, dropped = 0;
+    if (tracts && tracts.length === res.length) {
+      var firstOf = {};
+      pieces.forEach(function (x) { var t = String(tracts[x.pi]); if (x.ri === 0 && !(t in firstOf)) firstOf[t] = x; });
+      Object.keys(firstOf).forEach(function (t) { var x = firstOf[t]; total += x.n; keepSet[x.pi + ":" + x.ri] = 1; });
+      pieces = pieces.filter(function (x) { return !keepSet[x.pi + ":" + x.ri]; });
+    }
     pieces.forEach(function (x) { if (total + x.n <= maxPts) { total += x.n; keepSet[x.pi + ":" + x.ri] = 1; } else dropped++; });
     var out = [];
     res.forEach(function (p, pi) {
@@ -305,6 +320,7 @@
     var m = { ref: ref, name: name, lat: num(park.lat), lon: num(park.lon), status: st, agency: o.agency || null, why: o.why || null, area: park.area || null };
     m.outlineLabel = outlineLabel(st, m.agency, m.why);
     m.polys = polys;
+    m.polyTracts = st === "pin" || o.polys ? null : polyTracts(o.geojson || o.geometry || o, polys.length);   // Nov 7: null unless tract-labelled
     m.outlineMissing = st !== "pin" && !polys.length;
     m.access = []; var counts = {};
     (park.access || []).forEach(function (a) {
@@ -391,7 +407,7 @@
     }
     ms.forEach(function (m) {
       if (m.polys.length && o.outlines !== false) {
-        var s = simplifyOutline(m.polys, o.maxPoints);
+        var s = simplifyOutline(m.polys, o.maxPoints, m.polyTracts);
         L.push("<trk><name>" + xesc(m.ref + " boundary (" + (m.status === "official" ? "Official" : "Approximate") + ")") + "</name><desc>" +
           xesc(m.outlineLabel + ". " + m.ref + " " + m.name + ". Simplified to ~" + s.tol + " m for GPS units (" + s.points + " points)" + (s.dropped ? "; " + s.dropped + " small pieces left out" : "") + ".") +
           "</desc><type>" + (m.status === "official" ? "Official boundary" : "Approximate outline") + "</type>");
@@ -475,7 +491,7 @@
         return;
       }
       var polys = m.polys, extra = "";
-      if (o.kmlSimplify) { var s = simplifyOutline(m.polys, o.maxPoints); polys = s.polys; extra = " Simplified to ~" + s.tol + " m (" + s.points + " points)" + (s.dropped ? "; " + s.dropped + " small pieces left out" : "") + "."; }
+      if (o.kmlSimplify) { var s = simplifyOutline(m.polys, o.maxPoints, m.polyTracts); polys = s.polys; extra = " Simplified to ~" + s.tol + " m (" + s.points + " points)" + (s.dropped ? "; " + s.dropped + " small pieces left out" : "") + "."; }
       var pg = polys.map(function (p) {
         return "<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>" + kc(p[0]) + "</coordinates></LinearRing></outerBoundaryIs>" +
           p.slice(1).map(function (r) { return "<innerBoundaryIs><LinearRing><coordinates>" + kc(r) + "</coordinates></LinearRing></innerBoundaryIs>"; }).join("") + "</Polygon>";

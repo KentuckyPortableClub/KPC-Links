@@ -64,7 +64,10 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              # Nov 6 (Links #53): reads a Data path or that path plus .gz. It never decides a join.
              'kpc_json_any.py',
              # Nov 7 prep (Task D): writes the uncapped 'nonum' list to data/us-key/new/ side files; reads the key, never decides a join
-             'kpc_us_nonum_full.py'}
+             'kpc_us_nonum_full.py',
+             # Nov 7 Part 1 (KEY / 2-FER / WORLD handoff): the world tract side-file runner, run by hand. It reads the published world
+             # key and the record cache and writes only data/world-key/tracts/ (kpc_tracts.py); it never decides a join.
+             'kpc_world_tracts.py'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')

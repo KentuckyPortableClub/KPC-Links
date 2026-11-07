@@ -241,6 +241,11 @@
     const list = (geoms || []).filter(x => x && x.type);
     if (!list.length) return { checked: false, hit: null, text: 'outline not checked' };
     for (const geom of list) {
+      if (g.tractsOn && g.tractsOn() && g.alreadyParks) {   /* Nov 7 (tract switch on): every pin, so a parent and a child both show */
+        const all = g.alreadyParks(geom, pins || [], miles == null ? 0.25 : miles);
+        if (all.length) return { checked: true, hit: all[0], all: all, text: 'a park pin is inside or within 0.25 mi: ' + all.map(p => p.ref + ' ' + (p.name || '')).join('; ') };
+        continue;
+      }
       const hit = g.alreadyPark(geom, pins || [], miles == null ? 0.25 : miles);
       if (hit) return { checked: true, hit: hit, text: 'a park pin is inside or within 0.25 mi: ' + hit.ref + ' ' + (hit.name || '') };
     }

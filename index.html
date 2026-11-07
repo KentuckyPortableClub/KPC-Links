@@ -624,8 +624,8 @@ body.field .page-jump-nav{display:none!important}
       </a>
       <a class="card" href="toolbox.html">
         <div class="card-content">
-          <h3>KY TOOL BOX</h3>
-          <p>KY Park Commander, live spots, band conditions and field calculators.</p>
+          <h3>TOOL BOX</h3>
+          <p>Park Commander (park and summit map), live spots, band conditions and field calculators.</p>
           <span class="btn">OPEN TOOL BOX</span>
         </div>
       </a>
@@ -749,7 +749,7 @@ fetch('kpc-events-auto.json',{cache:'no-cache'}).then(function(r){return r.ok?r.
 
 <script src="kpc-holiday.js?v=20261028b" defer></script>
 <script src="kpc-fold.js?v=20261011c" defer></script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261031s" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

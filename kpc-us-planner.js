@@ -311,7 +311,7 @@ async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').valu
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${radius} miles of ${esc(label||'there')}: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}.${added?` (${added} newer POTA park${added===1?'':'s'} loaded live from POTA.)`:''}`);
  if(map){if(ctrMk)ctrMk.remove();if(ring)ring.remove();
-  ctrMk=L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div class="ctr-us"></div>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
+  ctrMk=L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div class="ctr-us" role="img" aria-label="Search point" title="Search point"></div>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
   ring=L.circle([la,lo],{radius:radius*1609.34,color:'#171717',weight:1.5,dashArray:'6 6',fill:false,interactive:false}).addTo(map);
   map.fitBounds(ring.getBounds(),{padding:[10,10]})}
  drawDots();drawNear()}
@@ -363,7 +363,7 @@ async function runRoute(){const fq=$('urf').value,tq=$('urt').value,w=+$('urw').
  RT={pts:R.pts,info:C.info,A,B,w};center=[A.la,A.lo];NEAR=C.list;
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);const h=R.hrs?`, about ${Math.floor(R.hrs)} h ${Math.round(R.hrs%1*60)} min`:'';
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${w} miles of your ${Math.round(R.road?R.mi:C.total)}-mile ${R.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(A.label)}</b> to <b>${esc(B.label)}</b>: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}. Listed in the order you reach them.`);
- if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
+ if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end" role="img" aria-label="${t==='A'?'Route start':'Route end'}" title="${t==='A'?'Route start':'Route end'}">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
   routeL=L.featureGroup([L.polyline(R.pts,{color:'#171717',weight:8,opacity:.55,interactive:false}),L.polyline(R.pts,{color:'#f0c96b',weight:4,interactive:false,dashArray:R.road?null:'8 8'}),pin(A,'A'),pin(B,'B')]).addTo(map);
   map.fitBounds(routeL.getBounds(),{padding:[24,24]})}
  drawDots();drawNear()}
@@ -384,7 +384,7 @@ async function overpass(q,key){if(ovpCache[key])return ovpCache[key];const why=[
  const one=(u,i)=>new Promise((ok,no)=>{const t=setTimeout(()=>ctl[i].abort(),22000);
   fetch(u,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:ctl[i].signal})
    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{if(j&&Array.isArray(j.elements))ok(j);else throw new Error('bad answer')})
-   .catch(e=>{why.push(OVPN[i]+': '+(e.name==='AbortError'?'timed out after 22 s':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (server overloaded)','503':' (server unavailable)','400':' (query not accepted)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'blocked or unreachable from this browser ('+(e.message||e.name)+')'));no(e)})
+   .catch(e=>{why.push(OVPN[i]+': '+(e.name==='AbortError'?'took too long to answer':/^HTTP \d+/.test(e.message)?'server answered '+e.message.replace('HTTP ','')+({'429':' (too many requests)','406':' (request refused)','504':' (the map service is busy)','503':' (server unavailable)','400':' (the map service refused the request)'}[e.message.slice(5)]||''):e.message==='bad answer'?'sent something that was not boundary data':'could not be reached from this browser (an ad blocker or firewall may be blocking it) ('+(e.message||e.name)+')'));no(e)})
    .finally(()=>clearTimeout(t))});
  try{const j=await Promise.any(OVP.map(one));ctl.forEach(c=>{try{c.abort()}catch(e){}});ovpCache[key]=j;return j}catch(e){}
  const err=new Error('all servers failed');err.why=why;throw err}

@@ -32,6 +32,169 @@ def on():
     return str(os.environ.get('KPC_TRACT_STORE', '1')).strip().lower() not in ('0', 'off', 'no', 'false')
 
 
+# ---------------------------------------------------------------------------------------------------------------------------------
+# Nov 7 Part 1 (KEY / 2-FER / WORLD handoff, 'tracts + nested parks + 2-fer switch'). Everything below is OFF by default and only
+# READS the side files: the side file written above is byte-for-byte what it was unless KPC_TRACT_STORE=shapes (then each tract also
+# carries a thinned 'shape' so the 2-fer count switch can test the spot against the tract's SHAPE, not its box).
+#
+# What a tract is (handoff 'Decision', used everywhere): one separate piece of land. Stored as one side-file entry per official
+# record; a multipart record whose pieces are more than 1 km apart ('pieces' > 1) is split into one tract per piece at READ time
+# (split() below). Stable id '<ref>#<n>', n ordered by acres, largest first.
+#
+# The switches (no new one; the file only holds defaults):
+#   KPC_TRACT_STORE      1 (default) = write side files as before | 0 = off | shapes = also write each tract's thinned shape
+#   KPC_FERS_COUNT_MODE  whole_park (default) | tracts | nested       (kpc_fers_count.py, the ONLY place 2-fer counting changes)
+#   KPC_TRACT_MODE       one_park (default, today's rules) | own_park (each tract may be its own possible new park);
+#                        env first, then data/tract-switch.json 'tract_mode', then one_park
+# data/tract-switch.json = {"on": false, "mode": "whole_park", "tract_mode": "one_park"} (on/mode: the website's display switch,
+# read by kpc-bounds.js KPCB.tractsOn(); the 2-fer bot reads only its env, so the file can never change a published spot file).
+TRACT_MODES = ('one_park', 'own_park')
+COUNT_MODES = ('whole_park', 'tracts', 'nested')
+SWITCH_DEFAULT = {'on': False, 'mode': 'whole_park', 'tract_mode': 'one_park'}
+GAP_KM = 1.0          # pieces closer than this are one tract (same as kpc_key_rules.tracts_of, which is used, never copied)
+SHAPE_MAX = 400       # points per tract shape when KPC_TRACT_STORE=shapes (GUESS: enough for 'is this spot in this tract')
+CONTAIN_SHARE = 0.8   # a ring is a hole of another ring when >= 80% of its points lie inside it (thinned rings can cross a little)
+_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
+
+
+def store_shapes():
+    return str(os.environ.get('KPC_TRACT_STORE', '1')).strip().lower() == 'shapes'
+
+
+def switch(paths=None):
+    """data/tract-switch.json merged over the defaults (bad or missing values fall back to the default). The working folder's copy
+    first (a bot run from a KPC-Data checkout), then the KPC-Links copy next to this script."""
+    out = dict(SWITCH_DEFAULT)
+    for p in paths or ('data/tract-switch.json', _ROOT / 'data' / 'tract-switch.json'):
+        j = load(p)
+        if not isinstance(j, dict): continue
+        if isinstance(j.get('on'), bool): out['on'] = j['on']
+        if j.get('mode') in COUNT_MODES: out['mode'] = j['mode']
+        if j.get('tract_mode') in TRACT_MODES: out['tract_mode'] = j['tract_mode']
+        break
+    return out
+
+
+def tract_mode(paths=None):
+    m = str(os.environ.get('KPC_TRACT_MODE') or '').strip().lower()
+    if m in TRACT_MODES: return m
+    if m: print(f'::warning title=tract mode::unknown KPC_TRACT_MODE {m!r}; using the switch file / one_park', flush=True)
+    return switch(paths)['tract_mode']
+
+
+def _thin_shape(rings, max_pts=SHAPE_MAX):
+    rings = [r for r in rings or [] if r and len(r) >= 3]
+    tot = sum(len(r) for r in rings)
+    k = max(1, -(-tot // max_pts)) if tot else 1
+    out = []
+    for r in rings:
+        q = r[::k] if len(r[::k]) >= 4 else r[::max(1, len(r) // 4)]
+        q = [[round(float(p[0]), 5), round(float(p[1]), 5)] for p in q]
+        if q and q[0] != q[-1]: q.append(list(q[0]))
+        if len(q) >= 4: out.append(q)
+    return out
+
+
+def _signed(r):
+    return sum(r[i][0] * r[(i + 1) % len(r)][1] - r[(i + 1) % len(r)][0] * r[i][1] for i in range(len(r))) / 2.0
+
+
+def _in_ring(x, y, r):
+    ins, j = False, len(r) - 1
+    for i in range(len(r)):
+        xi, yi, xj, yj = r[i][0], r[i][1], r[j][0], r[j][1]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-15) + xi: ins = not ins
+        j = i
+    return ins
+
+
+def ring_roles(rings):
+    """[(parent index or None, is_hole)] per ring. A ring's parent = the smallest other ring holding >= CONTAIN_SHARE of its points.
+    A ring is a HOLE when its parent is an outer ring wound the other way; an island in a hole, or two outer rings that overlap or
+    repeat each other, stay outer rings. So 'inside' = inside any outer ring and outside that ring's holes (overlapping tracts in one
+    MultiPolygon stay inside where they overlap; plain even-odd would call the overlap outside)."""
+    rs = [r for r in rings]
+    bb = [_bbox([r]) for r in rs]
+    area = [abs(_signed(r)) for r in rs]
+    parent = []
+    for i, r in enumerate(rs):
+        best = None
+        for j, o in enumerate(rs):
+            if i == j or not bb[i] or not bb[j] or area[j] <= area[i]: continue
+            if bb[i][0] < bb[j][0] - 1e-9 or bb[i][1] < bb[j][1] - 1e-9 or bb[i][2] > bb[j][2] + 1e-9 or bb[i][3] > bb[j][3] + 1e-9: continue
+            pts = r[:-1] if len(r) > 1 and r[0] == r[-1] else r
+            if pts and sum(1 for p in pts if _in_ring(p[0], p[1], o)) / len(pts) >= CONTAIN_SHARE and (best is None or area[j] < area[best]): best = j
+        parent.append(best)
+    hole = [False] * len(rs)
+    for i in sorted(range(len(rs)), key=lambda i: -area[i]):     # parents (bigger) are decided first
+        p = parent[i]
+        hole[i] = p is not None and not hole[p] and (_signed(rs[i]) > 0) != (_signed(rs[p]) > 0)
+    return list(zip(parent, hole))
+
+
+def in_shape(rings, la, lo):
+    rings = [r for r in rings or [] if r and len(r) >= 3]
+    roles = ring_roles(rings)
+    for i, r in enumerate(rings):
+        if roles[i][1] or not _in_ring(lo, la, r): continue
+        if any(roles[j] == (i, True) and _in_ring(lo, la, rings[j]) for j in range(len(rings))): continue
+        return True
+    return False
+
+
+def piece_groups(rings, gap_km=GAP_KM):
+    """Groups of ring indexes, one group per piece more than gap_km from the others (kpc_key_rules.tracts_of: the same 1 km rule
+    the 'pieces' count uses). Holes sit inside their outer ring's box, so they stay with it."""
+    rings = [r for r in rings or [] if r and len(r) >= 3]
+    if not rings: return []
+    try:
+        import kpc_key_rules as KR
+        return KR.tracts_of([_bbox([r]) for r in rings], gap_km)
+    except Exception: return [list(range(len(rings)))]  # noqa: BLE001
+
+
+def _acres(t):
+    v = t.get('ac_measured') if t.get('ac_measured') is not None else t.get('ac')
+    try: return float(v) if v is not None else 0.0
+    except (TypeError, ValueError): return 0.0
+
+
+def split(ref, recs, twins=()):
+    """READ-TIME tracts of one park, from its side-file records. Returns [{'id': '<ref>#<n>', 'rid', 'sid', 'name', 'src', 'ac', 'box',
+    'shape'?, 'part'?, 'of'?, 'approx_split'?}], largest first. A record listed as a key 'twin' (the same land as another joined
+    record) is left out, the same way the website leaves it out. A record with pieces > 1 is split by its shape when the side file has
+    one (KPC_TRACT_STORE=shapes); without a shape it becomes 'pieces' tracts that share the record's box and an even share of its
+    acres, marked approx_split (GUESS: the side file has no per-piece box)."""
+    tw = {str(x) for x in twins or ()}
+    rows = []
+    for k, t in enumerate(recs or []):
+        if not isinstance(t, dict) or str(t.get('rid')) in tw: continue
+        shp = [r for r in t.get('shape') or [] if r and len(r) >= 3]
+        n = t.get('pieces') or 1
+        base = {'rid': t.get('rid'), 'sid': t.get('sid'), 'name': t.get('name'), 'src': t.get('src')}
+        if n > 1 and shp:
+            gs = piece_groups(shp)
+            for gi, g in enumerate(gs):
+                rg = [shp[i] for i in g]
+                rows.append(dict(base, ac=round(PE.acres_rings(rg), 1), box=[round(v, 4) for v in _bbox(rg)], shape=rg, part=gi + 1, of=len(gs), _k=(k, gi)))
+        elif n > 1:
+            for gi in range(n):
+                rows.append(dict(base, ac=round(_acres(t) / n, 1), box=t.get('box'), part=gi + 1, of=n, approx_split=True, _k=(k, gi)))
+        else:
+            rows.append(dict(base, ac=round(_acres(t), 1), box=t.get('box'), _k=(k, 0), **({'shape': shp} if shp else {})))
+    rows.sort(key=lambda x: (-(x['ac'] or 0), str(x['rid']), x['_k']))
+    for i, x in enumerate(rows):
+        x['id'] = f'{ref}#{i + 1}'; del x['_k']
+    return rows
+
+
+def at(tr, la, lo, pad=1e-4):
+    """(inside?, 'shape' | 'box'): the tract's shape when the side file has one, else its box (the old label rule)."""
+    if tr.get('shape'): return in_shape(tr['shape'], la, lo), 'shape'
+    b = tr.get('box')
+    return bool(b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad), 'box'
+
+
 def _bbox(rings):
     xs = [p[0] for r in rings for p in r]; ys = [p[1] for r in rings for p in r]
     return [min(xs), min(ys), max(xs), max(ys)] if xs else None
@@ -64,6 +227,11 @@ def tract(rid, name, how, attrs=None, mp=None, rings=None, layer='', src_key=Non
             b = _bbox([r for r in rings if r and len(r) >= 3])
             if b: t['box'] = [round(float(v), 4) for v in b]   # Nov 6: lets the 2-fer count switch place a spot in a tract
         except Exception: pass  # noqa: BLE001
+        if store_shapes():   # Nov 7: only with KPC_TRACT_STORE=shapes (default 1 writes exactly what it wrote before)
+            try:
+                s = _thin_shape(rings)
+                if s: t['shape'] = s
+            except Exception: pass  # noqa: BLE001
     return t
 
 
@@ -180,14 +348,42 @@ def load(path):
     except Exception: return None  # noqa: BLE001
 
 
-def index(dirs=('data/us-key/tracts', 'data/ca-key/tracts', 'data/world-key/tracts', 'data/tracts')):
-    """{ref: {'tracts': [...], 'parent': ref or None, 'children': [refs]}} over every side file found (the 2-fer switch reads this)."""
+def index(dirs=('data/us-key/tracts', 'data/ca-key/tracts', 'data/world-key/tracts', 'data/tracts'), twins=False):
+    """{ref: {'tracts': [...], 'parent': ref or None, 'children': [refs], 'area'}} over every side file found (the 2-fer switch reads
+    this). twins=True (Nov 7) also reads each side file's answer key for its 'twin' record ids ('twin': [...])."""
     out = {}
     for d in dirs:
         for f in sorted(pathlib.Path(d).glob('*.json')) if pathlib.Path(d).exists() else []:
             j = load(f) or {}
-            for r, ts in (j.get('parks') or {}).items(): out.setdefault(r, {'tracts': [], 'parent': None, 'children': []})['tracts'] = ts
+            area = j.get('area') or f.stem
+            tw = twins_for(f) if twins else {}
+            for r, ts in (j.get('parks') or {}).items():
+                e = out.setdefault(r, {'tracts': [], 'parent': None, 'children': []}); e['tracts'] = ts; e['area'] = area
+                if tw.get(r): e['twin'] = tw[r]
             for x in j.get('nested') or []:
                 out.setdefault(x['child'], {'tracts': [], 'parent': None, 'children': []})['parent'] = x['parent']
+                out[x['child']]['area'] = out[x['child']].get('area') or area
                 out.setdefault(x['parent'], {'tracts': [], 'parent': None, 'children': []})['children'].append(x['child'])
     return out
+
+
+def twins_for(tract_file):
+    """{ref: [twin record ids]} from the answer key next to a side file (data/us-key/tracts/US-AL.json -> data/us-key/US-AL.json).
+    The key's 'twin' list = joined records that are the same land as another joined record (the website does not draw them twice)."""
+    p = pathlib.Path(tract_file)
+    k = load(p.parent.parent / p.name) or {}
+    return {r: [str(x) for x in v.get('twin') or []] for r, v in (k.get('parks') or {}).items() if isinstance(v, dict) and v.get('twin')}
+
+
+def label(park, t):
+    """Nov 7 Quality fix 4: '<Park name>, <X> tract' (X = the tract's own name when it differs from the park's, else its number
+    from the id '<ref>#<n>'). The id stays '<ref>#<n>'."""
+    nm = str(t.get('name') or '').strip(); n = str(t.get('id') or '').rsplit('#', 1)[-1]
+    return f"{park}, {nm if nm and nm != str(park).strip() else n} tract"
+
+
+def tracts_of_ref(IDX, ref):
+    """The read-time tracts of one park from an index() result, cached on the entry (labels only)."""
+    e = IDX.get(ref) or {}
+    if '_split' not in e and e.get('tracts'): e['_split'] = split(ref, e['tracts'], e.get('twin') or ())
+    return e.get('_split') or []

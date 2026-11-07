@@ -161,7 +161,7 @@ async function check(la, lo, gps, how) {
   if (!cur) return;
   const me = [la, lo], d = dist(me, [cur.la, cur.lo]), b = brg(me, [cur.la, cur.lo]);
   if (map) {
-    if (!meMark) meMark = L.circleMarker(me, { radius: 8, color: '#fff', weight: 3, fillColor: '#2b7cff', fillOpacity: 1 }).addTo(map); else meMark.setLatLng(me);
+    if (!meMark) meMark = L.circleMarker(me, { radius: 8, color: '#fff', weight: 3, fillColor: '#2b7cff', fillOpacity: 1 }).bindTooltip('You are here').addTo(map); else meMark.setLatLng(me);
     if (link) link.remove(); link = L.polyline([me, [cur.la, cur.lo]], { color: '#2b7cff', weight: 2, dashArray: '4 6' }).addTo(map);
   }
   const st = $('azStatus'); st.hidden = false;

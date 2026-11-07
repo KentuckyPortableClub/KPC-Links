@@ -459,9 +459,9 @@
     var pins = []; visiblePatches(cur).forEach(function (s) { [s.access_pin].concat(s.pins || []).forEach(function (a) { if (a && a.at && pins.length < 3 && !pins.some(function (q) { return q.at[0] === a.at[0] && q.at[1] === a.at[1]; })) pins.push(a); }); });
     pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
       .bindPopup('<b>Closest spot to public access</b><br>' + esc(a.name || '') + ' (' + esc(a.from || '') + '), about ' + Math.round((a.walk_m || 0) * YD) + ' yards from it.<br><small>' + esc(a.note || '') + '</small><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + a.at[0] + ',' + a.at[1] + '">Directions (to the access, not to the overlap)</a><span class="ov-short">' + SHORT + '</span>')); });
-    if (meas.length) { gAll.addLayer(L.polyline(meas, { color: '#d55e00', weight: 3 })); meas.forEach(function (m) { gAll.addLayer(L.circleMarker(m, { radius: 5, color: '#d55e00' })); }); }
+    if (meas.length) { gAll.addLayer(L.polyline(meas, { color: '#d55e00', weight: 3 })); meas.forEach(function (m) { gAll.addLayer(L.circleMarker(m, { radius: 5, color: '#d55e00' }).bindTooltip('Measure point')); }); }
     setTimeout(clipTrail, 0);
-    if (gps) { gAll.addLayer(L.circle(gps.p, { radius: gps.acc / YD, color: '#1e78ff', weight: 1, fillOpacity: 0.15 })); gAll.addLayer(L.circleMarker(gps.p, { radius: 7, color: '#fff', weight: 3, fillColor: '#1e78ff', fillOpacity: 1 })); }
+    if (gps) { gAll.addLayer(L.circle(gps.p, { radius: gps.acc / YD, color: '#1e78ff', weight: 1, fillOpacity: 0.15 })); gAll.addLayer(L.circleMarker(gps.p, { radius: 7, color: '#fff', weight: 3, fillColor: '#1e78ff', fillOpacity: 1 }).bindTooltip('You are here')); }
   }
   /* Brandon Oct 27 3:13 PM ('The private property in a park needs better clarification'): tap any spot on the map = which park
      land it is on by the official outlines. Grey inside a park's outer line = land the park does NOT own or manage (private

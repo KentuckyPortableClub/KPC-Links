@@ -76,7 +76,7 @@ def doorways(prog):
     return section('TOOLS', '🧰 Where the Tools Live', 'Every KPC tool has one home. Pick yours.', [
         card('kpc-activators-lounge.html', '🎒', 'Activators Lounge', 'Plan and run an activation anywhere: trip planner, maps and boundaries, Am I in the Park, Activation Kit, park sheet, rare parks, weather and conditions.', 'you\'re going out to activate.'),
         card('kpc-hunters.html', '🎯', 'Hunters Lounge', 'Live ' + prog + ' spots with filters, the parks you still need, and quick logging.', 'you\'re hunting from home, the car or another park.'),
-        card('parks.html', '🌲', 'Kentucky Parks', 'Our Kentucky home: KY Park Commander, the KY Trip Planner, park guides and Kentucky tools.', 'you\'re operating in Kentucky.'),
+        card('parks.html', '🌲', 'Kentucky Parks', 'Our Kentucky home: Park Commander, the Kentucky Trip Planner, park guides and Kentucky tools.', 'you\'re operating in Kentucky.'),
     ], alt=True)
 
 INFOLINE = ('<section class="kb-sec"><div class="kb-in"><p class="kb-small rm-note">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p></div></section>')
@@ -130,7 +130,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         '<b>Two-fers and three-fers.</b> POTA\'s rules say: “Activations of multiple references (“Multi-loc” or “two-fer,” “three-fer,” etc.) are permitted with Parks on the Air. Such a multi-park activation requires an overlapped area where all activated parks’ boundaries intersect. The intersection must entirely contain the activator and the station equipment. Activation Location and Access Rule #1 applies to simultaneous activations.” (<a href="https://docs.pota.app/docs/rules.html" target="_blank" rel="noopener">POTA rules ↗</a>) Submit a separate log for each park.',
     ], 'Sources: <a href="https://parksontheair.com/rules/" target="_blank" rel="noopener">parksontheair.com/rules</a> and the detailed rules at <a href="https://docs.pota.app/" target="_blank" rel="noopener">docs.pota.app</a>.' + DISCLAIM + AFF['pota']),
     steps('HOW TO START', '🚀 Your First Activation or Hunt', [
-        ('📻 Activating', ['Pick a park: <a href="finder.html">KY Park Commander</a> or <a href="kpc-rare.html">Rarely Activated Parks</a>.',
+        ('📻 Activating', ['Pick a park: <a href="finder.html">Park Commander</a> or <a href="kpc-rare.html">Rarely Activated Parks</a>.',
                           'Read its <a href="kpc-park-notes.html">Park Notes</a> and open its <a href="kpc-kit.html">Activation Kit</a> (weather, parking, boundary).',
                           'Tell people you\'re going on the <a href="kpc-activations.html">Activation Board</a>.',
                           'At the park, check the line with <a href="kpc-in-park.html">Am I in the Park?</a>, then set up.',
@@ -181,7 +181,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
         '<b>Same ground as a POTA park?</b> A KFF reference sharing ground with a POTA park is a different program: you can log both on one trip, but that\'s not a POTA 2-fer.',
     ], 'Sources: <a href="https://wwff.co/wwff_cont/uploads/2025/09/WWFF-Global-Rules-V_5.10.pdf" target="_blank" rel="noopener">WWFF Global Rules v5.10</a> and <a href="https://wwff.co/rules-faq/how-to-activate-a-wwff-reference" target="_blank" rel="noopener">How to activate a WWFF reference</a>.' + DISCLAIM + AFF['wwff']),
     steps('HOW TO START', '🚀 Your First KFF Activation or Hunt', [
-        ('📻 Activating', ['Find a KFF reference: <a href="finder.html">KY Park Commander</a>, our <a href="kpc-guide-wwff.html">KFF guide</a>, or the <a href="kpc-park-info.html">Info Finder</a> for other states.',
+        ('📻 Activating', ['Find a KFF reference: <a href="finder.html">Park Commander</a>, our <a href="kpc-guide-wwff.html">KFF guide</a>, or the <a href="kpc-park-info.html">Info Finder</a> for other states.',
                           'Check the boundary with <a href="kpc-in-park.html">Am I in the Park?</a> (it shows WWFF areas too).',
                           'Many Kentucky KFF areas are also POTA parks: log both programs at once.',
                           'Spot yourself on the WWFF spot page (wwff.co) and call CQ.',
