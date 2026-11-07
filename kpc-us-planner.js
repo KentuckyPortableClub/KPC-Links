@@ -209,7 +209,9 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   if(p){const [,web,typ,act]=p,sub=p[10]||'',how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean),site=(d.sites||{})[sub],nm=(pre==='CA'?PROV:{})[sub]||sub;
    h=`<div class="meta" style="margin:6px 0 2px">${[typ&&esc(typ),nm&&esc(nm),how.length&&'activate by '+esc(how.join(', '))].filter(Boolean).join(' · ')}</div>`+
     (p[7]!=null?ln(p[7]?`Activated <b>${p[7].toLocaleString()}</b> time${p[7]===1?'':'s'}${p[7]<=5?' · <b style="color:#b45309">RARE</b>':''}`:'<b style="color:#c2410c">Never activated: an ATNO!</b>'):'')+
-    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${site&&/Provincial|State Park|National Park/i.test(typ)?`<a href="${esc(site)}" target="_blank" rel="noopener">${esc(nm.toUpperCase())} PARKS SITE ↗</a>`:''}</div>`}}
+    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${site&&/Provincial|State Park|National Park/i.test(typ)?`<a href="${esc(site)}" target="_blank" rel="noopener">${esc(nm.toUpperCase())} PARKS SITE ↗</a>`:''}</div>`;
+   /* Nov 7 round 3: GB/IE/AU/NZ 'Getting in' links from the agency list; OFF unless data/getting-in-switch.json says on (kpc-getting-in.js) */
+   if(window.KPCGetIn)try{h+=await KPCGetIn.block(s,pre,PINFO,dfetch,esc)}catch(e){}}}
  if(P==='POTA'&&pre==='US')for(const st of sts){if(!(st in PINFO))PINFO[st]=dfetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);

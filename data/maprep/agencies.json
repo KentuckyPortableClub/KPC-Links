@@ -1,6 +1,6 @@
 {
  "built": "2026-11-06",
- "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed. Round-3 confirmed URLs (2026-11-06) are stored in this same file. The Tool Box and the research link post-check both read it.",
+ "note": "Land agencies for the Mapping Rep Tool Box. A URL is verified only after a plain read that robots.txt allowed. Hub and services*.arcgis.com addresses were not fetched. Grant County NM is not listed. Round-3 confirmed URLs (2026-11-06) are stored in this same file. The Tool Box and the research link post-check both read it. Round 3 (2026-11-07): GB, IE, AU and NZ places added. Every one of their URLs is verified:false until a plain read that robots.txt allows. The access block (fees, parking, entrances, hours, park_page) holds official-site addresses only; no stored claim about any fee or hour.",
  "places": {
   "AL": {
    "name": "Alabama",
@@ -3966,19 +3966,19 @@
      ],
      "name": "National Parks UK (umbrella for the 15 UK national park authorities)",
      "home": {
-      "url": "https://nationalparks.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://www.nationalparks.uk/",
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.nationalparks.uk/what-is-a-national-park/)"
      },
      "finder": {
-      "url": "https://nationalparks.uk/parks/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://www.nationalparks.uk/parks/",
+      "verified": false,
+      "source": "GUESS: link listed on fetched nationalparks.uk page; target not fetched"
      },
      "gis": {
-      "url": "",
+      "url": "https://ckan.publishing.service.gov.uk/dataset/national-parks-december-2021-boundaries-gb-bgc/resource/c70f9e3d-d3c3-4b95-8cf2-3897efa3390f",
       "verified": false,
-      "source": ""
+      "source": "GUESS: National Parks boundaries GB (ArcGIS Hub record on data.gov.uk CKAN) seen in search results only; boundaries only, no entrances/parking"
      }
     },
     {
@@ -3989,18 +3989,18 @@
      "name": "National Trust (landowner, not a government agency; GUESS: POTA lists NT land only where it is a designated park or reserve, not confirmed)",
      "home": {
       "url": "https://www.nationaltrust.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07; robots allowed (robots.txt read; User-agent: * does not disa]"
      },
      "finder": {
       "url": "https://www.nationaltrust.org.uk/visit",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07; robots allowed (robots.txt read; User-agent: * does not disa]"
      },
      "gis": {
-      "url": "",
+      "url": "https://uk-nationaltrust.opendata.arcgis.com/",
       "verified": false,
-      "source": ""
+      "source": "GUESS-unfetched: ArcGIS hub, not fetched per repo habit; robots not checked. hub URL taken from fetched data.gov.uk CKAN record (http://uk-nationaltrust.opendata.arcgis.com/datasets/202ec400dfe9471aaf257e4b6c956394_0); layers NT Land Always Open / Limited Access, England and Wales, polygons at about 1:50,000, licence not stated on the record; no entrances/parking; hub not fetched (ArcGIS hubs not fetched, as in the repo note)"
      }
     },
     {
@@ -4011,18 +4011,18 @@
      "name": "Woodland Trust (landowner/charity, not a government agency; GUESS: POTA counts its woods only if they are a listed park or reserve, not confirmed)",
      "home": {
       "url": "https://www.woodlandtrust.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.woodlandtrust.org.uk/visiting-woods/things-to-do/360-tours/; charity per page footer)"
      },
      "finder": {
       "url": "https://www.woodlandtrust.org.uk/visiting-woods/find-woods/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: link listed on a fetched Woodland Trust page; target not fetched"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): Trust's research page says site data requests go through a request form; no open layer"
      }
     },
     {
@@ -4034,18 +4034,18 @@
      "name": "RSPB (landowner/charity, not a government agency; GUESS: POTA counts RSPB reserves only where they are a listed park or protected area, not confirmed)",
      "home": {
       "url": "https://www.rspb.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: not fetched; the fetched pages were on the CDN host web-cdn.rspb.org.uk"
      },
      "finder": {
       "url": "https://web-cdn.rspb.org.uk/days-out/reserves",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: find-a-reserve link listed on fetched https://web-cdn.rspb.org.uk/days-out/family-days-out (CDN host); target not fetched"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      }
     },
     {
@@ -4056,18 +4056,18 @@
      "name": "Canal & River Trust (charity, not a government agency; waterways, towpaths, reservoirs in England and Wales; GUESS: POTA counts only where a listed park)",
      "home": {
       "url": "https://canalrivertrust.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://canalrivertrust.org.uk/news-and-views/news/discover-the-nations-hidden-waterway-gems)"
      },
      "finder": {
-      "url": "https://canalrivertrust.org.uk/canals-and-rivers/places-to-visit",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://www.canalrivertrust.org.uk/canals-and-rivers/places-to-visit",
+      "verified": false,
+      "source": "GUESS: URL quoted in the text of a fetched Canal & River Trust news page; target not fetched"
      },
      "gis": {
       "url": "https://data-canalrivertrust.opendata.arcgis.com/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS-unfetched: ArcGIS hub, not fetched per repo habit; robots not checked. portal URL taken from fetched data.gov.uk CKAN record (Embankments layer, licence shown as 'Other (Not Open)'); hub not fetched; check licence per layer before reuse"
      }
     }
    ]
@@ -4085,18 +4085,18 @@
      "name": "Natural England (NNRs, SSSIs, National Landscapes advice; Defra body)",
      "home": {
       "url": "https://www.gov.uk/government/organisations/natural-england",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; robots.txt re-read 2026-11-07: all]"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): no NNR finder URL confirmed"
      },
      "gis": {
       "url": "https://naturalengland-defra.opendata.arcgis.com/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS-unfetched: ArcGIS hub, not fetched per repo habit; robots not checked. Natural England Open Data Geoportal; URL taken from fetched data.gov.uk CKAN record for Local Nature Reserves (England) (licence shown as 'No Licence Provided'); layers NNR, LNR, SSSI; polygons only; no entrance/parking points; hub not fetched"
      }
     },
     {
@@ -4108,18 +4108,38 @@
      "name": "Forestry England (public forest estate; agency of the Forestry Commission)",
      "home": {
       "url": "https://www.forestryengland.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root not fetched; domain confirmed by fetched https://www.forestryengland.uk/news/ten-spectacular-forest-picnic-spots-visit-summer"
      },
      "finder": {
       "url": "https://www.forestryengland.uk/visit",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: 'Find a forest' link seen on a fetched Forestry England page; target not fetched"
      },
      "gis": {
       "url": "https://www.data.gov.uk/dataset/3d279869-555d-45c2-a859-d029dab1fc39/forestry-england-recreation-areas",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; Forestry Commission 'Forestry Engl]"
+     },
+     "access": {
+      "parking": {
+       "url": "https://www.forestryengland.uk/new-forest/parking-information",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "New Forest parking charges and hours only"
+      },
+      "hours": {
+       "url": "https://www.forestryengland.uk/car-parks/parking-in-the-new-forest",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "New Forest car parks, open 4am to 11pm; other forests have their own page (park_page)"
+      },
+      "park_page": {
+       "template": "https://www.forestryengland.uk/car-parks/parking-at-{slug}",
+       "slug": "forest name, e.g. sneaton-forest (seen for 2 forests; New Forest and Forest of Dean use other addresses)",
+       "verified": false,
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+      }
      }
     },
     {
@@ -4130,18 +4150,18 @@
      "name": "National Landscapes Association (AONB / National Landscapes teams; designation, not landowner)",
      "home": {
       "url": "https://national-landscapes.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://national-landscapes.org.uk/search/results?q=AONB)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): fetched search page showed no map or finder"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): no data link on fetched page; boundaries are on Natural England geoportal (GUESS, not confirmed)"
      }
     },
     {
@@ -4152,18 +4172,40 @@
      "name": "Broads Authority (The Broads National Park)",
      "home": {
       "url": "https://www.broads-authority.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: URL appeared in search results but the fetch failed (client error)"
      },
      "finder": {
       "url": "https://www.broads-authority.gov.uk/visiting",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: seen in search results; not fetched"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "Dartmoor National Park Authority",
+     "home": {
+      "url": "https://www.dartmoor.gov.uk/",
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.dartmoor.gov.uk/enjoy-dartmoor/planning-your-visit; page did not name the Authority)"
+     },
+     "finder": {
+      "url": "https://www.dartmoor.gov.uk/enjoy-dartmoor/planning-your-visit",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; visitor guide; page did not name t]"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4174,19 +4216,18 @@
      "name": "Exmoor National Park Authority",
      "home": {
       "url": "https://www.exmoor-nationalpark.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.exmoor-nationalpark.gov.uk/exmoor-for-everyone/plan-your-visit)"
      },
      "finder": {
       "url": "https://www.exmoor-nationalpark.gov.uk/exmoor-for-everyone/plan-your-visit",
       "verified": false,
-      "unverified_block": true,
-      "source": "unverified_block: robots allowed but a plain read got HTTP 403"
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; parking info text only, no list or]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4196,19 +4237,19 @@
      ],
      "name": "Lake District National Park Authority",
      "home": {
-      "url": "https://lakedistrict.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://www.lakedistrict.gov.uk/",
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://lakedistrict.gov.uk/explore/visitor-facilities/car-parks-and-parking/)"
      },
      "finder": {
       "url": "https://lakedistrict.gov.uk/explore/visitor-facilities/car-parks-and-parking/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; lists car parks by area with what3]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): car park list is web-page text with what3words, not a data layer"
      }
     },
     {
@@ -4219,18 +4260,18 @@
      "name": "New Forest National Park Authority",
      "home": {
       "url": "https://www.newforestnpa.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved]"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): page links 'Things to see and do'; no finder URL confirmed"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4241,18 +4282,40 @@
      "name": "Northumberland National Park Authority",
      "home": {
       "url": "https://www.northumberlandnationalpark.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.northumberlandnationalpark.org.uk/discover-explore/places-to-visit/)"
      },
      "finder": {
       "url": "https://www.northumberlandnationalpark.org.uk/discover-explore/places-to-visit/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; list of areas, no map]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
+     }
+    },
+    {
+     "role": "parks",
+     "roles": [
+      "parks"
+     ],
+     "name": "North York Moors National Park Authority",
+     "home": {
+      "url": "https://www.northyorkmoors.org.uk/",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; page titled 'Welcome to the North ]"
+     },
+     "finder": {
+      "url": "https://www.northyorkmoors.org.uk/plan-your-visit",
+      "verified": false,
+      "source": "GUESS: seen in search results; not fetched"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4263,18 +4326,18 @@
      "name": "Peak District National Park Authority",
      "home": {
       "url": "https://www.peakdistrict.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.peakdistrict.gov.uk/looking-after/about-us/who-we-are)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4285,18 +4348,18 @@
      "name": "South Downs National Park Authority",
      "home": {
       "url": "https://www.southdowns.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved]"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4308,18 +4371,17 @@
      "home": {
       "url": "https://www.yorkshiredales.org.uk/",
       "verified": false,
-      "unverified_block": true,
-      "source": "unverified_block: robots allowed but a plain read got a bot-challenge page"
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.yorkshiredales.org.uk/plan-your-visit/)"
      },
      "finder": {
       "url": "https://www.yorkshiredales.org.uk/plan-your-visit/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; lists 10 Authority-run car parks (]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     }
    ]
@@ -4337,18 +4399,18 @@
      "name": "NatureScot (National Nature Reserves, nature reserves; partner-managed NNRs listed separately)",
      "home": {
       "url": "https://www.nature.scot/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.nature.scot/nnr)"
      },
      "finder": {
       "url": "https://www.nature.scot/nnr",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'NatureScot's National Nature Rese]"
      },
      "gis": {
-      "url": "",
+      "url": "https://www.spatialdata.gov.scot/",
       "verified": false,
-      "source": ""
+      "source": "GUESS: Scotland's spatial data catalogue (URL seen on a fetched Scottish Forestry page); NNR boundary layers likely there but not checked; boundaries only"
      }
     },
     {
@@ -4360,18 +4422,18 @@
      "name": "Forestry and Land Scotland (national forests and land, 6 forest parks)",
      "home": {
       "url": "https://forestryandland.gov.scot/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://forestryandland.gov.scot/visit)"
      },
      "finder": {
       "url": "https://forestryandland.gov.scot/visit",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; page offers 'Forest map', 'Find a ]"
      },
      "gis": {
       "url": "https://www.data.gov.uk/dataset/f46d4abe-d97a-425d-97e3-be18d10f22df/national-forest-estate-recreation-areas-gb",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'National Forest Estate Recreation]"
      }
     },
     {
@@ -4383,18 +4445,18 @@
      "name": "National Trust for Scotland (charity landowner, not a government agency; GUESS: POTA counts its NNRs/country parks only where separately listed)",
      "home": {
       "url": "https://www.nts.org.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: not fetched; domain confirmed by fetched https://nts.org.uk/stories/10-magical-places (page text names NTS)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): places-to-visit URL not confirmed"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      }
     },
     {
@@ -4405,18 +4467,18 @@
      "name": "Cairngorms National Park Authority",
      "home": {
       "url": "https://cairngorms.co.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://cairngorms.co.uk/the-national-park/the-park-authority)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4427,18 +4489,18 @@
      "name": "Loch Lomond & The Trossachs National Park Authority",
      "home": {
       "url": "https://www.lochlomond-trossachs.org/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.lochlomond-trossachs.org/park-authority/)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     }
    ]
@@ -4456,19 +4518,19 @@
      ],
      "name": "Natural Resources Wales (Welsh Government forests, NNRs, visitor sites)",
      "home": {
-      "url": "https://naturalresources.wales/splash?orig=/&lang=cy",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://naturalresources.wales/",
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://naturalresources.wales/days-out/places-to-visit/?lang=en)"
      },
      "finder": {
       "url": "https://naturalresources.wales/days-out/places-to-visit/?lang=en",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; places-to-visit list by region wit]"
      },
      "gis": {
       "url": "https://datamap.gov.wales/layers/inspire-nrw:pilot_nft_nrw_forest_carparks",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; DataMapWales layer 'NRW Forest Car]"
      }
     },
     {
@@ -4479,18 +4541,18 @@
      "name": "Bannau Brycheiniog (Brecon Beacons) National Park Authority",
      "home": {
       "url": "https://beacons-npa.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://beacons-npa.gov.uk/the-authority/who-we-are/)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4501,18 +4563,18 @@
      "name": "Eryri (Snowdonia) National Park Authority",
      "home": {
       "url": "https://eryri.gov.wales/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://eryri.gov.wales/visit/plan-your-visit/information-centres/)"
      },
      "finder": {
       "url": "https://eryri.gov.wales/visit/plan-your-visit/information-centres/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; information centres page]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     },
     {
@@ -4523,18 +4585,18 @@
      "name": "Pembrokeshire Coast National Park Authority",
      "home": {
       "url": "https://www.pembrokeshirecoast.wales/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.pembrokeshirecoast.wales/about-the-national-park-authority/the-national-park-family)"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): boundary polygons via Natural England / ONS; no authority entrance layer found"
      }
     }
    ]
@@ -4553,18 +4615,18 @@
      "name": "DAERA / Northern Ireland Environment Agency (DAERA-owned forest parks, country parks, nature reserves; some trails run by councils)",
      "home": {
       "url": "https://www.daera-ni.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.daera-ni.gov.uk/news/amenities-allowed-re-open-daera-owned-forest-and-country-parks (2020 press release))"
      },
      "finder": {
       "url": "https://www.nidirect.gov.uk/information-and-services/forests/public-forests-northern-ireland",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: breadcrumb link on fetched https://www.nidirect.gov.uk/articles/davagh-forest ('Public forests in Northern Ireland'); target not fetched"
      },
      "gis": {
       "url": "https://www.opendatani.gov.uk/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: OpenDataNI portal seen in search results only; no forest park/country park/car park layer confirmed"
      }
     }
    ]
@@ -4583,18 +4645,32 @@
      "name": "National Parks and Wildlife Service (national parks, nature reserves, protected sites)",
      "home": {
       "url": "https://www.npws.ie",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; page lists National Parks, Nature ]"
      },
      "finder": {
       "url": "https://www.npws.ie/national-parks",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: link listed on fetched npws.ie homepage; target not fetched"
      },
      "gis": {
-      "url": "",
+      "url": "https://webservices.npws.ie/arcgis/rest/services/NPWS/NationalParksBoundary/MapServer",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'National Parks of Ireland - Gener]"
+     },
+     "access": {
+      "entrances": {
+       "url": "https://www.npws.ie/places-visit",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "parks, reserves and trails open to the public"
+      },
+      "hours": {
+       "url": "https://www.npws.ie/contact-us/national-parks",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "contacts and visitor centres for the national parks and nature reserves"
+      }
      }
     },
     {
@@ -4606,18 +4682,38 @@
      "name": "Coillte (state-owned forestry company: 260 recreation sites, 12 forest parks)",
      "home": {
       "url": "https://www.coillte.ie/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://www.coillte.ie/recreation/)"
      },
      "finder": {
-      "url": "https://www.coillte.ie/our-business/our-products/recreation/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://www.coillte.ie/recreation/",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; explore page https://www.coillte.i]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07): no open data mention on fetched page; recreation map is a viewer, not a download"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.coillte.ie/our-forests/explore/",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "car parking fee at some recreation forests; annual card"
+      },
+      "parking": {
+       "url": "https://www.coillte.ie/our-forests/explore/",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "each forest page lists car park hours and fee (park_page)"
+      },
+      "park_page": {
+       "template": "https://www.coillte.ie/site/{slug}/",
+       "slug": "full name, e.g. donadea-forest-park (seen for 6 sites)",
+       "verified": false,
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+      }
      }
     },
     {
@@ -4629,18 +4725,40 @@
      "name": "Office of Public Works (OPW) Heritage Ireland (heritage sites, some parks and gardens, e.g. Phoenix Park)",
      "home": {
       "url": "https://heritageireland.ie/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved]"
      },
      "finder": {
       "url": "https://heritageireland.ie/visit/places-to-visit/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: 'View all places' link on fetched homepage; target not fetched (map view ?map=true)"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
+     }
+    },
+    {
+     "role": "lands",
+     "roles": [
+      "lands"
+     ],
+     "name": "Waterways Ireland (cross-border navigations, towpaths, greenways)",
+     "home": {
+      "url": "https://www.waterwaysireland.org/",
+      "verified": false,
+      "source": "GUESS: not fetched; fetched walking page is on this domain but did not name Waterways Ireland"
+     },
+     "finder": {
+      "url": "https://www.waterwaysireland.org/things-to-do/walking",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; walking routes (Grand Canal Way, R]"
+     },
+     "gis": {
+      "url": "",
+      "verified": false,
+      "source": "none found (searched 2026-11-07)"
      }
     }
    ]
@@ -4657,18 +4775,18 @@
      "name": "Parks Australia (Director of National Parks: Kakadu, Uluru-Kata Tjuta, Booderee, Christmas Island, Pulu Keeling, Norfolk Island, ANBG, Commonwealth marine parks)",
      "home": {
       "url": "https://parksaustralia.gov.au/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root URL not fetched; domain confirmed by a fetched page (fetched https://parksaustralia.gov.au/news/update-park-passes-entry-national-parks-1-january-2021-0/)"
      },
      "finder": {
       "url": "https://parksaustralia.gov.au/national-parks/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: link listed on fetched Parks Australia page; target not fetched"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      }
     }
    ]
@@ -4687,18 +4805,38 @@
      "name": "NSW National Parks and Wildlife Service (national parks, nature reserves, state conservation areas)",
      "home": {
       "url": "https://www.nationalparks.nsw.gov.au/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root not fetched; domain confirmed by fetched find-a-park page"
      },
      "finder": {
       "url": "https://www.nationalparks.nsw.gov.au/visit-a-park",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; A-Z and region directory; page say]"
      },
      "gis": {
       "url": "https://data.nsw.gov.au/data/dataset/nsw-national-parks-and-wildlife-service-npws-estate3f9e7",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; NPWS Estate polygons, CC-BY; WFS h]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.nationalparks.nsw.gov.au/passes-and-fees/fee-collecting-parks",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "which of 45 parks charge vehicle entry"
+      },
+      "hours": {
+       "url": "https://www.nationalparks.nsw.gov.au/visit-a-park",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "each park page has hours, entry points and parking under visitor info (page address pattern in park_page)"
+      },
+      "park_page": {
+       "template": "https://www.nationalparks.nsw.gov.au/visit-a-park/parks/{slug}/visitor-info",
+       "slug": "full name, e.g. royal-national-park (seen for 3 parks)",
+       "verified": false,
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+      }
      }
     },
     {
@@ -4709,18 +4847,18 @@
      "name": "Forestry Corporation of NSW (state forests; recreation and camping)",
      "home": {
       "url": "https://www.forestrycorporation.com.au",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; page content did not state its own]"
      },
      "finder": {
       "url": "https://www.forestrycorporation.com.au/visiting",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: visit pages (/visiting/..., /visit/...) seen in search results; hub page not fetched"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      }
     }
    ]
@@ -4738,18 +4876,26 @@
      "name": "Parks Victoria (national, state and regional parks, 3,369 listed sites)",
      "home": {
       "url": "https://www.parks.vic.gov.au/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root seen in search results; not fetched"
      },
      "finder": {
       "url": "https://www.parks.vic.gov.au/places-to-see/parks",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; searchable alphabetical directory;]"
      },
      "gis": {
-      "url": "",
+      "url": "https://data.gov.au/data/dataset/f8dc580f-38f6-41d0-80e1-02ffa76d25e9",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; PARKRES (Parks and Conservation Re]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.parks.vic.gov.au/about-us/fees-and-charges",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "fees schedule (camping and services); day entry to most parks is free"
+      }
      }
     },
     {
@@ -4760,19 +4906,57 @@
      ],
      "name": "Victorian DEECA (state forests and recreation sites, DEECA-maintained)",
      "home": {
-      "url": "",
+      "url": "https://www.deeca.vic.gov.au/",
       "verified": false,
-      "source": ""
+      "source": "GUESS: not fetched; named as publisher on fetched Recreation Sites record"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "https://discover.data.vic.gov.au/dataset/recreation-sites",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; Recreation Sites: picnic and campi]"
+     }
+    }
+   ]
+  },
+  "AU-QLD": {
+   "name": "Queensland",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "forestry",
+      "wildlife"
+     ],
+     "name": "Queensland Parks and Wildlife Service (national parks, state forests, recreation areas)",
+     "home": {
+      "url": "https://parks.qld.gov.au/",
+      "verified": false,
+      "source": "GUESS: root seen in search results; not fetched"
+     },
+     "finder": {
+      "url": "https://parks.qld.gov.au/parks",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; directory of national parks, state]"
+     },
+     "gis": {
+      "url": "https://www.data.qld.gov.au/dataset/bd12061d-2504-4d91-a91d-b4a934bbe481",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'Queensland Parks and Wildlife Ser]"
+     },
+     "access": {
+      "park_page": {
+       "template": "https://parks.qld.gov.au/parks/{slug}/visiting-safely",
+       "slug": "name without the park type, e.g. conondale, porcupine-gorge (seen for 10 parks)",
+       "verified": false,
+       "source": "GUESS: pattern read off several official park pages in search results 2026-11-07; the slug rule is a guess, so a link built from it may not exist. unverified: official address, not yet re-checked by a plain read (round 3)"
+      }
      }
     }
    ]
@@ -4790,18 +4974,32 @@
      "name": "National Parks and Wildlife Service South Australia (Department for Environment and Water)",
      "home": {
       "url": "https://www.parks.sa.gov.au",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved]"
      },
      "finder": {
       "url": "https://www.parks.sa.gov.au/find-a-park",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: URL named on fetched homepage (map view ?view=map); target not fetched"
      },
      "gis": {
-      "url": "",
+      "url": "https://data.gov.au/data/dataset/1deeff2e-18d2-44ef-919a-b7ed9954cb32",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'South Australia Parks with Recrea]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.parks.sa.gov.au/book-and-pay/parks-passes",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "vehicle entry fees; most parks free"
+      },
+      "entrances": {
+       "url": "https://www.parks.sa.gov.au/book-and-pay/frequently-asked-questions",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "how day entry is paid"
+      }
      }
     }
    ]
@@ -4820,18 +5018,32 @@
      "name": "Parks and Wildlife Service WA (Department of Biodiversity, Conservation and Attractions; national parks, conservation parks, state forests)",
      "home": {
       "url": "https://exploreparks.dbca.wa.gov.au/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; Explore Parks WA]"
      },
      "finder": {
       "url": "https://exploreparks.dbca.wa.gov.au/park-finder-map",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: URL named on fetched Explore Parks WA page; target not fetched"
      },
      "gis": {
       "url": "https://catalogue.data.wa.gov.au/dataset/dbca-legislated-lands-and-waters",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; DBCA-011 Legislated Lands and Wate]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://exploreparks.dbca.wa.gov.au/park-entry-fees",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "vehicle entry fees at ~30 parks"
+      },
+      "entrances": {
+       "url": "https://exploreparks.dbca.wa.gov.au/park-passes",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "passes cover unlimited vehicle entry"
+      }
      }
     }
    ]
@@ -4850,18 +5062,55 @@
      "name": "Tasmania Parks and Wildlife Service (national parks, state reserves, conservation areas, regional reserves)",
      "home": {
       "url": "https://parks.tas.gov.au/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root seen in search results; not fetched"
      },
      "finder": {
       "url": "https://parks.tas.gov.au/explore-our-parks",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; browse by region and map view; fet]"
      },
      "gis": {
-      "url": "",
+      "url": "https://data.gov.au/data/dataset/tasmanian-reserve-estate",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; Tasmanian Reserve Estate (LIST), l]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://parks.tas.gov.au/explore-our-parks/know-before-you-go/park-passes-and-entry-fees",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "a parks pass is needed in all national parks"
+      }
+     }
+    }
+   ]
+  },
+  "AU-ACT": {
+   "name": "Australian Capital Territory",
+   "country": "AU",
+   "agencies": [
+    {
+     "role": "parks",
+     "roles": [
+      "parks",
+      "wildlife"
+     ],
+     "name": "Parks and Conservation Service ACT (Canberra Nature Park, Namadgi National Park, river corridors)",
+     "home": {
+      "url": "https://www.parks.act.gov.au/",
+      "verified": false,
+      "source": "GUESS: root seen in search results; not fetched"
+     },
+     "finder": {
+      "url": "https://www.parks.act.gov.au/find-a-park",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'Find a nature park' search; fetch]"
+     },
+     "gis": {
+      "url": "https://data.gov.au/data/dataset/3c382faf-7b67-42fb-b6a9-4bac05bddceb",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; 'ACT Reserves' record (original ht]"
      }
     }
    ]
@@ -4879,18 +5128,18 @@
      "name": "Parks and Wildlife Commission of the Northern Territory (80+ parks and reserves)",
      "home": {
       "url": "https://nt.gov.au/parks",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: parent path of the fetched find-a-park page; not fetched"
      },
      "finder": {
       "url": "https://nt.gov.au/parks/find-a-park",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; lists parks by region; fetched pag]"
      },
      "gis": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      }
     }
    ]
@@ -4909,18 +5158,26 @@
      "name": "Department of Conservation / Te Papa Atawhai (national parks, conservation parks, public conservation land)",
      "home": {
       "url": "https://www.doc.govt.nz/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root not fetched; domain confirmed by fetched doc.govt.nz pages"
      },
      "finder": {
-      "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/auckland",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "url": "https://doc.govt.nz/parks-and-recreation/places-to-go/auckland",
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; regional places-to-go guide with i]"
      },
      "gis": {
       "url": "https://www.doc.govt.nz/maps",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; DOC Open Spatial Data Portal https]"
+     },
+     "access": {
+      "fees": {
+       "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-stay/stay-at-a-campsite/facilities-and-fees/",
+       "verified": false,
+       "source": "seen in an official-site search result 2026-11-07; page not fetched; unverified: official address, not yet re-checked by a plain read (round 3)",
+       "scope": "campsite fees by category; day entry to conservation land is free"
+      }
      }
     },
     {
@@ -4931,18 +5188,18 @@
      "name": "Land Information New Zealand (LINZ Data Service: cadastral/crown land, parcels; not a park manager)",
      "home": {
       "url": "https://www.linz.govt.nz/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: not fetched"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
-      "url": "",
+      "url": "https://data.linz.govt.nz/groups/global",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; LINZ Data Service (Koordinates); f]"
      }
     },
     {
@@ -4952,19 +5209,19 @@
      ],
      "name": "Auckland Council (28 regional parks)",
      "home": {
-      "url": "",
+      "url": "https://www.aucklandcouncil.govt.nz/",
       "verified": false,
-      "source": ""
+      "source": "GUESS: root not fetched; footer of fetched page shows Auckland Council"
      },
      "finder": {
-      "url": "",
+      "url": "https://www.aucklandcouncil.govt.nz/en/parks-recreation/search-index.html",
       "verified": false,
-      "source": ""
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; alphabetical list of regional park]"
      },
      "gis": {
       "url": "https://data-aucklandcouncil.opendata.arcgis.com/datasets/park-extents/explore",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS-unfetched: ArcGIS hub, not fetched per repo habit; robots not checked. Park Extents CC-BY-4.0 (from fetched PAN-NZ catalogue; maintenance areas, not legal boundaries); hub not fetched; search snippets also showed ArcGIS services 'Park_Structure_Hard_Surface' (carparks in parks, polygons) and 'Park_Asset_Location' (points) under services1.arcgis.com/n4yPwebTjJCmXB6W, not fetched (services*.arcgis.com is not fetched here), so confirm before use"
      }
     },
     {
@@ -4975,18 +5232,18 @@
      "name": "Greater Wellington Regional Council (Belmont, Queen Elizabeth, Kaitoke and other regional parks and forests)",
      "home": {
       "url": "https://www.gw.govt.nz/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS: root not fetched; copyright line on fetched parks page names Greater Wellington"
      },
      "finder": {
       "url": "https://www.gw.govt.nz/parks/",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; list of 12 parks and forests with ]"
      },
      "gis": {
       "url": "https://opendata.gw.govt.nz/datasets/greater-wellington-regional-parks-and-forests-boundaries",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "earlier plain read 2026-11-07 (robots allowed); official address, not yet re-checked by a plain read (round 3) [fetched 2026-11-07 (WebFetch); page resolved; park boundaries layer; PAN-NZ cata]"
      }
     },
     {
@@ -4998,21 +5255,21 @@
      "home": {
       "url": "https://www.ecan.govt.nz/",
       "verified": false,
-      "unverified_block": true,
-      "source": "unverified_block: robots allowed but a plain read got a bot-challenge page"
+      "source": "GUESS: domain seen in search results only"
      },
      "finder": {
       "url": "",
       "verified": false,
-      "source": ""
+      "source": "none found (searched 2026-11-07)"
      },
      "gis": {
       "url": "https://opendata.canterburymaps.govt.nz/datasets/ecan::parks/explore",
-      "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "verified": false,
+      "source": "GUESS-unfetched: ArcGIS hub, not fetched per repo habit; robots not checked. 'Parks' layer CC-BY-3.0 per fetched PAN-NZ catalogue; hub not fetched"
      }
     }
    ]
   }
- }
+ },
+ "round3": "2026-11-07"
 }
