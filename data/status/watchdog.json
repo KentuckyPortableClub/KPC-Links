@@ -420,13 +420,6 @@
   "kpc-youtube.yml|2026-11-06T23:23:00+00:00": "2026-11-07T00:04+00:00 started",
   "pages-deploy.yml|2026-11-06T22:41:00+00:00": "2026-11-07T00:04+00:00 started"
  },
- "last": "2026-11-07T00:04+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 06 23:18 UTC)",
-  "kpc-bot-queue.yml (missed Nov 06 22:22 UTC)",
-  "kpc-fb-comments.yml (missed Nov 06 22:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-pota-discord.yml (missed Nov 06 23:19 UTC)",
-  "kpc-youtube.yml (missed Nov 06 23:23 UTC)",
-  "pages-deploy.yml (missed Nov 06 22:41 UTC)"
- ]
+ "last": "2026-11-07T00:13+00:00",
+ "last_restarted": []
 }
