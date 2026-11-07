@@ -72,12 +72,7 @@
       add('Agency site', a.home); add('Find a park', a.finder);
       const ac = a.access || {};
       ['entrances', 'parking', 'fees', 'hours'].forEach(k => add(LABELS[k], ac[k]));
-      const ft = ac.park_page && ac.park_page.for_types;  /* Nov 7 check: no for_types = no guessed page (the agency may not run this park) */
-      let ftOk = false; try { ftOk = !!ft && new RegExp(ft, 'i').test(String(park && park.type || '').trim()); } catch (e) {}
-      if (ftOk && ac.park_page.template && park && park.name) {
-        const sl = slugOf(park.name, ac.park_page.slug);
-        if (sl) add('This park’s page', { url: ac.park_page.template.replace('{slug}', sl), verified: false, scope: 'built from the park name: may not exist' }, true);
-      }
+      /* Nov 7 round 3: no per-park page is built from a name template (guessed addresses removed); stored, checked links only. */
       if (links.length) out.push({ name: String(a.name).replace(/\s*\(.*$/, ''), place: c, links });
     });
     return out;
@@ -122,8 +117,8 @@
     ck(slugOf('Mt. O’Brien & Sons', 'full') === 'mt-obrien-and-sons', 'slug punctuation');
     const AG = { places: { 'AU-NSW': { agencies: [{ name: 'NSW National Parks and Wildlife Service (x)', role: 'parks', roles: ['parks'], home: { url: 'https://www.nationalparks.nsw.gov.au/', verified: false }, finder: { url: '', verified: false }, access: { fees: { url: 'https://www.nationalparks.nsw.gov.au/passes-and-fees/fee-collecting-parks', verified: false }, park_page: { template: 'https://www.nationalparks.nsw.gov.au/visit-a-park/parks/{slug}/visitor-info', slug: 'full name', for_types: '^national park', verified: false } } }] }, AU: { agencies: [] } } };
     const m = build(AG, 'AU', 'NSW', { name: 'Royal National Park', type: 'National Park' });
-    ck(m.length === 1 && m[0].name === 'NSW National Parks and Wildlife Service' && m[0].links.length === 3 && m[0].links.every(l => l.unverified), 'build: one agency, three links, all unverified');
-    ck(m[0].links[2].guess && /royal-national-park\/visitor-info$/.test(m[0].links[2].url), 'build: park page is built from the name and marked guess');
+    ck(m.length === 1 && m[0].name === 'NSW National Parks and Wildlife Service' && m[0].links.length === 2 && m[0].links.every(l => l.unverified), 'build: one agency, two stored links (no built park page), unverified flag carried');
+    ck(m[0].links.every(l => !l.guess && !/visitor-info$/.test(l.url)), 'build: no per-park page is built from a template (park_page is ignored)');
     ck(build(AG, 'AU', 'NSW', { name: 'Iluka State Beach', type: 'State Beach' })[0].links.every(l => !l.guess), 'build: no guessed page when the park type is not one the agency runs');
     ck(build(AG, 'US', 'KY', {}).length === 0 && build(null, 'AU', 'NSW', {}).length === 0, 'build: nothing for US or no data');
     ck(!/<script|javascript:/i.test(html(build({ places: { AU: { agencies: [{ name: '<script>', home: { url: 'javascript:alert(1)' }, finder: { url: 'https://x.example/"onmouseover="a' } }] } } }, 'AU', 'ZZ', {}))), 'html: unsafe addresses are dropped');

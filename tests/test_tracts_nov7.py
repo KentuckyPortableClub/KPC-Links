@@ -63,8 +63,9 @@ try:
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
     check('rule files and key-rules-version.json are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
-    d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json'], cwd=ROOT)
-    check('answer keys in this repo are byte-identical to ' + BASE, d.returncode == 0)
+    d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json',
+                        ':!data/us-key/overrides.json'], cwd=ROOT)   # round 3: the hand-override ledger may gain a declared row (US-3917)
+    check('answer keys in this repo are byte-identical to ' + BASE + ' (the declared overrides ledger aside)', d.returncode == 0)
     check('the world tract runner is listed as NOT a rule file', 'kpc_world_tracts.py' in KF.NOT_RULES and 'kpc_tracts.py' in KF.NOT_RULES)
     wf = '\n'.join(p.read_text(encoding='utf-8') for p in (ROOT / '.github' / 'workflows').glob('*.yml'))
     check('no workflow runs the world tract runner (by hand only; no new cron)', 'kpc_world_tracts' not in wf)
