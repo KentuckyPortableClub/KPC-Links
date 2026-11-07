@@ -146,9 +146,14 @@ EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'I
 # (Oct 21: Japan had 30,420 areas loaded and only 102 parks joined because the names never matched).
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'
 PIN_JOIN = {x.strip().upper() for x in (os.environ.get('PIN_JOIN') or 'JP').split(',') if x.strip()}
+# Nov 7 world rebuild B6 (Brandon's yes, world-failed-diagnosis.md section 7): Switzerland and Norway report no Natura 2000, so that
+# source always came back EMPTY and, with no saved records for it, HELD both countries every build (W-42205818250, W-42259043963).
+# They get no Natura 2000 source; their EEA nationally designated areas source stays (CH also keeps its BAFU sources, NO its
+# naturvern layer). No data is lost: neither CH.json nor NO.json holds a single joined or candidate record from 'EEA Natura 2000'.
+NO_N2K = ('CH', 'NO')
 for _c in EU:
-    SRC[_c] = [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"]),
-               ('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
+    SRC[_c] = ([] if _c in NO_N2K else [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"])]) + \
+              [('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
 # Oct 18 (probe 2): Switzerland's own federal inventories (BAFU, data.geo.admin.ch STAC, shapefiles in Swiss LV95): POTA's 151 CH
 # 'Natural Monument' parks are BLN objects, which the EEA list files under several designation codes at once.
 CHB = [('BAFU landscapes and natural monuments (BLN)', 'ch.bafu.bundesinventare-bln'), ('BAFU hunting reserves', 'ch.bafu.bundesinventare-jagdbanngebiete'),
@@ -261,15 +266,90 @@ import sys; sys.excepthook = _hook
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')[:3500]), flush=True)
 
 
-def fetch(u, tries=4, timeout=240):
-    last = None
-    u = urllib.parse.quote(u, safe=":/?&=%+,;@#~*()!$'")   # Nov 2: Georgia / Oman layer addresses carry non-ASCII letters ('ascii' codec error)
+# Nov 7 world rebuild B2/B3/B4 (Brandon's yes, world-failed-diagnosis.md section 7; run W-42259043963 lost AU to its 300-min limit).
+# Every setting is an environment variable with a default; none of them decides a join.
+import random, hashlib  # noqa: E402
+
+
+def _envf(k, d):
+    try: return float(os.environ.get(k) or d)
+    except ValueError: return float(d)
+
+
+# B2: one request = at most REQ_S seconds for the WHOLE answer (a server that trickles bytes never trips the socket timeout alone),
+# SOCK_S per socket read, REQ_TRIES tries with growing waits (base x 3^try, at most RETRY_CAP s) and jitter (x 0.5-1.0). Small
+# single-server hosts get a longer base (RETRY_SLOW_BASE), so a short outage there is waited out instead of holding the country.
+REQ_S = _envf('KPC_WORLD_REQ_S', 240)
+ZIP_S = _envf('KPC_WORLD_ZIP_S', 900)          # a whole shapefile zip (BAFU, MLIT A10)
+SOCK_S = _envf('KPC_WORLD_SOCK_S', 120)
+REQ_TRIES = max(1, int(_envf('KPC_WORLD_REQ_TRIES', 4)))
+RETRY_BASE = _envf('KPC_WORLD_RETRY_BASE', 6)
+RETRY_SLOW_BASE = _envf('KPC_WORLD_RETRY_SLOW_BASE', 30)
+RETRY_CAP = _envf('KPC_WORLD_RETRY_CAP', 300)
+SLOW_HOSTS = {'kartor.regeringen.ax', 'arcgis.mma.gob.cl', 'mapageneral.mineria.gob.do', 'kart.miljodirektoratet.no'} | \
+             {h.strip().lower() for h in re.split(r'[\s,]+', os.environ.get('KPC_WORLD_SLOW_HOSTS') or '') if h.strip()}
+# B3: one layer (one address + where) may take LAYER_MIN minutes in this run (KPC_WORLD_LAYER_MIN_URLS = JSON {address part: minutes}
+# for one layer). Over it, or when the server repeats a page / sends an error after page 1, the layer STALLS: LayerStall is raised
+# into the source loop's FAILED path, so the country takes the saved copy's records for that source or is HELD exactly as before.
+# A stalled layer's partial read is never used (B5 not approved); its checkpoint (B4) lets the next run continue the read.
+LAYER_MIN = _envf('KPC_WORLD_LAYER_MIN', 60)
+try: LAYER_MIN_URLS = {str(k).lower(): float(v) for k, v in json.loads(os.environ.get('KPC_WORLD_LAYER_MIN_URLS') or '{}').items()}
+except Exception: LAYER_MIN_URLS = {}  # noqa: BLE001
+# B4: after every page, the layer's records so far go to cache/world/parts/<CC>/<key>.jsonl.gz (+ <key>.state.json), the folder the
+# workflow carries between runs for the slow-country job. The key covers the address, where, label, name field, detail, thinning,
+# object-id field, geometry type, field list, last edit date and page size, so a changed layer never resumes from an old read.
+# Resume only CONTINUES the read; the layer counts only when it is complete, and its checkpoint is then removed.
+PARTS_ON = (os.environ.get('KPC_WORLD_PARTS') or '1').strip().lower() not in ('0', 'off', 'no')
+PART_DAYS = _envf('KPC_WORLD_PART_DAYS', 3)
+PART_V = 1
+PART_CC = ''   # the country being read (set by the source loop)
+OID_PAGING = (os.environ.get('KPC_WORLD_OID_PAGING') or '1').strip().lower() not in ('0', 'off', 'no')
+NOGEOM = ('esriGeometryPolyline', 'esriGeometryPoint', 'esriGeometryMultipoint')   # B1: rings_of() reads polygons only
+
+
+class LayerStall(RuntimeError):
+    """A layer that ran past its time limit or stopped moving (B3): a FAILED source, never a short one."""
+
+
+def _open(req, timeout): return urllib.request.urlopen(req, timeout=timeout)
+
+
+def _retry_wait(u, i):
+    host = urllib.parse.urlsplit(u).netloc.lower()
+    return min(RETRY_CAP, (RETRY_SLOW_BASE if host in SLOW_HOSTS else RETRY_BASE) * 3 ** i) * random.uniform(.5, 1.0)
+
+
+def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes=None, parse=None):
+    """B2: GET u; the whole answer within `total` (default REQ_S) seconds and never past `deadline` (time.monotonic()); `tries`
+    tries (default REQ_TRIES) with growing, jittered waits that never sleep past `deadline`. parse(bytes) runs inside the try."""
+    tries, total, last = max(1, int(tries or REQ_TRIES)), float(total or REQ_S), None
     for i in range(tries):
+        now = time.monotonic()
+        if deadline is not None and now >= deadline: raise last or LayerStall('the layer time limit was reached before the request')
+        t_end = min(now + total, deadline) if deadline is not None else now + total
         try:
-            with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=timeout) as r: return json.loads(r.read().decode('utf-8', 'replace'))
+            with _open(urllib.request.Request(u, headers=UA), max(1.0, min(float(timeout or SOCK_S), t_end - now))) as r:
+                rd, buf = getattr(r, 'read1', None) or r.read, bytearray()
+                while True:
+                    chunk = rd(1 << 16)
+                    if not chunk: break
+                    buf += chunk
+                    if maxbytes and len(buf) >= maxbytes: buf = buf[:maxbytes]; break
+                    if time.monotonic() > t_end:
+                        raise TimeoutError(f'answer not complete within {t_end - now:.0f} s ({len(buf)} bytes so far: a trickling server)')
+            return parse(bytes(buf)) if parse else bytes(buf)
         except Exception as e:  # noqa: BLE001
-            last = e; time.sleep(6 * (i + 1))
+            last = e
+            if i + 1 >= tries: break
+            w = _retry_wait(u, i)
+            if deadline is not None and time.monotonic() + w >= deadline: break   # never sleep past the layer's time limit
+            time.sleep(w)
     raise last
+
+
+def fetch(u, tries=None, timeout=None, deadline=None):
+    u = urllib.parse.quote(u, safe=":/?&=%+,;@#~*()!$'")   # Nov 2: Georgia / Oman layer addresses carry non-ASCII letters ('ascii' codec error)
+    return fetch_bytes(u, tries=tries, timeout=timeout, deadline=deadline, parse=lambda b: json.loads(b.decode('utf-8', 'replace')))
 
 
 def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or '')) if not unicodedata.combining(c)).lower().replace('ß', 'ss')
@@ -497,8 +577,7 @@ def eea_dt():
     except Exception: pass  # noqa: BLE001
     if len(DT) > 300: return DT
     base = 'https://dd.eionet.europa.eu/vocabulary/cdda/designationTypeCodeValue'
-    def raw(u):
-        with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=90) as r: return r.read().decode('utf-8', 'replace')
+    def raw(u): return fetch_bytes(u, tries=1, timeout=90).decode('utf-8', 'replace')   # Nov 7 B2: whole-answer time limit (one try, as before)
     got = {}
     try:
         import csv, io
@@ -603,37 +682,153 @@ def pull_arcgis(label, url, wheres=None):
     return []
 
 
+def arcgis_rec(label, url, oidf, f):
+    """One ArcGIS feature -> one record (unchanged; shared by the paged read, the no-paging read and the checkpoint)."""
+    a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
+    return {'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
+            'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')}
+
+
+def layer_limit(url):
+    """B3: (deadline on time.monotonic(), minutes) for one layer in this run."""
+    m, u = LAYER_MIN, str(url).lower()
+    for k, v in LAYER_MIN_URLS.items():
+        if k and k in u: m = v
+    return time.monotonic() + m * 60, m
+
+
+def _part_files(sig):
+    k = hashlib.sha1(json.dumps(sig, sort_keys=True, separators=(',', ':')).encode('utf-8')).hexdigest()[:16]
+    d = WCACHE / 'parts' / (PART_CC or 'XX')
+    return d / f'{k}.jsonl.gz', d / f'{k}.state.json'
+
+
+def part_clear(sig):
+    for f in _part_files(sig) + (_part_files(sig)[1].with_suffix('.tmp'),):
+        try: f.unlink()
+        except FileNotFoundError: pass
+        except Exception: pass  # noqa: BLE001
+
+
+def part_load(sig, label=''):
+    """B4: (state, records) of this layer's checkpoint, or (None, []) when there is none, it is older than PART_DAYS, its key does
+    not match, or it cannot be read back exactly (then it is removed and the layer is read from the start, as before)."""
+    if not PARTS_ON: return None, []
+    data, st = _part_files(sig)
+    try:
+        for f in st.parent.glob('*'):   # stale checkpoints of layers no longer read
+            if time.time() - f.stat().st_mtime > PART_DAYS * 86400: f.unlink()
+    except Exception: pass  # noqa: BLE001
+    if not st.exists(): return None, []
+    why = ''
+    try:
+        s = json.load(open(st, encoding='utf-8'))
+        if s.get('sig') != sig: why = 'its layer key differs'
+        elif time.time() - float(s.get('updated') or 0) > PART_DAYS * 86400: why = f'older than {PART_DAYS:g} days'
+        else:
+            with open(data, 'r+b') as fh: fh.truncate(int(s['bytes']))   # a page written after the last state (stopped mid-page) is dropped
+            recs = []
+            with gzip.open(data, 'rt', encoding='utf-8') as fh:
+                for ln in fh: recs.append(json.loads(ln))
+            if len(recs) == int(s.get('n') or -1): return s, recs
+            why = f"{len(recs)} records read back, {s.get('n')} expected"
+    except Exception as e: why = f'unreadable ({type(e).__name__})'  # noqa: BLE001
+    notice(f'{label} checkpoint', f'not used ({why}); the layer is read from the start')
+    part_clear(sig)
+    return None, []
+
+
+def part_save(sig, s, page):
+    """B4: append one page (one gzip member) and then rewrite the state atomically, so a stop loses at most this page."""
+    if not PARTS_ON: return
+    data, st = _part_files(sig)
+    data.parent.mkdir(parents=True, exist_ok=True)
+    with open(data, 'ab') as fh:
+        with gzip.GzipFile(fileobj=fh, mode='wb') as gz:
+            gz.write(''.join(json.dumps(r, ensure_ascii=False, separators=(',', ':')) + '\n' for r in page).encode('utf-8'))
+        fh.flush(); os.fsync(fh.fileno()); s['bytes'] = fh.tell()
+    s['updated'] = time.time()
+    tmp = st.with_suffix('.tmp')
+    with open(tmp, 'w', encoding='utf-8') as fh: json.dump(s, fh, separators=(',', ':'))
+    os.replace(tmp, st)
+
+
 def pull_arcgis1(label, url, where):
-    info = fetch(url + '?f=json'); mx = int(info.get('maxRecordCount') or 1000); oidf = info.get('objectIdField') or 'OBJECTID'
+    deadline, lmin = layer_limit(url)
+    info = fetch(url + '?f=json', deadline=deadline); mx = int(info.get('maxRecordCount') or 1000); oidf = info.get('objectIdField') or 'OBJECTID'
     if not oidf or oidf == 'OBJECTID': oidf = next((f['name'] for f in info.get('fields', []) if f.get('type') == 'esriFieldTypeOID'), oidf)
     fnames = [f['name'] for f in info.get('fields', [])]
     notice(f'{label} fields', ', '.join(fnames)[:900])
-    recs, off = [], 0
+    # B1: a line or point layer (by the layer's own geometryType, or by the first answer when the layer does not say) is read
+    # WITHOUT geometry: rings_of() keeps polygons only, so its records were already outline-less ('_bb' None, '_r' []).
+    gtype = str(info.get('geometryType') or '')
+    geom = gtype not in NOGEOM
+    # B4: object-id paging (where ... AND oid > last, ordered by oid) when the layer has an integer object-id field and does not say
+    # it cannot order; else resultOffset paging exactly as before. The checkpoint key (sig) is plain JSON.
+    oid_ok = OID_PAGING and oidf in fnames and (info.get('advancedQueryCapabilities') or {}).get('supportsOrderBy') is not False
+    sig = ['world-layer', PART_V, str(url).rstrip('/').lower(), str(where), str(label), str(LAYER_NAMEF.get(url) or ''), url in SHEET_URLS,
+           DETAIL, PREC, THIN_N, str(oidf), gtype, sorted(str(x) for x in fnames), str((info.get('editingInfo') or {}).get('lastEditDate') or ''), mx]
+    st, recs = part_load(sig, label)
+    if st:
+        notice(f'{label} resumed', f"from the checkpoint: {st['pages']} pages, {len(recs)} records already read ({st['mode']} paging)")
+    else:
+        part_clear(sig)
+        st = {'sig': sig, 'mode': 'oid' if oid_ok else 'offset', 'pages': 0, 'n': 0, 'off': 0, 'last': None, 'started': time.time()}
+    prev_ids = None
     while True:
-        qq = {'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
-              'geometryPrecision': PREC, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}
+        if time.monotonic() > deadline:
+            raise LayerStall(f"over its {lmin:g}-minute limit after {st['pages']} pages ({len(recs)} records; not used: the checkpoint lets the next run continue)")
+        qq = {'where': where, 'outFields': '*', 'returnGeometry': 'true' if geom else 'false', 'outSR': 4326}
+        if geom: qq.update(maxAllowableOffset=DETAIL, geometryPrecision=PREC)
+        qq['f'] = 'json'
+        if st['mode'] == 'oid':
+            if st['last'] is not None: qq['where'] = f"({where}) AND {oidf} > {int(st['last'])}"
+            if (info.get('advancedQueryCapabilities') or {}).get('supportsPagination'): qq['resultRecordCount'] = min(mx, 1000)   # pages of 1000, as before
+            qq['orderByFields'] = oidf
+        else:
+            qq.update(resultOffset=st['off'], resultRecordCount=min(mx, 1000), orderByFields=oidf)
         try:
-            j = fetch(url + '/query?' + urllib.parse.urlencode(qq))
-        except Exception:  # noqa: BLE001
-            if DETAIL >= 0.01: raise
+            j = fetch(url + '/query?' + urllib.parse.urlencode(qq), deadline=deadline)
+        except Exception as e:  # noqa: BLE001
+            if time.monotonic() > deadline:
+                raise LayerStall(f"over its {lmin:g}-minute limit during page {st['pages'] + 1} ({len(recs)} records; not used: the checkpoint lets the next run continue): {type(e).__name__}: {str(e)[:200]}") from e
+            if DETAIL >= 0.01 or not geom: raise
             qq.update(maxAllowableOffset=0.01, geometryPrecision=3)      # the server refused the finer outline: today's one
-            j = fetch(url + '/query?' + urllib.parse.urlencode(qq))
-        fs = j.get('features', [])
-        for f in fs:
-            a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
-            recs.append({'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
-                         'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
-        if j.get('error') and 'agination' in str(j.get('error')) and off == 0:   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported' = ask once without paging
-            for k_ in ('resultOffset', 'resultRecordCount', 'orderByFields'): qq.pop(k_, None)
-            j = fetch(url + '/query?' + urllib.parse.urlencode(qq)); fs = j.get('features', [])
-            for f in fs:
-                a = f.get('attributes') or {}; rs = rings_of(f.get('geometry'))
-                recs.append({'id': a.get(oidf), 'n': (pick(a, [LAYER_NAMEF[url]]) if url in LAYER_NAMEF else '') or pick_name(a), 'ty': pick(a, TYPEF) or (pick(a, TYPEF2) if url in SHEET_URLS else ''), 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': a,
-                             'code': str(a.get('SITECODE') or a.get('nationalId') or ''), 'dc': str(a.get('designationTypeCode') or a.get('SITETYPE') or '')})
-            break
-        if j.get('error'): notice(f'{label} query error', j.get('error')); break
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
-        off += len(fs); time.sleep(.5)
+            j = fetch(url + '/query?' + urllib.parse.urlencode(qq), deadline=deadline)
+        if geom and str(j.get('geometryType') or '') in NOGEOM: geom = False   # B1: the first answer says line / point
+        fs = j.get('features', []) or []
+        first = st['pages'] == 0
+        if j.get('error'):
+            if first and st['mode'] == 'oid':   # this server will not page by object id: page as before, from the start
+                notice(f'{label} paging', f"object-id paging refused ({str(j.get('error'))[:200]}); resultOffset paging")
+                st['mode'] = 'offset'; continue
+            if first and 'agination' in str(j.get('error')):   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported' = ask once without paging
+                for k_ in ('resultOffset', 'resultRecordCount', 'orderByFields'): qq.pop(k_, None)
+                j = fetch(url + '/query?' + urllib.parse.urlencode(qq), deadline=deadline)
+                recs += [arcgis_rec(label, url, oidf, f) for f in j.get('features', []) or []]
+                break
+            if first: notice(f'{label} query error', j.get('error')); break
+            raise LayerStall(f"query error after page {st['pages']} ({len(recs)} records read; not used): {str(j.get('error'))[:300]}")
+        ids = [(f.get('attributes') or {}).get(oidf) for f in fs]
+        if st['mode'] == 'oid' and fs:
+            if not all(isinstance(i, int) and not isinstance(i, bool) for i in ids) or ids != sorted(ids):
+                if first:
+                    notice(f'{label} paging', 'object ids missing or not in order; resultOffset paging'); st['mode'] = 'offset'; continue
+                raise LayerStall(f"object ids missing or out of order on page {st['pages'] + 1}")
+            if st['last'] is not None and ids[0] <= st['last']:
+                raise LayerStall(f"the read does not move (object id {ids[0]} after {st['last']})")
+        elif fs and prev_ids is not None and None not in ids and set(ids) <= prev_ids:
+            raise LayerStall(f"the server sent page {st['pages']} again (resultOffset ignored?)")
+        if fs:
+            page = [arcgis_rec(label, url, oidf, f) for f in fs]
+            recs += page
+            st['pages'] += 1; st['n'] = len(recs); st['off'] += len(fs)
+            if st['mode'] == 'oid': st['last'] = ids[-1]
+            part_save(sig, st, page)
+            prev_ids = set(ids) if None not in ids else None
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break   # the end test of before, both modes
+        time.sleep(.5)
+    part_clear(sig)   # the layer is complete: its checkpoint is no longer needed
     return recs
 
 
@@ -658,21 +853,26 @@ def wfs_id(f, p):
     return next((p[k] for k in WFS_IDF if p.get(k) not in (None, '', ' ')), None)
 def pull_wfs(label, url, typ):
     recs, start, step = [], 0, 1000
+    deadline, lmin = layer_limit(url + '#' + str(typ)); prev_first = None   # Nov 7 B3: the same time limit and stall rule as ArcGIS
     while True:
+        if time.monotonic() > deadline: raise LayerStall(f'over its {lmin:g}-minute limit at feature {start} ({len(recs)} records; not used)')
         q = {'SERVICE': 'WFS', 'VERSION': '2.0.0', 'REQUEST': 'GetFeature', 'TYPENAMES': typ, 'OUTPUTFORMAT': 'application/json', 'SRSNAME': 'EPSG:4326',
              'COUNT': step, 'STARTINDEX': start}
         j = None
         for fmt in ([FMT[url]] if url in FMT else ['application/json', 'application/geo+json', 'json', 'geojson', 'application/json; subtype=geojson']):
             q['OUTPUTFORMAT'] = fmt
             try:
-                j = fetch(url + '?' + urllib.parse.urlencode(q), tries=2); FMT[url] = fmt; break
+                j = fetch(url + '?' + urllib.parse.urlencode(q), tries=2, deadline=deadline); FMT[url] = fmt; break
             except Exception as e:  # noqa: BLE001
-                try:
-                    with urllib.request.urlopen(urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers=UA), timeout=120) as rr: body = rr.read(400)
+                if time.monotonic() > deadline: raise
+                try: body = fetch_bytes(url + '?' + urllib.parse.urlencode(q), tries=1, timeout=120, deadline=deadline, maxbytes=400)   # Nov 7 B2
                 except Exception as e2: body = str(e2).encode()  # noqa: BLE001
                 if (url, fmt) not in TOLD: TOLD.add((url, fmt)); notice(f'WFS {fmt}', body.decode('utf-8', 'replace'))
         if j is None: raise RuntimeError('no JSON output format worked')
         fs = j.get('features', [])
+        f0 = wfs_id(fs[0], fs[0].get('properties') or {}) if fs else None
+        if f0 is not None and f0 == prev_first: raise LayerStall(f'the server sent the page at feature {start - step} again (STARTINDEX ignored?)')
+        prev_first = f0
         for f in fs:
             p = f.get('properties') or {}; rs = rings_of(f.get('geometry'))
             # EPSG:4326 in WFS 2.0 can come back lat,lon: swap when the 'x' looks like a latitude for this country
@@ -701,7 +901,7 @@ def pull_a10(label, page):
     try: import shapefile
     except Exception:  # noqa: BLE001
         import subprocess, sys; subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pyshp'], check=False); import shapefile
-    with urllib.request.urlopen(urllib.request.Request(page, headers=UA), timeout=120) as r: html = r.read().decode('utf-8', 'replace')
+    html = fetch_bytes(page, timeout=120).decode('utf-8', 'replace')   # Nov 7 B2: whole-answer limit + bounded retries
     # Oct 19: the page names each file more than once (different paths, some 404): one download per prefecture, try each path
     grp = {}
     for ln in re.findall(r"[\w./-]*A10-15_\d\d_GML\.zip", html): grp.setdefault(ln.split('/')[-1], []).append(ln)
@@ -711,7 +911,7 @@ def pull_a10(label, page):
         z, err = None, None
         for v in sorted(set(grp[ln]), key=lambda q: -len(q)):
             try:
-                with urllib.request.urlopen(urllib.request.Request(urllib.parse.urljoin(page, v), headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read())); break
+                z = zipfile.ZipFile(io.BytesIO(fetch_bytes(urllib.parse.urljoin(page, v), tries=1, timeout=300, total=ZIP_S))); break   # Nov 7 B2 (one try per path, as before)
             except Exception as e: err = e  # noqa: BLE001
         if not z: notice(label, f'{ln} FAILED: {err}'); continue
         for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
@@ -781,7 +981,7 @@ def pull_a10n(label, url):
     names = {}
     for cu in ('https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalParkNameCd-v3_0.html', 'https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalParkNameCd.html'):
         try:
-            with urllib.request.urlopen(urllib.request.Request(cu, headers=UA), timeout=120) as r: raw = r.read()
+            raw = fetch_bytes(cu, tries=1, timeout=120)   # Nov 7 B2 (one try per codelist page, as before)
             html = None
             for enc in ('utf-8', 'cp932', 'euc-jp'):
                 try: html = raw.decode(enc); break
@@ -794,7 +994,7 @@ def pull_a10n(label, url):
             if names: break
         except Exception as e: notice(label, f'codelist {cu}: {e}')  # noqa: BLE001
     notice(label, f'{len(names)} park-name codes read')
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+    z = zipfile.ZipFile(io.BytesIO(fetch_bytes(url, timeout=300, total=ZIP_S)))   # Nov 7 B2: whole-answer limit + bounded retries
     recs = []
     for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
         b = sp[:-4]
@@ -843,7 +1043,7 @@ def pull_chshp(label, col):
     j = fetch(f'https://data.geo.admin.ch/api/stac/v0.9/collections/{col}/items?limit=20')
     hrefs = [a['href'] for it in j.get('features', []) for a in it.get('assets', {}).values() if re.search(r'_2056\.shp\.zip$', a.get('href', ''))]
     if not hrefs: notice(label, f'{col}: no shapefile asset'); return []
-    with urllib.request.urlopen(urllib.request.Request(hrefs[0], headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+    z = zipfile.ZipFile(io.BytesIO(fetch_bytes(hrefs[0], timeout=300, total=ZIP_S)))   # Nov 7 B2: whole-answer limit + bounded retries
     recs = []
     for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
         b = sp[:-4]
@@ -944,6 +1144,7 @@ for cc in COUNTRIES:
         print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
     if recs is None:
         recs, failed = [], False
+        PART_CC = cc   # Nov 7 B4: layer checkpoints go to cache/world/parts/<CC>/ (a stalled layer still FAILS below: B5 not approved)
         # Next round v3 C11 (Quality's grade of v2, Nov 5; DE build 6d8d79b2 lost BfN Naturparke + Nationalparke, ~0.5% of the areas,
         # under the old 3% test, and the short read was saved over the good copy). Per source: one that FAILED or came back EMPTY
         # takes the saved copy's records FOR THAT SOURCE, matched by its SOURCE ID (kind, address, layer), not by its label: DE has

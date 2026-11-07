@@ -20,8 +20,10 @@ for s in NEW:
     check(f'{s}: not a rules file of any key (no rules hash change)', all(s not in ' '.join(v) for v in KZ.RULE_FILES.values()))
 for s in NEW[:3]:
     check(f'{s}: listed in NOT_RULES', s in KZ.NOT_RULES)
-check('rules hashes unchanged by this patch (us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8)',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', '1b50faf1dfe8'))
+# Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 3c429df17d2c. US and CA stay; this check still pins all three.
+check('rules hashes unchanged by this patch (us a066624520b4, ca 8feccbb7d9ee, world 3c429df17d2c)',
+      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', '3c429df17d2c'))
 for b in ('kpc_us_key.py', 'kpc_ca_key.py', 'kpc_world_key.py', 'kpc_fers.py', 'kpc_fers_count.py', 'kpc_join_check.py'):
     t = (ROOT / '.github/scripts' / b).read_text(encoding='utf-8')
     check(f'{b} imports none of the new report helpers (joins cannot change)', not any(n[:-3] in t for n in NEW[:3]))

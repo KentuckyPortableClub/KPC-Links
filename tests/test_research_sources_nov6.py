@@ -31,7 +31,9 @@ def check(cond, msg):
 # --- rules hashes do not move (rule files were not edited) ---
 check(KF.rules_hash('us-key') == 'a066624520b4', 'US rules hash stays a066624520b4 with the flag off')
 check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccbb7d9ee')
-check(KF.rules_hash('world-key') == '1b50faf1dfe8', 'world rules hash stays 1b50faf1dfe8')
+# Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 3c429df17d2c. US and CA stay; this check still pins all three.
+check(KF.rules_hash('world-key') == '3c429df17d2c', 'world rules hash stays 3c429df17d2c')
 check('kpc_research_sources.py' in KF.NOT_RULES, 'kpc_research_sources.py is not a rule file')
 check('kpc_us_key.py' not in KF.NOT_RULES and 'kpc_world_key.py' not in KF.NOT_RULES, 'the key builders are still the rule files')
 

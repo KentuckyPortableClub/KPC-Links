@@ -28,8 +28,13 @@ def check(cond, msg):
 
 check(KF.rules_hash('us-key') == 'a066624520b4', 'US rules hash stays a066624520b4')
 check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccbb7d9ee')
-check(KF.rules_hash('world-key') == '1b50faf1dfe8', 'world rules hash stays 1b50faf1dfe8')
-check(not (ROOT / 'docs/key-rules-change.txt').exists(), 'this branch does not declare a key rules change')
+# Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
+# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 3c429df17d2c. US and CA stay; this check still pins all three.
+check(KF.rules_hash('world-key') == '3c429df17d2c', 'world rules hash stays 3c429df17d2c')
+# Nov 7 world rebuild: docs/key-rules-change.txt now declares that approved world-key change (the repo's way to declare an on-purpose
+# rules change, see test_maprep_toolbox.py). This file still must not change rules itself: the declaration may only be that one.
+_decl = (ROOT / 'docs/key-rules-change.txt')
+check(not _decl.exists() or _decl.read_text(encoding='utf-8').startswith('Nov 7 world rebuild'), 'this branch declares no key rules change of its own')
 check(RS.mode() == 'off', 'flag defaults to off')
 check(RS.layers() == [], 'flag off: no research layers are offered to a builder')
 check(RS.official_suggestions() == [], 'flag off: official pages are not suggested')

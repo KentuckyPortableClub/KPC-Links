@@ -78,10 +78,12 @@ sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KF
 
 # Answer-key guard. Default on every branch, never a silent skip.
-# (a) rules hashes equal origin/main (today us a066624520b4, ca 8feccbb7d9ee, world 1b50faf1dfe8).
+# (a) rules hashes equal origin/main (today us a066624520b4, ca 8feccbb7d9ee, world 3c429df17d2c).
+#     Nov 7 world rebuild (Brandon OK'd): world moved 1b50faf1dfe8 -> 3c429df17d2c (kpc_world_key.py only); that branch declares it in
+#     docs/key-rules-change.txt, so the guard is EXEMPT there and passes again with no exemption once it is on main.
 # (b) data/us-key, data/ca-key, data/world-key and data/ky-answer-key.json are byte-unchanged vs origin/main.
 # A branch that changes rules on purpose is exempt only when it adds or changes docs/key-rules-change.txt.
-EXPECTED_RULES = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '1b50faf1dfe8'}
+EXPECTED_RULES = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '3c429df17d2c'}
 KEY_PATHS = ['data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json']
 DECL_REL = 'docs/key-rules-change.txt'
 
@@ -147,7 +149,12 @@ have = subprocess.run(['git', 'rev-parse', '--verify', 'origin/main'], cwd=ROOT,
 if have.returncode != 0:
     fetch = subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=ROOT, capture_output=True, text=True, timeout=60)
     check(fetch.returncode == 0, 'fetched origin/main: ' + ((fetch.stderr or fetch.stdout or 'fetch failed').strip().splitlines() or ['?'])[-1])
-check(not (ROOT / DECL_REL).exists(), '#49 does not add docs/key-rules-change.txt')
+# Nov 7 world rebuild: the declaration file now exists (the approved world-key change). In place of '#49 does not add it', check that
+# the declaration covers the world key only: US and CA rules equal origin/main and no key file changed, even while the guard is EXEMPT.
+_decl = (ROOT / DECL_REL).read_text(encoding='utf-8').splitlines()[0] if (ROOT / DECL_REL).exists() else ''
+_keys = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *KEY_PATHS], cwd=ROOT, capture_output=True, text=True, timeout=30).stdout.split()
+check(not _decl or (_decl.startswith('Nov 7 world rebuild') and not _keys and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
+      'docs/key-rules-change.txt declares only the Nov 7 world rebuild: US / CA rules equal origin/main, key files unchanged')
 passed, msg = answer_key_guard(ROOT)
 check(passed, 'this branch passes the real answer-key guard (' + msg + ')')
 
