@@ -441,16 +441,6 @@
   "kpc-research-helpers.yml|2026-11-07T05:23:00+00:00": "2026-11-07T05:50+00:00 skipped (not restarted)",
   "pages-deploy.yml|2026-11-07T04:41:00+00:00": "2026-11-07T05:50+00:00 started"
  },
- "last": "2026-11-07T05:50+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 07 05:18 UTC)",
-  "kpc-boards.yml (missed Nov 07 05:14 UTC)",
-  "kpc-bot-queue.yml (missed Nov 07 04:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 07 04:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 07 04:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-pota-discord.yml (missed Nov 07 05:19 UTC)",
-  "kpc-reports.yml (missed Nov 07 03:29 UTC)",
-  "kpc-research-helpers.yml (missed Nov 07 05:23 UTC, NOT restarted: its next scheduled run catches up)",
-  "pages-deploy.yml (missed Nov 07 04:41 UTC)"
- ]
+ "last": "2026-11-07T05:51+00:00",
+ "last_restarted": []
 }
