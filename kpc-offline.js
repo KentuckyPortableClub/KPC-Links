@@ -45,7 +45,7 @@
   const panel = document.createElement('section');
   panel.className = 'panel kpc-off'; panel.id = 'finder-offline'; panel.setAttribute('aria-label', 'Use the finder with no signal');
   panel.innerHTML = `<h2>No signal at the park? Save it first.</h2>
-<p class="meta">Save KY Park Commander on this phone or computer before you leave home. After saving, these work with <b>no signal</b>:</p>
+<p class="meta">Save Park Commander on this phone or computer before you leave home. After saving, these work with <b>no signal</b>:</p>
 <ul class="meta"><li>Park, summit and KFF search by name or reference, with park details</li><li>Your favorites and trip stops</li><li>“Am I inside a park?” with GPS — Kentucky boundaries, trails and wilderness</li></ul>
 <p class="meta"><b>Map tip:</b> before you go, open the map and zoom in around the park you’re heading to. Map areas you look at while online are kept for offline use (the whole map can’t be downloaded). Town search, live POTA spots and live GIS layers still need a signal.</p>
 <div class="toolbuttons"><button id="kpcOffSave" type="button">Save for offline (about 10 MB)</button><button id="kpcOffClear" class="secondary" type="button">Remove offline copy</button></div>

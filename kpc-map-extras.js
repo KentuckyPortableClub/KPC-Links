@@ -1,5 +1,5 @@
 /* KPC map extras — v20261014m
-   Shared by KY Park Commander (finder.html) and the Trip Planner (kpc-planner.html):
+   Shared by Park Commander (finder.html) and the Trip Planner (kpc-planner.html):
    • Parking and Entrance markers with their own on/off switches
        official = Kentucky agency GIS (KDFWR, WMA Map Points, Kentucky State Parks) and the KPC park file
        unverified = OpenStreetMap community data

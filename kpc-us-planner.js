@@ -2,7 +2,7 @@
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
  return L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',o)};
-/* KPC KPC Trip Planner.
+/* US Trip Planner.
    Spots: locations.json (rows [prog,ref,name,lat,lon,url,...]) for POTA, SOTA and WWFF, plus POTA parks loaded live
    from api.pota.app/location/parks/US-XX for the states near the search (adds parks newer than the file).
    Place search: OpenStreetMap Nominatim (only when someone presses Search). Boundaries: OpenStreetMap via Overpass,
@@ -523,7 +523,7 @@ if(KM){KM.bar($('km-bar'));let pend=false;
  window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(()=>{if(map._popup&&map.hasLayer(map._popup))pend=true;else drawDots()},60)}})}
 loadAll().then(()=>{const shared=loadShared();drawTrip();if(window.__usView)window.__usView();
- /* ?q=… (sent by the KY Trip Planner for an out-of-state place): search it straight away */
+ /* ?q=… (sent by the Kentucky Trip Planner for an out-of-state place): search it straight away */
  const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
  const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
  else if(shared&&trip.length){go(trip[0].la,trip[0].lo,trip[0].n)}
