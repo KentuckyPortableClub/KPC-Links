@@ -5,6 +5,12 @@ name: KPC new references
 # Oct 23: it also keeps the Finder's search lists (locations.json / locations-ky.json) current, and a Kentucky park
 # POTA RETIRES is taken off every site list the same morning (kpc_retired_sweep.py) + a Discord note + issue comment.
 on:
+  # Nov 7 (round 4, item 5; Brandon yes): a hand edit of kpc-ky-data.json (a new Kentucky park goes live) starts this run too, so the
+  # waiting 'new park' post goes out the same hour instead of at the next 12:39 UTC run. No cron. It never posts an item twice ('posted' list); a second post the same day
+  # gets its own Club News id (nr-<date>-2). A bot's own save (Actions token) starts nothing.
+  push:
+    branches: [main]
+    paths: ['kpc-ky-data.json']
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
     - cron: '39 12 * * *'   # G9 Nov 2: was '41 12 * * *' (spread the start times; now 2 min earlier)
