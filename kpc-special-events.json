@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T18:15:08Z",
+ "updated": "2026-11-07T12:11:53Z",
  "stations": [
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
@@ -83,23 +83,6 @@
    "qsl": "Certificate",
    "url": "http://www.radioham.org",
    "note": ", Stillwater, MN. Stillwater (MN) Amateur Radio Assoc. (SARA). 3.860 7.260 14.260 21.360. Certificate. Shel Mann - N0DRX, 1618 Pine St W, Stillwater, MN 55082. Requested and sent via email: W0JHFitz@outlook.com. QSL certificates may only be requested via email address: W0JHFitz@outlook.com. Important: ONLY W0JH contacts qualify for POTA US-2524, US-8095, ARLHS USA 783 validations and submission to"
-  },
-  {
-   "title": "Aviation Discovery Fest",
-   "start": "2026-11-06",
-   "end": "2026-11-06",
-   "times": "1500Z-2300Z",
-   "call": "WX3O",
-   "calls": [
-    "WX3O"
-   ],
-   "where": "San Marcos, TX",
-   "st": "TX",
-   "by": "Commerative Air Force Central Texas Wing",
-   "freqs": "14.245 14.285 7.250",
-   "qsl": "QSL",
-   "url": "http://centrltexaswing.org",
-   "note": ", San Marcos, TX. Commerative Air Force Central Texas Wing. 14.245 14.285 7.250. QSL. Mark Julicher, 5649 Temerity Way, Bulverde, TX 78163."
   },
   {
    "title": "100-year celebration of RT 66",
@@ -754,6 +737,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (41)"
+  "ARRL": "ok (40)"
  }
 }
