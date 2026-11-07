@@ -191,7 +191,7 @@ jobs:
               echo "::group::World key $c (held retry $n, limit ${lim} min)"
               rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" python3 .github/scripts/kpc_world_key.py || rc=$?
               echo "::endgroup::"
-              if [ "$rc" = 0 ]; then { grep -vx "$c" part/failed.txt || true; } > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "::notice title=World key $c::built on held retry $n"
+              if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "::notice title=World key $c::built on held retry $n"
               elif [ "$rc" = 3 ]; then echo "$c" >> part/held.txt; echo "::warning title=World key $c::still HELD after retry $n"
               else echo "::warning title=World key $c::held retry $n stopped (exit $rc); the build stamp lists it as failed"; fi
             done
