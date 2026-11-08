@@ -1086,6 +1086,10 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
   const oldForm = $('mrForm'); if (oldForm) oldForm.addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
   const HASH = '04801b98a434eac10dc37a3bb1a503b473e7a97687e982dff47e6b20266f565e';
+  /* Nov 8 (Brandon 3:39 PM CST, t759u: one password): the rep door's hash (kpc-maprep-gate.js RH) opens this lock too, and a page
+     whose door already let the rep in skips this card. Only hashes are here, never the password. */
+  const RH = (window.KPCRepGate && window.KPCRepGate.hash) || 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
+  const GOOD = [RH, HASH];
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
@@ -1101,12 +1105,13 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     } else if (P.get('name') && $('mrName')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state') && $('mrState')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }
   let ok = !!$('mrPublic'); /* the public Suggest page uses the same engine with no password */
-  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH || localStorage.getItem('kpcMember') === 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; } catch (e) {} /* one member sign-in opens it too */
+  if (!ok) try { ok = !!(window.KPCRepGate && window.KPCRepGate.ok()); } catch (e) {}
+  if (!ok) try { ok = GOOD.includes(localStorage.getItem('kpcMrOK')) || localStorage.getItem('kpcMapRep') === RH || localStorage.getItem('kpcMember') === 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; } catch (e) {} /* one member sign-in opens it too */
   if (ok) start();
   else $('mrLockForm').addEventListener('submit', async e => {
     e.preventDefault();
     const h = await sha('kpc-maprep:' + $('mrPw').value.trim().toLowerCase());
-    if (h === HASH) { try { localStorage.setItem('kpcMrOK', HASH); } catch (x) {} start(); }
+    if (GOOD.includes(h)) { try { localStorage.setItem('kpcMrOK', h); if (h === RH) localStorage.setItem('kpcMapRep', RH); } catch (x) {} start(); }
     else { $('mrPwMsg').textContent = 'That password is not right.'; $('mrPw').select(); }
   });
 })();
