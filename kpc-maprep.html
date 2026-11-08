@@ -196,6 +196,20 @@ body.field .page-jump-nav{display:none!important}
 .mr-rs-card summary{cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}.mr-rs-card summary small{flex-basis:100%;color:#555}
 .mr-rs-v{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1d5a3a}.mr-rs-person .mr-rs-v{color:#8a5a12}.mr-rs-already .mr-rs-v,.mr-rs-probably .mr-rs-v{color:#6b5a2a}
 .mr-rs-why{font-weight:700}.mr-rs-checks ul{margin:4px 0 8px 18px;padding:0}.mr-rs-sum{width:100%;box-sizing:border-box;font:13px/1.4 Arial,sans-serif;margin:4px 0}.mr-rs-sumlab{display:block;font-size:11px;font-weight:900;letter-spacing:1px;margin-top:8px}
+.mr-rs-tabs{display:flex;flex-wrap:wrap;gap:0;margin:4px 0 12px;border:1px solid rgba(240,201,107,.45);border-radius:10px;overflow:hidden}
+.mr-rs-tab{flex:1 1 0;min-width:120px;background:transparent;color:inherit;border:0;border-right:1px solid rgba(240,201,107,.3);padding:11px 8px;font:inherit;font-weight:700;letter-spacing:1px;font-size:.85rem;cursor:pointer}
+.mr-rs-tab:last-child{border-right:0}.mr-rs-tab.on{background:#f0c96b;color:#1b140b}.mr-rs-tab:focus-visible{outline:2px solid #f0c96b;outline-offset:-3px}
+.mr-rs-status{margin:14px 0;padding:14px 16px;border:1px solid rgba(240,201,107,.45);border-radius:12px;background:rgba(240,201,107,.10);scroll-margin-top:80px}
+.mr-rs-st-head{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1px}.mr-rs-st-head .t{margin-left:auto;font-variant-numeric:tabular-nums;opacity:.8;font-weight:400}
+.mr-rs-spin{width:18px;height:18px;border:3px solid rgba(240,201,107,.25);border-top-color:#f0c96b;border-radius:50%;animation:mrspin .8s linear infinite;flex:none}
+.mr-rs-status.done .mr-rs-spin,.mr-rs-status.err .mr-rs-spin{display:none}
+@keyframes mrspin{to{transform:rotate(360deg)}}
+.mr-rs-bar{height:8px;border-radius:6px;background:rgba(128,128,128,.22);margin:10px 0;overflow:hidden}.mr-rs-bar i{display:block;height:100%;width:0;background:#f0c96b;transition:width .3s}
+.mr-rs-bar.ind i{width:30%;animation:mrind 1.2s ease-in-out infinite}@keyframes mrind{0%{margin-left:-30%}100%{margin-left:100%}}
+.mr-rs-steps{list-style:none;margin:0;padding:0}.mr-rs-steps li{padding:3px 0 3px 26px;position:relative}.mr-rs-steps li:before{position:absolute;left:0;content:'\2026';opacity:.7}
+.mr-rs-steps li.ok:before{content:'\2713';color:#2f9e55;font-weight:900}.mr-rs-steps li.run:before{content:'\25B8';color:#c8962a}.mr-rs-steps li.bad:before{content:'\2717';color:#ff8a7a}
+.mr-rs-steps small{opacity:.75;margin-left:6px}.mr-rs-slow{color:#f0c96b;margin:6px 0 0}.mr-rs-err{color:#ff8a7a;margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){.mr-rs-spin,.mr-rs-bar.ind i{animation:none}}
 .mr-keyfold{margin-top:10px}.mr-keyfold>summary{cursor:pointer;font-size:12px;font-weight:900;letter-spacing:1px}
 </style>
 <header class="site-nav mr-bar"><div class="nav-inner"><a class="brand" href="#" onclick="return false"><img src="KPC-logo.png" alt="" width="58" height="58"><span class="brand-text">Mapping Rep Tool Box<small>KENTUCKY PORTABLE CLUB · HELPER</small></span></a><nav class="nav-links" id="kpc-main-nav" aria-label="Tool"></nav></div></header>
@@ -228,16 +242,22 @@ body.field .page-jump-nav{display:none!important}
 <p class="eyebrow" style="letter-spacing:2px">START HERE · FIND AND TEST NEW PARKS</p>
 <h2>Find new parks to add</h2>
 <p class="mr-help">Pick a state or province and the Tool Box reads the official list of public and protected land (USGS PAD-US for a US state, Canada’s CPCAD for a province), then checks every place for you: is it already a POTA park (the same official record in our answer key, a park outline over it, a POTA pin inside it, or a park with the same name nearby), the nearest POTA park, any overlap with a park (part of a park, or a 2-fer), and the full official record. Each place gets a plain answer and a summary you can copy into a park submission.</p>
-<form id="mrRsForm" class="mr-checkf">
+<form id="mrRsForm" class="mr-checkf mr-rs-form">
+<div class="mr-rs-tabs" role="tablist" aria-label="How do you want to search?">
+<button type="button" role="tab" class="mr-rs-tab on" aria-selected="true" data-rstab="state">WHOLE STATE OR PROVINCE</button><button type="button" role="tab" class="mr-rs-tab" aria-selected="false" data-rstab="pin">NEAR A SPOT</button><button type="button" role="tab" class="mr-rs-tab" aria-selected="false" data-rstab="name">BY NAME</button>
+</div>
 <label for="mrRsPlace">STATE OR PROVINCE</label>
 <select id="mrRsPlace" aria-label="State or province to research"><option value="">Loading places…</option></select>
-<div class="mr-check-btns"><button type="button" id="mrRsFind">FIND NEW PARKS IN THIS PLACE</button><button type="button" class="alt" id="mrRsNear">TEST NEAR MY PIN</button></div>
-<label for="mrRsQ">FOUND ONE YOURSELF? TYPE ITS NAME</label>
-<input id="mrRsQ" autocomplete="off" placeholder="Pine Creek Gorge, Elk State Forest, or a name from a map" aria-label="Name of a place to test">
-<div class="mr-check-btns"><button type="submit" id="mrRsTest">TEST THIS PLACE</button></div>
+<p class="mr-help" data-rspane="state">Checks the largest official places in the whole state or province (up to 150). It takes a minute or two; the status below shows each step.</p>
+<p class="mr-help" data-rspane="pin" hidden>Tap the map below to drop a pin, then SEARCH. It checks the official land within about 6 km of the pin.</p>
+<div data-rspane="name" hidden><label for="mrRsQ">FOUND ONE YOURSELF? TYPE ITS NAME</label>
+<input id="mrRsQ" autocomplete="off" placeholder="Pine Creek Gorge, Elk State Forest, or a name from a map" aria-label="Name of a place to test"></div>
+<div class="mr-check-btns"><button type="submit" id="mrRsGo">SEARCH</button></div>
+<div class="mr-rs-legacy" hidden><button type="button" id="mrRsFind">FIND NEW PARKS IN THIS PLACE</button><button type="button" class="alt" id="mrRsNear">TEST NEAR MY PIN</button><button type="button" id="mrRsTest">TEST THIS PLACE</button></div>
 </form>
+<div class="mr-rs-status" id="mrRsStatus" hidden aria-live="polite"></div>
 <div id="mrRsMap" role="application" aria-label="Research map. Tap to drop a pin."></div>
-<p class="mr-help">Tap the map to drop a pin, then TEST NEAR MY PIN. Green looks new, orange needs a person, brown is probably already a park, grey is already a park. Street map: © OpenStreetMap contributors, ODbL.</p>
+<p class="mr-help">Tap the map to drop a pin (NEAR A SPOT), then SEARCH. Green looks new, orange needs a person, brown is probably already a park, grey is already a park. Street map: © OpenStreetMap contributors, ODbL.</p>
 <p class="mr-msg" id="mrRsMsg" role="status">Pick a place to start.</p>
 <div id="mrRsOut"></div>
 </section>
@@ -298,6 +318,6 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-maprep-logic.js?v=20261107t" defer></script>
 <script src="kpc-maprep-candidates.js?v=20261108a" defer></script>
 <script src="kpc-maprep-check.js?v=20261108g" defer></script>
-<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108b" defer></script>
+<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108c" defer></script>
 <script src="kpc-maprep.js?v=20261106d" defer></script>
 </body></html>
