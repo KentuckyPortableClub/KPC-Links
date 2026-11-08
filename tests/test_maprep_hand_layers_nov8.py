@@ -18,5 +18,5 @@ check('o.L.local ? await slLocal' in js, 'local layers are read by slLocal')
 check(not any(x['ok'] and 'services1.arcgis.com/1mtXwieMId59thmg' in x.get('url','') for a in reg['areas'].values() for x in a), 'no live TPWD services1.arcgis.com layer is used')
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
-    check(re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108x', f + ': script version')
+    check(re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108y', f + ': script version')
 sys.exit(0 if ok else 1)
