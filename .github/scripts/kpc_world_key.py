@@ -159,7 +159,7 @@ for _c in EU:
 CHB = [('BAFU landscapes and natural monuments (BLN)', 'ch.bafu.bundesinventare-bln'), ('BAFU hunting reserves', 'ch.bafu.bundesinventare-jagdbanngebiete'),
        ('BAFU water and migratory bird reserves', 'ch.bafu.bundesinventare-vogelreservate'), ('BAFU mire landscapes', 'ch.bafu.bundesinventare-moorlandschaften'),
        ('BAFU floodplains', 'ch.bafu.bundesinventare-auen'), ('BAFU raised bogs', 'ch.bafu.bundesinventare-hochmoore'), ('BAFU fens', 'ch.bafu.bundesinventare-flachmoore'),
-       ('BAFU Ramsar sites', 'ch.bafu.schutzgebiete-ramsar'), ('BAFU parks of national importance', 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter'),
+       ('BAFU Ramsar sites', 'ch.bafu.schutzgebiete-ramsar'), ('BAFU parks of national importance', 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung'),
        ('BAFU Emerald sites', 'ch.bafu.schutzgebiete-smaragd')]
 SRC['CH'] = SRC['CH'] + [(a, 'chshp', b) for a, b in CHB]
 CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], 'Game Reserve': ['BAFU hunting reserves'],

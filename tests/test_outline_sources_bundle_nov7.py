@@ -99,6 +99,6 @@ check('the plan step reads FORCE and warns on force with empty states', 'FORCE: 
 
 import kpc_key_freeze as KF  # noqa: E402
 H = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
-check('rules hashes unchanged ' + json.dumps(H), H == {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '6a5969a25d2c'})
+check('rules hashes unchanged ' + json.dumps(H), H == {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'})
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

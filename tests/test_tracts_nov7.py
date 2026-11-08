@@ -54,7 +54,7 @@ try:
     # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
     # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
     _decl = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8') if (ROOT / 'docs/key-rules-change.txt').is_file() else ''
-    _wdecl = re.search(r'world rules 1b50faf1dfe8 -> ([0-9a-f]{12})', _decl)
+    _wdecl = re.search(r'world rules (?:1b50faf1dfe8|6a5969a25d2c) -> ([0-9a-f]{12})', _decl)   # Nov 7 rebuild; Nov 8 CH (#76)
     _wok = {EXP['world-key']} | ({_wdecl.group(1)} if _wdecl else set())
     check('rules hashes unchanged (world: main or the declared world rebuild) ' + json.dumps({k: KF.rules_hash(k) for k in EXP}),
           KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)

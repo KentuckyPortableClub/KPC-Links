@@ -30,7 +30,7 @@ check(KF.rules_hash('us-key') == 'a066624520b4', 'US rules hash stays a066624520
 check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccbb7d9ee')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check(KF.rules_hash('world-key') == '6a5969a25d2c', 'world rules hash stays 6a5969a25d2c')
+check(KF.rules_hash('world-key') == '10e4092cc97f', 'world rules hash stays 10e4092cc97f')
 # Nov 7 world rebuild: docs/key-rules-change.txt now declares that approved world-key change (the repo's way to declare an on-purpose
 # rules change, see test_maprep_toolbox.py). This file still must not change rules itself: the declaration may only be that one.
 _decl = (ROOT / 'docs/key-rules-change.txt')
