@@ -46,6 +46,12 @@
     return r;
   };
   const progOf = r => /\//.test(r) ? 'SOTA' : /FF-\d{4}$/.test(r) ? 'WWFF' : 'POTA';
+  /* Nov 8 (two-fers / three-fers): the PARK / REF box takes a comma list ("US-1234, US-5678"). Each ref is cleaned (K-/VE- to
+     US-/CA-), repeats dropped, and checked: POTA AA-1234 / AA-12345, WWFF AAFF-1234, SOTA W4K/EC-001. refList gives both. */
+  const REF_OK = r => /^[A-Z0-9]{1,4}-\d{4,5}$/.test(r) || /^[A-Z0-9]{1,4}FF-\d{4}$/.test(r) || /^[A-Z0-9]{1,4}\/[A-Z0-9]{2}-\d{3}$/.test(r);
+  const refList = v => { const ok = [], bad = []; String(v || '').toUpperCase().split(/[ ,;]+/).filter(Boolean).map(nref).forEach(r => { if (!REF_OK(r)) { if (!bad.includes(r)) bad.push(r); } else if (!ok.includes(r)) ok.push(r); }); return { ok, bad, s: ok.join(', ') }; };
+  const refBad = (L, el) => { if (!L.bad.length) return false; toast(`⚠ Not a park or summit ref: ${L.bad.join(', ')}. Use a comma list like US-1234, US-5678.`); if (el) el.focus(); return true; };
+  window.KPCRefs = { list: refList, ok: REF_OK };
   function scan(text) {
     const out = new Set(), T = String(text || '').toUpperCase();
     (T.match(/\b[A-Z0-9]{1,4}\/[A-Z]{2}-\d{3}\b/g) || []).forEach(x => out.add(x));
@@ -1134,7 +1140,7 @@
       o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('FREQ', q.f) + af('BAND', q.band) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
         + af('TIME_OFF', q.tm) + af('STATION_CALLSIGN', q.my || CALL) + af('OPERATOR', q.my || CALL) + af('MY_GRIDSQUARE', q.grid || myGrid())
         + af('POTA_REF', pota.join(',')) + af('WWFF_REF', wwff[0] || '') + af('SOTA_REF', sota[0] || '')
-        + (pota.length ? af('SIG', 'POTA') + af('SIG_INFO', pota[0]) : wwff.length ? af('SIG', 'WWFF') + af('SIG_INFO', wwff[0]) : '')
+        + (pota.length ? af('SIG', 'POTA') + af('SIG_INFO', pota.join(',')) : wwff.length ? af('SIG', 'WWFF') + af('SIG_INFO', wwff[0]) : '')
         + af('NAME', q.on || '') + af('QTH', q.qth || '') + af('GRIDSQUARE', q.tg || '') + af('COUNTRY', q.cty || '') + (isFinite(q.la) && isFinite(q.lo) ? af('LAT', adLL(q.la, 'N', 'S')) + af('LON', adLL(q.lo, 'E', 'W')) : '') + af('STATE', /^[A-Z]{2}$/.test(q.st || '') && ST[q.st] ? q.st : '') + af('COMMENT', [refs.join(' '), q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', q.note) + '<EOR>\n';
     });
     return o;
@@ -1200,8 +1206,8 @@
   function modePick(m) { m = String(m || '').toUpperCase(); if (/USB|LSB|SSB|PHONE/.test(m)) return 'SSB'; const o = [...$('fMode').options].map(x => x.value); return o.includes(m) ? m : (m ? 'OTHER' : 'SSB'); }
   function bandSet() { const f = parseFloat($('fFreq').value); $('fBand').value = f ? bandOf(f * 1000).replace('OTHER', '') : ''; dupe(); }
   function dupe() {
-    const c = base($('fCall').value), r = $('fRef').value.toUpperCase().replace(/\s/g, ''), b = $('fBand').value, d = $('fDate').value.replace(/-/g, '');
-    const hit = c && Q.q.find(q => q !== EDIT && base(q.call) === c && q.d === d && q.band === b && String(q.ref || '').replace(/\s/g, '') === r);
+    const c = base($('fCall').value), r = refList($('fRef').value).s, b = $('fBand').value, d = $('fDate').value.replace(/-/g, '');
+    const hit = c && Q.q.find(q => q !== EDIT && base(q.call) === c && q.d === d && q.band === b && refList(q.ref).s === r);
     $('fDupe').hidden = !hit; if (hit) $('fDupe').textContent = `⚠ You already logged ${c} at ${r || 'this spot'} on ${b} today (${fmtT(hit.tm)} UTC). Saving again makes a second copy.`;
   }
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
@@ -1229,7 +1235,7 @@
   $('lgForm').addEventListener('submit', async e => {
     e.preventDefault();
     const call = $('fCall').value.trim().toUpperCase(); if (!call) { $('fCall').focus(); return; }
-    const ref = $('fRef').value.toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref).join(', ');
+    const RL = refList($('fRef').value); if (refBad(RL, $('fRef'))) return; const ref = RL.s;
     const rec = { id: EDIT ? EDIT.id : Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: $('fDate').value.replace(/-/g, ''), tm: $('fTime').value.replace(':', '').slice(0, 4),
       f: $('fFreq').value.trim(), band: $('fBand').value, mode: $('fMode').value, ref, name: $('fName').value.trim(), st: $('fSt').value.trim().toUpperCase(), rs: $('fRs').value.trim(), rr: $('fRr').value.trim(),
       note: $('fNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
@@ -1582,8 +1588,8 @@
     /* the dock */
     const dkBand = () => { const f = parseFloat($('dFreq').value); $('dBand').value = f ? bandOf(f * 1000).replace('OTHER', '') : ''; dkDupe(); };
     function dkDupe() {
-      const c = base($('dCall').value), r = $('dRef').value.toUpperCase().replace(/\s/g, ''), b = $('dBand').value, d = utc(new Date()).d;
-      const hit = c && Q.q.find(q => base(q.call) === c && q.d === d && q.band === b && String(q.ref || '').replace(/\s/g, '') === r);
+      const c = base($('dCall').value), r = refList($('dRef').value).s, b = $('dBand').value, d = utc(new Date()).d;
+      const hit = c && Q.q.find(q => base(q.call) === c && q.d === d && q.band === b && refList(q.ref).s === r);
       $('dkDupe').hidden = !hit; if (hit) $('dkDupe').textContent = `⚠ DUPE: ${c} logged at ${fmtT(hit.tm)} UTC`;
     }
     $('dFreq').addEventListener('input', dkBand); ['dCall', 'dRef'].forEach(id => $(id).addEventListener('input', dkDupe)); $('dCall').addEventListener('input', dkWho);
@@ -1685,7 +1691,7 @@
   async function dkLog(opt) {
     const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
     const n = utc(new Date());
-    const ref = $('dRef').value.toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref).join(', ');
+    const RL = refList($('dRef').value); if (refBad(RL, $('dRef'))) return; const ref = RL.s;
     const f = $('dFreq').value.trim();
     const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
@@ -1841,7 +1847,7 @@
       const call = base(o.call); if (!call) return { msg: 'No call sign.' }; if (!CALL) return { msg: 'Put your call sign in MY LOG FILES first.' };
       const k = +o.khz, band = bandOf(k); if (band === 'OTHER') return { msg: 'The frequency is not on a ham band.' };
       const n = utc(new Date()), mode = String(o.mode || 'FT8').toUpperCase();
-      const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f: (k / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref: String(o.ref || '').toUpperCase(),
+      const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f: (k / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''), band, mode, ref: refList(o.ref).s,
         name: '', st: '', rs: o.rs || '', rr: o.rr || '', note: '', my: /^[A-Z0-9\/]{3,12}$/.test(String(o.my || '').toUpperCase()) ? String(o.my).toUpperCase() : CALL, grid: Q.grid, x: 0, t: Date.now(), tg: String(o.g || '').toUpperCase(), ft: 1 };
       whoFill(rec, LKC[call] || null).catch(() => {}).then(() => afterLog(rec));
       return { ok: true, q: rec, n: Q.q.filter(q => q.d === n.d).length + 1 };
