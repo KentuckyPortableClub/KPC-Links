@@ -1,11 +1,11 @@
 {
  "United States": {
   "totals": {
-   "matched": 11623,
-   "far": 4072,
+   "matched": 11677,
+   "far": 4091,
    "noshape": 0,
-   "edge": 3961,
-   "out": 111,
+   "edge": 3974,
+   "out": 117,
    "swap": 0
   },
   "states": [
@@ -35,7 +35,7 @@
    },
    {
     "st": "AR",
-    "matched": 263,
+    "matched": 268,
     "far": 120,
     "noshape": 0,
     "out": 2,
@@ -47,15 +47,15 @@
    },
    {
     "st": "AZ",
-    "matched": 110,
-    "far": 34,
+    "matched": 109,
+    "far": 33,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 33
+    "edge": 32
    },
    {
     "st": "CA",
@@ -71,15 +71,15 @@
    },
    {
     "st": "CO",
-    "matched": 264,
-    "far": 139,
+    "matched": 266,
+    "far": 140,
     "noshape": 0,
     "out": 13,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 126
+    "edge": 127
    },
    {
     "st": "CT",
@@ -120,14 +120,14 @@
    {
     "st": "FL",
     "matched": 436,
-    "far": 194,
+    "far": 191,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 193
+    "edge": 190
    },
    {
     "st": "GA",
@@ -167,7 +167,7 @@
    },
    {
     "st": "ID",
-    "matched": 226,
+    "matched": 227,
     "far": 71,
     "noshape": 0,
     "out": 1,
@@ -239,7 +239,7 @@
    },
    {
     "st": "MD",
-    "matched": 175,
+    "matched": 176,
     "far": 57,
     "noshape": 0,
     "out": 2,
@@ -311,7 +311,7 @@
    },
    {
     "st": "MT",
-    "matched": 244,
+    "matched": 245,
     "far": 78,
     "noshape": 0,
     "out": 0,
@@ -323,7 +323,7 @@
    },
    {
     "st": "NC",
-    "matched": 225,
+    "matched": 226,
     "far": 95,
     "noshape": 0,
     "out": 2,
@@ -359,7 +359,7 @@
    },
    {
     "st": "NH",
-    "matched": 195,
+    "matched": 196,
     "far": 104,
     "noshape": 0,
     "out": 8,
@@ -383,7 +383,7 @@
    },
    {
     "st": "NM",
-    "matched": 104,
+    "matched": 105,
     "far": 30,
     "noshape": 0,
     "out": 0,
@@ -395,15 +395,15 @@
    },
    {
     "st": "NV",
-    "matched": 195,
-    "far": 62,
+    "matched": 221,
+    "far": 84,
     "noshape": 0,
-    "out": 10,
+    "out": 16,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 52
+    "edge": 68
    },
    {
     "st": "NY",
@@ -443,7 +443,7 @@
    },
    {
     "st": "OR",
-    "matched": 382,
+    "matched": 384,
     "far": 114,
     "noshape": 0,
     "out": 4,
@@ -479,7 +479,7 @@
    },
    {
     "st": "SC",
-    "matched": 160,
+    "matched": 161,
     "far": 84,
     "noshape": 0,
     "out": 0,
@@ -503,7 +503,7 @@
    },
    {
     "st": "TN",
-    "matched": 262,
+    "matched": 263,
     "far": 108,
     "noshape": 0,
     "out": 2,
@@ -527,7 +527,7 @@
    },
    {
     "st": "UT",
-    "matched": 411,
+    "matched": 421,
     "far": 115,
     "noshape": 0,
     "out": 13,
@@ -563,7 +563,7 @@
    },
    {
     "st": "WA",
-    "matched": 491,
+    "matched": 492,
     "far": 189,
     "noshape": 0,
     "out": 0,
@@ -599,7 +599,7 @@
    },
    {
     "st": "WY",
-    "matched": 213,
+    "matched": 214,
     "far": 69,
     "noshape": 0,
     "out": 9,
@@ -612,18 +612,6 @@
   ],
   "swaps": [],
   "well_outside": [
-   [
-    "AK",
-    "US-0150",
-    "Kodiak National Wildlife Refuge",
-    ""
-   ],
-   [
-    "AK",
-    "US-10281",
-    "White Mountains National Recreation Area BLM Recreation Management Area",
-    ""
-   ],
    [
     "AK",
     "US-6332",
@@ -673,12 +661,6 @@
     ""
    ],
    [
-    "MA",
-    "US-11401",
-    "Cummington Wildlife Management Area",
-    ""
-   ],
-   [
     "MD",
     "US-7760",
     "Nanjemoy Creek Wildlife Management Area",
@@ -722,39 +704,15 @@
    ],
    [
     "NH",
-    "US-4894",
-    "Davis-White State Forest",
-    ""
-   ],
-   [
-    "NH",
-    "US-4933",
-    "Merrimack River State Forest",
-    ""
-   ],
-   [
-    "NH",
-    "US-4934",
-    "Merriman State Forest",
-    ""
-   ],
-   [
-    "NH",
     "US-4955",
     "Saltmarsh Pond State Forest",
-    ""
+    "Saltmarsh Pond State Forest"
    ],
    [
     "NV",
     "US-13018",
     "Black Rock Range East/West BLM Herd Management Area",
     "Black Rock Range East"
-   ],
-   [
-    "NV",
-    "US-13039",
-    "Owyhee River Wilderness Area",
-    ""
    ],
    [
     "OH",
@@ -767,12 +725,6 @@
     "US-12027",
     "Altus-Lugert State Fishing Lake",
     "Altus - Lugert"
-   ],
-   [
-    "OK",
-    "US-12028",
-    "Barren Fork Wildlife Management Area",
-    ""
    ],
    [
     "OR",
@@ -818,21 +770,9 @@
    ],
    [
     "UT",
-    "US-5789",
-    "Behind the Rocks Wilderness Area",
-    ""
-   ],
-   [
-    "UT",
     "US-5828",
     "Dark Canyon BLM Special Recreation Management Area",
     "Dark Canyon"
-   ],
-   [
-    "UT",
-    "US-5869",
-    "9 Mile Canyon BLM Recreation Management Area",
-    ""
    ],
    [
     "VT",
@@ -851,18 +791,6 @@
     "US-4475",
     "Caribou-Targhee National Forest",
     "Caribou-Targhee National Forest (Targhee National Forest)"
-   ],
-   [
-    "WY",
-    "US-6197",
-    "Popo Agie Wilderness Area",
-    ""
-   ],
-   [
-    "WY",
-    "US-6202",
-    "North Absaroka Wilderness Area",
-    ""
    ]
   ]
  },
@@ -1225,10 +1153,10 @@
  },
  "World": {
   "totals": {
-   "matched": 43952,
-   "far": 10121,
+   "matched": 43955,
+   "far": 10103,
    "noshape": 0,
-   "edge": 9799,
+   "edge": 9781,
    "out": 322,
    "swap": 1
   },
@@ -1271,15 +1199,15 @@
    },
    {
     "st": "AU",
-    "matched": 8161,
-    "far": 1558,
+    "matched": 8164,
+    "far": 1540,
     "noshape": 0,
     "out": 24,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": 250,
-    "edge": 1534
+    "edge": 1516
    },
    {
     "st": "AX",
