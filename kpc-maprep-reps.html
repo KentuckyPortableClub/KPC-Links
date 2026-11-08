@@ -193,12 +193,14 @@ body.field .page-jump-nav{display:none!important}
 .mr-research{border-top:4px solid #1d7a3a}
 /* Nov 8 (Brandon, t748u): ONE section, ONE map. The map stays in view (sticky) and every result opens in the panel beside it (below it on a phone). */
 .mr-one-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:10px}
-.mr-one-mapcol{position:sticky;top:76px;z-index:1}
-.mr-one #mrDrop{height:calc(100vh - 190px);min-height:380px;max-height:720px;margin-top:0}
-.mr-one-panel{max-height:calc(100vh - 110px);overflow:auto;padding-right:4px;scroll-behavior:smooth}
+/* Nov 8 (Brandon 1:55 PM CST, t749u "the map is stuck in one spot"): the map is no longer sticky. A pinned map that filled the
+   screen took every wheel turn and finger swipe, so the page could not move past it. It now scrolls with the page like any map. */
+.mr-one-mapcol{position:relative}
+.mr-one #mrDrop{height:min(68vh,620px);min-height:360px;margin-top:0}
+.mr-one-panel{max-height:calc(min(68vh,620px) + 70px);overflow:auto;padding-right:4px;overscroll-behavior:contain}
 .mr-one-tools{margin-top:14px}
 .mr-one-tools>details{margin-top:10px}
-@media(max-width:760px){.mr-one-grid{grid-template-columns:1fr;gap:10px}.mr-one-mapcol{top:84px;background:#fffdf8;padding-bottom:4px;box-shadow:0 6px 10px -8px rgba(0,0,0,.35)}.mr-one #mrDrop{height:38vh;min-height:220px}.mr-one-mapcol>.mr-help,.mr-one-mapcol>details{display:none}.mr-one-panel{max-height:none;overflow:visible}}
+@media(max-width:760px){.mr-one-grid{grid-template-columns:1fr;gap:10px}.mr-one #mrDrop{height:52vh;min-height:260px}.mr-one-mapcol>details{display:none}.mr-one-panel{max-height:none;overflow:visible}}
 
 .mr-rs-card{border:1px solid #e3d9bf;border-left:6px solid #1d7a3a;border-radius:10px;padding:8px 12px;margin:8px 0;background:#fffdf7}
 .mr-rs-card.mr-rs-person{border-left-color:#b7791f}.mr-rs-card.mr-rs-probably{border-left-color:#8a6516}.mr-rs-card.mr-rs-already{border-left-color:#9a9a9a}
@@ -329,6 +331,6 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-maprep-logic.js?v=20261107t" defer></script>
 <script src="kpc-maprep-candidates.js?v=20261108a" defer></script>
 <script src="kpc-maprep-check.js?v=20261108g" defer></script>
-<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108d" defer></script>
+<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108e" defer></script>
 <script src="kpc-maprep.js?v=20261106d" defer></script>
 </body></html>
