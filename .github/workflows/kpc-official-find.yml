@@ -1,0 +1,31 @@
+name: Official site and map finder
+# Brandon Nov 8 2:49 PM CST (t753u/t754u): pre-find official website / map links for parks with none on file, into
+# data/official-links/<STATE>.json (read by the Map Rep Tool Box after what is on file). BY HAND ONLY: no schedule until Brandon
+# picks one after the Kentucky test. robots.txt is honoured, 60 s between requests to one host, honest KPC User-Agent.
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'State code (KY first)'
+        default: 'KY'
+permissions:
+  contents: write
+concurrency:
+  group: kpc-official-find
+  cancel-in-progress: false
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v5
+      - name: Find links
+        run: python3 .github/scripts/kpc_official_find.py "${{ inputs.state }}"
+      - name: Save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          F="data/official-links/${{ inputs.state }}.json"
+          git add "$F"
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy "Official site and map links (${{ inputs.state }})" - -- "$F"

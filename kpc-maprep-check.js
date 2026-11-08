@@ -767,17 +767,52 @@
   }
   /* official site and map, or plain web-search links when we have none (no fetching, no scraping) */
   function webSearch(q) { return 'https://www.google.com/search?q=' + encodeURIComponent(q); }
+  /* Official site / map look-up (Brandon Nov 8 2:49 PM CST, t753u/t754u: "search 1st ... dont find, offer them the search button").
+     Order: what is on the record -> our lookup files (data/parkinfo-web.json by POTA ref; data/official-links/<ST>.json and, for
+     Kentucky, data/ky-official-maps.json + data/ky-lands-seen.json by name) -> on FULL RULES CHECK only, a looser name match over the
+     same files ("live", flagged to check) -> None found on file + SEARCH HERE. Our own files only: no third-party fetch. */
+  const lkCache = {};
+  function lkJson(u) { return lkCache[u] || (lkCache[u] = fetch(u).then(r => r.ok ? r.json() : null).catch(() => null)); }
+  function lkNorm(n) { return String(n || '').toLowerCase().replace(/&/g, ' and ').replace(/\bwma\b/g, 'wildlife management area').replace(/\bst\.?\s/g, 'state ').replace(/[.'’"]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+  const LK_STOP = new Set('the of and at a state park parks wildlife management area wma national historic site nature preserve natural refuge nwr resort recreation forest lake dam shrine memorial'.split(' '));
+  function lkCore(n) { return lkNorm(n).split(' ').filter(w => w.length > 1 && !LK_STOP.has(w)); }
+  async function officialLookup(name, code, refs, deep) {
+    const files = await Promise.all([lkJson('data/parkinfo-web.json'), code ? lkJson('data/official-links/' + code + '.json') : null,
+      code === 'KY' ? lkJson('data/ky-official-maps.json') : null, code === 'KY' ? lkJson('data/ky-lands-seen.json') : null]);
+    const [pw, ol, km, ls] = files, rows = [];
+    (refs || []).forEach(r => { const w = pw && pw.parks && pw.parks[r]; if (w) rows.push({ n: name, site: w.web, map: w.map, src: 'our park info file (' + r + ')', conf: 'on file' }); });
+    if (ol && ol.links) Object.values(ol.links).forEach(e => rows.push({ n: e.name, site: e.site, map: e.map, src: 'our lookup file (' + (e.site_src || e.map_src || 'agency sitemap') + ')', conf: e.site_conf || e.map_conf || 'medium' }));
+    if (km && km.items) Object.entries(km.items).forEach(([n, v]) => rows.push({ n, site: v.page, map: v.maps && v.maps[0] && v.maps[0][1], src: 'our Kentucky maps file', conf: 'high' }));
+    if (ls && ls.lists) Object.entries(ls.lists).forEach(([ag, v]) => Object.entries(v).forEach(([n, u]) => /^https?:\/\//.test(String(u || '')) && rows.push({ n, site: u, src: 'our Kentucky lands file (' + ag + ')', conf: 'high' })));
+    name = String(name || '').replace(/,\s*[A-Za-z]{2}\s*$/, '');   /* 'Name, KY' typed in the box */
+    const want = lkNorm(name), pick = { site: null, map: null };
+    const take = (r, how) => { if (r.site && !pick.site) pick.site = { url: r.site, src: r.src, conf: how === 'live' ? 'name match, check it' : r.conf, how }; if (r.map && !pick.map) pick.map = { url: r.map, src: r.src, conf: how === 'live' ? 'name match, check it' : r.conf, how }; };
+    rows.filter(r => r.src.startsWith('our park info') || lkNorm(r.n) === want).forEach(r => take(r, 'file'));
+    if (deep && (!pick.site || !pick.map)) { const c = lkCore(name); if (c.length) rows.filter(r => { const rc = new Set(lkCore(r.n)); return rc.size && c.every(w => rc.has(w)) && [...rc].every(w => c.includes(w)); }).forEach(r => take(r, 'live')); }
+    return pick;
+  }
+  async function fillSite(box, title, st, refs, page, mapUrl, links, skipHtml) {
+    const el = box.querySelector('[data-mr-site]'); if (!el || (page && mapUrl)) return;
+    const my = gen, deep = fullMode;
+    if (deep) el.insertAdjacentHTML('afterbegin', '<p class="mr-help" data-mr-looking>Looking for the official website and map…</p>');
+    const f = await officialLookup(title, st && st.code, refs, deep).catch(() => ({}));
+    if (my !== gen || !el.isConnected) return;
+    el.innerHTML = siteBlock(title, st, page, mapUrl, links, skipHtml, f);
+  }
   function normU(u) { return String(u || '').trim().toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/+$/, ''); }
-  function siteBlock(title, st, page, mapUrl, links, skipHtml) {
+  function siteBlock(title, st, page, mapUrl, links, skipHtml, found) {
+    found = found || {};
+    const fromL = x => `<p class="mr-help">From ${esc(x.src)} · ${esc(x.conf)}${x.how === 'live' ? ' (found by this check)' : ''}</p>`;
     const skip = new Set((String(skipHtml || '').match(/href="([^"]+)"/g) || []).map(x => normU(x.slice(6, -1).replace(/&amp;/g, '&'))));   /* agency links the directory below already shows */
     const place = (st && st.name) || '';
     const a = (lab, url) => `<a class="k-off" href="${esc(url)}" target="_blank" rel="noopener"><b>${esc(lab)}</b><span>${esc(url)}</span></a>`;
     const none = (what, lab, q) => `<div class="mr-kv"><dt>${esc(what)}</dt><dd><b>None found on file.</b> <a class="mr-ag" href="${esc(webSearch(q))}" target="_blank" rel="noopener">${esc(lab)} ↗</a></dd></div>`;
     let h = '<div class="mr-dl">';
-    h += page ? `<div class="mr-kv"><dt>Official website</dt><dd>${a('Official website ↗', page)}</dd></div>` : none('Official website', 'SEARCH HERE FOR THE OFFICIAL SITE', title + ' ' + place + ' official site');
-    h += mapUrl ? `<div class="mr-kv"><dt>Official map</dt><dd>${a('Official map ↗', mapUrl)}</dd></div>` : none('Official map', 'SEARCH HERE FOR A MAP', title + ' ' + place + ' map');
+    h += page ? `<div class="mr-kv"><dt>Official website</dt><dd>${a('Official website ↗', page)}<p class="mr-help">From the official record</p></dd></div>` : found.site ? `<div class="mr-kv"><dt>Official website</dt><dd>${a('Official website ↗', found.site.url)}${fromL(found.site)}</dd></div>` : none('Official website', 'SEARCH HERE FOR THE OFFICIAL SITE', title + ' ' + place + ' official site');
+    h += mapUrl ? `<div class="mr-kv"><dt>Official map</dt><dd>${a('Official map ↗', mapUrl)}<p class="mr-help">From the official record</p></dd></div>` : found.map ? `<div class="mr-kv"><dt>Official map</dt><dd>${a('Official map ↗', found.map.url)}${fromL(found.map)}</dd></div>` : none('Official map', 'SEARCH HERE FOR A MAP', title + ' ' + place + ' map');
     h += '</div>';
-    const rest = links.filter(([, url]) => url !== page && !skip.has(normU(url)));
+    const used = new Set([page, found.site && found.site.url, found.map && found.map.url].filter(Boolean).map(normU));
+    const rest = links.filter(([, url]) => { const k = normU(url); if (used.has(k) || skip.has(k)) return false; used.add(k); return true; });
     return h + (rest.length ? `<div class="mr-links">${rest.map(([lab, url]) => a(lab + ' ↗', url)).join('')}</div>` : '');
   }
   function drawOnMap(la, lo, feats, overlaps) {
@@ -867,13 +902,14 @@
 <div class="mr-v ${vClass}" data-mr-verdict="${esc(vw)}"><b>${esc(vw)}</b></div>
 <div class="mr-sec"><h3>POTA status</h3><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
 <div class="mr-sec mr-official"><h3>Official record</h3>${official}</div>
-<div class="mr-sec"><h3>Official website and map</h3>${siteBlock(title, st, page, mapUrl, links, dirHtml)}</div>
+<div class="mr-sec"><h3>Official website and map</h3><div data-mr-site>${siteBlock(title, st, page, mapUrl, links, dirHtml)}</div></div>
 <div class="mr-sec"><h3>Rules checklist</h3>${rulesHtml(R, { name: title, place, county: ctx.county, hosts: hostsOf(links), padSearch })}${dirHtml}</div>
 ${ctx.overlapHtml || L.note ? `<div class="mr-sec"><h3>Overlaps, 2-fers and club notes</h3>${ctx.overlapHtml || ''}${L.note ? `<p>${esc(L.note)}</p>` : ''}</div>` : ''}
 <p class="mr-help mr-say"><b>A helper, not the final word.</b> Open the official links and check the land yourself before you submit a park. The agency page and the official record always win. ${INFO} <a href="kpc-about-info.html">About our information</a>. Map tiles © OpenStreetMap contributors, ODbL.</p>
 </section>`;
     box.hidden = false;
     wireRuleSearch(box, title);
+    fillSite(box, title, st, pota.map(x => x.ref), page, mapUrl, links, dirHtml);
     if (f && Number.isFinite(ctx.la)) drawOnMap(ctx.la, ctx.lo, ctx.feats || [f], ctx.overlaps || []);
   }
 
@@ -926,7 +962,11 @@ ${ctx.overlapHtml || L.note ? `<div class="mr-sec"><h3>Overlaps, 2-fers and club
     const list = Object.keys(names).length ? Object.keys(names).map(k => names[k] + ' (' + k + ')').join(', ') : 'Alberta (AB), British Columbia (BC), Manitoba (MB), New Brunswick (NB), Newfoundland and Labrador (NL), Northwest Territories (NT), Nova Scotia (NS), Nunavut (NU), Ontario (ON), Prince Edward Island (PE), Quebec (QC), Saskatchewan (SK), Yukon (YT)';
     return `<section class="mr-res" data-mr-result="canada"><div class="mr-head"><div class="mr-k">OUTSIDE THE UNITED STATES</div><h2>This pin is not in a US state</h2></div><div class="mr-sec"><p>This pin is not inside a US state, so this check does not guess a province. Provinces and territories: ${esc(list)}.</p><p class="mr-help">Pick the province in the Mapping desk to query CPCAD and the provincial layers that are marked ok. Newfoundland and Labrador outlines, Tokyo, Japan A10, South Africa SAPAD and Colorado CNHP outlines are not fetched.</p></div></section>`;
   }
-  async function showPoint(la, lo) {
+  /* Nov 8 (Brandon 2:50 PM CST, t755u): the live look-up for an official site / map runs only on FULL RULES CHECK */
+  let fullMode = false;
+  function showFull(la, lo) { fullMode = true; return showPoint(la, lo, true); }
+  async function showPoint(la, lo, full) {
+    if (!full) fullMode = false;
     await ensureAgencies();
     lastPin = { la: la, lo: lo };
     const my = ++gen;
@@ -1122,11 +1162,11 @@ ${padExact.length ? '<h4>PAD-US records with this name</h4>' + padBtns : (padNea
 ${caBtns ? '<h4>' + (caExactL.length ? 'CPCAD records with this name' : 'CPCAD names that are only partly the same') + '</h4>' + caBtns : ''}
 ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
 </div>
-<div class="mr-sec"><h3>Official website and map</h3>${siteBlock(q, st, '', '', homeL, dirN)}</div>
+<div class="mr-sec"><h3>Official website and map</h3><div data-mr-site>${siteBlock(q, st, '', '', homeL, dirN)}</div></div>
 <div class="mr-sec"><h3>Rules checklist</h3><div class="mr-v maybe" data-mr-verdict="${esc(summaryWord(Rn.summary, Rn))}"><b>${esc(summaryWord(Rn.summary, Rn))}</b></div>${rulesHtml(Rn, { name: q, place: st.name, hosts: hostsOf(homeL), padSearch: padQ })}${dirN}</div>
 <p class="mr-help mr-say"><b>A helper, not the final word.</b> Open the official links and check the land yourself before you submit a park. The agency page and the official record always win. ${INFO} <a href="kpc-about-info.html">About our information</a>.</p>
 </section>`;
-    if (box) wireRuleSearch(box, q);
+    if (box) { wireRuleSearch(box, q); fillSite(box, q, st, [], '', '', homeL, dirN); }
     if (box) box.querySelectorAll('[data-near]').forEach(btn => btn.onclick = () => showHit(near[+btn.dataset.near]));
     return hits;
   }
@@ -1356,7 +1396,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   function mount() {
     const el = $('mrDrop'); if (!el || map || !window.L) return;
     map = L.map(el, { scrollWheelZoom: true }).setView([39.8, -96.5], 4);
-    if (window.KPCLayers) KPCLayers(map, 'Street');
+    if (window.KPCLayers) KPCLayers(map, 'Satellite + streets')   /* Brandon 3:21 PM CST t757u: default sat + streets */;
     else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap contributors, ODbL' }).addTo(map);
     if (window.KPCPin) {
       pinCtl = KPCPin(map, {
@@ -1471,5 +1511,5 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   wire();
-  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, syncPlace, rulesFor, map: () => map, pin: () => lastPin };
+  window.KPCMapCheck = { mount, find, showQuery, showPoint, showFull, officialLookup, showAll, ready, syncPlace, rulesFor, map: () => map, pin: () => lastPin };
 })();
