@@ -379,7 +379,7 @@
   }
 
   const PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query';
-  const PAD_FIELDS = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Name,Mang_Type,Own_Name,Own_Type,Loc_Own,Loc_Mang,Des_Tp,GIS_Acres,Source_PAID,State_Nm,Pub_Access,Category,GAP_Sts';
+  const PAD_FIELDS = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Name,Mang_Type,Own_Name,Own_Type,Loc_Own,Loc_Mang,Des_Tp,GIS_Acres,Source_PAID,State_Nm,Pub_Access,Category,GAP_Sts,Loc_Ds,Date_Est,Comments,Agg_Src,GIS_Src,Src_Date';
   const KDFWR_SEARCH = 'https://app.fw.ky.gov/Public_Lands_Search/default.aspx';
   const TIER_WORD = { FED: 'federal', STAT: 'state', LOC: 'county or city', PVT: 'private', NGO: 'non-profit', TRIB: 'tribal', JNT: 'joint', DIST: 'district', UNK: 'not stated', TERR: 'territorial' };
 
@@ -456,6 +456,9 @@
         if (extra && /county|city of|fiscal court/i.test(extra) && base.v === 'pass') rules.push(rule('unknown', base.title, 'PAD-US Own_Type and Loc_Own', 'Own_Type = ' + pad.Own_Type + ', but Loc_Own / Own_Name also says: ' + extra + '.'));
         else rules.push(Object.assign(base, { evidence: base.evidence + (extra ? ' Own_Name / Loc_Own: ' + extra + '.' : '') }));
       }
+    } else if (ctx.caExact && ctx.caExact.OWNER_TYPE != null) {
+      const ca = ctx.caExact, t = +ca.OWNER_TYPE, ev = 'OWNER_TYPE = ' + t + '. OWNER_E = ' + (ca.OWNER_E || 'blank') + '.';
+      rules.push(rule(t === 1 || t === 2 ? 'pass' : (t >= 3 && t <= 8 ? 'fail' : 'unknown'), 'Owned by the federal or state government', 'CPCAD OWNER_TYPE', ev + (t === 9 || t === 10 ? ' Joint or multiple ownership stays unknown until every owner is federal or provincial.' : (t === 1 || t === 2 ? ' Federal or provincial / territorial.' : ''))));
     } else rules.push(rule('unknown', 'Owned by the federal or state government', 'owner sentence / PAD-US Own_Type', 'No owner sentence and no PAD-US owner code for this place.'));
 
     const mgrBits = [p.MANAGER, p.Loc_Mang, L.agency].filter(Boolean);
@@ -465,6 +468,7 @@
       else if (/county|city|private|non-profit/i.test(m)) rules.push(rule('fail', 'Managed by the federal or state government', 'MANAGER', 'MANAGER = ' + m + '.'));
       else rules.push(rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'MANAGER = ' + m + '. That word is not a federal or state agency name by itself.'));
     } else if (pad && pad.Mang_Type) rules.push(codeRule('Managed by the federal or state government', pad.Mang_Type, 'PAD-US Mang_Type').v ? Object.assign(codeRule('Managed by the federal or state government', pad.Mang_Type, 'PAD-US Mang_Type'), { evidence: 'Mang_Type = ' + (pad.Mang_Type || '') + '. Mang_Name = ' + (pad.Mang_Name || 'blank') + '. Loc_Mang = ' + (pad.Loc_Mang || 'blank') + '.' }) : rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'No manager field.'));
+    else if (ctx.caExact && ctx.caExact.GOV_TYPE != null) { const g = +ctx.caExact.GOV_TYPE; rules.push(rule(g === 1 || g === 2 ? 'pass' : (g >= 7 && g <= 9 ? 'fail' : 'unknown'), 'Managed by the federal or state government', 'CPCAD GOV_TYPE', 'GOV_TYPE = ' + g + '. MGMT_E = ' + (ctx.caExact.MGMT_E || 'blank') + '.')); }
     else if (L.agency && f) rules.push(rule('unknown', 'Managed by the federal or state government', 'layer agency', 'The outline comes from the ' + L.agency + ' layer (' + (L.name || '') + '). That says who published the layer, not who manages this tract, so management stays unknown.'));
     else rules.push(rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'No manager field.'));
 
@@ -475,8 +479,8 @@
     const accVal = p.ACCESS || p.Pub_Access || (pad && pad.Pub_Access) || '';
     rules.push(accessRule(accVal, accField || 'ACCESS / Pub_Access'));
 
-    const des = p.TYPE || p.Loc_Ds || (pad && pad.Des_Tp) || '';
-    const desField = p.TYPE ? 'TYPE' : (p.Loc_Ds ? 'Loc_Ds' : (pad && pad.Des_Tp ? 'PAD-US Des_Tp' : 'TYPE'));
+    const des = p.TYPE || p.Loc_Ds || (pad && pad.Des_Tp) || (ctx.caExact && ctx.caExact.TYPE_E) || '';
+    const desField = p.TYPE ? 'TYPE' : (p.Loc_Ds ? 'Loc_Ds' : (pad && pad.Des_Tp ? 'PAD-US Des_Tp' : (ctx.caExact && ctx.caExact.TYPE_E ? 'CPCAD TYPE_E' : 'TYPE')));
     if (des) rules.push(rule('pass', 'Has a designated name and purpose', desField, desField + ' = ' + des + '.'));
     else rules.push(rule('unknown', 'Has a designated name and purpose', 'TYPE / Des_Tp', 'No designation field is stored.'));
 
@@ -485,6 +489,7 @@
     else if (f && (L.kpc || L.k === 'bkpc')) rules.push(rule('fail', 'Has an official boundary', 'OpenStreetMap outline', 'The only line is an OpenStreetMap sketch (ODbL). That is not an official boundary.'));
     else if (pad && pad.OBJECTID && /proclamation/i.test(pad.Category || '')) rules.push(rule('fail', 'Has an official boundary', 'PAD-US Category', 'Category = Proclamation. OBJECTID ' + pad.OBJECTID + '. That line is the administrative boundary. Land inside it is not all public.'));
     else if (pad && pad.OBJECTID) rules.push(rule('pass', 'Has an official boundary', 'PAD-US OBJECTID ' + pad.OBJECTID, 'PAD-US has a record. The boundary download link is the PAD-US geometry for that id.'));
+    else if (ctx.caExact && ctx.caExact.ZONE_ID != null) rules.push(+ctx.caExact.STATUS === 0 ? rule('fail', 'Has an official boundary', 'CPCAD STATUS', 'STATUS = 0 (Delisted). ZONE_ID ' + ctx.caExact.ZONE_ID + '.') : rule('pass', 'Has an official boundary', 'CPCAD ZONE_ID ' + ctx.caExact.ZONE_ID, 'CPCAD has a record with a mapped boundary (status ' + ctx.caExact.STATUS + ').'));
     else rules.push(rule('unknown', 'Has an official boundary', 'layer geometry', 'No outline in the saved state layers and no PAD-US record id.'));
 
     const page = urlOf(f || { properties: {} }) || (own && own.url) || '';
@@ -515,6 +520,18 @@
       "State_Nm='" + st + "' AND Loc_Nm LIKE '%" + clean.map(w => w.toUpperCase()).join('%') + "%'"
     ];
   }
+  /* Nov 8 (Brandon 8:50 AM CST): one short PAD-US line under each name-search result (the full record is on the opened card). */
+  async function padLines(list, st, my) {
+    const X = window.KPCMapExtras, box = $('mrSpot');
+    for (let i = 0; i < Math.min(list.length, 8); i++) {
+      const el = box && box.querySelector('[data-padline="' + i + '"]'); if (!el) continue;
+      if (isCAst(st)) { let c = null; try { c = caPick(await cpcadByName(list[i].name, st.code)); } catch (e) {} if (my !== gen) return; el.textContent = X && X.caLine ? X.caLine(c) : (c ? 'CPCAD record ' + c.ZONE_ID : 'CPCAD: no matching record'); continue; }
+      let a = null; try { const r = await padusByName(list[i].name, st.code); a = r.filter(x => x._score >= 80 && !/proclamation/i.test(x.Category || ''))[0] || r.filter(x => x._score >= 80)[0] || null; } catch (e) {}
+      if (my !== gen) return;
+      el.textContent = X && X.padLine ? X.padLine(a) : (a ? 'PAD-US record ' + a.OBJECTID : 'PAD-US: no matching record');
+    }
+    for (let i = 8; i < list.length; i++) { const el = box && box.querySelector('[data-padline="' + i + '"]'); if (el) el.textContent = 'PAD-US: open this result to see the record'; }
+  }
   async function padusQuery(where) {
     const j = await B().jget(PADUS + '?' + new URLSearchParams({ where, outFields: PAD_FIELDS, returnGeometry: false, f: 'json', resultRecordCount: '20' }), null, 12000).catch(() => null);
     return ((j && j.features) || []).map(f => f.attributes).filter(Boolean);
@@ -531,6 +548,26 @@
     }
     return rows.sort((a, b) => b._score - a._score);
   }
+  /* Nov 8 (Brandon 8:57 AM CST): CPCAD for Canadian places, asked from the browser (catalog source ca-cpcad, live; robots.txt
+     is absent (404) and the service sends CORS for the club site). Same shape of use as PAD-US: by name in the province, or at a pin. */
+  const CPCAD_Q = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query';
+  const CP_FIELDS = 'OBJECTID,NAME_E,NAME_IND,PA_OECM_DF,IUCN_CAT,STATUS,QUALYEAR,ESTYEAR,BIOME,LOC,O_AREA_HA,PARENT_ID,ZONE_ID,ZONEDESC_E,MECH_E,TYPE_E,OWNER_TYPE,OWNER_E,GOV_TYPE,MGMT_E,JUR_ID,MPLAN,MPLAN_REF';
+  const CP_LOC = { AB: 1, BC: 2, MB: 3, NB: 4, NL: 5, NT: 6, NS: 7, NU: 8, ON: 9, PE: 10, QC: 11, SK: 12, YT: 13 };
+  const isCAst = st => !!(st && (st.region === 'CA' || (!st.region && CP_LOC[st.code])));
+  const cpcadLink = a => a && a.OBJECTID != null ? CPCAD_Q + '?objectIds=' + encodeURIComponent(a.OBJECTID) + '&outFields=*&f=html' : '';
+  async function cpcadByName(q, code) {
+    const loc = CP_LOC[String(code || '').toUpperCase()]; if (!loc) return [];
+    const words = tokens(canon(q).core || canon(q).full || '').map(w => w.replace(/'/g, '')).filter(w => w.length > 2).slice(0, 3);
+    if (!words.length) return [];
+    const j = await B().jget(CPCAD_Q + '?' + new URLSearchParams({ where: 'LOC=' + loc + " AND UPPER(NAME_E) LIKE '%" + words.map(w => w.toUpperCase()).join('%') + "%'", outFields: CP_FIELDS, returnGeometry: false, f: 'json', resultRecordCount: '20' }), null, 12000).catch(() => null);
+    return ((j && j.features) || []).map(f => f.attributes).filter(Boolean).map(a => Object.assign({ _score: nameScore(q, a.NAME_E || '') }, a)).sort((a, b) => b._score - a._score || (+b.O_AREA_HA || 0) - (+a.O_AREA_HA || 0));
+  }
+  async function cpcadAt(la, lo) {
+    if (!Number.isFinite(la)) return [];
+    const j = await B().jget(CPCAD_Q + '?' + new URLSearchParams({ geometry: lo + ',' + la, geometryType: 'esriGeometryPoint', inSR: '4326', spatialRel: 'esriSpatialRelIntersects', where: '1=1', outFields: CP_FIELDS, returnGeometry: false, f: 'json', resultRecordCount: '8' }), null, 12000).catch(() => null);
+    return ((j && j.features) || []).map(f => f.attributes).filter(Boolean).sort((a, b) => (+a.STATUS === 0) - (+b.STATUS === 0) || (+a.O_AREA_HA || 0) - (+b.O_AREA_HA || 0));
+  }
+  const caPick = (list) => list.filter(a => a._score >= 80 && +a.STATUS !== 0)[0] || list.filter(a => a._score >= 80)[0] || null;
   async function padusAt(la, lo) {
     if (!Number.isFinite(la)) return [];
     const j = await B().jget(PADUS + '?' + new URLSearchParams({
@@ -711,11 +748,25 @@
     const fc = { type: 'FeatureCollection', features: (feats || []).filter(f => f && f.geometry && !blocked(f)).map(f => ({ type: 'Feature', properties: { name: f._nm || '' }, geometry: f.geometry })) };
     const ov = { type: 'FeatureCollection', features: (overlaps || []).map(f => ({ type: 'Feature', properties: {}, geometry: f.geometry })) };
     drawLayer = L.layerGroup();
-    if (fc.features.length) L.geoJSON(fc, { style: { color: '#8a5a00', weight: 3, fillColor: '#d5a63a', fillOpacity: 0.18 } }).addTo(drawLayer);
+    /* Nov 8 (Brandon 8:26 AM CST): a huge multi-part shape is drawn only for the parts near the place (speed); the whole shape is
+       one tap away and comes back when the rep zooms out (KPCMapExtras.clipFC). */
+    const OUT = { color: '#8a5a00', weight: 3, fillColor: '#d5a63a', fillOpacity: 0.18 };
+    const cl = (window.KPCMapExtras && KPCMapExtras.clipFC && fc.features.length) ? KPCMapExtras.clipFC(fc, la, lo) : { fc: fc, clipped: false };
+    if (cl.fc.features.length) {
+      let shape = L.geoJSON(cl.fc, { style: OUT }).addTo(drawLayer);
+      if (cl.clipped) {
+        const full = () => { if (!shape || !drawLayer) return; drawLayer.removeLayer(shape); shape = L.geoJSON(fc, { style: OUT }).addTo(drawLayer); map.off('zoomend', onZoom); if (wb) wb.remove(); };
+        const onZoom = () => { if (map.getZoom() <= 8) full(); };
+        map.on('zoomend', onZoom);
+        const wb = L.control({ position: 'topright' }); wb.onAdd = () => { const d = L.DomUtil.create('button', 'mr-ag'); d.type = 'button'; d.textContent = 'SHOW THE WHOLE SHAPE'; d.title = 'Only the parts near here are drawn, for speed'; L.DomEvent.on(d, 'click', e => { L.DomEvent.stop(e); full(); }); return d; };
+        wb.addTo(map);
+        drawLayer.on('remove', () => { map.off('zoomend', onZoom); try { wb.remove(); } catch (e) {} });
+      }
+    }
     if (ov.features.length) L.geoJSON(ov, { style: { color: '#6b4a10', weight: 2, dashArray: '6 4', fillOpacity: 0 } }).addTo(drawLayer);
     drawLayer.addTo(map);
     const b = L.latLngBounds([[la, lo]]);
-    try { if (fc.features.length) b.extend(L.geoJSON(fc).getBounds()); } catch (e) {}
+    try { if (cl.fc.features.length) b.extend(L.geoJSON(cl.fc).getBounds()); } catch (e) {}
     map.fitBounds(b.pad(0.3), { maxZoom: 14 });
     const dropPin = () => {
       if (pinCtl) { pinCtl.drop(L.latLng(la, lo)); return; }
@@ -774,6 +825,7 @@
     const where = Number.isFinite(ctx.la) ? `${ctx.la.toFixed(5)}, ${ctx.lo.toFixed(5)}` : 'no pin yet';
     box.innerHTML = `<section class="mr-res" data-mr-result="spot">
 <div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}</p></div>
+${ctx.padExact && window.KPCMapExtras && KPCMapExtras.padCard ? `<div class="mr-sec mr-padtop">${KPCMapExtras.padCard(ctx.padExact, padLink(ctx.padExact))}</div>` : ''}${ctx.caExact && window.KPCMapExtras && KPCMapExtras.caCard ? `<div class="mr-sec mr-padtop">${KPCMapExtras.caCard(ctx.caExact, cpcadLink(ctx.caExact))}</div>` : ''}
 <div class="mr-sec mr-official"><h3>1 · Official information</h3>${official}</div>
 <div class="mr-sec"><h3>2 · POTA status</h3><div class="mr-v ${vClass}" data-mr-verdict="${esc(summaryWord(R.summary))}"><b>${esc(summaryWord(R.summary))}</b></div><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
 <div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, ctx.padExact && ctx.padExact.Des_Tp].filter(Boolean).join(' '))}${rulesHtml(R)}</div>
@@ -812,7 +864,10 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     const pinExact = pad.filter(a => a._score === 100 && !(a.Unit_Nm));
     const feeExact = exact.filter(a => !/proclamation/i.test(a.Category || ''));
     const padExact = feeExact[0] || exact[0] || pad.find(a => a._score === 100 && !/proclamation/i.test(a.Category || '')) || pad.find(a => a._score === 100) || null;
+    let caExact = null;
+    if (isCAst(extra.state)) { try { caExact = caPick(await cpcadByName(f._nm || extra.query || '', extra.state.code)); if (!caExact && Number.isFinite(la)) caExact = (await cpcadAt(la, lo))[0] || null; } catch (e) {} }
     return {
+      caExact,
       f, feats: [f], la, lo, county: Number.isFinite(la) && (!extra.state || extra.state.local) ? countyOf(la, lo) : '',
       owner, pota: (extra.pota && extra.pota.length) ? extra.pota : (fp.own || []),
       state: extra.state || null,
@@ -848,6 +903,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     if (st && $('mrCheckSt')) { $('mrCheckSt').value = st.code; paintPlaceButton(); if (window.KPCMapDesk && KPCMapDesk.syncPlace) KPCMapDesk.syncPlace(st.code); buildToggles(); }
     if (!st) {
       if (box) box.innerHTML = canadaHtml();
+      cpcadAt(la, lo).then(r => { if (my !== gen || !r.length || !box || !window.KPCMapExtras || !KPCMapExtras.caCard) return; const sec = document.createElement('div'); sec.className = 'mr-sec mr-padtop'; sec.innerHTML = KPCMapExtras.caCard(r[0], cpcadLink(r[0])); const head = box.querySelector('.mr-head'); if (head) head.after(sec); }).catch(() => {});
       const q0 = $('mrCheckQ'); if (q0 && document.activeElement !== q0) q0.value = la.toFixed(5) + ', ' + lo.toFixed(5);
       return { hit: false, region: 'off' };
     }
@@ -960,6 +1016,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
         title: h.name, f: null, la: h.la != null && Number.isFinite(+h.la) ? +h.la : null, lo: h.lo != null && Number.isFinite(+h.lo) ? +h.lo : null,
         pota: h.ref ? [{ ref: h.ref, name: h.name }] : [],
         padExact: exact[0] || null, padNear: pad.filter(a => a._score < 80 && a._score >= 52).slice(0, 5),
+        caExact: isCAst(st) ? caPick(await cpcadByName(h.name, st.code).catch(() => [])) : null,
         elsewhere: elseNames.filter(x => x.ref !== h.ref), query: h.name, state: st
       });
       if (h.la != null && Number.isFinite(+h.la)) drawOnMap(+h.la, +h.lo, [], []);
@@ -992,8 +1049,9 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     if (exact.length) {
       if (box) {
         box.innerHTML = `<div class="mr-res" data-mr-result="list"><div class="mr-head"><div class="mr-k">NAME SEARCH</div><h2>${exact.length} matches</h2><p>These names match in ${esc(st.name)}. Pick one.</p></div>
-<div class="mr-sec">${exact.map((h, i) => `<button type="button" class="mr-pick" data-hit="${i}"><b>${esc(h.name)}</b><span>${esc(h.ref || (st.local ? 'saved layer' : 'answer key'))} · ${h.score}</span></button>`).join('')}</div></div>`;
+<div class="mr-sec">${exact.map((h, i) => `<button type="button" class="mr-pick" data-hit="${i}"><b>${esc(h.name)}</b><span>${esc(h.ref || (st.local ? 'saved layer' : 'answer key'))} · ${h.score}</span><span class="mr-padline" data-padline="${i}">${isCAst(st) ? 'CPCAD' : 'PAD-US'}: looking…</span></button>`).join('')}</div></div>`;
         box.querySelectorAll('[data-hit]').forEach(btn => btn.onclick = () => showHit(exact[+btn.dataset.hit]));
+        padLines(exact, st, my);
       }
       return hits;
     }
@@ -1001,13 +1059,21 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     if (my !== gen) return hits;
     const padExact = pad.filter(a => a._score >= 80);
     const padNear = pad.filter(a => a._score < 80 && a._score >= 52);
+    const caAll = isCAst(st) ? await cpcadByName(name, st.code).catch(() => []) : [];
+    if (my !== gen) return hits;
+    const caExactL = caAll.filter(a => a._score >= 80), caNear = caAll.filter(a => a._score < 80 && a._score >= 52);
     const elseNames = near.length ? [] : await elsewhere(q);
+    if (caExactL.length === 1 && !near.length && !padExact.length) {
+      renderContext({ title: caExactL[0].NAME_E, f: null, pota: [], padExact: null, padNear: [], caExact: caExactL[0], elsewhere: elseNames, query: name, state: st });
+      return hits;
+    }
+    const caBtns = caExactL.concat(caNear).slice(0, 8).map(a => `<p class="mr-help"><b class="mr-padline">${esc(window.KPCMapExtras && KPCMapExtras.caLine ? KPCMapExtras.caLine(a) : a.NAME_E)}</b><br><a href="${esc(cpcadLink(a))}" target="_blank" rel="noopener">${esc(a.NAME_E)}</a> · ZONE_ID ${esc(a.ZONE_ID)}</p>`).join('');
     if (padExact.length === 1 && !near.length) {
       renderContext({ title: padExact[0].Unit_Nm, f: null, pota: [], padExact: padExact[0], padNear: padNear.slice(0, 5), elsewhere: elseNames, query: name, state: st });
       return hits;
     }
     const nearBtns = near.map((h, i) => `<button type="button" class="mr-pick" data-near="${i}"><b>${esc(h.name)}</b><span>Near match · ${esc(h.ref || st.name)}</span></button>`).join('');
-    const padBtns = padExact.concat(padNear).slice(0, 8).map(a => `<p class="mr-help"><a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a> · ${esc(a.Mang_Name || '')} · ${esc(a.Own_Name || '')} · ${a.GIS_Acres || 0} acres · Source_PAID ${esc(a.Source_PAID || 'blank')}</p>`).join('');
+    const padBtns = padExact.concat(padNear).slice(0, 8).map(a => `<p class="mr-help">${window.KPCMapExtras && KPCMapExtras.padLine ? `<b class="mr-padline">${esc(KPCMapExtras.padLine(a))}</b><br>` : ''}<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a> · ${esc(a.Mang_Name || '')} · ${esc(a.Own_Name || '')} · ${a.GIS_Acres || 0} acres · Source_PAID ${esc(a.Source_PAID || 'blank')}</p>`).join('');
     if (box) box.innerHTML = `<section class="mr-res" data-mr-result="none"><div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(q)}</h2></div>
 <div class="mr-sec mr-official"><h3>1 · Official information</h3>
 <div class="mr-miss"><b>Not an exact name in our ${esc(st.name)} layers.</b> ${near.length ? 'Near matches are listed below.' : (st.local ? 'Nothing in the published files is close to this name.' : 'The answer key for this state does not have this name.')} PAD-US was queried for ${esc(st.name)}. No page was scraped.</div>
@@ -1017,10 +1083,11 @@ ${kvSafe('Managing agency', 'Not in the layers. Use the agency links below.')}
 <p class="mr-help"><a href="${esc(PADUS + '?' + new URLSearchParams({ where: "State_Nm='" + st.code + "' AND Unit_Nm LIKE '%" + tokens(canon(name).core).slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('%') + "%'", outFields: PAD_FIELDS, returnGeometry: 'false', f: 'html' }).toString())}" target="_blank" rel="noopener">PAD-US name search for ${esc(st.name)} ↗</a></p>
 ${PAD_LOOK}
 ${padExact.length ? '<h4>PAD-US records with this name</h4>' + padBtns : (padNear.length ? '<h4>PAD-US names that are only partly the same</h4>' + padBtns : '<p class="mr-help">PAD-US returned no ' + esc(st.name) + ' record for this name.</p>')}
+${caBtns ? '<h4>' + (caExactL.length ? 'CPCAD records with this name' : 'CPCAD names that are only partly the same') + '</h4>' + caBtns : ''}
 ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
 </div>
 <div class="mr-sec"><h3>2 · POTA status</h3><p>${elseNames.length ? 'Similar names elsewhere, not this place: ' + elseNames.map(x => esc(x.ref + ' ' + x.name)).join('; ') : 'No similar park in the list was close enough to call a match.'}</p></div>
-<div class="mr-sec"><h3>3 · Rules checklist</h3>${directoryBlock(st.code, name)}${rulesHtml(rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null }))}</div>
+<div class="mr-sec"><h3>3 · Rules checklist</h3>${directoryBlock(st.code, name)}${rulesHtml(rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null, caExact: caExactL.length === 1 ? caExactL[0] : null }))}</div>
 <div class="mr-sec"><h3>4 · KPC notes</h3><p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p></div>
 </section>`;
     if (box) box.querySelectorAll('[data-near]').forEach(btn => btn.onclick = () => showHit(near[+btn.dataset.near]));
@@ -1028,7 +1095,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
   function kvSafe(k, v) { return `<div class="mr-kv"><dt>${esc(k)}</dt><dd>${v}</dd></div>`; }
 
-  /* Nov 7: Check all adds the official agency links (on) and, behind KPCMapCands.candidatesOn() (off by default),
+  /* Nov 7: Check all adds the official agency links (on) and, behind KPCMapCands.candidatesOn() (ON by default since Nov 7; ?candidates=0 or localStorage kpcMapCandidates=0 turns it off),
      the possible new parks from the key's unmatched list. With the switch off nothing else changes. */
   let abbrP = null;
   function ensureAbbr() {
