@@ -79,7 +79,9 @@ check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and 
 if set(changed_wf) & allowed_wf:
     body = subprocess.run(['git', 'diff', 'origin/main', '--', *sorted(allowed_wf)],
                           cwd=ROOT, capture_output=True, text=True, timeout=30).stdout
-    check('hardlook.json.gz' in body and '--materialize' in body and 'external-results.json.gz' in body,
+    # Nov 7: Links #53 is on main, so a later US key workflow change (the problem solver step) no longer carries the hard-look
+    # lines; the check applies only to a diff that touches the hard-look checkout.
+    check(('hardlook' not in body) or ('hardlook.json.gz' in body and '--materialize' in body and 'external-results.json.gz' in body),
           'the Canada and US workflow diff is the gzip checkout and the hard-look materialize')
 
 check(RS.mode() == 'off', 'KPC_RESEARCH_SOURCES still defaults to off')

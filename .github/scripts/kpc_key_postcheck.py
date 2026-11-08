@@ -369,6 +369,9 @@ def md(rep):
     sec('0,0 / impossible POTA pins', rep['bad_pins'], lambda x: f"- {x['park']} ({x['area']}, outline {x['outline']}): {x['why']}")
     sec('Pre-check HOLD rows that are still outlines', rep['precheck']['hold_still_outline'], lambda x: f"- {x['park']} ({x['area']}): {x['flags']}: {x['why']}")
     sec('RULE 18 flags', rep['precheck']['rule18'], lambda x: f"- {x['park']} ({x['area']}): {x['why']}")
+    if rep.get('problem_solver') is not None:
+        sec('Problem solver: recommended fix per held park (recommends only; no pin is moved)', rep['problem_solver'],
+            lambda x: f"- {x['park']} {x['name']}: **{x['verdict']}** ({x['confidence']}): {x['recommend']}. Why: {'; '.join(x['reasons'])}")
     L += ['## Notes', ''] + [f'- {n}' for n in rep['notes']] + ['']
     return '\n'.join(L)
 
@@ -432,6 +435,12 @@ def run(env=None, cwd='.'):
                       'overrides not followed': len(rep['overrides']),
                       'overrides not followed, dated before the build (a real miss)': sum(1 for x in rep['overrides'] if x.get('newer_than_build') is False), 'pre-check HOLD still outline': len(pre['hold_still_outline']), 'RULE 18 flags': len(pre['rule18']),
                       'must-be-pin not yet pin': sum(1 for x in rep['must_pin'] if x['result'] != 'PASS (pin)')}
+    # Nov 7 (Brandon 4:55 PM CST): the problem solver's recommended fix per held park (kpc_problem_solver.py, recommends only)
+    try:
+        ps = json.load(open(os.path.join(cwd, KEYS[k]['dir'], 'review', 'problem-solver.json'), encoding='utf-8'))
+        rep['problem_solver'] = ps.get('parks') or []; rep['summary']['problem solver verdicts'] = len(rep['problem_solver'])
+        for v, n in sorted((ps.get('counts') or {}).items()): rep['summary'][f'problem solver: {v}'] = n
+    except Exception: rep['problem_solver'] = None  # noqa: BLE001
     rep['pin_jump'] = pj = pin_jump(ch)
     rep['summary'][f'countries with {PIN_JUMP}+ outline -> pin (a lost source layer?)'] = len(pj)
     if pj:

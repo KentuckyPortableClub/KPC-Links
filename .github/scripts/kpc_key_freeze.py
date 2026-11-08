@@ -50,6 +50,8 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
+             # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
+             'kpc_problem_solver.py',
              # Nov 6: after the US builder. A state whose shape read is zero or under half the live key fails
              # the job instead of publishing pins. It does not decide a join (US rules hash stays a066624520b4).
              'kpc_shape_guard.py',
