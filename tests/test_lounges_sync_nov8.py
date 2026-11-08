@@ -39,5 +39,6 @@ pub = (ROOT / 'kpc-hunters.html').read_text(encoding='utf-8')
 for s in ['kpc-lounge-tabs.js', 'id="hlRadio"', 'id="hlLive"', 'id="kpc-rel"', 'kpc-nr.js']:
     check(s in pub, 'public Hunters Lounge keeps ' + s)
 for f in ['kpc-hunt.html', 'kpc-hunt-need.html', 'kpc-hunters.html', 'kpc-hunters-need.html']:
-    check('kpc-hunt.js?v=20261108b' in (ROOT / f).read_text(encoding='utf-8') or 'kpc-hunt.js?v=2026111' in (ROOT / f).read_text(encoding='utf-8'), f + ' loads the new kpc-hunt.js')
+    _v = re.search(r'kpc-hunt\.js\?v=(\w+)', (ROOT / f).read_text(encoding='utf-8'))   # Nov 8 PM: any version from 20261108b on
+    check(bool(_v) and _v.group(1) >= '20261108b', f + ' loads the new kpc-hunt.js')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

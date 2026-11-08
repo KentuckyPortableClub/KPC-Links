@@ -560,14 +560,14 @@
  ${s.com ? `<div class="hs-com">“${esc(String(s.com).slice(0, 140))}”</div>` : ''}
  ${awardChips(s) ? `<div class="hs-aw">${awardChips(s)}</div>` : ''}
  <div class="hs-b">${b.join('')}</div>
- <div class="hs-a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
+ <div class="hs-a"><button type="button" class="lq" data-lq="${esc(k)}" title="Quick log: call, freq, mode, park and reports filled in">📝 LOG QSO</button>${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(k)}" title="Spot them again on POTA, with you as the spotter">📣 RESPOT</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call until 0000 UTC">🙈 HIDE ${esc(base(s.call))} TODAY</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" data-wc="${esc(s.call)}">${w ? '✓ HUNTED BEFORE' : '＋ I WORKED IT'}</button><a href="${pageOf(s)}" target="_blank" rel="noopener">${s.p === 'SOTA' ? 'SOTLAS' : s.p} PAGE ↗</a>${s.p === 'POTA' && s.us ? `<a href="kpc-planner-us.html?q=${encodeURIComponent(s.ref)}">ON THE MAP</a>` : ''}<a href="kpc-park-info.html?ref=${encodeURIComponent(s.ref)}">PARK INFO</a>` : `<a href="https://www.qrz.com/db/${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">QRZ ↗</a><a href="https://www.dxsummit.fi/#/?dx_calls=${encodeURIComponent(base(s.call))}" target="_blank" rel="noopener">DX SUMMIT ↗</a>`}</div>
 </article>`;
   }
   function row(s) {
     const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), ps = parkState(s);
     const tag = (ps ? psBadge(ps, true) : n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk" title="You have hunted this PARK before (from your POTA list). It does not mean you worked this station.">HUNTED BEFORE</span>' : '') + (wkToday(s) ? '<span class="hb td" title="This call is in your log today (UTC)">✅ IN MY LOG TODAY</span>' : '');
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${ps ? psCls(ps) : w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${ps ? psCls(ps) : w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}<button type="button" class="hs-cb lq" data-lq="${esc(keyOf(s))}" title="Quick log">📝 LOG</button></td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
 <td class="a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
   }
@@ -1072,6 +1072,7 @@
      DOWNLOAD FOR QRZ = ADIF 3.1.4 (POTA_REF / WWFF_REF / SOTA_REF + SIG/SIG_INFO). RESTORE reads an ADIF back in. */
   const QK = 'kpcHuntQSO';
   let Q = get(QK, null); if (!Q || !Array.isArray(Q.q)) Q = { v: 1, u: 0, grid: '', q: [], x: 0 };
+  if (Q.q.some(q => q && /[,;]/.test(q.call || ''))) { Q.q = Q.q.flatMap(splitRec); try { localStorage.setItem(QK, JSON.stringify(Q)); } catch (e) {} }   /* Nov 8: old "A, B" lines become one line per call */
   let IDB = null, FH = null, FHok = false, PERSIST = null, IDBok = false;
   const idb = () => IDB || (IDB = new Promise((res, rej) => { try { const r = indexedDB.open('kpc-hunt', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } }));
   const idbGet = k => idb().then(db => new Promise((res, rej) => { const t = db.transaction('kv').objectStore('kv').get(k); t.onsuccess = () => res(t.result); t.onerror = () => rej(t.error); }));
@@ -1133,6 +1134,7 @@
   }
   function adMode(m) { m = String(m || '').toUpperCase(); if (m === 'FT4') return ['MFSK', 'FT4']; if (m === 'JS8') return ['MFSK', 'JS8']; if (m === 'PSK31') return ['PSK', 'PSK31']; if (m === 'HELL' || m === 'FMHELL') return ['HELL', 'FMHELL']; if (/^(USB|LSB)$/.test(m)) return ['SSB', m]; if (m === 'OTHER' || !m) return ['SSB', '']; return [m, '']; }
   function adif(L) {
+    L = (L || []).flatMap(splitRec);   /* one ADIF record per call */
     let o = `KPC Hunters Lounge log\n${af('ADIF_VER', '3.1.4')}${af('PROGRAMID', 'KPC Hunters Lounge')}${af('CREATED_TIMESTAMP', new Date().toISOString().replace(/[-:]/g, '').replace('T', ' ').slice(0, 15))}<EOH>\n`;
     L.forEach(q => {
       const [md, sm] = adMode(q.mode), refs = String(q.ref || '').toUpperCase().split(/[ ,]+/).filter(Boolean);
@@ -1155,7 +1157,7 @@
       out.push({ id: 'i' + Math.random().toString(36).slice(2, 10), call: r.CALL.toUpperCase(), d: r.QSO_DATE, tm: String(r.TIME_ON || '').slice(0, 4), f: r.FREQ || '', band: (r.BAND || '').toLowerCase(), mode: r.SUBMODE || r.MODE || '',
         ref: [...new Set(refs)].join(', '), name: '', st: r.STATE || '', rs: r.RST_SENT || '', rr: r.RST_RCVD || '', note: r.NOTES || '', my: r.STATION_CALLSIGN || '', grid: r.MY_GRIDSQUARE || '', x: 1, t: Date.now() });
     });
-    return out;
+    return out.flatMap(splitRec);   /* a "A, B" CALL becomes one contact per call */
   }
   function download(name, text, type) {
     const blob = new Blob([text], { type: type || 'text/plain' });
@@ -1202,7 +1204,17 @@
   });
   /* ---------- the log sheet ---------- */
   let EDIT = null;
-  function rstFor(m) { m = String(m || '').toUpperCase(); return /^CW|RTTY/.test(m) ? '599' : /FT8|FT4|JS8|PSK/.test(m) ? '' : '59'; }
+  /* Nov 8 (Brandon t762u: "59 for ssb and 599 for cw etc"): phone 59, CW / RTTY / PSK / JS8 599, FT8 / FT4 in dB like WSJT-X (-10). Always editable. */
+  function rstFor(m) { m = String(m || '').toUpperCase(); return /FT8|FT4/.test(m) ? '-10' : /^CW|RTTY|PSK|JS8|DATA|DIGI|OLIVIA|MFSK/.test(m) ? '599' : '59'; }
+  /* Nov 8 (t762u): "N4BWD, KQ4HZK" in the call box = one log line per call (trimmed, upper case, no blanks, no repeats) */
+  function splitCalls(v) { const out = []; String(v || '').toUpperCase().split(/[,;]+/).map(x => x.trim()).filter(Boolean).forEach(c => { if (out.indexOf(c) < 0) out.push(c); }); return out; }
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  /* one record per call (records saved before Nov 8 with "A, B" in the call box are split the same way) */
+  function splitRec(q) { const C = splitCalls(q && q.call); if (C.length < 2) return [q]; return C.map((c, i) => Object.assign({}, q, { call: c, id: i ? q.id + '-' + i : q.id })); }
+  /* other ops spotted at the same park within about 1 kHz (Brandon: "n4bwd 7200 park 5656 and KQ4HZK 7200 park 5656") */
+  function sameSpot(s) { const r = String(s.ref || '').toUpperCase(); if (!r) return [s];
+    const L = SP.filter(x => x !== s && String(x.ref || '').toUpperCase() === r && Math.abs((+x.khz || 0) - (+s.khz || 0)) <= 1 && !isQrt(x)); return [s].concat(L); }
+  function groupCalls(s) { const out = []; sameSpot(s).forEach(x => { const c = String(x.call || '').toUpperCase().trim(); if (c && out.indexOf(c) < 0) out.push(c); }); return out.join(', '); }
   function modePick(m) { m = String(m || '').toUpperCase(); if (/USB|LSB|SSB|PHONE/.test(m)) return 'SSB'; const o = [...$('fMode').options].map(x => x.value); return o.includes(m) ? m : (m ? 'OTHER' : 'SSB'); }
   function bandSet() { const f = parseFloat($('fFreq').value); $('fBand').value = f ? bandOf(f * 1000).replace('OTHER', '') : ''; dupe(); }
   function dupe() {
@@ -1211,11 +1223,11 @@
     $('fDupe').hidden = !hit; if (hit) $('fDupe').textContent = `⚠ You already logged ${c} at ${r || 'this spot'} on ${b} today (${fmtT(hit.tm)} UTC). Saving again makes a second copy.`;
   }
   function setNow() { const n = utc(new Date()); $('fDate').value = fmtD(n.d); $('fTime').value = fmtT(n.t); dupe(); }
-  function openSheet(s, x) {
-    if (!x && NOLOG && s) { pickSpot(s); return; }
-    if (!x && DOCKON()) { dkFill(s || {}); if (!DESKON()) dkGo(); return; }   /* members: the spot fills the log dock (left pane on computers, under the spots on phones) */
+  function openSheet(s, x, quick) {
+    if (!x && !quick && NOLOG && s) { pickSpot(s); return; }
+    if (!x && !quick && DOCKON()) { dkFill(s || {}); if (!DESKON()) dkGo(); return; }   /* members: the spot fills the log dock (left pane on computers, under the spots on phones) */
     EDIT = x || null;
-    $('lgTitle').textContent = x ? '✏️ Edit this contact' : '📝 Log this contact';
+    $('lgTitle').textContent = x ? '✏️ Edit this contact' : quick ? (splitCalls(s && s.call).length > 1 ? '📝 Quick log · ' + splitCalls(s.call).length + ' ops' : '📝 Quick log') : '📝 Log this contact';
     if (x) {
       $('fCall').value = x.call; $('fFreq').value = x.f; $('fMode').value = modePick(x.mode); $('fRef').value = x.ref; $('fName').value = x.name || ''; $('fDate').value = fmtD(x.d); $('fTime').value = fmtT(x.tm);
       $('fRs').value = x.rs || ''; $('fRr').value = x.rr || ''; $('fSt').value = x.st || ''; $('fNote').value = x.note || '';
@@ -1236,15 +1248,19 @@
     e.preventDefault();
     const call = $('fCall').value.trim().toUpperCase(); if (!call) { $('fCall').focus(); return; }
     const RL = refList($('fRef').value); if (refBad(RL, $('fRef'))) return; const ref = RL.s;
-    const rec = { id: EDIT ? EDIT.id : Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: $('fDate').value.replace(/-/g, ''), tm: $('fTime').value.replace(':', '').slice(0, 4),
+    const CS = splitCalls(call); if (!CS.length) { $('fCall').focus(); return; }
+    const rec = { id: EDIT ? EDIT.id : newId(), call: CS[0], d: $('fDate').value.replace(/-/g, ''), tm: $('fTime').value.replace(':', '').slice(0, 4),
       f: $('fFreq').value.trim(), band: $('fBand').value, mode: $('fMode').value, ref, name: $('fName').value.trim(), st: $('fSt').value.trim().toUpperCase(), rs: $('fRs').value.trim(), rr: $('fRr').value.trim(),
       note: $('fNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     if (!/^\d{8}$/.test(rec.d)) { const n = utc(new Date()); rec.d = n.d; rec.tm = n.t; }
+    const more = CS.slice(1).map((c, i) => Object.assign({}, rec, { call: c, id: newId() + i }));   /* each call its own line, same freq/mode/park/time/reports */
     if (EDIT) { const i = Q.q.indexOf(EDIT); if (i >= 0) Q.q[i] = rec; else Q.q.push(rec); } else Q.q.push(rec);
+    more.forEach(m => Q.q.push(m)); const ids = new Set([rec.id].concat(more.map(m => m.id)));
     await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     const wasEdit = !!EDIT; closeSheet(); qList(); ticker(false); draw(); needDraw();
-    toast(wasEdit ? '✓ Changes saved.' : `✓ ${call} saved on this device.`, wasEdit ? null : () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); });
+    if (KPCQrzOn() && more.length) more.concat(wasEdit ? [] : [rec]).forEach(r => { const a = adif([r]); KPCQrz.send(a.slice(a.indexOf('<EOH>') + 5).trim()).then(x => { if (x.ok) { r.qz = x.sure ? 2 : 1; qSave(); } }); });
+    toast(wasEdit && !more.length ? '✓ Changes saved.' : `✓ ${CS.join(', ')} saved on this device${CS.length > 1 ? ' (' + CS.length + ' lines)' : ''}.`, wasEdit ? null : () => { Q.q = Q.q.filter(q => !ids.has(q.id)); qSave(); qList(); });
   });
   let tT = 0;
   /* big box in the middle of the screen, so the POTA bookmark result can't be missed (a toast was too easy to miss on iPhone) */
@@ -1262,6 +1278,10 @@
     clearTimeout(tT); tT = setTimeout(() => { t.hidden = true; }, undo ? 7000 : Math.min(6000, 3000 + String(msg).length * 25));
     t.onclick = e => { if (!e.target.closest('button')) t.hidden = true; };
   }
+  /* Nov 8 (t762u): 📝 LOG QSO on every spot = the quick log, with every op at the same park within 1 kHz in the call box */
+  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-lq]'); if (!b) return; e.preventDefault();
+    const s = SP.find(x => keyOf(x) === b.dataset.lq || x.p + '|' + x.call + '|' + x.ref === b.dataset.lq); if (!s) return;
+    openSheet(Object.assign({}, s, { call: groupCalls(s) }), null, true); });
   /* tapping a spot card (not its links/buttons) opens the log with everything filled in */
   document.addEventListener('click', e => {
     const lg = e.target.closest('[data-log]');
@@ -1689,15 +1709,18 @@
   function dkActSet() { const r = $('dkRsp'); if (!r) return; const pr = String($('dRef').value || '').toUpperCase().split(/[ ,]+/).map(nref).find(x => progOf(x) === 'POTA');
     r.hidden = !(pr && $('dCall').value.trim()); r.dataset.ref = pr || ''; }
   async function dkLog(opt) {
-    const call = $('dCall').value.trim().toUpperCase(); if (!call) { $('dCall').focus(); return; }
+    const CS = splitCalls($('dCall').value); if (!CS.length) { $('dCall').focus(); return; }
     const n = utc(new Date());
     const RL = refList($('dRef').value); if (refBad(RL, $('dRef'))) return; const ref = RL.s;
-    const f = $('dFreq').value.trim();
-    const rec = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
+    const f = $('dFreq').value.trim(), recs = [];
+    for (const call of CS) {
+    const rec = { id: newId(), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     if (DKS && base(DKS.call) === base(call)) { if (isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; } if (DKS.cty) rec.cty = DKS.cty; }
     await whoFill(rec, DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null));
-    await afterLog(rec, opt);
+    await afterLog(rec, Object.assign({}, opt, CS.length > 1 ? { many: true } : {})); recs.push(rec);
+    }
+    if (CS.length > 1) toast(`✓ ${CS.length} logged${recs[0].ref ? ' at ' + recs[0].ref : ''}: ${CS.join(', ')} (one line each).`, () => { const ids = new Set(recs.map(r => r.id)); Q.q = Q.q.filter(q => !ids.has(q.id)); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     dkClear(); dkActSet(); $('dCall').focus({ preventScroll: true });
   }
   async function afterLog(rec, opt) {
@@ -1706,7 +1729,7 @@
     Q.q.push(rec); await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     qList(); ticker(false); draw(); needDraw(); try { lmDraw(); } catch (e) {} try { qzCount(); } catch (e) {}
-    toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? (PUB ? ' (QRZ is off: tap 💾 ADIF MODE to switch to QRZ mode.)' : ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)') : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
+    if (!opt.many) toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? (PUB ? ' (QRZ is off: tap 💾 ADIF MODE to switch to QRZ mode.)' : ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)') : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast(PUB ? '✓ Logged. To send to QRZ, add your QRZ key in MY LOG FILES.' : '✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
     if ((KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
       KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } else toast('⚠ QRZ: ' + r.msg); }); }  /* no note when it went OK (Brandon Oct 17): only a problem shows */
@@ -1861,5 +1884,5 @@
     station: () => openModal('lgModal'), tab: () => {}
   };
   (window.KPCVIP ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
-  window.KPCHunt = { scan, nref, adif, parseAdif };
+  window.KPCHunt = { scan, nref, adif, parseAdif, splitCalls, splitRec, rstFor, sameSpot, groupCalls };
 })();
