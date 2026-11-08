@@ -62,13 +62,13 @@
  {
   "ref": "US-4568",
   "name": "El Camino Real de los Tejas National Historic Trail",
-  "url": "ELCA_NHT/FeatureServer",
+  "url": "ELTE_NHT/FeatureServer",
   "by": "National Park Service"
  },
  {
   "ref": "US-4569",
   "name": "El Camino Real de Tierra Adentro National Historic Trail",
-  "url": "ELTE_NHT/FeatureServer",
+  "url": "ELCA_NHT/FeatureServer",
   "by": "National Park Service"
  },
  {
