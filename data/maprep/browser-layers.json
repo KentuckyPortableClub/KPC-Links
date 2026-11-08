@@ -1,0 +1,370 @@
+{
+ "about": "Layers a mapping rep can load straight into their own browser with a click (Brandon Nov 8 8:35 AM CST). Only sources whose robots.txt allows the path and that answer a cross-origin request from kentuckyportableclub.github.io (Access-Control-Allow-Origin) are listed. services*.arcgis.com counts as disallow and is never listed. Checked once by hand from the box; the site itself never fetches these, the rep's browser does, only on a click.",
+ "checked": "2026-11-08 08:36 CST",
+ "layers": [
+  {
+   "place": "AL",
+   "agency": "Alabama State Parks (ADCNR)",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AL",
+   "agency": "Alabama Dept of Conservation and Natural Resources, State La",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AL",
+   "agency": "ADCNR Wildlife and Freshwater Fisheries",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AL",
+   "agency": "ADCNR Wildlife and Freshwater Fisheries",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "Alaska State Parks (DNR)",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "Alaska Department of Natural Resources",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "Alaska DNR State Parks (park boundaries)",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources)",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AK",
+   "agency": "National Register of Historic Places Polygons",
+   "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AZ",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AZ",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AZ",
+   "agency": "Bureau of Land Management, Arizona (recreation sites, polygons)",
+   "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AR",
+   "agency": "Arkansas Natural Heritage Commission",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "AR",
+   "agency": "Arkansas State Parks",
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "HI",
+   "agency": "Hawaii Division of State Parks (DLNR)",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "HI",
+   "agency": "Hawaii DLNR reserves (DOFAW)",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ID",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ID",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ID",
+   "agency": "BLM Idaho recreation area polygons (76)",
+   "url": "https://gis.blm.gov/idarcgis/rest/services/recreation/BLM_ID_Recreation_Area_Poly/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NM",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NM",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ND",
+   "agency": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ND",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "ND",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "Oregon Parks & Recreation Department",
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "State of Oregon (Oregon parklands)",
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "BLM Oregon/Washington recreation management areas (2,188)",
+   "url": "https://gis.blm.gov/orarcgis/rest/services/Recreation/BLM_OR_Recreation_Management_Areas/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "OR",
+   "agency": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
+   "url": "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/3",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "VT",
+   "agency": "Vermont Agency of Natural Resources",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "WY",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "WY",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NS",
+   "agency": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NS",
+   "agency": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NU",
+   "agency": "Crown-Indigenous Relations and Northern Affairs Canada (Nunavut Map Viewer); SOURCE=GN-ENV (Government of Nunavut Environment)",
+   "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "SK",
+   "agency": "Government of Saskatchewan, Ministry of Parks, Culture and Sport (gis.saskatchewan.ca)",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "SK",
+   "agency": "Government of Saskatchewan (Parks as titled)",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "Nevada (SCORP recreation areas)",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks)",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "BLM Nevada national monuments + NCAs",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_National_Monument_National_Conservation_Area/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "ACEC Designated Polygons",
+   "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "NV",
+   "agency": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "UT",
+   "agency": "BLM Utah State Office (congressionally designated recreation areas)",
+   "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "UT",
+   "agency": "BLM recreation SITE polygons (national, 3,478)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "UT",
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+   "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  },
+  {
+   "place": "UT",
+   "agency": "NLCS Wild and Scenic Rivers",
+   "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0",
+   "robots": "allow",
+   "cors": "yes"
+  }
+ ]
+}

@@ -1221,12 +1221,53 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     if (!liveCatP) liveCatP = fetch('data/maprep/catalog.json').then(r => r.ok ? r.json() : null).catch(() => null);
     const cat = await liveCatP, row = placeList().find(r => r.code === code);
     const lim = code && row && /^(US|CA)$/.test(String(row.region || row.r || (row.code && row.code.length === 2 ? 'US' : ''))) ? G.liveLimit(cat, code) : null;
+    /* saved copies first (Nov 8): the place's published answer key and its build date */
+    let tier = lim ? 'little' : 'live', saved = null, built = '';
+    if (lim && G.savedShare) {
+      saved = G.savedShare(await stateKey(code));
+      const idx = await B().jget(row.region === 'CA' ? 'data/ca-key/index.json' : 'data/us-key/index.json').catch(() => null);
+      built = (idx && idx.built) || '';
+      tier = G.liveTier(lim, saved);
+    }
+    const text = tier === 'some' || tier === 'little' ? G.savedNoteText(row.name, tier, saved, built) : '';
     ['mrCheckSt', 'mrDeskPlace'].forEach(id => {
       const sel = $(id); if (!sel || !sel.parentNode) return;
       let p = document.getElementById(id + 'Live');
       if (!p) { p = document.createElement('p'); p.id = id + 'Live'; p.className = 'mr-help mr-livenote'; p.setAttribute('role', 'status'); p.style.cssText = 'margin:6px 0 0;padding:8px 10px;border-left:4px solid #d5a63a;background:rgba(213,166,58,.12);border-radius:6px'; sel.insertAdjacentElement('afterend', p); }
-      p.hidden = !lim; p.textContent = lim ? G.liveNoteText(row.name) : '';
+      p.hidden = !text; p.textContent = text; p.dataset.tier = tier;
+      if (text && id === 'mrCheckSt') repButtons(p, code, row).catch(() => {});
       if (lim) p.dataset.reason = lim.reason; else delete p.dataset.reason;
+    });
+  }
+  /* Nov 8 (Brandon 8:35 AM CST): where live maps are short, two rep-side options. (a) OPEN THE AGENCY'S OWN MAP: plain links the rep
+     clicks (agencies.json map viewer / finder / home page). (b) LOAD THIS STATE'S LAYER IN MY BROWSER: only for sources listed in
+     data/maprep/browser-layers.json (robots allow + cross-origin answered; services*.arcgis.com never), fetched by the rep's own
+     browser on a click, for the map view only. If a load fails, the links in (a) stay. */
+  let brP = null, brLayer = null;
+  async function repButtons(p, code, row) {
+    const links = [];
+    try { await ensureAgencies(); } catch (e) {}
+    let ag = null; try { ag = await fetch('data/maprep/agencies.json').then(r => r.ok ? r.json() : null); } catch (e) {}
+    (((ag && ag.places && ag.places[code]) || {}).agencies || []).forEach(a => { const u = (a.gis && a.gis.url) || (a.finder && a.finder.url) || (a.home && a.home.url); if (u && !links.some(x => x[1] === u)) links.push([a.name || 'Agency map', u]); });
+    if (!brP) brP = fetch('data/maprep/browser-layers.json').then(r => r.ok ? r.json() : null).catch(() => null);
+    const br = (((await brP) || {}).layers || []).filter(x => x.place === code && x.cors === 'yes' && x.robots === 'allow' && !/services\d*\.arcgis\.com/i.test(x.url));
+    const box = document.createElement('div'); box.className = 'mr-repbtns'; box.style.cssText = 'margin-top:8px;display:flex;flex-wrap:wrap;gap:6px';
+    box.innerHTML = links.slice(0, 4).map(l => `<a class="mr-ag" href="${esc(l[1])}" target="_blank" rel="noopener">OPEN THE AGENCY'S OWN MAP · ${esc(l[0])} ↗</a>`).join('')
+      + br.slice(0, 6).map((l, i) => `<button type="button" class="mr-ag" data-brl="${i}">LOAD THIS STATE'S LAYER IN MY BROWSER · ${esc(l.agency || 'layer')}</button>`).join('')
+      + '<span class="mr-brmsg mr-help" style="flex-basis:100%"></span>';
+    const old = p.querySelector('.mr-repbtns'); if (old) old.remove(); p.appendChild(box);
+    box.querySelectorAll('[data-brl]').forEach(b => b.onclick = async () => {
+      const l = br[+b.dataset.brl], msg = box.querySelector('.mr-brmsg');
+      if (!map) { msg.textContent = 'Open the map first.'; return; }
+      const v = map.getBounds(), q = new URLSearchParams({ where: '1=1', geometry: [v.getWest(), v.getSouth(), v.getEast(), v.getNorth()].join(','), geometryType: 'esriGeometryEnvelope', inSR: '4326', outSR: '4326', spatialRel: 'esriSpatialRelIntersects', outFields: '*', returnGeometry: 'true', resultRecordCount: '300', f: 'geojson' });
+      msg.textContent = 'Loading from ' + l.agency + ' in your browser…';
+      try {
+        const r = await fetch(l.url.replace(/\/+$/, '') + '/query?' + q.toString(), { mode: 'cors', credentials: 'omit' });
+        const j = await r.json(); if (!j || !j.features) throw new Error('no features');
+        if (brLayer) map.removeLayer(brLayer);
+        brLayer = L.geoJSON(j, { style: { color: '#1f6f8b', weight: 2, fillOpacity: 0.08 }, onEachFeature: (f, ly) => { const pr = f.properties || {}; const nm = pr.NAME || pr.Name || pr.name || pr.PARK_NAME || pr.UNIT_NAME || pr.PropName || ''; if (nm) ly.bindTooltip(esc(String(nm))); } }).addTo(map);
+        msg.textContent = j.features.length + ' shapes from ' + l.agency + ' in this map view (loaded by your browser; view only). Source: ' + l.url.replace(/^https?:\/\//, '').split('/')[0];
+      } catch (e) { msg.textContent = 'That layer did not load in your browser. Use the agency map link instead.'; }
     });
   }
   document.addEventListener('change', e => { const t = e.target; if (t && (t.id === 'mrCheckSt' || t.id === 'mrDeskPlace')) updateLiveNote(t.value).catch(() => {}); });
