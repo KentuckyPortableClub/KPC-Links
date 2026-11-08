@@ -1,42 +1,40 @@
 {
  "open": [
-  "KPC-Data/kpc-collector.yml",
   "KPC-Data/kpc-docs-merge.yml",
   "KPC-Data/kpc-intake.yml",
+  "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-wdpa-phonebook.yml",
   "KPC-Data/kpc-world-finder.yml",
   "kpc-boards.yml",
-  "kpc-bot-queue.yml",
+  "kpc-discord-relay.yml",
   "kpc-discord-watch.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
+  "kpc-watchdog.yml",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
-  "site:wide:kpc-live.html:desktop"
+  "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-07T15:55+00:00",
+ "checked": "2026-11-08T12:39+00:00",
  "weekly": {
   "site": {
    "part": "site",
-   "date": "2026-11-01",
-   "problems": [
+   "date": "2026-11-08",
+   "problems": [],
+   "notes": [
     {
-     "key": "site:wide:kpc-live.html:desktop",
-     "chat": 1,
-     "msg": "kpc-live.html (desktop): page is 4px wider than the screen (sideways scroll)"
+     "chat": 5,
+     "msg": "Site test could not run: browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell\n╔════════════════════════════════════════════════════════════"
     }
    ],
-   "notes": [],
-   "ok": [
-    "60 public pages opened as a guest at phone width (390px)",
-    "members door checked on M-eb1a (members page), M-04b8 (members page), M-cbb8 (members page), M-e281 (members page)",
-    "60 public pages opened as a guest at desktop width (1280px)"
-   ]
+   "ok": []
   },
   "refs": {
    "part": "refs",
-   "date": "2026-11-01",
+   "date": "2026-11-08",
    "problems": [
     {
      "key": "refs:gone:CA-SI:CA-0120",
@@ -47,36 +45,27 @@
      "key": "refs:gone:CA-SP:CA-0122",
      "chat": 2,
      "msg": "CA-SP: 1 park number(s) POTA no longer lists, still in our data: CA-0122 (answer key)"
+    },
+    {
+     "key": "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
+     "chat": 2,
+     "msg": "trails: 5 park number(s) POTA no longer lists, still in our data: US-11232 (trail lines), US-11234 (trail lines), US-11954 (trail lines), US-4237 (trail lines), US-8324 (trail lines)"
     }
    ],
    "notes": [],
    "ok": [
-    "18917 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+    "18940 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
    ]
   },
   "links": {
    "part": "links",
-   "date": "2026-11-01",
+   "date": "2026-11-08",
    "problems": [
     {
-     "key": "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/1",
+     "key": "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
      "chat": 2,
      "twice": true,
-     "msg": "access-layers.json: https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/1 → server error: Layer not found",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/2",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/2 → server error: Layer not found",
-     "confirmed": false
-    },
-    {
-     "key": "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/5",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/5 → server error: Layer not found",
+     "msg": "access-layers.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0 → server error: Invalid URL",
      "confirmed": false
     }
    ],
@@ -107,30 +96,28 @@
     }
    ],
    "ok": [
-    "526 of 534 map-server / data addresses answered"
+    "641 of 647 map-server / data addresses answered"
    ]
   }
  },
  "link_fail_prev": [
-  "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/1",
-  "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/2",
-  "links:https://www.wildlifedepartment.com/server/rest/services/PublicWILMA/WILMAFeatures/MapServer/5"
+  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0"
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2912
+   "b": 2909
   },
   "L:data/ky-answer-key.json": {
    "b": 31624
   },
   "L:data/us-key": {
-   "b": 31650169
+   "b": 46638983
   },
   "L:data/ca-key": {
-   "b": 5695364
+   "b": 5695370
   },
   "L:data/world-key": {
-   "b": 29137372
+   "b": 38042653
   },
   "L:data/pota": {
    "b": 5665831
@@ -148,10 +135,10 @@
    "b": 529287
   },
   "L:data/state-gis.json": {
-   "b": 105760
+   "b": 111728
   },
   "L:data/boundary-score.json": {
-   "b": 972721
+   "b": 971865
   },
   "L:data/campfed": {
    "b": 643240
@@ -169,7 +156,7 @@
    "b": 21042
   },
   "L:kpc-special-events.json": {
-   "b": 25400
+   "b": 23289
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -190,13 +177,13 @@
    "b": 15819377
   },
   "D:data/trails": {
-   "b": 25903884
+   "b": 31966627
   },
   "D:data/access": {
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11738578
+   "b": 11701686
   },
   "D:data/review/scoreboard.json": {
    "b": 137198
@@ -205,23 +192,23 @@
    "b": 14684673
   },
   "D:data/alerts/eu.json": {
-   "b": 132488
+   "b": 112910
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 276474,
-   "since": "2026-11-01"
+   "b": 177727
   },
   "D:data/intake": {
-   "b": 39695215
+   "b": 39695215,
+   "since": "2026-11-08"
   },
   "D:data/detective": {
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1186640
+   "b": 1186618
   }
  }
 }
