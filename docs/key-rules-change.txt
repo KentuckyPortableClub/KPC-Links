@@ -1,3 +1,5 @@
+Aland (AX) old row re-added by BOT A 552605e4, removed again, KPC-Links #80: key INPUT file only, no rule file changed; US a066624520b4, CA 8feccbb7d9ee, world 10e4092cc97f unchanged. File: data/world-key/extra-layers.json: the 7 lines for .../Miljo/Skyddsomraden/MapServer/7 dropped (AX moved in #76).
+
 Switzerland BAFU parks source renamed, KPC-Links #76 (Brandon approved the world hash move Nov 8, 10:38 AM CST): kpc_world_key.py only, one string; world rules 6a5969a25d2c -> 10e4092cc97f; US a066624520b4 and CA 8feccbb7d9ee unchanged; no key file changed.
 Why: data.geo.admin.ch renamed the STAC collection ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter to ch.bafu.schutzgebiete-paerke_nationaler_bedeutung (HTTP 404, W-42480248682 CH failed). Local CH build: 274 of 319 joined (saved: 261), 206 saved outlines (saved: 189).
 
