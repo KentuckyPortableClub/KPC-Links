@@ -711,11 +711,25 @@
     const fc = { type: 'FeatureCollection', features: (feats || []).filter(f => f && f.geometry && !blocked(f)).map(f => ({ type: 'Feature', properties: { name: f._nm || '' }, geometry: f.geometry })) };
     const ov = { type: 'FeatureCollection', features: (overlaps || []).map(f => ({ type: 'Feature', properties: {}, geometry: f.geometry })) };
     drawLayer = L.layerGroup();
-    if (fc.features.length) L.geoJSON(fc, { style: { color: '#8a5a00', weight: 3, fillColor: '#d5a63a', fillOpacity: 0.18 } }).addTo(drawLayer);
+    /* Nov 8 (Brandon 8:26 AM CST): a huge multi-part shape is drawn only for the parts near the place (speed); the whole shape is
+       one tap away and comes back when the rep zooms out (KPCMapExtras.clipFC). */
+    const OUT = { color: '#8a5a00', weight: 3, fillColor: '#d5a63a', fillOpacity: 0.18 };
+    const cl = (window.KPCMapExtras && KPCMapExtras.clipFC && fc.features.length) ? KPCMapExtras.clipFC(fc, la, lo) : { fc: fc, clipped: false };
+    if (cl.fc.features.length) {
+      let shape = L.geoJSON(cl.fc, { style: OUT }).addTo(drawLayer);
+      if (cl.clipped) {
+        const full = () => { if (!shape || !drawLayer) return; drawLayer.removeLayer(shape); shape = L.geoJSON(fc, { style: OUT }).addTo(drawLayer); map.off('zoomend', onZoom); if (wb) wb.remove(); };
+        const onZoom = () => { if (map.getZoom() <= 8) full(); };
+        map.on('zoomend', onZoom);
+        const wb = L.control({ position: 'topright' }); wb.onAdd = () => { const d = L.DomUtil.create('button', 'mr-ag'); d.type = 'button'; d.textContent = 'SHOW THE WHOLE SHAPE'; d.title = 'Only the parts near here are drawn, for speed'; L.DomEvent.on(d, 'click', e => { L.DomEvent.stop(e); full(); }); return d; };
+        wb.addTo(map);
+        drawLayer.on('remove', () => { map.off('zoomend', onZoom); try { wb.remove(); } catch (e) {} });
+      }
+    }
     if (ov.features.length) L.geoJSON(ov, { style: { color: '#6b4a10', weight: 2, dashArray: '6 4', fillOpacity: 0 } }).addTo(drawLayer);
     drawLayer.addTo(map);
     const b = L.latLngBounds([[la, lo]]);
-    try { if (fc.features.length) b.extend(L.geoJSON(fc).getBounds()); } catch (e) {}
+    try { if (cl.fc.features.length) b.extend(L.geoJSON(cl.fc).getBounds()); } catch (e) {}
     map.fitBounds(b.pad(0.3), { maxZoom: 14 });
     const dropPin = () => {
       if (pinCtl) { pinCtl.drop(L.latLng(la, lo)); return; }
@@ -1028,7 +1042,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
   function kvSafe(k, v) { return `<div class="mr-kv"><dt>${esc(k)}</dt><dd>${v}</dd></div>`; }
 
-  /* Nov 7: Check all adds the official agency links (on) and, behind KPCMapCands.candidatesOn() (off by default),
+  /* Nov 7: Check all adds the official agency links (on) and, behind KPCMapCands.candidatesOn() (ON by default since Nov 7; ?candidates=0 or localStorage kpcMapCandidates=0 turns it off),
      the possible new parks from the key's unmatched list. With the switch off nothing else changes. */
   let abbrP = null;
   function ensureAbbr() {
