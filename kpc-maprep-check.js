@@ -1187,6 +1187,19 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     const n = String(t.id || '').split('#').pop(), own = t.name && String(t.name).trim() && String(t.name).trim() !== String(park).trim();
     return `${park}, ${own ? String(t.name).trim() : n} tract`;
   };
+  /* Nov 8 (Brandon 11:19 AM CST: "this Published key still right at the top make that folded up with better explanation"):
+     the published key list is a reference, so it is folded under a plain explanation; finding new parks is at the top. */
+  function foldKey(box, name) {
+    const sec = box && box.querySelector('section[data-mr-result="all"]'); if (!sec || sec.closest('details.mr-keyfold')) return;
+    const d = document.createElement('details'); d.className = 'mr-agd mr-keyfold'; d.setAttribute('data-mr-keyfold', '1');
+    d.innerHTML = '<summary>PARKS POTA ALREADY HAS IN ' + esc(String(name || '').toUpperCase()) + ' (PUBLISHED KEY · REFERENCE)</summary>'
+      + '<p class="mr-help">This is the club\u2019s answer key: every POTA park already in this place and the official outline we matched to it. '
+      + 'It is a bonus reference, not the research tool. Use it to look up an existing park or to see its tracts. '
+      + 'To find land that could become a new park, use \u201cFind new parks to add\u201d at the top of this page.</p>';
+    sec.parentNode.insertBefore(d, sec); d.appendChild(sec);
+    /* the agency links and the possible new parks are research tools: they stay open, above the folded list */
+    ['mrAgDrop', 'mrCandsWrap'].forEach(id => { const el = document.getElementById(id); if (el && d.contains(el)) d.parentNode.insertBefore(el, d); });
+  }
   async function showAllTracts(stAll, key, parks, ids, box) {
     const K = B(), reg = stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'CA' : 'US';
     const doc = await K.tractDoc(K.tractPath(stAll.code, reg)).catch(() => null);
@@ -1214,6 +1227,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     };
     paint();
     wireExtras(stAll, key);
+    foldKey(box, stAll.name);
     return ids;
   }
   async function showAll() {
@@ -1230,6 +1244,7 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
       const shown = ids.slice(0, 400);
       if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'Canada' : 'US')} key. ${stAll.region === 'US' || !stAll.region ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. ${shown.length < ids.length ? 'The first ' + shown.length + ' names are listed.' : ''}</p>${shown.map(id => `<p><b>${esc((parks[id] && parks[id].n) || id)}</b> · ${esc(id)}</p>`).join('') || '<p>No published key for this place is on the site yet.</p>'}</div>${extrasHtml(stAll)}</section>`;
       wireExtras(stAll, key);
+      foldKey(box, stAll.name);
       return ids;
     }
     if (box) box.innerHTML = '<p class="mr-msg">Reading the published outlines for ' + esc(stAll.name) + '…</p>';
