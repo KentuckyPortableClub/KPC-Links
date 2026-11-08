@@ -1,36 +1,36 @@
 {
  "key": "world",
- "build": "W-42410527148",
- "report": "world-W-42410527148.json",
- "report_checked": "2026-11-07 23:42",
- "checked_at": "2026-11-07 23:42 UTC",
- "prev_ref": "8981740f644c",
+ "build": "W-42448878438",
+ "report": "world-W-42448878438.json",
+ "report_checked": "2026-11-08 08:15",
+ "checked_at": "2026-11-08 08:15 UTC",
+ "prev_ref": "99aa93eb9281",
  "about": "parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; links-11: latest/ + previous/ only, rewritten only when the rows change)",
  "counts": {
   "joined_in_other_area": 0,
   "pota_bad_pin": 9,
   "override_no": 1462,
-  "rule18_doubt": 269,
+  "rule18_doubt": 270,
   "pin_too_far": 0,
   "wrong_kind": 13,
-  "name_mismatch": 1665,
-  "inside_other_land": 3578,
+  "name_mismatch": 1666,
+  "inside_other_land": 3560,
   "private_or_picture_map": 0,
-  "no_boundary": 10645
+  "no_boundary": 10576
  },
  "new_this_build": {
   "joined_in_other_area": 0,
   "pota_bad_pin": 0,
   "override_no": 0,
-  "rule18_doubt": 6,
+  "rule18_doubt": 1,
   "pin_too_far": 0,
-  "wrong_kind": 5,
-  "name_mismatch": 39,
-  "inside_other_land": 87,
+  "wrong_kind": 0,
+  "name_mismatch": 0,
+  "inside_other_land": 0,
   "private_or_picture_map": 0,
-  "no_boundary": 476
+  "no_boundary": 0
  },
- "total": 17641,
+ "total": 17556,
  "files": {
   "joined_in_other_area": "joined-in-other-area.csv",
   "pota_bad_pin": "pota-bad-pin.csv",
@@ -94,9 +94,9 @@
  },
  "jump_check": {
   "checked": true,
-  "new_drops": 13,
-  "outlined_before": 42938,
-  "limit": 2146.9
+  "new_drops": 1,
+  "outlined_before": 43848,
+  "limit": 2192.4
  },
  "system_warnings": [],
  "inputs": {
@@ -106,14 +106,14 @@
  },
  "precheck_join": {
   "state": "used",
-  "rows": 17641,
-  "rows_with_km": 6976,
+  "rows": 17556,
+  "rows_with_km": 6960,
   "rows_with_kind": 1245,
-  "km_from_key": 6976,
+  "km_from_key": 6960,
   "kind_from_key": 1245,
   "blank_reasons": {
-   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 10660,
-   "key kind blank: no designation field and no kind word in the record's name; kind: no kind problem in the pre-check row (it checks joined records only)": 5731,
+   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 10591,
+   "key kind blank: no designation field and no kind word in the record's name; kind: no kind problem in the pre-check row (it checks joined records only)": 5715,
    "no key fact (a key built before links-10); distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 5
   }
  }
