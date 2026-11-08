@@ -73,7 +73,9 @@ changed_wf = [ln.strip() for ln in wf.stdout.splitlines() if ln.strip()]
 world_wf = {'.github/workflows/kpc-world-key.yml', '.github/workflows/kpc-world-cache.yml'}
 # Nov 7 round 4: the by-hand app-packs and KML/GPX workflows and the optional 2-fer publish trigger. None of them is a key workflow.
 round4_wf = {'.github/workflows/kpc-app-packs.yml', '.github/workflows/kpc-ky-mapfiles.yml', '.github/workflows/kpc-fers-publish.yml', '.github/workflows/kpc-new-refs.yml'}
-extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf]
+# Nov 8 (Quality, US-42446831487): the key-check workflow reads the RELEASED keys (read-only); not a key workflow, no rule file.
+nov8_wf = {'.github/workflows/kpc-key-postcheck.yml'}
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:
