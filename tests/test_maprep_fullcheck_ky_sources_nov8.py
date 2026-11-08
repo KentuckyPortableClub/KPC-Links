@@ -26,5 +26,5 @@ check("sDes ? 'designation field on ' + SF.designation.src" in cj, 'designation 
 check('120000' in cj and 'h.box' in cj, 'facts only for that place, 2 minutes')
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
-    check('kpc-maprep-research.js?v=20261108v' in h and 'kpc-maprep-check.js?v=20261108v' in h, f + ': new script versions')
+    check(re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108w' and 'kpc-maprep-check.js?v=20261108v' in h, f + ': new script versions')
 sys.exit(0 if ok else 1)
