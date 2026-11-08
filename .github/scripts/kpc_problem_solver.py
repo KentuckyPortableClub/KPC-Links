@@ -1,0 +1,363 @@
+#!/usr/bin/env python3
+"""PROBLEM SOLVER: a recommended fix for every held park (Nov 7 2026; Brandon, 4:55 PM CST Nov 7: the key doctor / join check /
+holds "must recommend the fix for each held park, not just flag it").
+
+RECOMMENDS ONLY. It never writes a key file, an override, the answer sheet or the ledger, and it NEVER moves a POTA pin. A person
+reads each verdict and applies it (an overrides.json 'join' row, a re-point, or a hold kept). OFFLINE: key files, the build's saved
+outlines (GEO_CACHE, the boundary-cache copy the US build already downloads), POTA's pins (PARKINFO) and kpc-us-states.json.
+Not a rules file (kpc_key_freeze.NOT_RULES): it decides no join, so the rules hashes do not move.
+
+Verdicts (one per park, with plain-words reasons):
+  same land new ID   a hand join (overrides.json 'join') names a record id the key no longer has, and a candidate with the park's
+                     name sits at the pin (<= 1 km): re-point the join to the new id (Windy Gap US-9678: cow909 -> cow910)
+  land wrong         the held record is not the land the pin is on, and another same-name candidate holds the pin: join that one
+                     and drop the held one (Little Pee Dee US-3917: 254041 in place of 254129)
+  sliver             the held record's outline is a few points with almost no area (a broken polygon), so its distance means
+                     nothing: KEEP HOLDING and look for a proper polygon (Cedar Mesa US-11748, Indian Creek US-5782)
+  wrong state        the held land lies in another state than POTA lists, and the pin sits in the listed state: override to the
+                     land and flag the POTA listing (Owyhee River US-13039: listed NV, land in ID)
+  pin wrong          the held record is the park's land (name and kind match, one such place) and POTA's pin is off it: override
+                     to keep the land; the reasons say how the pin looks wrong (one digit off, one coordinate off, a rounded
+                     2-decimal pin, or simply elsewhere). The pin is NEVER moved.
+  needs a person     anything the checks above cannot settle (no pin, no saved outline, names disagree, acres far apart, ...)
+
+  KEY=us (only the US key for now)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
+  OUT=<file stem> (default data/us-key/review/problem-solver)   STATES=<file> (default kpc-us-states.json)
+  --selftest   (the 17 Research Bot calls of Nov 7, tests/fixtures/problem-solver-17.json)
+Never fails the build: exit 0 (the selftest exits 1 on a wrong verdict)."""
+import glob, gzip, json, math, os, pathlib, re, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import kpc_match as KM  # noqa: E402  (inside, km_to: even-odd over every ring)
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+FAR_KM = 15.0                 # = kpc_join_check.FAR_KM
+NEAR_KM = 1.0                 # a candidate this close to the pin "holds" it (the key's working copy is ~1 km coarse)
+SLIVER_PTS = 6                # a broken polygon: at most this many points in all its rings ...
+SLIVER_AC = 0.5               # ... and under half an acre (or under 1% of the acres it claims)
+TYPO_KM = 1.0                 # a one-digit fix that puts the pin within this of the land counts as a typo
+SMALL_KM = 10.0               # typo patterns are only read on land smaller than this across: on a huge refuge any one-digit
+                              # change lands somewhere inside by chance, so it proves nothing
+COORD_MATCH = 0.02            # degrees: one coordinate "matches" the land when it is this close to the land's range (~2 km)
+ACRE_RATIO = 3.0              # the outline measured vs the acres the record claims: further apart than this = a person looks
+GENERIC = set('state national wildlife management area forest park recreation special preserve heritage refuge wilderness '
+              'blm srma rma nra wma swa nwr sf sp the of and at on in watchable bay river creek lake canyon mesa'.split())
+SAME_W = {'nine': '9', 'mile': 'mile', 'mt': 'mount', 'ft': 'fort', 'st': 'saint'}
+LINEAR = re.compile(r'\b(trail|wild (and|&) scenic river|heritage river|parkway)\b', re.I)   # = kpc_join_check.LINEAR_KIND
+PIN_NEVER = 'the POTA pin is never moved'
+
+
+# ---- plain helpers
+def words(s):
+    w = re.sub(r'[^a-z0-9 ]+', ' ', str(s or '').lower().replace('-', ' ')).split()
+    return [SAME_W.get(x, x) for x in w]
+
+
+def core(s):
+    return {x for x in words(s) if x not in GENERIC and len(x) > 1}
+
+
+def same_name(park, rec):
+    a, b = core(park), core(rec)
+    return bool(a and b) and (b <= a or a <= b)
+
+
+def rings(rec): return (rec or {}).get('_r') or []
+
+
+def n_points(rec): return sum(len(r) for r in rings(rec))
+
+
+def acres(rec):
+    """Measured acres: the absolute sum of the rings' signed areas (ArcGIS outer rings and holes wind opposite ways)."""
+    tot = 0.0
+    for ring in rings(rec):
+        if len(ring) < 3: continue
+        lat0 = math.radians(sum(p[1] for p in ring) / len(ring)); kx, ky = 111320.0 * math.cos(lat0), 110574.0
+        tot += sum((x1 * kx) * (y2 * ky) - (x2 * kx) * (y1 * ky) for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1])) / 2
+    return abs(tot) / 4046.856
+
+
+def box(rec):
+    xs = [p[0] for r in rings(rec) for p in r]; ys = [p[1] for r in rings(rec) for p in r]
+    return (min(xs), min(ys), max(xs), max(ys)) if xs else None
+
+
+def centre(rec):
+    """Area-weighted centre of the biggest ring (a vertex mean is pulled toward detailed edges)."""
+    rs = sorted(rings(rec), key=lambda r: -abs(_signed(r)))
+    if not rs: return None
+    r = rs[0]; a = _signed(r)
+    if not a: return (sum(p[1] for p in r) / len(r), sum(p[0] for p in r) / len(r))
+    cx = sum((x1 + x2) * (x1 * y2 - x2 * y1) for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1])) / (6 * a)
+    cy = sum((y1 + y2) * (x1 * y2 - x2 * y1) for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1])) / (6 * a)
+    return (cy, cx)
+
+
+def _signed(r): return sum(x1 * y2 - x2 * y1 for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1])) / 2 if len(r) > 2 else 0.0
+
+
+def km(rec, la, lo):
+    return KM.km_to(la, lo, {'rings': rings(rec)}) if rings(rec) else None
+
+
+def decimals(v):
+    s = repr(float(v))
+    return len(s.split('.')[1].rstrip('0')) if '.' in s else 0
+
+
+# ---- the states (kpc-us-states.json: [{'a': 'AL', 'p': multipolygon [[outer, holes...], ...]}])
+_ST = None
+def state_of(la, lo, path=None):
+    global _ST
+    if _ST is None:
+        try: _ST = json.load(open(path or ROOT / 'kpc-us-states.json', encoding='utf-8'))
+        except Exception: _ST = []  # noqa: BLE001
+    for s in _ST:
+        if any(KM.inside(la, lo, {'rings': pl}) for pl in s.get('p') or []): return s.get('a')
+    return None
+
+
+# ---- pin patterns (descriptions only: the pin is never changed)
+def one_digit_fixes(v):
+    """Every value one typed digit away from v (one digit changed, or two neighbours swapped), decimals only."""
+    s = f'{float(v):.4f}'; i0 = s.index('.') + 1; out = []
+    for i in range(i0, len(s)):
+        for d in '0123456789':
+            if d != s[i]: out.append((float(s[:i] + d + s[i + 1:]), f'digit {i - i0 + 1} after the point {s[i]} -> {d}'))
+        if i + 1 < len(s) and s[i] != s[i + 1]:
+            out.append((float(s[:i] + s[i + 1] + s[i] + s[i + 2:]), f'digits {i - i0 + 1}-{i - i0 + 2} after the point swapped'))
+    # the whole-degree digit too (43.3 typed for 43.5 is a decimal; 71 for 72 is the units digit)
+    w = int(abs(float(v))); sg = -1 if float(v) < 0 else 1
+    for d in (-1, 1): out.append((sg * (abs(float(v)) + d), f'whole degree {w} -> {w + d}'))
+    return out
+
+
+def pin_pattern(la, lo, rec):
+    """How the pin looks wrong against the right land: ('typo', why) / ('one_coord', why) / ('rounded', why) / ('elsewhere', why)."""
+    b = box(rec)
+    small = bool(b) and math.hypot((b[3] - b[1]) * 110.57, (b[2] - b[0]) * 111.32 * math.cos(math.radians((b[1] + b[3]) / 2))) <= SMALL_KM
+    for which, val in (('latitude', la), ('longitude', lo)) if small else ():
+        for nv, how in one_digit_fixes(val):
+            q = (nv, lo) if which == 'latitude' else (la, nv)
+            d = km(rec, *q)
+            if d is not None and d <= TYPO_KM:
+                return 'typo', f"the {which} looks mistyped: {val} with {how} ({nv:g}) lands {d:.1f} km from the land"
+    if small:
+        lat_ok = b[1] - COORD_MATCH <= la <= b[3] + COORD_MATCH; lon_ok = b[0] - COORD_MATCH <= lo <= b[2] + COORD_MATCH
+        if lat_ok != lon_ok:
+            good, bad = ('latitude', 'longitude') if lat_ok else ('longitude', 'latitude')
+            return 'one_coord', f"the pin's {good} matches the land but its {bad} is off ({la}, {lo}), so the {bad} may be mistyped"
+    if decimals(la) <= 2 and decimals(lo) <= 2:
+        return 'rounded', f'the pin is a rough 2-decimal point ({la}, {lo}), only an approximate location'
+    return 'elsewhere', f'the pin ({la}, {lo}) is simply away from the land'
+
+
+# ---- the verdict
+def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None):
+    """p = the park's key row; pin = (lat, lon) or None; recs = {record id: saved record with '_r' rings} (may be partial);
+    override = the park's overrides.json entry. Returns {park, verdict, confidence, recommend, reasons, records}."""
+    R = {'park': ref, 'name': p.get('n') or '', 'type': p.get('t') or '', 'state': listed_state or '', 'verdict': 'needs a person',
+         'confidence': 'low', 'recommend': 'a person looks (nothing changed)', 'reasons': [], 'records': []}
+    why = R['reasons']
+    cands = [x for x in (p.get('m') or []) + (p.get('c') or []) if isinstance(x, list) and x]
+    held = (p.get('held') or {}).get('ids') or ([p['bk'][0]] if p.get('bk') else [])
+    held = [str(h) for h in held if h is not None]
+    # a saved outline counts only when it is still the record the key names (ids can be reused between reads: cow910)
+    recs = {str(x[0]): recs[str(x[0])] for x in cands if str(x[0]) in recs
+            and any(same_name(x[1], recs[str(x[0])].get(k)) for k in ('Unit_Nm', 'Loc_Nm'))}
+    km_bk = (p.get('bk') or [None, None])[1]
+    # 1. same land, new id
+    ov_ids = join_ids(override)
+    have = {str(x[0]) for x in cands}
+    joined = bool(p.get('m')) and p.get('g') != 'pin'
+    if ov_ids and not joined and not (set(ov_ids) & have):
+        new = [x for x in cands if same_name(p.get('n'), x[1])]
+        bk_id = str((p.get('bk') or [None])[0])
+        new.sort(key=lambda x: str(x[0]) != bk_id)
+        if new and isinstance(km_bk, (int, float)) and km_bk <= NEAR_KM:
+            x = new[0]
+            left = sorted(core(p.get('n')) - core(x[1]))
+            R.update(verdict='same land new ID', confidence='medium' if left else 'high', recommend=f"re-point the hand join {', '.join(ov_ids)} -> {x[0]} ({x[1]})")
+            why.append(f"overrides.json joins {', '.join(ov_ids)}, which is no longer in the key")
+            why.append(f"{x[0]} has the park's name ({x[1]}, ~{x[2]:,} ac) and is {km_bk} km from the pin: the same land under a new id")
+            twins = [str(y[0]) for y in new[1:] if y[1] == x[1] and y[2] == x[2]]
+            if left: why.append(f"the record's name leaves out {' '.join(left)!r}, so check it is the same place")
+            if twins: why.append(f"{', '.join(twins)} is the same feature again (same name and acres), not a second candidate")
+            return R
+    if not pin or pin[0] in (None, '') or pin[1] in (None, '') or (abs(float(pin[0])) < .01 and abs(float(pin[1])) < .01) \
+            or abs(float(pin[0])) > 90 or abs(float(pin[1])) > 180:
+        why.append('POTA has no usable pin, so the land cannot be checked against it'); return R
+    la, lo = float(pin[0]), float(pin[1])
+    hrec = [(h, recs.get(h)) for h in held]
+    for h, rec in hrec:
+        nm = next((x[1] for x in cands if str(x[0]) == h), '')
+        R['records'].append({'id': h, 'name': nm, 'points': n_points(rec) if rec else None,
+                             'measured_ac': round(acres(rec), 1) if rec else None, 'claimed_ac': (rec or {}).get('GIS_Acres'),
+                             'km': round(km(rec, la, lo), 2) if rec and rings(rec) else None})
+    # 2. land wrong: another same-name candidate holds the pin
+    others = []
+    for x in cands:
+        if str(x[0]) in held or not same_name(p.get('n'), x[1]): continue
+        rec = recs.get(str(x[0]))
+        d = km(rec, la, lo) if rec else None
+        if d is not None and d <= NEAR_KM: others.append((d, not isinstance(x[0], int), -(x[2] or 0), x))
+    held_near = [h for h, rec in hrec if rec is not None and rings(rec) and km(rec, la, lo) <= NEAR_KM]
+    if held_near:
+        why.append(f"the pin is {'inside' if km(recs[held_near[0]], la, lo) == 0 else 'next to'} the held {held_near[0]} on the saved outline, "
+                   f"so the key's {km_bk} km came from its coarse working copy; a person checks the held record")
+        return R
+    if others and held:
+        others.sort(key=lambda t: t[:3]); x = others[0][3]
+        R.update(verdict='land wrong', confidence='high', recommend=f"join {x[0]} ({x[1]}) and drop the held {', '.join(held)}")
+        why.append(f"the POTA pin is {'inside' if others[0][0] == 0 else f'{others[0][0]:.1f} km from'} {x[0]} ({x[1]}, ~{x[2]:,} ac)")
+        for h, rec in hrec:
+            d = km(rec, la, lo) if rec else None
+            nm = next((y[1] for y in cands if str(y[0]) == h), h)
+            why.append(f"the held {h} ({nm}) is " + (f'{d:.1f} km away' if d is not None else f'{km_bk} km away (key)') + ': a different piece of land')
+        return R
+    if not held:
+        why.append('the key names no held record'); return R
+    h, rec = hrec[0]
+    hname = next((x[1] for x in cands if str(x[0]) == h), '')
+    if rec is None or not rings(rec):
+        why.append(f'no saved outline for {h} in this build, so its shape could not be checked'); return R
+    # 3. sliver
+    pts, mac, cac = n_points(rec), acres(rec), float(rec.get('GIS_Acres') or 0)
+    if LINEAR.search(R['type']) and pts <= SLIVER_PTS:
+        why.append(f"{h}'s outline is {pts} points, but a {R['type'].lower()} is thin by nature, so the sliver check does not apply")
+        return R
+    if pts <= SLIVER_PTS and (mac < SLIVER_AC or (cac > 0 and mac < .01 * cac)):
+        R.update(verdict='sliver', confidence='high', recommend=f'KEEP HOLDING: {h} is a broken polygon; look for a proper outline of {hname or p.get("n")} ({PIN_NEVER})')
+        why.append(f"{h}'s outline is {pts} points and {mac:.2f} acres" + (f', though it claims {cac:,.0f} acres' if cac else ''))
+        why.append(f"so its {km_bk} km from the pin means nothing; the pin may well be inside the real area")
+        return R
+    # 4. the name must match
+    if not same_name(p.get('n'), hname):
+        why.append(f"the held record's name ({hname}) does not match the park's ({p.get('n')})"); return R
+    named = [x for x in cands if same_name(p.get('n'), x[1])]
+    far_twins = []
+    for x in named:
+        r2 = recs.get(str(x[0]))
+        if r2 is None or str(x[0]) == h: continue
+        c1, c2 = centre(rec), centre(r2)
+        if c1 and c2 and math.hypot((c1[0] - c2[0]) * 110.57, (c1[1] - c2[1]) * 111.32 * math.cos(math.radians(c1[0]))) > 30 and core(x[1]) == core(hname):
+            far_twins.append(x)
+    if far_twins:
+        why.append(f"two places share the name: {h} and {', '.join(str(x[0]) for x in far_twins)} are over 30 km apart"); return R
+    # 5. acres
+    if cac > 0 and mac > 0 and not (1 / ACRE_RATIO <= mac / cac <= ACRE_RATIO):
+        why.append(f"{h}'s outline measures {mac:,.0f} acres but the record claims {cac:,.0f}"); return R
+    # 6. wrong state
+    c = centre(rec)
+    land_st = state_of(*c, path=states_path) if c else None
+    pin_st = state_of(la, lo, path=states_path)
+    st = (listed_state or '').replace('US-', '')
+    if land_st and st and land_st != st and pin_st == st:
+        R.update(verdict='wrong state', confidence='high',
+                 recommend=f"override: keep {h} ({hname}) and flag the POTA listing: the land is in {land_st}, POTA lists {st} ({PIN_NEVER})")
+        why.append(f"{hname} lies in {land_st}; POTA lists the park in {st} and its pin sits in {st}, {km_bk} km from the land")
+        why.append('there is only one place with this name in the key, so the land is right and the listing looks wrong')
+        return R
+    # 7. pin wrong
+    kind, how = pin_pattern(la, lo, rec)
+    conf = 'high'
+    if re.search(r'\bwilderness area\b', R['type'], re.I) and re.search(r'^wsa', h):
+        conf = 'medium'; why_k = f"POTA calls it a Wilderness Area but {h} is a Wilderness Study Area (a different kind), so the pin is unexplained"
+    else: why_k = None
+    R.update(verdict='pin wrong', confidence=conf, recommend=f"override: keep {', '.join(held)} ({hname}) ({PIN_NEVER})")
+    why.append(f"{h} is the park's land: same name ({hname})" + (f', ~{cac:,.0f} acres' if cac else f', {mac:,.0f} acres measured'))
+    why.append(how)
+    if why_k: why.append(why_k)
+    return R
+
+
+# ---- the run
+def load_recs(cache_dir, st):
+    f = pathlib.Path(cache_dir) / f'US-{st}.json.gz'
+    if not f.exists(): return {}
+    try: return {str(r.get('OBJECTID')): r for r in json.load(gzip.open(f, 'rt', encoding='utf-8')).get('recs') or []}
+    except Exception: return {}  # noqa: BLE001
+
+
+def join_ids(override):
+    """The record ids an overrides.json 'join' names (a 'join' can also name a place by its name: those are not ids)."""
+    return [str(x) for x in ((override or {}).get('join') or []) if re.fullmatch(r'[a-z]{0,8}\d+', str(x).strip())]
+
+
+def drift(p, override):
+    """A hand join whose ids are all gone, on a park the key left without an outline."""
+    ids = join_ids(override)
+    if not ids or (p.get('m') and p.get('g') != 'pin'): return False
+    return not (set(ids) & {str(x[0]) for x in (p.get('m') or []) + (p.get('c') or []) if x})
+
+
+def todo(p):
+    return bool(p.get('held')) or p.get('far') == 'well outside' or bool(p.get('pin_may_be_wrong'))
+
+
+def run(env=None, root='.'):
+    env = env or os.environ; root = pathlib.Path(root)
+    pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
+    cache = env.get('GEO_CACHE') or str(root / 'cache/us')
+    ov = {}
+    try: ov = json.load(open(root / 'data/us-key/overrides.json', encoding='utf-8')).get('parks') or {}
+    except Exception: pass  # noqa: BLE001
+    out = []
+    for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):
+        st = pathlib.Path(f).stem[3:]
+        try: parks = json.load(open(f, encoding='utf-8')).get('parks') or {}
+        except Exception: continue  # noqa: BLE001
+        pick = {r: p for r, p in parks.items() if isinstance(p, dict) and (todo(p) or drift(p, ov.get(r)))}
+        if not pick: continue
+        try: pins = json.load(open(pi_dir / f'US-{st}.json', encoding='utf-8')).get('parks') or {}
+        except Exception: pins = {}  # noqa: BLE001
+        recs = load_recs(cache, st)
+        for r, p in sorted(pick.items()):
+            row = pins.get(r) or []
+            out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st))
+    stem = pathlib.Path(env.get('OUT') or root / 'data/us-key/review/problem-solver')
+    stem.parent.mkdir(parents=True, exist_ok=True)
+    n = {}
+    for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
+    json.dump({'about': 'recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)',
+               'counts': n, 'parks': out}, open(str(stem) + '.json', 'w', encoding='utf-8'), indent=1)
+    open(str(stem) + '.md', 'w', encoding='utf-8').write(md(out, n))
+    print(f'problem solver: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
+    return out
+
+
+def md(out, n):
+    L = ['# Problem solver: a recommended fix for each held park', '',
+         'Recommendations only. Nothing here is applied, and no POTA pin is ever moved. A person applies each one.', '',
+         ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'Nothing held.', '',
+         '| Park | Name | Verdict | Confidence | Recommended fix | Why |', '|---|---|---|---|---|---|']
+    for x in out:
+        L.append(f"| {x['park']} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} |".replace('\n', ' '))
+    return '\n'.join(L) + '\n'
+
+
+# ---- the selftest: Research Bot's 17 calls (Nov 7, approved by Brandon 4:54 PM CST)
+EXPECT = {'US-0150': 'pin wrong', 'US-10281': 'pin wrong', 'US-11401': 'pin wrong', 'US-12028': 'pin wrong', 'US-4894': 'pin wrong',
+          'US-4933': 'pin wrong', 'US-4934': 'pin wrong', 'US-4955': 'pin wrong', 'US-5789': 'pin wrong', 'US-5869': 'pin wrong',
+          'US-6197': 'pin wrong', 'US-6202': 'pin wrong', 'US-13039': 'wrong state', 'US-3917': 'land wrong',
+          'US-9678': 'same land new ID', 'US-11748': 'sliver', 'US-5782': 'sliver'}
+
+
+def selftest(path=None):
+    fx = json.load(open(path or ROOT / 'tests/fixtures/problem-solver-17.json', encoding='utf-8'))
+    bad = 0
+    for ref, c in sorted(fx['parks'].items()):
+        r = solve(ref, c['row'], c['pin'], c['recs'], c.get('override'), c['state'])
+        ok = r['verdict'] == EXPECT[ref]
+        bad += not ok
+        print(('ok  ' if ok else 'FAIL') + f" {ref} {r['verdict']} ({r['confidence']}): {r['recommend']} | {'; '.join(r['reasons'])}")
+    return bad
+
+
+if __name__ == '__main__':
+    if '--selftest' in sys.argv: sys.exit(1 if selftest() else 0)
+    try: run()
+    except Exception as e:  # noqa: BLE001
+        print(f'::warning title=Problem solver::stopped ({type(e).__name__}: {str(e)[:160]}); the key build is not affected')
+    sys.exit(0)

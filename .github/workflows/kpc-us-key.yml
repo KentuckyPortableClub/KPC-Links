@@ -369,6 +369,23 @@ jobs:
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
+      - name: Problem solver (Brandon 4:55 PM CST Nov 7) - a RECOMMENDED fix for each held park (pin wrong / land wrong / same land new ID / sliver / wrong state / needs a person); recommends only, never applies, never moves a pin
+        id: kept_green_solver
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PARKINFO: .pi/data/parkinfo
+          GEO_CACHE: .solver-cache
+        run: |
+          # READ-ONLY: POTA's pins from KPC-Data (public, anonymous sparse clone, never pushed) and this repo's own boundary-cache
+          # release (only the states with a held or far park). Writes data/us-key/review/problem-solver.json + .md, nothing else.
+          GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { kpc_rc=$?; echo "::warning title=Problem solver::KPC-Data pins not read (exit $kpc_rc): every park goes to a person this build"; echo "Problem solver - KPC-Data pins not read (exit $kpc_rc): every park goes to a person this build" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          mkdir -p .solver-cache
+          for st in $(python3 -c "import glob,json,os,sys; sys.path.insert(0,'.github/scripts'); import kpc_problem_solver as S; ov=json.load(open('data/us-key/overrides.json')).get('parks',{}); print(' '.join(sorted({os.path.basename(f)[3:5] for f in glob.glob('data/us-key/US-??.json') for r,p in (json.load(open(f)).get('parks') or {}).items() if isinstance(p,dict) and (S.todo(p) or S.drift(p, ov.get(r)))})))" 2>/dev/null); do
+            gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .solver-cache --clobber 2>/dev/null || { kpc_rc=$?; echo "::notice title=Problem solver::no saved outlines for $st (exit $kpc_rc; its parks go to a person)"; echo "Problem solver - no saved outlines for $st (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          done
+          python3 .github/scripts/kpc_problem_solver.py || { kpc_rc=$?; echo "::warning title=Problem solver::stopped (exit $kpc_rc); the key build is not affected"; echo "Problem solver - stopped (exit $kpc_rc); the key build is not affected" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          rm -rf .pi .solver-cache
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
