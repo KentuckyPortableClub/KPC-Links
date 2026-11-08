@@ -241,15 +241,34 @@
       return (j.features || []).filter(f => f && f.geometry && /Polygon/.test(f.geometry.type)).map(f => slRec(L, f)).filter(x => x.name && x.name !== L.label); }
     finally { clearTimeout(t); }
   }
+  /* follow-up to #94: Kentucky's official layers are the club's own map files (the same ones Check all uses), read from this site */
+  const LOCAL = {};
+  async function slLocal(L, kind, arg) {
+    if (!/^[\w.-]+\.geojson$/.test(L.url)) throw new Error('not an allowed source');
+    if (!LOCAL[L.url]) LOCAL[L.url] = (async () => {
+      const r = await fetch(L.url); if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json();
+      let own = {}; if (L.owners) { try { const o = await (await fetch(L.owners)).json(); own = (o && o.wmas) || {}; } catch (e) {} }
+      const LL = L.owners ? Object.assign({}, L, { facts: Object.assign({ owner: '_owner' }, L.facts || {}) }) : L;
+      return (j.features || []).map((f, i) => {
+        const a = Object.assign({}, f.properties || {}), w = own[a[L.field]]; if (w && w.says) a._owner = String(w.says).replace(/^owned by\s*/i, '').replace(/\.$/, '');
+        const rec = slRec(LL, { id: i, properties: a, geometry: f.geometry }); rec.link = a.URL || L.url; return rec;
+      }).filter(x => x.geom && /Polygon/.test(x.geom.type) && x.name && x.name !== L.label);
+    })().catch(e => { delete LOCAL[L.url]; throw e; });
+    const all = await LOCAL[L.url];
+    if (kind === 'state') return all;
+    if (kind === 'pin') { const d = 6 / 111, dx = d / Math.max(0.2, Math.cos(arg[0] * Math.PI / 180)), q = [arg[1] - dx, arg[0] - d, arg[1] + dx, arg[0] + d]; return all.filter(x => boxHit(bbox(x.geom), q, 0)); }
+    const w = norm(arg).split(' ').filter(x => x.length > 2).slice(0, 2); if (!w.length) return [];
+    return all.filter(x => { const n = norm(x.name); return w.every(t => n.includes(t)); });
+  }
   /* every ok layer for the place, 4 at a time: [{L, recs, err}] */
   async function slSearch(code, kind, arg) {
-    const LS = (await stateLayers(code)).filter(L => L.ok && L.field && !BANNED.test(L.url));
+    const LS = (await stateLayers(code)).filter(L => L.ok && L.field && !BANNED.test(L.url) && (L.local || /^https:\/\//.test(L.url)));
     const params = L => kind === 'state' ? { where: '1=1', resultRecordCount: 1000 }
       : kind === 'pin' ? (() => { const d = 6 / 111, dx = d / Math.max(0.2, Math.cos(arg[0] * Math.PI / 180)); return { where: '1=1', geometry: [arg[1] - dx, arg[0] - d, arg[1] + dx, arg[0] + d].join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' }; })()
       : (() => { const w = norm(arg).split(' ').filter(x => x.length > 2).slice(0, 2); return { where: w.length ? 'UPPER(' + L.field + ") LIKE '%" + w.join('%').toUpperCase().replace(/'/g, '%') + "%'" : '1=0' }; })();
     const out = LS.map(L => ({ L, recs: [], err: '' })); let k = 0;
     await Promise.all(Array.from({ length: Math.min(4, LS.length) }, async () => { while (k < out.length) { const o = out[k++];
-      try { o.recs = await slQuery(o.L, params(o.L), 25000); } catch (e) { o.err = e && e.name === 'AbortError' ? 'took too long' : String(e && e.message || e); } } }));
+      try { o.recs = o.L.local ? await slLocal(o.L, kind, arg) : await slQuery(o.L, params(o.L), 25000); } catch (e) { o.err = e && e.name === 'AbortError' ? 'took too long' : String(e && e.message || e); } } }));
     return { all: LS, out, skipped: (await stateLayers(code)).filter(L => !L.ok) };
   }
   const boxOf = gs => gs.map(bbox).filter(Boolean).reduce((a, b) => a ? [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])] : b, null);
@@ -446,6 +465,12 @@
     });
     return rows;
   }
+  /* the state-layer facts of a place for the full rules check: {owner:{v,src}, manager, designation, website}, plus the facts block */
+  function placeFacts(p) {
+    const sf = p.kind === 'state' ? Object.assign({}, p.facts || {}) : Object.assign({}, ...((p.also || []).map(x => x.facts || {}).reverse()));
+    const facts = {}; ['owner', 'manager', 'designation', 'website'].forEach(k => { if (sf[k]) facts[k] = sf[k]; });
+    return { name: p.name, box: boxOf(p.geoms), facts, html: factsHtml(p) };
+  }
   function factsHtml(p) {
     const R = factRows(p); if (!R.length || (p.kind !== 'state' && !(p.also || []).length)) return '';   /* PAD-US only: its own record card already shows these */
     return '<div class="mr-rs-checks mr-rs-facts"><b>Official record facts, by source</b><ul>' + R.map(r => '<li>' + esc(r.label) + ': ' + r.vals.map(x => (r.k === 'website' && /^https?:\/\//i.test(x.v) ? '<a href="' + esc(x.v) + '" target="_blank" rel="noopener">' + esc(x.v) + '</a>' : '<b>' + esc(x.v) + '</b>') + ' <small>(' + esc(x.src) + ')</small>').join(' \u00b7 ')
@@ -487,6 +512,8 @@
       const card0 = b.closest('details'); if (card0) card0.open = false;
       const st = $('mrCheckSt'); if (st && [...st.options].some(o => o.value === placeCode())) { st.value = placeCode(); st.dispatchEvent(new Event('change')); }
       if ($('mrCheckQ')) $('mrCheckQ').value = p.name;
+      /* follow-up to #94: the full check gets this place's facts from its state / province layers (owner, manager, designation, website) */
+      if (W.KPCMapCheck && W.KPCMapCheck.setPlaceFacts) W.KPCMapCheck.setPlaceFacts(placeFacts(p));
       if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
       showSpot();
     });
@@ -585,6 +612,6 @@
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { factRows, slRec, mergeSources, samePlace, srcStats, slSearch, stateLayers, geomAcres, capName, within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { placeFacts, factRows, slRec, mergeSources, samePlace, srcStats, slSearch, stateLayers, geomAcres, capName, within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();

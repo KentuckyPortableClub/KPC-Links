@@ -487,8 +487,9 @@
     const accVal = p.ACCESS || p.Pub_Access || (pad && pad.Pub_Access) || '';
     rules.push(accessRule(accVal, accField || 'ACCESS / Pub_Access'));
 
-    const des = p.TYPE || p.Loc_Ds || (pad && pad.Des_Tp) || (ctx.caExact && ctx.caExact.TYPE_E) || '';
-    const desField = p.TYPE ? 'TYPE' : (p.Loc_Ds ? 'Loc_Ds' : (pad && pad.Des_Tp ? 'PAD-US Des_Tp' : (ctx.caExact && ctx.caExact.TYPE_E ? 'CPCAD TYPE_E' : 'TYPE')));
+    const sDes = SF && SF.designation ? SF.designation.v : '';
+    const des = p.TYPE || p.Loc_Ds || (pad && pad.Des_Tp) || (ctx.caExact && ctx.caExact.TYPE_E) || sDes || '';
+    const desField = p.TYPE ? 'TYPE' : (p.Loc_Ds ? 'Loc_Ds' : (pad && pad.Des_Tp ? 'PAD-US Des_Tp' : (ctx.caExact && ctx.caExact.TYPE_E ? 'CPCAD TYPE_E' : (sDes ? 'designation field on ' + SF.designation.src : 'TYPE'))));
     if (des) rules.push(rule('pass', 'Has a designated name and purpose', desField, desField + ' = ' + des + '.'));
     else rules.push(rule('unknown', 'Has a designated name and purpose', 'TYPE / Des_Tp', 'No designation field is stored.'));
 
@@ -825,8 +826,19 @@
     setTimeout(() => { if (map) { map.invalidateSize(); dropPin(); } }, 80);
   }
 
+  /* Nov 8 (follow-up to #94): FULL RULES CHECK on a search result hands over that place's facts from every source (state layers
+     included); the next check of that spot uses them, with 'sources differ' where they disagree. Kept 2 minutes, one place. */
+  let PLACE_HINT = null;
+  function setPlaceFacts(h) { PLACE_HINT = h ? Object.assign({ t: Date.now() }, h) : null; }
+  function hintFor(ctx) {
+    const h = PLACE_HINT; if (!h || Date.now() - h.t > 120000) return null;
+    const la = ctx.la != null ? ctx.la : ctx.lat, lo = ctx.lo != null ? ctx.lo : ctx.lon;
+    if (la != null && lo != null && h.box && !(la >= h.box[1] - 0.02 && la <= h.box[3] + 0.02 && lo >= h.box[0] - 0.02 && lo <= h.box[2] + 0.02)) return null;
+    return h;
+  }
   function renderContext(ctx) {
     const box = $('mrSpot'); if (!box) return;
+    const H = hintFor(ctx); if (H && !ctx.stateFacts && H.facts && Object.keys(H.facts).length) ctx.stateFacts = H.facts;
     const f = ctx.f, p = (f && f.properties) || {}, L = (f && f._L) || {};
     const R = rulesFor(ctx);
     const acres = ctx.acres || (f ? acresOfFeat(f) : 0) || (ctx.padExact && +ctx.padExact.GIS_Acres) || 0;
@@ -875,7 +887,7 @@
 <div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}${Number.isFinite(ctx.la) ? ' · grid ' + esc(grid(ctx.la, ctx.lo)) : ''}</p></div>
 <div class="mr-v ${vClass}" data-mr-verdict="${esc(vw)}"><b>${esc(vw)}</b></div>
 <div class="mr-sec"><h3>POTA status</h3><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
-<div class="mr-sec mr-official"><h3>Official record</h3>${official}</div>
+<div class="mr-sec mr-official"><h3>Official record</h3>${H && H.html ? H.html : ''}${official}</div>
 <div class="mr-sec"><h3>Official website and map</h3>${siteBlock(title, st, page, mapUrl, links, dirHtml)}</div>
 <div class="mr-sec"><h3>Rules checklist</h3>${rulesHtml(R, { name: title, place, county: ctx.county, hosts: hostsOf(links), padSearch })}${dirHtml}</div>
 ${ctx.overlapHtml || L.note ? `<div class="mr-sec"><h3>Overlaps, 2-fers and club notes</h3>${ctx.overlapHtml || ''}${L.note ? `<p>${esc(L.note)}</p>` : ''}</div>` : ''}
@@ -1481,5 +1493,5 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   wire();
-  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, syncPlace, rulesFor, map: () => map, pin: () => lastPin };
+  window.KPCMapCheck = { setPlaceFacts, hintFor, mount, find, showQuery, showPoint, showAll, ready, syncPlace, rulesFor, map: () => map, pin: () => lastPin };
 })();
