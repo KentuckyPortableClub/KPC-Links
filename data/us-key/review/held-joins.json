@@ -1,7 +1,32 @@
 {
  "key": "us",
- "count": 0,
+ "count": 2,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
- "parks": []
+ "parks": [
+  {
+   "park": "US-11748",
+   "area": "US-UT",
+   "name": "Cedar Mesa BLM Special Recreation Management Area",
+   "pin_km": 31.23,
+   "was_g": "official",
+   "held_ids": "rst14459",
+   "held_names": "Cedar Mesa",
+   "reason": "the nearest part of the joined outline is 31.2 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "US-5782",
+   "area": "US-UT",
+   "name": "Indian Creek BLM Special Recreation Management Area",
+   "pin_km": 33.61,
+   "was_g": "official",
+   "held_ids": "rst14458",
+   "held_names": "Indian Creek",
+   "reason": "the nearest part of the joined outline is 33.6 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  }
+ ]
 }

@@ -1,1 +1,3 @@
 park,area,name,pin_km,was_g,held_ids,held_names,reason,decided_by,to_keep_it
+US-11748,US-UT,Cedar Mesa BLM Special Recreation Management Area,31.23,official,rst14459,Cedar Mesa,the nearest part of the joined outline is 31.2 km from the POTA pin (over 15 km),Brandon standing rule 2026-11-05 verify-then-fix,a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)
+US-5782,US-UT,Indian Creek BLM Special Recreation Management Area,33.61,official,rst14458,Indian Creek,the nearest part of the joined outline is 33.6 km from the POTA pin (over 15 km),Brandon standing rule 2026-11-05 verify-then-fix,a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)

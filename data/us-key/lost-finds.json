@@ -1,9 +1,9 @@
 {
- "made": "2026-11-08 04:57 UTC",
+ "made": "2026-11-08 15:43 UTC",
  "counts": {
-  "A_decided_not_in_key": 121,
-  "B_sure_area_not_asked": 10,
-  "C_sure_line_not_drawn": 21
+  "A_decided_not_in_key": 106,
+  "B_sure_area_not_asked": 9,
+  "C_sure_line_not_drawn": 20
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
  "A": [
@@ -20,13 +20,6 @@
    "Fort Gaines National Historic Site",
    "join",
    "ines' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Fort Gaines' (chat 11 (Nov 1, by layer); applied by kpc_key_answers)"
-  ],
-  [
-   "US-0150",
-   "AK",
-   "Kodiak National Wildlife Refuge",
-   "join",
-   " FWS refuge outline (PAD-US 4957, 1,637,279 ac) is the park; the pin is by Kodiak town outside the refuge · replaces 2026-11-02 entry {\"no\": [\"fws448\", \"4005\"]}"
   ],
   [
    "US-0491",
@@ -97,13 +90,6 @@
    "White River National Wild and Scenic River",
    "alias",
    "2026-11-02 12:49: aliases-oct31 row YES 'White River (Oregon)' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-10281",
-   "AK",
-   "White Mountains National Recreation Area BLM Recreation Management Area",
-   "join",
-   " Brandon signed Nov 7 4:54 PM CST): BLM's White Mountains SRMA polygon is the park; pin ~25 km east of its edge · replaces 2026-11-02 entry {\"no\": [\"rst11010\"]}"
   ],
   [
    "US-10431",
@@ -246,13 +232,6 @@
    ": same place, official name written differently · Nov 2 map audit: chat 11 NO on 166717 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   ],
   [
-   "US-11401",
-   "MA",
-   "Cummington Wildlife Management Area",
-   "join",
-   "c in four sections on Route 9 in Cummington; the joined MassGIS / PAD-US pieces (~425 ac) are it; pin ~15 km north · replaces 2026-11-02 entry {\"no\": [\"55327\"]}"
-  ],
-  [
    "US-11652",
    "UT",
    "Burbank Hills One Day Ride BLM Recreation Management Area",
@@ -279,13 +258,6 @@
    "Coronado Historic Site",
    "join, alias",
    "ecord; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Coronado Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
-   "US-12028",
-   "OK",
-   "Barren Fork Wildlife Management Area",
-   "join",
-   "signed Nov 7 4:54 PM CST): ODWC Barren Fork WMA (~497-507 ac, eastern Adair County); pin ~28 km west near Tahlequah · replaces 2026-11-02 entry {\"no\": [\"odw7\"]}"
   ],
   [
    "US-12122",
@@ -356,13 +328,6 @@
    "Spiral Jetty NPS National Historic Site",
    "join",
    "2026-11-02 13:05: layers row YES 'Spiral Jetty' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-13039",
-   "NV",
-   "Owyhee River Wilderness Area",
-   "join",
-   "7-1649.md; Brandon signed Nov 7 4:54 PM CST): the one Owyhee River Wilderness (BLM, Idaho); POTA lists it in NV with a pin 28 km south: flag the listing to POTA"
   ],
   [
    "US-13097",
@@ -484,13 +449,6 @@
    "recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'The Conservation Fund - Palmetto-Peartre' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   ],
   [
-   "US-3917",
-   "SC",
-   "Little Pee Dee Bay Heritage Preserve",
-   "join",
-   "ct is 21 km away (Brandon OK Nov 7) · confirmed by research pins17-recommendations-20261107-1649.md: join 254041, drop 254129 (Brandon signed Nov 7 4:54 PM CST)"
-  ],
-  [
    "US-3950",
    "TN",
    "Lauderdale Waterfowl Wildlife Management Area",
@@ -526,34 +484,6 @@
    "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
   ],
   [
-   "US-4894",
-   "NH",
-   "Davis-White State Forest",
-   "join",
-   "4:54 PM CST): GRANIT has one Davis-White State Forest (NH Forests & Lands, GRANIT 990); pin 55 km away looks wrong · replaces 2026-11-02 entry {\"no\": [\"56963\"]}"
-  ],
-  [
-   "US-4933",
-   "NH",
-   "Merrimack River State Forest",
-   "join",
-   "Brandon signed Nov 7 4:54 PM CST): GRANIT 4054 + 4139 in Boscawen; pin longitude looks mistyped (-71.96 vs -71.63) · replaces 2026-11-02 entry {\"no\": [\"56999\"]}"
-  ],
-  [
-   "US-4934",
-   "NH",
-   "Merriman State Forest",
-   "join",
-   "1107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 1069 + PAD-US 57000 agree; pin longitude looks mistyped · replaces 2026-11-02 entry {\"no\": [\"sgnhc317\"]}"
-  ],
-  [
-   "US-4955",
-   "NH",
-   "Saltmarsh Pond State Forest",
-   "join",
-   "649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 3433 (Gilmanton); pin latitude looks mistyped (43.3 vs 43.5) · replaces 2026-11-02 entry {\"no\": [\"sgnhc2115\"]}"
-  ],
-  [
    "US-5564",
    "VT",
    "Essex Nursery State Forest",
@@ -573,20 +503,6 @@
    "Fish Forde BLM Recreation Management Area",
    "alias",
    "2026-10-30 chat 2: the agency's own page spells it 'Fish Ford Recreation Site' (chat 9 website names); joins only with the pin inside"
-  ],
-  [
-   "US-5789",
-   "UT",
-   "Behind the Rocks Wilderness Area",
-   "join",
-   "ons-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM has one Behind the Rocks (WSA, two pieces) south of Moab; medium confidence, the pin is unexplained"
-  ],
-  [
-   "US-5869",
-   "UT",
-   "9 Mile Canyon BLM Recreation Management Area",
-   "join",
-   "esearch pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM Price FO 'Nine Mile Canyon' SRMA; not the Vernal-office 'Nine Mile' SRMA"
   ],
   [
    "US-5972",
@@ -629,20 +545,6 @@
    "Hermit's Cabin/Cave State Recreation Area",
    "alias",
    "e name 'Hermit's Cabin' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
-  ],
-  [
-   "US-6197",
-   "WY",
-   "Popo Agie Wilderness Area",
-   "join",
-   "IDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS Popo Agie Wilderness boundary; the pin is a rough 2-decimal point"
-  ],
-  [
-   "US-6202",
-   "WY",
-   "North Absaroka Wilderness Area",
-   "join",
-   "research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS North Absaroka Wilderness boundary; the pin is a rough 2-decimal point"
   ],
   [
    "US-6212",
@@ -841,13 +743,6 @@
    " 11 YES (pin 850 m from the edge, 6094.1 ac; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   ],
   [
-   "US-9678",
-   "CO",
-   "Windy Gap Watchable State Wildlife Area",
-   "join",
-   "he reviewed join cow909 -> cow910: same CPW feature, new id (same name, 10 ac, 0.12 km); PAD-US 189801 confirms · replaces 2026-10-22 entry {\"join\": [\"cow909\"]}"
-  ],
-  [
    "US-9683",
    "CO",
    "Amache National Historic Site",
@@ -883,13 +778,6 @@
    "TVA Wheeler Dam Public Park National Recreation Area",
    "Wheeler",
    "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/Dispersed_Recreation_Areas/FeatureServer/0"
-  ],
-  [
-   "US-13181",
-   "NV",
-   "Pine Forest BLM Recreation Management Area",
-   "Pine Forest",
-   "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0"
   ],
   [
    "US-13183",
@@ -972,7 +860,7 @@
   ],
   [
    "US-10421",
-   "WA",
+   "ID",
    "International Selkirk Loop National Scenic Byway National Parkway",
    "International Selkirk Loop",
    "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
@@ -1039,13 +927,6 @@
    "Jarbidge River Recreation Site BLM Recreation Management Area",
    "Jarbidge River",
    "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0"
-  ],
-  [
-   "US-13622",
-   "AR",
-   "The Razorback Regional Greenway National Recreation Trail",
-   "Razorback Regional Greenway",
-   "https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5"
   ],
   [
    "US-6079",
