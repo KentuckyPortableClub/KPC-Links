@@ -160,6 +160,19 @@ def point_in(geom, la, lo):
 
 
 # ---- the comparison
+def released_tree(k, env, cwd='.'):
+    """Nov 8 (Quality, US-42446831487): the RELEASED key (KPC-Data data/<kind>-key, what users get), so outline -> pin is also
+    measured against what shipped, not only the previous build (the waiting-room copy). RELEASED_DIR = that folder's parent
+    ('released' in the key-check workflow); returns ({area: file}, folder) or ({}, None) when it is not there."""
+    d = KEYS[k]['dir']
+    for base in [env.get('RELEASED_DIR'), 'released']:
+        if not base: continue
+        root = base if os.path.isabs(base) else os.path.join(cwd, base)
+        f = os.path.join(root, d)
+        if os.path.isdir(f) and glob.glob(os.path.join(f, KEYS[k]['glob'])): return load_tree(k, None, cwd=root), f
+    return {}, None
+
+
 def compare(new, old):
     N, O = parks_of(new), parks_of(old)
     R = {'gained': sorted(set(N) - set(O)), 'lost': sorted(set(O) - set(N)), 'outline_to_pin': [], 'pin_to_outline': [], 'outline_changed': []}
@@ -360,6 +373,8 @@ def md(rep):
     sec('Gained', c['gained'], lambda r: f'- {r}')
     sec('Lost', c['lost'], lambda r: f'- {r}')
     sec('Outline -> pin', c['outline_to_pin'], lambda r: f'- {r}')
+    if c.get('released'):
+        sec(f"Outline -> pin against the RELEASED key ({c['released'].get('build') or 'KPC-Data'})", c['released']['outline_to_pin'], lambda r: f'- {r}')
     sec('Pin -> outline', c['pin_to_outline'], lambda r: f'- {r}')
     sec('Outline changed (joined ids differ: its 2-fers need a rerun)', c['outline_changed'], lambda r: f'- {r}')
     sec("A person's signed answer the key does not follow", rep['answer_sheet']['signed_disagree'], lambda x: f"- {x['park']}: sheet {x['sheet']} {x['id']} {x['name']} by {x['who']}; key: {x['key']}")
@@ -405,6 +420,13 @@ def run(env=None, cwd='.'):
     build = idx.get('build') or (('run-' + env['BUILD']) if env.get('BUILD') else '') or ('git-' + newest[:9] if newest else 'unknown')   # the key's own stamp first
     build = re.sub(r'[^A-Za-z0-9._-]', '-', str(build))
     N, O, ch = compare(new, old)
+    rel, rel_dir = released_tree(k, env, cwd)
+    if rel_dir:
+        _rx = PC.load(os.path.join(rel_dir, 'index.json'), {}) if PC else {}
+        _, RO, rch = compare(new, rel)
+        ch['released'] = {'build': _rx.get('build') or '', 'dir': rel_dir, 'parks': len(RO), 'gained': rch['gained'], 'lost': rch['lost'],
+                          'outline_to_pin': rch['outline_to_pin'], 'pin_to_outline': rch['pin_to_outline']}
+    else: notes.append('released key not found (RELEASED_DIR / ./released/data/<kind>-key): outline -> pin is measured against the previous build only')
     here = os.getcwd()
     try:
         os.chdir(cwd); pins = PC.pota_pins() if PC else {}
@@ -441,6 +463,12 @@ def run(env=None, cwd='.'):
         rep['problem_solver'] = ps.get('parks') or []; rep['summary']['problem solver verdicts'] = len(rep['problem_solver'])
         for v, n in sorted((ps.get('counts') or {}).items()): rep['summary'][f'problem solver: {v}'] = n
     except Exception: rep['problem_solver'] = None  # noqa: BLE001
+    if ch.get('released'):
+        _r = ch['released']
+        rep['summary'][f"outline -> pin vs released ({_r['build'] or 'KPC-Data'})"] = len(_r['outline_to_pin'])
+        rep['summary'][f"pin -> outline vs released ({_r['build'] or 'KPC-Data'})"] = len(_r['pin_to_outline'])
+        rep['summary']['gained / lost vs released'] = f"{len(_r['gained'])} / {len(_r['lost'])}"
+        if _r['outline_to_pin']: note('warning', f"{k} key {build}: {len(_r['outline_to_pin'])} outline -> pin against the RELEASED key {_r['build']}: {', '.join(_r['outline_to_pin'][:15])}")
     rep['pin_jump'] = pj = pin_jump(ch)
     rep['summary'][f'countries with {PIN_JUMP}+ outline -> pin (a lost source layer?)'] = len(pj)
     if pj:

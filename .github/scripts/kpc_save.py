@@ -8,11 +8,26 @@ save_text(path, text) - the same for review pages and other text files.
 Both return True when the file was written. Each bot keeps its OWN status file, data/status/<script>.json, so two bots
 running at the same time never edit the same file (a shared one would clash when both push)."""
 import json
+import os
 import pathlib
+import re
 import sys
 import time
 
-STATUS = pathlib.Path('data/status') / (pathlib.Path(sys.argv[0] or 'bot').stem + '.json')
+
+def status_name(argv0=None, env=None):
+    """The status file stem for this bot. Nov 8 (Quality): a workflow's inline 'python3 - <<EOF' has argv[0] '-', which wrote
+    data/status/-.json. KPC_STATUS_NAME wins; an inline script ('-', '-c', '') is named after its workflow (inline-<workflow>)."""
+    env = os.environ if env is None else env
+    if env.get('KPC_STATUS_NAME'): return re.sub(r'[^A-Za-z0-9._-]+', '-', env['KPC_STATUS_NAME']).strip('-.') or 'bot'
+    stem = pathlib.Path(argv0 if argv0 is not None else (sys.argv[0] if sys.argv else '')).stem
+    if stem in ('', '-', '-c') or not re.search(r'[A-Za-z0-9]', stem):
+        wf = re.sub(r'[^a-z0-9]+', '-', str(env.get('GITHUB_WORKFLOW') or '').lower()).strip('-')
+        return 'inline-' + wf if wf else 'inline'
+    return stem
+
+
+STATUS = pathlib.Path('data/status') / (status_name() + '.json')
 STAMPS = ('updated', 'saved', 'when')
 _changed = {}
 

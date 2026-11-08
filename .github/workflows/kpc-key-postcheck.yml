@@ -54,6 +54,17 @@ jobs:
             data/world-bounds
             data/acres.json
           persist-credentials: false
+      - name: Read-only copy of the RELEASED keys (KPC-Data; Nov 8 Quality - outline -> pin vs what shipped, not only the waiting room)
+        continue-on-error: true
+        uses: actions/checkout@v5
+        with:
+          repository: KentuckyPortableClub/KPC-Data
+          path: released
+          sparse-checkout: |
+            data/us-key
+            data/ca-key
+            data/world-key
+          persist-credentials: false
       - name: Pre-check (REVIEW_PILE, RULE 18, bad-pin flags) into a temp folder
         continue-on-error: true
         run: |
@@ -78,6 +89,7 @@ jobs:
           FORCE: ${{ inputs.force }}
           ANSWER_SHEET: kpcdata/data/answer-sheet
           PRECHECK_OUT: /tmp/kpc-precheck
+          RELEASED_DIR: released
         run: python3 .github/scripts/kpc_key_postcheck.py
       - name: Key health diff (Nov 6 improvements 3; OPTIONAL, workflow_dispatch with health=yes only)
         # Brandon directly in Mapping's chat, 4:58 PM CST Nov 5. Read-only like the steps above: compares this key with the previous

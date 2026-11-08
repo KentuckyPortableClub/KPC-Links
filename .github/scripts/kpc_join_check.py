@@ -79,12 +79,20 @@ def linear(p):
     return bool(LINEAR_KIND.search(str(p.get('t') or '')))
 
 
+SIGNED, SIGNED_BY = {}, {}   # {ref: ids + names} of overrides.json joins that carry decided_by (filled by approvals())
+
+
 def approvals(root, kind, env):
     """{ref: set(ids and names)} a person approved: overrides.json 'join' + signed answer-sheet rows. (map, sheet file or None)"""
-    ok = {}
+    ok = {}; SIGNED.clear(); SIGNED_BY.clear()
     try:
         for r, v in ((json.load(open(os.path.join(root, DIRS[kind][0], 'overrides.json'), encoding='utf-8')).get('parks')) or {}).items():
-            if isinstance(v, dict) and v.get('join'): ok.setdefault(r, set()).update(str(x) for x in v['join'])
+            if isinstance(v, dict) and v.get('join'):
+                ok.setdefault(r, set()).update(str(x) for x in v['join'])
+                if str(v.get('decided_by') or '').strip():   # Nov 8 (Quality NO on US-42446831487): a SIGNED override (decided_by) is never held
+                    SIGNED.setdefault(r, set()).update(str(x) for x in v['join']); SIGNED_BY[r] = str(v['decided_by']).strip()
+                    for _id, _fp in ((v.get('fp') or {}).items() if isinstance(v.get('fp'), dict) else []):
+                        if isinstance(_fp, list) and _fp and _fp[0]: SIGNED[r].add(str(_fp[0]))
     except Exception: pass  # noqa: BLE001
     sheet = None
     for d in [env.get('ANSWER_SHEET'), os.path.join(root, 'data/answer-sheet'), os.path.join(root, '../kpcdata/data/answer-sheet')]:
@@ -102,6 +110,9 @@ def exempt(ref, p, ok):
     """Why a far join is NOT held ('' = it is held)."""
     m = [x for x in (p.get('m') or []) if isinstance(x, list) and x]
     if linear(p): return 'trail / linear feature (nearest part of the line measured)'
+    sg = SIGNED.get(ref) or set()
+    if any(str(x[0]) in sg or (len(x) > 1 and str(x[1]) in sg) for x in m):
+        return f"signed override in overrides.json (decided_by {SIGNED_BY.get(ref, 'a person')})"
     if any(str(x[3] if len(x) > 3 else '').lower().startswith('reviewed') for x in m):   # v2.1: a 'chat 11 YES' how no longer exempts
         return 'a person approved this join (reviewed)'
     got = ok.get(ref) or set()
