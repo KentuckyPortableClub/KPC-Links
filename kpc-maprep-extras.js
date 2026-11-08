@@ -115,6 +115,70 @@
   }
   if (D) { if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', watch); else watch(); }
 
-  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
+  /* Nov 8 (Brandon 8:49 / 8:50 AM CST): the PAD-US record, in plain words, near the top of a place card, plus one short line per
+     search result. Every code is shown with its meaning (the domains are copied from the PAD-US 4.0 service). */
+  const PAD = {
+    ver: 'USGS PAD-US 4.0 (released April 2024)', layer: 'Fee and Managers layer',
+    type: { FED: 'Federal', TRIB: 'American Indian Lands', STAT: 'State', DIST: 'Regional Agency Special District', LOC: 'Local Government', NGO: 'Non-Governmental Organization', PVT: 'Private', JNT: 'Joint', UNK: 'Unknown', TERR: 'Territorial', DESG: 'Designation' },
+    name: { TVA: 'Tennessee Valley Authority', BLM: 'Bureau of Land Management', BOEM: 'Bureau of Ocean Energy Management', USBR: 'Bureau of Reclamation', FWS: 'U.S. Fish and Wildlife Service', USFS: 'Forest Service', DOD: 'Department of Defense', USACE: 'Army Corps of Engineers', DOE: 'Department of Energy', NPS: 'National Park Service', NRCS: 'Natural Resources Conservation Service', ARS: 'Agricultural Research Service', BIA: 'Bureau of Indian Affairs', NOAA: 'National Oceanic and Atmospheric Administration', BPA: 'Bonneville Power Administration', OTHF: 'Other or Unknown Federal Land', TRIB: 'American Indian Lands', SPR: 'State Park and Recreation', SDC: 'State Department of Conservation', SLB: 'State Land Board', SFW: 'State Fish and Wildlife', SDNR: 'State Department of Natural Resources', SDOL: 'State Department of Land', OTHS: 'Other or Unknown State Land', REG: 'Regional Agency Land', RWD: 'Regional Water Districts', CITY: 'City Land', CNTY: 'County Land', UNKL: 'Other or Unknown Local Government', NGO: 'Non-Governmental Organization', PVT: 'Private', JNT: 'Joint', OTHR: 'Other', UNK: 'Unknown', VI: 'U.S. Virgin Islands Government', AS: 'American Samoa Government', GU: 'Guam Government', MP: 'Mariana Islands Government', PR: 'Puerto Rico Government', FM: 'Federated States of Micronesia Government' },
+    des: { NP: 'National Park', NM: 'National Monument', NCA: 'Conservation Area', NF: 'National Forest', NG: 'National Grassland', PUB: 'National Public Lands', NT: 'National Scenic or Historic Trail', NWR: 'National Wildlife Refuge', WA: 'Wilderness Area', WSR: 'Wild and Scenic River', WSA: 'Wilderness Study Area', MPA: 'Marine Protected Area', NRA: 'National Recreation Area', NSBV: 'National Scenic, Botanical or Volcanic Area', NLS: 'National Lakeshore or Seashore', IRA: 'Inventoried Roadless Area', ACEC: 'Area of Critical Environmental Concern', RNA: 'Research Natural Area', REC: 'Recreation Management Area', RMA: 'Resource Management Area', WPA: 'Watershed Protection Area', REA: 'Research or Educational Area', HCA: 'Historic or Cultural Area', MIT: 'Mitigation Land or Bank', MIL: 'Military Land', ACC: 'Access Area', SDA: 'Special Designation Area', PROC: 'Approved or Proclamation Boundary', FOTH: 'Federal Other or Unknown', ND: 'Not Designated', TRIBL: 'Native American Land Area', SP: 'State Park', SW: 'State Wilderness', SCA: 'State Conservation Area', SREC: 'State Recreation Area', SHCA: 'State Historic or Cultural Area', SRMA: 'State Resource Management Area', SOTH: 'State Other or Unknown', LP: 'Local Park', LCA: 'Local Conservation Area', LREC: 'Local Recreation Area', LHCA: 'Local Historic or Cultural Area', LRMA: 'Local Resource Management Area', LOTH: 'Local Other or Unknown', PCON: 'Private Conservation', PPRK: 'Private Park', PREC: 'Private Recreation or Education', PHCA: 'Private Historic or Cultural', PAGR: 'Private Agricultural', PRAN: 'Private Ranch', PFOR: 'Private Forest Stewardship', POTH: 'Private Other or Unknown', CONE: 'Conservation Easement', RECE: 'Recreation or Education Easement', HCAE: 'Historic or Cultural Easement', AGRE: 'Agricultural Easement', RANE: 'Ranch Easement', FORE: 'Forest Stewardship Easement', OTHE: 'Other Easement', UNKE: 'Unknown Easement', UNK: 'Unknown', OCS: 'Outer Continental Shelf Area', FACY: 'Facility' },
+    acc: { OA: 'Open Access', RA: 'Restricted Access', XA: 'Closed', UK: 'Unknown' },
+    gap: { '1': 'managed for biodiversity; natural disturbance allowed', '2': 'managed for biodiversity; natural disturbance suppressed', '3': 'multiple use (may allow mining, logging or off-road vehicles)', '4': 'no known biodiversity protection mandate' },
+    cat: { Fee: 'Fee (land owned outright)', Easement: 'Easement', Other: 'Other', Unknown: 'Unknown', Designation: 'Designation', Marine: 'Marine Area', Proclamation: 'Approved, Proclamation or Extent Boundary' }
+  };
+  const pEsc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const blank = v => v == null || String(v).trim() === '';
+  const code = (tbl, v) => blank(v) ? 'blank' : (tbl[v] ? v + ' = ' + tbl[v] : String(v));
+  const gov = t => t === 'FED' || t === 'STAT' || t === 'TERR';
+  function padHint(a) {
+    const acc = a.Pub_Access, h = [];
+    if (acc === 'OA') h.push('Public access: Open, which counts toward the public-access rule.');
+    else if (acc === 'RA') h.push('Public access: Restricted. Check with the agency what the limits are before counting it as open to the public.');
+    else if (acc === 'XA') h.push('Public access: Closed, which does not meet the public-access rule.');
+    else h.push('Public access: Unknown here. Ask the managing agency.');
+    if (a.Own_Type === 'JNT') h.push('Joint ownership: check that a federal or state owner is one of them.');
+    else if (!blank(a.Own_Type) && !gov(a.Own_Type)) h.push('Owner type is ' + (PAD.type[a.Own_Type] || a.Own_Type) + ', not federal or state.');
+    if (/proclamation/i.test(a.Category || '')) h.push('This is a proclamation boundary, not land actually owned.');
+    return h.join(' ');
+  }
+  function padSource(a) {
+    return 'Where this comes from: ' + PAD.ver + ', ' + PAD.layer + (blank(a.OBJECTID) ? '' : ', record OBJECTID ' + a.OBJECTID)
+      + '. PAD-US is the federal inventory of public lands and protected areas. It can be out of date, so confirm with the managing agency.';
+  }
+  function padCard(a, link) {
+    if (!a) return '';
+    const who = (nm, loc, ty) => [blank(loc) ? '' : loc, blank(nm) ? '' : '(' + code(PAD.name, nm) + ')'].filter(Boolean).join(' ') + ' · type ' + code(PAD.type, ty);
+    const rows = [
+      ['Name', a.Unit_Nm + (blank(a.Loc_Nm) || a.Loc_Nm === a.Unit_Nm ? '' : ' (local name ' + a.Loc_Nm + ')')],
+      ['Owner', who(a.Own_Name, a.Loc_Own, a.Own_Type)],
+      ['Manager', who(a.Mang_Name, a.Loc_Mang, a.Mang_Type)],
+      ['Designation', code(PAD.des, a.Des_Tp) + (blank(a.Loc_Ds) ? '' : ' · local: ' + (PAD.des[a.Loc_Ds] ? code(PAD.des, a.Loc_Ds) : a.Loc_Ds))],
+      ['Public access', code(PAD.acc, a.Pub_Access)],
+      ['GAP status', blank(a.GAP_Sts) ? 'blank' : 'GAP ' + a.GAP_Sts + ' = ' + (PAD.gap[String(a.GAP_Sts)] || 'not listed')],
+      ['GIS acres', blank(a.GIS_Acres) ? 'blank' : Number(a.GIS_Acres).toLocaleString('en-US') + ' acres'],
+      ['Land category', code(PAD.cat, a.Category)],
+      ['Date established', blank(a.Date_Est) ? 'blank' : a.Date_Est],
+      ['State', blank(a.State_Nm) ? 'blank' : a.State_Nm],
+      ['Source', [blank(a.GIS_Src) ? '' : a.GIS_Src, blank(a.Src_Date) ? '' : 'dated ' + a.Src_Date].filter(Boolean).join(', ') || 'blank'],
+      ['Data provider', blank(a.Agg_Src) ? 'blank' : a.Agg_Src],
+      ['Comments', blank(a.Comments) ? 'none' : a.Comments]
+    ];
+    if (a.Own_Type === 'JNT' || a.Mang_Type === 'JNT') rows.splice(3, 0, ['Joint ownership', 'Yes. Listed owners: ' + (blank(a.Loc_Own) ? 'not named' : a.Loc_Own)]);
+    rows.push(['Record ID', 'OBJECTID ' + (blank(a.OBJECTID) ? 'blank' : a.OBJECTID) + (blank(a.Source_PAID) ? '' : ' · Source_PAID ' + a.Source_PAID)]);
+    return '<div class="mr-padus" data-mr-padus="' + pEsc(a.OBJECTID) + '"><h4 style="margin:0 0 6px">PAD-US record</h4>'
+      + '<p class="mr-padhint"><b>' + pEsc(padHint(a)) + '</b></p>'
+      + '<table class="mr-recbox">' + rows.map(r => '<tr><th>' + pEsc(r[0]) + '</th><td>' + pEsc(r[1]) + '</td></tr>').join('') + '</table>'
+      + (link ? '<p class="mr-help"><a href="' + pEsc(link) + '" target="_blank" rel="noopener">Open PAD-US record ' + pEsc(a.OBJECTID) + ' ↗</a></p>' : '')
+      + '<p class="mr-help">' + pEsc(padSource(a)) + '</p></div>';
+  }
+  function padLine(a) {
+    if (!a) return 'PAD-US: no matching record';
+    const short = (nm, loc, ty) => (blank(loc) || /^(unknown|recorded|owner)$/i.test(loc) ? (PAD.name[nm] || nm || 'unknown') : loc) + (blank(ty) ? '' : ' (' + (PAD.type[ty] || ty) + ')');
+    return 'PAD-US: Owner ' + short(a.Own_Name, a.Loc_Own, a.Own_Type) + ' · Manager ' + short(a.Mang_Name, a.Loc_Mang, '')
+      + ' · Access ' + (({ OA: 'Open', RA: 'Restricted', XA: 'Closed', UK: 'Unknown' })[a.Pub_Access] || 'blank')
+      + ' · ' + (blank(a.Loc_Ds) ? (PAD.des[a.Des_Tp] || a.Des_Tp || 'no designation') : (PAD.des[a.Loc_Ds] || a.Loc_Ds));
+  }
+
+  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, padCard: padCard, padLine: padLine, padHint: padHint, padSource: padSource, PAD: PAD, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCMapExtras;
 })();

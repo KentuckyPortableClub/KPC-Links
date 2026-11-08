@@ -379,7 +379,7 @@
   }
 
   const PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query';
-  const PAD_FIELDS = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Name,Mang_Type,Own_Name,Own_Type,Loc_Own,Loc_Mang,Des_Tp,GIS_Acres,Source_PAID,State_Nm,Pub_Access,Category,GAP_Sts';
+  const PAD_FIELDS = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Name,Mang_Type,Own_Name,Own_Type,Loc_Own,Loc_Mang,Des_Tp,GIS_Acres,Source_PAID,State_Nm,Pub_Access,Category,GAP_Sts,Loc_Ds,Date_Est,Comments,Agg_Src,GIS_Src,Src_Date';
   const KDFWR_SEARCH = 'https://app.fw.ky.gov/Public_Lands_Search/default.aspx';
   const TIER_WORD = { FED: 'federal', STAT: 'state', LOC: 'county or city', PVT: 'private', NGO: 'non-profit', TRIB: 'tribal', JNT: 'joint', DIST: 'district', UNK: 'not stated', TERR: 'territorial' };
 
@@ -514,6 +514,17 @@
       "State_Nm='" + st + "' AND Unit_Nm LIKE '%" + clean.map(tc).join('%') + "%'",
       "State_Nm='" + st + "' AND Loc_Nm LIKE '%" + clean.map(w => w.toUpperCase()).join('%') + "%'"
     ];
+  }
+  /* Nov 8 (Brandon 8:50 AM CST): one short PAD-US line under each name-search result (the full record is on the opened card). */
+  async function padLines(list, st, my) {
+    const X = window.KPCMapExtras, box = $('mrSpot');
+    for (let i = 0; i < Math.min(list.length, 8); i++) {
+      const el = box && box.querySelector('[data-padline="' + i + '"]'); if (!el) continue;
+      let a = null; try { const r = await padusByName(list[i].name, st.code); a = r.filter(x => x._score >= 80 && !/proclamation/i.test(x.Category || ''))[0] || r.filter(x => x._score >= 80)[0] || null; } catch (e) {}
+      if (my !== gen) return;
+      el.textContent = X && X.padLine ? X.padLine(a) : (a ? 'PAD-US record ' + a.OBJECTID : 'PAD-US: no matching record');
+    }
+    for (let i = 8; i < list.length; i++) { const el = box && box.querySelector('[data-padline="' + i + '"]'); if (el) el.textContent = 'PAD-US: open this result to see the record'; }
   }
   async function padusQuery(where) {
     const j = await B().jget(PADUS + '?' + new URLSearchParams({ where, outFields: PAD_FIELDS, returnGeometry: false, f: 'json', resultRecordCount: '20' }), null, 12000).catch(() => null);
@@ -788,6 +799,7 @@
     const where = Number.isFinite(ctx.la) ? `${ctx.la.toFixed(5)}, ${ctx.lo.toFixed(5)}` : 'no pin yet';
     box.innerHTML = `<section class="mr-res" data-mr-result="spot">
 <div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}</p></div>
+${ctx.padExact && window.KPCMapExtras && KPCMapExtras.padCard ? `<div class="mr-sec mr-padtop">${KPCMapExtras.padCard(ctx.padExact, padLink(ctx.padExact))}</div>` : ''}
 <div class="mr-sec mr-official"><h3>1 · Official information</h3>${official}</div>
 <div class="mr-sec"><h3>2 · POTA status</h3><div class="mr-v ${vClass}" data-mr-verdict="${esc(summaryWord(R.summary))}"><b>${esc(summaryWord(R.summary))}</b></div><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
 <div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, ctx.padExact && ctx.padExact.Des_Tp].filter(Boolean).join(' '))}${rulesHtml(R)}</div>
@@ -1006,8 +1018,9 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     if (exact.length) {
       if (box) {
         box.innerHTML = `<div class="mr-res" data-mr-result="list"><div class="mr-head"><div class="mr-k">NAME SEARCH</div><h2>${exact.length} matches</h2><p>These names match in ${esc(st.name)}. Pick one.</p></div>
-<div class="mr-sec">${exact.map((h, i) => `<button type="button" class="mr-pick" data-hit="${i}"><b>${esc(h.name)}</b><span>${esc(h.ref || (st.local ? 'saved layer' : 'answer key'))} · ${h.score}</span></button>`).join('')}</div></div>`;
+<div class="mr-sec">${exact.map((h, i) => `<button type="button" class="mr-pick" data-hit="${i}"><b>${esc(h.name)}</b><span>${esc(h.ref || (st.local ? 'saved layer' : 'answer key'))} · ${h.score}</span><span class="mr-padline" data-padline="${i}">PAD-US: looking…</span></button>`).join('')}</div></div>`;
         box.querySelectorAll('[data-hit]').forEach(btn => btn.onclick = () => showHit(exact[+btn.dataset.hit]));
+        padLines(exact, st, my);
       }
       return hits;
     }
@@ -1021,7 +1034,7 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
       return hits;
     }
     const nearBtns = near.map((h, i) => `<button type="button" class="mr-pick" data-near="${i}"><b>${esc(h.name)}</b><span>Near match · ${esc(h.ref || st.name)}</span></button>`).join('');
-    const padBtns = padExact.concat(padNear).slice(0, 8).map(a => `<p class="mr-help"><a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a> · ${esc(a.Mang_Name || '')} · ${esc(a.Own_Name || '')} · ${a.GIS_Acres || 0} acres · Source_PAID ${esc(a.Source_PAID || 'blank')}</p>`).join('');
+    const padBtns = padExact.concat(padNear).slice(0, 8).map(a => `<p class="mr-help">${window.KPCMapExtras && KPCMapExtras.padLine ? `<b class="mr-padline">${esc(KPCMapExtras.padLine(a))}</b><br>` : ''}<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a> · ${esc(a.Mang_Name || '')} · ${esc(a.Own_Name || '')} · ${a.GIS_Acres || 0} acres · Source_PAID ${esc(a.Source_PAID || 'blank')}</p>`).join('');
     if (box) box.innerHTML = `<section class="mr-res" data-mr-result="none"><div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(q)}</h2></div>
 <div class="mr-sec mr-official"><h3>1 · Official information</h3>
 <div class="mr-miss"><b>Not an exact name in our ${esc(st.name)} layers.</b> ${near.length ? 'Near matches are listed below.' : (st.local ? 'Nothing in the published files is close to this name.' : 'The answer key for this state does not have this name.')} PAD-US was queried for ${esc(st.name)}. No page was scraped.</div>
