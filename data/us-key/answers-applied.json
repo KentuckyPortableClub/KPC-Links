@@ -1244,6 +1244,11 @@
   "applied": "2026-10-29 23:15",
   "checked_by": "chat 11 (Oct 29-30)"
  },
+ "gis-hunter:US-4839:sgmoh233": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 29-30)"
+ },
  "gis-hunter:US-5572:2916": {
   "answer": "NO",
   "applied": "2026-10-29 23:15",
@@ -3744,6 +3749,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10116:sgmoh453": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10119:sglaa53": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -3834,9 +3844,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10219:sgmoh519": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10220:sgmoc226": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10220:sgmoh226": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-10221:sgmoc329": {
@@ -3844,9 +3864,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10221:sgmoh329": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10222:sgmoc323": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10222:sgmoh323": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-10230:sgina3016": {
@@ -3887,6 +3917,11 @@
  "layers:US-10267:sgmoc230": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10267:sgmoh230": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1026:sgila1063": {
@@ -4014,6 +4049,11 @@
   "applied": "2026-11-02 13:05",
   "checked_by": "chat 11"
  },
+ "layers:US-10483:sgnvh1907": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31)"
+ },
  "layers:US-10492:sgnmc9783": {
   "answer": "YES",
   "applied": "2026-11-02 13:05",
@@ -4139,9 +4179,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10577:sgmoh662": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10578:sgmoc321": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10578:sgmoh321": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1057:sgaza6": {
@@ -4159,14 +4209,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10597:sgmoh720": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10598:sgmoc630": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10598:sgmoh630": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10599:sgmoc667": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10599:sgmoh667": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1059:sgaza11": {
@@ -4294,9 +4359,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10698:sgmoh839": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10699:sgmoc836": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10699:sgmoh836": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1069:sgaza26": {
@@ -4307,6 +4382,11 @@
  "layers:US-10700:sgmoc694": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10700:sgmoh694": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-10702:sgmof966": {
@@ -4484,6 +4564,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10950:sgmoh531": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10953:sgiaa33903": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -4494,14 +4579,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10955:sgmoh563": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10956:sgmoc332": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-10956:sgmoh332": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-10957:sgmoc710": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-10957:sgmoh710": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1095:sgarb31": {
@@ -4554,6 +4654,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11035:sgmoh769": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11036:sgmof763": {
   "answer": "YES",
   "applied": "2026-11-02 13:05",
@@ -4569,15 +4674,30 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11041:sgmoh1081": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11042:sgmoc448": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11042:sgmoh448": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11043:sgila1357": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
+ },
+ "layers:US-11045:sgazg1342": {
+  "answer": "NO",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31)"
  },
  "layers:US-11050:sgnvb31": {
   "answer": "YES",
@@ -4594,6 +4714,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11055:sgmoh805": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-1105:sgarb15": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -4602,6 +4727,11 @@
  "layers:US-11064:sgmoc1094": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11064:sgmoh1094": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1106:sgarb23": {
@@ -4614,14 +4744,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11075:sgmoh599": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11076:sgmoc362": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11076:sgmoh362": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11077:sgmoc372": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11077:sgmoh372": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1107:sgarb36": {
@@ -4634,9 +4779,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11082:sgmoh253": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11084:sgmoc510": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11084:sgmoh510": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1108:sgarb3": {
@@ -4684,6 +4839,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11129:sgmoh969": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-1112:sgarb5": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -4694,9 +4854,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11130:sgmoh340": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11131:sgmoc457": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11131:sgmoh457": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11132:sgmoc434": {
@@ -4704,9 +4874,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11132:sgmoh434": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11133:sgmoc1105": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11133:sgmoh1105": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11137:sgmod41": {
@@ -4724,6 +4904,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11139:sgmoh194": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-1113:sgarb9": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -4734,9 +4919,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11140:sgmoh198": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11141:sgmoc570": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11141:sgmoh570": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11144:sgila1530": {
@@ -4924,9 +5119,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11224:sgmoh587": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11226:sgmoc145": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11226:sgmoh145": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11227:sgmoc863": {
@@ -4934,14 +5139,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11227:sgmoh863": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11228:sgmoc574": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11228:sgmoh574": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11229:sgmoc816": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11229:sgmoh816": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1122:sgcab468": {
@@ -5134,9 +5354,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11364:sgmoh989": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11365:sgmoc1000": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11365:sgmoh1000": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11368:sgmof375": {
@@ -5159,9 +5389,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11373:sgmoh170": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11374:sgmoc272": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11374:sgmoh272": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11377:sgiaa33914": {
@@ -5459,14 +5699,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11774:sgmoh919": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11776:sgmoc328": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-11776:sgmoh328": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-11777:sgmoc243": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11777:sgmoh243": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-11778:sgaki386929": {
@@ -5552,6 +5807,11 @@
  "layers:US-11857:sgmoc396": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-11857:sgmoh396": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1185:sgcab599": {
@@ -5944,6 +6204,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12117:sgmoh785": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12118:sgnhb1": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -6003,6 +6268,11 @@
   "answer": "YES",
   "applied": "2026-11-02 13:05",
   "checked_by": "chat 11"
+ },
+ "layers:US-12162:sgnvh50": {
+  "answer": "NO",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31, same as my earlier answer)"
  },
  "layers:US-12165:sgmna1515": {
   "answer": "YES",
@@ -6109,6 +6379,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12310:sgmoh242": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12312:sgina5689": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -6174,6 +6449,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12346:sgmoh225": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-1234:sgcob33": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -6182,6 +6462,11 @@
  "layers:US-12350:sgmoc906": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-12350:sgmoh906": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-12355:sgcoc453": {
@@ -6194,9 +6479,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12356:sgmoh17": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12357:sgmoc569": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-12357:sgmoh569": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-1235:sgcob34": {
@@ -6429,14 +6724,29 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12582:sgmoh814": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12583:sgmoc414": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12583:sgmoh414": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12584:sgmoc483": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-12584:sgmoh483": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-12591:sgnmc11412": {
@@ -6584,9 +6894,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12667:sgmoh736": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12669:sgmoc311": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-12669:sgmoh311": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-12670:sgmoc174": {
@@ -6594,9 +6914,19 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12670:sgmoh174": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12673:sgmoc985": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-12673:sgmoh985": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-12675:sgmod167": {
@@ -6859,6 +7189,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-12975:sgmoh288": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-12979:sgide861": {
   "answer": "YES",
   "applied": "2026-11-02 13:05",
@@ -7064,10 +7399,25 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-13160:sgmoh1114": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
+ "layers:US-13161:sgmog123": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-1316:sgvad75": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
+ },
+ "layers:US-13178:sgnvh1238": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31)"
  },
  "layers:US-1317:sgvae486631": {
   "answer": "YES",
@@ -14659,6 +15009,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-4244:sgwif23770": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31)"
+ },
  "layers:US-4245:sgwic6724": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -16304,6 +16659,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-5637:sgmoh695": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-5641:sgoha713": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -16643,6 +17003,11 @@
   "answer": "YES",
   "applied": "2026-11-02 13:05",
   "checked_by": "chat 11 (Oct 31)"
+ },
+ "layers:US-6084:sgnvh1521": {
+  "answer": "NO",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11 (Oct 31, same as my earlier answer)"
  },
  "layers:US-6107:sgwyb47": {
   "answer": "YES",
@@ -18414,6 +18779,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-7660:sgmoh1139": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-7664:sgmod4": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -18697,6 +19067,11 @@
  "layers:US-7875:sgmoc1075": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-7875:sgmoh1075": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-7877:sgnmc13990": {
@@ -19244,6 +19619,11 @@
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
  },
+ "layers:US-8302:sgmoh548": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "chat 11"
+ },
  "layers:US-8305:sgvta428": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
@@ -19257,6 +19637,11 @@
  "layers:US-8309:sgmoc1110": {
   "answer": "YES",
   "applied": "2026-11-02 12:49",
+  "checked_by": "chat 11"
+ },
+ "layers:US-8309:sgmoh1110": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
   "checked_by": "chat 11"
  },
  "layers:US-8310:sgmof158": {
@@ -19768,6 +20153,11 @@
   "answer": "YES",
   "applied": "2026-11-02 12:49",
   "checked_by": "chat 11"
+ },
+ "layers:US-8667:sgwif23571": {
+  "answer": "YES",
+  "applied": "2026-11-08 13:55",
+  "checked_by": "auto (T1 map-match STRONG)"
  },
  "layers:US-8668:sgwic6734": {
   "answer": "YES",

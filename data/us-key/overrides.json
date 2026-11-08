@@ -269,17 +269,17 @@
    "why": "Nov 2 map audit: chat 11 NO on 4507 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-0150": {
-   "join": [
-    "4957"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "4957": [
      "Kodiak National Wildlife Refuge",
      1637279
     ]
    },
+   "join": [
+    "4957"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): FWS refuge outline (PAD-US 4957, 1,637,279 ac) is the park; the pin is by Kodiak town outside the refuge · replaces 2026-11-02 entry {\"no\": [\"fws448\", \"4005\"]}"
   },
   "US-0171": {
@@ -2804,13 +2804,18 @@
     "sgmoc453": [
      "Kings Prairie Access",
      283
+    ],
+    "sgmoh453": [
+     "Kings Prairie Access",
+     283
     ]
    },
    "join": [
-    "sgmoc453"
+    "sgmoc453",
+    "sgmoh453"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Kings Prairie Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Kings Prairie Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Kings Prairie Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10119": {
    "fp": {
@@ -3146,52 +3151,72 @@
     "sgmoc519": [
      "Delaware Town Access",
      18
+    ],
+    "sgmoh519": [
+     "Delaware Town Access",
+     18
     ]
    },
    "join": [
-    "sgmoc519"
+    "sgmoc519",
+    "sgmoh519"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Delaware Town Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Delaware Town Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Delaware Town Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10220": {
    "fp": {
     "sgmoc226": [
      "Lower Flat Creek Access",
      4
+    ],
+    "sgmoh226": [
+     "Lower Flat Creek Access",
+     4
     ]
    },
    "join": [
-    "sgmoc226"
+    "sgmoc226",
+    "sgmoh226"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lower Flat Creek Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Lower Flat Creek Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Lower Flat Creek Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10221": {
    "fp": {
     "sgmoc329": [
      "Shelvin Rock Access",
      21
+    ],
+    "sgmoh329": [
+     "Shelvin Rock Access",
+     21
     ]
    },
    "join": [
-    "sgmoc329"
+    "sgmoc329",
+    "sgmoh329"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Shelvin Rock Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Shelvin Rock Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Shelvin Rock Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10222": {
    "fp": {
     "sgmoc323": [
      "Stubblefield Access",
      49
+    ],
+    "sgmoh323": [
+     "Stubblefield Access",
+     49
     ]
    },
    "join": [
-    "sgmoc323"
+    "sgmoc323",
+    "sgmoh323"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Stubblefield Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Stubblefield Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Stubblefield Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1023": {
    "fp": {
@@ -3338,13 +3363,18 @@
     "sgmoc230": [
      "Mammoth Access",
      3
+    ],
+    "sgmoh230": [
+     "Mammoth Access",
+     3
     ]
    },
    "join": [
-    "sgmoc230"
+    "sgmoc230",
+    "sgmoh230"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mammoth Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Mammoth Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Mammoth Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1027": {
    "fp": {
@@ -3380,17 +3410,17 @@
    "why": "2026-11-02 12:49: layers row YES 'Walnut Point State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-10281": {
-   "join": [
-    "sgakg11010"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "sgakg11010": [
      "White Mountains SRMA",
      1016251
     ]
    },
+   "join": [
+    "sgakg11010"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM's White Mountains SRMA polygon is the park; pin ~25 km east of its edge · replaces 2026-11-02 entry {\"no\": [\"rst11010\"]}"
   },
   "US-1029": {
@@ -4139,12 +4169,19 @@
   },
   "US-10483": {
    "approx": true,
+   "fp": {
+    "sgnvh1907": [
+     "Jordan Craters",
+     31146
+    ]
+   },
    "join": [
     "wsa31291",
-    "wsa31325"
+    "wsa31325",
+    "sgnvh1907"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-08",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Jordan Craters' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-10485": {
    "no": [
@@ -4687,26 +4724,36 @@
     "sgmoc662": [
      "Pigg's Landing Access",
      15
+    ],
+    "sgmoh662": [
+     "Pigg's Landing Access",
+     15
     ]
    },
    "join": [
-    "sgmoc662"
+    "sgmoc662",
+    "sgmoh662"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Pigg's Landing Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Pigg's Landing Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Pigg's Landing Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10578": {
    "fp": {
     "sgmoc321": [
      "Schimmel City Access",
      14
+    ],
+    "sgmoh321": [
+     "Schimmel City Access",
+     14
     ]
    },
    "join": [
-    "sgmoc321"
+    "sgmoc321",
+    "sgmoh321"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Schimmel City Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Schimmel City Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Schimmel City Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10586": {
    "fp": {
@@ -4751,39 +4798,54 @@
     "sgmoc720": [
      "Roselle Access",
      25
+    ],
+    "sgmoh720": [
+     "Roselle Access",
+     25
     ]
    },
    "join": [
-    "sgmoc720"
+    "sgmoc720",
+    "sgmoh720"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Roselle Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Roselle Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Roselle Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10598": {
    "fp": {
     "sgmoc630": [
      "Marquand Access",
      69
+    ],
+    "sgmoh630": [
+     "Marquand Access",
+     69
     ]
    },
    "join": [
-    "sgmoc630"
+    "sgmoc630",
+    "sgmoh630"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Marquand Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Marquand Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Marquand Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10599": {
    "fp": {
     "sgmoc667": [
      "Thompson Ford Access",
      92
+    ],
+    "sgmoh667": [
+     "Thompson Ford Access",
+     92
     ]
    },
    "join": [
-    "sgmoc667"
+    "sgmoc667",
+    "sgmoh667"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Thompson Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Thompson Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Thompson Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1060": {
    "fp": {
@@ -5335,39 +5397,54 @@
     "sgmoc839": [
      "Tolona Access",
      165
+    ],
+    "sgmoh839": [
+     "Tolona Access",
+     165
     ]
    },
    "join": [
-    "sgmoc839"
+    "sgmoc839",
+    "sgmoh839"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Tolona Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Tolona Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Tolona Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10699": {
    "fp": {
     "sgmoc836": [
      "Sunnyside School Access",
      127
+    ],
+    "sgmoh836": [
+     "Sunnyside School Access",
+     127
     ]
    },
    "join": [
-    "sgmoc836"
+    "sgmoc836",
+    "sgmoh836"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sunnyside School Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Sunnyside School Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Sunnyside School Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10700": {
    "fp": {
     "sgmoc694": [
      "White Oak Bend Access",
      151
+    ],
+    "sgmoh694": [
+     "White Oak Bend Access",
+     151
     ]
    },
    "join": [
-    "sgmoc694"
+    "sgmoc694",
+    "sgmoh694"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'White Oak Bend Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'White Oak Bend Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'White Oak Bend Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10702": {
    "fp": {
@@ -6315,13 +6392,18 @@
     "sgmoc531": [
      "Cephas Ford Access",
      100
+    ],
+    "sgmoh531": [
+     "Cephas Ford Access",
+     100
     ]
    },
    "join": [
-    "sgmoc531"
+    "sgmoc531",
+    "sgmoh531"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cephas Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Cephas Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Cephas Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10953": {
    "fp": {
@@ -6341,39 +6423,54 @@
     "sgmoc563": [
      "Old Plantation Access",
      75
+    ],
+    "sgmoh563": [
+     "Old Plantation Access",
+     75
     ]
    },
    "join": [
-    "sgmoc563"
+    "sgmoc563",
+    "sgmoh563"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Old Plantation Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Old Plantation Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Old Plantation Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10956": {
    "fp": {
     "sgmoc332": [
      "Maintz Wildlife Preserve",
      802
+    ],
+    "sgmoh332": [
+     "Maintz Wildlife Preserve",
+     802
     ]
    },
    "join": [
-    "sgmoc332"
+    "sgmoc332",
+    "sgmoh332"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Maintz Wildlife Preserve' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Maintz Wildlife Preserve' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Maintz Wildlife Preserve' (chat 11; applied by kpc_key_answers)"
   },
   "US-10957": {
    "fp": {
     "sgmoc710": [
      "Block Hole Access",
      18
+    ],
+    "sgmoh710": [
+     "Block Hole Access",
+     18
     ]
    },
    "join": [
-    "sgmoc710"
+    "sgmoc710",
+    "sgmoh710"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Block Hole Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Block Hole Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Block Hole Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-10958": {
    "fp": {
@@ -6680,13 +6777,18 @@
     "sgmoc769": [
      "Miami Access",
      9
+    ],
+    "sgmoh769": [
+     "Miami Access",
+     9
     ]
    },
    "join": [
-    "sgmoc769"
+    "sgmoc769",
+    "sgmoh769"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Miami Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Miami Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Miami Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11036": {
    "fp": {
@@ -6711,23 +6813,33 @@
     "sgmoc1081": [
      "Runge Conservation Nature Center",
      87
+    ],
+    "sgmoh1081": [
+     "Runge Conservation Nature Center",
+     87
     ]
    },
    "join": [
-    "sgmoc1081"
+    "sgmoc1081",
+    "sgmoh1081"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Runge Conservation Nature Center' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Runge Conservation Nature Center' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Runge Conservation Nature Center' (chat 11; applied by kpc_key_answers)"
   },
   "US-11042": {
    "fp": {
     "sgmoc448": [
      "Kahrs-Boger Park",
      108
+    ],
+    "sgmoh448": [
+     "Kahrs-Boger Park",
+     108
     ]
    },
    "join": [
-    "sgmoc448"
+    "sgmoc448",
+    "sgmoh448"
    ],
    "no": [
     "210788"
@@ -6738,8 +6850,8 @@
      106
     ]
    },
-   "when": "2026-11-02",
-   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Kahrs-Boger 106 ac, same land · 2026-11-02 12:49: key-pieces row NO 'Kahrs-Boger Park' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Kahrs-Boger Park' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Kahrs-Boger 106 ac, same land · 2026-11-02 12:49: key-pieces row NO 'Kahrs-Boger Park' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Kahrs-Boger Park' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Kahrs-Boger Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-11043": {
    "fp": {
@@ -6753,6 +6865,19 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Burning Star State Fish and Wildlife Are' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-11045": {
+   "no": [
+    "sgazg1342"
+   ],
+   "nofp": {
+    "sgazg1342": [
+     "Painted Rock SRMA",
+     9745
+    ]
+   },
+   "when": "2026-11-08",
+   "why": "2026-11-08 13:55: layers row NO 'Painted Rock SRMA' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-1105": {
    "fp": {
@@ -6798,13 +6923,18 @@
     "sgmoc805": [
      "Frisbee Cutoff Access",
      92
+    ],
+    "sgmoh805": [
+     "Frisbee Cutoff Access",
+     92
     ]
    },
    "join": [
-    "sgmoc805"
+    "sgmoc805",
+    "sgmoh805"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Frisbee Cutoff Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Frisbee Cutoff Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Frisbee Cutoff Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11056": {
    "join": [
@@ -6836,13 +6966,18 @@
     "sgmoc1094": [
      "William E. Crawford Conservation Area",
      93
+    ],
+    "sgmoh1094": [
+     "William E. Crawford Conservation Area",
+     93
     ]
    },
    "join": [
-    "sgmoc1094"
+    "sgmoc1094",
+    "sgmoh1094"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'William E. Crawford Conservation Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'William E. Crawford Conservation Area' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'William E. Crawford Conservation Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-1107": {
    "fp": {
@@ -6862,39 +6997,54 @@
     "sgmoc599": [
      "Fiddlers Ford Access",
      48
+    ],
+    "sgmoh599": [
+     "Fiddlers Ford Access",
+     48
     ]
    },
    "join": [
-    "sgmoc599"
+    "sgmoc599",
+    "sgmoh599"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fiddlers Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Fiddlers Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Fiddlers Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11076": {
    "fp": {
     "sgmoc362": [
      "Tipton Ford Access",
      97
+    ],
+    "sgmoh362": [
+     "Tipton Ford Access",
+     97
     ]
    },
    "join": [
-    "sgmoc362"
+    "sgmoc362",
+    "sgmoh362"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Tipton Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Tipton Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Tipton Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11077": {
    "fp": {
     "sgmoc372": [
      "Allen Bridge Access",
      14
+    ],
+    "sgmoh372": [
+     "Allen Bridge Access",
+     14
     ]
    },
    "join": [
-    "sgmoc372"
+    "sgmoc372",
+    "sgmoh372"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Allen Bridge Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Allen Bridge Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Allen Bridge Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1108": {
    "fp": {
@@ -6914,26 +7064,36 @@
     "sgmoc253": [
      "Big John Access",
      16
+    ],
+    "sgmoh253": [
+     "Big John Access",
+     16
     ]
    },
    "join": [
-    "sgmoc253"
+    "sgmoc253",
+    "sgmoh253"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Big John Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Big John Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Big John Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11084": {
    "fp": {
     "sgmoc510": [
      "Charity Access",
      150
+    ],
+    "sgmoh510": [
+     "Charity Access",
+     150
     ]
    },
    "join": [
-    "sgmoc510"
+    "sgmoc510",
+    "sgmoh510"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Charity Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Charity Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Charity Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11089": {
    "alias": [
@@ -7133,13 +7293,18 @@
     "sgmoc969": [
      "Long Ford Access",
      37
+    ],
+    "sgmoh969": [
+     "Long Ford Access",
+     37
     ]
    },
    "join": [
-    "sgmoc969"
+    "sgmoc969",
+    "sgmoh969"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Long Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Long Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Long Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1113": {
    "fp": {
@@ -7159,52 +7324,72 @@
     "sgmoc340": [
      "Drynob Access",
      17
+    ],
+    "sgmoh340": [
+     "Drynob Access",
+     17
     ]
    },
    "join": [
-    "sgmoc340"
+    "sgmoc340",
+    "sgmoh340"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Drynob Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Drynob Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Drynob Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11131": {
    "fp": {
     "sgmoc457": [
      "Odin Access",
      124
+    ],
+    "sgmoh457": [
+     "Odin Access",
+     124
     ]
    },
    "join": [
-    "sgmoc457"
+    "sgmoc457",
+    "sgmoh457"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Odin Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Odin Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Odin Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11132": {
    "fp": {
     "sgmoc434": [
      "Buzzard Bluff Access",
      91
+    ],
+    "sgmoh434": [
+     "Buzzard Bluff Access",
+     91
     ]
    },
    "join": [
-    "sgmoc434"
+    "sgmoc434",
+    "sgmoh434"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Buzzard Bluff Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Buzzard Bluff Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Buzzard Bluff Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11133": {
    "fp": {
     "sgmoc1105": [
      "Lamberson Memorial Conservation Area",
      1703
+    ],
+    "sgmoh1105": [
+     "Lamberson Memorial Conservation Area",
+     1703
     ]
    },
    "join": [
-    "sgmoc1105"
+    "sgmoc1105",
+    "sgmoh1105"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lamberson Memorial Conservation Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Lamberson Memorial Conservation Area' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Lamberson Memorial Conservation Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-11137": {
    "fp": {
@@ -7237,13 +7422,18 @@
     "sgmoc194": [
      "Cowskin Access",
      45
+    ],
+    "sgmoh194": [
+     "Cowskin Access",
+     45
     ]
    },
    "join": [
-    "sgmoc194"
+    "sgmoc194",
+    "sgmoh194"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cowskin Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Cowskin Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Cowskin Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1114": {
    "fp": {
@@ -7263,26 +7453,36 @@
     "sgmoc198": [
      "Mount Shira Access",
      32
+    ],
+    "sgmoh198": [
+     "Mount Shira Access",
+     32
     ]
    },
    "join": [
-    "sgmoc198"
+    "sgmoc198",
+    "sgmoh198"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mount Shira Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Mount Shira Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Mount Shira Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11141": {
    "fp": {
     "sgmoc570": [
      "Deep Ford Access",
      47
+    ],
+    "sgmoh570": [
+     "Deep Ford Access",
+     47
     ]
    },
    "join": [
-    "sgmoc570"
+    "sgmoc570",
+    "sgmoh570"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Deep Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Deep Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Deep Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11144": {
    "fp": {
@@ -7833,13 +8033,18 @@
     "sgmoc587": [
      "Rader Access",
      62
+    ],
+    "sgmoh587": [
+     "Rader Access",
+     62
     ]
    },
    "join": [
-    "sgmoc587"
+    "sgmoc587",
+    "sgmoh587"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rader Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Rader Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Rader Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11225": {
    "join": [
@@ -7853,52 +8058,72 @@
     "sgmoc145": [
      "Humphrey Access",
      16
+    ],
+    "sgmoh145": [
+     "Humphrey Access",
+     16
     ]
    },
    "join": [
-    "sgmoc145"
+    "sgmoc145",
+    "sgmoh145"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Humphrey Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Humphrey Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Humphrey Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11227": {
    "fp": {
     "sgmoc863": [
      "Lathrop Bridge Access",
      27
+    ],
+    "sgmoh863": [
+     "Lathrop Bridge Access",
+     27
     ]
    },
    "join": [
-    "sgmoc863"
+    "sgmoc863",
+    "sgmoh863"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lathrop Bridge Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Lathrop Bridge Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Lathrop Bridge Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11228": {
    "fp": {
     "sgmoc574": [
      "Burton Bridge Access",
      20
+    ],
+    "sgmoh574": [
+     "Burton Bridge Access",
+     20
     ]
    },
    "join": [
-    "sgmoc574"
+    "sgmoc574",
+    "sgmoh574"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Burton Bridge Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Burton Bridge Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Burton Bridge Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11229": {
    "fp": {
     "sgmoc816": [
      "Jentell Brees Access",
      35
+    ],
+    "sgmoh816": [
+     "Jentell Brees Access",
+     35
     ]
    },
    "join": [
-    "sgmoc816"
+    "sgmoc816",
+    "sgmoh816"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Jentell Brees Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Jentell Brees Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Jentell Brees Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-1123": {
    "fp": {
@@ -8580,26 +8805,36 @@
     "sgmoc989": [
      "Morris Prairie Conservation Area",
      524
+    ],
+    "sgmoh989": [
+     "Morris Prairie Conservation Area",
+     524
     ]
    },
    "join": [
-    "sgmoc989"
+    "sgmoc989",
+    "sgmoh989"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Morris Prairie Conservation Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Morris Prairie Conservation Area' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Morris Prairie Conservation Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-11365": {
    "fp": {
     "sgmoc1000": [
      "Bruns Tract",
      158
+    ],
+    "sgmoh1000": [
+     "Bruns Tract",
+     158
     ]
    },
    "join": [
-    "sgmoc1000"
+    "sgmoc1000",
+    "sgmoh1000"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bruns Tract' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Bruns Tract' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Bruns Tract' (chat 11; applied by kpc_key_answers)"
   },
   "US-11368": {
    "fp": {
@@ -8645,26 +8880,36 @@
     "sgmoc170": [
      "Harriman Hill Access",
      41
+    ],
+    "sgmoh170": [
+     "Harriman Hill Access",
+     41
     ]
    },
    "join": [
-    "sgmoc170"
+    "sgmoc170",
+    "sgmoh170"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Harriman Hill Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Harriman Hill Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Harriman Hill Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11374": {
    "fp": {
     "sgmoc272": [
      "Roberts Bluff Access",
      5
+    ],
+    "sgmoh272": [
+     "Roberts Bluff Access",
+     5
     ]
    },
    "join": [
-    "sgmoc272"
+    "sgmoc272",
+    "sgmoh272"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Roberts Bluff Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Roberts Bluff Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Roberts Bluff Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11376": {
    "join": [
@@ -8773,6 +9018,53 @@
    "why": "2026-11-02 12:49: layers row YES 'Clear Lake SP' (chat 11; applied by kpc_key_answers)"
   },
   "US-11401": {
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "fp": {
+    "55328": [
+     "Cummington Wildlife Management Area",
+     14
+    ],
+    "55329": [
+     "Cummington Wildlife Management Area",
+     31
+    ],
+    "55330": [
+     "Cummington Wildlife Management Area",
+     9
+    ],
+    "55331": [
+     "Cummington Wildlife Management Area",
+     86
+    ],
+    "sgmaa641755": [
+     "Cummington WMA",
+     31
+    ],
+    "sgmaa643183": [
+     "Cummington WMA",
+     9
+    ],
+    "sgmaa644046": [
+     "Cummington WMA",
+     156
+    ],
+    "sgmaa645135": [
+     "Cummington WMA",
+     14
+    ],
+    "sgmaa687685": [
+     "Cummington WMA",
+     2
+    ],
+    "sgmaa700291": [
+     "Cummington WMA",
+     88
+    ],
+    "sgmaa700516": [
+     "Cummington WMA",
+     125
+    ]
+   },
    "join": [
     "sgmaa644046",
     "sgmaa700516",
@@ -8786,54 +9078,7 @@
     "sgmaa643183",
     "sgmaa687685"
    ],
-   "fp": {
-    "sgmaa644046": [
-     "Cummington WMA",
-     156
-    ],
-    "sgmaa700516": [
-     "Cummington WMA",
-     125
-    ],
-    "sgmaa700291": [
-     "Cummington WMA",
-     88
-    ],
-    "55331": [
-     "Cummington Wildlife Management Area",
-     86
-    ],
-    "55329": [
-     "Cummington Wildlife Management Area",
-     31
-    ],
-    "sgmaa641755": [
-     "Cummington WMA",
-     31
-    ],
-    "55328": [
-     "Cummington Wildlife Management Area",
-     14
-    ],
-    "sgmaa645135": [
-     "Cummington WMA",
-     14
-    ],
-    "55330": [
-     "Cummington Wildlife Management Area",
-     9
-    ],
-    "sgmaa643183": [
-     "Cummington WMA",
-     9
-    ],
-    "sgmaa687685": [
-     "Cummington WMA",
-     2
-    ]
-   },
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): MassWildlife: 424 ac in four sections on Route 9 in Cummington; the joined MassGIS / PAD-US pieces (~425 ac) are it; pin ~15 km north · replaces 2026-11-02 entry {\"no\": [\"55327\"]}"
   },
   "US-1141": {
@@ -9791,39 +10036,54 @@
     "sgmoc919": [
      "Mockingbird Hill Access",
      80
+    ],
+    "sgmoh919": [
+     "Mockingbird Hill Access",
+     80
     ]
    },
    "join": [
-    "sgmoc919"
+    "sgmoc919",
+    "sgmoh919"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mockingbird Hill Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Mockingbird Hill Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Mockingbird Hill Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11776": {
    "fp": {
     "sgmoc328": [
      "Holmes Bend Access",
      84
+    ],
+    "sgmoh328": [
+     "Holmes Bend Access",
+     84
     ]
    },
    "join": [
-    "sgmoc328"
+    "sgmoc328",
+    "sgmoh328"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Holmes Bend Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Holmes Bend Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Holmes Bend Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11777": {
    "fp": {
     "sgmoc243": [
      "Wabash Crossing Access",
      10
+    ],
+    "sgmoh243": [
+     "Wabash Crossing Access",
+     10
     ]
    },
    "join": [
-    "sgmoc243"
+    "sgmoc243",
+    "sgmoh243"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wabash Crossing Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Wabash Crossing Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Wabash Crossing Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11778": {
    "fp": {
@@ -10210,13 +10470,18 @@
     "sgmoc396": [
      "Chouteau Claim Access",
      13
+    ],
+    "sgmoh396": [
+     "Chouteau Claim Access",
+     13
     ]
    },
    "join": [
-    "sgmoc396"
+    "sgmoc396",
+    "sgmoh396"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Chouteau Claim Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Chouteau Claim Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Chouteau Claim Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-11858": {
    "approx": true,
@@ -10893,17 +11158,17 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 pins-check (outside research B): the pin is in the Prophetstown Fen Nature Preserve subunit; the state park record is another unit · Nov 2 map audit: chat 11 NO on sginb5702 (NO (chat 11, Nov 2): PIN. record is Prophetstown State Park, a differe)"
   },
   "US-12028": {
-   "join": [
-    "sgokc7"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "sgokc7": [
      "Barren Fork",
      507
     ]
    },
+   "join": [
+    "sgokc7"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): ODWC Barren Fork WMA (~497-507 ac, eastern Adair County); pin ~28 km west near Tahlequah · replaces 2026-11-02 entry {\"no\": [\"odw7\"]}"
   },
   "US-12029": {
@@ -11527,13 +11792,18 @@
     "sgmoc785": [
      "Dan River Access",
      82
+    ],
+    "sgmoh785": [
+     "Dan River Access",
+     82
     ]
    },
    "join": [
-    "sgmoc785"
+    "sgmoc785",
+    "sgmoh785"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Dan River Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Dan River Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Dan River Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12118": {
    "fp": {
@@ -11896,16 +12166,21 @@
   },
   "US-12162": {
    "no": [
-    "sgakh50"
+    "sgakh50",
+    "sgnvh50"
    ],
    "nofp": {
     "sgakh50": [
      "Sears Point Core",
      3663
+    ],
+    "sgnvh50": [
+     "Sears Point Core",
+     3663
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: gis-hunter row NO 'Sears Point Core' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: gis-hunter row NO 'Sears Point Core' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row NO 'Sears Point Core' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
   },
   "US-12165": {
    "fp": {
@@ -12327,13 +12602,18 @@
     "sgmoc242": [
      "Sunset Park Access",
      20
+    ],
+    "sgmoh242": [
+     "Sunset Park Access",
+     20
     ]
    },
    "join": [
-    "sgmoc242"
+    "sgmoc242",
+    "sgmoh242"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sunset Park Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Sunset Park Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Sunset Park Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12312": {
    "fp": {
@@ -12527,13 +12807,18 @@
     "sgmoc225": [
      "Allenton Access",
      11
+    ],
+    "sgmoh225": [
+     "Allenton Access",
+     11
     ]
    },
    "join": [
-    "sgmoc225"
+    "sgmoc225",
+    "sgmoh225"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Allenton Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Allenton Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Allenton Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12348": {
    "none": true,
@@ -12565,13 +12850,18 @@
     "sgmoc906": [
      "Cooper Creek Access",
      50
+    ],
+    "sgmoh906": [
+     "Cooper Creek Access",
+     50
     ]
    },
    "join": [
-    "sgmoc906"
+    "sgmoc906",
+    "sgmoh906"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cooper Creek Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Cooper Creek Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Cooper Creek Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12353": {
    "join": [
@@ -12598,26 +12888,36 @@
     "sgmoc17": [
      "Hollister Towersite",
      177
+    ],
+    "sgmoh17": [
+     "Hollister Towersite",
+     177
     ]
    },
    "join": [
-    "sgmoc17"
+    "sgmoc17",
+    "sgmoh17"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hollister Towersite' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Hollister Towersite' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Hollister Towersite' (chat 11; applied by kpc_key_answers)"
   },
   "US-12357": {
    "fp": {
     "sgmoc569": [
      "Harviell Access",
      40
+    ],
+    "sgmoh569": [
+     "Harviell Access",
+     40
     ]
    },
    "join": [
-    "sgmoc569"
+    "sgmoc569",
+    "sgmoh569"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Harviell Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Harviell Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Harviell Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12358": {
    "approx": true,
@@ -13512,39 +13812,54 @@
     "sgmoc814": [
      "Syenite Access",
      29
+    ],
+    "sgmoh814": [
+     "Syenite Access",
+     29
     ]
    },
    "join": [
-    "sgmoc814"
+    "sgmoc814",
+    "sgmoh814"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Syenite Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Syenite Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Syenite Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12583": {
    "fp": {
     "sgmoc414": [
      "Merrill Horse Access",
      77
+    ],
+    "sgmoh414": [
+     "Merrill Horse Access",
+     77
     ]
    },
    "join": [
-    "sgmoc414"
+    "sgmoc414",
+    "sgmoh414"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Merrill Horse Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Merrill Horse Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Merrill Horse Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12584": {
    "fp": {
     "sgmoc483": [
      "Bootleg Access",
      281
+    ],
+    "sgmoh483": [
+     "Bootleg Access",
+     281
     ]
    },
    "join": [
-    "sgmoc483"
+    "sgmoc483",
+    "sgmoh483"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bootleg Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Bootleg Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Bootleg Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12590": {
    "join": [
@@ -13998,39 +14313,54 @@
     "sgmoc736": [
      "Lesterville Access",
      40
+    ],
+    "sgmoh736": [
+     "Lesterville Access",
+     40
     ]
    },
    "join": [
-    "sgmoc736"
+    "sgmoc736",
+    "sgmoh736"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lesterville Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Lesterville Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Lesterville Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12669": {
    "fp": {
     "sgmoc311": [
      "Reiker Ford Access",
      12
+    ],
+    "sgmoh311": [
+     "Reiker Ford Access",
+     12
     ]
    },
    "join": [
-    "sgmoc311"
+    "sgmoc311",
+    "sgmoh311"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Reiker Ford Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Reiker Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Reiker Ford Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12670": {
    "fp": {
     "sgmoc174": [
      "Union Access",
      8
+    ],
+    "sgmoh174": [
+     "Union Access",
+     8
     ]
    },
    "join": [
-    "sgmoc174"
+    "sgmoc174",
+    "sgmoh174"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Union Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Union Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Union Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12671": {
    "join": [
@@ -14044,13 +14374,18 @@
     "sgmoc985": [
      "James Clark Access",
      12
+    ],
+    "sgmoh985": [
+     "James Clark Access",
+     12
     ]
    },
    "join": [
-    "sgmoc985"
+    "sgmoc985",
+    "sgmoh985"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'James Clark Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'James Clark Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'James Clark Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12675": {
    "fp": {
@@ -15043,13 +15378,18 @@
     "sgmoc288": [
      "Patrick Bridge Access",
      143
+    ],
+    "sgmoh288": [
+     "Patrick Bridge Access",
+     143
     ]
    },
    "join": [
-    "sgmoc288"
+    "sgmoc288",
+    "sgmoh288"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Patrick Bridge Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Patrick Bridge Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Patrick Bridge Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12978": {
    "no": [
@@ -15432,17 +15772,17 @@
    "why": "Oct 29 5:55 PM: 'Little Owyhee' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Little Owyhee' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
   },
   "US-13039": {
-   "join": [
-    "wbl171"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "wbl171": [
      "Owyhee River Wilderness",
      0
     ]
    },
+   "join": [
+    "wbl171"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): the one Owyhee River Wilderness (BLM, Idaho); POTA lists it in NV with a pin 28 km south: flag the listing to POTA"
   },
   "US-1304": {
@@ -16138,20 +16478,34 @@
     "sgmoc1114": [
      "JOHN BAUMGARDT MEMORIAL CONSERVATION AREA",
      486
+    ],
+    "sgmoh1114": [
+     "JOHN BAUMGARDT MEMORIAL CONSERVATION AREA",
+     486
     ]
    },
    "join": [
-    "sgmoc1114"
+    "sgmoc1114",
+    "sgmoh1114"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'JOHN BAUMGARDT MEMORIAL CONSERVATION ARE' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'JOHN BAUMGARDT MEMORIAL CONSERVATION ARE' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'JOHN BAUMGARDT MEMORIAL CONSERVATION ARE' (chat 11; applied by kpc_key_answers)"
   },
   "US-13161": {
+   "fp": {
+    "sgmog123": [
+     "Roaring River Cove Hardwoods NA",
+     82
+    ]
+   },
+   "join": [
+    "sgmog123"
+   ],
    "no": [
     "210560"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: 'Roaring River Conservation Area' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Roaring River Conservation Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "Oct 29 5:55 PM: 'Roaring River Conservation Area' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Roaring River Conservation Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Roaring River Cove Hardwoods NA' (chat 11; applied by kpc_key_answers)"
   },
   "US-13169": {
    "no": [
@@ -16183,11 +16537,18 @@
   },
   "US-13178": {
    "approx": true,
+   "fp": {
+    "sgnvh1238": [
+     "Mount Irish",
+     15150
+    ]
+   },
    "join": [
-    "wbl4778"
+    "wbl4778",
+    "sgnvh1238"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-08",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Mount Irish' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-1318": {
    "fp": {
@@ -35732,32 +36093,32 @@
    "why": "2026-11-02 12:49: layers row YES 'Congaree Bluffs Heritage Preserve' (chat 11; applied by kpc_key_answers)"
   },
   "US-3917": {
-   "no": [
-    "sgscc59",
-    "254129"
-   ],
-   "nofp": {
-    "sgscc59": [
-     "Little Pee Dee State Park Bay Heritage Preserve",
-     307.0
-    ],
-    "254129": [
-     "Little Pee Dee State Park Bay Heritage Preserve",
-     298
-    ]
-   },
-   "when": "2026-11-07",
-   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-07: join 254041 (the Horry+Marion Little Pee Dee HP/WMA), not 254129: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away (Brandon OK Nov 7) · confirmed by research pins17-recommendations-20261107-1649.md: join 254041, drop 254129 (Brandon signed Nov 7 4:54 PM CST)",
-   "join": [
-    "254041"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "254041": [
      "Little Pee Dee Heritage Preserve / Wildlife Management Area",
      10168
     ]
    },
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST"
+   "join": [
+    "254041"
+   ],
+   "no": [
+    "sgscc59",
+    "254129"
+   ],
+   "nofp": {
+    "254129": [
+     "Little Pee Dee State Park Bay Heritage Preserve",
+     298
+    ],
+    "sgscc59": [
+     "Little Pee Dee State Park Bay Heritage Preserve",
+     307.0
+    ]
+   },
+   "when": "2026-11-07",
+   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-07: join 254041 (the Horry+Marion Little Pee Dee HP/WMA), not 254129: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away (Brandon OK Nov 7) · confirmed by research pins17-recommendations-20261107-1649.md: join 254041, drop 254129 (Brandon signed Nov 7 4:54 PM CST)"
   },
   "US-3918": {
    "fp": {
@@ -38512,14 +38873,19 @@
     "sgwic6861": [
      "Big Bay Sand Spit and Bog",
      959
+    ],
+    "sgwif23770": [
+     "Big Bay Sand Spit and Bog",
+     892
     ]
    },
    "join": [
     "272294",
-    "sgwic6861"
+    "sgwic6861",
+    "sgwif23770"
    ],
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Big Bay Sand Spit and Bog' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Big Bay Sand Spit and Bog' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Big Bay Sand Spit and Bog' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-4245": {
    "fp": {
@@ -41895,14 +42261,19 @@
     "sgmoc233": [
      "Davis (The Lester R) Mem Forest",
      79
+    ],
+    "sgmoh233": [
+     "Davis (The Lester R) Mem Forest",
+     79
     ]
    },
    "join": [
     "210771",
-    "sgmoc233"
+    "sgmoc233",
+    "sgmoh233"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Davis (The Lester R) Mem Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Davis (Lester R.) Memorial Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Davis (Lester R.) Memorial Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Davis (Lester R.) Memorial Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 7:35 PM chat 11: held R-G8 piece YES · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Davis (The Lester R) Mem Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Davis (Lester R.) Memorial Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Davis (Lester R.) Memorial Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-08 13:55: gis-hunter row YES 'Davis (The Lester R) Mem Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-4856": {
    "join": [
@@ -41951,17 +42322,17 @@
    "why": "Nov 2 map audit: chat 11 NO on 56956 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4894": {
-   "join": [
-    "sgnha990"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "sgnha990": [
      "Davis-White State Forest",
      0
     ]
    },
+   "join": [
+    "sgnha990"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT has one Davis-White State Forest (NH Forests & Lands, GRANIT 990); pin 55 km away looks wrong · replaces 2026-11-02 entry {\"no\": [\"56963\"]}"
   },
   "US-4923": {
@@ -41976,10 +42347,7 @@
    "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   },
   "US-4933": {
-   "join": [
-    "sgnha4054",
-    "sgnha4139"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "sgnha4054": [
      "Merrimack River State Forest",
@@ -41990,15 +42358,15 @@
      0
     ]
    },
+   "join": [
+    "sgnha4054",
+    "sgnha4139"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 4054 + 4139 in Boscawen; pin longitude looks mistyped (-71.96 vs -71.63) · replaces 2026-11-02 entry {\"no\": [\"56999\"]}"
   },
   "US-4934": {
-   "join": [
-    "57000",
-    "sgnha1069"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "57000": [
      "Merriman State Forest",
@@ -42009,8 +42377,11 @@
      0
     ]
    },
+   "join": [
+    "57000",
+    "sgnha1069"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 1069 + PAD-US 57000 agree; pin longitude looks mistyped · replaces 2026-11-02 entry {\"no\": [\"sgnhc317\"]}"
   },
   "US-4949": {
@@ -42027,10 +42398,7 @@
    "why": "Nov 2 map audit: chat 11 NO on 57965 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4955": {
-   "join": [
-    "nhc3433",
-    "sgnha3433"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "nhc3433": [
      "Saltmarsh Pond State Forest",
@@ -42041,8 +42409,11 @@
      0
     ]
    },
+   "join": [
+    "nhc3433",
+    "sgnha3433"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 3433 (Gilmanton); pin latitude looks mistyped (43.3 vs 43.5) · replaces 2026-11-02 entry {\"no\": [\"sgnhc2115\"]}"
   },
   "US-4979": {
@@ -43805,13 +44176,18 @@
     "sgmoc695": [
      "Holland SF",
      157
+    ],
+    "sgmoh695": [
+     "Holland SF",
+     157
     ]
    },
    "join": [
-    "sgmoc695"
+    "sgmoc695",
+    "sgmoh695"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Holland SF' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Holland SF' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Holland SF' (chat 11; applied by kpc_key_answers)"
   },
   "US-5641": {
    "fp": {
@@ -44732,10 +45108,7 @@
    "why": "Oct 18 review: same place, official name written differently"
   },
   "US-5789": {
-   "join": [
-    "wsa967",
-    "wsa968"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "wsa967": [
      "Behind the Rocks",
@@ -44746,8 +45119,11 @@
      0
     ]
    },
+   "join": [
+    "wsa967",
+    "wsa968"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM has one Behind the Rocks (WSA, two pieces) south of Moab; medium confidence, the pin is unexplained"
   },
   "US-5790": {
@@ -44914,17 +45290,17 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Swell' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Swell' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Canyon' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-5869": {
-   "join": [
-    "rst9652"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "rst9652": [
      "Nine Mile Canyon",
      24249
     ]
    },
+   "join": [
+    "rst9652"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM Price FO 'Nine Mile Canyon' SRMA; not the Vernal-office 'Nine Mile' SRMA"
   },
   "US-5886": {
@@ -45317,10 +45693,17 @@
   },
   "US-6084": {
    "no": [
-    "sgakh1521"
+    "sgakh1521",
+    "sgnvh1521"
    ],
-   "when": "2026-10-29",
-   "why": "2026-10-29 23:15: gis-hunter row NO 'Santa Clara River / Land Hill' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "nofp": {
+    "sgnvh1521": [
+     "Santa Clara River / Land Hill",
+     1652
+    ]
+   },
+   "when": "2026-11-08",
+   "why": "2026-10-29 23:15: gis-hunter row NO 'Santa Clara River / Land Hill' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-08 13:55: layers row NO 'Santa Clara River / Land Hill' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
   },
   "US-6092": {
    "join": [
@@ -45834,17 +46217,17 @@
    "why": "Oct 25 round 5 hand check (outside research bot)"
   },
   "US-6197": {
-   "join": [
-    "wld346"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "wld346": [
      "Popo Agie Wilderness",
      102620
     ]
    },
+   "join": [
+    "wld346"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS Popo Agie Wilderness boundary; the pin is a rough 2-decimal point"
   },
   "US-6199": {
@@ -45856,17 +46239,17 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Steamboat Mountain ACEC' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-6202": {
-   "join": [
-    "wld335"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "wld335": [
      "North Absaroka Wilderness",
      346320
     ]
    },
+   "join": [
+    "wld335"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS North Absaroka Wilderness boundary; the pin is a rough 2-decimal point"
   },
   "US-6212": {
@@ -51900,13 +52283,18 @@
     "sgmoc1139": [
      "Fort Crowder Conservation Area",
      2164
+    ],
+    "sgmoh1139": [
+     "Fort Crowder Conservation Area",
+     2164
     ]
    },
    "join": [
-    "sgmoc1139"
+    "sgmoc1139",
+    "sgmoh1139"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fort Crowder Conservation Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Fort Crowder Conservation Area' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Fort Crowder Conservation Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-7664": {
    "fp": {
@@ -52915,13 +53303,18 @@
     "sgmoc1075": [
      "Aspinwall Bend",
      690
+    ],
+    "sgmoh1075": [
+     "Aspinwall Bend",
+     690
     ]
    },
    "join": [
-    "sgmoc1075"
+    "sgmoc1075",
+    "sgmoh1075"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Aspinwall Bend' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Aspinwall Bend' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Aspinwall Bend' (chat 11; applied by kpc_key_answers)"
   },
   "US-7876": {
    "fp": {
@@ -54708,6 +55101,12 @@
    "why": "2026-11-02 12:49: layers row YES 'Shaw Marsh Wildlife Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-8209": {
+   "fp": {
+    "sgwic6887": [
+     "Dewey Marsh",
+     1222
+    ]
+   },
    "join": [
     "sgwic6887"
    ],
@@ -54721,13 +55120,7 @@
     ]
    },
    "when": "2026-11-06",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272522: Dewey Marsh Wildlife Area surrounds the SNA, which keeps sgwic6887 (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: join wid702483 is gone from WI DNR managed lands (renumbered; Dewey Marsh WA is now OBJECTID 713342). Override join is the SNA record sgwic6887 already in the key (same intent as the Nov 3 note). (fers-and-pile)",
-   "fp": {
-    "sgwic6887": [
-     "Dewey Marsh",
-     1222
-    ]
-   }
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-03: NO 272522: Dewey Marsh Wildlife Area surrounds the SNA, which keeps sgwic6887 (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: join wid702483 is gone from WI DNR managed lands (renumbered; Dewey Marsh WA is now OBJECTID 713342). Override join is the SNA record sgwic6887 already in the key (same intent as the Nov 3 note). (fers-and-pile)"
   },
   "US-8210": {
    "fp": {
@@ -55041,13 +55434,18 @@
     "sgmoc548": [
      "Old Town Access",
      298
+    ],
+    "sgmoh548": [
+     "Old Town Access",
+     298
     ]
    },
    "join": [
-    "sgmoc548"
+    "sgmoc548",
+    "sgmoh548"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Old Town Access' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Old Town Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Old Town Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-8305": {
    "fp": {
@@ -55081,13 +55479,18 @@
     "sgmoc1110": [
      "Dr. Harry and Lina Berrier Memorial Conservation Area",
      104
+    ],
+    "sgmoh1110": [
+     "Dr. Harry and Lina Berrier Memorial Conservation Area",
+     104
     ]
    },
    "join": [
-    "sgmoc1110"
+    "sgmoc1110",
+    "sgmoh1110"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Dr. Harry and Lina Berrier Memorial Cons' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "2026-11-02 12:49: layers row YES 'Dr. Harry and Lina Berrier Memorial Cons' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Dr. Harry and Lina Berrier Memorial Cons' (chat 11; applied by kpc_key_answers)"
   },
   "US-8310": {
    "fp": {
@@ -56698,6 +57101,19 @@
    "when": "2026-10-29",
    "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Plymouth Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
+  "US-8667": {
+   "fp": {
+    "sgwif23571": [
+     "Haskell Noyes Woods",
+     60
+    ]
+   },
+   "join": [
+    "sgwif23571"
+   ],
+   "when": "2026-11-08",
+   "why": "2026-11-08 13:55: layers row YES 'Haskell Noyes Woods' (auto (T1 map-match STRONG); applied by kpc_key_answers)"
+  },
   "US-8668": {
    "approx": true,
    "fp": {
@@ -56757,6 +57173,20 @@
    "why": "2026-11-02 12:49: layers row YES 'Tichigan Wildlife Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-8679": {
+   "fp": {
+    "190969": [
+     "Devil's Hammock",
+     3254
+    ],
+    "fnl755": [
+     "Devil's Hammock",
+     3620
+    ],
+    "sgfld222": [
+     "DEVIL'S HAMMOCK",
+     4214
+    ]
+   },
    "join": [
     "190969",
     "sgfld222",
@@ -56766,21 +57196,7 @@
     "sgfld747"
    ],
    "when": "2026-11-06",
-   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-03: NO sgfld747: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: PAD-US 190969 still live (Devil's Hammock, 3254 ac); fingerprint added. Agency ids already in the key (sgfld222, fnl755) listed as joins too so the postcheck matches before the next US rebuild. (fers-and-pile)",
-   "fp": {
-    "190969": [
-     "Devil's Hammock",
-     3254
-    ],
-    "sgfld222": [
-     "DEVIL'S HAMMOCK",
-     4214
-    ],
-    "fnl755": [
-     "Devil's Hammock",
-     3620
-    ]
-   }
+   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-03: NO sgfld747: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9) · 2026-11-06: PAD-US 190969 still live (Devil's Hammock, 3254 ac); fingerprint added. Agency ids already in the key (sgfld222, fnl755) listed as joins too so the postcheck matches before the next US rebuild. (fers-and-pile)"
   },
   "US-8681": {
    "fp": {
@@ -60318,17 +60734,17 @@
    "why": "Nov 2 map audit: chat 11 NO on sgcoa303 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-9678": {
-   "join": [
-    "cow910"
-   ],
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "fp": {
     "cow910": [
      "Windy Gap WWA",
      10
     ]
    },
+   "join": [
+    "cow910"
+   ],
    "when": "2026-11-07",
-   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
    "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): re-point the reviewed join cow909 -> cow910: same CPW feature, new id (same name, 10 ac, 0.12 km); PAD-US 189801 confirms · replaces 2026-10-22 entry {\"join\": [\"cow909\"]}"
   },
   "US-9679": {
