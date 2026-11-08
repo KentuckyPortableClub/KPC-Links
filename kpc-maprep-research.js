@@ -235,11 +235,39 @@
     rmap = L.map(el, { scrollWheelZoom: false }).setView([39.8, -90], 4);
     if (W.KPCLayers) W.KPCLayers(rmap, 'Street'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap);
     rlayer = L.featureGroup().addTo(rmap);
-    rmap.on('click', e => { const t = e.originalEvent && e.originalEvent.target; if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return; lastPin = [e.latlng.lat, e.latlng.lng]; drawPin(); say('Pin dropped. Tap TEST NEAR MY PIN to check the official land around it.'); });
+    rmap.on('click', e => { const t = e.originalEvent && e.originalEvent.target; if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return; lastPin = [e.latlng.lat, e.latlng.lng]; drawPin(); if (tab !== 'pin') setTab('pin'); say('Pin dropped. Tap SEARCH to check the official land around it.'); });
     setTimeout(() => rmap && rmap.invalidateSize(), 80);
   }
   let pinMk = null;
   function drawPin() { if (!rmap || !lastPin) return; if (pinMk) rmap.removeLayer(pinMk); pinMk = L.circleMarker(lastPin, { radius: 7, color: '#111', fillColor: '#f0c96b', fillOpacity: 1, weight: 2 }).addTo(rmap); }
+  /* Live status panel (Brandon Nov 8, 1:08 PM CST: "make it feel like it is doing work"): each step with a tick, a bar,
+     elapsed time, a note when a source is slow, and a clear error with TRY AGAIN. */
+  const ST = { t0: 0, timer: null, steps: [], last: null, slowAt: 0 };
+  function stEl() { return $('mrRsStatus'); }
+  function stDraw() {
+    const el = stEl(); if (!el) return;
+    const secs = ST.t0 ? Math.round((Date.now() - ST.t0) / 1000) : 0, cur = ST.steps.filter(x => x.st === 'run').slice(-1)[0];
+    const pct = cur && cur.total ? Math.min(100, Math.round(cur.n / cur.total * 100)) : null;
+    const slow = cur && !el.classList.contains('done') && !el.classList.contains('err') && Date.now() - cur.at > 20000;
+    el.innerHTML = '<div class="mr-rs-st-head"><span class="mr-rs-spin" aria-hidden="true"></span><span>' + esc(ST.title || 'Searching') + '</span><span class="t">' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + '</span></div>'
+      + '<div class="mr-rs-bar' + (pct === null && !el.classList.contains('done') && !el.classList.contains('err') ? ' ind' : '') + '" role="progressbar" aria-valuemin="0" aria-valuemax="100"' + (pct !== null ? ' aria-valuenow="' + pct + '"' : '') + '><i style="' + (el.classList.contains('done') ? 'width:100%' : pct !== null ? 'width:' + pct + '%' : '') + '"></i></div>'
+      + '<ol class="mr-rs-steps">' + ST.steps.map(x => '<li class="' + x.st + '">' + esc(x.label) + (x.note ? '<small>' + esc(x.note) + '</small>' : '') + '</li>').join('') + '</ol>'
+      + (slow ? '<p class="mr-rs-slow">Still waiting on the official server. Big states can take a minute or two; nothing is broken.</p>' : '')
+      + (ST.err ? '<p class="mr-rs-err">' + esc(ST.err) + '</p><div class="mr-check-btns"><button type="button" id="mrRsRetry">TRY AGAIN</button></div>' : '');
+    const r = $('mrRsRetry'); if (r) r.onclick = () => (ST.kind === 'ids' ? (ST.err = '', stDraw()) : run(ST.kind));
+  }
+  function stBegin(title, kind) {
+    const el = stEl(); ST.t0 = Date.now(); ST.steps = []; ST.title = title; ST.err = ''; ST.kind = kind;
+    if (el) { el.hidden = false; el.classList.remove('done', 'err'); try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
+    clearInterval(ST.timer); ST.timer = setInterval(stDraw, 1000); stDraw();
+  }
+  function stStep(label, total) { ST.steps.forEach(x => { if (x.st === 'run') x.st = 'ok'; }); const x = { label, st: 'run', n: 0, total: total || 0, at: Date.now(), note: '' }; ST.steps.push(x); stDraw(); return x; }
+  function stCount(x, n, note) { if (!x) return; x.n = n; x.note = note || (x.total ? n.toLocaleString('en-US') + ' / ' + x.total.toLocaleString('en-US') : ''); stDraw(); }
+  function stEnd(ok, msg) {
+    const el = stEl(); ST.steps.forEach(x => { if (x.st === 'run') x.st = ok ? 'ok' : 'bad'; }); clearInterval(ST.timer); ST.timer = null;
+    if (el) el.classList.add(ok ? 'done' : 'err');
+    if (ok) { ST.title = msg || 'Done'; } else ST.err = msg; stDraw();
+  }
   function say(t) { const el = $('mrRsMsg'); if (el) el.textContent = t; }
   function draw(list, fit) {
     if (!rmap || !rlayer) return; rlayer.clearLayers();
@@ -300,56 +328,78 @@
     const sel = $('mrRsPlace'); if (sel && code && [...sel.options].some(o => o.value === code)) sel.value = code;
     const root = $('mrResearch'); if (root) root.scrollIntoView({ behavior: 'smooth' });
     if (busy) return; busy = true; mountMap();
+    stBegin('Full checks on \u201c' + (name || ids.join(', ')) + '\u201d', 'ids'); let step = null;
     try {
-      say('Running the full checks on \u201c' + (name || ids.join(', ')) + '\u201d\u2026');
+      say('Running the full checks on \u201c' + (name || ids.join(', ')) + '\u201d\u2026'); step = stStep('Loading the answer key, pins and the official record\u2026');
       const ctx = await context(code);
       const j = await arc(CP_LOC[code] ? CPCAD_LAYER : PADUS_LAYER, { objectIds: ids.join(','), outFields: CP_LOC[code] ? CP_FIELDS : PAD_FIELDS, returnGeometry: true, maxAllowableOffset: 0.0005, geometryPrecision: 5 });
       const places = groupRecords((j.features || []).map(CP_LOC[code] ? caRec : padRec));
       for (const p of places) await checkPlace(p, code, ctx);
       rows = places; filt = 'all'; paint(); draw(rows, true);
       say(places.length ? places.map(p => p.name + ': ' + p.verdict.label).join(' \u00b7 ') : 'That record did not come back from the official service.');
-    } catch (e) { say('The official records did not answer (' + (e && e.message || e) + ').'); }
+      if (places.length) stEnd(true, 'Done: ' + places.map(p => p.name + ': ' + p.verdict.label).join(' \u00b7 ')); else stEnd(false, 'That record did not come back from the official service.');
+    } catch (e) { say('The official records did not answer (' + (e && e.message || e) + ').'); stEnd(false, 'The official records did not answer (' + (e && e.message || e) + '). Try again in a minute.'); }
     busy = false;
   }
   async function run(kind) {
     if (busy) return; const code = placeCode();
     if (!code) { say('Pick a US state or a Canadian province first.'); return; }
+    if (kind === 'pin' && !lastPin) { say('Tap the map above to drop a pin first.'); return; }
+    const q0 = ($('mrRsQ') && $('mrRsQ').value || '').trim();
+    if (kind === 'name' && !q0) { say('Type a place name first.'); return; }
     if (code === 'KY') { /* Kentucky has no published key file; pins and names still work */ }
     busy = true; mountMap();
+    const pn = placeName() || code, src = CP_LOC[code] ? 'CPCAD' : 'PAD-US';
+    stBegin(kind === 'state' ? 'Searching all of ' + pn : kind === 'pin' ? 'Searching near your pin in ' + pn : 'Searching for \u201c' + q0 + '\u201d in ' + pn, kind);
+    let step = null;
     try {
-      const ctx = await context(code);
+      step = stStep('Loading the answer key and POTA pins for ' + pn + '\u2026');
+      const ctx = await context(code); stCount(step, 0, (ctx.pins || []).length.toLocaleString('en-US') + ' pins');
       let recs = [];
-      if (kind === 'state') recs = await statewide(code, say);
-      else if (kind === 'pin') { if (!lastPin) { say('Tap the map above to drop a pin first.'); busy = false; return; } say('Reading official land around the pin\u2026'); recs = await near(code, lastPin[0], lastPin[1], 6); }
-      else { const q = ($('mrRsQ') && $('mrRsQ').value || '').trim(); if (!q) { say('Type a place name first.'); busy = false; return; } say('Looking for \u201c' + q + '\u201d in the official records\u2026'); recs = await byName(code, q); if (!recs.length && lastPin) recs = (await near(code, lastPin[0], lastPin[1], 10)).filter(r => sameName(r.name, q) || norm(r.name).indexOf(norm(q)) >= 0); }
+      if (kind === 'state') { step = stStep('Loading ' + src + ' for ' + code + '\u2026'); recs = await statewide(code, say); }
+      else if (kind === 'pin') { step = stStep('Loading ' + src + ' around the pin\u2026'); say('Reading official land around the pin\u2026'); recs = await near(code, lastPin[0], lastPin[1], 6); }
+      else { step = stStep('Looking for \u201c' + q0 + '\u201d in ' + src + '\u2026'); say('Looking for \u201c' + q0 + '\u201d in the official records\u2026'); recs = await byName(code, q0); if (!recs.length && lastPin) recs = (await near(code, lastPin[0], lastPin[1], 10)).filter(r => sameName(r.name, q0) || norm(r.name).indexOf(norm(q0)) >= 0); }
       let places = groupRecords(recs).slice(0, kind === 'state' ? MAX_PLACES : 40);
-      if (!places.length) { rows = []; paint(); say('No official records came back for that. Try another name, drop a pin, or check the spelling.'); busy = false; return; }
+      stCount(step, 0, recs.length.toLocaleString('en-US') + ' records \u00b7 ' + places.length + ' places');
+      if (!places.length) { rows = []; paint(); say('No official records came back for that. Try another name, drop a pin, or check the spelling.'); stEnd(false, 'No official records came back for that. Try another name, drop a pin, or check the spelling.'); busy = false; return; }
       if (places.some(p => !p.geoms.length)) {
+        step = stStep('Getting the boundaries of ' + places.length + ' places\u2026');
         say('Getting the boundaries of ' + places.length + ' places\u2026');
         const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
       }
+      step = stStep('Checking against key outlines, pins and names\u2026', places.length);
       let done = 0;
-      for (const p of places) { await checkPlace(p, code, ctx); done++; if (done % 10 === 0) say('Checked ' + done + ' of ' + places.length + '\u2026'); }
+      for (const p of places) { await checkPlace(p, code, ctx); done++; stCount(step, done); if (done % 10 === 0) say('Checked ' + done + ' of ' + places.length + '\u2026'); }
       places.sort((a, b) => (RANK[a.verdict.v] - RANK[b.verdict.v]) || b.acres - a.acres);
       rows = places; filt = rows.some(p => p.verdict.v === 'new') ? 'new' : 'all';
-      const n = rows.filter(p => p.verdict.v === 'new').length;
+      const n = rows.filter(p => p.verdict.v === 'new').length, c = { person: 0, probably: 0, already: 0 }; rows.forEach(p => { if (p.verdict.v in c) c[p.verdict.v]++; });
       say(rows.length + ' places checked' + (kind === 'state' ? (CP_LOC[code] ? ' (the largest ' + rows.length + ' protected areas in CPCAD; CPCAD does not say if the public can go in, so check access)' : ' (the largest ' + rows.length + ' that are open to the public)') : '') + ': ' + n + ' look new. Tap one for the checks, the official record and a summary to copy.');
       paint(); draw(rows, true);
-    } catch (e) { say('The official records did not answer (' + (e && e.message || e) + '). Try again in a minute.'); }
+      stEnd(true, 'Done: ' + rows.length + ' places checked \u00b7 ' + n + ' look new \u00b7 ' + c.person + ' need a person \u00b7 ' + (c.probably + c.already) + ' already parks');
+    } catch (e) { const m = 'The official records did not answer (' + (e && e.message || e) + '). Try again in a minute.'; say(m); stEnd(false, (step ? step.label.replace(/\u2026$/, '') + ' failed. ' : '') + m); }
     busy = false;
+  }
+  let tab = 'state';
+  function setTab(k) {
+    tab = k; const root = $('mrResearch'); if (!root) return;
+    root.querySelectorAll('[data-rstab]').forEach(t => { const on = t.dataset.rstab === k; t.classList.toggle('on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+    root.querySelectorAll('[data-rspane]').forEach(p => { p.hidden = p.dataset.rspane !== k; });
+    if (k === 'name' && $('mrRsQ')) $('mrRsQ').focus();
+    say(k === 'state' ? 'Pick a state or province, then SEARCH.' : k === 'pin' ? (lastPin ? 'Pin is down. SEARCH checks the land around it.' : 'Tap the map to drop a pin, then SEARCH.') : 'Type a name, then SEARCH.');
   }
   function wire() {
     const root = $('mrResearch'); if (!root || root.dataset.wired) return; root.dataset.wired = '1';
     const tryFill = () => { fillPlaces(); if (!($('mrRsPlace') || {}).dataset || !$('mrRsPlace').dataset.ready) setTimeout(tryFill, 400); };
     tryFill();
     const b = (id, fn) => { const el = $(id); if (el) el.onclick = fn; };
-    b('mrRsFind', () => run('state')); b('mrRsNear', () => run('pin'));
-    const f = $('mrRsForm'); if (f) f.addEventListener('submit', e => { e.preventDefault(); run('name'); });
+    b('mrRsFind', () => run('state')); b('mrRsNear', () => run('pin')); b('mrRsTest', () => run('name'));
+    root.querySelectorAll('[data-rstab]').forEach(t => t.onclick = () => setTab(t.dataset.rstab));
+    const f = $('mrRsForm'); if (f) f.addEventListener('submit', e => { e.preventDefault(); run(tab); });
     const det = $('mrResearch'); if (det) { mountMap(); }
     D.addEventListener('click', e => { const t = e.target && e.target.closest && e.target.closest('[data-rstest]'); if (!t) return; e.preventDefault();
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();
