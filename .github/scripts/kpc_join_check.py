@@ -37,6 +37,7 @@ Never fails the build: exit 0 (the selftest exits 1 on a failed case)."""
 import csv, glob, json, os, pathlib, re, subprocess, sys
 
 FAR_KM = 15.0
+NEW_KM = 5.0   # Nov 8 (Quality KEY NO on US-42487204632, must-fix 2): a join NEW in this build (record id not joined in the previous key) is held over 5 km
 RATIO = (0.5, 2.0)
 DECIDED_BY = 'Brandon standing rule 2026-11-05 verify-then-fix'
 LINEAR_KIND = re.compile(r'\b(trail|wild (and|&) scenic river|heritage river|parkway)\b', re.I)   # v2.1: the park KIND ('t') only, never its name
@@ -84,9 +85,13 @@ SIGNED, SIGNED_BY = {}, {}   # {ref: ids + names} of overrides.json joins that c
 
 def approvals(root, kind, env):
     """{ref: set(ids and names)} a person approved: overrides.json 'join' + signed answer-sheet rows. (map, sheet file or None)"""
-    ok = {}; SIGNED.clear(); SIGNED_BY.clear()
+    ok = {}; SIGNED.clear(); SIGNED_BY.clear(); NOS.clear()
     try:
         for r, v in ((json.load(open(os.path.join(root, DIRS[kind][0], 'overrides.json'), encoding='utf-8')).get('parks')) or {}).items():
+            if isinstance(v, dict) and (v.get('no') or v.get('nofp')):   # Nov 8: a person's NO, by name (+ acres) as well as by id
+                nf_ = v.get('nofp') if isinstance(v.get('nofp'), dict) else {}
+                NOS[r] = [(z[0], z[1] if len(z) > 1 else None, k) for k, z in nf_.items() if isinstance(z, list) and z and z[0]]
+                NOS[r] += [(z, None, '') for z in (v.get('no') or []) if not re.fullmatch(r'[a-z]*\d+', str(z))]
             if isinstance(v, dict) and v.get('join'):
                 ok.setdefault(r, set()).update(str(x) for x in v['join'])
                 if str(v.get('decided_by') or '').strip():   # Nov 8 (Quality NO on US-42446831487): a SIGNED override (decided_by) is never held
@@ -150,11 +155,102 @@ def changed_files(d, pat, root='.'):
     return sorted({ln[3:].strip() for ln in r.stdout.splitlines() if fnmatch.fnmatch(os.path.basename(ln[3:].strip()), pat)})
 
 
-def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=None):
-    """Check one key file in place. Returns (evidence rows, held rows, file changed?)."""
+NOS = {}   # {ref: [(name, acres or None, old id)]} a person's NO for the park (overrides.json 'no' + 'nofp'; filled by approvals())
+
+
+def _nf(t): return re.sub(r'\s+', ' ', str(t or '')).strip().casefold()
+
+
+def _close(a, b):
+    """acres about the same (10% or 20 ac); unknown acres on either side count as the same."""
+    try: a, b = float(a or 0), float(b or 0)
+    except (TypeError, ValueError): return True
+    return not a or not b or abs(a - b) <= max(20.0, .1 * max(a, b))
+
+
+def previous(f, root='.'):
+    """The previous key's parks for this area file (git HEAD, i.e. before this build wrote it); {} when git cannot tell."""
+    try:
+        r = subprocess.run(['git', 'show', 'HEAD:' + os.path.relpath(os.path.abspath(f), os.path.abspath(root)).replace(os.sep, '/')],
+                           cwd=root, capture_output=True, timeout=60)
+        return (json.loads(r.stdout).get('parks') or {}) if r.returncode == 0 and r.stdout.strip() else {}
+    except Exception: return {}  # noqa: BLE001
+
+
+def no_carried(ref, p, prev):
+    """Nov 8 must-fix 1: a person's NO follows the LAND, not the source id. A joined record whose id is not the NO'd id but whose
+    name (+ acres when known) matches a NO fingerprint, or a record the previous key listed as 'a person said NO', is the same land
+    re-keyed (hma12 -> sgnvi433, sgakh1214 -> sgnvh1214). Returns [(joined id, name, old id)]."""
+    # only a NEW join on a park the previous key left as a pin: a park that was already joined keeps its reviewed join (a same-name
+    # duplicate record NO'd beside the joined one is not a re-key); no previous key = nothing to compare with
+    if not prev or joined(prev): return []
+    fresh = {str(i) for i in (new_ids(p, prev) or [])}
+    fps = list(NOS.get(ref) or [])
+    for x in ((prev or {}).get('c') or []):
+        if isinstance(x, list) and len(x) > 3 and 'a person said no' in str(x[3]).lower():
+            fps.append((x[1], x[2] if len(x) > 2 else None, x[0]))
+    sg = SIGNED.get(ref) or set()
+    out = []
+    for x in (p.get('m') or []):
+        if not (isinstance(x, list) and len(x) > 1) or str(x[0]) not in fresh or str(x[0]) in sg or str(x[3] if len(x) > 3 else '').lower().startswith('reviewed'): continue   # signed / reviewed by a person wins
+        for nm, ac, old in fps:
+            if str(x[0]) != str(old) and nm and _nf(x[1]) == _nf(nm) and _close(x[2] if len(x) > 2 else None, ac):
+                out.append((x[0], x[1], old)); break
+    return out
+
+
+def new_ids(p, prev):
+    """Joined record ids that the previous key did not join for this park (None = no previous key to compare with)."""
+    if prev is None: return None
+    old = {str(x[0]) for x in (prev.get('m') or []) if isinstance(x, list) and x}
+    return [x[0] for x in (p.get('m') or []) if isinstance(x, list) and x and str(x[0]) not in old]
+
+
+def unsigned_on_signed(ref, p, prev):
+    """Nov 8 should-fix 3: the signed exemption is PER ID. On a park with a signed override, a joined record the person did not
+    sign, that the previous key had held / checked / NO'd (in 'c'), goes back to 'c'. Returns [(id, the previous reason)]."""
+    sg = SIGNED.get(ref)
+    if not sg: return []
+    was = {str(x[0]): str(x[3]) for x in ((prev or {}).get('c') or []) if isinstance(x, list) and len(x) > 3}
+    return [(x[0], was[str(x[0])]) for x in (p.get('m') or []) if isinstance(x, list) and x and str(x[0]) not in sg
+            and not (len(x) > 1 and str(x[1]) in sg) and str(x[0]) in was]
+
+
+def drop_ids(p, ids, why):
+    """Move some joined records back to 'c' (nothing deleted); the outline's acres and nearest-part distance are no longer known."""
+    ids = {str(i) for i in ids}
+    out = [x for x in p.get('m') or [] if isinstance(x, list) and x and str(x[0]) in ids]
+    p['m'] = [x for x in p.get('m') or [] if not (isinstance(x, list) and x and str(x[0]) in ids)]
+    p['c'] = [x[:3] + ['held: ' + why] for x in out] + list(p.get('c') or [])
+    p.pop('ac', None)
+    if (p.get('bk') or [None])[0] is not None and str(p['bk'][0]) in ids: p['bk'] = [None, None, '', 'held']
+
+
+def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=None, root='.', prev=None):
+    """Check one key file in place. Returns (evidence rows, held rows, file changed?). prev: the previous key's parks of this file
+    ({} = none; None = read it from git HEAD)."""
     d = json.load(open(f, encoding='utf-8')); rows, held, changed = [], [], False
+    if prev is None: prev = previous(f, root)
     for ref, p in (d.get('parks') or {}).items():
         if not isinstance(p, dict): continue
+        if joined(p) and mode == 'hold':
+            pv = prev.get(ref) if prev else None
+            nos = no_carried(ref, p, pv)
+            if nos:   # must-fix 1: the whole park back to a pin until a person signs
+                r = 'a person said NO to this land under its old id (' + ', '.join(f'{i} = {o} "{n}"' for i, n, o in nos) + ')'
+                ids, nm, ga, km0 = [x[0] for x in p['m'] if isinstance(x, list) and x], [str(x[1]) for x in p['m'] if isinstance(x, list) and len(x) > 1], p.get('g'), pin_km(p)
+                hold(ref, p, r); changed = True
+                held.append({'park': ref, 'area': pathlib.Path(f).stem, 'name': p.get('n') or '', 'pin_km': km0, 'was_g': ga,
+                             'held_ids': ' | '.join(map(str, ids)), 'held_names': ' | '.join(nm), 'reason': r, 'decided_by': DECIDED_BY,
+                             'to_keep_it': "a person signs the new id in overrides.json 'join' (with decided_by)"})
+                continue
+            un = unsigned_on_signed(ref, p, pv)
+            if un:    # should-fix 3: only the signed ids are exempt
+                r = 'not signed in overrides.json; the previous key had it out (' + '; '.join(f'{i}: {w}' for i, w in un) + ')'
+                drop_ids(p, [i for i, _ in un], r); changed = True
+                held.append({'park': ref, 'area': pathlib.Path(f).stem, 'name': p.get('n') or '', 'pin_km': pin_km(p), 'was_g': p.get('g'),
+                             'held_ids': ' | '.join(str(i) for i, _ in un), 'held_names': '', 'reason': r, 'decided_by': DECIDED_BY,
+                             'to_keep_it': "a person adds the id to the park's signed overrides.json 'join'"})
         if not joined(p):
             if 'suspect' in p: p.pop('suspect'); changed = True
             continue
@@ -162,7 +258,8 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
         km_all = near[ref] if near and own is not None and near.get(ref) is not None and near[ref] < own else None
         ac, oa, km, why = check_join(p if km_all is None else dict(p, bk=[None, km_all]), official.get(ref))
         was = p.get('suspect')
-        far = km is not None and km > FAR_KM
+        nw = new_ids(p, prev.get(ref) or {}) if prev else None
+        far = km is not None and (km > FAR_KM or (bool(nw) and km > NEW_KM))   # must-fix 2: 5 km for a NEW join, 15 km for the rest
         ex = exempt(ref, p, ok or {}) if far else ''
         if why:
             p['suspect'] = '; '.join(why) + (f' (not held: {ex})' if ex else '')
@@ -172,7 +269,8 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
         else: p.pop('suspect', None)
         changed |= p.get('suspect') != was
         if far and not ex and mode == 'hold':
-            r = f'the nearest part of the joined outline is {km:.1f} km from the POTA pin (over {FAR_KM:.0f} km)'
+            r = (f'the nearest part of the joined outline is {km:.1f} km from the POTA pin (over {FAR_KM:.0f} km)' if km > FAR_KM else
+                 f'a new join ({", ".join(map(str, nw))}): the nearest part is {km:.1f} km from the POTA pin (over {NEW_KM:.0f} km for a new join)')
             ids, nm, ga = [x[0] for x in p['m'] if isinstance(x, list) and x], [str(x[1]) for x in p['m'] if isinstance(x, list) and len(x) > 1], p.get('g')
             hold(ref, p, r); changed = True
             held.append({'park': ref, 'area': pathlib.Path(f).stem, 'name': p.get('n') or '', 'pin_km': km, 'was_g': ga,
@@ -224,7 +322,7 @@ def run(env=None, root='.', plain=False):
         if not os.path.exists(f): continue
         try:
             joined_n += sum(1 for p in (json.load(open(f, encoding='utf-8')).get('parks') or {}).values() if isinstance(p, dict) and joined(p))
-            r, h, ch = mark_file(f, official, plain, mode, ok, dry, near); rows += r; held += h; n_changed += ch
+            r, h, ch = mark_file(f, official, plain, mode, ok, dry, near, root); rows += r; held += h; n_changed += ch
         except Exception as e: print(f'::warning title=Join check::{rel} not checked ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
     rep = {'key': k, 'mode': mode, 'files_checked': len(files), 'joined_parks': joined_n, 'suspect': len(rows), 'held': len(held),
            'files_changed': n_changed, 'official_acres_known': len(official), 'approved_parks_known': len(ok),
