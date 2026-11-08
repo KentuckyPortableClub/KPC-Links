@@ -439,12 +439,15 @@
   function rulesFor(ctx) {
     const f = ctx.f, p = (f && f.properties) || {}, L = (f && f._L) || {};
     const own = ctx.owner;
-    const pad = ctx.padExact || null;
+    const pad = ctx.padExact || null, SF = ctx.stateFacts || null;
+    const differ = (a, b) => { const n = v => String(v || '').toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim(); a = n(a); b = n(b); return a && b && a.indexOf(b) < 0 && b.indexOf(a) < 0; };
     const says = (own && own.says) || '';
     const parties = partiesFrom(says);
     const rules = [];
     if (says) rules.push(ownRule('Owned by the federal or state government', parties, 'ky-wma-owners says', says));
     else if (p.OWNER || p.owner || p.Loc_Own) rules.push(ownRule('Owned by the federal or state government', partiesFrom(p.OWNER || p.owner || p.Loc_Own), 'owner field on the layer', p.OWNER || p.owner || p.Loc_Own));
+    /* Nov 8 (t766u): a state-only place, or PAD-US with no owner: the state layer's own OWNER field decides, named by its layer */
+    else if (SF && SF.owner && !(pad && (pad.Own_Type || pad.Own_Name || pad.Loc_Own))) rules.push(ownRule('Owned by the federal or state government', partiesFrom(SF.owner.v), 'owner field on ' + SF.owner.src, SF.owner.v));
     else if (pad && (pad.Own_Type || pad.Own_Name || pad.Loc_Own)) {
       const extra = [pad.Own_Name, pad.Loc_Own].filter(Boolean).join(' · ');
       const named = partiesFrom(extra);
@@ -460,6 +463,7 @@
       const ca = ctx.caExact, t = +ca.OWNER_TYPE, ev = 'OWNER_TYPE = ' + t + '. OWNER_E = ' + (ca.OWNER_E || 'blank') + '.';
       rules.push(rule(t === 1 || t === 2 ? 'pass' : (t >= 3 && t <= 8 ? 'fail' : 'unknown'), 'Owned by the federal or state government', 'CPCAD OWNER_TYPE', ev + (t === 9 || t === 10 ? ' Joint or multiple ownership stays unknown until every owner is federal or provincial.' : (t === 1 || t === 2 ? ' Federal or provincial / territorial.' : ''))));
     } else rules.push(rule('unknown', 'Owned by the federal or state government', 'owner sentence / PAD-US Own_Type', 'No owner sentence and no PAD-US owner code for this place.'));
+    if (SF && SF.owner && pad && (pad.Own_Name || pad.Loc_Own) && differ(pad.Loc_Own || pad.Own_Name, SF.owner.v)) { const r0 = rules[rules.length - 1]; r0.evidence = (r0.evidence || '') + ' ' + SF.owner.src + ' says the owner is ' + SF.owner.v + ' (sources differ).'; }
 
     const mgrBits = [p.MANAGER, p.Loc_Mang, L.agency].filter(Boolean);
     if (p.MANAGER || p.Loc_Mang) {
@@ -468,9 +472,14 @@
       else if (/county|city|private|non-profit/i.test(m)) rules.push(rule('fail', 'Managed by the federal or state government', 'MANAGER', 'MANAGER = ' + m + '.'));
       else rules.push(rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'MANAGER = ' + m + '. That word is not a federal or state agency name by itself.'));
     } else if (pad && pad.Mang_Type) rules.push(codeRule('Managed by the federal or state government', pad.Mang_Type, 'PAD-US Mang_Type').v ? Object.assign(codeRule('Managed by the federal or state government', pad.Mang_Type, 'PAD-US Mang_Type'), { evidence: 'Mang_Type = ' + (pad.Mang_Type || '') + '. Mang_Name = ' + (pad.Mang_Name || 'blank') + '. Loc_Mang = ' + (pad.Loc_Mang || 'blank') + '.' }) : rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'No manager field.'));
+    else if (SF && SF.manager) { const m = SF.manager.v, src = 'manager field on ' + SF.manager.src;
+      if (/fish (&|and) wildlife|state parks?|nature preserves?|park service|forest service|\bdnr\b|natural resources|conservation|department of|state of|parks (&|and) wildlife|game commission|\bdcnr\b|\btpwd\b|bureau of|u\.?s\.? army corps|state forest|division of/i.test(m)) rules.push(rule('pass', 'Managed by the federal or state government', src, 'MANAGER = ' + m + '.'));
+      else if (/county|city|town(ship)?|village|private|non-?profit|trust|conservancy|association|club/i.test(m)) rules.push(rule('fail', 'Managed by the federal or state government', src, 'MANAGER = ' + m + '.'));
+      else rules.push(rule('unknown', 'Managed by the federal or state government', src, 'MANAGER = ' + m + '. That word is not a federal or state agency name by itself.')); }
     else if (ctx.caExact && ctx.caExact.GOV_TYPE != null) { const g = +ctx.caExact.GOV_TYPE; rules.push(rule(g === 1 || g === 2 ? 'pass' : (g >= 7 && g <= 9 ? 'fail' : 'unknown'), 'Managed by the federal or state government', 'CPCAD GOV_TYPE', 'GOV_TYPE = ' + g + '. MGMT_E = ' + (ctx.caExact.MGMT_E || 'blank') + '.')); }
     else if (L.agency && f) rules.push(rule('unknown', 'Managed by the federal or state government', 'layer agency', 'The outline comes from the ' + L.agency + ' layer (' + (L.name || '') + '). That says who published the layer, not who manages this tract, so management stays unknown.'));
     else rules.push(rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'No manager field.'));
+    if (SF && SF.manager && pad && (pad.Loc_Mang || pad.Mang_Name) && differ(pad.Loc_Mang || pad.Mang_Name, SF.manager.v)) { const r1 = rules[rules.length - 1]; r1.evidence = (r1.evidence || '') + ' ' + SF.manager.src + ' says the manager is ' + SF.manager.v + ' (sources differ).'; }
 
     /* Nov 8 (Brandon 2:19 PM CST, t751u: 'remove the military base check'): the name-only military check is gone. */
 
@@ -1254,7 +1263,8 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     const rows = res.places.map(p => {
       const pota = (p.verdict.v === 'already' || p.verdict.v === 'probably') ? [].concat(p.checks.same, (p.checks.cover || []).filter(x => x.same || x.share >= .5).map(x => x.ref), (p.checks.named || []).map(x => x.ref), p.checks.pinIn).filter(Boolean).map(ref => ({ ref })) : [];
       let v = 'MAYBE';
-      try { v = rulesFor({ f: null, owner: null, pota, state: stAll, padExact: p.kind === 'pad' ? p.a : null, caExact: p.kind === 'ca' ? p.a : null }).summary; } catch (e) {}
+      const sf = p.kind === 'state' ? (p.facts || {}) : Object.assign({}, ...((p.also || []).map(x => x.facts || {}).reverse()));
+      try { v = rulesFor({ f: null, owner: null, pota, state: stAll, padExact: p.kind === 'pad' ? p.a : null, caExact: p.kind === 'ca' ? p.a : null, stateFacts: (sf.owner || sf.manager) ? sf : null }).summary; } catch (e) {}
       if (pota.length) v = 'ALREADY';
       else if (v === 'YES' && p.verdict.v === 'person') v = 'MAYBE';   /* inside another park (2-fer) or partly over one: a person decides */
       return { name: p.name, layer: p.source || res.source, kind: p.kind, srcs: p.sources || [p.source], agency: p.manager, acres: p.acres, v, refs: pota.filter((x, i, a) => a.findIndex(y => y.ref === x.ref) === i), la: p.pt ? p.pt[0] : null, lo: p.pt ? p.pt[1] : null, why: p.verdict.why, id: p.ids[0] };

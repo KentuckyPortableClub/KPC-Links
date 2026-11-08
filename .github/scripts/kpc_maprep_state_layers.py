@@ -38,6 +38,29 @@ def robots_ok(u):
     if k == 'deny': return False, 'robots.txt answers 401/403 (disallow)'
     if k == 'none': return True, 'no robots.txt'
     return (rp.can_fetch(UA, u), 'robots.txt ' + ('allows' if rp.can_fetch(UA, u) else 'disallows'))
+# Nov 8 (Brandon 4:50 PM CST, t766u: do the state layers list ownership and management?): the fact fields each layer carries
+FACTS = {'owner': r'^(owner|own_?name|owner_?name|own|ownership|landowner|own_?agency|owner_?e|propr\w*)$|owner',
+         'manager': r'^(manager|mgr_?name|mang_?name|managed_?by|mgmt_?\w*|manag\w*|admin\w*|unit_?mgr)$|manag|admin',
+         'agency': r'^(agency|agncy|agency_?name|dept|department|division|org\w*)$|agency',
+         'designation': r'^(desig\w*|des_?tp|type|unit_?type|class\w*|category|park_?type|area_?type|land_?type|type_?e)$|desig',
+         'acres': r'^(acres|gis_?acres|acreage|total_?acres|area_?ac\w*|calc_?acres|deeded_?acres)$|acre',
+         'website': r'^(url|website|web_?site|web|link|webpage|web_?link|homepage|more_?info)$|url|website|webpage'}
+def fact_fields(base):
+    try: _, _, b = get(base + '?f=json'); j = json.loads(b)
+    except Exception: return None
+    fs = [(f.get('name') or '', f.get('alias') or '', f.get('type') or '') for f in j.get('fields') or []]
+    out = {}
+    for k, pat in FACTS.items():
+        exact, loose = pat.split('|', 1)[0] + '|' + pat.split('|', 1)[1].split(')$|')[0] + ')$', pat.rsplit('|', 1)[1]
+        for strict in (True, False):
+            for n, a, t in fs:
+                if k in ('owner', 'manager', 'agency') and re.search(r'(_st|_id|syst\w*|placename|_?code\w*|_cd|_num|_no)$|^code', n, re.I): continue   # a state code, an id or a place name is not a party
+                if k != 'acres' and t not in ('esriFieldTypeString', 'esriFieldTypeSmallInteger', 'esriFieldTypeInteger'): continue
+                if k == 'acres' and t not in ('esriFieldTypeDouble', 'esriFieldTypeSingle', 'esriFieldTypeInteger', 'esriFieldTypeSmallInteger'): continue
+                if re.search(pat.split(')$|')[0] + ')$' if strict else loose, n, re.I) or (not strict and re.search(loose, a, re.I)):
+                    out[k] = n; break
+            if k in out: break
+    return out
 def name_field(base):
     try: _, _, b = get(base + '?f=json'); j = json.loads(b)
     except Exception: return None
@@ -80,8 +103,9 @@ def main():
                         elif ac not in ('*', 'https://kentuckyportableclub.github.io'): r['why'] = 'no CORS: a browser cannot read it'
                         else: r['ok'] = True
                     except Exception as e: r['why'] = 'did not answer: ' + str(e)[:80]
+                    if r['ok']: r['facts'] = fact_fields(base) or {}
                 time.sleep(1)
-        out.setdefault(r['area'], []).append({k: r.get(k) for k in ('pre', 'url', 'field', 'label', 'ok', 'why', 'count')})
+        out.setdefault(r['area'], []).append({k: r.get(k) for k in ('pre', 'url', 'field', 'label', 'ok', 'why', 'count', 'facts')})
     for a in out.values():   # the same agency twice in one place: add the service name (Iowa DNR · Public Lands)
         seen = {}
         for x in a: seen[x['label']] = seen.get(x['label'], 0) + 1
@@ -91,4 +115,15 @@ def main():
     with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
     n = sum(1 for a in out.values() for x in a if x['ok']); print(f'{n} layers OK of {len(rows)}')
     for a in ('GA', 'KY', 'IA', 'PA', 'TX'): print(a, [(x['label'][:40], x['ok'], x['why'][:50]) for x in out.get(a, [])])
-if __name__ == '__main__': main()
+
+
+def facts_only():
+    """refresh only the fact fields of the layers already marked ok (no robots or CORS re-check needed for those)"""
+    doc = json.load(open(OUT, encoding='utf-8'))
+    for a in doc['areas'].values():
+        for x in a:
+            if x.get('ok'): u = x['url']; x['facts'] = fact_fields(u[:-6] if u.endswith('/query') else u) or {}; time.sleep(1)
+    with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
+
+if __name__ == '__main__':
+    facts_only() if '--facts-only' in sys.argv else main()

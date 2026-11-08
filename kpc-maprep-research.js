@@ -88,6 +88,7 @@
     if (p.protection) L.push('Protection: ' + p.protection);
     if (p.acres) L.push('Size: about ' + Math.round(p.acres).toLocaleString('en-US') + ' acres');
     L.push('Official record: ' + p.source + (p.ids && p.ids.length ? ', id ' + p.ids.join(', ') : ''));
+    factRows(p).filter(r => r.vals.some(x => x.src !== p.source) || p.kind === 'state').forEach(r => L.push(r.label + ': ' + r.vals.map(x => x.v + ' (' + x.src + ')').join('; ') + (r.differ ? ' [sources differ]' : '')));
     (p.also || []).forEach(x => L.push('Also in: ' + x.source + (x.name && norm(x.name) !== norm(p.name) ? ' (' + x.name + ')' : '') + (x.link ? ', ' + x.link : '')));
     if (p.link) L.push('Record link: ' + p.link);
     L.push('POTA check: ' + p.verdict.label + '. ' + p.verdict.why);
@@ -215,6 +216,7 @@
      data/maprep-state-layers.json (built by hand with .github/scripts/kpc_maprep_state_layers.py) lists the layers the answer keys use for
      each state or province, with only the ones whose robots.txt allows it and a browser may read (ok: true). Kentucky is the model:
      every place from every source gets the same checks. Each layer is one query, at most 4 at a time, each with a time limit. */
+  const FACT_KEYS = ['owner', 'manager', 'agency', 'designation', 'acres', 'website'];
   let SLP = null;
   function stateLayers(code) { SLP = SLP || within(jget('data/maprep-state-layers.json?v=' + new Date().toISOString().slice(0, 10)), 15000, null).then(j => (j && j.areas) || {});
     return SLP.then(A => (A[code] || [])); }
@@ -223,7 +225,12 @@
     const la = r.length ? r[0][1] : 0; const km2 = Math.abs(s2 / 2) * 111.32 * 111.32 * Math.cos(la * Math.PI / 180); a += (k ? -1 : 1) * km2 * 247.105; })); return Math.max(0, a); }
   function slRec(L, f) {
     const a = f.properties || {}, id = [f.id, a.OBJECTID, a.objectid, a.ObjectID, a.OBJECTID_1, a.FID].find(v => v != null);
-    return { kind: 'state', a, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: L.label, owner: '', designation: '', acc: '', cat: '', acres: geomAcres(f.geometry),
+    /* Nov 8 (t766u): the layer's own owner / manager / agency / designation / acres / website fields (data/maprep-state-layers.json 'facts') */
+    const F = L.facts || {}, facts = {};
+    FACT_KEYS.forEach(k => { const fl = F[k], v = fl != null && a[fl] != null ? String(a[fl]).trim() : ''; if (v && !/^(null|none|n\/?a|unknown|unk|-|0)$/i.test(v)) facts[k] = { v, src: L.label, field: fl }; });
+    if (!facts.manager && facts.agency) facts.manager = Object.assign({}, facts.agency);
+    const ac = facts.acres ? parseFloat(String(facts.acres.v).replace(/,/g, '')) : NaN;
+    return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
       access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
   }
   async function slQuery(L, params, ms) {
@@ -261,13 +268,14 @@
   async function mergeSources(places, srec) {
     places.forEach(p => { p.sources = p.sources || [p.source]; p.xids = p.xids || []; });
     const sp = groupRecords(srec.filter(r => r.acres >= 20).map(r => Object.assign({}, r, { manager: r.layer })));   /* grouped per layer + name */
-    sp.forEach(x => { x.manager = x.source; x.sources = [x.source]; x.xids = []; });
+    sp.forEach(x => { x.manager = x.facts && x.facts.manager ? x.facts.manager.v : x.source; x.sources = [x.source]; x.xids = []; });
     const extra = [];
     let n = 0;
     for (const x of sp) {
       if (++n % 25 === 0) await tick();
       const hit = places.find(p => samePlace(x, p)) || extra.find(p => samePlace(x, p));
-      if (hit) { if (hit.sources.indexOf(x.source) < 0) hit.sources.push(x.source); hit.xids.push(...x.ids); (hit.also = hit.also || []).push({ source: x.source, name: x.name, ids: x.ids, link: x.link }); }
+      if (hit) { if (hit.sources.indexOf(x.source) < 0) hit.sources.push(x.source); hit.xids.push(...x.ids); (hit.also = hit.also || []).push({ source: x.source, name: x.name, ids: x.ids, link: x.link, facts: x.facts || {} });
+        if (hit.kind !== 'state' && !hit.owner && x.facts && x.facts.owner) { hit.owner = x.facts.owner.v; hit.ownerFrom = x.source; }   /* PAD-US blank: the state layer's owner is used for the checks */ }
       else extra.push(x);
     }
     return places.concat(extra.sort((a, b) => b.acres - a.acres).slice(0, MAX_PLACES));
@@ -421,6 +429,28 @@
     const el = D.querySelector('[data-rs="' + i + '"]'); if (el) { if (el.tagName === 'DETAILS') el.open = true; inPanel(el, 'start'); }
     if (rmap && p.geoms.length) { const g = L.geoJSON({ type: 'FeatureCollection', features: p.geoms.map(x => ({ type: 'Feature', geometry: x })) }); try { rmap.fitBounds(g.getBounds(), { maxZoom: 14, padding: [20, 20] }); } catch (e) {} }
   }
+  /* every fact with its source; PAD-US / CPCAD and a state layer that say different things are both shown, marked 'sources differ' */
+  const FACT_LAB = { owner: 'Owner', manager: 'Manager', designation: 'Designation', acres: 'Acres', website: 'Website' };
+  function factRows(p) {
+    const rows = [], base = p.kind === 'state' ? [] : [{ src: p.source, owner: p.ownerFrom ? '' : p.owner, manager: p.manager, designation: p.designation, acres: p.acres }];
+    const st = (p.kind === 'state' ? [{ source: p.source, facts: p.facts || {} }] : (p.also || [])).map(x => Object.assign({ src: x.source }, Object.fromEntries(Object.entries(x.facts || {}).map(([k, v]) => [k, v.v]))));
+    const all = base.concat(st), key = v => norm(String(v || '').replace(/\(.*?\)/g, ''));
+    ['owner', 'manager', 'designation', 'acres', 'website'].forEach(k => {
+      const vals = all.filter(x => x[k] != null && String(x[k]).trim() !== '' && !(k === 'acres' && !(+String(x[k]).replace(/,/g, '') > 0))).map(x => ({ v: k === 'acres' ? Math.round(+String(x[k]).replace(/,/g, '')).toLocaleString('en-US') : String(x[k]).trim(), src: x.src }));
+      if (!vals.length) return;
+      for (let i = vals.length - 1; i > 0; i--) { const j = vals.findIndex(x => key(x.v) === key(vals[i].v)); if (j < i) { vals[j].src += ' + ' + vals[i].src; vals.splice(i, 1); } }   /* the same value twice: one line, both sources */
+      let differ = false;
+      if (vals.length > 1) { if (k === 'acres') { const n = vals.map(x => +x.v.replace(/,/g, '')); differ = Math.max(...n) > 1.25 * Math.min(...n); }
+        else if (k !== 'website') { const ks = vals.map(x => key(x.v)); differ = ks.some(a => ks.some(b => a && b && a.indexOf(b) < 0 && b.indexOf(a) < 0 && !sameName(a, b))); } }
+      rows.push({ k, label: FACT_LAB[k], vals, differ });
+    });
+    return rows;
+  }
+  function factsHtml(p) {
+    const R = factRows(p); if (!R.length || (p.kind !== 'state' && !(p.also || []).length)) return '';   /* PAD-US only: its own record card already shows these */
+    return '<div class="mr-rs-checks mr-rs-facts"><b>Official record facts, by source</b><ul>' + R.map(r => '<li>' + esc(r.label) + ': ' + r.vals.map(x => (r.k === 'website' && /^https?:\/\//i.test(x.v) ? '<a href="' + esc(x.v) + '" target="_blank" rel="noopener">' + esc(x.v) + '</a>' : '<b>' + esc(x.v) + '</b>') + ' <small>(' + esc(x.src) + ')</small>').join(' \u00b7 ')
+      + (r.differ ? ' <span class="mr-rs-differ">sources differ</span>' : '') + '</li>').join('') + '</ul></div>';
+  }
   function card(p, i) {
     const X = W.KPCMapExtras, c = p.checks || {};
     const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : p.kind === 'state' ? '<p class="mr-help mr-rs-src">From the state / province layer: <b>' + esc(p.source) + '</b> (not in ' + (p.source && /CPCAD/.test(p.source) ? 'CPCAD' : 'PAD-US or CPCAD') + ')</p>' : (X && X.caCard ? X.caCard(p.a) : '');
@@ -435,7 +465,7 @@
       + esc([(p.sources || []).length > 1 ? p.sources.length + ' sources' : p.kind === 'state' ? p.source : '', p.designation, p.kind === 'state' ? '' : p.manager].map(x => String(x || '').trim()).concat([ p.acres ? Math.round(p.acres).toLocaleString('en-US') + ' acres' : '']).filter(Boolean).join(' \u00b7 ')) + '</small></summary>'
       + '<p class="mr-rs-why">' + esc(p.verdict.why) + '</p>'
       + '<div class="mr-rs-checks"><b>Checks</b><ul>' + lines.map(l => '<li>' + esc(l) + '</li>').join('') + '</ul></div>'
-      + official + also
+      + factsHtml(p) + official + also
       + '<p class="mr-rs-links"><a href="' + esc(p.link) + '" target="_blank" rel="noopener">OFFICIAL RECORD \u203a</a> <button type="button" class="mr-ag" data-rscheck="' + i + '">FULL RULES CHECK</button></p>'
       + '<label class="mr-rs-sumlab">Summary for a park submission (copy and edit)</label><textarea class="mr-rs-sum" readonly rows="9" id="mrRsSum' + i + '">' + esc(summaryText(p)) + '</textarea>'
       + '<button type="button" class="mr-ag" data-rscopy="' + i + '">COPY SUMMARY</button></details>';
@@ -555,6 +585,6 @@
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { mergeSources, samePlace, srcStats, slSearch, stateLayers, geomAcres, capName, within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { factRows, slRec, mergeSources, samePlace, srcStats, slSearch, stateLayers, geomAcres, capName, within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();

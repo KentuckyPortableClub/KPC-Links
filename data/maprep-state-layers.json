@@ -10,7 +10,10 @@
     "label": "Alaska State Parks (DNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 157
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
    },
    {
     "pre": "sgakb",
@@ -19,7 +22,8 @@
     "label": "Alaska Department of Natural Resources",
     "ok": true,
     "why": "no robots.txt",
-    "count": 2318
+    "count": 2318,
+    "facts": {}
    },
    {
     "pre": "sgakc",
@@ -46,7 +50,10 @@
     "label": "Alaska DNR State Parks (park boundaries)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 157
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
    },
    {
     "pre": "sgakf",
@@ -55,7 +62,10 @@
     "label": "Alaska DNR, Division of Parks & Outdoor Recreation",
     "ok": true,
     "why": "no robots.txt",
-    "count": 157
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
    },
    {
     "pre": "sgakg",
@@ -64,7 +74,11 @@
     "label": "BLM recreation SITE polygons (national, 3,478)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 3478
+    "count": 3478,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
    },
    {
     "pre": "sgakh",
@@ -73,7 +87,11 @@
     "label": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1120
+    "count": 1120,
+    "facts": {
+     "designation": "ACEC_RLVNCE_CUL",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgaki",
@@ -82,7 +100,8 @@
     "label": "National Register of Historic Places Polygons",
     "ok": true,
     "why": "no robots.txt",
-    "count": 22905
+    "count": 22905,
+    "facts": {}
    }
   ],
   "AL": [
@@ -93,7 +112,10 @@
     "label": "Alabama State Parks (ADCNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 21
+    "count": 21,
+    "facts": {
+     "website": "Link"
+    }
    },
    {
     "pre": "sgalb",
@@ -102,7 +124,10 @@
     "label": "Alabama Dept of Conservation and Natural Resources, State La",
     "ok": true,
     "why": "no robots.txt",
-    "count": 228
+    "count": 228,
+    "facts": {
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgalc",
@@ -111,7 +136,11 @@
     "label": "ADCNR Wildlife and Freshwater Fisheries · WildlifeManagementAreas",
     "ok": true,
     "why": "no robots.txt",
-    "count": 42
+    "count": 42,
+    "facts": {
+     "acres": "Acres",
+     "website": "Link"
+    }
    },
    {
     "pre": "sgald",
@@ -120,7 +149,10 @@
     "label": "ADCNR Wildlife and Freshwater Fisheries · PublicFishingLakes 1",
     "ok": true,
     "why": "no robots.txt",
-    "count": 20
+    "count": 20,
+    "facts": {
+     "website": "Link"
+    }
    }
   ],
   "AR": [
@@ -131,7 +163,8 @@
     "label": "Arkansas Natural Heritage Commission",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 79
+    "count": 79,
+    "facts": {}
    },
    {
     "pre": "sgarb",
@@ -140,7 +173,10 @@
     "label": "Arkansas State Parks",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 52
+    "count": 52,
+    "facts": {
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgarc",
@@ -214,7 +250,11 @@
     "label": "Bureau of Land Management, Arizona (recreation sites, polygons)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 71
+    "count": 71,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
    }
   ],
   "CA": [
@@ -252,7 +292,11 @@
     "label": "BLM CA Recreation Polygons",
     "ok": true,
     "why": "no robots.txt",
-    "count": 90
+    "count": 90,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
    }
   ],
   "CO": [
@@ -263,7 +307,10 @@
     "label": "Colorado Parks & Wildlife · Colorado State Basemap 30",
     "ok": true,
     "why": "no robots.txt",
-    "count": 324
+    "count": 324,
+    "facts": {
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgcob",
@@ -272,7 +319,10 @@
     "label": "Colorado Parks & Wildlife · Colorado State Basemap 41",
     "ok": true,
     "why": "no robots.txt",
-    "count": 48
+    "count": 48,
+    "facts": {
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgcoc",
@@ -290,7 +340,8 @@
     "label": "Colorado Parks and Wildlife",
     "ok": true,
     "why": "no robots.txt",
-    "count": 386
+    "count": 386,
+    "facts": {}
    },
    {
     "pre": "sgcoe",
@@ -299,7 +350,11 @@
     "label": "Bureau of Land Management, Colorado (recreation sites)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 278
+    "count": 278,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
    }
   ],
   "CT": [
@@ -339,7 +394,14 @@
     "label": "Delaware DNREC",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1329
+    "count": 1329,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGEMENT_UNIT",
+     "agency": "MANAGING_AGENCY",
+     "acres": "ACRES",
+     "website": "WEBSITE"
+    }
    },
    {
     "pre": "sgdeb",
@@ -348,7 +410,10 @@
     "label": "Delaware Forest Service",
     "ok": true,
     "why": "no robots.txt",
-    "count": 31
+    "count": 31,
+    "facts": {
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgdec",
@@ -357,7 +422,11 @@
     "label": "Delaware Fish & Wildlife (DNREC)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 83
+    "count": 83,
+    "facts": {
+     "owner": "OWNER",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgded",
@@ -366,7 +435,11 @@
     "label": "Delaware nature preserves (DNREC)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 129
+    "count": 129,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgdee",
@@ -375,7 +448,12 @@
     "label": "Delaware public protected lands (DNREC)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 869
+    "count": 869,
+    "facts": {
+     "manager": "MANAGING_AGENCY",
+     "agency": "MANAGING_AGENCY",
+     "acres": "ACRES"
+    }
    }
   ],
   "FL": [
@@ -386,7 +464,11 @@
     "label": "Florida State Parks (DEP)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 179
+    "count": 179,
+    "facts": {
+     "acres": "ACREAGE",
+     "website": "URL"
+    }
    },
    {
     "pre": "sgflb",
@@ -431,7 +513,12 @@
     "label": "Florida DEP Division of State Lands",
     "ok": true,
     "why": "no robots.txt",
-    "count": 79689
+    "count": 79689,
+    "facts": {
+     "owner": "SHARED_OWNER_AGENCY_NAME",
+     "manager": "MANAGING_AGENCY_NAME",
+     "agency": "AUTHORIZED_AGENCY_NAME"
+    }
    },
    {
     "pre": "sgflg",
@@ -440,7 +527,11 @@
     "label": "FWC",
     "ok": true,
     "why": "no robots.txt",
-    "count": 284
+    "count": 284,
+    "facts": {
+     "designation": "TYPE",
+     "website": "WEBSITE"
+    }
    }
   ],
   "GA": [
@@ -498,7 +589,12 @@
     "label": "Hawaii Division of State Parks (DLNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 70
+    "count": 70,
+    "facts": {
+     "manager": "managedby",
+     "designation": "type",
+     "acres": "gis_acre"
+    }
    },
    {
     "pre": "sghib",
@@ -507,7 +603,12 @@
     "label": "Hawaii DLNR reserves (DOFAW)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 381
+    "count": 381,
+    "facts": {
+     "manager": "managedby",
+     "designation": "type",
+     "acres": "gis_acre"
+    }
    },
    {
     "pre": "sghic",
@@ -527,7 +628,13 @@
     "label": "Iowa DNR · State Parks 9",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1846
+    "count": 1846,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGE",
+     "acres": "Acres",
+     "website": "More_Info"
+    }
    },
    {
     "pre": "sgiab",
@@ -536,7 +643,14 @@
     "label": "Iowa DNR · State Parks Trails 2",
     "ok": true,
     "why": "no robots.txt",
-    "count": 344
+    "count": 344,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "acres": "ACRES",
+     "website": "More_Info"
+    }
    },
    {
     "pre": "sgiac",
@@ -545,7 +659,14 @@
     "label": "Iowa DNR · Public Lands",
     "ok": true,
     "why": "no robots.txt",
-    "count": 5450
+    "count": 5450,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "acres": "ACRES",
+     "website": "More_Info"
+    }
    },
    {
     "pre": "sgiad",
@@ -554,7 +675,12 @@
     "label": "Iowa DNR · State Parks 10",
     "ok": true,
     "why": "no robots.txt",
-    "count": 326
+    "count": 326,
+    "facts": {
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "website": "More_Info"
+    }
    }
   ],
   "ID": [
@@ -583,7 +709,11 @@
     "label": "BLM Idaho recreation area polygons (76)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 76
+    "count": 76,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
    },
    {
     "pre": "sgidd",
@@ -639,7 +769,11 @@
     "label": "IDNR Properties",
     "ok": true,
     "why": "no robots.txt",
-    "count": 384
+    "count": 384,
+    "facts": {
+     "designation": "CLASSIFICATION",
+     "acres": "GIS_ACRES"
+    }
    }
   ],
   "IN": [
@@ -650,7 +784,12 @@
     "label": "Indiana DNR",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 654
+    "count": 654,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
    },
    {
     "pre": "sginb",
@@ -659,7 +798,12 @@
     "label": "Indiana DNR Nature Preserves",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 196
+    "count": 196,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
    },
    {
     "pre": "sginc",
@@ -668,7 +812,12 @@
     "label": "Indiana DNR + INHD (all managed lands)",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 102
+    "count": 102,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
    }
   ],
   "KS": [
@@ -737,7 +886,12 @@
     "label": "MassGIS / Executive Office of Energy and Environmental Affai",
     "ok": true,
     "why": "no robots.txt",
-    "count": 61486
+    "count": 61486,
+    "facts": {
+     "owner": "FEE_OWNER",
+     "manager": "MANAGER",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgmab",
@@ -764,7 +918,12 @@
     "label": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 61892
+    "count": 61892,
+    "facts": {
+     "owner": "FEE_OWNER",
+     "manager": "MANAGER",
+     "acres": "GIS_ACRES"
+    }
    }
   ],
   "MD": [
@@ -775,7 +934,12 @@
     "label": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 580
+    "count": 580,
+    "facts": {
+     "manager": "ManagedBy",
+     "designation": "DESIG",
+     "website": "WebLink"
+    }
    },
    {
     "pre": "sgmdb",
@@ -784,7 +948,10 @@
     "label": "Maryland DNR (Maryland Natural Areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 34
+    "count": 34,
+    "facts": {
+     "website": "weblink"
+    }
    }
   ],
   "ME": [
@@ -844,7 +1011,11 @@
     "label": "Minnesota DNR · bdry dnr wildlife mgmt areas pub",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1753
+    "count": 1753,
+    "facts": {
+     "manager": "managing_admin_office",
+     "acres": "gis_area_acres"
+    }
    },
    {
     "pre": "sgmnb",
@@ -853,7 +1024,10 @@
     "label": "Minnesota DNR · bdry state forest 4",
     "ok": true,
     "why": "no robots.txt",
-    "count": 60
+    "count": 60,
+    "facts": {
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgmnc",
@@ -862,7 +1036,11 @@
     "label": "Minnesota DNR · bdry scientific and nat areas 4",
     "ok": true,
     "why": "no robots.txt",
-    "count": 239
+    "count": 239,
+    "facts": {
+     "designation": "unit_type",
+     "acres": "gis_acres"
+    }
    },
    {
     "pre": "sgmnd",
@@ -880,7 +1058,12 @@
     "label": "Minnesota DNR (state land admin: parks and trails)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 13490
+    "count": 13490,
+    "facts": {
+     "manager": "administrator",
+     "designation": "landtype",
+     "acres": "su_acres"
+    }
    },
    {
     "pre": "sgmnf",
@@ -889,7 +1072,12 @@
     "label": "DNR Management Units",
     "ok": true,
     "why": "no robots.txt",
-    "count": 6715
+    "count": 6715,
+    "facts": {
+     "manager": "ADMINISTRATING_DIVISION",
+     "designation": "UNIT_TYPE",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgmng",
@@ -909,7 +1097,11 @@
     "label": "Missouri State Parks (DNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 207
+    "count": 207,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "URL"
+    }
    },
    {
     "pre": "sgmob",
@@ -918,7 +1110,12 @@
     "label": "Missouri Natural Areas (DNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 36
+    "count": 36,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAG_AGEN",
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgmoc",
@@ -927,7 +1124,11 @@
     "label": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1049
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
    },
    {
     "pre": "sgmod",
@@ -936,7 +1137,13 @@
     "label": "Missouri Department of Conservation",
     "ok": true,
     "why": "no robots.txt",
-    "count": 192
+    "count": 192,
+    "facts": {
+     "owner": "Owner",
+     "manager": "Manage_Agency",
+     "agency": "Manage_Agency",
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgmoe",
@@ -945,7 +1152,11 @@
     "label": "Missouri DNR, Division of State Parks",
     "ok": true,
     "why": "no robots.txt",
-    "count": 13
+    "count": 13,
+    "facts": {
+     "designation": "DATE_DES",
+     "acres": "ACREAGE"
+    }
    },
    {
     "pre": "sgmof",
@@ -954,7 +1165,11 @@
     "label": "MDC Lands",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1049
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
    },
    {
     "pre": "sgmog",
@@ -963,7 +1178,13 @@
     "label": "Natural Areas",
     "ok": true,
     "why": "no robots.txt",
-    "count": 192
+    "count": 192,
+    "facts": {
+     "owner": "Owner",
+     "manager": "Manage_Agency",
+     "agency": "Manage_Agency",
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgmoh",
@@ -972,7 +1193,11 @@
     "label": "Missouri Department of Conservation (conservation area boundaries)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1049
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
    }
   ],
   "MT": [
@@ -1010,7 +1235,14 @@
     "label": "Managed Areas",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 1531
+    "count": 1531,
+    "facts": {
+     "owner": "Own_Name",
+     "manager": "MANAGER",
+     "designation": "UNITTYPE",
+     "acres": "ACRES",
+     "website": "URL"
+    }
    },
    {
     "pre": "sgmte",
@@ -1019,7 +1251,10 @@
     "label": "Montana Fish, Wildlife & Parks (state park boundaries)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 55
+    "count": 55,
+    "facts": {
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgmtf",
@@ -1028,7 +1263,10 @@
     "label": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 333
+    "count": 333,
+    "facts": {
+     "acres": "ACRES"
+    }
    }
   ],
   "NC": [
@@ -1104,7 +1342,11 @@
     "label": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 27
+    "count": 27,
+    "facts": {
+     "designation": "UNIT_TYPE",
+     "acres": "ACRES"
+    }
    }
   ],
   "NE": [
@@ -1144,7 +1386,11 @@
     "label": "NH GRANIT",
     "ok": true,
     "why": "no robots.txt",
-    "count": 13502
+    "count": 13502,
+    "facts": {
+     "owner": "ownertype",
+     "agency": "ppagency"
+    }
    },
    {
     "pre": "sgnhb",
@@ -1162,7 +1408,10 @@
     "label": "NH GRANIT (recreation inventory areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 2718
+    "count": 2718,
+    "facts": {
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgnhd",
@@ -1171,7 +1420,11 @@
     "label": "NH GRANIT conservation lands (UNH / NH OSI)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 13502
+    "count": 13502,
+    "facts": {
+     "owner": "OWNERTYPE",
+     "agency": "PPAGENCY"
+    }
    }
   ],
   "NJ": [
@@ -1182,7 +1435,14 @@
     "label": "New Jersey DEP (Natural Lands Trust preserves)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 118
+    "count": 118,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGED_BY",
+     "agency": "LAND_MANAGER_AGENCY",
+     "designation": "USE_DESIGNATION",
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgnjb",
@@ -1240,7 +1500,11 @@
     "label": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 759
+    "count": 759,
+    "facts": {
+     "owner": "ownership",
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgnvc",
@@ -1258,7 +1522,11 @@
     "label": "Nevada (SCORP recreation areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 756
+    "count": 756,
+    "facts": {
+     "owner": "ownership",
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgnve",
@@ -1267,7 +1535,10 @@
     "label": "Nevada Division of State Parks · NDSP State Park Bondaries 1",
     "ok": true,
     "why": "no robots.txt",
-    "count": 30
+    "count": 30,
+    "facts": {
+     "acres": "acres"
+    }
    },
    {
     "pre": "sgnvf",
@@ -1276,7 +1547,10 @@
     "label": "BLM Nevada national monuments + NCAs",
     "ok": true,
     "why": "no robots.txt",
-    "count": 10
+    "count": 10,
+    "facts": {
+     "designation": "NLCS_TYPE"
+    }
    },
    {
     "pre": "sgnvg",
@@ -1294,7 +1568,11 @@
     "label": "ACEC Designated Polygons",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1120
+    "count": 1120,
+    "facts": {
+     "designation": "ACEC_RLVNCE_CUL",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgnvi",
@@ -1303,7 +1581,12 @@
     "label": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 86
+    "count": 86,
+    "facts": {
+     "manager": "ADMIN_AGCY",
+     "agency": "ADMIN_AGCY",
+     "acres": "GIS_ACRES"
+    }
    }
   ],
   "NY": [
@@ -1379,7 +1662,13 @@
     "label": "Ohio DNR, Office of Information Technology",
     "ok": true,
     "why": "no robots.txt",
-    "count": 865
+    "count": 865,
+    "facts": {
+     "owner": "OWN_TYPE",
+     "manager": "MANAGING_AGENCY",
+     "agency": "MANAGING_AGENCY",
+     "acres": "SUM_CALC_ACRES"
+    }
    },
    {
     "pre": "sgohg",
@@ -1388,7 +1677,10 @@
     "label": "Ohio DNR: city, county + NGO lands",
     "ok": true,
     "why": "no robots.txt",
-    "count": 623
+    "count": 623,
+    "facts": {
+     "acres": "ACRES"
+    }
    }
   ],
   "OK": [
@@ -1428,7 +1720,11 @@
     "label": "Oregon Parks & Recreation Department",
     "ok": true,
     "why": "no robots.txt",
-    "count": 422
+    "count": 422,
+    "facts": {
+     "designation": "DESIGNATION",
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgorb",
@@ -1464,7 +1760,10 @@
     "label": "State of Oregon (Oregon parklands)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 6345
+    "count": 6345,
+    "facts": {
+     "designation": "CLIMBING_DESIGNATED"
+    }
    },
    {
     "pre": "sgorf",
@@ -1473,7 +1772,10 @@
     "label": "BLM Oregon/Washington recreation management areas (2,188)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 2188
+    "count": 2188,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgorg",
@@ -1482,7 +1784,10 @@
     "label": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 132
+    "count": 132,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
    }
   ],
   "PA": [
@@ -1493,7 +1798,12 @@
     "label": "Pennsylvania DCNR Bureau of State Parks",
     "ok": true,
     "why": "no robots.txt",
-    "count": 125
+    "count": 125,
+    "facts": {
+     "designation": "TYPE",
+     "acres": "GIS_ACRE",
+     "website": "WEBLINK"
+    }
    },
    {
     "pre": "sgpab",
@@ -1502,7 +1812,10 @@
     "label": "Pennsylvania State Parks (DCNR)",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 240
+    "count": 240,
+    "facts": {
+     "acres": "Acreage"
+    }
    },
    {
     "pre": "sgpac",
@@ -1520,7 +1833,11 @@
     "label": "PA DCNR Bureau of State Parks",
     "ok": true,
     "why": "no robots.txt",
-    "count": 23
+    "count": 23,
+    "facts": {
+     "acres": "ACREAGE",
+     "website": "WEBLINK"
+    }
    },
    {
     "pre": "sgpae",
@@ -1529,7 +1846,10 @@
     "label": "State Forests",
     "ok": true,
     "why": "no robots.txt",
-    "count": 662
+    "count": 662,
+    "facts": {
+     "acres": "Acreage"
+    }
    }
   ],
   "RI": [
@@ -1558,7 +1878,10 @@
     "label": "Rhode Island DEM (state conservation land)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1062
+    "count": 1062,
+    "facts": {
+     "acres": "Acres"
+    }
    }
   ],
   "SC": [
@@ -1607,7 +1930,10 @@
     "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota ParksAndRecreationAreas",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 133
+    "count": 133,
+    "facts": {
+     "designation": "ClassificationCode"
+    }
    },
    {
     "pre": "sgsdb",
@@ -1616,7 +1942,11 @@
     "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota GFPManagedLands",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 882
+    "count": 882,
+    "facts": {
+     "agency": "Division",
+     "designation": "ClassificationCode"
+    }
    }
   ],
   "TN": [
@@ -1699,7 +2029,12 @@
     "label": "Tennessee Wildlife Resources Agency · TWRA 3",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 228
+    "count": 228,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGEMENT",
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "sgtnj",
@@ -1728,7 +2063,11 @@
     "label": "Texas Parks & Wildlife Department (public hunting lands)",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 463
+    "count": 463,
+    "facts": {
+     "designation": "Class",
+     "acres": "Acres"
+    }
    },
    {
     "pre": "sgtxc",
@@ -1784,7 +2123,10 @@
     "label": "BLM Utah State Office (congressionally designated recreation areas)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 26
+    "count": 26,
+    "facts": {
+     "designation": "RECS_TYPE"
+    }
    },
    {
     "pre": "sgute",
@@ -1793,7 +2135,8 @@
     "label": "NLCS Wild and Scenic Rivers",
     "ok": true,
     "why": "no robots.txt",
-    "count": 2077
+    "count": 2077,
+    "facts": {}
    },
    {
     "pre": "sgutf",
@@ -1867,7 +2210,12 @@
     "label": "Virginia Department of Wildlife Resources",
     "ok": true,
     "why": "no robots.txt",
-    "count": 242
+    "count": 242,
+    "facts": {
+     "owner": "Owner",
+     "acres": "ACRES",
+     "website": "URL"
+    }
    },
    {
     "pre": "sgvah",
@@ -1876,7 +2224,10 @@
     "label": "Virginia Dept. of Historic Resources",
     "ok": true,
     "why": "no robots.txt",
-    "count": 3169
+    "count": 3169,
+    "facts": {
+     "website": "URL"
+    }
    }
   ],
   "VT": [
@@ -1887,7 +2238,10 @@
     "label": "Vermont Agency of Natural Resources",
     "ok": true,
     "why": "no robots.txt",
-    "count": 515
+    "count": 515,
+    "facts": {
+     "acres": "GISACRES"
+    }
    }
   ],
   "WA": [
@@ -1907,7 +2261,8 @@
     "label": "Washington Department of Fish and Wildlife",
     "ok": true,
     "why": "no robots.txt",
-    "count": 729
+    "count": 729,
+    "facts": {}
    },
    {
     "pre": "sgwac",
@@ -1916,7 +2271,10 @@
     "label": "Washington State Department of Natural Resources",
     "ok": true,
     "why": "no robots.txt",
-    "count": 18844
+    "count": 18844,
+    "facts": {
+     "owner": "TIMBER_OWNER_NM"
+    }
    },
    {
     "pre": "sgwad",
@@ -1925,7 +2283,11 @@
     "label": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 6413
+    "count": 6413,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER"
+    }
    },
    {
     "pre": "sgwae",
@@ -1943,7 +2305,8 @@
     "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas",
     "ok": true,
     "why": "no robots.txt",
-    "count": 218
+    "count": 218,
+    "facts": {}
    },
    {
     "pre": "sgwag",
@@ -1952,7 +2315,8 @@
     "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas 1",
     "ok": true,
     "why": "no robots.txt",
-    "count": 33
+    "count": 33,
+    "facts": {}
    },
    {
     "pre": "sgwah",
@@ -1972,7 +2336,10 @@
     "label": "Wisconsin DNR",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1799
+    "count": 1799,
+    "facts": {
+     "acres": "PROP_ACRES"
+    }
    },
    {
     "pre": "sgwib",
@@ -1981,7 +2348,10 @@
     "label": "Wisconsin State Parks (DNR)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 81
+    "count": 81,
+    "facts": {
+     "website": "INFO_URL"
+    }
    },
    {
     "pre": "sgwic",
@@ -1990,7 +2360,10 @@
     "label": "Wisconsin DNR Natural Heritage Conservation",
     "ok": true,
     "why": "no robots.txt",
-    "count": 683
+    "count": 683,
+    "facts": {
+     "acres": "SNA_ACRE_AMT"
+    }
    },
    {
     "pre": "sgwid",
@@ -1999,7 +2372,10 @@
     "label": "Wisconsin DNR Bureau of Facilities and Lands",
     "ok": true,
     "why": "no robots.txt",
-    "count": 82539
+    "count": 82539,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
    },
    {
     "pre": "sgwie",
@@ -2008,7 +2384,8 @@
     "label": "Wisconsin DNR (county forests, from the counties)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 30
+    "count": 30,
+    "facts": {}
    },
    {
     "pre": "sgwif",
@@ -2017,7 +2394,11 @@
     "label": "Natural Area Parcel Ownership",
     "ok": true,
     "why": "no robots.txt",
-    "count": 801
+    "count": 801,
+    "facts": {
+     "owner": "OWNER_NAME",
+     "acres": "OWNER_ACRE_AMT"
+    }
    }
   ],
   "WV": [
@@ -2046,7 +2427,11 @@
     "label": "West Virginia State Parks (WVDOT boundaries server)",
     "ok": true,
     "why": "no robots.txt",
-    "count": 36
+    "count": 36,
+    "facts": {
+     "designation": "Loc_Ds",
+     "acres": "GIS_Acres"
+    }
    }
   ],
   "WY": [
@@ -2095,7 +2480,10 @@
     "label": "AB Public La",
     "ok": true,
     "why": "no robots.txt",
-    "count": 61
+    "count": 61,
+    "facts": {
+     "designation": "TYPE"
+    }
    },
    {
     "pre": "caabpluzgove",
@@ -2104,7 +2492,10 @@
     "label": "AB-PLUZ Gove",
     "ok": true,
     "why": "no robots.txt",
-    "count": 61
+    "count": 61,
+    "facts": {
+     "designation": "TYPE"
+    }
    },
    {
     "pre": "caalbertapar",
@@ -2113,7 +2504,11 @@
     "label": "Alberta Park",
     "ok": true,
     "why": "no robots.txt",
-    "count": 469
+    "count": 469,
+    "facts": {
+     "designation": "TYPE",
+     "acres": "ACRES"
+    }
    },
    {
     "pre": "caalbertapub",
@@ -2122,7 +2517,10 @@
     "label": "Alberta publ",
     "ok": true,
     "why": "no robots.txt",
-    "count": 64
+    "count": 64,
+    "facts": {
+     "designation": "TYPE"
+    }
    }
   ],
   "BC": [
@@ -2142,7 +2540,11 @@
     "label": "BC Park Inve",
     "ok": true,
     "why": "no robots.txt",
-    "count": 402
+    "count": 402,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "designation": "CLASSIFICATION"
+    }
    },
    {
     "pre": "cabcregional",
@@ -2198,7 +2600,8 @@
     "label": "Hard look~12",
     "ok": true,
     "why": "no robots.txt",
-    "count": 7274
+    "count": 7274,
+    "facts": {}
    },
    {
     "pre": "cahardlook",
@@ -2207,7 +2610,10 @@
     "label": "Hard look~14",
     "ok": true,
     "why": "no robots.txt",
-    "count": 24
+    "count": 24,
+    "facts": {
+     "acres": "area_acres"
+    }
    },
    {
     "pre": "cahardlook",
@@ -2216,7 +2622,10 @@
     "label": "Hard look~16",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1261
+    "count": 1261,
+    "facts": {
+     "designation": "DESIGNATION_ENG"
+    }
    },
    {
     "pre": "cahardlook",
@@ -2225,7 +2634,12 @@
     "label": "Hard look~22",
     "ok": true,
     "why": "no robots.txt",
-    "count": 347
+    "count": 347,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
    },
    {
     "pre": "cahardlook",
@@ -2234,7 +2648,8 @@
     "label": "Hard look~6",
     "ok": true,
     "why": "no robots.txt",
-    "count": 15
+    "count": 15,
+    "facts": {}
    },
    {
     "pre": "caonabcaausa",
@@ -2252,7 +2667,8 @@
     "label": "ON-CH Conser",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 8
+    "count": 8,
+    "facts": {}
    },
    {
     "pre": "caoncrcacata",
@@ -2288,7 +2704,10 @@
     "label": "ON-GANA Gana",
     "ok": true,
     "why": "no robots.txt",
-    "count": 24
+    "count": 24,
+    "facts": {
+     "acres": "area_acres"
+    }
    },
    {
     "pre": "caongscagrey",
@@ -2297,7 +2716,10 @@
     "label": "ON-GSCA Grey",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 211
+    "count": 211,
+    "facts": {
+     "designation": "Designation"
+    }
    },
    {
     "pre": "caonkrcakawa",
@@ -2315,7 +2737,11 @@
     "label": "ON-LSRCA Lak",
     "ok": true,
     "why": "no robots.txt",
-    "count": 59
+    "count": 59,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER"
+    }
    },
    {
     "pre": "caonltclower",
@@ -2360,7 +2786,11 @@
     "label": "ON-ORCA Oton",
     "ok": true,
     "why": "no robots.txt",
-    "count": 99
+    "count": 99,
+    "facts": {
+     "owner": "OWNER",
+     "designation": "CADESN"
+    }
    },
    {
     "pre": "caonrvcaride",
@@ -2369,7 +2799,11 @@
     "label": "ON-RVCA Ride",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 10
+    "count": 10,
+    "facts": {
+     "owner": "Owner",
+     "acres": "Acres"
+    }
    },
    {
     "pre": "caonsvcagrey",
@@ -2396,7 +2830,12 @@
     "label": "Ontario Park",
     "ok": true,
     "why": "no robots.txt",
-    "count": 347
+    "count": 347,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
    },
    {
     "pre": "caontariocon",
@@ -2405,7 +2844,12 @@
     "label": "Ontario cons",
     "ok": true,
     "why": "no robots.txt",
-    "count": 306
+    "count": 306,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
    },
    {
     "pre": "caontariofed",
@@ -2414,7 +2858,8 @@
     "label": "Ontario fede",
     "ok": true,
     "why": "no robots.txt",
-    "count": 36
+    "count": 36,
+    "facts": {}
    },
    {
     "pre": "caontariomun",
@@ -2423,7 +2868,8 @@
     "label": "Ontario muni",
     "ok": true,
     "why": "no robots.txt",
-    "count": 388
+    "count": 388,
+    "facts": {}
    }
   ],
   "SK": [
@@ -2515,7 +2961,10 @@
     "label": "Saskatchewan~6",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 106
+    "count": 106,
+    "facts": {
+     "designation": "PARK_TYPE"
+    }
    }
   ],
   "YT": [
@@ -2629,7 +3078,8 @@
     "label": "NB-PP Govern",
     "ok": true,
     "why": "robots.txt allows",
-    "count": 24
+    "count": 24,
+    "facts": {}
    }
   ],
   "NL": [
@@ -2678,7 +3128,8 @@
     "label": "NS-F111 Nova",
     "ok": true,
     "why": "no robots.txt",
-    "count": 3
+    "count": 3,
+    "facts": {}
    },
    {
     "pre": "cansnhsnova",
@@ -2687,7 +3138,8 @@
     "label": "NS-NHS Nova",
     "ok": true,
     "why": "no robots.txt",
-    "count": 27
+    "count": 27,
+    "facts": {}
    },
    {
     "pre": "cansppanova",
@@ -2734,7 +3186,11 @@
     "label": "NT GNWT Envi",
     "ok": true,
     "why": "no robots.txt",
-    "count": 4
+    "count": 4,
+    "facts": {
+     "manager": "Management",
+     "designation": "Designation"
+    }
    },
    {
     "pre": "cantnagwicho",
@@ -2743,7 +3199,8 @@
     "label": "NT Nagwichoo",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1
+    "count": 1,
+    "facts": {}
    }
   ],
   "PE": [
@@ -2763,7 +3220,12 @@
     "label": "PE Province",
     "ok": true,
     "why": "no robots.txt",
-    "count": 49
+    "count": 49,
+    "facts": {
+     "owner": "OWNER_E",
+     "manager": "MGMT_E",
+     "designation": "TYPE_E"
+    }
    },
    {
     "pre": "capeppgovern",
@@ -2792,7 +3254,8 @@
     "label": "Québec Aire",
     "ok": true,
     "why": "no robots.txt",
-    "count": 4
+    "count": 4,
+    "facts": {}
    },
    {
     "pre": "caqubecparc",
@@ -2801,7 +3264,8 @@
     "label": "Québec Parc",
     "ok": true,
     "why": "no robots.txt",
-    "count": 1
+    "count": 1,
+    "facts": {}
    },
    {
     "pre": "caqubecparc",
@@ -2810,7 +3274,8 @@
     "label": "Québec Parc ~1",
     "ok": true,
     "why": "no robots.txt",
-    "count": 4
+    "count": 4,
+    "facts": {}
    },
    {
     "pre": "caqubecparc",
@@ -2819,7 +3284,8 @@
     "label": "Québec Parc ~2",
     "ok": true,
     "why": "no robots.txt",
-    "count": 28
+    "count": 28,
+    "facts": {}
    },
    {
     "pre": "caqubecparc",
@@ -2828,7 +3294,8 @@
     "label": "Québec Parc ~3",
     "ok": true,
     "why": "no robots.txt",
-    "count": 16
+    "count": 16,
+    "facts": {}
    },
    {
     "pre": "caqubecrefug",
@@ -2837,7 +3304,8 @@
     "label": "Québec Refug",
     "ok": true,
     "why": "no robots.txt",
-    "count": 9
+    "count": 9,
+    "facts": {}
    },
    {
     "pre": "caqubecrser",
@@ -2846,7 +3314,8 @@
     "label": "Québec Réser",
     "ok": true,
     "why": "no robots.txt",
-    "count": 21
+    "count": 21,
+    "facts": {}
    },
    {
     "pre": "caqubeczone",
@@ -2855,7 +3324,8 @@
     "label": "Québec Zone",
     "ok": true,
     "why": "no robots.txt",
-    "count": 86
+    "count": 86,
+    "facts": {}
    },
    {
     "pre": "caqubececolo",
@@ -2864,7 +3334,10 @@
     "label": "Québec ecolo",
     "ok": true,
     "why": "no robots.txt",
-    "count": 75
+    "count": 75,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
    },
    {
     "pre": "caqubecprote",
@@ -2873,7 +3346,10 @@
     "label": "Québec prote",
     "ok": true,
     "why": "no robots.txt",
-    "count": 5611
+    "count": 5611,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
    },
    {
     "pre": "caqubecrecog",
@@ -2882,7 +3358,10 @@
     "label": "Québec recog",
     "ok": true,
     "why": "no robots.txt",
-    "count": 271
+    "count": 271,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
    }
   ]
  }
