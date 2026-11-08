@@ -1,8 +1,8 @@
 {
  "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
  "counts": {
-  "pin wrong": 68,
-  "needs a person": 111,
+  "pin wrong": 69,
+  "needs a person": 128,
   "wrong state": 1,
   "sliver": 2
  },
@@ -1529,12 +1529,76 @@
    "state": "US-NH",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep sgnha10012 (Annett State Forest) (the POTA pin is never moved)",
+   "recommend": "override: keep sgnhc2522, sgnhc2651, sgnhc2610, sgnhc2298, sgnhc2607, sgnha10009, sgnha10010, sgnha10011, sgnha10012, sgnhd10009, sgnhd10010, sgnhd10011, sgnhd10012 (Annett State Forest) (the POTA pin is never moved)",
    "reasons": [
-    "sgnha10012 is the park's land: same name (Annett State Forest), 1,229 acres measured",
+    "sgnhc2522 is the park's land: same name (Annett State Forest), ~1,353 acres",
     "the pin's latitude matches the land but its longitude is off (42.781, -72.1069), so the longitude may be mistyped"
    ],
    "records": [
+    {
+     "id": "sgnhc2522",
+     "name": "Annett State Forest",
+     "points": 38,
+     "measured_ac": 1347.4,
+     "claimed_ac": 1353.405,
+     "km": 9.36
+    },
+    {
+     "id": "sgnhc2651",
+     "name": "Annett State Forest",
+     "points": 7,
+     "measured_ac": 180.7,
+     "claimed_ac": 186.057,
+     "km": 10.81
+    },
+    {
+     "id": "sgnhc2610",
+     "name": "Annett State Forest",
+     "points": 15,
+     "measured_ac": 126.9,
+     "claimed_ac": 125.972,
+     "km": 10.96
+    },
+    {
+     "id": "sgnhc2298",
+     "name": "Annett State Forest",
+     "points": 5,
+     "measured_ac": 29.6,
+     "claimed_ac": 26.939,
+     "km": 11.3
+    },
+    {
+     "id": "sgnhc2607",
+     "name": "Annett State Forest",
+     "points": 4,
+     "measured_ac": 1.9,
+     "claimed_ac": 3.349,
+     "km": 10.9
+    },
+    {
+     "id": "sgnha10009",
+     "name": "Annett State Forest",
+     "points": 7,
+     "measured_ac": 37.6,
+     "claimed_ac": 0,
+     "km": 11.65
+    },
+    {
+     "id": "sgnha10010",
+     "name": "Annett State Forest",
+     "points": 4,
+     "measured_ac": 0.5,
+     "claimed_ac": 0,
+     "km": 11.61
+    },
+    {
+     "id": "sgnha10011",
+     "name": "Annett State Forest",
+     "points": 8,
+     "measured_ac": 87.5,
+     "claimed_ac": 0,
+     "km": 10.43
+    },
     {
      "id": "sgnha10012",
      "name": "Annett State Forest",
@@ -1542,6 +1606,38 @@
      "measured_ac": 1228.8,
      "claimed_ac": 0,
      "km": 9.35
+    },
+    {
+     "id": "sgnhd10009",
+     "name": "Annett State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd10010",
+     "name": "Annett State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd10011",
+     "name": "Annett State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd10012",
+     "name": "Annett State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -1550,13 +1646,22 @@
    "name": "Connecticut Lakes State Forest",
    "type": "State Forest",
    "state": "US-NH",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgnhc66, sgnha3, sgnha138, sgnha345, sgnha346, sgnha347, sgnha495, sgnha510, sgnha917, sgnhd3, sgnhd138, sgnhd345, sgnhd346, sgnhd347, sgnhd495, sgnhd510, sgnhd917 (Connecticut Lakes State Forest) (the POTA pin is never moved)",
    "reasons": [
-    "sgnha3's outline is 119 acres but the park is ~2,466 acres, so it is only part of the land"
+    "sgnhc66 is the park's land: same name (Connecticut Lakes State Forest), ~1,813 acres",
+    "the pin (45.1621, -71.2877) is simply away from the land"
    ],
    "records": [
+    {
+     "id": "sgnhc66",
+     "name": "Connecticut Lakes State Forest",
+     "points": 54,
+     "measured_ac": 1822.1,
+     "claimed_ac": 1812.886,
+     "km": 5.77
+    },
     {
      "id": "sgnha3",
      "name": "Connecticut Lakes State Forest",
@@ -1564,6 +1669,126 @@
      "measured_ac": 119.5,
      "claimed_ac": 0,
      "km": 5.97
+    },
+    {
+     "id": "sgnha138",
+     "name": "Connecticut Lakes State Forest",
+     "points": 26,
+     "measured_ac": 439.0,
+     "claimed_ac": 0,
+     "km": 7.83
+    },
+    {
+     "id": "sgnha345",
+     "name": "Connecticut Lakes State Forest",
+     "points": 6,
+     "measured_ac": 55.5,
+     "claimed_ac": 0,
+     "km": 7.05
+    },
+    {
+     "id": "sgnha346",
+     "name": "Connecticut Lakes State Forest",
+     "points": 6,
+     "measured_ac": 15.1,
+     "claimed_ac": 0,
+     "km": 7.95
+    },
+    {
+     "id": "sgnha347",
+     "name": "Connecticut Lakes State Forest",
+     "points": 4,
+     "measured_ac": 16.7,
+     "claimed_ac": 0,
+     "km": 7.96
+    },
+    {
+     "id": "sgnha495",
+     "name": "Connecticut Lakes State Forest",
+     "points": 4,
+     "measured_ac": 0.4,
+     "claimed_ac": 0,
+     "km": 7.84
+    },
+    {
+     "id": "sgnha510",
+     "name": "Connecticut Lakes State Forest",
+     "points": 4,
+     "measured_ac": 1.2,
+     "claimed_ac": 0,
+     "km": 11.81
+    },
+    {
+     "id": "sgnha917",
+     "name": "Connecticut Lakes State Forest",
+     "points": 73,
+     "measured_ac": 926.0,
+     "claimed_ac": 0,
+     "km": 5.77
+    },
+    {
+     "id": "sgnhd3",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd138",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd345",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd346",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd347",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd495",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd510",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgnhd917",
+     "name": "Connecticut Lakes State Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -1803,6 +2028,28 @@
    ]
   },
   {
+   "park": "US-13013",
+   "name": "Dogskin Mountains BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi435 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi435",
+     "name": "Dogskin Mountains",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
    "park": "US-13018",
    "name": "Black Rock Range East/West BLM Herd Management Area",
    "type": "BLM Herd Management Area",
@@ -1822,6 +2069,28 @@
      "measured_ac": 93112.7,
      "claimed_ac": 93438.05946672,
      "km": 2.84
+    }
+   ]
+  },
+  {
+   "park": "US-13019",
+   "name": "Buffalo Hills BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi414 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi414",
+     "name": "Buffalo Hills",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -1848,6 +2117,50 @@
    ]
   },
   {
+   "park": "US-13029",
+   "name": "Flanigan BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi429 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi429",
+     "name": "Flanigan",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13031",
+   "name": "Garfield Flat BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi454 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi454",
+     "name": "Garfield Flat",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
    "park": "US-13034",
    "name": "Goshute BLM Herd Management Area",
    "type": "BLM Herd Management Area",
@@ -1862,6 +2175,28 @@
     {
      "id": "sgnvi416",
      "name": "Goshute",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13035",
+   "name": "Granite Range BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi412 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi412",
+     "name": "Granite Range",
      "points": null,
      "measured_ac": null,
      "claimed_ac": null,
@@ -1893,6 +2228,124 @@
    ]
   },
   {
+   "park": "US-13041",
+   "name": "Maverick-Medicine BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi422 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi422",
+     "name": "Maverick-Medicine",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13042",
+   "name": "Montezuma Peak BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi460 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi460",
+     "name": "Montezuma Peak",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13043",
+   "name": "New Pass-Ravenswood BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi434 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi434",
+     "name": "New Pass-Ravenswood",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13044",
+   "name": "Palmetto BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi461 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi461",
+     "name": "Palmetto",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13046",
+   "name": "Paymaster BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi456 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi456",
+     "name": "Paymaster",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "hab25",
+     "name": "Paymaster-Lone Mountain",
+     "points": 38,
+     "measured_ac": 99876.6,
+     "claimed_ac": 100590.64881625,
+     "km": 1.18
+    }
+   ]
+  },
+  {
    "park": "US-13048",
    "name": "Rocky Hills BLM Herd Management Area",
    "type": "BLM Herd Management Area",
@@ -1915,6 +2368,116 @@
    ]
   },
   {
+   "park": "US-13052",
+   "name": "Spruce-Pequop BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi417 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi417",
+     "name": "Spruce-Pequop",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13053",
+   "name": "Stone Cabin BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi481 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi481",
+     "name": "Stone Cabin",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13119",
+   "name": "Stonewall BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi462 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi462",
+     "name": "Stonewall",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13122",
+   "name": "Horse Mountain BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi449 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi449",
+     "name": "Horse Mountain",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13123",
+   "name": "Bald Mountain BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi430 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi430",
+     "name": "Bald Mountain",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
    "park": "US-13128",
    "name": "Jackson Mountains BLM Herd Management Area",
    "type": "BLM Herd Management Area",
@@ -1929,6 +2492,28 @@
     {
      "id": "sgnvi408",
      "name": "Jackson Mountains",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13129",
+   "name": "Lahontan BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi446 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi446",
+     "name": "Lahontan",
      "points": null,
      "measured_ac": null,
      "claimed_ac": null,
@@ -1965,7 +2550,7 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma104 (Seven Mile) (the POTA pin is never moved)",
+   "recommend": "override: keep hma104, sgnvi448 (Seven Mile) (the POTA pin is never moved)",
    "reasons": [
     "hma104 is the park's land: same name (Seven Mile), ~98,149 acres",
     "the pin (39.3307, -116.229) is simply away from the land"
@@ -1978,6 +2563,14 @@
      "measured_ac": 97341.3,
      "claimed_ac": 98149.29936323,
      "km": 9.25
+    },
+    {
+     "id": "sgnvi448",
+     "name": "Seven Mile",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -1988,7 +2581,7 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma113 (Rock Creek) (the POTA pin is never moved)",
+   "recommend": "override: keep hma113, sgnvi407 (Rock Creek) (the POTA pin is never moved)",
    "reasons": [
     "hma113 is the park's land: same name (Rock Creek), ~122,085 acres",
     "the pin (41.2506, -116.788) is simply away from the land"
@@ -2001,6 +2594,36 @@
      "measured_ac": 120787.3,
      "claimed_ac": 122084.52929384,
      "km": 4.37
+    },
+    {
+     "id": "sgnvi407",
+     "name": "Rock Creek",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13135",
+   "name": "Seven Troughs BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvi420 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvi420",
+     "name": "Seven Troughs",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -2011,7 +2634,7 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma127 (Wassuk) (the POTA pin is never moved)",
+   "recommend": "override: keep hma127, sgnvi450 (Wassuk) (the POTA pin is never moved)",
    "reasons": [
     "hma127 is the park's land: same name (Wassuk), ~52,310 acres",
     "the pin (38.9912, -118.989) is simply away from the land"
@@ -2024,6 +2647,14 @@
      "measured_ac": 51482.7,
      "claimed_ac": 52309.92080083,
      "km": 8.55
+    },
+    {
+     "id": "sgnvi450",
+     "name": "Wassuk",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -2047,6 +2678,28 @@
      "measured_ac": 87734.8,
      "claimed_ac": 92695.05208763,
      "km": 4.48
+    }
+   ]
+  },
+  {
+   "park": "US-13181",
+   "name": "Pine Forest BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgnvh1214 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgnvh1214",
+     "name": "Pine Forest",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
