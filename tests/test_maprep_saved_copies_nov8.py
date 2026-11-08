@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Nov 8 (Brandon 8:23 AM CST): the limited-maps note counts our SAVED copies (the published answer key) as well as live layers.
 full = no note, some = soft note naming the saved copy and its date, little = the heads-up."""
-import json, pathlib, subprocess, sys
+import json, pathlib, re, subprocess, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ok = True
 def check(c, m):
@@ -28,4 +28,12 @@ check(o['txs'].startswith('Live agency maps for Alabama') and 'saved copies from
 check(o['txl'].startswith('Heads up:') and '405 of 692' in o['txl'] and o['txf'] == '', 'heads-up for little; nothing for full')
 chk = (ROOT / 'kpc-maprep-check.js').read_text(encoding='utf-8')
 check('G.savedShare(await stateKey(code))' in chk and 'G.liveTier(lim, saved)' in chk, 'the Tool Box note uses the saved key and its build date')
+
+# Nov 8 8:35 AM: rep-side options where live maps are short
+br = json.loads((ROOT / 'data/maprep/browser-layers.json').read_text(encoding='utf-8'))
+L = br.get('layers', [])
+check(L and all(x['robots'] == 'allow' and x['cors'] == 'yes' for x in L), 'browser layers: only robots-allowed, cross-origin sources')
+check(not any(re.search(r'services\d*\.arcgis\.com|33TOOklri9xpic7U|ncnhde\.natureserve', x['url']) for x in L), 'no services*.arcgis.com or banned source is offered')
+check("OPEN THE AGENCY'S OWN MAP" in chk and "LOAD THIS STATE'S LAYER IN MY BROWSER" in chk and "credentials: 'omit'" in chk, 'both rep buttons exist; the browser load sends no credentials')
+check("x.cors === 'yes' && x.robots === 'allow'" in chk, 'the load button is offered only for checked sources')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
