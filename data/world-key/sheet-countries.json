@@ -797,8 +797,8 @@
    "layers": [
     {
      "label": "Åland Islands: Ålands landskapsregering",
-     "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
-     "namef": "Namn"
+     "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/ALR_Naturreservat/MapServer/1",
+     "namef": "Nimi"
     }
    ],
    "kinds": [
