@@ -1,6 +1,6 @@
 {
- "ver": "0.7.7",
- "when": "2026-10-28",
+ "ver": "0.8.0",
+ "when": "2026-11-08",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "RADIO tab (tune, bands, modes, filter, power, tuner, hold to talk), hear the radio on the PC speakers, VOICE LEVEL, the dial no longer jumps on a mode change, CW listens in CW and sends in DATA (no stray E's), typed CW through the FT-710's own keyer, spots on this band, PC settings + MY VOICE from the phone, deeper FT8 decoding on the PC."
+ "notes": "0.8.0: the iPhone page (the PC hands out the app to iPhones; Tailscale for talking), 🎛 more radio controls on the PC and the phone, band memory, tune asks first, SWR guard, help + setup wizard, log on the contest screen, voice NATURAL / PUNCH / CONTEST on the PC, quicker transmit key. "
 }
