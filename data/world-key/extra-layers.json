@@ -319,8 +319,8 @@
   "AX": [
    {
     "label": "Naturreservat",
-    "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/ALR_Naturreservat/MapServer/1",
-    "name_field": "Nimi",
+    "url": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
+    "name_field": "Namn",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    }
