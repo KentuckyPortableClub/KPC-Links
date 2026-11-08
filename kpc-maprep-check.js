@@ -472,8 +472,7 @@
     else if (L.agency && f) rules.push(rule('unknown', 'Managed by the federal or state government', 'layer agency', 'The outline comes from the ' + L.agency + ' layer (' + (L.name || '') + '). That says who published the layer, not who manages this tract, so management stays unknown.'));
     else rules.push(rule('unknown', 'Managed by the federal or state government', 'MANAGER', 'No manager field.'));
 
-    if (/military reservation|army depot|national guard/i.test((f && f._nm) || (pad && pad.Unit_Nm) || '')) rules.push(rule('fail', 'Not named as a military base', 'name', 'The name says military reservation, army depot or national guard.'));
-    else rules.push(rule('pass', 'Not named as a military base', 'name', 'The name does not say military reservation, army depot or national guard. The word Fort alone is not treated as a base.'));
+    /* Nov 8 (Brandon 2:19 PM CST, t751u: 'remove the military base check'): the name-only military check is gone. */
 
     const accField = p.ACCESS ? 'ACCESS' : (p.Pub_Access ? 'Pub_Access' : (pad && pad.Pub_Access ? 'PAD-US Pub_Access' : ''));
     const accVal = p.ACCESS || p.Pub_Access || (pad && pad.Pub_Access) || '';
@@ -734,13 +733,40 @@
       + `<p class="mr-help"><a href="${esc(padLink(a))}" target="_blank" rel="noopener">PAD-US record ↗</a>`
       + (padGeo(a) ? ` · <a href="${esc(padGeo(a))}" target="_blank" rel="noopener">Boundary download (GeoJSON) ↗</a>` : '') + '</p>';
   }
+  /* Nov 8 (Brandon 2:19 PM CST, t751u): plain words for a rule we could not confirm, and what the rep can check. */
+  const CHECK_HOW = {
+    'Owned by the federal or state government': 'Look up who owns the land: the agency page, the PAD-US record, or the county property (PVA) site.',
+    'Managed by the federal or state government': 'Find who runs the place: the agency page usually says, or call the agency.',
+    'Open to the public': 'Check the agency page for public hours, permits or closed areas.',
+    'Has a designated name and purpose': 'Find the official name and type (state park, WMA, nature preserve...) on the agency page or sign.',
+    'Has an official boundary': 'Find a boundary map from the agency, or the PAD-US record outline.',
+    'Has an official government web page': 'Use the search buttons under Official website and map to find the agency page.',
+    'Not already a POTA park': 'Search pota.app for the name and look at nearby parks on the POTA map.'
+  };
   function rulesHtml(R) {
     const cls = { pass: 'yes', fail: 'no', unknown: 'check' };
-    const word = { pass: 'PASS', fail: 'FAIL', unknown: 'UNKNOWN' };
-    return R.rules.map(r => `<div class="mr-r ${cls[r.v] || 'check'}"><i>${word[r.v] || 'UNKNOWN'}</i><div><b>${esc(r.title)}</b><p>${esc(r.evidence)}</p><p class="mr-help">Evidence field: ${esc(r.field)}</p></div></div>`).join('');
+    const word = { pass: 'PASS', fail: 'FAIL', unknown: 'NOT CONFIRMED' };
+    return R.rules.map(r => `<div class="mr-r ${cls[r.v] || 'check'}"><i>${word[r.v] || 'NOT CONFIRMED'}</i><div><b>${esc(r.title)}</b>`
+      + (r.v === 'unknown' ? `<p><b>We could not confirm this.</b> ${esc(r.evidence)}</p><p class="mr-how"><b>You can check:</b> ${esc(CHECK_HOW[r.title] || 'Open the agency page and the official record.')}</p>` : `<p>${esc(r.evidence)}</p>`)
+      + `<p class="mr-help">From: ${esc(r.field)}</p></div></div>`).join('');
   }
-  function summaryWord(s) {
-    return s === 'YES' ? 'LIKELY YES — COULD BE ADDED' : s === 'NO' ? 'LIKELY NO' : s === 'ALREADY' ? 'ALREADY A POTA PARK' : 'MAYBE — A RULE IS STILL UNKNOWN';
+  function summaryWord(s, R) {
+    const n = R && R.rules ? R.rules.filter(r => r.v === 'unknown').length : 0;
+    return s === 'YES' ? 'LIKELY YES — COULD BE ADDED' : s === 'NO' ? 'LIKELY NO' : s === 'ALREADY' ? 'ALREADY A POTA PARK'
+      : 'MAYBE — ' + (n ? n + ' RULE' + (n === 1 ? '' : 'S') + ' TO CONFIRM YOURSELF (SEE BELOW)' : 'CHECK THE RULES BELOW');
+  }
+  /* official site and map, or plain web-search links when we have none (no fetching, no scraping) */
+  function webSearch(q) { return 'https://www.google.com/search?q=' + encodeURIComponent(q); }
+  function siteBlock(title, st, page, mapUrl, links) {
+    const place = (st && st.name) || '';
+    const hosts = [...new Set(links.map(x => { try { return new URL(x[1]).host; } catch (e) { return ''; } }).filter(Boolean))].slice(0, 2);
+    const a = (lab, url, sub, cl) => `<a class="${cl || 'k-off'}" href="${esc(url)}" target="_blank" rel="noopener"><b>${esc(lab)}</b><span>${esc(sub || url)}</span></a>`;
+    let h = '<div class="mr-links">';
+    h += page ? a('Official website ↗', page) : a('Search for the official website ↗', webSearch(title + ' ' + place + ' official site'), 'We did not find one. This opens a web search.', 'k-search');
+    h += mapUrl ? a('Official map ↗', mapUrl) : a('Search for a map ↗', webSearch(title + ' ' + place + ' map'), 'We did not find one. This opens a web search.', 'k-search');
+    if (!page) hosts.forEach(hst => { h += a('Search ' + hst + ' for this place ↗', webSearch('site:' + hst + ' ' + title), 'The managing agency’s own site.', 'k-search'); });
+    links.forEach(([lab, url]) => { if (url !== page) h += a(lab + ' ↗', url); });
+    return h + '</div>';
   }
   function drawOnMap(la, lo, feats, overlaps) {
     if (!map) return;
@@ -798,39 +824,41 @@
     const nameQ = "State_Nm='" + st.code + "' AND Unit_Nm LIKE '%" + tokens(canon(q).core).slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('%') + "%'";
     const padSearch = PADUS + '?' + new URLSearchParams({ where: nameQ, outFields: PAD_FIELDS, returnGeometry: 'false', f: 'html' }).toString();
     const pota = ctx.pota || [];
-    const say = `<div class="mr-say"><b>Before you click an official link.</b> This is a helper, not the final word. Open every link and research the land yourself before you submit a park. We match published government outlines (PAD-US and our state layers), then ownership, manager, designation and public access, and compare that with POTA’s published rules. We can miss a new tract, a joint owner, an easement, a private inholding or a name change. The agency page and the PAD-US record always win over this summary.</div>`;
-    const linkBlock = say + `<div class="mr-links">${links.map(([lab, url]) => `<a class="k-off" href="${esc(url)}" target="_blank" rel="noopener"><b>${esc(lab)}</b><span>${esc(url)}</span></a>`).join('')}`
-      + (pota.length ? pota.map(x => `<a class="k-pota" href="https://pota.app/#/park/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener"><b>POTA park page ${esc(x.ref)}</b><span>https://pota.app/#/park/${esc(x.ref)}</span></a>`).join('') : `<a class="k-pota" href="https://pota.app/" target="_blank" rel="noopener"><b>POTA park page</b><span>No park in the ${esc(place)} list uses this name, so there is no park-page link yet.</span></a>`)
-      + (ctx.padExact ? `<a class="k-off" href="${esc(padLink(ctx.padExact))}" target="_blank" rel="noopener"><b>PAD-US record</b><span>${esc(padLink(ctx.padExact))}</span></a>` : `<a class="k-off" href="${esc(padSearch)}" target="_blank" rel="noopener"><b>PAD-US name search for ${esc(place)}</b><span>${esc(padSearch)}</span></a>`)
-      + (f ? `<a href="#" data-dl="1"><b>Download this boundary (GeoJSON)</b><span>The outline from the published layer, saved from this page.</span></a>` : '')
-      + `</div>`;
-    const miss = !f ? `<div class="mr-miss"><b>Not in our ${esc(place)} layers yet.</b> ${st.local ? 'The published files on this site do not have this name.' : 'This state has no outlines saved on this site. Its answer key was loaded for this search.'} PAD-US was queried for ${esc(place)}${ctx.pin ? ' and at this pin' : ''}. Nothing was scraped.</div>` : '';
+    /* Nov 8 (Brandon 2:19 PM CST, t751u "it repeats itself"): every fact once. The official record card is the one place for owner,
+       manager, designation, acres, GAP and source; the short list below is used only when there is no record card. Links once, the
+       agency directory once (in the rules), the POTA list once (POTA status), the helper note once (bottom). */
+    const page = (f && urlOf(f)) || (ctx.owner && ctx.owner.url) || '';
+    const mapUrl = (p.MAP_URL || p.MapURL || p.MAP || (ctx.owner && ctx.owner.map) || '');
+    const recCard = ctx.padExact && window.KPCMapExtras && KPCMapExtras.padCard ? KPCMapExtras.padCard(ctx.padExact, padLink(ctx.padExact))
+      : ctx.caExact && window.KPCMapExtras && KPCMapExtras.caCard ? KPCMapExtras.caCard(ctx.caExact, cpcadLink(ctx.caExact)) : '';
+    const miss = !f ? `<div class="mr-miss"><b>Not in our ${esc(place)} layers yet.</b> ${st.local ? 'The published files on this site do not have this name.' : 'This state has no outlines saved on this site.'} PAD-US was searched${ctx.pin ? ' here and at this pin' : ''}.</div>` : '';
     const ownLine = ctx.owner && ctx.owner.says ? ctx.owner.says : (ctx.says || '');
-    const official = miss
-      + kv('Managing agency', esc((p.MANAGER && p.MANAGER + (L.agency ? ' · layer: ' + L.agency : '')) || L.agency || (ctx.padExact && (ctx.padExact.Mang_Name || ctx.padExact.Loc_Mang)) || ('Not in the ' + place + ' layers.')))
-      + kv('Designation', esc(p.TYPE || p.Loc_Ds || (ctx.padExact && ctx.padExact.Des_Tp) || 'Not stated on a layer here.'))
-      + kv('Ownership', ownLine ? esc(ownLine) : (ctx.padExact ? esc(['Own_Name ' + (ctx.padExact.Own_Name || 'blank'), 'Loc_Own ' + (ctx.padExact.Loc_Own || 'blank'), 'Own_Type ' + (ctx.padExact.Own_Type || 'blank')].join(' · ')) : 'No owner sentence is stored for this name.'))
-      + (ctx.padExact && ctx.padExact.GAP_Sts != null && ctx.padExact.GAP_Sts !== '' ? kv('GAP status', esc(GAP_WORD[String(ctx.padExact.GAP_Sts)] || ('GAP ' + ctx.padExact.GAP_Sts))) : '')
-      + kv('Acres', acres ? 'about ' + Math.round(acres).toLocaleString() : 'Not stated.')
+    const official = miss + (recCard
+      ? recCard + (L.agency || p.MANAGER ? kv('Layer', esc([p.MANAGER, L.agency].filter(Boolean).join(' · '))) : '') + (ownLine ? kv('Owner file', esc(ownLine)) : '')
+      : kv('Managing agency', esc((p.MANAGER && p.MANAGER + (L.agency ? ' · layer: ' + L.agency : '')) || L.agency || 'Not stated.'))
+        + kv('Designation', esc(p.TYPE || p.Loc_Ds || 'Not stated.'))
+        + kv('Ownership', ownLine ? esc(ownLine) : 'Not stated.')
+        + kv('Acres', acres ? 'about ' + Math.round(acres).toLocaleString() : 'Not stated.')
+        + `${PAD_LOOK}<p class="mr-help">No PAD-US record in ${esc(place)} matched this name${ctx.pin ? ' or this pin' : ''}. <a href="${esc(padSearch)}" target="_blank" rel="noopener">Search PAD-US yourself ↗</a></p>`)
       + (ctx.edgeNote ? kv('Pin and the boundary', esc(ctx.edgeNote)) : '')
-      + `<h4 style="margin:12px 0 6px">Links</h4>${linkBlock}`
-      + (ctx.padExact ? `<h4 style="margin:12px 0 6px">PAD-US record</h4>${padTable(ctx.padExact)}` : `<h4 style="margin:12px 0 6px">PAD-US</h4>${PAD_LOOK}<p class="mr-help">No PAD-US record in ${esc(place)} matched this name${ctx.pin ? ' or this pin' : ''}. The search link above opens the same query.</p>`)
-      + (ctx.padNear && ctx.padNear.length ? `<p class="mr-help"><b>Other PAD-US names (not an exact hit):</b> ${ctx.padNear.slice(0, 5).map(a => `<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a>`).join(', ')}.</p>` : '')
-      + directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, L.k, ctx.padExact && ctx.padExact.Des_Tp, ctx.padExact && ctx.padExact.Mang_Name, ctx.padExact && ctx.padExact.Unit_Nm].filter(Boolean).join(' '));
+      + (ctx.padNear && ctx.padNear.length ? `<p class="mr-help"><b>Other PAD-US names nearby (not an exact match):</b> ${ctx.padNear.slice(0, 5).map(a => `<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a>`).join(', ')}.</p>` : '')
+      + (f ? `<p class="mr-help"><a href="#" data-dl="1">Download this boundary (GeoJSON)</a></p>` : '');
     const vClass = R.summary === 'YES' || R.summary === 'ALREADY' ? 'yes' : R.summary === 'NO' ? 'no' : 'maybe';
     const potaBody = pota.length
       ? pota.map(x => `<a href="https://pota.app/#/park/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)}</a> ${esc(x.name)}`).join('<br>')
       : ('No park in the ' + place + ' list uses this name.');
-    const elseHtml = (ctx.elsewhere || []).length ? `<p class="mr-help"><b>Similar names in the park list (other places, not this one):</b> ${ctx.elsewhere.map(x => `<a href="https://pota.app/#/park/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)}</a> ${esc(x.name)}`).join('; ')}.</p>` : '';
+    const elseHtml = (ctx.elsewhere || []).length ? `<p class="mr-help"><b>Similar names in other places:</b> ${ctx.elsewhere.map(x => `<a href="https://pota.app/#/park/${encodeURIComponent(x.ref)}" target="_blank" rel="noopener">${esc(x.ref)}</a> ${esc(x.name)}`).join('; ')}.</p>` : '';
     const where = Number.isFinite(ctx.la) ? `${ctx.la.toFixed(5)}, ${ctx.lo.toFixed(5)}` : 'no pin yet';
+    const vw = summaryWord(R.summary, R);
     box.innerHTML = `<section class="mr-res" data-mr-result="spot">
-<div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}</p></div>
-${ctx.padExact && window.KPCMapExtras && KPCMapExtras.padCard ? `<div class="mr-sec mr-padtop">${KPCMapExtras.padCard(ctx.padExact, padLink(ctx.padExact))}</div>` : ''}${ctx.caExact && window.KPCMapExtras && KPCMapExtras.caCard ? `<div class="mr-sec mr-padtop">${KPCMapExtras.caCard(ctx.caExact, cpcadLink(ctx.caExact))}</div>` : ''}
-<div class="mr-sec mr-official"><h3>1 · Official information</h3>${official}</div>
-<div class="mr-sec"><h3>2 · POTA status</h3><div class="mr-v ${vClass}" data-mr-verdict="${esc(summaryWord(R.summary))}"><b>${esc(summaryWord(R.summary))}</b></div><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
-<div class="mr-sec"><h3>3 · Rules checklist</h3><p class="mr-help">Pass, fail or unknown. Each line names the field it used. A blank field stays unknown. Nothing here is filled in by assumption.</p>${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, ctx.padExact && ctx.padExact.Des_Tp].filter(Boolean).join(' '))}${rulesHtml(R)}</div>
-<div class="mr-sec"><h3>4 · KPC notes</h3>${L.note ? `<p>${esc(L.note)}</p>` : ''}${ctx.county ? `<p>County: ${esc(ctx.county)}. ` : '<p>'}${Number.isFinite(ctx.la) ? `Grid ${esc(grid(ctx.la, ctx.lo))}.` : ''}</p>
-${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p><p class="mr-help">Street map tiles are © OpenStreetMap contributors, ODbL. Outlines come from this place’s published key. A US place also uses PAD-US.</p></div>
+<div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(title)}</h2><p>${esc(where)}${ctx.county ? ' · ' + esc(ctx.county + ' County') : ''}${Number.isFinite(ctx.la) ? ' · grid ' + esc(grid(ctx.la, ctx.lo)) : ''}</p></div>
+<div class="mr-v ${vClass}" data-mr-verdict="${esc(vw)}"><b>${esc(vw)}</b></div>
+<div class="mr-sec"><h3>POTA status</h3><div class="mr-dl">${kv('Parks with this name', potaBody)}${elseHtml}</div></div>
+<div class="mr-sec mr-official"><h3>Official record</h3>${official}</div>
+<div class="mr-sec"><h3>Official website and map</h3>${siteBlock(title, st, page, mapUrl, links)}</div>
+<div class="mr-sec"><h3>Rules checklist</h3>${rulesHtml(R)}${directoryBlock(st.code, [title, p.TYPE, p.Loc_Ds, p.MANAGER, L.agency, L.name, L.k, ctx.padExact && ctx.padExact.Des_Tp, ctx.padExact && ctx.padExact.Mang_Name, ctx.padExact && ctx.padExact.Unit_Nm].filter(Boolean).join(' '))}</div>
+${ctx.overlapHtml || L.note ? `<div class="mr-sec"><h3>Overlaps, 2-fers and club notes</h3>${ctx.overlapHtml || ''}${L.note ? `<p>${esc(L.note)}</p>` : ''}</div>` : ''}
+<p class="mr-help mr-say"><b>A helper, not the final word.</b> Open the official links and check the land yourself before you submit a park. The agency page and the official record always win. ${INFO} <a href="kpc-about-info.html">About our information</a>. Map tiles © OpenStreetMap contributors, ODbL.</p>
 </section>`;
     box.hidden = false;
     const dl = box.querySelector('[data-dl]');
@@ -1074,21 +1102,22 @@ ${ctx.overlapHtml || ''}<p class="mr-help">${INFO} <a href="kpc-about-info.html"
     }
     const nearBtns = near.map((h, i) => `<button type="button" class="mr-pick" data-near="${i}"><b>${esc(h.name)}</b><span>Near match · ${esc(h.ref || st.name)}</span></button>`).join('');
     const padBtns = padExact.concat(padNear).slice(0, 8).map(a => `<p class="mr-help">${window.KPCMapExtras && KPCMapExtras.padLine ? `<b class="mr-padline">${esc(KPCMapExtras.padLine(a))}</b><br>` : ''}<a href="${esc(padLink(a))}" target="_blank" rel="noopener">${esc(a.Unit_Nm)}</a> · ${esc(a.Mang_Name || '')} · ${esc(a.Own_Name || '')} · ${a.GIS_Acres || 0} acres · Source_PAID ${esc(a.Source_PAID || 'blank')}</p>`).join('');
+    const homeL = st.code === 'KY' ? [['Kentucky Fish & Wildlife', 'https://fw.ky.gov/'], ['KDFWR public-lands search', KDFWR_SEARCH], ['Kentucky State Parks', 'https://parks.ky.gov/']] : homesFor(st.code);
+    const padQ = PADUS + '?' + new URLSearchParams({ where: "State_Nm='" + st.code + "' AND Unit_Nm LIKE '%" + tokens(canon(name).core).slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('%') + "%'", outFields: PAD_FIELDS, returnGeometry: 'false', f: 'html' }).toString();
+    const Rn = rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null, caExact: caExactL.length === 1 ? caExactL[0] : null });
+    /* Nov 8 (t751u): same clean order as a found place; every fact once; the helper note once at the bottom */
     if (box) box.innerHTML = `<section class="mr-res" data-mr-result="none"><div class="mr-head"><div class="mr-k">COULD THIS BE A PARK?</div><h2>${esc(q)}</h2></div>
-<div class="mr-sec mr-official"><h3>1 · Official information</h3>
-<div class="mr-miss"><b>Not an exact name in our ${esc(st.name)} layers.</b> ${near.length ? 'Near matches are listed below.' : (st.local ? 'Nothing in the published files is close to this name.' : 'The answer key for this state does not have this name.')} PAD-US was queried for ${esc(st.name)}. No page was scraped.</div>
-${kvSafe('Managing agency', 'Not in the layers. Use the agency links below.')}
-<div class="mr-say"><b>Before you click an official link.</b> This is a helper, not the final word. Open every link and research the land yourself before you submit a park. The agency page and the PAD-US record always win over this summary.</div>
-<p class="mr-help">${(st.code === 'KY' ? [['Kentucky Fish & Wildlife', 'https://fw.ky.gov/'], ['KDFWR public-lands search', KDFWR_SEARCH], ['Kentucky State Parks', 'https://parks.ky.gov/']] : homesFor(st.code)).map(([lab, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(lab)} ↗</a>`).join(' · ') || 'No agency home is stored for this state. Use the PAD-US link.'}</p>
-<p class="mr-help"><a href="${esc(PADUS + '?' + new URLSearchParams({ where: "State_Nm='" + st.code + "' AND Unit_Nm LIKE '%" + tokens(canon(name).core).slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('%') + "%'", outFields: PAD_FIELDS, returnGeometry: 'false', f: 'html' }).toString())}" target="_blank" rel="noopener">PAD-US name search for ${esc(st.name)} ↗</a></p>
+<div class="mr-sec"><h3>POTA status</h3><p>${elseNames.length ? 'Similar names elsewhere, not this place: ' + elseNames.map(x => esc(x.ref + ' ' + x.name)).join('; ') : 'No park in the list has a name close enough to call a match.'}</p></div>
+<div class="mr-sec mr-official"><h3>Official record</h3>
+<div class="mr-miss"><b>Not an exact name in our ${esc(st.name)} layers.</b> ${near.length ? 'Near matches are listed below.' : (st.local ? 'Nothing in the published files is close to this name.' : 'The answer key for this state does not have this name.')} PAD-US was searched for ${esc(st.name)}.</div>
 ${PAD_LOOK}
-${padExact.length ? '<h4>PAD-US records with this name</h4>' + padBtns : (padNear.length ? '<h4>PAD-US names that are only partly the same</h4>' + padBtns : '<p class="mr-help">PAD-US returned no ' + esc(st.name) + ' record for this name.</p>')}
+${padExact.length ? '<h4>PAD-US records with this name</h4>' + padBtns : (padNear.length ? '<h4>PAD-US names that are only partly the same</h4>' + padBtns : '<p class="mr-help">PAD-US has no ' + esc(st.name) + ' record with this name. <a href="' + esc(padQ) + '" target="_blank" rel="noopener">Search PAD-US yourself ↗</a></p>')}
 ${caBtns ? '<h4>' + (caExactL.length ? 'CPCAD records with this name' : 'CPCAD names that are only partly the same') + '</h4>' + caBtns : ''}
 ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
 </div>
-<div class="mr-sec"><h3>2 · POTA status</h3><p>${elseNames.length ? 'Similar names elsewhere, not this place: ' + elseNames.map(x => esc(x.ref + ' ' + x.name)).join('; ') : 'No similar park in the list was close enough to call a match.'}</p></div>
-<div class="mr-sec"><h3>3 · Rules checklist</h3>${directoryBlock(st.code, name)}${rulesHtml(rulesFor({ f: null, pota: [], state: st, padExact: padExact.length === 1 ? padExact[0] : null, caExact: caExactL.length === 1 ? caExactL[0] : null }))}</div>
-<div class="mr-sec"><h3>4 · KPC notes</h3><p class="mr-help">${INFO} <a href="kpc-about-info.html">About our information</a></p></div>
+<div class="mr-sec"><h3>Official website and map</h3>${siteBlock(q, st, '', '', homeL)}</div>
+<div class="mr-sec"><h3>Rules checklist</h3><div class="mr-v maybe" data-mr-verdict="${esc(summaryWord(Rn.summary, Rn))}"><b>${esc(summaryWord(Rn.summary, Rn))}</b></div>${rulesHtml(Rn)}${directoryBlock(st.code, name)}</div>
+<p class="mr-help mr-say"><b>A helper, not the final word.</b> Open the official links and check the land yourself before you submit a park. The agency page and the official record always win. ${INFO} <a href="kpc-about-info.html">About our information</a>.</p>
 </section>`;
     if (box) box.querySelectorAll('[data-near]').forEach(btn => btn.onclick = () => showHit(near[+btn.dataset.near]));
     return hits;
