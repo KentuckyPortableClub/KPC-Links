@@ -57,18 +57,15 @@ try:
     p, h = run({'US-3917': pc}, {'US-3917': pv}, signed={'US-3917': ['254041']})
     check([x[0] for x in p['US-3917']['m']] == [254041] and {str(x[0]) for x in p['US-3917']['c']} >= {'sgscc11', '254043'} and 'ac' not in p['US-3917'],
           '3: only the signed 254041 stays joined; sgscc11 and 254043 go back to c')
-    # the rebuild compares with the declared good key (review/join-base.txt), not the graded-NO key on main
-    jb = (ROOT / 'data/us-key/review/join-base.txt')
-    check(jb.is_file() and jb.read_text(encoding='utf-8').split()[0] == subprocess.run(['git', 'rev-parse', 'fbacca65^'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    # the rebuild compares with the declared good key (data/key-join-base.json), not the graded-NO key on main
+    jb = (ROOT / 'data/key-join-base.json')
+    check(jb.is_file() and json.loads(jb.read_text(encoding='utf-8')).get('us-key') == subprocess.run(['git', 'rev-parse', 'fbacca65^'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
           if subprocess.run(['git', 'cat-file', '-e', 'fbacca65^{commit}'], cwd=ROOT, capture_output=True).returncode == 0 else jb.is_file(),
-          'data/us-key/review/join-base.txt names the key before US-42487204632')
+          'data/key-join-base.json names the key before US-42487204632 for us-key')
     check(J.join_base(str(ROOT / 'data/us-key/US-NV.json'), str(ROOT), {'KPC_JOIN_BASE': 'abc1234'}) == 'abc1234' and J.join_base(str(T / 'x.json'), str(ROOT), {}) == 'HEAD',
           'join_base: KPC_JOIN_BASE wins; no base file = HEAD')
     # real rebuild simulation: the graded-NO key itself, compared with join-base (as the rebuild will be)
     if subprocess.run(['git', 'cat-file', '-e', 'fbacca65^{commit}'], cwd=ROOT, capture_output=True).returncode == 0:
-        ok, _ = J.approvals(str(ROOT), 'us', {}); t = T / 'data/us-key'; t.mkdir(parents=True)
-        (t / 'review').mkdir(); shutil.copy(jb, t / 'review/join-base.txt')
-        (t / 'US-NV.json').write_bytes(subprocess.run(['git', 'show', 'fbacca65:data/us-key/US-NV.json'], cwd=ROOT, capture_output=True).stdout)
         pv = J.previous(str(ROOT / 'data/us-key/US-NV.json'), str(ROOT))
         check(pv.get('US-13048', {}).get('g') == 'pin', 'previous() reads the join-base key (US-13048 was a pin there)')
     # real data: the US-42487204632 build (fbacca65) against the key before it

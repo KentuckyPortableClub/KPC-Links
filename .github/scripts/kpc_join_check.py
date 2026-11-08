@@ -169,14 +169,15 @@ def _close(a, b):
 
 
 def join_base(f, root='.', env=None):
-    """The key to compare with: KPC_JOIN_BASE, else the commit in <key dir>/review/join-base.txt (a person sets it to the last
+    """The key to compare with: KPC_JOIN_BASE, else the commit in data/key-join-base.json (by key folder) (a person sets it to the last
     good key when a graded-NO build is on main, so the rebuild is compared with the key before it), else HEAD (the key before
     this build). A commit missing from a shallow checkout is fetched once (depth 1)."""
     env = os.environ if env is None else env
     b = (env.get('KPC_JOIN_BASE') or '').strip()
     if not b:
-        t = pathlib.Path(f).resolve().parent / 'review' / 'join-base.txt'
-        b = (t.read_text(encoding='utf-8').split() or [''])[0].strip() if t.is_file() else ''
+        t = pathlib.Path(root) / 'data' / 'key-join-base.json'   # {"us-key": "<commit>", ...}; outside the answer-key folders
+        try: b = str((json.loads(t.read_text(encoding='utf-8')) if t.is_file() else {}).get(pathlib.Path(f).resolve().parent.name) or '')
+        except Exception: b = ''  # noqa: BLE001
     if not re.fullmatch(r'[0-9a-f]{7,40}', b): return 'HEAD'
     if subprocess.run(['git', 'cat-file', '-e', b + '^{commit}'], cwd=root, capture_output=True, timeout=30).returncode != 0:
         subprocess.run(['git', 'fetch', '-q', '--depth', '1', 'origin', b], cwd=root, capture_output=True, timeout=120)

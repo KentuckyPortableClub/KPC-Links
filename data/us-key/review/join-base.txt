@@ -1,3 +1,0 @@
-0ea9919fb44341416e0521970ed1e631bda6e810
-The last US key before US-42487204632 (graded KEY NO by Quality, Nov 8): the join check compares new joins and carried NOs with it.
-Remove this file (or put the new good key here) once a person accepts the rebuild.

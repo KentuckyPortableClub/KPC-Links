@@ -1,0 +1,4 @@
+{
+ "about": "The key the join check compares with (new joins, carried NOs), by key folder. Set to the last good key while a graded-NO build is on main; remove the entry once a person accepts the rebuild. Nov 8: us-key = the key before US-42487204632 (Quality KEY NO).",
+ "us-key": "0ea9919fb44341416e0521970ed1e631bda6e810"
+}
