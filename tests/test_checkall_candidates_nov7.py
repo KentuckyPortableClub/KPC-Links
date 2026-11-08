@@ -251,7 +251,7 @@ check('no nonum (Canada, world) -> "not available", no error', o['noNonum']['ava
 
 # page wiring
 html = (ROOT / 'kpc-maprep.html').read_text(encoding='utf-8')
-order = [html.find(s) for s in ('kpc-maprep-logic.js?v=20261107t', 'kpc-maprep-candidates.js?v=20261107u', 'kpc-maprep-check.js?v=20261107t')]
+order = [html.find(s) for s in ('kpc-maprep-logic.js?v=20261107t', 'kpc-maprep-candidates.js?v=20261107u', 'kpc-maprep-check.js?v=')]   # Nov 8: any later ?v= of check.js (the extras PR bumped it)
 check('page loads logic, then candidates, then check, with bumped ?v=', all(i > 0 for i in order) and order == sorted(order))
 check('wording: research leads, not parks', 'Research leads, not parks.' in o['listHtml'])
 
