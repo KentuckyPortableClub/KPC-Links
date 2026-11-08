@@ -30,7 +30,8 @@ check("code === 'KY'" in js and 'No national list of protected places is wired' 
 check('padExact' in chk[chk.find('async function areaLayers'):] and "'ALREADY'" in chk[chk.find('async function areaLayers'):], 'area rows use the same rules checklist as Kentucky, refs count as already')
 # 3. sources: only the two approved official services, nothing banned, no secrets
 hosts = set(re.findall(r'https://([a-z0-9.-]+)', js))
-check(hosts <= {'edits.nationalmap.gov', 'maps-cartes.ec.gc.ca', 'tile.openstreetmap.org'}, f'only approved hosts in the research script {sorted(hosts)}')
+# Nov 8 t768u/t769u: Near a spot address lookup uses the same two services Check a place uses (kpc-maprep.js)
+check(hosts <= {'edits.nationalmap.gov', 'maps-cartes.ec.gc.ca', 'tile.openstreetmap.org', 'nominatim.openstreetmap.org', 'geo.fcc.gov'}, f'only approved hosts in the research script {sorted(hosts)}')
 check('ncnhde' not in js.replace('ncnhde\\.natureserve', '') and 'BANNED' in js, 'banned hosts are refused, never requested')
 check(not re.search(r'(api[_-]?key|token|secret|password)\s*[:=]', js, re.I), 'no keys or secrets')
 check(not re.search(r'\b(bot|AI|agent)\b', re.sub(r'<[^>]+>', ' ', html[html.find('id="mrResearch"'):html.find('id="mrCheckCard"')])), 'no bot wording in the new section')

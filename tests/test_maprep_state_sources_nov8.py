@@ -23,7 +23,7 @@ check("stLine(o.L.label + ': '" in js and 'data-rsretry' in js, 'one status line
 check("label: 'Possible candidate'" in js and "new: 'Possible candidate'" in js and not re.search(r'[Ll]ooks? new', js), "'Looks new' renamed 'Possible candidate'")
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
-    check(not re.search(r'[Ll]ooks? new', h) and '“Possible candidate”' in h and 'kpc-maprep-research.js?v=20261108u' in h, f + ': help text renamed, new script version')
+    check(not re.search(r'[Ll]ooks? new', h) and '“Possible candidate”' in h and (re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108u'), f + ': help text renamed, new script version')
 check(not re.search(r'just opened|newly opened park|new(ly)? open', js.replace('not newly opened land', '')), 'no wording says the place just opened')
 node = r"""
 global.window = {}; const R = require(%s);

@@ -516,7 +516,45 @@
     } catch (e) { say('The official records did not answer (' + (e && e.message || e) + ').'); stEnd(false, 'The official records did not answer (' + (e && e.message || e) + '). Try again in a minute.'); }
     busy = false;
   }
-  async function run(kind) {
+  /* Nov 8 (Brandon 5:17 / 5:18 PM CST, t768u/t769u): NEAR A SPOT takes an address again (no device GPS). The address is turned into
+     GPS with OpenStreetMap Nominatim, the geocoder Check a place uses (kpc-maprep.js), same query; the GPS is shown, the pin goes on
+     the one map (the same as a tap) and the search runs from there. Typed GPS numbers work too. Only on SEARCH, at most one request
+     a second, results kept. The dropped pin still works. */
+  const GEO = {}; let geoAt = 0, locDone = '';
+  const gpsNums = t => { const m = String(t).match(/^\s*(-?\d{1,2}(?:\.\d+)?)\s*[, ]\s*(-?\d{1,3}(?:\.\d+)?)\s*$/); if (!m) return null; const a = +m[1], b = +m[2]; return Math.abs(a) <= 90 && Math.abs(b) <= 180 ? [a, b] : null; };
+  async function geocode(t) {
+    if (GEO[t] !== undefined) return GEO[t];
+    const nq = async q2 => { const w = 1100 - (Date.now() - geoAt); if (w > 0) await new Promise(r => setTimeout(r, w)); geoAt = Date.now();
+      try { const r = await fetch('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: q2, format: 'jsonv2', countrycodes: 'us,ca', addressdetails: 1, limit: 1 })); return r.ok ? ((await r.json()) || [])[0] || null : null; } catch (e) { return null; } };
+    const st0 = placeCode(); let h = await nq(t);
+    if (!h && st0 && !new RegExp('\\b' + st0 + '\\b', 'i').test(t)) h = await nq(t + ', ' + st0);
+    return (GEO[t] = h ? { la: +h.lat, lo: +h.lon, label: h.display_name, st: String((h.address || {})['ISO3166-2-lvl4'] || '').replace(/^(US|CA)-/, '') } : null);
+  }
+  function pickPlace(st) { const sel = $('mrRsPlace'); if (st && sel && [...sel.options].some(o => o.value === st) && sel.value !== st) { sel.value = st; sel.dispatchEvent(new Event('change')); } }
+  async function stateAt(la, lo) {   /* the same FCC lookup Check a place uses for GPS numbers (US only) */
+    try { const r = await fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`); const c = r.ok ? await r.json() : null; return (((c && c.results) || [])[0] || {}).state_code || ''; } catch (e) { return ''; }
+  }
+  function showAt(t) { const el = $('mrRsLocAt'); if (el) { el.textContent = t || ''; el.hidden = !t; } }
+  async function nearFrom(la, lo, label, st) {
+    lastPin = [la, lo]; mountMap();
+    if (shared && W.KPCMapCheck && W.KPCMapCheck.showPoint) { try { W.KPCMapCheck.showPoint(la, lo); } catch (e) {} }
+    else if (rmap) { drawPin(); rmap.setView(lastPin, Math.max(rmap.getZoom(), 11)); }
+    showAt('GPS ' + la.toFixed(6) + ', ' + lo.toFixed(6) + (label ? ' \u00b7 ' + label : ''));
+    pickPlace(st || await stateAt(la, lo));
+    return run('pin', true);
+  }
+  async function locSearch() {
+    const t = ($('mrRsLoc') && $('mrRsLoc').value || '').trim(); if (!t) return false;
+    if (t === locDone && lastPin) return false;   /* already placed; SEARCH uses the pin (it may have been moved since) */
+    locDone = t; const g = gpsNums(t);
+    if (g) { await nearFrom(g[0], g[1], ''); return true; }
+    say('Finding that address\u2026'); showAt('');
+    const h = await geocode(t);
+    if (!h || !isFinite(h.la) || !isFinite(h.lo)) { locDone = ''; say('Could not find that address. Add the town and state, try the road name only, or paste GPS numbers.'); return true; }
+    await nearFrom(h.la, h.lo, h.label, h.st); return true;
+  }
+  async function run(kind, placed) {
+    if (kind === 'pin' && !placed && !busy && await locSearch()) return;
     if (busy) return; const code = placeCode();
     if (!code) { say('Pick a US state or a Canadian province first.'); return; }
     if (kind === 'pin' && !lastPin && W.KPCMapCheck && W.KPCMapCheck.pin && W.KPCMapCheck.pin()) { const q = W.KPCMapCheck.pin(); lastPin = Array.isArray(q) ? q : [q.lat != null ? q.lat : q.la, q.lng != null ? q.lng : q.lo]; }
@@ -580,6 +618,8 @@
     b('mrRsFind', () => run('state')); b('mrRsNear', () => run('pin')); b('mrRsTest', () => run('name'));
     root.querySelectorAll('[data-rstab]').forEach(t => t.onclick = () => setTab(t.dataset.rstab));
     const f = $('mrRsForm'); if (f) f.addEventListener('submit', e => { e.preventDefault(); run(tab); });
+    b('mrRsPinUse', () => { const q = W.KPCMapCheck && W.KPCMapCheck.pin && W.KPCMapCheck.pin(); if (q) lastPin = Array.isArray(q) ? q : [q.lat != null ? q.lat : q.la, q.lng != null ? q.lng : q.lo];
+      if (!lastPin) { say('Tap the map to drop a pin first.'); return; } if ($('mrRsLoc')) $('mrRsLoc').value = ''; locDone = ''; showAt(''); run('pin', true); });
     const det = $('mrResearch'); if (det) { mountMap(); }
     D.addEventListener('click', e => { const t = e.target && e.target.closest && e.target.closest('[data-rstest]'); if (!t) return; e.preventDefault();
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
