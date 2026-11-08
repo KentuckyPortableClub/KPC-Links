@@ -1257,20 +1257,20 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
       try { v = rulesFor({ f: null, owner: null, pota, state: stAll, padExact: p.kind === 'pad' ? p.a : null, caExact: p.kind === 'ca' ? p.a : null }).summary; } catch (e) {}
       if (pota.length) v = 'ALREADY';
       else if (v === 'YES' && p.verdict.v === 'person') v = 'MAYBE';   /* inside another park (2-fer) or partly over one: a person decides */
-      return { name: p.name, layer: res.source, agency: p.manager, acres: p.acres, v, refs: pota.filter((x, i, a) => a.findIndex(y => y.ref === x.ref) === i), la: p.pt ? p.pt[0] : null, lo: p.pt ? p.pt[1] : null, why: p.verdict.why, id: p.ids[0] };
+      return { name: p.name, layer: p.source || res.source, kind: p.kind, srcs: p.sources || [p.source], agency: p.manager, acres: p.acres, v, refs: pota.filter((x, i, a) => a.findIndex(y => y.ref === x.ref) === i), la: p.pt ? p.pt[0] : null, lo: p.pt ? p.pt[1] : null, why: p.verdict.why, id: p.ids[0] };
     });
     const rank = { YES: 0, MAYBE: 1, NO: 2, ALREADY: 3 };
     rows.sort((a, c) => (rank[a.v] - rank[c.v]) || c.acres - a.acres || a.name.localeCompare(c.name));
     const counts = { YES: 0, MAYBE: 0, NO: 0, ALREADY: 0 }; rows.forEach(r => { counts[r.v] = (counts[r.v] || 0) + 1; });
     const lab = { YES: 'Yes', MAYBE: 'Maybe', NO: 'No', ALREADY: 'Already a park' };
     const first = ['YES', 'MAYBE', 'NO', 'ALREADY'].find(k => counts[k]) || 'YES';
-    host.innerHTML = `<div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(String(stAll.name || '').toUpperCase())}</div><h2>Official layers</h2><p>${rows.length} named places from ${esc(res.source)}. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land (our answer key, a park outline over it, a pin inside it, or the same name nearby).</p></div>
+    host.innerHTML = `<div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(String(stAll.name || '').toUpperCase())}</div><h2>Official layers</h2><p>${rows.length} named places from ${esc(res.source)} and the state / province layers. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land (our answer key, a park outline over it, a pin inside it, or the same name nearby).</p></div>
 <div class="mr-sec"><div class="mr-filters" id="mrAreaFilters">${['YES', 'MAYBE', 'NO', 'ALREADY'].map(k => `<button type="button" class="mr-ag${k === first ? ' on' : ''}" data-f="${k}">${lab[k]} · ${counts[k] || 0}</button>`).join('')}</div>
 <p class="mr-help">${esc(res.note || '')} The same rules as Kentucky: owner, manager, public access and designation from the official record. Tap a place to check it on the map; FIND NEW PARKS at the top of the page has the full record and a summary to copy.</p>
 <div id="mrAreaRows"></div></div>`;
     const paint = which => {
       const h = document.getElementById('mrAreaRows'); if (!h) return;
-      h.innerHTML = rows.filter(r => r.v === which).map(r => `<button type="button" class="mr-pick" data-la="${r.la}" data-lo="${r.lo}"><b>${esc(r.name)}</b><span>${esc(lab[r.v])}${r.refs.length ? ' · ' + esc(r.refs.map(p => p.ref).join(', ')) : ''} · ${esc([r.acres ? Math.round(r.acres).toLocaleString() + ' acres' : '', r.agency || ''].filter(Boolean).join(' · '))}${r.id ? ' · ' + (res.kind === 'ca' ? 'CPCAD ' : 'PAD-US ') + esc(String(r.id)) : ''}</span><small>${esc(r.why)}</small></button>`).join('') || '<p class="mr-help">None in this group.</p>';
+      h.innerHTML = rows.filter(r => r.v === which).map(r => `<button type="button" class="mr-pick" data-la="${r.la}" data-lo="${r.lo}"><b>${esc(r.name)}</b><span>${esc(lab[r.v])}${r.refs.length ? ' · ' + esc(r.refs.map(p => p.ref).join(', ')) : ''} · ${esc([r.acres ? Math.round(r.acres).toLocaleString() + ' acres' : '', r.agency || ''].filter(Boolean).join(' · '))}${r.id ? ' · ' + (r.kind === 'state' ? esc(r.layer) + ' ' : res.kind === 'ca' ? 'CPCAD ' : 'PAD-US ') + esc(String(r.id)) : ''}${r.srcs && r.srcs.length > 1 ? ' · also in ' + esc(r.srcs.slice(1).join(', ')) : ''}</span><small>${esc(r.why)}</small></button>`).join('') || '<p class="mr-help">None in this group.</p>';
       h.querySelectorAll('.mr-pick').forEach(btn => btn.onclick = () => { if (btn.dataset.la !== 'null') showPoint(+btn.dataset.la, +btn.dataset.lo); });
     };
     paint(first);

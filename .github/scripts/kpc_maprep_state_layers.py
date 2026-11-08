@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Nov 8 (Brandon 4:31 PM CST, t764u: "for example GA it searches pad and state level that way it dont miss many").
+Builds data/maprep-state-layers.json: the state / province layers the Tool Box searches next to PAD-US / CPCAD.
+Source = the layers the answer keys already use (KPC-Data data/us-key/layers.json 'sg<st>?' rows, data/ca-key/layers.json).
+Only layers whose host robots.txt allows the query path (a 401/403 robots answer counts as a disallow, so every
+services*.arcgis.com layer is left out), never a banned host, never a hub portal. Each kept layer is asked once
+(returnCountOnly) with an Origin header to see if a browser may read it (CORS). Run by hand only:
+  DATA=<KPC-Data checkout> python3 .github/scripts/kpc_maprep_state_layers.py"""
+import json, os, re, sys, time, urllib.request, urllib.robotparser, urllib.parse, gzip
+D = os.environ.get('DATA', '../KPC-Data'); OUT = 'data/maprep-state-layers.json'
+BANNED = re.compile(r'ncnhde\.natureserve\.org|services\.arcgis\.com/33TOOklri9xpic7U|maps\.gov\.bc\.ca', re.I)
+UA = 'KPC-Links maprep layer check (https://kentuckyportableclub.github.io)'
+PROV = [('AB', r'\bAB\b|alberta'), ('BC', r'\bBC\b|british columbia'), ('SK', r'\bSK\b|saskatchewan'), ('MB', r'\bMB\b|manitoba'), ('ON', r'\bON\b|ontario'),
+        ('QC', r'\bQC\b|qu[eé]bec'), ('NB', r'\bNB\b|new brunswick'), ('NS', r'\bNS\b|nova scotia'), ('PE', r'\bPE\b|\bPEI\b|prince edward'), ('NL', r'\bNL\b|newfoundland'),
+        ('YT', r'yukon'), ('NT', r'\bNT\b|northwest territories'), ('NU', r'nunavut')]
+def load(p):
+    f = os.path.join(D, p)
+    if os.path.exists(f): return json.load(open(f, encoding='utf-8'))
+    if os.path.exists(f + '.gz'): return json.load(gzip.open(f + '.gz', 'rt', encoding='utf-8'))
+    return {}
+def get(u, hdr=None, t=20):
+    r = urllib.request.Request(u, headers=dict({'User-Agent': UA}, **(hdr or {})))
+    with urllib.request.urlopen(r, timeout=t) as x: return x.status, dict(x.headers), x.read()
+RB = {}
+def robots_ok(u):
+    p = urllib.parse.urlparse(u); host = p.scheme + '://' + p.netloc
+    if re.match(r'services\d*\.arcgis\.com$', p.netloc, re.I): return False, 'robots.txt answers 403 (services*.arcgis.com = disallow)'
+    if host not in RB:
+        rp = urllib.robotparser.RobotFileParser()
+        try:
+            st, h, b = get(host + '/robots.txt'); rp.parse(b.decode('utf-8', 'replace').splitlines()); RB[host] = ('ok', rp)
+        except urllib.error.HTTPError as e:
+            RB[host] = ('deny', None) if e.code in (401, 403) else ('none', None)
+        except Exception as e:
+            RB[host] = ('none', None)
+        time.sleep(1)
+    k, rp = RB[host]
+    if k == 'deny': return False, 'robots.txt answers 401/403 (disallow)'
+    if k == 'none': return True, 'no robots.txt'
+    return (rp.can_fetch(UA, u), 'robots.txt ' + ('allows' if rp.can_fetch(UA, u) else 'disallows'))
+def name_field(base):
+    try: _, _, b = get(base + '?f=json'); j = json.loads(b)
+    except Exception: return None
+    fs = [f['name'] for f in j.get('fields') or [] if f.get('type') == 'esriFieldTypeString']
+    for pat in (r'^(name_?e|name_?en|nom_?e|name_?eng|parkname|park_name|name)$', r'name', r'nom'):
+        for f in fs:
+            if re.search(pat, f, re.I): return f
+    return None
+def svc_label(lab, u):
+    m = re.search(r'/services/(?:[^/]+/)?([^/]+)/(?:MapServer|FeatureServer)/(\d+)', u)
+    return lab + (' \u00b7 ' + m.group(1).replace('_', ' ') + (' ' + m.group(2) if m.group(2) not in ('0',) else '') if m else '')
+def main():
+    rows = []
+    for pre, v in sorted(load('data/us-key/layers.json').items()):
+        m = re.match(r'^sg([a-z]{2})[a-z]$', pre)
+        if m and isinstance(v, list) and v and str(v[0]).startswith('https://'): rows.append({'area': m.group(1).upper(), 'pre': pre, 'url': v[0], 'field': v[1], 'label': re.sub(r'\s*\((?:[^()]*state GIS table|credit[^)]*|owner [^)]*|[A-Za-z ]*AGOL org[^)]*)\)', '', v[2]).strip()})
+    for k, v in sorted(load('data/ca-key/layers.json').items()):
+        u = (v[0] if isinstance(v, list) and v else v) if v else ''
+        if not str(u).startswith('https://'): continue
+        txt = k + ' ' + u; area = next((c for c, pat in PROV if re.search(pat, txt, re.I)), None)
+        if not area: continue
+        rows.append({'area': area, 'pre': 'ca' + re.sub(r'[^a-z]', '', k.lower())[:10], 'url': u.rstrip('/') + ('' if u.rstrip('/').endswith('/query') else '/query'), 'field': None, 'label': k.strip(), 'ca': True})
+    out = {}
+    for r in rows:
+        u = r['url']; r['ok'] = False
+        if BANNED.search(u): r['why'] = 'banned host'
+        elif re.search(r'hub\.arcgis\.com|opendata\.arcgis\.com', u, re.I): r['why'] = 'hub portal (60 s crawl delay): not read live'
+        else:
+            ok, why = robots_ok(u); r['why'] = why
+            if ok:
+                base = u[:-6] if u.endswith('/query') else u
+                if not r['field']: r['field'] = name_field(base)
+                if not r['field']: r['why'] = 'no name field found'
+                else:
+                    try:
+                        st, h, b = get(u + '?' + urllib.parse.urlencode({'where': '1=1', 'returnCountOnly': 'true', 'f': 'json'}), {'Origin': 'https://kentuckyportableclub.github.io'})
+                        ac = {k.lower(): v for k, v in h.items()}.get('access-control-allow-origin', '')
+                        j = json.loads(b); r['count'] = j.get('count')
+                        if 'error' in j: r['why'] = 'layer error: ' + str(j['error'].get('message'))[:80]
+                        elif ac not in ('*', 'https://kentuckyportableclub.github.io'): r['why'] = 'no CORS: a browser cannot read it'
+                        else: r['ok'] = True
+                    except Exception as e: r['why'] = 'did not answer: ' + str(e)[:80]
+                time.sleep(1)
+        out.setdefault(r['area'], []).append({k: r.get(k) for k in ('pre', 'url', 'field', 'label', 'ok', 'why', 'count')})
+    for a in out.values():   # the same agency twice in one place: add the service name (Iowa DNR · Public Lands)
+        seen = {}
+        for x in a: seen[x['label']] = seen.get(x['label'], 0) + 1
+        for x in a:
+            if seen[x['label']] > 1: x['label'] = svc_label(x['label'], x['url'])
+    doc = {'about': __doc__.split('\n')[0] + ' Built by .github/scripts/kpc_maprep_state_layers.py (by hand).', 'built': time.strftime('%Y-%m-%d'), 'areas': out}
+    with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
+    n = sum(1 for a in out.values() for x in a if x['ok']); print(f'{n} layers OK of {len(rows)}')
+    for a in ('GA', 'KY', 'IA', 'PA', 'TX'): print(a, [(x['label'][:40], x['ok'], x['why'][:50]) for x in out.get(a, [])])
+if __name__ == '__main__': main()

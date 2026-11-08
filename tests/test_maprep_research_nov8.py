@@ -53,7 +53,7 @@ out.v6 = R.verdict({ cover: [{ ref: 'US-6', share: 0.2 }] });
 out.v7 = R.verdict({ acc: 'restricted' }).v;
 out.v8 = R.verdict({ nearest: { ref: 'US-8', km: 4.2 } });
 out.g = R.groupRecords([{ id: 1, name: 'A Wild Area', manager: 'X', acres: 10 }, { id: 2, name: 'A Wild Area', manager: 'X', acres: 5 }, { id: 3, name: 'B', manager: 'X', acres: 50 }]).map(p => [p.name, p.ids, p.acres]);
-out.ky = 0; out.sum = R.summaryText({ name: 'Test', place: 'Pennsylvania', designation: 'Wild Area', manager: '', owner: 'PA Bureau of Forestry (State)', access: 'open', acres: 1234, source: 'USGS PAD-US 4.0', ids: [9], link: 'L', verdict: { label: 'Looks new', why: 'w' } });
+out.ky = 0; out.sum = R.summaryText({ name: 'Test', place: 'Pennsylvania', designation: 'Wild Area', manager: '', owner: 'PA Bureau of Forestry (State)', access: 'open', acres: 1234, source: 'USGS PAD-US 4.0', ids: [9], link: 'L', verdict: { label: 'Possible candidate', why: 'w' } });
 console.log(JSON.stringify(out));
 """
 r = subprocess.run(['node', '-e', node], cwd=ROOT, capture_output=True, text=True)
@@ -64,10 +64,10 @@ check(o.get('cover1') == 1 and o.get('cover0') == 0 and 0.3 < (o.get('half') or 
 check([o.get(k) for k in ('v1', 'v2', 'v3', 'v4', 'v5', 'v7')] == ['already', 'already', 'person', 'probably', 'probably', 'person'],
       'verdicts: same record / same-name outline = already; inside another park = possible 2-fer; same name or pin inside = probably; restricted = person')
 check((o.get('v6') or {}).get('v') == 'person' and '2-fer' in (o.get('v6') or {}).get('why', ''), 'partial overlap = needs a person (part of a park or a 2-fer)')
-check((o.get('v8') or {}).get('v') == 'new' and 'US-8, 4.2 km' in (o.get('v8') or {}).get('why', ''), 'looks new names the nearest POTA park and distance')
+check((o.get('v8') or {}).get('v') == 'new' and 'US-8, 4.2 km' in (o.get('v8') or {}).get('why', ''), 'possible candidate names the nearest POTA park and distance')
 check(o.get('g') == [['B', [3], 50], ['A Wild Area', [1, 2], 15]], 'records of one place are grouped, largest first')
 s = o.get('sum') or ''
-check(all(x in s for x in ('Proposed park: Test', 'Managed by: not stated', 'Official record: USGS PAD-US 4.0, id 9', 'POTA check: Looks new', 'Confirm with the managing agency')), 'copy-ready summary')
+check(all(x in s for x in ('Proposed park: Test', 'Managed by: not stated', 'Official record: USGS PAD-US 4.0, id 9', 'POTA check: Possible candidate', 'Confirm with the managing agency')), 'copy-ready summary')
 # 5. feature inventory: every item listed on main before this change is still there
 spec = importlib.util.spec_from_file_location('fi', ROOT / '.github/scripts/kpc_feature_inventory.py'); fi = importlib.util.module_from_spec(spec); spec.loader.exec_module(fi)
 base = json.loads((ROOT / 'tests/features-maprep.json').read_text(encoding='utf-8'))
