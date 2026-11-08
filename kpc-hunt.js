@@ -524,17 +524,30 @@
     favFirst = false;
   }
   /* this CALL is in my log today (UTC) — different from 'park hunted before' (Brandon Oct 17) */
+  /* Nov 8 (Brandon 7:43 AM CST): three park states, the UTC day worked out on EVERY render (rolls over at 0000 UTC, no reload).
+     'today' = this park is in my log today (UTC) -> greyed + HUNTED TODAY (UTC); 'before' = hunted before (POTA list or my log),
+     not today -> normal card + subtle WORKED BEFORE; 'new' = never worked -> NEW PARK. No log loaded -> '' (no state shown). */
+  const parkState = (s, now) => { if (!s || !s.ref || !hasLog()) return ''; const d = utc(now || new Date()).d, r = String(s.ref).toUpperCase();
+    const mine = q => String(q.ref || '').toUpperCase().split(/[ ,]+/).includes(r);
+    if (Q.q.some(q => q.d === d && mine(q))) return 'today';
+    return WK.has(s.ref) || Q.q.some(mine) ? 'before' : 'new'; };
+  const psCls = ps => ps === 'today' ? ' worked ps-today' : ps === 'before' ? ' ps-before' : ps === 'new' ? ' ps-new' : '';
+  const psBadge = (ps, short) => ps === 'today' ? `<span class="hb htd" title="You logged this park today (UTC day; resets at 0000 UTC)">${short ? 'HUNTED TODAY' : '✅ HUNTED TODAY (UTC)'}</span>`
+    : ps === 'before' ? `<span class="hb wk" title="You have worked this park before (your POTA hunted list or your log), not yet today (UTC).">${short ? 'WORKED BEFORE' : '✓ WORKED BEFORE'}</span>`
+    : ps === 'new' ? `<span class="hb new">${short ? 'NEW PARK' : '✨ NEW PARK'}</span>` : '';
+  (function utcRollover() { const n = new Date(), next = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate() + 1, 0, 0, 2);
+    setTimeout(() => { try { draw(); } catch (e) {} try { ticker(false); } catch (e) {} utcRollover(); }, Math.max(1000, next - n.getTime())); })();
   const wkToday = s => { const d = utc(new Date()).d, c = base(s.call); return Q.q.some(q => q.d === d && base(q.call) === c); };
   function card(s) {
-    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s);
+    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), k = keyOf(s), ps = parkState(s);
     const b = [`<span class="hb prog">${PL[s.p] || s.p}${s.label ? ' · ' + esc(s.label) : ''}</span>`];
-    if (n) b.push('<span class="hb new">✨ NEW TO YOU</span>'); else if (w) b.push('<span class="hb wk" title="From your POTA hunted list: you have hunted this park before. It does not mean you worked this station.">✓ PARK HUNTED BEFORE</span>');
+    if (ps) b.push(psBadge(ps)); else if (n) b.push('<span class="hb new">✨ NEW TO YOU</span>'); else if (w) b.push('<span class="hb wk" title="From your POTA hunted list: you have hunted this park before. It does not mean you worked this station.">✓ PARK HUNTED BEFORE</span>');
     if (wkToday(s)) b.push('<span class="hb td">✅ IN MY LOG TODAY</span>');
     if (s.acts === 0) b.push('<span class="hb atno">FIRST EVER ACTIVATION</span>'); else if (s.acts != null && s.acts <= 5) b.push(`<span class="hb rare">RARE · ${s.acts}</span>`);
     if (d != null && d > RANGE) b.push(`<span class="hb far">FAR · ${Math.round(d)} MI</span>`);
     if (isQrt(s)) b.push('<span class="hb qrt">QRT</span>');
     b.push(`<span class="hb">${bandOf(s.khz)}</span>`, `<span class="hb">${esc(s.mode || '?')}</span>`);
-    return `<article class="hs p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}${selCls(s)}" data-k="${esc(k)}">
+    return `<article class="hs p-${s.p}${n ? ' new' : ''}${ps ? psCls(ps) : w ? ' worked' : ''}${isQrt(s) ? ' qrt' : ''}${selCls(s)}" data-k="${esc(k)}">
  <div class="hs-top"><div class="hs-call"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}" title="${isFav(s) ? 'Remove from favorites' : 'Add to favorite activators'}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(k)}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</div><div class="hs-f"><b>${(s.khz / 1000).toFixed(3)}</b><span>MHz · ${esc(s.mode || '')}</span></div></div>
  <div class="hs-park">${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener">${esc(s.ref)}</a>` : ''}${esc(s.name || '')}</div>
  <div class="hs-meta">${esc(s.st ? (ST[s.st] || s.st) : s.loc)}${d != null ? ' · ' + Math.round(d) + ' mi' : ''} · ${ago(s.t)}${s.by ? ' · spotted by ' + esc(s.by) : ''}</div>
@@ -545,10 +558,10 @@
 </article>`;
   }
   function row(s) {
-    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s);
-    const tag = (n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk" title="You have hunted this PARK before (from your POTA list). It does not mean you worked this station.">HUNTED BEFORE</span>' : '') + (wkToday(s) ? '<span class="hb td" title="This call is in your log today (UTC)">✅ IN MY LOG TODAY</span>' : '');
+    const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), d = dist(s), ps = parkState(s);
+    const tag = (ps ? psBadge(ps, true) : n ? '<span class="hb new">NEW</span>' : w ? '<span class="hb wk" title="You have hunted this PARK before (from your POTA list). It does not mean you worked this station.">HUNTED BEFORE</span>' : '') + (wkToday(s) ? '<span class="hb td" title="This call is in your log today (UTC)">✅ IN MY LOG TODAY</span>' : '');
     const rare = s.acts === 0 ? '<span class="hb atno">1ST</span>' : s.acts != null && s.acts <= 5 ? `<span class="hb rare">RARE ${s.acts}</span>` : '';
-    return `<tr class="hr${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
+    return `<tr class="hr${n ? ' new' : ''}${ps ? psCls(ps) : w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}"><td class="t hide-s">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</td><td class="c"><button type="button" class="fv${isFav(s) ? ' on' : ''}" data-fav="${esc(base(s.call))}">${isFav(s) ? '★' : '☆'}</button>${s.ref ? `<button type="button" class="fv chs${isCh(s) ? ' on' : ''}" data-chadd="${esc(s.ref)}" title="${isCh(s) ? 'Take this park off my chase list' : 'Add this park to my chase list'}">🎯</button>` : ''}${`<button type="button" class="hs-cb" data-tolog="${esc(keyOf(s))}" title="Send ${esc(s.call)} to my log">${esc(s.call)}</button>`}</td><td class="f">${(s.khz / 1000).toFixed(3)}<small>${esc(s.mode || '')}</small></td><td class="hide-s">${esc(s.mode || '')}</td>
 <td><span class="pg">${PL[s.p] || s.p}</span> ${s.ref ? `<a href="${pageOf(s)}" target="_blank" rel="noopener" class="r">${esc(s.ref)}</a> ` : ''}${esc(s.name || '')} ${tag}${rare} ${awardChips(s, true)}</td><td class="hide-s">${esc(s.st || '')}</td><td class="hide-s">${d != null ? Math.round(d) : ''}</td>
 <td class="a">${!PUB && s.p === 'POTA' && s.ref ? `<button type="button" class="rsp" data-rsp="${esc(keyOf(s))}" title="Respot them on POTA">📣</button>` : ''}<button type="button" class="hc" data-hc="${esc(s.call)}" title="Hide this call today">🙈</button>${s.ref ? `<button type="button" class="wk${w ? ' on' : ''}" data-wk="${esc(s.ref)}" title="${w ? 'You have hunted this park before. Tap to take it off your hunted list.' : 'Mark this park as hunted'}">✓</button>` : ''}</td></tr>`;
   }
@@ -719,8 +732,8 @@
 <label class="hw-lab">WATCH FOR <input data-wq value="${esc(w.q)}" placeholder="calls, park numbers or words, with commas"></label>
 <div class="hw-g"><button type="button" class="hl-btn sm" data-wreset title="Filters, size and place back to how they started">↺ RESET THIS LIST</button><button type="button" class="hl-btn gold sm" data-wf>✓ DONE</button></div>`;
   }
-  const wrow = s => { const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref);
-    return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
+  const wrow = s => { const n = isNew(s), w = !!s.ref && hasLog() && WK.has(s.ref), ps = parkState(s);
+    return `<div class="hw-r p-${s.p}${n ? ' new' : ''}${ps ? psCls(ps) : w ? ' worked' : ''}${selCls(s)}" data-k="${esc(keyOf(s))}" title="Tap to log it"><span class="f">${(s.khz / 1000).toFixed(3)}</span><b>${esc(s.call)}</b><span class="m">${esc(s.mode || '')}</span><span class="r">${s.ref ? esc(s.ref) + ' ' : ''}<small>${esc(s.name || s.loc || '')}${s.st ? ' · ' + esc(s.st) : ''}</small></span>${n ? '<i class="hb new">NEW</i>' : ''}<span class="t">${esc(ago(s.t).replace(' min ago', 'm').replace('just now', 'now'))}</span></div>`; };
   function winDraw() {
     const on = winOn(); wmFree();
     WIN.forEach((w, i) => {

@@ -1034,3 +1034,7 @@ main#hl[data-public="1"] .hl-ptabs.pub-tabs{display:flex!important}
 
 .hw-g>span{min-width:52px;width:auto!important}
 .hl-ham{gap:8px;align-items:center;margin:6px 0 10px}.hl-ham .hl-src{flex:1 1 260px;margin:0}
+/* Nov 8: park states (UTC day) - only today's parks are greyed; worked-before stays a normal card */
+.hb.htd{background:#3a3f3c;color:#d7ddd9;border-color:#59605b;font-weight:900}
+.hs.ps-before,.hr.ps-before,.hw-r.ps-before{opacity:1}
+.hs.ps-new{box-shadow:0 0 0 2px var(--gr) inset}
