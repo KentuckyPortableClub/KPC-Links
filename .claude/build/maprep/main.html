@@ -154,7 +154,12 @@
 <label for="mrRsPlace">STATE OR PROVINCE</label>
 <select id="mrRsPlace" aria-label="State or province to research"><option value="">Loading places…</option></select>
 <p class="mr-help" data-rspane="state">Checks the largest official places in the whole state or province (up to 150). It takes a minute or two; the status below shows each step.</p>
-<p class="mr-help" data-rspane="pin" hidden>Tap the map to drop a pin, then SEARCH. It checks the official land within about 6 km of the pin.</p>
+<div data-rspane="pin" hidden><p class="mr-help">Type an address or place (or GPS numbers), or tap the map to drop a pin. SEARCH checks the official land within about 6 km of that spot.</p>
+<label for="mrRsLoc">ADDRESS OR PLACE</label>
+<input id="mrRsLoc" autocomplete="off" placeholder="123 Main St, Anytown, KY  or  37.214088, -84.197804" aria-label="Address or place to search near">
+<p class="mr-help" id="mrRsLocAt" role="status" hidden></p>
+<div class="mr-check-btns mr-rs-locbtns"><button type="button" class="alt" id="mrRsPinUse">USE THE DROPPED PIN</button></div>
+<p class="mr-help mr-rs-locnote">Addresses are turned into GPS with OpenStreetMap Nominatim, one lookup per search (© OpenStreetMap contributors).</p></div>
 <div data-rspane="name" hidden><label for="mrRsQ">FOUND ONE YOURSELF? TYPE ITS NAME</label>
 <input id="mrRsQ" autocomplete="off" placeholder="Pine Creek Gorge, Elk State Forest, or a name from a map" aria-label="Name of a place to test"></div>
 <div class="mr-check-btns"><button type="submit" id="mrRsGo">SEARCH</button></div>
@@ -224,6 +229,6 @@
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261106b" defer></script>
 <script src="kpc-maprep-logic.js?v=20261107t" defer></script>
 <script src="kpc-maprep-candidates.js?v=20261108a" defer></script>
-<script src="kpc-maprep-check.js?v=20261108u" defer></script>
-<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108u" defer></script>
+<script src="kpc-maprep-check.js?v=20261108v" defer></script>
+<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108w" defer></script>
 <script src="kpc-maprep.js?v=20261108p" defer></script>
