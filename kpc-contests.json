@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T12:12:04Z",
+ "updated": "2026-11-08T12:26:57Z",
  "week": [
   {
    "name": "YBDXPI FT8 Contest",
@@ -13,22 +13,6 @@
    ],
    "modes": [
     "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "IPARC Contest, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdgem",
-   "when": "0600Z-1800Z, Nov 7",
-   "segs": [
-    [
-     "2026-11-07T06:00Z",
-     "2026-11-07T18:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
    ],
    "kinds": [],
    "src": "WA7BNM"
@@ -459,6 +443,104 @@
    ],
    "modes": [],
    "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "WAE DX Contest, RTTY",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003dw2tj",
+   "when": "0000Z, Nov 14 to 2359Z, Nov 15",
+   "segs": [
+    [
+     "2026-11-14T00:00Z",
+     "2026-11-15T23:59Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "PODXS 070 Club Triple Play Low Band Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ger1q",
+   "when": "0000Z, Nov 14 to 2359Z, Nov 16",
+   "segs": [
+    [
+     "2026-11-14T00:00Z",
+     "2026-11-16T23:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "JIDX Phone Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdvug",
+   "when": "0700Z, Nov 14 to 1300Z, Nov 15",
+   "segs": [
+    [
+     "2026-11-14T07:00Z",
+     "2026-11-15T13:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "SKCC Weekend Sprintathon",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9dzw",
+   "when": "1200Z, Nov 14 to 2400Z, Nov 15",
+   "segs": [
+    [
+     "2026-11-14T12:00Z",
+     "2026-11-16T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK/OM DX Contest, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003geizt",
+   "when": "1200Z, Nov 14 to 1200Z, Nov 15",
+   "segs": [
+    [
+     "2026-11-14T12:00Z",
+     "2026-11-15T12:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "AWA Bruce Kelley 1929 QSO Party",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=0039xrm7",
+   "when": "2300Z, Nov 14 to 0300Z, Nov 16 and 2300Z, Nov 21 to 0300Z, Nov 23",
+   "segs": [
+    [
+     "2026-11-14T23:00Z",
+     "2026-11-16T03:00Z"
+    ],
+    [
+     "2026-11-21T23:00Z",
+     "2026-11-23T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QSOPARTY"
+   ],
    "src": "WA7BNM"
   }
  ],
@@ -1239,24 +1321,6 @@
    "src": "CORRAL",
    "bands": "1.8-28",
    "exch": "4-char grid"
-  },
-  {
-   "name": "IPARC Contest, CW",
-   "url": "https://www.iparc.de",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-07T06:00Z",
-     "2026-11-07T18:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RST, serial, \"IPA\" (if mbr), state (if US)"
   },
   {
    "name": "ARRL November Sweepstakes, CW",
@@ -2708,7 +2772,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (30)",
-  "CORRAL": "ok (77)"
+  "WA7BNM": "ok (35)",
+  "CORRAL": "ok (76)"
  }
 }

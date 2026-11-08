@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T12:11:53Z",
+ "updated": "2026-11-08T12:26:49Z",
  "stations": [
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
@@ -19,21 +19,6 @@
    "note": ", Livonia, MI. Livonia Amateur Radio Club. 14.260 7.260 7.050 14.050. Certificate. Electronic Only See QRZ page, 145.350 MHz, Livonia, MI 48151."
   },
   {
-   "title": "Nat'l Animal Shelter Appreciation Week",
-   "start": "2026-11-01",
-   "end": "2026-11-07",
-   "times": "0000Z-2359Z",
-   "call": "",
-   "calls": [],
-   "where": "Melville, NY",
-   "st": "NY",
-   "by": "Dog Day Radio Amateur Radio Club",
-   "freqs": "7.035 14.040",
-   "qsl": "QSL",
-   "url": "https://www.qrz.com/db/K0DOG",
-   "note": ", Melville, NY. Dog Day Radio Amateur Radio Club. 7.035 14.040. QSL. Caryn Eve Murray, 2 Wallingford Drive, Melville, NY 11747."
-  },
-  {
    "title": "SVARA 50th Birthday",
    "start": "2026-11-01",
    "end": "2026-11-30",
@@ -51,23 +36,6 @@
    "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
   },
   {
-   "title": "18th Annual Veteran Honor Guard Vigil at the Ottawa IL War Memorial",
-   "start": "2026-11-06",
-   "end": "2026-11-07",
-   "times": "2200Z-2200Z",
-   "call": "W9TAL",
-   "calls": [
-    "W9TAL"
-   ],
-   "where": "Ottawa, IL",
-   "st": "IL",
-   "by": "The American Legion Post 33 Amateur Radio Club.",
-   "freqs": "7.074 14.074",
-   "qsl": "QSL",
-   "url": "https://www.ottawaalpost33.com",
-   "note": ", Ottawa, IL. The American Legion Post 33 Amateur Radio Club.. 7.074 14.074 . QSL. Joe Tokarz, The American Legion Post 33 Amateur Radio Club, 901 LaSalle St., Ottawa, IL 61350."
-  },
-  {
    "title": "2026 Remembering the Edmund Fitzgerald - Split Rock Lighthouse",
    "start": "2026-11-06",
    "end": "2026-11-08",
@@ -83,40 +51,6 @@
    "qsl": "Certificate",
    "url": "http://www.radioham.org",
    "note": ", Stillwater, MN. Stillwater (MN) Amateur Radio Assoc. (SARA). 3.860 7.260 14.260 21.360. Certificate. Shel Mann - N0DRX, 1618 Pine St W, Stillwater, MN 55082. Requested and sent via email: W0JHFitz@outlook.com. QSL certificates may only be requested via email address: W0JHFitz@outlook.com. Important: ONLY W0JH contacts qualify for POTA US-2524, US-8095, ARLHS USA 783 validations and submission to"
-  },
-  {
-   "title": "100-year celebration of RT 66",
-   "start": "2026-11-07",
-   "end": "2026-11-07",
-   "times": "1600Z-2200Z",
-   "call": "KF0MSJ",
-   "calls": [
-    "KF0MSJ"
-   ],
-   "where": "Union, MO",
-   "st": "MO",
-   "by": "Zero - Beaters Amateur Radio Club",
-   "freqs": "14.250",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", Union, MO. Zero - Beaters Amateur Radio Club. 14.250. QSL. GREG BALLARD, 662 E Main St, Union, MO 63084. WE WILL SEND OUT QSL CARDS TO ALL CONTACTS"
-  },
-  {
-   "title": "Punta Gorda Air Show 2026",
-   "start": "2026-11-07",
-   "end": "2026-11-07",
-   "times": "1300Z-2000Z",
-   "call": "W7MHM",
-   "calls": [
-    "W7MHM"
-   ],
-   "where": "Punta Gorda, FL",
-   "st": "FL",
-   "by": "Military Heritage Museum Amateur Radio Club",
-   "freqs": "14.285",
-   "qsl": "QSL",
-   "url": "http://www.w7mhm.org",
-   "note": ", Punta Gorda, FL. Military Heritage Museum Amateur Radio Club. 14.285. QSL. Don Kumpost, 24771 Rio Villa Lakes Circle, Punta Gorda, FL 33950. THIS EVENT IS CANCELLED!"
   },
   {
    "title": "W2TE SES POTA DAY",
@@ -737,6 +671,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (40)"
+  "ARRL": "ok (36)"
  }
 }
