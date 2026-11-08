@@ -179,6 +179,67 @@
       + ' · ' + (blank(a.Loc_Ds) ? (PAD.des[a.Des_Tp] || a.Des_Tp || 'no designation') : (PAD.des[a.Loc_Ds] || a.Loc_Ds));
   }
 
-  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, padCard: padCard, padLine: padLine, padHint: padHint, padSource: padSource, PAD: PAD, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
+  /* Nov 8 (Brandon 8:57 AM CST, "Cpcad"): the Canada counterpart of the PAD-US card. CPCAD = Canadian Protected and Conserved
+     Areas Database (Environment and Climate Change Canada, Open Government Licence - Canada). Domains copied from the CPCAD service. */
+  const CP = {
+    ver: 'CPCAD, December 2025 edition (published by ECCC March 2026)', layer: 'CPCAD map service layer 0',
+    pa: { 1: 'Protected area (PA)', 2: 'Other effective area-based conservation measure (OECM)', 3: 'Interim - protected area (PA)', 4: 'Interim - other effective area-based conservation measure (OECM)', 5: 'Not applicable' },
+    iucn: { 1: 'Ia = strict nature reserve', 2: 'Ib = wilderness area', 3: 'II = national park (large natural area, recreation allowed)', 4: 'III = natural monument or feature', 5: 'IV = habitat or species management area', 6: 'V = protected landscape or seascape', 7: 'VI = protected area with sustainable use of natural resources', 8: 'Not reported', 9: 'Not applicable' },
+    status: { 0: 'Delisted', 1: 'Designated', 2: 'Established', 3: 'Interim', 4: 'Inscribed', 5: 'Adopted' },
+    biome: { M: 'Marine', T: 'Terrestrial / freshwater' },
+    loc: { 1: 'Alberta', 2: 'British Columbia', 3: 'Manitoba', 4: 'New Brunswick', 5: 'Newfoundland and Labrador', 6: 'Northwest Territories', 7: 'Nova Scotia', 8: 'Nunavut', 9: 'Ontario', 10: 'Prince Edward Island', 11: 'Quebec', 12: 'Saskatchewan', 13: 'Yukon', 14: 'Coastal Arctic Marine', 15: 'Coastal Atlantic Marine', 16: 'Coastal Pacific Marine', 17: 'Offshore Arctic Marine', 18: 'Offshore Atlantic Marine', 19: 'Offshore Pacific Marine', 20: 'Arctic Marine Coastal/Offshore', 21: 'Offshore Arctic/Atlantic Marine' },
+    own: { 1: 'Federal', 2: 'Provincial / territorial', 3: 'Municipal', 4: 'Indigenous', 5: 'Communal', 6: 'Individual landowners', 7: 'For-profit organizations', 8: 'Non-profit organizations', 9: 'Joint ownership', 10: 'Multiple ownership', 11: 'Contested', 12: 'Not reported' },
+    gov: { 1: 'National government', 2: 'Sub-national (provincial / territorial) government', 3: 'Government-delegated management', 4: 'Transboundary governance', 5: 'Collaborative governance', 6: 'Joint governance', 7: 'Individual landowners', 8: 'Non-profit organizations', 9: 'For-profit organizations', 10: 'Indigenous peoples', 11: 'Local communities', 12: 'Not reported' },
+    prov: { AB: 1, BC: 2, MB: 3, NB: 4, NL: 5, NT: 6, NS: 7, NU: 8, ON: 9, PE: 10, QC: 11, SK: 12, YT: 13 }
+  };
+  const cc = (tbl, v) => blank(v) ? 'blank' : (tbl[v] != null ? v + ' = ' + tbl[v] : String(v));
+  function caHint(a) {
+    const h = [];
+    if (+a.OWNER_TYPE === 1 || +a.OWNER_TYPE === 2) h.push('Owner: ' + CP.own[a.OWNER_TYPE] + ', which counts toward the government-owned rule.');
+    else if (+a.OWNER_TYPE === 9 || +a.OWNER_TYPE === 10) h.push('Owner: ' + CP.own[a.OWNER_TYPE] + '. Check that a federal or provincial owner is one of them.');
+    else if (!blank(a.OWNER_TYPE)) h.push('Owner type is ' + (CP.own[a.OWNER_TYPE] || a.OWNER_TYPE) + ', not federal or provincial.');
+    if (+a.STATUS === 0) h.push('Status: Delisted, so it is no longer a protected area.');
+    else if (+a.STATUS === 3) h.push('Status: Interim, not yet final.');
+    if (+a.PA_OECM_DF === 2 || +a.PA_OECM_DF === 4) h.push('This is a conserved area (OECM), not a protected area. Check it is a named public place.');
+    h.push('CPCAD has no public-access field. Ask the managing agency whether the public can visit.');
+    return h.join(' ');
+  }
+  function caSource(a) {
+    return 'Where this comes from: ' + CP.ver + ', ' + CP.layer + (blank(a.ZONE_ID) ? '' : ', record ZONE_ID ' + a.ZONE_ID)
+      + '. CPCAD is Canada\u2019s national inventory of protected and conserved areas, compiled by Environment and Climate Change Canada (Open Government Licence - Canada). It can be out of date, so confirm with the managing agency.';
+  }
+  const haAc = ha => blank(ha) ? 'blank' : Number(ha).toLocaleString('en-US', { maximumFractionDigits: 1 }) + ' ha (' + Math.round(Number(ha) * 2.47105).toLocaleString('en-US') + ' acres)';
+  function caCard(a, link) {
+    if (!a) return '';
+    const yr = [blank(a.ESTYEAR) ? '' : 'established ' + a.ESTYEAR, blank(a.QUALYEAR) || a.QUALYEAR === a.ESTYEAR ? '' : 'counted as protected since ' + a.QUALYEAR].filter(Boolean).join(', ');
+    const rows = [
+      ['Name', a.NAME_E + (blank(a.NAME_IND) ? '' : ' (Indigenous name ' + a.NAME_IND + ')') + (blank(a.ZONEDESC_E) ? '' : ' · zone: ' + a.ZONEDESC_E)],
+      ['Owner / authority', (blank(a.OWNER_E) ? 'not named' : a.OWNER_E) + ' · type ' + cc(CP.own, a.OWNER_TYPE)],
+      ['Manager / governance', (blank(a.MGMT_E) ? 'not named' : a.MGMT_E) + ' · governance ' + cc(CP.gov, a.GOV_TYPE)],
+      ['Type / designation', (blank(a.TYPE_E) ? 'blank' : a.TYPE_E) + (blank(a.MECH_E) ? '' : ' · under ' + a.MECH_E)],
+      ['Protected or conserved', cc(CP.pa, a.PA_OECM_DF)],
+      ['IUCN category', blank(a.IUCN_CAT) ? 'blank' : 'code ' + a.IUCN_CAT + ': ' + (CP.iucn[a.IUCN_CAT] || 'not listed')],
+      ['Status and year', cc(CP.status, a.STATUS) + (yr ? ' · ' + yr : '')],
+      ['Area', haAc(a.O_AREA_HA)],
+      ['Biome / zone', cc(CP.biome, a.BIOME) + (blank(a.LOC) ? '' : ' · ' + cc(CP.loc, a.LOC))],
+      ['Management plan', blank(a.MPLAN) ? 'blank' : (+a.MPLAN === 1 ? 'Yes' + (blank(a.MPLAN_REF) ? '' : ' · ' + a.MPLAN_REF) : 'No')],
+      ['Record ID', 'ZONE_ID ' + (blank(a.ZONE_ID) ? 'blank' : a.ZONE_ID) + (blank(a.PARENT_ID) || a.PARENT_ID === a.ZONE_ID ? '' : ' · part of PARENT_ID ' + a.PARENT_ID) + (blank(a.JUR_ID) ? '' : ' · provider id ' + a.JUR_ID) + (blank(a.OBJECTID) ? '' : ' · OBJECTID ' + a.OBJECTID)]
+    ];
+    if (+a.OWNER_TYPE === 9 || +a.OWNER_TYPE === 10) rows.splice(2, 0, ['Joint ownership', 'Yes (' + CP.own[a.OWNER_TYPE] + '). Listed: ' + (blank(a.OWNER_E) ? 'not named' : a.OWNER_E)]);
+    return '<div class="mr-padus mr-cpcad" data-mr-cpcad="' + pEsc(a.ZONE_ID) + '"><h4 style="margin:0 0 6px">CPCAD record (Canada)</h4>'
+      + '<p class="mr-padhint"><b>' + pEsc(caHint(a)) + '</b></p>'
+      + '<table class="mr-recbox">' + rows.map(r => '<tr><th>' + pEsc(r[0]) + '</th><td>' + pEsc(r[1]) + '</td></tr>').join('') + '</table>'
+      + (link ? '<p class="mr-help"><a href="' + pEsc(link) + '" target="_blank" rel="noopener">Open CPCAD record ' + pEsc(a.ZONE_ID) + ' ↗</a></p>' : '')
+      + '<p class="mr-help">' + pEsc(caSource(a)) + '</p></div>';
+  }
+  function caLine(a) {
+    if (!a) return 'CPCAD: no matching record';
+    return 'CPCAD: Owner ' + (blank(a.OWNER_E) ? 'not named' : a.OWNER_E) + (CP.own[a.OWNER_TYPE] ? ' (' + CP.own[a.OWNER_TYPE] + ')' : '')
+      + ' · Manager ' + (blank(a.MGMT_E) ? 'not named' : a.MGMT_E) + ' · ' + (blank(a.TYPE_E) ? 'no type' : a.TYPE_E)
+      + ' · ' + (CP.status[a.STATUS] || 'status blank') + (blank(a.ESTYEAR) ? '' : ' ' + a.ESTYEAR)
+      + (blank(a.IUCN_CAT) || !CP.iucn[a.IUCN_CAT] ? '' : ' · IUCN ' + String(CP.iucn[a.IUCN_CAT]).split(' = ')[0]);
+  }
+
+  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, padCard: padCard, padLine: padLine, padHint: padHint, padSource: padSource, PAD: PAD, caCard: caCard, caLine: caLine, caHint: caHint, caSource: caSource, CP: CP, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCMapExtras;
 })();
