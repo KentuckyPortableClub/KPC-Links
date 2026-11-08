@@ -9,6 +9,8 @@ Rings are lists of [lon, lat] (Esri 'rings' or GeoJSON). No network, no third-pa
   acres_geojson(geometry)      -> acres of a GeoJSON Polygon / MultiPolygon (turf.area / 4046.86)
 """
 import math
+import os
+import time
 
 R_EARTH = 6378137.0          # turf.js earthRadius (WGS84 semi-major), used by turf.area
 ACRE_M2 = 4046.8564224
@@ -25,6 +27,13 @@ def _ring_area_m2(ring):
         else: lo, mi, up = i, i + 1, i + 2
         tot += (math.radians(ring[up][0]) - math.radians(ring[lo][0])) * math.sin(math.radians(ring[mi][1]))
     return tot * R_EARTH * R_EARTH / 2.0
+
+
+ACRES_S = float(os.environ.get('KPC_ACRES_S', '30'))   # Nov 8: time limit for one acres_rings call (seconds)
+
+
+class AcresTooSlow(Exception):
+    pass
 
 
 def _in_ring(x, y, r):
@@ -45,11 +54,20 @@ def acres_rings(rings):
     """Acres of an Esri ring list: each ring's area counts + or - by how many other rings hold it (even-odd), so holes subtract
     whatever way the rings are wound."""
     rings = [r for r in rings or [] if r and len(r) >= 3]
+    # Nov 8 (world W-42480248682, CL stuck 100 min here in kpc_tracts): a ring's first point is only tested against rings whose
+    # box holds it. A point outside a ring's box can never be inside that ring, so the answer is exactly the same, only faster.
+    # A list too big to finish in ACRES_S seconds raises AcresTooSlow (kpc_tracts leaves ac_measured out, as for any error).
+    boxes = []
+    for q in rings:
+        xs = [p[0] for p in q]; ys = [p[1] for p in q]
+        boxes.append((min(xs), min(ys), max(xs), max(ys)))
+    stop = time.monotonic() + ACRES_S
     tot = 0.0
     for i, r in enumerate(rings):
+        if time.monotonic() > stop: raise AcresTooSlow(f'{len(rings)} rings: over {ACRES_S} s')
         a = abs(_ring_area_m2(r))
         x, y = r[0]
-        depth = sum(1 for j, q in enumerate(rings) if j != i and _in_ring(x, y, q))
+        depth = sum(1 for j, q in enumerate(rings) if j != i and boxes[j][0] <= x <= boxes[j][2] and boxes[j][1] <= y <= boxes[j][3] and _in_ring(x, y, q))
         tot += -a if depth % 2 else a
     return max(tot, 0.0) / ACRE_M2
 
