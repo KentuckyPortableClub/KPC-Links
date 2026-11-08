@@ -161,14 +161,52 @@
   let pinsP = null;
   function pins() { return pinsP = pinsP || (W.KPCB && W.KPCB.jget ? W.KPCB.jget('locations.json') : fetch('locations.json').then(r => r.json())).then(r => (r || []).filter(x => x && x[0] === 'POTA' && x[3] != null).map(x => ({ ref: x[1], name: x[2], la: +x[3], lo: +x[4] }))).catch(() => []); }
   const outlineP = {};
+  /* Nov 8 (Brandon t760u, "Iowa gets stuck on last step"): every wait has a time limit, so one slow server can never hang a step */
+  function within(pr, ms, fb) { let t; return Promise.race([Promise.resolve(pr).catch(() => fb), new Promise(r => { t = setTimeout(() => r(fb), ms); })]).finally(() => clearTimeout(t)); }
+  const tick = () => new Promise(r => setTimeout(r, 0));   /* let the phone draw between places */
+  /* the POTA parks whose key outline is worth comparing with this place (pins near its box, key graded official/approximate) */
+  function candRefs(p, ctx) {
+    const box = p.geoms.map(bbox).filter(Boolean).reduce((a, b) => a ? [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])] : b, null);
+    if (!box || !p.geoms.length) return [];
+    const pad = NEAR_PIN_KM / 80;
+    return ctx.pins.filter(q => q.la >= box[1] - pad && q.la <= box[3] + pad && q.lo >= box[0] - pad * 1.3 && q.lo <= box[2] + pad * 1.3)
+      .filter(q => { const k = ctx.key[q.ref]; return k && k.g && k.g !== 'pin' && (k.m || []).length; }).map(q => q.ref);
+  }
+  /* Load every key outline the whole search needs up front, in a few batched requests (not one live lookup per park per place).
+     A key outline made only of PAD-US records already loaded for this search is used straight from memory. */
+  async function prefetchOutlines(places, code, ctx, prog) {
+    const refs = [...new Set(places.flatMap(p => p.ids.some(id => (ctx.rev[String(id)] || []).length) ? [] : candRefs(p, ctx)))].filter(r => !(r in outlineP));
+    if (!refs.length) return 0;
+    const have = {}; places.forEach(p => p.ids.forEach((id, i) => { if (p.geoms[i]) have[String(id)] = p.geoms[i]; }));
+    /* every key record id, grouped by source: PAD-US (plain number) or another agency's layer (prefix + number) */
+    const X = (W.KPCB && W.KPCB.usKeyLayers && !CP_LOC[code]) ? await within(W.KPCB.usKeyLayers(), 15000, {}) : {};
+    const plain = [], other = [], want = {};
+    refs.forEach(r => {
+      const ids = (ctx.key[r].m || []).map(x => String(x[0])), pre = id => (id.match(/^[a-z]+/) || [''])[0];
+      if (CP_LOC[code] || ids.some(id => pre(id) && !(X[pre(id)] && /^https:/.test(X[pre(id)][0]) && !BANNED.test(X[pre(id)][0])))) { other.push(r); return; }
+      plain.push(r); (ctx.key[r].m || []).forEach(x => { const id = String(x[0]), a = +x[2] || 0, off = a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;   /* same detail as the map draws (kpc-bounds usKey) */
+        if (!have[id]) (want[pre(id) + '|' + off] = want[pre(id) + '|' + off] || new Set()).add(id.slice(pre(id).length)); });
+    });
+    const jobs = [];
+    Object.entries(want).forEach(([pk, set]) => { const list = [...set], pf = pk.split('|')[0], off = +pk.split('|')[1];
+      for (let i = 0; i < list.length; i += 40) { const ids = list.slice(i, i + 40);
+        const q = () => pf ? within(fetch(X[pf][0] + '?' + new URLSearchParams({ objectIds: ids.join(','), outFields: '*', returnGeometry: true, outSR: 4326, maxAllowableOffset: off, geometryPrecision: 5, f: 'geojson' })).then(r => r.json()), 20000, { features: [] })
+          : within(arc(PADUS_LAYER, { objectIds: ids.join(','), outFields: 'OBJECTID', returnGeometry: true, maxAllowableOffset: off, geometryPrecision: 5 }, 20000), 22000, { features: [] });
+        jobs.push(() => q().then(j => ((j && j.features) || []).forEach(f => { const a = f.properties || {}, id = [f.id, a.OBJECTID, a.objectid, a.ObjectID, a.OBJECTID_1, a.FID].find(v => v != null); if (f.geometry && id != null) have[pf + id] = f.geometry; })).catch(() => {})); } });
+    other.forEach(r => jobs.push(() => outline(r, code)));
+    const total = jobs.length; let k = 0, done = 0;
+    await within(Promise.all(Array.from({ length: Math.min(4, total) }, async () => { while (k < jobs.length) { const j = jobs[k++]; await j(); done++; if (prog) prog(done, total); } })), 60000, null);
+    plain.forEach(r => { const tw = new Set((ctx.key[r].twin || []).map(String)); outlineP[r] = Promise.resolve(ctx.key[r].m.map(x => String(x[0])).filter(id => !tw.has(id)).map(id => have[id]).filter(g => g && /Polygon/.test(g.type))); });
+    return refs.length;
+  }
   async function outline(ref, code) {
-    if (!(ref in outlineP)) outlineP[ref] = (async () => {
+    if (!(ref in outlineP)) outlineP[ref] = within((async () => {
       try {
         if (CP_LOC[code] && W.KPCB && W.KPCB.canada) { const k = await W.KPCB.canada(ref); return ((k && k.fs) || []).map(f => f.geometry).filter(Boolean); }
         if (W.KPCB && W.KPCB.usKey) { const k = await W.KPCB.usKey(ref, [code]); return k && k.state === 'ok' ? (k.fs || []).map(f => f.geometry).filter(g => g && /Polygon/.test(g.type)) : []; }
       } catch (e) {}
       return [];
-    })();
+    })(), 12000, []);
     return outlineP[ref];
   }
   /* all the checks for one place */
@@ -191,7 +229,7 @@
       const cand = close.filter(q => { const k = ctx.key[q.ref]; return k && k.g && k.g !== 'pin' && (k.m || []).length; })
         .map(q => ({ q, km: Math.min(...p.geoms.map(g => nearestKm(g, q.la, q.lo))) })).filter(x => x.km <= NEAR_PIN_KM).sort((a, b) => a.km - b.km).slice(0, 10);
       for (const x of cand) {
-        const gs = await outline(x.q.ref, code); if (!gs.length) continue;
+        const gs = await within(outline(x.q.ref, code), 12000, []); if (!gs.length) continue;
         const share = Math.max(...p.geoms.map(g => coverShare(g, gs)));
         if (share > 0) c.cover.push({ ref: x.q.ref, share, same: sameName(x.q.name, p.name) });
       }
@@ -211,7 +249,8 @@
     const places = groupRecords(recs).slice(0, MAX_PLACES);
     if (say) say('Getting the boundaries of ' + places.length + ' places\u2026');
     const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
-    let n = 0; for (const p of places) { await checkPlace(p, code, ctx); n++; if (say && n % 15 === 0) say('Checked ' + n + ' of ' + places.length + '\u2026'); }
+    await prefetchOutlines(places, code, ctx);
+    let n = 0; for (const p of places) { await within(checkPlace(p, code, ctx), 15000, null); if (!p.verdict) { p.checks = p.checks || { same: [], cover: [], pinIn: [], named: [], nearest: null }; p.verdict = verdict(p.checks); } n++; if (n % 3 === 0) await tick(); if (say && n % 15 === 0) say('Checked ' + n + ' of ' + places.length + '\u2026'); }
     return { places, kind: CP_LOC[code] ? 'ca' : 'pad', source: CP_LOC[code] ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0',
       note: CP_LOC[code] ? 'The largest ' + places.length + ' protected areas in CPCAD for this province. CPCAD does not say if the public can go in, so access stays unknown until you check.' : 'The largest ' + places.length + ' places of public land open to the public (PAD-US fee land, 20 acres or more).' };
   }
@@ -339,7 +378,7 @@
     draw(show.map(([p]) => p), false);
   }
   async function context(code) {
-    const [key, P] = await Promise.all([keyFile(code), pins()]);
+    const [key, P] = await Promise.all([within(keyFile(code), 30000, null), within(pins(), 30000, [])]);
     const parks = (key && key.parks) || {}, rev = {};
     Object.entries(parks).forEach(([ref, k]) => { if (k && k.g !== 'pin') (k.m || []).forEach(x => { const id = String(x[0]); (rev[id] = rev[id] || []).indexOf(ref) < 0 && rev[id].push(ref); }); });
     const byName = {}; P.forEach(q => { const k = nameKey(q.name); if (k) (byName[k] = byName[k] || []).push(q); });
@@ -389,9 +428,11 @@
         say('Getting the boundaries of ' + places.length + ' places\u2026');
         const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
       }
-      step = stStep('Checking against key outlines, pins and names\u2026', places.length);
+      step = stStep('Loading the key outlines near these places (one batch)\u2026');
+      await prefetchOutlines(places, code, ctx, (n, t) => stCount(step, n, n + ' / ' + t + ' batches'));
+      step = stStep('Checking against key outlines, pins and names (on this device)\u2026', places.length);
       let done = 0;
-      for (const p of places) { await checkPlace(p, code, ctx); done++; stCount(step, done); if (done % 10 === 0) say('Checked ' + done + ' of ' + places.length + '\u2026'); }
+      for (const p of places) { await within(checkPlace(p, code, ctx), 15000, null); if (!p.verdict) { p.checks = p.checks || { same: [], cover: [], pinIn: [], named: [], nearest: null }; p.verdict = verdict(p.checks); } done++; if (done % 3 === 0) await tick(); stCount(step, done); if (done % 10 === 0) say('Checked ' + done + ' of ' + places.length + '\u2026'); }
       places.sort((a, b) => (RANK[a.verdict.v] - RANK[b.verdict.v]) || b.acres - a.acres);
       rows = places; filt = rows.some(p => p.verdict.v === 'new') ? 'new' : 'all';
       const n = rows.filter(p => p.verdict.v === 'new').length, c = { person: 0, probably: 0, already: 0 }; rows.forEach(p => { if (p.verdict.v in c) c[p.verdict.v]++; });
@@ -422,6 +463,6 @@
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();
