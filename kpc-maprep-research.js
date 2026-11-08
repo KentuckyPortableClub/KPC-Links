@@ -231,15 +231,21 @@
     if (src && src.value && usca.some(o => o.value === src.value)) dst.value = src.value;
   }
   function mountMap() {
-    const el = $('mrRsMap'); if (!el || rmap || !W.L) return;
-    rmap = L.map(el, { scrollWheelZoom: false }).setView([39.8, -90], 4);
-    if (W.KPCLayers) W.KPCLayers(rmap, 'Street'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap);
+    if (rmap || !W.L) return;
+    /* Nov 8 (Brandon, t748u): ONE map. The research results draw on the same map as Check a place, pin drop and Street View. */
+    const C = W.KPCMapCheck; if (C && C.mount) C.mount();
+    rmap = C && C.map ? C.map() : null; shared = !!rmap;
+    if (!rmap) { const el = $('mrDrop') || $('mrRsMap'); if (!el) return;
+      rmap = L.map(el, { scrollWheelZoom: false }).setView([39.8, -90], 4);
+      if (W.KPCLayers) W.KPCLayers(rmap, 'Street'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap); }
     rlayer = L.featureGroup().addTo(rmap);
     rmap.on('click', e => { const t = e.originalEvent && e.originalEvent.target; if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return; lastPin = [e.latlng.lat, e.latlng.lng]; drawPin(); if (tab !== 'pin') setTab('pin'); say('Pin dropped. Tap SEARCH to check the official land around it.'); });
     setTimeout(() => rmap && rmap.invalidateSize(), 80);
   }
-  let pinMk = null;
-  function drawPin() { if (!rmap || !lastPin) return; if (pinMk) rmap.removeLayer(pinMk); pinMk = L.circleMarker(lastPin, { radius: 7, color: '#111', fillColor: '#f0c96b', fillOpacity: 1, weight: 2 }).addTo(rmap); }
+  let pinMk = null, shared = false;
+  /* scroll the details panel only (never the page) so the map stays where it is */
+  function inPanel(el, block) { if (!el) return; const P = $('mrPanel'); if (P && P.contains(el) && P.scrollHeight > P.clientHeight + 2) { P.scrollTop += el.getBoundingClientRect().top - P.getBoundingClientRect().top - (block === 'center' ? Math.max(0, (P.clientHeight - el.offsetHeight) / 2) : 0); return; } if (!P) try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) {} }
+  function drawPin() { if (!rmap || !lastPin || shared) return; if (pinMk) rmap.removeLayer(pinMk); pinMk = L.circleMarker(lastPin, { radius: 7, color: '#111', fillColor: '#f0c96b', fillOpacity: 1, weight: 2 }).addTo(rmap); }
   /* Live status panel (Brandon Nov 8, 1:08 PM CST: "make it feel like it is doing work"): each step with a tick, a bar,
      elapsed time, a note when a source is slow, and a clear error with TRY AGAIN. */
   const ST = { t0: 0, timer: null, steps: [], last: null, slowAt: 0 };
@@ -258,7 +264,7 @@
   }
   function stBegin(title, kind) {
     const el = stEl(); ST.t0 = Date.now(); ST.steps = []; ST.title = title; ST.err = ''; ST.kind = kind;
-    if (el) { el.hidden = false; el.classList.remove('done', 'err'); try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
+    if (el) { el.hidden = false; el.classList.remove('done', 'err'); }
     clearInterval(ST.timer); ST.timer = setInterval(stDraw, 1000); stDraw();
   }
   function stStep(label, total) { ST.steps.forEach(x => { if (x.st === 'run') x.st = 'ok'; }); const x = { label, st: 'run', n: 0, total: total || 0, at: Date.now(), note: '' }; ST.steps.push(x); stDraw(); return x; }
@@ -276,7 +282,7 @@
   }
   function focus(i) {
     const p = rows[i]; if (!p) return;
-    const el = D.querySelector('[data-rs="' + i + '"]'); if (el) { if (el.tagName === 'DETAILS') el.open = true; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    const el = D.querySelector('[data-rs="' + i + '"]'); if (el) { if (el.tagName === 'DETAILS') el.open = true; inPanel(el, 'start'); }
     if (rmap && p.geoms.length) { const g = L.geoJSON({ type: 'FeatureCollection', features: p.geoms.map(x => ({ type: 'Feature', geometry: x })) }); try { rmap.fitBounds(g.getBounds(), { maxZoom: 14, padding: [20, 20] }); } catch (e) {} }
   }
   function card(p, i) {
@@ -293,7 +299,7 @@
       + '<p class="mr-rs-why">' + esc(p.verdict.why) + '</p>'
       + '<div class="mr-rs-checks"><b>Checks</b><ul>' + lines.map(l => '<li>' + esc(l) + '</li>').join('') + '</ul></div>'
       + official
-      + '<p class="mr-rs-links"><a href="' + esc(p.link) + '" target="_blank" rel="noopener">OFFICIAL RECORD \u203a</a> <button type="button" class="mr-ag" data-rsmap="' + i + '">SHOW ON MAP</button> <button type="button" class="mr-ag" data-rscheck="' + i + '">FULL RULES CHECK</button></p>'
+      + '<p class="mr-rs-links"><a href="' + esc(p.link) + '" target="_blank" rel="noopener">OFFICIAL RECORD \u203a</a> <button type="button" class="mr-ag" data-rscheck="' + i + '">FULL RULES CHECK</button></p>'
       + '<label class="mr-rs-sumlab">Summary for a park submission (copy and edit)</label><textarea class="mr-rs-sum" readonly rows="9" id="mrRsSum' + i + '">' + esc(summaryText(p)) + '</textarea>'
       + '<button type="button" class="mr-ag" data-rscopy="' + i + '">COPY SUMMARY</button></details>';
   }
@@ -305,14 +311,15 @@
     out.innerHTML = '<div class="mr-filters" id="mrRsFilters">' + ['new', 'person', 'probably', 'already', 'all'].map(k => '<button type="button" class="mr-ag' + (k === filt ? ' on' : '') + '" data-rsf="' + k + '">' + lab[k] + ' \u00b7 ' + (k === 'all' ? rows.length : n[k]) + '</button>').join('') + '</div>'
       + (show.length ? show.map(([p, i]) => card(p, i)).join('') : '<p class="mr-help">None in this group.</p>');
     out.querySelectorAll('[data-rsf]').forEach(b => b.onclick = () => { filt = b.dataset.rsf; paint(); });
-    out.querySelectorAll('[data-rsmap]').forEach(b => b.onclick = () => focus(+b.dataset.rsmap));
+    /* clicking a result (its summary) focuses the one map on it; no separate map button */
+    out.querySelectorAll('details[data-rs]').forEach(d => d.addEventListener('toggle', () => { if (d.open) focus(+d.dataset.rs); }));
     out.querySelectorAll('[data-rscopy]').forEach(b => b.onclick = () => { const t = $('mrRsSum' + b.dataset.rscopy); if (!t) return; t.select(); (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(() => { b.textContent = 'COPIED'; }).catch(() => { try { D.execCommand('copy'); b.textContent = 'COPIED'; } catch (e) {} }); });
     out.querySelectorAll('[data-rscheck]').forEach(b => b.onclick = () => {   /* hand the place to "Check a place" (the full rules checklist) */
       const p = rows[+b.dataset.rscheck]; if (!p || !p.pt) return;
       const st = $('mrCheckSt'); if (st && [...st.options].some(o => o.value === placeCode())) { st.value = placeCode(); st.dispatchEvent(new Event('change')); }
       if ($('mrCheckQ')) $('mrCheckQ').value = p.name;
       if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
-      const card2 = $('mrCheckCard'); if (card2) card2.scrollIntoView({ behavior: 'smooth' });
+      inPanel($('mrSpot'), 'start');
     });
     draw(show.map(([p]) => p), false);
   }
@@ -326,8 +333,7 @@
   /* "Possible new parks" (Check all) hands a row here: the same full checks, by its PAD-US record ids */
   async function testIds(code, ids, name) {
     const sel = $('mrRsPlace'); if (sel && code && [...sel.options].some(o => o.value === code)) sel.value = code;
-    const root = $('mrResearch'); if (root) root.scrollIntoView({ behavior: 'smooth' });
-    if (busy) return; busy = true; mountMap();
+        if (busy) return; busy = true; mountMap();
     stBegin('Full checks on \u201c' + (name || ids.join(', ')) + '\u201d', 'ids'); let step = null;
     try {
       say('Running the full checks on \u201c' + (name || ids.join(', ')) + '\u201d\u2026'); step = stStep('Loading the answer key, pins and the official record\u2026');
@@ -344,7 +350,8 @@
   async function run(kind) {
     if (busy) return; const code = placeCode();
     if (!code) { say('Pick a US state or a Canadian province first.'); return; }
-    if (kind === 'pin' && !lastPin) { say('Tap the map above to drop a pin first.'); return; }
+    if (kind === 'pin' && !lastPin && W.KPCMapCheck && W.KPCMapCheck.pin && W.KPCMapCheck.pin()) { const q = W.KPCMapCheck.pin(); lastPin = Array.isArray(q) ? q : [q.lat != null ? q.lat : q.la, q.lng != null ? q.lng : q.lo]; }
+    if (kind === 'pin' && !lastPin) { say('Tap the map to drop a pin first.'); return; }
     const q0 = ($('mrRsQ') && $('mrRsQ').value || '').trim();
     if (kind === 'name' && !q0) { say('Type a place name first.'); return; }
     if (code === 'KY') { /* Kentucky has no published key file; pins and names still work */ }

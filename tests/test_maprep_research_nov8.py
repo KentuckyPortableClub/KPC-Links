@@ -16,7 +16,7 @@ cand = (ROOT / 'kpc-maprep-candidates.js').read_text(encoding='utf-8')
 # 1. layout: research first, check-a-place after, script loaded, gate kept
 check(0 < html.find('id="mrResearch"') < html.find('id="mrCheckCard"'), 'Find new parks is above Check a place')
 check(html.find('id="mrResearch"') > html.find('id="mrApp"'), 'the research section is inside the password-locked app')
-for i in ('mrRsPlace', 'mrRsFind', 'mrRsNear', 'mrRsQ', 'mrRsTest', 'mrRsMap', 'mrRsMsg', 'mrRsOut'):
+for i in ('mrRsPlace', 'mrRsFind', 'mrRsNear', 'mrRsQ', 'mrRsTest', 'mrRsMsg', 'mrRsOut'):
     check(f'id="{i}"' in html, f'control {i}')
 check('kpc-maprep-research.js?v=' in html and 'kpc-maprep-gate.js' in html and 'id="mrLock"' in html, 'research script loaded; both password doors kept')
 check('Find new parks first.' in html, 'how-to starts with finding new parks')
