@@ -3,13 +3,6 @@
  "until": "2027-06-30T00:00:00Z",
  "jobs": [
   {
-   "wf": "kpc-ca-key.yml",
-   "inputs": {},
-   "why": "Canada: another pass",
-   "every": 14,
-   "next": "2026-11-08T07:07+00:00"
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "AL DE IN MN NH OR UT"
@@ -81,6 +74,13 @@
    "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
    "every": 14,
    "next": "2026-11-21T08:57+00:00"
+  },
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Canada: another pass",
+   "every": 14,
+   "next": "2026-11-22T09:13+00:00"
   }
  ]
 }
