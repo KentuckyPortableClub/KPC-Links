@@ -32,6 +32,7 @@ def fixurl(u):
     return u if re.match(r'^https?://', u, re.I) else ''
 total = 0
 COORD = {}
+MISSED = {'HI': ['US-0121']}   # Kure Atoll: in POTA's park data, missing from api.pota.app/location/parks/US-HI (checked Nov 8)
 for st in STATES:
     path = f'{OUT}/US-{st}.json'
     try: old = json.load(open(path)).get('parks', {})
@@ -59,6 +60,19 @@ for st in STATES:
         web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand for parks POTA lists with no website (data/parkinfo-web.json, chat 2)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
                       int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None]
+    # Nov 8 (zip-nov7e ITEM4): parks POTA has (api.pota.app/park/<ref>, active) but leaves out of the state's location list;
+    # today only Kure Atoll. One extra detail call per weekly run; the row is built from that call.
+    for ref in MISSED.get(st, []):
+        if ref in parks: continue
+        try:
+            d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
+            if not d or str(d.get('active', 1)) == '0': continue
+            o = old.get(ref) or []
+            try: la, lo = round(float(d.get('latitude')), 5), round(float(d.get('longitude')), 5)
+            except Exception: la, lo = (o[5], o[6]) if len(o) > 6 else (None, None)
+            parks[ref] = [clean(d.get('name')), fixurl(d.get('website')) or HANDWEB.get(ref, {}).get('web', ''), clean(d.get('parktypeDesc')),
+                          clean(d.get('activationMethods')), clean(d.get('accessMethods')), la, lo, None, None, None]
+        except Exception as e: note(f'{ref} FAILED', e)
     doms = collections.Counter(d for d in (urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[2] == 'State Park') if '.' in d)
     site = ''
     if doms:

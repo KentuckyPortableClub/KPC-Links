@@ -65,10 +65,14 @@
     }));
     cand.sort((x, y) => x.key[0] - y.key[0] || x.key[1] - y.key[1]);
     const out = [];
+    const pname = String((park && park.name) || '').toLowerCase();
+    /* Nov 8 (Quality Nov 7 B1): 'only' = a regex of park names a page or agency is about (New Forest, Wellington region);
+       getting_in:false = not a park manager (LINZ) */
+    const fits = o => !o || !o.only || new RegExp(o.only, 'i').test(pname);
     cand.forEach(({ a, c }) => {
-      if (out.length >= 3 || out.some(o => o.name === a.name)) return;
+      if (out.length >= 3 || out.some(o => o.name === a.name) || a.getting_in === false || !fits(a)) return;
       const links = [];
-      const add = (label, o, guess) => { if (o && safe(o.url)) links.push({ label, url: o.url, unverified: !o.verified, guess: !!guess, scope: o.scope || '' }); };
+      const add = (label, o, guess) => { if (o && safe(o.url) && fits(o)) links.push({ label, url: o.url, unverified: !o.verified, guess: !!guess, scope: o.scope || '' }); };
       add('Agency site', a.home); add('Find a park', a.finder);
       const ac = a.access || {};
       ['entrances', 'parking', 'fees', 'hours'].forEach(k => add(LABELS[k], ac[k]));
@@ -83,7 +87,7 @@
     if (!model.length) return '';
     return '<div class="meta" style="margin-top:8px"><b>&#127359; GETTING IN: THE AGENCY’S OWN PAGES</b></div>' +
       model.map(m => '<div class="meta">&bull; <b>' + esc(m.name) + '</b>: ' + m.links.map(l =>
-        '<a href="' + esc(l.url) + '" target="_blank" rel="noopener"' + (l.scope ? ' title="' + esc(l.scope) + '"' : '') + '>' + esc(l.label) + (l.guess ? ' (guess)' : '') + ' ↗</a>').join(' &middot; ') + '</div>').join('') +
+        '<a href="' + esc(l.url) + '" target="_blank" rel="noopener"' + (l.scope ? ' title="' + esc(l.scope) + '"' : '') + '>' + esc(l.label) + (l.guess ? ' (guess)' : '') + ' ↗</a>' + (l.scope ? ' <small>(' + esc(l.scope) + ')</small>' : '')).join(' &middot; ') + '</div>').join('') +
       '<div class="meta" style="opacity:.8">These links are from the agency’s own site but we have not checked them yet, and we do not know today’s fees, hours or gate times. Check the page before you go.</div>';
   }
 

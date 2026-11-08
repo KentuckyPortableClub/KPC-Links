@@ -3798,7 +3798,7 @@
      "roles": [
       "parks"
      ],
-     "name": "Sépaq (parcs nationaux du Québec)",
+     "name": "S\u00e9paq (parcs nationaux du Qu\u00e9bec)",
      "home": {
       "url": "https://sepaq.com/",
       "verified": false,
@@ -3820,7 +3820,7 @@
      "roles": [
       "wildlife"
      ],
-     "name": "Québec Environnement (réserves fauniques, aires protégées)",
+     "name": "Qu\u00e9bec Environnement (r\u00e9serves fauniques, aires prot\u00e9g\u00e9es)",
      "home": {
       "url": "https://quebec.ca/",
       "verified": false,
@@ -4126,13 +4126,15 @@
        "url": "https://www.forestryengland.uk/new-forest/parking-information",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "New Forest parking charges and hours only"
+       "scope": "New Forest parking charges and hours only",
+       "only": "new forest"
       },
       "hours": {
        "url": "https://www.forestryengland.uk/car-parks/parking-in-the-new-forest",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "New Forest car parks, open 4am to 11pm"
+       "scope": "New Forest car parks, open 4am to 11pm",
+       "only": "new forest"
       }
      }
     },
@@ -4615,13 +4617,13 @@
        "url": "https://www.npws.ie/places-visit",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "parks, reserves and trails open to the public"
+       "scope": "directory of places to visit, not entry points"
       },
       "hours": {
        "url": "https://www.npws.ie/contact-us/national-parks",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "contacts and visitor centres for the national parks and nature reserves"
+       "scope": "contact list for national parks and reserves, not an opening-hours page"
       }
      }
     },
@@ -4652,13 +4654,13 @@
        "url": "https://www.coillte.ie/our-forests/explore/",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "car parking fee at some recreation forests; annual card"
+       "scope": "forest finder, not one forest\u2019s parking"
       },
       "parking": {
        "url": "https://www.coillte.ie/our-forests/explore/",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "each forest page lists car park hours and fee"
+       "scope": "forest finder, not one forest\u2019s parking"
       }
      }
     },
@@ -4878,7 +4880,7 @@
        "url": "https://www.parks.sa.gov.au/book-and-pay/frequently-asked-questions",
        "verified": true,
        "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)",
-       "scope": "how day entry is paid"
+       "scope": "booking and payment questions, not a map of entrances"
       }
      }
     }
@@ -5013,9 +5015,9 @@
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
      },
      "finder": {
-      "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/auckland",
+      "url": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/",
       "verified": true,
-      "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
+      "source": "confirmed by a plain read 2026-11-08 (robots allowed, HTTP 200): nationwide DOC places list (was Auckland only; Quality Nov 7 B1)"
      },
      "gis": {
       "url": "https://www.doc.govt.nz/maps",
@@ -5051,7 +5053,8 @@
       "url": "",
       "verified": false,
       "source": ""
-     }
+     },
+     "getting_in": false
     },
     {
      "role": "parks",
@@ -5095,7 +5098,8 @@
       "url": "https://opendata.gw.govt.nz/datasets/greater-wellington-regional-parks-and-forests-boundaries",
       "verified": true,
       "source": "confirmed by a plain read 2026-11-07 (robots allowed, HTTP 200)"
-     }
+     },
+     "only": "belmont|queen elizabeth|kaitoke|akatarawa|pakuratahi|east harbour|battle hill|wainuiomata|whitireia|wellington"
     },
     {
      "role": "parks",
@@ -5123,5 +5127,6 @@
    ]
   }
  },
- "round3": "2026-11-07"
+ "round3": "2026-11-07",
+ "round4": "Nov 8 2026 (Quality Nov 7 B1/B2): New Forest pages only for New Forest parks; DOC finder nationwide; Wellington council only for Wellington-region parks; LINZ (not a park manager) left out of Getting in; generic scopes named in the link text."
 }
