@@ -1,6 +1,6 @@
 # PT: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, RNAP - Limites, Sítios de Importância Comunitária, Zonas de Proteção Especial, REFLOA_RF. **223 of 410** joined (same name + same kind), **104** to check, **83** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, RNAP - Limites, Sítios de Importância Comunitária, Zonas de Proteção Especial, REFLOA_RF, Conveção RAMSAR. **223 of 410** joined (same name + same kind), **104** to check, **83** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 

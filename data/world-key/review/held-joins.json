@@ -1,6 +1,6 @@
 {
  "key": "world",
- "count": 18,
+ "count": 19,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -82,7 +82,7 @@
    "name": "Los Haitises National Park",
    "pin_km": 33.12,
    "was_g": null,
-   "held_ids": "50 | 50",
+   "held_ids": "49 | 49",
    "held_names": "Los Haitises | Los Haitises",
    "reason": "the nearest part of the joined outline is 33.1 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
@@ -106,7 +106,7 @@
    "name": "Alto Mao Forest Reserve",
    "pin_km": 18.5,
    "was_g": null,
-   "held_ids": "46 | 46 | 46 | 46",
+   "held_ids": "45 | 45 | 45 | 45",
    "held_names": "Alto Mao | Alto Mao | Alto Mao | Alto Mao",
    "reason": "the nearest part of the joined outline is 18.5 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
@@ -193,6 +193,18 @@
    "held_ids": "157",
    "held_names": "Pacífico Mexicano Profundo",
    "reason": "the nearest part of the joined outline is 71.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "NI-0030",
+   "area": "NI",
+   "name": "Rio San Juan UNESCO Biosphere Reserve",
+   "pin_km": 25.3,
+   "was_g": null,
+   "held_ids": "24",
+   "held_names": "Río San Juan",
+   "reason": "the nearest part of the joined outline is 25.3 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   },

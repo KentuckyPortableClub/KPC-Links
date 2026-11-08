@@ -1,6 +1,6 @@
 # BE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Réserves naturelles domaniales, Réserves naturelles agréées, Zones humides d'intérêt biologique. **164 of 594** joined (same name + same kind), **285** to check, **145** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Réserves naturelles domaniales, Réserves naturelles agréées, Zones humides d'intérêt biologique, Périmètres des sites en vigueur (> 50.000). **164 of 594** joined (same name + same kind), **285** to check, **145** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 

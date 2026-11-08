@@ -86,7 +86,7 @@
    "thin": 60
   },
   "BE": {
-   "areas": 3473,
+   "areas": 3713,
    "check": 285,
    "detail": 0.01,
    "matched": 164,
@@ -341,7 +341,7 @@
    "thin": 60
   },
   "CZ": {
-   "areas": 6785,
+   "areas": 7938,
    "check": 22,
    "detail": 0.01,
    "matched": 193,
@@ -358,19 +358,19 @@
    "thin": 60
   },
   "DE": {
-   "areas": 23904,
-   "check": 298,
+   "areas": 30616,
+   "check": 300,
    "detail": 0.01,
-   "matched": 682,
-   "none": 285,
+   "matched": 683,
+   "none": 282,
    "parks": 1265,
    "pin_no_shape": 0,
-   "pin_outside": 127,
+   "pin_outside": 123,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "saved_outlines": 669,
+   "saved_outlines": 588,
    "shadow_add": 33,
-   "shadow_demote": 11,
+   "shadow_demote": 10,
    "shadow_other_place": 0,
    "thin": 60
   },
@@ -579,18 +579,18 @@
    "thin": 60
   },
   "GR": {
-   "areas": 803,
-   "check": 80,
+   "areas": 1249,
+   "check": 62,
    "detail": 0.01,
-   "matched": 150,
-   "none": 63,
+   "matched": 229,
+   "none": 2,
    "parks": 293,
    "pin_no_shape": 0,
-   "pin_outside": 3,
+   "pin_outside": 7,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "saved_outlines": 0,
-   "shadow_add": 24,
+   "shadow_add": 22,
    "shadow_demote": 2,
    "shadow_other_place": 0,
    "thin": 60
@@ -1157,14 +1157,14 @@
    "thin": 60
   },
   "PR": {
-   "areas": 176,
-   "check": 23,
+   "areas": 203,
+   "check": 22,
    "detail": 0.01,
-   "matched": 41,
-   "none": 26,
+   "matched": 47,
+   "none": 21,
    "parks": 90,
    "pin_no_shape": 0,
-   "pin_outside": 8,
+   "pin_outside": 10,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "saved_outlines": 0,
@@ -1174,7 +1174,7 @@
    "thin": 60
   },
   "PT": {
-   "areas": 758,
+   "areas": 777,
    "check": 104,
    "detail": 0.01,
    "matched": 223,
@@ -1412,8 +1412,8 @@
    "thin": 60
   }
  },
- "previous_build": "W-42371359104",
- "previous_built": "2026-11-07 17:12 UTC",
+ "previous_build": "W-42410527148",
+ "previous_built": "2026-11-07 23:41 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1423,11 +1423,11 @@
  ],
  "rules_of_run": "6a5969a25d2c",
  "inputs": {
-  "us-key": "US-42421328570",
+  "us-key": "US-42446831487",
   "ca-key": "CA-42252274247"
  },
- "build": "W-42410527148",
- "built": "2026-11-07 23:41 UTC",
+ "build": "W-42448878438",
+ "built": "2026-11-08 08:14 UTC",
  "failed": [
   "AX",
   "CH",

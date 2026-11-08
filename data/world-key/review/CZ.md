@@ -1,6 +1,6 @@
 # CZ: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Přírodní park, Maloplošné zvláště chráněné území (MZCHÚ), Velkoplošné zvláště chráněné území. **193 of 232** joined (same name + same kind), **22** to check, **17** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Přírodní park, Maloplošné zvláště chráněné území (MZCHÚ), Velkoplošné zvláště chráněné území, Ptačí oblast (PO), Evropsky významná lokalita (EVL). **193 of 232** joined (same name + same kind), **22** to check, **17** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
