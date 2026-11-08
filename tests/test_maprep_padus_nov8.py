@@ -34,5 +34,5 @@ check(not any(w in low for w in [' bot', 'automat', 'robot']), 'no bot wording o
 chk = (ROOT / 'kpc-maprep-check.js').read_text(encoding='utf-8')
 check('mr-padtop' in chk and 'KPCMapExtras.padCard(ctx.padExact' in chk, 'card shows the record right under the heading')
 check('data-padline' in chk and 'padLines(exact, st, my)' in chk and 'KPCMapExtras.padLine(a)' in chk, 'results list shows one PAD-US line per result')
-check('Date_Est,Comments,Agg_Src,GIS_Src,Src_Date' in chk and 'function padTable' in chk, 'new fields asked for; old record table kept')
+check('Date_Est,Comments,Agg_Src,GIS_Src,Src_Date' in chk , 'new fields asked for (the old record table was removed Nov 8 2:43 PM with the download-boundary link, Brandon t752u)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

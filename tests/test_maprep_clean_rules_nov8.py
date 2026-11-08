@@ -11,11 +11,11 @@ rc = js[js.find('  function renderContext('):js.find('  async function contextFr
 nf = js[js.find('data-mr-result="none"'):js.find("box.querySelectorAll('[data-near]')")]
 check('Not named as a military base' not in js and not re.search(r"rule\([^)]*military", js, re.I), 'military base check removed')
 check('STILL UNKNOWN' not in js and "'UNKNOWN'" not in js, "no 'still unknown' / UNKNOWN wording")
-check('We could not confirm this.' in js and 'You can check:' in js and 'TO CONFIRM YOURSELF' in js, 'plain wording: what we could not confirm and what to check')
-check(all(k in js for k in ("'Owned by the federal or state government'", "'Open to the public'", "'Has an official government web page'")) and 'const CHECK_HOW' in js, 'each rule has a what-you-can-check line')
+check('None found on file.' in js and 'TO CONFIRM YOURSELF' in js, 'plain wording: what we could not confirm (Nov 8 2:43 PM: with a search button in the card)')
+check(all(k in js for k in ("'Owned by the federal or state government'", "'Open to the public'", "'Has an official government web page'")) and 'function ruleSearch(' in js, 'each rule has its own search')
 for nm, part in (('found place', rc), ('no exact match', nf)):
     check(part.count('<h3>Rules checklist</h3>') == 1 and part.count('<h3>Official website and map</h3>') == 1 and part.count('<h3>POTA status</h3>') == 1, f'{nm}: one of each heading')
-    check(part.count('directoryBlock(') == 1, f'{nm}: agency directory shown once')
+    check(part.count('${dirHtml}</div>') + part.count('${dirN}</div>') + part.count('${directoryBlock(') == 1, f'{nm}: agency directory shown once')
     check(part.count('A helper, not the final word') == 1 and 'Before you click an official link' not in part, f'{nm}: helper note once')
     check(not re.search(r'\d · ', part), f'{nm}: plain headings')
 check('padTable(' not in rc and rc.count('padCard(') == 1, 'found place: the official record card is shown once (no second PAD-US table)')
@@ -24,7 +24,7 @@ check(rc.count('pota.app/#/park/') == 2, 'found place: POTA park links only in P
 for k in ('Designation', 'Managing agency', 'Acres'): check(f"kv('{k}'" in rc, f'found place without a record card still shows {k}')
 check('ctx.overlapHtml' in rc and 'Overlaps, 2-fers and club notes' in rc, '2-fer and overlap results kept')
 sb = js[js.find('  function siteBlock('):js.find('  function drawOnMap(')]
-check("official site'" in sb and "' map'" in sb and "'site:' + hst" in sb and 'google.com/search?q=' in js, 'search fallbacks: official site, map, and the agency site')
+check("official site'" in sb and "' map'" in sb and "'site:' + h" in js and 'google.com/search?q=' in js, 'search fallbacks: official site, map, and the agency site')
 check('fetch(' not in sb, 'search fallbacks are plain links (nothing fetched)')
 check(nf.count('siteBlock(') == 1 and rc.count('siteBlock(') == 1, 'both result views use the site block')
 r = (ROOT / 'kpc-maprep-research.js').read_text(encoding='utf-8')
