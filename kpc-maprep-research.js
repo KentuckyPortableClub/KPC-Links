@@ -235,6 +235,8 @@
     /* Nov 8 (Brandon, t748u): ONE map. The research results draw on the same map as Check a place, pin drop and Street View. */
     const C = W.KPCMapCheck; if (C && C.mount) C.mount();
     rmap = C && C.map ? C.map() : null; shared = !!rmap;
+    /* the map's box can change size (layout, phone rotate, folded tools): tell Leaflet so drag and zoom use the real size */
+    if (rmap && W.ResizeObserver && !rmap._kpcRO) { const box = rmap.getContainer(); rmap._kpcRO = new ResizeObserver(() => rmap.invalidateSize()); rmap._kpcRO.observe(box); }
     if (!rmap) { const el = $('mrDrop') || $('mrRsMap'); if (!el) return;
       rmap = L.map(el, { scrollWheelZoom: false }).setView([39.8, -90], 4);
       if (W.KPCLayers) W.KPCLayers(rmap, 'Street'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap); }
@@ -244,7 +246,18 @@
   }
   let pinMk = null, shared = false;
   /* scroll the details panel only (never the page) so the map stays where it is */
-  function inPanel(el, block) { if (!el) return; const P = $('mrPanel'); if (P && P.contains(el) && P.scrollHeight > P.clientHeight + 2) { P.scrollTop += el.getBoundingClientRect().top - P.getBoundingClientRect().top - (block === 'center' ? Math.max(0, (P.clientHeight - el.offsetHeight) / 2) : 0); return; } if (!P) try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) {} }
+  /* Results open in the panel: a desktop panel scrolls by itself and the page stays put. When the panel does not scroll (a phone) the
+     page only moves when asked (force: FULL RULES CHECK, Brandon 1:55 PM CST t749u "when you click full rules check it dont jump to it"). */
+  function inPanel(el, block, force) {
+    if (!el) return; const P = $('mrPanel');
+    const own = P && P.contains(el) && getComputedStyle(P).overflowY !== 'visible' && P.scrollHeight > P.clientHeight + 2;
+    if (own) { const top = P.scrollTop + el.getBoundingClientRect().top - P.getBoundingClientRect().top - 6; try { P.scrollTo({ top, behavior: 'smooth' }); } catch (e) { P.scrollTop = top; }
+      if (force) { const r = P.getBoundingClientRect(); if (r.top < 60 || r.top > innerHeight * 0.5) try { P.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} } return; }
+    if (force) try { el.scrollIntoView({ behavior: 'smooth', block: block || 'start' }); } catch (e) {}
+  }
+  /* bring the rules check into view now and again once it has filled in (it loads in steps) */
+  function showSpot() { const el = $('mrSpot'); if (!el) return; inPanel(el, 'start', true);
+    let n = 0; const mo = new MutationObserver(() => { if (++n > 3) return mo.disconnect(); inPanel(el, 'start', true); }); mo.observe(el, { childList: true }); setTimeout(() => mo.disconnect(), 4000); }
   function drawPin() { if (!rmap || !lastPin || shared) return; if (pinMk) rmap.removeLayer(pinMk); pinMk = L.circleMarker(lastPin, { radius: 7, color: '#111', fillColor: '#f0c96b', fillOpacity: 1, weight: 2 }).addTo(rmap); }
   /* Live status panel (Brandon Nov 8, 1:08 PM CST: "make it feel like it is doing work"): each step with a tick, a bar,
      elapsed time, a note when a source is slow, and a clear error with TRY AGAIN. */
@@ -319,7 +332,7 @@
       const st = $('mrCheckSt'); if (st && [...st.options].some(o => o.value === placeCode())) { st.value = placeCode(); st.dispatchEvent(new Event('change')); }
       if ($('mrCheckQ')) $('mrCheckQ').value = p.name;
       if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
-      inPanel($('mrSpot'), 'start');
+      showSpot();
     });
     draw(show.map(([p]) => p), false);
   }
