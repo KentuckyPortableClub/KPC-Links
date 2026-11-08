@@ -10,21 +10,28 @@
   "ID": [
    "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128",
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
-   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+   "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6"
   ],
   "OR": [
    "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_PUB_Trails/MapServer",
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
-   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+   "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_Back_Country_Byways/MapServer/0",
+   "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/1",
+   "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/2"
   ],
   "UT": [
    "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0",
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
-   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107",
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/93"
   ],
   "NM": [
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
-   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+   "https://gis.blm.gov/nmarcgis/rest/services/Recreation/BLM_NM_Recreation_Guide/MapServer/1"
   ],
   "CA-AB": [
    "https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1",
@@ -52,25 +59,63 @@
    "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
   ],
   "MN": [
-   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0"
+   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0",
+   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_park_trails_roads/FeatureServer/0"
   ],
   "WI": [
-   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0"
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAIL_DISS_WTM_Ext/MapServer/0"
   ],
   "WV": [
    "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0"
   ],
   "AR": [
-   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22"
+   "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Environment/MapServer/22",
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0",
+   "https://gisec2.agfc.com/arcgis/rest/services/Operations/VUEWorks/MapServer/5",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3",
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/9",
+   "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/0"
   ],
   "DE": [
-   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0"
+   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0",
+   "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Transportation/DE_Multimodal/MapServer/28",
+   "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0"
   ],
   "CO": [
    "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15"
   ],
   "CA-ON": [
-   "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
+   "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+   "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
+  ],
+  "VA": [
+   "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0"
+  ],
+  "SD": [
+   "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0"
+  ],
+  "AZ": [
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0"
+  ],
+  "MI": [
+   "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+   "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21",
+   "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-US-MI-dnr-trails.geojson.gz"
+  ],
+  "PA": [
+   "https://maps.dcnr.pa.gov/agsprod/rest/services/BRC/EPAT_NEW/FeatureServer/1",
+   "https://mapservices.pasda.psu.edu/server/rest/services/pasda/ExplorePAtrails/MapServer/0"
+  ],
+  "WY": [
+   "https://gis.blm.gov/natl/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+   "https://gis.blm.gov/wyarcgis/rest/services/Recreation/BLM_WY_ScenicBackways_HUB/FeatureServer/0"
+  ],
+  "NV": [
+   "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/61"
+  ],
+  "MO": [
+   "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/7"
   ]
  },
  "credits": {
@@ -80,7 +125,41 @@
   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0": "Minnesota DNR (DNR GIS Data License Agreement)",
   "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128": "Idaho Department of Parks and Recreation (non-commercial use)",
   "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Delaware State Parks",
-  "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)"
+  "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15": "Colorado Parks and Wildlife (COTREX)",
+  "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0": "National Forest System Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails/FeatureServer/0": "Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Transportation/DE_Multimodal/MapServer/28": "Trails_and_Pathways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://ert.gfp.sd.gov/arcgis/rest/services/SD_Public/RecreationalTrails/MapServer/0": "Recreational Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Transportation/DE_Trails_and_Pathways/FeatureServer/0": "Trails and Pathways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0": "Trans_Trail_NFS_Publish (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAIL_DISS_WTM_Ext/MapServer/0": "State Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0": "National Wild and Scenic River Line (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://maps.dcnr.pa.gov/agsprod/rest/services/BRC/EPAT_NEW/FeatureServer/1": "Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://mapservices.pasda.psu.edu/server/rest/services/pasda/ExplorePAtrails/MapServer/0": "Explore PA trails - Trails 202406 (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gisec2.agfc.com/arcgis/rest/services/Operations/VUEWorks/MapServer/5": "Public Access (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gis.blm.gov/natl/rest/services/recreation/BLM_Natl_Recreation/MapServer/8": "BLM Natl Trails Not Assessed for Public (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/2": "Roads (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/4": "Track or trail warning (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/7": "Horse trail (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/8": "Mountain bike trail (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/3": "Scenic Highways And Byways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/9": "AR_ScenicByways (approved: chat 11 (Oct 31, same as my earlier answer), added Nov 7 2026)",
+  "https://gisp.itd.idaho.gov/server/rest/services/GDWarehouse/RoadNetwork_Other/FeatureServer/6": "Scenic Byways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_park_trails_roads/FeatureServer/0": "State Park Trails Roads (approved: chat 11 (Oct 31, same as my earlier answer), added Nov 7 2026)",
+  "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/61": "NV_ScenicByways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107": "National_Scenic_Byways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gis.blm.gov/wyarcgis/rest/services/Recreation/BLM_WY_ScenicBackways_HUB/FeatureServer/0": "BLM WY Scenic Backways (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19": "OTN Trail Segment (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/58": "Recreation Trails (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gis.ardot.gov/referenced/rest/services/TPP_GISMapping/Designated_Routes/MapServer/0": "Commemorative Routes (approved: chat 11 (Oct 31), added Nov 7 2026)",
+  "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/21": "Trails Simplified (approved: chat 11 (Nov 1, by layer), added Nov 7 2026)",
+  "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/7": "Katy Trail (approved: chat 11 (Nov 1, by layer), added Nov 7 2026)",
+  "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/93": "Utah_Scenic_Byways (approved: chat 11 (Nov 1, by layer), added Nov 7 2026)",
+  "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-US-MI-dnr-trails.geojson.gz": "hand download (file-US-MI-dnr-trails.geojson.gz) (approved: chat 11, added Nov 7 2026)",
+  "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_Back_Country_Byways/MapServer/0": "BLM OR Back Country Byways (line) (approved: outside sheet Nov 7, reviewed, added Nov 7 2026)",
+  "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/1": "BLM OR Wild and Scenic River (line) (approved: outside sheet Nov 7, reviewed, added Nov 7 2026)",
+  "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/2": "BLM OR Designated Wild and Scenic River (line) (approved: outside sheet Nov 7, reviewed, added Nov 7 2026)",
+  "https://gis.blm.gov/nmarcgis/rest/services/Recreation/BLM_NM_Recreation_Guide/MapServer/1": "BLM NM Byways and Trails (approved: outside sheet Nov 7, reviewed, added Nov 7 2026)"
  },
  "settings": {
   "osm_fallback": true,
@@ -88,5 +167,176 @@
    "ert.gfp.sd.gov": 10
   },
   "about": "Nov 2 (PR 4): osm_fallback true (default, Brandon's rule) = when NO official line is found, kpc_state_trails.py may draw an OpenStreetMap line, always labelled 'Unofficial line (OpenStreetMap)'; an official line always wins and replaces it. false = OpenStreetMap is never searched (lines already saved stay, labelled, until an official one replaces them). Env KPC_OSM_TRAILS=1/0 overrides for one run. host_delays = seconds between two requests to that site (default 2 s, env POLITE); a site's robots.txt Crawl-delay is honoured too (the longest wait wins, at most 60 s)."
+ },
+ "world_layers": {
+  "about": "Nov 7 2026: approved trail LINE layers outside the US and Canada. kpc_state_trails.py reads only US states and Canadian provinces, so these wait here for a world trail matcher.",
+  "AU": [
+   "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/2",
+   "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/4",
+   "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/7",
+   "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/8",
+   "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/58"
+  ]
+ },
+ "held_robots": {
+  "about": "Nov 7 2026: approved trail LINE layers NOT put in 'layers' because their host's robots.txt answers 403 (services*.arcgis.com, checked Nov 7), which counts as a disallow (club rule), or the host is on the do-not-ingest list. kpc_state_trails.py does not read this list. Route: the publisher's own download / open-data hub (convert list).",
+  "rows": [
+   {
+    "area": "US-AZ",
+    "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/ArcGIS/rest/services/National_Historic_Trails/FeatureServer/0",
+    "title": "Historical_Trails_Lines",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-AR",
+    "url": "https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0",
+    "title": "USGS Trails",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-VA",
+    "url": "https://services.arcgis.com/bDAhvQYMG4WL8O5o/ArcGIS/rest/services/Virginia_Trails/FeatureServer/2",
+    "title": "Trail",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-VA",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_State_Trails/FeatureServer/0",
+    "title": "StateTrails",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-NV",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/National_Scenic_and_Historic_Trails_NSHT/FeatureServer/0",
+    "title": "National Scenic and Historic Trails (NSHT)",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-ID",
+    "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/ArcGIS/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer/52",
+    "title": "ICT Official Route",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-NH",
+    "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/ArcGIS/rest/services/NH_Recreational_Trails/FeatureServer/1",
+    "title": "nhtrails",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-VA",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer/0",
+    "title": "Star_Spangled_Banner_National_Historic_Trail_Official_Centerline_2",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-AR",
+    "url": "https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5",
+    "title": "Razorback Greenway",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-AR",
+    "url": "https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/6",
+    "title": "Off-Street Trails",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "W-GB",
+    "url": "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Trails_England/FeatureServer/0",
+    "title": "National Trails (England) © Natural England",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-UT",
+    "url": "https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0",
+    "title": "Utah Scenic Byways",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-AR",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/waterTrails/FeatureServer/12",
+    "title": "waterTrails",
+    "approved_by": "chat 11 (Oct 31, same as my earlier answer)"
+   },
+   {
+    "area": "US-MS",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "title": "nps_boundary",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-MA",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer/0",
+    "title": "NEEN_BND_NationalScenicTrailCenterline_ln",
+    "approved_by": "chat 11 (Oct 31, same as my earlier answer)"
+   },
+   {
+    "area": "US-ME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0",
+    "title": "Appalachian National Scenic Trail",
+    "approved_by": "chat 11 (Oct 31, same as my earlier answer)"
+   },
+   {
+    "area": "US-NM",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/SAFE_NHT/FeatureServer/0",
+    "title": "SAFE_SantaFeNHT100k_ln",
+    "approved_by": "chat 11 (Oct 31, same as my earlier answer)"
+   },
+   {
+    "area": "US-OK",
+    "url": "https://services5.arcgis.com/ZTbCl7IqVy1LQh5d/arcgis/rest/services/Oklahoma_Historic_and_Scenic_Byways_WFL1/FeatureServer/1",
+    "title": "OK Historic & Scenic Byways",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-VA",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/3",
+    "title": "Statewide_System_Trails",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-WV",
+    "url": "https://services2.arcgis.com/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0",
+    "title": "WV Trail Inventory",
+    "approved_by": "chat 11 (Oct 31, same as my earlier answer)"
+   },
+   {
+    "area": "CA-BC",
+    "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
+    "title": "RegionalParksBoundaries_OpenData",
+    "approved_by": "chat 11 (Oct 31)"
+   },
+   {
+    "area": "US-CT",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+    "title": "Trail",
+    "approved_by": "chat 11 (Nov 1, by layer)"
+   },
+   {
+    "area": "US-FL",
+    "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer/0",
+    "title": "Existing_Trails",
+    "approved_by": "chat 11 (Nov 1, by layer)"
+   },
+   {
+    "area": "US-MA",
+    "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Roads_and_Trails/FeatureServer/0",
+    "title": "DCR Roads and Trails",
+    "approved_by": "chat 11 (Nov 1, by layer)"
+   },
+   {
+    "area": "US-NY",
+    "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Trails/FeatureServer/0",
+    "title": "Transportation",
+    "approved_by": "chat 11 (Nov 1, by layer)"
+   },
+   {
+    "area": "US-WA",
+    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trails/FeatureServer/0",
+    "title": "Trails",
+    "approved_by": "chat 11 (Nov 1, by layer)"
+   }
+  ]
  }
 }

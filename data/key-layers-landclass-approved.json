@@ -1,0 +1,468 @@
+{
+ "about": "Land-class / coverage layers (Natura 2000, SAC/SPA, SSSI, Schutzgebiete, CDDA, designated areas, parcel-named DNR layers ...) that chat 11 answered YES and Brandon approved for wiring on Nov 7 2026 7:06 PM CST: 'If you all approved the layers send them in...no use holding a bunch of stuff unless they a real problem'. kpc_key_layers.py wires a LANDCLASS-matching YES row ONLY when its URL is listed under 'approved' here; any other land-class row still waits for Brandon's word. 'held' = not wired, with the reason. Nov 7 review: 21 held (1 unofficial WDPA copy; 20 on services*.arcgis.com, whose robots.txt answers 403 = disallow).",
+ "approved_by": "Brandon (KZ4CP), Nov 7 2026 7:06 PM CST",
+ "approved": [
+  {
+   "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/aps/SIVECA/MapServer/0",
+   "area": "W-MX",
+   "title": "Áreas Naturales Protegidas, 2025",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gis.us.fo/arcgis/rest/services/ramsar/us_ramsar_oki/MapServer/1",
+   "area": "W-FO",
+   "title": "Ramsar øki",
+   "matched": "ramsar"
+  },
+  {
+   "url": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_CDDA2020/MapServer/0",
+   "area": "W-GR",
+   "title": "Εθνικοί Δρυμοί (Εθνικά πάρκα) - Αισθητικά Δάση - Διατηρητέα ",
+   "matched": "cdda"
+  },
+  {
+   "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+   "area": "US-NV, US-OR",
+   "title": "ACEC Designated Polygons",
+   "matched": "designated"
+  },
+  {
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2",
+   "area": "US-WI",
+   "title": "Natural Area Parcel Ownership",
+   "matched": "natura"
+  },
+  {
+   "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
+   "area": "CA-NT",
+   "title": "Regulated Areas",
+   "matched": "cadastr"
+  },
+  {
+   "url": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Nicaragua_FISICO_NATURAL/MapServer/2",
+   "area": "W-NI",
+   "title": "AREAS_PROTEGIDAS_NIC",
+   "matched": "natura"
+  },
+  {
+   "url": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/4",
+   "area": "W-PR",
+   "title": "Áreas Naturales Protegidas Marinas",
+   "matched": "natura"
+  },
+  {
+   "url": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/5",
+   "area": "W-PR",
+   "title": "Áreas Naturales ProtegidasTerrrestres",
+   "matched": "natura"
+  },
+  {
+   "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/1",
+   "area": "W-DE",
+   "title": "Naturschutzgebiete",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/2",
+   "area": "W-DE",
+   "title": "Nationalpark",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/3",
+   "area": "W-DE",
+   "title": "Vogelschutzgebiete",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/4",
+   "area": "W-DE",
+   "title": "Fauna-Flora-Habitate",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/6",
+   "area": "W-DE",
+   "title": "Naturparke",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
+   "area": "W-DE",
+   "title": "Naturschutzgebiete",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/1",
+   "area": "W-DE",
+   "title": "Naturpark",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/2",
+   "area": "W-DE",
+   "title": "Flaechennaturdenkmaeler",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/3",
+   "area": "W-DE",
+   "title": "Nationalpark",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/4",
+   "area": "W-DE",
+   "title": "Naturschutzgebiete",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturschutzgebiet/MapServer/0",
+   "area": "W-DE",
+   "title": "Naturschutzgebiet",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Vogelschutzgebiet_SPA/MapServer/0",
+   "area": "W-DE",
+   "title": "Vogelschutzgebiet_SPA",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/14",
+   "area": "W-DE",
+   "title": "Fauna-Flora-Habitat-Gebiete (FFH) in Niedersachsen",
+   "matched": "habitat"
+  },
+  {
+   "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/4",
+   "area": "W-DE",
+   "title": "Naturschutzgebiet",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://geoservices.wallonie.be/arcgis/rest/services/FAUNE_FLORE/NATURA2000/MapServer/9",
+   "area": "W-BE",
+   "title": "Périmètres des sites en vigueur (> 50.000)",
+   "matched": "natura"
+  },
+  {
+   "url": "https://sigservices.icnf.pt/server/rest/services/BDG/RAMSAR/MapServer/0",
+   "area": "W-PT",
+   "title": "Conveção RAMSAR",
+   "matched": "ramsar"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-IE-sac2026-sac-itm-2026-01.geojson.gz",
+   "area": "IE",
+   "title": "hand download (file-IE-sac2026-sac-itm-2026-01.geojson.gz)",
+   "matched": "sac"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-IE-spa2026-spa-itm-2026-02.geojson.gz",
+   "area": "IE",
+   "title": "hand download (file-IE-spa2026-spa-itm-2026-02.geojson.gz)",
+   "matched": "spa"
+  },
+  {
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8",
+   "area": "US-DE",
+   "title": "Nature Preserves",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0",
+   "area": "US-MO",
+   "title": "Missouri Department of Natural Resources Lands",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3",
+   "area": "US-MO",
+   "title": "Natural Areas",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3",
+   "area": "US-MO",
+   "title": "Natural Areas",
+   "matched": "natura"
+  },
+  {
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+   "area": "US-VT",
+   "title": "ANR Unit Polygons",
+   "matched": "cadastr"
+  },
+  {
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0",
+   "area": "CA-NB",
+   "title": "Protected Natural Areas",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+   "area": "W-CZ",
+   "title": "Ptačí oblast (PO)",
+   "matched": "natura"
+  },
+  {
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+   "area": "W-CZ",
+   "title": "Evropsky významná lokalita (EVL)",
+   "matched": "natura"
+  },
+  {
+   "url": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_N2000_v32/MapServer/0",
+   "area": "W-GR",
+   "title": "Προστατευόμενες τοποθεσίες NATURA 2000",
+   "matched": "natura"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-IT-regione-aree-naturali-protette1-regione-aree-naturali-protette1.geojson.gz",
+   "area": "IT",
+   "title": "hand download (file-IT-regione-aree-naturali-protette1-regio",
+   "matched": "natura"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-IT-regione-c1101121-natura-2000-regione-c1101121-natura-2000.geojson.gz",
+   "area": "IT",
+   "title": "hand download (file-IT-regione-c1101121-natura-2000-regione-",
+   "matched": "natura"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-IT-regione-rete-natura200000-regione-rete-natura200000.geojson.gz",
+   "area": "IT",
+   "title": "hand download (file-IT-regione-rete-natura200000-regione-ret",
+   "matched": "natura"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-DE-de-fauna-flora-habitat-gebiet-de-fauna-flora-habitat-gebiet.geojson.gz",
+   "area": "DE",
+   "title": "hand download (file-DE-de-fauna-flora-habitat-gebiet-de-faun",
+   "matched": "habitat"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-DE-de-naturschutzgebiet-de-naturschutzgebiet.geojson.gz",
+   "area": "DE",
+   "title": "hand download (file-DE-de-naturschutzgebiet-de-naturschutzge",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/intake-files/file-DE-de-vogelschutzgebiet-de-vogelschutzgebiet.geojson.gz",
+   "area": "DE",
+   "title": "hand download (file-DE-de-vogelschutzgebiet-de-vogelschutzge",
+   "matched": "schutzgebiet"
+  },
+  {
+   "url": "https://www.mmediu.ro/app/webroot/uploads/files/Limite_arii_naturale_protejate.zip",
+   "area": "W-RO",
+   "title": "",
+   "matched": "natura"
+  },
+  {
+   "url": "https://geodienste.bfn.de/ogc/wfs/schutzgebiet?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=bfn_sch_Schutzgebiet:Landschaftsschutzgebiete",
+   "area": "W-DE",
+   "title": "",
+   "matched": "schutzgebiet"
+  }
+ ],
+ "held": [
+  {
+   "url": "https://services5.arcgis.com/Mj0hjvkNtV7NRhA7/arcgis/rest/services/WDPA_v0/FeatureServer/1",
+   "area": "CA-NL, CA-QC, US-FL",
+   "title": "Protected Areas (open-data portal)",
+   "matched": "wdpa",
+   "why": "unofficial WDPA copy on an unidentified ArcGIS Online account (WDPA terms do not allow redistribution); the official state/province layers are used instead"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Nature_Reserves_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "National Nature Reserves (England) © Natural England",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Areas_of_Outstanding_Natural_Beauty_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Areas of Outstanding Natural Beauty (England) © Natural Engl",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Country_Parks_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Country Parks (England) © Natural England",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Local_Nature_Reserves_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Local Nature Reserves (England) © Natural England",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/CRoW_Act_2000_Section_4_Conclusive_Registered_Common_Land/FeatureServer/0",
+   "area": "W-GB",
+   "title": "CRoW Conclusive Registered Common Land © Natural England",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Special_Areas_of_Conservation_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Special Areas of Conservation (England) © Natural England",
+   "matched": "special area",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Special_Protection_Areas_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Special Protection Areas (England) © Natural England",
+   "matched": "special protection",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Parks_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "National Parks (England) © Natural England",
+   "matched": "natura",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Ramsar_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Ramsar (England) © Natural England",
+   "matched": "ramsar",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer/0",
+   "area": "W-GB",
+   "title": "Sites of Special Scientific Interest (England) © Natural Eng",
+   "matched": "sssi",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_Units_England/FeatureServer/1",
+   "area": "GB",
+   "title": "SSSI units (England)",
+   "matched": "sssi",
+   "why": "services.arcgis.com answers robots.txt with 403, which counts as a disallow (club rule): the key may not read it. Route: the publisher's open-data download (Natural England Open Data Hub) through the convert list"
+  },
+  {
+   "url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/ArcGIS/rest/services/Schutzgebiete/FeatureServer/0",
+   "area": "W-DE",
+   "title": "Landschaftsschutzgebiete",
+   "matched": "schutzgebiet",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer/1",
+   "area": "W-IE",
+   "title": "Proposed Natural Heritage Areas",
+   "matched": "designated",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer/3",
+   "area": "W-IE",
+   "title": "Special Area of Conservation",
+   "matched": "designated",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer/2",
+   "area": "W-IE",
+   "title": "Natural Heritage Areas",
+   "matched": "designated",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services6.arcgis.com/DO1cMKsePeciYDRE/arcgis/rest/services/Layers/FeatureServer/6",
+   "area": "W-SV",
+   "title": "Áreas Naturales Protegidas",
+   "matched": "natura",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer/0",
+   "area": "W-IE",
+   "title": "Special Protection Areas",
+   "matched": "designated",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
+   "area": "W-MT",
+   "title": "N2K Special Area of Conservation",
+   "matched": "special area",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/13",
+   "area": "US-MI",
+   "title": "Project Boundary",
+   "matched": "parcel",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
+   "area": "US-VA",
+   "title": "DCR_SNAP",
+   "matched": "natura",
+   "why": "services*.arcgis.com answers robots.txt with 403 (checked Nov 7), which counts as a disallow (club rule): not wired. Route: the publisher's own download through the convert list"
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer/1",
+   "area": "W-IT",
+   "title": "Nationally designated areas (NatDA) -polygons small scale vi",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer/3",
+   "area": "W-IT",
+   "title": "Nationally designated areas (NatDA) - Medium scale viewing",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer/4",
+   "area": "W-IT",
+   "title": "Nationally designated areas (NatDA) - Large scale viewing",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0",
+   "area": "W-IT",
+   "title": "Habitats Directive Sites (pSCI, SCI or SAC)",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/1",
+   "area": "W-IT",
+   "title": "Birds Directive Sites (SPA)",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+   "area": "W-BE, W-DK, W-HU, W-IT",
+   "title": "Habitats and Birds Directive Sites",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  },
+  {
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+   "area": "W-BE, W-DE, W-ES, W-IT",
+   "title": "Nationally designated areas (NatDA) - Large scale viewing",
+   "matched": "discomap.eea",
+   "why_held": "EEA Europe-wide layer (all EU countries in one). The world key already reads EEA Natura 2000 and CDDA for every EU country WITH its own country filter (kpc_world_key.py); extra-layers.json rows carry no filter, so this would read all of Europe again for one country (and break the Nov 7 B6 rule: one Natura 2000 source per country). Held Nov 7 2026 in review."
+  }
+ ]
+}

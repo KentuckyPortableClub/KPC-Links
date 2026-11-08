@@ -2,8 +2,8 @@
    Design: Nov 7 checkall-candidates (decisions rounds 1-3). Pure functions, no fetches: the page passes data in.
    Safe to run under Node (node kpc-maprep-candidates.js runs the selftest).
 
-   - The candidate list is OFF unless candidatesOn() is true (?candidates=1 or localStorage kpcMapCandidates=1).
-     With it off, Check all shows what it showed before, plus the agency dropdown.
+   - The candidate list is ON (Nov 7, Brandon 7:36 PM CST). ?candidates=0 or localStorage kpcMapCandidates=0 turns it off;
+     with it off, Check all shows what it showed before, plus the agency dropdown.
    - The agency dropdown is ON. It is only links: the place's row in data/maprep/agencies.json, and for a US place
      the federal land agencies from FEDA in kpc-maprep.js (passed in, not copied here).
    - Rows come from the published US key's `nonum` list ([objectid, name, designation, manager, acres]) or, when it
@@ -20,13 +20,14 @@
   'use strict';
   const G = () => L || (typeof globalThis !== 'undefined' && globalThis.KPCMapLogic) || null;
 
-  /* Hidden. Default off. ?candidates=1 or localStorage kpcMapCandidates=1 turns the list on (same shape as tractsOn()). */
+  /* Nov 7 (Brandon 7:36 PM CST): switched ON. Default on; ?candidates=0 or localStorage kpcMapCandidates=0 turns the list off
+     (?candidates=1 / localStorage 1 still mean on). Was: hidden, default off. */
   function candidatesOn() {
     try {
-      if (typeof location !== 'undefined' && location && /(?:\?|&)candidates=1(?:&|$)/.test(String(location.search || ''))) return true;
-      if (typeof localStorage !== 'undefined' && localStorage && localStorage.getItem('kpcMapCandidates') === '1') return true;
+      if (typeof location !== 'undefined' && location && /(?:\?|&)candidates=0(?:&|$)/.test(String(location.search || ''))) return false;
+      if (typeof localStorage !== 'undefined' && localStorage && localStorage.getItem('kpcMapCandidates') === '0') return false;
     } catch (e) {}
-    return false;
+    return true;
   }
 
   const FLOOR_DEFAULT = 5;                       /* acres; a default of the control, never a hard cutoff */
@@ -353,7 +354,7 @@
   function selftest() {
     const fails = [];
     const ok = (c, m) => { if (!c) fails.push(m); };
-    ok(candidatesOn() === false, 'candidates are off unless the hidden switch is on');
+    ok(candidatesOn() === true, 'candidates are on by default (Nov 7 7:36 PM CST)');
     ok(judgeRow([1, 'X', 'MIT', 'State', 10]).drop === 'MIT', 'MIT is left out');
     ok(judgeRow([1, 'X', 'LP', 'Huntsville, City of', 10]).flags.indexOf('local') >= 0, 'LP kept and flagged');
     ok(judgeRow([1, 'X', 'SCA', 'Huntsville, City of', 10]).drop === 'city', 'city land without a local code is left out');

@@ -153,8 +153,8 @@ if have.returncode != 0:
 # the declaration covers the world key only: US and CA rules equal origin/main and no key file changed, even while the guard is EXEMPT.
 _decl = (ROOT / DECL_REL).read_text(encoding='utf-8') if (ROOT / DECL_REL).exists() else ''
 _keys = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *KEY_PATHS], cwd=ROOT, capture_output=True, text=True, timeout=30).stdout.split()
-check(not _decl or (_decl.strip() and re.search(r'KPC-Links #\d+', _decl) and set(_keys) <= ({'data/us-key/overrides.json'} if 'overrides.json' in _decl else set()) and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
-      'docs/key-rules-change.txt is non-empty and names a PR (KPC-Links #N): US / CA rules equal origin/main, key files unchanged except a declared overrides-ledger row')
+check(not _decl or (_decl.strip() and re.search(r'KPC-Links #\d+', _decl) and all(k in _decl for k in _keys) and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
+      'docs/key-rules-change.txt is non-empty and names a PR (KPC-Links #N): US / CA rules equal origin/main, key files unchanged except the ones the declaration names')
 passed, msg = answer_key_guard(ROOT)
 check(passed, 'this branch passes the real answer-key guard (' + msg + ')')
 

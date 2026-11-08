@@ -1,3 +1,6 @@
+Nov 7 outline sources, KPC-Links #63 (Brandon Nov 7: 'put these in'; 'If you all approved the layers send them in'; 7:36 PM CST 'everything we're sitting on goes in FIRST'): key INPUT files only, no rule file changed; US a066624520b4, CA 8feccbb7d9ee, world 6a5969a25d2c unchanged. Files: data/us-key/overrides.json (15 signed rows, Brandon Nov 7 4:54 PM CST), data/us-key/answers-states.txt, data/ca-key/answers-provinces.txt, data/world-key/answers-countries.txt (the next key run re-answers the places that got a new layer), data/world-key/extra-layers.json (rows added only, from data/key-layers-landclass-approved.json).
+Why: the outside agent's outline-source sheets + the approved land-class layers; see the PR text. A key run is due on merge.
+
 Round 3 overrides ledger, KPC-Links #57 (Brandon OK Nov 7, 2:19 PM CST): data/us-key/overrides.json only, one hand row: US-3917 Little Pee Dee joins record 254041 (Little Pee Dee HP/WMA, Horry+Marion) in place of 254129 (Dillon Bay tract). No rule file changed; US a066624520b4, CA 8feccbb7d9ee, world 6a5969a25d2c unchanged.
 Why: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away.
 
