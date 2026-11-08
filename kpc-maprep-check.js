@@ -1213,11 +1213,30 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     fillStateMenu();
   }
 
+  /* Nov 8 (Brandon 8:05 AM CST): a friendly note under the place menus when that state or province has limited live agency maps
+     (KPCMapLogic.liveLimit over data/maprep/catalog.json; nothing hard-coded). US and Canada only. */
+  let liveCatP = null;
+  async function updateLiveNote(code) {
+    const G = window.KPCMapLogic; if (!G || !G.liveLimit) return;
+    if (!liveCatP) liveCatP = fetch('data/maprep/catalog.json').then(r => r.ok ? r.json() : null).catch(() => null);
+    const cat = await liveCatP, row = placeList().find(r => r.code === code);
+    const lim = code && row && /^(US|CA)$/.test(String(row.region || row.r || (row.code && row.code.length === 2 ? 'US' : ''))) ? G.liveLimit(cat, code) : null;
+    ['mrCheckSt', 'mrDeskPlace'].forEach(id => {
+      const sel = $(id); if (!sel || !sel.parentNode) return;
+      let p = document.getElementById(id + 'Live');
+      if (!p) { p = document.createElement('p'); p.id = id + 'Live'; p.className = 'mr-help mr-livenote'; p.setAttribute('role', 'status'); p.style.cssText = 'margin:6px 0 0;padding:8px 10px;border-left:4px solid #d5a63a;background:rgba(213,166,58,.12);border-radius:6px'; sel.insertAdjacentElement('afterend', p); }
+      p.hidden = !lim; p.textContent = lim ? G.liveNoteText(row.name) : '';
+      if (lim) p.dataset.reason = lim.reason; else delete p.dataset.reason;
+    });
+  }
+  document.addEventListener('change', e => { const t = e.target; if (t && (t.id === 'mrCheckSt' || t.id === 'mrDeskPlace')) updateLiveNote(t.value).catch(() => {}); });
+
   async function buildToggles() {
     const host = $('mrLayerToggles'); if (!host) return;
     const summary = host.parentElement && host.parentElement.querySelector ? host.parentElement.querySelector('summary') : null;
     const code = (($('mrCheckSt') && $('mrCheckSt').value) || ($('mrDeskPlace') && $('mrDeskPlace').value) || '');
     const row = placeList().find(r => r.code === code);
+    updateLiveNote(code).catch(() => {});
     if (summary) summary.textContent = row ? ('LAYERS YOU CAN TURN ON · ' + row.name.toUpperCase()) : 'LAYERS YOU CAN TURN ON';
     if (!code) { host.innerHTML = '<p class="mr-help">Pick a state, province, or country. This list is that place’s live layers.</p>'; return; }
     let cat = null;

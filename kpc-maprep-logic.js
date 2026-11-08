@@ -509,7 +509,25 @@
     return 0;
   }
 
+  /* Nov 8 (Brandon 8:05 AM CST): does this US state / Canadian province have limited live agency maps here? Data-driven:
+     catalog.json blockedLiveStates (robots-blocked, e.g. CO, TN), its live sources (same filter the layer list uses), the KY-style
+     open folders, and the skipped rows' reasons (robots disallow / unknown / services*.arcgis.com). null = live maps are fine. */
+  function liveLimit(cat, code) {
+    code = String(code || '').toUpperCase(); if (!cat || !code) return null;
+    if ((cat.blockedLiveStates || []).map(String).indexOf(code) >= 0) return { code: code, reason: 'blocked' };
+    const usable = (cat.sources || []).filter(s => s && s.place === code && s.live && s.enabled !== false && s.rest && !servicesHost(s.rest) && !isBanned(s.rest));
+    const fold = (cat.folders || {})[code];
+    if (usable.length || (fold && fold.robots === 'ok')) return null;
+    const sk = (cat.skipped || []).filter(s => s && new RegExp('^(?:[A-Z]{2}-)?' + code + '$').test(String(s.jurisdiction || '')));
+    return { code: code, reason: sk.some(s => /robots|disallow|unknown|arcgis\.com/i.test(String(s.why || ''))) ? 'disallow' : 'none' };
+  }
+  function liveNoteText(name) {
+    const n = String(name || 'this place');
+    return 'Heads up: we can\u2019t load ' + n + '\u2019s own agency maps live here, so this page shows less for ' + n + ' than for other states. Use the official links below and check the agency\u2019s site directly.';
+  }
+
   return {
+    liveLimit: liveLimit, liveNoteText: liveNoteText,
     CORE: CORE, WATCH: WATCH, loadRows: loadRows, expandName: expandName, canon: canon, normName: normName,
     fuzzySame: fuzzySame, nameScore: nameScore, searchNames: searchNames, watchHits: watchHits,
     pinDistance: pinDistance, formatDistance: formatDistance, isBanned: isBanned, isParcel: isParcel,
