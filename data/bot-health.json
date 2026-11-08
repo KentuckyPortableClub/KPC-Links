@@ -3,22 +3,20 @@
   "KPC-Data/kpc-docs-merge.yml",
   "KPC-Data/kpc-intake.yml",
   "KPC-Data/kpc-pile-solver.yml",
-  "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-wdpa-phonebook.yml",
   "KPC-Data/kpc-world-finder.yml",
-  "kpc-boards.yml",
-  "kpc-discord-relay.yml",
-  "kpc-discord-watch.yml",
-  "kpc-fb-comments.yml",
+  "kpc-bot-queue.yml",
   "kpc-hunters.json",
-  "kpc-watchdog.yml",
-  "pages-deploy.yml",
+  "kpc-hunters.yml",
+  "kpc-pota-discord.yml",
+  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
+  "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-08T12:39+00:00",
+ "checked": "2026-11-08T16:34+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -47,6 +45,11 @@
      "msg": "CA-SP: 1 park number(s) POTA no longer lists, still in our data: CA-0122 (answer key)"
     },
     {
+     "key": "refs:gone:US-AZ:US-13337",
+     "chat": 2,
+     "msg": "US-AZ: 1 park number(s) POTA no longer lists, still in our data: US-13337 (state camps)"
+    },
+    {
      "key": "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
      "chat": 2,
      "msg": "trails: 5 park number(s) POTA no longer lists, still in our data: US-11232 (trail lines), US-11234 (trail lines), US-11954 (trail lines), US-4237 (trail lines), US-8324 (trail lines)"
@@ -54,7 +57,7 @@
    ],
    "notes": [],
    "ok": [
-    "18940 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+    "18939 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
    ]
   },
   "links": {
@@ -66,6 +69,13 @@
      "chat": 2,
      "twice": true,
      "msg": "access-layers.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0 → server error: Invalid URL",
+     "confirmed": true
+    },
+    {
+     "key": "links:https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0 → no answer (The read operation timed out)",
      "confirmed": false
     }
    ],
@@ -96,12 +106,13 @@
     }
    ],
    "ok": [
-    "641 of 647 map-server / data addresses answered"
+    "640 of 647 map-server / data addresses answered"
    ]
   }
  },
  "link_fail_prev": [
-  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0"
+  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
+  "links:https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0"
  ],
  "sizes": {
   "L:kpc-hunters.json": {
@@ -111,16 +122,16 @@
    "b": 31624
   },
   "L:data/us-key": {
-   "b": 46638983
+   "b": 48555852
   },
   "L:data/ca-key": {
    "b": 5695370
   },
   "L:data/world-key": {
-   "b": 38042653
+   "b": 38045808
   },
   "L:data/pota": {
-   "b": 5665831
+   "b": 5665832
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -138,7 +149,7 @@
    "b": 111728
   },
   "L:data/boundary-score.json": {
-   "b": 971865
+   "b": 979165
   },
   "L:data/campfed": {
    "b": 643240
@@ -150,7 +161,7 @@
    "b": 334294
   },
   "L:locations.json": {
-   "b": 5421646
+   "b": 5421505
   },
   "L:kpc-events-auto.json": {
    "b": 21042
@@ -189,16 +200,16 @@
    "b": 137198
   },
   "D:data/truth": {
-   "b": 14684673
+   "b": 14717700
   },
   "D:data/alerts/eu.json": {
-   "b": 112910
+   "b": 96606
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 177727
+   "b": 177537
   },
   "D:data/intake": {
    "b": 39695215,
@@ -208,7 +219,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1186618
+   "b": 1114495
   }
  }
 }
