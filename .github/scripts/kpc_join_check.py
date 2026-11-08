@@ -168,10 +168,26 @@ def _close(a, b):
     return not a or not b or abs(a - b) <= max(20.0, .1 * max(a, b))
 
 
+def join_base(f, root='.', env=None):
+    """The key to compare with: KPC_JOIN_BASE, else the commit in <key dir>/review/join-base.txt (a person sets it to the last
+    good key when a graded-NO build is on main, so the rebuild is compared with the key before it), else HEAD (the key before
+    this build). A commit missing from a shallow checkout is fetched once (depth 1)."""
+    env = os.environ if env is None else env
+    b = (env.get('KPC_JOIN_BASE') or '').strip()
+    if not b:
+        t = pathlib.Path(f).resolve().parent / 'review' / 'join-base.txt'
+        b = (t.read_text(encoding='utf-8').split() or [''])[0].strip() if t.is_file() else ''
+    if not re.fullmatch(r'[0-9a-f]{7,40}', b): return 'HEAD'
+    if subprocess.run(['git', 'cat-file', '-e', b + '^{commit}'], cwd=root, capture_output=True, timeout=30).returncode != 0:
+        subprocess.run(['git', 'fetch', '-q', '--depth', '1', 'origin', b], cwd=root, capture_output=True, timeout=120)
+    return b
+
+
 def previous(f, root='.'):
-    """The previous key's parks for this area file (git HEAD, i.e. before this build wrote it); {} when git cannot tell."""
+    """The previous key's parks for this area file (join_base: HEAD, i.e. before this build wrote it, or the declared good key);
+    {} when git cannot tell."""
     try:
-        r = subprocess.run(['git', 'show', 'HEAD:' + os.path.relpath(os.path.abspath(f), os.path.abspath(root)).replace(os.sep, '/')],
+        r = subprocess.run(['git', 'show', join_base(f, root) + ':' + os.path.relpath(os.path.abspath(f), os.path.abspath(root)).replace(os.sep, '/')],
                            cwd=root, capture_output=True, timeout=60)
         return (json.loads(r.stdout).get('parks') or {}) if r.returncode == 0 and r.stdout.strip() else {}
     except Exception: return {}  # noqa: BLE001
