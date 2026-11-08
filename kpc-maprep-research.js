@@ -200,6 +200,21 @@
     return p;
   }
 
+  /* Check all, the Kentucky way, for every other place (kpc-maprep-check.js areaLayers): the place's official list, every place
+     checked. Kentucky keeps its own layers. World places (GB, IE, AU, NZ) have no national list wired for this yet. */
+  async function classify(code, say) {
+    if (!code || code === 'KY') return { unsupported: 'Kentucky uses its own official layers.' };
+    const G = W && W.KPCMapLogic, r = G && G.placeByCode ? G.placeByCode(code) : null, region = r ? r.region : (CP_LOC[code] ? 'CA' : /^(GB|IE|AU|NZ)$/.test(code) ? 'world' : 'US');
+    if (!/^[A-Z]{2}$/.test(code) || region === 'world' || (region === 'CA' && !CP_LOC[code])) return { unsupported: 'No national list of protected places is wired for this country yet (only its published key below). Use Check a place for one spot.' };
+    const ctx = await context(code); ctx.placeName = ctx.placeName || code;
+    const recs = await statewide(code, say || (() => {}));
+    const places = groupRecords(recs).slice(0, MAX_PLACES);
+    if (say) say('Getting the boundaries of ' + places.length + ' places\u2026');
+    const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
+    let n = 0; for (const p of places) { await checkPlace(p, code, ctx); n++; if (say && n % 15 === 0) say('Checked ' + n + ' of ' + places.length + '\u2026'); }
+    return { places, kind: CP_LOC[code] ? 'ca' : 'pad', source: CP_LOC[code] ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0',
+      note: CP_LOC[code] ? 'The largest ' + places.length + ' protected areas in CPCAD for this province. CPCAD does not say if the public can go in, so access stays unknown until you check.' : 'The largest ' + places.length + ' places of public land open to the public (PAD-US fee land, 20 acres or more).' };
+  }
   /* ---------- page ---------- */
   const $ = id => D && D.getElementById(id);
   let rmap = null, rlayer = null, lastPin = null, rows = [], filt = 'new', busy = false;
@@ -278,7 +293,7 @@
     const parks = (key && key.parks) || {}, rev = {};
     Object.entries(parks).forEach(([ref, k]) => { if (k && k.g !== 'pin') (k.m || []).forEach(x => { const id = String(x[0]); (rev[id] = rev[id] || []).indexOf(ref) < 0 && rev[id].push(ref); }); });
     const byName = {}; P.forEach(q => { const k = nameKey(q.name); if (k) (byName[k] = byName[k] || []).push(q); });
-    return { key: parks, rev, pins: P, byName, placeName: placeName() };
+    return { key: parks, rev, pins: P, byName, placeName: D ? placeName() : '' };
   }
   /* "Possible new parks" (Check all) hands a row here: the same full checks, by its PAD-US record ids */
   async function testIds(code, ids, name) {
@@ -335,6 +350,6 @@
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, run, testIds, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();

@@ -24,6 +24,10 @@ check('Find new parks first.' in html, 'how-to starts with finding new parks')
 check('function foldKey' in chk and chk.count('foldKey(box, stAll.name)') == 2, 'both published-key lists are folded')
 check('bonus reference, not the research tool' in chk and "['mrAgDrop', 'mrCandsWrap']" in chk, 'fold explains itself; agency links and possible new parks stay outside the fold')
 check('data-rstest=' in cand and 'RUN THE FULL NEW-PARK CHECKS' in cand, 'possible new parks rows run the full checks, not only pins')
+check('async function areaLayers' in chk and chk.count('areaLayers(stAll, box)') == 2 and 'id="mrAreaFilters"' in chk and 'R.classify(stAll.code' in chk,
+      'Check All everywhere works like Kentucky: official layers first, Yes / Maybe / No / Already filters')
+check("code === 'KY'" in js and 'No national list of protected places is wired' in js, 'Kentucky keeps its own layers; world places without a national list say so')
+check('padExact' in chk[chk.find('async function areaLayers'):] and "'ALREADY'" in chk[chk.find('async function areaLayers'):], 'area rows use the same rules checklist as Kentucky, refs count as already')
 # 3. sources: only the two approved official services, nothing banned, no secrets
 hosts = set(re.findall(r'https://([a-z0-9.-]+)', js))
 check(hosts <= {'edits.nationalmap.gov', 'maps-cartes.ec.gc.ca', 'tile.openstreetmap.org'}, f'only approved hosts in the research script {sorted(hosts)}')
@@ -49,7 +53,7 @@ out.v6 = R.verdict({ cover: [{ ref: 'US-6', share: 0.2 }] });
 out.v7 = R.verdict({ acc: 'restricted' }).v;
 out.v8 = R.verdict({ nearest: { ref: 'US-8', km: 4.2 } });
 out.g = R.groupRecords([{ id: 1, name: 'A Wild Area', manager: 'X', acres: 10 }, { id: 2, name: 'A Wild Area', manager: 'X', acres: 5 }, { id: 3, name: 'B', manager: 'X', acres: 50 }]).map(p => [p.name, p.ids, p.acres]);
-out.sum = R.summaryText({ name: 'Test', place: 'Pennsylvania', designation: 'Wild Area', manager: '', owner: 'PA Bureau of Forestry (State)', access: 'open', acres: 1234, source: 'USGS PAD-US 4.0', ids: [9], link: 'L', verdict: { label: 'Looks new', why: 'w' } });
+out.ky = 0; out.sum = R.summaryText({ name: 'Test', place: 'Pennsylvania', designation: 'Wild Area', manager: '', owner: 'PA Bureau of Forestry (State)', access: 'open', acres: 1234, source: 'USGS PAD-US 4.0', ids: [9], link: 'L', verdict: { label: 'Looks new', why: 'w' } });
 console.log(JSON.stringify(out));
 """
 r = subprocess.run(['node', '-e', node], cwd=ROOT, capture_output=True, text=True)
