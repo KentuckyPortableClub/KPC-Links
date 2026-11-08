@@ -1,0 +1,21 @@
+/* Park cards on the Park Commander + Trip Planner maps (Nov 8 2026; Brandon: cards pop up over stuff, user friendly, look better,
+   KEEP EVERY FEATURE). Additive only: nothing here hides a feature; overlays a card covers fade only while that card is open. */
+.leaflet-container .leaflet-popup-content-wrapper{border-radius:14px!important;box-shadow:0 10px 30px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.18)!important;border:1px solid rgba(213,166,58,.85)}
+.leaflet-container .leaflet-popup-content{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#171717;margin:14px 44px 14px 16px!important;overflow-wrap:anywhere}
+.leaflet-container .leaflet-popup-content button,.leaflet-container .leaflet-popup-content .btn{min-height:40px;box-sizing:border-box;margin:2px 2px 2px 0}
+/* links stay in the text flow; the padding only makes the tap area about 40 px tall */
+.leaflet-container .leaflet-popup-content a{padding:10px 1px;-webkit-tap-highlight-color:rgba(213,166,58,.35)}
+.leaflet-container .leaflet-popup-content a{color:#155b3b;font-weight:700;text-underline-offset:2px}
+.leaflet-container .leaflet-popup-content button,.leaflet-container .leaflet-popup-content .btn{border-radius:10px;padding:6px 12px;cursor:pointer}
+.leaflet-container .leaflet-popup-content hr{border:0;border-top:1px solid #eee3c8;margin:8px 0}
+.leaflet-container a.leaflet-popup-close-button{width:40px!important;height:40px!important;line-height:40px!important;font-size:26px!important;top:4px!important;right:4px!important;padding:0!important;text-align:center;border-radius:50%;color:#171717!important;background:rgba(213,166,58,.18);font-weight:700}
+.leaflet-container a.leaflet-popup-close-button:hover,.leaflet-container a.leaflet-popup-close-button:focus-visible{background:#d5a63a;color:#070707!important;outline:2px solid #070707;outline-offset:1px}
+.leaflet-container .leaflet-popup-tip{box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.leaflet-container .leaflet-popup-scrolled{border-top:1px solid #eee3c8;border-bottom:1px solid #eee3c8}
+/* overlays (zoom, legend, layer box) that sit under an open card step back so the card is on top and readable */
+.kpc-under-card{opacity:0!important;pointer-events:none!important;transition:opacity .15s ease}
+@media (max-width:600px){.leaflet-container .leaflet-popup-content,#map.leaflet-container .leaflet-popup-content{font-size:15px;margin:12px 42px 12px 12px!important}}
+/* same rules at the Park Commander's #map strength (finder.css sets these with an id) */
+#map.leaflet-container .leaflet-popup-content{margin:14px 44px 14px 16px!important}
+#map.leaflet-container a.leaflet-popup-close-button{width:40px!important;height:40px!important;line-height:40px!important;font-size:26px!important;top:4px!important;right:4px!important}
+#map.leaflet-container .leaflet-popup-content-wrapper{border-radius:14px!important;box-shadow:0 10px 30px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.18)!important}

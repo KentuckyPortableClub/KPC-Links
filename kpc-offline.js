@@ -7,7 +7,8 @@
     'kpc-ky-data.json', 'ky-trail-parks.json',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
-    'KPC-logo.png', 'kpc-icon-32.png'];
+    'KPC-logo.png', 'kpc-icon-32.png',
+    'kpc-card-polish.css', 'kpc-card-polish.js'];   // Nov 8: park card polish (the trip planners save every loaded file already)
   /* Storage plan Step B (Oct 27): locations.json + locations-ky.json now also live on KPC-Data. Save both
      the KPC-Data copy and this site's own relative address under the same cache, so the page finds its
      saved copy offline whichever address it asks for (now, or once the old copy is retired later). */
