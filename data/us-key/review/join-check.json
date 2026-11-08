@@ -1,13 +1,13 @@
 {
  "key": "us",
  "mode": "hold",
- "files_checked": 0,
- "joined_parks": 0,
+ "files_checked": 2,
+ "joined_parks": 333,
  "suspect": 0,
  "held": 0,
  "files_changed": 0,
  "official_acres_known": 0,
- "approved_parks_known": 4900,
+ "approved_parks_known": 4913,
  "answer_sheet": ".as/data/answer-sheet/US.csv",
  "rule": {
   "hold_far_km": 15.0,

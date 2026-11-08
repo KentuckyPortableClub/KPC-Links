@@ -894,23 +894,23 @@
    "site": 24
   },
   "WI": {
-   "check": 4,
+   "check": 5,
    "detail": 0.01,
    "matched": 333,
-   "none": 8,
-   "nonum": 1158,
-   "padus": 1585,
+   "none": 6,
+   "nonum": 33680,
+   "padus": 81723,
    "parks": 348,
    "pin_no_shape": 0,
-   "pin_outside": 167,
+   "pin_outside": 114,
    "pin_swap": 0,
-   "pin_well_outside": 3,
+   "pin_well_outside": 2,
    "read": 6027,
-   "seconds": 808,
+   "seconds": 1751,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8
+   "site": 5
   },
   "WV": {
    "check": 0,
@@ -960,6 +960,6 @@
   ".github/key-rules-version.json"
  ],
  "rules_of_run": "a066624520b4",
- "build": "US-42421328570",
- "built": "2026-11-07 22:36 UTC"
+ "build": "US-42446831487",
+ "built": "2026-11-08 04:57 UTC"
 }

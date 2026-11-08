@@ -1,0 +1,3772 @@
+{
+ "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
+ "counts": {
+  "pin wrong": 70,
+  "needs a person": 104,
+  "wrong state": 1,
+  "land wrong": 1,
+  "sliver": 2
+ },
+ "parks": [
+  {
+   "park": "US-0150",
+   "name": "Kodiak National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-AK",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep 4957 (Kodiak National Wildlife Refuge) (the POTA pin is never moved); check whether the same-name pieces 4005 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) 4005 are 24.4 km or more from the pin too",
+    "4957 is the park's land: same name (Kodiak National Wildlife Refuge), ~1,637,279 acres",
+    "the pin (57.7412, -152.52) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "4957",
+     "name": "Kodiak National Wildlife Refuge",
+     "points": 4004,
+     "measured_ac": 1623291.2,
+     "claimed_ac": 1637279,
+     "km": 24.43
+    }
+   ]
+  },
+  {
+   "park": "US-10281",
+   "name": "White Mountains National Recreation Area BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-AK",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep sgakg11010, 2165 (White Mountains SRMA) (the POTA pin is never moved); check whether the same-name pieces sgakg10616, sgakg10619, sgakg11011 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) sgakg10616, sgakg10619, sgakg11011 are 33.7 km or more from the pin too",
+    "sgakg11010 is the park's land: same name (White Mountains SRMA), ~1,016,251 acres",
+    "the pin (65.4176, -145.987) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgakg11010",
+     "name": "White Mountains SRMA",
+     "points": 401,
+     "measured_ac": 1003970.2,
+     "claimed_ac": 1016250.57100874,
+     "km": 23.18
+    },
+    {
+     "id": "2165",
+     "name": "White Mountains National Recreation Area (Eastern Interior Field Office)",
+     "points": 1027,
+     "measured_ac": 919611.9,
+     "claimed_ac": 932728,
+     "km": 23.18
+    }
+   ]
+  },
+  {
+   "park": "US-6332",
+   "name": "Hatcher Pass State Natural Area",
+   "type": "State Natural Area",
+   "state": "US-AK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgakb140 (Hatcher Pass) (the POTA pin is never moved)",
+   "reasons": [
+    "sgakb140 is the park's land: same name (Hatcher Pass), 5,113 acres measured",
+    "the pin (61.7675, -149.312) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgakb140",
+     "name": "Hatcher Pass",
+     "points": 104,
+     "measured_ac": 5113.1,
+     "claimed_ac": 0,
+     "km": 3.59
+    }
+   ]
+  },
+  {
+   "park": "US-7191",
+   "name": "Anchor River State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-AK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgaka81 (Anchor River State Recreation Site) (the POTA pin is never moved)",
+   "reasons": [
+    "sgaka81 is the park's land: same name (Anchor River State Recreation Site), ~37 acres",
+    "the pin's latitude matches the land but its longitude is off (59.7199, -151.71), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgaka81",
+     "name": "Anchor River State Recreation Site",
+     "points": 8,
+     "measured_ac": 37.4,
+     "claimed_ac": 37.35,
+     "km": 2.76
+    }
+   ]
+  },
+  {
+   "park": "US-7242",
+   "name": "Portage Cove State Recreation Site",
+   "type": "State Recreation Site",
+   "state": "US-AK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgaka100 (Portage Cove State Recreation Site) (the POTA pin is never moved)",
+   "reasons": [
+    "sgaka100 is the park's land: same name (Portage Cove State Recreation Site), ~12 acres",
+    "the longitude looks mistyped: -135.401 with digit 2 after the point 0 -> 1 (-135.411) lands 0.9 km from the land"
+   ],
+   "records": [
+    {
+     "id": "sgaka100",
+     "name": "Portage Cove State Recreation Site",
+     "points": 8,
+     "measured_ac": 12.3,
+     "claimed_ac": 12.41,
+     "km": 1.42
+    }
+   ]
+  },
+  {
+   "park": "US-0025",
+   "name": "Fort Morgan National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-AL",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0042",
+   "name": "Fort Gaines National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-AL",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0384",
+   "name": "Grand Bay National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-AL",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-MS; this looks only at the AL part, and it already has land in MS, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3871",
+     "name": "Grand Bay National Wildlife Refuge",
+     "points": 119,
+     "measured_ac": 2673.4,
+     "claimed_ac": 2727,
+     "km": 2.55
+    }
+   ],
+   "other_states": [
+    "US-MS"
+   ]
+  },
+  {
+   "park": "US-3701",
+   "name": "Pike County Pocosin Complex State Fish and Wildlife Area",
+   "type": "State Fish and Wildlife Area",
+   "state": "US-AL",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep 166070 (Pike County Pocosin Complex) (the POTA pin is never moved); check whether the same-name pieces 166069 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) 166069 are 3.1 km or more from the pin too",
+    "166070 is the park's land: same name (Pike County Pocosin Complex), ~140 acres",
+    "the pin's latitude matches the land but its longitude is off (31.79, -85.9294), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "166070",
+     "name": "Pike County Pocosin Complex",
+     "points": 10,
+     "measured_ac": 143.4,
+     "claimed_ac": 140,
+     "km": 4.28
+    }
+   ]
+  },
+  {
+   "park": "US-7271",
+   "name": "Camp Robinson Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-AR",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep arw1658 (Camp Robinson WMA) (the POTA pin is never moved)",
+   "reasons": [
+    "arw1658 is the park's land: same name (Camp Robinson WMA), 9,314 acres measured",
+    "the latitude looks mistyped: 34.992 with digit 2 after the point 9 -> 1 (34.912) lands 0.3 km from the land"
+   ],
+   "records": [
+    {
+     "id": "arw1658",
+     "name": "Camp Robinson WMA",
+     "points": 13,
+     "measured_ac": 9313.9,
+     "claimed_ac": 0,
+     "km": 3.58
+    }
+   ]
+  },
+  {
+   "park": "US-7274",
+   "name": "Cedar Creek Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-AR",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep arw1703 (Cedar Creek WMA) (the POTA pin is never moved)",
+   "reasons": [
+    "arw1703 is the park's land: same name (Cedar Creek WMA), 93 acres measured",
+    "the latitude looks mistyped: 34.756 with digit 2 after the point 5 -> 7 (34.776) lands 0.5 km from the land"
+   ],
+   "records": [
+    {
+     "id": "arw1703",
+     "name": "Cedar Creek WMA",
+     "points": 8,
+     "measured_ac": 92.9,
+     "claimed_ac": 0,
+     "km": 2.68
+    }
+   ]
+  },
+  {
+   "park": "US-0908",
+   "name": "Canyon de Chelly National Monument",
+   "type": "National Monument",
+   "state": "US-AZ",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-6090",
+   "name": "Beaver Dam Mountain Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-AZ",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the held record's name (Beaver Dam Mountains) does not match the park's (Beaver Dam Mountain Wilderness Area)"
+   ],
+   "records": [
+    {
+     "id": "wbl287",
+     "name": "Beaver Dam Mountains",
+     "points": 6,
+     "measured_ac": 346.3,
+     "claimed_ac": 0,
+     "km": 2.38
+    }
+   ],
+   "other_states": [
+    "US-UT"
+   ]
+  },
+  {
+   "park": "US-0211",
+   "name": "San Luis National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-CA",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 4301 (San Luis National Wildlife Refuge) (the POTA pin is never moved)",
+   "reasons": [
+    "4301 is the park's land: same name (San Luis National Wildlife Refuge), ~17,864 acres",
+    "the pin (37.1519, -120.819) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "4301",
+     "name": "San Luis National Wildlife Refuge",
+     "points": 127,
+     "measured_ac": 17797.3,
+     "claimed_ac": 17864,
+     "km": 2.32
+    }
+   ]
+  },
+  {
+   "park": "US-0915",
+   "name": "Cesar E. Chavez National Monument",
+   "type": "National Monument",
+   "state": "US-CA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-3523",
+   "name": "Oceano Dunes State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-CA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "184146 (Oceano Dunes State Vehicular Recreation Area) adds 'vehicular' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "184146",
+     "name": "Oceano Dunes State Vehicular Recreation Area",
+     "points": 65,
+     "measured_ac": 2635.8,
+     "claimed_ac": 2612,
+     "km": 2.73
+    }
+   ]
+  },
+  {
+   "park": "US-0185",
+   "name": "Hugo State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa157 (Hugo SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa157 is the park's land: same name (Hugo SWA), ~2,274 acres",
+    "the pin (38.8938, -103.378) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgcoa157",
+     "name": "Hugo SWA",
+     "points": 24,
+     "measured_ac": 2262.2,
+     "claimed_ac": 2273.91266314,
+     "km": 2.3
+    }
+   ]
+  },
+  {
+   "park": "US-0191",
+   "name": "Brush Hollow State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep cow169 (Brush Hollow SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "cow169 is the park's land: same name (Brush Hollow SWA), ~404 acres",
+    "the pin's latitude matches the land but its longitude is off (38.4419, -105.014), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "cow169",
+     "name": "Brush Hollow SWA",
+     "points": 5,
+     "measured_ac": 406.9,
+     "claimed_ac": 404.4076931,
+     "km": 3.33
+    }
+   ]
+  },
+  {
+   "park": "US-12185",
+   "name": "Grand Junction: West Lake State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for cow369 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "cow369",
+     "name": "Grand Junction - West Lake SWA",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-1249",
+   "name": "Vega State Park",
+   "type": "State Park",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgcoc873 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgcoc873",
+     "name": "Vega State Park",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-4397",
+   "name": "Manti-La Sal National Forest",
+   "type": "National Forest",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgidd65, which this key's row no longer lists",
+    "2792's own outline is 217.7 km from the pin"
+   ],
+   "records": [],
+   "other_states": [
+    "US-UT"
+   ]
+  },
+  {
+   "park": "US-9594",
+   "name": "Gunnison Gorge BLM National Conservation Area",
+   "type": "National Conservation Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep nca21287 (Gunnison Gorge National Conservation Area) (the POTA pin is never moved)",
+   "reasons": [
+    "nca21287 is the park's land: same name (Gunnison Gorge National Conservation Area), 64,617 acres measured",
+    "the pin (38.4591, -107.867) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "nca21287",
+     "name": "Gunnison Gorge National Conservation Area",
+     "points": 169,
+     "measured_ac": 64617.4,
+     "claimed_ac": 0,
+     "km": 8.15
+    }
+   ]
+  },
+  {
+   "park": "US-9605",
+   "name": "Alma State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 189038 (Alma State Wildlife Area) (the POTA pin is never moved)",
+   "reasons": [
+    "189038 is the park's land: same name (Alma State Wildlife Area), ~277 acres",
+    "the pin's latitude matches the land but its longitude is off (39.2986, -106.016), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "189038",
+     "name": "Alma State Wildlife Area",
+     "points": 11,
+     "measured_ac": 276.9,
+     "claimed_ac": 277,
+     "km": 4.18
+    }
+   ]
+  },
+  {
+   "park": "US-9620",
+   "name": "Bodo State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa38 (Bodo SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa38 is the park's land: same name (Bodo SWA), ~2,942 acres",
+    "the pin's latitude matches the land but its longitude is off (37.208, -107.857), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgcoa38",
+     "name": "Bodo SWA",
+     "points": 34,
+     "measured_ac": 2882.8,
+     "claimed_ac": 2942.2729619,
+     "km": 2.45
+    }
+   ]
+  },
+  {
+   "park": "US-9622",
+   "name": "Bosque Del Oso State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa40 (Bosque del Oso SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa40 is the park's land: same name (Bosque del Oso SWA), ~30,543 acres",
+    "the pin (37.0312, -104.804) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgcoa40",
+     "name": "Bosque del Oso SWA",
+     "points": 79,
+     "measured_ac": 30359.7,
+     "claimed_ac": 30542.72535966,
+     "km": 7.36
+    }
+   ]
+  },
+  {
+   "park": "US-9631",
+   "name": "Coalbed Canyon State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa70 (Coalbed Canyon SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa70 is the park's land: same name (Coalbed Canyon SWA), ~2,595 acres",
+    "the pin's latitude matches the land but its longitude is off (37.7539, -108.972), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgcoa70",
+     "name": "Coalbed Canyon SWA",
+     "points": 53,
+     "measured_ac": 2568.0,
+     "claimed_ac": 2595.41286364,
+     "km": 2.78
+    }
+   ]
+  },
+  {
+   "park": "US-9632",
+   "name": "Cochetopa State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep cow223 (Cochetopa SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "cow223 is the park's land: same name (Cochetopa SWA), ~6,712 acres",
+    "the pin (38.1315, -106.682) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "cow223",
+     "name": "Cochetopa SWA",
+     "points": 91,
+     "measured_ac": 6693.8,
+     "claimed_ac": 6711.67744064,
+     "km": 4.32
+    }
+   ]
+  },
+  {
+   "park": "US-9635",
+   "name": "Colorow Mountain State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa77 (Colorow Mountain SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa77 is the park's land: same name (Colorow Mountain SWA), ~1,983 acres",
+    "the pin's latitude matches the land but its longitude is off (40.1475, -108.079), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgcoa77",
+     "name": "Colorow Mountain SWA",
+     "points": 61,
+     "measured_ac": 1961.0,
+     "claimed_ac": 1982.5187926,
+     "km": 3.19
+    }
+   ]
+  },
+  {
+   "park": "US-9638",
+   "name": "Dan Noble State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "189107's outline is 543 acres but the park is ~3,284 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "189107",
+     "name": "Dan Noble State Wildlife Area",
+     "points": 7,
+     "measured_ac": 542.8,
+     "claimed_ac": 545,
+     "km": 2.63
+    }
+   ]
+  },
+  {
+   "park": "US-9639",
+   "name": "Deadman State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgcoa87 (Deadman SWA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgcoa87 is the park's land: same name (Deadman SWA), ~506 acres",
+    "the longitude looks mistyped: -102.234 with digit 2 after the point 3 -> 5 (-102.254) lands 0.6 km from the land"
+   ],
+   "records": [
+    {
+     "id": "sgcoa87",
+     "name": "Deadman SWA",
+     "points": 19,
+     "measured_ac": 503.7,
+     "claimed_ac": 505.61859805,
+     "km": 2.02
+    }
+   ]
+  },
+  {
+   "park": "US-9683",
+   "name": "Amache National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0329",
+   "name": "Silvio O Conte National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-CT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-MA",
+    "US-NH",
+    "US-VT"
+   ]
+  },
+  {
+   "park": "US-1696",
+   "name": "Mianus River State Park",
+   "type": "State Park",
+   "state": "US-CT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "51805 (Mianus River State Park Scenic Reserve) adds 'reserve scenic' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "51805",
+     "name": "Mianus River State Park Scenic Reserve",
+     "points": 5,
+     "measured_ac": 16.0,
+     "claimed_ac": 16,
+     "km": 4.05
+    }
+   ]
+  },
+  {
+   "park": "US-0015",
+   "name": "Chesapeake and Ohio Canal National Historical Park",
+   "type": "National Historical Park",
+   "state": "US-DC",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgakd1288, which this key's row no longer lists",
+    "3192's own outline is 95.4 km from the pin"
+   ],
+   "records": [],
+   "other_states": [
+    "US-MD",
+    "US-WV"
+   ]
+  },
+  {
+   "park": "US-3660",
+   "name": "Suwannee River Wilderness State Trail",
+   "type": "State Trail",
+   "state": "US-FL",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgfla109 (Suwannee River Wilderness Trail) (the POTA pin is never moved)",
+   "reasons": [
+    "sgfla109 is the park's land: same name (Suwannee River Wilderness Trail), ~74 acres",
+    "the pin (29.9372, -82.9233) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgfla109",
+     "name": "Suwannee River Wilderness Trail",
+     "points": 25,
+     "measured_ac": 68.8,
+     "claimed_ac": 74.04,
+     "km": 14.15
+    }
+   ]
+  },
+  {
+   "park": "US-10921",
+   "name": "Hawaii Capital National Historic District",
+   "type": "National Historic District",
+   "state": "US-HI",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-10922",
+   "name": "Marconi Wireless Telegraphy Station Kahuku National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-HI",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0367",
+   "name": "Northern Tallgrass Prairie National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-IA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgmng727, which this key's row no longer lists",
+    "but sgmng727 is still a record (another state or the saved outlines), so it is not gone",
+    "5127's own outline is 116.9 km from the pin"
+   ],
+   "records": [],
+   "other_states": [
+    "US-MN"
+   ]
+  },
+  {
+   "park": "US-4236",
+   "name": "Upper Mississippi River National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-IA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-IL, US-MN, US-WI; this looks only at the IA part, and it already has land in MN, WI, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "5387",
+     "name": "Upper Mississippi River National Wildlife And Fish Refuge",
+     "points": 1117,
+     "measured_ac": 20752.3,
+     "claimed_ac": 21280,
+     "km": 67.14
+    }
+   ],
+   "other_states": [
+    "US-IL",
+    "US-MN",
+    "US-WI"
+   ]
+  },
+  {
+   "park": "US-10431",
+   "name": "Cabinet Gorge State Fish Hatchery",
+   "type": "State Fish Hatchery",
+   "state": "US-ID",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-11089",
+   "name": "Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area",
+   "type": "State Wildlife Habitat Management Area",
+   "state": "US-ID",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for nca21293 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "nca21293",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-2238",
+   "name": "Heyburn State Park",
+   "type": "State Park",
+   "state": "US-ID",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-5616",
+   "name": "Red River Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-ID",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 199504 (Red River Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "199504 is the park's land: same name (Red River Wildlife Management Area), ~321 acres",
+    "the pin's latitude matches the land but its longitude is off (45.729, -115.43), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "199504",
+     "name": "Red River Wildlife Management Area",
+     "points": 11,
+     "measured_ac": 327.0,
+     "claimed_ac": 321,
+     "km": 2.73
+    }
+   ]
+  },
+  {
+   "park": "US-10237",
+   "name": "Mongoquinong State Nature Preserve",
+   "type": "State Nature Preserve",
+   "state": "US-IN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "200897 (Mongoquinong Nature Preserve Sawmill Fen) adds 'fen sawmill' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "200897",
+     "name": "Mongoquinong Nature Preserve Sawmill Fen",
+     "points": 9,
+     "measured_ac": 34.4,
+     "claimed_ac": 38,
+     "km": 2.01
+    }
+   ]
+  },
+  {
+   "park": "US-7843",
+   "name": "Pearson Mill State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-IN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for ind4563 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "ind4563",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-9190",
+   "name": "Marais des Cygnes Massacre State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-KS",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgaki400284, which this key's row no longer lists",
+    "5027 (Marais Des Cygnes National Wildlife Refuge) leaves out 'historic massacre' of the park's name, so it is not proven the same land",
+    "5027's own outline is 3.1 km from the pin"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0723",
+   "name": "Vicksburg National Military Park",
+   "type": "National Military Park",
+   "state": "US-LA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-MS; this looks only at the LA part, and it already has land in MS, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3292",
+     "name": "Vicksburg National Military Park",
+     "points": 8,
+     "measured_ac": 1.9,
+     "claimed_ac": 3,
+     "km": 4.23
+    }
+   ],
+   "other_states": [
+    "US-MS"
+   ]
+  },
+  {
+   "park": "US-0958",
+   "name": "Poverty Point National Monument",
+   "type": "National Monument",
+   "state": "US-LA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0329",
+   "name": "Silvio O Conte National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-MA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-CT",
+    "US-NH",
+    "US-VT"
+   ]
+  },
+  {
+   "park": "US-11401",
+   "name": "Cummington Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MA",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgmaa644046, sgmaa700516, sgmaa700291, 55331, 55329, sgmaa641755, 55328, sgmaa645135, 55330, sgmaa643183, sgmaa687685 (Cummington WMA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgmaa644046 is the park's land: same name (Cummington WMA), ~156 acres",
+    "the pin's longitude matches the land but its latitude is off (42.602, -72.8642), so the latitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgmaa644046",
+     "name": "Cummington WMA",
+     "points": 12,
+     "measured_ac": 154.7,
+     "claimed_ac": 156.03908306,
+     "km": 15.63
+    },
+    {
+     "id": "sgmaa700516",
+     "name": "Cummington WMA",
+     "points": 14,
+     "measured_ac": 125.1,
+     "claimed_ac": 124.78530518,
+     "km": 15.8
+    },
+    {
+     "id": "sgmaa700291",
+     "name": "Cummington WMA",
+     "points": 8,
+     "measured_ac": 90.2,
+     "claimed_ac": 87.55959769,
+     "km": 17.29
+    },
+    {
+     "id": "55331",
+     "name": "Cummington Wildlife Management Area",
+     "points": 8,
+     "measured_ac": 87.9,
+     "claimed_ac": 86,
+     "km": 17.29
+    },
+    {
+     "id": "55329",
+     "name": "Cummington Wildlife Management Area",
+     "points": 6,
+     "measured_ac": 26.8,
+     "claimed_ac": 31,
+     "km": 15.37
+    },
+    {
+     "id": "sgmaa641755",
+     "name": "Cummington WMA",
+     "points": 6,
+     "measured_ac": 29.0,
+     "claimed_ac": 31.2112639,
+     "km": 15.37
+    },
+    {
+     "id": "55328",
+     "name": "Cummington Wildlife Management Area",
+     "points": 5,
+     "measured_ac": 12.9,
+     "claimed_ac": 14,
+     "km": 15.93
+    },
+    {
+     "id": "sgmaa645135",
+     "name": "Cummington WMA",
+     "points": 5,
+     "measured_ac": 14.1,
+     "claimed_ac": 14.3503028,
+     "km": 15.93
+    },
+    {
+     "id": "55330",
+     "name": "Cummington Wildlife Management Area",
+     "points": 5,
+     "measured_ac": 10.1,
+     "claimed_ac": 9,
+     "km": 15.63
+    },
+    {
+     "id": "sgmaa643183",
+     "name": "Cummington WMA",
+     "points": 5,
+     "measured_ac": 10.1,
+     "claimed_ac": 9.34672704,
+     "km": 15.63
+    },
+    {
+     "id": "sgmaa687685",
+     "name": "Cummington WMA",
+     "points": 4,
+     "measured_ac": 1.3,
+     "claimed_ac": 2.14005737,
+     "km": 16.07
+    }
+   ]
+  },
+  {
+   "park": "US-11631",
+   "name": "Hartley Reservoir Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MA",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 55515 (Hartley Reservoir Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "55515 is the park's land: same name (Hartley Reservoir Wildlife Management Area), ~76 acres",
+    "the longitude looks mistyped: -70.8069 with digit 2 after the point 0 -> 5 (-70.8569) lands 0.3 km from the land"
+   ],
+   "records": [
+    {
+     "id": "55515",
+     "name": "Hartley Reservoir Wildlife Management Area",
+     "points": 9,
+     "measured_ac": 77.9,
+     "claimed_ac": 76,
+     "km": 4.34
+    }
+   ]
+  },
+  {
+   "park": "US-7749",
+   "name": "Pocomoke Sound Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MD",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgmda332 (POCOMOKE SOUND WMA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgmda332 is the park's land: same name (POCOMOKE SOUND WMA), 892 acres measured",
+    "the pin's latitude matches the land but its longitude is off (37.9864, -75.6809), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgmda332",
+     "name": "POCOMOKE SOUND WMA",
+     "points": 32,
+     "measured_ac": 892.5,
+     "claimed_ac": 0,
+     "km": 9.24
+    }
+   ]
+  },
+  {
+   "park": "US-7760",
+   "name": "Nanjemoy Creek Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MD",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "mdd350's outline is 227 acres but the park is ~1,125 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "mdd350",
+     "name": "NANJEMOY CREEK WMA",
+     "points": 9,
+     "measured_ac": 227.1,
+     "claimed_ac": 0,
+     "km": 2.07
+    }
+   ]
+  },
+  {
+   "park": "US-7768",
+   "name": "Frederick City Watershed Cooperative Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MD",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-7974",
+   "name": "Harmony Hall National Heritage Site",
+   "type": "National Heritage Site",
+   "state": "US-MD",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-10717",
+   "name": "Sylvania Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-MI",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wld386 (Sylvania Wilderness) (the POTA pin is never moved)",
+   "reasons": [
+    "wld386 is the park's land: same name (Sylvania Wilderness), ~18,440 acres",
+    "the pin (46.2514, -89.402) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "wld386",
+     "name": "Sylvania Wilderness",
+     "points": 48,
+     "measured_ac": 18316.6,
+     "claimed_ac": 18439.714,
+     "km": 3.48
+    }
+   ]
+  },
+  {
+   "park": "US-0361",
+   "name": "Hamden Slough National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-MN",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep 4860 (Hamden Slough National Wildlife Refuge) (the POTA pin is never moved); check whether the same-name pieces 3915 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) 3915 are 7.7 km or more from the pin too",
+    "4860 is the park's land: same name (Hamden Slough National Wildlife Refuge), ~3,408 acres",
+    "the pin (46.8985, -96.0676) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "4860",
+     "name": "Hamden Slough National Wildlife Refuge",
+     "points": 62,
+     "measured_ac": 3392.7,
+     "claimed_ac": 3408,
+     "km": 7.74
+    }
+   ]
+  },
+  {
+   "park": "US-11023",
+   "name": "Egret Island SNA State Conservation Area",
+   "type": "State Conservation Area",
+   "state": "US-MN",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgmnc175 (Egret Island) (the POTA pin is never moved)",
+   "reasons": [
+    "sgmnc175 is the park's land: same name (Egret Island), ~32 acres",
+    "the pin's latitude matches the land but its longitude is off (46.0614, -95.8298), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgmnc175",
+     "name": "Egret Island",
+     "points": 8,
+     "measured_ac": 33.5,
+     "claimed_ac": 32.47304818,
+     "km": 2.16
+    }
+   ]
+  },
+  {
+   "park": "US-12152",
+   "name": "Canosia Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MN",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgmna656 (Canosia WMA) (the POTA pin is never moved)",
+   "reasons": [
+    "sgmna656 is the park's land: same name (Canosia WMA), ~2,489 acres",
+    "the pin (46.9186, -92.1977) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgmna656",
+     "name": "Canosia WMA",
+     "points": 41,
+     "measured_ac": 2469.3,
+     "claimed_ac": 2488.61,
+     "km": 1.48
+    }
+   ]
+  },
+  {
+   "park": "US-13354",
+   "name": "Pelican Lake Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-MN",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep sgmna1423 (Pelican Lake WMA) (the POTA pin is never moved); check whether the same-name pieces sgmna927 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) sgmna927 are 198.4 km or more from the pin too",
+    "sgmna1423 is the park's land: same name (Pelican Lake WMA), ~1,016 acres",
+    "the pin (45.2261, -93.6836) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgmna1423",
+     "name": "Pelican Lake WMA",
+     "points": 60,
+     "measured_ac": 993.5,
+     "claimed_ac": 1016.46,
+     "km": 2.49
+    }
+   ]
+  },
+  {
+   "park": "US-9387",
+   "name": "Luce Line State Trail",
+   "type": "State Trail",
+   "state": "US-MN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "157891's outline is 4 points, but a state trail is thin by nature, so the sliver check does not apply"
+   ],
+   "records": [
+    {
+     "id": "157891",
+     "name": "Luce Line Trail",
+     "points": 4,
+     "measured_ac": 12.4,
+     "claimed_ac": 19,
+     "km": 7.93
+    }
+   ]
+  },
+  {
+   "park": "US-9388",
+   "name": "Glacial Lakes State Trail",
+   "type": "State Trail",
+   "state": "US-MN",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgmnf4203 (Glacial Lakes State Trail) (the POTA pin is never moved)",
+   "reasons": [
+    "sgmnf4203 is the park's land: same name (Glacial Lakes State Trail), 133 acres measured",
+    "the latitude looks mistyped: 45.2639 with digit 2 after the point 6 -> 8 (45.2839) lands 0.9 km from the land"
+   ],
+   "records": [
+    {
+     "id": "sgmnf4203",
+     "name": "Glacial Lakes State Trail",
+     "points": 39,
+     "measured_ac": 133.3,
+     "claimed_ac": 0,
+     "km": 3.11
+    }
+   ]
+  },
+  {
+   "park": "US-0661",
+   "name": "Gulf Islands National Seashore",
+   "type": "National Seashore",
+   "state": "US-MS",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins fnl1182, sgakd894, which this key's row no longer lists",
+    "3331's own outline is 121.8 km from the pin"
+   ],
+   "records": [],
+   "other_states": [
+    "US-FL"
+   ]
+  },
+  {
+   "park": "US-12717",
+   "name": "Deep River State Trail",
+   "type": "State Trail",
+   "state": "US-NC",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "two places share the name: sgnca3304 and sgnca3303 are over 30 km apart"
+   ],
+   "records": [
+    {
+     "id": "sgnca3304",
+     "name": "Deep River State Trail",
+     "points": 14,
+     "measured_ac": 35.2,
+     "claimed_ac": 25.79,
+     "km": 8.09
+    }
+   ]
+  },
+  {
+   "park": "US-3863",
+   "name": "Palmetto-Peartree State Preserve",
+   "type": "State Preserve",
+   "state": "US-NC",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgncc1429 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgncc1429",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-9758",
+   "name": "Chattooga National Wild and Scenic River",
+   "type": "National Wild and Scenic River",
+   "state": "US-NC",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-GA, US-SC; this looks only at the NC part, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "sgnca9068",
+     "name": "Chattooga National Wild and Scenic River",
+     "points": 49,
+     "measured_ac": 57.7,
+     "claimed_ac": 39.92,
+     "km": 10.2
+    }
+   ],
+   "other_states": [
+    "US-GA",
+    "US-SC"
+   ]
+  },
+  {
+   "park": "US-7707",
+   "name": "Maclean Bottoms Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-ND",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgnda342 (MacLean Bottoms) (the POTA pin is never moved)",
+   "reasons": [
+    "sgnda342 is the park's land: same name (MacLean Bottoms), ~6,955 acres",
+    "the pin (46.6914, -100.804) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgnda342",
+     "name": "MacLean Bottoms",
+     "points": 50,
+     "measured_ac": 6913.2,
+     "claimed_ac": 6954.96474365,
+     "km": 11.91
+    }
+   ]
+  },
+  {
+   "park": "US-8532",
+   "name": "Chateau De Mores State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-ND",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-8536",
+   "name": "Fort Buford State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-ND",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-8544",
+   "name": "Huff Indian Village State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-ND",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-8555",
+   "name": "Oscar-Zero Missile Alert Facility State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-ND",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-8559",
+   "name": "Welk Homestead State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-ND",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-3375",
+   "name": "Stolley National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-NE",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-3492",
+   "name": "Willa Cather Memorial Prairie State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-NE",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-4015",
+   "name": "Platte River Landing State Park",
+   "type": "State Park",
+   "state": "US-NE",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-4036",
+   "name": "Walnut Creek State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-NE",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins 118464, which this key's row no longer lists",
+    "sgnea17's own outline is 88.8 km from the pin"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-5656",
+   "name": "Flanagan Lake State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-NE",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-4868",
+   "name": "Annett State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgnha10012 (Annett State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "sgnha10012 is the park's land: same name (Annett State Forest), 1,229 acres measured",
+    "the pin's latitude matches the land but its longitude is off (42.781, -72.1069), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgnha10012",
+     "name": "Annett State Forest",
+     "points": 38,
+     "measured_ac": 1228.8,
+     "claimed_ac": 0,
+     "km": 9.35
+    }
+   ]
+  },
+  {
+   "park": "US-4886",
+   "name": "Connecticut Lakes State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "sgnha3's outline is 119 acres but the park is ~2,466 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "sgnha3",
+     "name": "Connecticut Lakes State Forest",
+     "points": 7,
+     "measured_ac": 119.5,
+     "claimed_ac": 0,
+     "km": 5.97
+    }
+   ]
+  },
+  {
+   "park": "US-4894",
+   "name": "Davis-White State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgnhc644, sgnha990 (Davis-White State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "sgnhc644 is the park's land: same name (Davis-White State Forest), ~40 acres",
+    "the pin (44.2632, -71.3093) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgnhc644",
+     "name": "Davis-White State Forest",
+     "points": 5,
+     "measured_ac": 36.1,
+     "claimed_ac": 40.242,
+     "km": 55.49
+    },
+    {
+     "id": "sgnha990",
+     "name": "Davis-White State Forest",
+     "points": 6,
+     "measured_ac": 30.4,
+     "claimed_ac": 0,
+     "km": 55.28
+    }
+   ]
+  },
+  {
+   "park": "US-4926",
+   "name": "Lovewell Mountain State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep nhc4669 (Lovewell Mountain State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "nhc4669 is the park's land: same name (Lovewell Mountain State Forest), 482 acres measured",
+    "the pin's latitude matches the land but its longitude is off (43.2136, -72.1062), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "nhc4669",
+     "name": "Lovewell Mountain State Forest",
+     "points": 15,
+     "measured_ac": 482.0,
+     "claimed_ac": 0,
+     "km": 2.9
+    }
+   ]
+  },
+  {
+   "park": "US-4933",
+   "name": "Merrimack River State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep sgnhc2075, sgnha4054, sgnha4139 (Merrimack River State Forest) (the POTA pin is never moved); check whether the same-name pieces sgnhc1767, sgnhc2383, sgnhc2413 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) sgnhc1767, sgnhc2383, sgnhc2413 are 60.7 km or more from the pin too",
+    "sgnhc2075 is the park's land: same name (Merrimack River State Forest), ~53 acres",
+    "the pin's latitude matches the land but its longitude is off (43.3331, -71.9639), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "sgnhc2075",
+     "name": "Merrimack River State Forest",
+     "points": 4,
+     "measured_ac": 50.1,
+     "claimed_ac": 53.101,
+     "km": 26.85
+    },
+    {
+     "id": "sgnha4054",
+     "name": "Merrimack River State Forest",
+     "points": 6,
+     "measured_ac": 103.2,
+     "claimed_ac": 0,
+     "km": 26.28
+    },
+    {
+     "id": "sgnha4139",
+     "name": "Merrimack River State Forest",
+     "points": 4,
+     "measured_ac": 59.5,
+     "claimed_ac": 0,
+     "km": 26.82
+    }
+   ]
+  },
+  {
+   "park": "US-4934",
+   "name": "Merriman State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 57000, sgnha1069 (Merriman State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "57000 is the park's land: same name (Merriman State Forest), ~512 acres",
+    "the pin's latitude matches the land but its longitude is off (44.0939, -71.3962), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "57000",
+     "name": "Merriman State Forest",
+     "points": 9,
+     "measured_ac": 499.7,
+     "claimed_ac": 512,
+     "km": 21.26
+    },
+    {
+     "id": "sgnha1069",
+     "name": "Merriman State Forest",
+     "points": 9,
+     "measured_ac": 512.8,
+     "claimed_ac": 0,
+     "km": 21.21
+    }
+   ]
+  },
+  {
+   "park": "US-4955",
+   "name": "Saltmarsh Pond State Forest",
+   "type": "State Forest",
+   "state": "US-NH",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep nhc3433, sgnha3433 (Saltmarsh Pond State Forest) (the POTA pin is never moved); check whether the same-name pieces nhc3073, nhc3342 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) nhc3073, nhc3342 are 22.3 km or more from the pin too",
+    "nhc3433 is the park's land: same name (Saltmarsh Pond State Forest), 71 acres measured",
+    "the latitude looks mistyped: 43.3225 with digit 1 after the point 3 -> 5 (43.5225) lands 0.0 km from the land"
+   ],
+   "records": [
+    {
+     "id": "nhc3433",
+     "name": "Saltmarsh Pond State Forest",
+     "points": 10,
+     "measured_ac": 71.0,
+     "claimed_ac": 0,
+     "km": 22.01
+    },
+    {
+     "id": "sgnha3433",
+     "name": "Saltmarsh Pond State Forest",
+     "points": 10,
+     "measured_ac": 71.0,
+     "claimed_ac": 0,
+     "km": 22.01
+    }
+   ]
+  },
+  {
+   "park": "US-8396",
+   "name": "Nashua River Rail Trail State Trail",
+   "type": "State Trail",
+   "state": "US-NH",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "59025's outline is 4 points, but a state trail is thin by nature, so the sliver check does not apply"
+   ],
+   "records": [
+    {
+     "id": "59025",
+     "name": "Nashua River Rail Trail",
+     "points": 4,
+     "measured_ac": 0.0,
+     "claimed_ac": 0,
+     "km": 8.01
+    }
+   ],
+   "other_states": [
+    "US-MA"
+   ]
+  },
+  {
+   "park": "US-0680",
+   "name": "Gateway National Recreation Area",
+   "type": "National Recreation Area",
+   "state": "US-NJ",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-NY; this looks only at the NJ part, and it already has land in NY, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3500",
+     "name": "Gateway National Recreation Area",
+     "points": 52,
+     "measured_ac": 1840.2,
+     "claimed_ac": 1810,
+     "km": 14.3
+    }
+   ],
+   "other_states": [
+    "US-NY"
+   ]
+  },
+  {
+   "park": "US-6462",
+   "name": "Garret Mountain Reservation State Park",
+   "type": "State Park",
+   "state": "US-NJ",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-11823",
+   "name": "Coronado Historic Site",
+   "type": "Historic Site",
+   "state": "US-NM",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-11913",
+   "name": "Bad Lands BLM Wilderness Area",
+   "type": "BLM Wilderness Area",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "wsa392's outline is 52 acres but the park is ~8,606 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "wsa392",
+     "name": "Bad Lands",
+     "points": 5,
+     "measured_ac": 52.5,
+     "claimed_ac": 0,
+     "km": 3.86
+    }
+   ]
+  },
+  {
+   "park": "US-13018",
+   "name": "Black Rock Range East/West BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hab1 (Black Rock Range East) (the POTA pin is never moved)",
+   "reasons": [
+    "hab1 is the park's land: same name (Black Rock Range East), ~93,438 acres",
+    "the pin (41.5426, -118.833) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hab1",
+     "name": "Black Rock Range East",
+     "points": 68,
+     "measured_ac": 93112.7,
+     "claimed_ac": 93438.05946672,
+     "km": 2.84
+    }
+   ]
+  },
+  {
+   "park": "US-13039",
+   "name": "Owyhee River Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-NV",
+   "verdict": "wrong state",
+   "confidence": "high",
+   "recommend": "override: keep wbl171 (Owyhee River Wilderness) and flag the POTA listing: the land is in ID, POTA lists NV (the POTA pin is never moved)",
+   "reasons": [
+    "Owyhee River Wilderness lies in ID; POTA lists the park in NV and its pin sits in NV, 28.15 km from the land",
+    "there is only one place with this name in the key, so the land is right and the listing looks wrong"
+   ],
+   "records": [
+    {
+     "id": "wbl171",
+     "name": "Owyhee River Wilderness",
+     "points": 545,
+     "measured_ac": 269063.5,
+     "claimed_ac": 0,
+     "km": 28.13
+    }
+   ]
+  },
+  {
+   "park": "US-13132",
+   "name": "Seven Mile BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma104 (Seven Mile) (the POTA pin is never moved)",
+   "reasons": [
+    "hma104 is the park's land: same name (Seven Mile), ~98,149 acres",
+    "the pin (39.3307, -116.229) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma104",
+     "name": "Seven Mile",
+     "points": 57,
+     "measured_ac": 97341.3,
+     "claimed_ac": 98149.29936323,
+     "km": 9.25
+    }
+   ]
+  },
+  {
+   "park": "US-13134",
+   "name": "Rock Creek BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma113 (Rock Creek) (the POTA pin is never moved)",
+   "reasons": [
+    "hma113 is the park's land: same name (Rock Creek), ~122,085 acres",
+    "the pin (41.2506, -116.788) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma113",
+     "name": "Rock Creek",
+     "points": 99,
+     "measured_ac": 120787.3,
+     "claimed_ac": 122084.52929384,
+     "km": 4.37
+    }
+   ]
+  },
+  {
+   "park": "US-13138",
+   "name": "Wassuk BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma127 (Wassuk) (the POTA pin is never moved)",
+   "reasons": [
+    "hma127 is the park's land: same name (Wassuk), ~52,310 acres",
+    "the pin (38.9912, -118.989) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma127",
+     "name": "Wassuk",
+     "points": 52,
+     "measured_ac": 51482.7,
+     "claimed_ac": 52309.92080083,
+     "km": 8.55
+    }
+   ]
+  },
+  {
+   "park": "US-13145",
+   "name": "Warm Springs Canyon BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma152 (Warm Springs Canyon) (the POTA pin is never moved)",
+   "reasons": [
+    "hma152 is the park's land: same name (Warm Springs Canyon), ~92,695 acres",
+    "the pin (41.5752, -119.028) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma152",
+     "name": "Warm Springs Canyon",
+     "points": 71,
+     "measured_ac": 87734.8,
+     "claimed_ac": 92695.05208763,
+     "km": 4.48
+    }
+   ]
+  },
+  {
+   "park": "US-13183",
+   "name": "Walking Box Ranch Historic Site",
+   "type": "Historic Site",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for nca22323 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "nca22323",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-13194",
+   "name": "Egan Crest Trailhead BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep rma9641 (Egan Crest Trailhead Recreation Area) (the POTA pin is never moved)",
+   "reasons": [
+    "rma9641 is the park's land: same name (Egan Crest Trailhead Recreation Area), ~11 acres",
+    "the pin (39.3464, -115.032) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "rma9641",
+     "name": "Egan Crest Trailhead Recreation Area",
+     "points": 4,
+     "measured_ac": 8.4,
+     "claimed_ac": 10.85048738,
+     "km": 5.13
+    }
+   ]
+  },
+  {
+   "park": "US-13251",
+   "name": "Virginia City Historic District (Comstock Lode) National Historic District",
+   "type": "National Historic District",
+   "state": "US-NV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-9246",
+   "name": "East Fork High Rock Canyon Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wbl196 (East Fork High Rock Canyon) (the POTA pin is never moved)",
+   "reasons": [
+    "wbl196 is the park's land: same name (East Fork High Rock Canyon), 52,372 acres measured",
+    "the pin (41.4201, -119.193) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "wbl196",
+     "name": "East Fork High Rock Canyon",
+     "points": 131,
+     "measured_ac": 52371.5,
+     "claimed_ac": 0,
+     "km": 7.55
+    }
+   ]
+  },
+  {
+   "park": "US-9273",
+   "name": "North Jackson Mountains Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-NV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wbl200 (North Jackson Mountains) (the POTA pin is never moved)",
+   "reasons": [
+    "wbl200 is the park's land: same name (North Jackson Mountains), 23,352 acres measured",
+    "the pin (41.4417, -118.444) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "wbl200",
+     "name": "North Jackson Mountains",
+     "points": 126,
+     "measured_ac": 23351.6,
+     "claimed_ac": 0,
+     "km": 3.5
+    }
+   ]
+  },
+  {
+   "park": "US-0456",
+   "name": "Wallkill River National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-NY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-NJ; this looks only at the NY part, and it already has land in NJ, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "5404",
+     "name": "Wallkill River National Wildlife Refuge",
+     "points": 20,
+     "measured_ac": 305.5,
+     "claimed_ac": 310,
+     "km": 9.28
+    }
+   ],
+   "other_states": [
+    "US-NJ"
+   ]
+  },
+  {
+   "park": "US-0778",
+   "name": "Hamilton Grange National Memorial",
+   "type": "National Memorial",
+   "state": "US-NY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-6532",
+   "name": "Erie Canalway Corridor National Heritage Area",
+   "type": "National Heritage Area",
+   "state": "US-NY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-9470",
+   "name": "Jockey Hollow State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-OH",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "71748's outline is 166 acres but the park is ~3,206 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "71748",
+     "name": "Jockey Hollow Wildlife Area",
+     "points": 16,
+     "measured_ac": 166.0,
+     "claimed_ac": 169,
+     "km": 2.77
+    }
+   ]
+  },
+  {
+   "park": "US-0491",
+   "name": "Tishomingo National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0822",
+   "name": "Fort Smith National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-AR"
+   ]
+  },
+  {
+   "park": "US-11222",
+   "name": "Stinchcomb Wildlife Refuge",
+   "type": "Wildlife Refuge",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-11778",
+   "name": "Fort Sill National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-12027",
+   "name": "Altus-Lugert State Fishing Lake",
+   "type": "State Fishing Lake",
+   "state": "US-OK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgokc1 (Altus - Lugert) (the POTA pin is never moved)",
+   "reasons": [
+    "sgokc1 is the park's land: same name (Altus - Lugert), ~3,681 acres",
+    "the pin (34.9125, -99.2962) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgokc1",
+     "name": "Altus - Lugert",
+     "points": 40,
+     "measured_ac": 3682.9,
+     "claimed_ac": 3681.09232895,
+     "km": 4.9
+    }
+   ]
+  },
+  {
+   "park": "US-12028",
+   "name": "Barren Fork Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-OK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgokc7 (Barren Fork) (the POTA pin is never moved)",
+   "reasons": [
+    "sgokc7 is the park's land: same name (Barren Fork), ~507 acres",
+    "the pin (35.8541, -94.917) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgokc7",
+     "name": "Barren Fork",
+     "points": 22,
+     "measured_ac": 487.7,
+     "claimed_ac": 506.52241702,
+     "km": 28.0
+    }
+   ]
+  },
+  {
+   "park": "US-4424",
+   "name": "Ouachita National Forest",
+   "type": "National Forest",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-AR"
+   ]
+  },
+  {
+   "park": "US-4514",
+   "name": "Cibola National Forest",
+   "type": "National Forest",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-NM",
+    "US-TX"
+   ]
+  },
+  {
+   "park": "US-6335",
+   "name": "Cabin Creek Battlefield State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-6336",
+   "name": "Honey Springs Battlefield State Historic Site",
+   "type": "State Historic Site",
+   "state": "US-OK",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-6361",
+   "name": "McGee Creek Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-OK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgokb104 (McGee Creek Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "sgokb104 is the park's land: same name (McGee Creek Wildlife Management Area), 11,935 acres measured",
+    "the pin (34.4643, -95.8603) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgokb104",
+     "name": "McGee Creek Wildlife Management Area",
+     "points": 151,
+     "measured_ac": 11935.1,
+     "claimed_ac": 0,
+     "km": 2.78
+    }
+   ]
+  },
+  {
+   "park": "US-7682",
+   "name": "Lake Vanderwork State Fishing Lake",
+   "type": "State Fishing Lake",
+   "state": "US-OK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep odw60 (Lake Vanderwork) (the POTA pin is never moved)",
+   "reasons": [
+    "odw60 is the park's land: same name (Lake Vanderwork), ~446 acres",
+    "the longitude looks mistyped: -98.9249 with digit 1 after the point 9 -> 8 (-98.8249) lands 0.0 km from the land"
+   ],
+   "records": [
+    {
+     "id": "odw60",
+     "name": "Lake Vanderwork",
+     "points": 19,
+     "measured_ac": 450.7,
+     "claimed_ac": 445.52466164,
+     "km": 7.92
+    }
+   ]
+  },
+  {
+   "park": "US-8140",
+   "name": "Gary Sherrer Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-OK",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep odw30 (Gary Sherrer Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "odw30 is the park's land: same name (Gary Sherrer Wildlife Management Area), ~1,264 acres",
+    "the longitude looks mistyped: -95.5796 with digit 2 after the point 7 -> 1 (-95.5196) lands 0.7 km from the land"
+   ],
+   "records": [
+    {
+     "id": "odw30",
+     "name": "Gary Sherrer Wildlife Management Area",
+     "points": 49,
+     "measured_ac": 1256.8,
+     "claimed_ac": 1264.22332904,
+     "km": 1.96
+    }
+   ]
+  },
+  {
+   "park": "US-0824",
+   "name": "Fort Vancouver National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-WA"
+   ]
+  },
+  {
+   "park": "US-10025",
+   "name": "Lost Forest/Dunes/Fossil BLM Special Recreation Management Area",
+   "type": "BLM Special Recreation Management Area",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-10610",
+   "name": "South Santiam State Fish Hatchery",
+   "type": "State Fish Hatchery",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-12979",
+   "name": "Bonneville State Fish Hatchery",
+   "type": "State Fish Hatchery",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgide861, which this key's row no longer lists",
+    "osp123 (Bonneville) leaves out 'fish hatchery' of the park's name, so it is not proven the same land"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-4383",
+   "name": "Rogue River-Siskiyou National Forest",
+   "type": "National Forest",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "2631's outline is only 0.11 acres, a fragment of the land, so its distance to the pin proves nothing"
+   ],
+   "records": [
+    {
+     "id": "2631",
+     "name": "Rogue River-Siskiyou National Forests (Siskiyou National Forest)",
+     "points": 96,
+     "measured_ac": 0.1,
+     "claimed_ac": 0,
+     "km": 14.37
+    }
+   ],
+   "other_states": [
+    "US-CA"
+   ]
+  },
+  {
+   "park": "US-4457",
+   "name": "Klamath National Forest",
+   "type": "National Forest",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "2629's outline is only 0.09 acres, a fragment of the land, so its distance to the pin proves nothing"
+   ],
+   "records": [
+    {
+     "id": "2629",
+     "name": "Klamath National Forest",
+     "points": 240,
+     "measured_ac": 0.1,
+     "claimed_ac": 0,
+     "km": 44.5
+    }
+   ],
+   "other_states": [
+    "US-CA"
+   ]
+  },
+  {
+   "park": "US-9159",
+   "name": "Lower Deschutes National Wild and Scenic River",
+   "type": "National Wild and Scenic River",
+   "state": "US-OR",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep sgord5150 (Lower Deschutes) (the POTA pin is never moved); check whether the same-name pieces sgord1665, sgord1666, sgord1667 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) sgord1665, sgord1666, sgord1667 are 13.1 km or more from the pin too",
+    "sgord5150 is the park's land: same name (Lower Deschutes), ~21 acres",
+    "the pin (45.3362, -120.948) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgord5150",
+     "name": "Lower Deschutes",
+     "points": 18,
+     "measured_ac": 17.7,
+     "claimed_ac": 20.844835023894134,
+     "km": 12.98
+    }
+   ]
+  },
+  {
+   "park": "US-9993",
+   "name": "Nestucca River OHV BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-OR",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the other same-name record(s) rst13039 are 3.4 km or more from the pin too",
+    "rst12674's outline is 38 acres but the park is ~228 acres, so it is only part of the land"
+   ],
+   "records": [
+    {
+     "id": "rst12674",
+     "name": "Nestucca River",
+     "points": 17,
+     "measured_ac": 37.8,
+     "claimed_ac": 37.496307,
+     "km": 4.82
+    }
+   ]
+  },
+  {
+   "park": "US-0608",
+   "name": "Ohio River Islands National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-PA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgmng732, which this key's row no longer lists",
+    "4180's own outline is 159.7 km from the pin"
+   ],
+   "records": [],
+   "other_states": [
+    "US-WV"
+   ]
+  },
+  {
+   "park": "US-0621",
+   "name": "Todd Sanctuary State Conservation Area",
+   "type": "State Conservation Area",
+   "state": "US-PA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0623",
+   "name": "Powdermill State Conservation Area",
+   "type": "State Conservation Area",
+   "state": "US-PA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-0733",
+   "name": "First State National Historical Park",
+   "type": "National Historical Park",
+   "state": "US-PA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-DE; this looks only at the PA part, and it already has land in DE, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3201",
+     "name": "First State National Historical Park",
+     "points": 15,
+     "measured_ac": 214.3,
+     "claimed_ac": 216,
+     "km": 19.86
+    }
+   ],
+   "other_states": [
+    "US-DE"
+   ]
+  },
+  {
+   "park": "US-3917",
+   "name": "Little Pee Dee Bay Heritage Preserve",
+   "type": "Heritage Preserve",
+   "state": "US-SC",
+   "verdict": "land wrong",
+   "confidence": "high",
+   "recommend": "join 254041 (Little Pee Dee Heritage Preserve / Wildlife Management Area) and drop the held 254129",
+   "reasons": [
+    "the POTA pin is inside 254041 (Little Pee Dee Heritage Preserve / Wildlife Management Area, ~10,168 ac)",
+    "the held 254129 (Little Pee Dee State Park Bay Heritage Preserve) is 21.1 km away: a different piece of land"
+   ],
+   "records": [
+    {
+     "id": "254129",
+     "name": "Little Pee Dee State Park Bay Heritage Preserve",
+     "points": 7,
+     "measured_ac": 300.7,
+     "claimed_ac": 298,
+     "km": 21.11
+    }
+   ]
+  },
+  {
+   "park": "US-4501",
+   "name": "Custer Gallatin National Forest",
+   "type": "National Forest",
+   "state": "US-SD",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-MT"
+   ]
+  },
+  {
+   "park": "US-0642",
+   "name": "Natchez Trace Parkway National Parkway",
+   "type": "National Parkway",
+   "state": "US-TN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-AL",
+    "US-MS"
+   ]
+  },
+  {
+   "park": "US-6275",
+   "name": "Walls of Jericho State Natural Area",
+   "type": "State Natural Area",
+   "state": "US-TN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "255681 (Walls of Jericho Designated State Natural Area) adds 'designated' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "255681",
+     "name": "Walls of Jericho Designated State Natural Area",
+     "points": 8,
+     "measured_ac": 745.2,
+     "claimed_ac": 740,
+     "km": 3.96
+    }
+   ]
+  },
+  {
+   "park": "US-7565",
+   "name": "AEDC and Woods Reservoir Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-TN",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgtni131 (Woods Reservoir Refuge) (the POTA pin is never moved)",
+   "reasons": [
+    "sgtni131 is the park's land: same name (Woods Reservoir Refuge), ~810 acres",
+    "the pin (35.3587, -86.1837) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "sgtni131",
+     "name": "Woods Reservoir Refuge",
+     "points": 72,
+     "measured_ac": 812.0,
+     "claimed_ac": 810.49751168,
+     "km": 7.0
+    }
+   ]
+  },
+  {
+   "park": "US-4514",
+   "name": "Cibola National Forest",
+   "type": "National Forest",
+   "state": "US-TX",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for wld280 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "wld280",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ],
+   "other_states": [
+    "US-NM",
+    "US-OK"
+   ]
+  },
+  {
+   "park": "US-10971",
+   "name": "Smith Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for wbl281 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "wbl281",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-10972",
+   "name": "Beartrap Canyon BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "wbl301's outline is 5 points, but a blm wild and scenic river is thin by nature, so the sliver check does not apply"
+   ],
+   "records": [
+    {
+     "id": "wbl301",
+     "name": "Beartrap Canyon",
+     "points": 5,
+     "measured_ac": 39.6,
+     "claimed_ac": 0,
+     "km": 1.78
+    }
+   ]
+  },
+  {
+   "park": "US-10973",
+   "name": "Middle Fork Taylor Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins sgute9254, which this key's row no longer lists",
+    "wbl266 (Taylor Creek) leaves out 'fork middle scenic wild' of the park's name, so it is not proven the same land"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-10975",
+   "name": "Oak Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for rst9147 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "rst9147",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-10976",
+   "name": "Kolob Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for wbl303 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "wbl303",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-11007",
+   "name": "White River BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep rst11027 (White River) (the POTA pin is never moved)",
+   "reasons": [
+    "rst11027 is the park's land: same name (White River), ~2,837 acres",
+    "the pin (40.0103, -109.445) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "rst11027",
+     "name": "White River",
+     "points": 19,
+     "measured_ac": 2823.0,
+     "claimed_ac": 2836.69652105,
+     "km": 8.84
+    }
+   ]
+  },
+  {
+   "park": "US-11115",
+   "name": "North Fork Virgin River BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wsa827 (North Fork Virgin River) (the POTA pin is never moved)",
+   "reasons": [
+    "wsa827 is the park's land: same name (North Fork Virgin River), 1,086 acres measured",
+    "the longitude looks mistyped: -112.924 with digit 2 after the point 2 -> 0 (-112.904) lands 0.3 km from the land"
+   ],
+   "records": [
+    {
+     "id": "wsa827",
+     "name": "North Fork Virgin River",
+     "points": 14,
+     "measured_ac": 1086.4,
+     "claimed_ac": 0,
+     "km": 2.03
+    }
+   ]
+  },
+  {
+   "park": "US-11748",
+   "name": "Cedar Mesa BLM Special Recreation Management Area",
+   "type": "BLM Special Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "sliver",
+   "confidence": "high",
+   "recommend": "KEEP HOLDING: rst14459 is a broken polygon; look for a proper outline of Cedar Mesa (the POTA pin is never moved)",
+   "reasons": [
+    "rst14459's outline is 4 points and 0.00 acres",
+    "so its 31.23 km from the pin means nothing; the pin may well be inside the real area"
+   ],
+   "records": [
+    {
+     "id": "rst14459",
+     "name": "Cedar Mesa",
+     "points": 4,
+     "measured_ac": 0.0,
+     "claimed_ac": 0,
+     "km": 31.24
+    }
+   ]
+  },
+  {
+   "park": "US-13000",
+   "name": "Spiral Jetty NPS National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": []
+  },
+  {
+   "park": "US-5758",
+   "name": "Dolores River BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "rst9851 (Dolores River Canyons) adds 'canyons' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "rst9851",
+     "name": "Dolores River Canyons",
+     "points": 203,
+     "measured_ac": 31579.2,
+     "claimed_ac": 31721.21047446,
+     "km": 7.17
+    }
+   ]
+  },
+  {
+   "park": "US-5782",
+   "name": "Indian Creek BLM Special Recreation Management Area",
+   "type": "BLM Special Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "sliver",
+   "confidence": "high",
+   "recommend": "KEEP HOLDING: rst14458 is a broken polygon; look for a proper outline of Indian Creek (the POTA pin is never moved)",
+   "reasons": [
+    "rst14458's outline is 4 points and 0.00 acres",
+    "so its 33.61 km from the pin means nothing; the pin may well be inside the real area"
+   ],
+   "records": [
+    {
+     "id": "rst14458",
+     "name": "Indian Creek",
+     "points": 4,
+     "measured_ac": 0.0,
+     "claimed_ac": 0,
+     "km": 33.59
+    }
+   ]
+  },
+  {
+   "park": "US-5789",
+   "name": "Behind the Rocks Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep wsa967, wsa968 (Behind the Rocks) (the POTA pin is never moved)",
+   "reasons": [
+    "wsa967 is the park's land: same name (Behind the Rocks), 636 acres measured",
+    "the pin's longitude matches the land but its latitude is off (38.2792, -109.525), so the latitude may be mistyped",
+    "POTA calls it a Wilderness Area but wsa967 is a Wilderness Study Area (a different kind), so the pin is unexplained"
+   ],
+   "records": [
+    {
+     "id": "wsa967",
+     "name": "Behind the Rocks",
+     "points": 5,
+     "measured_ac": 636.0,
+     "claimed_ac": 0,
+     "km": 23.39
+    },
+    {
+     "id": "wsa968",
+     "name": "Behind the Rocks",
+     "points": 82,
+     "measured_ac": 13032.1,
+     "claimed_ac": 0,
+     "km": 18.78
+    }
+   ]
+  },
+  {
+   "park": "US-5828",
+   "name": "Dark Canyon BLM Special Recreation Management Area",
+   "type": "BLM Special Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "rst14461's outline is only 0.01 acres, a fragment of the land, so its distance to the pin proves nothing"
+   ],
+   "records": [
+    {
+     "id": "rst14461",
+     "name": "Dark Canyon",
+     "points": 8,
+     "measured_ac": 0.0,
+     "claimed_ac": 0,
+     "km": 9.25
+    }
+   ]
+  },
+  {
+   "park": "US-5833",
+   "name": "Horseshoe Canyon (North) BLM Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep wsa978 (Horseshoe Canyon (North)) (the POTA pin is never moved)",
+   "reasons": [
+    "wsa978 is the park's land: same name (Horseshoe Canyon (North)), 2,058 acres measured",
+    "the pin (38.5651, -110.057) is simply away from the land",
+    "POTA calls it a Wilderness Area but wsa978 is a Wilderness Study Area (a different kind), so the pin is unexplained"
+   ],
+   "records": [
+    {
+     "id": "wsa978",
+     "name": "Horseshoe Canyon (North)",
+     "points": 15,
+     "measured_ac": 2057.6,
+     "claimed_ac": 0,
+     "km": 9.32
+    }
+   ]
+  },
+  {
+   "park": "US-5869",
+   "name": "9 Mile Canyon BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "medium",
+   "recommend": "override: keep rst9652 (Nine Mile Canyon) (the POTA pin is never moved); check whether the same-name pieces rst9823 belong to the park too",
+   "reasons": [
+    "the other same-name record(s) rst9823 are 35.6 km or more from the pin too",
+    "rst9652 is the park's land: same name (Nine Mile Canyon), ~24,249 acres",
+    "the pin (39.5555, -110.667) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "rst9652",
+     "name": "Nine Mile Canyon",
+     "points": 293,
+     "measured_ac": 24074.9,
+     "claimed_ac": 24248.81255095,
+     "km": 21.8
+    }
+   ]
+  },
+  {
+   "park": "US-5897",
+   "name": "Lower Last Chance BLM Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wbl264 (Lower Last Chance) (the POTA pin is never moved)",
+   "reasons": [
+    "wbl264 is the park's land: same name (Lower Last Chance), 21,469 acres measured",
+    "the pin (38.531, -110.924) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "wbl264",
+     "name": "Lower Last Chance",
+     "points": 56,
+     "measured_ac": 21469.1,
+     "claimed_ac": 0,
+     "km": 14.39
+    }
+   ]
+  },
+  {
+   "park": "US-5999",
+   "name": "Gunnison Massacre BLM Historic Preservation Site",
+   "type": "BLM Historic Preservation Site",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for 2097 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "2097",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-6007",
+   "name": "Cedar Mountain BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-UT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma8 (Cedar Mountain) (the POTA pin is never moved)",
+   "reasons": [
+    "hma8 is the park's land: same name (Cedar Mountain), ~198,377 acres",
+    "the pin (40.791, -112.887) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma8",
+     "name": "Cedar Mountain",
+     "points": 148,
+     "measured_ac": 210311.8,
+     "claimed_ac": 198377.102,
+     "km": 8.62
+    }
+   ]
+  },
+  {
+   "park": "US-6012",
+   "name": "Shunes Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for rst9221 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "rst9221",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-6025",
+   "name": "Willis Creek BLM Wild and Scenic River",
+   "type": "BLM Wild and Scenic River",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for 2117 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "2117",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-6090",
+   "name": "Beaver Dam Mountain Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-UT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the held record's name (Beaver Dam Mountains) does not match the park's (Beaver Dam Mountain Wilderness Area)"
+   ],
+   "records": [
+    {
+     "id": "wbl287",
+     "name": "Beaver Dam Mountains",
+     "points": 6,
+     "measured_ac": 346.3,
+     "claimed_ac": 0,
+     "km": 2.38
+    }
+   ],
+   "other_states": [
+    "US-AZ"
+   ]
+  },
+  {
+   "park": "US-0573",
+   "name": "Wallops Island National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-VA",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 4448 (Wallops Island National Wildlife Refuge) (the POTA pin is never moved)",
+   "reasons": [
+    "4448 is the park's land: same name (Wallops Island National Wildlife Refuge), ~360 acres",
+    "the longitude looks mistyped: -75.4204 with digit 2 after the point 2 -> 5 (-75.4504) lands 0.8 km from the land"
+   ],
+   "records": [
+    {
+     "id": "4448",
+     "name": "Wallops Island National Wildlife Refuge",
+     "points": 27,
+     "measured_ac": 362.5,
+     "claimed_ac": 360,
+     "km": 3.35
+    }
+   ]
+  },
+  {
+   "park": "US-5532",
+   "name": "Hapgood State Forest",
+   "type": "State Forest",
+   "state": "US-VT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 61290 (Hapgood State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "61290 is the park's land: same name (Hapgood State Forest), ~118 acres",
+    "the pin's latitude matches the land but its longitude is off (43.2058, -72.9608), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "61290",
+     "name": "Hapgood State Forest",
+     "points": 5,
+     "measured_ac": 117.6,
+     "claimed_ac": 118,
+     "km": 2.49
+    }
+   ]
+  },
+  {
+   "park": "US-5538",
+   "name": "Lower Clarendon Gorge State Forest",
+   "type": "State Forest",
+   "state": "US-VT",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep sgvta478 (Lower Clarendon Gorge State Forest) (the POTA pin is never moved)",
+   "reasons": [
+    "sgvta478 is the park's land: same name (Lower Clarendon Gorge State Forest), ~87 acres",
+    "the longitude looks mistyped: -72.9256 with digit 2 after the point 2 -> 4 (-72.9456) lands 0.3 km from the land"
+   ],
+   "records": [
+    {
+     "id": "sgvta478",
+     "name": "Lower Clarendon Gorge State Forest",
+     "points": 9,
+     "measured_ac": 77.9,
+     "claimed_ac": 87.0,
+     "km": 1.92
+    }
+   ]
+  },
+  {
+   "park": "US-5553",
+   "name": "Camels Hump State Forest",
+   "type": "State Forest",
+   "state": "US-VT",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "another saved record with the same name, 61047 (Camels Hump State Park), holds the pin (0.0 km) but the key did not list it, so the pin may be right and the key misses a parcel"
+   ],
+   "records": [
+    {
+     "id": "61198",
+     "name": "Camels Hump State Forest",
+     "points": 36,
+     "measured_ac": 775.0,
+     "claimed_ac": 790,
+     "km": 6.15
+    }
+   ]
+  },
+  {
+   "park": "US-0849",
+   "name": "Minidoka National Historic Site",
+   "type": "National Historic Site",
+   "state": "US-WA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-ID"
+   ]
+  },
+  {
+   "park": "US-4385",
+   "name": "Umatilla National Forest",
+   "type": "National Forest",
+   "state": "US-WA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the key names no held record"
+   ],
+   "records": [],
+   "other_states": [
+    "US-OR"
+   ]
+  },
+  {
+   "park": "US-8663",
+   "name": "Plymouth Park National Recreation Area",
+   "type": "National Recreation Area",
+   "state": "US-WA",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgwae6169 in this build, so its shape could not be checked"
+   ],
+   "records": [
+    {
+     "id": "sgwae6169",
+     "name": "",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
+   "park": "US-12601",
+   "name": "Hackmatack National Wildlife Refuge",
+   "type": "National Wildlife Refuge",
+   "state": "US-WI",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-IL; this looks only at the WI part, and it already has land in IL, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3907",
+     "name": "Hackmatack National Wildlife Refuge",
+     "points": 14,
+     "measured_ac": 76.9,
+     "claimed_ac": 85,
+     "km": 9.21
+    }
+   ],
+   "other_states": [
+    "US-IL"
+   ]
+  },
+  {
+   "park": "US-4264",
+   "name": "Quiver Falls Unit of Menominee River State Recreation Area",
+   "type": "State Recreation Area",
+   "state": "US-WI",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "overrides.json joins 272354, which this key's row no longer lists",
+    "but 272354 is still a record (another state or the saved outlines), so it is not gone",
+    "272355 (Menominee River State Recreation Area) leaves out 'falls quiver unit' of the park's name, so it is not proven the same land"
+   ],
+   "records": [],
+   "other_states": [
+    "US-MI"
+   ]
+  },
+  {
+   "park": "US-9800",
+   "name": "Hank Aaron State Trail",
+   "type": "State Trail",
+   "state": "US-WI",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "wid714283's outline measures 1 acres but the record claims 5"
+   ],
+   "records": [
+    {
+     "id": "wid714283",
+     "name": "Hank Aaron State Trail",
+     "points": 16,
+     "measured_ac": 1.1,
+     "claimed_ac": 4.74,
+     "km": 2.79
+    }
+   ]
+  },
+  {
+   "park": "US-0015",
+   "name": "Chesapeake and Ohio Canal National Historical Park",
+   "type": "National Historical Park",
+   "state": "US-WV",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-DC, US-MD; this looks only at the WV part, and it already has land in MD, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "3194",
+     "name": "Chesapeake and Ohio Canal National Historical Park",
+     "points": 46,
+     "measured_ac": 105.7,
+     "claimed_ac": 118,
+     "km": 48.84
+    }
+   ],
+   "other_states": [
+    "US-DC",
+    "US-MD"
+   ]
+  },
+  {
+   "park": "US-7027",
+   "name": "Slatyfork Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-WV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 273191 (Slatyfork Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "273191 is the park's land: same name (Slatyfork Wildlife Management Area), ~62 acres",
+    "the pin's longitude matches the land but its latitude is off (38.4182, -80.1293), so the latitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "273191",
+     "name": "Slatyfork Wildlife Management Area",
+     "points": 7,
+     "measured_ac": 55.0,
+     "claimed_ac": 62,
+     "km": 5.84
+    }
+   ]
+  },
+  {
+   "park": "US-7043",
+   "name": "Tate Lohr Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-WV",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 273200 (Tate Lohr Wildlife Management Area) (the POTA pin is never moved)",
+   "reasons": [
+    "273200 is the park's land: same name (Tate Lohr Wildlife Management Area), ~1,036 acres",
+    "the longitude looks mistyped: -80.9528 with digit 2 after the point 5 -> 0 (-80.9028) lands 0.2 km from the land"
+   ],
+   "records": [
+    {
+     "id": "273200",
+     "name": "Tate Lohr Wildlife Management Area",
+     "points": 19,
+     "measured_ac": 1044.5,
+     "claimed_ac": 1036,
+     "km": 2.37
+    }
+   ]
+  },
+  {
+   "park": "US-10816",
+   "name": "Saratoga National Fish Hatchery",
+   "type": "National Fish Hatchery",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 4312 (Saratoga National Fish Hatchery) (the POTA pin is never moved)",
+   "reasons": [
+    "4312 is the park's land: same name (Saratoga National Fish Hatchery), ~116 acres",
+    "the latitude looks mistyped: 41.5321 with digit 2 after the point 3 -> 0 (41.5021) lands 0.0 km from the land"
+   ],
+   "records": [
+    {
+     "id": "4312",
+     "name": "Saratoga National Fish Hatchery",
+     "points": 15,
+     "measured_ac": 108.5,
+     "claimed_ac": 116,
+     "km": 2.77
+    }
+   ]
+  },
+  {
+   "park": "US-10890",
+   "name": "Sinks Canyon BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 292692 (Sinks Canyon) (the POTA pin is never moved)",
+   "reasons": [
+    "292692 is the park's land: same name (Sinks Canyon), ~79 acres",
+    "the pin's latitude matches the land but its longitude is off (42.7384, -108.834), so the longitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "292692",
+     "name": "Sinks Canyon",
+     "points": 10,
+     "measured_ac": 78.8,
+     "claimed_ac": 79,
+     "km": 3.12
+    }
+   ]
+  },
+  {
+   "park": "US-4475",
+   "name": "Caribou-Targhee National Forest",
+   "type": "National Forest",
+   "state": "US-WY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-ID, US-MT, US-UT; this looks only at the WY part, and it already has land in ID, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "2781",
+     "name": "Caribou-Targhee National Forest (Caribou National Forest)",
+     "points": 76,
+     "measured_ac": 7724.6,
+     "claimed_ac": 7838,
+     "km": 41.75
+    }
+   ],
+   "other_states": [
+    "US-ID",
+    "US-MT",
+    "US-UT"
+   ]
+  },
+  {
+   "park": "US-4524",
+   "name": "Black Hills National Forest",
+   "type": "National Forest",
+   "state": "US-WY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the park is also listed in US-SD; this looks only at the WY part, and it already has land in SD, so the pin may sit on another part"
+   ],
+   "records": [
+    {
+     "id": "2697",
+     "name": "Black Hills National Forest",
+     "points": 1428,
+     "measured_ac": 175086.2,
+     "claimed_ac": 176135,
+     "km": 31.19
+    }
+   ],
+   "other_states": [
+    "US-SD"
+   ]
+  },
+  {
+   "park": "US-6135",
+   "name": "Pennock Mountain Wildlife Management Area",
+   "type": "Wildlife Management Area",
+   "state": "US-WY",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "273812 (Pennock Mountain Wildlife Habitat Management Area) adds 'habitat' to the park's name: it is one unit of the park, so the pin may sit on another unit"
+   ],
+   "records": [
+    {
+     "id": "273812",
+     "name": "Pennock Mountain Wildlife Habitat Management Area",
+     "points": 32,
+     "measured_ac": 9816.7,
+     "claimed_ac": 9864,
+     "km": 5.71
+    }
+   ]
+  },
+  {
+   "park": "US-6197",
+   "name": "Popo Agie Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wld346 (Popo Agie Wilderness) (the POTA pin is never moved)",
+   "reasons": [
+    "wld346 is the park's land: same name (Popo Agie Wilderness), ~102,620 acres",
+    "the pin is a rough 2-decimal point (42.46, -109.13), only an approximate location"
+   ],
+   "records": [
+    {
+     "id": "wld346",
+     "name": "Popo Agie Wilderness",
+     "points": 156,
+     "measured_ac": 101956.6,
+     "claimed_ac": 102619.867,
+     "km": 19.72
+    }
+   ]
+  },
+  {
+   "park": "US-6202",
+   "name": "North Absaroka Wilderness Area",
+   "type": "Wilderness Area",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep wld335 (North Absaroka Wilderness) (the POTA pin is never moved)",
+   "reasons": [
+    "wld335 is the park's land: same name (North Absaroka Wilderness), ~346,320 acres",
+    "the pin is a rough 2-decimal point (44.33, -109.34), only an approximate location"
+   ],
+   "records": [
+    {
+     "id": "wld335",
+     "name": "North Absaroka Wilderness",
+     "points": 377,
+     "measured_ac": 344083.4,
+     "claimed_ac": 346320.254,
+     "km": 22.75
+    }
+   ]
+  },
+  {
+   "park": "US-6204",
+   "name": "Little Colorado BLM Herd Management Area",
+   "type": "BLM Herd Management Area",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep hma37 (Little Colorado) (the POTA pin is never moved)",
+   "reasons": [
+    "hma37 is the park's land: same name (Little Colorado), ~525,421 acres",
+    "the pin (41.9797, -109.416) is simply away from the land"
+   ],
+   "records": [
+    {
+     "id": "hma37",
+     "name": "Little Colorado",
+     "points": 371,
+     "measured_ac": 628705.2,
+     "claimed_ac": 525421.0,
+     "km": 11.77
+    }
+   ]
+  },
+  {
+   "park": "US-6218",
+   "name": "Boulder Lake BLM Recreation Management Area",
+   "type": "BLM Recreation Management Area",
+   "state": "US-WY",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep rst11332 (Boulder Lake SRMA) (the POTA pin is never moved)",
+   "reasons": [
+    "rst11332 is the park's land: same name (Boulder Lake SRMA), ~5,586 acres",
+    "the pin's longitude matches the land but its latitude is off (42.7576, -109.732), so the latitude may be mistyped"
+   ],
+   "records": [
+    {
+     "id": "rst11332",
+     "name": "Boulder Lake SRMA",
+     "points": 29,
+     "measured_ac": 5552.4,
+     "claimed_ac": 5586.42982655,
+     "km": 5.37
+    }
+   ]
+  }
+ ]
+}
