@@ -231,6 +231,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "park",
+    "ag": "Bureau of Land Management, Colorado (recreation sites)",
+    "nm": "FET_NAME",
+    "url": "https://gis.blm.gov/coarcgis/rest/services/recreation/BLM_Colorado_Recreation_for_HUB/FeatureServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 3 sheet parks"
    }
   ],
   "DE": [
@@ -729,6 +738,24 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-03: chat 11 YES (auto (T1 map-match STRONG)); park US-11215"
+   },
+   {
+    "kind": "park",
+    "ag": "Montana Fish, Wildlife & Parks (state park boundaries)",
+    "nm": "NAME",
+    "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/5",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks sheet: fwpLands service"
+   },
+   {
+    "kind": "land",
+    "ag": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
+    "nm": "NAME",
+    "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/2",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 2 sheet parks"
    }
   ],
   "ND": [
@@ -926,6 +953,24 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-4391"
+   },
+   {
+    "kind": "land",
+    "ag": "ACEC Designated Polygons",
+    "nm": "ACEC_NAME",
+    "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES (chat 11 (Oct 31)); park US-13178"
+   },
+   {
+    "kind": "land",
+    "ag": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
+    "nm": "HMA_NAME",
+    "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 25 sheet parks (BLM Herd Management Areas)"
    }
   ],
   "NY": [
@@ -1046,6 +1091,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "wild",
+    "ag": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
+    "nm": "WSR_NAME",
+    "url": "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/3",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 3 sheet parks"
    }
   ],
   "PA": [
@@ -1529,6 +1583,15 @@
     "host": "agency",
     "lic": "public, no use constraints",
     "note": "Oct 30 9:40 PM chat 2: HQ 9:12 PM Oct 29 (Brandon found the Public Access Lands viewer) + chat 9 probe 8:45 AM: county forests, polygons, FR_PROP_NAME. Rule G as always."
+   },
+   {
+    "kind": "preserve",
+    "ag": "Natural Area Parcel Ownership",
+    "nm": "SNA_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES (chat 11 (Oct 31)); park US-4244"
    }
   ],
   "WV": [
@@ -1858,6 +1921,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-7381"
+   },
+   {
+    "kind": "park",
+    "ag": "Bureau of Land Management, Arizona (recreation sites, polygons)",
+    "nm": "FET_NAME",
+    "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 8 sheet parks"
    }
   ],
   "MO": [
@@ -1911,6 +1983,24 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-4838"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Natural Areas",
+    "nm": "Name",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES (chat 11); park US-13161"
+   },
+   {
+    "kind": "land",
+    "ag": "Missouri Department of Conservation (conservation area boundaries)",
+    "nm": "Area_Name",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 2 sheet parks"
    }
   ],
   "CT": [
@@ -2007,6 +2097,15 @@
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "kind": "land",
+    "ag": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
+    "nm": "SITE_NAME",
+    "url": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 8 sheet parks"
    }
   ],
   "NE": [
@@ -2103,6 +2202,15 @@
     "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
+   },
+   {
+    "kind": "land",
+    "ag": "NH GRANIT conservation lands (UNH / NH OSI)",
+    "nm": "NAME",
+    "url": "https://nhgeodata.unh.edu/nhgeodata/rest/services/EC/Conservation/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 11 sheet parks"
    }
   ],
   "NU": [
@@ -2416,6 +2524,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-1240"
+   },
+   {
+    "kind": "preserve",
+    "ag": "New Brunswick Natural Resources and Energy Development (Nature Legacy protected areas)",
+    "nm": "NAME",
+    "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 12 sheet parks"
    }
   ],
   "SK": [
@@ -2600,6 +2717,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-5478"
+   },
+   {
+    "kind": "park",
+    "ag": "Regulated Areas",
+    "nm": "Name",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES (chat 11 (Oct 31)); park CA-4316"
    }
   ],
   "NL": [

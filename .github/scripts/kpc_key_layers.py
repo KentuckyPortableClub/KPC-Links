@@ -77,6 +77,8 @@ def main():
     # without Brandon's word
     LANDCLASS = re.compile(r'sssi|\bsac\b|\bspa\b|ramsar|special (?:area|protection)|scientific interest|natura|habitat|designated|land ?cover|easement|'
                            r'surface management|aonb|outstanding natural beauty|biosphere|discomap\.eea|cdda|wdpa|schutzgebiet|parcel|cadastr|zoning', re.I)
+    _lc = load('data/key-layers-landclass-approved.json', {}) or {}
+    LC_OK = {str(x.get('url') or '').strip().rstrip('/').lower() for x in (_lc.get('approved') or []) if isinstance(x, dict)}
     tally = {}
     for r in rows:
         u_ = str(r.get('url') or r.get('layer') or '').strip().rstrip('/').lower()
@@ -91,7 +93,10 @@ def main():
         _txt = ' '.join(str(r.get(k) or '') for k in ('title', 'url', 'layer', 'name', 'agency', 'publisher', 'kind', 'geom', 'geometry'))
         if str(r.get('kind') or '').lower() in ('trail', 'byway', 'line', 'route') or re.search(r'polyline|esriGeometryPolyline|trail|centerline|byways?\b|scenic highway|\broads?\b|\broutes?\b|segments?\b|river ?lines?|streams?\b', _txt, re.I):
             skipped.append(f"{_u[-45:]}: a LINE layer (trail list, not the key)"); continue
-        if LANDCLASS.search(_txt): skipped.append(f"{_u[-45:]}: land-class layer (Brandon's word needed)"); continue
+        # Nov 7 2026 7:06 PM CST (Brandon: 'If you all approved the layers send them in...no use holding a bunch of stuff unless they a
+        # real problem'): the land-class rows listed in data/key-layers-landclass-approved.json are approved; every OTHER land-class row
+        # still waits for his word
+        if LANDCLASS.search(_txt) and _u.lower() not in LC_OK: skipped.append(f"{_u[-45:]}: land-class layer (Brandon's word needed)"); continue
         url = str(r.get('url') or r.get('layer') or '').strip().rstrip('/')
         area = str(r.get('area') or '').strip().upper()
         # Oct 30 (Brandon 9:48 'Yes'): an intake row whose area is a bare country code (GB, AU, NZ…) is a WORLD layer

@@ -141,9 +141,18 @@ if OLD:
     added = {c: [s[0] for s in g['SRC'][c] if s not in g0['SRC'].get(c, [])] for c in g['SRC']}
     check(diff == {'CH': ['EEA Natura 2000'], 'NO': ['EEA Natura 2000']} and not any(added.values()) and set(g0['SRC']) == set(g['SRC']),
           f'B6: vs origin/main only CH and NO lose one source, EEA Natura 2000; nothing else changes ({diff})')
-    check(g0['EXTRA_URLS'] == g['EXTRA_URLS'] and g0['LAYER_NAMEF'] == g['LAYER_NAMEF'], 'every approved extra layer is still read (extra-layers.json untouched)')
-check(subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/world-key/extra-layers.json'], cwd=ROOT).returncode == 0,
-      'data/world-key/extra-layers.json is byte-unchanged vs origin/main')
+    # Nov 7 evening (Brandon: the 72 approved land-class layers go in): extra-layers.json may GROW, only with layers from
+    # data/key-layers-landclass-approved.json; every layer listed on origin/main is still read the same way
+    _ok = {str(x.get('url') or '').rstrip('/').lower() for x in (json.load(open(ROOT / 'data/key-layers-landclass-approved.json')).get('approved') or [])} \
+        if (ROOT / 'data/key-layers-landclass-approved.json').exists() else set()
+    _new = [k for k in g['EXTRA_URLS'] if k not in g0['EXTRA_URLS']]
+    check(all(g['EXTRA_URLS'].get(k) == v for k, v in g0['EXTRA_URLS'].items()) and all(k[1] in _ok for k in _new)
+          and all(g['LAYER_NAMEF'].get(k) == v for k, v in g0['LAYER_NAMEF'].items()),
+          f'every approved extra layer is still read; {len(_new)} added, all from the land-class allow list')
+_el0 = json.loads(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}').get('countries') or {}
+_el = json.load(open(ROOT / 'data/world-key/extra-layers.json')).get('countries') or {}
+check(all(all(l in _el.get(c, []) for l in ls) for c, ls in _el0.items()),
+      'data/world-key/extra-layers.json keeps every origin/main row unchanged (rows may only be added, Nov 7 land-class allow list)')
 # no data loss: neither key joins or lists a record from the Natura 2000 source
 for base in [ROOT] + ([pathlib.Path(os.environ['DATA'])] if os.environ.get('DATA') else []):
     for cc in ('CH', 'NO'):

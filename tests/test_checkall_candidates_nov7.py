@@ -34,8 +34,11 @@ globalThis.location = { search: '?x=1&candidates=1' };
 out.onByUrl = C.candidatesOn();
 globalThis.location = { search: '?candidates=0' };
 out.offByUrl0 = C.candidatesOn();
+delete globalThis.location;
 globalThis.localStorage = { getItem: k => (k === 'kpcMapCandidates' ? '1' : null) };
 out.onByStorage = C.candidatesOn();
+globalThis.localStorage = { getItem: k => (k === 'kpcMapCandidates' ? '0' : null) };
+out.offByStorage0 = C.candidatesOn();
 delete globalThis.location; delete globalThis.localStorage;
 out.offAgain = C.candidatesOn();
 
@@ -134,9 +137,9 @@ al = o['al']
 nm = o['named']
 
 # 1. switch
-check('candidatesOn() is off by default', o['offDefault'] is False and o['offAgain'] is False)
-check('?candidates=1 turns it on, ?candidates=0 does not', o['onByUrl'] is True and o['offByUrl0'] is False)
-check('localStorage kpcMapCandidates=1 turns it on', o['onByStorage'] is True)
+check('candidatesOn() is ON by default (Brandon Nov 7 7:36 PM CST)', o['offDefault'] is True and o['offAgain'] is True)
+check('?candidates=1 keeps it on, ?candidates=0 turns it off', o['onByUrl'] is True and o['offByUrl0'] is False)
+check('localStorage kpcMapCandidates=1 keeps it on, =0 turns it off', o['onByStorage'] is True and o['offByStorage0'] is False)
 chk = (ROOT / 'kpc-maprep-check.js').read_text(encoding='utf-8')
 check('the page adds the candidate list only when candidatesOn() is true',
       "if (C.candidatesOn()) html += '<div id=\"mrCandsWrap\">" in chk and 'if (!C.candidatesOn()) return;' in chk)
@@ -248,7 +251,7 @@ check('no nonum (Canada, world) -> "not available", no error', o['noNonum']['ava
 
 # page wiring
 html = (ROOT / 'kpc-maprep.html').read_text(encoding='utf-8')
-order = [html.find(s) for s in ('kpc-maprep-logic.js?v=20261107t', 'kpc-maprep-candidates.js?v=20261107t', 'kpc-maprep-check.js?v=20261107t')]
+order = [html.find(s) for s in ('kpc-maprep-logic.js?v=20261107t', 'kpc-maprep-candidates.js?v=20261107u', 'kpc-maprep-check.js?v=20261107t')]
 check('page loads logic, then candidates, then check, with bumped ?v=', all(i > 0 for i in order) and order == sorted(order))
 check('wording: research leads, not parks', 'Research leads, not parks.' in o['listHtml'])
 

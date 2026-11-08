@@ -83,6 +83,7 @@ jobs:
       - id: p
         env:
           STATES: ${{ inputs.states }}
+          FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
@@ -116,6 +117,12 @@ jobs:
               except Exception: _bt = None
               if _bt and _now >= _t0 and _bt >= _t0:
                   print('groups=[]'); print(f"::notice title=US key plan::a build already finished today at {_b} (after the 09:17 UTC nightly time): this {os.environ.get('SCHED')} start does nothing", file=__import__('sys').stderr); raise SystemExit(0)
+          # Nov 7 (Brandon 7:36 PM CST): force only skips the freeze; it does not pick states. With force=yes and an EMPTY states input
+          # the run builds only data/us-key/answers-states.txt (BOT B), so say that loudly instead of letting it look like a full build.
+          if str(os.environ.get('FORCE') or '').strip().lower() in ('yes', 'y', 'true', '1') and not (os.environ.get('STATES') or '').strip() and not _rules:
+              try: _ans = ' '.join(open('data/us-key/answers-states.txt').read().split()) or 'none'
+              except Exception: _ans = 'none'
+              print(f"::warning title=US key plan::force=yes with an EMPTY states input: force only skips the freeze, it does not pick states. This run builds only the answers-states list ({_ans}); give states (e.g. WI) or 'all' to build more", file=__import__('sys').stderr)
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
           want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
           if want == ['ALL'] or _rules or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / rules changed / the MONTHLY cron = every state

@@ -614,6 +614,20 @@
     "name_field": "NAZEV",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   },
+   {
+    "label": "Ptačí oblast (PO)",
+    "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+    "name_field": "NAZEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES"
+   },
+   {
+    "label": "Evropsky významná lokalita (EVL)",
+    "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+    "name_field": "NAZEV",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES"
    }
   ],
   "HU": [
@@ -712,6 +726,104 @@
     "name_field": "name",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturschutzgebiete",
+    "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/1",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Nationalpark",
+    "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/2",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Vogelschutzgebiete",
+    "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/3",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Fauna-Flora-Habitate",
+    "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/4",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturparke",
+    "url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/6",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturschutzgebiete",
+    "url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
+    "name_field": "Gebietsname",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturpark",
+    "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/1",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Flaechennaturdenkmaeler",
+    "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/2",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Nationalpark",
+    "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/3",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturschutzgebiete",
+    "url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/4",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturschutzgebiet",
+    "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturschutzgebiet/MapServer/0",
+    "name_field": "OBJEKT",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Vogelschutzgebiet_SPA",
+    "url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Vogelschutzgebiet_SPA/MapServer/0",
+    "name_field": "OBJEKT",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Fauna-Flora-Habitat-Gebiete (FFH) in Niedersachsen",
+    "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/14",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Naturschutzgebiet",
+    "url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/4",
+    "name_field": "name",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
    }
   ],
   "AE": [
@@ -744,6 +856,13 @@
     "name_field": "NOM",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Périmètres des sites en vigueur (> 50.000)",
+    "url": "https://geoservices.wallonie.be/arcgis/rest/services/FAUNE_FLORE/NATURA2000/MapServer/9",
+    "name_field": "NOM",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
    }
   ],
   "BT": [
@@ -903,6 +1022,13 @@
     "name_field": "NOME",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Conveção RAMSAR",
+    "url": "https://sigservices.icnf.pt/server/rest/services/BDG/RAMSAR/MapServer/0",
+    "name_field": "nome",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
    }
   ],
   "NO": [
@@ -912,6 +1038,65 @@
     "name_field": "navn",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES"
+   }
+  ],
+  "MX": [
+   {
+    "label": "Áreas Naturales Protegidas, 2025",
+    "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/aps/SIVECA/MapServer/0",
+    "name_field": "nombre",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Oct 31) YES"
+   }
+  ],
+  "FO": [
+   {
+    "label": "Ramsar øki",
+    "url": "https://gis.us.fo/arcgis/rest/services/ramsar/us_ramsar_oki/MapServer/1",
+    "name_field": "island",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Oct 31) YES"
+   }
+  ],
+  "GR": [
+   {
+    "label": "Εθνικοί Δρυμοί (Εθνικά πάρκα) - Αισθητικά Δάση - Διατηρητέα μνημεία της φύσης - ",
+    "url": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_CDDA2020/MapServer/0",
+    "name_field": "siteName",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Oct 31) YES"
+   },
+   {
+    "label": "Προστατευόμενες τοποθεσίες NATURA 2000",
+    "url": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_N2000_v32/MapServer/0",
+    "name_field": "SITENAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES"
+   }
+  ],
+  "NI": [
+   {
+    "label": "AREAS_PROTEGIDAS_NIC",
+    "url": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Nicaragua_FISICO_NATURAL/MapServer/2",
+    "name_field": "NOMBRE",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   }
+  ],
+  "PR": [
+   {
+    "label": "Áreas Naturales Protegidas Marinas",
+    "url": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/4",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   },
+   {
+    "label": "Áreas Naturales ProtegidasTerrrestres",
+    "url": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/5",
+    "name_field": "NAME",
+    "credit": "",
+    "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
    }
   ]
  }

@@ -117,6 +117,9 @@ async function worldPlace(dir, cc, refs, opt) {
 }
 /* ---- the Tool Box "Check all" output for a place ---- */
 async function toolbox(dir, code, opt) {
+  // Nov 7 (Brandon 7:36 PM CST): Check all candidates are ON by default now. These runs compare TRACTS output with main, so the
+  // candidate list is switched off on both sides (main ignores kpcMapCandidates=0: off there already).
+  opt = Object.assign({}, opt, { ls: Object.assign({ kpcMapCandidates: '0' }, (opt && opt.ls) || {}) });
   const ctx = makeCtx(dir, Object.assign({ scripts: TOOL_SCRIPTS }, opt));
   ctx._els.mrCheckSt = Object.assign(ctx.document.getElementById('mrCheckSt'), { value: code });
   const L = ctx.KPCMapLogic; L.loadRows(readJson(path.join(NEW, 'data/maprep/abbreviations.json')).rows);

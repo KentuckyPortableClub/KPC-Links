@@ -269,18 +269,18 @@
    "why": "Nov 2 map audit: chat 11 NO on 4507 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-0150": {
-   "no": [
-    "fws448",
-    "4005"
+   "join": [
+    "4957"
    ],
-   "nofp": {
-    "4005": [
+   "fp": {
+    "4957": [
      "Kodiak National Wildlife Refuge",
-     1637748.8
+     1637279
     ]
    },
-   "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: 'Kodiak Office' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Kodiak Office' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 4005 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): FWS refuge outline (PAD-US 4957, 1,637,279 ac) is the park; the pin is by Kodiak town outside the refuge · replaces 2026-11-02 entry {\"no\": [\"fws448\", \"4005\"]}"
   },
   "US-0171": {
    "fp": {
@@ -3380,17 +3380,18 @@
    "why": "2026-11-02 12:49: layers row YES 'Walnut Point State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-10281": {
-   "no": [
-    "rst11010"
+   "join": [
+    "sgakg11010"
    ],
-   "nofp": {
-    "rst11010": [
+   "fp": {
+    "sgakg11010": [
      "White Mountains SRMA",
-     1016250.2
+     1016251
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on rst11010 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM's White Mountains SRMA polygon is the park; pin ~25 km east of its edge · replaces 2026-11-02 entry {\"no\": [\"rst11010\"]}"
   },
   "US-1029": {
    "fp": {
@@ -8772,17 +8773,68 @@
    "why": "2026-11-02 12:49: layers row YES 'Clear Lake SP' (chat 11; applied by kpc_key_answers)"
   },
   "US-11401": {
-   "no": [
-    "55327"
+   "join": [
+    "sgmaa644046",
+    "sgmaa700516",
+    "sgmaa700291",
+    "55331",
+    "55329",
+    "sgmaa641755",
+    "55328",
+    "sgmaa645135",
+    "55330",
+    "sgmaa643183",
+    "sgmaa687685"
    ],
-   "nofp": {
-    "55327": [
+   "fp": {
+    "sgmaa644046": [
+     "Cummington WMA",
+     156
+    ],
+    "sgmaa700516": [
+     "Cummington WMA",
+     125
+    ],
+    "sgmaa700291": [
+     "Cummington WMA",
+     88
+    ],
+    "55331": [
      "Cummington Wildlife Management Area",
-     426.6
+     86
+    ],
+    "55329": [
+     "Cummington Wildlife Management Area",
+     31
+    ],
+    "sgmaa641755": [
+     "Cummington WMA",
+     31
+    ],
+    "55328": [
+     "Cummington Wildlife Management Area",
+     14
+    ],
+    "sgmaa645135": [
+     "Cummington WMA",
+     14
+    ],
+    "55330": [
+     "Cummington Wildlife Management Area",
+     9
+    ],
+    "sgmaa643183": [
+     "Cummington WMA",
+     9
+    ],
+    "sgmaa687685": [
+     "Cummington WMA",
+     2
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 55327 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): MassWildlife: 424 ac in four sections on Route 9 in Cummington; the joined MassGIS / PAD-US pieces (~425 ac) are it; pin ~15 km north · replaces 2026-11-02 entry {\"no\": [\"55327\"]}"
   },
   "US-1141": {
    "fp": {
@@ -10841,17 +10893,18 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 pins-check (outside research B): the pin is in the Prophetstown Fen Nature Preserve subunit; the state park record is another unit · Nov 2 map audit: chat 11 NO on sginb5702 (NO (chat 11, Nov 2): PIN. record is Prophetstown State Park, a differe)"
   },
   "US-12028": {
-   "no": [
-    "odw7"
+   "join": [
+    "sgokc7"
    ],
-   "nofp": {
-    "odw7": [
-     "Barren Fork Wildlife Management Area",
-     506.5
+   "fp": {
+    "sgokc7": [
+     "Barren Fork",
+     507
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on odw7 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): ODWC Barren Fork WMA (~497-507 ac, eastern Adair County); pin ~28 km west near Tahlequah · replaces 2026-11-02 entry {\"no\": [\"odw7\"]}"
   },
   "US-12029": {
    "join": [
@@ -15377,6 +15430,20 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 5:55 PM: 'Little Owyhee' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Little Owyhee' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+  },
+  "US-13039": {
+   "join": [
+    "wbl171"
+   ],
+   "fp": {
+    "wbl171": [
+     "Owyhee River Wilderness",
+     0
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): the one Owyhee River Wilderness (BLM, Idaho); POTA lists it in NV with a pin 28 km south: flag the listing to POTA"
   },
   "US-1304": {
    "fp": {
@@ -35680,7 +35747,7 @@
     ]
    },
    "when": "2026-11-07",
-   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-07: join 254041 (the Horry+Marion Little Pee Dee HP/WMA), not 254129: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away (Brandon OK Nov 7)",
+   "why": "Nov 2 map audit: chat 11 NO on sgscc59 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-07: join 254041 (the Horry+Marion Little Pee Dee HP/WMA), not 254129: POTA link ManagedLand/43, pin and SCDNR access points are in the Horry/Marion HP/WMA; Dillon Bay tract is 21 km away (Brandon OK Nov 7) · confirmed by research pins17-recommendations-20261107-1649.md: join 254041, drop 254129 (Brandon signed Nov 7 4:54 PM CST)",
    "join": [
     "254041"
    ],
@@ -35689,7 +35756,8 @@
      "Little Pee Dee Heritage Preserve / Wildlife Management Area",
      10168
     ]
-   }
+   },
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST"
   },
   "US-3918": {
    "fp": {
@@ -41883,17 +41951,18 @@
    "why": "Nov 2 map audit: chat 11 NO on 56956 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4894": {
-   "no": [
-    "56963"
+   "join": [
+    "sgnha990"
    ],
-   "nofp": {
-    "56963": [
+   "fp": {
+    "sgnha990": [
      "Davis-White State Forest",
-     60.0
+     0
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 56963 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT has one Davis-White State Forest (NH Forests & Lands, GRANIT 990); pin 55 km away looks wrong · replaces 2026-11-02 entry {\"no\": [\"56963\"]}"
   },
   "US-4923": {
    "no": [
@@ -41907,30 +41976,42 @@
    "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
   },
   "US-4933": {
-   "no": [
-    "56999"
+   "join": [
+    "sgnha4054",
+    "sgnha4139"
    ],
-   "nofp": {
-    "56999": [
+   "fp": {
+    "sgnha4054": [
      "Merrimack River State Forest",
-     167.1
+     0
+    ],
+    "sgnha4139": [
+     "Merrimack River State Forest",
+     0
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 56999 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 4054 + 4139 in Boscawen; pin longitude looks mistyped (-71.96 vs -71.63) · replaces 2026-11-02 entry {\"no\": [\"56999\"]}"
   },
   "US-4934": {
-   "no": [
-    "sgnhc317"
+   "join": [
+    "57000",
+    "sgnha1069"
    ],
-   "nofp": {
-    "sgnhc317": [
+   "fp": {
+    "57000": [
      "Merriman State Forest",
-     544.1
+     512
+    ],
+    "sgnha1069": [
+     "Merriman State Forest",
+     0
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgnhc317 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 1069 + PAD-US 57000 agree; pin longitude looks mistyped · replaces 2026-11-02 entry {\"no\": [\"sgnhc317\"]}"
   },
   "US-4949": {
    "no": [
@@ -41946,17 +42027,23 @@
    "why": "Nov 2 map audit: chat 11 NO on 57965 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4955": {
-   "no": [
-    "sgnhc2115"
+   "join": [
+    "nhc3433",
+    "sgnha3433"
    ],
-   "nofp": {
-    "sgnhc2115": [
+   "fp": {
+    "nhc3433": [
      "Saltmarsh Pond State Forest",
-     74.1
+     0
+    ],
+    "sgnha3433": [
+     "Saltmarsh Pond State Forest",
+     0
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgnhc2115 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): GRANIT 3433 (Gilmanton); pin latitude looks mistyped (43.3 vs 43.5) · replaces 2026-11-02 entry {\"no\": [\"sgnhc2115\"]}"
   },
   "US-4979": {
    "join": [
@@ -44644,6 +44731,25 @@
    "when": "2026-10-18",
    "why": "Oct 18 review: same place, official name written differently"
   },
+  "US-5789": {
+   "join": [
+    "wsa967",
+    "wsa968"
+   ],
+   "fp": {
+    "wsa967": [
+     "Behind the Rocks",
+     0
+    ],
+    "wsa968": [
+     "Behind the Rocks",
+     0
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM has one Behind the Rocks (WSA, two pieces) south of Moab; medium confidence, the pin is unexplained"
+  },
   "US-5790": {
    "join": [
     "Sand Flats"
@@ -44806,6 +44912,20 @@
    "none": true,
    "when": "2026-10-29",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Swell' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Swell' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'San Rafael Canyon' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  },
+  "US-5869": {
+   "join": [
+    "rst9652"
+   ],
+   "fp": {
+    "rst9652": [
+     "Nine Mile Canyon",
+     24249
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): BLM Price FO 'Nine Mile Canyon' SRMA; not the Vernal-office 'Nine Mile' SRMA"
   },
   "US-5886": {
    "fp": {
@@ -45713,6 +45833,20 @@
    "when": "2026-10-25",
    "why": "Oct 25 round 5 hand check (outside research bot)"
   },
+  "US-6197": {
+   "join": [
+    "wld346"
+   ],
+   "fp": {
+    "wld346": [
+     "Popo Agie Wilderness",
+     102620
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS Popo Agie Wilderness boundary; the pin is a rough 2-decimal point"
+  },
   "US-6199": {
    "no": [
     "sgakh1595"
@@ -45720,6 +45854,20 @@
    "none": true,
    "when": "2026-10-29",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Steamboat Mountain ACEC' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  },
+  "US-6202": {
+   "join": [
+    "wld335"
+   ],
+   "fp": {
+    "wld335": [
+     "North Absaroka Wilderness",
+     346320
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): USFS North Absaroka Wilderness boundary; the pin is a rough 2-decimal point"
   },
   "US-6212": {
    "alias": [
@@ -60171,10 +60319,17 @@
   },
   "US-9678": {
    "join": [
-    "cow909"
+    "cow910"
    ],
-   "when": "2026-10-22",
-   "why": "same place, another name (hand review Oct 22 (waiting list))"
+   "fp": {
+    "cow910": [
+     "Windy Gap WWA",
+     10
+    ]
+   },
+   "when": "2026-11-07",
+   "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",
+   "why": "2026-11-07 OVERRIDE (research pins17-recommendations-20261107-1649.md; Brandon signed Nov 7 4:54 PM CST): re-point the reviewed join cow909 -> cow910: same CPW feature, new id (same name, 10 ac, 0.12 km); PAD-US 189801 confirms · replaces 2026-10-22 entry {\"join\": [\"cow909\"]}"
   },
   "US-9679": {
    "none": true,
