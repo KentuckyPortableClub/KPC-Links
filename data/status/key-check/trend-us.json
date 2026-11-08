@@ -67,6 +67,18 @@
    "held_joins": 0,
    "acres_off": 173,
    "acres_checked": 7104
+  },
+  {
+   "build": "US-42487204632",
+   "checked": "2026-11-08 15:45",
+   "far_pins": 101,
+   "pins_outside": 101,
+   "outline_to_pin": 0,
+   "flat_outlines": 391,
+   "overrides_missed": 99,
+   "held_joins": 2,
+   "acres_off": 173,
+   "acres_checked": 7093
   }
  ],
  "acres_off_latest": [
