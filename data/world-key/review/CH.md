@@ -1,22 +1,19 @@
 # CH: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **261 of 319** joined (same name + same kind), **22** to check, **36** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **274 of 319** joined (same name + same kind), **19** to check, **26** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **CH-0002** Aargau Nature Park (Nature Park) → Aargauer Tafeljura (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
-- **CH-0007** Doubs Nature Park (Nature Park) → Vallée du Doubs (BAFU landscapes and natural monuments (BLN), similar name)
-- **CH-0010** Gantrisch Nature Park (Nature Park) → Gurnigel/Gantrisch (BAFU mire landscapes, similar name)
-- **CH-0012** Jura Vaudois Nature Park (Nature Park) → Vallée de Joux et Haut-Jura vaudois (BAFU landscapes and natural monuments (BLN), similar name)
-- **CH-0013** Pfyn-Finges Nature Park (Nature Park) → Finges (BAFU Emerald sites, similar name); Blatte (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CH-0016** Zürich Wilderness Park (Wilderness Park) → Wildnispark Zürich Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Albiskette – Reppischtal (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
+- **CH-0016** Zürich Wilderness Park (Wilderness Park) → Wildnispark Zürich Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Albiskette – Reppischtal (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name)); Wildnispark Zürich Sihlwald (BAFU parks of national importance, the POTA pin is inside it (different name)); Wildnispark Zürich Sihlwald (BAFU parks of national importance, the POTA pin is inside it (different name))
 - **CH-0021** Altläufe der Glatt Nature Reserve (Nature Reserve) → Oberglatt (EEA nationally designated areas, the POTA pin is inside it (different name)); Glattaltlaufgebiet Schlosswinkel-Peterli-Solachten (EEA nationally designated areas, the POTA pin is inside it (different name)); Oberglatt (BAFU floodplains, the POTA pin is inside it (different name))
 - **CH-0032** Valli di Lodano, Busai and Soladino World Heritage Site (World Heritage Site) → Valli Busai e Soladino (EEA nationally designated areas, similar name); Valle di Lodano (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **CH-0033** Benedictine Convent of St John in Müstair World Heritage Site (World Heritage Site) → Biosfera Val Müstair (BAFU parks of national importance, the POTA pin is inside it (different name)); Biosfera Val Müstair (BAFU parks of national importance, the POTA pin is inside it (different name))
 - **CH-0036** Alpes suisses Jungfrau-Aletsch World Heritage Site (World Heritage Site) → Berner Hochalpen und Aletsch-Bietschhorn-Gebiet (südlicher Teil) (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
 - **CH-0043** Ried am Äntschberg Nature Reserve (Nature Reserve) → Underäntschberg (BAFU fens, the POTA pin is inside it (different name))
 - **CH-0055** Wiese Landscape Park (Landscape Park) → Weiher Wiese-Ebene (EEA nationally designated areas, similar name)
 - **CH-0058** Rhein unterhalb KW Birsfelden Park (Park) → Rheinhalde (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CH-0132** Schwarzenburgerland mit Senseund Schwarzwasserschlucht Natural Monument (Natural Monument) → Schwarzenburgerland mit Sense- und Schwarzwasserschlucht (BAFU landscapes and natural monuments (BLN), similar name)
+- **CH-0132** Schwarzenburgerland mit Senseund Schwarzwasserschlucht Natural Monument (Natural Monument) → Schwarzenburgerland mit Sense- und Schwarzwasserschlucht (BAFU landscapes and natural monuments (BLN), similar name); Naturpark Gantrisch (BAFU parks of national importance, the POTA pin is inside it (different name)); Naturpark Gantrisch (BAFU parks of national importance, the POTA pin is inside it (different name))
+- **CH-0217** Trans Swiss National Scenic Trail (National Scenic Trail) → Parc du Doubs (BAFU parks of national importance, the POTA pin is inside it (different name)); Parc du Doubs (BAFU parks of national importance, the POTA pin is inside it (different name))
 - **CH-0265** Vogelroupfi Wetland Reserve (Wetland Reserve) → Oberaargau (BAFU Emerald sites, the POTA pin is inside it (different name))
 - **CH-0270** Turpenried Wetland Reserve (Wetland Reserve) → Turpenriet/Torf-Riet (EEA nationally designated areas, the POTA pin is inside it (different name)); Turpenriet (EEA nationally designated areas, the POTA pin is inside it (different name)); Turpenriet/Torf-Riet (BAFU fens, the POTA pin is inside it (different name))
 - **CH-0273** Faehnerenspitz Wetland Reserve (Wetland Reserve) → Säntisgebiet (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name)); Fänerenspitz (BAFU mire landscapes, the POTA pin is inside it (different name))
@@ -29,18 +26,9 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 
 ## Nothing found
 
-- CH-0006 Diemtigtal Nature Park (Nature Park)
-- CH-0009 Entlebuch Biosphere Reserve (Biosphere Reserve)
-- CH-0011 Gruyère Pays-d'Enhaut Nature Park (Nature Park)
-- CH-0014 Thal Nature Park (Nature Park)
-- CH-0015 Val Müstair Biosphere Reserve (Biosphere Reserve)
 - CH-0031 Abbey of St. Gall World Heritage Site (World Heritage Site)
-- CH-0033 Benedictine Convent of St John in Müstair World Heritage Site (World Heritage Site)
 - CH-0034 Old City of Berne World Heritage Site (World Heritage Site)
 - CH-0035 Three Castles, Defensive Wall and Ramparts of the Market-Town of Bellinzona World Heritage Site (World Heritage Site)
-- CH-0040 Schaffhausen Regional Nature Park (Nature Park)
-- CH-0041 De la Vallée du Trient Régional Nature Park (Nature Park)
-- CH-0042 Val Calanca Regional Nature Park (Nature Park)
 - CH-0044 Oberweiher Nature Reserve (Nature Reserve)
 - CH-0045 Chlostergumpen Nature Reserve (Nature Reserve)
 - CH-0047 Nägelimoos Nature Reserve (Nature Reserve)
@@ -51,7 +39,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - CH-0057 Wenken Park (Park)
 - CH-0078 Gerlafingerweiher Nature Reserve (Nature Reserve)
 - CH-0216 Via Alpina National Scenic Trail (National Scenic Trail)
-- CH-0217 Trans Swiss National Scenic Trail (National Scenic Trail)
 - CH-0218 Alpine Panorama National Scenic Trail (National Scenic Trail)
 - CH-0219 Via Jacobi National Scenic Trail (National Scenic Trail)
 - CH-0220 Jura Crest National Scenic Trail (National Scenic Trail)

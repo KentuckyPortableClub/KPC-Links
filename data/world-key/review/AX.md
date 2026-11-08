@@ -1,10 +1,10 @@
 # AX: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Åland Islands: Ålands landskapsregering. **9 of 14** joined (same name + same kind), **1** to check, **4** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Naturreservat. **9 of 14** joined (same name + same kind), **1** to check, **4** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **AX-0015** Slätnäs Natura 2000 (Natura 2000) → Bråttö naturreservat (Åland Islands: Ålands landskapsregering, the POTA pin is inside it (different name))
+- **AX-0015** Slätnäs Natura 2000 (Natura 2000) → Bråttö naturreservat (Naturreservat, the POTA pin is inside it (different name))
 
 ## Nothing found
 
