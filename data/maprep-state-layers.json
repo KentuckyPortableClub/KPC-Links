@@ -536,6 +536,37 @@
   ],
   "GA": [
    {
+    "pre": "handgaw",
+    "url": "data/maprep-layers/us-ga-wma.geojson",
+    "field": "PropName",
+    "label": "Georgia DNR Wildlife Resources (WMA / PFA / hatchery, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "gaw",
+    "count": 209,
+    "facts": {
+     "owner": "Owner",
+     "acres": "Acres",
+     "designation": "PropName"
+    }
+   },
+   {
+    "pre": "handgas",
+    "url": "data/maprep-layers/us-ga-stateparks.geojson",
+    "field": "PropName",
+    "label": "Georgia State Parks (DNR, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "gas",
+    "count": 60,
+    "facts": {
+     "designation": "PropName",
+     "acres": "Acres"
+    }
+   },
+   {
     "pre": "sggaa",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9/query",
     "field": "PropName",
@@ -1792,6 +1823,21 @@
   ],
   "PA": [
    {
+    "pre": "handpas",
+    "url": "data/maprep-layers/us-pa-sgl.geojson",
+    "field": "sgl_name",
+    "label": "Pennsylvania Game Commission (State Game Lands, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "pas",
+    "count": 320,
+    "facts": {
+     "acres": "gis_area_ac",
+     "designation": "sgl_status"
+    }
+   },
+   {
     "pre": "sgpaa",
     "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9/query",
     "field": "PARK_NAME",
@@ -2047,6 +2093,34 @@
    }
   ],
   "TX": [
+   {
+    "pre": "handtxw",
+    "url": "data/maprep-layers/us-tx-wma.geojson",
+    "field": "LoName",
+    "label": "Texas Parks & Wildlife (WMAs, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "txw",
+    "count": 80,
+    "facts": {
+     "designation": "BndryType"
+    }
+   },
+   {
+    "pre": "handtxs",
+    "url": "data/maprep-layers/us-tx-stateparks.geojson",
+    "field": "ParkName",
+    "label": "Texas Parks & Wildlife (state parks, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "txs",
+    "count": 116,
+    "facts": {
+     "designation": "PropType"
+    }
+   },
    {
     "pre": "sgtxa",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0/query",
@@ -2998,6 +3072,24 @@
   ],
   "MB": [
    {
+    "pre": "handmbp",
+    "url": "data/maprep-layers/ca-mb-provparks.geojson",
+    "field": "NAME_E",
+    "label": "Manitoba provincial parks (hand download; replaces missing shapes)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); the live host is robots-blocked / not fetched live",
+    "local": "hand",
+    "k": "mbp",
+    "count": 93,
+    "facts": {
+     "designation": "TYPE_E",
+     "acres": "O_AREA",
+     "website": "URL",
+     "manager": "MGMT_E",
+     "owner": "OWNER_E"
+    }
+   },
+   {
     "pre": "camanitobapa",
     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0/query",
     "field": null,
@@ -3502,5 +3594,6 @@
    }
   ]
  },
- "ky_note": "Kentucky has no data/us-key/US-KY.json (its answer key is data/ky-answer-key.json), so the US layer registry had no 'sgky' rows and Kentucky was missing. Its official layers are the club's own map files (kpc-bounds.js KY list); left out on purpose: ky-padus-parks.geojson (a PAD-US copy, already searched), ky-kpc-drawn.geojson (OpenStreetMap, not official), ky-dbnf.geojson (a forest boundary line, not land)."
+ "ky_note": "Kentucky has no data/us-key/US-KY.json (its answer key is data/ky-answer-key.json), so the US layer registry had no 'sgky' rows and Kentucky was missing. Its official layers are the club's own map files (kpc-bounds.js KY list); left out on purpose: ky-padus-parks.geojson (a PAD-US copy, already searched), ky-kpc-drawn.geojson (OpenStreetMap, not official), ky-dbnf.geojson (a forest boundary line, not land).",
+ "hand_layers_note": "Nov 8: GA / TX / PA / MB official layers Brandon downloaded by hand are searched as local site files (same pattern as Kentucky). Live services*.arcgis.com rows stay skipped (robots 403 = disallow)."
 }
