@@ -3,7 +3,7 @@
     pin, whose name (+ acres) matches the park's NO fingerprint or a previous 'a person said NO' record, puts the park back to a pin;
  2. holds a NEW join (record id not joined in the previous key) over 5 km (15 km stays the rule for the rest);
  3. exempts per id on a signed override: an unsigned record the previous key had out goes back to 'c'.
-Rules hashes unchanged (us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c)."""
+Rules hashes unchanged (us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c; world 10e4092cc97f since the declared CH rename in #76)."""
 import json, os, pathlib, shutil, subprocess, sys, tempfile
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
@@ -12,7 +12,7 @@ bad = 0
 def check(ok, msg):
     global bad; bad += not ok; print(('PASS ' if ok else 'FAIL ') + msg)
 
-check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '6a5969a25d2c'},
+check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'},
       'rules hashes unchanged')
 check('kpc_join_check.py' in KF.NOT_RULES, 'kpc_join_check.py is not a rules file')
 
