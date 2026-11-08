@@ -1,0 +1,3368 @@
+{
+ "about": "Nov 8 (Brandon 4:31 PM CST, t764u: \"for example GA it searches pad and state level that way it dont miss many\"). Built by .github/scripts/kpc_maprep_state_layers.py (by hand).",
+ "built": "2026-11-08",
+ "areas": {
+  "AK": [
+   {
+    "pre": "sgaka",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2/query",
+    "field": "PARKNAME",
+    "label": "Alaska State Parks (DNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
+   },
+   {
+    "pre": "sgakb",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0/query",
+    "field": "LDA_NAME_1",
+    "label": "Alaska Department of Natural Resources",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 2318,
+    "facts": {}
+   },
+   {
+    "pre": "sgakc",
+    "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0/query",
+    "field": "forestname",
+    "label": "Alaska DNR Division of Forestry",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgakd",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query",
+    "field": "UNIT_NAME",
+    "label": "National Park Service (legal boundary)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgake",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2/query",
+    "field": "PARKNAME",
+    "label": "Alaska DNR State Parks (park boundaries)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
+   },
+   {
+    "pre": "sgakf",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2/query",
+    "field": "PARKNAME",
+    "label": "Alaska DNR, Division of Parks & Outdoor Recreation",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 157,
+    "facts": {
+     "acres": "ACREAGE"
+    }
+   },
+   {
+    "pre": "sgakg",
+    "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query",
+    "field": "FET_NAME",
+    "label": "BLM recreation SITE polygons (national, 3,478)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 3478,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
+   },
+   {
+    "pre": "sgakh",
+    "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query",
+    "field": "ACEC_NAME",
+    "label": "BLM Areas of Critical Environmental Concern (national, 1,120)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1120,
+    "facts": {
+     "designation": "ACEC_RLVNCE_CUL",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgaki",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query",
+    "field": "RESNAME",
+    "label": "National Register of Historic Places Polygons",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 22905,
+    "facts": {}
+   }
+  ],
+  "AL": [
+   {
+    "pre": "sgala",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0/query",
+    "field": "NAME",
+    "label": "Alabama State Parks (ADCNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 21,
+    "facts": {
+     "website": "Link"
+    }
+   },
+   {
+    "pre": "sgalb",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0/query",
+    "field": "DCNR_Name",
+    "label": "Alabama Dept of Conservation and Natural Resources, State La",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 228,
+    "facts": {
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgalc",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0/query",
+    "field": "Name",
+    "label": "ADCNR Wildlife and Freshwater Fisheries · WildlifeManagementAreas",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 42,
+    "facts": {
+     "acres": "Acres",
+     "website": "Link"
+    }
+   },
+   {
+    "pre": "sgald",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1/query",
+    "field": "Name",
+    "label": "ADCNR Wildlife and Freshwater Fisheries · PublicFishingLakes 1",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 20,
+    "facts": {
+     "website": "Link"
+    }
+   }
+  ],
+  "AR": [
+   {
+    "pre": "sgara",
+    "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21/query",
+    "field": "maname",
+    "label": "Arkansas Natural Heritage Commission",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 79,
+    "facts": {}
+   },
+   {
+    "pre": "sgarb",
+    "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0/query",
+    "field": "name",
+    "label": "Arkansas State Parks",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 52,
+    "facts": {
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgarc",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11/query",
+    "field": "fisheries_name",
+    "label": "Arkansas Game and Fish Commission",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "AZ": [
+   {
+    "pre": "sgaza",
+    "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Arizona State Parks & Trails",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgazb",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0/query",
+    "field": "MasterName",
+    "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Wildlife Areas",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgazc",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0/query",
+    "field": "Prop_name",
+    "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Hatchery Polys",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgazd",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0/query",
+    "field": "ORGNAME",
+    "label": "US Fish and Wildlife Service (approved boundary)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgaze",
+    "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Arizona State Parks and Trails (park boundaries)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgazf",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0/query",
+    "field": "NCA_NAME",
+    "label": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgazg",
+    "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1/query",
+    "field": "FET_NAME",
+    "label": "Bureau of Land Management, Arizona (recreation sites, polygons)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 71,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
+   }
+  ],
+  "CA": [
+   {
+    "pre": "sgcaa",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0/query",
+    "field": "PROP_NAME",
+    "label": "California Department of Fish & Wildlife",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgcab",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0/query",
+    "field": "UNITNAME",
+    "label": "California State Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgcac",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0/query",
+    "field": "Name",
+    "label": "California Department of Fish and Wildlife",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgcad",
+    "url": "https://gis.blm.gov/caarcgis/rest/services/Recreation/BLM_CA_RECS/FeatureServer/1/query",
+    "field": "FET_NAME",
+    "label": "BLM CA Recreation Polygons",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 90,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
+   }
+  ],
+  "CO": [
+   {
+    "pre": "sgcoa",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30/query",
+    "field": "PropName",
+    "label": "Colorado Parks & Wildlife · Colorado State Basemap 30",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 324,
+    "facts": {
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgcob",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41/query",
+    "field": "PropName",
+    "label": "Colorado Parks & Wildlife · Colorado State Basemap 41",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 48,
+    "facts": {
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgcoc",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5/query",
+    "field": "PropName",
+    "label": "Colorado Parks & Wildlife · CPWAdminData 5",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgcod",
+    "url": "https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9/query",
+    "field": "PropName",
+    "label": "Colorado Parks and Wildlife",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 386,
+    "facts": {}
+   },
+   {
+    "pre": "sgcoe",
+    "url": "https://gis.blm.gov/coarcgis/rest/services/recreation/BLM_Colorado_Recreation_for_HUB/FeatureServer/1/query",
+    "field": "FET_NAME",
+    "label": "Bureau of Land Management, Colorado (recreation sites)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 278,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
+   }
+  ],
+  "CT": [
+   {
+    "pre": "sgcta",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0/query",
+    "field": "PROPERTY",
+    "label": "Connecticut DEEP",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgctb",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0/query",
+    "field": "OFFIC_NAME",
+    "label": "CT DEEP (deepgis account)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgctc",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0/query",
+    "field": "HuntAName",
+    "label": "CT DEEP",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "DE": [
+   {
+    "pre": "sgdea",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Delaware DNREC",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1329,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGEMENT_UNIT",
+     "agency": "MANAGING_AGENCY",
+     "acres": "ACRES",
+     "website": "WEBSITE"
+    }
+   },
+   {
+    "pre": "sgdeb",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0/query",
+    "field": "LABEL",
+    "label": "Delaware Forest Service",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 31,
+    "facts": {
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgdec",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17/query",
+    "field": "AREA_NAME",
+    "label": "Delaware Fish & Wildlife (DNREC)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 83,
+    "facts": {
+     "owner": "OWNER",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgded",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8/query",
+    "field": "NAME",
+    "label": "Delaware nature preserves (DNREC)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 129,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgdee",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11/query",
+    "field": "NAME",
+    "label": "Delaware public protected lands (DNREC)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 869,
+    "facts": {
+     "manager": "MANAGING_AGENCY",
+     "agency": "MANAGING_AGENCY",
+     "acres": "ACRES"
+    }
+   }
+  ],
+  "FL": [
+   {
+    "pre": "sgfla",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0/query",
+    "field": "SITE_NAME",
+    "label": "Florida State Parks (DEP)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 179,
+    "facts": {
+     "acres": "ACREAGE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "sgflb",
+    "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0/query",
+    "field": "LABEL",
+    "label": "Florida Forest Service",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgflc",
+    "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/0/query",
+    "field": "NAME",
+    "label": "Florida Fish & Wildlife Conservation Commission",
+    "ok": false,
+    "why": "layer error: Layer not found",
+    "count": null
+   },
+   {
+    "pre": "sgfld",
+    "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0/query",
+    "field": "TRACT_NAME",
+    "label": "Suwannee River Water Management District",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgfle",
+    "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0/query",
+    "field": "CONSERVATION_AREA",
+    "label": "St. Johns River Water Management District",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgflf",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0/query",
+    "field": "PROJECT_NAME",
+    "label": "Florida DEP Division of State Lands",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 79689,
+    "facts": {
+     "owner": "SHARED_OWNER_AGENCY_NAME",
+     "manager": "MANAGING_AGENCY_NAME",
+     "agency": "AUTHORIZED_AGENCY_NAME"
+    }
+   },
+   {
+    "pre": "sgflg",
+    "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1/query",
+    "field": "NAME",
+    "label": "FWC",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 284,
+    "facts": {
+     "designation": "TYPE",
+     "website": "WEBSITE"
+    }
+   }
+  ],
+  "GA": [
+   {
+    "pre": "sggaa",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9/query",
+    "field": "PropName",
+    "label": "Georgia DNR Wildlife Resources Division · Georgia Licenses by District 9",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sggab",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0/query",
+    "field": "PropName",
+    "label": "Georgia State Parks (DNR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sggac",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14/query",
+    "field": "PropName",
+    "label": "Georgia DNR Wildlife Resources Division · WRD WMA Public 14",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sggad",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0/query",
+    "field": "areaname",
+    "label": "BdyDesg_LSRS_SpecialInterestManagementArea",
+    "ok": false,
+    "why": "robots.txt answers 401/403 (disallow)",
+    "count": null
+   },
+   {
+    "pre": "sggae",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0/query",
+    "field": "RESNAME",
+    "label": "National_Heritage_Areas_Updated2023",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "HI": [
+   {
+    "pre": "sghia",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16/query",
+    "field": "name",
+    "label": "Hawaii Division of State Parks (DLNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 70,
+    "facts": {
+     "manager": "managedby",
+     "designation": "type",
+     "acres": "gis_acre"
+    }
+   },
+   {
+    "pre": "sghib",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1/query",
+    "field": "name",
+    "label": "Hawaii DLNR reserves (DOFAW)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 381,
+    "facts": {
+     "manager": "managedby",
+     "designation": "type",
+     "acres": "gis_acre"
+    }
+   },
+   {
+    "pre": "sghic",
+    "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Hawaii State Parks (DLNR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "IA": [
+   {
+    "pre": "sgiaa",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9/query",
+    "field": "AREA_NAME",
+    "label": "Iowa DNR · State Parks 9",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1846,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGE",
+     "acres": "Acres",
+     "website": "More_Info"
+    }
+   },
+   {
+    "pre": "sgiab",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2/query",
+    "field": "NAME",
+    "label": "Iowa DNR · State Parks Trails 2",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 344,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "acres": "ACRES",
+     "website": "More_Info"
+    }
+   },
+   {
+    "pre": "sgiac",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0/query",
+    "field": "NAME",
+    "label": "Iowa DNR · Public Lands",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 5450,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "acres": "ACRES",
+     "website": "More_Info"
+    }
+   },
+   {
+    "pre": "sgiad",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10/query",
+    "field": "NameUnit",
+    "label": "Iowa DNR · State Parks 10",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 326,
+    "facts": {
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "website": "More_Info"
+    }
+   }
+  ],
+  "ID": [
+   {
+    "pre": "sgida",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0/query",
+    "field": "Name",
+    "label": "Idaho Fish & Game",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgidb",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgidc",
+    "url": "https://gis.blm.gov/idarcgis/rest/services/recreation/BLM_ID_Recreation_Area_Poly/MapServer/0/query",
+    "field": "FET_NAME",
+    "label": "BLM Idaho recreation area polygons (76)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 76,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "WEB_LINK"
+    }
+   },
+   {
+    "pre": "sgidd",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0/query",
+    "field": "forestname",
+    "label": "BdyOwn_LSRS_BasicOwnership",
+    "ok": false,
+    "why": "robots.txt answers 401/403 (disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgide",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0/query",
+    "field": "RECPROJECTSITEAREANAME",
+    "label": "Recreation Area",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "IL": [
+   {
+    "pre": "sgila",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0/query",
+    "field": "Site_Name",
+    "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgilb",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3/query",
+    "field": "Site_Name",
+    "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22 3",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgilc",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2/query",
+    "field": "Site_Name",
+    "label": "Illinois DNR (public conservation lands)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgild",
+    "url": "https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11/query",
+    "field": "SITE_NAME",
+    "label": "IDNR Properties",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 384,
+    "facts": {
+     "designation": "CLASSIFICATION",
+     "acres": "GIS_ACRES"
+    }
+   }
+  ],
+  "IN": [
+   {
+    "pre": "sgina",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0/query",
+    "field": "unitname",
+    "label": "Indiana DNR",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 654,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sginb",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_NaturePreserves/FeatureServer/0/query",
+    "field": "unitname",
+    "label": "Indiana DNR Nature Preserves",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 196,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sginc",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_DNR_INHD_IN_SP/FeatureServer/0/query",
+    "field": "unitname",
+    "label": "Indiana DNR + INHD (all managed lands)",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 102,
+    "facts": {
+     "owner": "owner",
+     "manager": "manager",
+     "acres": "acres"
+    }
+   }
+  ],
+  "KS": [
+   {
+    "pre": "sgksa",
+    "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0/query",
+    "field": "Description",
+    "label": "Kansas Wildlife & Parks (state park areas, KDOT GIS)",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgksb",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0/query",
+    "field": "Label_Name",
+    "label": "KDWPT · KDWPT Wildlife Areas",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgksc",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0/query",
+    "field": "Unit_Name",
+    "label": "KDWPT · protected areas",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "LA": [
+   {
+    "pre": "sglaa",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Louisiana Department of Wildlife & Fisheries",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sglab",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0/query",
+    "field": "Name_Short",
+    "label": "LDWF, Sep 2025 edition",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sglac",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "MA": [
+   {
+    "pre": "sgmaa",
+    "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0/query",
+    "field": "SITE_NAME",
+    "label": "MassGIS / Executive Office of Energy and Environmental Affai",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 61486,
+    "facts": {
+     "owner": "FEE_OWNER",
+     "manager": "MANAGER",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgmab",
+    "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0/query",
+    "field": "SITE_NAME",
+    "label": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmac",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0/query",
+    "field": "UNIT_NAME",
+    "label": "National Park Service (property boundaries)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmad",
+    "url": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/MapServer/0/query",
+    "field": "SITE_NAME",
+    "label": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 61892,
+    "facts": {
+     "owner": "FEE_OWNER",
+     "manager": "MANAGER",
+     "acres": "GIS_ACRES"
+    }
+   }
+  ],
+  "MD": [
+   {
+    "pre": "sgmda",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query",
+    "field": "DNRName",
+    "label": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 580,
+    "facts": {
+     "manager": "ManagedBy",
+     "designation": "DESIG",
+     "website": "WebLink"
+    }
+   },
+   {
+    "pre": "sgmdb",
+    "url": "https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer/0/query",
+    "field": "AREA_NAME",
+    "label": "Maryland DNR (Maryland Natural Areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 34,
+    "facts": {
+     "website": "weblink"
+    }
+   }
+  ],
+  "ME": [
+   {
+    "pre": "sgmea",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0/query",
+    "field": "PARCEL_NAME",
+    "label": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmeb",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0/query",
+    "field": "PROJECT",
+    "label": "WMA_Boundaries",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "MI": [
+   {
+    "pre": "sgmia",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8/query",
+    "field": "Facility",
+    "label": "Michigan DNR Parks & Recreation",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmib",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2/query",
+    "field": "OfficialWLDProjectAreaName",
+    "label": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmic",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5/query",
+    "field": "FACILITY",
+    "label": "Michigan State Park Boundaries",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "MN": [
+   {
+    "pre": "sgmna",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0/query",
+    "field": "name",
+    "label": "Minnesota DNR · bdry dnr wildlife mgmt areas pub",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1753,
+    "facts": {
+     "manager": "managing_admin_office",
+     "acres": "gis_area_acres"
+    }
+   },
+   {
+    "pre": "sgmnb",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4/query",
+    "field": "name",
+    "label": "Minnesota DNR · bdry state forest 4",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 60,
+    "facts": {
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgmnc",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4/query",
+    "field": "unit_name",
+    "label": "Minnesota DNR · bdry scientific and nat areas 4",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 239,
+    "facts": {
+     "designation": "unit_type",
+     "acres": "gis_acres"
+    }
+   },
+   {
+    "pre": "sgmnd",
+    "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2/query",
+    "field": "AREA_NAME",
+    "label": "Minnesota State Parks (DNR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmne",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10/query",
+    "field": "mgtprjname",
+    "label": "Minnesota DNR (state land admin: parks and trails)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 13490,
+    "facts": {
+     "manager": "administrator",
+     "designation": "landtype",
+     "acres": "su_acres"
+    }
+   },
+   {
+    "pre": "sgmnf",
+    "url": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0/query",
+    "field": "UNIT_NAME",
+    "label": "DNR Management Units",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 6715,
+    "facts": {
+     "manager": "ADMINISTRATING_DIVISION",
+     "designation": "UNIT_TYPE",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgmng",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0/query",
+    "field": "ORGNAME",
+    "label": "FWSBoundaries",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "MO": [
+   {
+    "pre": "sgmoa",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0/query",
+    "field": "LOC_NAME",
+    "label": "Missouri State Parks (DNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 207,
+    "facts": {
+     "acres": "GIS_ACRES",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "sgmob",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3/query",
+    "field": "NAME",
+    "label": "Missouri Natural Areas (DNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 36,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAG_AGEN",
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgmoc",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5/query",
+    "field": "Area_Name",
+    "label": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
+   },
+   {
+    "pre": "sgmod",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3/query",
+    "field": "Area_Name",
+    "label": "Missouri Department of Conservation",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 192,
+    "facts": {
+     "owner": "Owner",
+     "manager": "Manage_Agency",
+     "agency": "Manage_Agency",
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgmoe",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2/query",
+    "field": "WA_NAME",
+    "label": "Missouri DNR, Division of State Parks",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 13,
+    "facts": {
+     "designation": "DATE_DES",
+     "acres": "ACREAGE"
+    }
+   },
+   {
+    "pre": "sgmof",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/0/query",
+    "field": "Area_Name",
+    "label": "MDC Lands",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
+   },
+   {
+    "pre": "sgmog",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3/query",
+    "field": "Name",
+    "label": "Natural Areas",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 192,
+    "facts": {
+     "owner": "Owner",
+     "manager": "Manage_Agency",
+     "agency": "Manage_Agency",
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgmoh",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5/query",
+    "field": "Area_Name",
+    "label": "Missouri Department of Conservation (conservation area boundaries)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1049,
+    "facts": {
+     "manager": "Division_Admin",
+     "acres": "Acreage"
+    }
+   }
+  ],
+  "MT": [
+   {
+    "pre": "sgmta",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Montana Fish, Wildlife & Parks · FWPLND STATEPARKS",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmtb",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Montana Fish, Wildlife & Parks · FWPLND WMA",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmtc",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Montana Fish, Wildlife & Parks · FWPLND FAS",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgmtd",
+    "url": "https://gisservice.mt.gov/ArcGIS/rest/services/msdi_administrative_boundaries_map_v1/MapServer/70/query",
+    "field": "MANAME",
+    "label": "Managed Areas",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 1531,
+    "facts": {
+     "owner": "Own_Name",
+     "manager": "MANAGER",
+     "designation": "UNITTYPE",
+     "acres": "ACRES",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "sgmte",
+    "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/5/query",
+    "field": "NAME",
+    "label": "Montana Fish, Wildlife & Parks (state park boundaries)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 55,
+    "facts": {
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgmtf",
+    "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/2/query",
+    "field": "NAME",
+    "label": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 333,
+    "facts": {
+     "acres": "ACRES"
+    }
+   }
+  ],
+  "NC": [
+   {
+    "pre": "sgnca",
+    "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0/query",
+    "field": "MA_NAME",
+    "label": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
+    "ok": false,
+    "why": "banned host",
+    "count": null
+   },
+   {
+    "pre": "sgncb",
+    "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21/query",
+    "field": "GML_HAB",
+    "label": "NCWRC",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgncc",
+    "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22/query",
+    "field": "GML_HAB",
+    "label": "Game Lands - detail",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgncd",
+    "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0/query",
+    "field": "PK_NAME",
+    "label": "ParkBoundaries",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "ND": [
+   {
+    "pre": "sgnda",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0/query",
+    "field": "Unit_Name",
+    "label": "North Dakota Game & Fish",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgndb",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0/query",
+    "field": "UNIT_NAME",
+    "label": "North Dakota Parks & Recreation",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgndc",
+    "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0/query",
+    "field": "Name",
+    "label": "North Dakota Parks and Recreation Department",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgndd",
+    "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer/0/query",
+    "field": "DESCRIPTION",
+    "label": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 27,
+    "facts": {
+     "designation": "UNIT_TYPE",
+     "acres": "ACRES"
+    }
+   }
+  ],
+  "NE": [
+   {
+    "pre": "sgnea",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0/query",
+    "field": "AreaName",
+    "label": "Nebraska Game and Parks Commission · Conservation Partner Lands",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgneb",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268/query",
+    "field": "AreaName",
+    "label": "NGPC",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnec",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0/query",
+    "field": "AreaName",
+    "label": "Nebraska Game and Parks Commission · Park Areas",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NH": [
+   {
+    "pre": "sgnha",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6/query",
+    "field": "name",
+    "label": "NH GRANIT",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 13502,
+    "facts": {
+     "owner": "ownertype",
+     "agency": "ppagency"
+    }
+   },
+   {
+    "pre": "sgnhb",
+    "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2/query",
+    "field": "NAME",
+    "label": "New Hampshire Fish and Game Department",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnhc",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3/query",
+    "field": "site",
+    "label": "NH GRANIT (recreation inventory areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 2718,
+    "facts": {
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgnhd",
+    "url": "https://nhgeodata.unh.edu/nhgeodata/rest/services/EC/Conservation/MapServer/0/query",
+    "field": "NAME",
+    "label": "NH GRANIT conservation lands (UNH / NH OSI)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 13502,
+    "facts": {
+     "owner": "OWNERTYPE",
+     "agency": "PPAGENCY"
+    }
+   }
+  ],
+  "NJ": [
+   {
+    "pre": "sgnja",
+    "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1/query",
+    "field": "FACILITY",
+    "label": "New Jersey DEP (Natural Lands Trust preserves)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 118,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGED_BY",
+     "agency": "LAND_MANAGER_AGENCY",
+     "designation": "USE_DESIGNATION",
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgnjb",
+    "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67/query",
+    "field": "FEATURE_NAME",
+    "label": "New Jersey DEP (state-owned open space)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NM": [
+   {
+    "pre": "sgnma",
+    "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6/query",
+    "field": "NAME",
+    "label": "New Mexico Department of Game & Fish",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnmb",
+    "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0/query",
+    "field": "Name",
+    "label": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnmc",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2/query",
+    "field": "FET_NAME",
+    "label": "BLM Natl Recreation Site Polygons",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NV": [
+   {
+    "pre": "sgnva",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0/query",
+    "field": "LandName",
+    "label": "Nevada Department of Wildlife",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnvb",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0/query",
+    "field": "name",
+    "label": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 759,
+    "facts": {
+     "owner": "ownership",
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgnvc",
+    "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2/query",
+    "field": "LandName",
+    "label": "Nevada Division of State Parks · VS Boundary Map 2 WFL1 2",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnvd",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0/query",
+    "field": "name",
+    "label": "Nevada (SCORP recreation areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 756,
+    "facts": {
+     "owner": "ownership",
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgnve",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1/query",
+    "field": "landname",
+    "label": "Nevada Division of State Parks · NDSP State Park Bondaries 1",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 30,
+    "facts": {
+     "acres": "acres"
+    }
+   },
+   {
+    "pre": "sgnvf",
+    "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_National_Monument_National_Conservation_Area/MapServer/0/query",
+    "field": "NLCS_NAME",
+    "label": "BLM Nevada national monuments + NCAs",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 10,
+    "facts": {
+     "designation": "NLCS_TYPE"
+    }
+   },
+   {
+    "pre": "sgnvg",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0/query",
+    "field": "forestname",
+    "label": "Administrative Forest Boundaries - National Extent",
+    "ok": false,
+    "why": "robots.txt answers 401/403 (disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnvh",
+    "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query",
+    "field": "ACEC_NAME",
+    "label": "ACEC Designated Polygons",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1120,
+    "facts": {
+     "designation": "ACEC_RLVNCE_CUL",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgnvi",
+    "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0/query",
+    "field": "HMA_NAME",
+    "label": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 86,
+    "facts": {
+     "manager": "ADMIN_AGCY",
+     "agency": "ADMIN_AGCY",
+     "acres": "GIS_ACRES"
+    }
+   }
+  ],
+  "NY": [
+   {
+    "pre": "sgnya",
+    "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0/query",
+    "field": "FACILITY",
+    "label": "New York State DEC",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgnyb",
+    "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0/query",
+    "field": "Name",
+    "label": "New York State Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "OH": [
+   {
+    "pre": "sgoha",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5/query",
+    "field": "LANDS_NAME",
+    "label": "Ohio DNR Division of Parks and Watercraft",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgohb",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7/query",
+    "field": "LANDS_NAME",
+    "label": "Ohio DNR Division of Wildlife",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgohc",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6/query",
+    "field": "LANDS_NAME",
+    "label": "Ohio DNR Division of Forestry",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgohd",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8/query",
+    "field": "LANDS_NAME",
+    "label": "Ohio DNR Division of Natural Areas and Preserves",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgohe",
+    "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134/query",
+    "field": "NAME",
+    "label": "Ohio DNR",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "sgohf",
+    "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer/0/query",
+    "field": "Name_Label",
+    "label": "Ohio DNR, Office of Information Technology",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 865,
+    "facts": {
+     "owner": "OWN_TYPE",
+     "manager": "MANAGING_AGENCY",
+     "agency": "MANAGING_AGENCY",
+     "acres": "SUM_CALC_ACRES"
+    }
+   },
+   {
+    "pre": "sgohg",
+    "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/0/query",
+    "field": "FIRST_NAME",
+    "label": "Ohio DNR: city, county + NGO lands",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 623,
+    "facts": {
+     "acres": "ACRES"
+    }
+   }
+  ],
+  "OK": [
+   {
+    "pre": "sgoka",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3/query",
+    "field": "PARK_NAME",
+    "label": "Oklahoma State Parks (ODOT GIS)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgokb",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgokc",
+    "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1/query",
+    "field": "SHORTNAME",
+    "label": "ODWC",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "OR": [
+   {
+    "pre": "sgora",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Oregon Parks & Recreation Department",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 422,
+    "facts": {
+     "designation": "DESIGNATION",
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgorb",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0/query",
+    "field": "FULL_NAME",
+    "label": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgorc",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0/query",
+    "field": "AreaName",
+    "label": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgord",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "State of Oregon (all state owned and managed lands)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgore",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0/query",
+    "field": "PARK_NAME",
+    "label": "State of Oregon (Oregon parklands)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 6345,
+    "facts": {
+     "designation": "CLIMBING_DESIGNATED"
+    }
+   },
+   {
+    "pre": "sgorf",
+    "url": "https://gis.blm.gov/orarcgis/rest/services/Recreation/BLM_OR_Recreation_Management_Areas/MapServer/0/query",
+    "field": "RMA_NAME",
+    "label": "BLM Oregon/Washington recreation management areas (2,188)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 2188,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgorg",
+    "url": "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/3/query",
+    "field": "WSR_NAME",
+    "label": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 132,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
+   }
+  ],
+  "PA": [
+   {
+    "pre": "sgpaa",
+    "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9/query",
+    "field": "PARK_NAME",
+    "label": "Pennsylvania DCNR Bureau of State Parks",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 125,
+    "facts": {
+     "designation": "TYPE",
+     "acres": "GIS_ACRE",
+     "website": "WEBLINK"
+    }
+   },
+   {
+    "pre": "sgpab",
+    "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0/query",
+    "field": "StParkName",
+    "label": "Pennsylvania State Parks (DCNR)",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 240,
+    "facts": {
+     "acres": "Acreage"
+    }
+   },
+   {
+    "pre": "sgpac",
+    "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300/query",
+    "field": "sgl_name",
+    "label": "Pennsylvania Game Commission",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgpad",
+    "url": "https://gis.dcnr.pa.gov/agsprod/rest/services/StateParks/BSP_StateParksNaturalAreas/MapServer/0/query",
+    "field": "NAME",
+    "label": "PA DCNR Bureau of State Parks",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 23,
+    "facts": {
+     "acres": "ACREAGE",
+     "website": "WEBLINK"
+    }
+   },
+   {
+    "pre": "sgpae",
+    "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/BOF/State_Forests/MapServer/4/query",
+    "field": "SF_Name",
+    "label": "State Forests",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 662,
+    "facts": {
+     "acres": "Acreage"
+    }
+   }
+  ],
+  "RI": [
+   {
+    "pre": "sgria",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0/query",
+    "field": "NAME",
+    "label": "Rhode Island DEM · State Conservation Land",
+    "ok": false,
+    "why": "did not answer: The read operation timed out",
+    "count": null
+   },
+   {
+    "pre": "sgrib",
+    "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Rhode Island DEM · ENV Conservation Lands State spf",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgric",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3/query",
+    "field": "NAME",
+    "label": "Rhode Island DEM (state conservation land)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1062,
+    "facts": {
+     "acres": "Acres"
+    }
+   }
+  ],
+  "SC": [
+   {
+    "pre": "sgsca",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4/query",
+    "field": "PropertyName",
+    "label": "South Carolina DNR (WMAs, heritage preserves)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgscb",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "South Carolina State Parks (PRT)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgscc",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0/query",
+    "field": "PropertyName",
+    "label": "South Carolina DNR (heritage preserves)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgscd",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3/query",
+    "field": "PropertyName",
+    "label": "South Carolina Department of Natural Resources",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "SD": [
+   {
+    "pre": "sgsda",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer/0/query",
+    "field": "AreaName",
+    "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota ParksAndRecreationAreas",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 133,
+    "facts": {
+     "designation": "ClassificationCode"
+    }
+   },
+   {
+    "pre": "sgsdb",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/0a01764b6c3b4d13b9af23df1610214b/rest/services/OpenData/SouthDakota_GFPManagedLands/FeatureServer/0/query",
+    "field": "AreaName",
+    "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota GFPManagedLands",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 882,
+    "facts": {
+     "agency": "Division",
+     "designation": "ClassificationCode"
+    }
+   }
+  ],
+  "TN": [
+   {
+    "pre": "sgtna",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0/query",
+    "field": "PARK_NAME",
+    "label": "Tennessee State Parks (TDEC)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtnb",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0/query",
+    "field": "SITE_NAME",
+    "label": "Tennessee State Natural Areas (TDEC)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtnc",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Tennessee Wildlife Resources Agency · Hunting Allowed",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtnd",
+    "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0/query",
+    "field": "StateForestName",
+    "label": "Tennessee Department of Agriculture, Division of Forestry",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtne",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49/query",
+    "field": "NAME",
+    "label": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation in Tennessee State and Federal Lands map",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtnf",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0/query",
+    "field": "NAME_1",
+    "label": "Tennessee Department of Environment and Conservation (TDEC public lands)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtng",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0/query",
+    "field": "PRIMARY_NAME__LONG_",
+    "label": "Tennessee State Parks (TDEC state park boundaries)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtnh",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10/query",
+    "field": "NaturalAreaName",
+    "label": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtni",
+    "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3/query",
+    "field": "NAME",
+    "label": "Tennessee Wildlife Resources Agency · TWRA 3",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 228,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "manager": "MANAGEMENT",
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "sgtnj",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331/query",
+    "field": "PRIMARY_NAME__LONG_",
+    "label": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "TX": [
+   {
+    "pre": "sgtxa",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0/query",
+    "field": "ParkName",
+    "label": "Texas Parks & Wildlife Department (state parks)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtxb",
+    "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9/query",
+    "field": "Name",
+    "label": "Texas Parks & Wildlife Department (public hunting lands)",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 463,
+    "facts": {
+     "designation": "Class",
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "sgtxc",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0/query",
+    "field": "LoName",
+    "label": "TPWD Wildlife Division",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgtxd",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0/query",
+    "field": "P_Loc_Nm",
+    "label": "Texas Parks and Wildlife (public conservation lands)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "UT": [
+   {
+    "pre": "sguta",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0/query",
+    "field": "name",
+    "label": "Utah State Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgutb",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0/query",
+    "field": "Property_N",
+    "label": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgutc",
+    "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0/query",
+    "field": "L_Name",
+    "label": "Utah (National Historic Landmarks)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgutd",
+    "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1/query",
+    "field": "RECS_NAME",
+    "label": "BLM Utah State Office (congressionally designated recreation areas)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 26,
+    "facts": {
+     "designation": "RECS_TYPE"
+    }
+   },
+   {
+    "pre": "sgute",
+    "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0/query",
+    "field": "NLCS_NAME",
+    "label": "NLCS Wild and Scenic Rivers",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 2077,
+    "facts": {}
+   },
+   {
+    "pre": "sgutf",
+    "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0/query",
+    "field": "truncated_name",
+    "label": "state_park_boundaries_dissolved",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "VA": [
+   {
+    "pre": "sgvaa",
+    "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0/query",
+    "field": "Name",
+    "label": "Virginia Department of Forestry",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvab",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1/query",
+    "field": "MANAME",
+    "label": "Virginia DCR Natural Heritage",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvac",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0/query",
+    "field": "LABEL",
+    "label": "Virginia State Parks (DCR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvad",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0/query",
+    "field": "MANAME",
+    "label": "Virginia DCR State Parks (tracts)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvae",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0/query",
+    "field": "LABEL",
+    "label": "Virginia DCR (Virginia's conservation lands)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvaf",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Virginia DCR (local parks 2023)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgvag",
+    "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0/query",
+    "field": "WMA_NAME",
+    "label": "Virginia Department of Wildlife Resources",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 242,
+    "facts": {
+     "owner": "Owner",
+     "acres": "ACRES",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "sgvah",
+    "url": "https://vcris.dhr.virginia.gov/arcgis/rest/services/dhr/dhr_public/MapServer/3/query",
+    "field": "PropertyNames",
+    "label": "Virginia Dept. of Historic Resources",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 3169,
+    "facts": {
+     "website": "URL"
+    }
+   }
+  ],
+  "VT": [
+   {
+    "pre": "sgvta",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38/query",
+    "field": "NAME",
+    "label": "Vermont Agency of Natural Resources",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 515,
+    "facts": {
+     "acres": "GISACRES"
+    }
+   }
+  ],
+  "WA": [
+   {
+    "pre": "sgwaa",
+    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2/query",
+    "field": "ParkName",
+    "label": "Washington State Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwab",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0/query",
+    "field": "ManagedPlaceName",
+    "label": "Washington Department of Fish and Wildlife",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 729,
+    "facts": {}
+   },
+   {
+    "pre": "sgwac",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6/query",
+    "field": "PARCEL_LABEL_NM",
+    "label": "Washington State Department of Natural Resources",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 18844,
+    "facts": {
+     "owner": "TIMBER_OWNER_NM"
+    }
+   },
+   {
+    "pre": "sgwad",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1/query",
+    "field": "NAME",
+    "label": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 6413,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER"
+    }
+   },
+   {
+    "pre": "sgwae",
+    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6/query",
+    "field": "GNIS_Name",
+    "label": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwaf",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/0/query",
+    "field": "WildlifeAreaUnitName",
+    "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 218,
+    "facts": {}
+   },
+   {
+    "pre": "sgwag",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/1/query",
+    "field": "WildlifeAreaName",
+    "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas 1",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 33,
+    "facts": {}
+   },
+   {
+    "pre": "sgwah",
+    "url": "https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29/query",
+    "field": "NAME",
+    "label": "Hanford Reach",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "WI": [
+   {
+    "pre": "sgwia",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0/query",
+    "field": "PROP_NAME",
+    "label": "Wisconsin DNR",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1799,
+    "facts": {
+     "acres": "PROP_ACRES"
+    }
+   },
+   {
+    "pre": "sgwib",
+    "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0/query",
+    "field": "PROP_NAME",
+    "label": "Wisconsin State Parks (DNR)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 81,
+    "facts": {
+     "website": "INFO_URL"
+    }
+   },
+   {
+    "pre": "sgwic",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1/query",
+    "field": "SNA_NAME",
+    "label": "Wisconsin DNR Natural Heritage Conservation",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 683,
+    "facts": {
+     "acres": "SNA_ACRE_AMT"
+    }
+   },
+   {
+    "pre": "sgwid",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1/query",
+    "field": "PROP_NAME",
+    "label": "Wisconsin DNR Bureau of Facilities and Lands",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 82539,
+    "facts": {
+     "acres": "GIS_ACRES"
+    }
+   },
+   {
+    "pre": "sgwie",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0/query",
+    "field": "FR_PROP_NAME",
+    "label": "Wisconsin DNR (county forests, from the counties)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 30,
+    "facts": {}
+   },
+   {
+    "pre": "sgwif",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2/query",
+    "field": "SNA_NAME",
+    "label": "Natural Area Parcel Ownership",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 801,
+    "facts": {
+     "owner": "OWNER_NAME",
+     "acres": "OWNER_ACRE_AMT"
+    }
+   }
+  ],
+  "WV": [
+   {
+    "pre": "sgwva",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1/query",
+    "field": "NAME",
+    "label": "West Virginia DNR",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwvb",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16/query",
+    "field": "Name",
+    "label": "West Virginia State Forests (DNR)",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwvc",
+    "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10/query",
+    "field": "Loc_Nm",
+    "label": "West Virginia State Parks (WVDOT boundaries server)",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 36,
+    "facts": {
+     "designation": "Loc_Ds",
+     "acres": "GIS_Acres"
+    }
+   }
+  ],
+  "WY": [
+   {
+    "pre": "sgwya",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0/query",
+    "field": "Park_Name",
+    "label": "Wyoming State Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwyb",
+    "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0/query",
+    "field": "site_name",
+    "label": "Wyoming State Parks, Historic Sites & Trails",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwyc",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4/query",
+    "field": "WHMA_Name",
+    "label": "Wyoming Game and Fish Department · WHMA Boundaries 4",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "sgwyd",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1/query",
+    "field": "PAA_Name",
+    "label": "Wyoming Game and Fish Department · PAA Boundaries 1",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "AB": [
+   {
+    "pre": "caabpublicla",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0/query",
+    "field": "PLUZ_NAME",
+    "label": "AB Public La",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 61,
+    "facts": {
+     "designation": "TYPE"
+    }
+   },
+   {
+    "pre": "caabpluzgove",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11/query",
+    "field": "PLUZ_NAME",
+    "label": "AB-PLUZ Gove",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 61,
+    "facts": {
+     "designation": "TYPE"
+    }
+   },
+   {
+    "pre": "caalbertapar",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0/query",
+    "field": "NAME",
+    "label": "Alberta Park",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 469,
+    "facts": {
+     "designation": "TYPE",
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "caalbertapub",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14/query",
+    "field": "PLREC_NAME",
+    "label": "Alberta publ",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 64,
+    "facts": {
+     "designation": "TYPE"
+    }
+   }
+  ],
+  "BC": [
+   {
+    "pre": "cabcbcparks",
+    "url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0/query",
+    "field": null,
+    "label": "BC BC Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "cabcparkinve",
+    "url": "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6/query",
+    "field": "NAME",
+    "label": "BC Park Inve",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 402,
+    "facts": {
+     "owner": "OWNERSHIP",
+     "designation": "CLASSIFICATION"
+    }
+   },
+   {
+    "pre": "cabcregional",
+    "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0/query",
+    "field": null,
+    "label": "BC RegionalP",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "cabclocaland",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39/query",
+    "field": null,
+    "label": "BC local and",
+    "ok": false,
+    "why": "banned host",
+    "count": null
+   },
+   {
+    "pre": "cabcrecreati",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5/query",
+    "field": null,
+    "label": "BC recreatio",
+    "ok": false,
+    "why": "banned host",
+    "count": null
+   },
+   {
+    "pre": "cabchcagover",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46/query",
+    "field": null,
+    "label": "BC-HCA Gover",
+    "ok": false,
+    "why": "banned host",
+    "count": null
+   },
+   {
+    "pre": "cabchpgovern",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82/query",
+    "field": null,
+    "label": "BC-HP Govern",
+    "ok": false,
+    "why": "banned host",
+    "count": null
+   }
+  ],
+  "ON": [
+   {
+    "pre": "cahardlook",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19/query",
+    "field": "TRAIL_NAME",
+    "label": "Hard look~12",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 7274,
+    "facts": {}
+   },
+   {
+    "pre": "cahardlook",
+    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0/query",
+    "field": "name",
+    "label": "Hard look~14",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 24,
+    "facts": {
+     "acres": "area_acres"
+    }
+   },
+   {
+    "pre": "cahardlook",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5/query",
+    "field": "NAME_ENG",
+    "label": "Hard look~16",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1261,
+    "facts": {
+     "designation": "DESIGNATION_ENG"
+    }
+   },
+   {
+    "pre": "cahardlook",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4/query",
+    "field": "PROTECTED_AREA_NAME_ENG",
+    "label": "Hard look~22",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 347,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "cahardlook",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7/query",
+    "field": "OFFICIAL_NAME",
+    "label": "Hard look~6",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 15,
+    "facts": {}
+   },
+   {
+    "pre": "caonabcaausa",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-ABCA Ausa",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonchconser",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0/query",
+    "field": "Park_Name",
+    "label": "ON-CH Conser",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 8,
+    "facts": {}
+   },
+   {
+    "pre": "caoncrcacata",
+    "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-CRCA Cata",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caoncvccredi",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-CVC Credi",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonercaesse",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-ERCA Esse",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonganagana",
+    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0/query",
+    "field": "name",
+    "label": "ON-GANA Gana",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 24,
+    "facts": {
+     "acres": "area_acres"
+    }
+   },
+   {
+    "pre": "caongscagrey",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3/query",
+    "field": "PROP_NAME",
+    "label": "ON-GSCA Grey",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 211,
+    "facts": {
+     "designation": "Designation"
+    }
+   },
+   {
+    "pre": "caonkrcakawa",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6/query",
+    "field": null,
+    "label": "ON-KRCA Kawa",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonlsrcalak",
+    "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46/query",
+    "field": "PROPERTY_NAME",
+    "label": "ON-LSRCA Lak",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 59,
+    "facts": {
+     "owner": "OWNER",
+     "manager": "MANAGER"
+    }
+   },
+   {
+    "pre": "caonltclower",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-LTC Lower",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonltvcalow",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-LTVCA Low",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonmvcmissi",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0/query",
+    "field": null,
+    "label": "ON-MVC Missi",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonnpcaniag",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2/query",
+    "field": null,
+    "label": "ON-NPCA Niag",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caonorcaoton",
+    "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2/query",
+    "field": "CANAME",
+    "label": "ON-ORCA Oton",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 99,
+    "facts": {
+     "owner": "OWNER",
+     "designation": "CADESN"
+    }
+   },
+   {
+    "pre": "caonrvcaride",
+    "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8/query",
+    "field": "Property_Name",
+    "label": "ON-RVCA Ride",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 10,
+    "facts": {
+     "owner": "Owner",
+     "acres": "Acres"
+    }
+   },
+   {
+    "pre": "caonsvcagrey",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4/query",
+    "field": null,
+    "label": "ON-SVCA Grey",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "caontrcatoro",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250/query",
+    "field": null,
+    "label": "ON-TRCA Toro",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caontariopar",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4/query",
+    "field": "PROTECTED_AREA_NAME_ENG",
+    "label": "Ontario Park",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 347,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "caontariocon",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2/query",
+    "field": "PROTECTED_AREA_NAME_ENG",
+    "label": "Ontario cons",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 306,
+    "facts": {
+     "owner": "OWNER_ENG",
+     "manager": "MANAGEMENT_ENG",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "caontariofed",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10/query",
+    "field": "OFFICIAL_NAME",
+    "label": "Ontario fede",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 36,
+    "facts": {}
+   },
+   {
+    "pre": "caontariomun",
+    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3/query",
+    "field": "OFFICIAL_NAME",
+    "label": "Ontario muni",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 388,
+    "facts": {}
+   }
+  ],
+  "SK": [
+   {
+    "pre": "cahardlook",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0/query",
+    "field": null,
+    "label": "Hard look~18",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "caskallgover",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4/query",
+    "field": null,
+    "label": "SK-ALL Gover",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "caskptgovern",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0/query",
+    "field": null,
+    "label": "SK-PT Govern",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0/query",
+    "field": null,
+    "label": "Saskatchewan",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1/query",
+    "field": null,
+    "label": "Saskatchewan~1",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2/query",
+    "field": null,
+    "label": "Saskatchewan~2",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3/query",
+    "field": null,
+    "label": "Saskatchewan~3",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4/query",
+    "field": null,
+    "label": "Saskatchewan~4",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5/query",
+    "field": null,
+    "label": "Saskatchewan~5",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "casaskatchew",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6/query",
+    "field": "PARK_NAME",
+    "label": "Saskatchewan~6",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 106,
+    "facts": {
+     "designation": "PARK_TYPE"
+    }
+   }
+  ],
+  "YT": [
+   {
+    "pre": "cahardlook",
+    "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19/query",
+    "field": null,
+    "label": "Hard look~20",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "cayukoncampg",
+    "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0/query",
+    "field": null,
+    "label": "Yukon campgr",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "cayukonparks",
+    "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3/query",
+    "field": null,
+    "label": "Yukon parks",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   }
+  ],
+  "MB": [
+   {
+    "pre": "camanitobapa",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0/query",
+    "field": null,
+    "label": "Manitoba Par",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "camanitobapr",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1/query",
+    "field": null,
+    "label": "Manitoba pro",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "camanitobawi",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0/query",
+    "field": null,
+    "label": "Manitoba wil",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "camanitobawi",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1/query",
+    "field": null,
+    "label": "Manitoba wil~1",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "camanitobawi",
+    "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2/query",
+    "field": null,
+    "label": "Manitoba wil~2",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NB": [
+   {
+    "pre": "canbparks",
+    "url": "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0/query",
+    "field": null,
+    "label": "NB Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "canbparks",
+    "url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0/query",
+    "field": null,
+    "label": "NB Parks~1",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "canbwmz",
+    "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0/query",
+    "field": null,
+    "label": "NB WMZ",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   },
+   {
+    "pre": "canbppgovern",
+    "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0/query",
+    "field": "NAME",
+    "label": "NB-PP Govern",
+    "ok": true,
+    "why": "robots.txt allows",
+    "count": 24,
+    "facts": {}
+   }
+  ],
+  "NL": [
+   {
+    "pre": "canlprovinci",
+    "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0/query",
+    "field": null,
+    "label": "NL Provincia",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NS": [
+   {
+    "pre": "canshrmparks",
+    "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0/query",
+    "field": null,
+    "label": "NS HRM Parks",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "cansnslands",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0/query",
+    "field": null,
+    "label": "NS NS_Lands_",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "cansnslands",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0/query",
+    "field": null,
+    "label": "NS NS_Lands_~1",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "cansfnova",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52/query",
+    "field": "NAME",
+    "label": "NS-F111 Nova",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 3,
+    "facts": {}
+   },
+   {
+    "pre": "cansnhsnova",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29/query",
+    "field": "NAME1",
+    "label": "NS-NHS Nova",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 27,
+    "facts": {}
+   },
+   {
+    "pre": "cansppanova",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1/query",
+    "field": null,
+    "label": "NS-PPA Nova",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "canovascotia",
+    "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer/0/query",
+    "field": null,
+    "label": "Nova Scotia",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "canovascotia",
+    "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer/0/query",
+    "field": null,
+    "label": "Nova Scotia ~1",
+    "ok": false,
+    "why": "robots.txt disallows",
+    "count": null
+   },
+   {
+    "pre": "canovascotia",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1/query",
+    "field": null,
+    "label": "Nova Scotia ~2",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   }
+  ],
+  "NT": [
+   {
+    "pre": "cantgnwtenvi",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195/query",
+    "field": "Name",
+    "label": "NT GNWT Envi",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 4,
+    "facts": {
+     "manager": "Management",
+     "designation": "Designation"
+    }
+   },
+   {
+    "pre": "cantnagwicho",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206/query",
+    "field": "Name",
+    "label": "NT Nagwichoo",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1,
+    "facts": {}
+   }
+  ],
+  "PE": [
+   {
+    "pre": "capenccatna",
+    "url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0/query",
+    "field": null,
+    "label": "PE NCC_AT_Na",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "capeprovince",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0/query",
+    "field": "NAME_E",
+    "label": "PE Province",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 49,
+    "facts": {
+     "owner": "OWNER_E",
+     "manager": "MGMT_E",
+     "designation": "TYPE_E"
+    }
+   },
+   {
+    "pre": "capeppgovern",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0/query",
+    "field": null,
+    "label": "PE-PP Govern",
+    "ok": false,
+    "why": "no name field found",
+    "count": null
+   }
+  ],
+  "QC": [
+   {
+    "pre": "caqcpoleconn",
+    "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0/query",
+    "field": null,
+    "label": "QC PoleConne",
+    "ok": false,
+    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "count": null
+   },
+   {
+    "pre": "caqubecaire",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Aire",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 4,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecparc",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Parc",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 1,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecparc",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Parc ~1",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 4,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecparc",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Parc ~2",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 28,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecparc",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Parc ~3",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 16,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecrefug",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Refug",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 9,
+    "facts": {}
+   },
+   {
+    "pre": "caqubecrser",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Réser",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 21,
+    "facts": {}
+   },
+   {
+    "pre": "caqubeczone",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16/query",
+    "field": "NOM_OFFICIEL",
+    "label": "Québec Zone",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 86,
+    "facts": {}
+   },
+   {
+    "pre": "caqubececolo",
+    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10/query",
+    "field": "DESIGNOM",
+    "label": "Québec ecolo",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 75,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
+   },
+   {
+    "pre": "caqubecprote",
+    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23/query",
+    "field": "DESIGNOM",
+    "label": "Québec prote",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 5611,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
+   },
+   {
+    "pre": "caqubecrecog",
+    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12/query",
+    "field": "DESIGNOM",
+    "label": "Québec recog",
+    "ok": true,
+    "why": "no robots.txt",
+    "count": 271,
+    "facts": {
+     "designation": "DESIG_GR"
+    }
+   }
+  ]
+ }
+}

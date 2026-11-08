@@ -6,7 +6,7 @@
        inside it, or a POTA park with the same name close by (not pins alone)
      - the nearest POTA park and how far, and any overlap with a park outline (part of a park, or a 2-fer)
      - the full official record (name, manager, owner, designation, GAP / IUCN, public access, acres, record id and link)
-   and gives a plain verdict (looks new / probably already a park / needs a person) with a summary to copy for a submission.
+   and gives a plain verdict (possible candidate / probably already a park / needs a person) with a summary to copy for a submission.
    A rep can also test a place they found themselves (a name, or a tap on the map).
    Requests: only the two official services the Tool Box already reads in the browser (edits.nationalmap.gov PAD-US,
    maps-cartes.ec.gc.ca CPCAD; robots.txt allows both), and this site's own files (answer keys, POTA list). Nothing is written. */
@@ -68,7 +68,7 @@
     if (c.cat && /easement/i.test(c.cat)) notes.push('It is an easement, not land the agency owns');
     if (c.own && /private/i.test(c.own)) notes.push('The owner is private');
     if (notes.length) return { v: 'person', label: 'Needs a person', why: notes.join('. ') + '.' };
-    return { v: 'new', label: 'Looks new', why: 'No POTA park on this official record, no park outline over it, no POTA pin inside it, no park with this name nearby.' + (c.nearest ? ' Nearest POTA park: ' + c.nearest.ref + ', ' + c.nearest.km.toFixed(1) + ' km.' : '') };
+    return { v: 'new', label: 'Possible candidate', why: 'No POTA park on this official record, no park outline over it, no POTA pin inside it, no park with this name nearby.' + (c.nearest ? ' Nearest POTA park: ' + c.nearest.ref + ', ' + c.nearest.km.toFixed(1) + ' km.' : '') };
   }
   const RANK = { new: 0, person: 1, probably: 2, already: 3 };
   /* group the official records into places (the same name + manager = one place, acres added up) */
@@ -88,6 +88,8 @@
     if (p.protection) L.push('Protection: ' + p.protection);
     if (p.acres) L.push('Size: about ' + Math.round(p.acres).toLocaleString('en-US') + ' acres');
     L.push('Official record: ' + p.source + (p.ids && p.ids.length ? ', id ' + p.ids.join(', ') : ''));
+    factRows(p).filter(r => r.vals.some(x => x.src !== p.source) || p.kind === 'state').forEach(r => L.push(r.label + ': ' + r.vals.map(x => x.v + ' (' + x.src + ')').join('; ') + (r.differ ? ' [sources differ]' : '')));
+    (p.also || []).forEach(x => L.push('Also in: ' + x.source + (x.name && norm(x.name) !== norm(p.name) ? ' (' + x.name + ')' : '') + (x.link ? ', ' + x.link : '')));
     if (p.link) L.push('Record link: ' + p.link);
     L.push('POTA check: ' + p.verdict.label + '. ' + p.verdict.why);
     L.push('Checked with the KPC Mapping Rep Tool Box. Confirm with the managing agency before you submit.');
@@ -175,7 +177,7 @@
   /* Load every key outline the whole search needs up front, in a few batched requests (not one live lookup per park per place).
      A key outline made only of PAD-US records already loaded for this search is used straight from memory. */
   async function prefetchOutlines(places, code, ctx, prog) {
-    const refs = [...new Set(places.flatMap(p => p.ids.some(id => (ctx.rev[String(id)] || []).length) ? [] : candRefs(p, ctx)))].filter(r => !(r in outlineP));
+    const refs = [...new Set(places.flatMap(p => p.ids.concat(p.xids || []).some(id => (ctx.rev[String(id)] || []).length) ? [] : candRefs(p, ctx)))].filter(r => !(r in outlineP));
     if (!refs.length) return 0;
     const have = {}; places.forEach(p => p.ids.forEach((id, i) => { if (p.geoms[i]) have[String(id)] = p.geoms[i]; }));
     /* every key record id, grouped by source: PAD-US (plain number) or another agency's layer (prefix + number) */
@@ -209,12 +211,81 @@
     })(), 12000, []);
     return outlineP[ref];
   }
+  /* ---------- state / province layers next to PAD-US / CPCAD (Brandon Nov 8 4:31 PM CST, t764u: "for example GA it searches pad
+     and state level that way it dont miss many") ----------
+     data/maprep-state-layers.json (built by hand with .github/scripts/kpc_maprep_state_layers.py) lists the layers the answer keys use for
+     each state or province, with only the ones whose robots.txt allows it and a browser may read (ok: true). Kentucky is the model:
+     every place from every source gets the same checks. Each layer is one query, at most 4 at a time, each with a time limit. */
+  const FACT_KEYS = ['owner', 'manager', 'agency', 'designation', 'acres', 'website'];
+  let SLP = null;
+  function stateLayers(code) { SLP = SLP || within(jget('data/maprep-state-layers.json?v=' + new Date().toISOString().slice(0, 10)), 15000, null).then(j => (j && j.areas) || {});
+    return SLP.then(A => (A[code] || [])); }
+  const capName = v => { v = String(v || '').replace(/\s+/g, ' ').trim(); return /[a-z]/.test(v) ? v : v.toLowerCase().replace(/(^|[\s\-\/(.])([a-z])/g, (m, a, b) => a + b.toUpperCase()); };
+  function geomAcres(g) { let a = 0; ringsOf(g).forEach(p => p.forEach((r, k) => { let s2 = 0; for (let i = 0, j = r.length - 1; i < r.length; j = i++) s2 += (r[j][0] - r[i][0]) * (r[j][1] + r[i][1]);
+    const la = r.length ? r[0][1] : 0; const km2 = Math.abs(s2 / 2) * 111.32 * 111.32 * Math.cos(la * Math.PI / 180); a += (k ? -1 : 1) * km2 * 247.105; })); return Math.max(0, a); }
+  function slRec(L, f) {
+    const a = f.properties || {}, id = [f.id, a.OBJECTID, a.objectid, a.ObjectID, a.OBJECTID_1, a.FID].find(v => v != null);
+    /* Nov 8 (t766u): the layer's own owner / manager / agency / designation / acres / website fields (data/maprep-state-layers.json 'facts') */
+    const F = L.facts || {}, facts = {};
+    FACT_KEYS.forEach(k => { const fl = F[k], v = fl != null && a[fl] != null ? String(a[fl]).trim() : ''; if (v && !/^(null|none|n\/?a|unknown|unk|-|0)$/i.test(v)) facts[k] = { v, src: L.label, field: fl }; });
+    if (!facts.manager && facts.agency) facts.manager = Object.assign({}, facts.agency);
+    const ac = facts.acres ? parseFloat(String(facts.acres.v).replace(/,/g, '')) : NaN;
+    return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
+      access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
+  }
+  async function slQuery(L, params, ms) {
+    if (BANNED.test(L.url) || !/^https:\/\//.test(L.url)) throw new Error('not an allowed source');
+    const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000);
+    try { const r = await fetch(L.url + '?' + new URLSearchParams(Object.assign({ f: 'geojson', outSR: 4326, outFields: '*', returnGeometry: true, maxAllowableOffset: 0.0008, geometryPrecision: 5 }, params)), { signal: c.signal });
+      if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json(); if (j.error) throw new Error(j.error.message || 'query error');
+      return (j.features || []).filter(f => f && f.geometry && /Polygon/.test(f.geometry.type)).map(f => slRec(L, f)).filter(x => x.name && x.name !== L.label); }
+    finally { clearTimeout(t); }
+  }
+  /* every ok layer for the place, 4 at a time: [{L, recs, err}] */
+  async function slSearch(code, kind, arg) {
+    const LS = (await stateLayers(code)).filter(L => L.ok && L.field && !BANNED.test(L.url));
+    const params = L => kind === 'state' ? { where: '1=1', resultRecordCount: 1000 }
+      : kind === 'pin' ? (() => { const d = 6 / 111, dx = d / Math.max(0.2, Math.cos(arg[0] * Math.PI / 180)); return { where: '1=1', geometry: [arg[1] - dx, arg[0] - d, arg[1] + dx, arg[0] + d].join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' }; })()
+      : (() => { const w = norm(arg).split(' ').filter(x => x.length > 2).slice(0, 2); return { where: w.length ? 'UPPER(' + L.field + ") LIKE '%" + w.join('%').toUpperCase().replace(/'/g, '%') + "%'" : '1=0' }; })();
+    const out = LS.map(L => ({ L, recs: [], err: '' })); let k = 0;
+    await Promise.all(Array.from({ length: Math.min(4, LS.length) }, async () => { while (k < out.length) { const o = out[k++];
+      try { o.recs = await slQuery(o.L, params(o.L), 25000); } catch (e) { o.err = e && e.name === 'AbortError' ? 'took too long' : String(e && e.message || e); } } }));
+    return { all: LS, out, skipped: (await stateLayers(code)).filter(L => !L.ok) };
+  }
+  const boxOf = gs => gs.map(bbox).filter(Boolean).reduce((a, b) => a ? [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])] : b, null);
+  const boxHit = (a, b, pad) => a && b && a[0] - pad <= b[2] && b[0] - pad <= a[2] && a[1] - pad <= b[3] && b[1] - pad <= a[3];
+  /* is this state-layer place the same land as that place? same name and close by, or mostly the same outline */
+  function samePlace(a, b) {
+    const A = a._bb || (a._bb = boxOf(a.geoms)), Bx = b._bb || (b._bb = boxOf(b.geoms)); if (!A || !Bx || !boxHit(A, Bx, 0.05)) return false;
+    if (sameName(a.name, b.name)) return true;
+    /* different names: only boxes that mostly overlap are worth the outline test (keeps a big state fast on a phone) */
+    const ix = Math.max(0, Math.min(A[2], Bx[2]) - Math.max(A[0], Bx[0])) * Math.max(0, Math.min(A[3], Bx[3]) - Math.max(A[1], Bx[1])), ar = x => (x[2] - x[0]) * (x[3] - x[1]) || 1e-9;
+    if (ix < 0.5 * Math.max(ar(A), ar(Bx))) return false;
+    const ab = Math.max(0, ...a.geoms.map(g => coverShare(g, b.geoms))), ba = Math.max(0, ...b.geoms.map(g => coverShare(g, a.geoms)));
+    return ab >= 0.6 && ba >= 0.6;
+  }
+  /* PAD-US / CPCAD places + state-layer records -> one list; a place in both lists both sources */
+  async function mergeSources(places, srec) {
+    places.forEach(p => { p.sources = p.sources || [p.source]; p.xids = p.xids || []; });
+    const sp = groupRecords(srec.filter(r => r.acres >= 20).map(r => Object.assign({}, r, { manager: r.layer })));   /* grouped per layer + name */
+    sp.forEach(x => { x.manager = x.facts && x.facts.manager ? x.facts.manager.v : x.source; x.sources = [x.source]; x.xids = []; });
+    const extra = [];
+    let n = 0;
+    for (const x of sp) {
+      if (++n % 25 === 0) await tick();
+      const hit = places.find(p => samePlace(x, p)) || extra.find(p => samePlace(x, p));
+      if (hit) { if (hit.sources.indexOf(x.source) < 0) hit.sources.push(x.source); hit.xids.push(...x.ids); (hit.also = hit.also || []).push({ source: x.source, name: x.name, ids: x.ids, link: x.link, facts: x.facts || {} });
+        if (hit.kind !== 'state' && !hit.owner && x.facts && x.facts.owner) { hit.owner = x.facts.owner.v; hit.ownerFrom = x.source; }   /* PAD-US blank: the state layer's owner is used for the checks */ }
+      else extra.push(x);
+    }
+    return places.concat(extra.sort((a, b) => b.acres - a.acres).slice(0, MAX_PLACES));
+  }
   /* all the checks for one place */
   async function checkPlace(p, code, ctx) {
     const pt = (p.geoms[0] && samples(p.geoms[0], 5)[0]) || null;
     const box = p.geoms.map(bbox).filter(Boolean).reduce((a, b) => a ? [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])] : b, null);
     const c = { acc: p.acc, cat: p.cat, own: p.owner, same: [], cover: [], pinIn: [], named: [], nearest: null };
-    p.ids.forEach(id => (ctx.rev[String(id)] || []).forEach(r => { if (c.same.indexOf(r) < 0) c.same.push(r); }));
+    p.ids.concat(p.xids || []).forEach(id => (ctx.rev[String(id)] || []).forEach(r => { if (c.same.indexOf(r) < 0) c.same.push(r); }));
     const pad = 0.6, close = box ? ctx.pins.filter(q => q.la >= box[1] - pad && q.la <= box[3] + pad && q.lo >= box[0] - pad * 1.3 && q.lo <= box[2] + pad * 1.3) : [];
     close.forEach(q => {
       const inIt = p.geoms.some(g => inside(q.la, q.lo, g));
@@ -246,13 +317,17 @@
     if (!/^[A-Z]{2}$/.test(code) || region === 'world' || (region === 'CA' && !CP_LOC[code])) return { unsupported: 'No national list of protected places is wired for this country yet (only its published key below). Use Check a place for one spot.' };
     const ctx = await context(code); ctx.placeName = ctx.placeName || code;
     const recs = await statewide(code, say || (() => {}));
-    const places = groupRecords(recs).slice(0, MAX_PLACES);
+    const SL = slSearch(code, 'state').catch(() => ({ all: [], out: [], skipped: [] }));
+    let places = groupRecords(recs).slice(0, MAX_PLACES);
     if (say) say('Getting the boundaries of ' + places.length + ' places\u2026');
     const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
+    if (say) say('Reading the state and province layers\u2026');
+    const S = await SL; places = await mergeSources(places, S.out.flatMap(o => o.recs)); const ST2 = srcStats(places);
     await prefetchOutlines(places, code, ctx);
     let n = 0; for (const p of places) { await within(checkPlace(p, code, ctx), 15000, null); if (!p.verdict) { p.checks = p.checks || { same: [], cover: [], pinIn: [], named: [], nearest: null }; p.verdict = verdict(p.checks); } n++; if (n % 3 === 0) await tick(); if (say && n % 15 === 0) say('Checked ' + n + ' of ' + places.length + '\u2026'); }
     return { places, kind: CP_LOC[code] ? 'ca' : 'pad', source: CP_LOC[code] ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0',
-      note: CP_LOC[code] ? 'The largest ' + places.length + ' protected areas in CPCAD for this province. CPCAD does not say if the public can go in, so access stays unknown until you check.' : 'The largest ' + places.length + ' places of public land open to the public (PAD-US fee land, 20 acres or more).' };
+      note: (CP_LOC[code] ? 'The largest protected areas in CPCAD for this province. CPCAD does not say if the public can go in, so access stays unknown until you check.' : 'The largest places of public land open to the public (PAD-US fee land, 20 acres or more).') + ' Also searched: ' + (S.out.length ? S.out.map(o => o.L.label + (o.err ? ' (did not answer, try again later)' : ' (' + (ST2.by[o.L.label] || 0) + ')')).join(', ') : 'no state or province layer is wired for this place') + '. Same land in both: ' + ST2.both + '; only in a state layer: ' + ST2.stateOnly + '.',
+      stats: ST2, layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label, why: L.why })) };
   }
   /* ---------- page ---------- */
   const $ = id => D && D.getElementById(id);
@@ -309,10 +384,11 @@
     const slow = cur && !el.classList.contains('done') && !el.classList.contains('err') && Date.now() - cur.at > 20000;
     el.innerHTML = '<div class="mr-rs-st-head"><span class="mr-rs-spin" aria-hidden="true"></span><span>' + esc(ST.title || 'Searching') + '</span><span class="t">' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + '</span></div>'
       + '<div class="mr-rs-bar' + (pct === null && !el.classList.contains('done') && !el.classList.contains('err') ? ' ind' : '') + '" role="progressbar" aria-valuemin="0" aria-valuemax="100"' + (pct !== null ? ' aria-valuenow="' + pct + '"' : '') + '><i style="' + (el.classList.contains('done') ? 'width:100%' : pct !== null ? 'width:' + pct + '%' : '') + '"></i></div>'
-      + '<ol class="mr-rs-steps">' + ST.steps.map(x => '<li class="' + x.st + '">' + esc(x.label) + (x.note ? '<small>' + esc(x.note) + '</small>' : '') + '</li>').join('') + '</ol>'
+      + '<ol class="mr-rs-steps">' + ST.steps.map(x => '<li class="' + x.st + '">' + esc(x.label) + (x.note ? '<small>' + esc(x.note) + '</small>' : '') + (x.retry && !ST.timer ? ' <button type="button" class="mr-rs-retry1" data-rsretry="1">TRY AGAIN</button>' : '') + '</li>').join('') + '</ol>'
       + (slow ? '<p class="mr-rs-slow">Still waiting on the official server. Big states can take a minute or two; nothing is broken.</p>' : '')
       + (ST.err ? '<p class="mr-rs-err">' + esc(ST.err) + '</p><div class="mr-check-btns"><button type="button" id="mrRsRetry">TRY AGAIN</button></div>' : '');
     const r = $('mrRsRetry'); if (r) r.onclick = () => (ST.kind === 'ids' ? (ST.err = '', stDraw()) : run(ST.kind));
+    el.querySelectorAll('[data-rsretry]').forEach(b => b.onclick = () => { if (ST.kind !== 'ids') run(ST.kind); });
   }
   function stBegin(title, kind) {
     const el = stEl(); ST.t0 = Date.now(); ST.steps = []; ST.title = title; ST.err = ''; ST.kind = kind;
@@ -321,6 +397,22 @@
   }
   function stStep(label, total) { ST.steps.forEach(x => { if (x.st === 'run') x.st = 'ok'; }); const x = { label, st: 'run', n: 0, total: total || 0, at: Date.now(), note: '' }; ST.steps.push(x); stDraw(); return x; }
   function stCount(x, n, note) { if (!x) return; x.n = n; x.note = note || (x.total ? n.toLocaleString('en-US') + ' / ' + x.total.toLocaleString('en-US') : ''); stDraw(); }
+  /* one line per source: 'Georgia DNR State Parks: 63 places' (a source that failed gets TRY AGAIN; the search goes on) */
+  function stLine(label, ok, note) { ST.steps.push({ label, st: ok ? 'ok' : 'bad', n: 0, total: 0, at: Date.now(), note: note || '', retry: !ok, src: true }); stDraw(); }
+  function srcStats(places, padSrc) {
+    const by = {}; let padOnly = 0, stateOnly = 0, both = 0;
+    places.forEach(p => { const ss = p.sources || [p.source]; ss.forEach(x => { by[x] = (by[x] || 0) + 1; });
+      const hasPad = p.kind !== 'state', hasSt = p.kind === 'state' || (p.also || []).length > 0; if (hasPad && hasSt) both++; else if (hasPad) padOnly++; else stateOnly++; });
+    return { by, padOnly, stateOnly, both };
+  }
+  function sourceLines(src, padErr, S, places) {
+    const padSrc = places.find(p => p.kind !== 'state'), st = srcStats(places), padLabel = padSrc ? padSrc.source : (src === 'CPCAD' ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0');
+    stLine(padLabel + ': ' + (padErr ? 'did not answer (' + padErr + ')' : (st.by[padLabel] || 0) + ' places'), !padErr);
+    S.out.forEach(o => stLine(o.L.label + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
+    if (S.skipped.length) stLine(S.skipped.length + ' more layer' + (S.skipped.length === 1 ? '' : 's') + ' skipped (' + [...new Set(S.skipped.map(L => String(L.why || '').replace(/:.*$/, '').replace(/ \(.*$/, '')))].join('; ') + ')', true);
+    stLine('Same land in both lists: ' + st.both + ' \u00b7 only in ' + (src === 'CPCAD' ? 'CPCAD' : 'PAD-US') + ': ' + st.padOnly + ' \u00b7 only in a state layer: ' + st.stateOnly, true);
+    W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label, why: L.why })), padErr }, st));
+  }
   function stEnd(ok, msg) {
     const el = stEl(); ST.steps.forEach(x => { if (x.st === 'run') x.st = ok ? 'ok' : 'bad'; }); clearInterval(ST.timer); ST.timer = null;
     if (el) el.classList.add(ok ? 'done' : 'err');
@@ -337,9 +429,32 @@
     const el = D.querySelector('[data-rs="' + i + '"]'); if (el) { if (el.tagName === 'DETAILS') el.open = true; inPanel(el, 'start'); }
     if (rmap && p.geoms.length) { const g = L.geoJSON({ type: 'FeatureCollection', features: p.geoms.map(x => ({ type: 'Feature', geometry: x })) }); try { rmap.fitBounds(g.getBounds(), { maxZoom: 14, padding: [20, 20] }); } catch (e) {} }
   }
+  /* every fact with its source; PAD-US / CPCAD and a state layer that say different things are both shown, marked 'sources differ' */
+  const FACT_LAB = { owner: 'Owner', manager: 'Manager', designation: 'Designation', acres: 'Acres', website: 'Website' };
+  function factRows(p) {
+    const rows = [], base = p.kind === 'state' ? [] : [{ src: p.source, owner: p.ownerFrom ? '' : p.owner, manager: p.manager, designation: p.designation, acres: p.acres }];
+    const st = (p.kind === 'state' ? [{ source: p.source, facts: p.facts || {} }] : (p.also || [])).map(x => Object.assign({ src: x.source }, Object.fromEntries(Object.entries(x.facts || {}).map(([k, v]) => [k, v.v]))));
+    const all = base.concat(st), key = v => norm(String(v || '').replace(/\(.*?\)/g, ''));
+    ['owner', 'manager', 'designation', 'acres', 'website'].forEach(k => {
+      const vals = all.filter(x => x[k] != null && String(x[k]).trim() !== '' && !(k === 'acres' && !(+String(x[k]).replace(/,/g, '') > 0))).map(x => ({ v: k === 'acres' ? Math.round(+String(x[k]).replace(/,/g, '')).toLocaleString('en-US') : String(x[k]).trim(), src: x.src }));
+      if (!vals.length) return;
+      for (let i = vals.length - 1; i > 0; i--) { const j = vals.findIndex(x => key(x.v) === key(vals[i].v)); if (j < i) { vals[j].src += ' + ' + vals[i].src; vals.splice(i, 1); } }   /* the same value twice: one line, both sources */
+      let differ = false;
+      if (vals.length > 1) { if (k === 'acres') { const n = vals.map(x => +x.v.replace(/,/g, '')); differ = Math.max(...n) > 1.25 * Math.min(...n); }
+        else if (k !== 'website') { const ks = vals.map(x => key(x.v)); differ = ks.some(a => ks.some(b => a && b && a.indexOf(b) < 0 && b.indexOf(a) < 0 && !sameName(a, b))); } }
+      rows.push({ k, label: FACT_LAB[k], vals, differ });
+    });
+    return rows;
+  }
+  function factsHtml(p) {
+    const R = factRows(p); if (!R.length || (p.kind !== 'state' && !(p.also || []).length)) return '';   /* PAD-US only: its own record card already shows these */
+    return '<div class="mr-rs-checks mr-rs-facts"><b>Official record facts, by source</b><ul>' + R.map(r => '<li>' + esc(r.label) + ': ' + r.vals.map(x => (r.k === 'website' && /^https?:\/\//i.test(x.v) ? '<a href="' + esc(x.v) + '" target="_blank" rel="noopener">' + esc(x.v) + '</a>' : '<b>' + esc(x.v) + '</b>') + ' <small>(' + esc(x.src) + ')</small>').join(' \u00b7 ')
+      + (r.differ ? ' <span class="mr-rs-differ">sources differ</span>' : '') + '</li>').join('') + '</ul></div>';
+  }
   function card(p, i) {
     const X = W.KPCMapExtras, c = p.checks || {};
-    const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : (X && X.caCard ? X.caCard(p.a) : '');
+    const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : p.kind === 'state' ? '<p class="mr-help mr-rs-src">From the state / province layer: <b>' + esc(p.source) + '</b> (not in ' + (p.source && /CPCAD/.test(p.source) ? 'CPCAD' : 'PAD-US or CPCAD') + ')</p>' : (X && X.caCard ? X.caCard(p.a) : '');
+    const also = (p.also || []).length ? '<p class="mr-help mr-rs-src">Also in: ' + p.also.map(x => '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(x.source) + (norm(x.name) !== norm(p.name) ? ' (\u201c' + esc(x.name) + '\u201d)' : '') + '</a>').join(' \u00b7 ') + '</p>' : '';
     const lines = [];
     if (c.same.length) lines.push('Same official record as: ' + c.same.join(', '));
     (c.cover || []).forEach(x => lines.push('Park outline over it: ' + x.ref + ' covers ' + Math.round(x.share * 100) + '%'));
@@ -347,10 +462,10 @@
     (c.named || []).forEach(x => lines.push('Same name: ' + x.ref + ', ' + x.km.toFixed(1) + ' km'));
     lines.push('Nearest POTA park: ' + (c.nearest ? c.nearest.ref + ' ' + c.nearest.name + ', ' + c.nearest.km.toFixed(1) + ' km' : 'none within about 60 km'));
     return '<details class="mr-rs-card mr-rs-' + p.verdict.v + '" data-rs="' + i + '"><summary><span class="mr-rs-v">' + esc(p.verdict.label) + '</span><b>' + esc(p.name) + '</b><small>'
-      + esc([p.designation, p.manager].map(x => String(x || '').trim()).concat([ p.acres ? Math.round(p.acres).toLocaleString('en-US') + ' acres' : '']).filter(Boolean).join(' \u00b7 ')) + '</small></summary>'
+      + esc([(p.sources || []).length > 1 ? p.sources.length + ' sources' : p.kind === 'state' ? p.source : '', p.designation, p.kind === 'state' ? '' : p.manager].map(x => String(x || '').trim()).concat([ p.acres ? Math.round(p.acres).toLocaleString('en-US') + ' acres' : '']).filter(Boolean).join(' \u00b7 ')) + '</small></summary>'
       + '<p class="mr-rs-why">' + esc(p.verdict.why) + '</p>'
       + '<div class="mr-rs-checks"><b>Checks</b><ul>' + lines.map(l => '<li>' + esc(l) + '</li>').join('') + '</ul></div>'
-      + official
+      + factsHtml(p) + official + also
       + '<p class="mr-rs-links"><a href="' + esc(p.link) + '" target="_blank" rel="noopener">OFFICIAL RECORD \u203a</a> <button type="button" class="mr-ag" data-rscheck="' + i + '">FULL RULES CHECK</button></p>'
       + '<label class="mr-rs-sumlab">Summary for a park submission (copy and edit)</label><textarea class="mr-rs-sum" readonly rows="9" id="mrRsSum' + i + '">' + esc(summaryText(p)) + '</textarea>'
       + '<button type="button" class="mr-ag" data-rscopy="' + i + '">COPY SUMMARY</button></details>';
@@ -358,7 +473,7 @@
   function paint() {
     const out = $('mrRsOut'); if (!out) return;
     const n = { new: 0, person: 0, probably: 0, already: 0 }; rows.forEach(p => n[p.verdict.v]++);
-    const lab = { new: 'Looks new', person: 'Needs a person', probably: 'Probably already a park', already: 'Already a park', all: 'All' };
+    const lab = { new: 'Possible candidate', person: 'Needs a person', probably: 'Probably already a park', already: 'Already a park', all: 'All' };
     const show = rows.map((p, i) => [p, i]).filter(([p]) => filt === 'all' || p.verdict.v === filt);
     out.innerHTML = '<div class="mr-filters" id="mrRsFilters">' + ['new', 'person', 'probably', 'already', 'all'].map(k => '<button type="button" class="mr-ag' + (k === filt ? ' on' : '') + '" data-rsf="' + k + '">' + lab[k] + ' \u00b7 ' + (k === 'all' ? rows.length : n[k]) + '</button>').join('') + '</div>'
       + (show.length ? show.map(([p, i]) => card(p, i)).join('') : '<p class="mr-help">None in this group.</p>');
@@ -416,18 +531,25 @@
     try {
       step = stStep('Loading the answer key and POTA pins for ' + pn + '\u2026');
       const ctx = await context(code); stCount(step, 0, (ctx.pins || []).length.toLocaleString('en-US') + ' pins');
-      let recs = [];
-      if (kind === 'state') { step = stStep('Loading ' + src + ' for ' + code + '\u2026'); recs = await statewide(code, say); }
-      else if (kind === 'pin') { step = stStep('Loading ' + src + ' around the pin\u2026'); say('Reading official land around the pin\u2026'); recs = await near(code, lastPin[0], lastPin[1], 6); }
-      else { step = stStep('Looking for \u201c' + q0 + '\u201d in ' + src + '\u2026'); say('Looking for \u201c' + q0 + '\u201d in the official records\u2026'); recs = await byName(code, q0); if (!recs.length && lastPin) recs = (await near(code, lastPin[0], lastPin[1], 10)).filter(r => sameName(r.name, q0) || norm(r.name).indexOf(norm(q0)) >= 0); }
+      let recs = [], padErr = '';
+      const SL = slSearch(code, kind, kind === 'pin' ? lastPin : q0).catch(() => ({ all: [], out: [], skipped: [] }));   /* state / province layers, in parallel */
+      try {
+        if (kind === 'state') { step = stStep('Loading ' + src + ' for ' + code + '\u2026'); recs = await statewide(code, say); }
+        else if (kind === 'pin') { step = stStep('Loading ' + src + ' around the pin\u2026'); say('Reading official land around the pin\u2026'); recs = await near(code, lastPin[0], lastPin[1], 6); }
+        else { step = stStep('Looking for \u201c' + q0 + '\u201d in ' + src + '\u2026'); say('Looking for \u201c' + q0 + '\u201d in the official records\u2026'); recs = await byName(code, q0); if (!recs.length && lastPin) recs = (await near(code, lastPin[0], lastPin[1], 10)).filter(r => sameName(r.name, q0) || norm(r.name).indexOf(norm(q0)) >= 0); }
+      } catch (e) { padErr = String(e && e.name === 'AbortError' ? 'took too long' : (e && e.message || e)); }
       let places = groupRecords(recs).slice(0, kind === 'state' ? MAX_PLACES : 40);
-      stCount(step, 0, recs.length.toLocaleString('en-US') + ' records \u00b7 ' + places.length + ' places');
-      if (!places.length) { rows = []; paint(); say('No official records came back for that. Try another name, drop a pin, or check the spelling.'); stEnd(false, 'No official records came back for that. Try another name, drop a pin, or check the spelling.'); busy = false; return; }
+      stCount(step, 0, padErr ? 'did not answer' : recs.length.toLocaleString('en-US') + ' records \u00b7 ' + places.length + ' places');
       if (places.some(p => !p.geoms.length)) {
         step = stStep('Getting the boundaries of ' + places.length + ' places\u2026');
         say('Getting the boundaries of ' + places.length + ' places\u2026');
         const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
       }
+      step = stStep('Reading the state and province layers for ' + pn + '\u2026'); say('Reading the state and province layers\u2026');
+      const S = await SL; stCount(step, 0, S.all.length + ' layer' + (S.all.length === 1 ? '' : 's') + (S.skipped.length ? ' \u00b7 ' + S.skipped.length + ' skipped' : ''));
+      places = await mergeSources(places, S.out.flatMap(o => o.recs));
+      sourceLines(src, padErr, S, places);
+      if (!places.length) { rows = []; paint(); const m = padErr && !S.out.some(o => !o.err) ? 'The official records did not answer (' + padErr + '). Try again in a minute.' : 'No official records came back for that. Try another name, drop a pin, or check the spelling.'; say(m); stEnd(false, m); busy = false; return; }
       step = stStep('Loading the key outlines near these places (one batch)\u2026');
       await prefetchOutlines(places, code, ctx, (n, t) => stCount(step, n, n + ' / ' + t + ' batches'));
       step = stStep('Checking against key outlines, pins and names (on this device)\u2026', places.length);
@@ -436,9 +558,9 @@
       places.sort((a, b) => (RANK[a.verdict.v] - RANK[b.verdict.v]) || b.acres - a.acres);
       rows = places; filt = rows.some(p => p.verdict.v === 'new') ? 'new' : 'all';
       const n = rows.filter(p => p.verdict.v === 'new').length, c = { person: 0, probably: 0, already: 0 }; rows.forEach(p => { if (p.verdict.v in c) c[p.verdict.v]++; });
-      say(rows.length + ' places checked' + (kind === 'state' ? (CP_LOC[code] ? ' (the largest ' + rows.length + ' protected areas in CPCAD; CPCAD does not say if the public can go in, so check access)' : ' (the largest ' + rows.length + ' that are open to the public)') : '') + ': ' + n + ' look new. Tap one for the checks, the official record and a summary to copy.');
+      say(rows.length + ' places checked' + (kind === 'state' ? (CP_LOC[code] ? ' (the largest protected areas in CPCAD plus the province layers; CPCAD does not say if the public can go in, so check access)' : ' (the largest PAD-US places open to the public, plus the state and province layers)') : '') + ': ' + n + (n === 1 ? ' is a possible candidate' : ' are possible candidates') + ' (not on POTA yet, by our checks; not newly opened land). Tap one for the checks, the official record and a summary to copy.');
       paint(); draw(rows, true);
-      stEnd(true, 'Done: ' + rows.length + ' places checked \u00b7 ' + n + ' look new \u00b7 ' + c.person + ' need a person \u00b7 ' + (c.probably + c.already) + ' already parks');
+      stEnd(true, 'Done: ' + rows.length + ' places checked \u00b7 ' + n + ' possible candidates \u00b7 ' + c.person + ' need a person \u00b7 ' + (c.probably + c.already) + ' already parks');
     } catch (e) { const m = 'The official records did not answer (' + (e && e.message || e) + '). Try again in a minute.'; say(m); stEnd(false, (step ? step.label.replace(/\u2026$/, '') + ' failed. ' : '') + m); }
     busy = false;
   }
@@ -463,6 +585,6 @@
       const st = $('mrCheckSt'); testIds((st && st.value) || placeCode(), String(t.dataset.rstest).split(',').filter(Boolean), t.dataset.rsname || ''); });
   }
   if (D) { const go = () => { const app = $('mrApp'); if (app && app.hidden) { setTimeout(go, 300); return; } wire(); }; if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', go); else go(); }
-  W.KPCResearch = { within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
+  W.KPCResearch = { factRows, slRec, mergeSources, samePlace, srcStats, slSearch, stateLayers, geomAcres, capName, within, prefetchOutlines, candRefs, verdict, sameName, nameKey, norm, coverShare, samples, inside, bbox, groupRecords, summaryText, nearestKm, padRec, caRec, checkPlace, classify, run, testIds, setTab, PADUS_LAYER, CPCAD_LAYER, CP_LOC };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCResearch;
 })();
