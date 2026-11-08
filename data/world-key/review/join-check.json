@@ -2,7 +2,7 @@
  "key": "world",
  "mode": "hold",
  "files_checked": 6,
- "joined_parks": 8550,
+ "joined_parks": 8547,
  "suspect": 19,
  "held": 19,
  "files_changed": 5,
@@ -27,7 +27,7 @@
    "name": "Investigator Marine Park",
    "outline_ac": "",
    "official_ac": "",
-   "pin_km": 23.01,
+   "pin_km": 23.0,
    "suspect": "the nearest joined record is 23.0 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
