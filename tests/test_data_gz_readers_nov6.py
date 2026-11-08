@@ -81,7 +81,7 @@ def question(ref, answer, **extra):
 # ---- rules hash and the research switch are untouched ----
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', '6a5969a25d2c'),
+check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('a066624520b4', '8feccbb7d9ee', '10e4092cc97f'),
       'rules hashes stay us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c')
 check(RS.mode() == 'off', 'KPC_RESEARCH_SOURCES still defaults to off')
 check(any(str(p).endswith('kpc_ca_hardlook.py') for p in KZ.RULE_FILES['ca-key']),

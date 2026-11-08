@@ -54,7 +54,7 @@ try:
     # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
     # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
     _decl = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8') if (ROOT / 'docs/key-rules-change.txt').is_file() else ''
-    _wdecl = re.search(r'world rules 1b50faf1dfe8 -> ([0-9a-f]{12})', _decl)
+    _wdecl = re.search(r'world rules (?:1b50faf1dfe8|6a5969a25d2c) -> ([0-9a-f]{12})', _decl)   # Nov 7 rebuild; Nov 8 CH (#76)
     _wok = {EXP['world-key']} | ({_wdecl.group(1)} if _wdecl else set())
     check('rules hashes unchanged (world: main or the declared world rebuild) ' + json.dumps({k: KF.rules_hash(k) for k in EXP}),
           KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)
@@ -63,11 +63,19 @@ try:
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
     check('rule files and key-rules-version.json are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
+    sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sources, apply_moved
+    _MOVES = moved_sources(ROOT)
     d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json',
                         ':!data/us-key/overrides.json',   # round 3: the hand-override ledger may gain a declared row (US-3917)
                         # Nov 7 evening bundle: the layer lists and 'rebuild tonight' lists are inputs, not answer keys
                         ':!data/*/answers-states.txt', ':!data/*/answers-provinces.txt', ':!data/*/answers-countries.txt',
-                        ':!data/world-key/extra-layers.json'], cwd=ROOT)
+                        ':!data/world-key/extra-layers.json',
+                        # Nov 8 (#76): a declared moved source (docs/key-rules-change.txt) is checked just below
+                        *([':!data/world-key/layers.json', ':!data/world-key/sheet-countries.json'] if _MOVES else [])], cwd=ROOT)
+    for _f in (['data/world-key/layers.json', 'data/world-key/sheet-countries.json'] if _MOVES else []):
+        _b = git_show(_f)
+        check(f'{_f}: only the declared moved source(s) differ from ' + BASE,
+              _b is not None and apply_moved(_b.decode('utf-8'), _MOVES) == (ROOT / _f).read_text(encoding='utf-8'))
     check('answer keys in this repo are byte-identical to ' + BASE + ' (the declared overrides ledger aside)', d.returncode == 0)
     check('the world tract runner is listed as NOT a rule file', 'kpc_world_tracts.py' in KF.NOT_RULES and 'kpc_tracts.py' in KF.NOT_RULES)
     wf = '\n'.join(p.read_text(encoding='utf-8') for p in (ROOT / '.github' / 'workflows').glob('*.yml'))

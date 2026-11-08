@@ -83,7 +83,7 @@
  "Nature refuge": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer/69",
  "Naturpark": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/1",
  "Naturparke": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/6",
- "Naturreservat": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
+ "Naturreservat": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/ALR_Naturreservat/MapServer/1",
  "Naturschutzgebiet": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/4",
  "Naturschutzgebiete": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/4",
  "Oman: Environment Authority Oman / NCSI (Environment Atlas of Oman, ONSDI)": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/المناطق_المحمية27012025/FeatureServer/0",

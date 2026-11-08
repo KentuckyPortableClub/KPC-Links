@@ -139,6 +139,11 @@ if OLD:
     diff = {c: [s[0] for s in g0['SRC'][c] if s not in g['SRC'].get(c, [])] for c in g0['SRC']}
     diff = {c: v for c, v in diff.items() if v}
     added = {c: [s[0] for s in g['SRC'][c] if s not in g0['SRC'].get(c, [])] for c in g['SRC']}
+    # Nov 8 (#76, Brandon OK): data.geo.admin.ch renamed the BAFU parks collection (dropped _perimeter); that one CH source is swapped
+    _ren = [s for s in g['SRC']['CH'] if s[0] == 'BAFU parks of national importance']
+    if _ren and 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' in str(_ren[0]) and '_perimeter' not in str(_ren[0]):
+        diff['CH'] = [x for x in diff.get('CH', []) if x != 'BAFU parks of national importance']
+        added['CH'] = [x for x in added.get('CH', []) if x != 'BAFU parks of national importance']
     check(diff == {'CH': ['EEA Natura 2000'], 'NO': ['EEA Natura 2000']} and not any(added.values()) and set(g0['SRC']) == set(g['SRC']),
           f'B6: vs origin/main only CH and NO lose one source, EEA Natura 2000; nothing else changes ({diff})')
     # Nov 7 evening (Brandon: the 72 approved land-class layers go in): extra-layers.json may GROW, only with layers from
@@ -149,7 +154,9 @@ if OLD:
     check(all(g['EXTRA_URLS'].get(k) == v for k, v in g0['EXTRA_URLS'].items()) and all(k[1] in _ok for k in _new)
           and all(g['LAYER_NAMEF'].get(k) == v for k, v in g0['LAYER_NAMEF'].items()),
           f'every approved extra layer is still read; {len(_new)} added, all from the land-class allow list')
-_el0 = json.loads(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}').get('countries') or {}
+sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sources, apply_moved  # noqa: E402
+# Nov 8 (#76): a declared moved source (docs/key-rules-change.txt) is the one allowed change to an origin/main row
+_el0 = json.loads(apply_moved(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}', moved_sources(ROOT))).get('countries') or {}
 _el = json.load(open(ROOT / 'data/world-key/extra-layers.json')).get('countries') or {}
 check(all(all(l in _el.get(c, []) for l in ls) for c, ls in _el0.items()),
       'data/world-key/extra-layers.json keeps every origin/main row unchanged (rows may only be added, Nov 7 land-class allow list)')
@@ -495,7 +502,8 @@ check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not li
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
 check(KZ.rules_hash('us-key') == 'a066624520b4' and KZ.rules_hash('ca-key') == '8feccbb7d9ee', 'US a066624520b4 and CA 8feccbb7d9ee rules hashes unchanged')
-check(KZ.rules_hash('world-key') == '6a5969a25d2c', f"world rules hash moved on purpose once: 1b50faf1dfe8 -> 6a5969a25d2c (now {KZ.rules_hash('world-key')})")
+# Nov 8 (#76, Brandon OK): the CH BAFU parks collection rename moved it again, 6a5969a25d2c -> 10e4092cc97f
+check(KZ.rules_hash('world-key') == '10e4092cc97f', f"world rules hash moved on purpose: 1b50faf1dfe8 -> 6a5969a25d2c (Nov 7) -> 10e4092cc97f (Nov 8, CH) (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', BASE, '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 # Only RULE files matter here: other patches combined with this one (e.g. Tracts Part 1) may change NOT_RULES scripts.

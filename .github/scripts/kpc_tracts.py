@@ -200,11 +200,16 @@ def _bbox(rings):
     return [min(xs), min(ys), max(xs), max(ys)] if xs else None
 
 
+PIECES_MAX = int(os.environ.get('KPC_PIECES_MAX', '2000'))
+
 def pieces(rings, gap_km=1.0):
     try:
         import kpc_key_rules as KR
         outer = [r for r in rings if r and len(r) >= 3]
         if not outer: return 0
+        # Nov 8 (world W-42480248682: CL's island and marine areas have ~20,000 rings, and grouping that many boxes ran past the
+        # 100 min country limit): a record with more than PIECES_MAX rings gets no 'pieces' count (left out, as for any error).
+        if len(outer) > PIECES_MAX: return None
         return len(KR.tracts_of([_bbox([r]) for r in outer], gap_km))
     except Exception: return None  # noqa: BLE001
 
@@ -250,7 +255,9 @@ def nested_geometry(shapes, share=NEST_SHARE):
     for r, rg in shapes.items():
         rg = [x for x in rg or [] if x and len(x) >= 3]
         if not rg: continue
-        S[r] = (rg, _bbox(rg), PE.acres_rings(rg), _sample(rg))
+        try: ac = PE.acres_rings(rg)
+        except PE.AcresTooSlow: continue   # Nov 8: a park too big to measure in time is left out of the nesting (CL marine areas)
+        S[r] = (rg, _bbox(rg), ac, _sample(rg))
     out = []
     for c, (rc, bc, ac, sc) in S.items():
         holders = []
