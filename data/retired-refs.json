@@ -515,6 +515,11 @@
    "d": "2026-10-24",
    "src": "us"
   },
+  "US-13337": {
+   "n": "Church Camp Road BLM Special Recreation Management Area",
+   "d": "2026-11-08",
+   "src": "us"
+  },
   "US-13604": {
    "n": "Lake Linville",
    "d": "2026-10-22",
@@ -552,5 +557,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-06"
+ "updated": "2026-11-08"
 }
