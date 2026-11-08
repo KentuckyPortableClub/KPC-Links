@@ -24,7 +24,7 @@ check('Find new parks first.' in html, 'how-to starts with finding new parks')
 check('function foldKey' in chk and chk.count('foldKey(box, stAll.name)') == 2, 'both published-key lists are folded')
 check('bonus reference, not the research tool' in chk and "['mrAgDrop', 'mrCandsWrap']" in chk, 'fold explains itself; agency links and possible new parks stay outside the fold')
 check('data-rstest=' in cand and 'RUN THE FULL NEW-PARK CHECKS' in cand, 'possible new parks rows run the full checks, not only pins')
-check('async function areaLayers' in chk and chk.count('areaLayers(stAll, box)') == 2 and 'id="mrAreaFilters"' in chk and 'R.classify(stAll.code' in chk,
+check('async function areaLayers' in chk and chk.count('areaLayers(stAll, box)') == 3 and 'id="mrAreaFilters"' in chk and 'R.classify(stAll.code' in chk,
       'Check All everywhere works like Kentucky: official layers first, Yes / Maybe / No / Already filters')
 check("code === 'KY'" in js and 'No national list of protected places is wired' in js, 'Kentucky keeps its own layers; world places without a national list say so')
 check('padExact' in chk[chk.find('async function areaLayers'):] and "'ALREADY'" in chk[chk.find('async function areaLayers'):], 'area rows use the same rules checklist as Kentucky, refs count as already')
