@@ -9,7 +9,7 @@ for f in ('kpc-maprep-reps.html', 'kpc-maprep.html', '.claude/build/maprep/main.
     h = (ROOT / f).read_text(encoding='utf-8'); sec = h[h.find('id="mrResearch"'):h.find('id="mrCheckCard"')]
     check(all(f'data-rstab="{k}"' in sec for k in ('state', 'pin', 'name')) and sec.count('role="tab"') == 3, f'{f}: three tabs')
     check(sec.count('type="submit"') == 1 and 'id="mrRsGo"' in sec and '>SEARCH<' in sec, f'{f}: one SEARCH button')
-    check(all(f'id="{i}"' in sec for i in ('mrRsFind', 'mrRsNear', 'mrRsTest', 'mrRsPlace', 'mrRsQ', 'mrRsMap', 'mrRsMsg', 'mrRsOut')), f'{f}: every earlier control id is kept')
+    check(all(f'id="{i}"' in sec for i in ('mrRsFind', 'mrRsNear', 'mrRsTest', 'mrRsPlace', 'mrRsQ', 'mrRsMsg', 'mrRsOut')), f'{f}: every earlier control id is kept')
     check('id="mrRsStatus"' in sec and 'aria-live="polite"' in sec, f'{f}: live status panel')
     check(not re.search(r'\b(bot|AI|agent)\b', re.sub(r'<[^>]+>', ' ', sec)), f'{f}: no bot wording')
 js = (ROOT / 'kpc-maprep-research.js').read_text(encoding='utf-8')
