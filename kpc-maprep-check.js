@@ -1221,11 +1221,20 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     if (!liveCatP) liveCatP = fetch('data/maprep/catalog.json').then(r => r.ok ? r.json() : null).catch(() => null);
     const cat = await liveCatP, row = placeList().find(r => r.code === code);
     const lim = code && row && /^(US|CA)$/.test(String(row.region || row.r || (row.code && row.code.length === 2 ? 'US' : ''))) ? G.liveLimit(cat, code) : null;
+    /* saved copies first (Nov 8): the place's published answer key and its build date */
+    let tier = lim ? 'little' : 'live', saved = null, built = '';
+    if (lim && G.savedShare) {
+      saved = G.savedShare(await stateKey(code));
+      const idx = await B().jget(row.region === 'CA' ? 'data/ca-key/index.json' : 'data/us-key/index.json').catch(() => null);
+      built = (idx && idx.built) || '';
+      tier = G.liveTier(lim, saved);
+    }
+    const text = tier === 'some' || tier === 'little' ? G.savedNoteText(row.name, tier, saved, built) : '';
     ['mrCheckSt', 'mrDeskPlace'].forEach(id => {
       const sel = $(id); if (!sel || !sel.parentNode) return;
       let p = document.getElementById(id + 'Live');
       if (!p) { p = document.createElement('p'); p.id = id + 'Live'; p.className = 'mr-help mr-livenote'; p.setAttribute('role', 'status'); p.style.cssText = 'margin:6px 0 0;padding:8px 10px;border-left:4px solid #d5a63a;background:rgba(213,166,58,.12);border-radius:6px'; sel.insertAdjacentElement('afterend', p); }
-      p.hidden = !lim; p.textContent = lim ? G.liveNoteText(row.name) : '';
+      p.hidden = !text; p.textContent = text; p.dataset.tier = tier;
       if (lim) p.dataset.reason = lim.reason; else delete p.dataset.reason;
     });
   }

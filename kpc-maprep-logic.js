@@ -521,13 +521,32 @@
     const sk = (cat.skipped || []).filter(s => s && new RegExp('^(?:[A-Z]{2}-)?' + code + '$').test(String(s.jurisdiction || '')));
     return { code: code, reason: sk.some(s => /robots|disallow|unknown|arcgis\.com/i.test(String(s.why || ''))) ? 'disallow' : 'none' };
   }
+  /* Nov 8 (Brandon 8:23 AM CST, "why 46? Don't we have downloaded copies?"): the saved answer key already gives the Tool Box
+     official outlines for most of those places. Tier from the saved share: full (>= 90% of parks have a saved outline: no note),
+     some (>= 60%: soft note naming the saved copy), little (under 60%: the heads-up). keyDoc = the place's key file (parks). */
+  function savedShare(keyDoc) {
+    const P = (keyDoc && keyDoc.parks) || {}; let n = 0, o = 0;
+    Object.keys(P).forEach(r => { const p = P[r]; if (!p || typeof p !== 'object') return; n++; if ((p.m || []).length && p.g !== 'pin') o++; });
+    return { parks: n, outlines: o, share: n ? o / n : 0 };
+  }
+  function liveTier(lim, saved) {
+    if (!lim) return 'live';
+    const s = saved || { share: 0 };
+    return s.share >= 0.9 ? 'full' : s.share >= 0.6 ? 'some' : 'little';
+  }
+  function savedNoteText(name, tier, saved, built) {
+    const n = String(name || 'this place'), s = saved || { parks: 0, outlines: 0 }, when = built ? ' from ' + String(built).slice(0, 10) : '';
+    if (tier === 'some') return 'Live agency maps for ' + n + ' aren\u2019t available here, so we\u2019re showing our saved copies' + when + ': ' + s.outlines + ' of ' + s.parks + ' parks have a saved official outline. Use the official links below for the rest.';
+    if (tier === 'little') return 'Heads up: we can\u2019t load ' + n + '\u2019s own agency maps live here, and our saved copies' + when + ' cover only ' + s.outlines + ' of ' + s.parks + ' parks, so this page shows less for ' + n + ' than for other places. Use the official links below and check the agency\u2019s site directly.';
+    return '';
+  }
   function liveNoteText(name) {
     const n = String(name || 'this place');
     return 'Heads up: we can\u2019t load ' + n + '\u2019s own agency maps live here, so this page shows less for ' + n + ' than for other states. Use the official links below and check the agency\u2019s site directly.';
   }
 
   return {
-    liveLimit: liveLimit, liveNoteText: liveNoteText,
+    liveLimit: liveLimit, liveNoteText: liveNoteText, savedShare: savedShare, liveTier: liveTier, savedNoteText: savedNoteText,
     CORE: CORE, WATCH: WATCH, loadRows: loadRows, expandName: expandName, canon: canon, normName: normName,
     fuzzySame: fuzzySame, nameScore: nameScore, searchNames: searchNames, watchHits: watchHits,
     pinDistance: pinDistance, formatDistance: formatDistance, isBanned: isBanned, isParcel: isParcel,
