@@ -88,6 +88,9 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const over={};if(pad)over['Official park boundaries (PAD-US)']=pad.layer;over['Trails that are POTA parks (dotted = unofficial line, OpenStreetMap)']=trails;
  if(store.get('kpcUsTrails',true))trails.addTo(map);
  map.on('overlayadd',e=>{if(e.layer===trails)store.set('kpcUsTrails',true)});map.on('overlayremove',e=>{if(e.layer===trails)store.set('kpcUsTrails',false)});
+ /* Nov 8 (Brandon): Virginia Bird & Wildlife Trail sites (US-9935), optional, OFF by default */
+ if(window.KPCVaBirding){const vab=KPCVaBirding(map);over['Virginia Bird & Wildlife Trail sites (US-9935)']=vab;if(store.get('kpcUsVaBird',false))vab.addTo(map);
+  map.on('overlayadd',e=>{if(e.layer===vab)store.set('kpcUsVaBird',true)});map.on('overlayremove',e=>{if(e.layer===vab)store.set('kpcUsVaBird',false)})}
  L.control.layers(base,over,{position:'topright',collapsed:true}).addTo(map);map.on('baselayerchange',e=>store.set('kpcUsBase',e.name));
  dots=L.featureGroup().addTo(map);
  /* SPOTS FOLLOW THE MAP (Oct 19, Brandon: no SHOW SPOTS HERE button; 'search bar clear, all the pins on'): zoomed in to about

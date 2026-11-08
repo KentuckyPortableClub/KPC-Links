@@ -1,0 +1,827 @@
+{
+ "about": "REPORT ONLY (Brandon Nov 8, \"Yes, layer + list\"): POTA parks whose current US key outline (boundary-cache US-VA.json.gz, saved 2026-11-03, the records the key joined) contains a Virginia Bird & Wildlife Trail site (US-9935). It never changes a join, a pin, an outline or a 2-fer, and nothing reads it for the 2-fer line.",
+ "built": "2026-11-08",
+ "points": 640,
+ "parks_with_sites": 77,
+ "sites_in_parks": 202,
+ "parks": [
+  {
+   "ref": "US-4526",
+   "name": "George Washington & Jefferson National Forest",
+   "grade": "official",
+   "sites": 68,
+   "site_ids": [
+    "MAH04",
+    "MAH05",
+    "MAH08",
+    "MAH09",
+    "MAH10",
+    "MAH11",
+    "MAH13",
+    "MAW03",
+    "MAW04",
+    "MAW05",
+    "MAW06",
+    "MAW07",
+    "MBS04",
+    "MBS05",
+    "MBW02",
+    "MBW03",
+    "MBW04",
+    "MBW06",
+    "MBW07",
+    "MBW08",
+    "MBW10",
+    "MDB03",
+    "MDS02",
+    "MDS04B",
+    "MED05",
+    "MED07",
+    "MED08",
+    "MED09",
+    "MFR10",
+    "MFR11",
+    "MFT03",
+    "MFT04",
+    "MFT05",
+    "MFT06",
+    "MFT07",
+    "MHJ05",
+    "MHJ07",
+    "MHJ09",
+    "MIO01",
+    "MIO02",
+    "MIO04",
+    "MLN12",
+    "MLN13",
+    "MLP07",
+    "MLP10",
+    "MLS02",
+    "MMH01",
+    "MMH02",
+    "MMR03",
+    "MMR04",
+    "MMR05",
+    "MMR06",
+    "MMR09",
+    "MMR10",
+    "MMR11",
+    "MMR12",
+    "MMR13",
+    "MNR03",
+    "MNR04",
+    "MNR05",
+    "MNR06",
+    "MNR07",
+    "MNR08",
+    "MNR09",
+    "MPO07",
+    "MSG01",
+    "MTJ06",
+    "MTJ08"
+   ]
+  },
+  {
+   "ref": "US-3378",
+   "name": "Blue Ridge National Parkway",
+   "grade": "official",
+   "sites": 10,
+   "site_ids": [
+    "MPO06",
+    "MPO09",
+    "MPO10",
+    "MPO12",
+    "MSC06",
+    "MSL01",
+    "MSL07",
+    "MSL08",
+    "MSL09",
+    "MSL13"
+   ]
+  },
+  {
+   "ref": "US-9903",
+   "name": "Mount Rogers National Recreation Area",
+   "grade": "official",
+   "sites": 10,
+   "site_ids": [
+    "MMR01",
+    "MMR03",
+    "MMR04",
+    "MMR05",
+    "MMR06",
+    "MMR09",
+    "MMR10",
+    "MMR11",
+    "MMR12",
+    "MMR13"
+   ]
+  },
+  {
+   "ref": "US-0064",
+   "name": "Shenandoah National Park",
+   "grade": "official",
+   "sites": 8,
+   "site_ids": [
+    "MSD01",
+    "MSD02",
+    "MSD03",
+    "MSD04",
+    "MSD05",
+    "MSD06",
+    "MSD07",
+    "MSD09"
+   ]
+  },
+  {
+   "ref": "US-9957",
+   "name": "Shenandoah Wilderness Area",
+   "grade": "approximate",
+   "sites": 8,
+   "site_ids": [
+    "MSD01",
+    "MSD02",
+    "MSD03",
+    "MSD04",
+    "MSD05",
+    "MSD06",
+    "MSD07",
+    "MSD09"
+   ]
+  },
+  {
+   "ref": "US-0670",
+   "name": "George Washington Memorial Parkway",
+   "grade": "official",
+   "sites": 6,
+   "site_ids": [
+    "CGF03",
+    "CGF05",
+    "CGF08",
+    "CGF10",
+    "CMN01",
+    "CMN02"
+   ]
+  },
+  {
+   "ref": "US-1310",
+   "name": "New River Trail State Park",
+   "grade": "official",
+   "sites": 5,
+   "site_ids": [
+    "MBR02",
+    "MLN15",
+    "MMM02",
+    "MMM03",
+    "MMR01"
+   ]
+  },
+  {
+   "ref": "US-0572",
+   "name": "Rappahannock River Valley National Wildlife Refuge",
+   "grade": "official",
+   "sites": 4,
+   "site_ids": [
+    "CFB06",
+    "CNN18A",
+    "CNN19",
+    "CNN20"
+   ]
+  },
+  {
+   "ref": "US-0713",
+   "name": "Richmond National Battlefield",
+   "grade": "official",
+   "sites": 4,
+   "site_ids": [
+    "CPL03",
+    "CRI05",
+    "CRI06",
+    "CRI07"
+   ]
+  },
+  {
+   "ref": "US-0016",
+   "name": "Colonial National Historical Park",
+   "grade": "official",
+   "sites": 3,
+   "site_ids": [
+    "CLP03",
+    "CLP04",
+    "CLP05"
+   ]
+  },
+  {
+   "ref": "US-0562",
+   "name": "Eastern Shore of Virginia National Wildlife Refuge",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "CES02",
+    "CES03"
+   ]
+  },
+  {
+   "ref": "US-0563",
+   "name": "Elizabeth Hartwell Mason Neck National Wildlife Refuge",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "CMN07",
+    "CMN08"
+   ]
+  },
+  {
+   "ref": "US-0717",
+   "name": "Fredericksburg and Spotsylvania National Military Park",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "PBV04",
+    "PBV10"
+   ]
+  },
+  {
+   "ref": "US-1297",
+   "name": "Fairy Stone State Park",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "MFS02",
+    "MFS04"
+   ]
+  },
+  {
+   "ref": "US-1300",
+   "name": "Grayson Highlands State Park",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "MMR07",
+    "MMR08"
+   ]
+  },
+  {
+   "ref": "US-5503",
+   "name": "Appomattox-Buckingham State Forest",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "PAP04",
+    "PAP05"
+   ]
+  },
+  {
+   "ref": "US-5512",
+   "name": "Cumberland State Forest",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "PHP03",
+    "PHP04"
+   ]
+  },
+  {
+   "ref": "US-5522",
+   "name": "Prince Edward-Gallion State Forest",
+   "grade": "official",
+   "sites": 2,
+   "site_ids": [
+    "PHP08",
+    "PHP09"
+   ]
+  },
+  {
+   "ref": "US-9902",
+   "name": "Colonial National Parkway",
+   "grade": "approximate",
+   "sites": 2,
+   "site_ids": [
+    "CLP03",
+    "CLP05"
+   ]
+  },
+  {
+   "ref": "US-0019",
+   "name": "Cumberland Gap National Historical Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MDB07"
+   ]
+  },
+  {
+   "ref": "US-0560",
+   "name": "Back Bay National Wildlife Refuge",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CSY06"
+   ]
+  },
+  {
+   "ref": "US-0566",
+   "name": "Great Dismal Swamp National Wildlife Refuge",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CSF09"
+   ]
+  },
+  {
+   "ref": "US-0569",
+   "name": "Occoquan Bay National Wildlife Refuge",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CPW02"
+   ]
+  },
+  {
+   "ref": "US-0712",
+   "name": "Manassas National Battlefield",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CBR08"
+   ]
+  },
+  {
+   "ref": "US-0726",
+   "name": "Appomattox Court House National Historical Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PAP03"
+   ]
+  },
+  {
+   "ref": "US-0905",
+   "name": "Booker T. Washington National Monument",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MSW05"
+   ]
+  },
+  {
+   "ref": "US-0935",
+   "name": "George Washington Birthplace National Monument",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CNN06"
+   ]
+  },
+  {
+   "ref": "US-10015",
+   "name": "Accotink Bay Wildlife Refuge",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CMN05"
+   ]
+  },
+  {
+   "ref": "US-11672",
+   "name": "Harrison Lake National Fish Hatchery",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CPL04"
+   ]
+  },
+  {
+   "ref": "US-1290",
+   "name": "Bear Creek Lake State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PHP03"
+   ]
+  },
+  {
+   "ref": "US-1291",
+   "name": "Belle Isle State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CNN15"
+   ]
+  },
+  {
+   "ref": "US-1292",
+   "name": "Breaks Interstate State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MLP04"
+   ]
+  },
+  {
+   "ref": "US-1294",
+   "name": "Chippokes Plantation State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CTW05"
+   ]
+  },
+  {
+   "ref": "US-1295",
+   "name": "Claytor Lake State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MLN01"
+   ]
+  },
+  {
+   "ref": "US-1296",
+   "name": "Douthat State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MAH07"
+   ]
+  },
+  {
+   "ref": "US-1298",
+   "name": "False Cape State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CSY07"
+   ]
+  },
+  {
+   "ref": "US-1299",
+   "name": "First Landing State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CSY02"
+   ]
+  },
+  {
+   "ref": "US-1302",
+   "name": "Holliday Lake State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PAP04"
+   ]
+  },
+  {
+   "ref": "US-1303",
+   "name": "Hungry Mother State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MCM01"
+   ]
+  },
+  {
+   "ref": "US-1304",
+   "name": "James River State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PJR02"
+   ]
+  },
+  {
+   "ref": "US-1305",
+   "name": "Kiptopeke State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CES05"
+   ]
+  },
+  {
+   "ref": "US-1306",
+   "name": "Lake Anna State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PGS08"
+   ]
+  },
+  {
+   "ref": "US-1307",
+   "name": "Leesylvania State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CPW04"
+   ]
+  },
+  {
+   "ref": "US-1309",
+   "name": "Natural Tunnel State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MDB02"
+   ]
+  },
+  {
+   "ref": "US-1311",
+   "name": "Occoneechee State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PDR10"
+   ]
+  },
+  {
+   "ref": "US-1312",
+   "name": "Pocahontas State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CAP02"
+   ]
+  },
+  {
+   "ref": "US-1314",
+   "name": "Sailor's Creek Battlefield State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PHP07"
+   ]
+  },
+  {
+   "ref": "US-1316",
+   "name": "Shenandoah River State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MDS09"
+   ]
+  },
+  {
+   "ref": "US-1317",
+   "name": "Shot Tower State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MBR01"
+   ]
+  },
+  {
+   "ref": "US-1318",
+   "name": "Sky Meadows State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MFR03"
+   ]
+  },
+  {
+   "ref": "US-1319",
+   "name": "Smith Mountain Lake State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MSW07"
+   ]
+  },
+  {
+   "ref": "US-1321",
+   "name": "Staunton River State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PDR02"
+   ]
+  },
+  {
+   "ref": "US-1322",
+   "name": "Staunton River Battlefield State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PSR02"
+   ]
+  },
+  {
+   "ref": "US-1323",
+   "name": "Twin Lakes State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PHP08"
+   ]
+  },
+  {
+   "ref": "US-1324",
+   "name": "Westmoreland State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CNN07"
+   ]
+  },
+  {
+   "ref": "US-1325",
+   "name": "Wilderness Road State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MDB06"
+   ]
+  },
+  {
+   "ref": "US-1326",
+   "name": "York River State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CLP01"
+   ]
+  },
+  {
+   "ref": "US-3972",
+   "name": "Natural Bridge State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MPO08"
+   ]
+  },
+  {
+   "ref": "US-5510",
+   "name": "Conway-Robinson Memorial State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PCU02"
+   ]
+  },
+  {
+   "ref": "US-5517",
+   "name": "Matthews State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MMM05"
+   ]
+  },
+  {
+   "ref": "US-5521",
+   "name": "Paul State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MNR02"
+   ]
+  },
+  {
+   "ref": "US-5525",
+   "name": "Whitney State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PCU04"
+   ]
+  },
+  {
+   "ref": "US-5526",
+   "name": "Zoar State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CMA08"
+   ]
+  },
+  {
+   "ref": "US-7793",
+   "name": "Dameron Marsh State Natural Area",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CNN11"
+   ]
+  },
+  {
+   "ref": "US-7795",
+   "name": "Grassy Hill State Natural Area",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MSW01"
+   ]
+  },
+  {
+   "ref": "US-7797",
+   "name": "Hughlett Point State Natural Area",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CNN12"
+   ]
+  },
+  {
+   "ref": "US-7799",
+   "name": "Mutton Hunk Fen State Natural Area",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CES17"
+   ]
+  },
+  {
+   "ref": "US-7803",
+   "name": "Savage Neck Dunes State Natural Area",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CES09"
+   ]
+  },
+  {
+   "ref": "US-7804",
+   "name": "Great Falls Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CGF10"
+   ]
+  },
+  {
+   "ref": "US-9907",
+   "name": "First Landing National Recreation Trail",
+   "grade": "approximate",
+   "sites": 1,
+   "site_ids": [
+    "CSY02"
+   ]
+  },
+  {
+   "ref": "US-9926",
+   "name": "Big Woods State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CTW07"
+   ]
+  },
+  {
+   "ref": "US-9927",
+   "name": "Charlotte State Forest",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PSR06"
+   ]
+  },
+  {
+   "ref": "US-9936",
+   "name": "Sweet Run State Park",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "PFF01"
+   ]
+  },
+  {
+   "ref": "US-9967",
+   "name": "King and Queen State Fish Hatchery",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "CMA06"
+   ]
+  },
+  {
+   "ref": "US-9971",
+   "name": "Montebello State Fish Hatchery",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MTJ06A"
+   ]
+  },
+  {
+   "ref": "US-9972",
+   "name": "Coursey Spring State Fish Hatchery",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MHJ01"
+   ]
+  },
+  {
+   "ref": "US-9974",
+   "name": "Paint Bank State Fish Hatchery",
+   "grade": "official",
+   "sites": 1,
+   "site_ids": [
+    "MIO05"
+   ]
+  }
+ ]
+}
