@@ -190,19 +190,27 @@ body.field .page-jump-nav{display:none!important}
 .mr-agpick{display:flex;gap:8px;align-items:center;margin-top:6px}.mr-agpick select{flex:1 1 auto;min-width:0;max-width:100%;min-height:44px;border:1.5px solid #cbbf9f;border-radius:10px;padding:6px 10px;font:15px Arial,sans-serif;background:#fff}.mr-agopen{flex:0 0 auto;padding:11px 14px;border-radius:10px;background:#1d5a3a;color:#fff;font:900 12px Arial,sans-serif;letter-spacing:.8px}
 .mr-cand{margin-top:8px;padding:10px 12px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef}.mr-cand summary{cursor:pointer;overflow-wrap:anywhere}.mr-cand a{color:#1d5a3a;text-decoration:underline;overflow-wrap:anywhere}
 @media(max-width:760px){#mrDrop{height:260px}.mr-kv{grid-template-columns:1fr}.mr-kv dt{margin-top:6px}.mr-check-btns button{flex:1 1 100%}#mrCheckCard h2{font-size:26px}}
+.mr-research{border-top:4px solid #1d7a3a}#mrRsMap{height:340px;border-radius:10px;margin:10px 0 4px;border:1px solid #d9cfb4}
+.mr-rs-card{border:1px solid #e3d9bf;border-left:6px solid #1d7a3a;border-radius:10px;padding:8px 12px;margin:8px 0;background:#fffdf7}
+.mr-rs-card.mr-rs-person{border-left-color:#b7791f}.mr-rs-card.mr-rs-probably{border-left-color:#8a6516}.mr-rs-card.mr-rs-already{border-left-color:#9a9a9a}
+.mr-rs-card summary{cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}.mr-rs-card summary small{flex-basis:100%;color:#555}
+.mr-rs-v{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1d5a3a}.mr-rs-person .mr-rs-v{color:#8a5a12}.mr-rs-already .mr-rs-v,.mr-rs-probably .mr-rs-v{color:#6b5a2a}
+.mr-rs-why{font-weight:700}.mr-rs-checks ul{margin:4px 0 8px 18px;padding:0}.mr-rs-sum{width:100%;box-sizing:border-box;font:13px/1.4 Arial,sans-serif;margin:4px 0}.mr-rs-sumlab{display:block;font-size:11px;font-weight:900;letter-spacing:1px;margin-top:8px}
+.mr-keyfold{margin-top:10px}.mr-keyfold>summary{cursor:pointer;font-size:12px;font-weight:900;letter-spacing:1px}
 </style>
 <header class="site-nav mr-bar"><div class="nav-inner"><a class="brand" href="#" onclick="return false"><img src="KPC-logo.png" alt="" width="58" height="58"><span class="brand-text">Mapping Rep Tool Box<small>KENTUCKY PORTABLE CLUB · HELPER</small></span></a><nav class="nav-links" id="kpc-main-nav" aria-label="Tool"></nav></div></header>
 <main>
 <section class="tool-head th-map"><div class="wrap mr-top"><img class="mr-logo" src="KPC-logo.png" alt="Kentucky Portable Club" width="150" height="150">
 <p class="eyebrow">POTA PARK ADDITIONS · UNITED STATES, CANADA, AND THE ENGLISH-SPEAKING COUNTRIES</p>
 <h1>Mapping Representative's <span>Tool Box</span></h1>
-<p class="sub">Type a place name, a park number, or coordinates, or drop a pin. Outlines come from that place’s published key: the US key, the Canada key, or the world key for Great Britain, Ireland, Australia and New Zealand. A US place also uses PAD-US. Official information comes first.</p>
+<p class="sub"><b>Find and test new parks:</b> pick a state or province and every piece of official public land gets checked against POTA for you, with the full official record. Or type a place name, a park number, or coordinates, or drop a pin. Outlines come from that place’s published key: the US key, the Canada key, or the world key for Great Britain, Ireland, Australia and New Zealand. A US place also uses PAD-US. Official information comes first.</p>
 <p class="mr-head-note">A helper, not the final word. Click the official links and check the land yourself before you submit a park.</p>
 </div></section>
 <div class="mr-wrap">
 <div class="mr-beta"><b>A helper, not the final word.</b> Click every official link and research the land yourself before you submit a park. The agency page and the PAD-US record always win over this summary.</div>
 <details class="mr-agd mr-howto" id="mrHowTo"><summary>HOW TO USE THIS PAGE (NEW REPS START HERE)</summary>
 <ol class="mr-howto-l">
+<li><b>Find new parks first.</b> In “Find new parks to add”, pick the state or province and tap FIND NEW PARKS IN THIS PLACE. Every place gets checked by itself; open the green “Looks new” ones, read the checks and the official record, and copy the summary. Found a place yourself? Type its name or drop a pin and test it.</li>
 <li><b>Pick the state or province</b> in the menu at the top of “Check a place”.</li>
 <li><b>Search a name or drop a pin.</b> Type a park name, a park number such as US-2954, or coordinates. Or tap the map to drop a pin.</li>
 <li><b>Read the official record card first.</b> A US place shows its PAD-US record; a Canadian place shows its CPCAD record. Each code is spelled out, with a short hint and where the record comes from.</li>
@@ -216,6 +224,23 @@ body.field .page-jump-nav{display:none!important}
 </details>
 <section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This tool is for invited Mapping helpers.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
 <div id="mrApp" hidden>
+<section class="mr-card mr-research" id="mrResearch">
+<p class="eyebrow" style="letter-spacing:2px">START HERE · FIND AND TEST NEW PARKS</p>
+<h2>Find new parks to add</h2>
+<p class="mr-help">Pick a state or province and the Tool Box reads the official list of public and protected land (USGS PAD-US for a US state, Canada’s CPCAD for a province), then checks every place for you: is it already a POTA park (the same official record in our answer key, a park outline over it, a POTA pin inside it, or a park with the same name nearby), the nearest POTA park, any overlap with a park (part of a park, or a 2-fer), and the full official record. Each place gets a plain answer and a summary you can copy into a park submission.</p>
+<form id="mrRsForm" class="mr-checkf">
+<label for="mrRsPlace">STATE OR PROVINCE</label>
+<select id="mrRsPlace" aria-label="State or province to research"><option value="">Loading places…</option></select>
+<div class="mr-check-btns"><button type="button" id="mrRsFind">FIND NEW PARKS IN THIS PLACE</button><button type="button" class="alt" id="mrRsNear">TEST NEAR MY PIN</button></div>
+<label for="mrRsQ">FOUND ONE YOURSELF? TYPE ITS NAME</label>
+<input id="mrRsQ" autocomplete="off" placeholder="Pine Creek Gorge, Elk State Forest, or a name from a map" aria-label="Name of a place to test">
+<div class="mr-check-btns"><button type="submit" id="mrRsTest">TEST THIS PLACE</button></div>
+</form>
+<div id="mrRsMap" role="application" aria-label="Research map. Tap to drop a pin."></div>
+<p class="mr-help">Tap the map to drop a pin, then TEST NEAR MY PIN. Green looks new, orange needs a person, brown is probably already a park, grey is already a park. Street map: © OpenStreetMap contributors, ODbL.</p>
+<p class="mr-msg" id="mrRsMsg" role="status">Pick a place to start.</p>
+<div id="mrRsOut"></div>
+</section>
 <section class="mr-card" id="mrCheckCard">
 <p class="eyebrow" style="letter-spacing:2px">COULD THIS BE A PARK?</p>
 <h2>Check a place</h2>
@@ -271,8 +296,8 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-bounds.js?v=20261107t" defer></script>
 <script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-map-tools.js?v=20261106b" defer></script>
 <script src="kpc-maprep-logic.js?v=20261107t" defer></script>
-<script src="kpc-maprep-candidates.js?v=20261107u" defer></script>
-<script src="kpc-maprep-check.js?v=20261108e" defer></script>
-<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script>
+<script src="kpc-maprep-candidates.js?v=20261108a" defer></script>
+<script src="kpc-maprep-check.js?v=20261108g" defer></script>
+<script src="kpc-maprep-toolbox.js?v=20261107t" defer></script><script src="kpc-maprep-extras.js?v=20261108c" defer></script><script src="kpc-maprep-research.js?v=20261108b" defer></script>
 <script src="kpc-maprep.js?v=20261106d" defer></script>
 </body></html>

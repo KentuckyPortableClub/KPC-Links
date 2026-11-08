@@ -3,7 +3,7 @@
     pin, whose name (+ acres) matches the park's NO fingerprint or a previous 'a person said NO' record, puts the park back to a pin;
  2. holds a NEW join (record id not joined in the previous key) over 5 km (15 km stays the rule for the rest);
  3. exempts per id on a signed override: an unsigned record the previous key had out goes back to 'c'.
-Rules hashes unchanged (us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c)."""
+Rules hashes unchanged (us a066624520b4, ca 8feccbb7d9ee, world 6a5969a25d2c; world 10e4092cc97f since the declared CH rename in #76)."""
 import json, os, pathlib, shutil, subprocess, sys, tempfile
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))

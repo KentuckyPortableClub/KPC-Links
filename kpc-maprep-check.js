@@ -1187,6 +1187,60 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     const n = String(t.id || '').split('#').pop(), own = t.name && String(t.name).trim() && String(t.name).trim() !== String(park).trim();
     return `${park}, ${own ? String(t.name).trim() : n} tract`;
   };
+  /* Nov 8 (Brandon 11:19 AM CST: "this Published key still right at the top make that folded up with better explanation"):
+     the published key list is a reference, so it is folded under a plain explanation; finding new parks is at the top. */
+  function foldKey(box, name) {
+    const sec = box && box.querySelector('section[data-mr-result="all"]'); if (!sec || sec.closest('details.mr-keyfold')) return;
+    const d = document.createElement('details'); d.className = 'mr-agd mr-keyfold'; d.setAttribute('data-mr-keyfold', '1');
+    d.innerHTML = '<summary>PARKS POTA ALREADY HAS IN ' + esc(String(name || '').toUpperCase()) + ' (PUBLISHED KEY · REFERENCE)</summary>'
+      + '<p class="mr-help">This is the club\u2019s answer key: every POTA park already in this place and the official outline we matched to it. '
+      + 'It is a bonus reference, not the research tool. Use it to look up an existing park or to see its tracts. '
+      + 'To find land that could become a new park, use \u201cFind new parks to add\u201d at the top of this page.</p>';
+    sec.parentNode.insertBefore(d, sec); d.appendChild(sec);
+    /* the agency links and the possible new parks are research tools: they stay open, above the folded list */
+    ['mrAgDrop', 'mrCandsWrap'].forEach(id => { const el = document.getElementById(id); if (el && d.contains(el)) d.parentNode.insertBefore(el, d); });
+  }
+  /* Nov 8 (Brandon 11:38 AM CST: "The way Kentucky works is good other areas need to work like that"): every other state and
+     province gets the Kentucky Check all view. Kentucky reads its own official layers; elsewhere the place's official list is
+     USGS PAD-US (US) or CPCAD (Canada), read by kpc-maprep-research.js, and every place goes through the SAME rules as
+     Kentucky (rulesFor: owner, manager, access, designation, POTA) and the same Yes / Maybe / No / Already groups. "Already"
+     also uses our answer key (same record, outline over it), names and pins, not pins alone. */
+  async function areaLayers(stAll, box) {
+    const R = window.KPCResearch;
+    if (!box || !R || !R.classify) return;
+    const host = document.createElement('section'); host.className = 'mr-res'; host.setAttribute('data-mr-result', 'layers'); host.id = 'mrAreaLayers';
+    host.innerHTML = '<div class="mr-head"><div class="mr-k">CHECK ALL · ' + esc(String(stAll.name || '').toUpperCase()) + '</div><h2>Official layers</h2><p>Reading the official list for this place and checking every place\u2026</p></div>';
+    box.insertBefore(host, box.firstChild);
+    let res = null;
+    try { res = await R.classify(stAll.code, t => { const p = host.querySelector('.mr-head p'); if (p) p.textContent = t; }); } catch (e) { res = { error: String(e && e.message || e) }; }
+    if (!res || res.error || !res.places) { host.querySelector('.mr-head p').textContent = (res && res.unsupported) ? res.unsupported : 'The official list did not answer (' + esc((res && res.error) || 'no answer') + '). The published key below still works.'; return; }
+    const rows = res.places.map(p => {
+      const pota = (p.verdict.v === 'already' || p.verdict.v === 'probably') ? [].concat(p.checks.same, (p.checks.cover || []).filter(x => x.same || x.share >= .5).map(x => x.ref), (p.checks.named || []).map(x => x.ref), p.checks.pinIn).filter(Boolean).map(ref => ({ ref })) : [];
+      let v = 'MAYBE';
+      try { v = rulesFor({ f: null, owner: null, pota, state: stAll, padExact: p.kind === 'pad' ? p.a : null, caExact: p.kind === 'ca' ? p.a : null }).summary; } catch (e) {}
+      if (pota.length) v = 'ALREADY';
+      else if (v === 'YES' && p.verdict.v === 'person') v = 'MAYBE';   /* inside another park (2-fer) or partly over one: a person decides */
+      return { name: p.name, layer: res.source, agency: p.manager, acres: p.acres, v, refs: pota.filter((x, i, a) => a.findIndex(y => y.ref === x.ref) === i), la: p.pt ? p.pt[0] : null, lo: p.pt ? p.pt[1] : null, why: p.verdict.why, id: p.ids[0] };
+    });
+    const rank = { YES: 0, MAYBE: 1, NO: 2, ALREADY: 3 };
+    rows.sort((a, c) => (rank[a.v] - rank[c.v]) || c.acres - a.acres || a.name.localeCompare(c.name));
+    const counts = { YES: 0, MAYBE: 0, NO: 0, ALREADY: 0 }; rows.forEach(r => { counts[r.v] = (counts[r.v] || 0) + 1; });
+    const lab = { YES: 'Yes', MAYBE: 'Maybe', NO: 'No', ALREADY: 'Already a park' };
+    const first = ['YES', 'MAYBE', 'NO', 'ALREADY'].find(k => counts[k]) || 'YES';
+    host.innerHTML = `<div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(String(stAll.name || '').toUpperCase())}</div><h2>Official layers</h2><p>${rows.length} named places from ${esc(res.source)}. Yes, no or maybe is about adding a new park. Already means POTA has a number for that land (our answer key, a park outline over it, a pin inside it, or the same name nearby).</p></div>
+<div class="mr-sec"><div class="mr-filters" id="mrAreaFilters">${['YES', 'MAYBE', 'NO', 'ALREADY'].map(k => `<button type="button" class="mr-ag${k === first ? ' on' : ''}" data-f="${k}">${lab[k]} · ${counts[k] || 0}</button>`).join('')}</div>
+<p class="mr-help">${esc(res.note || '')} The same rules as Kentucky: owner, manager, public access and designation from the official record. Tap a place to check it on the map; FIND NEW PARKS at the top of the page has the full record and a summary to copy.</p>
+<div id="mrAreaRows"></div></div>`;
+    const paint = which => {
+      const h = document.getElementById('mrAreaRows'); if (!h) return;
+      h.innerHTML = rows.filter(r => r.v === which).map(r => `<button type="button" class="mr-pick" data-la="${r.la}" data-lo="${r.lo}"><b>${esc(r.name)}</b><span>${esc(lab[r.v])}${r.refs.length ? ' · ' + esc(r.refs.map(p => p.ref).join(', ')) : ''} · ${esc([r.acres ? Math.round(r.acres).toLocaleString() + ' acres' : '', r.agency || ''].filter(Boolean).join(' · '))}${r.id ? ' · ' + (res.kind === 'ca' ? 'CPCAD ' : 'PAD-US ') + esc(String(r.id)) : ''}</span><small>${esc(r.why)}</small></button>`).join('') || '<p class="mr-help">None in this group.</p>';
+      h.querySelectorAll('.mr-pick').forEach(btn => btn.onclick = () => { if (btn.dataset.la !== 'null') showPoint(+btn.dataset.la, +btn.dataset.lo); });
+    };
+    paint(first);
+    document.getElementById('mrAreaFilters').querySelectorAll('[data-f]').forEach(btn => btn.onclick = () => {
+      document.getElementById('mrAreaFilters').querySelectorAll('.mr-ag').forEach(x => x.classList.remove('on')); btn.classList.add('on'); paint(btn.dataset.f);
+    });
+  }
   async function showAllTracts(stAll, key, parks, ids, box) {
     const K = B(), reg = stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'CA' : 'US';
     const doc = await K.tractDoc(K.tractPath(stAll.code, reg)).catch(() => null);
@@ -1214,6 +1268,8 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
     };
     paint();
     wireExtras(stAll, key);
+    foldKey(box, stAll.name);
+    areaLayers(stAll, box);
     return ids;
   }
   async function showAll() {
@@ -1230,6 +1286,8 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
       const shown = ids.slice(0, 400);
       if (box) box.innerHTML = `<section class="mr-res" data-mr-result="all"><div class="mr-head"><div class="mr-k">CHECK ALL · ${esc(stAll.name.toUpperCase())}</div><h2>Published key</h2><p>${ids.length} parks in the ${esc(stAll.region === 'world' ? 'world' : stAll.region === 'CA' ? 'Canada' : 'US')} key. ${stAll.region === 'US' || !stAll.region ? 'PAD-US is the other official set for a US place.' : ''}</p></div><div class="mr-sec"><p class="mr-help">Outlines for this list come from that place’s published key. ${shown.length < ids.length ? 'The first ' + shown.length + ' names are listed.' : ''}</p>${shown.map(id => `<p><b>${esc((parks[id] && parks[id].n) || id)}</b> · ${esc(id)}</p>`).join('') || '<p>No published key for this place is on the site yet.</p>'}</div>${extrasHtml(stAll)}</section>`;
       wireExtras(stAll, key);
+      foldKey(box, stAll.name);
+      areaLayers(stAll, box);
       return ids;
     }
     if (box) box.innerHTML = '<p class="mr-msg">Reading the published outlines for ' + esc(stAll.name) + '…</p>';
@@ -1376,5 +1434,5 @@ ${nearBtns ? '<h4>Near matches in our layers</h4>' + nearBtns : ''}
   }
 
   wire();
-  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, syncPlace, map: () => map, pin: () => lastPin };
+  window.KPCMapCheck = { mount, find, showQuery, showPoint, showAll, ready, syncPlace, rulesFor, map: () => map, pin: () => lastPin };
 })();

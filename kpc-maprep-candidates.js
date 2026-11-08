@@ -330,7 +330,8 @@
       (c.des.length ? ' · code ' + esc(c.des.join(', ')) : '') + flags + '</summary>' +
       '<p class="mr-help">Record ids: ' + esc(c.ids.join(', ')) + '. ' + (padIds.length ? '' : 'State-table ids have no PAD-US outline to check.') + '</p>' + sim +
       (links.length ? '<p class="mr-help">Agency: ' + links.join(' · ') + (ag[0] && !ag[0].matched ? ' (no role matched, every agency for this place)' : '') + '</p>' : '') +
-      '<p class="mr-help" data-outline="' + i + '">' + esc(c.outline) + (padIds.length ? ' <button type="button" class="mr-ag" data-pinchk="' + i + '">CHECK OUTLINE VS PARK PINS</button>' : '') + '</p></details>';
+      '<p class="mr-help" data-outline="' + i + '">' + esc(c.outline) + (padIds.length ? ' <button type="button" class="mr-ag" data-pinchk="' + i + '">CHECK OUTLINE VS PARK PINS</button>' : '') + '</p>' +
+      (padIds.length ? '<p class="mr-help"><button type="button" class="mr-ag" data-rstest="' + esc(padIds.join(',')) + '" data-rsname="' + esc(c.name) + '">RUN THE FULL NEW-PARK CHECKS</button> Answer key outlines, same-name parks and pins, the full PAD-US record and a summary to copy.</p>' : '') + '</details>';
   }
   function listHtml(res, shown, code) {
     if (!res || !res.available) return '<div class="mr-sec" id="mrCands"><h3>Possible new parks</h3><p class="mr-help">Possible new parks are not available for this place yet.</p></div>';
