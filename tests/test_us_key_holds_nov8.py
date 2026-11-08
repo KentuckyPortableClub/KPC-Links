@@ -57,17 +57,12 @@ try:
     p, h = run({'US-3917': pc}, {'US-3917': pv}, signed={'US-3917': ['254041']})
     check([x[0] for x in p['US-3917']['m']] == [254041] and {str(x[0]) for x in p['US-3917']['c']} >= {'sgscc11', '254043'} and 'ac' not in p['US-3917'],
           '3: only the signed 254041 stays joined; sgscc11 and 254043 go back to c')
-    # the rebuild compares with the declared good key (data/key-join-base.json), not the graded-NO key on main
+    # Nov 8: Quality KEY YES on US-42504172086 -> the us-key entry is gone; the join check compares with git HEAD again
     jb = (ROOT / 'data/key-join-base.json')
-    check(jb.is_file() and json.loads(jb.read_text(encoding='utf-8')).get('us-key') == subprocess.run(['git', 'rev-parse', 'fbacca65^'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-          if subprocess.run(['git', 'cat-file', '-e', 'fbacca65^{commit}'], cwd=ROOT, capture_output=True).returncode == 0 else jb.is_file(),
-          'data/key-join-base.json names the key before US-42487204632 for us-key')
+    check(not jb.is_file() or 'us-key' not in json.loads(jb.read_text(encoding='utf-8')), 'data/key-join-base.json has no us-key entry after the accepted rebuild')
+    check(J.join_base(str(ROOT / 'data/us-key/US-NV.json'), str(ROOT), {}) == 'HEAD', 'us-key compares with HEAD again')
     check(J.join_base(str(ROOT / 'data/us-key/US-NV.json'), str(ROOT), {'KPC_JOIN_BASE': 'abc1234'}) == 'abc1234' and J.join_base(str(T / 'x.json'), str(ROOT), {}) == 'HEAD',
           'join_base: KPC_JOIN_BASE wins; no base file = HEAD')
-    # real rebuild simulation: the graded-NO key itself, compared with join-base (as the rebuild will be)
-    if subprocess.run(['git', 'cat-file', '-e', 'fbacca65^{commit}'], cwd=ROOT, capture_output=True).returncode == 0:
-        pv = J.previous(str(ROOT / 'data/us-key/US-NV.json'), str(ROOT))
-        check(pv.get('US-13048', {}).get('g') == 'pin', 'previous() reads the join-base key (US-13048 was a pin there)')
     # real data: the US-42487204632 build (fbacca65) against the key before it
     have = subprocess.run(['git', 'cat-file', '-e', 'fbacca65^{commit}'], cwd=ROOT, capture_output=True).returncode == 0
     if have and os.environ.get('KPC_HOLDS_REAL', '1') == '1':
