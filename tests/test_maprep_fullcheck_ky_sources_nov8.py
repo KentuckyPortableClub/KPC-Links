@@ -18,7 +18,7 @@ for x in KY:
     n = len(json.loads((ROOT / x['url']).read_text(encoding='utf-8'))['features']); check(n == x['count'], x['url'] + ' count %d' % n)
 check(next(x for x in KY if x['k'] == 'bwma').get('owners') == 'data/ky-wma-owners.json', 'WMA owners come from the KDFWR owners file')
 check('ky_note' in reg and 'US-KY' in reg['ky_note'], 'the registry says why Kentucky was missing')
-check('o.L.local ? await slLocal(o.L, kind, arg)' in rj and "/^[\\w.-]+\\.geojson$/.test(L.url)" in rj, 'local layers read only same-site .geojson files')
+check('o.L.local ? await slLocal(o.L, kind, arg)' in rj and "/^(?:[\\w.-]+\\/)*[\\w.-]+\\.geojson$/.test(L.url)" in rj, 'local layers read only same-site .geojson files')
 check("kpc_maprep_state_layers" and "out['KY'] = kyr" in (ROOT / '.github/scripts/kpc_maprep_state_layers.py').read_text(encoding='utf-8'), 'a rebuild keeps the Kentucky rows')
 check('W.KPCMapCheck.setPlaceFacts(placeFacts(p))' in rj and 'function placeFacts(p)' in rj, 'FULL RULES CHECK hands over the place facts')
 check('function setPlaceFacts(h)' in cj and 'ctx.stateFacts = H.facts' in cj and "H && H.html ? H.html : ''" in cj, 'the full check uses them and shows the facts block (sources differ)')

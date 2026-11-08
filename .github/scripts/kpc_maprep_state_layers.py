@@ -24,7 +24,7 @@ def get(u, hdr=None, t=20):
 RB = {}
 def robots_ok(u):
     p = urllib.parse.urlparse(u); host = p.scheme + '://' + p.netloc
-    if re.match(r'services\d*\.arcgis\.com$', p.netloc, re.I): return False, 'robots.txt answers 403 (services*.arcgis.com = disallow)'
+    if re.match(r'services\d*\.arcgis\.com$', p.netloc, re.I): return False, 'not available for this tool'
     if host not in RB:
         rp = urllib.robotparser.RobotFileParser()
         try:
@@ -35,9 +35,9 @@ def robots_ok(u):
             RB[host] = ('none', None)
         time.sleep(1)
     k, rp = RB[host]
-    if k == 'deny': return False, 'robots.txt answers 401/403 (disallow)'
-    if k == 'none': return True, 'no robots.txt'
-    return (rp.can_fetch(UA, u), 'robots.txt ' + ('allows' if rp.can_fetch(UA, u) else 'disallows'))
+    if k == 'deny': return False, 'not available for this tool'
+    if k == 'none': return True, 'available'
+    return (rp.can_fetch(UA, u), 'available' if rp.can_fetch(UA, u) else 'not available for this tool')
 # Nov 8 (Brandon 4:50 PM CST, t766u: do the state layers list ownership and management?): the fact fields each layer carries
 FACTS = {'owner': r'^(owner|own_?name|owner_?name|own|ownership|landowner|own_?agency|owner_?e|propr\w*)$|owner',
          'manager': r'^(manager|mgr_?name|mang_?name|managed_?by|mgmt_?\w*|manag\w*|admin\w*|unit_?mgr)$|manag|admin',
@@ -111,6 +111,22 @@ def main():
         for x in a: seen[x['label']] = seen.get(x['label'], 0) + 1
         for x in a:
             if seen[x['label']] > 1: x['label'] = svc_label(x['label'], x['url'])
+    # Nov 8: hand-downloaded state/province layers (Brandon) kept as local site files as local site files (no live fetch)
+    HAND = [
+      ('GA', 'handgas', 'Georgia State Parks (DNR, hand download)', 'data/maprep-layers/us-ga-stateparks.geojson', 'PropName', 'gas', {'designation': 'PropName', 'acres': 'Acres'}),
+      ('GA', 'handgaw', 'Georgia DNR Wildlife Resources (WMA / PFA / hatchery, hand download)', 'data/maprep-layers/us-ga-wma.geojson', 'PropName', 'gaw', {'owner': 'Owner', 'acres': 'Acres', 'designation': 'PropName'}),
+      ('TX', 'handtxs', 'Texas Parks & Wildlife (state parks, hand download)', 'data/maprep-layers/us-tx-stateparks.geojson', 'ParkName', 'txs', {'designation': 'PropType'}),
+      ('TX', 'handtxw', 'Texas Parks & Wildlife (WMAs, hand download)', 'data/maprep-layers/us-tx-wma.geojson', 'LoName', 'txw', {'designation': 'BndryType'}),
+      ('PA', 'handpas', 'Pennsylvania Game Commission (State Game Lands, hand download)', 'data/maprep-layers/us-pa-sgl.geojson', 'sgl_name', 'pas', {'acres': 'gis_area_ac', 'designation': 'sgl_status'}),
+      ('MB', 'handmbp', 'Manitoba provincial parks (hand download; replaces missing shapes)', 'data/maprep-layers/ca-mb-provparks.geojson', 'NAME_E', 'mbp', {'designation': 'TYPE_E', 'acres': 'O_AREA', 'website': 'URL', 'manager': 'MGMT_E', 'owner': 'OWNER_E'}),
+    ]
+    for st, pre, lab, f, field, k, facts in HAND:
+        if not os.path.exists(f): continue
+        fs = json.load(open(f, encoding='utf-8')).get('features') or []
+        r = {'pre': pre, 'url': f, 'field': field, 'label': lab, 'ok': True,
+             'why': 'the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch',
+             'local': 'hand', 'k': k, 'count': len(fs), 'facts': facts}
+        out.setdefault(st, []); out[st] = [r] + [x for x in out.get(st, []) if not (x.get('local') == 'hand' and x.get('k') == k)]
     # follow-up to #94: Kentucky's official layers are the club's own map files (kpc-bounds.js KY list), not live servers
     KY = [('bstate', 'Kentucky State Parks', 'ky-state-parks.geojson'), ('bwma', 'Kentucky Fish & Wildlife WMAs and public hunting areas', 'ky-hunting-areas.geojson'),
           ('bsnp', 'Kentucky Office of Nature Preserves (state nature preserves)', 'ky-nature-preserves.geojson'), ('bsna', 'Kentucky Office of Nature Preserves (state natural areas)', 'ky-natural-areas.geojson'),

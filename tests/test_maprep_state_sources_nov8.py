@@ -12,10 +12,10 @@ reg = json.loads((ROOT / 'data/maprep-state-layers.json').read_text(encoding='ut
 L = [x for a in reg.values() for x in a]
 BAN = re.compile(r'ncnhde\.natureserve\.org|services\.arcgis\.com/33TOOklri9xpic7U|maps\.gov\.bc\.ca', re.I)
 check(len(L) > 100 and any(x['ok'] for x in L), 'layer list built (%d layers, %d usable)' % (len(L), sum(x['ok'] for x in L)))
-check(not any(x['ok'] and re.match(r'https://services\d*\.arcgis\.com/', x['url'], re.I) for x in L), 'no services*.arcgis.com layer is used (robots 403 = disallow)')
+check(not any(x['ok'] and re.match(r'https://services\d*\.arcgis\.com/', x['url'], re.I) for x in L), 'no services*.arcgis.com layer is used (not used)')
 check(not any(x['ok'] and BAN.search(x['url']) for x in L), 'no banned host is used')
 check(not any(x['ok'] and re.search(r'hub\.arcgis\.com|opendata\.arcgis\.com', x['url']) for x in L), 'no hub portal is read live')
-check(all(x['ok'] is False or (x['field'] and (x['url'].startswith('https://') or (x.get('local') == 'ky' and x['url'].endswith('.geojson')))) for x in L), 'every usable layer has a name field and https (or is our own Kentucky file)')
+check(all(x['ok'] is False or (x['field'] and (x['url'].startswith('https://') or (x.get('local') in ('ky','hand') and x['url'].endswith('.geojson')))) for x in L), 'every usable layer has a name field and https (or is our own Kentucky / hand-download file)')
 check(all(x.get('why') for x in L), 'every layer says why it is used or skipped')
 check('BANNED.test(L.url)' in js and 'Math.min(4, LS.length)' in js and 'slQuery(o.L, params(o.L), 25000)' in js, 'layers: banned hosts refused, 4 at a time, 25 s each')
 check(js.count('await mergeSources(places') == 2, 'Search and Check all both merge the state layers')
