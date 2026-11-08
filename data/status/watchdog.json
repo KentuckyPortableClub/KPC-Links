@@ -527,10 +527,13 @@
   "kpc-hunters.yml|2026-11-08T04:07:00+00:00": "2026-11-08T05:25+00:00 started",
   "kpc-pota-discord.yml|2026-11-08T04:19:00+00:00": "2026-11-08T05:25+00:00 started",
   "kpc-reports.yml|2026-11-08T03:29:00+00:00": "2026-11-08T05:25+00:00 started",
-  "kpc-research-helpers.yml|2026-11-08T05:23:00+00:00": "2026-11-08T05:50+00:00 skipped (not restarted)"
+  "kpc-research-helpers.yml|2026-11-08T05:23:00+00:00": "2026-11-08T05:50+00:00 skipped (not restarted)",
+  "kpc-band-alerts.yml|2026-11-08T05:48:00+00:00": "2026-11-08T06:31+00:00 started",
+  "kpc-discord-watch.yml|2026-11-08T05:47:00+00:00": "2026-11-08T06:31+00:00 started"
  },
- "last": "2026-11-08T05:50+00:00",
+ "last": "2026-11-08T06:31+00:00",
  "last_restarted": [
-  "kpc-research-helpers.yml (missed Nov 08 05:23 UTC, NOT restarted: its next scheduled run catches up)"
+  "kpc-band-alerts.yml (missed Nov 08 05:48 UTC)",
+  "kpc-discord-watch.yml (missed Nov 08 05:47 UTC)"
  ]
 }
