@@ -73,6 +73,53 @@ def test_not_a_rules_file():
     assert 'kpc_problem_solver.py' in F.NOT_RULES and all('problem_solver' not in x for v in F.RULE_FILES.values() for x in v)
 
 
+# ---- Quality Nov 7 FIX (C1-C3): the new calls must not overreach
+def solve_ctx(ref, ctx, **row):
+    c = copy.deepcopy(FX[ref]); c['row'].update(row)
+    return S.solve(ref, c['row'], c['pin'], c['recs'], c.get('override'), c['state'], ctx=ctx)
+
+
+def test_c1_kind_clash_goes_to_a_person():
+    # a historic site whose core name matches a wildlife refuge record (US-9190 Marais des Cygnes) is not 'pin wrong'
+    assert solve_ctx('US-6197', None, n='Popo Agie Historic Site', t='State Historic Site')['verdict'] == 'needs a person'
+
+
+def test_c2_other_state_or_unit_goes_to_a_person():
+    r = solve_ctx('US-12028', {'states': ['US-OK', 'US-AR'], 'joined_in': {'AR'}})
+    assert r['verdict'] == 'needs a person' and r['other_states'] == ['US-AR'] and 'AR' in ' '.join(r['reasons'])
+    assert solve_ctx('US-12028', {'same_name_recs': {'sgokc99': 'Barren Fork'}})['verdict'] == 'needs a person'
+    assert solve_ctx('US-12028', None, ac=50000)['verdict'] == 'needs a person'        # the outline is only part of the park
+    c = copy.deepcopy(FX['US-12028']); hid = 'sgokc7'
+    for x in c['row'].get('m', []) + c['row'].get('c', []):
+        if str(x[0]) == hid: x[1] = x[1] + ' Lower Unit'
+    assert S.solve('US-12028', c['row'], c['pin'], c['recs'], None, c['state'])['verdict'] == 'needs a person'
+
+
+def test_c2_fragment_goes_to_a_person():
+    c = copy.deepcopy(FX['US-12028']); r = c['recs']['sgokc7']
+    x0, y0 = r['_r'][0][0]; r['_r'] = [[[x0, y0], [x0 + .0005, y0], [x0 + .0005, y0 + .0005], [x0, y0 + .0005], [x0 + .0002, y0 + .0007], [x0, y0 + .0006], [x0 - .0001, y0 + .0003]]]
+    assert S.solve('US-12028', c['row'], c['pin'], c['recs'], None, c['state'])['verdict'] == 'needs a person'
+
+
+def test_c3_same_land_new_id_needs_proof():
+    assert go('US-9678')['verdict'] == 'same land new ID'                      # Windy Gap: the one Quality supports
+    still = solve_ctx('US-9678', {'known_ids': {'cow909': {'Windy Gap WWA'}}})  # the old id is still a record (Menominee 272354)
+    assert still['verdict'] == 'needs a person'
+    reused = solve_ctx('US-9678', {'known_ids': {'cow909': {'Windy Ridge STL'}}})  # the id lives on under another name: still gone
+    assert reused['verdict'] == 'same land new ID'
+    assert solve_ctx('US-9678', None, n='Windy Gap Upper Fork Watchable Wildlife Area')['verdict'] == 'needs a person'   # leaves words out
+
+
+def test_c2_far_same_name_pieces_lower_confidence():
+    c = copy.deepcopy(FX['US-4933']); far = copy.deepcopy(c['recs']['sgnhc2075'])
+    r = S.solve('US-4933', c['row'], c['pin'], c['recs'], None, c['state'],
+                ctx={'same_name_recs': {'zz1': 'Merrimack River State Forest'}, 'extra_recs': {'zz1': far}})
+    assert r['verdict'] == 'pin wrong' and r['confidence'] == 'medium' and 'zz1' in r['recommend']
+    r = S.solve('US-4933', c['row'], c['pin'], c['recs'], None, c['state'],
+                ctx={'same_name_recs': {'zz2': 'Merrimack River State Forest'}, 'extra_recs': {}})
+    assert r['verdict'] == 'needs a person'   # an unmeasured same-name record may hold the pin
+
+
 if __name__ == '__main__':
     fails = 0
     for n, f in sorted(globals().items()):

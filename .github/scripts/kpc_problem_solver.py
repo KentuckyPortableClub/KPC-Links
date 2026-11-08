@@ -41,10 +41,16 @@ SMALL_KM = 10.0               # typo patterns are only read on land smaller than
 COORD_MATCH = 0.02            # degrees: one coordinate "matches" the land when it is this close to the land's range (~2 km)
 ACRE_RATIO = 3.0              # the outline measured vs the acres the record claims: further apart than this = a person looks
 GENERIC = set('state national wildlife management area forest park recreation special preserve heritage refuge wilderness '
-              'blm srma rma nra wma swa nwr sf sp the of and at on in watchable bay river creek lake canyon mesa'.split())
+              'blm srma rma nra wma swa nwr sf sp the of and at on in watchable bay river creek lake canyon mesa site sites wwa sra srs nhp nhs'.split())
 SAME_W = {'nine': '9', 'mile': 'mile', 'mt': 'mount', 'ft': 'fort', 'st': 'saint'}
 LINEAR = re.compile(r'\b(trail|wild (and|&) scenic river|heritage river|parkway)\b', re.I)   # = kpc_join_check.LINEAR_KIND
 PIN_NEVER = 'the POTA pin is never moved'
+FRAGMENT_AC = 1.0             # Quality Nov 7 C2: a held outline under this is a fragment of the land, not the land (Klamath 0.48 ac)
+# Quality Nov 7 C1: the KIND of place, read from the words same_name() drops. A park and a record whose kinds are both known and
+# share none are different places even when the core name matches (Marais des Cygnes Massacre historic site vs the FWS refuge).
+KINDS = [('history', r'histor|massacre|battle|monument|memorial|fort\b|site\b'), ('wildlife', r'refuge|\bnwr\b|wildlife|waterfowl|fish|hatchery'),
+         ('forest', r'forest|\bsf\b'), ('wild', r'wilderness|\bwsa\b'), ('recreation', r'recreation|\brma\b|\bsrma\b|\bnra\b|\bsra\b'),
+         ('water', r'reservoir|\blake\b|\bdam\b'), ('park', r'\bpark\b|\bsp\b|preserve|natural area')]
 
 
 # ---- plain helpers
@@ -60,6 +66,16 @@ def core(s):
 def same_name(park, rec):
     a, b = core(park), core(rec)
     return bool(a and b) and (b <= a or a <= b)
+
+
+def kinds(s):
+    t = str(s or '').lower()
+    return {k for k, rx in KINDS if re.search(rx, t)}
+
+
+def kind_clash(park_txt, rec_txt):
+    a, b = kinds(park_txt), kinds(rec_txt)
+    return sorted(a), sorted(b), bool(a and b and not (a & b))
 
 
 def rings(rec): return (rec or {}).get('_r') or []
@@ -154,9 +170,11 @@ def pin_pattern(la, lo, rec):
 
 
 # ---- the verdict
-def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None):
+def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None, ctx=None):
     """p = the park's key row; pin = (lat, lon) or None; recs = {record id: saved record with '_r' rings} (may be partial);
-    override = the park's overrides.json entry. Returns {park, verdict, confidence, recommend, reasons, records}."""
+    override = the park's overrides.json entry. ctx (Quality Nov 7) = {'states': every state file that lists the park,
+    'joined_in': states where the park already has land, 'known_ids': {record id: names} every id this key's rows still list,
+    'same_name_recs': {id: name} saved records with the held record's name that the key does not list}. Returns {park, verdict, confidence, recommend, reasons, records}."""
     R = {'park': ref, 'name': p.get('n') or '', 'type': p.get('t') or '', 'state': listed_state or '', 'verdict': 'needs a person',
          'confidence': 'low', 'recommend': 'a person looks (nothing changed)', 'reasons': [], 'records': []}
     why = R['reasons']
@@ -167,6 +185,9 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None)
     recs = {str(x[0]): recs[str(x[0])] for x in cands if str(x[0]) in recs
             and any(same_name(x[1], recs[str(x[0])].get(k)) for k in ('Unit_Nm', 'Loc_Nm'))}
     km_bk = (p.get('bk') or [None, None])[1]
+    ctx = ctx or {}
+    others_st = sorted(set(ctx.get('states') or []) - {listed_state})
+    if others_st: R['other_states'] = others_st
     # 1. same land, new id
     ov_ids = join_ids(override)
     have = {str(x[0]) for x in cands}
@@ -175,14 +196,31 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None)
         new = [x for x in cands if same_name(p.get('n'), x[1])]
         bk_id = str((p.get('bk') or [None])[0])
         new.sort(key=lambda x: str(x[0]) != bk_id)
-        if new and isinstance(km_bk, (int, float)) and km_bk <= NEAR_KM:
-            x = new[0]
-            left = sorted(core(p.get('n')) - core(x[1]))
-            R.update(verdict='same land new ID', confidence='medium' if left else 'high', recommend=f"re-point the hand join {', '.join(ov_ids)} -> {x[0]} ({x[1]})")
-            why.append(f"overrides.json joins {', '.join(ov_ids)}, which is no longer in the key")
-            why.append(f"{x[0]} has the park's name ({x[1]}, ~{x[2]:,} ac) and is {km_bk} km from the pin: the same land under a new id")
+        kn = ctx.get('known_ids') or {}
+        # an id counts as still there only under the park's name (ids are reused: CO's cow909 is now another place)
+        still = sorted(i for i in ov_ids if i in kn and any(same_name(p.get('n'), nm) for nm in (kn[i] if isinstance(kn, dict) else [p.get('n')])))
+        x = new[0] if new else None
+        # Quality Nov 7 C3: the distance must be the new record's OWN (not the key's best-record distance), measured on its saved
+        # outline, the old id must really be gone (not still in PAD-US in another state: Menominee 272354), and the names must agree
+        # in full (a record that leaves words out is not proven the same land: Bonneville, Taylor Creek)
+        d_x = None
+        if x is not None and pin and recs.get(str(x[0])) and pin[0] not in (None, '') and pin[1] not in (None, ''):
+            d_x = km(recs[str(x[0])], float(pin[0]), float(pin[1]))
+        elif x is not None and str(x[0]) == bk_id and isinstance(km_bk, (int, float)):
+            d_x = float(km_bk)   # the key's own distance IS this record's (its best record); no saved outline under this id
+        left = sorted(core(p.get('n')) - core(x[1])) if x else []
+        if x is not None and (still or left or d_x is None or d_x > NEAR_KM):
+            why.append(f"overrides.json joins {', '.join(ov_ids)}, which this key's row no longer lists")
+            if still: why.append(f"but {', '.join(still)} is still a record (another state or the saved outlines), so it is not gone")
+            if left: why.append(f"{x[0]} ({x[1]}) leaves out {' '.join(left)!r} of the park's name, so it is not proven the same land")
+            if d_x is None: why.append(f"{x[0]} is not the key's best record and has no saved outline here, so its own distance to the pin is unknown")
+            elif d_x > NEAR_KM: why.append(f"{x[0]}'s own outline is {d_x:.1f} km from the pin")
+            return R
+        if x is not None:
+            R.update(verdict='same land new ID', confidence='high', recommend=f"re-point the hand join {', '.join(ov_ids)} -> {x[0]} ({x[1]})")
+            why.append(f"overrides.json joins {', '.join(ov_ids)}, which is no longer a record anywhere this run can see")
+            why.append(f"{x[0]} has the park's name ({x[1]}, ~{x[2]:,} ac) and is {d_x:.2f} km from the pin (its own distance): the same land under a new id")
             twins = [str(y[0]) for y in new[1:] if y[1] == x[1] and y[2] == x[2]]
-            if left: why.append(f"the record's name leaves out {' '.join(left)!r}, so check it is the same place")
             if twins: why.append(f"{', '.join(twins)} is the same feature again (same name and acres), not a second candidate")
             return R
     if not pin or pin[0] in (None, '') or pin[1] in (None, '') or (abs(float(pin[0])) < .01 and abs(float(pin[1])) < .01) \
@@ -235,6 +273,31 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None)
     # 4. the name must match
     if not same_name(p.get('n'), hname):
         why.append(f"the held record's name ({hname}) does not match the park's ({p.get('n')})"); return R
+    pk, rk, clash = kind_clash(f"{p.get('n')} {R['type']}", f"{hname} {h} {rec.get('Unit_Nm') or ''} {rec.get('Loc_Nm') or ''}")
+    if clash:
+        why.append(f"the names match but the kinds do not: the park is a {'/'.join(pk)} place, {h} ({hname}) is {'/'.join(rk)}, "
+                   'so they may be different places'); return R
+    if mac < FRAGMENT_AC and not LINEAR.search(R['type']):
+        why.append(f"{h}'s outline is only {mac:.2f} acres, a fragment of the land, so its distance to the pin proves nothing"); return R
+    if others_st:
+        why.append(f"the park is also listed in {', '.join(others_st)}; this looks only at the {st_lbl(listed_state)} part"
+                   + (f", and it already has land in {', '.join(sorted(ctx.get('joined_in')))}" if ctx.get('joined_in') else '')
+                   + ', so the pin may sit on another part'); return R
+    unit = sorted(core(hname) - core(p.get('n')))
+    if unit:
+        why.append(f"{h} ({hname}) adds {' '.join(unit)!r} to the park's name: it is one unit of the park, so the pin may sit on another unit"); return R
+    if p.get('m') and p.get('g') != 'pin' and not any(str(x[0]) in held for x in p['m']):
+        why.append('the park already has other land joined, so the pin may sit on another parcel'); return R
+    extra = {k: v for k, v in (ctx.get('same_name_recs') or {}).items() if k not in {str(x[0]) for x in cands}}
+    xr = ctx.get('extra_recs') or {}
+    hold = sorted((km(xr[k], la, lo), k) for k in extra if k in xr and rings(xr[k]))
+    if hold and hold[0][0] <= NEAR_KM:
+        why.append(f"another saved record with the same name, {hold[0][1]} ({extra[hold[0][1]]}), holds the pin "
+                   f"({hold[0][0]:.1f} km) but the key did not list it, so the pin may be right and the key misses a parcel"); return R
+    if [k for k in extra if k not in xr or not rings(xr[k])]:
+        why.append(f"{len(extra)} other saved record(s) carry the same name ({', '.join(list(extra)[:3])}) and could not be measured, "
+                   'so another parcel may hold the pin'); return R
+    if extra: why.append(f"the other same-name record(s) {', '.join(list(extra)[:3])} are {hold[0][0]:.1f} km or more from the pin too")
     named = [x for x in cands if same_name(p.get('n'), x[1])]
     far_twins = []
     for x in named:
@@ -248,6 +311,9 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None)
     # 5. acres
     if cac > 0 and mac > 0 and not (1 / ACRE_RATIO <= mac / cac <= ACRE_RATIO):
         why.append(f"{h}'s outline measures {mac:,.0f} acres but the record claims {cac:,.0f}"); return R
+    pac = float(p.get('ac') or 0)   # the park's own acres in the key (official or POTA), when it has them
+    if pac > 0 and mac > 0 and mac / pac < 1 / ACRE_RATIO:
+        why.append(f"{h}'s outline is {mac:,.0f} acres but the park is ~{pac:,.0f} acres, so it is only part of the land"); return R
     # 6. wrong state
     c = centre(rec)
     land_st = state_of(*c, path=states_path) if c else None
@@ -266,10 +332,16 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None)
         conf = 'medium'; why_k = f"POTA calls it a Wilderness Area but {h} is a Wilderness Study Area (a different kind), so the pin is unexplained"
     else: why_k = None
     R.update(verdict='pin wrong', confidence=conf, recommend=f"override: keep {', '.join(held)} ({hname}) ({PIN_NEVER})")
+    if extra:   # other pieces with the same name, all away from the pin too: the park may be several pieces (Quality Nov 7 C2)
+        R['confidence'] = 'medium'
+        R['recommend'] += f"; check whether the same-name pieces {', '.join(list(extra)[:3])} belong to the park too" 
     why.append(f"{h} is the park's land: same name ({hname})" + (f', ~{cac:,.0f} acres' if cac else f', {mac:,.0f} acres measured'))
     why.append(how)
     if why_k: why.append(why_k)
     return R
+
+
+def st_lbl(s): return str(s or '').replace('US-', '') or 'listed'
 
 
 # ---- the run
@@ -304,18 +376,37 @@ def run(env=None, root='.'):
     try: ov = json.load(open(root / 'data/us-key/overrides.json', encoding='utf-8')).get('parks') or {}
     except Exception: pass  # noqa: BLE001
     out = []
+    files = {}
     for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):
-        st = pathlib.Path(f).stem[3:]
-        try: parks = json.load(open(f, encoding='utf-8')).get('parks') or {}
+        try: files[pathlib.Path(f).stem[3:]] = json.load(open(f, encoding='utf-8')).get('parks') or {}
         except Exception: continue  # noqa: BLE001
+    where, joined_in, known = {}, {}, {}
+    for st, parks in files.items():
+        for r, p in parks.items():
+            if not isinstance(p, dict): continue
+            where.setdefault(r, []).append('US-' + st)
+            if p.get('m') and p.get('g') != 'pin' and not p.get('held'): joined_in.setdefault(r, set()).add(st)
+            for x in (p.get('m') or []) + (p.get('c') or []):
+                if isinstance(x, list) and x: known.setdefault(str(x[0]), set()).add(str(x[1]) if len(x) > 1 else '')
+    # (the saved outlines are an older read, so only the key's own rows say an id still exists: CO's cache still has cow909)
+    for st, parks in files.items():
         pick = {r: p for r, p in parks.items() if isinstance(p, dict) and (todo(p) or drift(p, ov.get(r)))}
         if not pick: continue
         try: pins = json.load(open(pi_dir / f'US-{st}.json', encoding='utf-8')).get('parks') or {}
         except Exception: pins = {}  # noqa: BLE001
         recs = load_recs(cache, st)
+        by_name = {}
+        for k, v in recs.items(): by_name.setdefault(' '.join(sorted(core(v.get('Unit_Nm') or v.get('Loc_Nm')))), {})[k] = v.get('Unit_Nm') or v.get('Loc_Nm')
         for r, p in sorted(pick.items()):
             row = pins.get(r) or []
-            out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st))
+            hid = str(((p.get('held') or {}).get('ids') or [(p.get('bk') or [None])[0]])[0])
+            hn = next((x[1] for x in (p.get('m') or []) + (p.get('c') or []) if isinstance(x, list) and x and str(x[0]) == hid), '')
+            pre = re.match(r'[a-z]*', hid).group(0)   # the same layer only (an HMA or a WSA with the name is another kind of land)
+            sn = {k: v for k, v in by_name.get(' '.join(sorted(core(hn))), {}).items()
+                  if k != hid and re.match(r'[a-z]*', k).group(0) == pre} if core(hn) else {}
+            ctx = {'states': where.get(r, []), 'joined_in': joined_in.get(r, set()) - {st}, 'known_ids': known, 'same_name_recs': sn,
+                   'extra_recs': {k: recs[k] for k in sn}}
+            out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st, ctx=ctx))
     stem = pathlib.Path(env.get('OUT') or root / 'data/us-key/review/problem-solver')
     stem.parent.mkdir(parents=True, exist_ok=True)
     n = {}
@@ -331,9 +422,10 @@ def md(out, n):
     L = ['# Problem solver: a recommended fix for each held park', '',
          'Recommendations only. Nothing here is applied, and no POTA pin is ever moved. A person applies each one.', '',
          ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'Nothing held.', '',
-         '| Park | Name | Verdict | Confidence | Recommended fix | Why |', '|---|---|---|---|---|---|']
+         '| Park | State | Name | Verdict | Confidence | Recommended fix | Why |', '|---|---|---|---|---|---|---|']
     for x in out:
-        L.append(f"| {x['park']} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} |".replace('\n', ' '))
+        stx = x.get('state', '').replace('US-', '') + (f" (also {', '.join(s.replace('US-', '') for s in x['other_states'])})" if x.get('other_states') else '')
+        L.append(f"| {x['park']} | {stx} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} |".replace('\n', ' '))
     return '\n'.join(L) + '\n'
 
 
