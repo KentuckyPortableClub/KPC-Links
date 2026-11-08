@@ -111,6 +111,20 @@ def main():
         for x in a: seen[x['label']] = seen.get(x['label'], 0) + 1
         for x in a:
             if seen[x['label']] > 1: x['label'] = svc_label(x['label'], x['url'])
+    # follow-up to #94: Kentucky's official layers are the club's own map files (kpc-bounds.js KY list), not live servers
+    KY = [('bstate', 'Kentucky State Parks', 'ky-state-parks.geojson'), ('bwma', 'Kentucky Fish & Wildlife WMAs and public hunting areas', 'ky-hunting-areas.geojson'),
+          ('bsnp', 'Kentucky Office of Nature Preserves (state nature preserves)', 'ky-nature-preserves.geojson'), ('bsna', 'Kentucky Office of Nature Preserves (state natural areas)', 'ky-natural-areas.geojson'),
+          ('bwild', 'Kentucky Office of Nature Preserves (wild river corridors)', 'ky-wild-rivers.geojson'), ('bdbnfo', 'U.S. Forest Service (Daniel Boone NF owned land)', 'ky-dbnf-owned.geojson'),
+          ('bnps', 'National Park Service (Kentucky units)', 'ky-nps.geojson'), ('bwilder', 'U.S. Forest Service (wilderness areas)', 'ky-wilderness.geojson'), ('bfws', 'U.S. Fish & Wildlife Service (refuges and hatcheries)', 'ky-fws.geojson')]
+    kyr = []
+    for k, lab, f in KY:
+        if not os.path.exists(f): continue
+        fs = json.load(open(f, encoding='utf-8')).get('features') or []; props = set(x for ft in fs for x in (ft.get('properties') or {}))
+        facts = {key: next(c for c in cands if c in props) for key, cands in (('owner', ['owner', 'OWNER']), ('manager', ['MANAGER']), ('designation', ['TYPE']), ('acres', ['ACRES']), ('website', ['URL'])) if any(c in props for c in cands)}
+        r = {'pre': 'kyl' + k, 'url': f, 'field': 'NAME', 'label': lab, 'ok': True, 'why': "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)", 'local': 'ky', 'k': k, 'count': len(fs), 'facts': facts}
+        if k == 'bwma': r['owners'] = 'data/ky-wma-owners.json'
+        kyr.append(r)
+    if kyr: out['KY'] = kyr
     doc = {'about': __doc__.split('\n')[0] + ' Built by .github/scripts/kpc_maprep_state_layers.py (by hand).', 'built': time.strftime('%Y-%m-%d'), 'areas': out}
     with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
     n = sum(1 for a in out.values() for x in a if x['ok']); print(f'{n} layers OK of {len(rows)}')
