@@ -239,7 +239,7 @@
     if (rmap && W.ResizeObserver && !rmap._kpcRO) { const box = rmap.getContainer(); rmap._kpcRO = new ResizeObserver(() => rmap.invalidateSize()); rmap._kpcRO.observe(box); }
     if (!rmap) { const el = $('mrDrop') || $('mrRsMap'); if (!el) return;
       rmap = L.map(el, { scrollWheelZoom: false }).setView([39.8, -90], 4);
-      if (W.KPCLayers) W.KPCLayers(rmap, 'Street'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap); }
+      if (W.KPCLayers) W.KPCLayers(rmap, 'Satellite + streets'); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '\u00a9 OpenStreetMap contributors, ODbL' }).addTo(rmap); }
     rlayer = L.featureGroup().addTo(rmap);
     rmap.on('click', e => { const t = e.originalEvent && e.originalEvent.target; if (t && t.closest && t.closest('.leaflet-control, .leaflet-popup')) return; lastPin = [e.latlng.lat, e.latlng.lng]; drawPin(); if (tab !== 'pin') setTab('pin'); say('Pin dropped. Tap SEARCH to check the official land around it.'); });
     setTimeout(() => rmap && rmap.invalidateSize(), 80);
@@ -333,7 +333,7 @@
       const card0 = b.closest('details'); if (card0) card0.open = false;
       const st = $('mrCheckSt'); if (st && [...st.options].some(o => o.value === placeCode())) { st.value = placeCode(); st.dispatchEvent(new Event('change')); }
       if ($('mrCheckQ')) $('mrCheckQ').value = p.name;
-      if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
+      if (W.KPCMapCheck && W.KPCMapCheck.showFull) W.KPCMapCheck.showFull(p.pt[0], p.pt[1]); else if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
       showSpot();
     });
     draw(show.map(([p]) => p), false);

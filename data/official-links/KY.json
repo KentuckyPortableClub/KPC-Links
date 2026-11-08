@@ -1,0 +1,956 @@
+{
+ "about": "KY: official website / map links pre-found for parks with none on file (kpc_official_find.py). The Tool Box reads this after what is on file. Test run Nov 8 (by hand, local); label-only rows from ky-lands-seen dropped after the run (fixed in the script).",
+ "built": "2026-11-08 21:19 UTC",
+ "ua": "KPC-map-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)",
+ "sources": [
+  {
+   "host": "parks.ky.gov",
+   "sitemap": "https://parks.ky.gov/sitemap/sitemap-index.xml",
+   "robots": "allowed",
+   "urls": 384
+  },
+  {
+   "host": "eec.ky.gov",
+   "sitemap": "https://eec.ky.gov/sitemap.xml",
+   "robots": "allowed",
+   "urls": 0
+  },
+  {
+   "host": "www.fws.gov",
+   "sitemap": "https://www.fws.gov/sitemap.xml",
+   "robots": "allowed",
+   "urls": 594
+  }
+ ],
+ "counts": {
+  "parks": 193,
+  "needed": 192,
+  "found": 132
+ },
+ "links": {
+  "clarks river national wildlife refuge": {
+   "ref": "US-0295",
+   "name": "Clarks River National Wildlife Refuge",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9075",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "reelfoot national wildlife refuge": {
+   "ref": "US-0538",
+   "name": "Reelfoot National Wildlife Refuge",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9074",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ohio river islands national wildlife refuge": {
+   "ref": "US-0608",
+   "name": "Ohio River Islands National Wildlife Refuge",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9082",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "carr creek state park": {
+   "ref": "US-1251",
+   "name": "Carr Creek State Park",
+   "site": "https://parks.ky.gov/sassafras/parks/recreation/carr-creek-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "dawkins line rail trail state park": {
+   "ref": "US-1253",
+   "name": "Dawkins Line Rail Trail State Park",
+   "site": "https://parks.ky.gov/swamp-branch/parks/recreation/dawkins-line-rail-trail",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "ep tom sawyer state park": {
+   "ref": "US-1254",
+   "name": "E.P. 'Tom' Sawyer State Park",
+   "site": "https://parks.ky.gov/louisville/parks/recreation/ep-tom-sawyer-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "fishtrap lake wildlife management area": {
+   "ref": "US-1255",
+   "name": "Fishtrap Lake Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "general burnside state park": {
+   "ref": "US-1257",
+   "name": "General Burnside State Park",
+   "site": "https://parks.ky.gov/explore/general-burnside-island-state-park-7812",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "medium"
+  },
+  "grayson lake state park": {
+   "ref": "US-1258",
+   "name": "Grayson Lake State Park",
+   "site": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "green river lake state park": {
+   "ref": "US-1259",
+   "name": "Green River Lake State Park",
+   "site": "https://parks.ky.gov/things_to_do/hunts.html",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kincaid lake state park": {
+   "ref": "US-1261",
+   "name": "Kincaid Lake State Park",
+   "site": "https://parks.ky.gov/things_to_do/hunts.html",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kingdom come state park": {
+   "ref": "US-1262",
+   "name": "Kingdom Come State Park",
+   "site": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "lake malone state park": {
+   "ref": "US-1263",
+   "name": "Lake Malone State Park",
+   "site": "https://parks.ky.gov/dunmor/parks/recreation/lake-malone-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "nolin lake state park": {
+   "ref": "US-1268",
+   "name": "Nolin Lake State Park",
+   "site": "https://parks.ky.gov/mammoth-cave/parks/recreation/nolin-lake-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "paintsville lake state park": {
+   "ref": "US-1270",
+   "name": "Paintsville Lake State Park",
+   "site": "https://parks.ky.gov/staffordsville/parks/recreation/paintsville-lake-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "taylorsville lake state park": {
+   "ref": "US-1271",
+   "name": "Taylorsville Lake State Park",
+   "site": "https://parks.ky.gov/mount-eden/parks/recreation/taylorsville-lake-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "yatesville lake state park": {
+   "ref": "US-1272",
+   "name": "Yatesville Lake State Park",
+   "site": "https://parks.ky.gov/louisa/parks/recreation/yatesville-lake-state-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "barren river lake state park": {
+   "ref": "US-1273",
+   "name": "Barren River Lake State Park",
+   "site": "https://parks.ky.gov/explore/barren-river-lake-state-resort-park-7781",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "blue licks battlefield state park": {
+   "ref": "US-1274",
+   "name": "Blue Licks Battlefield State Park",
+   "site": "https://parks.ky.gov/explore/blue-licks-battlefield-state-resort-park-7782",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "buckhorn lake state park": {
+   "ref": "US-1275",
+   "name": "Buckhorn Lake State Park",
+   "site": "https://parks.ky.gov/explore/buckhorn-lake-state-resort-park-7784",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "carter caves state park": {
+   "ref": "US-1276",
+   "name": "Carter Caves State Park",
+   "site": "https://parks.ky.gov/explore/carter-caves-state-resort-park-7785",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "cumberland falls state park": {
+   "ref": "US-1277",
+   "name": "Cumberland Falls State Park",
+   "site": "https://parks.ky.gov/explore/cumberland-falls-state-resort-park-7786",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "dale hollow state park": {
+   "ref": "US-1278",
+   "name": "Dale Hollow State Park",
+   "site": "https://parks.ky.gov/explore/dale-hollow-lake-state-resort-park-7787",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "general butler state park": {
+   "ref": "US-1279",
+   "name": "General Butler State Park",
+   "site": "https://parks.ky.gov/explore/general-butler-state-resort-park-7789",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "greenbo lake state park": {
+   "ref": "US-1280",
+   "name": "Greenbo Lake State Park",
+   "site": "https://parks.ky.gov/explore/greenbo-lake-state-resort-park-7790",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "jenny wiley state park": {
+   "ref": "US-1281",
+   "name": "Jenny Wiley State Park",
+   "site": "https://parks.ky.gov/explore/jenny-wiley-state-resort-park-7791",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "kenlake state park": {
+   "ref": "US-1282",
+   "name": "Kenlake State Park",
+   "site": "https://parks.ky.gov/explore/kenlake-state-resort-park-7792",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "kentucky dam village state park": {
+   "ref": "US-1283",
+   "name": "Kentucky Dam Village State Park",
+   "site": "https://parks.ky.gov/explore/kentucky-dam-village-state-resort-park-7793",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "lake barkley state park": {
+   "ref": "US-1284",
+   "name": "Lake Barkley State Park",
+   "site": "https://parks.ky.gov/explore/lake-barkley-state-resort-park-7794",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "lake cumberland state park": {
+   "ref": "US-1285",
+   "name": "Lake Cumberland State Park",
+   "site": "https://parks.ky.gov/explore/lake-cumberland-state-resort-park-7795",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "natural bridge state park": {
+   "ref": "US-1286",
+   "name": "Natural Bridge State Park",
+   "site": "https://parks.ky.gov/explore/natural-bridge-state-resort-park-7796",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "pennyrile forest state park": {
+   "ref": "US-1287",
+   "name": "Pennyrile Forest State Park",
+   "site": "https://parks.ky.gov/explore/pennyrile-forest-state-resort-park-7798",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "pine mountain state park": {
+   "ref": "US-1288",
+   "name": "Pine Mountain State Park",
+   "site": "https://parks.ky.gov/explore/pine-mountain-state-resort-park-7799",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "rough river dam state park": {
+   "ref": "US-1289",
+   "name": "Rough River Dam State Park",
+   "site": "https://parks.ky.gov/explore/rough-river-dam-state-resort-park-7800",
+   "site_src": "parks.ky.gov sitemap",
+   "site_conf": "high"
+  },
+  "big bone lick state historic site": {
+   "ref": "US-3779",
+   "name": "Big Bone Lick State Historic Site",
+   "site": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "breaks interstate state park": {
+   "ref": "US-3781",
+   "name": "Breaks Interstate State Park",
+   "site": "https://parks.ky.gov/elkhorn-city/parks/recreation/breaks-interstate-park",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "dr thomas walker state historic site": {
+   "ref": "US-3782",
+   "name": "Dr. Thomas Walker State Historic Site",
+   "site": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "jefferson davis state historic site": {
+   "ref": "US-3783",
+   "name": "Jefferson Davis State Historic Site",
+   "site": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "old mulkey meetinghouse state historic site": {
+   "ref": "US-3784",
+   "name": "Old Mulkey Meetinghouse State Historic Site",
+   "site": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "perryville battlefield state historic site": {
+   "ref": "US-3785",
+   "name": "Perryville Battlefield State Historic Site",
+   "site": "https://parks.ky.gov/perryville/parks/historic/perryville-battlefield-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "waveland state historic site": {
+   "ref": "US-3786",
+   "name": "Waveland State Historic Site",
+   "site": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "wickliffe mounds state historic site": {
+   "ref": "US-3788",
+   "name": "Wickliffe Mounds State Historic Site",
+   "site": "https://parks.ky.gov/wickliffe/parks/historic/wickliffe-mounds-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "land between the lakes national recreation area": {
+   "ref": "US-3792",
+   "name": "Land Between the Lakes National Recreation Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9049",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ballard wildlife management area": {
+   "ref": "US-3793",
+   "name": "Ballard Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "beaver creek wildlife management area": {
+   "ref": "US-3794",
+   "name": "Beaver Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "beechy creek wildlife management area": {
+   "ref": "US-3795",
+   "name": "Beechy Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=228",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "boatwright wildlife management area": {
+   "ref": "US-3797",
+   "name": "Boatwright Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "buck creek wildlife management area": {
+   "ref": "US-3798",
+   "name": "Buck Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9132",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "cedar creek lake wildlife management area": {
+   "ref": "US-3800",
+   "name": "Cedar Creek Lake Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "coil estate wildlife management area": {
+   "ref": "US-3803",
+   "name": "Coil Estate Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9125",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "cranks creek wildlife management area": {
+   "ref": "US-3804",
+   "name": "Cranks Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=150",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "curtis gates lloyd wildlife management area": {
+   "ref": "US-3805",
+   "name": "Curtis Gates Lloyd Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=153",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "dennis gray wildlife management area": {
+   "ref": "US-3806",
+   "name": "Dennis-Gray Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "dix river wildlife management area": {
+   "ref": "US-3807",
+   "name": "Dix River Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "doug travis wildlife management area": {
+   "ref": "US-3808",
+   "name": "Doug Travis Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "dr james r rich wildlife management area": {
+   "ref": "US-3809",
+   "name": "Dr. James R. Rich Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "dr norman and martha adair wildlife management area": {
+   "ref": "US-3810",
+   "name": "Dr. Norman And Martha Adair Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=149",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ed mabry laurel gorge wildlife management area": {
+   "ref": "US-3811",
+   "name": "Ed Mabry-Laurel Gorge Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9126",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "fleming wildlife management area": {
+   "ref": "US-3812",
+   "name": "Fleming Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "griffith woods wildlife management area": {
+   "ref": "US-3813",
+   "name": "Griffith Woods Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9201",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "hensley pine mountain wildlife management area": {
+   "ref": "US-3814",
+   "name": "Hensley-Pine Mountain Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=136",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "higginson henry wildlife management area": {
+   "ref": "US-3815",
+   "name": "Higginson-Henry Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=132",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "john a kleber wildlife management area": {
+   "ref": "US-3816",
+   "name": "John A. Kleber Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=14",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "john c williams wildlife management area": {
+   "ref": "US-3817",
+   "name": "John C. Williams Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=238",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "jones keeney wildlife management area": {
+   "ref": "US-3818",
+   "name": "Jones-Keeney Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=19",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kaler bottoms wildlife management area": {
+   "ref": "US-3819",
+   "name": "Kaler Bottoms Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=21",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kentucky river wildlife management area": {
+   "ref": "US-3820",
+   "name": "Kentucky River Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "l b davison wildlife management area": {
+   "ref": "US-3821",
+   "name": "L. B. Davison Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=16",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "lee k nelson wildlife management area": {
+   "ref": "US-3822",
+   "name": "Lee K. Nelson Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9011",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "mullins wildlife management area": {
+   "ref": "US-3826",
+   "name": "Mullins Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=12",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "obion creek wildlife management area": {
+   "ref": "US-3827",
+   "name": "Obion Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "peabody wildlife management area": {
+   "ref": "US-3828",
+   "name": "Peabody Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=229",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "r f tarter wildlife management area": {
+   "ref": "US-3829",
+   "name": "R. F. Tarter Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "sloughs wildlife management area": {
+   "ref": "US-3830",
+   "name": "Sloughs Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "south shore wildlife management area": {
+   "ref": "US-3831",
+   "name": "South Shore Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9067",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "t n sullivan wildlife management area": {
+   "ref": "US-3833",
+   "name": "T. N. Sullivan Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=156",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "tradewater wildlife management area": {
+   "ref": "US-3834",
+   "name": "Tradewater Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "twin eagle wildlife management area": {
+   "ref": "US-3835",
+   "name": "Twin Eagle Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=13",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "veterans memorial wildlife management area": {
+   "ref": "US-3836",
+   "name": "Veterans Memorial Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "west kentucky wildlife management area": {
+   "ref": "US-3837",
+   "name": "West Kentucky Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=137",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "winford wildlife management area": {
+   "ref": "US-3838",
+   "name": "Winford Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=20",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "yatesville lake wildlife management area": {
+   "ref": "US-3839",
+   "name": "Yatesville Lake Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "yellowbank wildlife management area": {
+   "ref": "US-3840",
+   "name": "Yellowbank Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=192",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "daniel boone national forest": {
+   "ref": "US-4484",
+   "name": "Daniel Boone National Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9089",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "dewey lake wildlife management area": {
+   "ref": "US-4687",
+   "name": "Dewey Lake Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=26",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kentenia state forest": {
+   "ref": "US-4688",
+   "name": "Kentenia State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9080",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kentucky ridge state forest": {
+   "ref": "US-4689",
+   "name": "Kentucky Ridge State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=185",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "knobs state forest": {
+   "ref": "US-4690",
+   "name": "Knobs State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "pennyrile state forest": {
+   "ref": "US-4692",
+   "name": "Pennyrile State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9060",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "tygarts state forest": {
+   "ref": "US-4693",
+   "name": "Tygarts State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9085",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "isaac shelby cemetery state historic site": {
+   "ref": "US-7890",
+   "name": "Isaac Shelby Cemetery State Historic Site",
+   "site": "https://parks.ky.gov/junction-city/parks/historic/isaac-shelby-cemetery-state-historic-site",
+   "site_src": "ky-lands-seen (Kentucky State Parks)",
+   "site_conf": "high"
+  },
+  "green river state forest": {
+   "ref": "US-7951",
+   "name": "Green River State Forest",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9079",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "metropolis lake state nature preserve": {
+   "ref": "US-7953",
+   "name": "Metropolis Lake State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Metropolis-Lake.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "blackacre state nature preserve": {
+   "ref": "US-7954",
+   "name": "Blackacre State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blackacre.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "six mile island state nature preserve": {
+   "ref": "US-7955",
+   "name": "Six Mile Island State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "beargrass creek state nature preserve": {
+   "ref": "US-7956",
+   "name": "Beargrass Creek State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Beargrass-Creek.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "quiet trails state nature preserve": {
+   "ref": "US-7959",
+   "name": "Quiet Trails State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Quiet-Trails.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "crooked creek state nature preserve": {
+   "ref": "US-7960",
+   "name": "Crooked Creek State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "jesse stuart state nature preserve": {
+   "ref": "US-7961",
+   "name": "Jesse Stuart State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "pilot knob state nature preserve": {
+   "ref": "US-7963",
+   "name": "Pilot Knob State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "brigadoon state nature preserve": {
+   "ref": "US-7965",
+   "name": "Brigadoon State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "bad branch state nature preserve": {
+   "ref": "US-7966",
+   "name": "Bad Branch State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "blanton forest state nature preserve": {
+   "ref": "US-7967",
+   "name": "Blanton Forest State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blanton-Forest.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "sinking creek state natural area": {
+   "ref": "US-7970",
+   "name": "Sinking Creek State Natural Area",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx",
+   "site_src": "ky-lands-seen (State Natural Areas (OKNP))",
+   "site_conf": "high"
+  },
+  "decker wildlife management area": {
+   "ref": "US-9756",
+   "name": "Decker Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9717",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "green river national wildlife refuge": {
+   "ref": "US-10098",
+   "name": "Green River National Wildlife Refuge",
+   "site": "https://www.fws.gov/refuge/green-river",
+   "site_src": "www.fws.gov sitemap",
+   "site_conf": "high"
+  },
+  "cane creek wildlife management area": {
+   "ref": "US-10121",
+   "name": "Cane Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "clay wildlife management area": {
+   "ref": "US-10124",
+   "name": "Clay Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ferguson creek wildlife management area": {
+   "ref": "US-10128",
+   "name": "Ferguson Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "gabbard branch wildlife management area": {
+   "ref": "US-10131",
+   "name": "Gabbard Branch Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "harris dickerson wildlife management area": {
+   "ref": "US-10137",
+   "name": "Harris-Dickerson Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "hoskins wildlife management area": {
+   "ref": "US-10138",
+   "name": "Hoskins Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "kentucky lake wildlife management area": {
+   "ref": "US-10140",
+   "name": "Kentucky Lake Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=227",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "meadow creek wildlife management area": {
+   "ref": "US-10145",
+   "name": "Meadow Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9224",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "mill creek wildlife management area": {
+   "ref": "US-10146",
+   "name": "Mill Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=37",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "mud camp creek wildlife management area": {
+   "ref": "US-10148",
+   "name": "Mud Camp Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=146",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "old trace creek wildlife management area": {
+   "ref": "US-10153",
+   "name": "Old Trace Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9609",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "paul van booven wildlife management area": {
+   "ref": "US-10155",
+   "name": "Paul Van Booven Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ping sinking valley wildlife management area": {
+   "ref": "US-10157",
+   "name": "Ping-Sinking Valley Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9208",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "pioneer weapons wildlife management area": {
+   "ref": "US-10158",
+   "name": "Pioneer Weapons Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=36",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "redbird wildlife management area": {
+   "ref": "US-10159",
+   "name": "Redbird Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=35",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "rockcastle river wildlife management area": {
+   "ref": "US-10160",
+   "name": "Rockcastle River Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9217",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "rolling fork wildlife management area": {
+   "ref": "US-10161",
+   "name": "Rolling Fork Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "ross creek wildlife management area": {
+   "ref": "US-10162",
+   "name": "Ross Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9705",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "shillalah creek wildlife management area": {
+   "ref": "US-10164",
+   "name": "Shillalah Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=170",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "stephens creek wildlife management area": {
+   "ref": "US-10166",
+   "name": "Stephens Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9232",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "simon kenton wildlife management area": {
+   "ref": "US-10167",
+   "name": "Simon Kenton Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9613",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "sunny brook wildlife management area": {
+   "ref": "US-10168",
+   "name": "Sunny Brook Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9707",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "university of the cumberlands wildlife management area": {
+   "ref": "US-12083",
+   "name": "University of the Cumberlands Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9727",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  },
+  "bat cave state nature preserve": {
+   "ref": "US-12971",
+   "name": "Bat Cave State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "cascade caverns state nature preserve": {
+   "ref": "US-12972",
+   "name": "Cascade Caverns State Nature Preserve",
+   "site": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx",
+   "site_src": "ky-lands-seen (State Nature Preserves (OKNP))",
+   "site_conf": "high"
+  },
+  "clear creek wildlife management area": {
+   "ref": "US-12974",
+   "name": "Clear Creek Wildlife Management Area",
+   "site": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9006",
+   "site_src": "ky-lands-seen (Fish & Wildlife (hunting areas / WMAs))",
+   "site_conf": "high"
+  }
+ }
+}
