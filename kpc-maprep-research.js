@@ -329,6 +329,8 @@
     out.querySelectorAll('[data-rscopy]').forEach(b => b.onclick = () => { const t = $('mrRsSum' + b.dataset.rscopy); if (!t) return; t.select(); (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(() => { b.textContent = 'COPIED'; }).catch(() => { try { D.execCommand('copy'); b.textContent = 'COPIED'; } catch (e) {} }); });
     out.querySelectorAll('[data-rscheck]').forEach(b => b.onclick = () => {   /* hand the place to "Check a place" (the full rules checklist) */
       const p = rows[+b.dataset.rscheck]; if (!p || !p.pt) return;
+      /* Nov 8 (t751u, no repeats): the full check below shows the official record again, so this card folds up */
+      const card0 = b.closest('details'); if (card0) card0.open = false;
       const st = $('mrCheckSt'); if (st && [...st.options].some(o => o.value === placeCode())) { st.value = placeCode(); st.dispatchEvent(new Event('change')); }
       if ($('mrCheckQ')) $('mrCheckQ').value = p.name;
       if (W.KPCMapCheck && W.KPCMapCheck.showPoint) W.KPCMapCheck.showPoint(p.pt[0], p.pt[1]);
