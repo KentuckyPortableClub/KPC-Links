@@ -285,6 +285,16 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
                          'decided_by': DECIDED_BY, 'evidence_only': 'yes: a person verifies, then fixes; nothing is removed by this check'})
         else: p.pop('suspect', None)
         changed |= p.get('suspect') != was
+        # Nov 8 regrade should-fix 1 (Quality on US-42504172086): over 5 km only because of NEW ids, on a park whose previous joins are
+        # still here: hold just the new ids (back to 'c') and keep the live outline of the old ones (US-13132, 13134, 13138, 4868, 4886)
+        keep_old = [x for x in (p.get('m') or []) if isinstance(x, list) and x and str(x[0]) not in {str(i) for i in (nw or [])}]
+        if far and not ex and mode == 'hold' and km <= FAR_KM and nw and keep_old:
+            r = f'a new join ({", ".join(map(str, nw))}) on a park already joined: the outline is {km:.1f} km from the POTA pin (over {NEW_KM:.0f} km for a new join); the earlier joins stay'
+            drop_ids(p, nw, r); changed = True
+            held.append({'park': ref, 'area': pathlib.Path(f).stem, 'name': p.get('n') or '', 'pin_km': km, 'was_g': p.get('g'),
+                         'held_ids': ' | '.join(map(str, nw)), 'held_names': '', 'reason': r, 'decided_by': DECIDED_BY,
+                         'to_keep_it': "a person verifies; to keep the new piece add it to overrides.json 'join' (or a signed answer-sheet row)"})
+            continue
         if far and not ex and mode == 'hold':
             r = (f'the nearest part of the joined outline is {km:.1f} km from the POTA pin (over {FAR_KM:.0f} km)' if km > FAR_KM else
                  f'a new join ({", ".join(map(str, nw))}): the nearest part is {km:.1f} km from the POTA pin (over {NEW_KM:.0f} km for a new join)')
