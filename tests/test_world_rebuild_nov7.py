@@ -149,7 +149,9 @@ if OLD:
     check(all(g['EXTRA_URLS'].get(k) == v for k, v in g0['EXTRA_URLS'].items()) and all(k[1] in _ok for k in _new)
           and all(g['LAYER_NAMEF'].get(k) == v for k, v in g0['LAYER_NAMEF'].items()),
           f'every approved extra layer is still read; {len(_new)} added, all from the land-class allow list')
-_el0 = json.loads(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}').get('countries') or {}
+sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sources, apply_moved  # noqa: E402
+# Nov 8 (#76): a declared moved source (docs/key-rules-change.txt) is the one allowed change to an origin/main row
+_el0 = json.loads(apply_moved(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}', moved_sources(ROOT))).get('countries') or {}
 _el = json.load(open(ROOT / 'data/world-key/extra-layers.json')).get('countries') or {}
 check(all(all(l in _el.get(c, []) for l in ls) for c, ls in _el0.items()),
       'data/world-key/extra-layers.json keeps every origin/main row unchanged (rows may only be added, Nov 7 land-class allow list)')
