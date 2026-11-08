@@ -3363,6 +3363,144 @@
      "designation": "DESIG_GR"
     }
    }
+  ],
+  "KY": [
+   {
+    "pre": "kylbstate",
+    "url": "ky-state-parks.geojson",
+    "field": "NAME",
+    "label": "Kentucky State Parks",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bstate",
+    "count": 49,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "kylbwma",
+    "url": "ky-hunting-areas.geojson",
+    "field": "NAME",
+    "label": "Kentucky Fish & Wildlife WMAs and public hunting areas",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bwma",
+    "count": 133,
+    "facts": {
+     "manager": "MANAGER",
+     "designation": "TYPE",
+     "website": "URL"
+    },
+    "owners": "data/ky-wma-owners.json"
+   },
+   {
+    "pre": "kylbsnp",
+    "url": "ky-nature-preserves.geojson",
+    "field": "NAME",
+    "label": "Kentucky Office of Nature Preserves (state nature preserves)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bsnp",
+    "count": 31,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "kylbsna",
+    "url": "ky-natural-areas.geojson",
+    "field": "NAME",
+    "label": "Kentucky Office of Nature Preserves (state natural areas)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bsna",
+    "count": 7,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "kylbwild",
+    "url": "ky-wild-rivers.geojson",
+    "field": "NAME",
+    "label": "Kentucky Office of Nature Preserves (wild river corridors)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bwild",
+    "count": 9,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "kylbdbnfo",
+    "url": "ky-dbnf-owned.geojson",
+    "field": "NAME",
+    "label": "U.S. Forest Service (Daniel Boone NF owned land)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bdbnfo",
+    "count": 1,
+    "facts": {
+     "owner": "owner"
+    }
+   },
+   {
+    "pre": "kylbnps",
+    "url": "ky-nps.geojson",
+    "field": "NAME",
+    "label": "National Park Service (Kentucky units)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bnps",
+    "count": 8,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   },
+   {
+    "pre": "kylbwilder",
+    "url": "ky-wilderness.geojson",
+    "field": "NAME",
+    "label": "U.S. Forest Service (wilderness areas)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bwilder",
+    "count": 2,
+    "facts": {
+     "acres": "ACRES"
+    }
+   },
+   {
+    "pre": "kylbfws",
+    "url": "ky-fws.geojson",
+    "field": "NAME",
+    "label": "U.S. Fish & Wildlife Service (refuges and hatcheries)",
+    "ok": true,
+    "why": "the club's own Kentucky map file (same layer Check all uses; read from this site, no outside server)",
+    "local": "ky",
+    "k": "bfws",
+    "count": 6,
+    "facts": {
+     "designation": "TYPE",
+     "website": "URL"
+    }
+   }
   ]
- }
+ },
+ "ky_note": "Kentucky has no data/us-key/US-KY.json (its answer key is data/ky-answer-key.json), so the US layer registry had no 'sgky' rows and Kentucky was missing. Its official layers are the club's own map files (kpc-bounds.js KY list); left out on purpose: ky-padus-parks.geojson (a PAD-US copy, already searched), ky-kpc-drawn.geojson (OpenStreetMap, not official), ky-dbnf.geojson (a forest boundary line, not land)."
 }

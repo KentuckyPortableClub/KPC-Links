@@ -15,7 +15,7 @@ check(len(L) > 100 and any(x['ok'] for x in L), 'layer list built (%d layers, %d
 check(not any(x['ok'] and re.match(r'https://services\d*\.arcgis\.com/', x['url'], re.I) for x in L), 'no services*.arcgis.com layer is used (robots 403 = disallow)')
 check(not any(x['ok'] and BAN.search(x['url']) for x in L), 'no banned host is used')
 check(not any(x['ok'] and re.search(r'hub\.arcgis\.com|opendata\.arcgis\.com', x['url']) for x in L), 'no hub portal is read live')
-check(all(x['ok'] is False or (x['field'] and x['url'].startswith('https://')) for x in L), 'every usable layer has a name field and https')
+check(all(x['ok'] is False or (x['field'] and (x['url'].startswith('https://') or (x.get('local') == 'ky' and x['url'].endswith('.geojson')))) for x in L), 'every usable layer has a name field and https (or is our own Kentucky file)')
 check(all(x.get('why') for x in L), 'every layer says why it is used or skipped')
 check('BANNED.test(L.url)' in js and 'Math.min(4, LS.length)' in js and 'slQuery(o.L, params(o.L), 25000)' in js, 'layers: banned hosts refused, 4 at a time, 25 s each')
 check(js.count('await mergeSources(places') == 2, 'Search and Check all both merge the state layers')
@@ -23,7 +23,7 @@ check("stLine(o.L.label + ': '" in js and 'data-rsretry' in js, 'one status line
 check("label: 'Possible candidate'" in js and "new: 'Possible candidate'" in js and not re.search(r'[Ll]ooks? new', js), "'Looks new' renamed 'Possible candidate'")
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
-    check(not re.search(r'[Ll]ooks? new', h) and '“Possible candidate”' in h and 'kpc-maprep-research.js?v=20261108u' in h, f + ': help text renamed, new script version')
+    check(not re.search(r'[Ll]ooks? new', h) and '“Possible candidate”' in h and (re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108u'), f + ': help text renamed, new script version')
 check(not re.search(r'just opened|newly opened park|new(ly)? open', js.replace('not newly opened land', '')), 'no wording says the place just opened')
 node = r"""
 global.window = {}; const R = require(%s);
