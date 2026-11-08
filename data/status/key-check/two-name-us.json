@@ -2,7 +2,7 @@
  "key": "us",
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
  "two_name_parks": 590,
- "half_outlined": 18,
+ "half_outlined": 17,
  "separate_units": [
   {
    "ref": "US-3692",
@@ -350,22 +350,6 @@
     "BLM recreation management areas · official (BLM planning area)"
    ],
    "looks_like_separate_units": true
-  },
-  {
-   "area": "US-WI",
-   "park": "US-4244",
-   "name": "Big Bay Sand Spit and Bog State Natural Area",
-   "joined": [
-    "Big Bay State Park"
-   ],
-   "named": "Big Bay Sand Spit",
-   "missing": "Bog State Natural Area",
-   "missing_words": [
-    "bog"
-   ],
-   "also_in": [
-    "PAD-US"
-   ]
   },
   {
    "area": "US-WY",
