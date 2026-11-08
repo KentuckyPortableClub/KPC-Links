@@ -17,7 +17,7 @@ check('Way 2' in c and 'Tailscale' in c and 'tailscale serve --bg 8731' in c and
 check('6-digit pair code' in c and '✓ APPROVE' in c, 'pair code + APPROVE')
 check('Add to Home Screen' in c, 'Add to Home Screen')
 check('KPC App 0.8.0 or newer on the PC' in c, 'needs KPC App 0.8.0 or newer on the PC')
-check('https://kentuckyportableclub.github.io/KPC-iPhone-beta/' in c, 'links the beta site')
+check('https://kentuckyportableclub.github.io/BDW-Coils/KPC-iPhone-beta/' in c, 'links the beta site')
 check(not re.search(r'\b(bot|agent|AI)\b', re.sub(r'<[^>]+>', ' ', c)), 'no bot wording')
 check('id="crAppBeta"' in s and s.count('class="cr-app') >= 10, 'app beta card and the other cards kept')
 for h in ['kpc-logger.html', 'kpc-adif.html', 'kpc-hunt.html', 'kpc-top50.html', 'kpc-recap.html', 'kpc-maprep.html', 'kpc-map-coverage.html', 'kpc-control.html']:
