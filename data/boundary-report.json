@@ -2,10 +2,10 @@
  "United States": {
   "totals": {
    "matched": 11623,
-   "far": 4125,
+   "far": 4072,
    "noshape": 0,
-   "edge": 4013,
-   "out": 112,
+   "edge": 3961,
+   "out": 111,
    "swap": 0
   },
   "states": [
@@ -576,14 +576,14 @@
    {
     "st": "WI",
     "matched": 333,
-    "far": 167,
+    "far": 114,
     "noshape": 0,
-    "out": 3,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 164
+    "edge": 112
    },
    {
     "st": "WV",
@@ -839,12 +839,6 @@
     "US-5553",
     "Camels Hump State Forest",
     "Camel's Hump State Forest"
-   ],
-   [
-    "WI",
-    "US-4352",
-    "Kettle Moraine State Forest",
-    "Kettle Moraine State Forest"
    ],
    [
     "WY",
@@ -1231,11 +1225,11 @@
  },
  "World": {
   "totals": {
-   "matched": 42950,
-   "far": 10090,
+   "matched": 43952,
+   "far": 10121,
    "noshape": 0,
-   "edge": 9774,
-   "out": 316,
+   "edge": 9799,
+   "out": 322,
    "swap": 1
   },
   "states": [
@@ -1277,15 +1271,15 @@
    },
    {
     "st": "AU",
-    "matched": 7245,
-    "far": 1529,
+    "matched": 8161,
+    "far": 1558,
     "noshape": 0,
-    "out": 18,
+    "out": 24,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 1511
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 1534
    },
    {
     "st": "AX",
@@ -1493,15 +1487,15 @@
    },
    {
     "st": "DE",
-    "matched": 682,
-    "far": 127,
+    "matched": 683,
+    "far": 123,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 126
+    "edge": 122
    },
    {
     "st": "DK",
@@ -1649,15 +1643,15 @@
    },
    {
     "st": "GR",
-    "matched": 150,
-    "far": 3,
+    "matched": 229,
+    "far": 7,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3
+    "edge": 7
    },
    {
     "st": "GT",
@@ -1715,8 +1709,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 6
    },
    {
@@ -1979,8 +1973,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
+    "detail": "~1.1 km",
+    "thin": 60,
     "edge": 506
    },
    {
@@ -2057,15 +2051,15 @@
    },
    {
     "st": "PR",
-    "matched": 41,
-    "far": 8,
+    "matched": 47,
+    "far": 10,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 8
+    "edge": 10
    },
    {
     "st": "PT",
@@ -2276,6 +2270,48 @@
    ],
    [
     "AU",
+    "AU-0748",
+    "Nuyts Archipelago Marine Park",
+    "Nuyts Archipelago"
+   ],
+   [
+    "AU",
+    "AU-0853",
+    "Investigator Marine Park",
+    ""
+   ],
+   [
+    "AU",
+    "AU-0888",
+    "Franklin Harbor Marine Park",
+    "Franklin Harbor"
+   ],
+   [
+    "AU",
+    "AU-10958",
+    "Anglo Saxon Mine and Groganville Township State Heritage Area",
+    "Anglo Saxon Mine and Groganville Township"
+   ],
+   [
+    "AU",
+    "AU-11002",
+    "Sandstone Railway Culvert State Heritage Area",
+    "Sandstone Railway Culvert"
+   ],
+   [
+    "AU",
+    "AU-1305",
+    "Homevale Conservation Park",
+    "Homevale Resources Reserve"
+   ],
+   [
+    "AU",
+    "AU-3159",
+    "Deep Creek National Park",
+    "Deep Creek"
+   ],
+   [
+    "AU",
     "AU-3273",
     "Morton Nature Reserve",
     "Morton"
@@ -2308,19 +2344,19 @@
     "AU",
     "AU-5170",
     "Mitta Mitta River K26 Streamside Reserve",
-    "Mitta Mitta River"
+    ""
    ],
    [
     "AU",
     "AU-5171",
     "Mitta Mitta River K27 Streamside Reserve",
-    "Mitta Mitta River"
+    ""
    ],
    [
     "AU",
     "AU-5172",
     "Mitta Mitta River K28 Streamside Reserve",
-    "Mitta Mitta River"
+    ""
    ],
    [
     "AU",
@@ -2336,21 +2372,15 @@
    ],
    [
     "AU",
-    "AU-7183",
-    "Dan Dan State Forest",
-    "Dan Dan"
+    "AU-7261",
+    "Squirrel Creek State Forest",
+    "Squirrel Creek State Forest"
    ],
    [
     "AU",
-    "AU-7318",
-    "Wietalaba State Forest",
-    "Wietalaba"
-   ],
-   [
-    "AU",
-    "AU-7445",
-    "Mount Binga State Forest",
-    "Mount Binga"
+    "AU-7410",
+    "Squire State Forest",
+    "Squire State Forest"
    ],
    [
     "AU",
