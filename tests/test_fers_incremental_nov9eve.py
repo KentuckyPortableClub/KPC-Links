@@ -13,6 +13,9 @@ os.environ.setdefault('PASS', '1')
 try: import cv2  # noqa: F401
 except Exception: sys.modules['cv2'] = types.ModuleType('cv2')  # noqa: BLE001
 import kpc_fers as K
+try:   # kpc_save notes file changes in ./data/status/<script>.json at exit: send it to a temp folder, never the repo
+    import kpc_save as _KS; _KS.STATUS = pathlib.Path(tempfile.mkdtemp()) / 'status.json'
+except Exception: pass  # noqa: BLE001
 ok = True
 def check(c, msg):
     global ok
