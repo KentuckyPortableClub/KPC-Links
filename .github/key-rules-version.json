@@ -1,6 +1,7 @@
 {
- "about": "Key rules version (links-04, Nov 4 2026; Brandon 4:51 AM CST Nov 4, relayed by Super). kpc_key_freeze.py hashes this file together with each key's rule scripts (RULE_FILES in kpc_key_freeze.py) and stores the hash with every FULL, COMPLETE key build ('rules' in data/<kind>/index.json). A held build whose hash is missing or differs was built on other rules: it never blocks a new build, and the next run builds the whole key. A person bumps a version here to force that without a code change (a code change to a rule script does it by itself).",
+ "about": "Key rules version (links-04, Nov 4 2026; Brandon 4:51 AM CST Nov 4, relayed by Super). kpc_key_freeze.py hashes this file together with each key's rule scripts (RULE_FILES in kpc_key_freeze.py) and stores the hash with every FULL, COMPLETE key build ('rules' in data/<kind>/index.json). A held build whose hash is missing or differs was built on other rules: it never blocks a new build, and the next run builds the whole key. A person bumps a version here to force that without a code change (a code change to a rule script does it by itself). Nov 8 2026: also stamps a separate 2-fer rules kind (\"fers\") so kpc_fers.py changes cannot slip past a grade; us-key/ca-key/world-key lines are untouched.",
  "us-key": "v5b",
  "ca-key": "v5b",
- "world-key": "v5b"
+ "world-key": "v5b",
+ "fers": "v1"
 }

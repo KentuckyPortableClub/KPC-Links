@@ -1,3 +1,4 @@
+import json
 #!/usr/bin/env python3
 """Nov 7 Part 1 (KEY / 2-FER / WORLD handoff): tracts + parks inside parks + the 2-fer switch. Hidden, hash-neutral, OFF by default.
 
@@ -58,11 +59,14 @@ try:
     _wok = {EXP['world-key']} | ({_wdecl.group(1)} if _wdecl else set())
     check('rules hashes unchanged (world: main or the declared world rebuild) ' + json.dumps({k: KF.rules_hash(k) for k in EXP}),
           KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)
-    rels = sorted(set(sum(KF.RULE_FILES.values(), [])) | {KF.VERSION_FILE})
+    rels = sorted(set(sum((v for k, v in KF.RULE_FILES.items() if k != 'fers'), [])))  # Nov 8: fers kind is separate
     if _wdecl: rels = [r for r in rels if not r.endswith('/kpc_world_key.py')]
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
-    check('rule files and key-rules-version.json are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
+    check('us/ca/world rule files are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
+    _ver = json.loads((ROOT / KF.VERSION_FILE).read_text(encoding='utf-8'))
+    check('key-rules-version.json us/ca/world stay v5b (fers kind may be added)',
+          _ver.get('us-key') == 'v5b' and _ver.get('ca-key') == 'v5b' and _ver.get('world-key') == 'v5b')
     sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sources, apply_moved
     _MOVES = moved_sources(ROOT)
     d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json',

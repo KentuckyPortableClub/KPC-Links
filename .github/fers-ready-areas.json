@@ -1,0 +1,28 @@
+{
+  "about": "2-fer ready areas (Brandon t808u, Nov 8 2026 CST): only run 2-fers where BOTH ownership (fee / land owner) AND management data exist for the ownership_step. Not on this list = skip with a clear log. World (W-*) is out until a person adds it after ownership+management are wired. AU ownership parked. Edit this file (and bump key-rules-version.json 'fers') to open a new area — no hardcoded ifs in the finder.",
+  "require": ["ownership", "management"],
+  "areas": {
+    "US-*": {
+      "match": "^US-[A-Z]{2}$",
+      "ownership": {
+        "source": "PAD-US Fee + agency ownership layers",
+        "fields": ["Own_Type", "Own_Name", "Loc_Own", "OWNERCLASSIFICATION"]
+      },
+      "management": {
+        "source": "PAD-US management fields",
+        "fields": ["Mang_Type", "Mang_Name", "Loc_Mang"]
+      }
+    },
+    "CA-*": {
+      "match": "^CA-[A-Z]{2}$",
+      "ownership": {
+        "source": "CPCAD",
+        "fields": ["OWNER_E", "OWNER_TYPE"]
+      },
+      "management": {
+        "source": "CPCAD + provincial layers (when present)",
+        "fields": ["OWNER_E", "RESPONSABL", "MANAGE_BY", "HOLDER", "OWNER"]
+      }
+    }
+  }
+}

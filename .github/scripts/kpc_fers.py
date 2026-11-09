@@ -60,6 +60,12 @@ import kpc_owned as KO
 import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
 import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate
 from kpc_fers_key_status import key_line_match, load_key_status, KEY_STATUS  # noqa: E402
+import kpc_fers_ready as FREADY  # Nov 8: declared ready-areas gate (ownership+management)
+try:
+    import kpc_key_freeze as KFREEZE  # Nov 8: declared 2-fer rules hash (kind 'fers')
+except Exception:  # noqa: BLE001
+    KFREEZE = None
+
 
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
@@ -2532,6 +2538,16 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     _klm = key_line_match(refs, s.get('kind'), areas=_areas)
     if _klm:
         s['status'] = _klm; return
+    # Nov 8 (Quality 2-fer must-fix): river/trail halves with key g=approximate must not stay plain candidates
+    if s.get('kind') in ('river', 'trail'):
+        load_key_status()
+        from kpc_fers_key_status import status_for as _status_for
+        _apx = [r for r in refs if _status_for(r, _areas.get(r)) == 'approximate']
+        if _apx:
+            s['status'] = ('not sure: approximate outline on a river/trail half ('
+                           + ', '.join(PIN.get(r, [r])[0] for r in _apx) + '): held until the key has an official line')
+            s['names'] = {r: PIN[r][0] for r in refs if r in PIN}
+            return
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
     if any(r in saved_only for r in refs):
         s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
@@ -2816,6 +2832,31 @@ def water_prefetch():
 
 def main():
     if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
+    # Nov 8 (Brandon t808u): only areas declared ready (ownership + management). Skip others with a clear log; no silent world run.
+    global ONLY
+    _run_areas = sorted(ONLY) if ONLY else (
+        ['W-*'] if REGION == 'world' else (['US-KY'] if REGION == 'ky' else [])
+    )
+    if REGION == 'world' and not ONLY:
+        msg = ('2-fer ready-areas: SKIP world run — no STATES set, and W-* is not on '
+               '.github/fers-ready-areas.json (needs ownership + management).')
+        print(f'::notice title=2-fer ready-areas::{msg}', flush=True)
+        notice('2-fer bot', msg); return
+    if _run_areas:
+        # Expand a bare W-* refuse; concrete W-AU etc. go through filter_areas
+        if _run_areas == ['W-*']:
+            msg = ('2-fer ready-areas: SKIP W-* — world countries are not declared ready '
+                   '(ownership + management required; Brandon Nov 8 / t808u).')
+            print(f'::notice title=2-fer ready-areas::{msg}', flush=True)
+            notice('2-fer bot', msg); return
+        _allow, _skip = FREADY.filter_areas(_run_areas, log=lambda m: print(f'::notice title=2-fer ready-areas::{m}', flush=True))
+        if _skip:
+            print(f'::notice title=2-fer ready-areas::{FREADY.skip_message(_skip)}', flush=True)
+            notice('2-fer bot', FREADY.skip_message(_skip))
+        if not _allow:
+            notice('2-fer bot', 'STOPPED: no ready areas left in this run (see 2-fer ready-areas notices).'); return
+        if ONLY:
+            ONLY = set(_allow)
     # Oct 27 (Fable's assembly-line review A5): the park list + trail lines live in KPC-Data (Step B); without them a pass would
     # run and quietly drop every trail pair. Stop instead, loudly.
     if REGION != 'world':
@@ -3301,6 +3342,11 @@ def main():
                               'very tight': sum(1 for s in sp if str(s.get('status', '')).startswith('very tight')), 'not sure': sum(1 for s in sp if str(s.get('status', '')).startswith('not sure')),
                               'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only'))}
     rep['about'] = 'Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.'
+    try:
+        rep['fers_rules'] = KFREEZE.rules_hash('fers') if KFREEZE else None
+    except Exception:  # noqa: BLE001
+        rep['fers_rules'] = None
+
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
     save_json(RF, rep, indent=1)
