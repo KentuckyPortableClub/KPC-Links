@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09 12:41",
+ "updated": "2026-11-09 15:17",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -844,19 +844,6 @@
    "announced": true,
    "refs": []
   },
-  "nps-77B591E4-1DBC-440A-AB6A-2F5733E81C93": {
-   "who": "MACA",
-   "title": "Green River Ferry Closed to RV/Trailer Traffic",
-   "text": "Green River Ferry is operational but remains closed to recreational vehicle and trailer traffic due to low water conditions. A river forecast is available at: water.noaa.gov/gauges/03309000",
-   "link": "https://www.nps.gov/",
-   "routine": false,
-   "cat": "park closure",
-   "first": "2026-11-05",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
   "nps-B489F041-FD1B-40F2-992D-9D36C841B7E5": {
    "who": "MACA",
    "title": "Green River Ferry Temporarily Out of Service",
@@ -865,9 +852,9 @@
    "routine": false,
    "cat": "park closure",
    "first": "2026-11-09",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
