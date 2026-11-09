@@ -39,6 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       groups: ${{ steps.p.outputs.groups }}
+      rematch: ${{ steps.p.outputs.rematch }}   # Nov 9 evening: 1 = a declared change asks to re-match parks with saved ids
       full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = every state is built (the join stamps the rules hash only then)
     steps:
       - uses: actions/checkout@v5
@@ -102,9 +103,9 @@ jobs:
           # 3dc53f70256a, but the states input won (KPC_FULL_BUILD 0): 7 states on the new rules, the index kept rules=6bb847b4f6cd.
           _rules = os.environ.get('RULES_CHANGED') == '1'
           _given = ' '.join((os.environ.get('STATES') or '').split())
-          if _rules and _given and _given.upper() != 'ALL':
+          if _rules and _given and _given.upper() != 'ALL' and not (os.environ.get('RULES_SCOPE') or '').strip():
               print(f"::warning title=US key plan::RULES CHANGED since the newest build: the states input '{_given}' is OVERRIDDEN - building ALL states on the current rules (a partial build would mix rules)", file=__import__('sys').stderr)
-          elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: building ALL states on the current rules (no force needed)', file=__import__('sys').stderr)
+          elif _rules: print('::notice title=US key plan::RULES CHANGED since the newest build: ' + (f"building only the declared states ({os.environ.get('RULES_SCOPE')}) on the current rules" if (os.environ.get('RULES_SCOPE') or '').strip() else 'building ALL states on the current rules (no force needed)'), file=__import__('sys').stderr)
           # Next round C2 (Nov 5, Brandon's yes relayed via Super): EVERY message of this step goes to stderr (FROZEN, already built today,
           # no new answers, the job split), not only the two rules lines below; stdout is only the step outputs.
           # Key hotfix 3 (Nov 5): these two go to stderr = the run log. stdout is >> $GITHUB_OUTPUT, so a ::notice printed there is
@@ -125,7 +126,12 @@ jobs:
               print(f"::warning title=US key plan::force=yes with an EMPTY states input: force only skips the freeze, it does not pick states. This run builds only the answers-states list ({_ans}); give states (e.g. WI) or 'all' to build more", file=__import__('sys').stderr)
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
           want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split()
-          if want == ['ALL'] or _rules or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / rules changed / the MONTHLY cron = every state
+          # Nov 9 evening (Brandon t915u; KZ4CP 5:12 PM CST): a rules change rebuilds ONLY the states its declared scope names
+          # (.github/us-key-rule-scope.json, in the rules hash; the freeze check puts them in RULES_SCOPE); building them all is enough
+          # to stamp the new rules. An undeclared change (or scope 'all') still builds every state. 'all' by hand = emergency full rebuild.
+          _scope = [x[3:] if x.startswith('US-') else x for x in (os.environ.get('RULES_SCOPE') or '').split()]
+          if want == ['ALL'] or (_rules and not _scope) or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / undeclared rules change / the MONTHLY cron = every state
+          elif _rules: st = sorted(set(_scope) | {x for x in want if x not in ('KY', 'ALL')})
           elif want: st = [x for x in want if x != 'KY']
           else:                                                                                               # BOT B: only the states new answers touched
               try: st = [x for x in open('data/us-key/answers-states.txt').read().split() if x != 'KY']
@@ -139,7 +145,8 @@ jobs:
           for s in sorted(st, key=lambda s: -sec.get(s, 60)):   # biggest first, each to the lightest job
               i = load.index(min(load)); g[i].append(s); load[i] += sec.get(s, 60)
           print('groups=' + json.dumps([{'i': i, 'states': ' '.join(sorted(x))} for i, x in enumerate(g) if x]))
-          print('full=' + ('1' if set(st) >= set(ALL) else '0'))
+          print('full=' + ('1' if set(st) >= set(ALL) or (_rules and _scope and set(st) >= set(_scope)) else '0'))   # 1 = this build may stamp the current rules
+          print('rematch=' + ('1' if os.environ.get('RULES_REMATCH_IDS') == '1' else ''))
           print(f'::notice title=US key plan::{n} jobs: ' + ' | '.join(f'{" ".join(sorted(x))} (~{l // 60} min)' for x, l in zip(g, load)), file=__import__('sys').stderr)
           PY
   build:
@@ -168,6 +175,7 @@ jobs:
         env:
           STATES: ${{ matrix.g.states }}
           DEBUG_REFS: ${{ inputs.debug }}
+          KPC_KEY_REMATCH_IDS: ${{ needs.plan.outputs.rematch }}
           MINUTES: '300'
           GH_TOKEN: ${{ github.token }}
           # Nov 9 evening (Brandon t909u, 4:33 PM CST: 'saved outlines first'): each state's outlines come from the saved copy on

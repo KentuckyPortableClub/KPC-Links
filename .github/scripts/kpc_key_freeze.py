@@ -51,6 +51,11 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
                        '.github/scripts/kpc_fers_guard.py', '.github/scripts/kpc_fers_count.py', '.github/scripts/kpc_fers_ready.py',
                        '.github/scripts/kpc_fers_preline.py',  # Nov 8 Quality should-fix: preline HOLDs non-ready areas (affects which pairs count)
                        '.github/fers-ready-areas.json']}
+# Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
+# of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
+# with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.
+SCOPE_FILES = {'us-key': '.github/us-key-rule-scope.json', 'ca-key': '.github/ca-key-rule-scope.json', 'fers': '.github/fers-rule-scope.json'}
+for _kind, _f in SCOPE_FILES.items(): RULE_FILES[_kind].append(_f)
 NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
@@ -92,11 +97,28 @@ DATE_KEYS = ('date', 'signed', 'when', 'approved_date', 'at')
 NO_RE = r'\W*(KEY\s+)?(NO|FAIL|WITHDRAWN)\b'
 
 
+def pending_scope(kind, built_rules, root=None):
+    """What the declared rule changes since the build on rules `built_rules` touch: (None = not declared -> the whole key, as before;
+    'all'; or a set of areas like {'US-TN'} (empty = nothing to rebuild)), plus True when one asks to re-match parks with saved ids.
+    The changes are a chain: each entry names the hash it moved FROM; the pending ones start at the entry whose 'from' is built_rules."""
+    try: ch = json.load(open(pathlib.Path(root or ROOT) / SCOPE_FILES[kind], encoding='utf-8')).get('changes') or []
+    except Exception: return None, False  # noqa: BLE001
+    i = next((n for n, c in enumerate(ch) if built_rules and c.get('from') == built_rules), None)
+    if i is None: return None, False
+    out, ids = set(), False
+    for c in ch[i:]:
+        sc = c.get('scope')
+        if sc == 'all' or (isinstance(sc, dict) and sc.get('all')): return 'all', bool(isinstance(sc, dict) and sc.get('saved_ids'))
+        out |= set((sc or {}).get('states') or []); ids = ids or bool((sc or {}).get('saved_ids'))
+    return out, ids
+
+
 def rules_hash(kind, root=None):
     """sha256 (12 hex) over this key's rule files + its line in .github/key-rules-version.json. A missing file counts as 'missing'."""
     root = pathlib.Path(root or ROOT); h = hashlib.sha256()
     for rel in sorted(RULE_FILES[kind]):
         f = root / rel
+        if rel in SCOPE_FILES.values() and not f.is_file(): continue   # Nov 9 evening: a tree without the scope file keeps its old hash
         h.update(rel.encode() + b'\0' + (f.read_bytes() if f.is_file() else b'missing') + b'\0')
     try: ver = json.load(open(root / VERSION_FILE, encoding='utf-8')).get(kind)
     except Exception: ver = None  # noqa: BLE001
@@ -335,8 +357,16 @@ def check(kind, now=None):
     live = load_index(kind)   # Nov 4 PM fix bundle (item 1): KPC_INDEX_REF=origin/main = the newest main's stamp, not a stale checkout's
     lbid = str((live or {}).get('build') or '')
     if str((live or {}).get('rules') or '') != rules:   # the newest build here was not a full build on the current rules
-        _env(RULES_CHANGED=1)
-        notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: the next run builds the WHOLE key")
+        _ps, _ids = pending_scope(kind, str((live or {}).get('rules') or ''))
+        if _ps == set():
+            notice(f"{kind}: rules {(live or {}).get('rules')} -> {rules}: the declared changes ({SCOPE_FILES.get(kind)}) touch no area, so nothing is rebuilt for them")
+        elif _ps in (None, 'all'):
+            _env(RULES_CHANGED=1)
+            notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: the next run builds the WHOLE key"
+                   + (' (a declared change says all)' if _ps == 'all' else f' (not declared in {SCOPE_FILES.get(kind)})'))
+        else:
+            _env(RULES_CHANGED=1, RULES_SCOPE=' '.join(sorted(_ps)), RULES_REMATCH_IDS='1' if _ids else '')
+            notice(f"{kind}: RULES CHANGED {(live or {}).get('rules')} -> {rules}: the declared changes touch {' '.join(sorted(_ps))} only; only those are rebuilt (parks with saved ids keep their result" + (', except where a change asks to re-match them)' if _ids else ')'))
     if (os.environ.get('FORCE') or '').lower() in ('yes', 'true', '1'):
         notice(f'{kind}: freeze skipped by hand (force)'); return (False, '', 'force')
     held = gh_json(f'data/waiting/in/data/{kind}/index.json') or {}

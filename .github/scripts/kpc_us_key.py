@@ -2114,6 +2114,29 @@ def run(st):
         if kept: notice(f'US key {st}', f'{kept} park(s) kept their last good outline (their land was missing from this read)')
     except FileNotFoundError: pass
     except Exception as e: notice(f'US key {st}', f'keep-last-good check skipped: {e}')  # noqa: BLE001
+    # Nov 9 evening (Brandon t915u, 4:40 PM CST: 'a park with a saved record ID keeps it regardless of rules changes'; KZ4CP 5:12 PM):
+    # a park whose last published result is joined to record ids that are all still in this read keeps that result, whatever these
+    # rules would match now. A fresh match only when: a person's override names the park (hand decisions are applied as they are), one
+    # of its ids is on the bad-ID block list, a record is gone (the keep-last-good guard above handles that), or a declared rule
+    # change asks to re-match saved ids (KPC_KEY_REMATCH_IDS=1, from .github/us-key-rule-scope.json 'saved_ids': true).
+    if os.environ.get('KPC_KEY_REMATCH_IDS') != '1':
+        try:
+            old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
+            ids_here = {_oid(a) for a in recs}; carried = 0
+            for ref, op in old.items():
+                np_ = parks.get(ref)
+                if not np_ or not op.get('m') or ref in OVR: continue
+                oids = sorted(str(x[0]) for x in op['m'])
+                if not all(i in ids_here for i in oids) or set(oids) & BLOCKED.get(ref, set()): continue
+                if sorted(str(x[0]) for x in np_.get('m') or []) == oids: continue
+                keep = dict(op)
+                for k in ('n', 't'):
+                    if k in np_: keep[k] = np_[k]   # POTA's current name / type
+                keep['kept_ids'] = 'saved record ids kept through a rules change (Brandon t915u)'
+                parks[ref] = keep; carried += 1
+            if carried: notice(f'US key {st}', f'{carried} park(s) kept their saved record ids (rules changes do not move a park with saved ids; Brandon t915u)')
+        except FileNotFoundError: pass
+        except Exception as e: notice(f'US key {st}', f'saved-id keep skipped: {e}')  # noqa: BLE001
     try:
         for ref, t in transfers().items():
             if ref in parks: parks[ref]['run_by'] = t.get('by', '') + (f" since {t['since']}" if t.get('since') else '')

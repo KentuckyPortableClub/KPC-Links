@@ -85,6 +85,6 @@ check('run(): state layer read with name-only records left out of its duplicate 
 check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split('if _kr(')[0])
 check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in src_full)
 check('Brandon 11:24 AM "Yes" recorded with the new US hash', 'Brandon Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
-check('rules hashes: US dae78e769382, CA b5ad38f5af61 (blocked_ids, Brandon t918u/t919u), world unchanged, fers aa9713d8bfeb',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('dae78e769382', 'b5ad38f5af61', '10e4092cc97f', 'aa9713d8bfeb'))
+check('rules hashes: US 2900f362e70b, CA 7fb6aaef38c0 (blocked_ids, Brandon t918u/t919u), world unchanged, fers bca2c2bd5a1e',
+      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('2900f362e70b', '7fb6aaef38c0', '10e4092cc97f', 'bca2c2bd5a1e'))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

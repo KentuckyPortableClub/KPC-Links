@@ -1,0 +1,11 @@
+{
+ "about": "US answer key rule changes and what each one touches (Brandon t915u, Nov 9 2026 4:40 PM CST; KZ4CP 5:12 PM CST). This file is part of the US rules hash. A rules change rebuilds ONLY the declared states; a park with saved record ids keeps its result through it (kpc_us_key.py) unless the change sets saved_ids: true. One entry per change, newest last: id, when, why, from (the US rules hash it moves FROM: the hash of the last build), scope = {states: ['US-TN', ...], saved_ids: false} or 'all' (every state: only when the change really touches every state). An undeclared change rebuilds the whole key (safe default). Emergency full rebuild by hand: the 'states' input 'all'.",
+ "changes": [
+  {"id": "2026-11-09-padus-load", "when": "2026-11-09", "from": "a066624520b4",
+   "why": "PAD-US load fix (Brandon 11:24 AM CST): saved ids always loaded by id, the state layer before the PAD-US name exception. It changes what every state reads, so every state is rebuilt once; parks with saved ids keep their result.",
+   "scope": "all"},
+  {"id": "2026-11-09-blocked-ids-keep-ids", "when": "2026-11-09", "from": "464d2ce92eda",
+   "why": "Bad-ID block list (Brandon t919u; the list is empty) + parks with saved ids keep their result through rule changes (Brandon t915u) + this scope file. Changes no current result.",
+   "scope": {"states": []}}
+ ]
+}
