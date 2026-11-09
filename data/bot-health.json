@@ -1,22 +1,27 @@
 {
  "open": [
+  "KPC-Data/kpc-collector.yml",
   "KPC-Data/kpc-docs-merge.yml",
   "KPC-Data/kpc-intake.yml",
+  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-wdpa-phonebook.yml",
   "KPC-Data/kpc-world-finder.yml",
-  "kpc-bot-queue.yml",
+  "kpc-band-alerts.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
   "kpc-hunters.yml",
   "kpc-pota-discord.yml",
+  "kpc-watchdog.yml",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-08T16:34+00:00",
+ "checked": "2026-11-09T12:11+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -116,40 +121,40 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2909
+   "b": 2913
   },
   "L:data/ky-answer-key.json": {
-   "b": 31624
+   "b": 31658
   },
   "L:data/us-key": {
-   "b": 48555852
+   "b": 48607180
   },
   "L:data/ca-key": {
    "b": 5695370
   },
   "L:data/world-key": {
-   "b": 38045808
+   "b": 38228207
   },
   "L:data/pota": {
-   "b": 5665832
+   "b": 5665840
   },
   "L:data/canada.json": {
    "b": 2494163
   },
   "L:kpc-top25.json": {
-   "b": 16593
+   "b": 16584
   },
   "L:data/ky-official-maps.json": {
    "b": 92658
   },
   "L:data/parkinfo-web.json": {
-   "b": 529287
+   "b": 574227
   },
   "L:data/state-gis.json": {
    "b": 111728
   },
   "L:data/boundary-score.json": {
-   "b": 979165
+   "b": 975707
   },
   "L:data/campfed": {
    "b": 643240
@@ -164,10 +169,10 @@
    "b": 5421505
   },
   "L:kpc-events-auto.json": {
-   "b": 21042
+   "b": 20937
   },
   "L:kpc-special-events.json": {
-   "b": 23289
+   "b": 21959
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -197,19 +202,19 @@
    "b": 11701686
   },
   "D:data/review/scoreboard.json": {
-   "b": 137198
+   "b": 137192
   },
   "D:data/truth": {
-   "b": 14717700
+   "b": 14639120
   },
   "D:data/alerts/eu.json": {
-   "b": 96606
+   "b": 110009
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 177537
+   "b": 177662
   },
   "D:data/intake": {
    "b": 39695215,
@@ -219,7 +224,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1114495
+   "b": 1129101
   }
  }
 }

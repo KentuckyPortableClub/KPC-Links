@@ -1,7 +1,7 @@
 {
  "about": "Errors and warnings a step caught itself (kept green), from each timed bot's last timed run (G8 'Hidden failures' lines). Written by the check-up (kpc_bot_health.py); next round C4, Nov 5. A job marked safe to fail goes red on a caught error (repo variable KPC_HIDDEN_RED=off turns that off).",
- "checked": "2026-11-08T16:34+00:00",
- "runs_checked": 93,
+ "checked": "2026-11-09T12:11+00:00",
+ "runs_checked": 94,
  "runs_unread": 0,
  "with_hidden": [
   {
@@ -15,13 +15,13 @@
    "conclusion": "success"
   },
   {
-   "job": "linkfix",
+   "job": "run",
    "errors": 1,
    "warnings": 0,
    "kept_green_steps": 0,
-   "workflow": "KPC-Data/kpc-helpers.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42478848149",
-   "created": "2026-11-08T12:08:38Z",
+   "workflow": "KPC-Data/kpc-convert-layers.yml",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42614977504",
+   "created": "2026-11-09T12:11:48Z",
    "conclusion": "success"
   },
   {
@@ -90,18 +90,8 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-waiting-room.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42495603489",
-   "created": "2026-11-08T15:35:40Z",
-   "conclusion": "success"
-  },
-  {
-   "job": "sitecheck",
-   "errors": 0,
-   "warnings": 1,
-   "kept_green_steps": 0,
-   "workflow": "KPC-Data/kpc-helpers.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42478848149",
-   "created": "2026-11-08T12:08:38Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42600259562",
+   "created": "2026-11-09T10:21:14Z",
    "conclusion": "success"
   },
   {
@@ -113,6 +103,26 @@
    "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42489563809",
    "created": "2026-11-08T14:23:19Z",
    "conclusion": "success"
+  },
+  {
+   "job": "check",
+   "errors": 0,
+   "warnings": 1,
+   "kept_green_steps": 0,
+   "workflow": "kpc-bot-health.yml",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Links/actions/runs/42499384702",
+   "created": "2026-11-08T16:20:25Z",
+   "conclusion": "success"
+  },
+  {
+   "job": "helpers",
+   "errors": 0,
+   "warnings": 1,
+   "kept_green_steps": 0,
+   "workflow": "kpc-research-helpers.yml",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Links/actions/runs/42509763826",
+   "created": "2026-11-08T18:23:21Z",
+   "conclusion": "cancelled"
   }
  ]
 }
