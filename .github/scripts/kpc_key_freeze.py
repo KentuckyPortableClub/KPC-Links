@@ -74,7 +74,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_us_nonum_full.py',
              # Nov 7 Part 1 (KEY / 2-FER / WORLD handoff): the world tract side-file runner, run by hand. It reads the published world
              # key and the record cache and writes only data/world-key/tracts/ (kpc_tracts.py); it never decides a join.
-             'kpc_world_tracts.py'}
+             'kpc_world_tracts.py',
+             # Nov 9 evening: copies saved outlines to / from KPC-Archive (release assets + a small index); never decides a join
+             'kpc_archive.sh'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')

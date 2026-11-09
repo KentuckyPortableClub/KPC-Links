@@ -278,12 +278,12 @@ jobs:
         if: ${{ success() && vars.KPC_KEY_LIVE != '1' }}
         env:
           GH_TOKEN: ${{ github.token }}
-          KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (git keeps every version); the release stays as the mirror the readers use
+          KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
         run: |
           F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" 2>/dev/null | sort | tr '\n' ' ')
           if [ -z "$F" ]; then echo "no new live reads to save"; exit 0; fi
           echo "::notice title=US key saved outlines::saving $F"
-          bash .github/scripts/kpc_archive.sh put outlines "US key saved outlines: $F(run $GITHUB_RUN_ID)" $F || echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (see above); the release copy is current"
+          bash .github/scripts/kpc_archive.sh put saved-outlines "US key saved outlines: $F(run $GITHUB_RUN_ID)" $F || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
