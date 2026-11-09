@@ -95,10 +95,9 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-# Nov 9 PM (Quality NO on #104): the top entry is the 2-fer run fixes; the hash is PENDING Brandon's explicit OK naming it.
-# When he OKs it by name, put his exact words + time in the entry, drop PENDING, and flip this check.
-check(f'{fers_h} is PENDING' in _head and 'NOT a hash OK' in _head and "OK'd the fers hash" not in _head,
-      'docs mark the fers hash PENDING Brandon (no OK claimed)')
+# Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
+check(f'{fers_h} (FINAL' in _head and 'i agree to new number' in _head and '4:45 PM CST' in _head and 'PENDING' not in _head,
+      "docs quote Brandon's t918u OK next to the final fers hash")
 check('464d2ce92eda' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 

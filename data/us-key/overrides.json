@@ -2218,25 +2218,18 @@
      1577
     ]
    },
-   "none": true,
-   "when": "2026-11-02",
-   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers) · 2026-11-09: a join is PENDING Brandon's call by name (see 'pending'); the NO above stays in force until then",
-   "pending": {
-    "join": [
-     "sgakg12225"
-    ],
-    "fp": {
-     "sgakg12225": [
-      "Lower Klamath Hills",
-      1596
-     ]
-    },
-    "decided_by": "",
-    "waits_on": "Brandon's call by name: this join would overturn the Nov 2 chat-11 NO on 'Lower Klamath Hills' (sgorf111, the same land)",
-    "evidence": "BLM ERMA OID 12225 'Lower Klamath Hills', 1,596 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404); the Oregon layer's copy sgorf111 would stay NO (same land)",
-    "when": "2026-11-09",
-    "note": "PENDING (Quality NO on KPC-Links #104, Nov 9 PM): not in 'join', so the live key keeps the NO. If Brandon says yes by name: move pending.join/fp into join/fp, set decided_by to his words + time, drop the id from 'no' and drop 'none'."
-   }
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers) · 2026-11-09: JOINED by Brandon (Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'): the BLM boundary matches the park (BLM ERMA OID 12225 'Lower Klamath Hills', 1,596 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404); the Oregon layer's copy sgorf111 would stay NO (same land))",
+   "join": [
+    "sgakg12225"
+   ],
+   "fp": {
+    "sgakg12225": [
+     "Lower Klamath Hills",
+     1596
+    ]
+   },
+   "decided_by": "Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'"
   },
   "US-10009": {
    "join": [
@@ -8528,29 +8521,21 @@
   },
   "US-11308": {
    "no": [
-    "sgakg13878",
     "sgidc850",
     "2306"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-09: a join is PENDING Brandon's call by name (see 'pending'); the NO above stays in force until then",
-   "pending": {
-    "join": [
-     "sgakg13878"
-    ],
-    "fp": {
-     "sgakg13878": [
-      "Blackfoot",
-      41391
-     ]
-    },
-    "decided_by": "",
-    "waits_on": "Brandon's call by name: this join would overturn the Oct 29 chat-11 NO on 'Blackfoot' (sgakg13878)",
-    "evidence": "BLM rec site polygon OID 13878 SRMA 'Blackfoot', 41,391 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404)",
-    "when": "2026-11-09",
-    "note": "PENDING (Quality NO on KPC-Links #104, Nov 9 PM): not in 'join', so the live key keeps the NO. If Brandon says yes by name: move pending.join/fp into join/fp, set decided_by to his words + time, drop the id from 'no' and drop 'none'."
-   }
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-09: JOINED by Brandon (Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'): the BLM boundary matches the park (BLM rec site polygon OID 13878 SRMA 'Blackfoot', 41,391 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404))",
+   "join": [
+    "sgakg13878"
+   ],
+   "fp": {
+    "sgakg13878": [
+     "Blackfoot",
+     41391
+    ]
+   },
+   "decided_by": "Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'"
   },
   "US-1131": {
    "fp": {

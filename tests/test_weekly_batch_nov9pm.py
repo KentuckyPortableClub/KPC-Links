@@ -25,15 +25,14 @@ for ref, rid in WANT.items():
     v = o.get(ref) or {}
     check(rid in (v.get('join') or []) and rid in (v.get('fp') or {}) and not v.get('none') and rid not in (v.get('no') or []),
           f'{ref} joins {rid} with its saved record id')
-# Quality NO on #104: joins that would overturn an earlier Quality NO wait for Brandon by name, OUT of the live key
+# Nov 9 evening: Brandon t918u ('i agree to new number and if the boundary matches the park yes') decided both: joined, un-pended
 for ref, rid in (('US-11308', 'sgakg13878'), ('US-10008', 'sgakg12225')):
-    v = o[ref]; pd = v.get('pending') or {}
-    check(rid not in (v.get('join') or []) and v.get('none') and rid in (pd.get('join') or []) and rid in (pd.get('fp') or {}),
-          f'{ref}: {rid} is PENDING (not joined; the NO stays live)')
-    check(not str(pd.get('decided_by') or '').strip() and not str(v.get('decided_by') or '').strip() and 'Brandon' in pd.get('waits_on', ''),
-          f'{ref}: no decided_by yet; waits on Brandon by name')
+    v = o[ref]
+    check(rid in (v.get('join') or []) and rid in (v.get('fp') or {}) and rid not in (v.get('no') or []) and not v.get('none') and 'pending' not in v,
+          f'{ref}: {rid} joined (no longer pending)')
+    check('t918u' in str(v.get('decided_by')) and 'boundary matches the park' in str(v.get('decided_by')), f'{ref}: decided_by Brandon with his words')
     check(v['why'].count("NO 'Blackfoot' (chat 11") <= 1, f'{ref}: no repeated NO lines')
-check('sgakg13878' in o['US-11308']['no'] and 'sgorf111' in o['US-10008']['no'], 'the earlier NOs stay in force')
+check('sgorf111' in o['US-10008']['no'], "US-10008: the Oregon layer's copy of the same land stays NO (no double count)")
 for ref in ('US-12471', 'US-11003', 'US-12060', 'US-5308', 'US-11308', 'US-10008'):
     check(not o[ref]['why'].startswith('a different place, not this park'), f'{ref}: stale "a different place" lead-in cleared')
 L = json.load(open(HERE / 'data/us-key/layers.json'))

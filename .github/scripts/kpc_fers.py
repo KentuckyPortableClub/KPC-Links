@@ -668,20 +668,64 @@ def download(parks, refs, det, prec):
 SAVED_LEFT = {}
 
 
+SAVED_STR = {}   # Nov 9 evening: str(record id) -> rings for every saved record (state layers, FWS, ... not only PAD-US)
+SAVED_DATE = {}
+
+
 def saved_us(parks):
-    """PAD-US records from the boundary cache (the answer key's own saved copy)."""
+    """PAD-US records from the boundary cache (the answer key's own saved copy). Nov 9 evening (Brandon t909u 'saved outlines
+    first'): the state-layer / FWS / line records in the same copy are kept too (SAVED_STR), so a park is downloaded live only
+    when one of its record ids is not in any saved copy."""
     by = {}
     for f in CACHE_US.glob('US-*.json.gz'):
+        if f.name.startswith('prev-'): continue
         try:
             with gzip.open(f, 'rt', encoding='utf-8') as fh:
                 blob = json.load(fh)
                 for r in blob.get('recs') or []:
                     if not r.get('_r'): continue
-                    use, why = pad_use(r) if isinstance(r.get('OBJECTID'), int) else (True, None)
-                    if use: by[r.get('OBJECTID')] = r['_r']
-                    else: SAVED_LEFT[r.get('OBJECTID')] = why
+                    oid = r.get('OBJECTID')
+                    use, why = pad_use(r) if isinstance(oid, int) else fws_use(r) if str(oid).startswith('fws') else (True, None)
+                    if use:
+                        by[oid] = r['_r']; SAVED_STR[str(oid)] = r['_r']; SAVED_DATE[str(oid)] = r.get('rd') or blob.get('saved') or ''
+                    else: SAVED_LEFT[oid] = why; SAVED_LEFT[str(oid)] = why
         except Exception: pass  # noqa: BLE001
     return by
+
+
+# Nov 9 evening (Brandon t909u: 'every live download gets saved, so the next run has it'): the 2-fer bot's OWN saved copy of the
+# outlines it had to read live (parks whose records are in no key copy). One file per area, kept on KPC-Data's fers-cache release
+# (the workflow downloads it before the run and uploads it after a good save). {ref: {ids, g (rings per record), rd (read date)}}.
+# Rolling refresh (t909u, 'once a month'): an entry older than KPC_FERS_REFRESH_DAYS (30) is read live again, at most
+# KPC_FERS_REFRESH_SHARE (a quarter) of the entries per run, oldest first, so no server is asked for everything in one run.
+LIVE_FILE = None
+LIVE = {}
+REFRESH_DAYS = int(os.environ.get('KPC_FERS_REFRESH_DAYS') or 30)
+REFRESH_SHARE = float(os.environ.get('KPC_FERS_REFRESH_SHARE') or .25)
+
+
+def live_load(area):
+    global LIVE_FILE, LIVE
+    LIVE_FILE = pathlib.Path(os.environ.get('KPC_FERS_LIVE_DIR') or OUT) / f'saved-live-{area}.json.gz'
+    LIVE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with gzip.open(LIVE_FILE, 'rt', encoding='utf-8') as fh: LIVE = json.load(fh).get('parks') or {}
+    except Exception: LIVE = {}  # noqa: BLE001
+    return LIVE
+
+
+def live_due(today):
+    """The saved-live entries due for their monthly re-read this run (oldest first, at most a share of them)."""
+    import datetime as _dt
+    t = _dt.date.fromisoformat(today)
+    old = sorted((v.get('rd') or '', r) for r, v in LIVE.items() if (v.get('rd') or '') and (t - _dt.date.fromisoformat(v['rd'][:10])).days >= REFRESH_DAYS)
+    return {r for _, r in old[:max(1, int(len(LIVE) * REFRESH_SHARE))]} if old else set()
+
+
+def live_save(today):
+    if LIVE_FILE is None: return
+    with gzip.open(LIVE_FILE, 'wt', encoding='utf-8') as fh:
+        json.dump({'about': "2-fer bot's own saved outlines (read live once, then reused; re-read about once a month in slices)", 'date': today, 'parks': LIVE}, fh, separators=(',', ':'))
 
 
 def saved_ca(parks):
@@ -1794,6 +1838,36 @@ CODE_HASH = hashlib.sha1(b''.join(open(pathlib.Path(__file__).parent / n, 'rb').
 # the saved spots). The pass constants (PASS, CELL, DET, PREC, REGION) stay in the fingerprint either way.
 FERS_ALGO = 'fers-2026-11-02.1'
 REUSE_KEY = FERS_ALGO if os.environ.get('KPC_FERS_REUSE_KEY', 'code').strip().lower() == 'algo' else CODE_HASH
+# Nov 9 evening (Brandon t914u-t917u, 4:37-4:42 PM CST: 'only redo the parts that changed'; KISS): a pair is tested again only when
+# one of its two parks changed (outline, record ids, POTA pin/name, line) or a DECLARED rule change names it. The code hash is no
+# longer in the fingerprint: every rule change declares its scope in .github/fers-rule-scope.json (states, park kinds, flags such
+# as 'bad-pin' / 'no-id' / 'line', or 'all'), and only the parks in that scope get a new stamp (so only their pairs are redone).
+# KPC_FERS_FULL=1 = redo every pair (emergency switch; the areas workflow also uses it for its one round-robin full area per run).
+FULL = str(os.environ.get('KPC_FERS_FULL') or '').strip().lower() in ('1', 'yes', 'true', 'y')
+RECHECK_ANSWERS = os.environ.get('KPC_FERS_RECHECK_ANSWERS') == '1'   # the old 'read every server answer again' check (off)
+try: SCOPE = json.load(open(pathlib.Path(__file__).resolve().parents[1] / 'fers-rule-scope.json')).get('changes') or []
+except Exception: SCOPE = []  # noqa: BLE001
+_STAMP = {}
+
+
+def rule_stamp(r):
+    """The ids of the declared rule changes whose scope covers park r (its area, POTA kind, or a flag)."""
+    if r in _STAMP: return _STAMP[r]
+    p = PINS.get(r) or ()
+    area = str(p[5]) if len(p) > 5 else ''
+    area = area if area.startswith(('CA-', 'W-', 'US-')) else ('US-' + area if area else '')
+    kind = str(p[4] or '').lower() if len(p) > 4 else ''
+    flags = set()
+    if r in NOPIN_BY_ID or (p and p[1] is None): flags.add('bad-pin')
+    if r in CURLN: flags.add('line')
+    out = []
+    for c in SCOPE:
+        sc = c.get('scope') or {}
+        if sc == 'all' or sc.get('all') or area in (sc.get('states') or []) or area[3:] in (sc.get('states') or []) \
+           or any(k.lower() in kind for k in (sc.get('kinds') or [])) or flags & set(sc.get('flags') or []):
+            out.append(c.get('id'))
+    _STAMP[r] = out
+    return out
 
 
 def _h(x): return hashlib.sha1(json.dumps(x, sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest()
@@ -1801,8 +1875,8 @@ def _h(x): return hashlib.sha1(json.dumps(x, sort_keys=True, separators=(',', ':
 
 def pair_fp(a, b, G, LN):
     ln = lambda r: {k: v for k, v in (LN.get(r) or {}).items() if k != 'date'} if r in LN else None   # the read date is not an input
-    return _h([REUSE_KEY, PASS, CELL, DET, PREC, REGION, a, b, G.get(a), G.get(b), ln(a), ln(b), PINS.get(a), PINS.get(b), OWNED.get(a), OWNED.get(b),
-               a in KY_FS_MANAGED, b in KY_FS_MANAGED])
+    return _h([PASS, CELL, DET, PREC, REGION, a, b, G.get(a), G.get(b), ln(a), ln(b), PINS.get(a), PINS.get(b), OWNED.get(a), OWNED.get(b),
+               a in KY_FS_MANAGED, b in KY_FS_MANAGED, rule_stamp(a), rule_stamp(b)])
 
 
 def answers_unchanged(keys):
@@ -1823,6 +1897,7 @@ def reuse_load():
     REUSE_NEW.clear()
     try: REUSE = json.load(open(REUSE_FILE)).get('pairs') or {}
     except Exception: REUSE = {}  # noqa: BLE001
+    if FULL: REUSE = {}; LOG.append('full rebuild (KPC_FERS_FULL): every pair is tested again')
 
 
 def reuse_save():
@@ -1831,8 +1906,11 @@ def reuse_save():
 
 
 TESTED = set()
+CURLN = {}
+
+
 def find_spots(G, LN, pairs, counts):
-    CURG.clear(); CURG.update(G)
+    CURG.clear(); CURG.update(G); CURLN.clear(); CURLN.update(LN); _STAMP.clear()
     spots = []
     reuse_load()
     # Oct 27 (Fable #8): pairs in map order (1-degree cells), so the ownership / water tiles in memory are the ones in use
@@ -1850,7 +1928,7 @@ def find_spots(G, LN, pairs, counts):
         if not box or not all(math.isfinite(v) for v in box): continue
         if box[2] - box[0] > 40 or box[3] - box[1] > 40: LOG.append(f'{a} + {b}: shared box too big (an outline crossing the date line?)'); continue
         pk = f'{a}+{b}'; fp = pair_fp(a, b, G, LN); old = REUSE.get(pk)
-        if old and old.get('fp') == fp and answers_unchanged(old.get('keys') or []):
+        if old and old.get('fp') == fp and (not RECHECK_ANSWERS or answers_unchanged(old.get('keys') or [])):
             spots += copy.deepcopy(old['spots']); REUSE_NEW[pk] = old; counts['pairs reused (nothing changed)'] = counts.get('pairs reused (nothing changed)', 0) + 1
             fx = old.get('fx') or {}   # the pair's side notes are replayed too (a map that did not answer, a water route left unchecked, log lines)
             OWNED_FAIL.update(fx.get('owned_fail') or []); WATER_FAIL.extend(tuple(x) for x in fx.get('water_fail') or []); LOG.extend(fx.get('log') or [])
@@ -3231,15 +3309,25 @@ def main():
         skip_pairs = {tuple(x['refs']) for x in same}
         # saved outlines: PAD-US from the cache, Canada from the saved files; the rest from the state layers at the key's detail
         pad = saved_us(parks) if REGION == 'na' else {}
+        _area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
+        live_load(_area); _due = live_due(today) if REGION == 'na' else set()
         G, need = {}, []
+        _sv = lambda i: (isinstance(i, int) and i in pad) or str(i) in SAVED_STR
+        _lf = lambda i: i in SAVED_LEFT or str(i) in SAVED_LEFT
+        n_key = n_live = 0
         for ref, p in parks.items():
             if p['st'].startswith(('CA-', 'W-')) or not p['ids'] or REGION == 'ky': continue
-            if all(isinstance(i, int) and (i in pad or i in SAVED_LEFT) for i in p['ids']):
+            if all(_sv(i) or _lf(i) for i in p['ids']):
                 for i in p['ids']:
-                    if i in SAVED_LEFT: LEFT.setdefault(ref, []).append(f"{p['names'].get(str(i)) or i}: {SAVED_LEFT[i]}")
-                gs = [clip(ref, i, pad[i]) for i in p['ids'] if i in pad]
-                if gs: G[ref] = gs; MAPDATE[ref] = 'saved PAD-US copy'
+                    if _lf(i) and not _sv(i): LEFT.setdefault(ref, []).append(f"{p['names'].get(str(i)) or i}: {SAVED_LEFT.get(i) or SAVED_LEFT.get(str(i))}")
+                gs = [clip(ref, i, pad[i] if isinstance(i, int) and i in pad else SAVED_STR[str(i)]) for i in p['ids'] if _sv(i)]
+                if gs: G[ref] = gs; MAPDATE[ref] = 'saved copy (answer key)'; n_key += 1
+            elif ref in LIVE and [str(i) for i in p['ids']] == LIVE[ref].get('ids') and ref not in _due:
+                G[ref] = LIVE[ref]['g']; MAPDATE[ref] = f"saved copy (read live {LIVE[ref].get('rd')})"; n_live += 1
             else: need.append(ref)
+        counts['parks from saved outlines (answer key copy)'] = n_key
+        counts["parks from saved outlines (2-fer bot's own copy)"] = n_live
+        counts['saved outlines due for their monthly re-read'] = len(_due & set(need))
         if REGION == 'ky':
             kg, kb = ky_geom(parks, [r for r in parks if parks[r]['ids']]); G.update(kg); need = []
         else: G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
@@ -3248,7 +3336,16 @@ def main():
         got, bad = download(parks, need, DET, PREC)
         G.update(got)
         if bad and not late(frac=.5):   # Oct 30 (chat 2, Iowa came out EMPTY: 180 of 491 outlines not read, Iowa DNR did not answer): one slow second try
-            time.sleep(60); got2, bad = download(parks, sorted(bad), DET, PREC); G.update(got2)
+            time.sleep(60); got2, bad = download(parks, sorted(bad), DET, PREC); G.update(got2); got.update(got2)
+        # Nov 9 evening: every live read is saved for the next run; a due re-read that failed keeps its saved copy (nothing lost)
+        for ref in set(need) & set(G):
+            if ref in got: LIVE[ref] = {'ids': [str(i) for i in parks[ref]['ids']], 'g': G[ref], 'rd': today}
+        for ref in list(bad | DL_CUT):
+            if ref in LIVE and [str(i) for i in parks[ref]['ids']] == LIVE[ref].get('ids'):
+                G[ref] = LIVE[ref]['g']; MAPDATE[ref] = f"saved copy (read live {LIVE[ref].get('rd')}; today's re-read did not answer)"
+                bad.discard(ref); DL_CUT.discard(ref)
+        counts['parks read live (saved for next time)'] = len(set(need) & set(got))
+        live_save(today)
         mark(f'pass 1 downloads ({len(need)} parks; {len(DL_CUT)} not reached for time)')
         if DL_CUT:   # Nov 9 PM: parks not downloaded for time = an unfinished pass; their areas keep their previous files
             counts['stopped for time'] = True; counts['parks not downloaded: out of time'] = len(DL_CUT)

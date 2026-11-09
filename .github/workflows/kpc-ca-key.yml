@@ -73,7 +73,7 @@ jobs:
       - name: Build the Canada answer key
         if: ${{ env.SKIP != '1' }}
         env:
-          GEO_CACHE_MODE: ${{ (inputs.saved || (github.event.schedule || inputs.as_schedule) == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ (github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved && 'refresh' || 'use' }}   # Nov 9 evening (Brandon t909u 'saved outlines first'): every run starts from the saved copy; only the MONTHLY run re-reads Canada live (his 'once a month')      # Oct 22: keep the outlines it read, so the next step can save the missing park files
           GH_TOKEN: ${{ github.token }}
         id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)

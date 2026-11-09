@@ -170,9 +170,18 @@ jobs:
           DEBUG_REFS: ${{ inputs.debug }}
           MINUTES: '300'
           GH_TOKEN: ${{ github.token }}
+          # Nov 9 evening (Brandon t909u, 4:33 PM CST: 'saved outlines first'): each state's outlines come from the saved copy on
+          # the boundary-cache release; only a layer / record id the copy does not have is read live, and that read is saved
+          # (the same 'use' mode and detail the nightly boundary check has used since Oct 22). The re-read of every outline about
+          # once a month stays with kpc-boundary-check.yml (two states a night, oldest first). KPC_KEY_LIVE=1 = the old all-live read.
+          GEO_CACHE_MODE: ${{ vars.KPC_KEY_LIVE == '1' && 'off' || 'use' }}
+          GEO_DETAIL: ${{ vars.KPC_KEY_LIVE == '1' && '' || '0.001' }}
+          GEO_PAGE: '200'
         run: |
           set -o pipefail
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
+          mkdir -p cache/us; touch "$RUNNER_TEMP/cache-t0"
+          if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; touch "$RUNNER_TEMP/cache-t0"; fi
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
           # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
@@ -264,6 +273,16 @@ jobs:
             exit 1
           fi
           echo "shape source guard: every state in this job is at least half the last live key"
+      - name: Save this job's new live reads to the saved outlines (Nov 9 evening, Brandon t909u)
+        # only after a good build and a passed shape guard; only the state copies this job wrote (newer than the download)
+        if: ${{ success() && vars.KPC_KEY_LIVE != '1' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" 2>/dev/null | sort | tr '\n' ' ')
+          if [ -z "$F" ]; then echo "no new live reads to save"; exit 0; fi
+          echo "::notice title=US key saved outlines::saving $F"
+          gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
