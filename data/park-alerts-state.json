@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06 17:56",
+ "updated": "2026-11-08 20:21",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -828,7 +828,7 @@
    "cat": "information",
    "first": "2026-11-02",
    "runs": 2,
-   "missing": 0,
+   "missing": 1,
    "announced": true,
    "refs": []
   },
