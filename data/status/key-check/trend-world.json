@@ -181,10 +181,20 @@
    "held_joins": 21,
    "acres_off": null,
    "acres_checked": 0
+  },
+  {
+   "build": "W-42693026407",
+   "checked": "2026-11-09 22:26",
+   "far_pins": 303,
+   "pins_outside": 303,
+   "outline_to_pin": 2,
+   "flat_outlines": 0,
+   "overrides_missed": 10,
+   "held_joins": 23,
+   "acres_off": null,
+   "acres_checked": 0
   }
  ],
  "acres_off_latest": [],
- "last_jumps": [
-  "held_joins 2 -> 21"
- ]
+ "last_jumps": []
 }

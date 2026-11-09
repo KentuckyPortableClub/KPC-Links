@@ -1,6 +1,6 @@
 # AX: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Naturreservat. **9 of 14** joined (same name + same kind), **1** to check, **4** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Naturreservat, Naturreservat. **9 of 14** joined (same name + same kind), **1** to check, **4** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 

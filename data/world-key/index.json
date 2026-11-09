@@ -69,7 +69,7 @@
    "thin": 60
   },
   "AX": {
-   "areas": 62,
+   "areas": 124,
    "check": 1,
    "detail": 0.01,
    "matched": 9,
@@ -666,7 +666,7 @@
   "HU": {
    "areas": 1206,
    "check": 102,
-   "detail": 0.002,
+   "detail": 0.01,
    "matched": 23,
    "none": 119,
    "parks": 244,
@@ -678,7 +678,7 @@
    "shadow_add": 3,
    "shadow_demote": 1,
    "shadow_other_place": 1,
-   "thin": 250
+   "thin": 60
   },
   "ID": {
    "areas": 35780,
@@ -1412,8 +1412,8 @@
    "thin": 60
   }
  },
- "previous_build": "W-42509770852",
- "previous_built": "2026-11-08 18:30 UTC",
+ "previous_build": "W-42513036075",
+ "previous_built": "2026-11-08 20:50 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1424,13 +1424,12 @@
  "rules_of_run": "10e4092cc97f",
  "inputs": {
   "us-key": "US-42504172086",
-  "ca-key": "CA-42252274247"
+  "ca-key": "CA-42689962177"
  },
- "build": "W-42513036075",
- "built": "2026-11-08 20:50 UTC",
+ "build": "W-42693026407",
+ "built": "2026-11-09 22:24 UTC",
  "failed": [
-  "LK",
-  "RW"
+  "DE"
  ],
  "complete": false
 }
