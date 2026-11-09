@@ -96,6 +96,7 @@ except K.HardStop: r = True
 finally:
     K.HARD_END = 0; K._arm()
 check(r, "the step's hard end stops the bot (HardStop)")
-check('sys.exit(3)' in src and "notice('2-fer bot', f'stopped: {e}')\n        sys.exit(1)" in src, 'a crash exits 1 and the hard end exits 3 (red run, not green)')
+_crash = src[src.index("notice('2-fer bot', f'stopped: {e}')"):][:400]   # Nov 9 evening (t926u): finished answers are kept first, then exit 1
+check('sys.exit(3)' in src and 'sys.exit(1)' in _crash and _crash.index('reuse_keep_finished') < _crash.index('sys.exit(1)'), 'a crash exits 1 and the hard end exits 3 (red run, not green)')
 check('if late(): more = []; lw = []' in src and "add_lines(files, G, today) if not late() else 0" in src, "pass 5's later stages respect the time")
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

@@ -72,6 +72,14 @@ with tempfile.TemporaryDirectory() as t:
     (K.OUT / f'reuse-p{K.PASS}-x.json').write_text(json.dumps({'pairs': {'a+b': {'fp': 1}}}))
     K.reuse_load(); check(K.REUSE == {}, 'KPC_FERS_FULL: every pair is tested again')
     K.FULL = False; K.reuse_load(); check('a+b' in K.REUSE, 'without the switch the saved pairs are reused')
+# Nov 9 evening (Brandon t926u): a crash / time-out keeps the pair answers that finished (merged with the older ones)
+with tempfile.TemporaryDirectory() as t:
+    K.OUT = pathlib.Path(t); K.RUN_TAG = 'y'; K.FULL = False
+    (K.OUT / f'reuse-p{K.PASS}-y.json').write_text(json.dumps({'pairs': {'old+one': {'fp': 'o'}}}))
+    K.reuse_load(); K.REUSE_NEW['a+b'] = {'fp': 'n', 'spots': []}
+    n = K.reuse_keep_finished(); d = json.load(open(K.OUT / f'reuse-p{K.PASS}-y.json'))
+    check(n == 1 and set(d['pairs']) == {'old+one', 'a+b'} and d.get('partial'), 'a break keeps the finished pair answers (next run skips them) and the older ones')
+check(src.count('{reuse_keep_finished()}') == 2 and src.index('except HardStop') < src.index("{reuse_keep_finished()} finished pair answers"), 'both a time-out (3) and a crash (1) keep them; the exit code stays (red)')
 check('not RECHECK_ANSWERS or answers_unchanged' in src, "the old 'read every server answer again' check is off by default")
 # keys: saved outlines first (Brandon t909u); the monthly re-read stays with the boundary check / the Canada monthly run
 U = (HERE / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8')

@@ -1925,6 +1925,17 @@ def reuse_load():
     if FULL: REUSE = {}; LOG.append('full rebuild (KPC_FERS_FULL): every pair is tested again')
 
 
+def reuse_keep_finished():
+    """Nov 9 evening (Brandon t926u, 5:03 PM CST: 'save what was good before a run broke'): on a crash or time-out, the pair answers
+    this pass FINISHED are saved to the saved-answers cache (with the older ones it did not reach), so the next run skips them.
+    A pair that timed out was already taken out of REUSE_NEW. The live 2-fer files are NOT written here."""
+    if REUSE_FILE is None or not REUSE_NEW: return 0
+    merged = dict(REUSE); merged.update(REUSE_NEW)
+    save_json(REUSE_FILE, {'about': 'saved pair answers (fingerprint + spots); written at a crash / time-out with the pairs that finished', 'pass': PASS,
+                           'date': time.strftime('%Y-%m-%d'), 'partial': True, 'pairs': merged}, indent=None)
+    return len(REUSE_NEW)
+
+
 def reuse_save():
     if REUSE_FILE is None: return
     save_json(REUSE_FILE, {'about': 'Speed step 2 (Oct 28): per pair the fingerprint of everything its spots depend on + the server answers it read + the spots; a pair is computed again only when something changed.', 'pass': PASS, 'date': time.strftime('%Y-%m-%d'), 'pairs': REUSE_NEW}, indent=None)
@@ -3625,10 +3636,14 @@ if __name__ == '__main__':
     # exits 1 and the step's hard end exits 3, so the workflow records an error and the run is red. Areas not saved keep their files.
     try: main()
     except HardStop:
+        try: print(f'::notice title=2-fer bot::{reuse_keep_finished()} finished pair answers kept for the next run', flush=True)
+        except Exception: pass  # noqa: BLE001
         print(f'::error title=2-fer bot::pass {PASS} reached the step\'s time limit and stopped; nothing more was saved by this pass (unfinished areas keep their previous files)', flush=True)
         sys.exit(3)
     except Exception as e:  # noqa: BLE001
         import traceback; traceback.print_exc()
         notice('2-fer bot', f'stopped: {e}')
+        try: notice('2-fer bot', f'{reuse_keep_finished()} finished pair answers kept for the next run')
+        except Exception: pass  # noqa: BLE001
         sys.exit(1)
     sys.exit(0)
