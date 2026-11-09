@@ -95,7 +95,8 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-check('Yes, I OK the 2-fer rules hash 0aa333357357 for #101' in _head and '8:19 PM CST' in _head and 'PENDING' not in _head,
+# Nov 9: the top entry is now the KISS-ownership change, OK'd by Brandon Nov 9, 9:37 AM CST (his exact words are in the entry)
+check('We got to fix the rules to get this thing going' in _head and '9:37 AM CST' in _head and 'PENDING' not in _head and 'AWAITING' not in _head,
       'docs record Brandon OK of the fers hash with his exact words and time (no longer PENDING)')
 check('a066624520b4' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
       'docs entry notes us/ca/world hashes unchanged')

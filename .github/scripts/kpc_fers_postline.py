@@ -107,10 +107,17 @@ def main(env=os.environ):
            'about': '2-fer post-line check (Brandon, directly (Mapping chat), 4:52 AM CST Nov 4): read-only report for Quality. The 2-fers stay HELD in the waiting room; this releases nothing.'}
     try:
         held = sorted(glob.glob(str(pathlib.Path(data) / 'data/waiting/in/data/fers/*.json*')))
+        # Nov 9 (Quality must-fix 4, run 42594981324: no post-line after a hand-started kpc-fers.yml run, which saves LIVE with no
+        # waiting-room divert): PREV_DIR = a copy of the PREVIOUS save's data/fers; then the live files are the new output and
+        # PREV_DIR's are the old ones (kpc-fers-postline.yml sets it for a 'KPC 2-fer bot (hidden)' run).
+        prev = env.get('PREV_DIR') or ''
+        if prev and not held:
+            held = sorted(glob.glob(str(pathlib.Path(data) / 'data/fers/*.json*')))
+            rep['mode'] = f'live save compared with the save before it ({prev})'
         for f in held:
             area = re.sub(r'\.json(\.gz)?$', '', os.path.basename(f))
             if not re.match(r'^(US|CA|W)-[A-Z0-9]+$', area): continue
-            new = load(f); old = load(pathlib.Path(data) / f'data/fers/{area}.json')
+            new = load(f); old = load(pathlib.Path(prev if prev and rep.get('mode') else data) / f'data/fers/{area}.json')
             try: rep['areas'][area] = area_report(area, new or {}, old or {}, data, links, near)
             except Exception as e: rep['areas'][area] = {'error': str(e)[:200]}  # noqa: BLE001
     except Exception as e:  # noqa: BLE001

@@ -806,31 +806,16 @@ WHEN, READ = {}, {}        # B2 (Oct 30): (layer url, object id) -> when read; r
 # owned-land files (chat 8's pre-flight fixes 2-4 + PF-1/2/3: Forest Service = Basic Ownership; BLM planning areas = BLM surface
 # management; Park Service, Corps, FWS approved boundaries = PAD-US Fee records of that agency; Michigan project lines = state fee)
 OWNER_KEY, OWNMAP = KO.OWNER_KEY, KO.OWNMAP
-def fs_owned(box): return KO.fs_owned(box, DET, PREC)
-def owned_land(kind, box):
-    got = KO.owned_land(kind, box, DET, PREC)
-    if got is None and KO.LOG: LOG.append(KO.LOG[-1])
-    return got
+# Nov 9 (Brandon 9:37 AM CST, KISS: "ownership if it say national forest it is owned by federal government etc.. kiss method ...lets
+# not over think this.."): an agency park's owner is the agency from its own record; no owned-land masks, no live ownership calls.
+# (The live BLM SMA query that failed with HTTP 400 in run 42594981324 is no longer made by the 2-fer run.)
+def fs_owned(box): return None
+def owned_land(kind, box): return None
 
 
 def pmask(F, r, G):
-    """The park's land in raster F: its outline, and for an agency-land park only the land the agency owns."""
-    m = F.area(G[r])
-    if r in OWNED and m.any():
-        own = owned_land(OWNED[r], F.bounds())
-        if own is None: OWNED_FAIL.add(r); return np.zeros_like(m)   # no ownership map = no spot (NOT SURE, not a guess)
-        keep = F.area(own)
-        if OWNED[r] in SOFT:
-            # Brandon Oct 28 8:17 + 8:35 PM (THE SIMPLE TEST): inside a Park Service / Corps / FWS / state project's OFFICIAL boundary
-            # only PRIVATE land is cut out; another public owner's land (PAD-US fee: federal, state, local, TVA...) and the water
-            # (state-owned riverbeds) stay. Forest Service / BLM keep their owned-land line (that IS their boundary, step 1).
-            pub = owned_land('public', F.bounds())
-            if pub: keep |= F.area(pub)
-            try: wg = nhd_water(F.bounds())
-            except Exception: wg = None  # noqa: BLE001
-            if wg: keep |= F.area(wg)
-        m &= keep
-    return m
+    """The park's land in raster F: its official outline (Nov 9, Brandon 9:37 AM CST: no owned-land mask; the owner is the agency)."""
+    return F.area(G[r])
 
 
 SOFT = {'nps', 'usace', 'fws', 'state'}
@@ -1099,6 +1084,23 @@ def ky_owner(ref, parks):
     return ''   # bwild / bwilder: a designation
 
 
+# Nov 9 (Brandon 9:37 AM CST, KISS): the owner straight from the park's own name / agency when its record does not say
+NAME_OWNER = [(r'parks canada|national park of canada|national historic site of canada|national marine conservation area', 'FED:CANADA'), (r'national (forest|grassland)s?\b', 'FED:USFS'), (r'\bblm\b|bureau of land management|national conservation area', 'FED:BLM'),
+              (r'national (park|seashore|lakeshore|battlefield|historic(al)? (site|park)|preserve|memorial|military park|river and recreation area)\b', 'FED:NPS'),
+              (r'national wildlife refuge|\bnwr\b|national fish hatchery|waterfowl production area', 'FED:FWS'), (r'corps of engineers|\busace\b', 'FED:USACE'),
+              (r'\btva\b|tennessee valley authority', 'FED:TVA'),
+              (r'state (park|forest|recreation area|natural area|nature preserve|historic site|wildlife area|game land|beach|seashore)|wildlife management area|\bwma\b|'
+               r'state fish and wildlife|provincial (park|forest|recreation area)|ecological reserve|conservation reserve|wildlife (refuge|area) \(state\)', 'STATE'),
+              (r'\b(county|city|municipal|metro|town|township|village|borough) (park|forest|preserve|recreation area)\b|regional park|conservation authority', 'LOCAL')]
+
+
+def owner_from_name(*names):
+    t = ' '.join(str(x or '') for x in names)
+    for rx, k in NAME_OWNER:
+        if re.search(rx, t, re.I): return k
+    return owner_of_text(t)
+
+
 def park_owner(ref, parks):
     """'' = a designation / management record (layers on someone else's land); '?' = not known; else the owner key."""
     if not (parks.get(ref) or {}).get('ids'): return ''   # a line park (trail / water trail): a designation along the line
@@ -1106,10 +1108,14 @@ def park_owner(ref, parks):
     if ref in OWNED: return OWNER_KEY.get(OWNED[ref], 'FED:USFS')
     p = parks.get(ref) or {}
     if p.get('st', '').startswith('CA-'):
-        return OWN_CA.get(ref, '?')
-    fee, des = OWN.get(ref, (set(), False))
-    if fee: return sorted(fee)[0] if len(fee) == 1 else '?'
-    return '' if des else '?'
+        o = OWN_CA.get(ref, '?')
+    else:
+        fee, des = OWN.get(ref, (set(), False))
+        o = (sorted(fee)[0] if len(fee) == 1 else '?') if fee else ('' if des else '?')
+    if o == 'UNK': o = '?'   # PAD-US 'unknown' owner = not known
+    if o in ('', '?'):   # Nov 9 (KISS): the park's own name / its records' names say the agency
+        o = owner_from_name((PINS.get(ref) or [''])[0], *((p.get('names') or {}).values())) or o
+    return o
 
 
 OWN_CA = {}
@@ -1130,52 +1136,18 @@ def ownership_step(s, parks, PIN):
     if REGION == 'world':
         if real and len(set(real.values())) <= 1 and '?' not in owners.values(): return 'ok', 'one owner (or designations on it): layered'
         return 'not sure', ('owners differ' if real else 'no park here owns land (designations only)') + '; no land register read for this country yet'
-    PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA')
-    if not any(r in OWNED for r in refs) and real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
-        # every park here is held by a known PUBLIC owner (one or several; a trail / designation layers on it): public ground, no lookup
+    PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA', 'JNT')
+    # Nov 9 (Brandon 9:37 AM CST, KISS): owners come from the parks' own records / agency names only: no ownership map, no live call
+    if real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
+        # every park here is held by a known PUBLIC owner (one or several; a trail / designation layers on it): public ground
         s['ground'] = sorted({owner_word(o) for o in real.values()})
         if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
+        s['owner_src'] = "the parks' own records / agency names (Brandon Nov 9, 9:37 AM CST)"
         return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
-    canada = refs[0].startswith('CA-')
-    seen, corps = [], []
-    for lo, la in patch_points(s):   # Oct 27 (Fable #3): up to 5 points of the patch, never one
-        try: rr = cpcad_at(lo, la) if canada else pad_at(lo, la)
-        except Exception as e: return 'not sure', f'ownership map did not answer ({str(e)[:40]})'  # noqa: BLE001
-        if canada: h = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in rr} - {''}
-        else: h = {owner_of_pad(a) for a in rr if a.get('Category') == 'Fee'}
-        if not canada:
-            ua = usace_at(lo, la)
-            if ua:
-                corps.append(ua)   # rule 14 (Oct 28): Corps project land (the Corps owns it; a state / county may run it)
-                if not h: h = {'FED:USACE'}
-                h = {'FED:USACE' if re.search(r'CORPS|USACE|ARMY CORPS', x) else x for x in h}
-        seen.append(h - {'JOINT'})   # PAD-US 'joint' records = mixed-owner corridors (Kentucky wild rivers): a designation, not an owner
-    # Oct 28 (HQ): in KENTUCKY, KDFWR's own WMA pages (data/ky-wma-owners.json) name the owner where PAD-US has no fee record
-    if REGION == 'ky' and seen and any(not h for h in seen):
-        kyo = {ky_owner(r, parks) for r in refs if parks.get(r, {}).get('ids')} - {'', '?', 'PRIVATE', 'UNIVERSITY'}
-        if len(kyo) == 1:
-            seen = [h or set(kyo) for h in seen]; s['owner_src'] = "KDFWR's own WMA page (data/ky-wma-owners.json): PAD-US has no fee record here"
-    if any(r in OWNED for r in refs):
-        # an agency-land park's mask already kept only public ground (its own land, other public land, the water): public
-        # (step 1 already settled it: the agency's own map is its boundary; the line does not re-argue a PAD-US point)
-        for r in refs:
-            if r in OWNED: seen = [(h - {'PRIVATE'}) or {OWNER_KEY.get(OWNED[r], 'FED:USFS')} for h in seen]
-    pub = [h for h in seen if h and 'PRIVATE' not in h]
-    prv = [h for h in seen if 'PRIVATE' in h]
-    unk = [h for h in seen if not h]
-    s['ground'] = sorted({owner_word(o) for h in seen for o in h if o != 'PRIVATE'} | ({'private'} if prv else set()))
-    if corps: s['corps_land'] = sorted({n for ua in corps for n, _ in ua})[:3]
-    pubo = {o for h in pub for o in h}
-    if len(pubo) > 1: s['mixed_owners'] = sorted(pubo)   # Brandon Oct 28 9:17 PM: KEEP the multiple-owner information (review list)
-    if prv: s['private_part'] = f'private land at {len(prv)} of {len(seen)} points of the patch (PAD-US): that piece is cut out and counts only for its own park'
-    if unk: s['unknown_part'] = f'no owner on the maps at {len(unk)} of {len(seen)} points of the patch: only that piece is not sure'
-    if pub: return 'ok', 'public land' + (' (' + ' + '.join(s['ground']) + ')' if s['ground'] else '') + (f": on Corps of Engineers land ({', '.join(s['corps_land'])})" if corps else '')
-    if prv: return 'drop', 'private land at the spot (ownership map): counts only for its own park number, never a 2-fer'
-    if REGION == 'ky' and any(str(i).startswith('bwma|') for r in refs for i in (parks.get(r) or {}).get('ids') or []):
-        blank = [PIN.get(r, [r])[0] for r in refs if any(str(i).startswith('bwma|') for i in (parks.get(r) or {}).get('ids') or []) and ky_owner(r, parks) in ('', '?')]
-        if blank: return 'not sure', "no public owner on PAD-US at the spot, and KDFWR's own page names no owner for " + ', '.join(blank) + ' (a person adds it to data/ky-wma-owners.json)'
-    return 'not sure', ('no public owner on the ownership map (' + ('CPCAD' if canada else 'PAD-US fee records')
-                        + ') at ' + ('the spot' if len(seen) < 2 else 'any part of the spot') + ': could be private land under the designations')
+    blank = [PIN.get(r, [r])[0] for r, o in owners.items() if o == '?']
+    if blank: return 'not sure', 'no owner on the park record or in its name for ' + ', '.join(blank) + ' (a person adds it)'
+    if not real: return 'not sure', 'no park here owns land (designations only): no owner on the records'
+    return 'not sure', 'an owner here is not a public owner (' + ', '.join(sorted({owner_word(o) for o in real.values()})) + ')'
 
 
 OWNWORD = {'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
@@ -1865,6 +1837,7 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
     have = {tuple(x['refs'][:2]) for x in spots}
     out = []
     for a, b in sorted(pairs):
+        if time.time() - T0 > LIMIT * 1.1: LOG.append('near-pairs list cut short for time'); break   # Nov 9: never runs long past the budget
         if (a, b) in have or a not in G or b not in G: continue
         box = inter(bbox_groups(G[a]), bbox_groups(G[b]), gap_m / 90000 * 2)
         if not box: continue
@@ -2295,7 +2268,7 @@ def line_zone(x, G, PIN):
     m = F.area_in(G[oref], w)
     if oref in OWNED and F.any_in(G[oref]):
         o = owned_land(OWNED[oref], F.bounds())   # the global frame's bounds: the same ownership-map answer as before
-        if o is None: OWNED_FAIL.add(oref); m = np.zeros_like(m)
+        if o is None: pass   # Nov 9 (Brandon 9:37 AM CST): no owned-land mask; the official outline is the park
         else:
             keep = F.area_in(o, w)
             if OWNED[oref] in SOFT:   # Oct 28 (simple test): only private land is cut out of the official boundary
@@ -2526,6 +2499,26 @@ def water_date(s):
         WATER_MARK.clear()
     elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
 
+
+
+def no_owner_source(x):
+    """Nov 9 (Quality must-fix 2; Brandon Nov 8: an inside / overlapping pair needs an ownership source): a live candidate with no
+    ownership answer recorded (rows decided on Oct 28-29, before the ownership step, were carried over unchanged)."""
+    st = str(x.get('status', ''))
+    if not (st.startswith('candidate') or st.startswith('very tight')): return False
+    if x.get('kind') == 'same land':
+        o = str(x.get('owner_here') or '').lower()
+        return not o or o.startswith(('owner not published', 'unk ', '? '))
+    return not x.get('ownership') and not x.get('known')
+
+
+def hold_no_owner(spots):
+    n = 0
+    for x in spots:
+        if no_owner_source(x):
+            x['status'] = 'not sure: no ownership source for this row (an inside or overlapping pair needs one: Brandon Nov 8): a person or the next run checks it'
+            x.pop('list', None); n += 1
+    return n
 
 
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
@@ -2788,7 +2781,9 @@ def ca_owners(parks):
     except Exception: return  # noqa: BLE001
     for ref, p in parks.items():
         if not p['st'].startswith('CA-'): continue
-        os_ = {owner_of_text(by.get(str(i), {}).get('ow')) for i in p['ids']} - {''}
+        # Nov 9 (Quality: blank CPCAD owners): 37,961 of 60,426 saved Canadian records have no 'ow' text (the provincial layers);
+        # their manager / source name says who holds them ('Alberta Parks (Government of Alberta)')
+        os_ = {(lambda r: owner_of_text(r.get('ow')) or owner_of_text(r.get('mg')) or owner_of_text(r.get('src') or r.get('ty')))(by.get(str(i), {})) for i in p['ids']} - {''}
         OWN_CA[ref] = next(iter(os_)) if len(os_) == 1 else '?'
 
 
@@ -3059,7 +3054,7 @@ def main():
         # ('more than one owner across the spot': all-public mixes are 'ok' now) or an ownership map that did not answer (BLM
         # time-outs, fixed in kpc_owned.py) are decided AGAIN here; pass 3 never re-reads a 'not sure' row
         STALE = re.compile(r'^not sure: (the ownership map shows more than one owner|the agency ownership map did not answer|ownership map did not answer|the outlines overlap, but the )')
-        stale = [x for d in files.values() for x in d.get('spots', []) if STALE.search(str(x.get('status', '')))]
+        stale = [x for d in files.values() for x in d.get('spots', []) if STALE.search(str(x.get('status', ''))) or (no_owner_source(x) and x.get('kind') != 'same land')]
         if stale and not late():
             need = sorted({r for x in stale for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
             if need:
@@ -3100,6 +3095,7 @@ def main():
                 FP = {r: (v[1], v[2], str(v[0]), str(v[4])) for r, v in PIN.items() if v[1] is not None and v[2] is not None and (v[1] or v[2])}
                 n['live rows held: spot far from a state park pin (rule B13)'] = sum(FH.hold_spots(d.get('spots', []), FP) for d in files.values())
             except Exception as e: LOG.append(f'far-spot hold: {str(e)[:80]}')  # noqa: BLE001
+        n['candidates held: no ownership source'] = sum(hold_no_owner(d.get('spots', [])) for d in files.values())
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
@@ -3175,7 +3171,7 @@ def main():
                                                     'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and r not in LN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
                                                     # Oct 29 (chat 8, missing pairs): a trail / river park is tested by its official LINE (LN), so it is
                                                     # neither 'no official boundary' nor 'not in this run' (a multi-state trail's pin may sit elsewhere)
-                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(set(parks) | set(LN)),
+                                                    'near100': near_pairs(G, {p for p in pairs if p in TESTED}, spots), 'parks': sorted(set(parks) | set(LN)),
                                                     # Nov 4 (Mapping 2-fer review #1): POTA pins at 0,0 / impossible (never moved; not tested)
                                                     'bad_pota_pins': {r: v[1] for r, v in sorted(BAD_PIN.items()) if not ONLY or v[2] in ONLY or 'US-' + str(v[2]) in ONLY or str(v[2])[3:] in ONLY},
                                                     'water_no_split': sorted(WATER_NO_SPLIT),
@@ -3245,8 +3241,18 @@ def main():
             if SAME_FAR:
                 counts['same land left out: pins far apart, not both inside the outline'] = len(SAME_FAR)
                 LOG.append('same land left out (pins far apart): ' + '; '.join(f'{p[0]}+{p[1]} {p[2]} km' for p in SAME_FAR[:8]))
+        # Nov 9 (Quality must-fix 1, run 42594981324: US-CO 40 -> 4 candidates, CA-NB 747 -> 7 spots): a pass that stopped for time
+        # never rewrites an area it did not finish. An area with any untested pair keeps its previous file; a new area is saved
+        # marked incomplete. Only areas whose every pair was tested are written.
+        undone = set()
+        if counts.get('stopped for time'):
+            for p_ in pairs:
+                if p_ not in TESTED: undone |= {st_of(r) for r in p_}
+            undone.discard('')
+            kept = sorted(st for st in undone if st in old)
+            if kept: counts['areas kept as before (pass 1 out of time)'] = kept; LOG.append(f'{len(kept)} areas kept their previous file (pass 1 out of time): ' + ' '.join(kept[:20]))
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
-            if counts.get('stopped for time') and st not in by and st in old: continue
+            if counts.get('stopped for time') and st in old and (st in undone or st not in by): continue
             sp = by.get(st, [])
             if PARKS:   # small batch: the new rows for the pairs touching PARKS + every other old row unchanged
                 sp = [x for x in sp if PARKS & set(x['refs'])]
@@ -3256,7 +3262,8 @@ def main():
                 sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
                 if not sp and st not in old: continue
             mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
+                                    **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
@@ -3321,7 +3328,7 @@ def main():
                     WATER_MARK.clear()
                     decide(s, parks, G, LN, PIN, today, saved_only, st_of)
                     water_date(s)
-            if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today)
+            if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))

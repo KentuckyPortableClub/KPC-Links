@@ -123,8 +123,11 @@ def owned_land(kind, box, det, prec):
                     if 'blm' not in OWN_T:
                         lays = get(BLMSMA, {'f': 'json'}).get('layers') or []
                         lid = next((l['id'] for l in lays if re.search(r'bureau of land management|\bblm\b', l.get('name', ''), re.I)), lays[0]['id'] if lays else 0)
-                        fl = [x['name'] for x in get(f'{BLMSMA}/{lid}', {'f': 'json'}).get('fields') or []]
-                        af = next((x for x in fl if re.search(r'admin.*agency|agency.*code|^sma_?id|admin_agency', x, re.I)), None)
+                        # Nov 9 (run 42594981324: 'code 400 Unable to complete operation' on every BLM tile): layer 7 lists SMA_ID (a small
+                        # INTEGER) before ADMIN_AGENCY_CODE, so the old pattern built "SMA_ID = 'BLM'" (a text test on a number field = 400).
+                        # Only TEXT fields; the agency-code field by its exact name first.
+                        fl = [x['name'] for x in get(f'{BLMSMA}/{lid}', {'f': 'json'}).get('fields') or [] if x.get('type') in (None, 'esriFieldTypeString')]
+                        af = next((x for x in fl if x.upper() == 'ADMIN_AGENCY_CODE'), None) or next((x for x in fl if re.search(r'admin.*agency|agency.*code', x, re.I)), None)
                         OWN_T['blm'] = (f'{BLMSMA}/{lid}/query', f"{af} = 'BLM'" if af else '1=1')
                     url, where = OWN_T['blm']
                 else: url, where = PADUS, PADQ[kind]
