@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T12:26:49Z",
+ "updated": "2026-11-09T12:11:40Z",
  "stations": [
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
@@ -34,40 +34,6 @@
    "qsl": "QSL",
    "url": "",
    "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
-  },
-  {
-   "title": "2026 Remembering the Edmund Fitzgerald - Split Rock Lighthouse",
-   "start": "2026-11-06",
-   "end": "2026-11-08",
-   "times": "1600Z-2355Z",
-   "call": "W0JH",
-   "calls": [
-    "W0JH"
-   ],
-   "where": "Stillwater, MN",
-   "st": "MN",
-   "by": "Stillwater (MN) Amateur Radio Assoc",
-   "freqs": "",
-   "qsl": "Certificate",
-   "url": "http://www.radioham.org",
-   "note": ", Stillwater, MN. Stillwater (MN) Amateur Radio Assoc. (SARA). 3.860 7.260 14.260 21.360. Certificate. Shel Mann - N0DRX, 1618 Pine St W, Stillwater, MN 55082. Requested and sent via email: W0JHFitz@outlook.com. QSL certificates may only be requested via email address: W0JHFitz@outlook.com. Important: ONLY W0JH contacts qualify for POTA US-2524, US-8095, ARLHS USA 783 validations and submission to"
-  },
-  {
-   "title": "W2TE SES POTA DAY",
-   "start": "2026-11-08",
-   "end": "2026-11-08",
-   "times": "1030Z-2030Z",
-   "call": "W2GSB",
-   "calls": [
-    "W2GSB"
-   ],
-   "where": "Babylon, NY",
-   "st": "NY",
-   "by": "GREAT SOUTH BAY AMATEUR RADIO CLUB",
-   "freqs": "14.245 28.500 21.325 7.275",
-   "qsl": "Certificate",
-   "url": "http://WWW.GSBARC.ORG",
-   "note": ", Babylon, NY. GREAT SOUTH BAY AMATEUR RADIO CLUB. 14.245 28.500 21.325 7.275. Certificate. GSBARC W2TE POTA , 200 East Sunrise Hwy, Lindenhurst, NY 11757."
   },
   {
    "title": "100th ANNIVERSARY OF ROUTE 66",
@@ -671,6 +637,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (36)"
+  "ARRL": "ok (34)"
  }
 }

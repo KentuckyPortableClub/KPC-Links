@@ -1,84 +1,6 @@
 {
- "updated": "2026-11-08T12:26:57Z",
+ "updated": "2026-11-09T12:11:48Z",
  "week": [
-  {
-   "name": "YBDXPI FT8 Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gftoz",
-   "when": "0000Z, Nov 7 to 2359Z, Nov 8",
-   "segs": [
-    [
-     "2026-11-07T00:00Z",
-     "2026-11-08T23:59Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ARRL Sweepstakes Contest, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gbqoh",
-   "when": "2100Z, Nov 7 to 0300Z, Nov 9",
-   "segs": [
-    [
-     "2026-11-07T21:00Z",
-     "2026-11-09T03:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "IPARC Contest, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdo4f",
-   "when": "0600Z-1800Z, Nov 8",
-   "segs": [
-    [
-     "2026-11-08T06:00Z",
-     "2026-11-08T18:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gjok9",
-   "when": "0000Z-0100Z, Nov 9",
-   "segs": [
-    [
-     "2026-11-09T00:00Z",
-     "2026-11-09T01:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "4 States QRP Group Second Sunday Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g5qyr",
-   "when": "0100Z-0300Z, Nov 9",
-   "segs": [
-    [
-     "2026-11-09T01:00Z",
-     "2026-11-09T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
   {
    "name": "ICWC Medium Speed Test",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003glm1c",
@@ -540,6 +462,42 @@
    "modes": [],
    "kinds": [
     "QSOPARTY"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Classic Exchange, Phone",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhye6",
+   "when": "1400Z, Nov 15 to 0800Z, Nov 16 and 1400Z, Nov 17 to 0800Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-15T14:00Z",
+     "2026-11-16T08:00Z"
+    ],
+    [
+     "2026-11-17T14:00Z",
+     "2026-11-18T08:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Run for the Bacon QRP Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g8qtd",
+   "when": "2300Z, Nov 15 to 0100Z, Nov 16",
+   "segs": [
+    [
+     "2026-11-15T23:00Z",
+     "2026-11-16T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
    ],
    "src": "WA7BNM"
   }
@@ -1305,99 +1263,6 @@
    "exch": "RS(T), age (avg age for multiops)"
   },
   {
-   "name": "YBDXPI FT8 Contest",
-   "url": "https://contest.ybdxpi.net",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-07T00:00Z",
-     "2026-11-09T00:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "4-char grid"
-  },
-  {
-   "name": "ARRL November Sweepstakes, CW",
-   "url": "https://www.arrl.org/sweepstakes",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-07T21:00Z",
-     "2026-11-09T03:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "Serial, precedence, your call, check, ARRL/RAC Section"
-  },
-  {
-   "name": "IPARC Contest, SSB",
-   "url": "https://www.iparc.de",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-08T06:00Z",
-     "2026-11-08T18:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RST, serial, \"IPA\" (if mbr), state (if US)"
-  },
-  {
-   "name": "FIRAC HF Contest",
-   "url": "https://www.firac.de",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-08T07:00Z",
-     "2026-11-08T17:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RS(T), serial, \"F\" (if mbr)"
-  },
-  {
-   "name": "4 States QRP Group Second Sunday Sprint",
-   "url": "https://www.4sqrp.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-09T01:00Z",
-     "2026-11-09T03:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE"
-   ],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "RS(T), SPC, mbr or pwr"
-  },
-  {
    "name": "DARC FT4 Contest",
    "url": "https://www.darc.de",
    "when": "",
@@ -1976,26 +1841,6 @@
   }
  ],
  "big": [
-  {
-   "name": "ARRL November Sweepstakes (CW)",
-   "url": "https://www.arrl.org/sweepstakes",
-   "when": "Usual dates (ARRL); check the rules",
-   "segs": [
-    [
-     "2026-11-07T21:00Z",
-     "2026-11-09T03:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [
-    "BIG"
-   ],
-   "src": "RULE",
-   "by": "ARRL",
-   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
-  },
   {
    "name": "ARRL November Sweepstakes (Phone)",
    "url": "https://www.arrl.org/sweepstakes",
@@ -2772,7 +2617,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (35)",
-  "CORRAL": "ok (76)"
+  "WA7BNM": "ok (32)",
+  "CORRAL": "ok (71)"
  }
 }
