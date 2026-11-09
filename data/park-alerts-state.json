@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09 08:41",
+ "updated": "2026-11-09 12:41",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -853,20 +853,21 @@
    "cat": "park closure",
    "first": "2026-11-05",
    "runs": 2,
-   "missing": 0,
+   "missing": 1,
    "announced": true,
    "refs": []
   },
-  "fs-barren-fork-horse-camp-surrounding-trails-closed-prescribed-": {
-   "who": "Daniel Boone National Forest",
-   "title": "Barren Fork Horse Camp, surrounding trails closed for prescribed burn operations, November 8",
-   "text": "Barren Fork Horse Camp and portions of the surrounding trail system in McCreary County will be closed during planned prescribed burn operations on Sunday, November 8, 2026. Canter Loop Horse Trail, Belgian Horse Trail, Arabian Horse Trail and connecting portions of the Sheltowee Trace National…",
-   "link": "https://www.fs.usda.gov/r08/danielboone/alerts/barren-fork-horse-camp-surrounding-trails-closed-prescribed-burn-0",
-   "routine": true,
-   "first": "2026-11-06",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
+  "nps-B489F041-FD1B-40F2-992D-9D36C841B7E5": {
+   "who": "MACA",
+   "title": "Green River Ferry Temporarily Out of Service",
+   "text": "The Green River Ferry has temporarily suspended operation due to low water levels. Ferry service will resume once water levels rise and conditions are safe. A river forecast is available at: water.noaa.gov/gauges/03309000",
+   "link": "https://www.nps.gov/",
+   "routine": false,
+   "cat": "park closure",
+   "first": "2026-11-09",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
