@@ -2218,16 +2218,24 @@
      1577
     ]
    },
-   "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 12225 ERMA 'Lower Klamath Hills', pin inside, 1,596 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; the Oregon layer's copy sgorf111 stays NO so the same land is not joined twice. Quality to look.",
-   "join": [
-    "sgakg12225"
-   ],
-   "fp": {
-    "sgakg12225": [
-     "Lower Klamath Hills",
-     1596
-    ]
+   "none": true,
+   "when": "2026-11-02",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers) · 2026-11-09: a join is PENDING Brandon's call by name (see 'pending'); the NO above stays in force until then",
+   "pending": {
+    "join": [
+     "sgakg12225"
+    ],
+    "fp": {
+     "sgakg12225": [
+      "Lower Klamath Hills",
+      1596
+     ]
+    },
+    "decided_by": "",
+    "waits_on": "Brandon's call by name: this join would overturn the Nov 2 chat-11 NO on 'Lower Klamath Hills' (sgorf111, the same land)",
+    "evidence": "BLM ERMA OID 12225 'Lower Klamath Hills', 1,596 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404); the Oregon layer's copy sgorf111 would stay NO (same land)",
+    "when": "2026-11-09",
+    "note": "PENDING (Quality NO on KPC-Links #104, Nov 9 PM): not in 'join', so the live key keeps the NO. If Brandon says yes by name: move pending.join/fp into join/fp, set decided_by to his words + time, drop the id from 'no' and drop 'none'."
    }
   },
   "US-10009": {
@@ -6673,7 +6681,7 @@
     "Glenwood"
    ],
    "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1037.9 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 9736 OHV Designated Area 'Glenwood', pin inside, 1,043 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look.",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1037.9 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 9736 OHV Designated Area 'Glenwood', pin inside, 1,043 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look.",
    "join": [
     "sgakg9736"
    ],
@@ -8520,19 +8528,28 @@
   },
   "US-11308": {
    "no": [
+    "sgakg13878",
     "sgidc850",
     "2306"
    ],
-   "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM rec site polygon OID 13878 SRMA 'Blackfoot', pin inside, 41,391 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; replaces the Oct 29 NO (Research now finds the pin inside). Quality to look.",
-   "join": [
-    "sgakg13878"
-   ],
-   "fp": {
-    "sgakg13878": [
-     "Blackfoot",
-     41391
-    ]
+   "none": true,
+   "when": "2026-10-29",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-09: a join is PENDING Brandon's call by name (see 'pending'); the NO above stays in force until then",
+   "pending": {
+    "join": [
+     "sgakg13878"
+    ],
+    "fp": {
+     "sgakg13878": [
+      "Blackfoot",
+      41391
+     ]
+    },
+    "decided_by": "",
+    "waits_on": "Brandon's call by name: this join would overturn the Oct 29 chat-11 NO on 'Blackfoot' (sgakg13878)",
+    "evidence": "BLM rec site polygon OID 13878 SRMA 'Blackfoot', 41,391 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404)",
+    "when": "2026-11-09",
+    "note": "PENDING (Quality NO on KPC-Links #104, Nov 9 PM): not in 'join', so the live key keeps the NO. If Brandon says yes by name: move pending.join/fp into join/fp, set decided_by to his words + time, drop the id from 'no' and drop 'none'."
    }
   },
   "US-1131": {
@@ -11523,7 +11540,7 @@
   },
   "US-12060": {
    "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 499.5 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 64818 'Crystal Lake Wild Forest' (DEC class Wild Forest; POTA says State Forest), pin inside, 502 ac; layer already set up for NY (not re-fetched). Quality to look.",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 499.5 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 64818 'Crystal Lake Wild Forest' (DEC class Wild Forest; POTA says State Forest), pin inside, 502 ac; layer already set up for NY (not re-fetched). Quality to look.",
    "join": [
     "sgnya64818"
    ],
@@ -13672,7 +13689,7 @@
   },
   "US-12471": {
    "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 13505 'Lone Rock Drift Boat Launch', pin inside, 1.1 ac (small: Research 'verified (small)'); record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look.",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 13505 'Lone Rock Drift Boat Launch', pin inside, 1.1 ac (small: Research 'verified (small)'); record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look.",
    "join": [
     "sgakg13505"
    ],
@@ -42833,7 +42850,7 @@
   },
   "US-5308": {
    "when": "2026-11-09",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 3520.0 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 66353 'Split Rock Wild Forest' (DEC Wild Forest; POTA says State Forest), pin inside, 3,542 ac; layer already set up for NY (not re-fetched). Quality to look.",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 3520.0 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 66353 'Split Rock Wild Forest' (DEC Wild Forest; POTA says State Forest), pin inside, 3,542 ac; layer already set up for NY (not re-fetched). Quality to look.",
    "join": [
     "sgnya66353"
    ],

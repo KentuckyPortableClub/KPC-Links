@@ -19,13 +19,23 @@ for name in ('kpc-guide-pdf.yml', 'kpc-adds-probe.yml', 'kpc-bot-health.yml'):
 
 # 2) hand joins carry the record id (join + fp) and no 'none' flag
 o = json.load(open(HERE / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
-WANT = {'US-11308': 'sgakg13878', 'US-11316': 'sgakg13903', 'US-10008': 'sgakg12225', 'US-12471': 'sgakg13505', 'US-11003': 'sgakg9736',
+WANT = {'US-11316': 'sgakg13903', 'US-12471': 'sgakg13505', 'US-11003': 'sgakg9736',
         'US-12060': 'sgnya64818', 'US-5308': 'sgnya66353', 'US-3140': 'sgvta430', 'US-0754': 'sgakd1159', 'US-11900': 'sgakd1245', 'US-0822': 'sgakd1122'}
 for ref, rid in WANT.items():
     v = o.get(ref) or {}
     check(rid in (v.get('join') or []) and rid in (v.get('fp') or {}) and not v.get('none') and rid not in (v.get('no') or []),
           f'{ref} joins {rid} with its saved record id')
-check('sgorf111' in (o['US-10008'].get('no') or []), 'US-10008: the Oregon copy of the same land stays NO (no double join)')
+# Quality NO on #104: joins that would overturn an earlier Quality NO wait for Brandon by name, OUT of the live key
+for ref, rid in (('US-11308', 'sgakg13878'), ('US-10008', 'sgakg12225')):
+    v = o[ref]; pd = v.get('pending') or {}
+    check(rid not in (v.get('join') or []) and v.get('none') and rid in (pd.get('join') or []) and rid in (pd.get('fp') or {}),
+          f'{ref}: {rid} is PENDING (not joined; the NO stays live)')
+    check(not str(pd.get('decided_by') or '').strip() and not str(v.get('decided_by') or '').strip() and 'Brandon' in pd.get('waits_on', ''),
+          f'{ref}: no decided_by yet; waits on Brandon by name')
+    check(v['why'].count("NO 'Blackfoot' (chat 11") <= 1, f'{ref}: no repeated NO lines')
+check('sgakg13878' in o['US-11308']['no'] and 'sgorf111' in o['US-10008']['no'], 'the earlier NOs stay in force')
+for ref in ('US-12471', 'US-11003', 'US-12060', 'US-5308', 'US-11308', 'US-10008'):
+    check(not o[ref]['why'].startswith('a different place, not this park'), f'{ref}: stale "a different place" lead-in cleared')
 L = json.load(open(HERE / 'data/us-key/layers.json'))
 check(L['sgvta'][0].endswith('/MapServer/38/query') and L['vta'][0].endswith('/MapServer/44/query'), 'sgvta = VT ANR unit POLYGONS (38); vta = points (44)')
 print('ALL PASS' if ok else 'FAILED'); sys.exit(0 if ok else 1)
