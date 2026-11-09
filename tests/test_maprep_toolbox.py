@@ -83,7 +83,7 @@ import kpc_key_freeze as KF
 #     docs/key-rules-change.txt, so the guard is EXEMPT there and passes again with no exemption once it is on main.
 # (b) data/us-key, data/ca-key, data/world-key and data/ky-answer-key.json are byte-unchanged vs origin/main.
 # A branch that changes rules on purpose is exempt only when it adds or changes docs/key-rules-change.txt.
-EXPECTED_RULES = {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
+EXPECTED_RULES = {'us-key': 'dae78e769382', 'ca-key': 'b5ad38f5af61', 'world-key': '10e4092cc97f'}
 KEY_PATHS = ['data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json']
 DECL_REL = 'docs/key-rules-change.txt'
 

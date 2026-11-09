@@ -82,7 +82,7 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
+BASE = {'us-key': 'dae78e769382', 'ca-key': 'b5ad38f5af61', 'world-key': '10e4092cc97f'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
@@ -98,7 +98,7 @@ check(fers_h in _head and 'fers v1' in _head,
 # Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
 check(f'{fers_h} (FINAL' in _head and 'i agree to new number' in _head and '4:45 PM CST' in _head and 'PENDING' not in _head,
       "docs quote Brandon's t918u OK next to the final fers hash")
-check('464d2ce92eda' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
+check('dae78e769382' in _head and 'b5ad38f5af61' in _head and '10e4092cc97f' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)

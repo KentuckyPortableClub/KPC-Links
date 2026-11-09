@@ -1133,6 +1133,22 @@ def _nf(t):   # hand decisions match names whatever way the accents are stored (
     import unicodedata; return unicodedata.normalize('NFC', str(t or '')).strip().casefold()
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
+# Nov 9 evening (Brandon t919u, 4:48 PM CST: pins and names are only sanity checks, the official boundary is right most of the time;
+# 'a bad ID block list'): overrides.json 'blocked_ids' = [{ref, id, reason, decided_by}]. A listed id is never used for that park:
+# it leaves the park's saved joins (join / fp) and becomes a NO, so the park goes back to normal matching (or to a person).
+# An entry without decided_by is ignored (and named in the log), so no block happens without a person.
+BLOCKED = {}
+try:
+    for _b in json.load(open(OUT / 'overrides.json')).get('blocked_ids') or []:
+        if not (_b.get('ref') and _b.get('id') not in (None, '')): continue
+        if not str(_b.get('decided_by') or '').strip(): print(f"::warning title=Blocked ids::{_b.get('ref')} {_b.get('id')}: no decided_by, ignored", flush=True); continue
+        BLOCKED.setdefault(_b['ref'], set()).add(str(_b['id']))
+except Exception: pass  # noqa: BLE001
+for _r, _ids in BLOCKED.items():
+    _o = OVR.setdefault(_r, {})
+    _o['join'] = [x for x in _o.get('join') or [] if str(x) not in _ids]
+    if _o.get('fp'): _o['fp'] = {k: v for k, v in _o['fp'].items() if str(k) not in _ids}
+    _o['no'] = list(_o.get('no') or []) + sorted(_ids - {str(x) for x in _o.get('no') or []})
 def _oid(a): return str(a['OBJECTID'])
 # Nov 2 review: one set of rules for a person's NO in every join path, a name check on id joins, self-checks and confidence
 # (kpc_key_rules.py; every rule has its own switch, see that file). Missing file = today's behaviour.

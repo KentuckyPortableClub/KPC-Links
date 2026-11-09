@@ -1,5 +1,7 @@
 {
  "note": "Reviewed by hand. join = official land names (or ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_ca_key.py follows this on every rerun.",
+ "blocked_ids_about": "Nov 9 2026 (Brandon t919u, 4:48 PM CST): a bad record id is listed here as {ref, id, reason, decided_by}; it is never used for that park (dropped from its saved joins and kept out as a NO); the park goes back to normal matching or to a person. No entry counts without decided_by.",
+ "blocked_ids": [],
  "parks": {
   "CA-1342": {
    "join": [

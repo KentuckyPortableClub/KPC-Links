@@ -277,6 +277,31 @@ def agency_kind(m):
     return None
 
 
+def blocked_ids(root='.'):
+    """Nov 9 evening (Brandon t919u, 4:48 PM CST): {ref: {id}} from the keys' 'blocked_ids' lists (US + Canada overrides.json); an entry
+    counts only with decided_by. A blocked id is never used for that park here either (the key drops it at its next build)."""
+    out = {}
+    for f in ('data/us-key/overrides.json', 'data/ca-key/overrides.json'):
+        try:
+            for b in json.load(open(pathlib.Path(root) / f)).get('blocked_ids') or []:
+                if b.get('ref') and b.get('id') not in (None, '') and str(b.get('decided_by') or '').strip(): out.setdefault(b['ref'], set()).add(str(b['id']))
+        except Exception: pass  # noqa: BLE001
+    return out
+
+
+def drop_blocked(parks, B=None):
+    B = blocked_ids() if B is None else B
+    for ref, ids in B.items():
+        p = parks.get(ref)
+        if not p: continue
+        keep = [i for i in p['ids'] if str(i) not in ids]
+        if len(keep) != len(p['ids']):
+            LOG.append(f"{ref}: blocked id(s) {', '.join(sorted(ids))} not used (blocked_ids)")
+            if keep: p['ids'] = keep
+            else: parks.pop(ref)
+    return parks
+
+
 def official_parks(PIN):
     """{ref: {'st', 'ids': [record ids], 'names': {id: name}}} + why parks were left out."""
     water_prefixes()
@@ -3037,6 +3062,7 @@ def main():
         ok, why = known_ok()
         if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); return
     parks, skip = official_parks(PIN)
+    drop_blocked(parks)
     PINS.update(PIN)   # Nov 9 PM: official_parks blanks the key's 'pin00' pins (no coordinates)
     RET = retired()   # rule 13: retired POTA numbers drop out
     parks = {r: p for r, p in parks.items() if r not in RET}

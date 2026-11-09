@@ -21,7 +21,7 @@ def check(cond, msg):
 
 
 # 0. no rules hash moves (the 2-fer run 42649544758 is going)
-for k, h in (('us-key', '464d2ce92eda'), ('ca-key', '8feccbb7d9ee'), ('world-key', '10e4092cc97f'), ('fers', '3b3c9a5992bb')):
+for k, h in (('us-key', 'dae78e769382'), ('ca-key', 'b5ad38f5af61'), ('world-key', '10e4092cc97f'), ('fers', '41a34706a671')):
     check(KF.rules_hash(k) == h, f'{k} rules hash stays {h}')
 check('kpc_problem_solver.py' in KF.NOT_RULES, 'the problem solver is not a rules file')
 

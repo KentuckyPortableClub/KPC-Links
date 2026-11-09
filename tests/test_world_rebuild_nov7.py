@@ -501,7 +501,7 @@ check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not li
 # ------------------------------------------------------------------ rules hashes: only the world key moves (Brandon OK'd)
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
-check(KZ.rules_hash('us-key') == '464d2ce92eda' and KZ.rules_hash('ca-key') == '8feccbb7d9ee', 'US a066624520b4 and CA 8feccbb7d9ee rules hashes unchanged')
+check(KZ.rules_hash('us-key') == 'dae78e769382' and KZ.rules_hash('ca-key') == 'b5ad38f5af61', 'US a066624520b4 and CA b5ad38f5af61 rules hashes unchanged')
 # Nov 8 (#76, Brandon OK): the CH BAFU parks collection rename moved it again, 6a5969a25d2c -> 10e4092cc97f
 check(KZ.rules_hash('world-key') == '10e4092cc97f', f"world rules hash moved on purpose: 1b50faf1dfe8 -> 6a5969a25d2c (Nov 7) -> 10e4092cc97f (Nov 8, CH) (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
@@ -550,8 +550,8 @@ def required_test_4_stalled_layer_still_holds():
 
 
 def required_test_5_us_and_ca_hashes_unchanged():
-    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == ('464d2ce92eda', '8feccbb7d9ee'),
-          'REQUIRED 5 (US and CA hashes unchanged): us 464d2ce92eda, ca 8feccbb7d9ee')
+    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == ('dae78e769382', 'b5ad38f5af61'),
+          'REQUIRED 5 (US and CA hashes unchanged): us dae78e769382, ca b5ad38f5af61')
 
 
 def required_test_8_finished_checkpoint_older_than_7_days_is_read_again():

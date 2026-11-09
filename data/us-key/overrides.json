@@ -1,5 +1,7 @@
 {
  "note": "Reviewed by hand. join = official land names (or PAD-US object ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_us_key.py follows this on every rerun. · Oct 27 (boundary review #3 + #10): 'fp' = {PAD-US id: [name, acres]} so a hand join survives a new PAD-US version (ids change); 'when' = the day of the hand decision (add it with every new one). · Oct 29: 'alias' = another name the official layer uses; it joins ONLY when the POTA pin is inside that record (sure-match test).",
+ "blocked_ids_about": "Nov 9 2026 (Brandon t919u, 4:48 PM CST): a bad record id is listed here as {ref, id, reason, decided_by}; it is never used for that park (dropped from its saved joins and kept out as a NO); the park goes back to normal matching or to a person. No entry counts without decided_by.",
+ "blocked_ids": [],
  "parks": {
   "AS-0001": {
    "fp": {

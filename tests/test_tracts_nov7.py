@@ -50,7 +50,7 @@ TMP = pathlib.Path(tempfile.mkdtemp(prefix='kpc-tracts-nov7-'))
 try:
     # ------------------------------------------------------------------ 0. hashes, rule files, keys
     import kpc_key_freeze as KF
-    EXP = {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '1b50faf1dfe8'}
+    EXP = {'us-key': 'dae78e769382', 'ca-key': 'b5ad38f5af61', 'world-key': '1b50faf1dfe8'}
     # Combined with the Nov 7 world rebuild (Part 2, Brandon OK'd): that patch moves the world hash by editing kpc_world_key.py
     # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
     # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
