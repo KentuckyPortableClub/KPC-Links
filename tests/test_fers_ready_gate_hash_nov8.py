@@ -90,13 +90,13 @@ for k, h in BASE.items():
 fers_h = KF.rules_hash('fers', str(HERE))
 check(len(fers_h) == 12 and all(c in '0123456789abcdef' for c in fers_h), f'fers hash looks like 12-hex: {fers_h}')
 print('FERS_RULES_HASH=' + fers_h)
-# docs/key-rules-change.txt must declare this hash; Brandon's OK of the fers hash itself stays PENDING
+# docs/key-rules-change.txt must declare this hash with Brandon's OK (Nov 8, 2026, 8:19 PM CST)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-check('PENDING' in _head and 'approved the fers hash' not in _head.lower().replace('pending', ''),
-      'docs mark Brandon OK of the fers hash as PENDING (do not claim he approved the hash)')
+check('Yes, I OK the 2-fer rules hash 0aa333357357 for #101' in _head and '8:19 PM CST' in _head and 'PENDING' not in _head,
+      'docs record Brandon OK of the fers hash with his exact words and time (no longer PENDING)')
 check('a066624520b4' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 
