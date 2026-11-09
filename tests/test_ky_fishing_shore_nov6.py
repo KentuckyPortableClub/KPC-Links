@@ -66,6 +66,7 @@ changed = [ln for ln in diff.stdout.splitlines() if ln.strip()]
 # Nov 9 PAD-US load fix (Brandon 11:24 AM CST 'Yes'): kpc_us_key.py may differ only with that move declared in docs/key-rules-change.txt
 _d = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 if 'US rules a066624520b4 -> ' + KF.rules_hash('us-key') in _d: changed = [c for c in changed if c != '.github/scripts/kpc_us_key.py']
+if 'CA rules 8feccbb7d9ee -> ' + KF.rules_hash('ca-key') in _d: changed = [c for c in changed if c != '.github/scripts/kpc_ca_key.py']   # Nov 9 evening: declared blocked_ids move
 check(diff.returncode == 0 and not changed, 'KY key outlines and rule files are unchanged'
       + ((' (' + ', '.join(changed) + ')') if changed else ''))
 _ver = json.load(open(ROOT / '.github/key-rules-version.json'))
@@ -85,6 +86,8 @@ round4_wf = {'.github/workflows/kpc-app-packs.yml', '.github/workflows/kpc-ky-ma
 nov8_wf = {'.github/workflows/kpc-key-postcheck.yml'}
 # Nov 9 PM (Guide PDFs run 42637107981): Playwright jobs pinned to ubuntu-24.04 (runner line only); not key workflows.
 nov9_wf = {'.github/workflows/kpc-adds-probe.yml', '.github/workflows/kpc-bot-health.yml', '.github/workflows/kpc-guide-pdf.yml'}
+# Nov 9 evening (Brandon t909u + 4:52 PM KPC-Archive): saved outlines saved to KPC-Archive too (not a key rule)
+nov9_wf |= {'.github/workflows/kpc-boundary-check.yml'}
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))

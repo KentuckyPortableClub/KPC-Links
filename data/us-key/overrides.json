@@ -13429,7 +13429,7 @@
     "sggaa184"
    ],
    "when": "2026-11-08",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'TALLULAH GORGE WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-08: Tallulah Gorge WMA is not the state park: never join the GA DNR Tallulah Gorge State Park polygon (sggab12) to it · 2026-11-08 Quality should-fix: GA DNR WMA polygon in the hand download (OBJECTID 904, 2267 ac, pin 0 m) matches the existing WMA join; state park polygon sggab12 stays NO",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 2 · 2026-11-02 12:49: layers row YES 'TALLULAH GORGE WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-08: Tallulah Gorge WMA is not the state park: never join the GA DNR Tallulah Gorge State Park polygon (sggab12) to it · 2026-11-08 Quality should-fix: GA DNR WMA polygon in the hand download (OBJECTID 904, 2267 ac, pin 0 m) matches the existing WMA join; state park polygon sggab12 stays NO",
    "no": [
     "sggab12"
    ]
