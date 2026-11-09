@@ -72,7 +72,7 @@ check(bool(msg), f'area+approximate still blocked by key_line_match: {msg!r}')
 KF = load('kpc_key_freeze', HERE / '.github/scripts/kpc_key_freeze.py')
 check('fers' in KF.RULE_FILES, 'RULE_FILES has fers kind')
 fers_files = KF.RULE_FILES['fers']
-for need in ('.github/scripts/kpc_fers.py', '.github/scripts/kpc_fers_ready.py', '.github/fers-ready-areas.json'):
+for need in ('.github/scripts/kpc_fers.py', '.github/scripts/kpc_fers_ready.py', '.github/scripts/kpc_fers_preline.py', '.github/fers-ready-areas.json'):
     check(need in fers_files, f'fers RULE_FILES includes {need}')
 check('.github/scripts/kpc_key_facts.py' not in fers_files, 'fers does not pull in key_facts')
 
@@ -90,6 +90,15 @@ for k, h in BASE.items():
 fers_h = KF.rules_hash('fers', str(HERE))
 check(len(fers_h) == 12 and all(c in '0123456789abcdef' for c in fers_h), f'fers hash looks like 12-hex: {fers_h}')
 print('FERS_RULES_HASH=' + fers_h)
+# docs/key-rules-change.txt must declare this hash; Brandon's OK of the fers hash itself stays PENDING
+docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
+_head = docs.split('\n\n')[0] if docs else ''
+check(fers_h in _head and 'fers v1' in _head,
+      f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
+check('PENDING' in _head and 'approved the fers hash' not in _head.lower().replace('pending', ''),
+      'docs mark Brandon OK of the fers hash as PENDING (do not claim he approved the hash)')
+check('a066624520b4' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
+      'docs entry notes us/ca/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)
 with tempfile.TemporaryDirectory() as td:

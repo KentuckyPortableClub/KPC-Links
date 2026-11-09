@@ -49,6 +49,7 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
               # Nov 8 (Quality 2-fer should-fix + Brandon t808u): 2-fer finder rules — separate kind so us/ca/world hashes do not move
               'fers': ['.github/scripts/kpc_fers.py', '.github/scripts/kpc_owned.py', '.github/scripts/kpc_fers_key_status.py',
                        '.github/scripts/kpc_fers_guard.py', '.github/scripts/kpc_fers_count.py', '.github/scripts/kpc_fers_ready.py',
+                       '.github/scripts/kpc_fers_preline.py',  # Nov 8 Quality should-fix: preline HOLDs non-ready areas (affects which pairs count)
                        '.github/fers-ready-areas.json']}
 NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
