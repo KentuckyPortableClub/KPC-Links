@@ -360,9 +360,9 @@ def join_gap(i, listed_state, ctx):
     pre = re.match(r'[a-z]*', str(i)).group(0)
     lay = (ctx.get('layer_states') or {}).get(pre)
     if not pre:
-        return (f"{i} is a PAD-US record the {st} key did not read: the US key keeps only Fee / Designation records owned or managed "
-                f"by FED, STAT or DIST, read by the record's state (kpc_us_key.py; changing that filter moves the US rules hash, so it is "
-                f"listed for later)")
+        return (f"{i} is a PAD-US record the {st} key did not read. Since Nov 9 (US rules 464d2ce92eda) a saved id is always loaded by id, "
+                f"whatever its Category, owner or PAD-US state; if this key was built before that, the next US key build reads it. "
+                f"Still missing after that: PAD-US renumbered or removed the record (the saved name + acres re-find it)")
     if lay is not None and st not in lay['states']:
         return (f"{i}: layer {pre} ({lay['name']}) is set up only for {', '.join(sorted(lay['states'])) or 'no state'} in data/state-gis.json, "
                 f"so the {st} key never reads it (add the layer for {st}, limited to the joined records)")

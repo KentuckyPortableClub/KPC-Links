@@ -21,7 +21,7 @@ def check(cond, msg):
 
 
 # 0. no rules hash moves (the 2-fer run 42649544758 is going)
-for k, h in (('us-key', 'a066624520b4'), ('ca-key', '8feccbb7d9ee'), ('world-key', '10e4092cc97f'), ('fers', '94b7d25d0769')):
+for k, h in (('us-key', '464d2ce92eda'), ('ca-key', '8feccbb7d9ee'), ('world-key', '10e4092cc97f'), ('fers', '94b7d25d0769')):
     check(KF.rules_hash(k) == h, f'{k} rules hash stays {h}')
 check('kpc_problem_solver.py' in KF.NOT_RULES, 'the problem solver is not a rules file')
 
@@ -95,7 +95,8 @@ R = PS.solve('US-X', {'n': 'Fort Test State Historic Site', 't': 'Other', 'm': [
 check(R.get('fault') == 'key setup' and any('set up only for AK' in w for w in R['reasons']) and R['verdict'] == 'needs a person',
       'a hand join on a layer set up for another state is explained (key setup)')
 R = PS.solve('US-X', {'n': 'Fort Test', 't': 'Other', 'm': [], 'c': []}, (40.0, -100.0), {}, {'join': ['12345']}, 'US-ZZ', ctx={})
-check(R.get('fault') == 'key setup' and any('load filter' not in w and 'Fee / Designation' in w for w in R['reasons']), 'a PAD-US hand join the key did not read is explained')
+check(R.get('fault') == 'key setup' and any('saved id is always loaded by id' in w and '464d2ce92eda' in w for w in R['reasons']),
+      'a PAD-US hand join the key did not read is explained (Nov 9 PAD-US load fix: the next US key build reads it)')
 # 8. problem solver: no saved outline -> the key's own distance (plain case only), never a moved pin
 row = {'n': 'Test Canyon Recreation Area', 't': 'Recreation Area', 'm': [], 'c': [['sgzza7', 'Test Canyon Recreation Area', 500, 'held']],
        'bk': ['sgzza7', 4.2, '', '-'], 'held': {'ids': ['sgzza7']}, 'ac': 520}

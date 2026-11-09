@@ -12,7 +12,7 @@ bad = 0
 def check(ok, msg):
     global bad; bad += not ok; print(('PASS ' if ok else 'FAIL ') + msg)
 
-check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'},
+check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'},
       'rules hashes unchanged')
 check('kpc_join_check.py' in KF.NOT_RULES, 'kpc_join_check.py is not a rules file')
 

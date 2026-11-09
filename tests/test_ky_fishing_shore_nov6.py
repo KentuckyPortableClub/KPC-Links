@@ -45,7 +45,7 @@ def samples(geom, n=9):
     return found
 
 
-check(KF.rules_hash('us-key') == 'a066624520b4', 'US rules hash stays a066624520b4')
+check(KF.rules_hash('us-key') == '464d2ce92eda', 'US rules hash 464d2ce92eda (moved Nov 9, Brandon 11:24 AM CST; declared)')
 check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccbb7d9ee')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
@@ -63,6 +63,9 @@ kept = [
 diff = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *kept],
                       cwd=ROOT, capture_output=True, text=True, timeout=30)
 changed = [ln for ln in diff.stdout.splitlines() if ln.strip()]
+# Nov 9 PAD-US load fix (Brandon 11:24 AM CST 'Yes'): kpc_us_key.py may differ only with that move declared in docs/key-rules-change.txt
+_d = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
+if 'US rules a066624520b4 -> ' + KF.rules_hash('us-key') in _d: changed = [c for c in changed if c != '.github/scripts/kpc_us_key.py']
 check(diff.returncode == 0 and not changed, 'KY key outlines and rule files are unchanged'
       + ((' (' + ', '.join(changed) + ')') if changed else ''))
 _ver = json.load(open(ROOT / '.github/key-rules-version.json'))

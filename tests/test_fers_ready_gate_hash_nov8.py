@@ -82,7 +82,7 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
+BASE = {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')

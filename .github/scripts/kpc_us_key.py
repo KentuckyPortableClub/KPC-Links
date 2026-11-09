@@ -345,23 +345,201 @@ def page(st, off):
             notice('PAD-US', f'query shape {GI[0]} refused ({e}); trying a simpler one'); GI[0] += 1
 
 
-def pad_state(st):
+# Nov 9 2026, Brandon 11:24 AM CST ('Yes' to: "keep a record that fails a check whenever its name matches the POTA park, which
+# follows your rule to trust the official boundary when the name matches"): a PAD-US record that fails the load filters (Category
+# Fee / Designation, owner or manager FED / STAT / DIST, or the State_Nm read) is KEPT when its name matches a POTA park of this state
+# under the strict test: exact_name() + name_ok(), BOTH names carry a kind word and share it (a plain 'Riverside Park' never stands
+# in for Riverside State Park), a real name (8+ letters after norm(), not an office / admin name). Statewide city-park layers cannot
+# flood in: a record enters only for a POTA park's name. Nov 9 11:28 AM (root cause): a SAVED id (overrides.json 'join' / 'fp') is
+# ALWAYS loaded, by id if need be (saved_fetch); the name exception is only for parks with no saved id. Nov 9 11:26 AM (Brandon):
+# order = PAD-US passes the filters, else the state layer's (state-gis.json) record of that name, else the PAD-US name exception.
+# Cross-state: a park whose pin is near its state's edge and that has no strict-name record in the state's read asks PAD-US once
+# for records of that name around its pin in a neighbouring state (Silvio O. Conte NWR is filed under NH; POTA lists it in MA).
+# KPC_PADUS_NAME_KEEP=0 turns this off. It adds candidates only; the join tests below decide as always.
+NAME_KEEP = (os.environ.get('KPC_PADUS_NAME_KEEP') or '1').strip().lower() not in ('0', 'off', 'no', '')
+NAME_KEEP_HIT = []   # [st, park, record id, record name, why] for the notice and the key's counts
+
+
+def _passes_load(a):
+    if (a.get('Category') or '') not in ('Fee', 'Designation'): return False   # Designation = wilderness, NCA… overlays
+    # Oct 18: + DIST (regional special districts: Florida's water management districts own the 'State Conservation Areas' POTA lists)
+    return (a.get('Own_Type') or '') in ('FED', 'STAT', 'DIST') or (a.get('Mang_Type') or '') in ('FED', 'STAT', 'DIST')
+
+
+def keep_names(P, st=None, every=False):
+    """{norm variant: [(park ref, POTA name, kinds)]} for the strict name keep, plus each hand-joined PAD-US id's saved name."""
+    idx, hand = {}, saved_ids(P)
+    _has = {v[0] for v in hand.values()}
+    for ref, r in (P or {}).items():
+        if ref in _has and not every: continue   # a park with a saved id uses that id; the name exception is only for parks with none
+        name = r[0] if isinstance(r, (list, tuple)) and r else str(r or '')
+        if len(norm(name).replace(' ', '')) < 8 or KM.is_admin(name): continue
+        kp = kinds(name) | kinds(r[2] if isinstance(r, (list, tuple)) and len(r) > 2 else '')
+        for nn in [name] + [x for x in ((OVR.get(ref) or {}).get('alias') or []) if isinstance(x, str)]:   # an alias a person approved is the park's name too
+            vs = variants(nn); vs |= {_soft(x) for x in vs if _soft(x)}
+            for v in vs: idx.setdefault(v, []).append((ref, nn, kp))
+    return idx, hand
+
+
+def saved_ids(P):
+    """Nov 9 ROOT CAUSE (11:28 AM): every PAD-US id a person saved for a park of this state (overrides.json 'join' or 'fp').
+    {id: (ref, saved name or '')}. These are ALWAYS loaded, whatever the load filters or the state PAD-US files them under:
+    the filters ran before the overrides, so a saved join to a Category 'Other' record (US-2238 Heyburn -> 199938) pointed at nothing."""
+    out = {}
+    for ref in (P or {}):
+        o = OVR.get(ref) or {}
+        fp = o.get('fp') or {}
+        for i in list(o.get('join') or []) + list(fp):
+            if re.fullmatch(r'\d+', str(i).strip()):
+                f = fp.get(str(i).strip()) or ['']
+                out.setdefault(str(i).strip(), (ref, f[0] if isinstance(f, (list, tuple)) and f else ''))
+    return out
+
+
+def name_keep(a, idx, hand):
+    """The POTA park whose name this record carries (strict), or None. Returns (ref, why)."""
+    nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+    if not nm or KM.is_admin(nm): return None
+    h = hand.get(str(a.get('OBJECTID')))
+    if h: return h[0], 'saved id (overrides.json join)'   # a saved id is always loaded (the join tests and fp check still decide)
+    ka = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
+    vs = variants(nm); vs |= {_soft(x) for x in vs if _soft(x)}
+    for v in vs:
+        for ref, pname, kp in idx.get(v, []):
+            # strict: BOTH names say what kind of place it is, and the same kind ('Riverside Park' / 'Stolley Park' say no kind: never)
+            if kp and ka and kp & ka and exact_name(pname, nm) and name_ok(pname, nm, kp, ka): return ref, f"name matches the POTA park ({pname})"
+    return None
+
+
+def _shape(a, f):
+    g = f.get('geometry') or {}
+    a['_bb'] = bbox(g); a['_g'] = g
+    a['_k'] = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
+    return a
+
+
+def pad_state(st, P=None):
     recs, off = [], 0
+    idx, hand = keep_names(P, st) if (NAME_KEEP and P) else ({}, {})
     while True:
         j = page(st, off)
         fs = j.get('features', [])
         for f in fs:
             a = f.get('attributes') or {}
-            if (a.get('Category') or '') not in ('Fee', 'Designation'): continue   # Designation = wilderness, NCA… overlays (BLM wilderness has no fee record of its own)
-            # Oct 18: + DIST (regional special districts: Florida's water management districts own the 'State Conservation Areas' POTA lists)
-            if (a.get('Own_Type') or '') not in ('FED', 'STAT', 'DIST') and (a.get('Mang_Type') or '') not in ('FED', 'STAT', 'DIST'): continue
-            g = f.get('geometry') or {}
-            a['_bb'] = bbox(g); a['_g'] = g
-            a['_k'] = kinds(a.get('Unit_Nm')) | kinds(a.get('Loc_Nm')) | ({DES[a['Des_Tp']]} if a.get('Des_Tp') in DES else set())
-            recs.append(a)
+            if not _passes_load(a):
+                k = name_keep(a, idx, hand) if (idx or hand) else None
+                if not k: continue
+                a['KPC_NameKeep'] = k[1]; NAME_KEEP_HIT.append([st, k[0], a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), k[1]])
+            recs.append(_shape(a, f))
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < PAGE): break
         off += len(fs); time.sleep(.6)
-    return recs, off + len(fs)
+    n = off + len(fs)
+    if NAME_KEEP and P:
+        try: recs += pad_cross(st, P, recs, idx, hand)
+        except Exception as e: notice(f'US key {st}', f'cross-state name read skipped ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+        _h = [x for x in NAME_KEEP_HIT if x[0] == st]
+        if _h: notice(f'US key {st}', f"{len(_h)} PAD-US record(s) kept by name although a load filter dropped them (Brandon Nov 9 11:24 AM): "
+                                      + ', '.join(f'{x[1]}={x[2]}' for x in _h[:12]))
+    return recs, n
+
+
+SAVED_HIT = []   # [st, park, id, name, PAD-US state] saved ids loaded by id because the state read did not have them
+
+
+def saved_fetch(st, P, recs):
+    """Nov 9 primary fix: the saved ids (overrides.json) of this state's parks that the read does not have (filtered out, or filed
+    under another state in PAD-US: US-0329 -> 5300 is NH) are asked for BY ID, in batches of 100, whatever their Category, owner or state."""
+    if not NAME_KEEP: return []
+    hand = saved_ids(P)
+    seen = {_oid(a) for a in recs}
+    miss = sorted({i for i in hand if i not in seen}, key=int)
+    out = []
+    for b in range(0, len(miss), 100):
+        q = {'where': 'OBJECTID IN (%s)' % ','.join(miss[b:b + 100]), 'outFields': fields(), 'f': 'json'}
+        q.update(GEO[GI[0]])
+        j = get(q, tries=2); time.sleep(.6)
+        for f in j.get('features', []):
+            a = f.get('attributes') or {}
+            i = str(a.get('OBJECTID'))
+            if i in seen or i not in hand: continue
+            a['KPC_NameKeep'] = 'saved id (overrides.json join)' + (f"; filed under {a.get('State_Nm')} in PAD-US" if a.get('State_Nm') and a.get('State_Nm') != st else '')
+            SAVED_HIT.append([st, hand[i][0], a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), a.get('State_Nm')])
+            seen.add(i); out.append(_shape(a, f))
+    if out: notice(f'US key {st}', f'{len(out)} saved PAD-US id(s) loaded by id (the load filters or the state read had left them out)')
+    return out
+
+
+LAYER_HIT = []   # [st, park, state-layer id, name, PAD-US id it stood in for] (Nov 9 11:26 AM order)
+
+
+def prefer_state_layer(st, recs, P):
+    """Nov 9, Brandon 11:26 AM CST: PAD-US passes the load filters -> PAD-US; else the configured state layer (state-gis.json,
+    already read; no new host) has an official record of the park's name -> that record; else the PAD-US name exception.
+    A PAD-US record kept ONLY by name (not hand-joined) is left out when a state-layer record names the same POTA park.
+    A hand-joined id is never dropped here (a person chose it); the overlap is only noted for Quality."""
+    kept = [a for a in recs if a.get('KPC_NameKeep') and isinstance(a.get('OBJECTID'), int)]
+    if not kept or not P: return recs
+    idx, hand = keep_names(P, st, every=True)   # every park: a saved id's overlap with the state layer is noted
+    lay = {}
+    for a in recs:
+        if isinstance(a.get('OBJECTID'), int) or a.get('Water'): continue   # state-layer ids carry their prefix ('ohsp12')
+        k = name_keep(a, idx, {})
+        if k: lay.setdefault(k[0], []).append(a)
+    drop = set()
+    for a in kept:
+        k = name_keep(a, idx, hand)
+        if not k or k[0] not in lay: continue
+        for b in lay[k[0]]: LAYER_HIT.append([st, k[0], b['OBJECTID'], b.get('Unit_Nm'), a['OBJECTID']])
+        if str(a['OBJECTID']) in hand and hand[str(a['OBJECTID'])][0] == k[0]:
+            notice(f'US key {st}', f"{k[0]}: the state layer also names this park ({lay[k[0]][0]['OBJECTID']}); the hand-joined PAD-US {a['OBJECTID']} is kept (Quality to look)")
+            continue
+        drop.add(_oid(a))
+    if drop:
+        notice(f'US key {st}', f'{len(drop)} PAD-US record(s) kept only by name were left out: the state layer has the official record of that name (Brandon Nov 9 11:26 AM)')
+    return [a for a in recs if _oid(a) not in drop]
+
+
+CROSS_MAX = int(os.environ.get('KPC_PADUS_CROSS_MAX') or 60)   # at most this many cross-state asks per state (one small box each)
+
+
+def pad_cross(st, P, recs, idx, hand):
+    """Nov 9: a park near its state's edge with no strict-name record in this state's read: PAD-US records of its name in a
+    neighbouring state, inside a 0.3 degree box around its pin (one request each, capped). Strict name test as above."""
+    box = st_box(st)
+    if not box: return []
+    have = {}
+    for a in recs:
+        nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+        for v in variants(nm): have.setdefault(v, True)
+    out, asked, seen = [], 0, {_oid(a) for a in recs}
+    out += saved_fetch(st, P, recs)
+    seen |= {_oid(a) for a in out}
+    for ref, r in sorted(P.items()):
+        if asked >= CROSS_MAX: notice(f'US key {st}', f'cross-state name read stopped at {CROSS_MAX} asks'); break
+        name = r[0] if r else ''
+        la, lo = (r[5], r[6]) if len(r) > 6 else (None, None)
+        if la is None or len(norm(name).replace(' ', '')) < 8 or KM.is_admin(name): continue
+        if any(v in have for v in variants(name)): continue
+        if any(i in seen for i, (r2, _n) in hand.items() if r2 == ref): continue   # its hand-joined land is already read
+        inside = box[0] <= lo <= box[2] and box[1] <= la <= box[3]
+        edge = min(abs(lo - box[0]), abs(lo - box[2]), abs(la - box[1]), abs(la - box[3]))
+        if inside and edge > .3: continue   # a pin outside its state's box (US-0329's pin is in NH) always asks
+        asked += 1
+        q = {'where': "State_Nm<>'%s'" % st, 'geometry': f'{lo - .3},{la - .3},{lo + .3},{la + .3}', 'geometryType': 'esriGeometryEnvelope',
+             'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'outFields': fields(), 'f': 'json', 'resultRecordCount': PAGE}
+        q.update(GEO[GI[0]])
+        j = get(q, tries=2); time.sleep(.6)
+        one = {ref: r}
+        i1, h1 = keep_names(one)
+        for f in j.get('features', []):
+            a = f.get('attributes') or {}
+            if str(a.get('OBJECTID')) in seen: continue
+            k = name_keep(a, i1, h1) or name_keep(a, {}, hand)
+            if not k or k[0] != ref: continue
+            a['KPC_NameKeep'] = f"{k[1]}; filed under {a.get('State_Nm')} in PAD-US"
+            NAME_KEEP_HIT.append([st, ref, a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), a['KPC_NameKeep']])
+            seen.add(str(a.get('OBJECTID'))); out.append(_shape(a, f))
+    return out
 
 
 def fetch_geo(url, q, timeout=180):
@@ -1224,6 +1402,11 @@ def run(st):
         notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None
     if got is not None:
         recs, seen, used_detail = got; CACHE_USED.append(st)
+        if CMODE == 'use':   # Nov 9 primary fix: a saved copy made before it has no filtered saved ids; ask for them by id
+            try:
+                _sv = saved_fetch(st, P, recs)
+                if _sv: recs += _sv; (save_cache(st, recs, seen) if st not in FAILED_READ else None)
+            except Exception as _e: notice(f'US key {st}', f'saved ids not read by id ({type(_e).__name__}: {str(_e)[:120]})')  # noqa: BLE001
         # Oct 25: a saved copy made before a layer was added (data/state-gis.json grows) never had that layer's land, so the
         # nightly rebuild could not join it. Top the copy up: read live only the layers it has no records from, add, re-save.
         if CMODE == 'use':
@@ -1236,9 +1419,11 @@ def run(st):
                     notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} newer layer(s)')
                     if st not in FAILED_READ: save_cache(st, recs, seen)
     else:
-        recs, seen = pad_state(st)
+        recs, seen = pad_state(st, P)
         recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
-        recs += extra_state(st, _have(recs))
+        # Nov 9 (Brandon 11:26 AM CST): the state layer comes BEFORE the PAD-US name exception, so a record kept only by name
+        # must not hide the state layer's own record of that name (extra_state leaves out names PAD-US already has)
+        recs += extra_state(st, _have([a for a in recs if not a.get('KPC_NameKeep')]))
         used_detail = DETAIL
         old = load_cache(st) if st in FAILED_READ else None
         # only when this read actually came back SHORT (a source that fails every time is already missing from the
@@ -1247,6 +1432,7 @@ def run(st):
             notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
+    recs = prefer_state_layer(st, recs, P)
     if _kr('KPC_PADUS_DEDUPE'):
         # Nov 2 (mapping agent): PAD-US keeps the older copy of a place from the same provider (FWS_PADUS3_0 + FWS_PADUS4_0 for
         # every refuge); both joined, the park's 'official acres' came out doubled (230 'OFF smaller' map-audit rows) and the two

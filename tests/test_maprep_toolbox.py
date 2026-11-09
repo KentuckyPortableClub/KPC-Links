@@ -83,7 +83,7 @@ import kpc_key_freeze as KF
 #     docs/key-rules-change.txt, so the guard is EXEMPT there and passes again with no exemption once it is on main.
 # (b) data/us-key, data/ca-key, data/world-key and data/ky-answer-key.json are byte-unchanged vs origin/main.
 # A branch that changes rules on purpose is exempt only when it adds or changes docs/key-rules-change.txt.
-EXPECTED_RULES = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
+EXPECTED_RULES = {'us-key': '464d2ce92eda', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
 KEY_PATHS = ['data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json']
 DECL_REL = 'docs/key-rules-change.txt'
 
@@ -153,7 +153,9 @@ if have.returncode != 0:
 # the declaration covers the world key only: US and CA rules equal origin/main and no key file changed, even while the guard is EXEMPT.
 _decl = (ROOT / DECL_REL).read_text(encoding='utf-8') if (ROOT / DECL_REL).exists() else ''
 _keys = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *KEY_PATHS], cwd=ROOT, capture_output=True, text=True, timeout=30).stdout.split()
-check(not _decl or (_decl.strip() and re.search(r'KPC-Links #\d+', _decl) and all(k in _decl for k in _keys) and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k) for k in ('us-key', 'ca-key'))),
+check(not _decl or (_decl.strip() and re.search(r'KPC-Links #\d+', _decl) and all(k in _decl for k in _keys) and all(KF.rules_hash(k, ROOT) == rules_hash_at('origin/main', k)
+               # Nov 9 PAD-US load fix (Brandon 11:24 AM CST 'Yes'): a US move is allowed only when the declaration names it exactly
+               or (k == 'us-key' and f"US rules {rules_hash_at('origin/main', k)} -> {KF.rules_hash(k, ROOT)}" in _decl) for k in ('us-key', 'ca-key'))),
       'docs/key-rules-change.txt is non-empty and names a PR (KPC-Links #N): US / CA rules equal origin/main, key files unchanged except the ones the declaration names')
 passed, msg = answer_key_guard(ROOT)
 check(passed, 'this branch passes the real answer-key guard (' + msg + ')')
