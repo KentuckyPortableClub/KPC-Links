@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T11:59:30Z",
+ "updated": "2026-11-09T12:11:17Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -99,20 +99,6 @@
    "by": "Parks on the Air",
    "url": "https://docs.pota.app/docs/events.html",
    "rule": "January 1-7"
-  },
-  {
-   "name": "ARRL November Sweepstakes (CW)",
-   "tags": [
-    "ONAIR",
-    "CONTEST"
-   ],
-   "start": "2026-11-07",
-   "end": "2026-11-09",
-   "time": "Starts 2100 UTC Sat (Sat 3 PM Central)",
-   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY). The WARC bands (30, 17, 12 m) never have contests.",
-   "by": "ARRL",
-   "url": "https://www.arrl.org/sweepstakes",
-   "rule": "Usual dates (ARRL); check the rules"
   },
   {
    "name": "ARRL November Sweepstakes (Phone)",
@@ -546,6 +532,20 @@
    "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + ARRL section (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "ARRL",
    "url": "https://www.arrl.org/160-meter",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "ARRL 10-Meter Contest",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-12-11",
+   "end": "2027-12-12",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (CW, SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/10-meter",
    "rule": "Usual dates (ARRL); check the rules"
   }
  ],
