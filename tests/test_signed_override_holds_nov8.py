@@ -33,9 +33,27 @@ for r in FIFTEEN:
     if nm:
         p2 = {'n': r, 'g': 'official', 'm': [['renumbered-1', nm, 0, 'name']]}
         check(J.exempt(r, p2, okmap).startswith('signed override'), f'{r}: a join on the signed NAME {nm!r} is not held')
-# an unsigned far join is still held
+# an unsigned far join is still held (park not in overrides)
 p = {'n': 'x', 'g': 'official', 'm': [['zz-nobody-signed', 'Nowhere', 0, 'name']]}
 check(J.exempt('US-99999', p, okmap) == '', 'an unsigned far join is still held')
+
+# Gap closed (#53 / Quality): an UNSIGNED overrides.json join must NOT exempt a far piece
+# (Links #77's test above did not cover this — US-99999 had no override entry).
+# Together with the builder's ~0.6° override box, that gap let unsigned joins past 5 km survive.
+import tempfile, json as _json
+with tempfile.TemporaryDirectory() as _td:
+    _td = pathlib.Path(_td); (_td / 'data/us-key').mkdir(parents=True)
+    _json.dump({'parks': {
+        'US-88888': {'join': ['far-piece-1'], 'why': 'unsigned apply', 'when': '2026-11-08'},
+        'US-88887': {'join': ['signed-piece-1'], 'fp': {'signed-piece-1': ['Signed Land', 10]},
+                     'why': 'signed', 'decided_by': 'Brandon (KZ4CP), Nov 8 2026'},
+    }}, open(_td / 'data/us-key/overrides.json', 'w'))
+    _ok, _ = J.approvals(str(_td), 'us', {'ANSWER_SHEET': '/nonexistent'})
+    check('far-piece-1' not in (_ok.get('US-88888') or set()), 'unsigned override ids are not loaded into ok/exempt map')
+    check(J.exempt('US-88888', {'n': 'u', 'g': 'official', 'm': [['far-piece-1', 'Far', 0, 'name']]}, _ok) == '',
+          'unsigned override far join is still held (beyond 5 km band)')
+    check(J.exempt('US-88887', {'n': 's', 'g': 'official', 'm': [['signed-piece-1', 'Signed Land', 0, 'name']]}, _ok).startswith('signed override'),
+          'decided_by override far join still passes (signed exemption)')
 
 if os.environ.get('KPC_CHECK_BUILT') == '1':
     N = KC.parks_of(KC.load_tree('us', None, str(ROOT)))

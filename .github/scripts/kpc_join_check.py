@@ -93,8 +93,13 @@ def approvals(root, kind, env):
                 NOS[r] = [(z[0], z[1] if len(z) > 1 else None, k) for k, z in nf_.items() if isinstance(z, list) and z and z[0]]
                 NOS[r] += [(z, None, '') for z in (v.get('no') or []) if not re.fullmatch(r'[a-z]*\d+', str(z))]
             if isinstance(v, dict) and v.get('join'):
-                ok.setdefault(r, set()).update(str(x) for x in v['join'])
+                # Nov 8 (#53 / Quality): only a SIGNED override (decided_by) exempts a far join.
+                # An UNSIGNED overrides.json join used to be copied into ok and exempted any distance
+                # (together with the builder's ~0.6° override box that can pull pieces beyond 5 km).
+                # Close that gap: unsigned joins stay proposals for the distance hold; answer-sheet YES
+                # still goes into ok below. Signed ids go to SIGNED (and ok for name/id lookups).
                 if str(v.get('decided_by') or '').strip():   # Nov 8 (Quality NO on US-42446831487): a SIGNED override (decided_by) is never held
+                    ok.setdefault(r, set()).update(str(x) for x in v['join'])
                     SIGNED.setdefault(r, set()).update(str(x) for x in v['join']); SIGNED_BY[r] = str(v['decided_by']).strip()
                     for _id, _fp in ((v.get('fp') or {}).items() if isinstance(v.get('fp'), dict) else []):
                         if isinstance(_fp, list) and _fp and _fp[0]: SIGNED[r].add(str(_fp[0]))
@@ -413,7 +418,7 @@ def selftest():
              'US-0005': {'n': 'Far, sheet YES', 'g': 'official', 'm': [[55, 'Sheet', 10, 'name']], 'c': [], 'bk': [55, 30.0]},
              'US-9905': T9905}
     json.dump({'parks': parks}, open(td / 'data/us-key/US-AA.json', 'w'))
-    json.dump({'parks': {'US-0004': {'join': ['44'], 'why': 'person'}}}, open(td / 'data/us-key/overrides.json', 'w'))
+    json.dump({'parks': {'US-0004': {'join': ['44'], 'why': 'person', 'decided_by': 'Brandon test'}}}, open(td / 'data/us-key/overrides.json', 'w'))
     open(td / 'data/answer-sheet/US.csv', 'w').write('ref,record_id,key_id,record_name,status,quality_yes\nUS-0005,55,,Sheet,YES,\n')
     before = json.load(open(td / 'data/us-key/US-AA.json'))['parks']
     drep = run({'KEY': 'us', 'ALL': '1', 'DRY': '1'}, root=str(td), plain=True)
@@ -428,7 +433,7 @@ def selftest():
     check('default hold: the far join leaves m, its record kept in c, g pin, ac kept in held', (h['m'], h['g'], [x[0] for x in h['c']], h['held']['ac'], 'ac' in h),
           ([], 'pin', [1, 9], 100, False))
     check('held record carries the reason in c', h['c'][0][3].startswith('held: the nearest part of the joined outline is 22.0 km'), True)
-    check('exempt far joins (overrides, answer sheet, trail line) are kept, marked not held',
+    check('exempt far joins (signed overrides, answer sheet, trail line) are kept, marked not held',
           ([bool(after[r]['m']) for r in ('US-0004', 'US-0005', 'US-9905')], '(not held:' in after['US-0004'].get('suspect', '')), ([True, True, True], True))
     check('run(): a park that passes loses an old mark', ('suspect' in after['US-0002'], 'suspect' in after['US-0003']), (False, False))
     check('run(): no other join, candidate or grade changed', all(after[r].get(f) == before[r].get(f) for r in before if r != 'US-0001' for f in ('m', 'c', 'g')), True)
