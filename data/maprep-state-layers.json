@@ -9,7 +9,7 @@
     "field": "PARKNAME",
     "label": "Alaska State Parks (DNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 157,
     "facts": {
      "acres": "ACREAGE"
@@ -21,7 +21,7 @@
     "field": "LDA_NAME_1",
     "label": "Alaska Department of Natural Resources",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 2318,
     "facts": {}
    },
@@ -31,7 +31,7 @@
     "field": "forestname",
     "label": "Alaska DNR Division of Forestry",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -40,7 +40,7 @@
     "field": "UNIT_NAME",
     "label": "National Park Service (legal boundary)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -49,7 +49,7 @@
     "field": "PARKNAME",
     "label": "Alaska DNR State Parks (park boundaries)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 157,
     "facts": {
      "acres": "ACREAGE"
@@ -61,7 +61,7 @@
     "field": "PARKNAME",
     "label": "Alaska DNR, Division of Parks & Outdoor Recreation",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 157,
     "facts": {
      "acres": "ACREAGE"
@@ -73,7 +73,7 @@
     "field": "FET_NAME",
     "label": "BLM recreation SITE polygons (national, 3,478)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 3478,
     "facts": {
      "acres": "GIS_ACRES",
@@ -86,7 +86,7 @@
     "field": "ACEC_NAME",
     "label": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1120,
     "facts": {
      "designation": "ACEC_RLVNCE_CUL",
@@ -99,7 +99,7 @@
     "field": "RESNAME",
     "label": "National Register of Historic Places Polygons",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 22905,
     "facts": {}
    }
@@ -111,7 +111,7 @@
     "field": "NAME",
     "label": "Alabama State Parks (ADCNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 21,
     "facts": {
      "website": "Link"
@@ -123,7 +123,7 @@
     "field": "DCNR_Name",
     "label": "Alabama Dept of Conservation and Natural Resources, State La",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 228,
     "facts": {
      "acres": "Acres"
@@ -135,7 +135,7 @@
     "field": "Name",
     "label": "ADCNR Wildlife and Freshwater Fisheries · WildlifeManagementAreas",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 42,
     "facts": {
      "acres": "Acres",
@@ -148,7 +148,7 @@
     "field": "Name",
     "label": "ADCNR Wildlife and Freshwater Fisheries · PublicFishingLakes 1",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 20,
     "facts": {
      "website": "Link"
@@ -162,7 +162,7 @@
     "field": "maname",
     "label": "Arkansas Natural Heritage Commission",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 79,
     "facts": {}
    },
@@ -172,7 +172,7 @@
     "field": "name",
     "label": "Arkansas State Parks",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 52,
     "facts": {
      "acres": "acres"
@@ -184,7 +184,7 @@
     "field": "fisheries_name",
     "label": "Arkansas Game and Fish Commission",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -195,7 +195,7 @@
     "field": "NAME",
     "label": "Arizona State Parks & Trails",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -204,7 +204,7 @@
     "field": "MasterName",
     "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Wildlife Areas",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -213,7 +213,7 @@
     "field": "Prop_name",
     "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Hatchery Polys",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -222,7 +222,7 @@
     "field": "ORGNAME",
     "label": "US Fish and Wildlife Service (approved boundary)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -231,7 +231,7 @@
     "field": "NAME",
     "label": "Arizona State Parks and Trails (park boundaries)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -240,7 +240,7 @@
     "field": "NCA_NAME",
     "label": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -249,7 +249,7 @@
     "field": "FET_NAME",
     "label": "Bureau of Land Management, Arizona (recreation sites, polygons)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 71,
     "facts": {
      "acres": "GIS_ACRES",
@@ -264,7 +264,7 @@
     "field": "PROP_NAME",
     "label": "California Department of Fish & Wildlife",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -273,7 +273,7 @@
     "field": "UNITNAME",
     "label": "California State Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -282,7 +282,7 @@
     "field": "Name",
     "label": "California Department of Fish and Wildlife",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -291,7 +291,7 @@
     "field": "FET_NAME",
     "label": "BLM CA Recreation Polygons",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 90,
     "facts": {
      "acres": "GIS_ACRES",
@@ -306,7 +306,7 @@
     "field": "PropName",
     "label": "Colorado Parks & Wildlife · Colorado State Basemap 30",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 324,
     "facts": {
      "acres": "Acres"
@@ -318,7 +318,7 @@
     "field": "PropName",
     "label": "Colorado Parks & Wildlife · Colorado State Basemap 41",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 48,
     "facts": {
      "acres": "Acres"
@@ -330,7 +330,7 @@
     "field": "PropName",
     "label": "Colorado Parks & Wildlife · CPWAdminData 5",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -339,7 +339,7 @@
     "field": "PropName",
     "label": "Colorado Parks and Wildlife",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 386,
     "facts": {}
    },
@@ -349,7 +349,7 @@
     "field": "FET_NAME",
     "label": "Bureau of Land Management, Colorado (recreation sites)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 278,
     "facts": {
      "acres": "GIS_ACRES",
@@ -364,7 +364,7 @@
     "field": "PROPERTY",
     "label": "Connecticut DEEP",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -373,7 +373,7 @@
     "field": "OFFIC_NAME",
     "label": "CT DEEP (deepgis account)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -382,7 +382,7 @@
     "field": "HuntAName",
     "label": "CT DEEP",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -393,7 +393,7 @@
     "field": "NAME",
     "label": "Delaware DNREC",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1329,
     "facts": {
      "owner": "OWNERSHIP",
@@ -409,7 +409,7 @@
     "field": "LABEL",
     "label": "Delaware Forest Service",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 31,
     "facts": {
      "acres": "ACRES"
@@ -421,7 +421,7 @@
     "field": "AREA_NAME",
     "label": "Delaware Fish & Wildlife (DNREC)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 83,
     "facts": {
      "owner": "OWNER",
@@ -434,7 +434,7 @@
     "field": "NAME",
     "label": "Delaware nature preserves (DNREC)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 129,
     "facts": {
      "owner": "OWNERSHIP",
@@ -447,7 +447,7 @@
     "field": "NAME",
     "label": "Delaware public protected lands (DNREC)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 869,
     "facts": {
      "manager": "MANAGING_AGENCY",
@@ -463,7 +463,7 @@
     "field": "SITE_NAME",
     "label": "Florida State Parks (DEP)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 179,
     "facts": {
      "acres": "ACREAGE",
@@ -476,7 +476,7 @@
     "field": "LABEL",
     "label": "Florida Forest Service",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -494,7 +494,7 @@
     "field": "TRACT_NAME",
     "label": "Suwannee River Water Management District",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -503,7 +503,7 @@
     "field": "CONSERVATION_AREA",
     "label": "St. Johns River Water Management District",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -512,7 +512,7 @@
     "field": "PROJECT_NAME",
     "label": "Florida DEP Division of State Lands",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 79689,
     "facts": {
      "owner": "SHARED_OWNER_AGENCY_NAME",
@@ -526,7 +526,7 @@
     "field": "NAME",
     "label": "FWC",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 284,
     "facts": {
      "designation": "TYPE",
@@ -536,12 +536,43 @@
   ],
   "GA": [
    {
+    "pre": "handgaw",
+    "url": "data/maprep-layers/us-ga-wma.geojson",
+    "field": "PropName",
+    "label": "Georgia DNR Wildlife Resources (WMA / PFA / hatchery, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "gaw",
+    "count": 209,
+    "facts": {
+     "owner": "Owner",
+     "acres": "Acres",
+     "designation": "PropName"
+    }
+   },
+   {
+    "pre": "handgas",
+    "url": "data/maprep-layers/us-ga-stateparks.geojson",
+    "field": "PropName",
+    "label": "Georgia State Parks (DNR, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "gas",
+    "count": 60,
+    "facts": {
+     "designation": "PropName",
+     "acres": "Acres"
+    }
+   },
+   {
     "pre": "sggaa",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9/query",
     "field": "PropName",
     "label": "Georgia DNR Wildlife Resources Division · Georgia Licenses by District 9",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -550,7 +581,7 @@
     "field": "PropName",
     "label": "Georgia State Parks (DNR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -559,7 +590,7 @@
     "field": "PropName",
     "label": "Georgia DNR Wildlife Resources Division · WRD WMA Public 14",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -568,7 +599,7 @@
     "field": "areaname",
     "label": "BdyDesg_LSRS_SpecialInterestManagementArea",
     "ok": false,
-    "why": "robots.txt answers 401/403 (disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -577,7 +608,7 @@
     "field": "RESNAME",
     "label": "National_Heritage_Areas_Updated2023",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -588,7 +619,7 @@
     "field": "name",
     "label": "Hawaii Division of State Parks (DLNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 70,
     "facts": {
      "manager": "managedby",
@@ -602,7 +633,7 @@
     "field": "name",
     "label": "Hawaii DLNR reserves (DOFAW)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 381,
     "facts": {
      "manager": "managedby",
@@ -616,7 +647,7 @@
     "field": "NAME",
     "label": "Hawaii State Parks (DLNR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -627,7 +658,7 @@
     "field": "AREA_NAME",
     "label": "Iowa DNR · State Parks 9",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1846,
     "facts": {
      "owner": "OWNER",
@@ -642,7 +673,7 @@
     "field": "NAME",
     "label": "Iowa DNR · State Parks Trails 2",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 344,
     "facts": {
      "owner": "OWNER",
@@ -658,7 +689,7 @@
     "field": "NAME",
     "label": "Iowa DNR · Public Lands",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 5450,
     "facts": {
      "owner": "OWNER",
@@ -674,7 +705,7 @@
     "field": "NameUnit",
     "label": "Iowa DNR · State Parks 10",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 326,
     "facts": {
      "manager": "MANAGER",
@@ -690,7 +721,7 @@
     "field": "Name",
     "label": "Idaho Fish & Game",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -699,7 +730,7 @@
     "field": "NAME",
     "label": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -708,7 +739,7 @@
     "field": "FET_NAME",
     "label": "BLM Idaho recreation area polygons (76)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 76,
     "facts": {
      "acres": "GIS_ACRES",
@@ -721,7 +752,7 @@
     "field": "forestname",
     "label": "BdyOwn_LSRS_BasicOwnership",
     "ok": false,
-    "why": "robots.txt answers 401/403 (disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -730,7 +761,7 @@
     "field": "RECPROJECTSITEAREANAME",
     "label": "Recreation Area",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -741,7 +772,7 @@
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -750,7 +781,7 @@
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22 3",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -759,7 +790,7 @@
     "field": "Site_Name",
     "label": "Illinois DNR (public conservation lands)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -768,7 +799,7 @@
     "field": "SITE_NAME",
     "label": "IDNR Properties",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 384,
     "facts": {
      "designation": "CLASSIFICATION",
@@ -783,7 +814,7 @@
     "field": "unitname",
     "label": "Indiana DNR",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 654,
     "facts": {
      "owner": "owner",
@@ -797,7 +828,7 @@
     "field": "unitname",
     "label": "Indiana DNR Nature Preserves",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 196,
     "facts": {
      "owner": "owner",
@@ -811,7 +842,7 @@
     "field": "unitname",
     "label": "Indiana DNR + INHD (all managed lands)",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 102,
     "facts": {
      "owner": "owner",
@@ -827,7 +858,7 @@
     "field": "Description",
     "label": "Kansas Wildlife & Parks (state park areas, KDOT GIS)",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -836,7 +867,7 @@
     "field": "Label_Name",
     "label": "KDWPT · KDWPT Wildlife Areas",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -845,7 +876,7 @@
     "field": "Unit_Name",
     "label": "KDWPT · protected areas",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -856,7 +887,7 @@
     "field": "NAME",
     "label": "Louisiana Department of Wildlife & Fisheries",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -865,7 +896,7 @@
     "field": "Name_Short",
     "label": "LDWF, Sep 2025 edition",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -874,7 +905,7 @@
     "field": "NAME",
     "label": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -885,7 +916,7 @@
     "field": "SITE_NAME",
     "label": "MassGIS / Executive Office of Energy and Environmental Affai",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 61486,
     "facts": {
      "owner": "FEE_OWNER",
@@ -899,7 +930,7 @@
     "field": "SITE_NAME",
     "label": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -908,7 +939,7 @@
     "field": "UNIT_NAME",
     "label": "National Park Service (property boundaries)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -917,7 +948,7 @@
     "field": "SITE_NAME",
     "label": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 61892,
     "facts": {
      "owner": "FEE_OWNER",
@@ -933,7 +964,7 @@
     "field": "DNRName",
     "label": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 580,
     "facts": {
      "manager": "ManagedBy",
@@ -947,7 +978,7 @@
     "field": "AREA_NAME",
     "label": "Maryland DNR (Maryland Natural Areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 34,
     "facts": {
      "website": "weblink"
@@ -961,7 +992,7 @@
     "field": "PARCEL_NAME",
     "label": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -970,7 +1001,7 @@
     "field": "PROJECT",
     "label": "WMA_Boundaries",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -981,7 +1012,7 @@
     "field": "Facility",
     "label": "Michigan DNR Parks & Recreation",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -990,7 +1021,7 @@
     "field": "OfficialWLDProjectAreaName",
     "label": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -999,7 +1030,7 @@
     "field": "FACILITY",
     "label": "Michigan State Park Boundaries",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1010,7 +1041,7 @@
     "field": "name",
     "label": "Minnesota DNR · bdry dnr wildlife mgmt areas pub",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1753,
     "facts": {
      "manager": "managing_admin_office",
@@ -1023,7 +1054,7 @@
     "field": "name",
     "label": "Minnesota DNR · bdry state forest 4",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 60,
     "facts": {
      "acres": "acres"
@@ -1035,7 +1066,7 @@
     "field": "unit_name",
     "label": "Minnesota DNR · bdry scientific and nat areas 4",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 239,
     "facts": {
      "designation": "unit_type",
@@ -1048,7 +1079,7 @@
     "field": "AREA_NAME",
     "label": "Minnesota State Parks (DNR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1057,7 +1088,7 @@
     "field": "mgtprjname",
     "label": "Minnesota DNR (state land admin: parks and trails)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 13490,
     "facts": {
      "manager": "administrator",
@@ -1071,7 +1102,7 @@
     "field": "UNIT_NAME",
     "label": "DNR Management Units",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 6715,
     "facts": {
      "manager": "ADMINISTRATING_DIVISION",
@@ -1085,7 +1116,7 @@
     "field": "ORGNAME",
     "label": "FWSBoundaries",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1096,7 +1127,7 @@
     "field": "LOC_NAME",
     "label": "Missouri State Parks (DNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 207,
     "facts": {
      "acres": "GIS_ACRES",
@@ -1109,7 +1140,7 @@
     "field": "NAME",
     "label": "Missouri Natural Areas (DNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 36,
     "facts": {
      "owner": "OWNER",
@@ -1123,7 +1154,7 @@
     "field": "Area_Name",
     "label": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1049,
     "facts": {
      "manager": "Division_Admin",
@@ -1136,7 +1167,7 @@
     "field": "Area_Name",
     "label": "Missouri Department of Conservation",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 192,
     "facts": {
      "owner": "Owner",
@@ -1151,7 +1182,7 @@
     "field": "WA_NAME",
     "label": "Missouri DNR, Division of State Parks",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 13,
     "facts": {
      "designation": "DATE_DES",
@@ -1164,7 +1195,7 @@
     "field": "Area_Name",
     "label": "MDC Lands",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1049,
     "facts": {
      "manager": "Division_Admin",
@@ -1177,7 +1208,7 @@
     "field": "Name",
     "label": "Natural Areas",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 192,
     "facts": {
      "owner": "Owner",
@@ -1192,7 +1223,7 @@
     "field": "Area_Name",
     "label": "Missouri Department of Conservation (conservation area boundaries)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1049,
     "facts": {
      "manager": "Division_Admin",
@@ -1207,7 +1238,7 @@
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND STATEPARKS",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1216,7 +1247,7 @@
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND WMA",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1225,7 +1256,7 @@
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND FAS",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1234,7 +1265,7 @@
     "field": "MANAME",
     "label": "Managed Areas",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 1531,
     "facts": {
      "owner": "Own_Name",
@@ -1250,7 +1281,7 @@
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks (state park boundaries)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 55,
     "facts": {
      "acres": "ACRES"
@@ -1262,7 +1293,7 @@
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 333,
     "facts": {
      "acres": "ACRES"
@@ -1285,7 +1316,7 @@
     "field": "GML_HAB",
     "label": "NCWRC",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1294,7 +1325,7 @@
     "field": "GML_HAB",
     "label": "Game Lands - detail",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1303,7 +1334,7 @@
     "field": "PK_NAME",
     "label": "ParkBoundaries",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1314,7 +1345,7 @@
     "field": "Unit_Name",
     "label": "North Dakota Game & Fish",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1323,7 +1354,7 @@
     "field": "UNIT_NAME",
     "label": "North Dakota Parks & Recreation",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1332,7 +1363,7 @@
     "field": "Name",
     "label": "North Dakota Parks and Recreation Department",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1341,7 +1372,7 @@
     "field": "DESCRIPTION",
     "label": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 27,
     "facts": {
      "designation": "UNIT_TYPE",
@@ -1356,7 +1387,7 @@
     "field": "AreaName",
     "label": "Nebraska Game and Parks Commission · Conservation Partner Lands",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1365,7 +1396,7 @@
     "field": "AreaName",
     "label": "NGPC",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1374,7 +1405,7 @@
     "field": "AreaName",
     "label": "Nebraska Game and Parks Commission · Park Areas",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1385,7 +1416,7 @@
     "field": "name",
     "label": "NH GRANIT",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 13502,
     "facts": {
      "owner": "ownertype",
@@ -1398,7 +1429,7 @@
     "field": "NAME",
     "label": "New Hampshire Fish and Game Department",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1407,7 +1438,7 @@
     "field": "site",
     "label": "NH GRANIT (recreation inventory areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 2718,
     "facts": {
      "acres": "acres"
@@ -1419,7 +1450,7 @@
     "field": "NAME",
     "label": "NH GRANIT conservation lands (UNH / NH OSI)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 13502,
     "facts": {
      "owner": "OWNERTYPE",
@@ -1434,7 +1465,7 @@
     "field": "FACILITY",
     "label": "New Jersey DEP (Natural Lands Trust preserves)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 118,
     "facts": {
      "owner": "OWNERSHIP",
@@ -1450,7 +1481,7 @@
     "field": "FEATURE_NAME",
     "label": "New Jersey DEP (state-owned open space)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1461,7 +1492,7 @@
     "field": "NAME",
     "label": "New Mexico Department of Game & Fish",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1470,7 +1501,7 @@
     "field": "Name",
     "label": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1479,7 +1510,7 @@
     "field": "FET_NAME",
     "label": "BLM Natl Recreation Site Polygons",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1490,7 +1521,7 @@
     "field": "LandName",
     "label": "Nevada Department of Wildlife",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1499,7 +1530,7 @@
     "field": "name",
     "label": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 759,
     "facts": {
      "owner": "ownership",
@@ -1512,7 +1543,7 @@
     "field": "LandName",
     "label": "Nevada Division of State Parks · VS Boundary Map 2 WFL1 2",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1521,7 +1552,7 @@
     "field": "name",
     "label": "Nevada (SCORP recreation areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 756,
     "facts": {
      "owner": "ownership",
@@ -1534,7 +1565,7 @@
     "field": "landname",
     "label": "Nevada Division of State Parks · NDSP State Park Bondaries 1",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 30,
     "facts": {
      "acres": "acres"
@@ -1546,7 +1577,7 @@
     "field": "NLCS_NAME",
     "label": "BLM Nevada national monuments + NCAs",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 10,
     "facts": {
      "designation": "NLCS_TYPE"
@@ -1558,7 +1589,7 @@
     "field": "forestname",
     "label": "Administrative Forest Boundaries - National Extent",
     "ok": false,
-    "why": "robots.txt answers 401/403 (disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1567,7 +1598,7 @@
     "field": "ACEC_NAME",
     "label": "ACEC Designated Polygons",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1120,
     "facts": {
      "designation": "ACEC_RLVNCE_CUL",
@@ -1580,7 +1611,7 @@
     "field": "HMA_NAME",
     "label": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 86,
     "facts": {
      "manager": "ADMIN_AGCY",
@@ -1596,7 +1627,7 @@
     "field": "FACILITY",
     "label": "New York State DEC",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1605,7 +1636,7 @@
     "field": "Name",
     "label": "New York State Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1616,7 +1647,7 @@
     "field": "LANDS_NAME",
     "label": "Ohio DNR Division of Parks and Watercraft",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1625,7 +1656,7 @@
     "field": "LANDS_NAME",
     "label": "Ohio DNR Division of Wildlife",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1634,7 +1665,7 @@
     "field": "LANDS_NAME",
     "label": "Ohio DNR Division of Forestry",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1643,7 +1674,7 @@
     "field": "LANDS_NAME",
     "label": "Ohio DNR Division of Natural Areas and Preserves",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1652,7 +1683,7 @@
     "field": "NAME",
     "label": "Ohio DNR",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1661,7 +1692,7 @@
     "field": "Name_Label",
     "label": "Ohio DNR, Office of Information Technology",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 865,
     "facts": {
      "owner": "OWN_TYPE",
@@ -1676,7 +1707,7 @@
     "field": "FIRST_NAME",
     "label": "Ohio DNR: city, county + NGO lands",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 623,
     "facts": {
      "acres": "ACRES"
@@ -1690,7 +1721,7 @@
     "field": "PARK_NAME",
     "label": "Oklahoma State Parks (ODOT GIS)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1699,7 +1730,7 @@
     "field": "NAME",
     "label": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1708,7 +1739,7 @@
     "field": "SHORTNAME",
     "label": "ODWC",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1719,7 +1750,7 @@
     "field": "NAME",
     "label": "Oregon Parks & Recreation Department",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 422,
     "facts": {
      "designation": "DESIGNATION",
@@ -1732,7 +1763,7 @@
     "field": "FULL_NAME",
     "label": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1741,7 +1772,7 @@
     "field": "AreaName",
     "label": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1750,7 +1781,7 @@
     "field": "NAME",
     "label": "State of Oregon (all state owned and managed lands)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1759,7 +1790,7 @@
     "field": "PARK_NAME",
     "label": "State of Oregon (Oregon parklands)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 6345,
     "facts": {
      "designation": "CLIMBING_DESIGNATED"
@@ -1771,7 +1802,7 @@
     "field": "RMA_NAME",
     "label": "BLM Oregon/Washington recreation management areas (2,188)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 2188,
     "facts": {
      "acres": "GIS_ACRES"
@@ -1783,7 +1814,7 @@
     "field": "WSR_NAME",
     "label": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 132,
     "facts": {
      "acres": "GIS_ACRES"
@@ -1792,12 +1823,27 @@
   ],
   "PA": [
    {
+    "pre": "handpas",
+    "url": "data/maprep-layers/us-pa-sgl.geojson",
+    "field": "sgl_name",
+    "label": "Pennsylvania Game Commission (State Game Lands, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "pas",
+    "count": 320,
+    "facts": {
+     "acres": "gis_area_ac",
+     "designation": "sgl_status"
+    }
+   },
+   {
     "pre": "sgpaa",
     "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9/query",
     "field": "PARK_NAME",
     "label": "Pennsylvania DCNR Bureau of State Parks",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 125,
     "facts": {
      "designation": "TYPE",
@@ -1811,7 +1857,7 @@
     "field": "StParkName",
     "label": "Pennsylvania State Parks (DCNR)",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 240,
     "facts": {
      "acres": "Acreage"
@@ -1823,7 +1869,7 @@
     "field": "sgl_name",
     "label": "Pennsylvania Game Commission",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1832,7 +1878,7 @@
     "field": "NAME",
     "label": "PA DCNR Bureau of State Parks",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 23,
     "facts": {
      "acres": "ACREAGE",
@@ -1845,7 +1891,7 @@
     "field": "SF_Name",
     "label": "State Forests",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 662,
     "facts": {
      "acres": "Acreage"
@@ -1868,7 +1914,7 @@
     "field": "NAME",
     "label": "Rhode Island DEM · ENV Conservation Lands State spf",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1877,7 +1923,7 @@
     "field": "NAME",
     "label": "Rhode Island DEM (state conservation land)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1062,
     "facts": {
      "acres": "Acres"
@@ -1891,7 +1937,7 @@
     "field": "PropertyName",
     "label": "South Carolina DNR (WMAs, heritage preserves)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1900,7 +1946,7 @@
     "field": "NAME",
     "label": "South Carolina State Parks (PRT)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1909,7 +1955,7 @@
     "field": "PropertyName",
     "label": "South Carolina DNR (heritage preserves)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1918,7 +1964,7 @@
     "field": "PropertyName",
     "label": "South Carolina Department of Natural Resources",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -1929,7 +1975,7 @@
     "field": "AreaName",
     "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota ParksAndRecreationAreas",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 133,
     "facts": {
      "designation": "ClassificationCode"
@@ -1941,7 +1987,7 @@
     "field": "AreaName",
     "label": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) · SouthDakota GFPManagedLands",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 882,
     "facts": {
      "agency": "Division",
@@ -1956,7 +2002,7 @@
     "field": "PARK_NAME",
     "label": "Tennessee State Parks (TDEC)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1965,7 +2011,7 @@
     "field": "SITE_NAME",
     "label": "Tennessee State Natural Areas (TDEC)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1974,7 +2020,7 @@
     "field": "NAME",
     "label": "Tennessee Wildlife Resources Agency · Hunting Allowed",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1983,7 +2029,7 @@
     "field": "StateForestName",
     "label": "Tennessee Department of Agriculture, Division of Forestry",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -1992,7 +2038,7 @@
     "field": "NAME",
     "label": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation in Tennessee State and Federal Lands map",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2001,7 +2047,7 @@
     "field": "NAME_1",
     "label": "Tennessee Department of Environment and Conservation (TDEC public lands)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2010,7 +2056,7 @@
     "field": "PRIMARY_NAME__LONG_",
     "label": "Tennessee State Parks (TDEC state park boundaries)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2019,7 +2065,7 @@
     "field": "NaturalAreaName",
     "label": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2028,7 +2074,7 @@
     "field": "NAME",
     "label": "Tennessee Wildlife Resources Agency · TWRA 3",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 228,
     "facts": {
      "owner": "OWNERSHIP",
@@ -2042,18 +2088,46 @@
     "field": "PRIMARY_NAME__LONG_",
     "label": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
   "TX": [
+   {
+    "pre": "handtxw",
+    "url": "data/maprep-layers/us-tx-wma.geojson",
+    "field": "LoName",
+    "label": "Texas Parks & Wildlife (WMAs, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "txw",
+    "count": 80,
+    "facts": {
+     "designation": "BndryType"
+    }
+   },
+   {
+    "pre": "handtxs",
+    "url": "data/maprep-layers/us-tx-stateparks.geojson",
+    "field": "ParkName",
+    "label": "Texas Parks & Wildlife (state parks, hand download)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "txs",
+    "count": 116,
+    "facts": {
+     "designation": "PropType"
+    }
+   },
    {
     "pre": "sgtxa",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0/query",
     "field": "ParkName",
     "label": "Texas Parks & Wildlife Department (state parks)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2062,7 +2136,7 @@
     "field": "Name",
     "label": "Texas Parks & Wildlife Department (public hunting lands)",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 463,
     "facts": {
      "designation": "Class",
@@ -2075,7 +2149,7 @@
     "field": "LoName",
     "label": "TPWD Wildlife Division",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2084,7 +2158,7 @@
     "field": "P_Loc_Nm",
     "label": "Texas Parks and Wildlife (public conservation lands)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -2095,7 +2169,7 @@
     "field": "name",
     "label": "Utah State Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2104,7 +2178,7 @@
     "field": "Property_N",
     "label": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2113,7 +2187,7 @@
     "field": "L_Name",
     "label": "Utah (National Historic Landmarks)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2122,7 +2196,7 @@
     "field": "RECS_NAME",
     "label": "BLM Utah State Office (congressionally designated recreation areas)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 26,
     "facts": {
      "designation": "RECS_TYPE"
@@ -2134,7 +2208,7 @@
     "field": "NLCS_NAME",
     "label": "NLCS Wild and Scenic Rivers",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 2077,
     "facts": {}
    },
@@ -2144,7 +2218,7 @@
     "field": "truncated_name",
     "label": "state_park_boundaries_dissolved",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -2155,7 +2229,7 @@
     "field": "Name",
     "label": "Virginia Department of Forestry",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2164,7 +2238,7 @@
     "field": "MANAME",
     "label": "Virginia DCR Natural Heritage",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2173,7 +2247,7 @@
     "field": "LABEL",
     "label": "Virginia State Parks (DCR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2182,7 +2256,7 @@
     "field": "MANAME",
     "label": "Virginia DCR State Parks (tracts)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2191,7 +2265,7 @@
     "field": "LABEL",
     "label": "Virginia DCR (Virginia's conservation lands)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2200,7 +2274,7 @@
     "field": "NAME",
     "label": "Virginia DCR (local parks 2023)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2209,7 +2283,7 @@
     "field": "WMA_NAME",
     "label": "Virginia Department of Wildlife Resources",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 242,
     "facts": {
      "owner": "Owner",
@@ -2223,7 +2297,7 @@
     "field": "PropertyNames",
     "label": "Virginia Dept. of Historic Resources",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 3169,
     "facts": {
      "website": "URL"
@@ -2237,7 +2311,7 @@
     "field": "NAME",
     "label": "Vermont Agency of Natural Resources",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 515,
     "facts": {
      "acres": "GISACRES"
@@ -2251,7 +2325,7 @@
     "field": "ParkName",
     "label": "Washington State Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2260,7 +2334,7 @@
     "field": "ManagedPlaceName",
     "label": "Washington Department of Fish and Wildlife",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 729,
     "facts": {}
    },
@@ -2270,7 +2344,7 @@
     "field": "PARCEL_LABEL_NM",
     "label": "Washington State Department of Natural Resources",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 18844,
     "facts": {
      "owner": "TIMBER_OWNER_NM"
@@ -2282,7 +2356,7 @@
     "field": "NAME",
     "label": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 6413,
     "facts": {
      "owner": "OWNER",
@@ -2295,7 +2369,7 @@
     "field": "GNIS_Name",
     "label": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2304,7 +2378,7 @@
     "field": "WildlifeAreaUnitName",
     "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 218,
     "facts": {}
    },
@@ -2314,7 +2388,7 @@
     "field": "WildlifeAreaName",
     "label": "Washington Dept. of Fish and Wildlife · WildlifeAreas 1",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 33,
     "facts": {}
    },
@@ -2324,7 +2398,7 @@
     "field": "NAME",
     "label": "Hanford Reach",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -2335,7 +2409,7 @@
     "field": "PROP_NAME",
     "label": "Wisconsin DNR",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1799,
     "facts": {
      "acres": "PROP_ACRES"
@@ -2347,7 +2421,7 @@
     "field": "PROP_NAME",
     "label": "Wisconsin State Parks (DNR)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 81,
     "facts": {
      "website": "INFO_URL"
@@ -2359,7 +2433,7 @@
     "field": "SNA_NAME",
     "label": "Wisconsin DNR Natural Heritage Conservation",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 683,
     "facts": {
      "acres": "SNA_ACRE_AMT"
@@ -2371,7 +2445,7 @@
     "field": "PROP_NAME",
     "label": "Wisconsin DNR Bureau of Facilities and Lands",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 82539,
     "facts": {
      "acres": "GIS_ACRES"
@@ -2383,7 +2457,7 @@
     "field": "FR_PROP_NAME",
     "label": "Wisconsin DNR (county forests, from the counties)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 30,
     "facts": {}
    },
@@ -2393,7 +2467,7 @@
     "field": "SNA_NAME",
     "label": "Natural Area Parcel Ownership",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 801,
     "facts": {
      "owner": "OWNER_NAME",
@@ -2408,7 +2482,7 @@
     "field": "NAME",
     "label": "West Virginia DNR",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2417,7 +2491,7 @@
     "field": "Name",
     "label": "West Virginia State Forests (DNR)",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2426,7 +2500,7 @@
     "field": "Loc_Nm",
     "label": "West Virginia State Parks (WVDOT boundaries server)",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 36,
     "facts": {
      "designation": "Loc_Ds",
@@ -2441,7 +2515,7 @@
     "field": "Park_Name",
     "label": "Wyoming State Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2450,7 +2524,7 @@
     "field": "site_name",
     "label": "Wyoming State Parks, Historic Sites & Trails",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2459,7 +2533,7 @@
     "field": "WHMA_Name",
     "label": "Wyoming Game and Fish Department · WHMA Boundaries 4",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2468,7 +2542,7 @@
     "field": "PAA_Name",
     "label": "Wyoming Game and Fish Department · PAA Boundaries 1",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -2479,7 +2553,7 @@
     "field": "PLUZ_NAME",
     "label": "AB Public La",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 61,
     "facts": {
      "designation": "TYPE"
@@ -2491,7 +2565,7 @@
     "field": "PLUZ_NAME",
     "label": "AB-PLUZ Gove",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 61,
     "facts": {
      "designation": "TYPE"
@@ -2503,7 +2577,7 @@
     "field": "NAME",
     "label": "Alberta Park",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 469,
     "facts": {
      "designation": "TYPE",
@@ -2516,7 +2590,7 @@
     "field": "PLREC_NAME",
     "label": "Alberta publ",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 64,
     "facts": {
      "designation": "TYPE"
@@ -2530,7 +2604,7 @@
     "field": null,
     "label": "BC BC Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2539,7 +2613,7 @@
     "field": "NAME",
     "label": "BC Park Inve",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 402,
     "facts": {
      "owner": "OWNERSHIP",
@@ -2552,7 +2626,7 @@
     "field": null,
     "label": "BC RegionalP",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2599,7 +2673,7 @@
     "field": "TRAIL_NAME",
     "label": "Hard look~12",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 7274,
     "facts": {}
    },
@@ -2609,7 +2683,7 @@
     "field": "name",
     "label": "Hard look~14",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 24,
     "facts": {
      "acres": "area_acres"
@@ -2621,7 +2695,7 @@
     "field": "NAME_ENG",
     "label": "Hard look~16",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1261,
     "facts": {
      "designation": "DESIGNATION_ENG"
@@ -2633,7 +2707,7 @@
     "field": "PROTECTED_AREA_NAME_ENG",
     "label": "Hard look~22",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 347,
     "facts": {
      "owner": "OWNER_ENG",
@@ -2647,7 +2721,7 @@
     "field": "OFFICIAL_NAME",
     "label": "Hard look~6",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 15,
     "facts": {}
    },
@@ -2657,7 +2731,7 @@
     "field": null,
     "label": "ON-ABCA Ausa",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2666,7 +2740,7 @@
     "field": "Park_Name",
     "label": "ON-CH Conser",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 8,
     "facts": {}
    },
@@ -2676,7 +2750,7 @@
     "field": null,
     "label": "ON-CRCA Cata",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2685,7 +2759,7 @@
     "field": null,
     "label": "ON-CVC Credi",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2694,7 +2768,7 @@
     "field": null,
     "label": "ON-ERCA Esse",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2703,7 +2777,7 @@
     "field": "name",
     "label": "ON-GANA Gana",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 24,
     "facts": {
      "acres": "area_acres"
@@ -2715,7 +2789,7 @@
     "field": "PROP_NAME",
     "label": "ON-GSCA Grey",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 211,
     "facts": {
      "designation": "Designation"
@@ -2727,7 +2801,7 @@
     "field": null,
     "label": "ON-KRCA Kawa",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2736,7 +2810,7 @@
     "field": "PROPERTY_NAME",
     "label": "ON-LSRCA Lak",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 59,
     "facts": {
      "owner": "OWNER",
@@ -2749,7 +2823,7 @@
     "field": null,
     "label": "ON-LTC Lower",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2758,7 +2832,7 @@
     "field": null,
     "label": "ON-LTVCA Low",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2767,7 +2841,7 @@
     "field": null,
     "label": "ON-MVC Missi",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2776,7 +2850,7 @@
     "field": null,
     "label": "ON-NPCA Niag",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2785,7 +2859,7 @@
     "field": "CANAME",
     "label": "ON-ORCA Oton",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 99,
     "facts": {
      "owner": "OWNER",
@@ -2798,7 +2872,7 @@
     "field": "Property_Name",
     "label": "ON-RVCA Ride",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 10,
     "facts": {
      "owner": "Owner",
@@ -2820,7 +2894,7 @@
     "field": null,
     "label": "ON-TRCA Toro",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2829,7 +2903,7 @@
     "field": "PROTECTED_AREA_NAME_ENG",
     "label": "Ontario Park",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 347,
     "facts": {
      "owner": "OWNER_ENG",
@@ -2843,7 +2917,7 @@
     "field": "PROTECTED_AREA_NAME_ENG",
     "label": "Ontario cons",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 306,
     "facts": {
      "owner": "OWNER_ENG",
@@ -2857,7 +2931,7 @@
     "field": "OFFICIAL_NAME",
     "label": "Ontario fede",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 36,
     "facts": {}
    },
@@ -2867,7 +2941,7 @@
     "field": "OFFICIAL_NAME",
     "label": "Ontario muni",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 388,
     "facts": {}
    }
@@ -2960,7 +3034,7 @@
     "field": "PARK_NAME",
     "label": "Saskatchewan~6",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 106,
     "facts": {
      "designation": "PARK_TYPE"
@@ -2974,7 +3048,7 @@
     "field": null,
     "label": "Hard look~20",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2983,7 +3057,7 @@
     "field": null,
     "label": "Yukon campgr",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -2992,18 +3066,36 @@
     "field": null,
     "label": "Yukon parks",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    }
   ],
   "MB": [
+   {
+    "pre": "handmbp",
+    "url": "data/maprep-layers/ca-mb-provparks.geojson",
+    "field": "NAME_E",
+    "label": "Manitoba provincial parks (hand download; replaces missing shapes)",
+    "ok": true,
+    "why": "the club keeps a hand-downloaded copy (Brandon Nov 8); kept as a site file (hand download); no live fetch",
+    "local": "hand",
+    "k": "mbp",
+    "count": 93,
+    "facts": {
+     "designation": "TYPE_E",
+     "acres": "O_AREA",
+     "website": "URL",
+     "manager": "MGMT_E",
+     "owner": "OWNER_E"
+    }
+   },
    {
     "pre": "camanitobapa",
     "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0/query",
     "field": null,
     "label": "Manitoba Par",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3012,7 +3104,7 @@
     "field": null,
     "label": "Manitoba pro",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3021,7 +3113,7 @@
     "field": null,
     "label": "Manitoba wil",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3030,7 +3122,7 @@
     "field": null,
     "label": "Manitoba wil~1",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3039,7 +3131,7 @@
     "field": null,
     "label": "Manitoba wil~2",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -3050,7 +3142,7 @@
     "field": null,
     "label": "NB Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3059,7 +3151,7 @@
     "field": null,
     "label": "NB Parks~1",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3077,7 +3169,7 @@
     "field": "NAME",
     "label": "NB-PP Govern",
     "ok": true,
-    "why": "robots.txt allows",
+    "why": "available",
     "count": 24,
     "facts": {}
    }
@@ -3089,7 +3181,7 @@
     "field": null,
     "label": "NL Provincia",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -3100,7 +3192,7 @@
     "field": null,
     "label": "NS HRM Parks",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3109,7 +3201,7 @@
     "field": null,
     "label": "NS NS_Lands_",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3118,7 +3210,7 @@
     "field": null,
     "label": "NS NS_Lands_~1",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3127,7 +3219,7 @@
     "field": "NAME",
     "label": "NS-F111 Nova",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 3,
     "facts": {}
    },
@@ -3137,7 +3229,7 @@
     "field": "NAME1",
     "label": "NS-NHS Nova",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 27,
     "facts": {}
    },
@@ -3147,7 +3239,7 @@
     "field": null,
     "label": "NS-PPA Nova",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3156,7 +3248,7 @@
     "field": null,
     "label": "Nova Scotia",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3165,7 +3257,7 @@
     "field": null,
     "label": "Nova Scotia ~1",
     "ok": false,
-    "why": "robots.txt disallows",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3174,7 +3266,7 @@
     "field": null,
     "label": "Nova Scotia ~2",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    }
   ],
@@ -3185,7 +3277,7 @@
     "field": "Name",
     "label": "NT GNWT Envi",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 4,
     "facts": {
      "manager": "Management",
@@ -3198,7 +3290,7 @@
     "field": "Name",
     "label": "NT Nagwichoo",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1,
     "facts": {}
    }
@@ -3210,7 +3302,7 @@
     "field": null,
     "label": "PE NCC_AT_Na",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3219,7 +3311,7 @@
     "field": "NAME_E",
     "label": "PE Province",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 49,
     "facts": {
      "owner": "OWNER_E",
@@ -3244,7 +3336,7 @@
     "field": null,
     "label": "QC PoleConne",
     "ok": false,
-    "why": "robots.txt answers 403 (services*.arcgis.com = disallow)",
+    "why": "not available for this tool",
     "count": null
    },
    {
@@ -3253,7 +3345,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Aire",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 4,
     "facts": {}
    },
@@ -3263,7 +3355,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Parc",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 1,
     "facts": {}
    },
@@ -3273,7 +3365,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Parc ~1",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 4,
     "facts": {}
    },
@@ -3283,7 +3375,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Parc ~2",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 28,
     "facts": {}
    },
@@ -3293,7 +3385,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Parc ~3",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 16,
     "facts": {}
    },
@@ -3303,7 +3395,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Refug",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 9,
     "facts": {}
    },
@@ -3313,7 +3405,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Réser",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 21,
     "facts": {}
    },
@@ -3323,7 +3415,7 @@
     "field": "NOM_OFFICIEL",
     "label": "Québec Zone",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 86,
     "facts": {}
    },
@@ -3333,7 +3425,7 @@
     "field": "DESIGNOM",
     "label": "Québec ecolo",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 75,
     "facts": {
      "designation": "DESIG_GR"
@@ -3345,7 +3437,7 @@
     "field": "DESIGNOM",
     "label": "Québec prote",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 5611,
     "facts": {
      "designation": "DESIG_GR"
@@ -3357,7 +3449,7 @@
     "field": "DESIGNOM",
     "label": "Québec recog",
     "ok": true,
-    "why": "no robots.txt",
+    "why": "available",
     "count": 271,
     "facts": {
      "designation": "DESIG_GR"
@@ -3502,5 +3594,6 @@
    }
   ]
  },
- "ky_note": "Kentucky has no data/us-key/US-KY.json (its answer key is data/ky-answer-key.json), so the US layer registry had no 'sgky' rows and Kentucky was missing. Its official layers are the club's own map files (kpc-bounds.js KY list); left out on purpose: ky-padus-parks.geojson (a PAD-US copy, already searched), ky-kpc-drawn.geojson (OpenStreetMap, not official), ky-dbnf.geojson (a forest boundary line, not land)."
+ "ky_note": "Kentucky has no data/us-key/US-KY.json (its answer key is data/ky-answer-key.json), so the US layer registry had no 'sgky' rows and Kentucky was missing. Its official layers are the club's own map files (kpc-bounds.js KY list); left out on purpose: ky-padus-parks.geojson (a PAD-US copy, already searched), ky-kpc-drawn.geojson (OpenStreetMap, not official), ky-dbnf.geojson (a forest boundary line, not land).",
+ "hand_layers_note": "Nov 8: GA / TX / PA / MB official layers Brandon downloaded by hand are searched as local site files (same pattern as Kentucky). Live ArcGIS rows that this tool does not use stay out of the search."
 }

@@ -9,7 +9,7 @@
    and gives a plain verdict (possible candidate / probably already a park / needs a person) with a summary to copy for a submission.
    A rep can also test a place they found themselves (a name, or a tap on the map).
    Requests: only the two official services the Tool Box already reads in the browser (edits.nationalmap.gov PAD-US,
-   maps-cartes.ec.gc.ca CPCAD; robots.txt allows both), and this site's own files (answer keys, POTA list). Nothing is written. */
+   maps-cartes.ec.gc.ca CPCAD), and this site's own files (answer keys, POTA list). Nothing is written. */
 (function () {
   'use strict';
   const W = typeof window !== 'undefined' ? window : globalThis, D = typeof document !== 'undefined' ? document : null;
@@ -214,7 +214,7 @@
   /* ---------- state / province layers next to PAD-US / CPCAD (Brandon Nov 8 4:31 PM CST, t764u: "for example GA it searches pad
      and state level that way it dont miss many") ----------
      data/maprep-state-layers.json (built by hand with .github/scripts/kpc_maprep_state_layers.py) lists the layers the answer keys use for
-     each state or province, with only the ones whose robots.txt allows it and a browser may read (ok: true). Kentucky is the model:
+     each state or province, with only the ones this tool is set up to use (ok: true). Kentucky is the model:
      every place from every source gets the same checks. Each layer is one query, at most 4 at a time, each with a time limit. */
   const FACT_KEYS = ['owner', 'manager', 'agency', 'designation', 'acres', 'website'];
   let SLP = null;
@@ -244,7 +244,7 @@
   /* follow-up to #94: Kentucky's official layers are the club's own map files (the same ones Check all uses), read from this site */
   const LOCAL = {};
   async function slLocal(L, kind, arg) {
-    if (!/^[\w.-]+\.geojson$/.test(L.url)) throw new Error('not an allowed source');
+    if (!/^(?:[\w.-]+\/)*[\w.-]+\.geojson$/.test(L.url) || /^(?:https?:|\/\/)/i.test(L.url)) throw new Error('not an allowed source');
     if (!LOCAL[L.url]) LOCAL[L.url] = (async () => {
       const r = await fetch(L.url); if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json();
       let own = {}; if (L.owners) { try { const o = await (await fetch(L.owners)).json(); own = (o && o.wmas) || {}; } catch (e) {} }
@@ -346,7 +346,7 @@
     let n = 0; for (const p of places) { await within(checkPlace(p, code, ctx), 15000, null); if (!p.verdict) { p.checks = p.checks || { same: [], cover: [], pinIn: [], named: [], nearest: null }; p.verdict = verdict(p.checks); } n++; if (n % 3 === 0) await tick(); if (say && n % 15 === 0) say('Checked ' + n + ' of ' + places.length + '\u2026'); }
     return { places, kind: CP_LOC[code] ? 'ca' : 'pad', source: CP_LOC[code] ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0',
       note: (CP_LOC[code] ? 'The largest protected areas in CPCAD for this province. CPCAD does not say if the public can go in, so access stays unknown until you check.' : 'The largest places of public land open to the public (PAD-US fee land, 20 acres or more).') + ' Also searched: ' + (S.out.length ? S.out.map(o => o.L.label + (o.err ? ' (did not answer, try again later)' : ' (' + (ST2.by[o.L.label] || 0) + ')')).join(', ') : 'no state or province layer is wired for this place') + '. Same land in both: ' + ST2.both + '; only in a state layer: ' + ST2.stateOnly + '.',
-      stats: ST2, layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label, why: L.why })) };
+      stats: ST2, layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label })) };
   }
   /* ---------- page ---------- */
   const $ = id => D && D.getElementById(id);
@@ -428,9 +428,9 @@
     const padSrc = places.find(p => p.kind !== 'state'), st = srcStats(places), padLabel = padSrc ? padSrc.source : (src === 'CPCAD' ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0');
     stLine(padLabel + ': ' + (padErr ? 'did not answer (' + padErr + ')' : (st.by[padLabel] || 0) + ' places'), !padErr);
     S.out.forEach(o => stLine(o.L.label + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
-    if (S.skipped.length) stLine(S.skipped.length + ' more layer' + (S.skipped.length === 1 ? '' : 's') + ' skipped (' + [...new Set(S.skipped.map(L => String(L.why || '').replace(/:.*$/, '').replace(/ \(.*$/, '')))].join('; ') + ')', true);
+    /* skipped layers stay silent on the page (Brandon t777u) */
     stLine('Same land in both lists: ' + st.both + ' \u00b7 only in ' + (src === 'CPCAD' ? 'CPCAD' : 'PAD-US') + ': ' + st.padOnly + ' \u00b7 only in a state layer: ' + st.stateOnly, true);
-    W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label, why: L.why })), padErr }, st));
+    W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label })), padErr }, st));
   }
   function stEnd(ok, msg) {
     const el = stEl(); ST.steps.forEach(x => { if (x.st === 'run') x.st = ok ? 'ok' : 'bad'; }); clearInterval(ST.timer); ST.timer = null;
@@ -611,7 +611,7 @@
         const sh = await shapes(code, places.flatMap(p => p.ids)); places.forEach(p => { if (!p.geoms.length) p.geoms = p.ids.map(id => sh[id]).filter(Boolean); });
       }
       step = stStep('Reading the state and province layers for ' + pn + '\u2026'); say('Reading the state and province layers\u2026');
-      const S = await SL; stCount(step, 0, S.all.length + ' layer' + (S.all.length === 1 ? '' : 's') + (S.skipped.length ? ' \u00b7 ' + S.skipped.length + ' skipped' : ''));
+      const S = await SL; stCount(step, 0, S.all.length + ' layer' + (S.all.length === 1 ? '' : 's'));
       places = await mergeSources(places, S.out.flatMap(o => o.recs));
       sourceLines(src, padErr, S, places);
       if (!places.length) { rows = []; paint(); const m = padErr && !S.out.some(o => !o.err) ? 'The official records did not answer (' + padErr + '). Try again in a minute.' : 'No official records came back for that. Try another name, drop a pin, or check the spelling.'; say(m); stEnd(false, m); busy = false; return; }
