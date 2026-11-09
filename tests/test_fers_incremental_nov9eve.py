@@ -77,7 +77,10 @@ with tempfile.TemporaryDirectory() as t:
     K.OUT = pathlib.Path(t); K.RUN_TAG = 'y'; K.FULL = False
     (K.OUT / f'reuse-p{K.PASS}-y.json').write_text(json.dumps({'pairs': {'old+one': {'fp': 'o'}}}))
     K.reuse_load(); K.REUSE_NEW['a+b'] = {'fp': 'n', 'spots': []}
-    n = K.reuse_keep_finished(); d = json.load(open(K.OUT / f'reuse-p{K.PASS}-y.json'))
+    _cwd = os.getcwd(); os.chdir(t)   # save_json notes the change under ./data/status: keep it out of the repo
+    try: n = K.reuse_keep_finished()
+    finally: os.chdir(_cwd)
+    d = json.load(open(K.OUT / f'reuse-p{K.PASS}-y.json'))
     check(n == 1 and set(d['pairs']) == {'old+one', 'a+b'} and d.get('partial'), 'a break keeps the finished pair answers (next run skips them) and the older ones')
 check(src.count('{reuse_keep_finished()}') == 2 and src.index('except HardStop') < src.index("{reuse_keep_finished()} finished pair answers"), 'both a time-out (3) and a crash (1) keep them; the exit code stays (red)')
 check('not RECHECK_ANSWERS or answers_unchanged' in src, "the old 'read every server answer again' check is off by default")
