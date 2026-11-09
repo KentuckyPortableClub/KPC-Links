@@ -1,19 +1,5 @@
 {
  "restarted": {
-  "kpc-bot-queue.yml|2026-11-02T16:23:00+00:00": "2026-11-02T17:30+00:00 started",
-  "kpc-campground-notes.yml|2026-11-02T13:53:00+00:00": "2026-11-02T17:30+00:00 started",
-  "kpc-club-posts.yml|2026-11-02T14:41:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-discord-watch.yml|2026-11-02T16:48:00+00:00": "2026-11-02T17:30+00:00 started",
-  "kpc-fb-comments.yml|2026-11-02T16:35:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-hunters.yml|2026-11-02T17:00:00+00:00": "2026-11-02T17:30+00:00 started",
-  "kpc-park-alerts.yml|2026-11-02T17:05:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-pota-discord.yml|2026-11-02T16:17:00+00:00": "2026-11-02T17:30+00:00 started",
-  "kpc-social.yml|2026-11-02T13:07:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-whats-new.yml|2026-11-02T16:07:00+00:00": "2026-11-02T17:30+00:00 skipped (not restarted)",
-  "kpc-band-alerts.yml|2026-11-02T17:48:00+00:00": "2026-11-02T18:17+00:00 started",
-  "kpc-discord-watch.yml|2026-11-02T17:47:00+00:00": "2026-11-02T18:17+00:00 started",
-  "kpc-fb-comments.yml|2026-11-02T17:32:00+00:00": "2026-11-02T18:17+00:00 skipped (not restarted)",
-  "kpc-park-alerts.yml|2026-11-02T17:03:00+00:00": "2026-11-02T18:17+00:00 skipped (not restarted)",
   "kpc-band-alerts.yml|2026-11-02T20:18:00+00:00": "2026-11-02T20:50+00:00 started",
   "kpc-boards.yml|2026-11-02T20:14:00+00:00": "2026-11-02T20:50+00:00 started",
   "kpc-bot-queue.yml|2026-11-02T20:22:00+00:00": "2026-11-02T20:50+00:00 started",
@@ -653,18 +639,27 @@
   "kpc-fb-comments.yml|2026-11-09T14:32:00+00:00": "2026-11-09T16:03+00:00 skipped (not restarted)",
   "kpc-hunters.yml|2026-11-09T15:07:00+00:00": "2026-11-09T16:03+00:00 started",
   "kpc-pota-discord.yml|2026-11-09T15:19:00+00:00": "2026-11-09T16:03+00:00 started",
-  "kpc-reports.yml|2026-11-09T15:29:00+00:00": "2026-11-09T16:03+00:00 started"
+  "kpc-reports.yml|2026-11-09T15:29:00+00:00": "2026-11-09T16:03+00:00 started",
+  "kpc-band-alerts.yml|2026-11-09T17:48:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-boards.yml|2026-11-09T18:14:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-bot-queue.yml|2026-11-09T16:22:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-discord-watch.yml|2026-11-09T17:47:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-fb-comments.yml|2026-11-09T16:32:00+00:00": "2026-11-09T18:41+00:00 skipped (not restarted)",
+  "kpc-park-alerts.yml|2026-11-09T17:03:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-pota-discord.yml|2026-11-09T17:19:00+00:00": "2026-11-09T18:41+00:00 started",
+  "kpc-whats-new.yml|2026-11-09T16:07:00+00:00": "2026-11-09T18:41+00:00 skipped (not restarted)",
+  "pages-deploy.yml|2026-11-09T16:41:00+00:00": "2026-11-09T18:41+00:00 started"
  },
- "last": "2026-11-09T16:03+00:00",
+ "last": "2026-11-09T18:41+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 09 15:18 UTC)",
-  "kpc-boards.yml (missed Nov 09 15:14 UTC)",
-  "kpc-bot-queue.yml (missed Nov 09 14:22 UTC)",
-  "kpc-club-posts.yml (missed Nov 09 14:41 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-community.yml (missed Nov 09 14:17 UTC)",
-  "kpc-fb-comments.yml (missed Nov 09 14:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 09 15:07 UTC)",
-  "kpc-pota-discord.yml (missed Nov 09 15:19 UTC)",
-  "kpc-reports.yml (missed Nov 09 15:29 UTC)"
+  "kpc-band-alerts.yml (missed Nov 09 17:48 UTC)",
+  "kpc-boards.yml (missed Nov 09 18:14 UTC)",
+  "kpc-bot-queue.yml (missed Nov 09 16:22 UTC)",
+  "kpc-discord-watch.yml (missed Nov 09 17:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 09 16:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-park-alerts.yml (missed Nov 09 17:03 UTC)",
+  "kpc-pota-discord.yml (missed Nov 09 17:19 UTC)",
+  "kpc-whats-new.yml (missed Nov 09 16:07 UTC, NOT restarted: its next scheduled run catches up)",
+  "pages-deploy.yml (missed Nov 09 16:41 UTC)"
  ]
 }
