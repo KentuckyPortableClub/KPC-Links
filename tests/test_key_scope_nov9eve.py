@@ -22,17 +22,22 @@ with tempfile.TemporaryDirectory() as t:
     (t / '.github').mkdir(exist_ok=True)
     (t / KF.SCOPE_FILES['us-key']).write_text(json.dumps({'changes': [
         {'id': 'a', 'from': 'h0', 'scope': {'states': ['US-TN']}}, {'id': 'b', 'from': 'h1', 'scope': {'states': ['US-KY', 'US-OH']}},
-        {'id': 'c', 'from': 'h2', 'scope': {'states': []}}]}))
-    check(KF.pending_scope('us-key', 'h0', t) == ({'US-TN', 'US-KY', 'US-OH'}, False), 'two builds behind: the declared states of every pending change, together')
-    check(KF.pending_scope('us-key', 'h2', t) == (set(), False), 'a change that touches no state: nothing to rebuild')
-    check(KF.pending_scope('us-key', 'zzz', t) == (None, False), 'a build whose hash no change names: undeclared = the whole key (safe default)')
+        {'id': 'c', 'from': 'h2', 'scope': 'none'}, {'id': 'd', 'from': 'h3', 'scope': {'parks': ['US-0001']}}]}))
+    check(KF.pending_scope('us-key', 'h0', t) == ({'US-TN', 'US-KY', 'US-OH'}, False, {'US-0001'}), 'builds behind: the declared states and parks of every pending change, together')
+    (t / KF.SCOPE_FILES['us-key']).write_text(json.dumps({'changes': [{'id': 'd', 'from': 'h3', 'scope': {'parks': ['US-0001']}}, {'id': 'e', 'from': 'h4', 'scope': {'states': []}}]}))
+    check(KF.pending_scope('us-key', 'h3', t) == ('all', False, set()), 'a scope that lists nothing means ALL (KZ4CP 5:41 PM CST)')
+    (t / KF.SCOPE_FILES['us-key']).write_text(json.dumps({'changes': [{'id': 'c', 'from': 'h2', 'scope': 'none'}, {'id': 'd', 'from': 'h3', 'scope': {'parks': ['US-0001']}}]}))
+    check(KF.pending_scope('us-key', 'h2', t) == (set(), False, {'US-0001'}), "scope 'none' touches nothing; a park-scoped change names only its parks")
+    check(KF.pending_scope('us-key', 'h3', t) == (set(), False, {'US-0001'}), 'a park-scoped change alone: no whole state, just the park')
+    check(KF.pending_scope('us-key', 'zzz', t) == (None, False, set()), 'a build whose hash no change names: undeclared = the whole key (safe default)')
     (t / KF.SCOPE_FILES['us-key']).write_text(json.dumps({'changes': [{'id': 'a', 'from': 'h0', 'scope': 'all'}, {'id': 'b', 'from': 'h1', 'scope': {'states': ['US-TN'], 'saved_ids': True}}]}))
-    check(KF.pending_scope('us-key', 'h0', t)[0] == 'all' and KF.pending_scope('us-key', 'h1', t) == ({'US-TN'}, True), "'all' = whole key; saved_ids: true asks to re-match saved ids")
+    check(KF.pending_scope('us-key', 'h0', t)[0] == 'all' and KF.pending_scope('us-key', 'h1', t) == ({'US-TN'}, True, set()), "'all' = whole key; saved_ids: true asks to re-match saved ids")
 # check(): an empty declared scope sets no RULES_CHANGED; a declared state list sets RULES_SCOPE
 def run_check(built, scope_changes):
     with tempfile.TemporaryDirectory() as t:
         t = pathlib.Path(t); env = t / 'env'; env.write_text('')
         (t / '.github').mkdir(); (t / KF.SCOPE_FILES['us-key']).write_text(json.dumps({'changes': scope_changes}))
+        (t / 'data/us-key').mkdir(parents=True); json.dump({'parks': {'US-0001': {}, 'US-0002': {}}}, open(t / 'data/us-key/US-TN.json', 'w'))
         old = (KF.ROOT, KF.load_index, KF.gh_json, os.environ.get('GITHUB_ENV'))
         KF.ROOT = t; KF.load_index = lambda k: {'build': 'US-1', 'rules': built}; KF.gh_json = lambda *a, **k: {}
         os.environ['GITHUB_ENV'] = str(env)
@@ -44,10 +49,17 @@ def run_check(built, scope_changes):
             if old[3] is None: os.environ.pop('GITHUB_ENV', None)
             else: os.environ['GITHUB_ENV'] = old[3]
         return env.read_text()
-e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': {'states': []}}])
+e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': 'none'}])
 check('RULES_CHANGED' not in e, 'check(): a declared change that touches no state does not set RULES_CHANGED (nothing rebuilt)')
 e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': {'states': ['US-TN']}}])
 check('RULES_CHANGED=1' in e and 'RULES_SCOPE=US-TN' in e, 'check(): a declared change with states sets RULES_SCOPE to just those states')
+e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': {'parks': ['US-0001']}}])
+check('RULES_SCOPE=US-TN' in e and 'RULES_PARKS=US-0001' in e and 'RULES_ONLY_STATES=US-TN' in e and 'RULES_ONLY_PARKS=US-0001' in e,
+      'check(): a park-scoped change reads only that park\'s state again, and only for that park')
+e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': {'parks': ['US-9999']}}])
+check('RULES_CHANGED=1' in e and 'RULES_SCOPE' not in e, 'check(): a named park the key does not have = the whole key (safe default)')
+e = run_check('h0', [{'id': 'a', 'from': 'h0', 'scope': {'states': []}}])
+check('RULES_CHANGED=1' in e and 'RULES_SCOPE' not in e, 'check(): a scope that lists nothing = the whole key')
 e = run_check('nope', [])
 check('RULES_CHANGED=1' in e and 'RULES_SCOPE' not in e, 'check(): an undeclared change still asks for the whole key')
 # the US plan step, extracted and run
@@ -69,6 +81,21 @@ s, f, _ = plan(RULES_CHANGED='1')
 check(len(s) == 50 and f == '1', 'plan: an UNDECLARED rules change still builds every state (safe default)')
 s, f, _ = plan(STATES='all')
 check(len(s) == 50 and f == '1', "plan: the 'all' input = the emergency full rebuild")
+def plan2(**env):
+    with tempfile.TemporaryDirectory() as t:
+        os.makedirs(f'{t}/data/us-key'); json.dump({'built': '2000-01-01 00:00 UTC', 'states': {}}, open(f'{t}/data/us-key/index.json', 'w'))
+        e = {k: v for k, v in os.environ.items() if not k.startswith('RULES_') and k not in ('FROZEN', 'STATES', 'SCHED')}; e.update(env)
+        out = subprocess.run([sys.executable, '-c', code], cwd=t, env=e, capture_output=True, text=True).stdout
+        return dict(re.findall(r'^(only_states|only_parks|full)=(.*)$', out, re.M))
+o = plan2(RULES_CHANGED='1', RULES_SCOPE='US-TN US-OH', RULES_PARKS='US-0001', RULES_ONLY_STATES='US-TN')
+check(o == {'full': '1', 'only_states': 'TN', 'only_parks': 'US-0001'}, f'plan: a park-scoped change: TN is read again only for US-0001; OH (a whole-state change) in full ({o})')
+o = plan2(RULES_CHANGED='1', RULES_SCOPE='US-TN', RULES_PARKS='US-0001', RULES_ONLY_STATES='US-TN', STATES='TN')
+check(o.get('only_states') == '' and o.get('only_parks') == '', 'plan: a state given by hand is rebuilt in full')
+o = plan2(RULES_CHANGED='1', RULES_SCOPE='US-TN', RULES_PARKS='US-0001', RULES_ONLY_STATES='US-TN', SCHED='37 9 1 * *')
+check(o.get('only_states') == '', 'plan: the monthly run is a full rebuild (no park limit)')
+check('KPC_KEY_ONLY_STATES: ${{ needs.plan.outputs.only_states }}' in wf and 'KPC_KEY_ONLY_PARKS: ${{ needs.plan.outputs.only_parks }}' in wf, 'the build gets the park limit from the plan')
+caw = (HERE / '.github/workflows/kpc-ca-key.yml').read_text()
+check("KPC_KEY_ONLY_PARKS: ${{ !((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved) && env.RULES_ONLY_PARKS || '' }}" in caw, 'Canada: the park limit on saved-copy runs only (not the monthly live re-read)')
 check('KPC_KEY_REMATCH_IDS: ${{ needs.plan.outputs.rematch }}' in wf and 'rematch: ${{ steps.p.outputs.rematch }}' in wf, 'the build gets KPC_KEY_REMATCH_IDS from the plan')
 # the saved-id carry in kpc_us_key.py, extracted and run on a small case
 src = (HERE / '.github/scripts/kpc_us_key.py').read_text()
@@ -96,4 +123,29 @@ check(p['US-3']['m'][0][0] == '31', 'a saved id gone from the read: no carry (th
 check(p['US-4']['m'] == [], 'a saved id on the bad-ID block list: no carry')
 check(not p['US-5'].get('kept_ids'), 'an unchanged result is left as it is')
 check(carry('1')['US-1']['m'][0][0] == '11', 'KPC_KEY_REMATCH_IDS=1 (a change with saved_ids: true): parks are matched fresh')
+i = src.index("    _only = set((os.environ.get('KPC_KEY_ONLY_PARKS')"); j = src.index('    try:\n        for ref, t in transfers()', i)
+blk2 = '\n'.join(l[4:] for l in src[i:j].split('\n'))
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    json.dump({'parks': {'US-1': {'m': [['1']]}, 'US-2': {'m': [['2']]}, 'US-3': {'m': [['3']]}}}, open(t / 'US-TN.json', 'w'))
+    parks = {'US-1': {'m': [['9']]}, 'US-2': {'m': [['8']]}, 'US-3': {'m': [['7']]}, 'US-4': {'m': [['6']]}}
+    old = {k: os.environ.get(k) for k in ('KPC_KEY_ONLY_PARKS', 'KPC_KEY_ONLY_STATES')}
+    os.environ.update(KPC_KEY_ONLY_PARKS='US-1', KPC_KEY_ONLY_STATES='TN')
+    try: exec(blk2, {'os': os, 'json': json, 'OUT': t, 'st': 'TN', 'parks': parks, 'OVR': {'US-3': {}}, 'notice': lambda *a: None})
+    finally:
+        for k, v in old.items():
+            if v is None: os.environ.pop(k, None)
+            else: os.environ[k] = v
+    check(parks['US-1']['m'] == [['9']] and parks['US-2']['m'] == [['2']] and parks['US-3']['m'] == [['7']] and parks['US-4']['m'] == [['6']],
+          'US key: only the named park is re-matched; others keep their result (a person override and a new park are applied as they are)')
+cs = (HERE / '.github/scripts/kpc_ca_key.py').read_text()
+check("_ONLY = set((os.environ.get('KPC_KEY_ONLY_PARKS')" in cs and '_r not in _ONLY and _r not in OVR' in cs, 'Canada key: same park limit')
+# 2-fers: a park-scoped change stamps only that park, so only its pairs (the park + the parks touching it) are tested again
+import kpc_fers as F
+F.SCOPE[:] = [{'id': 'p1', 'scope': {'parks': ['US-0001']}}, {'id': 'n', 'scope': 'none'}]; F._STAMP.clear()
+check(F.rule_stamp('US-0001') == ['p1'] and F.rule_stamp('US-0002') == [], '2-fers: a park-scoped change stamps only the named park (its pairs, i.e. the parks touching it, are retested)')
+F.SCOPE[:] = [{'id': 'e', 'scope': {'states': [], 'parks': []}}]; F._STAMP.clear()
+check(F.rule_stamp('US-0002') == ['e'], '2-fers: a scope that lists nothing means ALL')
+fs = json.load(open(HERE / '.github/fers-rule-scope.json'))
+check('parks' in fs['about'] and all(c.get('scope') != {} for c in fs['changes']), 'the 2-fer scope file explains park refs')
 print('ALL PASS' if ok else 'FAILED'); sys.exit(0 if ok else 1)

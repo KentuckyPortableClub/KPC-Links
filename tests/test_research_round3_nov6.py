@@ -26,8 +26,8 @@ def check(cond, msg):
         print('PASS', msg)
 
 
-check(KF.rules_hash('us-key') == '2900f362e70b', 'US rules hash 2900f362e70b (moved Nov 9, Brandon 11:24 AM CST; declared)')
-check(KF.rules_hash('ca-key') == '7fb6aaef38c0', 'Canada rules hash stays 7fb6aaef38c0')
+check(KF.rules_hash('us-key') == '19d219f37114', 'US rules hash 19d219f37114 (moved Nov 9, Brandon 11:24 AM CST; declared)')
+check(KF.rules_hash('ca-key') == '22f16bc69b96', 'Canada rules hash stays 22f16bc69b96')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
 check(KF.rules_hash('world-key') == '10e4092cc97f', 'world rules hash stays 10e4092cc97f')

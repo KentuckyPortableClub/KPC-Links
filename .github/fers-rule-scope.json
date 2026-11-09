@@ -1,6 +1,15 @@
 {
- "about": "2-fer rule changes and the parks each one touches (Brandon Nov 9 2026, 4:37-4:42 PM CST: 'only redo the parts that changed'; KISS). A saved pair result is reused unless one of its two parks changed (outline, record ids, POTA pin / name, line) or a change below covers one of the parks. Add one entry per rule change: id (never reuse an id), when, why, and scope = {states: ['US-KY', 'CA-ON', ...], kinds: [words in the POTA park type, e.g. 'Wild and Scenic River'], flags: ['bad-pin', 'line']} or 'all' (every pair: emergency only). Emergency switch without an entry: KPC_FERS_FULL=1. The areas workflow also does ONE full area per run, round-robin (.github/fers-areas.json full_cycle_days).",
+ "about": "2-fer rule changes and the parks each one touches (Brandon Nov 9 2026, 4:37-4:42 PM CST: 'only redo the parts that changed'; KISS). A saved pair result is reused unless one of its two parks changed (outline, record ids, POTA pin / name, line) or a change below covers one of the parks. Add one entry per rule change: id (never reuse an id), when, why, and scope = {states: ['US-KY', 'CA-ON', ...], kinds: [words in the POTA park type, e.g. 'Wild and Scenic River'], flags: ['bad-pin', 'line']} or 'all' (every pair: emergency only). Emergency switch without an entry: KPC_FERS_FULL=1. The areas workflow also does ONE full area per run, round-robin (.github/fers-areas.json full_cycle_days). Nov 9 evening (KZ4CP 5:41 PM CST): a scope may also list park refs, 'parks': ['US-1234', ...]: only those parks are re-matched (their states are read again, every other park there keeps its result; for 2-fers every pair with a named park is tested again, so the parks touching it are rechecked too). A scope that lists nothing means ALL; a change that touches no park says scope 'none'.",
  "changes": [
-  {"id": "2026-11-09-pin00", "when": "2026-11-09", "why": "a park with a bad POTA pin (pin00 / 0,0) is tested by its saved record ids, never around its pin (run 42649544758)", "scope": {"flags": ["bad-pin"]}}
+  {
+   "id": "2026-11-09-pin00",
+   "when": "2026-11-09",
+   "why": "a park with a bad POTA pin (pin00 / 0,0) is tested by its saved record ids, never around its pin (run 42649544758)",
+   "scope": {
+    "flags": [
+     "bad-pin"
+    ]
+   }
+  }
  ]
 }

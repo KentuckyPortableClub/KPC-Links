@@ -2137,6 +2137,17 @@ def run(st):
             if carried: notice(f'US key {st}', f'{carried} park(s) kept their saved record ids (rules changes do not move a park with saved ids; Brandon t915u)')
         except FileNotFoundError: pass
         except Exception as e: notice(f'US key {st}', f'saved-id keep skipped: {e}')  # noqa: BLE001
+    # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change re-reads this state only for the parks it names; every other park
+    # here keeps its last published result (a person's override still applies as it is).
+    _only = set((os.environ.get('KPC_KEY_ONLY_PARKS') or '').split())
+    if _only and st in (os.environ.get('KPC_KEY_ONLY_STATES') or '').split():
+        try:
+            _old = json.load(open(OUT / f'US-{st}.json')).get('parks', {}); _kept = 0
+            for ref, op in _old.items():
+                if ref in parks and ref not in _only and ref not in OVR: parks[ref] = op; _kept += 1
+            notice(f'US key {st}', f"park-scoped rule change: only {' '.join(sorted(_only & set(parks)))} re-matched; {_kept} other park(s) kept their result")
+        except FileNotFoundError: pass
+        except Exception as e: notice(f'US key {st}', f'park-scoped keep skipped: {e}')  # noqa: BLE001
     try:
         for ref, t in transfers().items():
             if ref in parks: parks[ref]['run_by'] = t.get('by', '') + (f" since {t['since']}" if t.get('since') else '')

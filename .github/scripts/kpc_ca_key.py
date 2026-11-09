@@ -853,6 +853,16 @@ def _ca_tracts(pv, parks):
         d['ac_measured_detail_deg'] = DETAIL
         TR.save(OUT / 'tracts' / f'CA-{pv}.json', d)
     except Exception as _e: notice(f'Canada key {pv}', f'tract records skipped: {type(_e).__name__}: {str(_e)[:160]}')  # noqa: BLE001
+# Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change (RULES_ONLY_PARKS from the freeze check, saved-copy runs only; the monthly
+# live re-read is a full rebuild) gives a fresh result only to the parks it names; every other park keeps its last published result.
+_ONLY = set((os.environ.get('KPC_KEY_ONLY_PARKS') or '').split())
+if _ONLY:
+    for _pv, _o, _rp, _rt in PENDING:
+        try: _old = json.load(open(OUT / f'CA-{_pv}.json')).get('parks') or {}
+        except Exception: continue  # noqa: BLE001
+        for _r, _op in _old.items():
+            if _r in (_o.get('parks') or {}) and _r not in _ONLY and _r not in OVR: _o['parks'][_r] = _op
+    notice('Canada key', f"park-scoped rule change: only {' '.join(sorted(_ONLY))} re-matched; every other park kept its result")
 for _pv, _o, _rp, _rt in PENDING:
     _ca_tracts(_pv, _o.get('parks') or {})
     save_json(OUT / f'CA-{_pv}.json', _o)

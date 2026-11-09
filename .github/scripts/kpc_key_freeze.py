@@ -97,20 +97,40 @@ DATE_KEYS = ('date', 'signed', 'when', 'approved_date', 'at')
 NO_RE = r'\W*(KEY\s+)?(NO|FAIL|WITHDRAWN)\b'
 
 
+def scope_of(sc, keys=('states', 'parks')):
+    """One declared scope: 'none' (touches nothing), 'all', or a dict. A dict that lists nothing it can use means ALL (KZ4CP 5:41 PM CST)."""
+    if sc == 'none': return 'none'
+    if not isinstance(sc, dict) or sc.get('all') or not any(sc.get(k) for k in keys): return 'all'
+    return sc
+
+
 def pending_scope(kind, built_rules, root=None):
     """What the declared rule changes since the build on rules `built_rules` touch: (None = not declared -> the whole key, as before;
-    'all'; or a set of areas like {'US-TN'} (empty = nothing to rebuild)), plus True when one asks to re-match parks with saved ids.
+    'all'; or a set of areas like {'US-TN'} rebuilt in full), True when one asks to re-match parks with saved ids, and the set of park
+    refs a park-scoped change names (only those parks get a fresh result; Nov 9 evening, KZ4CP 5:41 PM CST).
     The changes are a chain: each entry names the hash it moved FROM; the pending ones start at the entry whose 'from' is built_rules."""
     try: ch = json.load(open(pathlib.Path(root or ROOT) / SCOPE_FILES[kind], encoding='utf-8')).get('changes') or []
-    except Exception: return None, False  # noqa: BLE001
+    except Exception: return None, False, set()  # noqa: BLE001
     i = next((n for n, c in enumerate(ch) if built_rules and c.get('from') == built_rules), None)
-    if i is None: return None, False
-    out, ids = set(), False
+    if i is None: return None, False, set()
+    out, ids, parks = set(), False, set()
     for c in ch[i:]:
-        sc = c.get('scope')
-        if sc == 'all' or (isinstance(sc, dict) and sc.get('all')): return 'all', bool(isinstance(sc, dict) and sc.get('saved_ids'))
-        out |= set((sc or {}).get('states') or []); ids = ids or bool((sc or {}).get('saved_ids'))
-    return out, ids
+        sc = scope_of(c.get('scope'))
+        if sc == 'none': continue
+        if sc == 'all': return 'all', bool(isinstance(c.get('scope'), dict) and c['scope'].get('saved_ids')), set()
+        out |= set(sc.get('states') or []); parks |= {str(x) for x in sc.get('parks') or []}; ids = ids or bool(sc.get('saved_ids'))
+    return out, ids, parks
+
+
+def park_areas(kind, refs, root=None):
+    """ref -> area ('US-TN' / 'CA-ON') from the published key files; a ref not found is left out."""
+    want, got = set(refs), {}
+    if not want: return got
+    for f in sorted((pathlib.Path(root or ROOT) / 'data' / kind).glob('[A-Z][A-Z]-[A-Z][A-Z].json')):
+        try: pk = json.load(open(f, encoding='utf-8')).get('parks') or {}
+        except Exception: continue  # noqa: BLE001
+        for r in want & set(pk): got[r] = f.stem
+    return got
 
 
 def rules_hash(kind, root=None):
@@ -357,16 +377,24 @@ def check(kind, now=None):
     live = load_index(kind)   # Nov 4 PM fix bundle (item 1): KPC_INDEX_REF=origin/main = the newest main's stamp, not a stale checkout's
     lbid = str((live or {}).get('build') or '')
     if str((live or {}).get('rules') or '') != rules:   # the newest build here was not a full build on the current rules
-        _ps, _ids = pending_scope(kind, str((live or {}).get('rules') or ''))
-        if _ps == set():
+        _ps, _ids, _pk = pending_scope(kind, str((live or {}).get('rules') or ''))
+        _pa = park_areas(kind, _pk) if isinstance(_ps, set) else {}
+        if isinstance(_ps, set) and set(_pk) - set(_pa):   # a named park the key does not have: safe default, the whole key
+            notice(f"{kind}: declared park(s) {' '.join(sorted(set(_pk) - set(_pa)))} not in the key files: the whole key is rebuilt"); _ps = None
+        if _ps == set() and not _pk:
             notice(f"{kind}: rules {(live or {}).get('rules')} -> {rules}: the declared changes ({SCOPE_FILES.get(kind)}) touch no area, so nothing is rebuilt for them")
         elif _ps in (None, 'all'):
             _env(RULES_CHANGED=1)
             notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: the next run builds the WHOLE key"
                    + (' (a declared change says all)' if _ps == 'all' else f' (not declared in {SCOPE_FILES.get(kind)})'))
         else:
-            _env(RULES_CHANGED=1, RULES_SCOPE=' '.join(sorted(_ps)), RULES_REMATCH_IDS='1' if _ids else '')
-            notice(f"{kind}: RULES CHANGED {(live or {}).get('rules')} -> {rules}: the declared changes touch {' '.join(sorted(_ps))} only; only those are rebuilt (parks with saved ids keep their result" + (', except where a change asks to re-match them)' if _ids else ')'))
+            _only = set(_pa.values()) - _ps   # areas read again only for the named parks (every other park there keeps its result)
+            _env(RULES_CHANGED=1, RULES_SCOPE=' '.join(sorted(_ps | set(_pa.values()))), RULES_REMATCH_IDS='1' if _ids else '',
+                 RULES_PARKS=' '.join(sorted(_pk)), RULES_ONLY_STATES=' '.join(sorted(_only)),
+                 RULES_ONLY_PARKS=' '.join(sorted(_pk)) if (_pk and not _ps) else '')   # Canada (one whole-country job): only when no whole province
+            notice(f"{kind}: RULES CHANGED {(live or {}).get('rules')} -> {rules}: the declared changes touch "
+                   + ' '.join(sorted(_ps)) + (f" + only the parks {' '.join(sorted(_pk))}" if _pk else '') + '; only those are rebuilt (parks with saved ids keep their result'
+                   + (', except where a change asks to re-match them)' if _ids else ')'))
     if (os.environ.get('FORCE') or '').lower() in ('yes', 'true', '1'):
         notice(f'{kind}: freeze skipped by hand (force)'); return (False, '', 'force')
     held = gh_json(f'data/waiting/in/data/{kind}/index.json') or {}

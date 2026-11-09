@@ -1876,7 +1876,7 @@ _STAMP = {}
 
 
 def rule_stamp(r):
-    """The ids of the declared rule changes whose scope covers park r (its area, POTA kind, or a flag)."""
+    """The ids of the declared rule changes whose scope covers park r (the park itself, its area, POTA kind, or a flag)."""
     if r in _STAMP: return _STAMP[r]
     p = PINS.get(r) or ()
     area = str(p[5]) if len(p) > 5 else ''
@@ -1887,8 +1887,12 @@ def rule_stamp(r):
     if r in CURLN: flags.add('line')
     out = []
     for c in SCOPE:
-        sc = c.get('scope') or {}
-        if sc == 'all' or sc.get('all') or area in (sc.get('states') or []) or area[3:] in (sc.get('states') or []) \
+        sc = c.get('scope')
+        if sc == 'none': continue
+        # Nov 9 evening (KZ4CP 5:41 PM CST): 'parks' = park refs; a scope that lists nothing means ALL. A named park's pairs are all
+        # tested again (pair_fp carries both parks' stamps), so the parks touching it are rechecked with it.
+        if not isinstance(sc, dict) or sc.get('all') or not any(sc.get(k) for k in ('states', 'kinds', 'flags', 'parks')) \
+           or r in {str(x) for x in sc.get('parks') or []} or area in (sc.get('states') or []) or area[3:] in (sc.get('states') or []) \
            or any(k.lower() in kind for k in (sc.get('kinds') or [])) or flags & set(sc.get('flags') or []):
             out.append(c.get('id'))
     _STAMP[r] = out
