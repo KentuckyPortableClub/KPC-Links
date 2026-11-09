@@ -1,8 +1,19 @@
 {
- "updated": "2026-11-07T13:25:56+00:00",
+ "updated": "2026-11-09T14:41:40+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13652",
+   "prog": "pota",
+   "name": "Upatoi Ravines State Natural Area",
+   "st": [
+    "GA"
+   ],
+   "la": 32.6179,
+   "lo": -84.6411,
+   "found": "2026-11-09"
+  },
   {
    "ref": "US-13651",
    "prog": "pota",
