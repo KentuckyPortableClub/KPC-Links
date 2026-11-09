@@ -52,8 +52,10 @@ check(KF.rules_hash('ca-key') == '8feccbb7d9ee', 'Canada rules hash stays 8feccb
 check(KF.rules_hash('world-key') == '10e4092cc97f', 'world rules hash stays 10e4092cc97f')
 check('kpc_research_sources.py' in KF.NOT_RULES, 'the shore reader is not a rule file')
 
+# Nov 9 weekly batch (Brandon 10:08 AM CST 'KY lakes -> use the county parcel'): the two shore outlines went INTO
+# ky-padus-parks.geojson (and so the KY answer key); those two files may now differ from main. The rule files may not.
 kept = [
-    'data/ky-answer-key.json', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson',
+    'ky-kpc-drawn.geojson',
     '.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py',
     '.github/scripts/kpc_match.py', '.github/scripts/kpc_key_facts.py',
     # Nov 8: key-rules-version.json may gain a separate "fers" line; us/ca/world values stay v5b (checked below)
@@ -97,7 +99,7 @@ check(RS.layers() == [], 'flag off: research layers stay empty')
 doc = json.loads(SHORE.read_text(encoding='utf-8'))
 raw = SHORE.read_text(encoding='utf-8')
 check(doc.get('source_label') == LABEL, 'source label is the county tax parcel line')
-check(doc.get('report_only') is True and doc.get('applied_to_key') is False, 'the file says it is report only')
+check(doc.get('report_only') is True and doc.get('applied_to_key') is False, 'the shore file itself stays a report (its outlines were copied into ky-padus-parks.geojson on Nov 9)')
 check(doc.get('shared_outline') is False and doc.get('piece_assigned_twice') is False, 'the file says the parks are separate')
 check('33TOOklri9xpic7U' not in raw, 'the banned Grant County server is not in the shore file')
 check(doc.get('robots', {}).get('status') == 404, 'Owensboro robots.txt was a 404 (no disallow)')
@@ -147,8 +149,13 @@ check(abs(cp['properties']['water_inside_parcel_pct'] - 94.4) < 0.2, 'about 94.4
 check(kf['properties']['pieces'] == [31356, 31376] and cp['properties']['pieces'] == [31486], 'outline piece lists do not overlap')
 check('US-13600' in kf['properties']['separate_from'] and 'US-13599' in cp['properties']['separate_from'], 'each outline names the other park as separate')
 
-pad = json.loads((ROOT / 'ky-padus-parks.geojson').read_text(encoding='utf-8'))
+pad = json.loads(subprocess.run(['git', 'show', 'origin/main:ky-padus-parks.geojson'], cwd=ROOT, capture_output=True, text=True,
+                                 timeout=30).stdout or (ROOT / 'ky-padus-parks.geojson').read_text(encoding='utf-8'))   # the WATER outlines (main)
 water = {f['properties']['ref']: f['geometry'] for f in pad['features'] if f['properties'].get('ref') in ('US-13599', 'US-13600')}
+now = {f['properties']['ref']: f for f in json.loads((ROOT / 'ky-padus-parks.geojson').read_text(encoding='utf-8'))['features']}
+for _r in ('US-13599', 'US-13600'):
+    check(abs(PE.acres_geojson(now[_r]['geometry']) - out_by[_r]['properties']['outline_acres']) < 0.1
+          and 'county tax parcel' in now[_r]['properties'].get('SOURCE', ''), f'{_r}: ky-padus-parks.geojson carries the shore outline (Nov 9)')
 kf_rings = PE.geojson_rings(kf['geometry'])
 cp_rings = PE.geojson_rings(cp['geometry'])
 piece_rings = {fid: PE.geojson_rings(feat['geometry']) for fid, feat in by_fid.items()}

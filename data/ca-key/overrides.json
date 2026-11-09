@@ -1121,8 +1121,9 @@
    "why": "a different place, not this park (hand review Oct 22)"
   },
   "CA-2373": {
-   "none": true,
-   "why": "a different place, not this park (hand review Oct 22)"
+   "why": "a different place, not this park (hand review Oct 22) · 2026-11-08 Quality grade PR#50: unjoined Manitoba Par:32 (Primrose Provincial Park) — Rule 18 kind/name mismatch with Primrose Wayside Recreation Park; sent to pile solver",
+   "when": "2026-11-08",
+   "none": true
   },
   "CA-2375": {
    "join": [
@@ -2325,6 +2326,13 @@
    "when": "2026-11-05",
    "why": "2026-11-05 Brandon standing rule verify-then-fix: drop BC recreatio:1006529 GLADSTONE CREEK (41 ha recreation site) — acreage way off vs Gladstone Provincial Park ~97k–104k ha (BC Parks / CPCAD); different kind. decided_by Brandon standing rule 2026-11-05 verify-then-fix.",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix"
+  },
+  "CA-2897": {
+   "join": [
+    "Wascana Valley Natural Area Recreation Site"
+   ],
+   "why": "Nov 8: CA trails round 2 (Research lead, checked): SK ParksAsLegislated/4 OBJECTID 3392, POTA pin inside; Wascana Trails is the Wascana Valley Natural Area (name variant), same province",
+   "when": "2026-11-08"
   }
  }
 }

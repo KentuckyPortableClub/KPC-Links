@@ -417,6 +417,16 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (395518,400944)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in HI were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-10921, US-10922. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "IA": [
@@ -571,6 +581,16 @@
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 3 of 24",
     "where": "Owner LIKE 'Kansas Department of Wildlife%' OR Manager LIKE 'Kansas Department of Wildlife%'"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (400284)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in KS were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-9190. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "LA": [
@@ -810,6 +830,16 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (379041,379181,383579,400132,400204)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in ND were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-8532, US-8559, US-8555, US-8536, US-8544. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "NJ": [
@@ -971,6 +1001,16 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 25 sheet parks (BLM Herd Management Areas)"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (397680)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in NV were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-13251. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "NY": [
@@ -1023,6 +1063,16 @@
     "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 12"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (386929,387660,400282,400286)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in OK were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-11778, US-0822, US-6336, US-6335. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "OR": [
@@ -1374,6 +1424,16 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-5950"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (401149)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in UT were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-13000. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "VA": [
@@ -1820,6 +1880,16 @@
     "url": "https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer/0",
     "host": "agency",
     "note": "gap hunt (chat 8 desk + chat 2 probe, 2026-10-26): 34 areas; lead test: 14 of our parks with no outline have the same name near their pin"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (382060)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in MD were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-7974. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "AL": [
@@ -1852,6 +1922,16 @@
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 1"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (379681,383567)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in AL were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-0042, US-0025. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "AZ": [
@@ -2142,6 +2222,16 @@
     "read": "2026-10-28",
     "note": "74 park areas: SP, SRA and SHP (historical parks join when the match is sure, HQ/Brandon Oct 28)",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0"
+   },
+   {
+    "kind": "land",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (400205)",
+    "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in NE were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-3492. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
    }
   ],
   "NC": [
