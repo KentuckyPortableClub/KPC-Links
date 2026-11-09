@@ -12,7 +12,8 @@ def check(what, got, want):
 src = open(S / 'kpc_fers.py', encoding='utf-8').read()
 p5 = src[src.index('elif PASS == 5:'):]; p5 = p5[:p5.index("mark(f'water re-check of")]
 check('pass 5: a far-tile drop before every water check (first look + the end re-check)', p5.count('evict(sbox(x))\n                WATER_MARK.clear()') + p5.count('evict(sbox(x))\n            WATER_MARK.clear()'), 2)
-check('pass 5: a far-tile drop before the same-land access pins', 'evict(sbox(x))\n                try: x[\'access\'] = nearest_access' in p5, True)
+check('pass 5: a far-tile drop before the same-land access pins', 'evict(sbox(x))\n                try: x[\'access\'] = nearest_access' in p5
+      or "evict(sbox(x))\n                with park_clock(x.get('id'), 'pass 5 same-land access pin'):\n                    try: x['access'] = nearest_access" in p5, True)   # Nov 9 PM: per-park time limit
 check('pass 5: spots sorted saved-first, then by place', "cand.sort(key=lambda x: (0 if _saved_all(x) else 1,) + _cell(x))" in p5, True)
 check('pass 5 reports the memory', "n['memory (MB now / cap; caches dropped for memory)']" in src, True)
 os.environ.setdefault('PASS', '5')

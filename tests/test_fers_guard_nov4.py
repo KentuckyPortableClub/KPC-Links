@@ -68,25 +68,31 @@ else:
         ca = {'parks': {'CA-0001': ['Good Park', '', 'Provincial Park', 0, 0, 46.0, -71.0, 0, 0, 0, 'QC'],
                         'CA-0002': ['Zero Park', '', 'Provincial Park', 0, 0, 0, 0, 0, 0, 0, 'QC'],
                         'CA-0003': ['Churchill WMA', '', 'WMA', 0, 0, 95.1, -58.7, 0, 0, 0, 'MB'],
-                        'CA-0004': ['Said No Park', '', 'Provincial Park', 0, 0, 46.2, -71.2, 0, 0, 0, 'QC']}}
+                        'CA-0004': ['Said No Park', '', 'Provincial Park', 0, 0, 46.2, -71.2, 0, 0, 0, 'QC'],
+                        'CA-0005': ['No Id Park', '', 'Provincial Park', 0, 0, 0, 0, 0, 0, 0, 'QC']}}
         (T / 'data/parkinfo/CA.json').write_text(json.dumps(ca))
         (T / 'data/parkinfo/US-VT.json').write_text(json.dumps({'parks': {'US-0001': ['Vt Park', '', 'State Park', 0, 0, 44.0, -72.0]}}))
         (T / 'data/us-key/US-VT.json').write_text(json.dumps({'parks': {'US-0001': {'m': [[11, 'Vt Park', 'x', 'name']]}}}))
         (T / 'data/ca-key/CA-QC.json').write_text(json.dumps({'parks': {r: {'m': [[f'Quebec layer:{i}', n, 'x', 'name']]} for i, (r, n) in
                                                                          enumerate([('CA-0001', 'Good Park'), ('CA-0002', 'Zero Park'), ('CA-0004', 'Wrong Piece')])}}))
+        # Nov 9 PM (Brandon t902u): a bad-pin park joined only by name (no record id) is still left out and listed
+        _q = json.loads((T / 'data/ca-key/CA-QC.json').read_text()); _q['parks']['CA-0005'] = {'m': [[None, 'No Id Park', 'x', 'name']]}
+        (T / 'data/ca-key/CA-QC.json').write_text(json.dumps(_q))
         (T / 'data/ca-key/CA-MB.json').write_text(json.dumps({'parks': {'CA-0003': {'m': [['Manitoba lay:1', 'Churchill WMA', 'x', 'name']]}}}))
         (T / 'data/ca-key/overrides.json').write_text(json.dumps({'note': 'x', 'parks': {'CA-0004': {'no': ['Wrong Piece']}}}))
         code = ("import sys, json; sys.path.insert(0, %r); import kpc_fers as F; P = F.pins(); parks, skip = F.official_parks(P);"
-                "print(json.dumps({'P': sorted(P), 'bad': {r: v[1] for r, v in F.BAD_PIN.items()}, 'parks': sorted(parks), 'skip': skip, 'why': F.SKIPWHY}))") % str(HERE)
+                "print(json.dumps({'P': sorted(P), 'Pxy': {r: list(v[1:3]) for r, v in P.items()}, 'bad': {r: v[1] for r, v in F.BAD_PIN.items()}, 'parks': sorted(parks), 'skip': skip, 'why': F.SKIPWHY}))") % str(HERE)
         r = subprocess.run([sys.executable, '-c', code], cwd=T, capture_output=True, text=True, env={**os.environ, 'REGION': 'na', 'STATES': ''})
         try: res = json.loads(r.stdout.strip().splitlines()[-1])
         except Exception: res = {}; print(r.stdout[-800:], r.stderr[-1500:])
-        ok(res.get('bad') == {'CA-0002': '0,0 POTA pin', 'CA-0003': 'impossible POTA pin 95.1,-58.7'}, 'pins(): 0,0 and impossible pins listed in BAD_PIN')
-        ok('CA-0003' not in res.get('P', []) and 'CA-0002' not in res.get('P', []), 'pins(): bad pins are not used (and never swapped)')
-        ok(res.get('parks') == ['CA-0001', 'US-0001'], 'official_parks(): only real pins with outlines a person did not say no to')
-        ok((res.get('skip') or {}).get('bad POTA pin (0,0 / impossible, listed)') == 2, 'official_parks(): 2 bad-pin parks counted')
+        ok(res.get('bad') == {'CA-0002': '0,0 POTA pin', 'CA-0003': 'impossible POTA pin 95.1,-58.7', 'CA-0005': '0,0 POTA pin'}, 'pins(): 0,0 and impossible pins listed in BAD_PIN')
+        # Nov 9 PM (Brandon t901u/t902u): a bad pin is never used or swapped: the park keeps its name with NO coordinates
+        ok(res.get('Pxy', {}).get('CA-0002') == [None, None] and res.get('Pxy', {}).get('CA-0003') == [None, None], 'pins(): bad pins are not used (and never swapped)')
+        ok(res.get('parks') == ['CA-0001', 'CA-0002', 'CA-0003', 'US-0001'], 'official_parks(): bad-pin parks with saved record ids are tested by those outlines; the no-ed park is out')
+        ok((res.get('skip') or {}).get('bad POTA pin (0,0 / impossible, listed)') == 1 and (res.get('skip') or {}).get('bad POTA pin, tested by its saved record ids (pin not used)') == 2,
+           'official_parks(): 1 bad-pin park with no record id left out, 2 tested by their ids')
         ok((res.get('skip') or {}).get('every joined piece is in the overrides no list (key not rebuilt yet)') == 1, "official_parks(): the 'no' park is left out before the key rebuild")
-        ok('never moved' in (res.get('why') or {}).get('CA-0002', ''), 'why list says the pin is never moved')
+        ok('never moved' in (res.get('why') or {}).get('CA-0005', ''), 'why list says the pin is never moved')
 
 print('ALL PASS' if not FAIL else f'{len(FAIL)} FAILED: {FAIL}')
 sys.exit(1 if FAIL else 0)

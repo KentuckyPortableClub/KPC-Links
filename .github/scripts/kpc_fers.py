@@ -103,12 +103,64 @@ PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapSer
 FWS = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
 CPCAD = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query'
 LOG = []
+# Nov 9 PM (run 42649544758; Brandon t905u/t906u: one good, complete US + Canada result): ONE park can never freeze a pass, and a
+# pass never runs past its step. KPC_FERS_PARK_S (default 600) = the most one park / pair / map request may take; past it, that
+# park is skipped and listed (TIMED_OUT, in the report). KPC_HARD_END (epoch seconds, set by the workflow) = the step's own end:
+# the bot stops there with exit 3, so the run shows red instead of a green check after a 335-minute time-out.
+import signal
+
+
+class ParkTimeout(BaseException):
+    """One park / pair / request ran past KPC_FERS_PARK_S. BaseException, so the many 'except Exception' blocks never eat it."""
+
+
+class HardStop(BaseException):
+    """The step's own end (KPC_HARD_END) arrived: stop now (exit 3, red run); the areas not saved keep their previous files."""
+
+
+PARK_S = float(os.environ.get('KPC_FERS_PARK_S') or 600)
+HARD_END = float(os.environ.get('KPC_HARD_END') or 0)
+TIMED_OUT = {}      # {what ran too long: where} -> the report's 'timed out (skipped, listed for a person)'
+TIMED_PAIRS = set()  # pairs skipped for time in find_spots (pass 1 carries their old rows over; passes 2-3 leave them waiting)
+_CLOCKS = []
+
+
+def _ring(signum, frame):
+    now = time.time()
+    if HARD_END and now >= HARD_END - .5: raise HardStop()
+    if _CLOCKS and now >= min(_CLOCKS) - .5: raise ParkTimeout()
+    _arm()
+
+
+def _arm():
+    if not hasattr(signal, 'setitimer'): return
+    if signal.getsignal(signal.SIGALRM) is not _ring: signal.signal(signal.SIGALRM, _ring)
+    ends = list(_CLOCKS) + ([HARD_END] if HARD_END else [])
+    signal.setitimer(signal.ITIMER_REAL, max(.05, min(ends) - time.time()) if ends else 0)
+
+
+class park_clock:
+    """with park_clock('US-1+US-2', 'pass 1 pair') as c: ...   c.hit is True when the limit cut it short (skipped + listed)."""
+    def __init__(self, label, where, seconds=None): self.label, self.where, self.s, self.hit = str(label), where, (PARK_S if seconds is None else seconds), False
+    def __enter__(self):
+        _CLOCKS.append(time.time() + self.s); _arm(); return self
+    def __exit__(self, et, ev, tb):
+        _CLOCKS.pop(); _arm()
+        if et is ParkTimeout:
+            self.hit = True
+            TIMED_OUT[self.label] = f'{self.where}: over {self.s:.0f} s, skipped (listed for a person)'
+            LOG.append(f'{self.label}: over the {self.s:.0f}-second limit ({self.where}): skipped, listed')
+            return True
+        return False
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', ' ')[:900]), flush=True)
-def late(screen=False):
-    """Out of time? Pass 3 stops LOOKING at 70% of its time, so deciding the spots it found (ownership, water, pins) fits."""
-    return time.time() - T0 > LIMIT * (.7 if screen else 1)
+def late(screen=False, frac=None):
+    """Out of time? Pass 3 stops LOOKING at 70% of its time, so deciding the spots it found (ownership, water, pins) fits.
+    Nov 9 PM: frac = a share of the pass (pass 1 downloads stop at half, so the pairs always get tested); 2 minutes before the
+    step's hard end (KPC_HARD_END) is always late."""
+    if HARD_END and time.time() > HARD_END - 120: return True
+    return time.time() - T0 > LIMIT * (frac if frac is not None else .7 if screen else 1)
 def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).split())
 
 
@@ -140,9 +192,19 @@ def _get(url, params, tries=3, timeout=120):
 BAD_PIN = {}   # Nov 4 (Mapping 2-fer review #1): {ref: (name, why, area)} POTA pins at 0,0 / impossible: listed, never moved, never used
 
 
+NOPIN_BY_ID = set()   # Nov 9 PM (Brandon t902u): bad POTA pin, but saved official record ids in the key: tested by those outlines
+
+
 def _pin(P, r, v):
     why = FG.pin_problem(v[1], v[2])
-    if why: BAD_PIN[r] = (v[0], why, v[5]); P.pop(r, None); return
+    if why:
+        BAD_PIN[r] = (v[0], why, v[5])
+        # Nov 9 PM (Brandon t901u/t902u: 'are we not going to matched id numbers also?'): a 0,0 / impossible pin is never used and
+        # never moved. US + Canada parks keep their NAME with no coordinates (None, None), so a park whose key has saved official
+        # record ids is tested by those outlines; nothing is ever looked up around a bad pin. (CA-2062: pin 0,0, saved id 22162.)
+        if str(v[5]).startswith('W-'): P.pop(r, None)
+        else: P[r] = (v[0], None, None) + tuple(v[3:])
+        return
     P[r] = v
 
 
@@ -224,8 +286,13 @@ def official_parks(PIN):
     # tested, even when the answer key file was built before that 'no' was written (the keys wait for a rebuild)
     NO = {k: FG.override_no(f'data/{k}-key/overrides.json') for k in ('us', 'ca', 'world')}
 
-    def _bad(ref):
+    def _bad(ref, m=None, p=None):
+        # Nov 9 PM (Brandon t902u): the key's own 'pin00' mark (bk[4]) counts as a bad pin even if POTA's file changed since
+        if p is not None and len(p.get('bk') or []) > 4 and p['bk'][4] == 'pin00' and ref not in BAD_PIN and ref in PIN:
+            BAD_PIN[ref] = (PIN[ref][0], "the key marks this POTA pin 'pin00'", PIN[ref][5]); PIN[ref] = (PIN[ref][0], None, None) + tuple(PIN[ref][3:])
         if ref not in BAD_PIN: return False
+        if REGION == 'na' and m and all(x[0] is not None for x in m):
+            NOPIN_BY_ID.add(ref); return False   # saved official record ids: tested by the outline, the pin is not needed
         skip['bad POTA pin (0,0 / impossible, listed)'] += 1; SKIPWHY[ref] = f'{BAD_PIN[ref][1]}: POTA\'s pin, never moved; not tested until POTA fixes it'
         return True
 
@@ -285,7 +352,7 @@ def official_parks(PIN):
             # (US-12459 Housatonic River Southern Fields: g=approximate, how=words). A key PIN never enters an area 2-fer.
             if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
                 skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
-            if _bad(ref): continue
+            if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
             if p.get('parts'): CLIP[ref] = p['parts']   # Oct 29 rule B12: only this park's own parts of a shared multipart record
@@ -305,10 +372,11 @@ def official_parks(PIN):
             if m0 and not m: continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
-            if _bad(ref): continue
+            if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
             if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
+    if NOPIN_BY_ID: skip['bad POTA pin, tested by its saved record ids (pin not used)'] = len(NOPIN_BY_ID)
     try: skip['Kentucky (own list)'] = len(json.load(open('data/parkinfo/US-KY.json'))['parks'])
     except Exception: skip['Kentucky (own list)'] = 'all (ky-overlaps.geojson)'  # noqa: BLE001
     return parks, skip
@@ -375,7 +443,7 @@ def wsr_corridors(parks, PIN, LN):
         if g: cors.append((a.get('OBJECTID'), a.get('WSR_GNIS_NAME') or '', core(a.get('WSR_GNIS_NAME')), bbox_groups([g])))
     n = 0
     for ref, v in PIN.items():
-        if v[5].startswith(('W-', 'CA-')) or v[5] == 'KY' or not WSRW.search(v[0]): continue
+        if v[5].startswith(('W-', 'CA-')) or v[5] == 'KY' or not WSRW.search(v[0]) or v[1] is None: continue   # Nov 9 PM: never search around a bad pin
         if ref in parks and parks[ref]['ids'] and not any(str(i).startswith('wsrc') for i in parks[ref]['ids']) and ref not in LN: continue   # has its own area outline
         c = core(v[0])
         hit = [x for x in cors if c and x[2] == c and x[3] and x[3][0] - 1 <= v[2] <= x[3][2] + 1 and x[3][1] - 1 <= v[1] <= x[3][3] + 1]
@@ -483,6 +551,10 @@ def clip(ref, rid, rs):
     return out or rs
 
 
+SLOW_MAP = {}   # Nov 9 PM: map url -> requests that ran past the limit this run (2 = the map is skipped for the rest of the run)
+DL_CUT = set()  # Nov 9 PM: parks not downloaded for time
+
+
 def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
     be read is left out (dead certain: half a park is not the park)."""
@@ -497,11 +569,14 @@ def download(parks, refs, det, prec):
             if not urls: want.setdefault(('none',), []).append((ref, key, None, chk)); continue
             want.setdefault(tuple(urls), []).append((ref, key, oid, chk))
     got, bad = {}, set()
+    cut = set()   # Nov 9 PM: parks not reached for time (never half-read: 'half a park is not the park')
     for urls, items in want.items():
         if urls == ('none',):
             for ref, *_ in items: bad.add(ref)
             continue
-        if late(): break
+        # Nov 9 PM (run 42649544758: pass 1 spent its whole 132 minutes downloading, 'pairs tested': 0): pass 1 stops downloading
+        # at half its time, so the pairs it did read are always tested; the rest are listed and their areas keep their files
+        if late(frac=.5 if PASS == 1 else None): cut |= {i[0] for i in items}; continue
         oids = sorted({i[2] for i in items})
         found = {}
         for u in urls:
@@ -518,11 +593,16 @@ def download(parks, refs, det, prec):
             for k in range(0, len(oids), 100):
                 ids = [o for o in oids[k:k + 100] if o not in found]
                 if not ids: continue
-                try:
-                    j = get(u, {'objectIds': ','.join(map(str, ids)), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
-                                'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'})
-                except Exception as e:  # noqa: BLE001
-                    LOG.append(f'{u.split("/rest/services/")[-1][:60]}: not read ({str(e)[:60]})'); continue
+                if SLOW_MAP.get(u, 0) >= 2: LOG.append(f'{u.split("/rest/services/")[-1][:60]}: skipped (2 requests over the time limit this run)'); break
+                j = None
+                with park_clock(f'{u.split("/rest/services/")[-1][:50]} ids {ids[0]}..{ids[-1]}', 'outline download') as _c:
+                    try:
+                        j = get(u, {'objectIds': ','.join(map(str, ids)), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                                    'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'})
+                    except Exception as e:  # noqa: BLE001
+                        LOG.append(f'{u.split("/rest/services/")[-1][:60]}: not read ({str(e)[:60]})')
+                if _c.hit: SLOW_MAP[u] = SLOW_MAP.get(u, 0) + 1
+                if j is None: continue
                 oidf = j.get('objectIdFieldName') or 'OBJECTID'
                 _d = HC.LAST or time.time()   # B2 (Oct 30): the date this answer was really read from the agency (a bundle answer is older)
                 for f in j.get('features') or []:
@@ -538,14 +618,18 @@ def download(parks, refs, det, prec):
         _pre = lambda rid_: (re.fullmatch(r'([a-z]+)\d+', str(rid_)) or [None, None])[1]
         for ref, rid, oid, chk in items:
             if 'm' in parks[ref] or late(): continue
+            if ref in NOPIN_BY_ID: continue   # Nov 9 PM: a bad pin = by saved id only, never 'the same name near the pin'
             if found.get(oid) and (not chk or any(name_ok(parks[ref]['names'].get(rid), a_) for a_, _ in found[oid])): continue   # Oct 31: an id that now names ANOTHER place is looked up by name too
             pre_ = _pre(parks[ref]['ids'][int(rid)] if str(rid).isdigit() and 'm' in parks[ref] else rid)
             lay = LAYERS_US.get(pre_) if pre_ else None
             nm_ = parks[ref]['names'].get(rid) or ''
             if not lay or len(lay) < 2 or not lay[1] or not nm_: continue
+            if SLOW_MAP.get(lay[0], 0) >= 2: continue
             try:
-                j = get(lay[0], {'where': f"{lay[1]} = '{nm_.replace(chr(39), chr(39) * 2)}'", 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
-                                 'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'})
+                with park_clock(f'{ref} by name', 'outline download by name') as _c:
+                    j = get(lay[0], {'where': f"{lay[1]} = '{nm_.replace(chr(39), chr(39) * 2)}'", 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
+                                     'maxAllowableOffset': det, 'geometryPrecision': prec, 'f': 'json'})
+                if _c.hit: SLOW_MAP[lay[0]] = SLOW_MAP.get(lay[0], 0) + 1; continue
                 global _PINS
                 if _PINS is None: _PINS = pins()
                 pin = _PINS.get(ref)
@@ -569,8 +653,11 @@ def download(parks, refs, det, prec):
                 _w = [WHEN[(u, oid)] for u in urls if (u, oid) in WHEN]
                 if _w: READ[ref] = min([READ.get(ref, 9e12)] + _w)
             else: LEFT.setdefault(ref, []).append(f'{parks[ref]["names"].get(rid) or rid}: {why}')   # rule 2: left out, not 'unreadable'
-    for ref in bad: got.pop(ref, None)
-    for ref in {i[0] for v in want.values() for i in v} - bad - set(got):
+    for ref in bad | cut: got.pop(ref, None)
+    cut -= bad
+    DL_CUT.update(cut)
+    if cut: LOG.append(f'{len(cut)} parks not downloaded: out of time (listed; their areas keep their previous files)')
+    for ref in {i[0] for v in want.values() for i in v} - bad - set(got) - cut:
         if ref in LEFT: bad.add(ref)   # every record of this park was left out (all easement / closed): no public land to test
     today = time.strftime('%Y-%m-%d')
     for ref in got:   # B2 (Oct 30): the real read date (a reused bundle answer can be up to weeks old), never 'today' for an old answer
@@ -1241,6 +1328,7 @@ def missing_list(PIN, parks, skip_why, G, LN, today):
     for ref, v in PIN.items():
         if not want(v[5]) or ref in RET or (ref in G) or (ref in LN and ref not in PARTIAL): continue
         nm, la, lo = v[0], v[1], v[2]
+        if la is None or lo is None: continue   # Nov 9 PM: a bad POTA pin (0,0) is never placed anywhere
         ins = [r for r in grid.get((int(lo // .5), int(la // .5)), []) if r != ref and boxes[r][0] <= lo <= boxes[r][2] and boxes[r][1] <= la <= boxes[r][3] and pip_groups(G[r], lo, la)]
         if ins or ref in KY_NOT_SURE or ref in PARTIAL:
             why = PARTIAL.get(ref) if ref in LN else KY_NOT_SURE.get(ref) or ('line park: no official trail / river line yet' if re.search(r'\btrail\b|\briver\b|parkway', nm, re.I) and ref not in SKIPWHY else skip_why.get(ref, 'no official boundary'))
@@ -1769,7 +1857,9 @@ def find_spots(G, LN, pairs, counts):
             evict(box); continue
         n_log, of0, wf0 = len(LOG), set(OWNED_FAIL), len(WATER_FAIL)
         HC.TRACE = []
+        _pc = park_clock(f'{a}+{b}', f'pass {PASS} pair test')
         try:
+          with _pc:
             if a in G and b in G: got = area_spots(G, [a, b], box)
             else:
                 got = []
@@ -1795,6 +1885,9 @@ def find_spots(G, LN, pairs, counts):
                              'fx': {'owned_fail': sorted(OWNED_FAIL - of0), 'water_fail': [list(x) for x in WATER_FAIL[wf0:]], 'log': LOG[n_log:]}}
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
+        if _pc.hit:   # Nov 9 PM: skipped for time and listed; pass 1 carries its old rows over, passes 2-3 leave it waiting
+            TIMED_PAIRS.add((a, b)); REUSE_NEW.pop(f'{a}+{b}', None)
+            if PASS != 1: TESTED.discard((a, b))
         HC.TRACE = None
         evict(box)
     # Oct 27 (chat 8): two water routes on the same bank of one park (Lewis and Clark + Trail of Tears at Ballard WMA) = a 3-fer
@@ -1882,6 +1975,7 @@ WILDRIVER = re.compile(r'wild (and|&) scenic|wild river|scenic river|recreationa
 
 def pin_inside(ref, PIN, G, LN):
     nm, la, lo = PIN[ref][0], PIN[ref][1], PIN[ref][2]
+    if la is None or lo is None: return None   # Nov 9 PM: a bad POTA pin is never used (pins never count anyway, rule 6)
     # Brandon Oct 26 2 PM: 'the wild rivers, I have to side with the wild river boundaries being correct and POTA wrong':
     # a river corridor's official boundary wins over POTA's pin (pins sit at a road or bridge outside the corridor)
     if WILDRIVER.search(f'{nm} {PIN[ref][4]}'): return True
@@ -2629,7 +2723,7 @@ def map_link(r, PIN):
     w = WEB.get(r) or {}
     ok = lambda u: u and str(u).startswith('http') and 'pota.app' not in str(u)
     if ok(w.get('map')) and (w.get('map_check') or {}).get('map', 'ok') == 'ok' and not w.get('map_hold'): return w['map']
-    if ok(PIN[r][3]): return PIN[r][3]
+    if ok((PIN.get(r) or ('', None, None, ''))[3]): return PIN[r][3]   # Nov 9 PM: KeyError 'CA-2062' stopped pass 3 (run 42649544758)
     if ok(w.get('web')): return w['web']
     return ''
 
@@ -2826,6 +2920,7 @@ def water_prefetch():
 
 
 def main():
+    if HARD_END: _arm()   # Nov 9 PM: the step's hard end is armed from the start (exit 3 = red, never a silent time-out)
     if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
     # Nov 8 (Brandon t808u): only areas declared ready (ownership + management). Skip others with a clear log; no silent world run.
     global ONLY
@@ -2864,6 +2959,7 @@ def main():
         ok, why = known_ok()
         if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); return
     parks, skip = official_parks(PIN)
+    PINS.update(PIN)   # Nov 9 PM: official_parks blanks the key's 'pin00' pins (no coordinates)
     RET = retired()   # rule 13: retired POTA numbers drop out
     parks = {r: p for r, p in parks.items() if r not in RET}
     LN = {r: v for r, v in trail_lines().items() if r not in RET}
@@ -2960,8 +3056,10 @@ def main():
             if any(r not in G for r in x['refs']): continue
             evict(sbox(x))
             WATER_MARK.clear()
-            try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
-            except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+            lc = 'not checked'
+            with park_clock(x.get('id'), 'pass 5 water check'):
+                try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
+                except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
             water_date(x)
             n['checked'] += 1
             if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1
@@ -2980,6 +3078,8 @@ def main():
             if REGION != 'ky' and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and any(r not in parks or not parks[r].get('ids') for r in (a, b) if r):
                 x['status'] = 'dropped: one of the two park numbers is no longer joined to this outline in the answer key (the old join was wrong)'
                 n['same land dropped: join gone from the key'] = n.get('same land dropped: join gone from the key', 0) + 1; continue
+            if a in PIN and b in PIN and (PIN[a][1] is None or PIN[b][1] is None):   # Nov 9 PM: a bad pin = a person checks the join
+                x['status'] = 'not sure: one of the two parks has no usable POTA pin (0,0), so the far-pin check cannot run: a person checks the join'; continue
             if a in PIN and b in PIN and b in G and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
                 dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
                 if dkm > 8 and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
@@ -2994,8 +3094,9 @@ def main():
             x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
                 evict(sbox(x))
-                try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
-                except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+                with park_clock(x.get('id'), 'pass 5 same-land access pin'):
+                    try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
+                    except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
         # Oct 28 (HQ 12:28 PM): rows the water map did not answer for are re-checked once more at the end, after a pause
         again = [x for x in cand if str(x.get('status', '')).startswith('not sure: water not checked')]
         if again and not late():
@@ -3004,8 +3105,10 @@ def main():
                 if late(): break
                 evict(sbox(x))
                 WATER_MARK.clear()
-                try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
-                except Exception as e: lc = 'not checked'; LOG.append(f"water again {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+                lc = 'not checked'
+                with park_clock(x.get('id'), 'pass 5 water re-check'):
+                    try: lc = land_check(x, G, live=not str(x['refs'][0]).startswith('CA-'))
+                    except Exception as e: lc = 'not checked'; LOG.append(f"water again {x['id']}: {str(e)[:60]}")  # noqa: BLE001
                 water_date(x)
                 if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1; n['still not checked'] -= 1
                 elif lc != 'not checked':
@@ -3065,27 +3168,30 @@ def main():
             for x in stale:
                 if late(): break
                 if any(r not in G and r not in LN for r in x['refs']): continue
-                before = x.get('status')
-                try: decide(x, parks, G, LN, PIN, today, set(), st_of); redo += 1
-                except Exception as e: x['status'] = before; LOG.append(f"re-decide {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+                before = dict(x)
+                with park_clock(x.get('id'), 'pass 5 re-decide') as _c:
+                    try: decide(x, parks, G, LN, PIN, today, set(), st_of); redo += 1
+                    except Exception as e: x.clear(); x.update(before); LOG.append(f"re-decide {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+                if _c.hit: x.clear(); x.update(before)
             n['old not-sure owner rows decided again'] = f'{redo} of {len(stale)}'
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        if late(): more = []; lw = []; LOG.append('pass 5: boundary lines + trail zones left for the next run (out of time)')   # Nov 9 PM
         if more:
             g2, _ = ky_geom(parks, more) if REGION == 'ky' else download(parks, more, DET, PREC)
             G.update(g2)
         mark(f'geometry of {len(more)} more parks')
-        n['spots given their boundary lines'] = add_lines(files, G, today)
+        n['spots given their boundary lines'] = add_lines(files, G, today) if not late() else 0
         # Brandon Oct 28 9:17 PM (overrides HQ's 8:17 PM removal): the boat / water-only rows STAY ('we run them like they are, we're
         # making a list to review later'); they go on the review list, nothing is deleted
         n['river channels listed as water only (boat spots)'] = channel_rows(files, G, today)
         mark(f"boundary lines for {n['spots given their boundary lines']} spots")
-        tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        tw = [] if late() else sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
             g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
             G.update(g3)
         mark(f'geometry of {len(tw)} trail-pair parks')
-        n['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
+        n['trail stretches given their true zone'] = add_zones(files, G, PIN, today) if not late() else 0
         mark(f"zones for {n['trail stretches given their true zone']} trail stretches")
         # Oct 29 (chat 10 + Brandon 7:23 AM 'some live 2fers were wrong'): a live spot more than 100 km from a STATE-LEVEL park's
         # pin = that park's outline holds a far piece / a wrong join: held as NOT SURE (kpc_fers_far_hold.py; rule B13 pending)
@@ -3138,10 +3244,14 @@ def main():
             kg, kb = ky_geom(parks, [r for r in parks if parks[r]['ids']]); G.update(kg); need = []
         else: G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
         notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
+        mark('pass 1 saved outlines')
         got, bad = download(parks, need, DET, PREC)
         G.update(got)
-        if bad:   # Oct 30 (chat 2, Iowa came out EMPTY: 180 of 491 outlines not read, Iowa DNR did not answer): one slow second try
+        if bad and not late(frac=.5):   # Oct 30 (chat 2, Iowa came out EMPTY: 180 of 491 outlines not read, Iowa DNR did not answer): one slow second try
             time.sleep(60); got2, bad = download(parks, sorted(bad), DET, PREC); G.update(got2)
+        mark(f'pass 1 downloads ({len(need)} parks; {len(DL_CUT)} not reached for time)')
+        if DL_CUT:   # Nov 9 PM: parks not downloaded for time = an unfinished pass; their areas keep their previous files
+            counts['stopped for time'] = True; counts['parks not downloaded: out of time'] = len(DL_CUT)
         counts['parks whose outline could not be read'] = len(bad)
         _withids = sum(1 for r in parks if parks[r].get('ids'))
         if len(bad) > 20 and len(bad) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
@@ -3162,6 +3272,7 @@ def main():
         counts['parks done by the box test'] = len(boxes) - len(touched)
         counts['pairs whose boxes touch'] = len(pairs)
         spots = find_spots(G, LN, pairs, counts)
+        mark(f"pass 1 pair tests ({counts['pairs tested']} of {len(pairs)})")
         # MISSING CHECK (HQ Oct 27 3:23 PM): what pass 1 looked at, which parks it could not look at and why, and the pairs whose
         # outlines nearly touch, so kpc_fers_expected.py can say FOUND / DROPPED / NEVER LOOKED AT for every expected pair
         try:
@@ -3217,16 +3328,17 @@ def main():
             for x in same:
                 a, b = x['refs']
                 if a not in G or b not in G or a not in PIN or b not in PIN: continue
+                _nopin = PIN[a][1] is None or PIN[b][1] is None   # Nov 9 PM: a bad pin (0,0): no far-pin test, a person checks the join
                 # Oct 29 (chat 8's wrong-joins puzzle: Robert Moses Long Island + Thousand Islands, 503 km apart, 'same land'): two park
                 # numbers joined to one record by NAME alone. Pins more than 8 km apart = only when BOTH pins sit inside the shared outline
-                dkm = math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
+                dkm = 0 if _nopin else math.hypot((PIN[a][2] - PIN[b][2]) * 111.32 * math.cos(math.radians(PIN[a][1])), (PIN[a][1] - PIN[b][1]) * 110.57)
                 if dkm > 8 and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and not same_part(G[b], (PIN[a][2], PIN[a][1]), (PIN[b][2], PIN[b][1])):
                     SAME_FAR.append([a, b, round(dkm, 1), x.get('record')]); continue
                 # Nov 4 (Mapping 2-fer review #3): one record joined to two parks is only a candidate when it names BOTH parks and
                 # no kind differs (Fundy Biosphere Reserve on the Fundy National Park record = a person decides, rule 18)
                 _doubt = '' if tuple(sorted((a, b))) in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} else FG.same_land_doubt(PIN[a][0], PIN[b][0], x.get('name') or x.get('record'))
                 la, lo = PIN[b][1], PIN[b][2]
-                best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
+                best = G[b][0] if _nopin else min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
                 ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
                 sp = {'refs': sorted([a, b]), 'kind': 'same land', 'center': [round(sum(ys) / len(ys), 6), round(sum(xs) / len(xs), 6)],
                       'box': [round(min(xs), 5), round(min(ys), 5), round(max(xs), 5), round(max(ys), 5)],
@@ -3236,6 +3348,7 @@ def main():
                       'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
                 if any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
+                elif _nopin: sp['status'] = 'not sure: one of the two parks has no usable POTA pin (0,0), so the far-pin check cannot run: a person checks the join'
                 elif _doubt: sp['status'] = _doubt; counts['same land not sure: one record covers two parks'] = counts.get('same land not sure: one record covers two parks', 0) + 1
                 by.setdefault(st_of(a), []).append(sp)
             if SAME_FAR:
@@ -3248,6 +3361,7 @@ def main():
         if counts.get('stopped for time'):
             for p_ in pairs:
                 if p_ not in TESTED: undone |= {st_of(r) for r in p_}
+            undone |= {st_of(r) for r in DL_CUT}   # Nov 9 PM: a park never downloaded makes no pair, but its area is not finished
             undone.discard('')
             kept = sorted(st for st in undone if st in old)
             if kept: counts['areas kept as before (pass 1 out of time)'] = kept; LOG.append(f'{len(kept)} areas kept their previous file (pass 1 out of time): ' + ' '.join(kept[:20]))
@@ -3261,6 +3375,9 @@ def main():
                 # over when the batch made no row of that pair + kind (line / river / water-route rows are not all remade by a batch)
                 sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
                 if not sp and st not in old: continue
+            if TIMED_PAIRS:   # Nov 9 PM: a pair skipped for time keeps its old rows (listed in the report for a person)
+                _tp = {tuple(sorted(p_)) for p_ in TIMED_PAIRS}
+                sp = sp + [x for x in (old.get(st) or {}).get('spots', []) if tuple(sorted((x.get('refs') or [])[:2])) in _tp and len(x.get('refs') or []) == 2]
             mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
             save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
                                     **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
@@ -3326,8 +3443,11 @@ def main():
                         s['passes'][2] = 0; s['status'] = 'waiting for pass 3'; continue
                     evict(sbox(s))
                     WATER_MARK.clear()
-                    decide(s, parks, G, LN, PIN, today, saved_only, st_of)
-                    water_date(s)
+                    _before = dict(s)
+                    with park_clock(s.get('id') or '+'.join(s['refs']), f'pass {PASS} decide') as _c:
+                        decide(s, parks, G, LN, PIN, today, saved_only, st_of)
+                        water_date(s)
+                    if _c.hit: s.clear(); s.update(_before); s['passes'][2] = 0; s['status'] = 'waiting for pass 3'   # listed; the next run carries on
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
@@ -3354,6 +3474,10 @@ def main():
     except Exception:  # noqa: BLE001
         rep['fers_rules'] = None
 
+    if TIMED_OUT: counts['timed out (skipped, listed for a person)'] = dict(sorted(TIMED_OUT.items())[:200])
+    if NOPIN_BY_ID: counts['bad POTA pin: tested by saved record ids'] = sorted(NOPIN_BY_ID)[:400]
+    if counts.get('stopped for time'):   # Nov 9 PM: a pass cut short says so as a warning (the run summary shows it)
+        print(f"::warning title=2-fer bot::pass {PASS} stopped for time ({counts.get('pairs tested', 0)} pairs tested, {counts.get('parks not downloaded: out of time', 0)} parks not downloaded); unfinished areas keep their previous files", flush=True)
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
     save_json(RF, rep, indent=1)
@@ -3374,8 +3498,14 @@ ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by t
          "own call before you count it.' Tool pages carry the FULL notice from .claude/notes/notices.md.")
 
 if __name__ == '__main__':
+    # Nov 9 PM (run 42649544758 showed a green check after pass 3 stopped on KeyError 'CA-2062' and the step timed out): a crash
+    # exits 1 and the step's hard end exits 3, so the workflow records an error and the run is red. Areas not saved keep their files.
     try: main()
+    except HardStop:
+        print(f'::error title=2-fer bot::pass {PASS} reached the step\'s time limit and stopped; nothing more was saved by this pass (unfinished areas keep their previous files)', flush=True)
+        sys.exit(3)
     except Exception as e:  # noqa: BLE001
         import traceback; traceback.print_exc()
         notice('2-fer bot', f'stopped: {e}')
+        sys.exit(1)
     sys.exit(0)

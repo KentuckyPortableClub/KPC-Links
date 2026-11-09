@@ -86,5 +86,5 @@ check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, 
 check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in src_full)
 check('Brandon 11:24 AM "Yes" recorded with the new US hash', 'Brandon Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
 check('rules hashes: US moved to 464d2ce92eda; CA, world, fers unchanged',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('464d2ce92eda', '8feccbb7d9ee', '10e4092cc97f', '94b7d25d0769'))
+      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('464d2ce92eda', '8feccbb7d9ee', '10e4092cc97f', '0ab873cf4758'))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
