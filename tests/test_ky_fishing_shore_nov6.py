@@ -83,7 +83,9 @@ world_wf = {'.github/workflows/kpc-world-key.yml', '.github/workflows/kpc-world-
 round4_wf = {'.github/workflows/kpc-app-packs.yml', '.github/workflows/kpc-ky-mapfiles.yml', '.github/workflows/kpc-fers-publish.yml', '.github/workflows/kpc-new-refs.yml'}
 # Nov 8 (Quality, US-42446831487): the key-check workflow reads the RELEASED keys (read-only); not a key workflow, no rule file.
 nov8_wf = {'.github/workflows/kpc-key-postcheck.yml'}
-extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf]
+# Nov 9 PM (Guide PDFs run 42637107981): Playwright jobs pinned to ubuntu-24.04 (runner line only); not key workflows.
+nov9_wf = {'.github/workflows/kpc-adds-probe.yml', '.github/workflows/kpc-bot-health.yml', '.github/workflows/kpc-guide-pdf.yml'}
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:
