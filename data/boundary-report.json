@@ -698,9 +698,15 @@
    ],
    [
     "NH",
+    "US-4868",
+    "Annett State Forest",
+    ""
+   ],
+   [
+    "NH",
     "US-4886",
     "Connecticut Lakes State Forest",
-    "Connecticut Lakes State Forest"
+    ""
    ],
    [
     "NH",
@@ -710,9 +716,63 @@
    ],
    [
     "NV",
+    "US-10844",
+    "Diamond BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
     "US-13018",
     "Black Rock Range East/West BLM Herd Management Area",
     "Black Rock Range East"
+   ],
+   [
+    "NV",
+    "US-13024",
+    "Callaghan BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13034",
+    "Goshute BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13048",
+    "Rocky Hills BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13128",
+    "Jackson Mountains BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13130",
+    "Lava Beds BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13132",
+    "Seven Mile BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13134",
+    "Rock Creek BLM Herd Management Area",
+    ""
+   ],
+   [
+    "NV",
+    "US-13138",
+    "Wassuk BLM Herd Management Area",
+    ""
    ],
    [
     "OH",
@@ -1153,10 +1213,10 @@
  },
  "World": {
   "totals": {
-   "matched": 43955,
-   "far": 10103,
+   "matched": 43965,
+   "far": 10121,
    "noshape": 0,
-   "edge": 9781,
+   "edge": 9799,
    "out": 322,
    "swap": 1
   },
@@ -1199,15 +1259,15 @@
    },
    {
     "st": "AU",
-    "matched": 8164,
-    "far": 1540,
+    "matched": 8161,
+    "far": 1558,
     "noshape": 0,
     "out": 24,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
-    "edge": 1516
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 1534
    },
    {
     "st": "AX",
@@ -1331,7 +1391,7 @@
    },
    {
     "st": "CH",
-    "matched": 261,
+    "matched": 274,
     "far": 30,
     "noshape": 0,
     "out": 2,
@@ -2158,7 +2218,15 @@
     "edge": 24
    }
   ],
-  "swaps": [],
+  "swaps": [
+   [
+    "CH",
+    "CH-0226",
+    "Gh\u00f6ggerh\u00fctte Wetland Reserve",
+    "",
+    "Gh\u00f6ggerh\u00fctte"
+   ]
+  ],
   "well_outside": [
    [
     "AT",
@@ -2345,6 +2413,12 @@
     "BZ-0056",
     "Man of War Caye Bird Sanctuary",
     "Man of War Caye"
+   ],
+   [
+    "CH",
+    "CH-0225",
+    "Unteres Gh\u00f6gg Wetland Reserve",
+    ""
    ],
    [
     "CL",
