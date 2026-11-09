@@ -620,15 +620,33 @@
   "kpc-discord-watch.yml|2026-11-09T05:47:00+00:00": "2026-11-09T07:00+00:00 started",
   "kpc-hunters.yml|2026-11-09T06:07:00+00:00": "2026-11-09T07:00+00:00 started",
   "kpc-pota-discord.yml|2026-11-09T06:19:00+00:00": "2026-11-09T07:00+00:00 started",
-  "kpc-world-pota.yml|2026-11-09T06:17:00+00:00": "2026-11-09T07:00+00:00 started"
+  "kpc-world-pota.yml|2026-11-09T06:17:00+00:00": "2026-11-09T07:00+00:00 started",
+  "kpc-band-alerts.yml|2026-11-09T08:48:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-boards.yml|2026-11-09T09:14:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-bot-queue.yml|2026-11-09T08:22:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-boundary-check.yml|2026-11-09T07:37:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-canada.yml|2026-11-09T08:53:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-community.yml|2026-11-09T08:17:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-discord-watch.yml|2026-11-09T08:47:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-fb-comments.yml|2026-11-09T08:32:00+00:00": "2026-11-09T09:40+00:00 skipped (not restarted)",
+  "kpc-hunters.yml|2026-11-09T09:07:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-ky-key.yml|2026-11-09T08:10:00+00:00": "2026-11-09T09:40+00:00 started",
+  "kpc-pota-discord.yml|2026-11-09T08:19:00+00:00": "2026-11-09T09:40+00:00 started",
+  "pages-deploy.yml|2026-11-09T08:41:00+00:00": "2026-11-09T09:40+00:00 started"
  },
- "last": "2026-11-09T07:00+00:00",
+ "last": "2026-11-09T09:40+00:00",
  "last_restarted": [
-  "kpc-boards.yml (missed Nov 09 06:14 UTC)",
-  "kpc-bot-queue.yml (missed Nov 09 06:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 09 05:47 UTC)",
-  "kpc-hunters.yml (missed Nov 09 06:07 UTC)",
-  "kpc-pota-discord.yml (missed Nov 09 06:19 UTC)",
-  "kpc-world-pota.yml (missed Nov 09 06:17 UTC)"
+  "kpc-band-alerts.yml (missed Nov 09 08:48 UTC)",
+  "kpc-boards.yml (missed Nov 09 09:14 UTC)",
+  "kpc-bot-queue.yml (missed Nov 09 08:22 UTC)",
+  "kpc-boundary-check.yml (missed Nov 09 07:37 UTC)",
+  "kpc-canada.yml (missed Nov 09 08:53 UTC)",
+  "kpc-community.yml (missed Nov 09 08:17 UTC)",
+  "kpc-discord-watch.yml (missed Nov 09 08:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 09 08:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-hunters.yml (missed Nov 09 09:07 UTC)",
+  "kpc-ky-key.yml (missed Nov 09 08:10 UTC)",
+  "kpc-pota-discord.yml (missed Nov 09 08:19 UTC)",
+  "pages-deploy.yml (missed Nov 09 08:41 UTC)"
  ]
 }
