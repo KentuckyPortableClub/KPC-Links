@@ -45,7 +45,12 @@ VERSION_FILE = '.github/key-rules-version.json'
 RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py', '.github/scripts/kpc_match.py'],
               'ca-key': ['.github/scripts/kpc_ca_key.py', '.github/scripts/kpc_ca_fill_bounds.py', '.github/scripts/kpc_ca_hardlook.py'],
               'world-key': ['.github/scripts/kpc_world_key.py', '.github/scripts/kpc_match.py',
-                            '.github/scripts/kpc_number_rules.py']}   # next round v3 C10: same_name's one-side number test (world only; not US)
+                            '.github/scripts/kpc_number_rules.py'],   # next round v3 C10: same_name's one-side number test (world only; not US)
+              # Nov 8 (Quality 2-fer should-fix + Brandon t808u): 2-fer finder rules — separate kind so us/ca/world hashes do not move
+              'fers': ['.github/scripts/kpc_fers.py', '.github/scripts/kpc_owned.py', '.github/scripts/kpc_fers_key_status.py',
+                       '.github/scripts/kpc_fers_guard.py', '.github/scripts/kpc_fers_count.py', '.github/scripts/kpc_fers_ready.py',
+                       '.github/scripts/kpc_fers_preline.py',  # Nov 8 Quality should-fix: preline HOLDs non-ready areas (affects which pairs count)
+                       '.github/fers-ready-areas.json']}
 NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
@@ -75,7 +80,10 @@ GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for grade
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
 # Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this
 # rebuild'): kpc_key_facts.py writes every key's per-park 'bk' (pin distance + record kind), so it is a rule file of all three keys.
-for _kind in RULE_FILES: RULE_FILES[_kind].append('.github/scripts/kpc_key_facts.py')
+for _kind in RULE_FILES:
+    if _kind == 'fers':
+        continue  # Nov 8: 2-fer rules stay separate from key_facts (us/ca/world still get it)
+    RULE_FILES[_kind].append('.github/scripts/kpc_key_facts.py')
 # FINAL-v2 (must-fix 1): sign-offs dated before the restart (9:37 AM CST Nov 2 2026 = 15:37 UTC) never count.
 RESTART = datetime.datetime(2026, 11, 2, 15, 37, tzinfo=datetime.timezone.utc)
 DATE_KEYS = ('date', 'signed', 'when', 'approved_date', 'at')

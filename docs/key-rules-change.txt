@@ -1,3 +1,7 @@
+2-fer rules hash kind (fers v1), KPC-Links #101 (Quality YES with must-fix Nov 8; Brandon t808u/t809u for US/CA-only ready-areas; Brandon OK'd the fers hash Nov 8, 2026, 8:19 PM CST: "Yes, I OK the 2-fer rules hash 0aa333357357 for #101"): new RULE_FILES kind 'fers' covering kpc_fers.py, kpc_owned.py, kpc_fers_key_status.py, kpc_fers_guard.py, kpc_fers_count.py, kpc_fers_ready.py, kpc_fers_preline.py, .github/fers-ready-areas.json; key-rules-version.json fers=v1; fers rules 0aa333357357; US a066624520b4, CA 8feccbb7d9ee, world 10e4092cc97f unchanged; no key file changed.
+
+Why: 2-fer rule code now under a declared hash (Quality should-fix); US/CA-only ready-areas gate (ownership+management both required per Brandon t808u/t809u); approximate river/trail halves held as not sure (Quality must-fix for the 44). AU ownership parked. Brandon OK'd the hash Nov 8, 2026, 8:19 PM CST (exact words: "Yes, I OK the 2-fer rules hash 0aa333357357 for #101").
+
 Aland (AX) old row re-added by BOT A 552605e4, removed again, KPC-Links #80: key INPUT file only, no rule file changed; US a066624520b4, CA 8feccbb7d9ee, world 10e4092cc97f unchanged. File: data/world-key/extra-layers.json: the 7 lines for .../Miljo/Skyddsomraden/MapServer/7 dropped (AX moved in #76).
 
 Switzerland BAFU parks source renamed, KPC-Links #76 (Brandon approved the world hash move Nov 8, 10:38 AM CST): kpc_world_key.py only, one string; world rules 6a5969a25d2c -> 10e4092cc97f; US a066624520b4 and CA 8feccbb7d9ee unchanged; no key file changed.

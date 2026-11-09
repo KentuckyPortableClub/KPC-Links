@@ -25,6 +25,7 @@ Writes $OUT/<TAG>.json + .md and 'go=yes|no', 'verdict=GO|HOLD|FORCED' to $GITHU
 import json, os, pathlib, re, subprocess, sys, time, datetime
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import kpc_fers_ready as FREADY  # Nov 8: ownership+management ready list
 KIND = lambda st: 'ca-key' if st.startswith('CA-') else ('world-key' if st.startswith('W-') or not re.match(r'^(US|CA)-', st) else 'us-key')
 LIST = {'us-key': 'answers-states.txt', 'ca-key': 'answers-provinces.txt', 'world-key': 'answers-countries.txt'}
 
@@ -146,8 +147,21 @@ def main(env=os.environ, links='.'):
            'about': "2-fer pre-line check (Brandon, directly (Mapping chat), 4:52 AM CST Nov 4). HOLD = the line does not build. Read-only; nothing is moved or released."}
     try:
         if not states: raise ValueError('no STATES given')
+        # Nov 8 (Brandon t808u): HOLD any area not on the declared ready list (ownership + management)
+        _allow, _skip = FREADY.filter_areas(states)
+        try:
+            import kpc_key_freeze as _KF
+            rep['fers_rules'] = _KF.rules_hash('fers', str(pathlib.Path(__file__).resolve().parents[2]))
+        except Exception:  # noqa: BLE001
+            rep['fers_rules'] = None
         for st in states:
             h, w, i = check_state(st, src, data, links); rep['areas'][st] = {'hold': h, 'warn': w, **i}
+            for a, why in _skip:
+                if a == st:
+                    rep['areas'][st]['hold'] = list(rep['areas'][st].get('hold') or []) + [why]
+                    print(f'::notice title=2-fer ready-areas::{why}', flush=True)
+        if _skip:
+            print(f'::notice title=2-fer ready-areas::{FREADY.skip_message(_skip)}', flush=True)
     except Exception as e:  # noqa: BLE001
         rep['error'] = f'the pre-line check could not run: {str(e)[:200]}'
     holds = [f'{st}: {h}' for st, a in rep['areas'].items() for h in a['hold']] + ([rep['error']] if rep.get('error') else [])
