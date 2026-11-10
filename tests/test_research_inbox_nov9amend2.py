@@ -20,9 +20,9 @@ class Fake:
 row = {'pota_ref': 'US-1', 'park_name': 'New Echota State Historic Site', 'layer_url': 'https://x/arcgis/rest/services/a/MapServer/0', 'record_id': '7'}
 r = RI.judge(row, (34.5, -84.9), {}, None, Fake()); check(r['status'] == 'SURE' and r['record_id'] == '7', f'typo name + pin inside = SURE ({r["reason"][:60]})')
 r = RI.judge(dict(row, park_name='Echota Wetland'), (34.5, -84.9), {}, None, Fake()); check(r['status'] != 'SURE', f'overlay / no fit is not SURE ({r["status"]})')
-r = RI.judge(row, (34.5, -84.9), {'none': True}, None, Fake()); check(r['status'] == 'NEEDS PERSON', 'a person\'s none: true wins')
-r = RI.judge(row, (34.5, -84.9), {'no': ['7']}, None, Fake()); check(r['status'] == 'REJECTED', 'a person\'s no wins')
-r = RI.judge(row, (34.5, -84.9), {'_blocked': ['7']}, None, Fake()); check(r['status'] == 'REJECTED', 'blocked_ids wins')
+r = RI.judge(row, (34.5, -84.9), {'none': True}, None, Fake()); check(r['status'] == RI.SFN, 'a person\'s none: true is re-tested, never signed over (t956u)')
+r = RI.judge(row, (34.5, -84.9), {'no': ['7']}, None, Fake()); check(r['status'] == RI.SFN and r['same_record_as_no'], 'a person\'s no is re-tested, flagged same record, never signed (t956u)')
+r = RI.judge(row, (34.5, -84.9), {'_blocked': ['7']}, None, Fake()); check(r['status'] == RI.SFN and r['same_record_as_no'], 'blocked_ids: re-tested, flagged, never signed (t956u)')
 r = RI.judge(row, (34.5, -84.9), {}, 'sggab44', Fake()); check(r['status'] == 'REJECTED' and 'saved ID' in r['reason'], 'a saved id: nothing to add')
 r = RI.judge(dict(row, layer_url='https://blocked/x/MapServer/0'), (34.5, -84.9), {}, None, Fake()); check(r['status'] == 'NEEDS PERSON' and r.get('retry') == 'hand-download', 'unreadable layer -> hand download, retry list')
 r = RI.judge(row, (34.6, -84.9), {}, None, Fake()); check(r['status'] == 'SURE', 'pin inside the outline (moved box) still sure')
