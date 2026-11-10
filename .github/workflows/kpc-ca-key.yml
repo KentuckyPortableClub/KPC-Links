@@ -70,6 +70,16 @@ jobs:
       - name: Read the moved data from KPC-Data (Step B, read only)
         if: ${{ env.SKIP != '1' }}
         run: bash .github/scripts/kpc_overlay.sh
+      - name: Master outlines - read master first (is the checked master whole; which layer, if any, needs a live read)
+        # Nov 10: checks data/outlines/ and prints the refresh plan; reads no agency layer unless the repo variable KPC_MASTER_PROBE=1.
+        if: ${{ env.SKIP != '1' }}
+        id: kept_green_master
+        continue-on-error: true
+        env:
+          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_master_cli.py plan --prefix CA- $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
       - name: Build the Canada answer key
         if: ${{ env.SKIP != '1' }}
         env:
@@ -87,7 +97,13 @@ jobs:
           # Nov 6: hardlook.json is .gz in KPC-Data. kpc_ca_hardlook.py stays as it is (it is part of the Canada rules hash).
           # --materialize writes the preferred bytes (.gz wins) to the plain path that script already opens, and exits 1 if neither file is there.
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json data/waiting/questions/hardlook.json.gz 2>/dev/null && git -C .hl checkout -q 2>/dev/null && python3 .github/scripts/kpc_json_any.py --materialize .hl/data/waiting/questions/hardlook.json && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || { kpc_rc=$?; echo "::error title=kpc_ca_hardlook.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_ca_hardlook.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; rm -rf .hl
+          # Nov 10 (master outlines, read master first): a saved copy shorter than its baseline is moved aside and Canada is NOT built tonight (the old
+          # key files are kept, same as 'stopped early'); the Master gate verdict step goes red so a short read never becomes the key.
+          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/ca --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then touch /tmp/ca-key-stopped; : > ca-key.log; echo "::notice title=Canada key::held: the saved copy is short (see the Master gate)"; else
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { touch /tmp/ca-key-stopped; echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
+          fi
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
@@ -149,6 +165,13 @@ jobs:
         run: |
           if [ -n "$NIGHT_LIST" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done
           bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds
+      - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside and its area not built; say so and go red
+        if: ${{ always() }}
+        run: |
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then
+            echo "::error title=Master gate::short saved copy, area NOT built this run (the old key file is kept): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt")"
+            exit 1
+          fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:

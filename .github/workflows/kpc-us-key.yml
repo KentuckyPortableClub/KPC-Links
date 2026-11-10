@@ -170,6 +170,19 @@ jobs:
           ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
+      - name: Master outlines - read master first (is the checked master whole; which layer, if any, needs a live read)
+        # Nov 10: data/outlines/ holds one small checked outline per POTA park (README there). This step only CHECKS the master files and PRINTS the
+        # refresh plan (a layer is re-read only when it is older than KPC_MASTER_MAX_DAYS, its lastEditDate changed, or its count is off).
+        # It reads no agency layer unless the repo variable KPC_MASTER_PROBE=1 (then: robots.txt, 2 s per host, never the no-contact hosts).
+        id: kept_green_master
+        continue-on-error: true
+        env:
+          STATES: ${{ matrix.g.states }}
+          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          areas=$(for st in $STATES; do printf 'US-%s,' "$st"; done); areas="${areas%,}"
+          python3 .github/scripts/kpc_master_cli.py plan --areas "$areas" $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
       - name: The Recreation.gov saved copy (the one keyed pull, read only; HQ Oct 29 8:50 PM)
         id: kept_green_1
         continue-on-error: true
@@ -198,6 +211,12 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           mkdir -p cache/us; touch "$RUNNER_TEMP/cache-t0"
           if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; touch "$RUNNER_TEMP/cache-t0"; fi
+          # Nov 10 (master outlines, read master first): a saved copy shorter than its layer's own baseline (the Nov 3 truncated copies) is moved aside
+          # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
+          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then ok=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES="${ok# }"; fi
+          [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
           # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
@@ -335,6 +354,13 @@ jobs:
               print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
               sys.exit(1)
           PY
+      - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside and its area not built; say so and go red
+        if: ${{ always() }}
+        run: |
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then
+            echo "::error title=Master gate::short saved copy, area NOT built this run (the old key file is kept): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt")"
+            exit 1
+          fi
   join:
     needs: [plan, build]
     if: ${{ always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}

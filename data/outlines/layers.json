@@ -1,0 +1,6 @@
+{
+ "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, licence, the areas it covers, the id/name fields used to match POTA parks, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly) at the last COMPLETE read. A short read never changes it; a layer that now reports under 90% of it is held for a person. 'caches' = the same for the saved state copies the key builders read (US-FL, CA-ALL, W-AU...). Empty until the first verified trim run.",
+ "caches": {},
+ "format": 1,
+ "layers": {}
+}

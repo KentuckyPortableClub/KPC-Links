@@ -138,6 +138,19 @@ jobs:
             gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "W-$c.json.gz" -D cache/world --clobber 2>/dev/null || echo "::notice title=World key $c::no saved outlines (W-$c.json.gz) on the boundary-cache release: a failed source holds $c"
           done
           echo "::notice title=World key saved outlines::$(ls cache/world 2>/dev/null | grep -c 'json.gz$') of $(echo $MINE | wc -w) countries have a saved copy for the source fallback"
+      - name: Master outlines - read master first, and the saved-copy gate (Nov 10)
+        # Checks data/outlines/, prints the refresh plan (no agency read unless the repo variable KPC_MASTER_PROBE=1), then checks each saved W-<CC> copy
+        # against its baseline: a SHORT copy is moved aside (cache/world/short) so it cannot stand in for a failed source; that country is held as
+        # if it had no saved copy, and the Master gate verdict step goes red.
+        id: kept_green_master
+        continue-on-error: true
+        env:
+          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_master_cli.py plan --prefix W- $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
+          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/world --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
       - name: Bring back this country's layer checkpoints (Nov 7, world fix part A; inert until kpc_world_key.py writes cache/world/parts)
         # Slow (own-job) countries only. A stopped AU read can resume from the last saved page of each layer once part B of the
         # Nov 7 world fix lands; until then the folder stays empty and the save step below is skipped. Nothing here decides a join.
@@ -225,6 +238,13 @@ jobs:
           name: world-key-part-${{ matrix.g.i }}
           path: part/
           retention-days: 3
+      - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside; that country was held as if it had none; go red
+        if: ${{ always() }}
+        run: |
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then
+            echo "::error title=Master gate::short saved copy, not used as a fallback (the old key file is kept if a source failed): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt")"
+            exit 1
+          fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
