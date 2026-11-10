@@ -4095,8 +4095,8 @@
   "US-10433": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-10448": {
    "join": [
@@ -5960,9 +5960,8 @@
   },
   "US-10823": {
    "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "when": "2026-10-22",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
   },
   "US-10828": {
    "alias": [
@@ -15564,13 +15563,12 @@
    "why": "2026-11-02 12:49: layers row YES 'Patrick Bridge Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Patrick Bridge Access' (chat 11; applied by kpc_key_answers)"
   },
   "US-12978": {
-   "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json.",
    "no": [
     "2939"
-   ]
+   ],
+   "none": true,
+   "when": "2026-10-29",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Willamette National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-12979": {
    "fp": {
@@ -15587,9 +15585,8 @@
   },
   "US-12981": {
    "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "when": "2026-10-22",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
   },
   "US-12987": {
    "fp": {
@@ -16879,8 +16876,8 @@
   "US-13209": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-13211": {
    "join": [
@@ -45589,8 +45586,8 @@
   "US-5901": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-5909": {
    "join": [
@@ -45891,8 +45888,8 @@
   "US-6048": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-6058": {
    "approx": true,
@@ -45954,8 +45951,8 @@
   "US-6080": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-6084": {
    "no": [
@@ -49573,8 +49570,8 @@
   "US-6972": {
    "none": true,
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json. Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
   "US-6978": {
    "fp": {
@@ -63602,62 +63599,68 @@
    }
   },
   "US-3714": {
-   "fp": {
-    "166141": [
-     "Yates Lake West Wildlife Management Area",
-     3540
-    ],
-    "166140": [
-     "Yates Lake West Wildlife Management Area",
-     1966
-    ]
-   },
-   "join": [
-    "166141",
-    "166140"
-   ],
    "when": "2026-11-09",
-   "decided_by": "candidate-check rule, Nov 9 2026",
-   "why": "Official PAD-US tracts join as one Yates Lake Wildlife Management Area (West tract and West Weil Trust Addition). Pin is inside. Official acres about 5,810; merged GIS about 5,474, within tolerance. Official page agrees."
+   "why": "Quality held, Nov 9 2026: not a signed sure join. PAD-US records 166141 and 166140 are both named Yates Lake West Wildlife Management Area (extra word West). Pin is inside; official acres about 5,810 versus merged GIS about 5,474. The tracts are not labelled as named pieces. On the person list as a same-park question.",
+   "join_held": {
+    "ids": [
+     "166141",
+     "166140"
+    ],
+    "fp": {
+     "166141": [
+      "Yates Lake West Wildlife Management Area",
+      3540
+     ],
+     "166140": [
+      "Yates Lake West Wildlife Management Area",
+      1966
+     ]
+    },
+    "reason": "Both fingerprints use the West name and are not labelled as tracts. Same-park / alias question.",
+    "held": "Quality, Nov 9 2026: held for a person; not joined."
+   }
   },
   "US-6090": {
-   "fp": {
-    "wbl258": [
-     "Beaver Dam Mountains",
-     0
-    ],
-    "wbl284": [
-     "Beaver Dam Mountains",
-     0
-    ],
-    "wbl287": [
-     "Beaver Dam Mountains",
-     0
-    ],
-    "wbl290": [
-     "Beaver Dam Mountains",
-     0
-    ],
-    "wbl273": [
-     "Beaver Dam Mountains",
-     0
-    ],
-    "wbl296": [
-     "Beaver Dam Mountains",
-     0
-    ]
-   },
-   "join": [
-    "wbl258",
-    "wbl284",
-    "wbl287",
-    "wbl290",
-    "wbl273",
-    "wbl296"
-   ],
    "when": "2026-11-09",
-   "decided_by": "candidate-check rule, Nov 9 2026",
-   "why": "Official BLM Beaver Dam Mountains wilderness units already in the US key, merged (Arizona and Utah pieces of the same wilderness). Pin is inside the official wilderness. Official page about 17,600 acres; check merge about 18,198, within tolerance. Official page agrees."
+   "why": "Quality held, Nov 9 2026: not a signed sure join. Six BLM units already in the US key (wbl258, wbl284, wbl287, wbl290, wbl273, wbl296) are all named Beaver Dam Mountains with 0 acres and are not labelled as Arizona or Utah pieces. Pin is inside; official page about 17,600 acres versus a merge of about 18,198. On the person list as a same-park question.",
+   "join_held": {
+    "ids": [
+     "wbl258",
+     "wbl284",
+     "wbl287",
+     "wbl290",
+     "wbl273",
+     "wbl296"
+    ],
+    "fp": {
+     "wbl258": [
+      "Beaver Dam Mountains",
+      0
+     ],
+     "wbl284": [
+      "Beaver Dam Mountains",
+      0
+     ],
+     "wbl287": [
+      "Beaver Dam Mountains",
+      0
+     ],
+     "wbl290": [
+      "Beaver Dam Mountains",
+      0
+     ],
+     "wbl273": [
+      "Beaver Dam Mountains",
+      0
+     ],
+     "wbl296": [
+      "Beaver Dam Mountains",
+      0
+     ]
+    },
+    "reason": "Units are unlabelled and stored with 0 acres. Same-park / alias question.",
+    "held": "Quality, Nov 9 2026: held for a person; not joined."
+   }
   },
   "US-6810": {
    "none": true,
@@ -63803,19 +63806,7 @@
    "decided_by": "official-point rule, Nov 9 2026",
    "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   },
-  "US-12517": {
-   "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
-  },
   "US-11955": {
-   "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
-  },
-  "US-12231": {
    "none": true,
    "when": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",

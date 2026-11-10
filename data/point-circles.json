@@ -81,22 +81,6 @@
    "record_name": "T'äw Tà'är National Historic Site of Canada",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
-  "CA-4773": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
-   "pin_km": 0.042,
-   "pt": [
-    -115.57159,
-    51.17373
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "6",
-   "record_name": "Banff Park Museum National Historic Site of Canada",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
   "CA-4774": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -111,38 +95,6 @@
    "read": "saved copy",
    "record_id": "7",
    "record_name": "Bar U Ranch National Historic Site of Canada",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
-  "CA-4779": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
-   "pin_km": 0.485,
-   "pt": [
-    -117.9841,
-    53.14692
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "89",
-   "record_name": "Jasper House National Historic Site of Canada",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
-  "CA-4780": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
-   "pin_km": 0.018,
-   "pt": [
-    -118.08079,
-    52.8774
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "90",
-   "record_name": "Jasper Park Information Centre National Historic Site of Canada",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
   "CA-4791": {
@@ -1394,7 +1346,7 @@
   },
   "US-10433": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gisportal-idfg.idaho.gov/hosting/rest/services/Fisheries/Fish_Hatcheries/MapServer/0",
    "pin_km": 0.098,
@@ -1469,22 +1421,6 @@
    "read": "saved copy",
    "record_id": "2",
    "record_name": "Auburn Hatchery",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
-  "US-10823": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
-   "pin_km": 0.484,
-   "pt": [
-    -109.5856,
-    43.50027
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "7",
-   "record_name": "Dubois Hatchery",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
   "US-10997": {
@@ -1656,22 +1592,6 @@
    "record_id": "41",
    "record_name": "Stephen F. Austin Memorial State Historic Site"
   },
-  "US-12231": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
-   "pin_km": 0.163,
-   "pt": [
-    -112.0038,
-    42.64202
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "170",
-   "record_name": "Portneuf - Lower",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
   "US-12281": {
    "confirmed": "2026-11-09 20:26",
    "decided_by": "point-circle rule (Nov 9 2026)",
@@ -1717,22 +1637,6 @@
    "record_id": "90840",
    "record_name": "Govan Recreation Site"
   },
-  "US-12517": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services2.arcgis.com/XBn0Kai3hQ20FeCo/arcgis/rest/services/Alabama_Register___Points/FeatureServer/2",
-   "pin_km": 0.233,
-   "pt": [
-    -86.47114,
-    32.72088
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "848",
-   "record_name": "Confederate Memorial Cemetery",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
   "US-12977": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1749,22 +1653,6 @@
    "record_name": "SALMON RIVER",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
-  "US-12978": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
-   "pin_km": 0.198,
-   "pt": [
-    -122.44382,
-    43.74322
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "11",
-   "record_name": "WILLAMETTE",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
   "US-12980": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1779,22 +1667,6 @@
    "read": "saved copy",
    "record_id": "29",
    "record_name": "TRASK",
-   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
-  },
-  "US-12981": {
-   "confirmed": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "kind": "point-circle-100ft",
-   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
-   "pin_km": 0.335,
-   "pt": [
-    -121.08238,
-    45.22074
-   ],
-   "radius_m": 30.48,
-   "read": "saved copy",
-   "record_id": "12",
-   "record_name": "OAK SPRINGS",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
   "US-12986": {
@@ -1847,7 +1719,7 @@
   },
   "US-13209": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
    "pin_km": 0.029,
@@ -1908,7 +1780,7 @@
   },
   "US-5901": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
    "pin_km": 0.038,
@@ -1983,7 +1855,7 @@
   },
   "US-6048": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
    "pin_km": 0.027,
@@ -2013,7 +1885,7 @@
   },
   "US-6080": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
    "pin_km": 0.0,
@@ -2263,7 +2135,7 @@
   },
   "US-6972": {
    "confirmed": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
+   "decided_by": "KPC owner, Nov 9 2026",
    "kind": "point-circle-100ft",
    "layer_url": "https://gisdata.in.gov/server/rest/services/Hosted/DNR_Recreation_Sites_RO/FeatureServer/8",
    "pin_km": 0.203,

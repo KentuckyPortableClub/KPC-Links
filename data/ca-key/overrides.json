@@ -1033,21 +1033,15 @@
   },
   "CA-4773": {
    "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "why": "a different place, not this park (hand review Oct 22)"
   },
   "CA-4779": {
    "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "why": "a different place, not this park (hand review Oct 22)"
   },
   "CA-4780": {
    "none": true,
-   "when": "2026-11-09",
-   "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "why": "a different place, not this park (hand review Oct 22)"
   },
   "CA-6075": {
    "none": true,
@@ -1379,8 +1373,8 @@
     "ABITIBI LAKE NARROWS WILDERNESS AREA"
    ],
    "when": "2026-11-09",
-   "decided_by": "Brandon, Nov 9 2026",
-   "why": "Official Ontario wilderness area outline (record 203353). Decided by Brandon, Nov 9 2026."
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official Ontario wilderness area outline (record 203353)."
   },
   "CA-1586": {
    "join": [
