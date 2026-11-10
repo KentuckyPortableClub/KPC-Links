@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10 11:41",
+ "updated": "2026-11-10 12:28",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -890,9 +890,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/cumberland-district-office-cave-run-lake-closed-november-10",
    "routine": true,
    "first": "2026-11-10",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
