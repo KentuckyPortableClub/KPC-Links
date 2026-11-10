@@ -81,10 +81,11 @@ def get(params, tries=5):
     for i in range(tries):
         try:
             req = urllib.request.Request(Q + '?' + urllib.parse.urlencode(params), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            with urllib.request.urlopen(req, timeout=180) as r:
+            with checked_open(req, 180) as r:   # Nov 10: checked opener + 2 s per-host pace, first address and every hop
                 j = json.loads(r.read().decode('utf-8', 'replace'))
             if j.get('error'): raise RuntimeError(str(j['error'])[:200])
             return j
+        except KMASTER.LiveNotAllowed: raise   # a refused host or hop is never retried
         except Exception as e:  # noqa: BLE001
             last = e; time.sleep(8 * (i + 1))
     raise last
@@ -346,7 +347,7 @@ def fields():
     if FIELDS is None:
         try:
             req = urllib.request.Request(Q.rsplit('/', 1)[0] + '?f=json', headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            info = json.loads(urllib.request.urlopen(req, timeout=120).read())
+            with checked_open(req, 120) as r: info = json.loads(r.read())   # Nov 10: checked opener + pace
             have = {f['name'] for f in info.get('fields', [])}
             # Oct 27 (boundary review #2 / rule B7): the PAD-US version every PAD-US outline comes from
             m = re.search(r'PAD-US\s*(?:version\s*)?(\d+(?:\.\d+)*)', ' '.join(str(info.get(k) or '') for k in ('description', 'copyrightText', 'name')), re.I)
@@ -604,7 +605,76 @@ def keep_paging(n_got, page, exceeded, n_new=None):
     return n_got >= page
 
 
-def fetch_geo(url, q, timeout=180, max_records=None):
+CQ_KEEP = ('where', 'geometry', 'geometryType', 'inSR', 'spatialRel')
+HOP_HANDLERS = ()   # extra urllib handlers (tests put a stand-in server here)
+HOP_ROBOTS = {}     # robots.txt answers per host, for redirect hops
+
+
+def _pace(u):
+    """Nov 10 (Quality on #117, v2): the checked opener does not go through urllib.request.urlopen, so kpc_host_pace's wrap never
+    sees it. Every checked request waits here instead: the first address, each redirect hop and each hop's robots.txt, 2 s per host
+    (kpc_host_pace.wait); a hub portal (hub / opendata.arcgis.com, kpc_master.HUB_RE) also keeps its 60 s crawl delay."""
+    h = kpc_host_pace.host_of(u)
+    kpc_host_pace.wait(h)
+    if KMASTER.HUB_RE.search(h.split(':')[0]):
+        w = _HUB_LAST.get(h, -1e9) + KMASTER.HUB_DELAY - time.monotonic()
+        if w > 0: time.sleep(w)
+        _HUB_LAST[h] = time.monotonic()
+
+
+_HUB_LAST = {}
+
+
+def _hop_ok(u):
+    """Nov 10: every redirect hop of a layer read or count gets the same checks as the first request: the saved-copy-only and
+    never-contact hosts (saved_only), the master's host rule (live_ok), then that host's robots.txt (a 403 means no)."""
+    if saved_only(u): raise KMASTER.LiveNotAllowed(f'redirect refused: saved copy only: {urllib.parse.urlparse(u).netloc}')
+    ok, why = KMASTER.live_ok(u)
+    if not ok: raise KMASTER.LiveNotAllowed(f'redirect refused: {why}')
+
+    def robots_get(ru):
+        req = urllib.request.Request(ru, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+        _pace(ru)
+        try:
+            with KMASTER.checked_opener(_hop_host_ok, HOP_HANDLERS).open(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as e: return e.code, ''
+    if not KMASTER.robots_allows(u, robots_get, HOP_ROBOTS):
+        raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}: robots.txt does not allow this read')
+    _pace(u)   # the hop itself: paced like any other request to that host
+
+
+def _hop_host_ok(u):   # a robots.txt fetch that redirects: host rules only
+    if saved_only(u) or not KMASTER.live_ok(u)[0]: raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}')
+    _pace(u)
+
+
+def checked_open(req, timeout):
+    """urlopen through the master's checked-redirect opener (kpc_master.checked_opener): a hop is followed only after _hop_ok.
+    Nov 10 (Quality on #117, v2): the ONLY way this script reads the network. The first address gets saved_only + live_ok and the
+    2 s per-host pace before it is asked; every hop is checked and paced in _hop_ok."""
+    u = getattr(req, 'full_url', None) or str(req)
+    if saved_only(u): raise KMASTER.LiveNotAllowed(f'saved copy only: {urllib.parse.urlparse(u).netloc}')
+    ok, why = KMASTER.live_ok(u)
+    if not ok: raise KMASTER.LiveNotAllowed(why)
+    _pace(u)
+    return KMASTER.checked_opener(_hop_ok, HOP_HANDLERS).open(req, timeout=timeout)
+
+
+def count_query(url, q, box=True):
+    """Nov 10: a plain returnCountOnly query, built from a read query (its where, and its state box unless box=False), with NO page
+    or outline parameters. With resultRecordCount the FL DEP server counts only one page window (188 of 77,144) and the NRHP
+    server caps the count at the page (200); with them the DE state lands server refuses the count. None = no count."""
+    if saved_only(url): return None
+    c = {k: q[k] for k in CQ_KEEP if k in q and (box or k == 'where')}
+    c.update({'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'})
+    try:
+        req = urllib.request.Request(url + '?' + urllib.parse.urlencode(c), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+        with checked_open(req, 120) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
+        return int(j['count']) if not j.get('error') and j.get('count') is not None else None
+    except Exception: return None  # noqa: BLE001
+
+
+def fetch_geo(url, q, timeout=180, max_records=None, page=None):
     """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
     the 0.01-degree outline every run has always used, rather than losing the layer for that state.
     max_records is the layer maxRecordCount from resolve(): request no more than that, so paging can tell a full page
@@ -613,11 +683,11 @@ def fetch_geo(url, q, timeout=180, max_records=None):
     tries = ([(DETAIL, PREC)] if DETAIL < 0.01 else []) + [(0.01, 3)]
     last = None
     for det, pr in tries:
-        want = layer_page_size(PAGE if det < 0.01 else 500, max_records)
+        want = page or layer_page_size(PAGE if det < 0.01 else 500, max_records)   # page: a fixed window (window paging below)
         q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=want)
         try:
             req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            j = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace'))
+            with checked_open(req, timeout) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
             if j.get('error'): raise RuntimeError(str(j['error'])[:150])
             return j, q['resultRecordCount']
         except Exception as e:  # noqa: BLE001
@@ -762,7 +832,8 @@ def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     def rq(u):
         if saved_only(u): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(u).netloc}')   # Nov 10: never asked, robots.txt included
-        return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
+        with checked_open(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), 120) as r:   # Nov 10: every hop checked + paced
+            return json.loads(r.read().decode('utf-8', 'replace'))
     if not url.startswith('svc:'):
         if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre in ('wld', 'fwsr', 'fsod') else 'OBJECTID')
         if pre in RESOLVED: return RESOLVED[pre]
@@ -867,7 +938,7 @@ def zip_state(st, have):
             from pyproj import CRS, Transformer
             if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Nov 10: services*.arcgis.com and the listed hosts, saved copy only
             if url not in ZIPC:
-                with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
+                with checked_open(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), 240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))   # Nov 10: every hop checked + paced
             z = ZIPC[url]; n = 0; bad_shp = 0
             for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
                 b = sp[:-4]
@@ -945,6 +1016,7 @@ def extra_state(st, have, only=None):
         SFMAP[pre] = _sfm
         order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
         seen_ids = set()
+        win = None   # Nov 10: (records in the box, rows in the layer, window) once a short page is not the end (window paging)
         while True:
             q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                  'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
@@ -954,7 +1026,7 @@ def extra_state(st, have, only=None):
                     j, pg = {'features': [{'attributes': {k: v for k, v in (ft.get('properties') or {}).items() if k != '_kpc'}, 'geometry': _G2R(ft.get('geometry'))}
                                           for ft in _lfe if _in_box(ft.get('geometry'), box)]}, None
                 else:
-                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
+                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre), page=win[2] if win else None)
             except Exception as e:  # noqa: BLE001
                 if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
                     _sfx = []; continue
@@ -984,8 +1056,26 @@ def extra_state(st, have, only=None):
                             **({'Water': 1} if opt.get('water') else {}),
                             **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
                 n += 1
-            if lf is not None or not keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new): break
-            off += len(fs); time.sleep(.5)
+            if lf is not None: break
+            if win is None and keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new):
+                off += len(fs); time.sleep(.5); continue
+            # Nov 10 (run 42891101784): a short page without exceededTransferLimit is not always the end. Some servers (FL DEP
+            # STATE_OWNED_LANDS) cut a window of rows first and apply the state box after it (189 of a 200-row window). Ask the
+            # plain count once; while records in the box are missing, step through the layer one window at a time up to its last
+            # row. Records still missing after that are caught by the count check (fail closed).
+            if win is None:
+                tot = count_query(url, q)
+                if tot is None or len(seen_ids) >= tot: break
+                rows = count_query(url, q, box=False)
+                if not rows: break
+                win = (tot, rows, max(int(LAYER_MAXREC.get(pre) or 0), int(pg or 0), 1))
+                notice(f'US key {st}', f'{label}: a short page ({len(seen_ids)} of {tot} records in the state box): reading the layer window by window')
+                off += pg or len(fs)
+            else:
+                if fs and not n_new: break   # the same rows again: the server ignores resultOffset
+                off += win[2]
+            if len(seen_ids) >= win[0] or off >= win[1]: break
+            time.sleep(.5)
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
 
@@ -1021,13 +1111,8 @@ def layer_live_count(st, pre, url, nf, af, opt):
     except Exception:
         return None  # noqa: BLE001
     q = {'where': (opt or {}).get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope',
-         'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'}
-    try:
-        j, _pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
-        c = j.get('count')
-        return int(c) if c is not None else None
-    except Exception:
-        return None  # noqa: BLE001
+         'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'}
+    return count_query(url, q)   # Nov 10: no page or outline parameters on a count (they cut or refuse it)
 
 
 # ------------------------------------------------------------------------------------------------ the shared scoring
@@ -1227,7 +1312,7 @@ def _write_layer_files(st, want, add):
     for pre in sorted(want):
         lf = _layer_in(st, pre)
         if pre not in RAWF and lf is None: continue   # not read: saved-copy-only host, the layer did not answer, or nothing in this state
-        x = xs.get(pre); url = x[1] if x else ''
+        x = next((y for y in XS if y[0] == pre and (len(y) <= 7 or y[7] is None or st in y[7])), xs.get(pre)); url = x[1] if x else ''   # Nov 10: this state's entry (its own where), not the first one
         oidf = (RESOLVED.get(pre) or (None, None, None, 'OBJECTID'))[3] if lf is None else (lf[0].get('oid_field') or 'OBJECTID')
         feats = []
         for f in RAWF.get(pre, []):

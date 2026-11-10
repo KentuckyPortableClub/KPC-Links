@@ -254,11 +254,11 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
 us_h, ca_h, world_h, fers_h = (KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers'))
-check((us_h, ca_h, world_h, fers_h) == ('6395b561d4c8', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'),
-      f'rules hashes stay US 6395b561d4c8, CA 0ebc381a788f, world 022f06d08d3c, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
+check((us_h, ca_h, world_h, fers_h) == ('2c7f4be3dc36', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'),
+      f'rules hashes stay US 2c7f4be3dc36, CA 0ebc381a788f, world 022f06d08d3c, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
 try:
     changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-    check('US rules f489a836894f -> bbdcc89f8120' in changelog and 'US rules bbdcc89f8120 -> da660f0d5ae7' in changelog and ('US rules da660f0d5ae7 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move, the Nov 10 refill move and the Nov 10 master-step move')
+    check('US rules f489a836894f -> bbdcc89f8120' in changelog and 'US rules bbdcc89f8120 -> da660f0d5ae7' in changelog and 'US rules da660f0d5ae7 -> 6395b561d4c8' in changelog and ('US rules 6395b561d4c8 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move, the Nov 10 refill move, the Nov 10 master-step move and the Nov 10 layer-count move')
     check(('fers v1 3dde681f1427 -> ' + fers_h) in changelog, 'changelog records the #108 fers hash move')
     # #109 is already on main, so the US page-cap files now match origin/main.
     # This PR (#108) may change only the fers rule files.
@@ -272,7 +272,7 @@ try:
             nov10 = any(f in KF.RULE_FILES[k] and (f'{lab} rules {old} -> ' + KF.rules_hash(k, str(HERE))) in changelog
                         for k, lab, old in (('us-key', 'US', 'bbdcc89f8120'), ('ca-key', 'CA', '570b09c3cb52'), ('world-key', 'world', '6444287722b9'),
                                             ('us-key', 'US', 'da660f0d5ae7'), ('ca-key', 'CA', 'b1a521708978'), ('world-key', 'world', '1a8913a378bb'),
-                                            ('ca-key', 'CA', 'd6892ad555d8')))   # + the Nov 10 master-step move and its follow-up (Canada hand files)
+                                            ('ca-key', 'CA', 'd6892ad555d8'), ('us-key', 'US', '6395b561d4c8')))   # + the Nov 10 master-step move and its follow-up (Canada hand files)
             check(f in allowed or nov10, f'rule file differs from main only when declared (fers, or the Nov 10 moves): {f}')
 except Exception as e: print('SKIP rule-file diff:', e)
 
