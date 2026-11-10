@@ -604,7 +604,24 @@ def keep_paging(n_got, page, exceeded, n_new=None):
     return n_got >= page
 
 
-def fetch_geo(url, q, timeout=180, max_records=None):
+CQ_KEEP = ('where', 'geometry', 'geometryType', 'inSR', 'spatialRel')
+
+
+def count_query(url, q, box=True):
+    """Nov 10: a plain returnCountOnly query, built from a read query (its where, and its state box unless box=False), with NO page
+    or outline parameters. With resultRecordCount the FL DEP server counts only one page window (188 of 77,144) and the NRHP
+    server caps the count at the page (200); with them the DE state lands server refuses the count. None = no count."""
+    if saved_only(url): return None
+    c = {k: q[k] for k in CQ_KEEP if k in q and (box or k == 'where')}
+    c.update({'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'})
+    try:
+        req = urllib.request.Request(url + '?' + urllib.parse.urlencode(c), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+        j = json.loads(urllib.request.urlopen(req, timeout=120).read().decode('utf-8', 'replace'))
+        return int(j['count']) if not j.get('error') and j.get('count') is not None else None
+    except Exception: return None  # noqa: BLE001
+
+
+def fetch_geo(url, q, timeout=180, max_records=None, page=None):
     """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
     the 0.01-degree outline every run has always used, rather than losing the layer for that state.
     max_records is the layer maxRecordCount from resolve(): request no more than that, so paging can tell a full page
@@ -613,7 +630,7 @@ def fetch_geo(url, q, timeout=180, max_records=None):
     tries = ([(DETAIL, PREC)] if DETAIL < 0.01 else []) + [(0.01, 3)]
     last = None
     for det, pr in tries:
-        want = layer_page_size(PAGE if det < 0.01 else 500, max_records)
+        want = page or layer_page_size(PAGE if det < 0.01 else 500, max_records)   # page: a fixed window (window paging below)
         q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=want)
         try:
             req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
@@ -945,6 +962,7 @@ def extra_state(st, have, only=None):
         SFMAP[pre] = _sfm
         order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
         seen_ids = set()
+        win = None   # Nov 10: (records in the box, rows in the layer, window) once a short page is not the end (window paging)
         while True:
             q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                  'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
@@ -954,7 +972,7 @@ def extra_state(st, have, only=None):
                     j, pg = {'features': [{'attributes': {k: v for k, v in (ft.get('properties') or {}).items() if k != '_kpc'}, 'geometry': _G2R(ft.get('geometry'))}
                                           for ft in _lfe if _in_box(ft.get('geometry'), box)]}, None
                 else:
-                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
+                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre), page=win[2] if win else None)
             except Exception as e:  # noqa: BLE001
                 if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
                     _sfx = []; continue
@@ -984,8 +1002,26 @@ def extra_state(st, have, only=None):
                             **({'Water': 1} if opt.get('water') else {}),
                             **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
                 n += 1
-            if lf is not None or not keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new): break
-            off += len(fs); time.sleep(.5)
+            if lf is not None: break
+            if win is None and keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new):
+                off += len(fs); time.sleep(.5); continue
+            # Nov 10 (run 42891101784): a short page without exceededTransferLimit is not always the end. Some servers (FL DEP
+            # STATE_OWNED_LANDS) cut a window of rows first and apply the state box after it (189 of a 200-row window). Ask the
+            # plain count once; while records in the box are missing, step through the layer one window at a time up to its last
+            # row. Records still missing after that are caught by the count check (fail closed).
+            if win is None:
+                tot = count_query(url, q)
+                if tot is None or len(seen_ids) >= tot: break
+                rows = count_query(url, q, box=False)
+                if not rows: break
+                win = (tot, rows, max(int(LAYER_MAXREC.get(pre) or 0), int(pg or 0), 1))
+                notice(f'US key {st}', f'{label}: a short page ({len(seen_ids)} of {tot} records in the state box): reading the layer window by window')
+                off += pg or len(fs)
+            else:
+                if fs and not n_new: break   # the same rows again: the server ignores resultOffset
+                off += win[2]
+            if len(seen_ids) >= win[0] or off >= win[1]: break
+            time.sleep(.5)
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
 
@@ -1021,13 +1057,8 @@ def layer_live_count(st, pre, url, nf, af, opt):
     except Exception:
         return None  # noqa: BLE001
     q = {'where': (opt or {}).get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope',
-         'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'}
-    try:
-        j, _pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
-        c = j.get('count')
-        return int(c) if c is not None else None
-    except Exception:
-        return None  # noqa: BLE001
+         'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'}
+    return count_query(url, q)   # Nov 10: no page or outline parameters on a count (they cut or refuse it)
 
 
 # ------------------------------------------------------------------------------------------------ the shared scoring
@@ -1227,7 +1258,7 @@ def _write_layer_files(st, want, add):
     for pre in sorted(want):
         lf = _layer_in(st, pre)
         if pre not in RAWF and lf is None: continue   # not read: saved-copy-only host, the layer did not answer, or nothing in this state
-        x = xs.get(pre); url = x[1] if x else ''
+        x = next((y for y in XS if y[0] == pre and (len(y) <= 7 or y[7] is None or st in y[7])), xs.get(pre)); url = x[1] if x else ''   # Nov 10: this state's entry (its own where), not the first one
         oidf = (RESOLVED.get(pre) or (None, None, None, 'OBJECTID'))[3] if lf is None else (lf[0].get('oid_field') or 'OBJECTID')
         feats = []
         for f in RAWF.get(pre, []):
