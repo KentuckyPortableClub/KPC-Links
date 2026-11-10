@@ -1,0 +1,6 @@
+ref,name,lat,lon,why,candidates
+US-11913,Bad Lands BLM Wilderness Area,41.7877,-114.84,a same-name outline is nearby but the pin is outside it,Bad Lands
+US-13020,Smoke Creek BLM National Conservation Area,40.8047,-119.649,pin is inside an outline but no name agrees,Poodle Mountain; Poodle Mountain Wilderness Study Area
+US-13030,Fox-Lake BLM Herd Management Area,40.3897,-119.574,pin is inside an outline but no name agrees,Fox Range
+US-13211,Lahontan Cutthroat Natural Area BLM Special Recreation Management Area,41.5194,-118.959,pin is inside an outline but no name agrees,Lahontan Cutthroat Trout ISA
+US-9251,Goshute Canyon BLM Wilderness Area,40.052,-114.851,a same-name outline is nearby but the pin is outside it,Goshute Canyon

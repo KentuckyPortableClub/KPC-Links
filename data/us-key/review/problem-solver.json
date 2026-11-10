@@ -1,8 +1,8 @@
 {
  "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
  "counts": {
-  "pin wrong": 85,
-  "needs a person": 73,
+  "pin wrong": 86,
+  "needs a person": 75,
   "wrong state": 1,
   "sliver": 2
  },
@@ -168,14 +168,14 @@
    "state": "US-AR",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep arw1658 (Camp Robinson WMA) (the POTA pin is never moved)",
+   "recommend": "override: keep arw1801 (Camp Robinson WMA) (the POTA pin is never moved)",
    "reasons": [
-    "arw1658 is the park's land: same name (Camp Robinson WMA), 9,314 acres measured",
+    "arw1801 is the park's land: same name (Camp Robinson WMA), 9,314 acres measured",
     "the latitude looks mistyped: 34.992 with digit 2 after the point 9 -> 1 (34.912) lands 0.3 km from the land"
    ],
    "records": [
     {
-     "id": "arw1658",
+     "id": "arw1801",
      "name": "Camp Robinson WMA",
      "points": 13,
      "measured_ac": 9313.9,
@@ -191,14 +191,14 @@
    "state": "US-AR",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep arw1703 (Cedar Creek WMA) (the POTA pin is never moved)",
+   "recommend": "override: keep arw1846 (Cedar Creek WMA) (the POTA pin is never moved)",
    "reasons": [
-    "arw1703 is the park's land: same name (Cedar Creek WMA), 93 acres measured",
+    "arw1846 is the park's land: same name (Cedar Creek WMA), 93 acres measured",
     "the latitude looks mistyped: 34.756 with digit 2 after the point 5 -> 7 (34.776) lands 0.5 km from the land"
    ],
    "records": [
     {
-     "id": "arw1703",
+     "id": "arw1846",
      "name": "Cedar Creek WMA",
      "points": 8,
      "measured_ac": 92.9,
@@ -375,14 +375,14 @@
    "state": "US-CO",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep sgcoa136 (Grand Junction - West Lake SWA) (the POTA pin is never moved)",
+   "recommend": "override: keep cow368 (Grand Junction - West Lake SWA) (the POTA pin is never moved)",
    "reasons": [
-    "sgcoa136 is the park's land: same name (Grand Junction - West Lake SWA), ~6 acres",
+    "cow368 is the park's land: same name (Grand Junction - West Lake SWA), ~6 acres",
     "the latitude looks mistyped: 39.054 with digit 2 after the point 5 -> 7 (39.074) lands 0.6 km from the land"
    ],
    "records": [
     {
-     "id": "sgcoa136",
+     "id": "cow368",
      "name": "Grand Junction - West Lake SWA",
      "points": 4,
      "measured_ac": 3.5,
@@ -396,13 +396,23 @@
    "name": "Vega State Park",
    "type": "State Park",
    "state": "US-CO",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep 2406 (Vega State Park) (the POTA pin is never moved)",
    "reasons": [
-    "the key names no held record"
+    "2406 is the park's land: same name (Vega State Park), ~1,841 acres",
+    "the pin (39.2647, -107.901) is simply away from the land"
    ],
-   "records": []
+   "records": [
+    {
+     "id": "2406",
+     "name": "Vega State Park",
+     "points": 20,
+     "measured_ac": 1830.3,
+     "claimed_ac": 1841,
+     "km": 7.92
+    }
+   ]
   },
   {
    "park": "US-4397",
@@ -451,19 +461,19 @@
    "state": "US-CO",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep 189038 (Alma State Wildlife Area) (the POTA pin is never moved)",
+   "recommend": "override: keep sgcoc12 (Alma SWA) (the POTA pin is never moved)",
    "reasons": [
-    "189038 is the park's land: same name (Alma State Wildlife Area), ~277 acres",
+    "sgcoc12 is the park's land: same name (Alma SWA), 275 acres measured",
     "the pin's latitude matches the land but its longitude is off (39.2986, -106.016), so the longitude may be mistyped"
    ],
    "records": [
     {
-     "id": "189038",
-     "name": "Alma State Wildlife Area",
-     "points": 11,
-     "measured_ac": 276.9,
-     "claimed_ac": 277,
-     "km": 4.18
+     "id": "sgcoc12",
+     "name": "Alma SWA",
+     "points": 41,
+     "measured_ac": 275.2,
+     "claimed_ac": 0,
+     "km": 4.13
     }
    ]
   },
@@ -591,7 +601,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "189107's outline is 543 acres but the park is ~3,123 acres, so it is only part of the land"
+    "189107's outline is 543 acres but the park is ~3,146 acres, so it is only part of the land"
    ],
    "records": [
     {
@@ -601,6 +611,28 @@
      "measured_ac": 542.8,
      "claimed_ac": 545,
      "km": 2.63
+    }
+   ]
+  },
+  {
+   "park": "US-9678",
+   "name": "Windy Gap Watchable State Wildlife Area",
+   "type": "State Wildlife Area",
+   "state": "US-CO",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the held record's name (Windy Ridge STL) does not match the park's (Windy Gap Watchable State Wildlife Area)"
+   ],
+   "records": [
+    {
+     "id": "cow910",
+     "name": "Windy Ridge STL",
+     "points": 8,
+     "measured_ac": 801.3,
+     "claimed_ac": 806.28853938,
+     "km": 53.52
     }
    ]
   },
@@ -808,11 +840,11 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for sgina4563 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
+    "no saved outline for ind4563 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
    ],
    "records": [
     {
-     "id": "sgina4563",
+     "id": "ind4563",
      "name": "",
      "points": null,
      "measured_ac": null,
@@ -975,25 +1007,69 @@
    ]
   },
   {
+   "park": "US-10723",
+   "name": "Crystal Spring SNA Scenic Reserve",
+   "type": "Scenic Reserve",
+   "state": "US-MN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgmnc215 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
+   ],
+   "records": [
+    {
+     "id": "sgmnc215",
+     "name": "Crystal Spring",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    }
+   ]
+  },
+  {
    "park": "US-11023",
    "name": "Egret Island SNA State Conservation Area",
    "type": "State Conservation Area",
    "state": "US-MN",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep sgmnc175 (Egret Island) (the POTA pin is never moved)",
+   "recommend": "override: keep sgmnc57 (Egret Island) (the POTA pin is never moved)",
    "reasons": [
-    "sgmnc175 is the park's land: same name (Egret Island), ~32 acres",
+    "sgmnc57 is the park's land: same name (Egret Island), ~32 acres",
     "the pin's latitude matches the land but its longitude is off (46.0614, -95.8298), so the longitude may be mistyped"
    ],
    "records": [
     {
-     "id": "sgmnc175",
+     "id": "sgmnc57",
      "name": "Egret Island",
      "points": 8,
      "measured_ac": 33.5,
      "claimed_ac": 32.47304818,
      "km": 2.16
+    }
+   ]
+  },
+  {
+   "park": "US-11872",
+   "name": "Lost 40 SNA State Natural Area",
+   "type": "State Natural Area",
+   "state": "US-MN",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "no saved outline for sgmnc88 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
+   ],
+   "records": [
+    {
+     "id": "sgmnc88",
+     "name": "Lost 40",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -1092,16 +1168,16 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for 2781 in this build, so its shape could not be checked (the saved outlines are from 2026-11-03; a layer added since is not in them)"
+    "the park is also listed in US-ID, US-UT, US-WY; this looks only at the MT part, and it already has land in ID, UT, WY, so the pin may sit on another part"
    ],
    "records": [
     {
      "id": "2781",
      "name": "Caribou-Targhee National Forest (Caribou National Forest)",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 76,
+     "measured_ac": 7724.6,
+     "claimed_ac": 7838,
+     "km": 41.75
     }
    ],
    "other_states": [
@@ -1256,34 +1332,34 @@
     {
      "id": "sgnhd10009",
      "name": "Annett State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 7,
+     "measured_ac": 37.6,
+     "claimed_ac": 0,
+     "km": 11.65
     },
     {
      "id": "sgnhd10010",
      "name": "Annett State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 4,
+     "measured_ac": 0.5,
+     "claimed_ac": 0,
+     "km": 11.61
     },
     {
      "id": "sgnhd10011",
      "name": "Annett State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 8,
+     "measured_ac": 87.5,
+     "claimed_ac": 0,
+     "km": 10.43
     },
     {
      "id": "sgnhd10012",
      "name": "Annett State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 38,
+     "measured_ac": 1228.8,
+     "claimed_ac": 0,
+     "km": 9.35
     }
    ]
   },
@@ -1375,66 +1451,66 @@
     {
      "id": "sgnhd3",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 7,
+     "measured_ac": 119.5,
+     "claimed_ac": 0,
+     "km": 5.97
     },
     {
      "id": "sgnhd138",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 26,
+     "measured_ac": 439.0,
+     "claimed_ac": 0,
+     "km": 7.83
     },
     {
      "id": "sgnhd345",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 6,
+     "measured_ac": 55.5,
+     "claimed_ac": 0,
+     "km": 7.05
     },
     {
      "id": "sgnhd346",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 6,
+     "measured_ac": 15.1,
+     "claimed_ac": 0,
+     "km": 7.95
     },
     {
      "id": "sgnhd347",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 4,
+     "measured_ac": 16.7,
+     "claimed_ac": 0,
+     "km": 7.96
     },
     {
      "id": "sgnhd495",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 4,
+     "measured_ac": 0.4,
+     "claimed_ac": 0,
+     "km": 7.84
     },
     {
      "id": "sgnhd510",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 4,
+     "measured_ac": 1.2,
+     "claimed_ac": 0,
+     "km": 11.81
     },
     {
      "id": "sgnhd917",
      "name": "Connecticut Lakes State Forest",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 73,
+     "measured_ac": 926.0,
+     "claimed_ac": 0,
+     "km": 5.77
     }
    ]
   },
@@ -2168,14 +2244,14 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma104, sgnvi448 (Seven Mile) (the POTA pin is never moved)",
+   "recommend": "override: keep sgnvi448, hma104 (Seven Mile) (the POTA pin is never moved)",
    "reasons": [
-    "hma104 is the park's land: same name (Seven Mile), ~98,149 acres",
+    "sgnvi448 is the park's land: same name (Seven Mile), ~98,149 acres",
     "the pin (39.3307, -116.229) is simply away from the land"
    ],
    "records": [
     {
-     "id": "hma104",
+     "id": "sgnvi448",
      "name": "Seven Mile",
      "points": 57,
      "measured_ac": 97341.3,
@@ -2183,7 +2259,7 @@
      "km": 9.25
     },
     {
-     "id": "sgnvi448",
+     "id": "hma104",
      "name": "Seven Mile",
      "points": 57,
      "measured_ac": 97341.3,
@@ -2222,14 +2298,14 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma127, sgnvi450 (Wassuk) (the POTA pin is never moved)",
+   "recommend": "override: keep sgnvi450, hma127 (Wassuk) (the POTA pin is never moved)",
    "reasons": [
-    "hma127 is the park's land: same name (Wassuk), ~52,310 acres",
+    "sgnvi450 is the park's land: same name (Wassuk), ~52,310 acres",
     "the pin (38.9912, -118.989) is simply away from the land"
    ],
    "records": [
     {
-     "id": "hma127",
+     "id": "sgnvi450",
      "name": "Wassuk",
      "points": 52,
      "measured_ac": 51482.7,
@@ -2237,7 +2313,7 @@
      "km": 8.55
     },
     {
-     "id": "sgnvi450",
+     "id": "hma127",
      "name": "Wassuk",
      "points": 52,
      "measured_ac": 51482.7,
@@ -2253,14 +2329,14 @@
    "state": "US-NV",
    "verdict": "pin wrong",
    "confidence": "high",
-   "recommend": "override: keep hma152 (Warm Springs Canyon) (the POTA pin is never moved)",
+   "recommend": "override: keep sgnvi404 (Warm Springs Canyon) (the POTA pin is never moved)",
    "reasons": [
-    "hma152 is the park's land: same name (Warm Springs Canyon), ~92,695 acres",
+    "sgnvi404 is the park's land: same name (Warm Springs Canyon), ~92,695 acres",
     "the pin (41.5752, -119.028) is simply away from the land"
    ],
    "records": [
     {
-     "id": "hma152",
+     "id": "sgnvi404",
      "name": "Warm Springs Canyon",
      "points": 71,
      "measured_ac": 87734.8,

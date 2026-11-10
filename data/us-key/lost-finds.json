@@ -1,7 +1,7 @@
 {
- "made": "2026-11-10 19:59 UTC",
+ "made": "2026-11-10 21:39 UTC",
  "counts": {
-  "A_decided_not_in_key": 75,
+  "A_decided_not_in_key": 74,
   "B_sure_area_not_asked": 7,
   "C_sure_line_not_drawn": 17
  },
@@ -447,13 +447,6 @@
    "Barrington Plantation State Historic Site",
    "alias",
    "rm State Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
-  ],
-  [
-   "US-6816",
-   "MI",
-   "Lime Island State Harbor",
-   "join",
-   "the harbor is the island park (hand review Oct 22 (shadow check))"
   ],
   [
    "US-7529",

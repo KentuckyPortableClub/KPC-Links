@@ -1,0 +1,70 @@
+ref,name,lat,lon,why,candidates
+US-0378,Miller Peninsula State Park,48.0658,-122.946,pin is inside an outline but no name agrees,None
+US-0379,Dugualla State Park,48.3401,-122.572,pin is inside an outline but no name agrees,None
+US-10630,Colockum Wildlife Area,47.2402,-120.312,pin is inside an outline but no name agrees,None
+US-10710,Little White Salmon National Fish Hatchery,45.719,-121.645,a same-name outline is nearby but the pin is outside it,Little White Salmon
+US-11145,Naneum Ridge State Forest,47.2536,-120.381,pin is inside an outline but no name agrees,None
+US-12240,Spring Creek Canyon Natural Area Preserve State Nature Preserve,47.7547,-117.89,pin is inside an outline but no name agrees,None
+US-12247,Billy Clapp Lake Wildlife Area State Fish and Wildlife Area,47.4528,-119.253,pin is inside an outline but no name agrees,None
+US-12274,Indian Dan Canyon Wildlife Area State Fish and Wildlife Area,48.1074,-119.86,pin is inside an outline but no name agrees,None
+US-12284,Camas Meadows Natural Area State Preserve,47.4719,-120.586,pin is inside an outline but no name agrees,LARKSPUR MEADOWS NAP
+US-12295,Rattlesnake Mountain Area Scenic Reserve,47.4512,-121.804,pin is inside an outline but no name agrees,None
+US-12296,Raging River State Forest,47.4948,-121.852,pin is inside an outline but no name agrees,None
+US-12297,Shipwreck Point Natural Resources State Conservation Area,48.3161,-124.448,pin is inside an outline but no name agrees,None
+US-12304,Middle Fork Snoqualmie Natural Resources State Conservation Area,47.4667,-121.674,pin is inside an outline but no name agrees,M Fork Snoqualmie R
+US-12315,Dragoon Creek State Recreation Site,47.8884,-117.443,pin is inside an outline but no name agrees,None
+US-12316,Sherry Creek State Recreation Site,48.6,-117.546,pin is inside an outline but no name agrees,None
+US-12317,Rocky Lake State Recreation Site,48.4962,-117.872,pin is inside an outline but no name agrees,None
+US-12326,Yakima River State Wildlife Area,47.2333,-121.223,a same-name outline is nearby but the pin is outside it,Yakima River
+US-12341,Spencer Island State Wildlife Area,47.9967,-122.163,pin is inside an outline but no name agrees,None
+US-12344,White Salmon Oak State Natural Area,45.7975,-121.447,pin is inside an outline but no name agrees,WHITESALMON OAK NRCA
+US-12402,Rocky Ford State Fish Hatchery,47.322,-119.44,pin is inside an outline but no name agrees,None
+US-12565,Skookum Creek State Recreation Area,48.2924,-117.227,pin is inside an outline but no name agrees,None
+US-12566,Sheep Creek State Recreation Area,48.9602,-117.836,pin is inside an outline but no name agrees,None
+US-12567,Douglas Falls State Recreation Area,48.6143,-117.899,pin is inside an outline but no name agrees,None
+US-12569,Beverly Dunes State Recreation Site,46.8298,-119.896,pin is inside an outline but no name agrees,None
+US-12570,Starvation Lake State Recreation Area,48.4935,-117.709,pin is inside an outline but no name agrees,None
+US-12572,Merrill Lake State Conservation Area,46.0938,-122.32,pin is inside an outline but no name agrees,None
+US-12573,Elk River State Natural Area,46.8715,-124.052,pin is inside an outline but no name agrees,None
+US-12578,Clearwater Corridor State Natural Area,47.6774,-124.118,pin is inside an outline but no name agrees,None
+US-12815,Sagebrush Flat State Wildlife Area,47.4836,-119.684,pin is inside an outline but no name agrees,None
+US-12832,The Two-Steppe State Natural Reserve,47.6048,-119.639,pin is inside an outline but no name agrees,None
+US-12846,Columbia Hills State Natural Area,45.6949,-121.093,pin is inside an outline but no name agrees,None
+US-12848,Trout Lake State Nature Preserve,46.0075,-121.551,pin is inside an outline but no name agrees,None
+US-12858,Kennedy Creek State Nature Preserve,47.1019,-123.086,pin is inside an outline but no name agrees,None
+US-12859,Davis Canyon State Nature Preserve,48.2376,-119.77,pin is inside an outline but no name agrees,None
+US-12902,Selah Cliffs State Nature Preserve,46.7082,-120.467,pin is inside an outline but no name agrees,None
+US-12955,Fishtrap State Fishing Lake,47.355,-117.824,pin is inside an outline but no name agrees,None
+US-12956,Forth of July State Fishing Lake,47.2744,-117.954,pin is inside an outline but no name agrees,None
+US-13371,Marcellus Shrub Steppe State Natural Area,47.2351,-118.399,pin is inside an outline but no name agrees,None
+US-13372,Moses Lake State Fishing Lake,47.2299,-119.428,pin is inside an outline but no name agrees,None
+US-13395,County Line State Recreation Site,45.618,-122.255,pin is inside an outline but no name agrees,None
+US-3163,Bogachiel State Park,47.8964,-124.362,pin is inside an outline but no name agrees,None
+US-3166,Bridle Trails State Park,47.653,-122.174,pin is inside an outline but no name agrees,None
+US-3169,Camano Island State Park,48.1295,-122.502,pin is inside an outline but no name agrees,None
+US-3183,Doug's Beach State Park,45.6771,-121.235,pin is inside an outline but no name agrees,None
+US-3186,Fields Spring State Park,46.0801,-117.168,pin is inside an outline but no name agrees,None
+US-3195,Goldendale Observatory State Park,45.839,-120.816,pin is inside an outline but no name agrees,None
+US-3198,Harstine Island State Park,47.2625,-122.871,pin is inside an outline but no name agrees,None
+US-3206,Joemma Beach State Park,47.2262,-122.806,pin is inside an outline but no name agrees,None
+US-3212,Kopachuck State Park,47.3103,-122.682,pin is inside an outline but no name agrees,None
+US-3218,Lake Wenatchee State Park,47.8114,-120.728,pin is inside an outline but no name agrees,None
+US-3221,Lewis and Clark State Park,46.5197,-122.819,pin is inside an outline but no name agrees,None
+US-3237,Obstruction Pass State Park,48.6085,-122.826,pin is inside an outline but no name agrees,None
+US-3254,Rainbow Falls State Park,46.6308,-123.236,pin is inside an outline but no name agrees,None
+US-3255,Rasar State Park,48.5153,-121.904,pin is inside an outline but no name agrees,None
+US-3258,Rockport State Park,48.488,-121.614,pin is inside an outline but no name agrees,None
+US-3266,Sequim Bay State Park,48.0406,-123.031,pin is inside an outline but no name agrees,None
+US-3270,South Whidbey State Park,48.0565,-122.591,pin is inside an outline but no name agrees,None
+US-3280,Sun Lakes-Dry Falls State Park,47.595,-119.362,pin is inside an outline but no name agrees,None
+US-3287,Wallace Falls State Park,47.8992,-121.672,pin is inside an outline but no name agrees,None
+US-4532,Olympic National Forest,47.475,-123.832,pin is inside an outline but no name agrees,None
+US-4563,Pacific Northwest National Scenic Trail,48.6098,-122.426,pin is inside an outline but no name agrees,None
+US-5565,Ahtanum State Forest,46.5179,-121.011,pin is inside an outline but no name agrees,None
+US-5566,Blanchard State Forest,48.6165,-122.386,pin is inside an outline but no name agrees,None
+US-5567,Capitol State Forest,46.958,-123.113,pin is inside an outline but no name agrees,None
+US-5568,Elbe Hills-Tahoma State Forest,46.7852,-122.094,pin is inside an outline but no name agrees,None
+US-5569,Green Mountain-Tahuya State Forest,47.4711,-122.911,pin is inside an outline but no name agrees,None
+US-5571,Loomis-Loup Loup State Forest,48.9395,-119.792,pin is inside an outline but no name agrees,None
+US-5575,Klickitat Canyon State Forest,46.0331,-121.171,pin is inside an outline but no name agrees,None
+US-5576,Yacolt Burn State Forest,45.7107,-122.385,pin is inside an outline but no name agrees,None

@@ -1,0 +1,99 @@
+ref,name,lat,lon,why,candidates
+US-12057,Lawrence Woods State Wildlife Area,40.5779,-83.615,pin is inside an outline but no name agrees,Andreoff WA
+US-1944,Magee Marsh State Wildlife Area,41.6037,-83.193,a same-name outline is nearby but the pin is outside it,Magee Marsh WA
+US-1954,Great Seal State Park,39.3992,-82.9494,a same-name outline is nearby but the pin is outside it,Great Seal SP
+US-1965,Kelleys Island State Park,41.6152,-82.7062,a same-name outline is nearby but the pin is outside it,Kelleys Island SP
+US-1967,Lake Alma State Park,39.134,-82.5227,a same-name outline is nearby but the pin is outside it,Lake Alma SP
+US-1969,Lake Logan State Park,39.5406,-82.4631,a same-name outline is nearby but the pin is outside it,Lake Logan SP
+US-1971,Lake White State Park,39.1073,-83.0308,a same-name outline is nearby but the pin is outside it,Lake White SP; Lake White Tailwaters WA
+US-1972,Little Miami State Park,39.5249,-84.0799,a same-name outline is nearby but the pin is outside it,Little Miami Corwin Mill SR; Little Miami Emmons Road SR; Little Miami Oregonia SR; Little Miami Overlook DNP; Little Miami Overlook SR; Little Miami Roxanna Rd SR
+US-1975,Mary Jane Thurston State Park,41.4122,-83.893,a same-name outline is nearby but the pin is outside it,Mary Jane Thurston SP
+US-1977,Mohican State Park,40.6097,-82.2577,a same-name outline is nearby but the pin is outside it,Mohican SP
+US-1986,Pymatuning of Ohio State Park,41.5783,-80.5355,pin is inside an outline but no name agrees,Pymatuning SP
+US-3516,Wingfoot Lake State Park,41.0193,-81.3622,pin is inside an outline but no name agrees,Wingfoot SP
+US-3520,Muskingum River State Park,39.6388,-81.8467,a same-name outline is nearby but the pin is outside it,Muskingum River SP
+US-5438,Dean State Forest,38.6872,-82.6213,pin is inside an outline but no name agrees,Dean SF
+US-5439,Fernwood State Forest,40.324,-80.7089,pin is inside an outline but no name agrees,Fernwood SF
+US-5440,Gifford State Forest,39.4473,-81.9091,pin is inside an outline but no name agrees,Gifford SF
+US-5441,Harrison State Forest,40.3391,-81.0262,pin is inside an outline but no name agrees,Harrison SF
+US-5442,Hocking State Forest,39.4388,-82.5456,pin is inside an outline but no name agrees,Hocking SF
+US-5443,Maumee State Forest,41.5157,-83.9068,pin is inside an outline but no name agrees,Maumee SF
+US-5444,Mohican-Memorial State Forest,40.6048,-82.2974,a same-name outline is nearby but the pin is outside it,Mohican-Memorial SF
+US-5445,Perry State Forest,39.7695,-82.2082,pin is inside an outline but no name agrees,Perry SF
+US-5446,Pike State Forest,39.0791,-83.3468,pin is inside an outline but no name agrees,Pike SF
+US-5447,Richland Furnace State Forest,39.1631,-82.6061,a same-name outline is nearby but the pin is outside it,Richland Furnace SF
+US-5455,Zaleski State Forest,39.2905,-82.3901,pin is inside an outline but no name agrees,Zaleski SF
+US-7847,Caesar Creek Gorge State Nature Preserve,39.4917,-84.1016,pin is inside an outline but no name agrees,Caesar Creek Gorge DNP
+US-7848,Clifton Gorge State Nature Preserve,39.7993,-83.8337,pin is inside an outline but no name agrees,Clifton Gorge DNP
+US-8110,Woodbury State Wildlife Area,40.2847,-82.0249,pin is inside an outline but no name agrees,Woodbury WA
+US-8630,Tranquility State Wildlife Area,39.0108,-83.5117,pin is inside an outline but no name agrees,Tranquility WA
+US-8631,Beach City State Wildlife Area,40.6154,-81.6013,a same-name outline is nearby but the pin is outside it,Beach City Dam WA; Beach City WA
+US-8632,Johnson Woods State Nature Preserve,40.8886,-81.7442,pin is inside an outline but no name agrees,Johnson Woods DNP
+US-8636,Paint Creek State Wildlife Area,39.2895,-83.3868,a same-name outline is nearby but the pin is outside it,Paint Creek Lake WA; Paint Creek SP
+US-9392,Augusta-Anne Olsen State Nature Preserve,41.2727,-82.4079,pin is inside an outline but no name agrees,Augusta-Anne Olsen DNP
+US-9394,Boch Hollow State Nature Preserve,39.6151,-82.3984,pin is inside an outline but no name agrees,Boch Hollow DNP
+US-9395,Boord State Nature Preserve,39.3949,-81.7468,pin is inside an outline but no name agrees,Boord DNP
+US-9396,Campbell State Nature Preserve,41.5909,-83.7616,pin is inside an outline but no name agrees,Campbell DNP
+US-9398,Clear Fork Gorge State Nature Preserve,40.6082,-82.3063,pin is inside an outline but no name agrees,Clear Fork Gorge DNP
+US-9399,Collier State Nature Preserve,41.0042,-83.2019,pin is inside an outline but no name agrees,Collier DNP
+US-9400,Conkles Hollow State Nature Preserve,39.4561,-82.5784,pin is inside an outline but no name agrees,Hocking SF
+US-9401,Cooperrider-Kent Bog State Nature Preserve,41.1294,-81.3537,pin is inside an outline but no name agrees,Cooperrider Kent Bog DNP
+US-9404,Desonier State Nature Preserve,39.237,-81.8682,pin is inside an outline but no name agrees,Desonier DNP
+US-9405,Eagle Creek State Nature Preserve,41.2896,-81.0573,a same-name outline is nearby but the pin is outside it,Eagle Creek NP
+US-9407,Fowler Woods State Nature Preserve,40.9737,-82.4699,pin is inside an outline but no name agrees,Fowler Woods DNP
+US-9408,Gallagher Fen State Nature Preserve,39.9387,-83.7168,pin is inside an outline but no name agrees,Gallagher Springfield Fen DNP
+US-9409,Goll Woods State Nature Preserve,41.5546,-84.3614,pin is inside an outline but no name agrees,Goll Woods DNP
+US-9410,Gross Memorial Woods State Nature Preserve,40.4688,-84.0581,pin is inside an outline but no name agrees,Gross Memorial Woods DNP
+US-9411,Halls Creek Woods State Nature Preserve,39.3662,-84.1521,pin is inside an outline but no name agrees,Halls Creek Woods DNP
+US-9412,Headlands Dunes State Nature Preserve,41.7594,-81.2848,pin is inside an outline but no name agrees,Headlands Beach SP
+US-9413,Hueston Woods State Nature Preserve,39.5688,-84.7557,pin is inside an outline but no name agrees,Hueston Woods DNP
+US-9414,Irwin Prairie State Nature Preserve,41.6579,-83.7819,pin is inside an outline but no name agrees,Irwin Prairie DNP
+US-9416,Johnson Ridge State Nature Preserve,38.8568,-83.5351,pin is inside an outline but no name agrees,Johnson Ridge DNP
+US-9419,Lake Katharine State Nature Preserve,39.0859,-82.6697,pin is inside an outline but no name agrees,Lake Katharine DNP
+US-9420,Lawrence Woods State Nature Preserve,40.5698,-83.6271,pin is inside an outline but no name agrees,Lawrence Woods DNP
+US-9422,McCracken Fen State Nature Preserve,40.3066,-83.7825,pin is inside an outline but no name agrees,Mccracken Fen DNP
+US-9424,North Pond State Nature Preserve,41.6118,-82.7037,pin is inside an outline but no name agrees,Kelleys Island SP
+US-9425,Old Woman Creek (Nerr) State Nature Preserve,41.3777,-82.5086,pin is inside an outline but no name agrees,Old Woman Creek (Nerr) DNP
+US-9430,Shallenberger State Nature Preserve,39.6916,-82.6573,pin is inside an outline but no name agrees,Shallenberger DNP
+US-9431,Sheepskin Hollow State Nature Preserve,40.7511,-80.5371,pin is inside an outline but no name agrees,Beaver Creek SF
+US-9432,Sheldon Marsh State Nature Preserve,41.4084,-82.6024,pin is inside an outline but no name agrees,Sheldon Marsh DNP
+US-9435,Springville Marsh State Nature Preserve,41.0065,-83.4057,pin is inside an outline but no name agrees,Springville Marsh DNP
+US-9436,Stage's Pond State Nature Preserve,39.671,-82.9332,pin is inside an outline but no name agrees,Stages Pond DNP
+US-9438,Tinkers Creek State Nature Preserve,41.2849,-81.3918,a same-name outline is nearby but the pin is outside it,Tinkers Creek SP
+US-9439,Triangle Lake Bog State Nature Preserve,41.1234,-81.263,pin is inside an outline but no name agrees,Triangle Lake Bog DNP
+US-9443,Ales Run State Wildlife Area,39.6368,-81.3905,pin is inside an outline but no name agrees,Ale'S Run WA
+US-9448,Brook State Wildlife Area,41.2763,-80.9929,pin is inside an outline but no name agrees,Brook WA
+US-9453,Coalton State Wildlife Area,39.1163,-82.6402,pin is inside an outline but no name agrees,Coalton WA
+US-9455,Darke State Wildlife Area,40.1214,-84.5192,pin is inside an outline but no name agrees,Darke WA
+US-9456,Delaware State Wildlife Area,40.4299,-83.0543,pin is inside an outline but no name agrees,Delaware WA
+US-9457,Della Gates & Edward Charles Bott State Wildlife Area,39.2376,-83.9908,pin is inside an outline but no name agrees,Bott WA
+US-9458,Dillon State Wildlife Area,40.0535,-82.1535,pin is inside an outline but no name agrees,Dillon WA
+US-9459,Dorset State Wildlife Area,41.6989,-80.6338,pin is inside an outline but no name agrees,Dorset WA
+US-9461,Fallsville State Wildlife Area,39.2855,-83.6301,pin is inside an outline but no name agrees,Fallsville WA
+US-9462,Fallsville South State Wildlife Area,39.2547,-83.6288,pin is inside an outline but no name agrees,Fallsville WA
+US-9470,Jockey Hollow State Wildlife Area,40.1723,-81.165,a same-name outline is nearby but the pin is outside it,Jockey Hollow WA
+US-9473,Lake Park State Wildlife Area,40.9147,-81.0683,pin is inside an outline but no name agrees,Lake Park WA
+US-9474,Leesville State Wildlife Area,40.4782,-81.18,pin is inside an outline but no name agrees,Leesville WA
+US-9477,Lower Killbuck Creek State Wildlife Area,40.481,-81.9892,a same-name outline is nearby but the pin is outside it,Lower Killbuck Creek WA
+US-9478,Mackey Ford State Wildlife Area,39.7738,-83.0027,a same-name outline is nearby but the pin is outside it,Mackey Ford WA
+US-9480,Mercer State Wildlife Area,40.5041,-84.5671,pin is inside an outline but no name agrees,Mercer WA
+US-9481,Metzger Marsh State Wildlife Area,41.6364,-83.2416,a same-name outline is nearby but the pin is outside it,Metzger Marsh WA
+US-9485,Mosquito Creek State Wildlife Area,41.4373,-80.8109,a same-name outline is nearby but the pin is outside it,Mosquito Creek WA
+US-9486,Moxley State Wildlife Area,41.4577,-82.7963,pin is inside an outline but no name agrees,Moxley WA
+US-9489,Oldaker State Wildlife Area,39.2187,-83.735,pin is inside an outline but no name agrees,Oldaker WA
+US-9490,Orwell State Wildlife Area,41.5571,-80.8453,pin is inside an outline but no name agrees,Orwell WA
+US-9491,Parkersburg State Wildlife Area,41.5414,-84.526,pin is inside an outline but no name agrees,Parkersburg WA
+US-9492,Pater State Wildlife Area,39.4204,-84.7326,pin is inside an outline but no name agrees,Pater WA
+US-9495,Powelson State Wildlife Area,40.0512,-82.0145,pin is inside an outline but no name agrees,Powelson WA
+US-9496,Resthaven State Wildlife Area,41.4172,-82.8262,pin is inside an outline but no name agrees,Resthaven WA
+US-9500,Shenango State Wildlife Area,41.3874,-80.551,pin is inside an outline but no name agrees,Shenango WA
+US-9501,Simco State Wildlife Area,40.1878,-81.8119,pin is inside an outline but no name agrees,Simco WA
+US-9505,Superior State Wildlife Area,39.1983,-82.6047,pin is inside an outline but no name agrees,Superior WA
+US-9509,Turkey Ridge State Wildlife Area,39.3325,-82.4093,a same-name outline is nearby but the pin is outside it,Turkey Ridge WA
+US-9511,Urbana State Wildlife Area,40.1889,-83.7191,pin is inside an outline but no name agrees,Urbana WA
+US-9513,Van Tassel State Wildlife Area,41.4281,-83.8291,a same-name outline is nearby but the pin is outside it,Van Tassel WA
+US-9515,Wellington State Wildlife Area,41.128,-82.2228,pin is inside an outline but no name agrees,Wellington WA
+US-9516,Wellston State Wildlife Area,39.1881,-82.5249,pin is inside an outline but no name agrees,Wellston WA
+US-9518,Wingfoot State Wildlife Area,41.0191,-81.3706,pin is inside an outline but no name agrees,Wingfoot WA
+US-9521,Wyandot State Wildlife Area,40.9256,-83.3767,pin is inside an outline but no name agrees,Wyandot WA
+US-9522,Zepernick State Wildlife Area,40.7879,-80.9795,pin is inside an outline but no name agrees,Zepernick WA

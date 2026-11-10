@@ -1,0 +1,51 @@
+ref,name,lat,lon,why,candidates
+US-0037,Hawai'i Volcanoes National Park,19.4309,-155.257,pin is inside an outline but no name agrees,HAWAII VOLCANOES NATIONAL PARK
+US-0128,O'ahu Forest National Wildlife Refuge,21.479,-157.923,pin is inside an outline but no name agrees,OAHU FOREST NATIONAL WILDLIFE REFUGE
+US-0129,Pearl Harbor National Wildlife Refuge,21.3011,-158.087,a same-name outline is nearby but the pin is outside it,PEARL HARBOR NAT'L WILDLIFE REFUGE (KALAELOA); PEARL HARBOR NATIONAL WILDLIFE REFUGE (HONOULIULI)
+US-0753,Pu'uhonua o Honaunau National Historical Park,19.422,-155.91,pin is inside an outline but no name agrees,PUU HONAU O HONAUNAU NATIONAL HISTORICAL PARK
+US-0855,Pu'ukohola Heiau National Historic Site,20.0249,-155.822,pin is inside an outline but no name agrees,PUUKOHOLA HEIAU NATIONAL HISTORIC SITE
+US-0971,World War II Valor in the Pacific National Monument,21.3675,-157.939,pin is inside an outline but no name agrees,PEARL HARBOR NATIONAL MEMORIAL
+US-10909,Kuliʻouʻou Forest Reserve,21.3079,-157.726,a same-name outline is nearby but the pin is outside it,KULIOUOU FOREST RESERVE
+US-10911,Ke’ehi Lagoon Memorial State Park,21.3321,-157.897,a same-name outline is nearby but the pin is outside it,KEEHI LAGOON MEMORIAL STATE PARK
+US-10912,'Ualaka'a State Trail,21.3185,-157.821,pin is inside an outline but no name agrees,HONOLULU WATERSHED FOREST RESERVE
+US-10913,Diamond Head Summit State Trail,21.2597,-157.814,pin is inside an outline but no name agrees,DIAMOND HEAD STATE MONUMENT
+US-10915,Nakoa State Trail,21.556,-157.879,pin is inside an outline but no name agrees,AHUPUAA O KAHANA STATE PARK
+US-10916,Kapaʻeleʻele State Trail,21.5548,-157.879,pin is inside an outline but no name agrees,AHUPUAA O KAHANA STATE PARK
+US-10917,ʻAiea Loop State Trail,21.3986,-157.905,pin is inside an outline but no name agrees,KEAIWA HEIAU STATE RECREATION AREA
+US-10918,Waʻahila Ridge State Trail,21.3212,-157.791,pin is inside an outline but no name agrees,HONOLULU WATERSHED FOREST RESERVE
+US-10920,Kawainui Marsh Wildlife Reserve,21.4,-157.755,pin is inside an outline but no name agrees,KAWAINUI MARSH WILDLIFE SANCTUARY
+US-10925,HI State Game Reserve,21.5168,-158.144,pin is inside an outline but no name agrees,KAALA NATURAL AREA RESERVE
+US-12095,Halele'a Forest Reserve,22.1992,-159.475,pin is inside an outline but no name agrees,HALELEA FOREST RESERVE
+US-2209,Ahupua'a O Kahana State Park,21.556,-157.876,pin is inside an outline but no name agrees,AHUPUAA O KAHANA STATE PARK
+US-2210,Ha'ena State Park,22.2214,-159.58,pin is inside an outline but no name agrees,HAENA STATE PARK
+US-2212,Ka'ena Point State Park,21.5569,-158.25,pin is inside an outline but no name agrees,KAENA POINT STATE PARK
+US-2213,Kaumahina Wayside State Park,20.8713,-156.169,a same-name outline is nearby but the pin is outside it,KAUMAHINA STATE WAYSIDE
+US-2215,Koke`e State Park,22.1304,-159.656,pin is inside an outline but no name agrees,KOKEE STATE PARK
+US-2216,Makapuʻu  Point Wayside State Trail,21.3107,-157.649,pin is inside an outline but no name agrees,KAIWI SCENIC SHORELINE
+US-2218,Nu'uanu Pali Wayside State Park,21.3668,-157.793,pin is inside an outline but no name agrees,NUUANU PALI STATE WAYSIDE
+US-2221,Puaa Kaa Wayside State Park,20.8166,-156.125,pin is inside an outline but no name agrees,KOOLAU FOREST RESERVE
+US-2222,Pu'u 'Ualakaa State Park,21.3125,-157.825,pin is inside an outline but no name agrees,PUU UALAKAA STATE WAYSIDE
+US-2225,Wailuku River State Park,19.719,-155.106,a same-name outline is nearby but the pin is outside it,WAILUKU RIVER STATE PARK
+US-2226,Wailua River State Park,22.0419,-159.393,a same-name outline is nearby but the pin is outside it,WAILUA RIVER STATE PARK
+US-2227,Wailua Valley Wayside State Park,20.8401,-156.14,a same-name outline is nearby but the pin is outside it,WAILUA VALLEY STATE WAYSIDE
+US-4565,Ala Kahakai National Historic Trail,19.6867,-156.033,pin is inside an outline but no name agrees,KALOKO-HONOKOHAU NATIONAL HISTORICAL PARK
+US-6401,Mauna Kea State Recreation Area,19.7612,-155.456,pin is inside an outline but no name agrees,MAUNA KEA FOREST RESERVE
+US-6402,Lava Tree State Park,19.4825,-154.905,pin is inside an outline but no name agrees,NANAWALE FOREST RESERVE
+US-6404,Kalopa State Recreation Area,20.0377,-155.438,pin is inside an outline but no name agrees,HAMAKUA FR (KALOPA SEC.) / KALOPA STATE REC. AREA
+US-6406,Mackenzie State Recreation Area,19.4395,-154.865,pin is inside an outline but no name agrees,MALAMA KI FOREST RESERVE
+US-6407,Wailoa River State Recreation Area,19.7168,-155.067,a same-name outline is nearby but the pin is outside it,WAILOA RIVER STATE RECREATION AREA
+US-6409,Waimea State Recreation Area,21.9548,-159.67,a same-name outline is nearby but the pin is outside it,WAIMEA STATE RECREATION PIER
+US-6412,Aiea Bay State Recreation Area,21.3775,-157.936,a same-name outline is nearby but the pin is outside it,AIEA BAY STATE RECREATION AREA
+US-6413,Keawa Heiau State Recreation Area,21.3976,-157.896,pin is inside an outline but no name agrees,KEAIWA HEIAU STATE RECREATION AREA
+US-6416,Wa'ahila Ridge State Recreation Area,21.3055,-157.801,pin is inside an outline but no name agrees,WAAHILA RIDGE STATE RECREATION AREA
+US-6417,Wahiawa Freshwater State Recreation Area,21.4922,-158.025,a same-name outline is nearby but the pin is outside it,WAHIAWA FRESHWATER STATE RECREATION AREA
+US-6420,Kiholo  Reserve State Reserve,19.8377,-155.928,a same-name outline is nearby but the pin is outside it,KIHOLO STATE PARK RESERVE
+US-6423,Manuka State Preserve,19.105,-155.819,pin is inside an outline but no name agrees,MANUKA NATURAL AREA RESERVE
+US-6425,Diamond Head State Preserve,21.2639,-157.804,pin is inside an outline but no name agrees,DIAMOND HEAD STATE MONUMENT
+US-6426,Iolani Palace State Preserve,21.3063,-157.859,pin is inside an outline but no name agrees,IOLANI PALACE STATE MONUMENT
+US-6427,Kaiwi State Scenic Site,21.3058,-157.655,pin is inside an outline but no name agrees,KAIWI SCENIC SHORELINE
+US-6429,Pu'u O Mahuka Heiau State Historic Site,21.6416,-158.059,pin is inside an outline but no name agrees,PUU O MAHUKA HEIAU STATE HISTORIC SITE
+US-6431,Royal Mausoleum State Preserve,21.3253,-157.847,pin is inside an outline but no name agrees,ROYAL MAUSOLEUM STATE MONUMENT
+US-7691,Kalepa Forest Reserve,22.0224,-159.345,a same-name outline is nearby but the pin is outside it,KALEPA MOUNTAIN FOREST RESERVE
+US-7692,Kaneohe Forest Reserve,21.4042,-157.819,pin is inside an outline but no name agrees,WAIAHOLE FOREST RESERVE
+US-7695,Hilo Forest Reserve,19.8329,-155.151,a same-name outline is nearby but the pin is outside it,HILO FOREST RESERVE (KAIWIKI SEC.); HILO FOREST RESERVE (KAMAEE SEC.); HILO FOREST RESERVE (KAUKU SEC.); HILO FOREST RESERVE (OPEA SEC.); HILO FOREST RESERVE (PIHA SEC.); HILO FOREST RESERVE (WATERSHED RESERVE SEC.)

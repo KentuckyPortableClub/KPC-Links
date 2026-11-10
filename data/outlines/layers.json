@@ -752,6 +752,4668 @@
    "read_how": "returnCountOnly",
    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
   },
+  "US-AK.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-AK.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 15,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 15,
+   "url": ""
+  },
+  "US-AK.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 43,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 43,
+   "url": ""
+  },
+  "US-AK.sgaka": {
+   "agency": "Alaska State Parks (DNR) (park, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 157,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 54,
+   "name_fields": [
+    "PARKNAME"
+   ],
+   "queued": 31,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 157,
+   "url": ""
+  },
+  "US-AK.sgakb": {
+   "agency": "Alaska Department of Natural Resources (preserve, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 2318,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 30,
+   "name_fields": [
+    "LDA_NAME_1"
+   ],
+   "queued": 20,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2318,
+   "url": ""
+  },
+  "US-AK.sgake": {
+   "agency": "Alaska DNR State Parks (park boundaries) (park, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 157,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 54,
+   "name_fields": [
+    "PARKNAME"
+   ],
+   "queued": 31,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 157,
+   "url": ""
+  },
+  "US-AK.sgakf": {
+   "agency": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources) (park, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 157,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 54,
+   "name_fields": [
+    "PARKNAME"
+   ],
+   "queued": 31,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 157,
+   "url": ""
+  },
+  "US-AK.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 43,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 43,
+   "url": ""
+  },
+  "US-AK.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 40,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 40,
+   "url": ""
+  },
+  "US-AK.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 78,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 78,
+   "url": ""
+  },
+  "US-AK.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 9,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 9,
+   "url": ""
+  },
+  "US-AL.sgala": {
+   "agency": "Alabama State Parks (ADCNR) (park, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 21,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 16,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 7,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 21,
+   "url": ""
+  },
+  "US-AL.sgalb": {
+   "agency": "Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "DCNR_Name"
+   ],
+   "queued": 25,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 227,
+   "url": ""
+  },
+  "US-AL.sgalc": {
+   "agency": "ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 42,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 31,
+   "name_fields": [
+    "Name"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 42,
+   "url": ""
+  },
+  "US-AL.sgald": {
+   "agency": "ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 20,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "Name"
+   ],
+   "queued": 15,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 20,
+   "url": ""
+  },
+  "US-AR.arw": {
+   "agency": "Arkansas Game and Fish Commission WMAs",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 143,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 76,
+   "name_fields": [
+    "fname"
+   ],
+   "queued": 89,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 143,
+   "url": ""
+  },
+  "US-AR.sgara": {
+   "agency": "Arkansas Natural Heritage Commission (preserve, state GIS table)",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 79,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 23,
+   "name_fields": [
+    "maname"
+   ],
+   "queued": 42,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 79,
+   "url": ""
+  },
+  "US-AR.sgarb": {
+   "agency": "Arkansas State Parks (park, state GIS table)",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 52,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 41,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 20,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 52,
+   "url": ""
+  },
+  "US-AZ.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 17,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 17,
+   "url": ""
+  },
+  "US-AZ.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 13,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13,
+   "url": ""
+  },
+  "US-AZ.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 25,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 11,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 25,
+   "url": ""
+  },
+  "US-AZ.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 53,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 53,
+   "url": ""
+  },
+  "US-AZ.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 63,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 26,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 63,
+   "url": ""
+  },
+  "US-AZ.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 63,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 26,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 63,
+   "url": ""
+  },
+  "US-AZ.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 98,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 98,
+   "url": ""
+  },
+  "US-AZ.sgazg": {
+   "agency": "Bureau of Land Management, Arizona (recreation sites, polygons) (park, state GIS table)",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 71,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 71,
+   "url": ""
+  },
+  "US-AZ.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 89,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 10,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 89,
+   "url": ""
+  },
+  "US-AZ.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 9,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 9,
+   "url": ""
+  },
+  "US-CA.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 185,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 25,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 105,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 185,
+   "url": ""
+  },
+  "US-CA.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 113,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 26,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 86,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 113,
+   "url": ""
+  },
+  "US-CA.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 982,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 13,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 30,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 982,
+   "url": ""
+  },
+  "US-CA.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 127,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 127,
+   "url": ""
+  },
+  "US-CA.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 192,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 14,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 71,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 192,
+   "url": ""
+  },
+  "US-CA.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 192,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 14,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 71,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 192,
+   "url": ""
+  },
+  "US-CA.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 303,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 7,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 31,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 303,
+   "url": ""
+  },
+  "US-CA.sgcad": {
+   "agency": "BLM CA Recreation Polygons (park, state GIS table)",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 90,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 10,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 90,
+   "url": ""
+  },
+  "US-CA.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 162,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 33,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 15,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 162,
+   "url": ""
+  },
+  "US-CA.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 178,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 178,
+   "url": ""
+  },
+  "US-CO.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 14,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 14,
+   "url": ""
+  },
+  "US-CO.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 5,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
+   "url": ""
+  },
+  "US-CO.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 11,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 11,
+   "url": ""
+  },
+  "US-CO.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 47,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 47,
+   "url": ""
+  },
+  "US-CO.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 106,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 106,
+   "url": ""
+  },
+  "US-CO.sgcoa": {
+   "agency": "Colorado Parks & Wildlife (wild, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 34,
+   "name_fields": [
+    "PropName"
+   ],
+   "queued": 95,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 324,
+   "url": ""
+  },
+  "US-CO.sgcob": {
+   "agency": "Colorado Parks & Wildlife (park, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 48,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 35,
+   "name_fields": [
+    "PropName"
+   ],
+   "queued": 10,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 48,
+   "url": ""
+  },
+  "US-CO.sgcoc": {
+   "agency": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3) (wild, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 921,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 75,
+   "name_fields": [
+    "PropName"
+   ],
+   "queued": 97,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 921,
+   "url": ""
+  },
+  "US-CO.sgcoe": {
+   "agency": "Bureau of Land Management, Colorado (recreation sites) (park, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 29,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 278,
+   "url": ""
+  },
+  "US-CO.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 7,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 7,
+   "url": ""
+  },
+  "US-CO.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 80,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 80,
+   "url": ""
+  },
+  "US-DE.sgdeb": {
+   "agency": "Delaware Forest Service (forest, state GIS table)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 31,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "LABEL"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 31,
+   "url": ""
+  },
+  "US-DE.sgdec": {
+   "agency": "Delaware Fish & Wildlife (DNREC) (wild, state GIS table)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 83,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 16,
+   "name_fields": [
+    "AREA_NAME"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 83,
+   "url": ""
+  },
+  "US-DE.sgded": {
+   "agency": "Delaware nature preserves (DNREC) (preserve, state GIS table)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 129,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 129,
+   "url": ""
+  },
+  "US-DE.sgdee": {
+   "agency": "Delaware public protected lands (DNREC) (land, state GIS table)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 868,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 53,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 29,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 868,
+   "url": ""
+  },
+  "US-FL.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-FL.sgfla": {
+   "agency": "Florida State Parks (DEP) (park, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 171,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 141,
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "queued": 38,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 171,
+   "url": ""
+  },
+  "US-FL.sgflf": {
+   "agency": "Florida DEP Division of State Lands (land, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 188,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "PROJECT_NAME"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 189,
+   "url": ""
+  },
+  "US-FL.sgflg": {
+   "agency": "FWC (wild, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 263,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 83,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 56,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 263,
+   "url": ""
+  },
+  "US-HI.sghia": {
+   "agency": "Hawaii Division of State Parks (DLNR) (park, state GIS table)",
+   "areas": [
+    "US-HI"
+   ],
+   "expected_count": 70,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 17,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 34,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 70,
+   "url": ""
+  },
+  "US-HI.sghib": {
+   "agency": "Hawaii DLNR reserves (DOFAW) (wild, state GIS table)",
+   "areas": [
+    "US-HI"
+   ],
+   "expected_count": 377,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 41,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 50,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 377,
+   "url": ""
+  },
+  "US-IA.sgiaa": {
+   "agency": "Iowa DNR (wild, state GIS table)",
+   "areas": [
+    "US-IA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 68,
+   "name_fields": [
+    "AREA_NAME"
+   ],
+   "queued": 59,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1846,
+   "url": ""
+  },
+  "US-IA.sgiab": {
+   "agency": "Iowa DNR (park, state GIS table)",
+   "areas": [
+    "US-IA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 58,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 17,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 344,
+   "url": ""
+  },
+  "US-IA.sgiac": {
+   "agency": "Iowa DNR (land, state GIS table)",
+   "areas": [
+    "US-IA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 126,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 50,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5450,
+   "url": ""
+  },
+  "US-IA.sgiad": {
+   "agency": "Iowa DNR (credit: Iowa Department of Natural Resources) (land, state GIS table)",
+   "areas": [
+    "US-IA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 57,
+   "name_fields": [
+    "NameUnit"
+   ],
+   "queued": 15,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 326,
+   "url": ""
+  },
+  "US-ID.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 17,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 17,
+   "url": ""
+  },
+  "US-ID.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 9,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 7,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 9,
+   "url": ""
+  },
+  "US-ID.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 3,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 10,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3,
+   "url": ""
+  },
+  "US-ID.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 30,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 30,
+   "url": ""
+  },
+  "US-ID.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 400,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 15,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 129,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 400,
+   "url": ""
+  },
+  "US-ID.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 400,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 15,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 129,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 400,
+   "url": ""
+  },
+  "US-ID.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 134,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 9,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 134,
+   "url": ""
+  },
+  "US-ID.sgidc": {
+   "agency": "BLM Idaho recreation area polygons (76) (land, state GIS table)",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 76,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 11,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 95,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 76,
+   "url": ""
+  },
+  "US-ID.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 13,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13,
+   "url": ""
+  },
+  "US-ID.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 99,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 99,
+   "url": ""
+  },
+  "US-IL.sgild": {
+   "agency": "IDNR Properties (wild, state GIS table)",
+   "areas": [
+    "US-IL"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 132,
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "queued": 51,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 383,
+   "url": ""
+  },
+  "US-IN.ind": {
+   "agency": "Indiana DNR properties",
+   "areas": [
+    "US-IN"
+   ],
+   "expected_count": 654,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 113,
+   "name_fields": [
+    "unitname"
+   ],
+   "queued": 84,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 654,
+   "url": ""
+  },
+  "US-IN.sgina": {
+   "agency": "Indiana DNR (land, state GIS table)",
+   "areas": [
+    "US-IN"
+   ],
+   "expected_count": 654,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 113,
+   "name_fields": [
+    "unitname"
+   ],
+   "queued": 84,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 654,
+   "url": ""
+  },
+  "US-IN.sginb": {
+   "agency": "Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office) (preserve, state GIS table)",
+   "areas": [
+    "US-IN"
+   ],
+   "expected_count": 196,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 33,
+   "name_fields": [
+    "unitname"
+   ],
+   "queued": 10,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 196,
+   "url": ""
+  },
+  "US-IN.sginc": {
+   "agency": "Indiana DNR + INHD (all managed lands) (land, state GIS table)",
+   "areas": [
+    "US-IN"
+   ],
+   "expected_count": 102,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 43,
+   "name_fields": [
+    "unitname"
+   ],
+   "queued": 40,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 102,
+   "url": ""
+  },
+  "US-MD.mdd": {
+   "agency": "Maryland DNR lands",
+   "areas": [
+    "US-MD"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 91,
+   "name_fields": [
+    "DNRName"
+   ],
+   "queued": 55,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 580,
+   "url": ""
+  },
+  "US-MD.sgmda": {
+   "agency": "Maryland DNR (state parks, WMAs, forests, natural resource areas) (land, state GIS table)",
+   "areas": [
+    "US-MD"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 91,
+   "name_fields": [
+    "DNRName"
+   ],
+   "queued": 55,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 580,
+   "url": ""
+  },
+  "US-MD.sgmdb": {
+   "agency": "Maryland DNR (Maryland Natural Areas) (preserve, state GIS table)",
+   "areas": [
+    "US-MD"
+   ],
+   "expected_count": 34,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 15,
+   "name_fields": [
+    "AREA_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 34,
+   "url": ""
+  },
+  "US-MN.sgmna": {
+   "agency": "Minnesota DNR (wild, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 62,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 43,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1753,
+   "url": ""
+  },
+  "US-MN.sgmnb": {
+   "agency": "Minnesota DNR (forest, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 60,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 58,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 60,
+   "url": ""
+  },
+  "US-MN.sgmnc": {
+   "agency": "Minnesota DNR (preserve, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 7,
+   "name_fields": [
+    "unit_name"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 239,
+   "url": ""
+  },
+  "US-MN.sgmne": {
+   "agency": "Minnesota DNR (state land admin: parks and trails) (park, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 80,
+   "name_fields": [
+    "mgtprjname"
+   ],
+   "queued": 40,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13483,
+   "url": ""
+  },
+  "US-MN.sgmnf": {
+   "agency": "DNR Management Units (forest, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 200,
+   "name_fields": [
+    "UNIT_NAME"
+   ],
+   "queued": 69,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 6715,
+   "url": ""
+  },
+  "US-MO.sgmoa": {
+   "agency": "Missouri State Parks (DNR) (park, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 76,
+   "name_fields": [
+    "LOC_NAME"
+   ],
+   "queued": 20,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 207,
+   "url": ""
+  },
+  "US-MO.sgmob": {
+   "agency": "Missouri Natural Areas (DNR) (preserve, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 36,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 6,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 36,
+   "url": ""
+  },
+  "US-MO.sgmoc": {
+   "agency": "Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 63,
+   "name_fields": [
+    "Area_Name"
+   ],
+   "queued": 325,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1047,
+   "url": ""
+  },
+  "US-MO.sgmod": {
+   "agency": "Missouri Department of Conservation (credit) (preserve, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 192,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 11,
+   "name_fields": [
+    "Area_Name"
+   ],
+   "queued": 62,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 192,
+   "url": ""
+  },
+  "US-MO.sgmoe": {
+   "agency": "Missouri DNR, Division of State Parks (credit) (wild, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 13,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "WA_NAME"
+   ],
+   "queued": 7,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13,
+   "url": ""
+  },
+  "US-MO.sgmof": {
+   "agency": "MDC Lands (forest, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 63,
+   "name_fields": [
+    "Area_Name"
+   ],
+   "queued": 325,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1047,
+   "url": ""
+  },
+  "US-MO.sgmog": {
+   "agency": "Natural Areas (preserve, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 192,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "Name"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 192,
+   "url": ""
+  },
+  "US-MO.sgmoh": {
+   "agency": "Missouri Department of Conservation (conservation area boundaries) (land, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 1049,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 63,
+   "name_fields": [
+    "Area_Name"
+   ],
+   "queued": 325,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1049,
+   "url": ""
+  },
+  "US-MT.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 13,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13,
+   "url": ""
+  },
+  "US-MT.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 4,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 4,
+   "url": ""
+  },
+  "US-MT.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 3,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3,
+   "url": ""
+  },
+  "US-MT.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 23,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 23,
+   "url": ""
+  },
+  "US-MT.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 162,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 70,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 162,
+   "url": ""
+  },
+  "US-MT.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 162,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 70,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 162,
+   "url": ""
+  },
+  "US-MT.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 83,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 10,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 83,
+   "url": ""
+  },
+  "US-MT.sgmtd": {
+   "agency": "Managed Areas (land, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 103,
+   "name_fields": [
+    "MANAME"
+   ],
+   "queued": 123,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1531,
+   "url": ""
+  },
+  "US-MT.sgmte": {
+   "agency": "Montana Fish, Wildlife & Parks (state park boundaries) (park, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 55,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 37,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 19,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 55,
+   "url": ""
+  },
+  "US-MT.sgmtf": {
+   "agency": "Montana Fish, Wildlife & Parks (fishing access site boundaries) (land, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 58,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 34,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 333,
+   "url": ""
+  },
+  "US-MT.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-MT.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 86,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 9,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 86,
+   "url": ""
+  },
+  "US-ND.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-ND.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 3,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3,
+   "url": ""
+  },
+  "US-ND.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 3,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3,
+   "url": ""
+  },
+  "US-ND.sgndd": {
+   "agency": "North Dakota Forest Service (via ND Dept of Mineral Resources server) (forest, state GIS table)",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 27,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "DESCRIPTION"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 27,
+   "url": ""
+  },
+  "US-NE.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-NE"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-NH.nhc": {
+   "agency": "NH GRANIT conservation and public lands",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 13501,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 93,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 90,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13501,
+   "url": ""
+  },
+  "US-NH.sgnha": {
+   "agency": "NH GRANIT (land, state GIS table)",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 13501,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 93,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 90,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13501,
+   "url": ""
+  },
+  "US-NH.sgnhc": {
+   "agency": "NH GRANIT (recreation inventory areas) (land, state GIS table)",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 2718,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 90,
+   "name_fields": [
+    "site"
+   ],
+   "queued": 77,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2718,
+   "url": ""
+  },
+  "US-NH.sgnhd": {
+   "agency": "NH GRANIT conservation lands (UNH / NH OSI) (land, state GIS table)",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 93,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 90,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 13501,
+   "url": ""
+  },
+  "US-NJ.sgnja": {
+   "agency": "New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table)",
+   "areas": [
+    "US-NJ"
+   ],
+   "expected_count": 117,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FACILITY"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 117,
+   "url": ""
+  },
+  "US-NM.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 4,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 4,
+   "url": ""
+  },
+  "US-NM.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-NM.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 21,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 6,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 21,
+   "url": ""
+  },
+  "US-NM.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 45,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 45,
+   "url": ""
+  },
+  "US-NM.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 144,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 20,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 144,
+   "url": ""
+  },
+  "US-NM.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 144,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 20,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 144,
+   "url": ""
+  },
+  "US-NM.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 114,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 114,
+   "url": ""
+  },
+  "US-NM.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 19,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 19,
+   "url": ""
+  },
+  "US-NM.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-NM"
+   ],
+   "expected_count": 111,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 111,
+   "url": ""
+  },
+  "US-NV.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 176,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 26,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 99,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 176,
+   "url": ""
+  },
+  "US-NV.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 110,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 28,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 83,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 110,
+   "url": ""
+  },
+  "US-NV.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 25,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 9,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 25,
+   "url": ""
+  },
+  "US-NV.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 89,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 89,
+   "url": ""
+  },
+  "US-NV.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 151,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 74,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 151,
+   "url": ""
+  },
+  "US-NV.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 151,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 74,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 151,
+   "url": ""
+  },
+  "US-NV.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 165,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 165,
+   "url": ""
+  },
+  "US-NV.sgnvb": {
+   "agency": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 759,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 31,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 759,
+   "url": ""
+  },
+  "US-NV.sgnvd": {
+   "agency": "Nevada (SCORP recreation areas) (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 756,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 27,
+   "name_fields": [
+    "name"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 756,
+   "url": ""
+  },
+  "US-NV.sgnve": {
+   "agency": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks) (park, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 30,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 21,
+   "name_fields": [
+    "landname"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 30,
+   "url": ""
+  },
+  "US-NV.sgnvf": {
+   "agency": "BLM Nevada national monuments + NCAs (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 10,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 10,
+   "url": ""
+  },
+  "US-NV.sgnvh": {
+   "agency": "ACEC Designated Polygons (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 165,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 165,
+   "url": ""
+  },
+  "US-NV.sgnvi": {
+   "agency": "Bureau of Land Management, Nevada (wild horse and burro herd management areas) (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 86,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 24,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 77,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 86,
+   "url": ""
+  },
+  "US-NV.sgnvj": {
+   "agency": "Nevada Department of Wildlife wildlife management areas (NDOWWMAs) (wild, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 18,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "WMA_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 18,
+   "url": ""
+  },
+  "US-NV.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 103,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 34,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 14,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 103,
+   "url": ""
+  },
+  "US-NV.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 148,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 6,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 148,
+   "url": ""
+  },
+  "US-OH.sgohf": {
+   "agency": "Ohio DNR, Office of Information Technology (credit) (land, state GIS table)",
+   "areas": [
+    "US-OH"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 134,
+   "name_fields": [
+    "Name_Label"
+   ],
+   "queued": 98,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 865,
+   "url": ""
+  },
+  "US-OH.sgohg": {
+   "agency": "Ohio DNR (credit): city, county + NGO lands (land, state GIS table)",
+   "areas": [
+    "US-OH"
+   ],
+   "expected_count": 623,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FIRST_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 623,
+   "url": ""
+  },
+  "US-OK.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-OK"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-OR.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 46,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 15,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 17,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 46,
+   "url": ""
+  },
+  "US-OR.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 25,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 14,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 25,
+   "url": ""
+  },
+  "US-OR.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 5,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
+   "url": ""
+  },
+  "US-OR.osp": {
+   "agency": "Oregon State Parks",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 118,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 60,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 422,
+   "url": ""
+  },
+  "US-OR.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 184,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 39,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 184,
+   "url": ""
+  },
+  "US-OR.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 2354,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 115,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2354,
+   "url": ""
+  },
+  "US-OR.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 2354,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 115,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2354,
+   "url": ""
+  },
+  "US-OR.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 226,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 10,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 29,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 226,
+   "url": ""
+  },
+  "US-OR.sgora": {
+   "agency": "Oregon Parks & Recreation Department (park, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 118,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 60,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 422,
+   "url": ""
+  },
+  "US-OR.sgore": {
+   "agency": "State of Oregon (Oregon parklands) (park, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 139,
+   "name_fields": [
+    "PARK_NAME"
+   ],
+   "queued": 109,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 6343,
+   "url": ""
+  },
+  "US-OR.sgorf": {
+   "agency": "BLM Oregon/Washington recreation management areas (2,188) (land, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "RMA_NAME"
+   ],
+   "queued": 93,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2153,
+   "url": ""
+  },
+  "US-OR.sgorg": {
+   "agency": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors) (wild, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 132,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "WSR_NAME"
+   ],
+   "queued": 28,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 132,
+   "url": ""
+  },
+  "US-OR.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 12,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 12,
+   "url": ""
+  },
+  "US-OR.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 150,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 15,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 150,
+   "url": ""
+  },
+  "US-PA.sgpaa": {
+   "agency": "Pennsylvania DCNR Bureau of State Parks (park, state GIS table)",
+   "areas": [
+    "US-PA"
+   ],
+   "expected_count": 125,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 114,
+   "name_fields": [
+    "PARK_NAME"
+   ],
+   "queued": 19,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 125,
+   "url": ""
+  },
+  "US-PA.sgpab": {
+   "agency": "Pennsylvania State Parks (DCNR) (park, state GIS table)",
+   "areas": [
+    "US-PA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 107,
+   "name_fields": [
+    "StParkName"
+   ],
+   "queued": 22,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 240,
+   "url": ""
+  },
+  "US-PA.sgpad": {
+   "agency": "PA DCNR Bureau of State Parks (credit) (preserve, state GIS table)",
+   "areas": [
+    "US-PA"
+   ],
+   "expected_count": 23,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 23,
+   "url": ""
+  },
+  "US-PA.sgpae": {
+   "agency": "State Forests (forest, state GIS table)",
+   "areas": [
+    "US-PA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 18,
+   "name_fields": [
+    "SF_Name"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 662,
+   "url": ""
+  },
+  "US-RI.sgria": {
+   "agency": "Rhode Island DEM (land, state GIS table)",
+   "areas": [
+    "US-RI"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1039,
+   "url": ""
+  },
+  "US-RI.sgric": {
+   "agency": "Rhode Island DEM (state conservation land) (land, state GIS table)",
+   "areas": [
+    "US-RI"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1039,
+   "url": ""
+  },
+  "US-SD.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 6,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 6,
+   "url": ""
+  },
+  "US-SD.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 11,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 11,
+   "url": ""
+  },
+  "US-SD.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 11,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 11,
+   "url": ""
+  },
+  "US-SD.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 3,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3,
+   "url": ""
+  },
+  "US-SD.sgsda": {
+   "agency": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) (park, state GIS table)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 133,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 75,
+   "name_fields": [
+    "AreaName"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 133,
+   "url": ""
+  },
+  "US-SD.sgsdb": {
+   "agency": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) (land, state GIS table)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 134,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 75,
+   "name_fields": [
+    "AreaName"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 134,
+   "url": ""
+  },
+  "US-TN.sgtni": {
+   "agency": "Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table)",
+   "areas": [
+    "US-TN"
+   ],
+   "expected_count": 228,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 61,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 66,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 228,
+   "url": ""
+  },
+  "US-TX.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-TX.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-TX.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 5,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
+   "url": ""
+  },
+  "US-TX.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 35,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 35,
+   "url": ""
+  },
+  "US-TX.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 78,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 78,
+   "url": ""
+  },
+  "US-TX.sgtxb": {
+   "agency": "Texas Parks & Wildlife Department (public hunting lands) (wild, state GIS table)",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 27,
+   "name_fields": [
+    "Name"
+   ],
+   "queued": 21,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 463,
+   "url": ""
+  },
+  "US-TX.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-TX.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 19,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 19,
+   "url": ""
+  },
+  "US-UT.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 46,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 18,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 85,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 46,
+   "url": ""
+  },
+  "US-UT.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 24,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 9,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 48,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 24,
+   "url": ""
+  },
+  "US-UT.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 37,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 29,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 37,
+   "url": ""
+  },
+  "US-UT.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 105,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 28,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 105,
+   "url": ""
+  },
+  "US-UT.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 181,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 28,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 233,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 181,
+   "url": ""
+  },
+  "US-UT.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 181,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 28,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 233,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 181,
+   "url": ""
+  },
+  "US-UT.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 100,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 6,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 82,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 100,
+   "url": ""
+  },
+  "US-UT.sgutd": {
+   "agency": "BLM Utah State Office (congressionally designated recreation areas) (land, state GIS table)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 26,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RECS_NAME"
+   ],
+   "queued": 18,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 26,
+   "url": ""
+  },
+  "US-UT.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 57,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 27,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 31,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 57,
+   "url": ""
+  },
+  "US-UT.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 430,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 47,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 44,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 430,
+   "url": ""
+  },
+  "US-VA.sgvag": {
+   "agency": "Virginia Department of Wildlife Resources (wild, state GIS table)",
+   "areas": [
+    "US-VA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "WMA_NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 242,
+   "url": ""
+  },
+  "US-VA.sgvah": {
+   "agency": "Virginia Dept. of Historic Resources (credit) (land, state GIS table)",
+   "areas": [
+    "US-VA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "PropertyNames"
+   ],
+   "queued": 26,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 3169,
+   "url": ""
+  },
+  "US-VT.sgvta": {
+   "agency": "Vermont Agency of Natural Resources (preserve, state GIS table)",
+   "areas": [
+    "US-VT"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 57,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 45,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 515,
+   "url": ""
+  },
+  "US-VT.vta": {
+   "agency": "Vermont ANR lands",
+   "areas": [
+    "US-VT"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 73,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 968,
+   "url": ""
+  },
+  "US-WA.nca": {
+   "agency": "BLM national monuments / conservation areas",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "queued": 19,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-WA.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 14,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 14,
+   "url": ""
+  },
+  "US-WA.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 244,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 244,
+   "url": ""
+  },
+  "US-WA.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 244,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 24,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 244,
+   "url": ""
+  },
+  "US-WA.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 22,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 22,
+   "url": ""
+  },
+  "US-WA.sgorf": {
+   "agency": "BLM Oregon/Washington recreation management areas (2,188) (land, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RMA_NAME"
+   ],
+   "queued": 6,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 228,
+   "url": ""
+  },
+  "US-WA.sgwab": {
+   "agency": "Washington Department of Fish and Wildlife (wild, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 729,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 161,
+   "name_fields": [
+    "ManagedPlaceName"
+   ],
+   "queued": 101,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 729,
+   "url": ""
+  },
+  "US-WA.sgwac": {
+   "agency": "Washington State Department of Natural Resources (preserve, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 18844,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "PARCEL_LABEL_NM"
+   ],
+   "queued": 69,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 18844,
+   "url": ""
+  },
+  "US-WA.sgwad": {
+   "agency": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks) (land, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 2148,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 137,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 167,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2148,
+   "url": ""
+  },
+  "US-WA.sgwaf": {
+   "agency": "Washington Dept. of Fish and Wildlife (credit: WDFW) (wild, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 200,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 119,
+   "name_fields": [
+    "WildlifeAreaUnitName"
+   ],
+   "queued": 50,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 218,
+   "url": ""
+  },
+  "US-WA.sgwag": {
+   "agency": "Washington Dept. of Fish and Wildlife (credit: WDFW) (wild, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 33,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "WildlifeAreaName"
+   ],
+   "queued": 121,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 33,
+   "url": ""
+  },
+  "US-WA.wbl": {
+   "agency": "BLM wilderness",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-WA.wdw": {
+   "agency": "WDFW wildlife areas",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 220,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "WLA_Name"
+   ],
+   "queued": 118,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 220,
+   "url": ""
+  },
+  "US-WA.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-WI.sgwia": {
+   "agency": "Wisconsin DNR (land, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 1796,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 198,
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "queued": 115,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1796,
+   "url": ""
+  },
+  "US-WI.sgwib": {
+   "agency": "Wisconsin State Parks (DNR) (park, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 80,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 59,
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "queued": 18,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 80,
+   "url": ""
+  },
+  "US-WI.sgwic": {
+   "agency": "Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 661,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 18,
+   "name_fields": [
+    "SNA_NAME"
+   ],
+   "queued": 71,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 661,
+   "url": ""
+  },
+  "US-WI.sgwid": {
+   "agency": "Wisconsin DNR Bureau of Facilities and Lands (land, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 82488,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 195,
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "queued": 110,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 82488,
+   "url": ""
+  },
+  "US-WI.sgwie": {
+   "agency": "Wisconsin DNR (county forests, from the counties) (forest, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 30,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "FR_PROP_NAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 30,
+   "url": ""
+  },
+  "US-WI.sgwif": {
+   "agency": "Natural Area Parcel Ownership (preserve, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 789,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 19,
+   "name_fields": [
+    "SNA_NAME"
+   ],
+   "queued": 70,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 789,
+   "url": ""
+  },
+  "US-WI.wid": {
+   "agency": "Wisconsin DNR managed properties",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 1796,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 198,
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "queued": 115,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1796,
+   "url": ""
+  },
+  "US-WV.sgwvc": {
+   "agency": "West Virginia State Parks (WVDOT boundaries server) (park, state GIS table)",
+   "areas": [
+    "US-WV"
+   ],
+   "expected_count": 36,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 35,
+   "name_fields": [
+    "Loc_Nm"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 36,
+   "url": ""
+  },
+  "US-WY.hab": {
+   "agency": "BLM herd areas",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 39,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 12,
+   "name_fields": [
+    "HA_NAME"
+   ],
+   "queued": 51,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 39,
+   "url": ""
+  },
+  "US-WY.hma": {
+   "agency": "BLM herd management areas",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 16,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 10,
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "queued": 14,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 16,
+   "url": ""
+  },
+  "US-WY.rma": {
+   "agency": "BLM recreation areas",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
+   "url": ""
+  },
+  "US-WY.rst": {
+   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 81,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 100,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 81,
+   "url": ""
+  },
+  "US-WY.sgakg": {
+   "agency": "BLM recreation SITE polygons (national, 3,478) (land, state GIS table)",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 81,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "queued": 100,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 81,
+   "url": ""
+  },
+  "US-WY.sgakh": {
+   "agency": "BLM Areas of Critical Environmental Concern (national, 1,120) (land, state GIS table)",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 53,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "queued": 33,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 53,
+   "url": ""
+  },
+  "US-WY.wsa": {
+   "agency": "BLM wilderness study areas",
+   "areas": [
+    "US-WY"
+   ],
+   "expected_count": 55,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 31,
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 55,
+   "url": ""
+  },
   "YT-campgrounds": {
    "agency": "Yukon campgrounds and parks",
    "areas": [

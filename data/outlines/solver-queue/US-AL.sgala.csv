@@ -1,0 +1,8 @@
+ref,name,lat,lon,why,candidates
+US-1034,Blue Springs State Park,31.66,-85.51,a same-name outline is nearby but the pin is outside it,Blue Springs State Park
+US-1037,Cheaha Resort State Park,33.4783,-85.8096,pin is inside an outline but no name agrees,Cheaha State Park
+US-1039,De Soto State Park,34.5038,-85.6337,pin is inside an outline but no name agrees,Desoto State Park
+US-1043,Joe Wheeler State Park,34.8086,-87.3132,a same-name outline is nearby but the pin is outside it,Joe Wheeler State Park
+US-1046,Lakepoint Resort State Park,31.9897,-85.1114,pin is inside an outline but no name agrees,Lakepoint State Park
+US-12411,TVA Second Creek Access Area National Park,34.846,-87.3657,pin is inside an outline but no name agrees,Joe Wheeler State Park
+US-13083,TVA Wheeler Dam Public Park National Recreation Area,34.7959,-87.3785,pin is inside an outline but no name agrees,Joe Wheeler State Park
