@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09 15:17",
+ "updated": "2026-11-09 18:11",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -855,6 +855,32 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "fs-portion-redbird-crest-trail-redbird-wma-closed-prescribed-bu": {
+   "who": "Daniel Boone National Forest",
+   "title": "Portion of Redbird Crest Trail, Redbird WMA closed for prescribed burn, November 10",
+   "text": "A portion of the Redbird Wildlife Management Area in Leslie County will be closed during planned prescribed burn operations on Tuesday, November 10, 2026. Sugar Creek Trailhead and Redbird Crest Trail Sections 4, 5 and 6 will also be closed during operations and may remain closed for several days…",
+   "link": "https://www.fs.usda.gov/r08/danielboone/alerts/portion-redbird-crest-trail-redbird-wma-closed-prescribed-burn-november-10",
+   "routine": true,
+   "first": "2026-11-09",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
+   "refs": [
+    "US-10159"
+   ]
+  },
+  "fs-indian-creek-rd-9b-camping-area-closed-prescribed-burn-opera": {
+   "who": "Daniel Boone National Forest",
+   "title": "Indian Creek Rd 9B, camping area closed for prescribed burn operations, November 10",
+   "text": "Indian Creek Camping Area and Indian Creek Road 9B in the Red River Gorge in Menifee County will be closed during planned prescribed burn operations in the Bear Wallow Burn Unit on Tuesday, November 10, 2026.See the Southern Region Prescribed Burn Tracker for a map of all the Daniel Boone National…",
+   "link": "https://www.fs.usda.gov/r08/danielboone/alerts/indian-creek-rd-9b-camping-area-closed-prescribed-burn-operations-november",
+   "routine": true,
+   "first": "2026-11-09",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
