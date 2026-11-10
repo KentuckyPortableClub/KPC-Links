@@ -23,6 +23,8 @@ WANT = {'US-11316': 'sgakg13903', 'US-12471': 'sgakg13505', 'US-11003': 'sgakg97
         'US-12060': 'sgnya64818', 'US-5308': 'sgnya66353', 'US-3140': 'sgvta430', 'US-0754': 'sgakd1159', 'US-11900': 'sgakd1245', 'US-0822': 'sgakd1122'}
 for ref, rid in WANT.items():
     v = o.get(ref) or {}
+    if rid in ((v.get('join_held') or {}).get('ids') or []):   # Nov 9 6:05 PM CST (Quality regrade v2 must-fix h): held, not joined
+        check(rid not in (v.get('join') or []) and rid in (v['join_held'].get('fp') or {}), f'{ref} {rid} is HELD for Brandon (not sure under t927u), not joined'); continue
     check(rid in (v.get('join') or []) and rid in (v.get('fp') or {}) and not v.get('none') and rid not in (v.get('no') or []),
           f'{ref} joins {rid} with its saved record id')
 # Nov 9 evening: Brandon t918u ('i agree to new number and if the boundary matches the park yes') decided both: joined, un-pended

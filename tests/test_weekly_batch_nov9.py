@@ -33,11 +33,15 @@ WSR = {'US-0197': ['fwsr208', 'fwsr41'], 'US-0894': ['fwsr149', 'fwsr252', 'fwsr
        'US-12800': ['fwsr168'], 'US-12801': ['fwsr231']}
 for r, ids in WSR.items():
     e = ov.get(r) or {}
+    if (e.get('join_held') or {}).get('ids'):   # Nov 9 6:05 PM CST (Quality regrade v2 must-fix h): not sure under Brandon t927u -> held, NOT joined
+        check(set(ids) <= set(e['join_held']['ids']) and not set(ids) & set(e.get('join') or []) and all(i in e['join_held'].get('fp', {}) for i in ids),
+              f'{r} WSR corridor join {ids} is HELD for Brandon (not sure under t927u), fingerprint kept in join_held'); continue
     check(set(ids) <= set(e.get('join') or []) and all(i in (e.get('fp') or {}) for i in ids) and not set(ids) & set(e.get('no') or []),
           f'{r} WSR corridor join {ids} is back with its fingerprint')
 check(ov['US-0197'].get('no') == ['wsrc4'], 'US-0197 keeps its Nov 2 NO on wsrc4')
 # 2. the Nov 8 KPC-Data rows are here (spot checks)
-check('sggab44' in (ov.get('US-3722') or {}).get('join', []), 'US-3722 New Echota hand-layer join (Nov 8) is here')
+check('sggab44' in ((ov.get('US-3722') or {}).get('join_held') or {}).get('ids', []) and 'sggab44' not in (ov.get('US-3722') or {}).get('join', []),
+      'US-3722 New Echota hand-layer join (Nov 8) is kept but HELD (name differs: not sure under t927u; Quality regrade v2 must-fix h)')
 check('sggaa904' in (ov.get('US-12418') or {}).get('fp', {}), 'US-12418 Tallulah fingerprint of Nov 8 is here')
 check('Quality grade PR#50' in (ov.get('US-2200') or {}).get('why', ''), 'US-2200 carries the Nov 8 Quality unjoin note')
 ca = json.load(open(ROOT / 'data/ca-key/overrides.json', encoding='utf-8'))['parks']
