@@ -103,16 +103,21 @@
    "held_joins": 33,
    "acres_off": 4,
    "acres_checked": 7053
+  },
+  {
+   "build": "US-42821613637",
+   "checked": "2026-11-10 15:31",
+   "far_pins": 85,
+   "pins_outside": 85,
+   "outline_to_pin": 14,
+   "flat_outlines": 383,
+   "overrides_missed": 87,
+   "held_joins": 27,
+   "acres_off": 3,
+   "acres_checked": 7427
   }
  ],
  "acres_off_latest": [
-  {
-   "area": "US-CO",
-   "park": "US-0195",
-   "key_acres": 68,
-   "official_acres": 1206,
-   "from": "tract side file"
-  },
   {
    "area": "US-MN",
    "park": "US-11024",
@@ -135,5 +140,7 @@
    "from": "tract side file"
   }
  ],
- "last_jumps": []
+ "last_jumps": [
+  "overrides_missed 66 -> 87"
+ ]
 }
