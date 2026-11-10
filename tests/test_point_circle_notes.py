@@ -62,6 +62,8 @@ def test_every_card_wired():
     assert 's.pc_note[p.ref]' in fn('parkPop')                                                     # park popup on the 2-fer map
     assert 'pcLine([s])' in fn('patchPop')                                                         # overlap popup on the map
     assert 'pcNotes(g.best' in fn('fileOut')                                                       # GPX / KML export
+    assert 'APX_NOTE' in fn('fileOut') and 'apxPair' in fn('fileOut')                             # approximate 2-fer note on GPX/KML
+    assert "Not the official boundary. We believe this is a 2-fer, but it needs more research." in ov
     assert 'ref:s.c' in (ROOT / 'kpc-us-planner.js').read_text(encoding='utf-8')                   # Tool Box park card grade line
     mc = (ROOT / 'kpc-maprep-check.js').read_text(encoding='utf-8')
     assert 'KPCB.pcNote(_pc)' in mc                                                                # mapping rep checklist card

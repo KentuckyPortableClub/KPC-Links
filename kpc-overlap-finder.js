@@ -552,6 +552,8 @@
   /* ---------- export, share, offline, report ---------- */
   function fileOut(kind) {
     var g = cur; if (!g) return; var nmx = g.refs.join('+'), desc = esc(g.refs.map(function (r) { return r + ' ' + nm(g, r); }).join(' + ')) + ' · ' + esc(SHORT) + pcNotes(g.best || {}).map(function (x) { return ' · ' + esc(x[0] + ': ' + x[1]); }).join('');
+    var ps = visiblePatches(g) || g.patches || [g.best].filter(Boolean);
+    if (apxPair(ps) || isApxSpot(g.best)) desc += ' · ' + esc(apxNoteOf(ps) || APX_NOTE);
     var s = '';
     if (kind === 'gpx') { s = '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="KPC Park Overlap Finder" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>' + esc(nmx) + '</name><desc>' + desc + '</desc></metadata>\n' +
       g.rings.map(function (x, i) { return '<trk><name>' + esc(nmx) + ' patch ' + (i + 1) + '</name><desc>' + desc + '</desc><trkseg>' + x.ring.concat([x.ring[0]]).map(function (p) { return '<trkpt lat="' + p[1] + '" lon="' + p[0] + '"/>'; }).join('') + '</trkseg></trk>'; }).join('\n') +

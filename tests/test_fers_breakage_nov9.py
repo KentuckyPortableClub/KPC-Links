@@ -110,4 +110,45 @@ with tempfile.TemporaryDirectory() as t:
         a = r['areas'].get('US-CO') or {}
         check(r.get('mode', '').startswith('live save') and a.get('live_before') == 1 and a.get('live_now') == 0, 'post-line compares a live save with the save before it')
     except Exception as e: check(False, f'post-line PREV_DIR: {e}')  # noqa: BLE001
+
+# official outline always wins: a picture trace must not replace it (Salato US-10172)
+K.APX_OUT = {'US-10172': {'st': 'US-KY', 'name': 'Salato Wildlife Refuge', 'rings': [[[0,0],[1,0],[1,1],[0,0]]],
+                          'src': 'picture trace of an official map'}}
+K.APX_PARKS.discard('US-10172')
+official = {'st': 'US-KY', 'ids': ['bpad|Salato Wildlife Refuge'],
+            'names': {'bpad|Salato Wildlife Refuge': 'Salato Wildlife Refuge'}}
+parks = {'US-10172': dict(official)}
+pin = {'US-10172': ('Salato Wildlife Refuge', 38.1777, -84.9231, '', 'Other', 'KY')}
+n_skip = {}
+K.add_approx_outlines(parks, pin, n_skip, 'ky', root=str(HERE))
+check(parks['US-10172']['ids'] == ['bpad|Salato Wildlife Refuge'] and not parks['US-10172'].get('approx')
+      and 'US-10172' not in K.APX_PARKS,
+      'add_approx_outlines does not overwrite an official outline (Salato US-10172)')
+# official in the key wins even when the park is not yet in the live parks dict
+import kpc_fers_key_status as KS
+KS.KEY_STATUS['US-10172'] = 'official'
+KS.KEY_BY_AREA.setdefault('US-10172', {})['US-KY'] = 'official'
+parks2 = {}
+K.add_approx_outlines(parks2, pin, {}, 'ky', root=str(HERE))
+check('US-10172' not in parks2, 'a picture trace is not entered when the key already has an official outline')
+# a park with no official outline still gets the trace
+K.APX_OUT['ZZ-TRACE-1'] = {'st': 'US-ZZ', 'name': 'Trace Park', 'rings': [[[0,0],[1,0],[1,1],[0,0]]],
+                           'src': 'picture trace of an official map'}
+parks3 = {}
+pin3 = {'ZZ-TRACE-1': ('Trace Park', 1, 2, '', 'Park', 'ZZ')}
+K.add_approx_outlines(parks3, pin3, {}, 'na', root=str(HERE))
+check(parks3.get('ZZ-TRACE-1', {}).get('approx') and parks3['ZZ-TRACE-1'].get('rings'),
+      'a picture trace fills a park that has no official outline')
+K.APX_OUT.pop('ZZ-TRACE-1', None)
+K.APX_PARKS.discard('ZZ-TRACE-1')
+
+# two parks that join the exact same official records go to the person-review list, not a candidate
+same_ids = {'CA-0748': {'st': 'CA-BC', 'ids': ['20477', '20385', 'BC BC Parks :745']},
+            'CA-4282': {'st': 'CA-BC', 'ids': ['20385', '20477', 'BC BC Parks :745']},
+            'CA-0001': {'st': 'CA-BC', 'ids': ['999']}}
+check(K.identical_records_hold(same_ids, ['CA-0748', 'CA-4282']) == K.SAME_RECORDS_HOLD,
+      'West Twin-style identical records are a person-review hold')
+check(K.identical_records_hold(same_ids, ['CA-0748', 'CA-0001']) == '',
+      'parks with different official records are not held for identical records')
+
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

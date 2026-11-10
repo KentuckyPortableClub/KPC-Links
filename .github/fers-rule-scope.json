@@ -30,6 +30,17 @@
           "approximate-tier"
         ]
       }
+    },
+    {
+      "id": "2026-11-10-official-wins-same-records",
+      "when": "2026-11-10",
+      "why": "A picture-trace outline never replaces an official outline already on file. Two parks that join the exact same official records go to the person-review list, not the candidate list.",
+      "scope": {
+        "flags": [
+          "approximate-tier",
+          "same-records"
+        ]
+      }
     }
   ]
 }

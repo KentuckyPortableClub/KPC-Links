@@ -693,15 +693,35 @@ def load_apx_outlines(root='.'):
     return APX_OUT
 
 
-def add_approx_outlines(parks, PIN, skip, region=None):
-    """Keep key approximate outlines (do not drop them) and enter passed picture traces.
+def has_official_outline(ref, parks=None, root=None):
+    """True when this park already has an official (not approximate, not point-circle) outline.
+    The official outline always wins; a picture trace must not replace it."""
+    cur = (parks or {}).get(ref) or {}
+    ids = [i for i in (cur.get('ids') or []) if i not in (None, '') and not str(i).startswith(('apx|', 'pc|'))]
+    if ids and not cur.get('approx') and not cur.get('pc'):
+        return True
+    try:
+        from kpc_fers_key_status import status_for, load_key_status
+        load_key_status(root or '.')
+        if status_for(ref) == 'official':
+            return True
+    except Exception:
+        pass  # noqa: BLE001
+    return False
+
+
+def add_approx_outlines(parks, PIN, skip, region=None, root=None):
+    """Enter passed picture traces only for parks that have no official outline.
+    An official outline already in parks or in the key always wins (it is never overwritten).
     WDPA / Protected Planet outlines are skipped for the public list."""
     region = region if region is not None else REGION
-    for ref, v in (load_apx_outlines() or {}).items():
+    for ref, v in (load_apx_outlines(root or '.') or {}).items():
         if is_wdpa_outline(v):
             WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'})
             continue
         if ref not in PIN: continue
+        if has_official_outline(ref, parks, root=root):
+            continue  # official wins (e.g. Salato US-10172, KDFWR HQ)
         st = v.get('st') or ('CA-' + PIN[ref][5] if str(ref).startswith('CA-') else 'US-' + PIN[ref][5])
         if not str(st).startswith(('US-', 'CA-', 'W-')):
             st = ('CA-' + st) if str(ref).startswith('CA-') else ('W-' + st if region == 'world' else 'US-' + st)
@@ -720,10 +740,10 @@ def add_approx_outlines(parks, PIN, skip, region=None):
 
 
 def inject_apx_geom(G, parks, refs=None):
-    """Use the picture-trace rings (and point-circle rings already handled in download)."""
+    """Use picture-trace rings only when this park has no official outline."""
     for r, p in (parks or {}).items():
         if refs is not None and r not in refs: continue
-        if p.get('rings'):
+        if p.get('rings') and p.get('approx') and not has_official_outline(r, parks):
             G[r] = [p['rings']]
             MAPDATE[r] = p.get('approx_src') or 'approximate picture trace'
             APX_PARKS.add(r)
@@ -734,7 +754,7 @@ def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
     be read is left out (dead certain: half a park is not the park)."""
     _pc = {r: [[pc_ring(*PC[r]['pt'])]] for r in refs if r in PCT}   # Brandon t950u: the circle, never a download
-    _apx = {r: [parks[r]['rings']] for r in refs if (parks.get(r) or {}).get('rings')}
+    _apx = {r: [parks[r]['rings']] for r in refs if (parks.get(r) or {}).get('rings') and (parks.get(r) or {}).get('approx') and not has_official_outline(r, parks)}
     refs = [r for r in refs if r not in PCT and r not in _apx]
     want = {}
     for ref in refs:
@@ -2947,6 +2967,41 @@ def hold_no_owner(spots, root=None):
     return n
 
 
+
+SAME_RECORDS_HOLD = ('not sure: both parks join the same official records '
+                     '(one place, two park numbers): a person looks')
+
+
+def join_record_ids(park):
+    """Normalized official record ids for one park (picture-trace and point-circle ids left out)."""
+    ids = []
+    p = park or {}
+    raw = p.get('ids') or []
+    if not raw and (p.get('m') or p.get('tracts')):
+        raw = [x[0] for x in (p.get('m') or p.get('tracts') or []) if isinstance(x, (list, tuple)) and x]
+    for i in raw:
+        if i in (None, '') or str(i).startswith(('apx|', 'pc|')):
+            continue
+        ids.append(str(i))
+    return frozenset(ids)
+
+
+def identical_record_refs(parks, refs):
+    """Groups of parks in this pair that join the exact same non-empty set of official records."""
+    by = {}
+    for r in refs or []:
+        ids = join_record_ids((parks or {}).get(r))
+        if not ids:
+            continue
+        by.setdefault(ids, []).append(r)
+    return [v for v in by.values() if len(v) >= 2]
+
+
+def identical_records_hold(parks, refs):
+    """Status string when two parks in the pair join the same official records; else ''."""
+    return SAME_RECORDS_HOLD if identical_record_refs(parks, refs) else ''
+
+
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
     refs = s['refs']
@@ -2960,6 +3015,12 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else ''
     if _klm:
         s['status'] = _klm; return
+    _same = identical_records_hold(parks, refs)
+    if _same:
+        s['status'] = _same
+        s['person_review'] = True
+        s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}
+        return
     # Approximate or point-circle halves stay in the approximate 2-fer tier (they are not held).
     # pc_tag writes the public note and thinner-card fields.
     load_key_status()
