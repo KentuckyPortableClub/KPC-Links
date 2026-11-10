@@ -1,6 +1,6 @@
 {
  "key": "us",
- "count": 27,
+ "count": 26,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -12,21 +12,9 @@
    "was_g": "official",
    "held_ids": "2165",
    "held_names": "",
-   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km))))",
+   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km)))))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person adds the id to the park's signed overrides.json 'join'"
-  },
-  {
-   "park": "US-1249",
-   "area": "US-CO",
-   "name": "Vega State Park",
-   "pin_km": 7.92,
-   "was_g": "official",
-   "held_ids": "sgcoc873",
-   "held_names": "",
-   "reason": "a new join (sgcoc873) on a park already joined: the outline is 7.9 km from the POTA pin (over 5 km for a new join); the earlier joins stay",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person verifies; to keep the new piece add it to overrides.json 'join' (or a signed answer-sheet row)"
   },
   {
    "park": "US-10844",
