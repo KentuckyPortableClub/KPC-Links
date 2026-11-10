@@ -172,7 +172,7 @@ def http_fetcher(offline=False):
         pacer.wait(M.parts(u)[0])
         req = urllib.request.Request(u, method=method, headers={'User-Agent': M.UA})
         try:
-            with urllib.request.urlopen(req, timeout=30) as r: return r.status, {k.lower(): v for k, v in r.headers.items()}, (r.read(limit) if method == 'GET' else b'')
+            with M.host_checked_opener().open(req, timeout=30) as r: return r.status, {k.lower(): v for k, v in r.headers.items()}, (r.read(limit) if method == 'GET' else b'')
         except urllib.error.HTTPError as e: return e.code, {k.lower(): v for k, v in (e.headers or {}).items()}, b''
 
     def robots(u):

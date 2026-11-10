@@ -38,32 +38,94 @@ check('who_for: a direct file whose robots.txt says no does not make it a bot\'s
 check('who_for: never-contact stays never, file or not', M.who_for('https://ncnhde.natureserve.org/arcgis/x', file_url='https://irma.nps.gov/x')[0] == 'never')
 check('direct_file_of reads the row note', M.direct_file_of({'note': 'x direct file: https://a.gov/f.zip y'}) == 'https://a.gov/f.zip' and M.direct_file_of({}) is None)
 
-calls = []
-def opener(req, timeout=0):
-    calls.append(req.full_url)
-    if req.full_url.endswith('/robots.txt'): raise M.urllib.error.HTTPError(req.full_url, 403, 'no', {}, None)
-    return io.BytesIO(b'data')
-for bad in ('https://services2.arcgis.com/x/file.zip', 'https://services-eu1.arcgis.com/x/f.zip', 'https://ncnhde.natureserve.org/f.zip', 'https://apps.fs.usda.gov/f.zip'):
-    try: M.download_official_file(bad, T / 'f.bin', opener=opener); check(f'download refuses {bad}', False)
-    except M.LiveNotAllowed: check(f'download refuses {bad.split("/")[2]} before any request (robots.txt included)', not calls)
-try: M.download_official_file('https://irma.nps.gov/DataStore/DownloadFile/1', T / 'f.bin', opener=opener); check('robots 403 refuses', False)
-except M.LiveNotAllowed: check('download: a robots.txt 403 is a no (only robots.txt was asked)', calls == ['https://irma.nps.gov/robots.txt'])
+import email, urllib.request, urllib.response
 
 
-class Resp(io.BytesIO):
-    status = 200
-    def __enter__(self): return self
-    def __exit__(self, *a): return False
-calls.clear(); waits = []
+def raises_(E, f, *a):
+    try: f(*a); return False
+    except E: return True
+
+
+class Stand(urllib.request.BaseHandler):
+    """A stand-in for http(s): routes {url: (status, headers, body)}; anything else is a 404. Records every address asked."""
+    handler_order = 100
+    def __init__(self, routes): self.routes, self.calls = routes, []
+    def https_open(self, req):
+        u = req.full_url; self.calls.append(u)
+        st, hd, body = self.routes.get(u, (404, {}, b''))
+        r = urllib.response.addinfourl(io.BytesIO(body), email.message_from_string(''.join(f'{k}: {v}\n' for k, v in hd.items())), u, st)
+        r.msg = 'stand-in'; return r
+    http_open = https_open
+
+
 class P(M.Pacer):
-    def wait(self, host): waits.append(host)
-def opener2(req, timeout=0):
-    calls.append(req.full_url)
-    if req.full_url.endswith('/robots.txt'): raise M.urllib.error.HTTPError(req.full_url, 404, 'none', {}, None)
-    return Resp(b'x' * 1000)
-f = M.download_official_file('https://irma.nps.gov/DataStore/DownloadFile/1', T / 'nps.zip', opener=opener2, pacer=P())
-check('download: robots.txt first, then the file, each paced per host', calls == ['https://irma.nps.gov/robots.txt', 'https://irma.nps.gov/DataStore/DownloadFile/1'] and waits == ['irma.nps.gov', 'irma.nps.gov'])
-check('download: raw facts only (name, size, sha256, source, date)', set(f) == {'name', 'size', 'sha256', 'source', 'date'} and f['size'] == 1000 and (T / 'nps.zip').exists())
+    def __init__(self): super().__init__(); self.waits = []
+    def wait(self, host): self.waits.append(host)
+
+
+OKF = 'https://irma.nps.gov/DataStore/DownloadFile/1'
+for bad in ('https://services2.arcgis.com/x/file.zip', 'https://services-eu1.arcgis.com/x/f.zip', 'https://ncnhde.natureserve.org/f.zip', 'https://apps.fs.usda.gov/f.zip'):
+    st_ = Stand({})
+    try: M.download_official_file(bad, T / 'f.bin', handlers=[st_]); check(f'download refuses {bad}', False)
+    except M.LiveNotAllowed: check(f'download refuses {bad.split("/")[2]} before any request (robots.txt included)', not st_.calls)
+st_ = Stand({'https://irma.nps.gov/robots.txt': (403, {}, b'')})
+try: M.download_official_file(OKF, T / 'f.bin', handlers=[st_]); check('robots 403 refuses', False)
+except M.LiveNotAllowed: check('download: a robots.txt 403 is a no (only robots.txt was asked)', st_.calls == ['https://irma.nps.gov/robots.txt'])
+
+# every redirect hop is checked before it is followed (live_ok + robots.txt); a hop onto a forbidden host is refused, never asked
+for name, target in (('services2.arcgis.com', 'https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/x/FeatureServer/0/query?f=json'),
+                     ('ncnhde.natureserve.org', 'https://ncnhde.natureserve.org/arcgis/rest/services/x/MapServer/0'),
+                     ('the Grant County server', 'https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/Parcels/FeatureServer/0'),
+                     ('services-eu1.arcgis.com (relative hop)', '//services-eu1.arcgis.com/x/f.zip')):
+    st_ = Stand({'https://irma.nps.gov/robots.txt': (404, {}, b''), OKF: (302, {'Location': target}, b'')})
+    try: M.download_official_file(OKF, T / 'r.bin', handlers=[st_], pacer=P()); check(f'302 to {name} refused', False)
+    except M.LiveNotAllowed:
+        check(f'download: a 302 to {name} is refused before it is asked (robots.txt included), nothing written',
+              all(name.split()[0].split('(')[0].strip() not in c for c in st_.calls) and not any('arcgis.com' in c or 'natureserve' in c for c in st_.calls)
+              and not (T / 'r.bin').exists() and not (T / 'r.bin.part').exists())
+OK2 = 'https://www.sciencebase.gov/catalog/file/get/abc'
+st_ = Stand({'https://irma.nps.gov/robots.txt': (404, {}, b''), OKF: (302, {'Location': 'https://www.sciencebase.gov/robots-test'}, b''),
+             'https://www.sciencebase.gov/robots.txt': (200, {}, b'User-agent: *\nDisallow: /robots-test\n')})
+try: M.download_official_file(OKF, T / 'r.bin', handlers=[st_], pacer=P()); check('302 to a robots-disallowed path refused', False)
+except M.LiveNotAllowed: check('download: a 302 to a path the landing host\'s robots.txt disallows is refused', 'https://www.sciencebase.gov/robots-test' not in st_.calls)
+pc = P()
+st_ = Stand({'https://irma.nps.gov/robots.txt': (404, {}, b''), OKF: (302, {'Location': OK2}, b''),
+             'https://www.sciencebase.gov/robots.txt': (404, {}, b''), OK2: (200, {}, b'x' * 1000)})
+f = M.download_official_file(OKF, T / 'nps.zip', handlers=[st_], pacer=pc)
+check('download: a 302 to an allowed host passes (robots.txt of each host first, each request paced per host)',
+      st_.calls == ['https://irma.nps.gov/robots.txt', OKF, 'https://www.sciencebase.gov/robots.txt', OK2] and f['size'] == 1000 and (T / 'nps.zip').exists()
+      and pc.waits.count('irma.nps.gov') >= 2 and pc.waits.count('www.sciencebase.gov') >= 2)
+check('download: raw facts only (name, size, sha256, source, date)', set(f) == {'name', 'size', 'sha256', 'source', 'date'})
+st_ = Stand({'https://irma.nps.gov/robots.txt': (302, {'Location': 'https://services9.arcgis.com/robots.txt'}, b'')})
+try: M.download_official_file(OKF, T / 'r.bin', handlers=[st_]); check('robots redirect refused', False)
+except M.LiveNotAllowed: check('download: a robots.txt that redirects to a forbidden host is refused, never asked', not any('services9' in c for c in st_.calls))
+# the live layer reader and the robots.txt / HEAD helpers refuse a forbidden redirect hop too
+_real_build = urllib.request.build_opener
+def _with(stand):
+    urllib.request.build_opener = lambda *h: _real_build(*h, stand)
+LAY = 'https://gis.example.gov/arcgis/rest/services/x/MapServer/0'
+for target in ('https://services2.arcgis.com/X/arcgis/rest/services/x/FeatureServer/0?f=json', 'https://ncnhde.natureserve.org/x?f=json', 'https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/P/FeatureServer/0?f=json'):
+    st_ = Stand({'https://gis.example.gov/robots.txt': (404, {}, b''), LAY + '?f=json': (302, {'Location': target}, b'')})
+    _with(st_)
+    try:
+        fx = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
+        check(f'layer reader: a 302 to {target.split("/")[2]}{"/33TOO.." if "33TOO" in target else ""} is refused, never asked', raises_(M.LiveNotAllowed, fx, LAY, {'f': 'json'}) and target not in st_.calls)
+    finally: urllib.request.build_opener = _real_build
+st_ = Stand({'https://gis.example.gov/robots.txt': (404, {}, b''), LAY + '?f=json': (302, {'Location': 'https://gis2.example.gov/l?f=json'}, b''),
+             'https://gis2.example.gov/robots.txt': (404, {}, b''), 'https://gis2.example.gov/l?f=json': (200, {}, b'{"name": "ok"}')})
+_with(st_)
+try:
+    fx = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
+    check('layer reader: a 302 to an allowed host passes after that host\'s robots.txt', fx(LAY, {'f': 'json'}).get('name') == 'ok' and 'https://gis2.example.gov/robots.txt' in st_.calls)
+finally: urllib.request.build_opener = _real_build
+st_ = Stand({'https://gis.example.gov/robots.txt': (302, {'Location': 'https://ncnhde.natureserve.org/robots.txt'}, b'')})
+try: M.host_checked_opener([st_]).open('https://gis.example.gov/robots.txt'); check('robots helper redirect refused', False)
+except M.LiveNotAllowed: check('robots.txt / HEAD helper: a redirect onto a forbidden host is refused, never asked', not any('natureserve' in c for c in st_.calls))
+for nm in ('kpc_master.py', 'kpc_master_fill.py', 'kpc_master_watch.py'):
+    check(f'{nm}: no plain urlopen left (every request uses a checked-redirect opener)', 'urlopen(' not in (ROOT / '.github/scripts' / nm).read_text(encoding='utf-8'))
+msrc = (ROOT / '.github/scripts/kpc_master.py').read_text(encoding='utf-8')
+dsrc = msrc[msrc.index('def download_official_file('):msrc.index('def saved_counts(')]
+check('download: no plain urlopen (every open goes through the checked-redirect opener)', 'urlopen' not in dsrc and 'checked_opener(hop_check' in dsrc)
 fill_src = (ROOT / '.github/scripts/kpc_master_fill.py').read_text(encoding='utf-8')
 check('master step: the official-file path runs only when asked (--official-files) and never offline', "if getattr(a, 'official_files', False) and not a.offline" in fill_src)
 wf = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8')
@@ -132,7 +194,11 @@ check('CLI: import-existing is a subcommand', "sp.add_parser('import-existing'" 
 ca = (ROOT / '.github/scripts/kpc_ca_key.py').read_text(encoding='utf-8')
 check('Canada key reads checked hand files (KPC_CA_HAND), fail closed and keep-bigger', "os.environ.get('KPC_CA_HAND')" in ca and 'SHORT, not used (fail closed)' in ca and 'the saved ones are kept' in ca)
 cawf = (ROOT / '.github/workflows/kpc-ca-key.yml').read_text(encoding='utf-8')
-check('Canada workflow downloads hand-CA files from the boundary-cache release', "-p 'hand-CA.*.geojson.gz' -D cache/ca-hand" in cawf and 'KPC_CA_HAND: cache/ca-hand' in cawf)
+check('Canada workflow downloads hand-CA files from the boundary-cache release', "-p 'hand-CA.*.geojson.gz' -D cache/ca-hand --clobber ||" in cawf and 'KPC_CA_HAND: cache/ca-hand' in cawf)
+_hl = [l for l in cawf.splitlines() if 'hand-CA' in l and ('gh release' in l or '::warning' in l)]
+check('Canada workflow: a failed hand-file listing or download is a ::warning:: naming hand-CA.*.geojson.gz, never hidden (no 2>/dev/null, no bare echo)',
+      len([l for l in _hl if 'gh release' in l]) == 2 and all('2>/dev/null' not in l for l in _hl) and sum('::warning title=download hand-CA.*.geojson.gz::' in l for l in _hl) == 2
+      and '::notice title=hand-CA.*.geojson.gz::no Canada hand files waiting' in cawf and 'no Canada hand files waiting"' not in cawf.replace('waiting on boundary-cache"', ''))
 ns = {}; exec(ca[ca.index('def _hand_rings(g):'):ca.index('CA_HAND = os.environ')], ns)
 check('hand rings: Polygon and MultiPolygon to rings; points give none',
       len(ns['_hand_rings']({'type': 'MultiPolygon', 'coordinates': [[[[0, 0], [1, 0], [1, 1], [0, 0]]], [[[2, 2], [3, 2], [3, 3], [2, 2]]]]})) == 2 and ns['_hand_rings']({'type': 'Point', 'coordinates': [0, 0]}) == [])

@@ -152,7 +152,9 @@ check(not M.WDPA_RE.search(txt), 'WDPA: nothing under data/outlines/ as shipped 
 calls = []
 real = urllib.request.urlopen
 def spy(req, *a, **k): calls.append(getattr(req, 'full_url', str(req))); raise AssertionError('network touched: ' + calls[-1])
+real_open = urllib.request.OpenerDirector.open
 urllib.request.urlopen = spy
+urllib.request.OpenerDirector.open = lambda self, req, *a, **k: spy(req)
 try:
     f = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
     for u in ('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/x/FeatureServer/0', 'https://ncnhde.natureserve.org/arcgis/x/0', 'https://services.arcgis.com/ABC/x/0',
@@ -160,7 +162,7 @@ try:
               'https://services9.arcgis.com/ABC/x/0', 'https://apps.fs.usda.gov/arcx/x/0'):
         check(raises(M.LiveNotAllowed, f, u, {'f': 'json'}), f'hosts: {u.split("/")[2]}{"/" + u.split("/")[3] if "33TOO" in u else ""} is refused')
     check(not calls, 'hosts: no request of any kind (robots.txt included) was made for any of them')
-finally: urllib.request.urlopen = real
+finally: urllib.request.urlopen = real; urllib.request.OpenerDirector.open = real_open
 check(M.live_ok('https://services.arcgis.com/33TOOklri9xpic7U/a')[0] is False and M.live_ok('https://services.arcgis.com/OTHER/a')[0] is False, 'hosts: Grant County NM never contacted; other services.arcgis.com orgs are blocked')
 check(M.live_ok('https://services2.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/robots.txt')[0] is False, 'hosts: every services*.arcgis.com host is blocked, robots.txt included')
 check(M.is_arcgis_services_host('services.arcgis.com') and M.is_arcgis_services_host('services1.arcgis.com') and M.is_arcgis_services_host('services9.arcgis.com') and not M.is_arcgis_services_host('apps.fs.usda.gov') and not M.is_arcgis_services_host('gis.example.gov'), 'hosts: the services*.arcgis.com matcher covers the bare and numbered hosts only')

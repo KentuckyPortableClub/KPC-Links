@@ -112,13 +112,23 @@ def http_fetcher(pacer=None, max_tries=3):
     def raw(url, timeout=60):
         req = urllib.request.Request(url, headers={'User-Agent': UA})
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r: return r.status, r.read().decode('utf-8', 'replace')
+            with checked_opener(hop).open(req, timeout=timeout) as r: return r.status, r.read().decode('utf-8', 'replace')
         except urllib.error.HTTPError as e: return e.code, ''
 
     def robots_get(url):
         ok, _ = live_ok(url)
         if not ok: raise LiveNotAllowed(url)
-        pacer.wait(parts(url)[0]); return raw(url)
+        pacer.wait(parts(url)[0])
+        req = urllib.request.Request(url, headers={'User-Agent': UA})
+        try:
+            with host_checked_opener().open(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as e: return e.code, ''
+
+    def hop(u):   # Nov 10: a redirect hop gets the same checks as the first request (host rules, robots.txt, pacing)
+        ok, why = live_ok(u)
+        if not ok: raise LiveNotAllowed(f'redirect refused: {why}')
+        if not robots_allows(u, robots_get, robots): raise LiveNotAllowed(f'redirect refused: {parts(u)[0]}: robots.txt does not allow this read')
+        pacer.wait(parts(u)[0])
 
     def fetch(url, params=None):
         ok, why = live_ok(url)
@@ -592,32 +602,76 @@ def direct_file_of(row):
     return m.group(1) if m else None
 
 
-def download_official_file(url, dest, robots_get=None, pacer=None, opener=None, max_bytes=2 << 30):
+class _CheckedRedirect(urllib.request.HTTPRedirectHandler):
+    """Nov 10: every redirect hop goes through check(new_url) BEFORE it is followed (the same pre-request host check, and robots.txt
+    for the main fetch). A hop onto a host the rules forbid raises LiveNotAllowed: nothing is requested from it."""
+    def __init__(self, check):
+        super().__init__(); self.check = check
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        newurl = urllib.parse.urljoin(req.full_url, newurl)
+        self.check(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _refuse_hop(u):
+    ok, why = live_ok(u)
+    if not ok: raise LiveNotAllowed(f'redirect refused: {why}')
+
+
+def host_checked_opener(handlers=()):
+    """An opener that refuses any redirect hop onto a host live_ok forbids (robots.txt reads, HEAD checks)."""
+    return checked_opener(_refuse_hop, handlers)
+
+
+def checked_opener(check, handlers=()):
+    """A urllib opener whose every redirect hop is checked (see _CheckedRedirect). handlers: stand-ins for tests."""
+    return urllib.request.build_opener(_CheckedRedirect(check), *handlers)
+
+
+def download_official_file(url, dest, robots_get=None, pacer=None, handlers=(), max_bytes=2 << 30):
     """Nov 10: the official-file download path. live_ok first (never a services*.arcgis.com host, never a never-contact host,
-    nothing saved-copy-only), then robots.txt (a 403 = no), then the per-host pacer (60 s on hub portals). Streams the file to
-    dest and returns its raw facts {name, size, sha256, source, date}. Raises LiveNotAllowed before any request it may not make.
-    Nothing calls it with network on unless the master step is asked to (--official-files, the fresh-start run)."""
+    nothing saved-copy-only), then robots.txt (a 403 = no), then the per-host pacer (60 s on hub portals). EVERY redirect hop is
+    checked the same way before it is followed (live_ok + robots.txt + pacing; a robots.txt redirect gets live_ok), and the final
+    address is checked again. Streams the file to dest and returns its raw facts {name, size, sha256, source, date}. Raises
+    LiveNotAllowed before any request it may not make. Only the master step calls it, and only when asked (--official-files,
+    the fresh-start run)."""
     ok, why = live_ok(url)
     if not ok: raise LiveNotAllowed(why)
-    pacer = pacer or Pacer(); opener = opener or urllib.request.urlopen
+    pacer = pacer or Pacer(); robots_cache = {}
+
+    def host_check(u):
+        ok_, why_ = live_ok(u)
+        if not ok_: raise LiveNotAllowed(f'redirect refused: {why_}')
+    robots_opener = checked_opener(host_check, handlers)
     if robots_get is None:
         def robots_get(u):
-            if not live_ok(u)[0]: raise LiveNotAllowed(u)
-            pacer.wait(parts(u)[0])
+            host_check(u); pacer.wait(parts(u)[0])
             try:
-                with opener(urllib.request.Request(u, headers={'User-Agent': UA}), timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
+                with robots_opener.open(urllib.request.Request(u, headers={'User-Agent': UA}), timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
             except urllib.error.HTTPError as e: return e.code, ''
-    if not robots_allows(url, robots_get): raise LiveNotAllowed(f'{parts(url)[0]}: robots.txt does not allow this download')
+
+    def hop_check(u):   # a redirect hop of the file itself: the same three checks as the first request
+        host_check(u)
+        if not robots_allows(u, robots_get, robots_cache): raise LiveNotAllowed(f'redirect refused: {parts(u)[0]}: robots.txt does not allow this download')
+        pacer.wait(parts(u)[0])
+    if not robots_allows(url, robots_get, robots_cache): raise LiveNotAllowed(f'{parts(url)[0]}: robots.txt does not allow this download')
     pacer.wait(parts(url)[0])
     dest = pathlib.Path(dest); dest.parent.mkdir(parents=True, exist_ok=True); h = hashlib.sha256(); n = 0
     tmp = dest.with_name(dest.name + '.part')
-    with opener(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=300) as r, open(tmp, 'wb') as f:
-        while True:
-            b = r.read(1 << 20)
-            if not b: break
-            n += len(b)
-            if n > max_bytes: raise MasterError(f'{url[:100]}: larger than {max_bytes} bytes; stopped')
-            h.update(b); f.write(b)
+    try:
+        with checked_opener(hop_check, handlers).open(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=300) as r:
+            final = r.geturl() or url
+            if not live_ok(final)[0]: raise LiveNotAllowed(f'final address refused: {live_ok(final)[1]}')
+            with open(tmp, 'wb') as f:
+                while True:
+                    b = r.read(1 << 20)
+                    if not b: break
+                    n += len(b)
+                    if n > max_bytes: raise MasterError(f'{url[:100]}: larger than {max_bytes} bytes; stopped')
+                    h.update(b); f.write(b)
+    except BaseException:
+        tmp.unlink(missing_ok=True); raise
     tmp.replace(dest)
     return {'name': dest.name, 'size': n, 'sha256': h.hexdigest(), 'source': url, 'date': datetime.date.today().isoformat()}
 

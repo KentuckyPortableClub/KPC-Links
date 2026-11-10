@@ -76,7 +76,7 @@ def robots_checker(offline=False):
         pacer.wait(M.parts(u)[0])
         req = M.urllib.request.Request(u, headers={'User-Agent': M.UA})
         try:
-            with M.urllib.request.urlopen(req, timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
+            with M.host_checked_opener().open(req, timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
         except M.urllib.error.HTTPError as e: return e.code, ''
 
     def ok(u):

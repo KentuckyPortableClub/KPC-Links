@@ -95,7 +95,12 @@ jobs:
           # Nov 9 (Brandon t939u "4 saved copies"): the monthly refresh downloads the saved copy too, so layers on saved-copy-only hosts keep their records
           if [ "$GEO_CACHE_MODE" = use ] || [ "$GEO_CACHE_MODE" = refresh ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           # Nov 10: checked hand files for Canada layers a bot may not read (Parks Canada): merged by the key (KPC_CA_HAND), keep-bigger, fail closed
-          mkdir -p cache/ca-hand; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'hand-CA.*.geojson.gz' -D cache/ca-hand --clobber 2>/dev/null || echo "no Canada hand files waiting"
+          # A failed listing or download is a loud warning naming the asset; no matching asset is a plain notice (nothing waiting is normal)
+          mkdir -p cache/ca-hand
+          kpc_rc=0; kpc_hand=$(gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '[.assets[].name | select(test("^hand-CA[.].*[.]geojson[.]gz$"))] | length') || kpc_rc=$?
+          if [ "$kpc_rc" != 0 ]; then echo "::warning title=download hand-CA.*.geojson.gz::could not list the boundary-cache release for hand-CA.*.geojson.gz (exit $kpc_rc); Canada hand files are NOT merged tonight"; echo "download hand-CA.*.geojson.gz - could not list the release (exit $kpc_rc); Canada hand files not merged" >> "$RUNNER_TEMP/kpc-hidden.txt"
+          elif [ "${kpc_hand:-0}" = 0 ]; then echo "::notice title=hand-CA.*.geojson.gz::no Canada hand files waiting on boundary-cache"
+          else gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'hand-CA.*.geojson.gz' -D cache/ca-hand --clobber || { kpc_rc=$?; echo "::warning title=download hand-CA.*.geojson.gz::$kpc_hand hand-CA.*.geojson.gz asset(s) are on boundary-cache but the download failed (exit $kpc_rc); Canada hand files are NOT merged tonight"; echo "download hand-CA.*.geojson.gz - download failed (exit $kpc_rc); Canada hand files not merged" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           # Nov 2 (chat 2): chat 11's Canada hard-look YES records (KPC-Data questions/hardlook.json) -> data/ca-key/hardlook-joins.json
           # Nov 6: hardlook.json is .gz in KPC-Data. kpc_ca_hardlook.py stays as it is (it is part of the Canada rules hash).
           # --materialize writes the preferred bytes (.gz wins) to the plain path that script already opens, and exits 1 if neither file is there.
