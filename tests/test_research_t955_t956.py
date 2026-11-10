@@ -62,6 +62,25 @@ def test_nameless_layer_position_only():
     assert r['status'] == 'NEEDS PERSON' and r.get('position_only'), r
 
 
+def test_hard_pin_cap_fails_closed():
+    far = [[[-100.0, 40.00525], [-99.99, 40.00525], [-99.99, 40.016], [-100.0, 40.016], [-100.0, 40.00525]]]   # edge 0.58 km north of the pin
+    rec = {'poly': True, 'r': far, 'a': {'NAME': 'Elk Creek State Park'}}
+    r = RI.judge(row(), PIN, {}, None, FakeReader({'7': rec}))
+    assert 0.5 < RI.km_to(PIN[0], PIN[1], far) < 0.65 and r['status'] != 'SURE', r
+
+
+def test_wdpa_is_never_sure():
+    r = RI.judge(row(layer_url='https://data-gis.unep-wcmc.org/server/rest/services/ProtectedSites/The_World_Database_of_Protected_Areas/MapServer/1'),
+                 PIN, {}, None, FakeReader({'7': poly('Elk Creek State Park')}))
+    assert r['status'] == 'NEEDS PERSON' and 'WDPA' in r['reason'] and r.get('next_step'), r   # never a bare NO: a named next step
+
+
+def test_wdpa_lead_finds_the_official_polygon():   # Brandon: WDPA is a lead; the official layer decides
+    r = RI.judge(row(pota_ref='MX-0001', layer_url='https://data-gis.unep-wcmc.org/server/rest/services/ProtectedSites/The_World_Database_of_Protected_Areas/MapServer/1'),
+                 PIN, {}, None, FakeReader({'7': poly('Elk Creek State Park')}))
+    assert r['status'] == 'SURE' and r.get('wdpa_lead') and 'unep' not in r['layer_url'], r
+
+
 def test_record_id_fix():
     assert RX.rid_fix('PARK_SURVEY_ID 15 (OBJECTID 15)') == '15' and RX.rid_fix('OBJECTID 394 / PASITES_ID 1039') == '394'
     assert RX.rid_fix('CPCAD 471000224') == '471000224' and RX.rid_fix('5102 and 4147') == '5102 4147' and RX.rid_fix(22160) == '22160'

@@ -150,7 +150,7 @@
     const pc = o.label !== 'official' && o.label !== 'approx' && (o.pc || (o.ref && pcSync(o.ref)));
     return t + (o.pinOff ? '. POTA’s pin may be off for this park' : '') + (pc ? '. ' + pcNote(pc) : '');
   }
-  /* Nov 9 2026 (Brandon t950u/t953u/t954u): a park with no official boundary whose agency publishes an official POINT for it gets a
+  /* Nov 9 2026: a park with no official boundary whose agency publishes an official POINT for it gets a
      100 ft circle around that point as a stand-in (data/point-circles.json). Every card that shows such a park says so, plainly. */
   let PCD = null, PCS = {};
   const pcLoad = () => PCD || (PCD = fetch('data/point-circles.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).then(j => (j && j.parks) || {}).catch(() => ({})));

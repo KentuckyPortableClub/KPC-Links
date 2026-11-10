@@ -1,4 +1,4 @@
-# For Brandon: short list
+# Owner short list
 
 Each line: the park, what was found, and what you said before. Say YES to flip, or NO.
 

@@ -96,9 +96,9 @@ _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
 # Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
-# Nov 9 7:52 PM CST: amendment 2 hashes approved by name (card t962s3428); public docs name the card and time, never quote words (t952u)
-check(f'{fers_h} (FINAL' in _head and 't962s3428' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head,
-      "docs record Brandon's approval (card + time) next to the final fers hash")
+# Nov 9 7:52 PM CST: amendment 2 hashes approved; the public changelog keeps hashes and dates only (no quotes, no ids)
+check(f'{fers_h} (FINAL' in _head and 'APPROVED' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head and '"' not in docs,
+      "docs record the approval (hash + date) next to the final fers hash, no quoted messages")
 check('f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 

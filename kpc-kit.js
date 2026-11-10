@@ -252,7 +252,7 @@
       files(fc);
     } else if (P.ky && B.kyFailed && B.kyFailed()) $('kitBnd').innerHTML = '<b>Could not load the Kentucky boundary files right now.</b> Try again with a signal; this does not mean the park has no boundary.';   /* Oct 31 (Fable #29) */
     else $('kitBnd').innerHTML = 'Pin only (no official outline yet). Use the official map.' + (us && us.pinOff ? ' POTA’s pin may be off for this park.' : '') + (ap.length ? ' Green dots: parking / trailhead points.' : '');
-    if (B.pointCircle && !(P.ky && B.kyFailed && B.kyFailed()) && !(us && us.fs && us.fs.length)) B.pointCircle(P.c || P.ref || '').then(pc => { if (pc && $('kitBnd')) $('kitBnd').insertAdjacentHTML('beforeend', ' <span class="kit-pc" style="color:#8a5a00">📍 ' + B.esc(B.pcNote(pc)) + '</span>'); }).catch(() => {});   /* Brandon t954u */
+    if (B.pointCircle && !(P.ky && B.kyFailed && B.kyFailed()) && !(us && us.fs && us.fs.length)) B.pointCircle(P.c || P.ref || '').then(pc => { if (pc && $('kitBnd')) $('kitBnd').insertAdjacentHTML('beforeend', ' <span class="kit-pc" style="color:#8a5a00">📍 ' + B.esc(B.pcNote(pc)) + '</span>'); }).catch(() => {});   /* Nov 9 2026: point-circle note */
   }
 
   /* ---------- weather (Open-Meteo + NWS alerts) ---------- */

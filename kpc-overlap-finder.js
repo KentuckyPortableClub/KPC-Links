@@ -99,7 +99,7 @@
   }
   var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
   function apxLine(refs) { var a = (refs || []).filter(function (r) { return APPROX[r]; }); return a.length ? '<p class="ov-note" style="color:#8a5a00"><b>Approximate outline</b> for ' + a.map(esc).join(', ') + ' (' + esc(APPROX[a[0]]) + '), not the official boundary.</p>' : ''; }
-  /* Nov 9 2026 (Brandon t954u): a 2-fer with a point-circle park says so on its card, popups and export */
+  /* Nov 9 2026: a 2-fer with a point-circle park says so on its card, popups and export */
   function pcNotes(s) { var o = (s && s.pc_note) || {}; return Object.keys(o).map(function (r) { return [r, o[r]]; }); }
   function pcLine(ps) { var seen = {}, out = ''; (ps || []).forEach(function (s) { pcNotes(s).forEach(function (x) { if (seen[x[0]]) return; seen[x[0]] = 1; out += '<p class="ov-note ov-pc" style="color:#8a5a00">📍 <b>' + esc(x[0]) + '</b>: ' + esc(x[1]) + '</p>'; }); }); return out; }
   function rowHtml(g, ps) {

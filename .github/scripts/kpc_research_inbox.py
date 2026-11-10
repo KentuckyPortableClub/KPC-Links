@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""RESEARCH INBOX for the problem solver (Brandon t943u, Nov 9 2026 6:25 PM CST: "if the problem solver couldn't handle all that
-research documents you need to fix the problem solver and design a format for a file it could read"; retry loop: Brandon t942u YES).
+"""RESEARCH INBOX for the problem solver (Nov 9 2026): reads research files in one format and re-checks just those parks; retry loop for held parks.
 
 Reads every research file dropped in data/research-inbox/ (*.csv, *.json; format: docs/research-input-format.md), one row per park,
 and runs the problem solver's sure test on JUST those parks. No key rebuild, nothing applied: it RECOMMENDS. Sure rows still go to
-Quality and are signed only under Brandon's t927u rule. The POTA pin is never moved (pins come from KPC-Data parkinfo; a row's own
+Quality and are signed only under the sure rule. The POTA pin is never moved (pins come from KPC-Data parkinfo; a row's own
 pin is used only when parkinfo has none, and is never written back).
 
-The sure test (= Brandon t927u, the same as kpc_problem_solver.py / the Nov 9 triage):
+The sure test (= the sure rule, the same as kpc_problem_solver.py / the Nov 9 triage):
   - the record is a POLYGON (a point or a line is not a boundary);
   - the POTA pin is inside it or within 0.5 km;
   - the name fits (core words match; a typo-level difference, or the agency's own name with the park's number, counts);
@@ -15,11 +14,11 @@ The sure test (= Brandon t927u, the same as kpc_problem_solver.py / the Nov 9 tr
   - not an overlay (Natura 2000 / Ramsar / UNESCO / Emerald / SSSI ...) unless the park's own name says so;
   - no person said otherwise (overrides 'no', 'none', blocked_ids) and the park has no saved id already (else REJECTED: nothing to add).
 Outlines: the saved copy first (RESEARCH_CACHE, default cache/research/<host-layer>.json), then an ALLOWED live read: robots.txt is
-checked per host (a 401/403 robots answer = disallow), hosts on KPC_SAVED_ONLY_HOSTS are never read live (Brandon t939u), one request
+checked per host (a 401/403 robots answer = disallow), hosts on KPC_SAVED_ONLY_HOSTS are never read live (the sure rule), one request
 per host per second, honest User-Agent. Every live read is saved to the cache (saved outlines first next time).
 
 Out: data/research-inbox/results/<file stem>.json + .md (sure / needs person / rejected, with reasons) and the retry list
-data/research-inbox/needs-another-look.json (Brandon t942u): every park still NEEDS PERSON / held, with its reason and the row, so the
+data/research-inbox/needs-another-look.json (the sure rule): every park still NEEDS PERSON / held, with its reason and the row, so the
 next run after a new layer or a hand download re-checks just those parks (--retry). Never fails a build: exit 0 (selftest exits 1).
   python3 .github/scripts/kpc_research_inbox.py [--retry] [--offline] [--only FILE] [--selftest]"""
 import unicodedata, csv, glob, json, math, os, pathlib, re, sys, time, urllib.parse, urllib.request, urllib.robotparser, datetime
@@ -37,7 +36,7 @@ GENERIC = set(('state park parks wildlife management area areas wma national for
                'memorial trail county city municipal federal us usfws fws blm nf sf wa campground seashore lakeshore pfa sgl sna shs '
                'provincial regional reserve ecological protected parc national de du la le des et reserve reserva parque natural nacional naturpark '
                'country nature reserves nnr lnr sssi wood woods forest '
-               # Brandon t957u: French generic words (accents are folded first): Parc, Reserve nationale de faune, Aire protegee ...
+               # the sure rule: French generic words (accents are folded first): Parc, Reserve nationale de faune, Aire protegee ...
                'nationale faune provinciale aire aires protegee protegees ecologique faunique refuge oiseaux migrateurs nwa '
                # kind words that are not a place's own name (world and Canada layers)
                'quasi prefectural biosphere canada parco regionale nazionale riserva naturale').split())
@@ -52,7 +51,7 @@ KINDS = [('history', r'histor|massacre|battle|monument|memorial|fort\b|lighthous
          ('fishing', r'fishing|\bpfa\b|hatchery'), ('river', r'wild (?:and|&) scenic|scenic river')]   # Nov 9 spot check: 'State Fishing Lake' is not a 'State Forest'
 # a record that is a piece or a facility, not the park's land (Cypremort Point 'wlf Field Off'; NRHP '(Boundary Increase)')
 PIECE = re.compile(r'field off|\boffice\b|headquarters|\bhq\b|parking|boat ramp|launch|boundary increase|\btract\b|addition\b', re.I)
-# a part of a bigger place ('Stuart's Landing NORTH', 'Salem UNIT of ...'): never an alias of the whole place (KISS t958u)
+# a part of a bigger place ('Stuart's Landing NORTH', 'Salem UNIT of ...'): never an alias of the whole place
 PART = re.compile(r'\b(north|south|east|west|upper|lower|little|unit|tract|s\.?e\.?|n\.?w\.?)\b')
 # a water-surface layer (lake polygons) is only the park when the park IS the lake
 WATER_LAYER = re.compile(r'public_lakes|fishing waterbod|agfc_data/mapserver/9|twra/mapserver/2|/lakes/', re.I)
@@ -62,7 +61,7 @@ STATE_AFTER_COMMA = re.compile(r',\s*(?:' + '|'.join(['alabama', 'alaska', 'ariz
 
 
 def core(n):
-    # Brandon t957u: accents folded, so the French and English names of a Canadian park (NAME_E / NAME_F, both read) match plainly
+    # the sure rule: accents folded, so the French and English names of a Canadian park (NAME_E / NAME_F, both read) match plainly
     n = ''.join(c for c in unicodedata.normalize('NFKD', str(n or '')) if not unicodedata.combining(c))
     n = STATE_AFTER_COMMA.sub(' ', n.lower())   # 'Kern, California National Wild and Scenic River': the agency adds the state
     n = re.sub(r'\bst\.?\b', 'saint', n); n = re.sub(r'\bmt\.?\b', 'mount', n); n = re.sub(r'\bft\.?\b', 'fort', n)
@@ -158,7 +157,7 @@ class Reader:
     def allowed(self, url):
         p = urllib.parse.urlparse(url); host = p.netloc.lower(); low = url.lower()
         if any(n in low for n in NEVER): return False, 'never read (standing rule)'
-        if host in HOLD: return False, f'{host}: saved copy only (Brandon t939u: no live reads while its robots.txt answers 403)'
+        if host in HOLD: return False, f'{host}: saved copy only (no live reads while its robots.txt answers 403)'
         if self.offline: return False, 'offline run'
         if host not in self.rb:
             try:
@@ -223,7 +222,7 @@ class Reader:
         if key in d['near']:
             got = {i: d['recs'][i] for i in d['near'][key] if i in d['recs']}
             if not any(not r.get('poly') and not r.get('pt') for r in got.values()): return got, 'saved copy'
-            # (a copy saved before Nov 9 6:50 PM kept no point position: read it again for Brandon t949u POINT-CONFIRMED)
+            # (a copy saved before Nov 9 6:50 PM kept no point position: read it again for the sure rule POINT-CONFIRMED)
         ok, why = self.allowed(url)
         if not ok:
             alt = (self.handmap or {}).get(url.lower(), '')
@@ -261,15 +260,55 @@ def overlay_rec(rec):
     return ' '.join(str(a.get(k) or '') for k in a if re.search(r'desig|type|category', k, re.I))
 
 
+WDPA = re.compile(r'wdpa|protectedplanet|protected_planet|unep-?wcmc|world_database_of_protected', re.I)
+
+
+def official_layers(cc, root=ROOT):
+    """the country's own official layers we already know (world key lists): [(label, url)], and the agency named for it"""
+    out, agency = [], ''
+    try:
+        for L in (json.load(open(pathlib.Path(root) / 'data/world-key/extra-layers.json', encoding='utf-8')).get('countries') or {}).get(cc) or []:
+            if L.get('url') and not WDPA.search(L['url']): out.append((L.get('label') or '', L['url']))
+    except Exception: pass  # noqa: BLE001
+    try:
+        S = (json.load(open(pathlib.Path(root) / 'data/world-key/sheet-countries.json', encoding='utf-8')).get('countries') or {}).get(cc) or {}
+        agency = S.get('agency') or ''
+        for L in S.get('layers') or []:
+            if L.get('url') and not WDPA.search(L['url']) and L['url'] not in [u for _, u in out]: out.append((L.get('label') or '', L['url']))
+    except Exception: pass  # noqa: BLE001
+    return out, agency
+
+
+def wdpa_lead(row, pin, ov, saved, rd, out, fit, oid, rec):
+    """WDPA is never official, but its match is a LEAD (standing step): try the same park on the country's own official layers with
+    the same sure test (0.5 km cap, name fits). Sure there = SURE on the official polygon. Else a named next step: the official layer to
+    download for that country (WDPA's own designation and managing agency say whose layer it is)."""
+    a = rec.get('a') or {}
+    desig = next((str(v) for k, v in a.items() if re.fullmatch(r'desig(_eng)?', str(k), re.I) and v), '')
+    mang = next((str(v) for k, v in a.items() if re.fullmatch(r'mang_auth|gov_type', str(k), re.I) and v), '')
+    cc = str(row.get('pota_ref') or '').split('-')[0].upper()
+    lays, agency = official_layers(cc)
+    tried = []
+    if not row.get('_lead'):
+        for lab, u in lays:
+            r2 = _judge(dict(row, layer_url=u, record_id='(lead)', _lead=1), pin, ov, saved, rd)
+            tried.append(f"{lab or u}: {r2['status']}")
+            if r2['status'] == 'SURE':
+                return dict(r2, wdpa_lead=oid, reason=r2['reason'] + f' (found from the WDPA lead {oid} "{fit}"; WDPA itself is not used)')
+    who = agency or mang or 'the national protected-area agency'
+    step = (f'download the official {cc} protected-area layer ({who}' + (f'; WDPA says designation "{desig}"' if desig else '') + ')') if not lays else \
+           f'the official {cc} layer(s) did not give a sure match ({"; ".join(tried)[:200]}): a person compares, or download a fuller official layer ({who})'
+    return dict(out, status='NEEDS PERSON', retry='official-layer', wdpa_lead=oid, next_step=step, country=cc, official_layers=len(lays),
+                reason=f'WDPA match "{fit}" ({oid}) is a lead only, not an official boundary; next step: {step}')
+
+
 # ---- one row
 SFN = 'SOLUTION FOUND vs earlier NO'
 
 
 def judge(row, pin, ov, saved, rd):
-    """Brandon t956u (Nov 9 2026 7:09 PM CST): "I can be wrong let the problem solver and outside research have a chance if we found a
-    solution". An earlier person's NO (overrides none: true, a 'no' record, the bad-ID block list) no longer blocks the test. A sure
-    match over it is never signed: it becomes SOLUTION FOUND vs earlier NO (with the evidence and the earlier decision and its date) on
-    Brandon's short flip list. A point over it gets no circle until he flips it. Everything else keeps the normal sure rule."""
+    """Earlier NO (Nov 9 2026): an earlier human NO does not stop the test. A sure match over it is SOLUTION FOUND vs earlier NO,
+    never signed, and goes on the owner's short flip list. A point over it gets no circle until it is flipped. Everything else keeps the normal sure rule."""
     no = [str(x) for x in ov.get('no') or []]; blk = [str(x) for x in ov.get('_blocked') or []]
     if not (ov.get('none') or no or blk): return _judge(row, pin, ov, saved, rd)
     r = _judge(row, pin, {k: v for k, v in ov.items() if k not in ('none', 'no', '_blocked')}, saved, rd)
@@ -283,9 +322,9 @@ def judge(row, pin, ov, saved, rd):
     r['earlier_no'] = ed
     if r['status'] == 'SURE':
         return dict(r, status=SFN, same_record_as_no=same, retry='brandon',
-                    reason=f"{r['reason']} | earlier NO ({ed['date'] or 'no date'}): {ed['decision']}" + (' (the SAME record that was said NO to)' if same else '') + '; not signed: on Brandon\'s flip list')
+                    reason=f"{r['reason']} | earlier NO ({ed['date'] or 'no date'}): {ed['decision']}" + (' (the SAME record that was said NO to)' if same else '') + '; not signed: on the owner\'s flip list')
     if r['status'] == 'POINT-CONFIRMED':
-        return dict(r, status=SFN, retry='brandon', point_only=True, reason=f"{r['reason']} | earlier NO ({ed['date'] or 'no date'}): {ed['decision']}; no circle until Brandon flips it")
+        return dict(r, status=SFN, retry='brandon', point_only=True, reason=f"{r['reason']} | earlier NO ({ed['date'] or 'no date'}): {ed['decision']}; no circle until it is flipped")
     r['reason'] = f"{r['reason']} (earlier NO on file, {ed['date'] or 'no date'}: stays)"
     return r
 
@@ -314,11 +353,11 @@ def _judge(row, pin, ov, saved, rd):
     if best is None:
         anyp = [r for r in recs.values() if r.get('poly')]
         on = {oid: km_to(pin[0], pin[1], rec.get('r') or []) for oid, rec in recs.items() if rec.get('poly')}
-        # Brandon t955u + rule 8: the AGENCY's own name for the place (the file's official name) on a polygon at the pin is an alias:
-        # it joins only on Brandon's YES to that exact name with the pin inside. Listed, never signed here.
+        # the sure rule + rule 8: the AGENCY's own name for the place (the file's official name) on a polygon at the pin is an alias:
+        # it joins only on an owner YES to that exact name with the pin inside. Listed, never signed here.
         oname = str(row.get('official_name') or '').strip()
         if oname:
-            # KISS (t958u): only the pin INSIDE, a shared core word with the park name, and not a piece/facility (no umbrella units)
+            # KISS: only the pin INSIDE, a shared core word with the park name, and not a piece/facility (no umbrella units)
             al = sorted((on[o], o, n) for o, rec in recs.items() if rec.get('poly') and on.get(o) == 0
                         for n in rec_names(rec)[:3] if name_ok(oname, n) and not kind_clash(name, n) and core(name) & core(n) and not PIECE.search(n)
                         and not (PART.findall(name.lower()) and set(PART.findall(name.lower())) - set(PART.findall(n.lower()))))
@@ -326,8 +365,8 @@ def _judge(row, pin, ov, saved, rd):
                 dk, o, n = al[0]
                 if o.lower() in no or n.lower() in no: return dict(out, status='REJECTED', record_id=o, record_name=n, km=dk, reason=f'a person already said NO to {o} "{n}" (overrides no)')
                 return dict(out, status='NEEDS PERSON', record_id=o, record_name=n, km=dk, read=how, alias=True, retry='person',
-                            reason=f'agency alias: the record "{n}" ({o}) is not the park name "{name}"; joins only on Brandon\'s YES to that exact name with the pin inside (rule 8; pin {"inside" if dk == 0 else str(dk) + " km"})')
-        # Brandon t955u: a layer WITHOUT names (ND state forests, PEI parks, Rio Bonito tracts) is position only. The pin inside exactly
+                            reason=f'agency alias: the record "{n}" ({o}) is not the park name "{name}"; joins only on an owner YES to that exact name with the pin inside (rule 8; pin {"inside" if dk == 0 else str(dk) + " km"})')
+        # the sure rule: a layer WITHOUT names (ND state forests, PEI parks, Rio Bonito tracts) is position only. The pin inside exactly
         # one polygon there, and that polygon is the file's own record, is SURE (flagged position_only for Quality); else a person decides.
         if anyp and not any(rec_names(r) for r in anyp):
             ins = [o for o, d0 in on.items() if d0 == 0]
@@ -340,7 +379,7 @@ def _judge(row, pin, ov, saved, rd):
                             reason=f'sure by position only: the layer has no names; the pin is inside record {o}, the record the research named')
             return dict(out, status='NEEDS PERSON', read=how, position_only=True, retry='person',
                         reason='the layer has no names, so only position can match, and the pin is not inside the named record: a person compares the map' + (f' (pin inside {", ".join(ins)})' if ins else ''))
-        # Brandon t949u (6:50 PM CST): a POINT record that matches confirms the park exists: POINT-CONFIRMED (review later for a
+        # the sure rule (6:50 PM CST): a POINT record that matches confirms the park exists: POINT-CONFIRMED (review later for a
         # boundary). It is never an outline: kept out of the keys and the 2-fers, listed separately.
         for oid, rec in recs.items():
             if rec.get('poly') or not rec.get('pt'): continue
@@ -363,6 +402,12 @@ def _judge(row, pin, ov, saved, rd):
         return dict(out, status='NEEDS PERSON', reason=f'the record is a lake surface ("{fit}") and the park is not a lake: a person decides')
     ol = overlay_rec(rec) + ' ' + fit
     if OVERLAY.search(ol) and not OVERLAY.search(name): return dict(out, status='REJECTED', reason=f'overlay designation ("{OVERLAY.search(ol).group(0)}"), not the park itself')
+    # hard cap, fail closed: a pin more than 0.5 km from the polygon is never SURE
+    if not (isinstance(d, (int, float)) and 0 <= d <= SURE_KM):
+        return dict(out, status='NEEDS PERSON', reason=f'polygon "{fit}" ({oid}) fits the name but the pin is {d} km away (over {SURE_KM} km): a person checks the pin', retry='person')
+    # WDPA / Protected Planet is never an official boundary: at most a labelled approximate outline a person approves
+    if WDPA.search(str(row.get('layer_url') or '') + ' ' + str(rec.get('hand') or '') + ' ' + str(how)):
+        return wdpa_lead(row, pin, ov, saved, rd, out, fit, oid, rec)
     note = '' if str(row.get('record_id') or '').split()[0].strip(' ,;') == oid else f' (the file said record {row.get("record_id")}; the polygon at the pin is {oid})'
     return dict(out, status='SURE', reason=f'sure match: polygon "{fit}" record {oid}, name fits, pin {"inside" if d == 0 else str(d) + " km"}{note}')
 
@@ -401,7 +446,7 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
     rd = Reader(cache or os.environ.get('RESEARCH_CACHE') or root / 'cache/research', offline=offline)
     nal_f = inbox / 'needs-another-look.json'
     try: nal = json.load(open(nal_f, encoding='utf-8'))
-    except Exception: nal = {'about': 'Brandon t942u retry loop: parks Quality denied or held, or the research could not settle. A new layer or a hand download re-checks just these (kpc_research_inbox.py --retry).', 'parks': {}}  # noqa: BLE001
+    except Exception: nal = {'about': 'Retry loop: parks Quality denied or held, or the research could not settle. A new layer or a hand download re-checks just these (kpc_research_inbox.py --retry).', 'parks': {}}  # noqa: BLE001
     jobs = [(pathlib.Path(f).stem, read_rows(f)) for f in files]
     if retry: jobs.append(('retry', [dict(v['row'], pota_ref=r) for r, v in list(nal['parks'].items()) + list((nal.get('point_confirmed') or {}).items()) + list((nal.get('brandon_flip') or {}).items()) if v.get('row')]))
     today = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
@@ -418,7 +463,7 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
             elif r['status'] == 'POINT-CONFIRMED':
                 nal.setdefault('point_confirmed', {})[ref] = {'status': 'POINT-CONFIRMED', 'reason': r['reason'], 'since': nal.get('point_confirmed', {}).get(ref, {}).get('since', today), 'last': today, 'row': row}
                 nal['parks'].pop(ref, None)
-            elif r['status'] == SFN:   # Brandon t956u: his short flip list
+            elif r['status'] == SFN:   # the short flip list
                 nal.setdefault('brandon_flip', {})[ref] = {'status': r['status'], 'reason': r['reason'], 'earlier_no': r.get('earlier_no'), 'record_id': r.get('record_id'),
                                                           'record_name': r.get('record_name'), 'layer_url': r.get('layer_url'), 'last': today, 'row': row}
                 nal['parks'].pop(ref, None)
@@ -428,14 +473,14 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
             outd = inbox / 'results'; outd.mkdir(parents=True, exist_ok=True)
             n = {}; [n.__setitem__(x['status'], n.get(x['status'], 0) + 1) for x in res]
             json.dump({'counts': n, 'rows': res}, open(outd / f'{stem}.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
-            L = [f'# Research inbox: {stem}', '', 'Recommendations only. SURE rows go to Quality, then are signed under Brandon t927u. Pins are never moved.', '',
+            L = [f'# Research inbox: {stem}', '', 'Recommendations only. SURE rows go to Quality, then are signed under the sure rule. Pins are never moved.', '',
                  ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())), '', '| Park | Name | Status | Record | Why |', '|---|---|---|---|---|']
             L += [f"| {x['pota_ref']} | {x['park_name']} | {x['status']} | {x.get('record_id', '')} | {x['reason']} |".replace('\n', ' ') for x in res]
             open(outd / f'{stem}.md', 'w', encoding='utf-8').write('\n'.join(L) + '\n')
             print(f'research inbox {stem}: {len(res)} rows; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
     rd.save()
-    # Brandon t958u (KISS): ONE short plain list for Brandon: solutions over his earlier NO, and agency-alias names (rule 8)
-    BL = ['# For Brandon: short list', '', 'Each line: the park, what was found, and what you said before. Say YES to flip, or NO.', '']
+    # the sure rule (KISS): ONE short plain list for the owner: solutions over an earlier NO, and agency-alias names (rule 8)
+    BL = ['# Owner short list', '', 'Each line: the park, what was found, and what you said before. Say YES to flip, or NO.', '']
     for r, v in sorted((nal.get('brandon_flip') or {}).items()):
         e = v.get('earlier_no') or {}
         BL.append(f"- **{r}** {v['row'].get('park_name', '')}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
@@ -449,16 +494,16 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
                 BL.append(f"- **{x['pota_ref']}** {x['park_name']}: the agency calls it \"{x.get('record_name')}\" (record {x.get('record_id')}). Same park?")
     open(inbox / 'brandon-list.md', 'w', encoding='utf-8').write('\n'.join(BL) + '\n')
     json.dump(nal, open(nal_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
-    # Brandon t950u: the 100 ft circle around the OFFICIAL point of each POINT-CONFIRMED park (the 2-fer 'point-circle' tier reads it);
+    # the sure rule: the 100 ft circle around the OFFICIAL point of each POINT-CONFIRMED park (the 2-fer 'point-circle' tier reads it);
     # a park that turns SURE (a real boundary) loses its circle here, and the 2-fer bot never uses a circle for a park with an outline.
     pc_f = root / 'data/point-circles.json'
     try: pc = json.load(open(pc_f, encoding='utf-8'))
-    except Exception: pc = {'about': 'Brandon t949u/t950u (Nov 9 2026): POINT-CONFIRMED parks: an official POINT record with the park\'s name within 0.5 km of the POTA pin. kind point-circle-100ft = a 30.48 m circle around the OFFICIAL point (the POTA pin is never moved), a stand-in used ONLY by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found.', 'parks': {}}  # noqa: BLE001
+    except Exception: pc = {'about': 'Nov 9 2026: POINT-CONFIRMED parks: an official POINT record with the park\'s name within 0.5 km of the POTA pin. kind point-circle-100ft = a 30.48 m circle around the OFFICIAL point (the POTA pin is never moved), a stand-in used ONLY by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found.', 'parks': {}}  # noqa: BLE001
     for res in allres.values():
         for r in res:
             if r['status'] == 'POINT-CONFIRMED' and r.get('pt'):
                 pc['parks'][r['pota_ref']] = {'kind': 'point-circle-100ft', 'radius_m': 30.48, 'pt': r['pt'], 'layer_url': r.get('layer_url'), 'record_id': r.get('record_id'),
-                                              'record_name': r.get('record_name'), 'pin_km': r.get('km'), 'read': r.get('read'), 'confirmed': r.get('checked'), 'decided_by': 'Brandon t949u/t950u rule'}
+                                              'record_name': r.get('record_name'), 'pin_km': r.get('km'), 'read': r.get('read'), 'confirmed': r.get('checked'), 'decided_by': 'point-circle rule (Nov 9 2026)'}
             elif r['status'] == 'SURE': pc['parks'].pop(r['pota_ref'], None)
     json.dump(pc, open(pc_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
     print(f'live reads {rd.live}; needs another look: {len(nal["parks"])}')

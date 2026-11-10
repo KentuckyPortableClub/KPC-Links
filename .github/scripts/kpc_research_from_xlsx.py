@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Turn a research workbook into the research-inbox format (docs/research-input-format.md; Brandon t943u, Nov 9 2026).
-Reads Brandon's no-ID lookup workbooks (sheets with FOUND_layer_or_service_url / FOUND_source_url_or_layer, FOUND_record_id,
+"""Turn a research workbook into the research-inbox format (docs/research-input-format.md, Nov 9 2026).
+Reads the no-ID lookup workbooks (sheets with FOUND_layer_or_service_url / FOUND_source_url_or_layer, FOUND_record_id,
 owner_agency, confidence(high/med/low), notes) and the 'KPC held' style (pota_ref + 'held record ids', the layer read from the id's
 prefix in data/us-key/layers.json). One CSV row per park. The pin columns are copied only as a fallback (the POTA pin in parkinfo wins).
   python3 .github/scripts/kpc_research_from_xlsx.py <book.xlsx> <out.csv> [--source TEXT] [--sheets US,Canada] [--conf high,med]"""
@@ -56,7 +56,7 @@ def convert(book, out, source='', sheets=None, conf=None):
                              'notes': g(r, 'KPC_reason'), 'source': source or f'{pathlib.Path(book).name} [{ws.title}]', 'confidence': 'held'})
                 continue
             src = str(g(r, 'FOUND_source_name'))
-            if 'case' in H and 'recommendation' in H:   # the t955u 'Solved cases' style (Brandon Nov 9): its verdict is a note, never trusted
+            if 'case' in H and 'recommendation' in H:   # the 'Solved cases' style: its verdict is a note, never trusted
                 note = ' | '.join(x for x in [f"file verdict {g(r, 'verdict')} ({g(r, 'confidence')})", f"inside {g(r, 'inside')}" if g(r, 'inside') != '' else '',
                                                f"pin {g(r, 'pin_distance_km')} km" if g(r, 'pin_distance_km') != '' else '', str(g(r, 'case')),
                                                f"recommendation: {g(r, 'recommendation')}", f"lead: {g(r, 'lead')}" if g(r, 'lead') else '',
