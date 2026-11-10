@@ -14,6 +14,13 @@
    "from": "464d2ce92eda",
    "why": "Bad-ID block list (Brandon t919u; the list is empty) + parks with saved ids keep their result through rule changes (Brandon t915u) + this scope file. Changes no current result.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-10-state-layer-page-cap",
+   "when": "2026-11-10",
+   "from": "f489a836894f",
+   "why": "State GIS paging honors the layer maxRecordCount so a silent server page cap is not treated as the last page, and a short layer already in the saved copy is re-read. It changes what every state may read from a state layer.",
+   "scope": "all"
   }
  ]
 }

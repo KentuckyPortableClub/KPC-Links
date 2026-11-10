@@ -170,6 +170,19 @@ jobs:
           ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
+      - name: Master outlines - read master first (is the checked master whole; which layer, if any, needs a live read)
+        # Nov 10: data/outlines/ holds one small checked outline per POTA park (README there). This step only CHECKS the master files and PRINTS the
+        # refresh plan (a layer is re-read only when it is older than KPC_MASTER_MAX_DAYS, its lastEditDate changed, or its count is off).
+        # It reads no agency layer unless the repo variable KPC_MASTER_PROBE=1 (then: robots.txt, 2 s per host, never the no-contact hosts).
+        id: kept_green_master
+        continue-on-error: true
+        env:
+          STATES: ${{ matrix.g.states }}
+          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          areas=$(for st in $STATES; do printf 'US-%s,' "$st"; done); areas="${areas%,}"
+          python3 .github/scripts/kpc_master_cli.py plan --areas "$areas" $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
       - name: The Recreation.gov saved copy (the one keyed pull, read only; HQ Oct 29 8:50 PM)
         id: kept_green_1
         continue-on-error: true
@@ -198,13 +211,19 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           mkdir -p cache/us; touch "$RUNNER_TEMP/cache-t0"
           if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; touch "$RUNNER_TEMP/cache-t0"; fi
+          # Nov 10 (master outlines, read master first): a saved copy shorter than its layer's own baseline (the Nov 3 truncated copies) is moved aside
+          # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
+          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then ok=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES="${ok# }"; fi
+          [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
           # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
           # (1,585 shapes vs 80,934 live): 18 parks went outline -> pin with bk=noshape. Refill a short state
           # from the saved outlines (boundary-cache, offline). If that is still short, put the live state file
           # back and fail after the artifact upload (the short read is not what gets saved).
-          rm -f /tmp/shape-guard-fail /tmp/shape-short.txt
+          rm -f /tmp/shape-guard-fail /tmp/shape-short.txt /tmp/shape-guard-failed-states
           rm -rf .livekey
           if GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .livekey \
               && git -C .livekey sparse-checkout set --no-cone data/us-key/index.json \
@@ -249,6 +268,10 @@ jobs:
                       && [ -s ".livekey/data/us-key/US-$st.json" ]; then
                     cp ".livekey/data/us-key/US-$st.json" "data/us-key/US-$st.json"
                     rm -f "data/us-key/tracts/US-$st.json"   # the short read's tract file does not match the live key
+                    echo "$st" >> /tmp/shape-guard-failed-states
+                    # Keep the index row in step with the restored file (run 42797939226 wrote FL padus 5198 into the
+                    # index while US-FL.json was put back at 21993). The next shape guard reads the live index.
+                    python3 -c 'import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path("data/us-key/US-%s.json"%st); idxp=Path("data/us-key/index.json"); counts=(json.loads(f.read_text()).get("counts") or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=dict((d.get("states") or {}).get(st) or {}); row.update(counts); d.setdefault("states", {})[st] = row; idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+"\n") if counts and idxp.exists() else None' "$st"
                     echo "::error title=US key $st::shape source still $got vs $live after the saved-copy refill. The live key's US-$st.json is what will be saved, not the short read."
                     echo "$st shape source $got vs live $live; saved the live key file instead of the short read" >> /tmp/shape-guard-fail
                   else
@@ -274,6 +297,8 @@ jobs:
           cp data/us-key/zip-*.json part/ 2>/dev/null || true   # ok: nothing to do is fine
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
+          if [ -s /tmp/shape-guard-failed-states ]; then sort -u /tmp/shape-guard-failed-states > part/failed-states.txt; fi
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then cp "$RUNNER_TEMP/master-short.txt" part/master-short.txt; fi   # Nov 10: states NOT built (short saved copy); the join keeps them on the rebuild list
       - uses: actions/upload-artifact@v4
         with:
           name: us-key-part-${{ matrix.g.i }}
@@ -330,6 +355,13 @@ jobs:
               print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
               sys.exit(1)
           PY
+      - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside and its area not built; say so and go red
+        if: ${{ always() }}
+        run: |
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then
+            echo "::error title=Master gate::short saved copy, area NOT built this run (the old key file is kept): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt")"
+            exit 1
+          fi
   join:
     needs: [plan, build]
     if: ${{ always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
@@ -366,6 +398,16 @@ jobs:
               shutil.copy(glob.glob(f'{d}/us-key-*.log')[0], '.') if glob.glob(f'{d}/us-key-*.log') else None
           import sys; sys.path.insert(0, '.github/scripts')
           from kpc_save import save_json   # the same writer the script uses (same bytes as a serial run)
+          for st, row in list(idx.items()):
+              fp = f'data/us-key/US-{st}.json'
+              if not os.path.exists(fp) or not isinstance(row, dict):
+                  continue
+              try:
+                  counts = json.load(open(fp)).get('counts') or {}
+              except Exception:
+                  counts = {}
+              if counts.get('padus') is not None and row.get('padus') != counts.get('padus'):
+                  row = dict(row); row.update(counts); idx[st] = row
           save_json('data/us-key/index.json', {'states': {k: idx[k] for k in idx}})
           save_json('data/us-key/layers.json', LJ)
           print(f'::notice title=US key join::{n} state files from {len(glob.glob("parts/us-key-part-*"))} jobs')
@@ -433,7 +475,17 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+        run: |
+          : > /tmp/kpc-build-failed.txt
+          for f in parts/us-key-part-*/failed-states.txt; do
+            [ -s "$f" ] && cat "$f" >> /tmp/kpc-build-failed.txt
+          done
+          if [ -s /tmp/kpc-build-failed.txt ]; then
+            sort -u /tmp/kpc-build-failed.txt -o /tmp/kpc-build-failed.txt
+            export KPC_BUILD_FAILED_FILE=/tmp/kpc-build-failed.txt
+            echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
+          fi
+          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
@@ -494,6 +546,9 @@ jobs:
           ok = pathlib.Path('/tmp/kpc-us-build-finished')
           failed = set(ok.read_text().split()) if ok.exists() else set()
           done = {s for g in json.loads(os.environ.get('KPC_DONE_GROUPS') or '[]') for s in g.get('states', '').split()} - failed
+          # Nov 10 (master gate): a state whose saved copy was short was NOT built; it stays on the rebuild list
+          import glob
+          done -= {x.split('-', 1)[-1] for f in glob.glob('parts/us-key-part-*/master-short.txt') for x in open(f).read().split()}
           p = pathlib.Path('data/us-key/answers-states.txt')
           if ok.exists() and p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
           PY

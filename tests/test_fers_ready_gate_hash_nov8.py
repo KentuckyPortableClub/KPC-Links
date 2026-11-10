@@ -78,26 +78,25 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
       'us/ca/world version lines still v5b')
 check(ver.get('fers') == 'v1', 'fers version v1')
 
-# Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': 'f489a836894f', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
+# Approved hashes after merging main (#109) into this PR: US bbdcc89f8120 (from f489a836894f); fers c2456edee62e; CA and world unchanged
+BASE = {'us-key': 'bbdcc89f8120', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
 
 fers_h = KF.rules_hash('fers', str(HERE))
-check(len(fers_h) == 12 and all(c in '0123456789abcdef' for c in fers_h), f'fers hash looks like 12-hex: {fers_h}')
+check(fers_h == 'c2456edee62e', f'fers rules hash is c2456edee62e ({fers_h})')
 print('FERS_RULES_HASH=' + fers_h)
-# docs/key-rules-change.txt must declare this hash with Brandon's OK (Nov 8, 2026, 8:19 PM CST)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-_head = docs.split('\n\n')[0] if docs else ''
+# Ledger is newest-first: #109 (5:54 AM CST) then #108 (5:22 AM CST). Read both top entries.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:2])
 check(fers_h in _head and 'fers v1' in _head,
-      f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-# Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
-# Nov 9 7:52 PM CST: amendment 2 hashes approved; the public changelog keeps hashes and dates only (no quotes, no ids)
+      f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
+# Public changelog keeps hashes and dates only (no quotes, no ids)
 check(f'{fers_h} (FINAL' in _head and 'APPROVED' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head and '"' not in docs,
       "docs record the approval (hash + date) next to the final fers hash, no quoted messages")
-check('f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
-      'docs entry notes us/ca/world hashes unchanged')
+check('bbdcc89f8120' in _head and 'f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
+      'docs entries note the US hash move and CA/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)
 with tempfile.TemporaryDirectory() as td:

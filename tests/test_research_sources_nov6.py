@@ -29,7 +29,7 @@ def check(cond, msg):
 
 
 # --- rules hashes do not move (rule files were not edited) ---
-check(KF.rules_hash('us-key') == 'f489a836894f', 'US rules hash f489a836894f (moved Nov 9, Brandon 11:24 AM CST; declared) with the flag off')
+check(KF.rules_hash('us-key') == 'bbdcc89f8120', 'US rules hash bbdcc89f8120 (approved Nov 10, 2026, 5:54 AM CST; declared) with the flag off')
 check(KF.rules_hash('ca-key') == '570b09c3cb52', 'Canada rules hash stays 570b09c3cb52')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.

@@ -14,3 +14,8 @@ data/names/
 data/sota-land/
 data/trails/
 data/access/
+
+# Nov 10: raw agency layer downloads are never tracked (see data/outlines/README.md and raw-manifest.json)
+raw-layers/
+*.gdb/
+*.gdb.zip

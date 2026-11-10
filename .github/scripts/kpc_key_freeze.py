@@ -83,7 +83,10 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              # key and the record cache and writes only data/world-key/tracts/ (kpc_tracts.py); it never decides a join.
              'kpc_world_tracts.py',
              # Nov 9 evening: copies saved outlines to / from KPC-Archive (release assets + a small index); never decides a join
-             'kpc_archive.sh'}
+             'kpc_archive.sh',
+             # Nov 10: trimmed outline master records (data/outlines/): the trim tool, the completeness check, the refresh plan and the
+             # raw-file manifest. They decide which layer to READ and keep a checked copy of it; they never decide a join.
+             'kpc_master.py', 'kpc_master_cli.py'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
