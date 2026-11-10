@@ -169,6 +169,18 @@ def news():
 PARKISH = {'sp', 'hist', ''}
 
 
+# Nov 9 2026 (Brandon t944u, 6:43 PM CST): POTA dropped the 'sub-parks' rule. A park inside a bigger park of the same agency
+# (Natural Bridge State Park State Nature Preserve) is no longer left out; it is listed with this note instead.
+SUBPARK = re.compile(r'state park state nature preserve', re.I)
+
+
+def subpark_note(name):
+    """'' or the note for a land that sits inside a bigger park of the same agency (allowed since POTA's Nov 2026 change)."""
+    if not SUBPARK.search(str(name or '')): return ''
+    return ('inside a state park: POTA allows a park inside a park of the same agency since Nov 2026, but it needs its own '
+            'web page and its own boundary map; it would be a 2-fer with the park')
+
+
 def in_pota(name, P, loose=False):
     n, k = norm(name), kind(name)
     for ref, pn in P.items():
@@ -358,8 +370,6 @@ def main():
             return 'hunting access area (usually private land leased for hunting)'
         if re.search(r'military|army depot|training area|\bfort (knox|campbell)', n, re.I):
             return 'military land'
-        if re.search(r'state park state nature preserve', n, re.I):
-            return 'a preserve inside a state park the parks department owns (same-agency sub-park)'
         part = next((r for r, pn in P.items() if ' and ' in n.lower() and any(norm(x) and norm(x) == norm(pn) for x in re.split(r'\band\b', n, flags=re.I))), None) or next((r for r, pn in P.items() if norm(n).split(' ')[0] and len(norm(n)) > 4 and norm(pn).startswith(norm(n).split(' and ')[0]) and kind(pn) in ('sf', 'nwr')), None)
         if part:
             return 'may be the same land as POTA %s %s' % (part, P[part])
@@ -380,6 +390,7 @@ def main():
         if not w and 'Fish & Wildlife' in label:
             o = WO.get(n, {})
             line += (' · KDFWR page: "%s"' % o['says']) if o.get('says') else ' · _owner not stated on its KDFWR page: ask Fish & Wildlife_'
+        if not w and subpark_note(n): line += ' · _%s_' % subpark_note(n)
         (maybe if w else good).append(line + ((' · _%s_' % w) if w else ''))
     lines += ['### ⭐ Look promising (%d)' % len(good), 'Federal/state owned, open, no POTA park of that name yet. A public road, trail or boat ramp in is enough access (Fish & Wildlife lakes with a public ramp count). Check each one in the Tool Box before emailing the Mapping Representative.', ''] + good + ['']
     lines += ['<details><summary><b>%d more that probably will not qualify</b> (reason shown on each)</summary>' % len(maybe), ''] + maybe + ['', '</details>', '', 'This issue stays open; a week with new land not in POTA (or a new Kentucky park) adds a comment (GitHub emails you about comments). News headlines are listed here only.']
