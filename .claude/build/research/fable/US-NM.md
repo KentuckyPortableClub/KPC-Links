@@ -16,4 +16,4 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-2719 NM | Angel Fire Vietnam Veterans Memorial Park | https://www.vietnamveteransmemorial.org/ | to read | to read | 36.4414, -105.295 |
 
 Chat 8 (Oct 30): **US-2719 Angel Fire VVM**: PAD-US's OWN record at the pin is named **"VVM - Main Site"** (33 ac, manager SPR = NM State Parks) -- VVM is the exact acronym of "Vietnam Veterans Memorial," a real match (T-1, abbreviation not a kind word), not a container. **TRACE CANDIDATE**, handed to chat 2. **US-11797 Los Luceros + US-11821 Bosque Redondo/Fort Sumner**: nmhistoricsites.org pages read only as the site's generic nav shell (no per-site content came through the fetch); neither has a PAD-US or P-2 hit at its pin -- both stay **no-layer**, pins unchanged, addresses on file. **STATE NM DONE** (3/3: 1 trace candidate, 2 no-layer).
-
+| US-13654 | Monjeau Lookout National Historical Site | new park (POTA, found 2026-11-10); pin 33.4314, -105.731 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-10 |

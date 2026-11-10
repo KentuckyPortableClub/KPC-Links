@@ -1,8 +1,30 @@
 {
- "updated": "2026-11-09T14:41:40+00:00",
+ "updated": "2026-11-10T15:46:56+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13654",
+   "prog": "pota",
+   "name": "Monjeau Lookout National Historical Site",
+   "st": [
+    "NM"
+   ],
+   "la": 33.4314,
+   "lo": -105.731,
+   "found": "2026-11-10"
+  },
+  {
+   "ref": "US-13653",
+   "prog": "pota",
+   "name": "Napa River Ecological Reserve",
+   "st": [
+    "CA"
+   ],
+   "la": 38.4176,
+   "lo": -122.353,
+   "found": "2026-11-10"
+  },
   {
    "ref": "US-13652",
    "prog": "pota",
@@ -13,237 +35,6 @@
    "la": 32.6179,
    "lo": -84.6411,
    "found": "2026-11-09"
-  },
-  {
-   "ref": "US-13651",
-   "prog": "pota",
-   "name": "Zim Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 47.2157,
-   "lo": -92.6024,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13650",
-   "prog": "pota",
-   "name": "Darwin S. Meyers Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 47.6364,
-   "lo": -92.2233,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13649",
-   "prog": "pota",
-   "name": "Old Koschak Farm Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 47.9224,
-   "lo": -91.8297,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13648",
-   "prog": "pota",
-   "name": "Altona Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.1954,
-   "lo": -96.3255,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13647",
-   "prog": "pota",
-   "name": "Badger Lake Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 43.9228,
-   "lo": -95.7295,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13646",
-   "prog": "pota",
-   "name": "Bohemian Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.6337,
-   "lo": -96.4067,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13645",
-   "prog": "pota",
-   "name": "Budolfson Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.0445,
-   "lo": -95.4761,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13644",
-   "prog": "pota",
-   "name": "Cedar Rock Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.6084,
-   "lo": -95.1649,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13643",
-   "prog": "pota",
-   "name": "Coon Creek Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.3361,
-   "lo": -96.0402,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13642",
-   "prog": "pota",
-   "name": "Fenmont Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 43.8475,
-   "lo": -95.8295,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13641",
-   "prog": "pota",
-   "name": "Green Valley Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.5043,
-   "lo": -95.6988,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13640",
-   "prog": "pota",
-   "name": "Hole-In-Mountain Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2256,
-   "lo": -96.3167,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13639",
-   "prog": "pota",
-   "name": "Hopeful Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2557,
-   "lo": -96.0983,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13638",
-   "prog": "pota",
-   "name": "Lake Maria Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.1721,
-   "lo": -95.8155,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13637",
-   "prog": "pota",
-   "name": "Lamberton Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2521,
-   "lo": -95.22,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13636",
-   "prog": "pota",
-   "name": "Lyons Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2812,
-   "lo": -95.8878,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13635",
-   "prog": "pota",
-   "name": "Phyllis Voosen Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.4953,
-   "lo": -95.4642,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13634",
-   "prog": "pota",
-   "name": "Sodus Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2801,
-   "lo": -95.8394,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13633",
-   "prog": "pota",
-   "name": "Talcot Lake Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 43.8942,
-   "lo": -95.4529,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13632",
-   "prog": "pota",
-   "name": "Two Rivers Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.2796,
-   "lo": -95.3845,
-   "found": "2026-11-03"
-  },
-  {
-   "ref": "US-13631",
-   "prog": "pota",
-   "name": "Winter Wildlife Management Area",
-   "st": [
-    "MN"
-   ],
-   "la": 44.1451,
-   "lo": -96.384,
-   "found": "2026-11-03"
   }
  ]
 }
