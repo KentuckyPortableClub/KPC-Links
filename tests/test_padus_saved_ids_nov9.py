@@ -85,6 +85,6 @@ check('run(): state layer read with name-only records left out of its duplicate 
 check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split('if _kr(')[0])
 check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in src_full)
 check('the 11:24 AM OK recorded (date only) with the new US hash', 'Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
-check('rules hashes: US bbdcc89f8120, CA 570b09c3cb52, world unchanged, fers 3dde681f1427',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('bbdcc89f8120', '570b09c3cb52', '6444287722b9', '3dde681f1427'))
+check('rules hashes: US bbdcc89f8120, CA 570b09c3cb52, world unchanged, fers c2456edee62e',
+      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('bbdcc89f8120', '570b09c3cb52', '6444287722b9', 'c2456edee62e'))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

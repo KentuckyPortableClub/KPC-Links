@@ -41,15 +41,29 @@ finally: KO.get = _g
 wh = [p.get('where') for u, p in calls if u.endswith('/7/query')]
 check(wh and all(w == "ADMIN_AGENCY_CODE = 'BLM'" for w in wh), f"BLM where = ADMIN_AGENCY_CODE (got {wh[:1]})")
 
-# blank owner never a candidate
-rows = [{'kind': 'area', 'status': 'candidate', 'refs': ['CA-0005', 'CA-0040']},                       # Banff x Jasper, Oct 29 row
+# blank owner: official agency outlines count as government / public land; others stay held
+rows = [{'kind': 'area', 'status': 'candidate', 'refs': ['CA-0005', 'CA-0040']},                       # Banff x Jasper: official agency outlines
         {'kind': 'area', 'status': 'candidate', 'ownership': 'public land (federal)', 'refs': ['a', 'b']},
         {'kind': 'same land', 'status': 'candidate', 'owner_here': 'owner not published', 'refs': ['c', 'd']},
         {'kind': 'same land', 'status': 'candidate', 'owner_here': 'state land (from the outline both numbers are joined to)', 'refs': ['e', 'f']},
-        {'kind': 'area', 'status': 'not sure: x', 'refs': ['g', 'h']}]
-n = K.hold_no_owner(rows)
-check(n == 2 and rows[0]['status'].startswith('not sure: no ownership source') and rows[2]['status'].startswith('not sure'), 'blank-owner candidates held NOT SURE (Banff x Jasper)')
+        {'kind': 'area', 'status': 'not sure: x', 'refs': ['g', 'h']},
+        {'kind': 'area', 'status': 'candidate', 'refs': ['ZZ-NOKEY-1', 'ZZ-NOKEY-2']}]
+n = K.hold_no_owner(rows, root=str(HERE))
+check(n == 2 and rows[5]['status'].startswith('not sure: no ownership source') and rows[2]['status'].startswith('not sure'), 'blank owner with no official agency outline is held NOT SURE')
+check(rows[0]['status'] == 'candidate' and str(rows[0].get('ownership') or '').startswith('public land'), 'official agency outlines (Banff x Jasper) count as public land, no separate owner source')
 check(rows[1]['status'] == 'candidate' and rows[3]['status'] == 'candidate' and rows[4]['status'] == 'not sure: x', 'rows with an ownership source untouched')
+# point-circle and approximate pairs become an approximate 2-fer, not a drop
+import kpc_fers_key_status as KS
+KS.clear(); KS.KEY_STATUS['US-APX-1'] = 'approximate'; KS.KEY_STATUS['US-APX-2'] = 'approximate'
+apx = [{'kind': 'area', 'status': 'candidate', 'refs': ['US-APX-1', 'US-APX-2'], 'approx': True, 'tier': 'approximate'}]
+n2 = K.hold_no_owner(apx, root=str(HERE))
+check(n2 == 0 and apx[0]['status'] == 'candidate', 'approximate pair is not held for a blank owner')
+d = K.pc_tag({'spots': [dict(apx[0])]})
+check(d['spots'][0]['tier'] == 'approximate' and 'Not the official boundary' in d['spots'][0].get('approx_note',''), 'pc_tag writes the approximate 2-fer note')
+# WDPA / Protected Planet is never a public 2-fer source
+check(K.is_wdpa_outline({'src': 'WDPA', 'gsrc': 'protectedplanet.net'}), 'WDPA outline is detected')
+check(not K.is_wdpa_outline({'src': ['PAD-US'], 'g': 'official'}), 'a PAD-US outline is not treated as WDPA')
+KS.clear()
 
 # Canada: no 'ow' text -> manager / source name
 check(K.owner_of_text('Parks Canada Agency') == 'FED:CANADA', 'Parks Canada Agency = federal')
@@ -74,7 +88,15 @@ K.PINS.update(PIN)
 s1 = {'refs': ['A', 'B']}; v1 = K.ownership_step(s1, parks, PIN)
 check(v1[0] == 'ok' and s1.get('mixed_owners') == ['FED:USFS', 'STATE'], f'national forest x state park = public ground, two owners kept as before ({v1})')
 v2 = K.ownership_step({'refs': ['A', 'C']}, parks, PIN)
-check(v2[0] == 'not sure' and 'Something Place' in v2[1], f'a truly blank owner = NOT SURE ({v2})')
+check(v2[0] == 'not sure' and 'Something Place' in v2[1], f'a truly blank owner with no official outline = NOT SURE ({v2})')
+import kpc_fers_key_status as KS
+KS.clear(); KS.KEY_STATUS['C'] = 'official'; KS.KEY_STATUS['A'] = 'official'; KS.KEY_BY_AREA['C'] = {'_': 'official'}; KS.KEY_BY_AREA['A'] = {'_': 'official'}
+s3 = {'refs': ['A', 'C']}
+v3 = K.ownership_step(s3, parks, PIN)
+check(v3[0] == 'ok' and 'official agency outline' in (s3.get('owner_src') or ''), f'blank owner on official agency outlines = public land ({v3})')
+KS.clear(); KS.load_key_status = lambda root='.': KS.KEY_STATUS  # keep later tests from needing a full reload
+# restore normal loader after this file's remaining tests do not need the stub; real load happens if KEY_STATUS empty
+KS.clear()
 check('no saved owned-land line yet for' not in src, 'no NOT SURE just because a saved owned-land file is missing')
 
 # post-line after a hand-started kpc-fers.yml run (live save vs the save before it)
@@ -88,4 +110,45 @@ with tempfile.TemporaryDirectory() as t:
         a = r['areas'].get('US-CO') or {}
         check(r.get('mode', '').startswith('live save') and a.get('live_before') == 1 and a.get('live_now') == 0, 'post-line compares a live save with the save before it')
     except Exception as e: check(False, f'post-line PREV_DIR: {e}')  # noqa: BLE001
+
+# official outline always wins: a picture trace must not replace it (Salato US-10172)
+K.APX_OUT = {'US-10172': {'st': 'US-KY', 'name': 'Salato Wildlife Refuge', 'rings': [[[0,0],[1,0],[1,1],[0,0]]],
+                          'src': 'picture trace of an official map'}}
+K.APX_PARKS.discard('US-10172')
+official = {'st': 'US-KY', 'ids': ['bpad|Salato Wildlife Refuge'],
+            'names': {'bpad|Salato Wildlife Refuge': 'Salato Wildlife Refuge'}}
+parks = {'US-10172': dict(official)}
+pin = {'US-10172': ('Salato Wildlife Refuge', 38.1777, -84.9231, '', 'Other', 'KY')}
+n_skip = {}
+K.add_approx_outlines(parks, pin, n_skip, 'ky', root=str(HERE))
+check(parks['US-10172']['ids'] == ['bpad|Salato Wildlife Refuge'] and not parks['US-10172'].get('approx')
+      and 'US-10172' not in K.APX_PARKS,
+      'add_approx_outlines does not overwrite an official outline (Salato US-10172)')
+# official in the key wins even when the park is not yet in the live parks dict
+import kpc_fers_key_status as KS
+KS.KEY_STATUS['US-10172'] = 'official'
+KS.KEY_BY_AREA.setdefault('US-10172', {})['US-KY'] = 'official'
+parks2 = {}
+K.add_approx_outlines(parks2, pin, {}, 'ky', root=str(HERE))
+check('US-10172' not in parks2, 'a picture trace is not entered when the key already has an official outline')
+# a park with no official outline still gets the trace
+K.APX_OUT['ZZ-TRACE-1'] = {'st': 'US-ZZ', 'name': 'Trace Park', 'rings': [[[0,0],[1,0],[1,1],[0,0]]],
+                           'src': 'picture trace of an official map'}
+parks3 = {}
+pin3 = {'ZZ-TRACE-1': ('Trace Park', 1, 2, '', 'Park', 'ZZ')}
+K.add_approx_outlines(parks3, pin3, {}, 'na', root=str(HERE))
+check(parks3.get('ZZ-TRACE-1', {}).get('approx') and parks3['ZZ-TRACE-1'].get('rings'),
+      'a picture trace fills a park that has no official outline')
+K.APX_OUT.pop('ZZ-TRACE-1', None)
+K.APX_PARKS.discard('ZZ-TRACE-1')
+
+# two parks that join the exact same official records go to the person-review list, not a candidate
+same_ids = {'CA-0748': {'st': 'CA-BC', 'ids': ['20477', '20385', 'BC BC Parks :745']},
+            'CA-4282': {'st': 'CA-BC', 'ids': ['20385', '20477', 'BC BC Parks :745']},
+            'CA-0001': {'st': 'CA-BC', 'ids': ['999']}}
+check(K.identical_records_hold(same_ids, ['CA-0748', 'CA-4282']) == K.SAME_RECORDS_HOLD,
+      'West Twin-style identical records are a person-review hold')
+check(K.identical_records_hold(same_ids, ['CA-0748', 'CA-0001']) == '',
+      'parks with different official records are not held for identical records')
+
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

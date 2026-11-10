@@ -247,20 +247,26 @@ try:
     files = CLI.tracked_files(HERE); check(M.raw_in_repo(files) == [], 'raw: this repo tracks no raw layer files')
 except Exception as e: print('SKIP raw tracked check:', e)
 
-# --- 9) rules hashes do not move
+# --- 9) rules hashes: master modules stay out of every hash; only declared rule files may differ from main
 for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
+us_h, ca_h, world_h, fers_h = (KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers'))
+check((us_h, ca_h, world_h, fers_h) == ('bbdcc89f8120', '570b09c3cb52', '6444287722b9', 'c2456edee62e'),
+      f'rules hashes stay US bbdcc89f8120, CA 570b09c3cb52, world 6444287722b9, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
 try:
     changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-    declared = ('US rules f489a836894f -> ' + KF.rules_hash('us-key')) in changelog
-    allowed = {'.github/scripts/kpc_us_key.py', '.github/us-key-rule-scope.json'} if declared else set()
+    check(('US rules f489a836894f -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move')
+    check(('fers v1 3dde681f1427 -> ' + fers_h) in changelog, 'changelog records the #108 fers hash move')
+    # #109 is already on main, so the US page-cap files now match origin/main.
+    # This PR (#108) may change only the fers rule files.
+    allowed = set(KF.RULE_FILES['fers'])
     for f in sorted({f for fs in KF.RULE_FILES.values() for f in fs}):
         same = subprocess.run(['git', '-C', str(HERE), 'diff', '--quiet', 'origin/main', '--', f], capture_output=True).returncode == 0
-        if f in allowed:
-            check((not same), f'rule file {f} differs from main as declared (page cap, US hash {KF.rules_hash("us-key")})')
+        if same:
+            check(True, f'rule file matches main: {f}')
         else:
-            check(same, f'rule file unchanged from main: {f}')
+            check(f in allowed, f'rule file differs from main only when declared (fers): {f}')
 except Exception as e: print('SKIP rule-file diff:', e)
 
 

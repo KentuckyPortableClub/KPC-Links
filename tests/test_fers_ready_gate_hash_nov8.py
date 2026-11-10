@@ -51,22 +51,19 @@ KS.KEY_BY_AREA['US-12235'] = {'US-PA': 'approximate'}
 KS.KEY_BY_AREA['US-9999'] = {'US-PA': 'official'}
 
 
-def river_trail_hold(refs, kind, areas=None):
-    """Same gate decide() uses for river/trail approximate halves."""
+def river_trail_approx(refs, kind, areas=None):
+    """Approximate river/trail halves are an approximate 2-fer, not a hold."""
     if kind not in ('river', 'trail'):
-        return ''
-    apx = [r for r in refs if KS.status_for(r, (areas or {}).get(r)) == 'approximate']
-    if not apx:
-        return ''
-    return 'not sure: approximate outline on a river/trail half (' + ', '.join(apx) + ')'
+        return []
+    return [r for r in refs if KS.status_for(r, (areas or {}).get(r)) == 'approximate']
 
 
-check(river_trail_hold(['US-12235', 'US-9999'], 'river'), 'approx river half -> not sure hold')
-check(not river_trail_hold(['US-9999', 'US-8888'], 'river'), 'official river halves -> no hold')
-check(not river_trail_hold(['US-12235', 'US-9999'], 'area'), 'area kind still uses key_line_match path (not this hold)')
-# area approximate still caught by key_line_match
+check(river_trail_approx(['US-12235', 'US-9999'], 'river') == ['US-12235'], 'approx river half is tagged, not held')
+check(not river_trail_approx(['US-9999', 'US-8888'], 'river'), 'official river halves -> not approximate')
+check(not river_trail_approx(['US-12235', 'US-9999'], 'area'), 'area kind is tagged in decide, not this helper')
+# area approximate is allowed as an approximate 2-fer (not blocked)
 msg = KS.key_line_match(['US-12235', 'US-9999'], 'area')
-check(bool(msg), f'area+approximate still blocked by key_line_match: {msg!r}')
+check(msg == '', f'area+approximate allowed as approximate 2-fer: {msg!r}')
 
 # --- 3) fers rules hash declared; us/ca/world unchanged
 KF = load('kpc_key_freeze', HERE / '.github/scripts/kpc_key_freeze.py')
@@ -81,26 +78,25 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
       'us/ca/world version lines still v5b')
 check(ver.get('fers') == 'v1', 'fers version v1')
 
-# Approved hashes on this PR: US bbdcc89f8120 (from f489a836894f); CA and world unchanged
+# Approved hashes after merging main (#109) into this PR: US bbdcc89f8120 (from f489a836894f); fers c2456edee62e; CA and world unchanged
 BASE = {'us-key': 'bbdcc89f8120', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
 
 fers_h = KF.rules_hash('fers', str(HERE))
-check(len(fers_h) == 12 and all(c in '0123456789abcdef' for c in fers_h), f'fers hash looks like 12-hex: {fers_h}')
+check(fers_h == 'c2456edee62e', f'fers rules hash is c2456edee62e ({fers_h})')
 print('FERS_RULES_HASH=' + fers_h)
-# docs/key-rules-change.txt must declare this hash with Brandon's OK (Nov 8, 2026, 8:19 PM CST)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-_head = docs.split('\n\n')[0] if docs else ''
+# Ledger is newest-first: #109 (5:54 AM CST) then #108 (5:22 AM CST). Read both top entries.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:2])
 check(fers_h in _head and 'fers v1' in _head,
-      f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-# Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
-# Nov 9 7:52 PM CST: amendment 2 hashes approved; the public changelog keeps hashes and dates only (no quotes, no ids)
+      f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
+# Public changelog keeps hashes and dates only (no quotes, no ids)
 check(f'{fers_h} (FINAL' in _head and 'APPROVED' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head and '"' not in docs,
       "docs record the approval (hash + date) next to the final fers hash, no quoted messages")
 check('bbdcc89f8120' in _head and 'f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
-      'docs entry notes the US hash move and CA/world hashes unchanged')
+      'docs entries note the US hash move and CA/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)
 with tempfile.TemporaryDirectory() as td:
@@ -125,7 +121,7 @@ with tempfile.TemporaryDirectory() as td:
 
 # decide() source contains the approx river/trail hold (string check — bot is heavy to import)
 fers_src = (HERE / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
-check('approximate outline on a river/trail half' in fers_src, 'kpc_fers.decide holds approx river/trail')
+check('approximate 2-fer' in fers_src and 'APX_NOTE' in fers_src, 'kpc_fers tags approximate 2-fers instead of holding them')
 check('fers-ready-areas' in fers_src and 'FREADY' in fers_src, 'kpc_fers.main calls ready-areas gate')
 check("rep['fers_rules']" in fers_src or 'fers_rules' in fers_src, 'run report records fers_rules')
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Nov 6 (Quality 2-fer grade): area / same-land 2-fers follow the current key's PIN and approximate status.
-A key PIN is not a line-match; approximate goes to not-sure. Rule-18 selftests for the Quality examples."""
+A key PIN is not a line-match; approximate is an approximate 2-fer, not a hold. Rule-18 selftests for the Quality examples."""
 import pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
@@ -17,7 +17,7 @@ FKS.clear()
 FKS.KEY_STATUS.update({'US-PIN': 'pin', 'US-APX': 'approximate', 'US-OK': 'official', 'US-OK2': 'official'})
 check(FKS.key_line_match(['US-PIN', 'US-OK'], 'area').startswith('dropped: key PIN'), 'area + PIN -> dropped')
 check(FKS.key_line_match(['US-PIN', 'US-OK'], 'same land').startswith('dropped: key PIN'), 'same land + PIN -> dropped')
-check(FKS.key_line_match(['US-APX', 'US-OK'], 'area').startswith('not sure: key outline is approximate'), 'area + approximate -> not sure')
+check(FKS.key_line_match(['US-APX', 'US-OK'], 'area') == '', 'area + approximate -> allowed as approximate 2-fer')
 check(FKS.key_line_match(['US-OK', 'US-OK2'], 'area') == '', 'area + two official -> ok')
 check(FKS.key_line_match(['US-PIN', 'US-OK'], 'river') == '', 'river + PIN still allowed (100-ft rule)')
 check(FKS.key_line_match(['US-PIN', 'US-OK'], 'trail') == '', 'trail + PIN still allowed')
@@ -27,7 +27,7 @@ FKS.load_key_status(ROOT)
 check(FKS.KEY_STATUS.get('US-11822') == 'pin', f"US-11822 Jemez is PIN (got {FKS.KEY_STATUS.get('US-11822')})")
 check(FKS.key_line_match(['US-11822', 'US-2699', 'US-4517'], 'area', ROOT).startswith('dropped'), 'Jemez+Fenton+Santa Fe area is not a line-match')
 check(FKS.KEY_STATUS.get('US-12459') == 'approximate', f"US-12459 Housatonic Southern Fields is approximate (got {FKS.KEY_STATUS.get('US-12459')})")
-check(FKS.key_line_match(['US-12459', 'US-DUMMY'], 'area', ROOT).startswith('not sure'), 'Housatonic approximate area -> not sure')
+check(FKS.key_line_match(['US-12459', 'US-DUMMY'], 'area', ROOT) == '', 'Housatonic approximate area -> allowed as approximate 2-fer')
 check(FKS.KEY_STATUS.get('US-0884') == 'pin', f"US-0884 Kings River is PIN (got {FKS.KEY_STATUS.get('US-0884')})")
 check(FKS.key_line_match(['US-0884', 'US-0046'], 'area', ROOT).startswith('dropped'), 'Kings River + Kings Canyon area is not a line-match')
 # Multi-state v2 (Quality Part A grade): WEAKEST status across states; per-state when area given.

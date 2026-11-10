@@ -109,7 +109,7 @@ def selftest():
     held = {r['id'] for r in rep['rows']}
     check('two official halves: not held', 'a' in held, False)
     check('a PIN half: held, with the reason', ('b' in held, aa['b']['status'].startswith('not sure: 2-fer self-check: dropped: key PIN')), (True, True))
-    check('an APPROXIMATE half: held as not sure', aa['c']['status'].startswith('not sure: 2-fer self-check: not sure: key outline is approximate'), True)
+    check('an APPROXIMATE half: not held (approximate 2-fer tier)', 'c' in held, False)
     check('the old status is kept in was, list dropped, held_by set', (aa['b']['was'], 'list' in aa['b'], aa['b']['held_by']), ('candidate', False, BY))
     check('a river row is left alone (official LINE, 100-ft rule)', aa['d']['status'], 'candidate')
     check('a row already dropped is left alone', aa['e']['status'], 'dropped in pass 3')
@@ -117,9 +117,9 @@ def selftest():
     check('IN THAT STATE: US-0005 is a pin in US-AA -> held there', 'g' in held, True)
     check('IN THAT STATE: US-0005 is official in US-BB -> not held there (gz file read)', 'h' in held, False)
     check('Canada: a pin half in CA-ON is held', ('i' in held, 'j' in held), (True, False))
-    check('world: W-DE reads the DE key; an approximate half is held', 'k' in held, True)
+    check('world: W-DE reads the DE key; an approximate half is not held', 'k' in held, False)
     check('hold list written with every held row and per-area counts', (json.load(open(td / 'fers/fers-holds-test.json'))['held'], rep['areas']),
-          (6, {'US-AA': 4, 'US-BB': 0, 'CA-ON': 1, 'W-DE': 1}))
+          (4, {'US-AA': 3, 'US-BB': 0, 'CA-ON': 1, 'W-DE': 0}))
     check('nothing deleted: every row is still in the file', len(aa), 7)
     print(f"SELFTEST {'PASS' if ok else 'FAIL'}: {n} cases")
     return ok
