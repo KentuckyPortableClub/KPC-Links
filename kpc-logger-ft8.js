@@ -29,7 +29,8 @@
   const isFT = () => S.mode === 'FT8' || S.mode === 'FT4';
   const isDG = () => /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(S.mode);
   const DG = () => window.KPCDigiUI || null;
-  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear', as: '', asList: '', noGrid: false }, get('kpcFt8', {}));
+  const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear', as: '', asList: '', noGrid: false, autoClear: true, wfB: 0, wfC: 0, hl: { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 } }, get('kpcFt8', {}));
+  if (!S.hl || typeof S.hl !== 'object') S.hl = { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 };   /* Nov 10 (from the KPC app 0.6.9 / Oct 24): highlight choices, auto clear spot (default ON like the app), waterfall brightness + contrast */
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
   const stdK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
@@ -54,6 +55,7 @@
     <select id="f8Band" aria-label="Band"></select>
     <b class="f8-dial" id="f8Dial">14.074 000</b>
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
+    <span class="f8-lv" id="f8TopLvl" title="Incoming sound from the radio: keep it in the green"><i class="f8-lb"><i id="f8LvlBar"></i></i><b id="f8LvlW">--</b></span>
     <span class="f8-st" id="f8St">OFF</span>
   </div>
   <div class="f8-rxonly" id="f8RxOnly" hidden><span><b>On a phone or tablet this tab can listen, not send.</b> Decodes, the waterfall, spots and logging all work. The browser can't send clean sound to a radio on Android or iPhone, so transmitting here gives only a few watts — use the KPC app for that.</span><button type="button" id="f8RxOk" aria-label="Hide this note">✕</button></div>
@@ -91,6 +93,7 @@
     <button type="button" class="f8-b halt" id="f8Halt">HALT TX</button>
     <button type="button" class="f8-b" id="f8Tune">TUNE</button>
     <button type="button" class="f8-b cq" id="f8Cq">📣 CQ</button>
+    <button type="button" class="f8-b" id="f8Clear" title="Move MY transmit frequency to the quietest gap in the waterfall">🎯 CLEAR SPOT</button>
   </div>
   <div class="f8-chks">
     <label><input type="checkbox" id="f8Auto"> Auto seq</label>
@@ -103,6 +106,7 @@
   </div>
   <div class="f8-as"><label>SEND AS <select id="f8As"></select></label><label class="ck" title="Sends your report first (no grid). When both reports are in, it sends RR73 and logs: the shortest contact."><input type="checkbox" id="f8NoG"> ⚡ Fast QSO (skip grid)</label></div>
   <div class="f8-txm" id="f8Txm"></div>
+  <div class="f8-qso" id="f8Qso" aria-label="This contact: who is calling you and what you sent"><div class="qh"><button type="button" class="f8-b" id="f8QsoClr" title="Clear this box: the contact in hand and who called">CLEAR</button><b id="f8QsoDx">NO CONTACT</b><span id="f8QsoR"></span></div><div class="ql" id="f8QsoL"></div></div>
   <details class="f8-set" id="f8Set"><summary>⚙ AUDIO, PTT &amp; SETTINGS</summary>
     <div class="f8-sg">
       <label>RADIO AUDIO IN<select id="f8In"><option value="">Default input</option></select></label>
@@ -116,6 +120,10 @@
       <label>🔔 ALERT ME FOR<span class="f8-al"><label class="ck"><input type="checkbox" id="f8aPark"> Park activators calling CQ</label><label class="ck"><input type="checkbox" id="f8aState"> A state I haven't worked</label><label class="ck"><input type="checkbox" id="f8aGrid"> A grid I haven't worked</label></span></label>
       <label>🔔 WATCH FOR THESE CALLS<input id="f8Watch" placeholder="K4ABC, W9XYZ" autocapitalize="characters" spellcheck="false"></label>
       <label class="ck"><input type="checkbox" id="f8Deep"> Deeper decoding (finds weaker stations, uses more battery)</label>
+      <label class="ck"><input type="checkbox" id="f8AutoClr"> 🎯 Find a clear TX spot by itself: after each decode pass, when I am not sending and have no contact in hand, move off a spot someone has taken</label>
+      <label>WATERFALL BRIGHTNESS <b id="f8WfBT"></b><input type="range" id="f8WfB" min="-100" max="100" step="5" aria-label="Waterfall brightness"></label>
+      <label>WATERFALL CONTRAST <b id="f8WfCT"></b><input type="range" id="f8WfC" min="-100" max="100" step="5" aria-label="Waterfall contrast"></label>
+      <label>✨ HIGHLIGHT IN THE LISTS<span class="f8-al" id="f8Hl"></span></label>
       <div class="f8-catrow"><button type="button" class="f8-b" id="f8Mic">🎤 NO CABLE? USE THIS PHONE'S MIC + SPEAKER</button></div>
       <p class="f8-mic" id="f8MicT" hidden>Using the built-in mic and speaker: put the phone right next to the radio's speaker (radio volume about half), and the radio's mic close to the phone's speaker. Turn the radio's <b>VOX</b> on so it keys when the phone plays, and keep the room quiet. It works, but a cable (Digirig, the radio's USB) decodes far more stations.</p>
       <div class="f8-catrow"><button type="button" class="f8-b" id="f8Cat">📻 CONNECT MY RADIO (CAT)</button><span id="f8CatT"></span></div>
@@ -165,7 +173,7 @@
   /* ---------------- decoder engine ---------------- */
   let ENG = null, engP = null;
   const engine = () => engP || (engP = (window.KPCFT8 ? KPCFT8.load('kpc-ft8.wasm?v=20261017a') : Promise.reject(new Error('kpc-ft8.js missing'))).then(e => (ENG = e)));
-  function resetEng() { /* the engine is started fresh for every slot */ }
+  function resetEng() { /* the engine is started fresh for every slot */ lastPass = nowS(); quietSlots = 0; }
 
   /* ---------------- audio ---------------- */
   let AC = null, SRC = null, RXG = null, NODE = null, AN = null, STREAM = null, RUN = false;
@@ -226,7 +234,7 @@
       NODE = AC.createScriptProcessor(4096, 1, 1); NODE.onaudioprocess = ev => pushIn(ev.inputBuffer.getChannelData(0).slice(0));
       const mute = AC.createGain(); mute.gain.value = 0; RXG.connect(NODE); NODE.connect(mute); mute.connect(AC.destination);
     }
-    fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); stat(); slotSep(true); wfLoop(); tabDot();
+    lastPass = nowS(); lastN12 = -1; quietSlots = 0; fftFit(); RUN = true; $('f8StartBox').hidden = true; root.classList.add('run'); stat(); slotSep(true); wfLoop(); tabDot();
     if (ANDR && OUTFIRST) { OUTFIRST = false; note('🔊 Sound out opened before the mic (Android fix v7). Try TUNE now.', 4000); }
     /* Oct 18 (Brandon's tablet + FT-710: 'in and out are default'): names only show after the first allow, so list again now and pick the radio's USB sound by itself */
     const L = await devices(); if (!S.inDev && !S.mic && L) { const u = L.find(x => x.kind === 'audioinput' && USBRE.test(x.label)); if (u && !TXING) { S.inDev = u.deviceId; saveS(); note('🎧 Using ' + u.label + ' (change it in ⚙ settings).', 4000); stopAudio(); return startAudio(); } }
@@ -235,7 +243,7 @@
   }
   function stopAudio() {
     RUN = false; try { STREAM && STREAM.getTracks().forEach(t => t.stop()); } catch (e) {} try { NODE && NODE.disconnect(); SRC && SRC.disconnect(); RXG && RXG.disconnect(); } catch (e) {}
-    STREAM = SRC = NODE = null; $('f8StartBox').hidden = false; root.classList.remove('run'); stat(); tabDot();
+    STREAM = SRC = NODE = null; $('f8StartBox').hidden = false; root.classList.remove('run'); $('f8LvlW').textContent = '--'; $('f8LvlW').className = ''; $('f8LvlBar').style.width = '0'; stat(); tabDot();
   }
   /* Oct 18 (Brandon: FT-710 gets 1-10 W from the tablet, full power from the laptop): while the mic is open, Android puts the
      whole phone in 'call' mode, so sound out goes through the phone-call path (call volume, call processing).
@@ -302,7 +310,7 @@
     mark(S.rxHz, '#45e08f', 4); mark(S.txHz, '#ff5c5c', 3);
   }
   const COL = v => { v = Math.max(0, Math.min(1, v)); const r = v < .5 ? 0 : Math.round((v - .5) * 2 * 255), gg = v < .5 ? Math.round(v * 2 * 200) : 200 + Math.round((v - .5) * 110), b = v < .5 ? 90 + Math.round(v * 2 * 120) : Math.round(210 * (1 - (v - .5) * 2)); return [r, Math.min(255, gg), b]; };
-  let wfT = 0;
+  let wfT = 0, avgV = null;   /* avgV: slow average of the waterfall for CLEAR SPOT */
   function wfLoop() {
     if (!RUN) return; requestAnimationFrame(wfLoop);
     const t = performance.now(); if (t - wfT < (S.mode === 'FT4' ? 60 : S.mode === 'CW' ? 50 : S.mode === 'WSPR' ? 500 : isDG() ? 70 : 120) || document.hidden || root.hidden) return; wfT = t;
@@ -311,13 +319,18 @@
     const binHz = AC.sampleRate / AN.fftSize, row = g.createImageData(W, 1), vals = new Float32Array(W);
     for (let x = 0; x < W; x++) { const hz = xToHz(x), b = Math.min(n - 1, Math.round(hz / binHz)); vals[x] = d[b]; }
     const sorted = Array.from(vals).sort((a, b) => a - b), med = sorted[Math.floor(W * 0.4)] || -100;
-    for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2) / 26); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
+    for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2 + (+S.wfB || 0) / 10) / (26 * Math.pow(2, -(+S.wfC || 0) / 50))); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
     g.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); g.putImageData(row, 0, 0);
-    lastVals = vals; if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
+    lastVals = vals; if (isFT()) { if (!avgV || avgV.length !== W) avgV = Float32Array.from(vals); else for (let x = 0; x < W; x++) avgV[x] = avgV[x] * 0.9 + vals[x] * 0.1; }
+    if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
     /* level meter (dB above full-scale silence) */
     const db = peak > 0 ? 20 * Math.log10(peak) + 90 : 0; $('f8Lvl').style.width = Math.max(0, Math.min(100, db)) + '%'; $('f8Lvl').className = db < 20 || db > 80 ? 'bad' : '';
+    topLvl(peak > 0 ? 20 * Math.log10(peak) : -99);
     $('f8LvlT').textContent = Math.round(db) + ' dB ' + (db < 20 ? '(too low: turn the radio\'s audio up)' : db > 80 ? '(too high: turn RX GAIN down in ⚙ settings)' : '(good)');
   }
+  /* Nov 10 (from the KPC app, Oct 22 'rx bar in ft8 so I can see if incoming is too loud or not'): a bar with a word in the top strip: too quiet / good / loud / TOO LOUD */
+  function topLvl(dfs) { if (TXING) return; const z = dfs < -55 ? ['low', 'too quiet'] : dfs <= -10 ? ['ok', 'good'] : dfs <= -3 ? ['hot', 'loud'] : ['bad', 'TOO LOUD'];
+    $('f8LvlBar').style.width = Math.max(0, Math.min(100, dfs + 90)) + '%'; $('f8LvlBar').className = z[0]; $('f8LvlW').textContent = z[1]; $('f8LvlW').className = z[0]; $('f8TopLvl').dataset.z = z[0]; $('f8TopLvl').dataset.db = Math.round(dfs); }
   wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) * wf.width / r.width);
     if (S.mode === 'CW') { cwPitch(snapPeak(hz)); return; }
     if (isDG()) { if (DG()) DG().click(hz, e.shiftKey); return; }
@@ -460,6 +473,21 @@
   }
 
   /* ---------------- decodes ---------------- */
+  /* Nov 10 (from the KPC app 0.6.9 F2 / 0.6.11, KPC owner, 2026-11-10): every slot must come back with a decode pass.
+     Sound still arriving but no pass for 2.5 slots = the decoder is stuck: drop the engine and load a fresh one. 6+ quiet slots with sound = one hint per 5 min. FT8 / FT4 only. */
+  let lastPass = 0, lastN12 = 0, quietSlots = 0, wdSaid = 0, wdT = 0, restarting = false, RESTARTS = 0;
+  function restartEngine(why) {
+    if (restarting) return; restarting = true; RESTARTS++; console.warn('FT8 decoder restart: ' + why);
+    engP = null; ENG = null; lastDecSlot = -1; dtAvg = []; quietSlots = 0; lastPass = nowS();
+    engine().then(() => { restarting = false; }, () => { restarting = false; }); note('Decoder restarted', 2500);
+  }
+  function watchdog(t) {
+    if (!RUN || !isFT() || rel || Date.now() - wdT < 240) return; wdT = Date.now();
+    if (n12 === lastN12) return;   /* no sound arriving: that is the sound card's problem, not the decoder's */
+    lastN12 = n12; const L = slotLen();
+    if (lastPass && t - lastPass > 2.5 * L && !TXING) { restartEngine('no result for ' + Math.round(t - lastPass) + ' s'); return; }
+    if (quietSlots >= 6 && peak > 0.0008 && !TXING && Date.now() - wdSaid > 300000) { wdSaid = Date.now(); note('No stations decoded for ' + quietSlots + ' slots while sound is coming in. Band dead, or the RX level / radio mode / dial off the FT8 frequency / computer clock? Check the level word at the top.', 7000); }
+  }
   let LINES = [], lastDecSlot = -1, txSlots = new Set(), dtAvg = [];
   const MAXL = 400;
   function slotSep(force) { const sl = Math.floor(nowS() / slotLen()); if (force || !LINES.length || LINES[LINES.length - 1].sep !== sl) { /* separators come with each decode */ } }
@@ -470,17 +498,19 @@
     /* decode the slot that just ended (FT8 at 14.4 s, FT4 at 6.6 s into the slot) */
     const at = S.mode === 'FT4' ? 6.6 : 14.4;
     if (RUN && into >= at && lastDecSlot !== sl) { lastDecSlot = sl; decodeSlot(sl); }
+    watchdog(t);
     txTick(t, sl, into);
   }
   setInterval(() => { $('f8Utc').textContent = utc(nowS(), true).replace(/(\d\d)(\d\d)(\d\d)/, '$1:$2:$3'); if (!RUN) { const t = nowS(), L = slotLen(); $('f8SlotBar').style.width = ((t % L) / L * 100) + '%'; } else if (!NODE || !NODE.port) tick(); }, 250);
   function decodeSlot(sl) {
-    if (!ENG) return; const L = slotLen(), start = sl * L;
-    if (txSlots.has(S.mode + sl)) return; /* we were sending */
+    if (!ENG) { if (!restarting) engine().catch(() => {}); return; } const L = slotLen(), start = sl * L;
+    if (txSlots.has(S.mode + sl)) { lastPass = nowS(); return; } /* we were sending */
     const i0 = Math.round((start - t0) * R12), want = Math.round(L * R12);
     if (i0 < n12 - RING || i0 + want * 0.85 > n12) return;
     const buf = new Float32Array(want); for (let i = 0; i < want; i++) { const j = i0 + i; buf[i] = j >= 0 && j < n12 ? ring[((j % RING) + RING) % RING] : 0; }
     let D = [];
-    try { ENG.start(S.mode === 'FT4'); ENG.feed(buf); D = ENG.decode(S.deep ? 6 : 10, S.deep ? 40 : 25); } catch (e) { console.error(e); return; }
+    try { ENG.start(S.mode === 'FT4'); ENG.feed(buf); D = ENG.decode(S.deep ? 6 : 10, S.deep ? 40 : 25); } catch (e) { console.error(e); restartEngine('the decoder threw: ' + (e.message || e)); return; }
+    lastPass = nowS(); quietSlots = D.length ? 0 : quietSlots + 1;
     const me = myCall(), par = sl % 2;
     D.sort((a, b) => a.hz - b.hz);
     if (D.length) { const dts = D.map(d => d.dt).sort((a, b) => a - b); dtAvg.push(dts[Math.floor(dts.length / 2)]); if (dtAvg.length > 8) dtAvg.shift(); clockHint(); }
@@ -493,26 +523,53 @@
     for (const x of LINES) if (x.sl === sl && x.grid && x.fr && !/\.\.\./.test(x.fr)) GRIDS[x.fr] = x.grid;
     clearTimeout(gridSave); gridSave = setTimeout(() => { const k = Object.keys(GRIDS); if (k.length > 3000) k.slice(0, k.length - 3000).forEach(c => delete GRIDS[c]); put('kpcFt8Grids', GRIDS); }, 2000);
     $('f8Cnt').textContent = D.length + ' decoded';
-    alerts(sl); drawBand(); drawRx(); seq(sl, D); mapDraw();
+    alerts(sl); drawBand(); drawRx(); seq(sl, D); mapDraw(); autoSpotTick();
   }
   function clockHint() { if (dtAvg.length < 3) return; const m = dtAvg.slice().sort((a, b) => a - b)[Math.floor(dtAvg.length / 2)]; if (Math.abs(m) > 1) note(`⏱ Most stations show DT ${m > 0 ? '+' : ''}${m.toFixed(1)} s: your clock is about ${Math.abs(m).toFixed(1)} s ${m > 0 ? 'slow' : 'fast'}. Turn on "set time automatically" or FT8 contacts may fail.`, 8000, 'clk'); }
   /* is this station a park activator right now? (on the POTA / WWFF / SOTA spot lists; FT8/FT4 spots first) — Brandon Oct 17: 'highlight other pota stations' */
   const spotRef = call => { const L = LG(); if (!L || !call) return null; const A = (L.spots() || []).filter(x => x.activator === call && x.reference); return A.find(x => /FT8|FT4/i.test(x.mode || '')) || A[0] || null; };
+  /* Nov 10 (from the KPC app, Oct 24 'FT8 HIGHLIGHTS'): what lights up in the lists. DXpedition / special event come from the Lounge's spot list (window.KPCHuntShown: p = DXPED / EVENT)
+     and today's special-event list (kpc-special-events.json); 1x1 calls and W1AW/n always count as special events. */
+  const HLD = { park: ['🌲', 'Park activators (CQ POTA / SOTA / WWFF)'], dxped: ['🏝', 'DXpeditions (from the DX spots)'], event: ['🎉', 'Special-event stations (1x1 calls, W1AW/n, spotted as special events)'],
+    dx: ['🌍', 'DX: stations outside my own country'], newc: ['✨', 'A call I have never worked'], newb: ['📶', 'A call I have not worked on this band'] };
+  const usCall = c => /^(A[A-L]|[KNW])[A-Z]?\d/.test(c), caCall = c => /^(V[A-GOY]|C[F-KYZ]|X[J-O])\d/.test(c);
+  const ctryKey = c => { c = String(c || '').toUpperCase().replace(/^[A-Z0-9]+\//, ''); return usCall(c) ? 'US' : caCall(c) ? 'CA' : (c.match(/^[A-Z0-9]?[A-Z]/) || [''])[0]; };
+  const baseC = c => String(c || '').toUpperCase().replace(/^[A-Z0-9]+\//, '').replace(/\/[A-Z0-9]+$/, '');
+  let EVC = new Set(), spotHl = { t: 0, m: {} }, qsHl = { t: 0, a: [] };
+  fetch('kpc-special-events.json').then(r => r.ok ? r.json() : null).then(j => { const d = new Date().toISOString().slice(0, 10); ((j && j.stations) || []).forEach(e => { if ((!e.start || e.start <= d) && (!e.end || e.end >= d)) [e.call].concat(e.calls || []).forEach(c => c && EVC.add(String(c).toUpperCase())); }); }).catch(() => {});
+  function spotFlag(call) { if (Date.now() - spotHl.t > 20000) { const m = {}; (window.KPCHuntShown || []).forEach(s => { const c = String(s && (s.call || s.activator) || '').toUpperCase(), t = [s.sig, s.com, s.comment, s.c].join(' '); if (!c) return;
+      if (s.p === 'DXPED' || /DXPEDITION|DX-?PED/i.test(t)) m[c] = 'dxped'; else if (s.p === 'EVENT' || /SPECIAL EVENT|\bSES\b/i.test(t)) m[c] = m[c] || 'event'; }); spotHl = { t: Date.now(), m }; } return spotHl.m[String(call || '').toUpperCase()] || ''; }
+  function logQs() { if (Date.now() - qsHl.t > 20000) { let a = []; try { a = (LG() && LG().qs && LG().qs()) || []; if (!a.some(q => q.call)) a = (JSON.parse(localStorage.getItem('kpcHuntQSO') || 'null') || {}).q || []; } catch (e) {} qsHl = { t: Date.now(), a }; } return qsHl.a; }
+  function hlOf(x, park) {
+    const H = S.hl || {}, c = String(x.fr || '').toUpperCase(); if (!c || /\.\.\./.test(c) || /[<>]/.test(c)) return park && H.park ? 'park' : '';
+    const sf = spotFlag(c);
+    if (H.dxped && sf === 'dxped') return 'dxped';
+    if (H.event && (sf === 'event' || EVC.has(c) || /^[KNW]\d[A-Z]$/.test(c) || /^W1AW\/\d$/.test(c))) return 'event';
+    if (H.park && park) return 'park';
+    if (H.dx) { const me = ctryKey(myCall()); if (me && ctryKey(c) && ctryKey(c) !== me) return 'dx'; }
+    if ((H.newc || H.newb) && LG()) { const b = baseC(c), mine = H.newb ? logQs().filter(q => q.call && baseC(q.call) === b) : [];
+      if (H.newc && !LG().worked(c)) return 'newc';
+      if (H.newb && mine.length && !mine.some(q => q.band === S.band)) return 'newb'; }
+    return '';
+  }
+  const dxSel = x => !!(QS.dx && x && !x.tx && (x.fr === QS.dx || x.to === QS.dx));
+  /* tapping a station lights every line of that station in both lists (app markDx) */
+  function markDx() { ['f8Band1', 'f8Rx'].forEach(i => $(i).querySelectorAll('[data-l]').forEach(d => d.classList.toggle('dxsel', dxSel(byId[d.dataset.l])))); }
   function lineHtml(x) {
     if (x.sep != null) return `<div class="f8-sep">${utc(x.t, true).replace(/(\d\d)(\d\d)(\d\d)/, '$1:$2:$3')} ── ${x.mode}</div>`;
-    const L = LG(), wk = L && x.fr && L.worked(x.fr), sp = x.tx ? null : spotRef(x.fr) || (x.cq ? null : spotRef(x.to)), park = sp || /^(POTA|SOTA|WWFF)$/.test(x.cqw), cls = x.tx ? 'tx' : x.me ? 'me' : x.cq ? (x.cqw ? 'cqp' : 'cq') : '';
+    const L = LG(), wk = L && x.fr && L.worked(x.fr), sp = x.tx ? null : spotRef(x.fr) || (x.cq ? null : spotRef(x.to)), park = sp || /^(POTA|SOTA|WWFF)$/.test(x.cqw), hl = x.tx || x.me ? '' : hlOf(x, park), cls = x.tx ? 'tx' : x.me ? 'me' : x.cq ? (x.cqw ? 'cqp' : 'cq') : '';
     if (S.potaOnly && !park && !x.tx && !x.me) return '';
-    return `<div class="f8-l ${cls}${wk ? ' wk' : ''}${park ? ' park' : ''}${x.al ? ' al' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"><span class="tm">${x.tx ? utc(x.t, true) : utc(x.t, true)}</span><span class="db">${x.tx ? 'Tx' : fmtDb(x.db)}</span><span class="dt">${x.tx ? '' : (x.dt >= 0 ? ' ' : '') + x.dt.toFixed(1)}</span><span class="hz">${x.hz}</span><span class="tx">${x.tx ? '~' : '~'}</span><span class="m">${esc(x.text)}${sp ? ` <i class="ref">${sp.prog === 'SOTA' ? '⛰' : sp.prog === 'WWFF' ? '🌳' : '🌲'} ${esc(sp.reference)}${sp.activator !== x.fr ? ' (' + esc(sp.activator) + ')' : ''}${L && L.newPark && (sp.prog || 'POTA') === 'POTA' && L.newPark(sp.reference) ? ' · 🆕 NEW PARK' : ''}</i>` : ''}${wk ? ' <i class="wkd">✓</i>' : ''}${(() => { if (x.tx) return ''; const g = x.grid || gridOf(x.fr), a = myLL(), b = g2ll(g); if (!a || !b) return ''; const d = distB(a, b); return ` <i class="dst" title="${d.br}°">${d.mi.toLocaleString()} mi ${d.c}</i>`; })()}</span></div>`;
+    return `<div class="f8-l ${cls}${hl ? ' hl-' + hl : ''}${wk ? ' wk' : ''}${park ? ' park' : ''}${x.al ? ' al' : ''}${dxSel(x) ? ' dxsel' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"${hl ? ` title="${esc(HLD[hl][1])}"` : ''}><span class="tm">${x.tx ? utc(x.t, true) : utc(x.t, true)}</span><span class="db">${x.tx ? 'Tx' : fmtDb(x.db)}</span><span class="dt">${x.tx ? '' : (x.dt >= 0 ? ' ' : '') + x.dt.toFixed(1)}</span><span class="hz">${x.hz}</span><span class="tx">${x.tx ? '~' : '~'}</span><span class="m">${esc(x.text)}${sp ? ` <i class="ref">${sp.prog === 'SOTA' ? '⛰' : sp.prog === 'WWFF' ? '🌳' : '🌲'} ${esc(sp.reference)}${sp.activator !== x.fr ? ' (' + esc(sp.activator) + ')' : ''}${L && L.newPark && (sp.prog || 'POTA') === 'POTA' && L.newPark(sp.reference) ? ' · 🆕 NEW PARK' : ''}</i>` : ''}${hl && (hl !== 'park' || !sp) ? ' <i class="hlk">' + HLD[hl][0] + '</i>' : ''}${wk ? ' <i class="wkd">✓</i>' : ''}${(() => { if (x.tx) return ''; const g = x.grid || gridOf(x.fr), a = myLL(), b = g2ll(g); if (!a || !b) return ''; const d = distB(a, b); return ` <i class="dst" title="${d.br}°">${d.mi.toLocaleString()} mi ${d.c}</i>`; })()}</span></div>`;
   }
   let lid = 0; const byId = {};
   function idOf(x) { if (!x.id) { x.id = ++lid; byId[x.id] = x; } return x.id; }
   function drawBand() { const el = $('f8Band1'), stick = el.scrollTop + el.clientHeight >= el.scrollHeight - 30; const L = LINES.slice(-220); L.forEach(idOf); el.innerHTML = L.map(lineHtml).join(''); if (stick) el.scrollTop = el.scrollHeight; }
-  let MYQ = [];
+  let MYQ = [];   /* my sent messages */
   function drawRx() {
     const el = $('f8Rx'); const w = S.mode === 'FT4' ? 90 : 60, dx = QS.dx;
     const L = LINES.filter(x => x.sep == null && (Math.abs(x.hz - S.rxHz) <= w || x.me || (dx && x.fr === dx))).concat(MYQ).sort((a, b) => a.t - b.t || (a.tx ? 1 : 0) - (b.tx ? 1 : 0)).slice(-80);
     L.forEach(idOf); el.innerHTML = L.map(lineHtml).join('') || '<div class="f8-empty">Stations near your RX frequency and your own contact show here.</div>'; el.scrollTop = el.scrollHeight;
-    $('f8RxHz').textContent = S.rxHz + ' Hz';
+    $('f8RxHz').textContent = S.rxHz + ' Hz'; drawQso(); markDx();
   }
   function pick(x) {
     if (!x || x.sep != null) return;
@@ -525,8 +582,33 @@
     gen();
     /* answering them: if they're already calling me, jump ahead like WSJT-X */
     let n = S.noGrid ? 2 : 1; if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
-    QS.cq = false; nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk(); note('📞 Calling ' + other + ' (Tx' + n + ')', 2000);
+    QS.cq = false; nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk(); if (TXON) note('📞 Calling ' + other + ' (Tx' + n + ')', 2000);
   }
+  /* Nov 10 (from the KPC app 0.6.2 / 0.6.3 / Oct 24): the QSO box under TX1-6: the stations calling ME + both sides of the contact in hand; SENT / RCVD in the header ('missing report' = the one they send me) */
+  let qClr = 0;
+  const qsoSet = () => { const dx = QS.dx; return LINES.filter(x => x.sep == null && x.t > qClr && (x.me || (dx && (x.fr === dx || x.to === dx)))).concat(MYQ.filter(x => x.t > qClr && (!dx || String(x.text || '').split(/\s+/)[0] === dx || /^CQ /.test(x.text || '')))).sort((a, b) => a.t - b.t).slice(-12); };
+  function drawQso() {
+    const el = $('f8QsoL'), dx = QS.dx, me = myCall(), L = qsoSet();
+    $('f8QsoDx').textContent = dx ? '⇄ ' + dx : (QS.cq ? '📣 CALLING CQ' : 'NO CONTACT');
+    $('f8QsoR').innerHTML = dx ? `SENT <b>${esc(QS.rs || '—')}</b> · RCVD <b${QS.rr ? '' : ' class="miss"'}>${esc(QS.rr || 'missing report')}</b>${QS.grid ? ' · ' + esc(QS.grid) : ''}` : '';
+    el.innerHTML = L.map(x => `<div class="${x.tx ? 'mine' : x.me ? 'me' : ''}"><span>${utc(x.t, true)}</span>${x.tx ? '<i>▶</i>' : `<i>${fmtDb(x.db)}</i>`}<span class="m">${esc(x.text)}</span></div>`).join('') || `<p class="f8-empty">${me ? 'Stations calling ' + esc(me) + ' and your side of the contact show here.' : 'Set your call in ⚙ STATION first.'}</p>`;
+    el.scrollTop = el.scrollHeight;
+  }
+  $('f8QsoClr').onclick = () => { qClr = nowS(); if (!TXING) { QS.dx = ''; QS.grid = ''; QS.rs = ''; QS.rr = ''; QS.logged = false; QS.state = 'idle'; QS.cq = false; $('f8Dx').value = ''; $('f8DxG').value = ''; $('f8Rpt').value = ''; gen(); } drawQso(); drawRx(); };
+  /* Nov 10 (from the KPC app 0.6.9 F3 / Oct 22-23): CLEAR SPOT moves MY transmit frequency to the quietest gap (away from decoded signals and from loud ones on the waterfall);
+     the auto version does it after every decode pass while I am not sending and have no contact in hand */
+  function spotTaken(hz) { const bw = S.mode === 'FT4' ? 83 : 50, from = lastDecSlot - 4; return LINES.some(x => x.sep == null && !x.me && x.sl >= from && Math.abs(x.hz - hz) < bw); }
+  const avgAt = (a, b) => { const x0 = Math.max(0, Math.round(hzToX(a))), x1 = Math.min(avgV.length - 1, Math.round(hzToX(b))); let sum = 0, n = 0, pk = -200; for (let x = x0; x <= x1; x++) { sum += avgV[x]; n++; if (avgV[x] > pk) pk = avgV[x]; } return { avg: sum / Math.max(1, n), pk }; };
+  function spotLoud(hz) { if (!avgV) return false; const bw = S.mode === 'FT4' ? 83 : 50, all = Array.from(avgV.slice(Math.max(0, Math.round(hzToX(300))), Math.round(hzToX(2700)))).sort((p, q) => p - q), med = all[Math.floor(all.length / 2)] || -100; return avgAt(hz - bw / 2, hz + bw / 2).pk > med + 8; }
+  function clearSpot(quiet) {
+    if (!avgV || !isFT()) { if (!quiet) note('Press START LISTENING first: it needs to hear the band to find a clear spot.', 4000); return null; }
+    const bw = S.mode === 'FT4' ? 83 : 50; let best = null, bestV = 1e9;
+    for (let hz = 300; hz <= 2700 - bw; hz += 5) { if (spotTaken(hz + bw / 2)) continue; const r = avgAt(hz, hz + bw), v = r.avg + r.pk * 0.5; if (v < bestV) { bestV = v; best = hz; } }
+    if (best == null) return null;
+    const hz = Math.round(best + bw / 2); S.txHz = hz; saveS(); hzBoxes(); drawScale();
+    note('🎯 ' + (quiet ? 'Your spot was busy, so your' : 'Your') + ' transmit frequency is now ' + hz + ' Hz, the quietest gap.', 3500); return hz;
+  }
+  function autoSpotTick() { if (!S.autoClear || TXING || !RUN || !avgV || !isFT() || (QS.dx && QS.state && QS.state !== 'done' && QS.state !== 'idle')) return null; if (spotTaken(S.txHz) || spotLoud(S.txHz)) return clearSpot(true); return null; }
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('click', e => { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); }));
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('keydown', e => { if (e.key === 'Enter') { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); } }));
 
@@ -600,19 +682,23 @@
     const me = myCall() || 'K4TEST', g = myGrid(), dx = (QS.dx || 'DXCALL'), r = QS.rs || '-10', rr = QS.rr ? QS.rr : r;
     asOpts(); const M = [`${dx} ${me}${g ? ' ' + g : ''}`, `${dx} ${me} ${r}`, `${dx} ${me} R${r}`, `${dx} ${me} RR73`, `${dx} ${me} 73`, `CQ ${cqWord() ? cqWord() + ' ' : ''}${me}${g ? ' ' + g : ''}`];
     $('f8Txm').innerHTML = M.map((m, i) => `<div class="f8-tm${QS.next === i + 1 ? ' on' : ''}"><button type="button" class="nx" data-nx="${i + 1}" title="Send this one next">Tx${i + 1}</button><span class="tm${i === 0 && S.noGrid ? ' skip' : ''}" data-tm="${i + 1}" data-nx="${i + 1}" title="Made for you from the calls: tap to send this one next">${esc(m)}</span><button type="button" class="nw" data-now="${i + 1}" title="Send this one now">NOW</button></div>`).join('');
-    void rr;
+    void rr; drawQso(); markDx();
   }
   const msgOf = n => { const i = document.querySelector(`[data-tm="${n}"]`); return i ? i.textContent.toUpperCase().trim() : ''; };
   function nextTx(n) { QS.next = n; document.querySelectorAll('.f8-tm').forEach((d, i) => d.classList.toggle('on', i + 1 === n)); }
   $('f8Txm').addEventListener('click', e => { const a = e.target.closest('[data-nx]'), b = e.target.closest('[data-now]');
     if (a) nextTx(+a.dataset.nx); if (b) { nextTx(+b.dataset.now); txOn(true); NOWTX = true; } });
   let TXON = false, TXING = false, NOWTX = false, TUNE = null;
-  function txOn(on) { TXON = !!on; if (on && !RUN) startAudio(); if (on) QS.since = QS.since || nowS(); chk(); stat(); }
+  /* Nov 10 (from the KPC app 0.6.8, KPC owner, 2026-11-10): the CQ and the first call carry my grid, so with none TX will not switch on.
+     ⚡ Fast QSO (no grid) answering a station sends reports only, so that path still works. */
+  function needGrid() { if (myGrid()) return false; note(main && main.id === 'hl' ? 'Put your grid in MY LOG FILES first: the CQ and the first call carry it' : 'Put your grid in MY STATION first: the CQ and the first call carry it', 6000); return true; }
+  function txOn(on) { if (on && !(S.noGrid && QS.next >= 2 && QS.next <= 5) && needGrid()) { TXON = false; chk(); stat(); return; } TXON = !!on; if (on && !RUN) startAudio(); if (on) QS.since = QS.since || nowS(); chk(); stat(); }
   function chk() { $('f8En').classList.toggle('on', TXON); $('f8Cq').classList.toggle('on', TXON && QS.next === 6); }
   function stat() { const e = $('f8St'); e.textContent = TXING ? 'TX ' + (TUNE ? 'TUNE' : '') : RUN ? (TXON ? 'RX · TX ON' : 'RX') : 'OFF'; e.className = 'f8-st ' + (TXING ? 'tx' : RUN ? 'rx' : ''); }
   $('f8En').onclick = () => { if (!RUN) { startAudio().then(ok => ok && txOn(!TXON)); return; } txOn(!TXON); };
   $('f8Halt').onclick = () => halt('Stopped.');
   $('f8Cq').onclick = () => { if (!myCall()) { note('Put YOUR call in ⚙ STATION first.'); const L = LG(); if (L) { back(); L.station(); } return; }
+    if (needGrid()) return;
     QS.dx = ''; QS.grid = ''; QS.state = 'cq'; QS.logged = false; QS.cq = true; QS.ref = ''; QS.since = nowS(); $('f8Dx').value = ''; $('f8DxG').value = ''; gen(); nextTx(6); txOn(true); };
   $('f8Gen').onclick = () => { QS.dx = clean($('f8Dx').value); QS.grid = $('f8DxG').value.toUpperCase(); QS.rs = $('f8Rpt').value.trim() || QS.rs; gen(); };
   $('f8Dx').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); };
@@ -748,6 +834,12 @@
   const pf = () => { $('f8PotaF').classList.toggle('on', !!S.potaOnly); }; pf(); $('f8PotaF').onclick = () => { S.potaOnly = !S.potaOnly; saveS(); pf(); drawBand(); };
   ['aPark', 'aState', 'aGrid'].forEach(k => { const el = $('f8' + k); el.checked = !!S[k]; el.onchange = () => { S[k] = el.checked; saveS(); }; });
   $('f8Watch').value = S.watch || ''; $('f8Watch').onchange = () => { S.watch = $('f8Watch').value.toUpperCase(); $('f8Watch').value = S.watch; saveS(); };
+  $('f8Clear').onclick = () => clearSpot(false);
+  $('f8AutoClr').checked = !!S.autoClear; $('f8AutoClr').onchange = () => { S.autoClear = $('f8AutoClr').checked; saveS(); };
+  const wfSet = () => { $('f8WfB').value = +S.wfB || 0; $('f8WfC').value = +S.wfC || 0; $('f8WfBT').textContent = +S.wfB || 0; $('f8WfCT').textContent = +S.wfC || 0; };
+  wfSet(); $('f8WfB').oninput = () => { S.wfB = +$('f8WfB').value; saveS(); wfSet(); }; $('f8WfC').oninput = () => { S.wfC = +$('f8WfC').value; saveS(); wfSet(); };
+  $('f8Hl').innerHTML = Object.entries(HLD).map(([k, v]) => `<label class="ck"><input type="checkbox" id="f8hl_${k}"> <span class="hlk hl-${k}">${v[0]}</span> ${esc(v[1])}</label>`).join('');
+  Object.keys(HLD).forEach(k => { const el = $('f8hl_' + k); el.checked = !!S.hl[k]; el.onchange = () => { S.hl[k] = el.checked ? 1 : 0; saveS(); spotHl.t = 0; qsHl.t = 0; drawBand(); drawRx(); }; });
   $('f8Wd').value = String(S.wd || 2); $('f8Wd').onchange = () => { S.wd = +$('f8Wd').value; saveS(); };
   /* no interface: the phone's own mic + speaker held next to the radio (Brandon Oct 17) */
   $('f8Mic').onclick = async () => { S.inDev = ''; S.outDev = ''; S.mic = true; S.ptt = 'vox'; S.lvl = Math.max(S.lvl, 0.8); saveS(); $('f8Ptt').value = 'vox'; setLvl(lvlDb()); $('f8MicT').hidden = false;
@@ -764,7 +856,8 @@
 
   /* little note that fades away (Brandon: 'nothing extreme, short message that goes away') */
   let nT = null;
-  function note(t, ms, kind) { const n = $('f8Note'); n.textContent = t; n.className = 'f8-note' + (kind ? ' ' + kind : ''); n.hidden = false; n.classList.remove('out'); clearTimeout(nT);
+  const NOTES = [];   /* the last few notes, for the builders' tests */
+  function note(t, ms, kind) { NOTES.push(t); if (NOTES.length > 8) NOTES.shift(); const n = $('f8Note'); n.textContent = t; n.className = 'f8-note' + (kind ? ' ' + kind : ''); n.hidden = false; n.classList.remove('out'); clearTimeout(nT);
     nT = setTimeout(() => { n.classList.add('out'); setTimeout(() => { n.hidden = true; }, 400); }, ms || 3000); }
   $('f8Note').onclick = () => { $('f8Note').hidden = true; };
 
@@ -782,6 +875,14 @@
   $('f8Back').onclick = back;
   document.querySelectorAll('[data-ft8open]').forEach(b => b.onclick = open);
   addEventListener('keydown', e => { if (root.hidden) return; if (e.key === 'Escape' && TXING) halt('Stopped.'); });
+  /* test hooks (tests/lounge_digi_nov10_browser.js) */
+  window.KPCFt8Tab = { _notes: () => NOTES.slice(), S, running: () => RUN, eng: () => !!ENG, lines: () => LINES, qso: () => QS, txOn: () => TXON, myGrid, lvl: () => ({ z: $('f8TopLvl').dataset.z, db: $('f8TopLvl').dataset.db, w: $('f8LvlW').textContent }),
+    _wedge: () => { lastPass = nowS() - 100; lastN12 = -1; wdT = 0; }, _restarts: () => RESTARTS, _quiet: n => { quietSlots = n; wdSaid = 0; lastN12 = -1; wdT = 0; }, _hl: (x, hl) => { if (hl) S.hl = hl; spotHl.t = 0; qsHl.t = 0; return hlOf(x, /^(POTA|SOTA|WWFF)$/.test(x.cqw || '')); },
+    _autoTest: hz => { const W = wf.width; if (!avgV || avgV.length !== W) avgV = new Float32Array(W).fill(-90); const a = Math.round(hzToX(hz - 25)), b = Math.round(hzToX(hz + 25)); for (let i = a; i <= b; i++) avgV[i] = -40; const before = S.txHz; autoSpotTick(); return { moved: S.txHz !== before, to: S.txHz }; },
+    /* decoded lines made up for slot sl, then the same steps a real pass takes (lists, QSO box, sequencer) */
+    _feed: (sl, list) => { const me = myCall(), start = sl * slotLen(); LINES.push({ sep: sl, t: start, mode: S.mode }); for (const d of list) { const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
+        LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' }); }
+      lastDecSlot = sl; drawBand(); drawRx(); seq(sl, []); }, pick: id => { pick(byId[id]); return true; }, ids: () => Object.keys(byId) };
   window.KPCFT8UI = {
     open, back,
     /* for kpc-digi-ui.js (RTTY / PSK31 / SSTV / WSPR) */

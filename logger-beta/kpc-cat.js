@@ -481,9 +481,11 @@
      from the radio's own scale: Yaesu RM1 / Icom 0x15 0x02 = 0–255 with S9 ≈ 120 and S9+60 ≈ 241; Kenwood SM0 = 0–30 with S9 = 15;
      hamlib STRENGTH is already dB over S9; flrig smeter 0–100 (×2.55). COMP / IDD / VDD where Yaesu gives them (RM3 / RM7 / RM8, 0–100 %). */
   const sdb = (v, s9, top) => v == null || !isFinite(v) ? null : v <= s9 ? Math.round((v / s9 * 9 - 9) * 6) : Math.round((v - s9) / (top - s9) * 60);
+  let PTTW = 0;
   function meters() {
     if (!S.on) return Promise.resolve(null);
     busy = busy.then(async () => {
+      if (PTTW) return null;
       const L = LINK();
       if (L === 'fake') { if (!FAKE.on) return null; const tx = !!(window.KPCApp && KPCApp.txing && KPCApp.txing()); return { s: tx ? null : Math.round(-18 + Math.random() * 30), alc: tx ? 30 + Math.round(Math.random() * 20) : 0, po: tx ? 70 + Math.round(Math.random() * 10) : 0, swr: tx ? 12 : 0, comp: tx ? 20 : 0, idd: tx ? 55 : 8, vdd: 54, pwr: FAKE.pwr || 100 }; }
       if (L === 'flrig') { if (!flrigOn) return null; try { const pw = await FLRIG.call('rig.get_power', []); let sm = null; try { sm = sdb(+(await FLRIG.call('rig.get_smeter', [])) * 2.55, 120, 241); } catch (e) {} return { s: sm, alc: null, po: null, swr: null, pwr: +pw || null }; } catch (e) { return null; } }
@@ -493,7 +495,7 @@
         if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf); const g = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? M255(+m[1]) : null; }, pc = /PC(\d{3});/.exec(t);   /* Oct 25: the FT-710 / FTDX10 answer 'RM4120000;' (value + three fixed zeros): the old 3-digit match never fitted, so the bars stayed empty */ const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }; return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pc ? +pc[1] : null }; }
         if (pr === 'kenwood') { rbuf = []; await write(asc('SM0;PC;')); await sleep(220); const t = String.fromCharCode(...rbuf), pc = /PC(\d{3});/.exec(t), sm = /SM0(\d{4});/.exec(t); return { s: sm ? sdb(+sm[1], 15, 30) : null, alc: null, po: null, swr: null, pwr: pc ? +pc[1] : null }; }
         if (pr === 'hamlib') { rbuf = []; await write(asc('\\get_level ALC\n\\get_level SWR\n\\get_level RFPOWER\n\\get_level STRENGTH\n')); await sleep(340); const t = String.fromCharCode(...rbuf).split(/\s+/).map(Number).filter(x => isFinite(x)); return { s: t[3] != null ? Math.round(t[3]) : null, alc: t[0] != null ? Math.round(Math.min(100, t[0] * 100)) : null, po: null, swr: t[1] != null ? Math.round(Math.min(100, (t[1] - 1) * 50)) : null, pwr: t[2] != null ? Math.round(t[2] * 100) : null }; }
-        if (pr === 'icom') { const one = async sub2 => { rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(); const i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i); const hi = d[d.length - 2], lo = d[d.length - 1]; const v = (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); return M255(v); }; const sRaw = async () => { rbuf = []; await write(icom([0x15, 0x02])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
+        if (pr === 'icom') { const one = async sub2 => { if (PTTW) return null; rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(); const i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i); const hi = d[d.length - 2], lo = d[d.length - 1]; const v = (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); return M255(v); }; const sRaw = async () => { rbuf = []; await write(icom([0x15, 0x02])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
           return { s: sdb(await sRaw(), 120, 241), alc: await one(0x13), po: await one(0x11), swr: await one(0x12), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
       } catch (e) { return null; }
       return null;
@@ -557,7 +559,9 @@
   const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesu8: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
   function ptt(on, via) {
     via = via || S.ptt || 'cat'; if (via === 'vox') return Promise.resolve(true);
+    PTTW++;   /* Nov 8 (KPC owner, 2026-11-10): a waiting PTT makes the queued meter reads step aside */
     busy = busy.then(async () => {
+      PTTW = Math.max(0, PTTW - 1);
       if (!await connect(false)) { say('Radio not connected, so no PTT. Connect it, or use VOX.', false); return false; }
       if (LINK() === 'fake') { FAKE.ptt = !!on; return true; }
       if (LINK() === 'flrig') { try { await FLRIG.ptt(!!on); return true; } catch (e) { say('flrig PTT did not work: ' + (e.message || e), false); return false; } }
