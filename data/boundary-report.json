@@ -1115,6 +1115,12 @@
    ],
    [
     "CA-ON",
+    "CA-1336",
+    "Cache Bay Wetland Conservation Reserve",
+    ""
+   ],
+   [
+    "CA-ON",
     "CA-5111",
     "Oak Ridges Corridor Conservation Reserve",
     "Oak Ridges Corridor Park"
@@ -1697,8 +1703,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
+    "detail": "~1.1 km",
+    "thin": 60,
     "edge": 6
    },
    {
@@ -2460,13 +2466,13 @@
     "DO",
     "DO-0085",
     "Lagunas B\u00e1varo y El Calet\u00f3n Wildlife Refuge",
-    "Lagunas de B\u00e1varo y El Calet\u00f3n"
+    ""
    ],
    [
     "DO",
     "DO-0095",
     "Alto Bao Forest Reserve",
-    "Alto bao"
+    ""
    ],
    [
     "DO",
