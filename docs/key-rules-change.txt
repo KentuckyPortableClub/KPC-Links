@@ -49,3 +49,6 @@ B6 no Natura 2000 source for CH and NO. A full world rebuild is due on merge.
 
 Official-point circles and candidate joins, Nov 9 2026, draft PR prep/nov9-yes7-solver: NO rule file changed and NO rule hash moved versus main after #106: US f489a836894f, CA 570b09c3cb52, world 6444287722b9, fers 3dde681f1427. Files: data/us-key/overrides.json, data/ca-key/overrides.json, data/ca-key/hardlook-joins.json.
 Why: standing candidate-check YES parks were joined; official agency points without a boundary got a 100 ft point circle (data/point-circles.json).
+
+Official agency outlines as public land, draft PR prep/nov10-fers-agency-owner, Nov 10 2026: fers rules 3dde681f1427 -> 2209b78cd8ac (awaiting owner OK by name; not signed). US f489a836894f, CA 570b09c3cb52, world 6444287722b9 unchanged. Files: .github/scripts/kpc_fers.py, .github/fers-rule-scope.json (id 2026-11-10-official-layer-public-land).
+Why: when both parks already have an official government or agency outline, that layer shows government or public land, so a blank owner field is not a hold. Point-circle and approximate pairs stay flagged. A blank owner whose outline is not from an official agency layer still cannot be a candidate.

@@ -10,6 +10,16 @@
      "bad-pin"
     ]
    }
+  },
+  {
+   "id": "2026-11-10-official-layer-public-land",
+   "when": "2026-11-10",
+   "why": "When both parks already have an official agency outline, that layer is government or public land, so a blank owner field is not a hold. Point-circle and approximate pairs stay flagged. A blank owner whose outline is not from an official agency layer still cannot be a candidate.",
+   "scope": {
+    "flags": [
+     "blank-owner"
+    ]
+   }
   }
  ]
 }

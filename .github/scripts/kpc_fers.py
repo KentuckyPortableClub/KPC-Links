@@ -1349,6 +1349,16 @@ def ownership_step(s, parks, PIN):
         if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
         s['owner_src'] = "the parks' own records / agency names (Brandon Nov 9, 9:37 AM CST)"
         return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
+    # Official agency outlines already show government or public land, so a blank owner field
+    # is not a hold when every half comes from such a layer. Point-circle and approximate
+    # pairs stay flagged. A blank owner whose outline is not from an official agency layer
+    # still cannot be a candidate.
+    if official_agency_outlines(refs):
+        known = sorted({owner_word(o) for o in real.values()}) if real else []
+        s['ground'] = known or ['government or public land']
+        s['owner_src'] = 'official agency outline (government / public land)'
+        if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
+        return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
     blank = [PIN.get(r, [r])[0] for r, o in owners.items() if o == '?']
     if blank: return 'not sure', 'no owner on the park record or in its name for ' + ', '.join(blank) + ' (a person adds it)'
     if not real: return 'not sure', 'no park here owns land (designations only): no owner on the records'
@@ -2762,21 +2772,65 @@ def water_date(s):
 
 
 
-def no_owner_source(x):
-    """Nov 9 (Quality must-fix 2; Brandon Nov 8: an inside / overlapping pair needs an ownership source): a live candidate with no
-    ownership answer recorded (rows decided on Oct 28-29, before the ownership step, were carried over unchanged)."""
+def _fers_links_root():
+    return pathlib.Path(__file__).resolve().parent.parent.parent
+
+
+def official_agency_outlines(refs, root=None):
+    """True when every park already has an official government or agency outline in the key.
+    The key source layer (PAD-US, CPCAD, provincial / Parks Canada maps, state agency layers)
+    is government or public land, so no separate ownership source is required. Point-circle
+    and approximate parks are not official agency outlines and stay flagged."""
+    refs = list(refs or [])
+    if not refs: return False
+    root = str(root or _fers_links_root())
+    try:
+        from kpc_fers_key_status import status_for, load_key_status
+        load_key_status(root)
+    except Exception:
+        return False  # noqa: BLE001
+    pc = PC
+    if not pc:
+        try:
+            p = pathlib.Path(root) / 'data/point-circles.json'
+            pc = {r: v for r, v in (json.load(open(p, encoding='utf-8')).get('parks') or {}).items()
+                  if v.get('kind') == PC_KIND and v.get('pt') and len(v['pt']) == 2}
+        except Exception:
+            pc = {}  # noqa: BLE001
+    for r in refs:
+        if r in pc: return False
+        if status_for(r) != 'official': return False
+    return True
+
+
+def no_owner_source(x, root=None):
+    """A live candidate with no ownership answer recorded. An official agency outline already
+    shows government or public land, so that pair is not held. Point-circle and approximate
+    pairs stay flagged. A blank owner whose outline is not from an official agency layer
+    still cannot be a candidate."""
     st = str(x.get('status', ''))
     if not (st.startswith('candidate') or st.startswith('very tight')): return False
-    if x.get('kind') == 'same land':
+    if str(x.get('tier') or '') == 'point-circle':
+        missing = True
+    elif x.get('kind') == 'same land':
         o = str(x.get('owner_here') or '').lower()
-        return not o or o.startswith(('owner not published', 'unk ', '? '))
-    return not x.get('ownership') and not x.get('known')
+        missing = not o or o.startswith(('owner not published', 'unk ', '? '))
+    else:
+        missing = not x.get('ownership') and not x.get('known')
+    if not missing: return False
+    if official_agency_outlines(x.get('refs') or [], root=root):
+        x['ownership'] = x.get('ownership') or 'public land (official agency outline)'
+        x['owner_src'] = x.get('owner_src') or 'official agency outline (government / public land)'
+        if x.get('kind') == 'same land' and not str(x.get('owner_here') or '').strip():
+            x['owner_here'] = 'government or public land (official agency outline)'
+        return False
+    return True
 
 
-def hold_no_owner(spots):
+def hold_no_owner(spots, root=None):
     n = 0
     for x in spots:
-        if no_owner_source(x):
+        if no_owner_source(x, root=root):
             x['status'] = 'not sure: no ownership source for this row (an inside or overlapping pair needs one: Brandon Nov 8): a person or the next run checks it'
             x.pop('list', None); n += 1
     return n
