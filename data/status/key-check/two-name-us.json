@@ -1,8 +1,8 @@
 {
  "key": "us",
  "about": "Two-name park check (Nov 6, big key / 2-fer patch; Brandon [pt437u]). Offline, REPORT ONLY, reads the built keys.",
- "two_name_parks": 590,
- "half_outlined": 17,
+ "two_name_parks": 591,
+ "half_outlined": 18,
  "separate_units": [
   {
    "ref": "US-3692",
@@ -310,6 +310,25 @@
     "Oregon Parks and Recreation Department (AGOL owner orstateparks) (park, state GIS table)",
     "PAD-US",
     "State of Oregon (Oregon parklands) (park, state GIS table)"
+   ]
+  },
+  {
+   "area": "US-RI",
+   "park": "US-2880",
+   "name": "Snake Den/Dame Farm State Park",
+   "joined": [
+    "Snake Den",
+    "Snake Den State Park"
+   ],
+   "named": "Snake Den",
+   "missing": "Dame Farm State Park",
+   "missing_words": [
+    "dame",
+    "farm"
+   ],
+   "also_in": [
+    "PAD-US",
+    "Rhode Island DEM (land, state GIS table)"
    ]
   },
   {
