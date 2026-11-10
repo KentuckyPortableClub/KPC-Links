@@ -13,7 +13,7 @@ concurrency:
   group: kpc-adds-probe
 jobs:
   probe:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # Nov 9: Playwright has no build for ubuntu 26.04 (Guide PDFs run 42637107981)
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5

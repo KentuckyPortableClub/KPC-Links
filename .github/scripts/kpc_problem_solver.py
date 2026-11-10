@@ -19,7 +19,10 @@ Verdicts (one per park, with plain-words reasons):
   pin wrong          the held record is the park's land (name and kind match, one such place) and POTA's pin is off it: override
                      to keep the land; the reasons say how the pin looks wrong (one digit off, one coordinate off, a rounded
                      2-decimal pin, or simply elsewhere). The pin is NEVER moved.
-  needs a person     anything the checks above cannot settle (no pin, no saved outline, names disagree, acres far apart, ...)
+  needs a person     anything the checks above cannot settle (no pin, names disagree, acres far apart, ...). Nov 9: a hand join
+                     the key's row lacks gets fault = 'key setup' and the reason (layer set up for another state only / PAD-US
+                     load filter); a held record with no saved outline falls back to the key's own distance + acres
+                     ('pin wrong', MEDIUM, only in the plain case: one state, one such name, acres agree)
 
   KEY=us (only the US key for now)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
   OUT=<file stem> (default data/us-key/review/problem-solver)   STATES=<file> (default kpc-us-states.json)
@@ -255,11 +258,21 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
             why.append(f"the held {h} ({nm}) is " + (f'{d:.1f} km away' if d is not None else f'{km_bk} km away (key)') + ': a different piece of land')
         return R
     if not held:
+        miss = [i for i in ov_ids if i not in have]
+        if miss and not (set(ov_ids) & have):
+            # Nov 9 weekly batch (44 rows said only 'the key names no held record'): say WHY the key's row lacks the hand join
+            R['fault'] = 'key setup'
+            R['recommend'] = 'fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)'
+            why.append(f"overrides.json joins {', '.join(miss)}, but this key's row lists no record at all")
+            why.extend(join_gap(i, listed_state, ctx) for i in miss)
+            return R
         why.append('the key names no held record'); return R
     h, rec = hrec[0]
     hname = next((x[1] for x in cands if str(x[0]) == h), '')
     if rec is None or not rings(rec):
-        why.append(f'no saved outline for {h} in this build, so its shape could not be checked'); return R
+        why.append(f'no saved outline for {h} in this build, so its shape could not be checked'
+                   + (f" (the saved outlines are {ctx['cache_note']}; a layer added since is not in them)" if ctx.get('cache_note') else ''))
+        return R   # Nov 9: no_outline_fallback() is written but NOT wired (Quality's Nov 7 rule: no outline -> a person); Quality decides
     # 3. sliver
     pts, mac, cac = n_points(rec), acres(rec), float(rec.get('GIS_Acres') or 0)
     if LINEAR.search(R['type']) and pts <= SLIVER_PTS:
@@ -341,14 +354,92 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
     return R
 
 
+def join_gap(i, listed_state, ctx):
+    """Nov 9: one plain sentence on why the key's row does not list the hand-joined record i."""
+    st = st_lbl(listed_state)
+    pre = re.match(r'[a-z]*', str(i)).group(0)
+    lay = (ctx.get('layer_states') or {}).get(pre)
+    if not pre:
+        return (f"{i} is a PAD-US record the {st} key did not read. Since Nov 9 (US rules 464d2ce92eda) a saved id is always loaded by id, "
+                f"whatever its Category, owner or PAD-US state; if this key was built before that, the next US key build reads it. "
+                f"Still missing after that: PAD-US renumbered or removed the record (the saved name + acres re-find it)")
+    if lay is not None and st not in lay['states']:
+        return (f"{i}: layer {pre} ({lay['name']}) is set up only for {', '.join(sorted(lay['states'])) or 'no state'} in data/state-gis.json, "
+                f"so the {st} key never reads it (add the layer for {st}, limited to the joined records)")
+    if lay is not None:
+        return (f"{i}: layer {pre} ({lay['name']}) is set up for {st} in data/state-gis.json, but this key's row does not list the record: "
+                f"the key was built before the layer was set up for {st}, its 'where' filter leaves the record out, or the record is gone")
+    return f"{i}: layer {pre} did not return this record for {st} (a built-in layer of the US key, or one this checkout does not list)"
+
+
+def no_outline_fallback(R, p, h, hname, held, km_bk, cands, listed_state, others_st):
+    """Nov 9 weekly batch (38 rows: 'no saved outline ... in this build'): the saved outlines are an older copy, so a layer added
+    since (NV 'sgnvi', Nov 7) has none. When the held record IS the key's best record, the key's OWN distance and the record's acres
+    still settle the plain case: same name and kind, one state, the park's acres agree. Then 'pin wrong' at MEDIUM confidence (the
+    shape was not checked); anything else stays with a person. Recommends only; the pin is never moved."""
+    why = R['reasons']
+    x = next((y for y in cands if str(y[0]) == h), None)
+    bk_id = str((p.get('bk') or [None])[0])
+    if x is None or h != bk_id or not isinstance(km_bk, (int, float)) or km_bk <= NEAR_KM:
+        return R
+    if not same_name(p.get('n'), hname):
+        why.append(f"the held record's name ({hname}) does not match the park's ({p.get('n')})"); return R
+    pk, rk, clash = kind_clash(f"{p.get('n')} {R['type']}", f"{hname} {h}")
+    if clash:
+        why.append(f"the names match but the kinds do not ({'/'.join(pk)} vs {'/'.join(rk)})"); return R
+    if others_st:
+        why.append(f"the park is also listed in {', '.join(others_st)}, so the pin may sit on another part"); return R
+    if sorted(core(hname) - core(p.get('n'))):
+        why.append(f"{h} ({hname}) adds words to the park's name: it may be one unit of the park"); return R
+    if p.get('m') and p.get('g') != 'pin' and not any(str(y[0]) in held for y in p['m']):
+        why.append('the park already has other land joined, so the pin may sit on another parcel'); return R
+    if len([y for y in cands if same_name(p.get('n'), y[1])]) > 1:
+        why.append('more than one record carries the name and none can be measured here'); return R
+    cac, pac = float(x[2] or 0), float(p.get('ac') or 0)
+    if cac > 0 and pac > 0 and not (1 / ACRE_RATIO <= cac / pac <= ACRE_RATIO):
+        why.append(f"{h} claims {cac:,.0f} acres but the park is ~{pac:,.0f} acres"); return R
+    R.update(verdict='pin wrong', confidence='medium',
+             recommend=f"override: keep {h} ({hname}) ({PIN_NEVER}); medium: no saved outline, so the shape was not checked")
+    why.append(f"{h} is the park's land by name ({hname}" + (f", ~{cac:,.0f} acres" if cac else '') + ") and the only record with it")
+    why.append(f"the key's own distance from the pin is {km_bk} km (measured by the build on its working copy)")
+    return R
+
+
 def st_lbl(s): return str(s or '').replace('US-', '') or 'listed'
 
 
 # ---- the run
+def layer_states(root):
+    """Nov 9: {layer prefix: {'name', 'states'}} for the state-GIS layers (data/state-gis.json; the prefix is fixed by the layer's
+    address in data/us-key/layers.json, so the same address listed under two states is one prefix read in both)."""
+    root = pathlib.Path(root)
+    try:
+        lj = json.load(open(root / 'data/us-key/layers.json', encoding='utf-8'))
+        sg = json.load(open(root / 'data/state-gis.json', encoding='utf-8')).get('states') or {}
+    except Exception: return {}  # noqa: BLE001
+    by = {v[0].split('/query')[0].rstrip('/'): (k, v[2] if len(v) > 2 else k) for k, v in lj.items() if isinstance(v, list) and v and str(v[0]).startswith('http')}
+    out = {k: {'name': nm, 'states': set()} for k, nm in by.values() if k.startswith('sg')}
+    for st, lays in sg.items():
+        for l in lays or []:
+            k = by.get(str(l.get('url') or '').rstrip('/'))
+            if k and k[0] in out: out[k[0]]['states'].add(st)
+    return out
+
+
+SAVED = {}   # Nov 9: state -> the saved outlines' own 'saved' date (the boundary-cache copy), for the reasons
+
+
+def cache_note(cache_dir, st):
+    return f"from {SAVED[st]}" if SAVED.get(st) else ''
+
+
 def load_recs(cache_dir, st):
     f = pathlib.Path(cache_dir) / f'US-{st}.json.gz'
     if not f.exists(): return {}
-    try: return {str(r.get('OBJECTID')): r for r in json.load(gzip.open(f, 'rt', encoding='utf-8')).get('recs') or []}
+    try:
+        d = json.load(gzip.open(f, 'rt', encoding='utf-8'))
+        if d.get('saved'): SAVED[st] = str(d['saved'])
+        return {str(r.get('OBJECTID')): r for r in d.get('recs') or []}
     except Exception: return {}  # noqa: BLE001
 
 
@@ -380,6 +471,7 @@ def run(env=None, root='.'):
     for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):
         try: files[pathlib.Path(f).stem[3:]] = json.load(open(f, encoding='utf-8')).get('parks') or {}
         except Exception: continue  # noqa: BLE001
+    lay_st = layer_states(root)
     where, joined_in, known = {}, {}, {}
     for st, parks in files.items():
         for r, p in parks.items():
@@ -405,7 +497,7 @@ def run(env=None, root='.'):
             sn = {k: v for k, v in by_name.get(' '.join(sorted(core(hn))), {}).items()
                   if k != hid and re.match(r'[a-z]*', k).group(0) == pre} if core(hn) else {}
             ctx = {'states': where.get(r, []), 'joined_in': joined_in.get(r, set()) - {st}, 'known_ids': known, 'same_name_recs': sn,
-                   'extra_recs': {k: recs[k] for k in sn}}
+                   'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, st)}
             out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st, ctx=ctx))
     stem = pathlib.Path(env.get('OUT') or root / 'data/us-key/review/problem-solver')
     stem.parent.mkdir(parents=True, exist_ok=True)

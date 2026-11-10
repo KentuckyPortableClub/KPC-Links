@@ -25,9 +25,11 @@ for ref, layer, nm in [
 # Part A (d): Salato outline from PAD-US 202779
 p=k['parks']['US-10172']
 check(any(str(t[0])=='bpad' and 'Salato' in str(t[1]) for t in p.get('tracts') or []), f'US-10172 has Salato bpad tract ({p.get("tracts")})')
-check(p.get('ac')==250, f'US-10172 acres 250 ({p.get("ac")})')
+# Nov 9 (Brandon 10:05 AM CST: Salato -> KDFWR HQ polygon OID 1: YES): the outline is now the KDFWR HQ polygon, 132 ac
+_t = [t for t in p.get('tracts') or [] if str(t[0]) == 'bpad']
+check(_t and _t[0][2] == 132, f'US-10172 bpad tract 132 ac, the KDFWR HQ polygon ({_t})')
 check('US-10172' not in (k.get('missing') or []), 'US-10172 left the missing list')
 g=json.load(open(ROOT/'ky-padus-parks.geojson'))
-check(any(f.get('properties',{}).get('ref')=='US-10172' and str(f['properties'].get('PADUS_ID'))=='202779' for f in g['features']),
-      'ky-padus-parks.geojson carries US-10172 PAD-US 202779')
+check(any(f.get('properties',{}).get('ref')=='US-10172' and f['properties'].get('KDFWR_OID')==1 and str(f['properties'].get('OLD_PADUS_ID'))=='202779' for f in g['features']),
+      'ky-padus-parks.geojson carries US-10172 = KDFWR HQ OID 1 (was PAD-US 202779)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

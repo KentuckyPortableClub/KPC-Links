@@ -145,7 +145,10 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
+          KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
         run: |
+          # Nov 9 evening: KPC-Archive release saved-outlines + index (the prev-US-XX copies stay on the KPC-Links release only)
+          ls cache/us/US-*.json.gz >/dev/null 2>&1 && { bash .github/scripts/kpc_archive.sh put saved-outlines "Boundary check saved outlines (run $GITHUB_RUN_ID)" cache/us/US-*.json.gz || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
             gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }

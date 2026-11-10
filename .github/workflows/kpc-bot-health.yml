@@ -38,7 +38,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # Nov 9: Playwright has no build for ubuntu 26.04 (Guide PDFs run 42637107981)
     timeout-minutes: 45
     # next round v3 (Quality's grade of v2, Nov 5): 'checks: read' sits on this job only, not the whole workflow. A job's own block
     # replaces the workflow's, so the workflow's three are repeated here unchanged (no other permission is added).

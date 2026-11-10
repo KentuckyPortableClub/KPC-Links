@@ -4,3 +4,4 @@ tests/test_fixbundle_de0095_nov4.py   # 'on today's DE key only DE-0095 is reach
 tests/test_ky_brandon_slash_nov6.py   # known pre-existing on main (KY slash decided_by), per the Nov 7 handoff
 tests/test_maprep_nearspot_address_nov8.py   # pre-existing on main 74bb56fd (script version pin); not this PR
 tests/test_tracts_nov7.py   # pre-existing on main 74bb56fd (tract side-file / GB outline byte pins); not this PR
+tests/test_world_ax_moved_nov8.py   # pre-existing on main 009d6388 / 078f0f6d (AX extra-layers moved by a bot); Quality confirmed Nov 9 PM (grade of #104)

@@ -1,5 +1,7 @@
 {
  "note": "Reviewed by hand. join = official land names (or PAD-US object ids) that ARE this park; no = pieces that are not; site = no outline of its own. kpc_us_key.py follows this on every rerun. · Oct 27 (boundary review #3 + #10): 'fp' = {PAD-US id: [name, acres]} so a hand join survives a new PAD-US version (ids change); 'when' = the day of the hand decision (add it with every new one). · Oct 29: 'alias' = another name the official layer uses; it joins ONLY when the POTA pin is inside that record (sure-match test).",
+ "blocked_ids_about": "Nov 9 2026 (Brandon t919u, 4:48 PM CST): a bad record id is listed here as {ref, id, reason, decided_by}; it is never used for that park (dropped from its saved joins and kept out as a NO); the park goes back to normal matching or to a person. No entry counts without decided_by.",
+ "blocked_ids": [],
  "parks": {
   "AS-0001": {
    "fp": {
@@ -392,8 +394,27 @@
      8691.5
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on wsrc4 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-09",
+   "why": "Nov 2 map audit: chat 11 NO on wsrc4 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "source_kind": "corridor",
+   "join_held": {
+    "ids": [
+     "fwsr208",
+     "fwsr41"
+    ],
+    "fp": {
+     "fwsr208": [
+      "Kern, California National Wild and Scenic River",
+      20356
+     ],
+     "fwsr41": [
+      "Kern, California National Wild and Scenic River",
+      3447
+     ]
+    },
+    "reason": "fwsr208: pin 20.45 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
   },
   "US-0200": {
    "fp": {
@@ -1605,8 +1626,21 @@
    "join": [
     "sgaki387660"
    ],
-   "when": "2026-11-04",
-   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-06: multi-state (OK pin + AR outline); postcheck prefers the outline copy (fers-and-pile)"
+   "when": "2026-11-09",
+   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-06: multi-state (OK pin + AR outline); postcheck prefers the outline copy (fers-and-pile) · 2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1122; the same unit (FOSM) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
+   "join_held": {
+    "ids": [
+     "sgakd1122"
+    ],
+    "fp": {
+     "sgakd1122": [
+      "Fort Smith National Historic Site",
+      71
+     ]
+    },
+    "reason": "sgakd1122: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
   },
   "US-0824": {
    "fp": {
@@ -1722,7 +1756,7 @@
     "fwsr198"
    ],
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 5:55 PM: waiting-room piece 'Flathead, Montana National Wild and Scenic River' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Flathead, Montana National Wild and Scen' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 5:55 PM: waiting-room piece 'Flathead, Montana National Wild and Scenic River' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Flathead, Montana National Wild and Scen' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-0885": {
    "none": true,
@@ -1753,8 +1787,32 @@
      24342.3
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on wsrc3 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
+   "when": "2026-11-09",
+   "why": "Nov 2 map audit: chat 11 NO on wsrc3 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "source_kind": "corridor",
+   "join_held": {
+    "ids": [
+     "fwsr252",
+     "fwsr149",
+     "fwsr79"
+    ],
+    "fp": {
+     "fwsr252": [
+      "Tuolumne, California National Wild and Scenic River",
+      7057
+     ],
+     "fwsr149": [
+      "Tuolumne, California National Wild and Scenic River",
+      1233
+     ],
+     "fwsr79": [
+      "Tuolumne, California National Wild and Scenic River",
+      89
+     ]
+    },
+    "reason": "fwsr79: pin 9.19 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
   },
   "US-0896": {
    "no": [
@@ -2178,9 +2236,18 @@
      1577
     ]
    },
-   "none": true,
-   "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Lakeview Klamath Falls Field Office' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Lower Klamath Hills' (chat 11; applied by kpc_key_answers) · 2026-11-09: JOINED by Brandon (Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'): the BLM boundary matches the park (BLM ERMA OID 12225 'Lower Klamath Hills', 1,596 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404); the Oregon layer's copy sgorf111 would stay NO (same land))",
+   "join": [
+    "sgakg12225"
+   ],
+   "fp": {
+    "sgakg12225": [
+     "Lower Klamath Hills",
+     1596
+    ]
+   },
+   "decided_by": "Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'"
   },
   "US-10009": {
    "join": [
@@ -2282,15 +2349,6 @@
    "why": "Nov 2 map audit: chat 11 NO on rma9957 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
   },
   "US-10025": {
-   "fp": {
-    "sgakh1935": [
-     "Lost Forest-Sand Dunes-Fossil Lake",
-     26485
-    ]
-   },
-   "join": [
-    "sgakh1935"
-   ],
    "no": [
     "sgakg10853",
     "sgakh1935"
@@ -2302,8 +2360,8 @@
     ]
    },
    "none": true,
-   "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row NO 'Christmas Valley Sand Dunes' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Lost Forest-Sand Dunes-Fossil Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgakh1935 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
+   "when": "2026-11-09",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row NO 'Christmas Valley Sand Dunes' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Lost Forest-Sand Dunes-Fossil Lake' (chat 11 (Oct 29-30); applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgakh1935 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on) · 2026-11-09: stale join sgakh1935 taken out; the Nov 2 NO on the same record is newer and stays (rule 22: the newer decision wins; weekly batch)"
   },
   "US-10027": {
    "join": [
@@ -3278,8 +3336,24 @@
    "why": "2026-11-02 12:49: layers row YES 'Wells Woods Nature Preserve' (chat 11; applied by kpc_key_answers)"
   },
   "US-10237": {
-   "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Sawmill Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Buckbean Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin"
+   "when": "2026-11-09",
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Sawmill Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mongoquinong Nature Preserve Buckbean Fen' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:25 PM: chat 11 7:35 PM NOT SURE replaces its earlier YES: join taken off, stays a pin · 2026-11-09: accepted, name variant (fen units of the preserve; Approximate): 200896, 200897 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "join": [
+    "200896",
+    "200897"
+   ],
+   "fp": {
+    "200896": [
+     "Mongoquinong Nature Preserve Buckbean Fen",
+     37
+    ],
+    "200897": [
+     "Mongoquinong Nature Preserve Sawmill Fen",
+     38
+    ]
+   },
+   "approx": true,
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
   },
   "US-10241": {
    "fp": {
@@ -3805,7 +3879,7 @@
     "sgord5005"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Sandy Fish Hatchery' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Sandy Fish Hatchery' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-10391": {
    "fp": {
@@ -3828,7 +3902,7 @@
     "sgild271"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: gis-hunter row YES 'Kishwaukee River State Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Kishwaukee River State Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Kishwaukee River' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: gis-hunter row YES 'Kishwaukee River State Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Kishwaukee River State Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Kishwaukee River' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-10396": {
    "fp": {
@@ -5350,7 +5424,7 @@
     "sgaza26"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Tonto Natural Bridge SP' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Tonto Natural Bridge SP' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-10694": {
    "none": true,
@@ -5632,7 +5706,7 @@
     "sgmda319"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'IDYLWILD WMA' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Idywild' (chat 11; applied by kpc_key_answers) · 2026-11-02 12:49: no-recheck row YES 'Idywild' (chat 11 (Nov 1, same ruling as Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-10-29 23:15: gis-hunter row NO 'IDYLWILD WMA' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Idywild' (chat 11; applied by kpc_key_answers) · 2026-11-02 12:49: no-recheck row YES 'Idywild' (chat 11 (Nov 1, same ruling as Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-10757": {
    "join": [
@@ -6539,7 +6613,7 @@
     "sgute9254"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'Middle Fork Taylor Creek' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'Middle Fork Taylor Creek' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-10974": {
    "join": [
@@ -6617,9 +6691,18 @@
    "alias": [
     "Glenwood"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1037.9 ac)"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 1037.9 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 9736 OHV Designated Area 'Glenwood', pin inside, 1,043 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look. · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): Quality said YES (verify packet Nov 9) (sgakg9736 Glenwood pin 0.0 km)",
+   "join": [
+    "sgakg9736"
+   ],
+   "fp": {
+    "sgakg9736": [
+     "Glenwood",
+     1043
+    ]
+   },
+   "decided_by": "Brandon t927u"
   },
   "US-1101": {
    "fp": {
@@ -7508,7 +7591,7 @@
     "sgmta6586"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Somers Beach' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Somers Beach' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1115": {
    "fp": {
@@ -7622,7 +7705,7 @@
     "166734"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: gis-hunter row YES 'Chalk Bluff Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Chalk Bluff Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: gis-hunter row YES 'Chalk Bluff Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'Chalk Bluff Natural Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-11169": {
    "approx": true,
@@ -8231,7 +8314,7 @@
     "sgakb1814"
    ],
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'KNIK RIVER' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'KNIK RIVER' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-11246": {
    "fp": {
@@ -8457,13 +8540,21 @@
   },
   "US-11308": {
    "no": [
-    "sgakg13878",
     "sgidc850",
     "2306"
    ],
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline of its own on file · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Blackfoot Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-09: JOINED by Brandon (Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'): the BLM boundary matches the park (BLM rec site polygon OID 13878 SRMA 'Blackfoot', 41,391 ac, Research: pin inside (brandon-downloads-results-20261109-1408-EST); id, name and acres re-checked live Nov 9 PM on gis.blm.gov (robots 404))",
+   "join": [
+    "sgakg13878"
+   ],
+   "fp": {
+    "sgakg13878": [
+     "Blackfoot",
+     41391
+    ]
+   },
+   "decided_by": "Brandon Nov 9, 2026, 4:45 PM CST (t918u): 'i agree to new number and if the boundary matches the park yes'"
   },
   "US-1131": {
    "fp": {
@@ -10420,7 +10511,7 @@
     "sgilb736"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Lusk Creek Canyon Nature Preserve' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Lusk Creek Canyon Nature Preserve' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-11845": {
    "fp": {
@@ -11436,7 +11527,7 @@
     "sgohb823"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'LAWRENCE WOODS' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'LAWRENCE WOODS' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1206": {
    "fp": {
@@ -11452,9 +11543,18 @@
    "why": "2026-11-02 12:49: layers row YES 'Washoe Meadows SP' (chat 11; applied by kpc_key_answers)"
   },
   "US-12060": {
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 499.5 ac)"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 499.5 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 64818 'Crystal Lake Wild Forest' (DEC class Wild Forest; POTA says State Forest), pin inside, 502 ac; layer already set up for NY (not re-fetched). Quality to look. · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): Quality said YES (verify packet Nov 9) (sgnya64818 Crystal Lake Wild Forest pin 0.0 km)",
+   "join": [
+    "sgnya64818"
+   ],
+   "fp": {
+    "sgnya64818": [
+     "Crystal Lake Wild Forest",
+     502
+    ]
+   },
+   "decided_by": "Brandon t927u"
   },
   "US-12064": {
    "approx": true,
@@ -12287,7 +12387,7 @@
     "Buena Vista SWA (Fishing Easement)"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:22 PM (Brandon, G-ID2): POTA numbered the fishing easement itself: its official record (41-45 ac) is the outline · 2026-11-03: none cleared (a park with a reviewed join has an outline): Brandon G-ID2 (Oct 29): the fishing easement record is the outline"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 2:22 PM (Brandon, G-ID2): POTA numbered the fishing easement itself: its official record (41-45 ac) is the outline · 2026-11-03: none cleared (a park with a reviewed join has an outline): Brandon G-ID2 (Oct 29): the fishing easement record is the outline"
   },
   "US-1219": {
    "fp": {
@@ -13337,13 +13437,20 @@
     "sggaa184": [
      "TALLULAH GORGE WMA",
      2267
+    ],
+    "sggaa904": [
+     "TALLULAH GORGE WMA",
+     2267
     ]
    },
    "join": [
     "sggaa184"
    ],
-   "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'TALLULAH GORGE WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "when": "2026-11-08",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 2 · 2026-11-02 12:49: layers row YES 'TALLULAH GORGE WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-08: Tallulah Gorge WMA is not the state park: never join the GA DNR Tallulah Gorge State Park polygon (sggab12) to it · 2026-11-08 Quality should-fix: GA DNR WMA polygon in the hand download (OBJECTID 904, 2267 ac, pin 0 m) matches the existing WMA join; state park polygon sggab12 stays NO",
+   "no": [
+    "sggab12"
+   ]
   },
   "US-12419": {
    "fp": {
@@ -13586,9 +13693,22 @@
    "why": "2026-11-02 12:49: layers row YES 'Sylvan Lake State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-12471": {
-   "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 13505 'Lone Rock Drift Boat Launch', pin inside, 1.1 ac (small: Research 'verified (small)'); record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look.",
+   "join_held": {
+    "ids": [
+     "sgakg13505"
+    ],
+    "fp": {
+     "sgakg13505": [
+      "Lone Rock Drift Boat Launch",
+      1
+     ]
+    },
+    "reason": "Quality said NOT SURE (1.1-acre boat launch)",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   },
+   "none": true
   },
   "US-12475": {
    "no": [
@@ -13622,7 +13742,7 @@
     "sglab53"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Bogue Chitto WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Bogue Chitto WMA' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1249": {
    "no": [
@@ -14926,8 +15046,19 @@
    "alias_ok_names": [
     "Au Sable River"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Au Sable River' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "when": "2026-11-09",
+   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Au Sable River' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr88 Au Sable, Michigan National Wild and Scenic River pin 0.0 km)",
+   "join": [
+    "fwsr88"
+   ],
+   "fp": {
+    "fwsr88": [
+     "Au Sable, Michigan National Wild and Scenic River",
+     7011
+    ]
+   },
+   "source_kind": "corridor",
+   "decided_by": "Brandon t927u"
   },
   "US-12789": {
    "alias": [
@@ -14961,8 +15092,19 @@
    "alias_ok_names": [
     "Paint River"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Paint River' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "when": "2026-11-09",
+   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Paint River' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr51 Paint, Michigan National Wild and Scenic River pin 0.0 km)",
+   "join": [
+    "fwsr51"
+   ],
+   "fp": {
+    "fwsr51": [
+     "Paint, Michigan National Wild and Scenic River",
+     16070
+    ]
+   },
+   "source_kind": "corridor",
+   "decided_by": "Brandon t927u"
   },
   "US-12795": {
    "none": true,
@@ -14976,8 +15118,19 @@
    "alias_ok_names": [
     "Pine River"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Pine River' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "when": "2026-11-09",
+   "why": "2026-11-02 12:49: aliases-oct31 row YES 'Pine River' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr143 Pine, Michigan National Wild and Scenic River pin 0.0 km)",
+   "join": [
+    "fwsr143"
+   ],
+   "fp": {
+    "fwsr143": [
+     "Pine, Michigan National Wild and Scenic River",
+     5388
+    ]
+   },
+   "source_kind": "corridor",
+   "decided_by": "Brandon t927u"
   },
   "US-12798": {
    "none": true,
@@ -15410,7 +15563,7 @@
     "sgide861"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'BONNEVILLE FISH HATCHERY' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'BONNEVILLE FISH HATCHERY' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-12981": {
    "none": true,
@@ -15428,7 +15581,7 @@
     "sgord4394"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Klamath Fish Hatchery' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Klamath Fish Hatchery' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-12988": {
    "no": [
@@ -21347,8 +21500,28 @@
      330.3
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgcta4199 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-09",
+   "why": "Nov 2 map audit: chat 11 NO on sgcta4199 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-09: accepted, name variant: 51804, 51807, 51805 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "join": [
+    "51804",
+    "51807",
+    "51805"
+   ],
+   "fp": {
+    "51804": [
+     "Mianus River State Park Scenic Reserve",
+     122
+    ],
+    "51807": [
+     "Mianus River State Park Scenic Reserve",
+     120
+    ],
+    "51805": [
+     "Mianus River State Park Scenic Reserve",
+     16
+    ]
+   },
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
   },
   "US-1699": {
    "none": true,
@@ -21764,7 +21937,7 @@
     "sgmoa1424"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Ha Ha Tonka State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Ha Ha Tonka State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1762": {
    "fp": {
@@ -23868,7 +24041,7 @@
     "sgoha941"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'LITTLE MIAMI SCENIC PARK' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'LITTLE MIAMI SCENIC PARK' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1973": {
    "fp": {
@@ -24154,7 +24327,7 @@
     "sgoha463"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'TINKERS CREEK' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'TINKERS CREEK' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-1998": {
    "fp": {
@@ -26488,8 +26661,8 @@
     "5138"
    ],
    "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Okefenokee National Wildlife Refuge' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Okefenokee National Wildlife Refuge' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "when": "2026-11-08",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Okefenokee National Wildlife Refuge' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Okefenokee National Wildlife Refuge' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-08 Quality grade PR#50: unjoined sggab32 (Stephen C. Foster) — Rule 18 name mismatch with Okefenokee State Park; sent to pile solver"
   },
   "US-2201": {
    "fp": {
@@ -32013,8 +32186,18 @@
    "alias": [
     "Sandbar State Park"
    ],
-   "when": "2026-10-29",
-   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look)"
+   "when": "2026-11-09",
+   "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Sandbar State Park' and the POTA pin is inside it; joins only with the pin inside · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (no feature with that name near the pin (; a piece where the park is bigger) (join held: no shape of that name found within 500 m of the pin; a bot must look) · 2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json, record 430 on VT ANR Unit Polygons MapServer/38 = sgvta, already set up for VT); re-checked live Nov 9 PM on anrmaps.vermont.gov (robots 404): 'Sandbar State Park', Fee, 20 ac, POTA pin inside. Note: the old 'vta' layer is MapServer/44 = POINTS, which is why this park never got an outline. Quality to look. · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgvta430 Sandbar State Park pin 0.0 km)",
+   "join": [
+    "sgvta430"
+   ],
+   "fp": {
+    "sgvta430": [
+     "Sandbar State Park",
+     20
+    ]
+   },
+   "decided_by": "Brandon t927u"
   },
   "US-3141": {
    "fp": {
@@ -33554,8 +33737,23 @@
      3458.9
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgcab584 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-09",
+   "why": "Nov 2 map audit: chat 11 NO on sgcab584 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-09: accepted, name variant: 184146, 184147 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "join": [
+    "184146",
+    "184147"
+   ],
+   "fp": {
+    "184146": [
+     "Oceano Dunes State Vehicular Recreation Area",
+     2612
+    ],
+    "184147": [
+     "Oceano Dunes State Vehicular Recreation Area",
+     846
+    ]
+   },
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
   },
   "US-3532": {
    "fp": {
@@ -37482,7 +37680,7 @@
     "sgild124"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-11-02 12:49: layers row YES 'Washington County State Natural Area' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03: JOIN sgild124, sgila1142 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger) · 2026-11-02 12:49: layers row YES 'Washington County State Natural Area' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join · 2026-11-03: JOIN sgild124, sgila1142 (Quality grade-hand-join-drops + drops-27 (Nov 3); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
   },
   "US-4106": {
    "join": [
@@ -38826,10 +39024,23 @@
   },
   "US-4236": {
    "join": [
-    "Upper Mississippi River National Wildlife And Fish Refuge"
+    "Upper Mississippi River National Wildlife And Fish Refuge",
+    "sgiaa34365",
+    "5387"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-09",
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-09: accepted, multi-state park: sgiaa34365, 5387 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "fp": {
+    "sgiaa34365": [
+     "UPPER MISSISSIPPI RIVER FISH & WILDLIFE REFUGE",
+     51575
+    ],
+    "5387": [
+     "Upper Mississippi River National Wildlife And Fish Refuge",
+     21280
+    ]
+   },
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
   },
   "US-4238": {
    "fp": {
@@ -40439,8 +40650,26 @@
    "join": [
     "Caddo National Grassland"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-08",
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-08: Research handoff (TPWD WMA_Boundaries_4PublicDistribution FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxc143, sgtxc146",
+   "join_held": {
+    "ids": [
+     "sgtxc143",
+     "sgtxc146"
+    ],
+    "fp": {
+     "sgtxc143": [
+      "Caddo National Grassland WMA - Bois D'Arc",
+      14618
+     ],
+     "sgtxc146": [
+      "Caddo National Grassland WMA - Ladonia",
+      3676
+     ]
+    },
+    "reason": "sgtxc146: pin 30.45 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
   },
   "US-4372": {
    "fp": {
@@ -41671,7 +41900,7 @@
     "sgmnb12"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Beltrami Island' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Beltrami Island' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-4784": {
    "fp": {
@@ -42094,7 +42323,7 @@
     "sgmnb15"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'St. Croix' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'St. Croix' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-4825": {
    "fp": {
@@ -42640,9 +42869,18 @@
    "why": "Oct 18 review: same place, official name written differently"
   },
   "US-5308": {
-   "none": true,
-   "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 3520.0 ac)"
+   "when": "2026-11-09",
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted Nov 9 · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 3520.0 ac) · 2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), NYS DEC Lands OID 66353 'Split Rock Wild Forest' (DEC Wild Forest; POTA says State Forest), pin inside, 3,542 ac; layer already set up for NY (not re-fetched). Quality to look. · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): Quality said YES (verify packet Nov 9) (sgnya66353 Split Rock Wild Forest pin 0.0 km)",
+   "join": [
+    "sgnya66353"
+   ],
+   "fp": {
+    "sgnya66353": [
+     "Split Rock Wild Forest",
+     3542
+    ]
+   },
+   "decided_by": "Brandon t927u"
   },
   "US-5338": {
    "join": [
@@ -44670,7 +44908,7 @@
     "sgmoc683"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 2:30 PM: the agency's own page states 969 ac, the record has 933.7 ac (chat 9 page check): same land, joined by record id · 2026-11-03: none cleared (a park with a reviewed join has an outline): agency page 969 ac vs record 933.7 ac: same land (chat 9 page check)"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 2:30 PM: the agency's own page states 969 ac, the record has 933.7 ac (chat 9 page check): same land, joined by record id · 2026-11-03: none cleared (a park with a reviewed join has an outline): agency page 969 ac vs record 933.7 ac: same land (chat 9 page check)"
   },
   "US-5713": {
    "fp": {
@@ -46561,8 +46799,23 @@
      779.5
     ]
    },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgtni153 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-09",
+   "why": "Nov 2 map audit: chat 11 NO on sgtni153 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-09: accepted, name variant: sgtnh17, 255681 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "join": [
+    "sgtnh17",
+    "255681"
+   ],
+   "fp": {
+    "sgtnh17": [
+     "Walls of Jericho State Natural Area",
+     753
+    ],
+    "255681": [
+     "Walls of Jericho Designated State Natural Area",
+     740
+    ]
+   },
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
   },
   "US-6276": {
    "fp": {
@@ -47894,10 +48147,18 @@
   },
   "US-6608": {
    "join": [
-    "Gene Howe WMA-W.A. (Pat) Murphy"
+    "Gene Howe WMA-W.A. (Pat) Murphy",
+    "sgtxc138"
    ],
-   "when": "2026-10-29",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin 1 m from the edge; 874.0 ac)"
+   "when": "2026-11-08",
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin 1 m from the edge; 874.0 ac) · 2026-11-08: Research handoff (TPWD WMA_Boundaries_4PublicDistribution FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxc138 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxc138 Gene Howe WMA - W.A. (Pat) Murphy pin 0.0 km)",
+   "fp": {
+    "sgtxc138": [
+     "Gene Howe WMA - W.A. (Pat) Murphy",
+     880
+    ]
+   },
+   "decided_by": "Brandon t927u"
   },
   "US-6614": {
    "fp": {
@@ -48302,7 +48563,7 @@
     "sgmib115"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Houghton Lake Flats South Flooding State' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Houghton Lake Flats South Flooding State' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-6709": {
    "join": [
@@ -48462,7 +48723,7 @@
     "sgmib157"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Net River Flooding State Wildlife Manage' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Net River Flooding State Wildlife Manage' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-6756": {
    "fp": {
@@ -50915,7 +51176,7 @@
     "2756"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Tonto Creek Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Tonto National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgazc6 (Tonto Creek Hatchery) came first; the later NO was on PAD-US 2756, a different record"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Tonto Creek Hatchery' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Tonto National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgazc6 (Tonto Creek Hatchery) came first; the later NO was on PAD-US 2756, a different record"
   },
   "US-7389": {
    "join": [
@@ -53191,7 +53452,7 @@
     "71478"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Molasses River Flooding No.2 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Molasses River Flooding No.1 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgmib145 came first; the later NO was on PAD-US 71478, a different record"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Molasses River Flooding No.2 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Molasses River Flooding No.1 State Wildl' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03: none cleared (a park with a reviewed join has an outline): bot YES on sgmib145 came first; the later NO was on PAD-US 71478, a different record"
   },
   "US-7863": {
    "fp": {
@@ -53859,7 +54120,7 @@
     "sgmtd235"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'NINEPIPE NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Ninepipe National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'NINEPIPE NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Ninepipe National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-8003": {
    "fp": {
@@ -53877,7 +54138,7 @@
     "sgmtd101"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'PABLO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Pablo National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'PABLO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Pablo National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-8006": {
    "join": [
@@ -53933,7 +54194,7 @@
     "56874"
    ],
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historical Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historic Farm' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historical Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historical Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historic Farm' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row YES 'Governor Wentworth Historical Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-8023": {
    "fp": {
@@ -55198,7 +55459,7 @@
     "sgwic7094"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Osceola Bedrock Glades' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'Osceola Bedrock Glades' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-8218": {
    "fp": {
@@ -57646,7 +57907,7 @@
     "St John Ponds"
    ],
    "when": "2026-11-03",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 59 m from the edge; 3883.4 ac) · 2026-11-03: none cleared (a park with a reviewed join has an outline): name-match PASS + chat 2 review: St John Ponds is the park"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · Oct 29 noon: name-match bot PASS + chat 2 review (pin 59 m from the edge; 3883.4 ac) · 2026-11-03: none cleared (a park with a reviewed join has an outline): name-match PASS + chat 2 review: St John Ponds is the park"
   },
   "US-9176": {
    "join": [
@@ -58213,7 +58474,7 @@
     "sgiaa66933"
    ],
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'ROSENOW TIMBER' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 12:49: layers row YES 'ROSENOW TIMBER' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   },
   "US-9313": {
    "fp": {
@@ -62535,6 +62796,720 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Virgin Islands Coral Reef National Monum' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  },
+  "US-0684": {
+   "join": [
+    "wsrc20"
+   ],
+   "fp": {
+    "wsrc20": [
+     "Delaware Wild and Scenic River",
+     21333
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (wsrc20 Delaware Wild and Scenic River pin 0.0 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-0886": {
+   "join": [
+    "wsrc23"
+   ],
+   "fp": {
+    "wsrc23": [
+     "Maurice Wild and Scenic River",
+     13983
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (wsrc23 Maurice Wild and Scenic River pin 0.0 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-9758": {
+   "join": [
+    "fwsr180",
+    "fwsr6",
+    "fwsr95",
+    "sgnca9068"
+   ],
+   "fp": {
+    "fwsr180": [
+     "Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River",
+     10971
+    ],
+    "fwsr6": [
+     "Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River",
+     4651
+    ],
+    "fwsr95": [
+     "Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River",
+     906
+    ],
+    "sgnca9068": [
+     "Chattooga National Wild and Scenic River",
+     40
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · 2026-11-09: accepted, multi-state park: sgnca9068 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-12235": {
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "join_held": {
+    "ids": [
+     "fwsr16",
+     "fwsr98"
+    ],
+    "fp": {
+     "fwsr16": [
+      "Clarion, Pennsylvania National Wild and Scenic River",
+      10878
+     ],
+     "fwsr98": [
+      "Clarion, Pennsylvania National Wild and Scenic River",
+      5589
+     ]
+    },
+    "reason": "fwsr98: pin 8.75 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-12787": {
+   "join": [
+    "fwsr89"
+   ],
+   "fp": {
+    "fwsr89": [
+     "Bear Creek, Michigan National Wild and Scenic River",
+     1902
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr89 Bear Creek, Michigan National Wild and Scenic River pin 0.48 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-12791": {
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "join_held": {
+    "ids": [
+     "fwsr40",
+     "fwsr116"
+    ],
+    "fp": {
+     "fwsr40": [
+      "Indian, Michigan National Wild and Scenic River",
+      8796
+     ],
+     "fwsr116": [
+      "Indian, Michigan National Wild and Scenic River",
+      2749
+     ]
+    },
+    "reason": "fwsr116: pin 8.23 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-12797": {
+   "join": [
+    "fwsr63",
+    "fwsr144"
+   ],
+   "fp": {
+    "fwsr63": [
+     "Presque Isle, Michigan National Wild and Scenic River",
+     12744
+    ],
+    "fwsr144": [
+     "Presque Isle, Michigan National Wild and Scenic River",
+     7483
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr63 Presque Isle, Michigan National Wild and Scenic River pin 0.04 km; fwsr144 Presque Isle, Michigan National Wild and Scenic River pin 0.0 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-12800": {
+   "join": [
+    "fwsr168"
+   ],
+   "fp": {
+    "fwsr168": [
+     "Whitefish, Michigan National Wild and Scenic River",
+     9404
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr168 Whitefish, Michigan National Wild and Scenic River pin 0.0 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-12801": {
+   "join": [
+    "fwsr231"
+   ],
+   "fp": {
+    "fwsr231": [
+     "Yellow Dog, Michigan National Wild and Scenic River",
+     1097
+    ]
+   },
+   "source_kind": "corridor",
+   "when": "2026-11-09",
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr231 Yellow Dog, Michigan National Wild and Scenic River pin 0.0 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3722": {
+   "why": "2026-11-08: Research handoff (Georgia DNR State_Parks_Boundary FeatureServer/0 (hand download by Brandon, data edited 3/31/2025)), pin inside or within 150 m, name checked; joined sggab44",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggab44"
+    ],
+    "fp": {
+     "sggab44": [
+      "New Echtoa Historic Site",
+      204
+     ]
+    },
+    "reason": "sggab44: name differs ('New Echtoa Historic Site' vs POTA 'New Echota State Historic Site')",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-2987": {
+   "join": [
+    "sgtxa62"
+   ],
+   "fp": {
+    "sgtxa62": [
+     "World Birding Center - Bentsen-Rio Grande Valley",
+     767
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa62 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa62 World Birding Center - Bentsen-Rio Grande Valley pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3000": {
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa116, sgtxa4143",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sgtxa116",
+     "sgtxa4143"
+    ],
+    "fp": {
+     "sgtxa116": [
+      "Cooper - South Sulphur",
+      2666
+     ],
+     "sgtxa4143": [
+      "Cooper - Doctors Creek",
+      502
+     ]
+    },
+    "reason": "sgtxa4143: pin 5.79 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-3006": {
+   "join": [
+    "sgtxa1334"
+   ],
+   "fp": {
+    "sgtxa1334": [
+     "World Birding Center - Estero Llano Grande",
+     228
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa1334 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa1334 World Birding Center - Estero Llano Grande pin 0.02 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3052": {
+   "join": [
+    "sgtxa1335"
+   ],
+   "fp": {
+    "sgtxa1335": [
+     "World Birding Center - Resaca de la Palma",
+     1407
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa1335 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa1335 World Birding Center - Resaca de la Palma pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3497": {
+   "join": [
+    "sgtxa12"
+   ],
+   "fp": {
+    "sgtxa12": [
+     "Devil's Sinkhole",
+     1877
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa12 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa12 Devil's Sinkhole pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3498": {
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa109, sgtxa536",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sgtxa109",
+     "sgtxa536"
+    ],
+    "fp": {
+     "sgtxa109": [
+      "Devils River - Dan A. Hughes Unit",
+      17702
+     ],
+     "sgtxa536": [
+      "Devils River - Del Norte Unit",
+      19828
+     ]
+    },
+    "reason": "sgtxa109: pin 19.77 km outside",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-3499": {
+   "join": [
+    "sgtxa4943"
+   ],
+   "fp": {
+    "sgtxa4943": [
+     "Enchanted Rock",
+     5407
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa4943 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa4943 Enchanted Rock pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3501": {
+   "join": [
+    "sgtxa77"
+   ],
+   "fp": {
+    "sgtxa77": [
+     "Fort Leaton",
+     24
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa77 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa77 Fort Leaton pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3503": {
+   "join": [
+    "sgtxa4948"
+   ],
+   "fp": {
+    "sgtxa4948": [
+     "Government Canyon",
+     13620
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa4948 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa4948 Government Canyon pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3504": {
+   "join": [
+    "sgtxa22"
+   ],
+   "fp": {
+    "sgtxa22": [
+     "Hill Country - Louise Merrick Unit",
+     5403
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa22 · 2026-11-08 Quality should-fix: TPWD Texas_State_Parks_Boundaries has only one Hill Country feature (Louise Merrick Unit, OBJECTID 22); no other units in that layer to add as tracts · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa22 Hill Country - Louise Merrick Unit pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-3507": {
+   "join": [
+    "sgtxa941"
+   ],
+   "fp": {
+    "sgtxa941": [
+     "Lost Maples",
+     2888
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa941 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxa941 Lost Maples pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-6606": {
+   "join": [
+    "sgtxc133"
+   ],
+   "fp": {
+    "sgtxc133": [
+     "Tony Houseman/Blue Elbow Swamp WMA",
+     4343
+    ]
+   },
+   "why": "2026-11-08: Research handoff (TPWD WMA_Boundaries_4PublicDistribution FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxc133 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (sgtxc133 Tony Houseman/Blue Elbow Swamp WMA pin 0.0 km)",
+   "when": "2026-11-08",
+   "decided_by": "Brandon t927u"
+  },
+  "US-8745": {
+   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac2838",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sgpac2838"
+    ],
+    "fp": {
+     "sgpac2838": [
+      "46 - Middle Creek Wildlife Management Area",
+      6061
+     ]
+    },
+    "reason": "sgpac2838: name differs ('46 - Middle Creek Wildlife Management Area' vs POTA 'PA 046 State Game Land')",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-8911": {
+   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac198",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sgpac198"
+    ],
+    "fp": {
+     "sgpac198": [
+      "214 - Pymatuning Wildlife Management Area",
+      9716
+     ]
+    },
+    "reason": "sgpac198: name differs ('214 - Pymatuning Wildlife Management Area' vs POTA 'PA 214 State Game Land')",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-3732": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa806, sggaa938",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggaa806",
+     "sggaa938"
+    ],
+    "fp": {
+     "sggaa806": [
+      "BARTRAM FOREST WMA",
+      876
+     ],
+     "sggaa938": [
+      "BARTRAM FOREST WMA",
+      474
+     ]
+    },
+    "reason": "sggaa806: name differs ('BARTRAM FOREST WMA' vs POTA None); sggaa806: record not in the saved outline copy, pin not measured here; sggaa938: name differs ('BARTRAM FOREST WMA' vs POTA None); sggaa938: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-7463": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa800",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggaa800"
+    ],
+    "fp": {
+     "sggaa800": [
+      "DODGE COUNTY PFA",
+      446
+     ]
+    },
+    "reason": "sggaa800: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-7464": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa799",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggaa799"
+    ],
+    "fp": {
+     "sggaa799": [
+      "EVANS COUNTY PFA",
+      377
+     ]
+    },
+    "reason": "sggaa799: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-7465": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa770",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggaa770"
+    ],
+    "fp": {
+     "sggaa770": [
+      "FLAT CREEK PFA",
+      850
+     ]
+    },
+    "reason": "sggaa770: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-7466": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa801",
+   "when": "2026-11-08",
+   "join_held": {
+    "ids": [
+     "sggaa801"
+    ],
+    "fp": {
+     "sggaa801": [
+      "HUGH GILLIS PFA",
+      744
+     ]
+    },
+    "reason": "sggaa801: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-6135": {
+   "join": [
+    "273812",
+    "sgwyc14095"
+   ],
+   "fp": {
+    "273812": [
+     "Pennock Mountain Wildlife Habitat Management Area",
+     9864
+    ],
+    "sgwyc14095": [
+     "Pennock Mountain",
+     9858
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, name variant: 273812, sgwyc14095 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-0384": {
+   "join": [
+    "3871",
+    "4815"
+   ],
+   "fp": {
+    "3871": [
+     "Grand Bay National Wildlife Refuge",
+     2727
+    ],
+    "4815": [
+     "Grand Bay National Wildlife Refuge",
+     2727
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 3871, 4815 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-0723": {
+   "join": [
+    "3292"
+   ],
+   "fp": {
+    "3292": [
+     "Vicksburg National Military Park",
+     3
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 3292 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-0680": {
+   "join": [
+    "3500"
+   ],
+   "fp": {
+    "3500": [
+     "Gateway National Recreation Area",
+     1810
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 3500 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-0456": {
+   "join": [
+    "5404",
+    "4447"
+   ],
+   "fp": {
+    "5404": [
+     "Wallkill River National Wildlife Refuge",
+     310
+    ],
+    "4447": [
+     "Wallkill River National Wildlife Refuge",
+     309
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 5404, 4447 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-0733": {
+   "join": [
+    "3201"
+   ],
+   "fp": {
+    "3201": [
+     "First State National Historical Park",
+     216
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 3201 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-12601": {
+   "join": [
+    "3907",
+    "4852"
+   ],
+   "fp": {
+    "3907": [
+     "Hackmatack National Wildlife Refuge",
+     85
+    ],
+    "4852": [
+     "Hackmatack National Wildlife Refuge",
+     85
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 3907, 4852 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-4475": {
+   "join": [
+    "2809",
+    "2781"
+   ],
+   "fp": {
+    "2809": [
+     "Caribou-Targhee National Forest (Targhee National Forest)",
+     294438
+    ],
+    "2781": [
+     "Caribou-Targhee National Forest (Caribou National Forest)",
+     7838
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 2809, 2781 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-4524": {
+   "join": [
+    "2697",
+    "2617"
+   ],
+   "fp": {
+    "2697": [
+     "Black Hills National Forest",
+     176135
+    ],
+    "2617": [
+     "Black Hills National Forest",
+     222
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, multi-state park: 2697, 2617 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-9387": {
+   "join": [
+    "157891"
+   ],
+   "fp": {
+    "157891": [
+     "Luce Line Trail",
+     19
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09: accepted, thin trail/river (trust official documents first): 157891 = this park (Brandon Nov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)",
+   "decided_by": "Brandon Nov 9 10:08 AM CST (weekly batch; Quality pending)"
+  },
+  "US-11316": {
+   "join": [
+    "sgakg13903"
+   ],
+   "fp": {
+    "sgakg13903": [
+     "Campground - Pipeline",
+     18
+    ]
+   },
+   "when": "2026-11-09",
+   "why": "2026-11-09 Nov 9 weekly batch: Research check of Brandon's hand downloads (brandon-downloads-results-20261109-1408-EST), BLM OID 13903 'Campground - Pipeline', pin inside, 17.8 ac; record id re-checked live Nov 9 PM on gis.blm.gov (robots 404): same OBJECTID, name and acres; Quality to look. · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): Quality said YES (verify packet Nov 9) (sgakg13903 Campground - Pipeline pin 0.04 km)",
+   "decided_by": "Brandon t927u"
+  },
+  "US-0754": {
+   "when": "2026-11-09",
+   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1159; the same unit (RORI) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
+   "join_held": {
+    "ids": [
+     "sgakd1159"
+    ],
+    "fp": {
+     "sgakd1159": [
+      "Rosie the Riveter/World War II Home Front National Historical Park",
+      149
+     ]
+    },
+    "reason": "sgakd1159: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
+  },
+  "US-11900": {
+   "when": "2026-11-09",
+   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1245; the same unit (BLSC) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
+   "join_held": {
+    "ids": [
+     "sgakd1245"
+    ],
+    "fp": {
+     "sgakd1245": [
+      "Blackwell School National Historic Site",
+      1
+     ]
+    },
+    "reason": "sgakd1245: record not in the saved outline copy, pin not measured here",
+    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+   }
   }
  }
 }

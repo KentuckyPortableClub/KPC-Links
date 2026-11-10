@@ -73,7 +73,8 @@ jobs:
       - name: Build the Canada answer key
         if: ${{ env.SKIP != '1' }}
         env:
-          GEO_CACHE_MODE: ${{ (inputs.saved || (github.event.schedule || inputs.as_schedule) == '49 9 * * *') && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ (github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved && 'refresh' || 'use' }}   # Nov 9 evening (Brandon t909u 'saved outlines first'): every run starts from the saved copy; only the MONTHLY run re-reads Canada live (his 'once a month')      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          KPC_KEY_ONLY_PARKS: ${{ !((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved) && env.RULES_ONLY_PARKS || '' }}   # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change re-matches only those parks (never on the monthly live re-read)
           GH_TOKEN: ${{ github.token }}
         id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
@@ -95,8 +96,10 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
+          KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
         run: |
           # Oct 27: the release copy was from Oct 22, so a 'saved' build lost 169 joins (undone). Upload after every good full read.
+          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then bash .github/scripts/kpc_archive.sh put saved-outlines "Canada key saved outlines (run $GITHUB_RUN_ID)" cache/ca/CA-ALL.json.gz || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
       - name: Save outline files for joined parks that have none (never overwrites)
         if: ${{ env.SKIP != '1' }}

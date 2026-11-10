@@ -1,0 +1,12 @@
+{
+ "about": "Canada answer key rule changes and what each one touches (Brandon t915u, Nov 9 2026 4:40 PM CST; KZ4CP 5:12 PM CST). Part of the Canada rules hash. Same format as .github/us-key-rule-scope.json (states = ['CA-ON', ...]). The Canada builder reads the whole country in one job, so any declared province rebuilds the whole Canada key; a change that touches no province rebuilds nothing. Nov 9 evening (KZ4CP 5:41 PM CST): a scope may also list park refs, 'parks': ['US-1234', ...]: only those parks are re-matched (their states are read again, every other park there keeps its result). A scope that lists nothing means ALL; a change that touches no park says scope 'none'.",
+ "changes": [
+  {
+   "id": "2026-11-09-blocked-ids",
+   "when": "2026-11-09",
+   "from": "8feccbb7d9ee",
+   "why": "Bad-ID block list (Brandon t919u); the list is empty, so no current result changes.",
+   "scope": "none"
+  }
+ ]
+}

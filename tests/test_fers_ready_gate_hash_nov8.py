@@ -82,7 +82,7 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': 'a066624520b4', 'ca-key': '8feccbb7d9ee', 'world-key': '10e4092cc97f'}
+BASE = {'us-key': '19d219f37114', 'ca-key': '22f16bc69b96', 'world-key': '10e4092cc97f'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
@@ -95,10 +95,10 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
-# Nov 9: the top entry is now the KISS-ownership change, OK'd by Brandon Nov 9, 9:37 AM CST (his exact words are in the entry)
-check('We got to fix the rules to get this thing going' in _head and '9:37 AM CST' in _head and 'PENDING' not in _head and 'AWAITING' not in _head,
-      'docs record Brandon OK of the fers hash with his exact words and time (no longer PENDING)')
-check('a066624520b4' in _head and '8feccbb7d9ee' in _head and '10e4092cc97f' in _head,
+# Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
+check(f'{fers_h} (FINAL' in _head and 'i agree to new number' in _head and '4:45 PM CST' in _head and 'PENDING' not in _head,
+      "docs quote Brandon's t918u OK next to the final fers hash")
+check('19d219f37114' in _head and '22f16bc69b96' in _head and '10e4092cc97f' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)

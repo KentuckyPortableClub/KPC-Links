@@ -566,6 +566,22 @@ def _nf(t):   # hand decisions match names whatever way the accents are stored (
     import unicodedata; return unicodedata.normalize('NFC', str(t or '')).strip().casefold()
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
+# Nov 9 evening (Brandon t919u, 4:48 PM CST: pins and names are only sanity checks, the official boundary is right most of the time;
+# 'a bad ID block list'): overrides.json 'blocked_ids' = [{ref, id, reason, decided_by}]. A listed id is never used for that park:
+# it leaves the park's saved joins (join / fp) and becomes a NO, so the park goes back to normal matching (or to a person).
+# An entry without decided_by is ignored (and named in the log), so no block happens without a person.
+BLOCKED = {}
+try:
+    for _b in json.load(open(OUT / 'overrides.json')).get('blocked_ids') or []:
+        if not (_b.get('ref') and _b.get('id') not in (None, '')): continue
+        if not str(_b.get('decided_by') or '').strip(): print(f"::warning title=Blocked ids::{_b.get('ref')} {_b.get('id')}: no decided_by, ignored", flush=True); continue
+        BLOCKED.setdefault(_b['ref'], set()).add(str(_b['id']))
+except Exception: pass  # noqa: BLE001
+for _r, _ids in BLOCKED.items():
+    _o = OVR.setdefault(_r, {})
+    _o['join'] = [x for x in _o.get('join') or [] if str(x) not in _ids]
+    if _o.get('fp'): _o['fp'] = {k: v for k, v in _o['fp'].items() if str(k) not in _ids}
+    _o['no'] = list(_o.get('no') or []) + sorted(_ids - {str(x) for x in _o.get('no') or []})
 P = json.load(open('data/parkinfo/CA.json'))['parks']
 # Oct 29 (chat 5 check-up, issue #17): park numbers POTA retired (data/retired-refs.json) leave the answer key
 try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
@@ -837,6 +853,16 @@ def _ca_tracts(pv, parks):
         d['ac_measured_detail_deg'] = DETAIL
         TR.save(OUT / 'tracts' / f'CA-{pv}.json', d)
     except Exception as _e: notice(f'Canada key {pv}', f'tract records skipped: {type(_e).__name__}: {str(_e)[:160]}')  # noqa: BLE001
+# Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change (RULES_ONLY_PARKS from the freeze check, saved-copy runs only; the monthly
+# live re-read is a full rebuild) gives a fresh result only to the parks it names; every other park keeps its last published result.
+_ONLY = set((os.environ.get('KPC_KEY_ONLY_PARKS') or '').split())
+if _ONLY:
+    for _pv, _o, _rp, _rt in PENDING:
+        try: _old = json.load(open(OUT / f'CA-{_pv}.json')).get('parks') or {}
+        except Exception: continue  # noqa: BLE001
+        for _r, _op in _old.items():
+            if _r in (_o.get('parks') or {}) and _r not in _ONLY and _r not in OVR: _o['parks'][_r] = _op
+    notice('Canada key', f"park-scoped rule change: only {' '.join(sorted(_ONLY))} re-matched; every other park kept its result")
 for _pv, _o, _rp, _rt in PENDING:
     _ca_tracts(_pv, _o.get('parks') or {})
     save_json(OUT / f'CA-{_pv}.json', _o)
