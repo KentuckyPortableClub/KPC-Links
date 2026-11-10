@@ -5,3 +5,4 @@ tests/test_ky_brandon_slash_nov6.py   # known pre-existing on main (KY slash dec
 tests/test_maprep_nearspot_address_nov8.py   # pre-existing on main 74bb56fd (script version pin); not this PR
 tests/test_tracts_nov7.py   # pre-existing on main 74bb56fd (tract side-file / GB outline byte pins); not this PR
 tests/test_world_ax_moved_nov8.py   # pre-existing on main 009d6388 / 078f0f6d (AX extra-layers moved by a bot); Quality confirmed Nov 9 PM (grade of #104)
+tests/test_fers_key_status_nov6.py   # US-0822 Fort Smith: test expects an OK pin copy; origin/main 4e288359 (partial key stamped by US-42797939226) has official in both US-AR and US-OK. Confirmed failing on a clean origin/main checkout. Not a #109 code change; test and key data not changed here.
