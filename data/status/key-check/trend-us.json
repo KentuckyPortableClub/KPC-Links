@@ -115,16 +115,21 @@
    "held_joins": 27,
    "acres_off": 3,
    "acres_checked": 7427
+  },
+  {
+   "build": "US-42891101784",
+   "checked": "2026-11-10 21:41",
+   "far_pins": 86,
+   "pins_outside": 86,
+   "outline_to_pin": 2,
+   "flat_outlines": 387,
+   "overrides_missed": 66,
+   "held_joins": 31,
+   "acres_off": 2,
+   "acres_checked": 7292
   }
  ],
  "acres_off_latest": [
-  {
-   "area": "US-MN",
-   "park": "US-11024",
-   "key_acres": 867,
-   "official_acres": 427,
-   "from": "tract side file"
-  },
   {
    "area": "US-NM",
    "park": "US-11813",
@@ -140,7 +145,5 @@
    "from": "tract side file"
   }
  ],
- "last_jumps": [
-  "overrides_missed 66 -> 87"
- ]
+ "last_jumps": []
 }
