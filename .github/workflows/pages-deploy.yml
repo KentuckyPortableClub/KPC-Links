@@ -17,7 +17,7 @@ on:
       - '.github/**'   # PR2 (Nov 2): a bot or workflow change is not a site change (Nov 2: 160 such commits in a day each rebuilt the site)
       - 'data/status/**'   # Nov 3: bot bookkeeping
   schedule:
-    - cron: '41 */2 * * *'   # Nov 3: every 2 hours; publishes only when the site's files changed since the live copy
+    - cron: '41 */2 * * *'   # Nov 3: every 2 hours; publishes only when the site's files changed since the live copy (Nov 10: kept at 2 h, it is the only publisher of bot saves)
   workflow_dispatch:
 
 permissions:
@@ -47,6 +47,8 @@ jobs:
           HEAD_SHA: ${{ github.sha }}
         run: |
           if [ "$EV" != schedule ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # Nov 10 (quiet runs): NOT skipped after a push deploy: bot saves never start a push deploy, so this timer is what publishes them;
+          # a timer run with nothing new for the site already stops right here (go=no) and builds / deploys nothing.
           # the commit that is live now: the newest github-pages deployment, else the newest successful run of this workflow
           LIVE=$(gh api "repos/$R/deployments?environment=github-pages&per_page=1" --jq '.[0].sha // empty' 2>/dev/null || true)   # ok: an optional lookup (empty: the next line tries the last good run)
           [ -n "$LIVE" ] || LIVE=$(gh api "repos/$R/actions/workflows/pages-deploy.yml/runs?status=success&per_page=1" --jq '.workflow_runs[0].head_sha // empty' 2>/dev/null || true)   # ok: an optional lookup (empty: the next line publishes, with a notice)
@@ -88,4 +90,29 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
+        # Nov 10 (quiet runs): failed 3x here when another deploy was already running or main had moved on. That is not a stale site:
+        # the next step looks at what is live and only then decides (red only if the site would stay stale).
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+      - name: Settle a deploy that did not finish
+        if: ${{ steps.deployment.outcome == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          say() { echo "$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; }
+          D=$(gh api "repos/$R/deployments?environment=github-pages&per_page=1" --jq '.[0] | "\(.id) \(.sha)"' 2>/dev/null || true)   # ok: an optional lookup (empty: judged stale below)
+          LIVE_ID=${D% *}; LIVE=${D#* }
+          if [ -n "$LIVE_ID" ]; then
+            STATE=$(gh api "repos/$R/deployments/$LIVE_ID/statuses?per_page=1" --jq '.[0].state // "none"' 2>/dev/null || echo none)   # ok: an optional lookup
+          else STATE=none; fi
+          if [ "$LIVE" = "$SHA" ] && [ "$STATE" = success ]; then say "Deploy said no, but main ${SHA:0:8} is already live: nothing to do."; exit 0; fi
+          if [ "$STATE" = in_progress ] || [ "$STATE" = queued ] || [ "$STATE" = pending ]; then say "A deploy is already in progress (${LIVE:0:8}, $STATE): it carries the site; this run ends green."; exit 0; fi
+          if [ -n "$LIVE" ] && [ "$STATE" = success ]; then
+            REL=$(gh api "repos/$R/compare/$SHA...$LIVE" --jq .status 2>/dev/null || echo unknown)   # ok: an optional lookup
+            if [ "$REL" = ahead ] || [ "$REL" = identical ]; then say "The live copy (${LIVE:0:8}) is newer than this run's commit (${SHA:0:8}): nothing to do."; exit 0; fi
+          fi
+          echo "::error title=Pages deploy::the deploy failed and the live copy (${LIVE:0:8}, state $STATE) is not main ${SHA:0:8} or newer: the site would stay stale"
+          say "FAILED: the live copy is ${LIVE:-unknown} ($STATE), this run built ${SHA:0:8}. The site is stale until a deploy goes through."
+          exit 1

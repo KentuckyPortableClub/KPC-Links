@@ -90,6 +90,8 @@ nov9_wf = {'.github/workflows/kpc-adds-probe.yml', '.github/workflows/kpc-bot-he
 nov9_wf |= {'.github/workflows/kpc-boundary-check.yml'}
 # Nov 9 amendment 2 (KPC-Links #106): the research inbox workflow (recommends only) and the CA key monthly refresh reads its saved copies
 nov9_wf |= {'.github/workflows/kpc-research-inbox.yml'}
+# Nov 10 quiet runs (handoff 2): fewer runs / failure emails; not key rule workflows (key-measure: fail-safe wording only; watchdog: a lost notes-save stays green; pages-deploy: timer + deploy settle)
+nov9_wf |= {'.github/workflows/kpc-key-measure.yml', '.github/workflows/kpc-watchdog.yml', '.github/workflows/pages-deploy.yml'}
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
