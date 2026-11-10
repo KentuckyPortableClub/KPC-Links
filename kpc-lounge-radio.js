@@ -11,7 +11,7 @@
    Settings in this browser only: kpcLoungeRx, kpcLoungeBM, kpcAppNr, kpcLoungeWorks. No outside services, no timers unless a feature is on. */
 (function (G) {
   'use strict';
-  const K = G.KPCCat; if (!K || !document.getElementById('ctCat')) return;
+  const K = G.KPCCat; if (!K) return;   /* Nov 10: no longer only where #ctCat is: the logger's ⚙ radio pop-up (kpc-hunt-x.js) borrows the same box */
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
@@ -26,9 +26,9 @@
   const icom = body => new Uint8Array([0xFE, 0xFE, parseInt(S.civ || '94', 16) & 255, 0xE0, ...body, 0xFD]);
   const pct255 = p => { const d = pad(Math.round(Math.max(0, Math.min(100, p)) * 2.55), 4); return [parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)]; };
   const EXTRA = {
-    yaesu: { power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], atu: () => [asc('AC002;')] },
-    kenwood: { power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], atu: () => S.model === 'elecraft' ? null : [asc('AC111;')] },
-    icom: { power: p => [icom([0x14, 0x0A, ...pct255(p)])], atu: () => [icom([0x1C, 0x01, 0x02])] },
+    yaesu: { power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], atu: () => [asc('AC002;')], mic: p => [asc('MG' + pad(Math.max(0, Math.min(100, p)), 3) + ';')] },
+    kenwood: { power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], atu: () => S.model === 'elecraft' ? null : [asc('AC111;')], mic: p => [asc('MG' + pad(Math.max(0, Math.min(100, p)), 3) + ';')] },
+    icom: { power: p => [icom([0x14, 0x0A, ...pct255(p)])], atu: () => [icom([0x1C, 0x01, 0x02])], mic: p => [icom([0x14, 0x0B, ...pct255(p)])] },
     hamlib: {}
   };
   EXTRA.yaesu8 = EXTRA.yaesu;
@@ -154,7 +154,7 @@
   const BANDS = [['160m', 1800, 2000, 1900, 'LSB'], ['80m', 3500, 4000, 3850, 'LSB'], ['60m', 5330, 5410, 5357, 'USB'], ['40m', 7000, 7300, 7200, 'LSB'], ['30m', 10100, 10150, 10110, 'CW'], ['20m', 14000, 14350, 14250, 'USB'], ['17m', 18068, 18168, 18130, 'USB'], ['15m', 21000, 21450, 21300, 'USB'], ['12m', 24890, 24990, 24950, 'USB'], ['10m', 28000, 29700, 28400, 'USB'], ['6m', 50000, 54000, 50125, 'USB'], ['2m', 144000, 148000, 146520, 'FM']];
   const bandOf = k => (BANDS.find(b => k >= b[1] && k <= b[2]) || [])[0] || '';
   const box = document.createElement('div'); box.id = 'lrBox';
-  $('ctCat').appendChild(box);
+  if ($('ctCat')) $('ctCat').appendChild(box);
   function html() {
     const C = caps(K.get().radio), on = K.connected(), r = RADIO[K.get().radio];
     const chip = (k, v, t, cur) => `<button type="button" class="lr-c${String(cur) === String(v) ? ' on' : ''}" data-xc="${k}:${v}">${t}</button>`;
@@ -226,6 +226,7 @@
     qmx: ['QMX menu: CAT = Kenwood TS-480 style (always on), any baud', 'USB sound card built in: pick "QMX" as the sound card', 'USB SERIAL PORTS = 3: CAT on the lowest-numbered port']
   };
   function draw() {
+    if (!box.isConnected) return;   /* Nov 10: the box can be waiting, not on the page (VIP lounge until the ⚙ pop-up opens) */
     const op = ['lrMore', 'lrBand', 'lrScope', 'lrHear', 'lrGuide'].filter(id => $(id) && $(id).open);
     const f = document.activeElement && box.contains(document.activeElement) && document.activeElement.type === 'range';
     if (f) return;   /* never redraw under a finger on a slider */
@@ -424,5 +425,5 @@
   draw();
   if (K.onStatus) K.onStatus(() => setTimeout(() => { draw(); if (X.scope && K.connected() && !scOn) scStart(); }, 300));
   const sel = $('ctRadio'); if (sel) sel.addEventListener('change', () => setTimeout(draw, 100));
-  G.KPCLoungeRx = { X, caps, cmds, send, draw, goBand, tuneAsk, BM, tap, ROWS: () => ROWS, guard, hold: () => HOLD, swrOf };
+  G.KPCLoungeRx = { box, home: () => $('ctCat'), X, caps, cmds, send, draw, goBand, tuneAsk, BM, tap, ROWS: () => ROWS, guard, hold: () => HOLD, swrOf };
 })(window);

@@ -47,5 +47,6 @@ check("Q.q = Q.q.flatMap(splitRec)" in src, 'old "A, B" lines in a saved log are
 check("return out.flatMap(splitRec);" in src, 'RESTORE from an ADIF splits "A, B" too')
 check("L = (L || []).flatMap(splitRec);" in src, 'download, backup file and QRZ upload all go through the split ADIF')
 for f in ['kpc-hunters.html', 'kpc-hunt.html', 'kpc-hunters-need.html', 'kpc-hunt-need.html', 'kpc-beta-room.html', 'kpc-beta-need.html', '.claude/build/hunt/main.html']:
-    check('kpc-hunt.js?v=20261108q' in (ROOT / f).read_text(encoding='utf-8'), f + ': new kpc-hunt.js version')
+    _v = re.search(r'kpc-hunt\.js\?v=(\d{8}[a-z])', (ROOT / f).read_text(encoding='utf-8'))   # Nov 10: this version or a newer one
+    check(bool(_v) and _v.group(1) >= '20261108q', f + ': new kpc-hunt.js version')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

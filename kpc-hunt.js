@@ -49,7 +49,10 @@
   /* Nov 8 (two-fers / three-fers): the PARK / REF box takes a comma list ("US-1234, US-5678"). Each ref is cleaned (K-/VE- to
      US-/CA-), repeats dropped, and checked: POTA AA-1234 / AA-12345, WWFF AAFF-1234, SOTA W4K/EC-001. refList gives both. */
   const REF_OK = r => /^[A-Z0-9]{1,4}-\d{4,5}$/.test(r) || /^[A-Z0-9]{1,4}FF-\d{4}$/.test(r) || /^[A-Z0-9]{1,4}\/[A-Z0-9]{2}-\d{3}$/.test(r);
-  const refList = v => { const ok = [], bad = []; String(v || '').toUpperCase().split(/[ ,;]+/).filter(Boolean).map(nref).forEach(r => { if (!REF_OK(r)) { if (!bad.includes(r)) bad.push(r); } else if (!ok.includes(r)) ok.push(r); }); return { ok, bad, s: ok.join(', ') }; };
+  /* Nov 10: a bare number in 2nd/3rd place takes the first park's prefix ("US-1234, 5678" -> "US-1234, US-5678"). */
+  const refFix = v => { const t = String(v || '').toUpperCase().split(/([ ,;]+)/), m = t.length && nref(t[0]).match(/^([A-Z0-9]{1,4})-\d/); return !m ? t.join('') : t.map((x, i) => i > 1 && i % 2 === 0 && /^\d{4,5}$/.test(x) ? m[1] + '-' + x : x).join(''); };
+  window.KPCHuntRefFix = refFix;
+  const refList = v => { const ok = [], bad = []; refFix(v).toUpperCase().split(/[ ,;]+/).filter(Boolean).map(nref).forEach(r => { if (!REF_OK(r)) { if (!bad.includes(r)) bad.push(r); } else if (!ok.includes(r)) ok.push(r); }); return { ok, bad, s: ok.join(', ') }; };
   const refBad = (L, el) => { if (!L.bad.length) return false; toast(`⚠ Not a park or summit ref: ${L.bad.join(', ')}. Use a comma list like US-1234, US-5678.`); if (el) el.focus(); return true; };
   window.KPCRefs = { list: refList, ok: REF_OK };
   function scan(text) {
@@ -577,13 +580,15 @@
     let L = SP.filter(s => passPBM(s) && (!CT || !CT.has(base(s.call))) && (!F.hide || !WK.has(s.ref)) && (!F.nw || isNew(s)) && (!F.rg || !isFar(s))
       && (F.where === 'all' || (F.where === 'us' && s.us) || (F.where === 'usca' && (s.us || s.ca)) || (F.where === 'range' && dist(s) != null && !isFar(s)))
       && (!F.st || s.st === F.st)
-      && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q)));
+      && (!q || [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(q))
+      && (!window.KPCHuntX || KPCHuntX.pass(s)));   /* Nov 10: 📜 IN MY LICENCE CLASS (kpc-hunt-x.js) */
     const srt = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || String(a.mode).localeCompare(String(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')), mine: (a, b) => (isNew(b) - isNew(a)) || (b.t || 0) - (a.t || 0), far: (a, b) => (dist(a) ?? 1e9) - (dist(b) ?? 1e9) }[F.sort] || null;
     if (srt) L.sort(srt);
     const CHP = SP.filter(s => isCh(s) && !isQrt(s)), CHK = new Set(CHP.map(keyOf));
     if ($('hlChase')) $('hlChase').innerHTML = CHP.length ? `<div class="hl-pinbar ch">🎯 ON MY CHASE LIST, ON THE AIR NOW <small>any band or mode · tap ✓ GOT IT when you've worked it</small></div><div class="hl-grid hl-pinned">${CHP.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-chdone="${esc(String(s.ref).toUpperCase())}">✓ GOT IT</button>`)).join('')}</div>` : '';
     L = L.filter(s => !CHK.has(keyOf(s)));
     const PIN = L.filter(favPinned); L = L.filter(s => !favPinned(s));
+    window.KPCHuntShown = PIN.concat(L.slice(0, 240));   /* Nov 10: what ▶ SCAN steps through (kpc-hunt-x.js) */
     $('hlFavs').innerHTML = PIN.length ? `<div class="hl-pinbar">⭐ FAVORITES ON THE AIR <small>pinned until you work them today</small></div><div class="hl-grid hl-pinned">${PIN.map(s => card(s).replace('<div class="hs-a">', `<div class="hs-a"><button type="button" class="got" data-fdone="${esc(base(s.call))}">✓ GOT THEM</button>`)).join('')}</div>` : '';
     favDraw();
     const old = new Set([...document.querySelectorAll('#hlSpots .hs')].map(x => x.dataset.k));
@@ -1200,14 +1205,14 @@
   }
   document.addEventListener('click', e => {
     const ed = e.target.closest('[data-qe]'); if (ed) { const x = Q.q.find(q => q.id === ed.dataset.qe); if (x) openSheet(null, x); return; }
-    const dl = e.target.closest('[data-qd]'); if (dl) { const i = Q.q.findIndex(q => q.id === dl.dataset.qd); if (i < 0) return; const [x] = Q.q.splice(i, 1); qSave(); qList(); toast(`Deleted ${x.call}.`, () => { Q.q.splice(i, 0, x); qSave(); qList(); }); }
+    const dl = e.target.closest('[data-qd]'); if (dl) { const i = Q.q.findIndex(q => q.id === dl.dataset.qd); if (i < 0) return; if (!confirm(`Delete ${Q.q[i].call} ${fmtD(Q.q[i].d)} ${fmtT(Q.q[i].tm)}? This cannot be undone.`)) return; /* Nov 10: ask first */ const [x] = Q.q.splice(i, 1); qSave(); qList(); toast(`Deleted ${x.call}.`, () => { Q.q.splice(i, 0, x); qSave(); qList(); }); }
   });
   /* ---------- the log sheet ---------- */
   let EDIT = null;
   /* Nov 8 (Brandon t762u: "59 for ssb and 599 for cw etc"): phone 59, CW / RTTY / PSK / JS8 599, FT8 / FT4 in dB like WSJT-X (-10). Always editable. */
   function rstFor(m) { m = String(m || '').toUpperCase(); return /FT8|FT4/.test(m) ? '-10' : /^CW|RTTY|PSK|JS8|DATA|DIGI|OLIVIA|MFSK/.test(m) ? '599' : '59'; }
   /* Nov 8 (t762u): "N4BWD, KQ4HZK" in the call box = one log line per call (trimmed, upper case, no blanks, no repeats) */
-  function splitCalls(v) { const out = []; String(v || '').toUpperCase().split(/[,;]+/).map(x => x.trim()).filter(Boolean).forEach(c => { if (out.indexOf(c) < 0) out.push(c); }); return out; }
+  function splitCalls(v) { const out = []; String(v || '').toUpperCase().split(/[\s,;]+/)   /* Nov 10: a space between calls splits too ("KZ4CP N4KPC") */.map(x => x.trim()).filter(Boolean).forEach(c => { if (out.indexOf(c) < 0) out.push(c); }); return out; }
   const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   /* one record per call (records saved before Nov 8 with "A, B" in the call box are split the same way) */
   function splitRec(q) { const C = splitCalls(q && q.call); if (C.length < 2) return [q]; return C.map((c, i) => Object.assign({}, q, { call: c, id: i ? q.id + '-' + i : q.id })); }
@@ -1259,7 +1264,7 @@
     await qSave();
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
     const wasEdit = !!EDIT; closeSheet(); qList(); ticker(false); draw(); needDraw();
-    if (KPCQrzOn() && more.length) more.concat(wasEdit ? [] : [rec]).forEach(r => { const a = adif([r]); KPCQrz.send(a.slice(a.indexOf('<EOH>') + 5).trim()).then(x => { if (x.ok) { r.qz = x.sure ? 2 : 1; qSave(); } }); });
+    if (KPCQrzOn() && more.length) more.concat(wasEdit ? [] : [rec]).forEach(r => { const a = adif([r]); qzOne(a.slice(a.indexOf('<EOH>') + 5).trim()).then(x => { if (x.ok) { r.qz = x.sure ? 2 : 1; qSave(); } }); });
     toast(wasEdit && !more.length ? '✓ Changes saved.' : `✓ ${CS.join(', ')} saved on this device${CS.length > 1 ? ' (' + CS.length + ' lines)' : ''}.`, wasEdit ? null : () => { Q.q = Q.q.filter(q => !ids.has(q.id)); qSave(); qList(); });
   });
   let tT = 0;
@@ -1649,6 +1654,9 @@
   let dkWT = 0, dkWN = 0, DKWHO = null;
   function dkWho() {
     clearTimeout(dkWT); const call = $('dCall').value.trim().toUpperCase(), n = ++dkWN; DKWHO = null;
+    /* Nov 10 (KZ4CP,N4KPC looked up as ONE call): two or more calls = one line each, each looked up on its own */
+    const CSW = splitCalls(call); if (CSW.length > 1) { const nm = {}, paint = () => { if (n === dkWN) $('dkWho').innerHTML = `<span class="pv">👥 ${CSW.length} calls: one contact each</span> ` + CSW.map(c => `<b>${esc(c)}</b>${nm[c] ? ' <span>' + esc(nm[c]) + '</span>' : ''}`).join(' · '); };
+      paint(); dkWT = setTimeout(async () => { for (const c of CSW) { if (n !== dkWN || base(c).length < 3) continue; const r = await lookCall(c); if (r) nm[c] = [r.name, r.st].filter(Boolean).join(', '); paint(); } }, 450); return; }
     if (base(call).length < 3) { $('dkWho').innerHTML = ''; return; }
     const prev = Q.q.filter(q => base(q.call) === base(call)).sort((a, b) => (b.d + b.tm).localeCompare(a.d + a.tm));
     const pv = prev.length ? `<span class="pv">🔁 worked ${prev.length}× before · last ${fmtD(prev[0].d)}${prev[0].ref ? ' at ' + esc(prev[0].ref) : ''} (${esc(prev[0].band)} ${esc(prev[0].mode)})</span>` : '<span class="pv nw">🆕 first time in your log</span>';
@@ -1701,6 +1709,19 @@
     KPCCat.follow(r => { if (r.khz && Math.abs(r.khz - DIAL) > .05) { DIAL = r.khz; markSel(); } if (!$('dFreq') || !r.khz || NOLOG) return; $('dFreq').value = (r.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, ''); if (r.mode) { const m = r.mode === 'DATA' ? 'FT8' : /SB$/.test(r.mode) ? 'SSB' : r.mode; if ([...$('dMode').options].some(o => o.value === m)) $('dMode').value = m; }
       $('dFreq').dispatchEvent(new Event('input')); dkRadT(); });
   }
+  /* Nov 10: typing , or space after a park starts the next one with the same prefix ("US-1234," -> "US-1234, US-"); backspace is left alone */
+  if ($('dRef')) $('dRef').addEventListener('input', e => {
+    const el = e.target, v = el.value; if (e.inputType !== 'insertText' || !/^[ ,]$/.test(e.data || '') || el.selectionStart !== v.length || el.selectionEnd !== v.length) return;
+    const body = v.slice(0, -1), tk = body.toUpperCase().split(/[ ,;]+/).filter(Boolean), m = tk.length && nref(tk[0]).match(/^([A-Z0-9]{1,4}-)\d/); if (!m) return;
+    if (tk[tk.length - 1] === m[1]) el.value = body;   // only the auto prefix so far: ignore the extra separator
+    else if (e.data === ' ' && /,$/.test(body)) el.value = body + ' ' + m[1];
+    else if (/[ ,;]$/.test(body)) return;
+    else el.value = body + (e.data === ',' ? ', ' : ', ') + m[1];
+    el.setSelectionRange(el.value.length, el.value.length); el.dispatchEvent(new Event('input'));
+  });
+  /* Nov 10: the voice keyer button only shows while a CAT radio is connected (hidden when kpc-cat.js is not on the page) */
+  const vkBtn = () => { const b = document.querySelector('.dk-top [data-vk-open]'); if (!b) return; const on = !!(window.KPCCat && KPCCat.connected()); b.hidden = !on; b.style.display = on ? '' : 'none'; };
+  vkBtn(); if (window.KPCCat) KPCCat.onStatus(vkBtn);
   function dkClear() {
     ['dCall', 'dRef', 'dName', 'dSt', 'dNote'].forEach(id => { $(id).value = ''; }); dkWN++; DKWHO = null; $('dkWho').innerHTML = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value); $('dkDupe').hidden = true;
@@ -1732,7 +1753,7 @@
     if (!opt.many) toast(`✓ ${call} logged${ref ? ' at ' + ref : ''}.${!KPCQrzOn() && rec.qs ? (PUB ? ' (QRZ is off: tap 💾 ADIF MODE to switch to QRZ mode.)' : ' (QRZ upload is off: turn it on in the CAT & QRZ tab.)') : ''}`, () => { Q.q = Q.q.filter(q => q.id !== rec.id); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     if (opt.qrz && window.KPCQrz && !KPCQrz.get().key) toast(PUB ? '✓ Logged. To send to QRZ, add your QRZ key in MY LOG FILES.' : '✓ Logged. To send to QRZ, save your QRZ key on the 📻 CAT & QRZ tab.');
     if ((KPCQrzOn() || (opt.qrz && window.KPCQrz && KPCQrz.get().key))) { const a = adif([rec]); const one = a.slice(a.indexOf('<EOH>') + 5).trim();
-      KPCQrz.send(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } else toast('⚠ QRZ: ' + r.msg); }); }  /* no note when it went OK (Brandon Oct 17): only a problem shows */
+      qzOne(one).then(r => { if (r.ok) { rec.qz = r.sure ? 2 : 1; qSave(); try { qzCount(); } catch (e) {} } else toast('⚠ QRZ: ' + call + ': ' + r.msg); }); }  /* no note when it went OK (Brandon Oct 17): only a problem shows */
     /* the effect flares only every 50 contacts or for DX outside North America (Brandon Oct 17) */
     const NAPRE = /^(A[A-L]|[KNW]|V[A-GOY]|C[F-KYZ]|X[A-O]|4[A-C]|6[D-J]|C[LMO]|T[GI]|H[O-RI]|YN|YS|V[23P]|J[3678]|8P|6Y|ZF|C6|FG|FM|FS|PJ|P4|HH|OX|XP|TO|FP|ZB)/;
     const dx = base(call).length > 2 && !NAPRE.test(base(call)), tot = Q.q.length;
@@ -1740,6 +1761,10 @@
       fire(dx ? `🌍 DX! ${base(call)} is outside North America` : `🎉 ${tot} contacts in your log!`); }
   }
   const KPCQrzOn = () => !!(window.KPCQrz && KPCQrz.on());
+  /* Nov 10 (2-fer 'KZ4CP, N4KPC' reached QRZ as KZ4CP only): QRZ uploads go ONE AT A TIME, 600 ms apart (two at once lost one),
+     and a failed one is tried once more after 3 s */
+  let QZQ = Promise.resolve();
+  function qzOne(one) { const p = QZQ.then(async () => { let r = await KPCQrz.send(one); if (!r.ok && !/key/i.test(r.msg || '')) { await new Promise(z => setTimeout(z, 3000)); r = await KPCQrz.send(one); } await new Promise(z => setTimeout(z, 600)); return r; }); QZQ = p.catch(() => {}); return p; }
   function dkList() {
     const el = $('dkList'); if (!el) return;
     const q = ($('dkQ').value || '').trim().toUpperCase(), today = utc(new Date()).d;
@@ -1884,5 +1909,5 @@
     station: () => openModal('lgModal'), tab: () => {}
   };
   (window.KPCVIP ? window.KPCVIP.ready : Promise.resolve()).then(startApp);
-  window.KPCHunt = { scan, nref, adif, parseAdif, splitCalls, splitRec, rstFor, sameSpot, groupCalls };
+  window.KPCHunt = { scan, nref, adif, parseAdif, splitCalls, splitRec, rstFor, sameSpot, groupCalls, fill: s => dkFill(s), draw: () => draw(), qzOne, keyOf };
 })();
