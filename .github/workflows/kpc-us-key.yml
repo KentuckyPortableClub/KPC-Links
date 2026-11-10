@@ -252,7 +252,7 @@ jobs:
                     echo "$st" >> /tmp/shape-guard-failed-states
                     # Keep the index row in step with the restored file (run 42797939226 wrote FL padus 5198 into the
                     # index while US-FL.json was put back at 21993). The next shape guard reads the live index.
-                    python3 -c 'import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path("data/us-key/US-%s.json"%st); idxp=Path("data/us-key/index.json"); counts=(json.loads(f.read_text()).get("counts") or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=dict((d.get("states") or {}).get(st) or {}); row.update(counts); idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+"\n") if counts and idxp.exists() else None' "$st"
+                    python3 -c 'import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path("data/us-key/US-%s.json"%st); idxp=Path("data/us-key/index.json"); counts=(json.loads(f.read_text()).get("counts") or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=dict((d.get("states") or {}).get(st) or {}); row.update(counts); d.setdefault("states", {})[st] = row; idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+"\n") if counts and idxp.exists() else None' "$st"
                     echo "::error title=US key $st::shape source still $got vs $live after the saved-copy refill. The live key's US-$st.json is what will be saved, not the short read."
                     echo "$st shape source $got vs live $live; saved the live key file instead of the short read" >> /tmp/shape-guard-fail
                   else
