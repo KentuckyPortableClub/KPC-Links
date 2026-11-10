@@ -1,6 +1,6 @@
 {
  "key": "us",
- "count": 26,
+ "count": 25,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -12,7 +12,7 @@
    "was_g": "official",
    "held_ids": "2165",
    "held_names": "",
-   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km)))))",
+   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km))))))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person adds the id to the park's signed overrides.json 'join'"
   },
@@ -303,18 +303,6 @@
    "reason": "a new join (hma127, sgnvi450): the nearest part is 8.6 km from the POTA pin (over 5 km for a new join)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
-  },
-  {
-   "park": "US-12841",
-   "area": "US-OR",
-   "name": "Fawn Creek BLM Recreation Management Area",
-   "pin_km": 0.03,
-   "was_g": "approximate",
-   "held_ids": "sgakg12757 | sgorf3756",
-   "held_names": "Fawn Creek Campground | Fawn Creek Campground",
-   "reason": "a person said NO to this land under its old id (sgakg12757 = rst12757 \"Fawn Creek Campground\", sgorf3756 = rst12757 \"Fawn Creek Campground\")",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
   }
  ]
 }

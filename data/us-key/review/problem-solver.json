@@ -1,8 +1,8 @@
 {
  "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
  "counts": {
-  "pin wrong": 83,
-  "needs a person": 75,
+  "pin wrong": 85,
+  "needs a person": 73,
   "wrong state": 1,
   "sliver": 2
  },
@@ -166,20 +166,21 @@
    "name": "Camp Robinson Wildlife Management Area",
    "type": "Wildlife Management Area",
    "state": "US-AR",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep arw1658 (Camp Robinson WMA) (the POTA pin is never moved)",
    "reasons": [
-    "no saved outline for arw1801 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
+    "arw1658 is the park's land: same name (Camp Robinson WMA), 9,314 acres measured",
+    "the latitude looks mistyped: 34.992 with digit 2 after the point 9 -> 1 (34.912) lands 0.3 km from the land"
    ],
    "records": [
     {
-     "id": "arw1801",
+     "id": "arw1658",
      "name": "Camp Robinson WMA",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 13,
+     "measured_ac": 9313.9,
+     "claimed_ac": 0,
+     "km": 3.58
     }
    ]
   },
@@ -188,20 +189,21 @@
    "name": "Cedar Creek Wildlife Management Area",
    "type": "Wildlife Management Area",
    "state": "US-AR",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
+   "verdict": "pin wrong",
+   "confidence": "high",
+   "recommend": "override: keep arw1703 (Cedar Creek WMA) (the POTA pin is never moved)",
    "reasons": [
-    "no saved outline for arw1846 in this build, so its shape could not be checked (the saved outlines are from 2026-11-10; a layer added since is not in them)"
+    "arw1703 is the park's land: same name (Cedar Creek WMA), 93 acres measured",
+    "the latitude looks mistyped: 34.756 with digit 2 after the point 5 -> 7 (34.776) lands 0.5 km from the land"
    ],
    "records": [
     {
-     "id": "arw1846",
+     "id": "arw1703",
      "name": "Cedar Creek WMA",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
+     "points": 8,
+     "measured_ac": 92.9,
+     "claimed_ac": 0,
+     "km": 2.68
     }
    ]
   },
