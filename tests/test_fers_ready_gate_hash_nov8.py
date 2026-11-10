@@ -82,7 +82,7 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': '19d219f37114', 'ca-key': '22f16bc69b96', 'world-key': '10e4092cc97f'}
+BASE = {'us-key': 'f489a836894f', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
@@ -96,9 +96,10 @@ _head = docs.split('\n\n')[0] if docs else ''
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt top entry declares fers v1 hash {fers_h}')
 # Nov 9 evening: Brandon OK'd the batch's final 2-fer hash (t918u, 4:45 PM CST): his exact words + time next to the hash, no PENDING
-check(f'{fers_h} (FINAL' in _head and 'i agree to new number' in _head and '4:45 PM CST' in _head and 'PENDING' not in _head,
-      "docs quote Brandon's t918u OK next to the final fers hash")
-check('19d219f37114' in _head and '22f16bc69b96' in _head and '10e4092cc97f' in _head,
+# Nov 9 7:52 PM CST: amendment 2 hashes approved; the public changelog keeps hashes and dates only (no quotes, no ids)
+check(f'{fers_h} (FINAL' in _head and 'APPROVED' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head and '"' not in docs,
+      "docs record the approval (hash + date) next to the final fers hash, no quoted messages")
+check('f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
       'docs entry notes us/ca/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)

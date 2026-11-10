@@ -27,6 +27,8 @@ Verdicts (one per park, with plain-words reasons):
   KEY=us (only the US key for now)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
   OUT=<file stem> (default data/us-key/review/problem-solver)   STATES=<file> (default kpc-us-states.json)
   --selftest   (the 17 Research Bot calls of Nov 7, tests/fixtures/problem-solver-17.json)
+  --inbox [--retry] [--offline]   (Nov 9, Brandon t943u/t942u: check the research files in data/research-inbox/, only those parks;
+               --retry re-checks data/research-inbox/needs-another-look.json; see docs/research-input-format.md)
 Never fails the build: exit 0 (the selftest exits 1 on a wrong verdict)."""
 import glob, gzip, json, math, os, pathlib, re, sys
 
@@ -541,6 +543,13 @@ def selftest(path=None):
 
 if __name__ == '__main__':
     if '--selftest' in sys.argv: sys.exit(1 if selftest() else 0)
+    if '--inbox' in sys.argv:   # Nov 9 (Brandon t943u + t942u): research files in data/research-inbox/, just those parks (+ --retry)
+        import kpc_research_inbox as RI  # noqa: E402
+        _fs = sorted(f for f in glob.glob(str(ROOT / 'data/research-inbox/*.csv')) + glob.glob(str(ROOT / 'data/research-inbox/*.json')) if not f.endswith('needs-another-look.json'))
+        try: RI.run(_fs, root=ROOT, offline='--offline' in sys.argv, retry='--retry' in sys.argv)
+        except Exception as e:  # noqa: BLE001
+            print(f'::warning title=Research inbox::stopped ({type(e).__name__}: {str(e)[:160]}); no key is affected')
+        sys.exit(0)
     try: run()
     except Exception as e:  # noqa: BLE001
         print(f'::warning title=Problem solver::stopped ({type(e).__name__}: {str(e)[:160]}); the key build is not affected')

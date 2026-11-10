@@ -1,0 +1,40 @@
+name: KPC research inbox (problem solver, only the parks in the files)
+# Nov 9 2026 (Brandon t943u: a file format the problem solver can read; t942u: retry loop). No cron (a new cron needs Brandon's words):
+# it runs when a research file, a layer list or a hard-look join changes on main, or by hand (the bots dispatch it when a hand download
+# lands in KPC-Data). It checks ONLY the parks in data/research-inbox/ and needs-another-look.json, recommends only (never writes a key,
+# an override or a pin) and uploads the results; SURE rows go to Quality, then Brandon's t927u signing rule.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['data/research-inbox/**', 'data/state-gis.json', 'data/us-key/layers.json', 'data/ca-key/layers.json', 'data/ca-key/hardlook-joins.json', 'data/world-key/extra-layers.json']
+permissions:
+  contents: read
+concurrency: {group: kpc-research-inbox, cancel-in-progress: false}
+jobs:
+  inbox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: POTA pins (KPC-Data parkinfo, read only)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data kpcdata
+          git -C kpcdata sparse-checkout set --no-cone 'data/parkinfo/*' && git -C kpcdata checkout -q
+      - name: Saved research outlines (from the last run)
+        uses: actions/cache@v4
+        with:
+          path: cache/research
+          key: research-${{ github.run_id }}
+          restore-keys: research-
+      - name: Check the inbox and the retry list
+        env:
+          KPCDATA: kpcdata
+        run: python3 .github/scripts/kpc_problem_solver.py --inbox --retry
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-inbox-results
+          retention-days: 30
+          path: |
+            data/research-inbox/results/
+            data/research-inbox/needs-another-look.json

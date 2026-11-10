@@ -147,8 +147,22 @@
   /* RULE SHEET G (Oct 29, chat 2 step 3): what a card says about the outline. o = {label: 'official'|'approx'|'none', pinOff} */
   function gradeText(o) {
     o = o || {}; const t = o.line && o.label !== 'approx' ? 'Official trail line' : o.label === 'official' ? 'Official outline' : o.label === 'approx' ? 'Approximate outline' : 'Pin only (no official outline yet)';
-    return t + (o.pinOff ? '. POTA’s pin may be off for this park' : '');
+    const pc = o.label !== 'official' && o.label !== 'approx' && (o.pc || (o.ref && pcSync(o.ref)));
+    return t + (o.pinOff ? '. POTA’s pin may be off for this park' : '') + (pc ? '. ' + pcNote(pc) : '');
   }
+  /* Nov 9 2026: a park with no official boundary whose agency publishes an official POINT for it gets a
+     100 ft circle around that point as a stand-in (data/point-circles.json). Every card that shows such a park says so, plainly. */
+  let PCD = null, PCS = {};
+  const pcLoad = () => PCD || (PCD = fetch('data/point-circles.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).then(j => (j && j.parks) || {}).catch(() => ({})));
+  pcLoad().then(p => { PCS = p || {}; });
+  function pcLayerName(u) { const m = /services\/(.+?)\/(MapServer|FeatureServer)\/(\d+)/i.exec(u || ''); return m ? m[1].split('/').pop().replace(/_/g, ' ') + ' layer ' + m[3] : (u ? 'official layer' : ''); }
+  function pcNote(e) {
+    if (!e) return '';
+    const src = [e.record_name, pcLayerName(e.layer_url), e.record_id != null && e.record_id !== '' ? 'record ' + e.record_id : ''].filter(Boolean).join(', ');
+    return 'No official boundary on file. Using a 100 ft circle around the agency’s official point' + (src ? ' (' + src + ')' : '') + '. The real boundary may be larger, so check before you activate.';
+  }
+  const pointCircle = ref => pcLoad().then(p => (p && p[ref]) || null);
+  const pcSync = ref => PCS[ref] || null;
   /* RULE SHEET G: zoomed in close (zoom >= 13), a drawn outline is swapped for the agency's own ~3 m copy of the part on screen
      (closeUp, no second rounding); zoomed out, the lighter copy comes back. layer = the L.geoJSON drawn from fs (its own style
      function stays). Nothing waits: a slow server = the normal outline stays. Returns a stop() function. */
@@ -678,6 +692,6 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usKeyLayers: () => layers(), usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE,
+  window.KPCB = { pointCircle, pcSync, pcNote, tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usKeyLayers: () => layers(), usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE,
     tractsOn, tractsReady, tractSwitch, tractMode, countMode, tractPath, tractDoc, tractsOf, splitRecs, tractGroups, tractify, ringsToPolys, toKml, toGpx };
 })();

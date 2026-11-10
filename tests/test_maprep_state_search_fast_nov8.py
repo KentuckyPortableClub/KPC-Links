@@ -22,7 +22,7 @@ check('usKeyLayers: () => layers()' in (ROOT / 'kpc-bounds.js').read_text(encodi
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
     _v = re.search(r'kpc-maprep-research\.js\?v=(\w+)', h)   # any version from 20261108s on
-    check(bool(_v) and _v.group(1) >= '20261108s' and 'kpc-bounds.js?v=20261107tx' in h, f + ': new script versions')
+    check(bool(_v) and _v.group(1) >= '20261108s' and 'kpc-bounds.js?v=20261109am2' in h, f + ': new script versions')
 node = r"""
 global.window = {}; const R = require(%s);
 (async () => {

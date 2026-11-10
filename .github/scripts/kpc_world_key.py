@@ -323,9 +323,15 @@ def _retry_wait(u, i):
     return min(RETRY_CAP, (RETRY_SLOW_BASE if host in SLOW_HOSTS else RETRY_BASE) * 3 ** i) * random.uniform(.5, 1.0)
 
 
+# Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403 (B3: the layer FAILS into
+# the saved-copy / HOLD path at once, no retries). Remove a host only when its robots.txt lets us back in.
+SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+
+
 def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes=None, parse=None):
     """B2: GET u; the whole answer within `total` (default REQ_S) seconds and never past `deadline` (time.monotonic()); `tries`
     tries (default REQ_TRIES) with growing, jittered waits that never sleep past `deadline`. parse(bytes) runs inside the try."""
+    if urllib.parse.urlsplit(u).netloc.lower() in SAVED_ONLY_HOSTS: raise LayerStall(f'saved copy only (Brandon t939u): {urllib.parse.urlsplit(u).netloc}')
     tries, total, last = max(1, int(tries or REQ_TRIES)), float(total or REQ_S), None
     for i in range(tries):
         now = time.monotonic()
@@ -1275,6 +1281,13 @@ for cc in COUNTRIES:
                     if _isno(r['id'], r['n']): continue
                     if low(r['n']) == low(want) and (la is None or near(la, lo, r['_bb'], .6)) and not any(q[0] == r['id'] for q in m):
                         m.append([r['id'], r['n'], r['src'], 'reviewed'])
+            # Nov 9 amendment 2 (Brandon t938u: "world overrides should save IDs"): 'ids' = [[source label, record id], ...] joins that
+            # exact record of that source (a 'no' still wins); the 'join' names stay as the fallback when a source renumbers.
+            for sid in ov.get('ids', []):
+                if not isinstance(sid, (list, tuple)) or len(sid) < 2: continue
+                for r in nearby(la, lo):
+                    if r['src'] == sid[0] and str(r['id']) == str(sid[1]) and not _isno(r['id'], r['n']) and not any(q[0] == r['id'] and q[2] == r['src'] for q in m):
+                        m.append([r['id'], r['n'], r['src'], 'reviewed (saved id)'])
         pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
         if pref: m = pref                                                          # the federal inventory of that kind decides
         if cc == 'CH' and m:                                                       # Oct 19: '(südlicher Teil)', '(Teilraum 2)': parts of one BLN area

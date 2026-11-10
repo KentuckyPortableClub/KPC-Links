@@ -26,11 +26,11 @@ def check(cond, msg):
         print('PASS', msg)
 
 
-check(KF.rules_hash('us-key') == '19d219f37114', 'US rules hash 19d219f37114 (moved Nov 9, Brandon 11:24 AM CST; declared)')
-check(KF.rules_hash('ca-key') == '22f16bc69b96', 'Canada rules hash stays 22f16bc69b96')
+check(KF.rules_hash('us-key') == 'f489a836894f', 'US rules hash f489a836894f (moved Nov 9, Brandon 11:24 AM CST; declared)')
+check(KF.rules_hash('ca-key') == '570b09c3cb52', 'Canada rules hash stays 570b09c3cb52')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check(KF.rules_hash('world-key') == '10e4092cc97f', 'world rules hash stays 10e4092cc97f')
+check(KF.rules_hash('world-key') == '6444287722b9', 'world rules hash stays 6444287722b9')
 # Nov 7 world rebuild: docs/key-rules-change.txt now declares that approved world-key change (the repo's way to declare an on-purpose
 # rules change, see test_maprep_toolbox.py). This file still must not change rules itself: the declaration may only be that one.
 _decl = (ROOT / 'docs/key-rules-change.txt')
