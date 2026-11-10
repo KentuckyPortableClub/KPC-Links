@@ -185,3 +185,27 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 /* Also-in and possible 2-fer lines on cards (v20261010d) */
 .entry .alsoin{margin-top:6px}.entry .alsoin b{color:#f0c96b}
 .entry .twofer{margin:8px 0 2px;padding:7px 10px;border-left:4px solid #3ecf6e;background:rgba(62,207,110,.1);border-radius:6px;font-size:13px;color:#e9f3ec}.entry .twofer b{color:#7ee2a0}
+
+/* Nov 10: the cards sit behind ONE tab bar (1 SEARCH | 2 NEARBY | 3 MY TRIP | 4 TRAILS | 5 ABOUT), set up like the Mapping Rep Tool Box
+   (.mr-rs-tabs / .mr-rs-tab, gold active tab). The map stays outside the tabs, under the open panel. Layout only. */
+.mr-rs-tabs{display:flex;flex-wrap:wrap;gap:0;margin:4px 0 12px;border:1px solid rgba(240,201,107,.45);border-radius:10px;overflow:hidden}
+.mr-rs-tab{flex:1 1 0;min-width:0;background:transparent;color:inherit;border:0;border-right:1px solid rgba(240,201,107,.3);padding:11px 8px;font:inherit;font-weight:700;letter-spacing:1px;font-size:.85rem;cursor:pointer}
+.mr-rs-tab:last-child{border-right:0}.mr-rs-tab.on{background:#f0c96b;color:#1b140b}.mr-rs-tab:focus-visible{outline:2px solid #d5a63a;outline-offset:-3px}
+.fp-tabwrap{margin:16px 0 0}
+.fp-tabs{margin:0;background:rgba(255,250,240,.97);color:#171717;border-color:rgba(213,166,58,.7);box-shadow:0 10px 26px rgba(0,0,0,.3);border-radius:14px}
+.fp-tabs .mr-rs-tab{border-right-color:rgba(213,166,58,.4);padding:14px 8px;white-space:nowrap}
+.fp-tabs .mr-rs-tab.on{background:#f0c96b;color:#1b140b}
+.fp-tn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#171717;color:#f0c96b;font-size:11px;font-weight:900;margin-right:4px}
+.fp-tab.on .fp-tn{background:#1b140b}
+.fp-tc{font-variant-numeric:tabular-nums}
+.fp-tab.flash{animation:fpflash 1.4s ease}
+@keyframes fpflash{0%,100%{box-shadow:inset 0 0 0 0 rgba(213,166,58,0)}30%{box-shadow:inset 0 0 0 3px #d5a63a;background:#f6d58a}}
+@media (prefers-reduced-motion:reduce){.fp-tab.flash{animation:none;outline:2px solid #d5a63a;outline-offset:-3px}}
+.fpanel[hidden]{display:none!important}
+.fp-panels>.fpanel>section{margin-top:16px}
+/* results used to sit beside the map and fill its height; in its tab it is a normal card with its own scrolling list */
+.fpanel .resultssec{display:block;height:auto;min-height:0;overflow:visible}
+@media(min-width:1000px){.fpanel .resultssec #items{max-height:min(62vh,640px);overflow:auto;flex:none}}
+.mapgrid{grid-template-columns:minmax(0,1fr)!important}
+@media(max-width:700px){.fp-tabs{position:sticky;top:var(--fp-hdr,0px);z-index:900}}
+@media(max-width:600px){.fp-tabs .mr-rs-tab{padding:8px 1px;font-size:.62rem;letter-spacing:.1px;line-height:1.25;white-space:normal}.fp-tn{display:flex;margin:0 auto 3px}.fp-tc{display:block}}

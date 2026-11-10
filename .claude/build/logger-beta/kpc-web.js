@@ -71,7 +71,16 @@
   }
   if (window.KPCHelp && KPCHelp.topics) { for (var i = KPCHelp.topics.length - 1; i >= 0; i--) if (/^(remote|lite)$/.test(KPCHelp.topics[i].id)) KPCHelp.topics.splice(i, 1);
     KPCHelp.topics.forEach(function (t) { if (t.id === 'net') t.h = 'Field Day / multi-op sharing needs the installed KPC app (the PC app is the hub). The website copy keeps its log in this browser.'; if (t.id === 'cos') t.h = 'Live score posting needs the installed KPC app.'; if (t.id === 'skim') t.h = 'The skimmers need the installed KPC app. The band map still shows who is spotted on the band.'; }); }
-  appOnly(); var aoT = 0; new MutationObserver(function () { if (!aoT) aoT = setTimeout(function () { aoT = 0; appOnly(); }, 400); }).observe(document.body, { childList: true, subtree: true });
+  /* Nov 10 (KPC owner, 2026-11-10): the app's update check runs here too, but on the
+     website it is the INSTALLED app (Android / Windows) that has a new build: this page updates itself when the site does. And a web
+     page may not ask the internet time services, so the app's 'no internet to check against' clock line is not true here. */
+  function webWords() {
+    var u = document.getElementById('stUpd'); if (u && !u.hidden && /newer test build is out/.test(u.innerHTML) && !u.dataset.kw) { u.dataset.kw = '1'; u.innerHTML = u.innerHTML.replace('⬆ A newer test build is out:', '⬆ The installed KPC app (Android / Windows) has a newer build:') + ' <small class="kw-upd">This web page needs nothing: it updates itself when the website does.</small>'; }
+    if (u && /This is the newest build/.test(u.textContent)) u.textContent = 'This web page updates itself when the website does.';
+    var b = document.querySelector('.updbar b'); if (b && /^New build /.test(b.textContent)) b.textContent = b.textContent.replace(/^New build /, 'KPC app (Android / Windows): new build ');
+    var c = document.getElementById('stClk'); if (c && /no internet to check against/.test(c.textContent)) c.textContent = 'Clock: checked against the stations you hear on FT8 (a web page can\'t ask an internet time service).';
+  }
+  appOnly(); webWords(); var aoT = 0; new MutationObserver(function () { if (!aoT) aoT = setTimeout(function () { aoT = 0; appOnly(); webWords(); }, 400); }).observe(document.body, { childList: true, subtree: true });
   /* the members door is drawn by ../kpc-gate.js with links for the site's top folder */
   function fix(root) { [].forEach.call((root || document).querySelectorAll('#kpcDoor a[href], #kpcDoor img[src]'), function (a) { var at = a.tagName === 'IMG' ? 'src' : 'href', h = a.getAttribute(at); if (h && !/^(https?:|data:|#|\.\.\/|\/|mailto:)/.test(h)) a.setAttribute(at, '../' + h); }); }
   fix(); new MutationObserver(function () { fix(); }).observe(document.documentElement, { childList: true, subtree: true });

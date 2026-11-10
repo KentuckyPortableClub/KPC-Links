@@ -50,6 +50,7 @@
       <div class="strip rdvk" id="rdVk" aria-label="Voice keyer"></div>
       <div class="rdlv" id="rdLv"></div>
       <button type="button" class="talk" id="rdTalk">🎙 HOLD TO TALK <small>(this computer's microphone)</small></button>
+      <div class="strip" id="rdVoice" aria-label="Voice shaping"><span class="kv"><i>VOICE</i></span><button type="button" class="chip" data-rvoice="natural" title="Your voice as it is">NATURAL</button><button type="button" class="chip" data-rvoice="punch" title="A little brighter and tighter">PUNCH</button><button type="button" class="chip" data-rvoice="contest" title="Bright and compressed, like a contest mic: cuts through a pile-up">CONTEST</button></div>
       <p class="hint" id="rdTalkH">Voice from this computer goes to the radio's USB sound card: the radio's SSB MOD SOURCE must be REAR (or STATION → Radio control → VOICE FROM THIS DEVICE = DATA). Keyboard: hold <b>Space</b> on this screen to talk.</p>
     </div>
   </section>`);
@@ -127,19 +128,31 @@
     if (/CW/.test(RIG.mode || '')) { AP.toast('The radio is in CW: pick LSB / USB first.', 3000, 'bad'); return; }
     if (AP.native) { AP.toast('🎙 On a phone at the radio, talk into the radio\'s own microphone.', 4000); return; }
     if (!AP.running() && !(await AP.start())) return;
+    /* Nov 8 (KPC owner, 2026-11-10): key the radio AT ONCE, while the microphone opens (and the mic stays warm for a
+       minute after you let go, so the next press does not wait for Windows to open it again) */
     TALK = { t0: Date.now() }; $('rdTalk').classList.add('on');
+    const T0 = TALK; T0.key = AP.pttOn(true, { voice: true });
     try {
       const mic = (G.KPCVoice && KPCVoice.S && KPCVoice.S.mic) || '';
-      const st = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic ? { exact: mic } : undefined, echoCancellation: false, noiseSuppression: true, autoGainControl: true } });
-      if (!TALK) { st.getTracks().forEach(t => t.stop()); return; }
+      clearTimeout(WARM.t);
+      let st = WARM.st && WARM.dev === mic && WARM.st.getAudioTracks().some(t => t.readyState === 'live') ? WARM.st : null;
+      if (!st) { if (WARM.st) WARM.st.getTracks().forEach(t => t.stop()); st = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic ? { exact: mic } : undefined, echoCancellation: false, noiseSuppression: true, autoGainControl: true } }); WARM.st = st; WARM.dev = mic; }
+      if (TALK !== T0) { coolMic(); return; }
       TALK.st = st; TALK.p = AP.audio.pipe(st, AP.S.voice || 'natural'); if (!TALK.p) throw new Error('the sound is not running');
       if (TALK.p.level) TALK.p.level(+AP.S.vdb || 0);
-      await AP.pttOn(true, { voice: true }); if (!TALK) { await AP.pttOn(false, { voice: true }); return; } TALK.p.gate(true);
+      const keyed = await T0.key; if (TALK !== T0) return; if (!keyed) throw new Error('the radio did not key'); TALK.p.gate(true);
       TALK.lim = setTimeout(() => { talkUp(); AP.toast('🎙 Talk limit: PTT let go.', 3000); }, Math.max(30, +AP.S.rmTalk || 180) * 1000);
     } catch (e) { AP.toast('🎙 The microphone did not open: ' + esc(e.message || e) + '. Pick it in the voice keyer (🎙 KEYER → RECORD / EDIT → RECORD WITH).', 6000, 'bad'); talkUp(); }
   }
   async function talkUp() { const t = TALK; if (!t) return; TALK = null; clearTimeout(t.lim); $('rdTalk').classList.remove('on');
-    try { if (t.p) { t.p.gate(false); t.p.stop(); } } catch (e) {} try { if (t.st) t.st.getTracks().forEach(x => x.stop()); } catch (e) {} if (t.p) await AP.pttOn(false, { voice: true }); }
+    try { if (t.p) { t.p.gate(false); t.p.stop(); } } catch (e) {} coolMic(); if (t.key) { await t.key; await AP.pttOn(false, { voice: true }); } }
+  const WARM = { st: null, dev: '', t: 0 };
+  function coolMic() { clearTimeout(WARM.t); WARM.t = setTimeout(() => { if (WARM.st && !TALK) { WARM.st.getTracks().forEach(x => x.stop()); WARM.st = null; } }, 60000); }
+  /* Nov 8 (KPC owner, 2026-11-10): the same NATURAL / PUNCH / CONTEST as the
+     phone's REMOTE screen, here for the PC's own HOLD TO TALK. One saved choice (AP.S.voice) for both; changing it while talking re-shapes at once. */
+  const vPaint = () => document.querySelectorAll('[data-rvoice]').forEach(b => b.classList.toggle('on', b.dataset.rvoice === (AP.S.voice || 'natural')));
+  document.querySelectorAll('[data-rvoice]').forEach(b => { b.onclick = () => { AP.S.voice = b.dataset.rvoice; AP.save(); vPaint(); try { if (TALK && TALK.p && TALK.p.shape) TALK.p.shape(AP.S.voice); } catch (e) {} AP.fire('voice', AP.S.voice); AP.toast('🎙 Voice: ' + b.textContent, 1500, 'log'); }; });
+  vPaint(); AP.on('voice', vPaint);
   const tb = $('rdTalk');
   tb.addEventListener('pointerdown', e => { e.preventDefault(); try { tb.setPointerCapture(e.pointerId); } catch (x) {} talkDown(); });
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(n => tb.addEventListener(n, () => talkUp())); tb.addEventListener('contextmenu', e => e.preventDefault());

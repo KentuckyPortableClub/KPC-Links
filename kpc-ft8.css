@@ -180,3 +180,21 @@ html.f8-open,html.f8-open body{overflow:hidden}
 .f8 .f8-bandr{display:flex;gap:5px;overflow-x:auto;margin:6px 0 0;padding-bottom:2px;scrollbar-width:thin}
 .f8 .f8-bandr button{flex:0 0 auto;font:800 12px system-ui;letter-spacing:.5px;padding:5px 10px;border-radius:999px;border:1px solid #2c5a3e;background:#06110b;color:#cfe9d8;cursor:pointer}
 .f8 .f8-bandr button.on{background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border-color:#f0c96b}
+/* ===== Nov 10 (from the KPC app): RX level word, QSO box, CLEAR SPOT, highlights, same-station light-up ===== */
+.f8-lv{display:inline-flex;align-items:center;gap:6px;font:900 11px Arial;letter-spacing:.8px;color:#c9b48a}
+.f8-lb{display:block;width:70px;height:9px;border-radius:5px;background:#222a33;overflow:hidden}.f8-lb i{display:block;height:100%;width:0;background:#45e08f;transition:width .15s}
+.f8-lb i.low{background:#6b7480}.f8-lb i.ok{background:#45e08f}.f8-lb i.hot{background:#f0c96b}.f8-lb i.bad{background:#ff5c5c}
+.f8-lv b{min-width:58px;text-transform:uppercase}.f8-lv b.ok{color:#7dffb1}.f8-lv b.low{color:#9aa3ad}.f8-lv b.hot{color:#f6d58a}.f8-lv b.bad{color:#ff7a7a}
+.f8-qso{margin-top:8px;border:1px solid #485262;border-radius:8px;background:#0f1318;color:#e8edf3}
+.f8-qso .qh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;padding:5px 8px;border-bottom:1px solid #2a313b;font:700 12px monospace}
+.f8-qso .qh .f8-b{padding:4px 10px;order:3;margin-left:auto}.f8-qso #f8QsoDx{color:#f6d58a}.f8-qso #f8QsoR b.miss{color:#ff9f1a}
+.f8-qso .ql{max-height:112px;overflow:auto;font:12px/1.5 'Courier New',monospace}
+.f8-qso .ql>div{display:grid;grid-template-columns:58px 34px minmax(0,1fr);gap:0 6px;padding:0 8px;white-space:nowrap}.f8-qso .ql .m{overflow:hidden;text-overflow:ellipsis}
+.f8-qso .ql .me{background:#5a1e1e}.f8-qso .ql .mine{background:#3a3412}.f8-qso .ql i{font-style:normal;text-align:right;color:#9aa3ad}
+.f8-qso .f8-empty{color:#9aa3ad;padding:8px;margin:0}
+.f8[data-m=cw] .f8-qso,.f8:is([data-m=rtty],[data-m=psk],[data-m=sstv],[data-m=wspr],[data-m=hell]) .f8-qso{display:none!important}
+.f8-l.hl-dxped{box-shadow:inset 5px 0 0 #1e88e5}.f8-l.hl-event{box-shadow:inset 5px 0 0 #b03fd0}.f8-l.hl-dx{box-shadow:inset 5px 0 0 #ef8a1a}.f8-l.hl-newc{box-shadow:inset 5px 0 0 #8bc34a}.f8-l.hl-newb{box-shadow:inset 5px 0 0 #00acc1}.f8-l.hl-park{box-shadow:inset 5px 0 0 #1f9d55}
+.f8-l.hl-dxped:not(.cq):not(.cqp):not(.me){background:#dcecff}.f8-l.hl-event:not(.cq):not(.cqp):not(.me){background:#f4defb}.f8-l.hl-dx:not(.cq):not(.cqp):not(.me){background:#ffeccf}.f8-l.hl-newc:not(.cq):not(.cqp):not(.me){background:#ecf8d8}.f8-l.hl-newb:not(.cq):not(.cqp):not(.me){background:#d9f2f6}
+.f8-l .hlk{font-style:normal}
+.f8-l.dxsel{outline:2px solid #1565c0;outline-offset:-2px}.f8-l.dxsel:not(.cq):not(.cqp):not(.me):not(.hl-dxped){background:#cfe2ff}
+@media(max-width:760px){.f8-lb{width:48px}.f8-lv b{min-width:50px}}
