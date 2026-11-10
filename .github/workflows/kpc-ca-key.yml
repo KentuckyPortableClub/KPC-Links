@@ -163,7 +163,7 @@ jobs:
         env:
           STRICT: '1'
         run: |
-          if [ -n "$NIGHT_LIST" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done
+          if [ -n "$NIGHT_LIST" ] && [ ! -s "$RUNNER_TEMP/master-short.txt" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done (Nov 10: kept when the master gate held the build)
           bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds
       - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside and its area not built; say so and go red
         if: ${{ always() }}

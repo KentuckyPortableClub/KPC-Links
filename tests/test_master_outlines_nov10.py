@@ -242,4 +242,22 @@ try:
         check((t / 'master-short.txt').read_text().split() == ['US-FL'], 'workflow: the short copy is named for the verdict step (which then fails the job)')
 except ImportError: print('SKIP workflow checks: PyYAML not installed')
 
+# --- 11) a state the gate skipped stays on the rebuild list (US join) / tonight's Canada list is kept
+try:
+    import yaml
+    d = yaml.safe_load(open(HERE / '.github/workflows/kpc-us-key.yml'))
+    run = next(s_['run'] for s_ in d['jobs']['join']['steps'] if 'run' in s_ and 'done-states.py' in s_['run'])
+    a = run.index("cat > /tmp/done-states.py <<'PY'"); code = run[a:run.index('PY\n', a + 40)].split('\n', 1)[1]
+    with tempfile.TemporaryDirectory() as t:
+        t = pathlib.Path(t); (t / 'parts/us-key-part-0').mkdir(parents=True); (t / 'data/us-key').mkdir(parents=True)
+        (t / 'data/us-key/answers-states.txt').write_text('FL TN KY\n'); (t / 'parts/us-key-part-0/master-short.txt').write_text('US-FL\n')
+        fin = pathlib.Path('/tmp/kpc-us-build-finished'); had = fin.exists(); fin.exists() or fin.write_text('')
+        try: subprocess.run([sys.executable, '-c', code], cwd=t, env=dict(os.environ, KPC_DONE_GROUPS='[{"i":0,"states":"FL KY TN"}]'), check=True)
+        finally:
+            if not had: fin.unlink()
+        check((t / 'data/us-key/answers-states.txt').read_text().split() == ['FL'], 'rebuild list: TN and KY come off, FL (short saved copy, not built) stays on')
+    ca = open(HERE / '.github/workflows/kpc-ca-key.yml').read()
+    check('[ -n "$NIGHT_LIST" ] && [ ! -s "$RUNNER_TEMP/master-short.txt" ]' in ca, "Canada: tonight's list is not cleared when the master gate held the build")
+except ImportError: print('SKIP rebuild-list checks: PyYAML not installed')
+
 print('ALL PASS' if ok else 'FAILED'); sys.exit(0 if ok else 1)

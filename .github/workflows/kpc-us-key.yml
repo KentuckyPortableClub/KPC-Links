@@ -298,6 +298,7 @@ jobs:
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
           if [ -s /tmp/shape-guard-failed-states ]; then sort -u /tmp/shape-guard-failed-states > part/failed-states.txt; fi
+          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then cp "$RUNNER_TEMP/master-short.txt" part/master-short.txt; fi   # Nov 10: states NOT built (short saved copy); the join keeps them on the rebuild list
       - uses: actions/upload-artifact@v4
         with:
           name: us-key-part-${{ matrix.g.i }}
@@ -545,6 +546,9 @@ jobs:
           ok = pathlib.Path('/tmp/kpc-us-build-finished')
           failed = set(ok.read_text().split()) if ok.exists() else set()
           done = {s for g in json.loads(os.environ.get('KPC_DONE_GROUPS') or '[]') for s in g.get('states', '').split()} - failed
+          # Nov 10 (master gate): a state whose saved copy was short was NOT built; it stays on the rebuild list
+          import glob
+          done -= {x.split('-', 1)[-1] for f in glob.glob('parts/us-key-part-*/master-short.txt') for x in open(f).read().split()}
           p = pathlib.Path('data/us-key/answers-states.txt')
           if ok.exists() and p.exists() and done: p.write_text(' '.join(sorted(set(p.read_text().split()) - done)) + '\n')
           PY
