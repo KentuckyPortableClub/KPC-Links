@@ -139,7 +139,9 @@ def cmd_check(a):
     if a.cache:
         for f in sorted(glob.glob(os.path.join(a.cache, '*.json.gz'))):
             area = os.path.basename(f)[:-len('.json.gz')]; exp = (doc.get('caches') or {}).get(area, {}).get('expected_count')
-            if exp is None: warn('saved copy unchecked', f'{area}: no expected count in the manifest (caches), so this copy cannot be proven complete'); continue
+            if exp is None:
+                bad.append(f'{area}: no baseline in the manifest (caches): held, not used')
+                continue
             try: M.check_saved_cache(f, exp)
             except M.ShortRead as e: bad.append(str(e))
     if a.repo:
@@ -154,7 +156,10 @@ def cmd_gate(a):
     cache = pathlib.Path(a.cache); short = []
     for f in sorted(cache.glob('*.json.gz')):
         stem = f.name[:-len('.json.gz')]; exp = (caches.get(stem) or {}).get('expected_count')
-        if exp is None: notice('master gate', f'{stem}: no baseline in the manifest (caches), so this saved copy cannot be proven complete; it is used as before'); continue
+        if exp is None:
+            err('master gate NO BASELINE', f'{stem}: no baseline in the manifest (caches): held, not used')
+            (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
+            continue
         try: M.check_saved_cache(f, exp)
         except M.ShortRead as e:
             err('master gate SHORT', e); (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)

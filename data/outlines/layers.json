@@ -1,6 +1,16 @@
 {
- "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, the areas it covers, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly=true) on 2026-11-10 when a live read was allowed. A short read never changes it. Layers that could not be counted under the host and robots rules have no expected_count. caches = official expected totals for the saved state copies the key builders read (US-FL, ...): taken from the live key file counts.padus (US-FL is 21993 from the restored file, not the 5198 index row left by US-42797939226). CA-ALL is left without a count: the saved copy is a merge of many layers and CPCAD's host disallows this user-agent in robots.txt, so no single official total was taken.",
+ "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, the areas it covers, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly=true) on 2026-11-10 when a live read was allowed. A short read never changes it. Layers that could not be counted under the host and robots rules have no expected_count. caches = official expected totals for the saved copies the key builders read. US-XX uses the live key file counts.padus (the published record count; US-FL is 21993, not the 5198 index row). W-CC uses the live key file counts.areas. CA-ALL has no baseline: no live key file stores a published outline-record total (province files hold park join counts, not cache recs). A saved copy with no baseline is held and not used.",
  "caches": {
+  "US-AK": {
+   "expected_count": 3542,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-AL": {
+   "expected_count": 635,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-AR": {
    "expected_count": 851,
    "read_date": "2026-11-10",
@@ -8,6 +18,11 @@
   },
   "US-AZ": {
    "expected_count": 901,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-CA": {
+   "expected_count": 9098,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -21,6 +36,11 @@
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
+  "US-DC": {
+   "expected_count": 127,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-DE": {
    "expected_count": 2003,
    "read_date": "2026-11-10",
@@ -31,8 +51,38 @@
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
+  "US-GA": {
+   "expected_count": 1042,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-HI": {
+   "expected_count": 842,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-IA": {
+   "expected_count": 9014,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-ID": {
    "expected_count": 7135,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-IL": {
+   "expected_count": 8917,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-IN": {
+   "expected_count": 1985,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-KS": {
+   "expected_count": 698,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -46,8 +96,33 @@
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
+  "US-MD": {
+   "expected_count": 2180,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-ME": {
+   "expected_count": 5626,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MI": {
+   "expected_count": 1965,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MN": {
+   "expected_count": 24988,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-MO": {
    "expected_count": 5990,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MS": {
+   "expected_count": 309,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -58,6 +133,16 @@
   },
   "US-NC": {
    "expected_count": 18238,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-ND": {
+   "expected_count": 1484,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NE": {
+   "expected_count": 1421,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -81,8 +166,33 @@
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
+  "US-NY": {
+   "expected_count": 6603,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-OH": {
    "expected_count": 3904,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-OK": {
+   "expected_count": 574,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-OR": {
+   "expected_count": 20323,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-PA": {
+   "expected_count": 2651,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-RI": {
+   "expected_count": 3671,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -91,8 +201,38 @@
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
+  "US-SD": {
+   "expected_count": 1299,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-TN": {
+   "expected_count": 2142,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-TX": {
+   "expected_count": 13389,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
   "US-UT": {
    "expected_count": 6692,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-VA": {
+   "expected_count": 19534,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-VT": {
+   "expected_count": 2002,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-WA": {
+   "expected_count": 10564,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
@@ -110,6 +250,421 @@
    "expected_count": 19786,
    "read_date": "2026-11-10",
    "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "W-AE": {
+   "expected_count": 19,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-AS": {
+   "expected_count": 1711,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-AT": {
+   "expected_count": 3102,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-AU": {
+   "expected_count": 3743432,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-AX": {
+   "expected_count": 124,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BE": {
+   "expected_count": 3713,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BM": {
+   "expected_count": 123,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BS": {
+   "expected_count": 76,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BT": {
+   "expected_count": 11,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BW": {
+   "expected_count": 53,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-BZ": {
+   "expected_count": 647,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CC": {
+   "expected_count": 19829,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CD": {
+   "expected_count": 74,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CG": {
+   "expected_count": 16,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CH": {
+   "expected_count": 16559,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CL": {
+   "expected_count": 1160,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CM": {
+   "expected_count": 38,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CO": {
+   "expected_count": 1756,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CV": {
+   "expected_count": 47,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CX": {
+   "expected_count": 14492,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-CZ": {
+   "expected_count": 7938,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-DE": {
+   "expected_count": 30616,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-DK": {
+   "expected_count": 947,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-DO": {
+   "expected_count": 192,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-EC": {
+   "expected_count": 60,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-EE": {
+   "expected_count": 21122,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-ES": {
+   "expected_count": 3658,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-FI": {
+   "expected_count": 19878,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-FO": {
+   "expected_count": 3,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-FR": {
+   "expected_count": 29980,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GA": {
+   "expected_count": 23,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GB": {
+   "expected_count": 58931,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GE": {
+   "expected_count": 224,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GL": {
+   "expected_count": 2679,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GR": {
+   "expected_count": 1249,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GT": {
+   "expected_count": 349,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GU": {
+   "expected_count": 1711,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-GY": {
+   "expected_count": 5,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-HR": {
+   "expected_count": 1112,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-HU": {
+   "expected_count": 1206,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-ID": {
+   "expected_count": 35780,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-IE": {
+   "expected_count": 788,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-IM": {
+   "expected_count": 24,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-IT": {
+   "expected_count": 3697,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-JE": {
+   "expected_count": 27,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-JP": {
+   "expected_count": 30425,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-KE": {
+   "expected_count": 62,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-LK": {
+   "expected_count": 119,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-LR": {
+   "expected_count": 16,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-LT": {
+   "expected_count": 1190,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-LU": {
+   "expected_count": 291,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-LV": {
+   "expected_count": 6713,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-MK": {
+   "expected_count": 91,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-MP": {
+   "expected_count": 10,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-MT": {
+   "expected_count": 44,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-MV": {
+   "expected_count": 93,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-MX": {
+   "expected_count": 232,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NC": {
+   "expected_count": 36,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NF": {
+   "expected_count": 14492,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NI": {
+   "expected_count": 74,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NL": {
+   "expected_count": 396,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NO": {
+   "expected_count": 6983,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-NZ": {
+   "expected_count": 23385,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-OM": {
+   "expected_count": 62,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PA": {
+   "expected_count": 88,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PE": {
+   "expected_count": 104,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PF": {
+   "expected_count": 8,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PL": {
+   "expected_count": 3264,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PR": {
+   "expected_count": 203,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PT": {
+   "expected_count": 777,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-PY": {
+   "expected_count": 116,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-QA": {
+   "expected_count": 13,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-RO": {
+   "expected_count": 1552,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-RW": {
+   "expected_count": 11,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-SE": {
+   "expected_count": 36963,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-SI": {
+   "expected_count": 1412,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-SJ": {
+   "expected_count": 3514,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-SK": {
+   "expected_count": 1882,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-SV": {
+   "expected_count": 297,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-UM": {
+   "expected_count": 1274,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-UY": {
+   "expected_count": 24,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-VI": {
+   "expected_count": 2796,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
+  },
+  "W-ZA": {
+   "expected_count": 4791,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.areas (complete published total)"
   }
  },
  "format": 1,

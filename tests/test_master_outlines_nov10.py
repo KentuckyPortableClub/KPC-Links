@@ -156,11 +156,14 @@ urllib.request.urlopen = spy
 try:
     f = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
     for u in ('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/x/FeatureServer/0', 'https://ncnhde.natureserve.org/arcgis/x/0', 'https://services.arcgis.com/ABC/x/0',
-              'https://services1.arcgis.com/ABC/x/0', 'https://apps.fs.usda.gov/arcx/x/0'):
+              'https://services1.arcgis.com/ABC/x/0', 'https://services2.arcgis.com/ABC/x/0', 'https://services5.arcgis.com/ABC/x/0',
+              'https://services9.arcgis.com/ABC/x/0', 'https://apps.fs.usda.gov/arcx/x/0'):
         check(raises(M.LiveNotAllowed, f, u, {'f': 'json'}), f'hosts: {u.split("/")[2]}{"/" + u.split("/")[3] if "33TOO" in u else ""} is refused')
     check(not calls, 'hosts: no request of any kind (robots.txt included) was made for any of them')
 finally: urllib.request.urlopen = real
-check(M.live_ok('https://services.arcgis.com/33TOOklri9xpic7U/a')[0] is False and M.live_ok('https://services.arcgis.com/OTHER/a')[0] is False, 'hosts: Grant County NM never contacted; other services.arcgis.com orgs are saved-copy only')
+check(M.live_ok('https://services.arcgis.com/33TOOklri9xpic7U/a')[0] is False and M.live_ok('https://services.arcgis.com/OTHER/a')[0] is False, 'hosts: Grant County NM never contacted; other services.arcgis.com orgs are blocked')
+check(M.live_ok('https://services2.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/robots.txt')[0] is False, 'hosts: every services*.arcgis.com host is blocked, robots.txt included')
+check(M.is_arcgis_services_host('services.arcgis.com') and M.is_arcgis_services_host('services1.arcgis.com') and M.is_arcgis_services_host('services9.arcgis.com') and not M.is_arcgis_services_host('apps.fs.usda.gov') and not M.is_arcgis_services_host('gis.example.gov'), 'hosts: the services*.arcgis.com matcher covers the bare and numbered hosts only')
 check(M.live_ok('https://gis.example.gov/arc/0')[0], 'hosts: an ordinary agency host is allowed (then robots.txt decides)')
 get403 = lambda u: (403, ''); get404 = lambda u: (404, ''); get500 = lambda u: (503, '')
 getdis = lambda u: (200, 'User-agent: *\nDisallow: /arc/\n'); getok = lambda u: (200, 'User-agent: *\nDisallow: /private/\n')
@@ -192,17 +195,46 @@ check(pl['never']['action'] == 're-read', 'refresh: a layer with no master yet i
 check(pl['saved']['action'] == 'use-master' and 'OLD' in pl['saved']['reason'] and not any('services.arcgis.com' in u for u in probed), 'refresh: a saved-copy-only host is never probed live; an old master is flagged, not re-read')
 check('other-state' not in pl and sum(1 for r in pl.values() if r['action'] == 're-read') == 4, 'refresh: only the asked area\'s layers are planned, and only the layers that need it are re-read (one layer, not the whole state)')
 
-# --- 7) a short SAVED copy (the Nov 3 caches) is caught
+# --- 7) a short SAVED copy (the Nov 3 caches) is caught; the gate uses len(recs), not 'seen'
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t); c = t / 'cache'; c.mkdir()
     with gzip.open(c / 'US-FL.json.gz', 'wt') as fh: json.dump({'st': 'FL', 'seen': 199, 'recs': [{}] * 199}, fh)
     check(raises(M.ShortRead, M.check_saved_cache, c / 'US-FL.json.gz', 17000), 'saved copy: FL with 199 of ~17,000 fails the check')
     check(raises(M.ShortRead, M.check_saved_cache, c / 'US-FL.json.gz', 21993), 'saved copy: Nov 3 FL copy (199 sgflf) vs 21,993 total fails the check')
+    # low recs + high seen: the Nov 3 copies that passed when the gate used the 'seen' field
+    cases = (
+        ('US-DE', 1802, 2786, 2003),
+        ('US-AZ', 830, 2318, 901),
+        ('US-CO', 4816, 7895, 5094),
+        ('US-FL', 5198, 8681, 21993),
+    )
+    for stem, nrecs, seen, exp in cases:
+        with gzip.open(c / f'{stem}.json.gz', 'wt') as fh: json.dump({'st': stem.split('-')[1], 'seen': seen, 'recs': [{}] * nrecs}, fh)
+        check(raises(M.ShortRead, M.check_saved_cache, c / f'{stem}.json.gz', exp),
+              f'saved copy: {stem} with {nrecs:,} recs and seen={seen:,} vs {exp:,} is caught (len(recs), not seen)')
+    # a complete copy still passes when seen is larger than len(recs)
+    with gzip.open(c / 'US-DE-ok.json.gz', 'wt') as fh: json.dump({'st': 'DE', 'seen': 2786, 'recs': [{}] * 2003}, fh)
+    check(M.check_saved_cache(c / 'US-DE-ok.json.gz', 2003) == 2003, 'saved copy: a complete DE list passes even when seen is larger than len(recs)')
     root = t / 'o'; M.save_layers({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}}}, root)
+    # only the 199-rec FL file is in this check/gate (the high-seen cases already used check_saved_cache)
+    with gzip.open(c / 'US-FL.json.gz', 'wt') as fh: json.dump({'st': 'FL', 'seen': 199, 'recs': [{}] * 199}, fh)
+    for stem, nrecs, seen, exp in cases:
+        if stem != 'US-FL':
+            (c / f'{stem}.json.gz').unlink()
+    (c / 'US-DE-ok.json.gz').unlink()
     r, _ = quiet(CLI.main, ['check', '--root', str(root), '--cache', str(c)]); check(r == 1, 'saved copy: `check --cache` goes red on a 199-vs-21993 FL copy')
     r, out = quiet(CLI.main, ['gate', '--root', str(root), '--cache', str(c), '--report', str(t / 'short.txt')])
     check(r == 7 and (t / 'short.txt').read_text().split() == ['US-FL'] and (c / 'short/US-FL.json.gz').exists(),
           'gate: Nov 3 FL copy (199 sgflf vs 21,993 total) is moved aside and named short')
+    # fail closed: a saved copy with no baseline is held, never used
+    c2 = t / 'cache2'; c2.mkdir(); root2 = t / 'o2'
+    with gzip.open(c2 / 'CA-ALL.json.gz', 'wt') as fh: json.dump({'saved': '2026-11-06', 'recs': [{}] * 10}, fh)
+    M.save_layers({'format': 1, 'layers': {}, 'caches': {}}, root2)
+    r, out = quiet(CLI.main, ['check', '--root', str(root2), '--cache', str(c2)])
+    check(r == 1 and 'no baseline' in out, 'saved copy: `check` goes red when a copy has no baseline')
+    r, out = quiet(CLI.main, ['gate', '--root', str(root2), '--cache', str(c2), '--report', str(t / 'short-none.txt')])
+    check(r == 7 and (t / 'short-none.txt').read_text().split() == ['CA-ALL'] and (c2 / 'short/CA-ALL.json.gz').exists() and not (c2 / 'CA-ALL.json.gz').exists(),
+          'gate: a saved copy with no baseline is moved aside and is not used')
 
 # --- 8) raw files: manifest only
 check(M.raw_in_repo([('data/x.gdb/a', 10), ('big.zip', 10), ('layer.shp', 1), ('data/outlines/US-KY.geojson.gz', 100), ('index.html', 10 ** 7), ('data/outlines/huge.geojson.gz', 10 ** 7)]) == ['data/x.gdb/a', 'big.zip', 'layer.shp', 'data/outlines/huge.geojson.gz'],
@@ -244,11 +276,12 @@ try:
     with tempfile.TemporaryDirectory() as t:
         t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
         for fn in ('kpc_master.py', 'kpc_master_cli.py'): (t / '.github/scripts' / fn).write_bytes((HERE / '.github/scripts' / fn).read_bytes())
-        json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}}}, open(t / 'data/outlines/layers.json', 'w'))
-        for st, seen in (('FL', 199), ('TN', 100), ('KY', 5)):
-            with gzip.open(t / f'cache/us/US-{st}.json.gz', 'wt') as fh: json.dump({'seen': seen, 'recs': []}, fh)
+        json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}, 'US-KY': {'expected_count': 5}}}, open(t / 'data/outlines/layers.json', 'w'))
+        # FL is short (199 recs vs 21993) even though seen is high; TN and KY match len(recs)
+        for st, seen, nrecs in (('FL', 8681, 199), ('TN', 500, 100), ('KY', 50, 5)):
+            with gzip.open(t / f'cache/us/US-{st}.json.gz', 'wt') as fh: json.dump({'seen': seen, 'recs': [{}] * nrecs}, fh)
         r = subprocess.run(['bash', '-e', '-c', 'set -o pipefail\nSTATES="FL TN KY"\n' + snip + '\necho "STATES NOW: $STATES"'], cwd=t, capture_output=True, text=True, env=dict(os.environ, RUNNER_TEMP=str(t)))
-        check(r.returncode == 0 and 'STATES NOW: TN KY' in r.stdout and (t / 'cache/us/short/US-FL.json.gz').exists() and (t / 'cache/us/US-TN.json.gz').exists(), 'workflow: with a short Florida copy the US job builds TN and KY, not FL, and the short copy is set aside')
+        check(r.returncode == 0 and 'STATES NOW: TN KY' in r.stdout and (t / 'cache/us/short/US-FL.json.gz').exists() and (t / 'cache/us/US-TN.json.gz').exists() and (t / 'cache/us/US-KY.json.gz').exists(), 'workflow: with a short Florida copy (low recs, high seen) the US job builds TN and KY, not FL, and the short copy is set aside')
         check((t / 'master-short.txt').read_text().split() == ['US-FL'], 'workflow: the short copy is named for the verdict step (which then fails the job)')
 except ImportError: print('SKIP workflow checks: PyYAML not installed')
 

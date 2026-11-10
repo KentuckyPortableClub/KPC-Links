@@ -30,7 +30,11 @@ SHRINK_LIMIT = 0.90                                    # a layer whose count fal
 # ---- hard rules about hosts --------------------------------------------------------------------------------------------
 # (host, path prefix). Never contacted at all: not the layer, not even robots.txt.
 NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.natureserve.org', '')]
+# services.arcgis.com and services<digits>.arcgis.com: no live read of any kind, robots.txt included.
+# This is hard-coded (not only the env list) so a count run cannot reach those hosts.
+ARCGIS_SERVICES_HOST_RE = re.compile(r'^services\d*\.arcgis\.com$')
 # Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
+# services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
                                                 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
@@ -51,12 +55,19 @@ def parts(url):
     return u.netloc.lower(), u.path
 
 
+def is_arcgis_services_host(host):
+    """True for services.arcgis.com and services<digits>.arcgis.com (services2, services9, ...)."""
+    return bool(ARCGIS_SERVICES_HOST_RE.match((host or '').lower()))
+
+
 def live_ok(url):
     """(True, '') or (False, why). Checked BEFORE every request, robots.txt included."""
     host, path = parts(url)
     for h, p in NEVER_CONTACT:
         if host == h and path.lower().startswith(p.lower()):
             return False, f'never contact {h}{p}: no request of any kind, robots.txt included'
+    if is_arcgis_services_host(host):
+        return False, f'{host}: services*.arcgis.com is never contacted, robots.txt included'
     if host in SAVED_ONLY_HOSTS:
         return False, f'{host}: saved copies only, no live read'
     return True, ''
@@ -507,10 +518,13 @@ def raw_in_repo(files):
 
 # ---- completeness of a SAVED copy (the cache the key builders read) ------------------------------------------------------------
 def check_saved_cache(path, expected):
-    """A saved state copy (cache/us/US-XX.json.gz) records how many rows it saw ('seen'). If the layer's own total is more, it is short."""
+    """A saved copy is short when its actual record list (recs) is shorter than the baseline.
+    The baseline is the complete published live-key count (US: counts.padus; world: counts.areas).
+    Do not use the cache 'seen' / 'read' field: that is a different counter and can be larger than len(recs)."""
     with gzip.open(path, 'rt', encoding='utf-8') as f: blob = json.load(f)
-    seen = int(blob.get('seen') or len(blob.get('recs') or []))
-    check_complete(expected, seen, str(path)); return seen
+    recs = blob.get('recs')
+    got = len(recs) if isinstance(recs, list) else 0
+    check_complete(expected, got, str(path)); return got
 
 
 # ---- WDPA: managing-agency lookup, never geometry --------------------------------------------------------------------------------
