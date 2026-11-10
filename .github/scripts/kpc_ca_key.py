@@ -73,12 +73,13 @@ def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25')
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
 # Nov 10: every services*.arcgis.com host (services2 ... services9 too, e.g. the Parks Canada layer) is never contacted, robots.txt
 # included (the same rule as kpc_master.live_ok): its layers come from the saved copy only.
-_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
+_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 
 
 def saved_only(url):
     h = urllib.parse.urlparse(str(url)).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
 
 
 def get(url, params, tries=5):

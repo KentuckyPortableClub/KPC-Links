@@ -15,6 +15,14 @@
    "why": "Every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path, the GeoJSON and zipped-shapefile pulls included. The Parks Canada layer on one of those hosts covers every province and territory, so the scope is all.",
    "scope": "all",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-10-arcgis-region-hosts",
+   "when": "2026-11-10",
+   "from": "b1a521708978",
+   "why": "services-<region>.arcgis.com hosts (services-eu1 and the like) count as services*.arcgis.com (saved copy only, robots.txt included), and ncnhde.natureserve.org is never contacted. The Parks Canada layer is on one of those hosts and covers every province and territory, so the scope is all.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

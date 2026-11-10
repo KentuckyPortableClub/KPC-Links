@@ -28,6 +28,9 @@ on:
       force:
         description: "yes = build even while chat 11 grades a held build (Brandon's freeze, Nov 2: by hand only)"
         default: 'no'
+      refresh:
+        description: "all = the FRESH START (Nov 10): the master step walks every layer of every state (layers.json + state-gis.json) and refills or verifies it from allowed sources; what a bot may not fetch goes on the needs-download list; a smaller re-read never replaces the saved copy. Blank = the normal run. By hand only (no cron)."
+        default: ''
 permissions:
   contents: write
   issues: write
@@ -85,7 +88,7 @@ jobs:
           rm -rf kpcdata
       - id: p
         env:
-          STATES: ${{ inputs.states }}
+          STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
@@ -183,6 +186,41 @@ jobs:
           python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           areas=$(for st in $STATES; do printf 'US-%s,' "$st"; done); areas="${areas%,}"
           python3 .github/scripts/kpc_master_cli.py plan --areas "$areas" $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
+      - name: THE MASTER STEP (Nov 10) - refill / verify the saved copies before the gate (the one writer of the saved copies)
+        # Between the plan (above) and the gate (next step). kpc_master_cli.py fill: the needs-download rows for these states + the copies
+        # that are short against their gate baseline or missing a layer + the checked downloads a person sent (hand-*.geojson.gz, the PC
+        # helper) + with refresh=all every layer. Per layer: the official read where the host rules and robots.txt allow it (never a
+        # services*.arcgis.com host, apps.fs.usda.gov, ncnhde or the Grant County server), then `trim` (fail closed), `raw-add`, and the
+        # keep-bigger merge into the saved copy. The gate and the baselines are unchanged; 'Save this job's new live reads' uploads it.
+        # What a bot may not or could not fetch goes on the ONE needs-download list (KPC-Data data/needs-download.json).
+        id: master_fill
+        env:
+          STATES: ${{ matrix.g.states }}
+          REFRESH: ${{ inputs.refresh }}
+          GH_TOKEN: ${{ github.token }}
+          GEO_CACHE_MODE: ${{ vars.KPC_KEY_LIVE == '1' && 'off' || 'use' }}
+          GEO_DETAIL: '0.001'
+          GEO_PAGE: '200'
+        run: |
+          set -o pipefail
+          pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          mkdir -p cache/us .master/hand; touch "$RUNNER_TEMP/cache-t0"
+          [ "$GEO_CACHE_MODE" = use ] || { echo "::notice title=Master step::KPC_KEY_LIVE=1 (all-live read): no saved copies, nothing to fill"; exit 0; }
+          for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; the build reads live and saves the first copy"; done
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'hand-US-*.geojson.gz' -D .master/hand --clobber 2>/dev/null || echo "no checked hand downloads waiting"
+          touch "$RUNNER_TEMP/cache-t0"
+          rm -rf .mdata; git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .mdata \
+            && git -C .mdata sparse-checkout set --no-cone data/needs-download.json locations-pota.json && git -C .mdata checkout -q \
+            || { echo "::error title=Master step::KPC-Data (the parks + the needs-download list) could not be read; the gate decides on the copies as they are"; exit 0; }
+          rm -rf .master/root; cp -a data/outlines .master/root
+          python3 .github/scripts/kpc_master_cli.py fill --cache cache/us --states "$STATES" --root .master/root --parks .mdata/locations-pota.json \
+            --needs .mdata/data/needs-download.json --hand .master/hand --refresh "$REFRESH" --work .master/work --out-rows .master/needs-rows.json 2>&1 | tee us-master-${{ matrix.g.i }}.log \
+            || { kpc_rc=$?; echo "::warning title=Master step::stopped (exit $kpc_rc); the gate decides on the copies as they are"; echo "Master step - stopped (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          mkdir -p part/outlines; cp .master/root/US-*.geojson.gz .master/root/layers.json .master/root/raw-manifest.json part/outlines/ 2>/dev/null || true   # ok: a step with nothing merged writes none
+          mkdir -p part/outlines/solver-queue; cp .master/root/solver-queue/*.csv part/outlines/solver-queue/ 2>/dev/null || true   # ok: nothing queued is fine
+          cp .master/needs-rows.json part/outlines/needs-rows.json 2>/dev/null || true   # ok: no rows is fine
+          find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" | sort > "$RUNNER_TEMP/master-changed.txt"   # the copies THIS step changed (saved even if the build fails)
+          rm -rf .mdata
       - name: The Recreation.gov saved copy (the one keyed pull, read only; HQ Oct 29 8:50 PM)
         id: kept_green_1
         continue-on-error: true
@@ -209,25 +247,18 @@ jobs:
         run: |
           set -o pipefail
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
-          mkdir -p cache/us; touch "$RUNNER_TEMP/cache-t0"
-          if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; touch "$RUNNER_TEMP/cache-t0"; fi
+          # Nov 10: the master step above downloaded the saved copies (and touched cache-t0 before it filled them, so its changes are saved)
+          mkdir -p cache/us; [ -f "$RUNNER_TEMP/cache-t0" ] || touch "$RUNNER_TEMP/cache-t0"
+          if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do [ -f "cache/us/US-$st.json.gz" ] || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; fi
           # Nov 10 (master outlines, read master first): a saved copy shorter than its layer's own baseline (the Nov 3 truncated copies) is moved aside
           # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
           rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
-          # Nov 10 (run 42821613637: 11 states held, the same 11 every run): a held copy is only refilled by the build's own top-up, which a held
-          # state never reaches. Refill first (saved PAD-US ids by id, the newer / short state layers; saved-copy-only hosts are never asked,
-          # services*.arcgis.com included), then the SAME gate again on the refilled copy. Still short = held, as before (fail closed).
-          if [ -s "$RUNNER_TEMP/master-short.txt" ] && [ "$GEO_CACHE_MODE" = use ]; then
-            rf=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] && mv "cache/us/short/US-$st.json.gz" cache/us/ && rf="$rf $st"; done
-            echo "::notice title=Master gate::refilling the short saved copies before the second gate:$rf"
-            STATES="${rf# }" KPC_REFILL_ONLY=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-refill-${{ matrix.g.i }}.log || { kpc_rc=$?; echo "::warning title=Master gate::the refill stopped (exit $kpc_rc); the second gate decides"; echo "Master gate - the refill stopped (exit $kpc_rc); the second gate decides" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-            rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
-            [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::second gate stopped (exit $mg)"; exit 1; }
-          fi
+          # Nov 10 (run 42821613637: 11 states held, the same 11 every run): the refill of a short copy is now THE MASTER STEP above (before
+          # this gate), so a held state is refilled every run. Still short after it = held, as before (fail closed).
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then ok=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES="${ok# }"; fi
           [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
-          python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
+          KPC_MASTER_OWNS=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log   # Nov 10: the build only READS the saved copies (the master step owns them)
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
           # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
           # (1,585 shapes vs 80,934 live): 18 parks went outline -> pin with bk=noshape. Refill a short state
@@ -326,12 +357,16 @@ jobs:
           echo "shape source guard: every state in this job is at least half the last live key"
       - name: Save this job's new live reads to the saved outlines (Nov 9 evening, Brandon t909u)
         # only after a good build and a passed shape guard; only the state copies this job wrote (newer than the download)
-        if: ${{ success() && vars.KPC_KEY_LIVE != '1' }}
+        # Nov 10: the master step's checked copies are saved even when the build after it failed (they passed its count check and the
+        # keep-bigger merge); a failed build's own first copies are not.
+        if: ${{ !cancelled() && vars.KPC_KEY_LIVE != '1' && (success() || steps.master_fill.outcome == 'success') }}
         env:
           GH_TOKEN: ${{ github.token }}
           KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
+          BUILD_OK: ${{ success() && '1' || '0' }}
         run: |
-          F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" 2>/dev/null | sort | tr '\n' ' ')
+          if [ "$BUILD_OK" = 1 ]; then F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" 2>/dev/null | sort | tr '\n' ' ')
+          else F=$(for f in $(cat "$RUNNER_TEMP/master-changed.txt" 2>/dev/null); do [ -f "$f" ] && echo "$f"; done | tr '\n' ' '); echo "::notice title=US key saved outlines::the build failed: saving only the master step's checked copies"; fi
           if [ -z "$F" ]; then echo "no new live reads to save"; exit 0; fi
           echo "::notice title=US key saved outlines::saving $F"
           bash .github/scripts/kpc_archive.sh put saved-outlines "US key saved outlines: $F(run $GITHUB_RUN_ID)" $F || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
@@ -438,6 +473,27 @@ jobs:
           print(f'::notice title=US key::{len(set(ch))} parks with a changed outline -> the 2-fer waiting list')
           PY
           cat us-key-*.log > us-key.log 2>/dev/null || true   # ok: nothing to do is fine
+      - name: Master step - put the parts' master records + the needs-download rows together (Nov 10)
+        # data/outlines/ (master records, layer counts, raw-manifest; saved with the key below) and the ONE needs-download list:
+        # KPC-Links cannot push to KPC-Data, so this build's rows go up as the release asset needs-download.json (same schema);
+        # KPC-Data's hourly kpc-copy-from-links merges it into data/needs-download.json (pushes only on a change).
+        id: kept_green_master_collect
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf .mneeds && mkdir -p .mneeds
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p needs-download.json -D .mneeds 2>/dev/null || echo "no needs-download.json asset yet"
+          python3 .github/scripts/kpc_master_cli.py collect parts/us-key-part-*/outlines --root data/outlines --needs-in .mneeds/needs-download.json --needs-out .mneeds/new.json
+          # The change check (Nov 10): a HEAD / catalog fingerprint per official download source (data/outlines/download-sources.json,
+          # saved with the key below). Allowed requests only (kpc_master.live_ok, then robots.txt; never a services*.arcgis.com host).
+          # A changed source reopens its rows in the needs list; a person is asked only then (or for a new / never-downloaded row).
+          [ -f .mneeds/new.json ] || cp .mneeds/needs-download.json .mneeds/new.json 2>/dev/null || true   # ok: no list yet = the watch starts one
+          python3 .github/scripts/kpc_master_cli.py watch --sources data/outlines/download-sources.json --needs .mneeds/new.json || { kpc_rc=$?; echo "::error title=Download sources::the change check stopped (exit $kpc_rc); the fingerprints stay as they were"; echo "Download sources change check - stopped (exit $kpc_rc); the fingerprints stay as they were" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          if [ -f .mneeds/new.json ] && ! cmp -s .mneeds/new.json .mneeds/needs-download.json; then
+            cp .mneeds/new.json .mneeds/needs-download.json && gh release upload boundary-cache .mneeds/needs-download.json -R "$GITHUB_REPOSITORY" --clobber
+          fi
+          rm -rf .mneeds
       - name: Lost finds check (chat 2, Nov 1; Brandon 'we are finding stuff but it never makes it in')
         id: kept_green_2
         continue-on-error: true
@@ -573,7 +629,7 @@ jobs:
           # states list is worked out again on the newest copy. Red on failure. KPC_SAVE_MODE=rebase = the old way (still loud).
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_TRIES=6 \
             KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt" \
-            bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py' -- data/us-key data/status
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py' -- data/us-key data/status data/outlines
           if [ -s /tmp/botc-line.txt ]; then
             saved=0; for i in 1 2 3 4 5; do
               git fetch -q origin main && git reset -q --hard origin/main

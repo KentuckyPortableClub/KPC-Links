@@ -32,7 +32,7 @@ SHRINK_LIMIT = 0.90                                    # a layer whose count fal
 NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.natureserve.org', '')]
 # services.arcgis.com and services<digits>.arcgis.com: no live read of any kind, robots.txt included.
 # This is hard-coded (not only the env list) so a count run cannot reach those hosts.
-ARCGIS_SERVICES_HOST_RE = re.compile(r'^services\d*\.arcgis\.com$')
+ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 # Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
 # services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
@@ -543,3 +543,163 @@ def wdpa_agency_lookup(rows):
     """rows: WDPA attribute rows (dicts). Keeps ONLY id, name, managing authority, owner type, designation, and the POTA ref if there is one. No geometry, no coordinates."""
     keep = ('WDPAID', 'WDPA_PID', 'NAME', 'ORIG_NAME', 'DESIG', 'DESIG_ENG', 'MANG_AUTH', 'MANG_PLAN', 'OWN_TYPE', 'GOV_TYPE', 'PARENT_ISO', 'ISO3', 'STATUS')
     return [{k: r.get(k) for k in keep if k in r} for r in rows]
+
+
+# ==== Nov 10 (the master owns the saved copies): the needs-download list, layer files, the keep-bigger merge ==========
+# Plain words. ONE list says which layers somebody must download. It lives in KPC-Data (data/needs-download.json) because the
+# hunters and the engine write there. The master step in this repo reads it and adds its own rows through the boundary-cache
+# release (asset needs-download.json, same schema), which KPC-Data's hourly copy job merges into the one file.
+#   who = 'bot'     the master downloads it itself (allowed host, robots.txt says yes)
+#         'brandon' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt says no / 403)
+#         'never'   nobody contacts it (never-contact host); the saved copy is kept as it is
+NEEDS_FORMAT = 1
+NEEDS_FIELDS = ('id', 'area', 'layer', 'url', 'page', 'host', 'who', 'why', 'expected', 'have', 'source', 'added', 'status', 'note',
+                'src', 'check')   # Nov 10 (change check): src = the download source id in data/outlines/download-sources.json; check = bot | person
+NEEDS_STATUS = ('open', 'done', 'held')
+
+
+def who_for(url, robots_ok=None):
+    """('bot' | 'brandon' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it)."""
+    host, path = parts(url)
+    for h, p in NEVER_CONTACT:
+        if host == h and path.lower().startswith(p.lower()): return 'never', f'never contact {h}{p}: no request of any kind, by a bot or a person'
+    ok, why = live_ok(url)
+    if not ok: return 'brandon', why + ': a person downloads it in a browser'
+    if robots_ok is not None and not robots_ok(url): return 'brandon', f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    return 'bot', ''
+
+
+def needs_key(row): return f"{row.get('area')}|{row.get('layer')}"
+
+
+def needs_row(area, layer, url, why, source, who=None, expected=None, have=None, page=None, date=None, note='', src='', check=''):
+    w, w_why = who_for(url) if who is None else (who, '')
+    row = {'id': f'{area}|{layer}', 'area': area, 'layer': layer, 'url': str(url or ''), 'page': page or official_page(url), 'host': parts(url)[0],
+           'who': w, 'why': why + (f' ({w_why})' if w_why and w_why not in why else ''), 'expected': expected, 'have': have, 'source': source,
+           'added': date or datetime.date.today().isoformat(), 'status': 'open', 'note': note, 'src': src, 'check': check}
+    return row
+
+
+def official_page(url):
+    """The page a PERSON opens for a layer: the agency's own open-data search on ArcGIS Hub for a hosted (services*.arcgis.com) layer,
+    else the layer's own REST page (most agency servers show an 'Export' / 'Query' link there). Never fetched by a bot here."""
+    u = str(url or '').replace('svc:', '', 1).split('|')[0]
+    u = re.sub(r'/query/?$', '', u)
+    host, path = parts(u)
+    if is_arcgis_services_host(host):
+        m = re.search(r'/services/([^/]+)/(?:Feature|Map)Server', path)
+        if m: return 'https://hub.arcgis.com/search?q=' + urllib.parse.quote(m.group(1).replace('_', ' '))
+    return u
+
+
+def load_needs(path):
+    doc = load_json(path, None)
+    if not isinstance(doc, dict) or not isinstance(doc.get('rows'), list): doc = {'format': NEEDS_FORMAT, 'about': NEEDS_ABOUT, 'rows': []}
+    return doc
+
+
+NEEDS_ABOUT = ('Layers somebody must download for the saved copies. who=bot: the master step downloads it; who=brandon: the PC helper '
+               '(KPC-Links tools/kpc_pc_helper.py) opens the official page in a browser; who=never: nobody contacts it. Hunters and the '
+               'engine only add rows here; only the master step saves layers. One row per area|layer.')
+
+
+def merge_needs(doc, rows):
+    """Add or update rows by area|layer. A row that is already done stays done unless the new row says a NEWER need (a later date);
+    a held row stays held unless the change check reopens it.
+    Returns (doc, added, updated). Deterministic order (sorted by id)."""
+    have = {needs_key(r): r for r in doc.get('rows') or []}
+    added = updated = 0
+    for r in rows:
+        r = {k: r.get(k) for k in NEEDS_FIELDS}
+        r['id'] = needs_key(r); k = r['id']; old = have.get(k)
+        if old is None: have[k] = r; added += 1; continue
+        if old.get('status') == 'done' and r.get('status') != 'done' and str(r.get('added') or '') <= str(old.get('added') or ''): continue
+        if old.get('status') == 'held' and r.get('status') == 'open' and r.get('source') != 'change check': continue   # a held row stays held (a person decides); only a changed source reopens it
+        new = dict(old)
+        for f in NEEDS_FIELDS:
+            if f == 'added': continue
+            if r.get(f) not in (None, ''): new[f] = r[f]
+        if new != old: have[k] = new; updated += 1
+    doc['rows'] = [have[k] for k in sorted(have)]
+    doc['format'] = NEEDS_FORMAT; doc.setdefault('about', NEEDS_ABOUT)
+    return doc, added, updated
+
+
+def save_needs(doc, path):
+    p = pathlib.Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+    new = json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + '\n'
+    if p.exists() and p.read_text(encoding='utf-8') == new: return False   # no change, no save
+    p.write_text(new, encoding='utf-8'); return True
+
+
+def needs_summary(doc):
+    c = {}
+    for r in doc.get('rows') or []:
+        if r.get('status') == 'open': c[r.get('who')] = c.get(r.get('who'), 0) + 1
+    return c
+
+
+# ---- layer files: one layer of one area, every record read, plus what the key keeps -----------------------------------------
+# GeoJSON FeatureCollection (gzip). 'kpc' says where it came from and how many records the layer itself reported for this area
+# (count_live) or a person counted (count_expected); 'features' are EVERY record read (so the count can be checked), each with
+# properties._kpc = the record as the saved copy stores it when the key keeps it (null when it is left out, e.g. a PAD-US copy).
+def layer_file_path(root, area, layer): return pathlib.Path(root) / f'{area}.{layer}.geojson.gz'   # one flat folder; the name is unique (raw-add keys on it)
+
+
+def write_layer_file(path, meta, feats):
+    p = pathlib.Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+    doc = {'type': 'FeatureCollection', 'kpc': dict(meta, format=FORMAT), 'features': feats}
+    raw = json.dumps(doc, separators=(',', ':'), sort_keys=True, ensure_ascii=False).encode()
+    tmp = p.with_name(p.name + '.tmp')
+    with open(tmp, 'wb') as fh, gzip.GzipFile(fileobj=fh, mode='wb', mtime=0) as z: z.write(raw)
+    os.replace(tmp, p)   # never a half-written layer file
+    return p
+
+
+def read_layer_file(path):
+    with gzip.open(path, 'rt', encoding='utf-8') as f: doc = json.load(f)
+    return doc.get('kpc') or {}, doc.get('features') or []
+
+
+def layer_file_expected(meta):
+    """What the layer file must hold: the layer's own total for the area, else the count a person's download was checked against."""
+    for k in ('count_live', 'count_expected'):
+        if meta.get(k) not in (None, ''): return int(meta[k])
+    return None
+
+
+def prefix_of(oid): return re.match(r'[a-z]*', str(oid)).group(0)
+
+
+def merge_saved_layer(blob, layer, new_recs):
+    """Keep-bigger merge of ONE layer (OBJECTID prefix) into a saved copy blob {'recs': [...]}. The layer's records are replaced only
+    when the new read has at least as many; a smaller re-read never replaces a saved layer. Returns (blob, what)."""
+    recs = blob.get('recs') or []
+    old = [r for r in recs if prefix_of(r.get('OBJECTID')) == layer]
+    new = [r for r in new_recs if prefix_of(r.get('OBJECTID')) == layer]
+    if len(new) < len(old): return blob, f'kept the saved {layer} ({len(old)} records; the new read has {len(new)})'
+    if sorted(json.dumps(r, sort_keys=True) for r in new) == sorted(json.dumps(r, sort_keys=True) for r in old): return blob, f'{layer} unchanged ({len(old)})'
+    blob = dict(blob, recs=[r for r in recs if prefix_of(r.get('OBJECTID')) != layer] + new, saved=datetime.date.today().isoformat())
+    return blob, f'{layer}: {len(old)} -> {len(new)} records'
+
+
+def load_saved(path):
+    with gzip.open(path, 'rt', encoding='utf-8') as f: return json.load(f)
+
+
+def save_saved(path, blob):
+    """The same bytes kpc_us_key.save_cache writes (compact JSON, gzip); written to a temp file first, so it is never half-written."""
+    p = pathlib.Path(path); tmp = p.with_name(p.name + '.tmp')
+    with gzip.open(tmp, 'wt', encoding='utf-8') as f: json.dump(blob, f, separators=(',', ':'))
+    os.replace(tmp, p)
+
+
+def prefix_counts(blob):
+    c = {}
+    for r in blob.get('recs') or []: c[prefix_of(r.get('OBJECTID'))] = c.get(prefix_of(r.get('OBJECTID')), 0) + 1
+    return c
+
+
+def geojson_to_rings(g):
+    """GeoJSON (Multi)Polygon -> the key's Esri-style {'rings': [...]} (every ring, outer and holes, as the key reads them)."""
+    return {'rings': [ring for poly in polys_of(g) for ring in poly]}

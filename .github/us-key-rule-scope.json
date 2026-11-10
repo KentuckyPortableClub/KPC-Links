@@ -29,6 +29,14 @@
    "why": "A saved copy the master gate holds is refilled first (KPC_REFILL_ONLY: saved PAD-US ids by id and the newer or short state layers, then the same gate again); a re-read that comes back with fewer records than the saved layer no longer replaces it; and every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path. What a state may read live changes, so every state is rebuilt once.",
    "scope": "all",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-10-master-step-owner",
+   "when": "2026-11-10",
+   "from": "da660f0d5ae7",
+   "why": "The master step (before the gate) is now the one writer of the saved copies: the key reads short or new layers into layer files for it (KPC_LAYER_OUT), reads a person's checked download instead of the live layer (KPC_LAYER_IN), and the build only reads the saved copies (KPC_MASTER_OWNS). services-<region>.arcgis.com hosts (services-eu1 and the like) count as services*.arcgis.com, and ncnhde.natureserve.org is never contacted (saved copy only). What a state may read live changes, so every state is rebuilt once.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

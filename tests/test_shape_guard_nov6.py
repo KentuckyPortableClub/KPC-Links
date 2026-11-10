@@ -62,11 +62,11 @@ with tempfile.TemporaryDirectory() as d:
     check('a saved-outline gzip reports its record count', G.cache_count(zpath) == 2)
     check('cache_count on a bad file is none', G.cache_count(pathlib.Path(d) / 'nope.gz') is None)
 
-check('US rules hash is da660f0d5ae7', KF.rules_hash('us-key') == 'da660f0d5ae7')
-check('Canada rules hash is unchanged', KF.rules_hash('ca-key') == 'b1a521708978')
+check('US rules hash is ac708f0afa33', KF.rules_hash('us-key') == 'ac708f0afa33')
+check('Canada rules hash is unchanged', KF.rules_hash('ca-key') == 'd6892ad555d8')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check('world rules hash is unchanged', KF.rules_hash('world-key') == '1a8913a378bb')
+check('world rules hash is unchanged', KF.rules_hash('world-key') == '022f06d08d3c')
 check('the guard is not a US rule file', 'kpc_shape_guard.py' not in KF.RULE_FILES['us-key'])
 check('the guard is listed as not a rule', 'kpc_shape_guard.py' in KF.NOT_RULES)
 

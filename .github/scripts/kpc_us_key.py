@@ -39,6 +39,17 @@ CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
 # Nov 10 (master gate): KPC_REFILL_ONLY=1 with GEO_CACHE_MODE=use only tops up and re-saves each state's saved copy (saved ids by id,
 # newer / short layers); no matching, no key file is written. The master gate then checks the refilled copy again.
 REFILL_ONLY = os.environ.get('KPC_REFILL_ONLY') == '1' and CMODE == 'use'
+# Nov 10 (Brandon: the master tool is the ONLY owner of the saved copies). The master step (kpc_master_cli.py fill) runs this script in
+# refill mode as its READER: KPC_LAYER_OUT=<dir> = each layer it re-reads is written as a layer file (every record read + what the key
+# keeps) and NOT merged here; the master checks the count, trims, records it and merges (a smaller read never replaces a saved layer).
+# KPC_LAYER_IN=<dir> = a checked download (a person's, from the PC helper) is read from <dir>/US-<st>/<prefix>.geojson.gz instead of
+# live. KPC_REFILL_FORCE='all' or prefixes = re-read those layers too (the fresh start). KPC_MASTER_OWNS=1 (the build) = the build only
+# READS the saved copy: no top-up, no saved-id top-up, no re-save (the master step did that before the gate).
+LAYER_OUT = pathlib.Path(os.environ['KPC_LAYER_OUT']) if REFILL_ONLY and os.environ.get('KPC_LAYER_OUT') else None
+LAYER_IN = pathlib.Path(os.environ['KPC_LAYER_IN']) if os.environ.get('KPC_LAYER_IN') else None
+REFILL_FORCE = (os.environ.get('KPC_REFILL_FORCE') or '').split() if REFILL_ONLY else []
+MASTER_OWNS = os.environ.get('KPC_MASTER_OWNS') == '1' and not REFILL_ONLY
+RAWF = {}   # prefix -> every feature read this run (for the layer file)
 CACHE_USED, CACHE_SAVED = [], []
 SHADOW = os.environ.get('SHADOW') == '1'
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world key's kind-label rule, US version (needs the pin inside)
@@ -53,12 +64,13 @@ SAVED_ONLY_SKIPPED = {}   # state -> layer prefixes taken from the saved copy in
 
 # Nov 10: services*.arcgis.com (services2 ... services9 too) is never contacted, robots.txt included, on every path (the same rule as
 # kpc_master.live_ok): its layers come from the saved copy only. The list above named only services and services1.
-_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
+_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 
 
 def saved_only(url):
     h = urllib.parse.urlparse(str(url).replace('svc:', '', 1).split('|')[0]).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -916,10 +928,15 @@ def extra_state(st, have, only=None):
         own = x[6] if len(x) > 6 else 'FED'
         if len(x) > 7 and x[7] is not None and st not in x[7]: continue
         opt = x[8] if len(x) > 8 else {}      # Oct 25: state-GIS options: 'where' = the layer's own filter, 'water' = lake surfaces, not property lines
-        if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Brandon t939u: the saved copy has it
-        try: url, nf, af, oidf = resolve(pre, url, nf, af)
-        except Exception as e:  # noqa: BLE001
-            notice(f'US key {st}', f'{label} layer not found ({e})'); continue
+        lf = _layer_in(st, pre)   # Nov 10: a checked download the master step put down is read instead of the live layer
+        if lf is None and saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Brandon t939u: the saved copy has it
+        if lf is not None:
+            _lm, _lfe = lf
+            nf = _lm.get('name_field') or nf; af = _lm.get('acres_field') or af; oidf = _lm.get('oid_field') or 'OBJECTID'
+        else:
+            try: url, nf, af, oidf = resolve(pre, url, nf, af)
+            except Exception as e:  # noqa: BLE001
+                notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         off, n = 0, 0
         # Nov 6 (big key / 2-fer patch): the layer's stable id / official acres / owner / parent fields (kpc_source_fields: the one
         # table, or AUTO from the field list a state layer already gave resolve()). ADDED to this same query; refused = asked without.
@@ -933,7 +950,11 @@ def extra_state(st, have, only=None):
                  'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
                  **({'orderByFields': oidf} if order else {})}
             try:
-                j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
+                if lf is not None:   # the whole layer file in one page, the same state box as the live query
+                    j, pg = {'features': [{'attributes': {k: v for k, v in (ft.get('properties') or {}).items() if k != '_kpc'}, 'geometry': _G2R(ft.get('geometry'))}
+                                          for ft in _lfe if _in_box(ft.get('geometry'), box)]}, None
+                else:
+                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
             except Exception as e:  # noqa: BLE001
                 if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
                     _sfx = []; continue
@@ -946,6 +967,7 @@ def extra_state(st, have, only=None):
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
                 if a.get(oidf.lower()) in seen_ids: continue
                 seen_ids.add(a.get(oidf.lower())); n_new += 1
+                if LAYER_OUT is not None: RAWF.setdefault(pre, []).append(f)
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
                 # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
@@ -962,10 +984,29 @@ def extra_state(st, have, only=None):
                             **({'Water': 1} if opt.get('water') else {}),
                             **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
                 n += 1
-            if not keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new): break
+            if lf is not None or not keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new): break
             off += len(fs); time.sleep(.5)
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
+
+def _in_box(g, box):
+    b = bbox(_G2R(g)) if g and 'rings' not in g else bbox(g)
+    return bool(b) and not (b[2] < box[0] or b[0] > box[2] or b[3] < box[1] or b[1] > box[3])
+
+
+def _G2R(g):
+    if not g or 'rings' in g: return g or {}
+    return KMASTER.geojson_to_rings(g)
+
+
+def _layer_in(st, pre):
+    """(meta, features) of a checked download for this state and layer, or None."""
+    if LAYER_IN is None: return None
+    p = KMASTER.layer_file_path(LAYER_IN, f'US-{st}', pre)
+    if not p.exists(): return None
+    try: return KMASTER.read_layer_file(p)
+    except Exception as e: notice(f'US key {st}', f'layer file {p.name} unreadable ({e}); not used'); return None  # noqa: BLE001
+
 
 def layer_live_count(st, pre, url, nf, af, opt):
     """How many features the live layer would return for this state's box (returnCountOnly; no geometry).
@@ -995,6 +1036,7 @@ def layer_live_count(st, pre, url, nf, af, opt):
 # verdict is recorded wherever it disagrees, nothing it says changes a join - until the disagreements have been read.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+import kpc_master as KMASTER  # noqa: E402  (Nov 10: layer files + the never-half-written saves; not a rule file)
 from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 
 
@@ -1167,16 +1209,51 @@ def split_places(m, recs, la, lo, ref, P):
 def cache_file(st): return CACHE / f'US-{st}.json.gz'
 
 
+def _save_row(a):
+    r = {k: v for k, v in a.items() if not k.startswith('_')}
+    r['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in rings(a.get('_g'))]
+    r['_k'] = sorted(a.get('_k') or [])
+    r['rd'] = a.get('rd') or time.strftime('%Y-%m-%d')   # the day this record was read from its agency (rule B7)
+    return r
+
+
+def _write_layer_files(st, want, add):
+    """Nov 10: one layer file per re-read layer for the master step (it checks, trims, records and merges; nothing merged here)."""
+    xs = {}
+    for x in XS: xs.setdefault(x[0], x)
+    kept = {}
+    for a in add: kept.setdefault(KMASTER.prefix_of(a.get('OBJECTID')), {})[str(a['OBJECTID'])] = _save_row(a)
+    n = 0
+    for pre in sorted(want):
+        lf = _layer_in(st, pre)
+        if pre not in RAWF and lf is None: continue   # not read: saved-copy-only host, the layer did not answer, or nothing in this state
+        x = xs.get(pre); url = x[1] if x else ''
+        oidf = (RESOLVED.get(pre) or (None, None, None, 'OBJECTID'))[3] if lf is None else (lf[0].get('oid_field') or 'OBJECTID')
+        feats = []
+        for f in RAWF.get(pre, []):
+            at = f.get('attributes') or {}
+            oid = next((v for k, v in at.items() if k.lower() == str(oidf).lower()), None)
+            try: geo = KMASTER.esri_to_geojson(f.get('geometry'))
+            except Exception: geo = None  # noqa: BLE001
+            feats.append({'type': 'Feature', 'properties': dict(at, _kpc=kept.get(pre, {}).get(f'{pre}{oid}')), 'geometry': geo})
+        meta = {'area': f'US-{st}', 'layer': pre, 'url': url, 'label': x[5] if x else '', 'oid_field': oidf, 'count_raw': len(feats),
+                'name_field': (RESOLVED.get(pre) or (None, x[2] if x else ''))[1] if lf is None else lf[0].get('name_field'),
+                'source': 'live' if lf is None else 'hand', 'read': time.strftime('%Y-%m-%d')}
+        if lf is None:
+            meta['count_live'] = layer_live_count(st, pre, url, x[2], x[3], x[8] if len(x) > 8 else {}) if x else None
+        else:
+            meta.update({k: lf[0].get(k) for k in ('count_expected', 'raw', 'page', 'by') if lf[0].get(k) is not None})
+            meta['count_raw'] = sum(1 for ft in lf[1] if _in_box(ft.get('geometry'), st_box(st)))
+            meta['url'] = lf[0].get('url') or url
+        KMASTER.write_layer_file(KMASTER.layer_file_path(LAYER_OUT, f'US-{st}', pre), meta, feats)
+        n += 1
+    notice(f'US key {st}', f'refill: {n} layer file(s) written for the master step ({" ".join(sorted(want))})')
+
+
 def save_cache(st, recs, seen):
     """Everything the matcher needs, so a rule can be tested without the network. Outlines to ~1 m."""
     CACHE.mkdir(parents=True, exist_ok=True)
-    rows = []
-    for a in recs:
-        r = {k: v for k, v in a.items() if not k.startswith('_')}
-        r['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in rings(a.get('_g'))]
-        r['_k'] = sorted(a.get('_k') or [])
-        r['rd'] = a.get('rd') or time.strftime('%Y-%m-%d')   # the day this record was read from its agency (rule B7)
-        rows.append(r)
+    rows = [_save_row(a) for a in recs]
     blob = {'st': st, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'seen': seen, 'recs': rows}
     with gzip.open(cache_file(st), 'wt', encoding='utf-8') as f:
         json.dump(blob, f, separators=(',', ':'))
@@ -1506,14 +1583,14 @@ def run(st):
         notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None
     if got is not None:
         recs, seen, used_detail = got; CACHE_USED.append(st)
-        if CMODE == 'use':   # Nov 9 primary fix: a saved copy made before it has no filtered saved ids; ask for them by id
+        if CMODE == 'use' and not MASTER_OWNS:   # Nov 9 primary fix: a saved copy made before it has no filtered saved ids; ask for them by id
             try:
                 _sv = saved_fetch(st, P, recs)
                 if _sv: recs += _sv; (save_cache(st, recs, seen) if st not in FAILED_READ else None)
             except Exception as _e: notice(f'US key {st}', f'saved ids not read by id ({type(_e).__name__}: {str(_e)[:120]})')  # noqa: BLE001
         # Oct 25: a saved copy made before a layer was added (data/state-gis.json grows) never had that layer's land, so the
         # nightly rebuild could not join it. Top the copy up: read live only the layers it has no records from, add, re-save.
-        if CMODE == 'use':
+        if CMODE == 'use' and not MASTER_OWNS:   # Nov 10: with KPC_MASTER_OWNS=1 the master step topped the copy up before the gate
             present = {re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) for a in recs}
             missing = {x[0] for x in XS if (len(x) <= 7 or x[7] is None or st in x[7]) and x[0] not in present}
             # Nov 10: a layer already in the saved copy can still be short (one silent server page, e.g. sgflf 199 vs ~17,000).
@@ -1533,6 +1610,18 @@ def run(st):
                 if n_live and n_have < 0.97 * n_live:
                     short.add(pre)
                     notice(f'US key {st}', f'saved copy of {pre} is short ({n_have} areas, live layer {n_live}); re-reading that layer')
+            if LAYER_OUT is not None:   # Nov 10: the master step's reader: layer files only, the master merges after its checks
+                _here = {x[0] for x in XS if len(x) <= 7 or x[7] is None or st in x[7]}
+                force = (_here if REFILL_FORCE == ['all'] else set(REFILL_FORCE) & _here)
+                lfp = {p.name[len(f'US-{st}.'):-len('.geojson.gz')] for p in LAYER_IN.glob(f'US-{st}.*.geojson.gz')} & _here if LAYER_IN else set()
+                want = missing | short | force | lfp
+                if want:
+                    RAWF.clear()
+                    _pf = lambda a: re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0)
+                    base = [a for a in recs if _pf(a) not in want]
+                    add = extra_state(st, _have(base), only=want)
+                    _write_layer_files(st, want, add)
+                missing = short = set()
             if missing or short:
                 _pf = lambda a: re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0)
                 kept_old = {}
@@ -2389,6 +2478,13 @@ if _bad:
     notice('US key STOPPED', f'{len(_bad)} golden case(s) wrong, so NO keys were written: ' + ' | '.join(_bad)[:700])
     sys.exit(0)
 if REFILL_ONLY:
+    if LAYER_OUT is not None:   # Nov 10: the key's own layer table (prefix -> url, name field, label, states) for the master step's rows
+        LAYER_OUT.mkdir(parents=True, exist_ok=True)
+        _xs = {}
+        for x in XS: _xs.setdefault(x[0], {'url': x[1], 'name_field': x[2], 'label': x[5], 'states': sorted(x[7]) if len(x) > 7 and x[7] is not None else None})
+        for x in SZ_US: _xs.setdefault(x[0], {'url': x[1], 'name_field': x[2][0], 'label': x[4], 'states': sorted(x[6])})
+        _xs[''] = {'url': Q, 'name_field': 'Unit_Nm', 'label': 'USGS PAD-US', 'states': None}
+        (LAYER_OUT / 'xs.json').write_text(json.dumps(_xs, indent=1, sort_keys=True))
     for st in STATES:
         if st == 'KY': continue
         try: run(st)
