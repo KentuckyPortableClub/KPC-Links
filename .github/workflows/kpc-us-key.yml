@@ -192,7 +192,9 @@ jobs:
         # helper) + with refresh=all every layer. Per layer: the official read where the host rules and robots.txt allow it (never a
         # services*.arcgis.com host, apps.fs.usda.gov, ncnhde or the Grant County server), then `trim` (fail closed), `raw-add`, and the
         # keep-bigger merge into the saved copy. The gate and the baselines are unchanged; 'Save this job's new live reads' uploads it.
-        # What a bot may not or could not fetch goes on the ONE needs-download list (KPC-Data data/needs-download.json).
+        # What a bot may not or could not fetch goes on the ONE needs-download list (KPC-Data data/needs-download.json). A layer is listed only
+        # when the live key joins records of it that the copy does not hold. refresh=all (the fresh-start run) also downloads the official
+        # direct files of the open bot rows (same pre-request check, robots.txt and pacing).
         id: master_fill
         env:
           STATES: ${{ matrix.g.states }}
@@ -214,7 +216,7 @@ jobs:
             || { echo "::error title=Master step::KPC-Data (the parks + the needs-download list) could not be read; the gate decides on the copies as they are"; exit 0; }
           rm -rf .master/root; cp -a data/outlines .master/root
           python3 .github/scripts/kpc_master_cli.py fill --cache cache/us --states "$STATES" --root .master/root --parks .mdata/locations-pota.json \
-            --needs .mdata/data/needs-download.json --hand .master/hand --refresh "$REFRESH" --work .master/work --out-rows .master/needs-rows.json 2>&1 | tee us-master-${{ matrix.g.i }}.log \
+            --needs .mdata/data/needs-download.json --hand .master/hand --refresh "$REFRESH" --work .master/work --out-rows .master/needs-rows.json $( [ "$REFRESH" = all ] && echo --official-files ) 2>&1 | tee us-master-${{ matrix.g.i }}.log \
             || { kpc_rc=$?; echo "::warning title=Master step::stopped (exit $kpc_rc); the gate decides on the copies as they are"; echo "Master step - stopped (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           mkdir -p part/outlines; cp .master/root/US-*.geojson.gz .master/root/layers.json .master/root/raw-manifest.json part/outlines/ 2>/dev/null || true   # ok: a step with nothing merged writes none
           mkdir -p part/outlines/solver-queue; cp .master/root/solver-queue/*.csv part/outlines/solver-queue/ 2>/dev/null || true   # ok: nothing queued is fine

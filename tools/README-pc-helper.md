@@ -53,6 +53,12 @@ and marks the row done.
 - `python tools\kpc_pc_helper.py --downloads D:\MyDownloads` sets your Downloads folder if it was not found.
 - `--no-upload` keeps the checked files on your PC and uploads nothing.
 
+## What the count means
+
+The first line counts only the rows this helper can use: open, a person's, and a US layer the key has a table entry for. Open
+rows it cannot use (Canada, world, or a layer the US key has no entry for) and never-contact rows are named once on the next
+line as 'not asked here' and are not in the count.
+
 ## Rows it never opens
 
 A row marked **never** (for example `ncnhde.natureserve.org`, or the Grant County NM parcel server) is skipped. Nobody

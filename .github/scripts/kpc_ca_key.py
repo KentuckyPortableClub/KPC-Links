@@ -554,6 +554,43 @@ if CMODE != 'only' and not any(str(r.get('oid', '')).startswith('NB WMZ:') for r
             _L = json.load(open(OUT / 'layers.json')); _L['NB WMZ'] = [NBWMZ]; save_json(OUT / 'layers.json', _L, indent=1)
         except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
     except Exception as ex: notice('Canada NB zones', f'not read: {ex}')  # noqa: BLE001
+# Nov 10 (owner rule, Nov 10): a CHECKED hand file for a Canada layer a bot may not read (its host is
+# saved-copy only), e.g. Parks Canada's own places layer (services2.arcgis.com). KPC_CA_HAND=<dir> holds hand-CA.<name>.geojson.gz
+# (kpc_master_cli.py import-existing / the PC helper): meta 'layer' = the layer id (first 12 letters of the label), 'label', 'url',
+# 'count_expected'; each feature's properties._ca = the record (id, n, nf, ty, ow, mg, ha). Fail closed: a file with fewer features than
+# it says is not used. Keep-bigger: it replaces that layer's saved records only when it has at least as many.
+def _hand_rings(g):
+    t = (g or {}).get('type'); c = (g or {}).get('coordinates') or []
+    polys = [c] if t == 'Polygon' else (c if t == 'MultiPolygon' else [])
+    return [[[float(p[0]), float(p[1])] for p in ring if len(p) >= 2] for poly in polys for ring in poly if len(ring) >= 4]
+CA_HAND = os.environ.get('KPC_CA_HAND')
+if CA_HAND and pathlib.Path(CA_HAND).is_dir():
+    _hch = 0
+    for _hp in sorted(pathlib.Path(CA_HAND).glob('hand-CA.*.geojson.gz')):
+        try:
+            with gzip.open(_hp, 'rt', encoding='utf-8') as _fh: _hd = json.load(_fh)
+        except Exception as ex: notice('Canada hand file', f'{_hp.name} unreadable ({ex}); not used'); continue  # noqa: BLE001
+        _hm, _hf = _hd.get('kpc') or {}, _hd.get('features') or []
+        _pid, _lab = str(_hm.get('layer') or ''), str(_hm.get('label') or '')
+        _exp = int(_hm.get('count_expected') or 0)
+        if not _pid or not _lab or not _exp: notice('Canada hand file', f'{_hp.name}: no layer id, label or expected count; not used'); continue
+        if len(_hf) < _exp: notice('Canada hand file', f'{_hp.name}: {len(_hf)} of {_exp} records: SHORT, not used (fail closed)'); continue
+        _new = []
+        for _f in _hf:
+            _a = (_f.get('properties') or {}).get('_ca') or {}; _g = {'rings': _hand_rings(_f.get('geometry'))}
+            if not _a.get('n') or not _g['rings']: continue
+            _r = {'oid': f"{_pid}:{_a.get('id')}", 'n': str(_a['n']), 'nf': str(_a.get('nf') or ''), 'ty': str(_a.get('ty') or _lab), 'ow': str(_a.get('ow') or ''),
+                  'mg': str(_a.get('mg') or ''), 'ha': float(_a.get('ha') or 0), '_g': _g, '_bb': bbox(_g), 'src': _lab}
+            _r['_k'] = kinds(_r['n']) | kinds(_r['nf']) | kinds(_r['ty']); _new.append(_r)
+        _old = [r for r in recs if str(r.get('oid', '')).split(':', 1)[0] == _pid]
+        if len(_new) < len(_old): notice('Canada hand file', f'{_hp.name}: {len(_new)} records < the {len(_old)} saved; the saved ones are kept'); continue
+        recs = [r for r in recs if str(r.get('oid', '')).split(':', 1)[0] != _pid] + _new; _hch += 1
+        notice('Canada hand file', f'{_hp.name}: {_lab} {len(_old)} -> {len(_new)} records')
+        try:
+            _L = json.load(open(OUT / 'layers.json'))
+            if _pid not in _L and _hm.get('url'): _L[_pid] = [_hm['url']]; save_json(OUT / 'layers.json', _L, indent=1)
+        except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
+    if _hch and CMODE in ('use', 'refresh'): csave(recs)
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 

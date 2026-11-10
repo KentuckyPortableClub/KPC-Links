@@ -62,7 +62,7 @@ def downloads_dir(given=None):
     return pathlib.Path.home() / 'Downloads'
 
 
-def rows_for_person(doc, only=None):
+def rows_for_person(doc, only=None, layers_table=None):
     """The rows a person downloads: OPEN rows for who=person only. A row is open when it is new, was never downloaded, or its
     official source looks CHANGED (the change check reopened it). A done row is never listed again until its source changes.
     who=never is NEVER returned (nobody contacts that server)."""
@@ -71,16 +71,18 @@ def rows_for_person(doc, only=None):
         if r.get('status') != 'open' or r.get('who') != 'person': continue
         if M.who_for(r.get('url') or '')[0] == 'never': continue   # belt and braces: the host rules say never
         if only and r.get('area') not in only and r.get('id') not in only: continue
-        if not is_fillable(r): continue
+        if not is_fillable(r, layers_table): continue
         out.append(r)
     return sorted(out, key=lambda r: (r.get('area') or '', r.get('layer') or ''))
 
 
-def is_fillable(r):
+def is_fillable(r, layers_table=None):
     """A row the US key can take a hand file for: a state (US-XX) and a layer the key reads (not url:<hash> and not a bare
-    source id h<n>, which is a lead with no saved layer yet)."""
+    source id h<n>, which is a lead with no saved layer yet). Nov 10: with the key's layer table (data/us-key/layers.json) the
+    layer must also be IN it: a hand file for a layer the key has no entry for is never merged, so it is not asked for."""
     lay = str(r.get('layer') or '')
-    return str(r.get('area') or '').startswith('US-') and not lay.startswith('url:') and not (lay[:1] == 'h' and lay[1:].isdigit())
+    if not str(r.get('area') or '').startswith('US-') or lay.startswith('url:') or (lay[:1] == 'h' and lay[1:].isdigit()): return False
+    return layers_table is None or not layers_table or lay in layers_table
 
 
 def why_tag(r):
@@ -258,17 +260,22 @@ def main(argv=None):
         for r in rem: say(f'  {r["area"]} {r["layer"]:8} last {str(r.get("added"))[:10]}  {r.get("page") or r.get("url")}')
         say('If a page shows a newer date or a different record count, run this helper with --only <area> after the next key run reopens it,\nor tell the bot which one changed.')
         return 0
-    rows = rows_for_person(doc, a.only)
-    never = sum(1 for r in doc.get('rows') or [] if r.get('status') == 'open' and r.get('who') == 'never')
-    leads = sum(1 for r in doc.get('rows') or [] if r.get('status') == 'open' and r.get('who') == 'person' and not is_fillable(r) and not a.only)
-    if leads: say(f'({leads} more open rows are leads the US key does not read yet, e.g. Canada, world or a layer with no saved copy: not asked here)')
+    try: layers_table = json.loads(fetch(LAYERS_URL))
+    except Exception: layers_table = {}  # noqa: BLE001
+    rows = rows_for_person(doc, a.only, layers_table)
+    # Nov 10: the tally counts only the rows this helper can use (open, a person's, a US layer the key reads); the rest are named
+    # once as 'not asked here', never added to the count
+    scope = [r for r in doc.get('rows') or [] if r.get('status') == 'open' and (not a.only or r.get('area') in a.only or r.get('id') in a.only)]
+    never = sum(1 for r in scope if r.get('who') == 'never')
+    other = sum(1 for r in scope if r.get('who') == 'person' and r not in rows)
     gs = groups(rows)
-    say(f'{len(rows)} layer(s) to download by hand, {len(gs)} download(s)' + (f' ({never} more are marked never-contact and are skipped)' if never else '') + '.')
+    say(f'{len(rows)} layer(s) to download by hand, {len(gs)} download(s).')
+    if other or never:
+        say('  Not asked here: ' + ', '.join(x for x in (f'{other} open row(s) this helper cannot use (Canada, world, or a layer the US key has no entry for)' if other else '',
+                                                         f'{never} never-contact row(s)' if never else '') if x) + '.')
     for i, r in enumerate(rows, 1): say(f'  {i:3}. {r["area"]} {r["layer"]:8} {r["host"]}  ({why_tag(r)}; the saved copy has {r.get("have") or 0})')
     if a.list or not rows: return 0
     parks = out / 'locations-pota.json'; fetch(PARKS_URL, parks)
-    try: layers_table = json.loads(fetch(LAYERS_URL))
-    except Exception: layers_table = {}  # noqa: BLE001
     dl = downloads_dir(a.downloads); say(f'Watching your Downloads folder: {dl}')
     made = []
     for i, grp in enumerate(gs, 1):

@@ -123,6 +123,21 @@ def apply_layer_file(path, cache, root, parks, raw_root=None):
     return True, f'{area} {what}'
 
 
+def official_files(rows, dest, robots=None):
+    """Nov 10: download each open bot row's official direct file once (kpc_master.download_official_file: live_ok, robots.txt,
+    pacing). Returns [(row, facts or None)]. A file a bot may not fetch is skipped, never retried another way."""
+    out, seen, pacer = [], {}, M.Pacer()
+    for r in rows:
+        f = M.direct_file_of(r)
+        if not f or r.get('who') != 'bot' or r.get('status', 'open') != 'open': continue
+        if f in seen: out.append((r, seen[f])); continue
+        name = M.re.sub(r'[^A-Za-z0-9._-]+', '_', f"{r.get('area')}.{r.get('layer')}.{M.parts(f)[1].rstrip('/').split('/')[-1] or 'file'}")[:150]
+        try: seen[f] = M.download_official_file(f, pathlib.Path(dest) / name, pacer=pacer)
+        except Exception as e: warn('Master step', f"{r.get('id')}: official file not downloaded ({e})"); seen[f] = None  # noqa: BLE001
+        out.append((r, seen[f]))
+    return out
+
+
 def fill(a):
     states = [s for s in (a.states or '').split() if s and s != 'KY']
     root = pathlib.Path(a.root); doc = M.load_layers(root); caches = doc.get('caches') or {}
@@ -177,29 +192,38 @@ def fill(a):
             u = meta.get('url') or (table.get(meta.get('layer')) or {}).get('url', '')
             rows.append(M.needs_row(meta.get('area'), meta.get('layer'), u, what, 'master', who='bot' if meta.get('source') == 'live' else 'person',
                                     expected=M.layer_file_expected(meta), have=None))
-    # what the bots may not or could not fetch, where it is needed
+    # what the bots may not or could not fetch, where it is needed. Nov 10 (actually missing): a layer is listed only when the
+    # live key joins a park to a record of it that the saved copy does not hold (data/us-key/US-XX.json against the copy), or
+    # when the copy has nothing at all from a layer of this state's own (a new layer, never read). A short copy alone is not a
+    # reason: its missing records may sit in no joined layer, and then no one is asked for anything.
     short_after = short_states(a.cache, todo, caches)
     prev_rows = {M.needs_key(r): r for r in needs['rows']}
     for st in states:
         cp = pathlib.Path(a.cache) / f'US-{st}.json.gz'
         if not cp.exists(): continue
-        have = M.prefix_counts(M.load_saved(cp))
+        blob = M.load_saved(cp); have = M.prefix_counts(blob)
+        miss = M.joined_missing(pathlib.Path(a.us_key) / f'US-{st}.json', blob) if getattr(a, 'us_key', None) else {}
         for pre, v in sorted(table.items()):
             if v.get('states') is not None and st not in v['states']: continue
             u = v.get('url') or ''
             if not u or f'US-{st}|{pre}' in done: continue
-            who, why = M.who_for(u, (lambda x: M.parts(x)[0] not in blocked_hosts))
-            if who == 'bot': continue
-            n = have.get(pre, 0)
+            if pre == '': continue   # PAD-US comes from an allowed host; a by-id read fills it
+            n = have.get(pre, 0); gone = miss.get(pre, 0)
             prev = prev_rows.get(f'US-{st}|{pre}')
-            if prev and (prev.get('status') == 'held' or (prev.get('status') == 'done' and n >= int(prev.get('expected') or 0))): continue   # done (and still whole) / a person held it
+            fileu = M.direct_file_of(prev) if prev else None
+            who, why = M.who_for(u, (lambda x: M.parts(x)[0] not in blocked_hosts), file_url=fileu)
+            if who == 'bot' and not fileu: continue
+            if prev and (prev.get('status') == 'held' or (prev.get('status') == 'done' and n >= int(prev.get('expected') or 0) and not gone)): continue   # done (and still whole) / a person held it
             mine = n > 0 or (v.get('states') is not None) or pre.startswith(f'sg{st.lower()}')   # this layer is this state's (not a national layer with nothing here)
             if not mine: continue
-            if st in short_after: need = f"the saved copy of US-{st} is still short after the bot refill ({short_after[st][0]} of {short_after[st][1]}); this layer may hold the missing records"
+            if gone: need = f"the live key joins {gone} record(s) of this layer that the saved copy of US-{st} does not hold"
             elif n == 0: need = 'the saved copy has no records from this layer (a new layer, or never read)'
-            else: continue   # kept: the saved copy has it and the state is whole
-            if pre == '' : continue   # PAD-US comes from an allowed host; a by-id read fills it
-            rows.append(M.needs_row(f'US-{st}', pre, u, need, 'master', who=who, expected=n or None, have=n, note=why))
+            else: continue   # the saved copy holds every record the key joins from this layer: nothing is missing
+            rows.append(M.needs_row(f'US-{st}', pre, u, need, 'master', who=who, expected=(n + gone) if gone else None, have=n, note=why + ((' direct file: ' + fileu) if fileu and fileu not in why else '')))
+    if getattr(a, 'official_files', False) and not a.offline:   # Nov 10: the official-file download path (the fresh-start run); same checks as every read
+        got = official_files(rows + [r for r in needs['rows'] if r.get('status') == 'open'], work / 'files', robots)
+        for r, facts in got:
+            if facts: M.raw_add_facts(facts, root=root); notice('Master step', f"{r['id']}: official file {facts['name']} ({facts['size']} bytes) downloaded; the PC helper's check packs it")
     for k in sorted(done):
         ar, pre = k.split('|', 1)
         rows.append({**M.needs_row(ar, pre, (table.get(pre) or {}).get('url', ''), 'refilled and checked by the master step', 'master', who='bot'), 'status': 'done'})

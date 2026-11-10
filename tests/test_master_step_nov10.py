@@ -118,12 +118,18 @@ with tempfile.TemporaryDirectory() as t:
     sgj = t / 'sg.json'; json.dump({'states': {}}, open(sgj, 'w'))
     with gzip.open(cache / 'US-ZZ.json.gz', 'wt') as fh: json.dump({'st': 'ZZ', 'recs': [{'OBJECTID': 'sgzzb1'}, {'OBJECTID': 'sgzzc1'}]}, fh)
     import argparse
+    # Nov 10 (actually missing): a short copy alone asks no one; a row only when the live key joins a record the copy lacks
+    uk = t / 'us-key'; uk.mkdir()
     A = argparse.Namespace(states='ZZ', root=str(root), work=str(t / 'w'), needs=None, hand=None, cache=str(cache), refresh='', us_layers=str(usl), state_gis=str(sgj),
-                           offline=True, no_key=True, key=None, parks=str(parks), out_rows=str(t / 'rows.json'))
+                           offline=True, no_key=True, key=None, parks=str(parks), out_rows=str(t / 'rows.json'), us_key=str(uk), official_files=False)
+    F.fill(A)
+    check('fill: a short copy whose missing records sit in no joined layer lists nothing', json.load(open(t / 'rows.json'))['rows'] == [])
+    json.dump({'parks': {'US-9999': {'m': [['sgzzb2', 'B'], ['sgzzc7', 'C']]}}}, open(uk / 'US-ZZ.json', 'w'))
     F.fill(A)
     rows = {r['id']: r for r in json.load(open(t / 'rows.json'))['rows']}
-    check('fill: services-eu1 layer of a short state -> who=person', rows.get('US-ZZ|sgzzb', {}).get('who') == 'person')
-    check('fill: ncnhde layer -> who=never', rows.get('US-ZZ|sgzzc', {}).get('who') == 'never')
+    check('fill: the joined-but-missing layer is listed with how many records are missing', rows.get('US-ZZ|sgzzb', {}).get('expected') == 2 and 'joins 1 record' in rows.get('US-ZZ|sgzzb', {}).get('why', ''))
+    check('fill: services-eu1 layer with a missing joined record -> who=person', rows.get('US-ZZ|sgzzb', {}).get('who') == 'person')
+    check('fill: ncnhde layer with a missing joined record -> who=never', rows.get('US-ZZ|sgzzc', {}).get('who') == 'never')
     check('fill: every row has the one schema', all(set(r) == set(M.NEEDS_FIELDS) for r in rows.values()))
 
 # 6. kpc_us_key: the master's reader modes; the build only reads

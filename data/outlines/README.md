@@ -75,3 +75,23 @@ robots.txt (a 403 = no), the per-host pacer (60 s on hub portals); never a servi
 A HEAD of the direct file, or the ScienceBase item JSON. The first check only sets the baseline. A later difference in a field
 both checks read reopens that source's rows in the needs-download list (source `change check`), and only then a person is asked.
 A held row (fallback only / none found) stays held unless its source changes.
+
+## Asking only for what is actually missing (Nov 10)
+
+- **The master step** lists a layer only when the live key (`data/us-key/US-XX.json`) joins a park to a record of it that the
+  saved copy does not hold, or when a layer of the state's own has no records in the copy at all (a new layer). A copy that is
+  short of its baseline is not, by itself, a reason to ask anyone.
+- **The seed** checks every saved copy before it opens a row: `US-XX` by the layer id (OBJECTID prefix; the US key's own prefix
+  for a row with no id), `CA-ALL` by the Canada layer id (the first 12 letters of the label) or the source label, `W-XX` by the
+  source label (or its equivalent in a box-side map when the label differs). A layer the copy holds is a done row.
+- **An official direct file** a bot may fetch (by the same host rules) makes the row a bot's. The fresh-start run
+  (`refresh=all`) downloads it with `fill --official-files`: the pre-request host check, then robots.txt (a 403 = no), then the
+  per-host pacing (60 s on hub portals). Nothing is downloaded on any other run.
+- **`kpc_master_cli.py import-existing`** (run on the box) takes in the downloads already made: the hand map, the downloads
+  table, the Drive index and the research inbox. It writes raw facts only (name, size, sha256, date, source, record count) to
+  `raw-manifest.json`, marks the rows those files cover as done (source `existing download`), and builds checked hand files
+  for rows whose records are only in a box file (`hand-US-XX.<layer>`, `hand-CA.<name>`, `hand-W-XX.<layer>`). `--upload`
+  puts them on the boundary-cache release. A US hand file is merged by the master step; a Canada one by the Canada key
+  (`KPC_CA_HAND`); the world key does not read hand files yet.
+- Point layers (hatcheries, river access points) have a table entry in `data/state-gis.json` without `nm`: the outline key
+  skips them (a point is not an outline); their checked hand files are kept for the point tier.

@@ -506,6 +506,16 @@ def raw_add(path, source, date=None, root=None):
     raw_manifest_path(root).write_text(json.dumps(doc, indent=1, sort_keys=True) + '\n', encoding='utf-8'); return row
 
 
+def raw_add_facts(facts, root=None):
+    """Nov 10: one raw-manifest row from facts already measured elsewhere (import-existing, an official-file download): name, size,
+    sha256, source, date and the record count when known. Facts only: no licence or terms text goes in."""
+    row = {k: facts.get(k) for k in ('name', 'size', 'sha256', 'source', 'date', 'count') if facts.get(k) not in (None, '')}
+    doc = load_json(raw_manifest_path(root), {'format': FORMAT, 'files': []})
+    doc['files'] = [r for r in doc['files'] if r['name'] != row['name']] + [row]; doc['files'].sort(key=lambda r: r['name'])
+    raw_manifest_path(root).parent.mkdir(parents=True, exist_ok=True)
+    raw_manifest_path(root).write_text(json.dumps(doc, indent=1, sort_keys=True) + '\n', encoding='utf-8'); return row
+
+
 def raw_in_repo(files):
     """files: [(path, size)] tracked by git. Returns the ones that must not be there: layer downloads by type, a .gdb folder, or any file
     under data/outlines/ over 5 MB (a master area file is small by design)."""
@@ -558,15 +568,93 @@ NEEDS_FIELDS = ('id', 'area', 'layer', 'url', 'page', 'host', 'who', 'why', 'exp
 NEEDS_STATUS = ('open', 'done', 'held')
 
 
-def who_for(url, robots_ok=None):
-    """('bot' | 'person' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it)."""
+def who_for(url, robots_ok=None, file_url=None):
+    """('bot' | 'person' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it).
+    Nov 10: when the layer itself may not be read but its OFFICIAL DIRECT FILE (file_url) sits on a host a bot may fetch, the row
+    is a bot's: the master step downloads the file through the same pre-request check, robots.txt and pacing (download_official_file)."""
     host, path = parts(url)
     for h, p in NEVER_CONTACT:
         if host == h and path.lower().startswith(p.lower()): return 'never', f'never contact {h}{p}: no request of any kind, by a bot or a person'
     ok, why = live_ok(url)
-    if not ok: return 'person', why + ': a person downloads it in a browser'
-    if robots_ok is not None and not robots_ok(url): return 'person', f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
-    return 'bot', ''
+    if ok and (robots_ok is None or robots_ok(url)): return 'bot', ''
+    if not ok: why = why + ': a person downloads it in a browser'
+    else: why = f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    if file_url:
+        fok, _ = live_ok(file_url)
+        if fok and (robots_ok is None or robots_ok(file_url)):
+            return 'bot', f'the official direct file is on {parts(file_url)[0]}, which a bot may fetch: the master step downloads it'
+    return 'person', why
+
+
+def direct_file_of(row):
+    """The official direct file a needs row names ('direct file: <url>' in its note), or None."""
+    m = re.search(r'direct file:\s*(\S+)', str((row or {}).get('note') or ''))
+    return m.group(1) if m else None
+
+
+def download_official_file(url, dest, robots_get=None, pacer=None, opener=None, max_bytes=2 << 30):
+    """Nov 10: the official-file download path. live_ok first (never a services*.arcgis.com host, never a never-contact host,
+    nothing saved-copy-only), then robots.txt (a 403 = no), then the per-host pacer (60 s on hub portals). Streams the file to
+    dest and returns its raw facts {name, size, sha256, source, date}. Raises LiveNotAllowed before any request it may not make.
+    Nothing calls it with network on unless the master step is asked to (--official-files, the fresh-start run)."""
+    ok, why = live_ok(url)
+    if not ok: raise LiveNotAllowed(why)
+    pacer = pacer or Pacer(); opener = opener or urllib.request.urlopen
+    if robots_get is None:
+        def robots_get(u):
+            if not live_ok(u)[0]: raise LiveNotAllowed(u)
+            pacer.wait(parts(u)[0])
+            try:
+                with opener(urllib.request.Request(u, headers={'User-Agent': UA}), timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
+            except urllib.error.HTTPError as e: return e.code, ''
+    if not robots_allows(url, robots_get): raise LiveNotAllowed(f'{parts(url)[0]}: robots.txt does not allow this download')
+    pacer.wait(parts(url)[0])
+    dest = pathlib.Path(dest); dest.parent.mkdir(parents=True, exist_ok=True); h = hashlib.sha256(); n = 0
+    tmp = dest.with_name(dest.name + '.part')
+    with opener(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=300) as r, open(tmp, 'wb') as f:
+        while True:
+            b = r.read(1 << 20)
+            if not b: break
+            n += len(b)
+            if n > max_bytes: raise MasterError(f'{url[:100]}: larger than {max_bytes} bytes; stopped')
+            h.update(b); f.write(b)
+    tmp.replace(dest)
+    return {'name': dest.name, 'size': n, 'sha256': h.hexdigest(), 'source': url, 'date': datetime.date.today().isoformat()}
+
+
+def saved_counts(path):
+    """Read only. {layer: records} of one saved copy: US-XX = OBJECTID prefix ('' = PAD-US); CA-ALL = the oid's layer id (the first
+    12 letters of the source label, '~N' for the next layers of that label) and the source label itself; W-XX = the source label."""
+    out = {}
+    try: blob = load_saved(path)
+    except Exception: return out  # noqa: BLE001
+    name = pathlib.Path(path).name
+    for r in blob.get('recs') or []:
+        if name.startswith('US-'): ks = [prefix_of(r.get('OBJECTID'))]
+        elif name.startswith('CA-'): ks = {str(r.get('oid', '')).split(':', 1)[0] if ':' in str(r.get('oid', '')) else 'cpcad', 'src:' + str(r.get('src') or '')}
+        else: ks = ['src:' + str(r.get('src') or '')]
+        for k in ks: out[k] = out.get(k, 0) + 1
+    return out
+
+
+def joined_missing(key_path, blob):
+    """Nov 10 (actually missing): {prefix: n} of record ids the live key (data/us-key/US-XX.json) joins a park to that the saved copy
+    does not hold. Only these make a layer 'needed'; a short copy whose missing records sit in no joined layer asks no one."""
+    try: pk = (load_json(key_path, {}) or {}).get('parks') or {}
+    except Exception: return {}  # noqa: BLE001
+    have = {str(r.get('OBJECTID')) for r in blob.get('recs') or []}
+    out = {}
+    for q in pk.values():
+        ids = [x[0] for x in q.get('m') or [] if isinstance(x, list) and x]
+        bk = q.get('bk')
+        if isinstance(bk, list) and bk and not isinstance(bk[0], (list, dict)): ids.append(bk[0])
+        for i in ids:
+            i = str(i)
+            if i and i not in have:
+                p = prefix_of(i)
+                if p in ('trl',): continue   # trail lines live in data/trails, not in the saved copy
+                out[p] = out.get(p, 0) + 1
+    return out
 
 
 def needs_key(row): return f"{row.get('area')}|{row.get('layer')}"

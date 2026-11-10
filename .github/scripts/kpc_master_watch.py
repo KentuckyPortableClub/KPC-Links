@@ -63,12 +63,73 @@ def catalog_url(page):
     return f'https://www.sciencebase.gov/catalog/item/{m.group(1)}?format=json' if m else None
 
 
-def seed(csv_path, sources_path, needs_rows_out=None):
-    """CSV -> download-sources.json (+ needs rows). Only facts go public: no licence text, no finder notes."""
+def _tokens(row, by_url=None):
+    """The row's layer ids. A 'ca:' token keeps its trailing spaces (a CA layer id is the first 12 letters of the label, spaces and all).
+    A row with no layer id gets the US key's prefix for its layer address (by_url, from data/us-key/layers.json) when there is one."""
+    out = [t.lstrip() for t in str(row.get('layer_id') or '').split(';') if t.strip()]
+    out = [t if t.startswith('ca:') else t.strip() for t in out]
+    if by_url:
+        u = re.sub(r'/query/?$', '', str(row.get('current_source_url') or '').split('?')[0]).rstrip('/').lower()
+        if u in by_url and by_url[u] not in out: out.append(by_url[u])
+    return out
+
+
+# the US key's national layers that are written in its code rather than in data/us-key/layers.json
+US_BUILTIN = {'https://services.arcgis.com/qvengdapbd4lukLV/arcgis/rest/services/fwsinterest_simplified_authoritative/featureserver/0'.lower(): 'fws'}
+
+
+def us_prefix_by_url(us_layers):
+    """{layer address (lower case, no /query): US key prefix} from data/us-key/layers.json (prefix -> [url, ...])."""
+    out = dict(US_BUILTIN)
+    for k, v in ((M.load_json(us_layers, {}) or {}) if us_layers else {}).items():
+        if isinstance(v, list) and v and isinstance(v[0], str):
+            out.setdefault(re.sub(r'/query/?$', '', v[0].replace('svc:', '', 1).split('|')[0].split('?')[0]).rstrip('/').lower(), k)
+    return out
+
+
+def copy_count(area, row, copies, same_as=None, by_url=None, _memo={}):
+    """Nov 10: how many records of this CSV row's layer the saved copy of this area already holds (0 = none, None = no copy).
+    US-XX: any layer_id token as the OBJECTID prefix of US-XX.json.gz; 'US' (national): summed over every US copy.
+    CA / CA-XX: the 'ca:' token (the first 12 letters of the source label, '~N') or the source label in CA-ALL.json.gz.
+    W-XX: the source label (layer_name) in W-XX.json.gz, or its equivalent in same_as {area: {csv label: copy label}} (box-side)."""
+    if not copies: return None
+    d = pathlib.Path(copies)
+    def counts(name):
+        p = d / name
+        if not p.exists(): return None
+        k = (str(p), p.stat().st_mtime)
+        if k not in _memo: _memo[k] = M.saved_counts(p)
+        return _memo[k]
+    toks = _tokens(row, by_url); label = (row.get('layer_name') or '').strip()
+    if area.startswith('US'):
+        names = [f'{area}.json.gz'] if area.startswith('US-') else sorted(p.name for p in d.glob('US-*.json.gz') if not p.name.startswith('prev-'))
+        tot, seen = 0, False
+        for nm in names:
+            c = counts(nm)
+            if c is None: continue
+            seen = True; tot += max([c.get(t, 0) for t in toks if not t.startswith('ca:')] or [0])
+        return tot if seen else None
+    if area.startswith('CA'):
+        c = counts('CA-ALL.json.gz')
+        if c is None: return None
+        ca = [t[3:] for t in toks if t.startswith('ca:')]
+        n_id = [v for kk, v in c.items() if not kk.startswith('src:') and any(kk == t or (len(t.rstrip()) >= 6 and kk.rstrip() == t.rstrip()) for t in ca)]
+        return max(n_id + [c.get('src:' + label, 0)] + [c.get('src:' + t, 0) for t in toks if not t.startswith('ca:')])
+    c = counts(f'{area}.json.gz')
+    if c is None: return None
+    alt = ((same_as or {}).get(area) or {}).get(label)
+    return max(c.get('src:' + label, 0), c.get('src:' + alt, 0) if alt else 0)
+
+
+def seed(csv_path, sources_path, needs_rows_out=None, copies=None, same_as=None, us_layers=None):
+    """CSV -> download-sources.json (+ needs rows). Only facts go public: no licence text, no finder notes.
+    Nov 10: a row whose layer the saved copy of that area already holds (copies = a folder of the boundary-cache copies: US-XX,
+    CA-ALL, W-XX) is DONE (have = the records held), whatever its source kind: a change at the source reopens it. A row whose
+    official direct file a bot may fetch is a bot's (kpc_master.who_for with the file), not a person's."""
     rows = list(csv.DictReader(open(csv_path, encoding='utf-8-sig', newline='')))
     old = M.load_json(sources_path, {}) or {}
     src = dict(old.get('sources') or {})
-    needs = []
+    needs, by_url = [], us_prefix_by_url(us_layers)
     for r in rows:
         sid = f"h{int(r['row_id']):03d}"
         page, f = (r.get('official_download_page_url') or '').strip(), (r.get('direct_file_url') or '').strip()
@@ -83,12 +144,16 @@ def seed(csv_path, sources_path, needs_rows_out=None):
         # check READ (the first check sets the baseline, so it never asks a person; only a later difference does).
         src[sid] = e
         for area in e['areas']:
-            who = 'never' if never else 'person'
+            have = copy_count(area, r, copies, same_as, by_url)
+            # the CSV's layers are saved-copy only, so the layer itself is never a bot's; its official direct file may be (same host rules)
+            who = 'never' if never else ('bot' if f and M.live_ok(f)[0] else 'person')
             st, why = 'open', 'an official download exists for a layer a bot may not read (saved copies only)'
             if never: why = 'never contacted (no request of any kind); a first-party download elsewhere is still to be found'
+            elif have: st, why = 'done', f'the saved copy already holds this layer ({have} records); a change at the source reopens it'
             elif k == 'fallback': st, why = 'held', 'fallback only (PAD-US or CPCAD, which the keys already read): no first-party download found yet'
             elif k == 'none': st, why = 'held', 'no official download found yet (needs research)'
-            needs.append({**M.needs_row(area, e['layer'], e['layer_url'], why, 'hand-filled list (Nov 10)', who=who, page=page or None,
+            elif who == 'bot': why = 'an official direct file a bot may fetch exists for a layer a bot may not read: the fresh-start run downloads it'
+            needs.append({**M.needs_row(area, e['layer'], e['layer_url'], why, 'hand-filled list (Nov 10)', who=who, page=page or None, have=have or None,
                                         note=('direct file: ' + f) if f else '', src=sid, check=e['check']), 'status': st})
     doc = {'format': FORMAT, 'about': ABOUT, 'sources': {k: src[k] for k in sorted(src)}}
     pathlib.Path(sources_path).parent.mkdir(parents=True, exist_ok=True)
