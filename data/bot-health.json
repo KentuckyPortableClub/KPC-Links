@@ -1,30 +1,28 @@
 {
  "open": [
   "KPC-Data/kpc-collector.yml",
+  "KPC-Data/kpc-copy-from-links.yml",
   "KPC-Data/kpc-docs-merge.yml",
   "KPC-Data/kpc-intake.yml",
-  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-pile-solver.yml",
-  "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
-  "KPC-Data/kpc-waiting-room.yml",
-  "KPC-Data/kpc-watchdog.yml",
   "KPC-Data/kpc-wdpa-phonebook.yml",
   "KPC-Data/kpc-world-finder.yml",
-  "kpc-band-alerts.yml",
-  "kpc-bot-queue.yml",
+  "kpc-boards.yml",
+  "kpc-discord-relay.yml",
   "kpc-discord-watch.yml",
-  "kpc-fb-comments.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
+  "kpc-hunters.yml",
+  "kpc-park-alerts.yml",
+  "kpc-pota-discord.yml",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
-  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-10T12:16+00:00",
+ "checked": "2026-11-10T17:18+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -130,7 +128,7 @@
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 47044778
+   "b": 46717442
   },
   "L:data/ca-key": {
    "b": 5724317
@@ -139,7 +137,7 @@
    "b": 38231410
   },
   "L:data/pota": {
-   "b": 5666033
+   "b": 5666108
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -148,7 +146,7 @@
    "b": 16584
   },
   "L:data/ky-official-maps.json": {
-   "b": 92658
+   "b": 91558
   },
   "L:data/parkinfo-web.json": {
    "b": 583380
@@ -157,7 +155,7 @@
    "b": 117763
   },
   "L:data/boundary-score.json": {
-   "b": 975709
+   "b": 965762
   },
   "L:data/campfed": {
    "b": 643240
@@ -169,7 +167,7 @@
    "b": 334294
   },
   "L:locations.json": {
-   "b": 5421235
+   "b": 5421460
   },
   "L:kpc-events-auto.json": {
    "b": 20937
@@ -193,7 +191,7 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15823370
+   "b": 15823989
   },
   "D:data/trails": {
    "b": 31966627
@@ -205,13 +203,13 @@
    "b": 11701686
   },
   "D:data/review/scoreboard.json": {
-   "b": 137195
+   "b": 137200
   },
   "D:data/truth": {
    "b": 20045555
   },
   "D:data/alerts/eu.json": {
-   "b": 154019
+   "b": 162177
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -227,7 +225,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1131874
+   "b": 1135798
   }
  }
 }

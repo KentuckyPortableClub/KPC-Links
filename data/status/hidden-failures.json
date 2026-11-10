@@ -1,6 +1,6 @@
 {
  "about": "Errors and warnings a step caught itself (kept green), from each timed bot's last timed run (G8 'Hidden failures' lines). Written by the check-up (kpc_bot_health.py); next round C4, Nov 5. A job marked safe to fail goes red on a caught error (repo variable KPC_HIDDEN_RED=off turns that off).",
- "checked": "2026-11-10T12:16+00:00",
+ "checked": "2026-11-10T17:18+00:00",
  "runs_checked": 97,
  "runs_unread": 0,
  "with_hidden": [
@@ -23,16 +23,6 @@
    "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42810852086",
    "created": "2026-11-10T11:51:20Z",
    "conclusion": "success"
-  },
-  {
-   "job": "scoreboard",
-   "errors": 1,
-   "warnings": 0,
-   "kept_green_steps": 0,
-   "workflow": "KPC-Data/kpc-scoreboard.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42666223956",
-   "created": "2026-11-09T17:36:10Z",
-   "conclusion": "failure"
   },
   {
    "job": "run",
@@ -100,8 +90,8 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-waiting-room.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42755181238",
-   "created": "2026-11-10T04:20:00Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42820412810",
+   "created": "2026-11-10T12:59:14Z",
    "conclusion": "success"
   },
   {
@@ -110,8 +100,8 @@
    "warnings": 0,
    "kept_green_steps": 1,
    "workflow": "KPC-Data/kpc-map-pictures.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42667073029",
-   "created": "2026-11-09T17:41:28Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42846876362",
+   "created": "2026-11-10T15:40:52Z",
    "conclusion": "success"
   }
  ]
