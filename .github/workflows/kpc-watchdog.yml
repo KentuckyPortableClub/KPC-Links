@@ -34,7 +34,7 @@ jobs:
         # Repo variable KPC_BOOKKEEPING=main = the old way. A save that never lands is still RED (Nov 2 bot fixes).
         env:
           KPC_BOOKKEEPING: ${{ vars.KPC_BOOKKEEPING || 'branch' }}
-        run: bash .github/scripts/kpc_bookkeeping_save.sh 'watchdog - skipped runs started again' data/status
+        run: bash .github/scripts/kpc_bookkeeping_save.sh 'watchdog - skipped runs started again' data/status || { kpc_rc=$?; echo "::warning title=Watchdog notes::the notes were not saved (exit $kpc_rc); this run still ends green, the next look saves them"; echo "- Watchdog notes were not saved (exit $kpc_rc); the restarts are listed in this summary. Ends green, the next look saves the notes." >> "$GITHUB_STEP_SUMMARY"; }   # Nov 10 (quiet runs): a lost notes-save is not a red run for a watchdog that already restarted what it had to
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:

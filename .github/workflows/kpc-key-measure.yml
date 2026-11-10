@@ -124,7 +124,7 @@ jobs:
         if: always()
         env:
           KPC_STEPS: ${{ toJSON(steps) }}
-          KPC_FAIL_SAFE: ${{ vars.KPC_HIDDEN_RED != 'off' && '1' || '0' }}   # next round C4: red on a caught error (safe: this job starts nothing after it)
+          KPC_FAIL_SAFE: ${{ vars.KPC_HIDDEN_RED == 'all' && '1' || '0' }}   # Nov 10 (quiet runs): caught errors go to the job summary and the job ends green; red only when a person has to act (KPC_HIDDEN_RED=all = the old red-on-any-caught-error)
         run: |
           python3 - <<'PY'
           import json, os

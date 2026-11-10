@@ -36,17 +36,45 @@ jobs:
         with:
           node-version: '22'
       - name: Install the PDF printer
+        id: printer
+        # Nov 10 (quiet runs): failed here (Playwright / browser download). Now 3 tries with a wait between, the error goes to the job
+        # summary, and the next step decides whether the run may still end green.
+        continue-on-error: true
         run: |
-          npm install --no-save --no-package-lock playwright@1.56.0
-          npx playwright install --with-deps chromium
-          pip install --quiet pypdf
+          ok=0
+          for i in 1 2 3; do
+            if { npm install --no-save --no-package-lock playwright@1.56.0 && npx playwright install --with-deps chromium && pip install --quiet pypdf; } > /tmp/printer.log 2>&1; then ok=1; break; fi
+            echo "::warning title=PDF printer::install try $i failed; trying again"
+            { echo "### PDF printer install, try $i failed"; echo '```'; tail -n 15 /tmp/printer.log | cut -c1-300; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            sleep $((i * 20))
+          done
+          [ "$ok" = 1 ] || exit 1
+      - name: Printer missing - may this run still end green?
+        if: ${{ steps.printer.outcome == 'failure' }}
+        run: |
+          # Red only if a PDF would ship wrong: some page, style or data file a guide reads changed since the newest commit that touched a PDF.
+          git fetch -q --depth=300 origin main 2>/dev/null || true   # ok: a deeper look is optional (without it this run stays red, the safe side)
+          P=$(git log -1 --format=%H -- '*.pdf' 2>/dev/null || true)   # ok: no PDF commit in view = the next lines stay red (safe side)
+          if [ -z "$P" ] || ! git cat-file -e "$P" 2>/dev/null; then
+            echo "::error title=Guide PDFs::the PDF printer is missing and the last PDF save is not in view: cannot show the PDFs are current"
+            echo "**Printer missing, and the last PDF save could not be found: red (cannot show the PDFs are current).**" >> "$GITHUB_STEP_SUMMARY"; exit 1
+          fi
+          CH=$(git diff --name-only "$P" HEAD -- 'kpc-guide-*' kpc-guide.css kpc-ky-data.json kpc-ky-counties-hd.json kpc-top25.json .github/scripts/kpc_guide_pdf.js | grep -v '\.pdf$' || true)   # ok: grep finds nothing = no input changed
+          if [ -n "$CH" ]; then
+            echo "::error title=Guide PDFs::the PDF printer is missing and these inputs changed since the last PDF save: $(echo $CH | head -c 300)"
+            { echo "**Printer missing and guide inputs changed since the last PDF save (${P:0:8}): red, a PDF may ship out of date.**"; echo "$CH" | sed 's/^/- /'; } >> "$GITHUB_STEP_SUMMARY"; exit 1
+          fi
+          echo "::notice title=Guide PDFs::the PDF printer is missing but no guide input changed since the last PDF save (${P:0:8}): nothing to print"
+          echo "**Printer missing, but no guide page, style or data file changed since the last PDF save (${P:0:8}): no PDF needs reprinting, ending green.**" >> "$GITHUB_STEP_SUMMARY"
       - name: Print the guides
+        if: ${{ steps.printer.outcome == 'success' }}
         run: |
           python3 -m http.server 8765 >/dev/null 2>&1 &
           sleep 2
           mkdir -p /tmp/guides
           node .github/scripts/kpc_guide_pdf.js /tmp/guides
       - name: Keep only PDFs that changed
+        if: ${{ steps.printer.outcome == 'success' }}
         run: |
           python3 - <<'PY'
           import glob, os, shutil
@@ -73,6 +101,7 @@ jobs:
           print(f"::notice title=Guide PDFs::{len(changed)} changed: {', '.join(changed) or 'none'}")
           PY
       - name: Save
+        if: ${{ steps.printer.outcome == 'success' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
