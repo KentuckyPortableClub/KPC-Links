@@ -21,6 +21,13 @@
    "from": "f489a836894f",
    "why": "State GIS paging honors the layer maxRecordCount so a silent server page cap is not treated as the last page, and a short layer already in the saved copy is re-read. It changes what every state may read from a state layer.",
    "scope": "all"
+  },
+  {
+   "id": "2026-11-10-saved-copy-refill-arcgis-hosts",
+   "when": "2026-11-10",
+   "from": "bbdcc89f8120",
+   "why": "A saved copy the master gate holds is refilled first (KPC_REFILL_ONLY: saved PAD-US ids by id and the newer or short state layers, then the same gate again), and every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path. What a state may read live changes, so every state is rebuilt once.",
+   "scope": "all"
   }
  ]
 }

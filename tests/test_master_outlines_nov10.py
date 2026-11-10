@@ -252,11 +252,11 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
 us_h, ca_h, world_h, fers_h = (KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers'))
-check((us_h, ca_h, world_h, fers_h) == ('bbdcc89f8120', '570b09c3cb52', '6444287722b9', 'c2456edee62e'),
-      f'rules hashes stay US bbdcc89f8120, CA 570b09c3cb52, world 6444287722b9, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
+check((us_h, ca_h, world_h, fers_h) == ('ee5fc3c49dd7', '570b09c3cb52', '6444287722b9', 'c2456edee62e'),
+      f'rules hashes stay US ee5fc3c49dd7, CA 570b09c3cb52, world 6444287722b9, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
 try:
     changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-    check(('US rules f489a836894f -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move')
+    check('US rules f489a836894f -> bbdcc89f8120' in changelog and ('US rules bbdcc89f8120 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move and the Nov 10 refill move')
     check(('fers v1 3dde681f1427 -> ' + fers_h) in changelog, 'changelog records the #108 fers hash move')
     # #109 is already on main, so the US page-cap files now match origin/main.
     # This PR (#108) may change only the fers rule files.
@@ -266,7 +266,8 @@ try:
         if same:
             check(True, f'rule file matches main: {f}')
         else:
-            check(f in allowed, f'rule file differs from main only when declared (fers): {f}')
+            us_ok = f in KF.RULE_FILES['us-key'] and ('US rules bbdcc89f8120 -> ' + us_h) in changelog   # Nov 10 refill move, declared
+            check(f in allowed or us_ok, f'rule file differs from main only when declared (fers, or the Nov 10 US move): {f}')
 except Exception as e: print('SKIP rule-file diff:', e)
 
 
@@ -278,7 +279,7 @@ try:
         check('kpc_master_cli.py gate' in txt and 'kpc_master_cli.py check' in txt and 'kpc_master_cli.py plan' in txt and 'Master gate verdict' in txt, f'{wf}: reads master first (check + plan), gates the saved copy, ends with the verdict step')
     d = yaml.safe_load(open(HERE / '.github/workflows/kpc-us-key.yml'))
     run = [s_['run'] for s_ in d['jobs']['build']['steps'] if s_.get('name', '').startswith('Build the answer key')][0]
-    snip = run[run.index('# Nov 10 (master outlines'):run.index('python3 .github/scripts/kpc_us_key.py')]
+    snip = run[run.index('# Nov 10 (master outlines'):run.index('python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-')]
     with tempfile.TemporaryDirectory() as t:
         t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
         for fn in ('kpc_master.py', 'kpc_master_cli.py'): (t / '.github/scripts' / fn).write_bytes((HERE / '.github/scripts' / fn).read_bytes())

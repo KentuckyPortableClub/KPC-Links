@@ -81,8 +81,8 @@ def question(ref, answer, **extra):
 # ---- rules hash and the research switch are untouched ----
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('bbdcc89f8120', '570b09c3cb52', '6444287722b9'),
-      'rules hashes stay us bbdcc89f8120, ca 570b09c3cb52, world 6444287722b9')
+check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key')) == ('ee5fc3c49dd7', '570b09c3cb52', '6444287722b9'),
+      'rules hashes stay us ee5fc3c49dd7, ca 570b09c3cb52, world 6444287722b9')
 check(RS.mode() == 'off', 'KPC_RESEARCH_SOURCES still defaults to off')
 check(any(str(p).endswith('kpc_ca_hardlook.py') for p in KZ.RULE_FILES['ca-key']),
       'Canada hard look stays a rules file (this patch does not edit it)')
