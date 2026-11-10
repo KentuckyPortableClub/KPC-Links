@@ -1,6 +1,6 @@
 {
  "key": "us",
- "count": 33,
+ "count": 27,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -12,7 +12,7 @@
    "was_g": "official",
    "held_ids": "2165",
    "held_names": "",
-   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km)))",
+   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km))))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person adds the id to the park's signed overrides.json 'join'"
   },
@@ -22,59 +22,11 @@
    "name": "Vega State Park",
    "pin_km": 7.92,
    "was_g": "official",
-   "held_ids": "sgcoc872",
+   "held_ids": "sgcoc873",
    "held_names": "",
-   "reason": "a new join (sgcoc872) on a park already joined: the outline is 7.9 km from the POTA pin (over 5 km for a new join); the earlier joins stay",
+   "reason": "a new join (sgcoc873) on a park already joined: the outline is 7.9 km from the POTA pin (over 5 km for a new join); the earlier joins stay",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the new piece add it to overrides.json 'join' (or a signed answer-sheet row)"
-  },
-  {
-   "park": "US-10723",
-   "area": "US-MN",
-   "name": "Crystal Spring SNA Scenic Reserve",
-   "pin_km": 357.98,
-   "was_g": "official",
-   "held_ids": "sgmnc178",
-   "held_names": "Crystal Spring",
-   "reason": "the nearest part of the joined outline is 358.0 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
-  },
-  {
-   "park": "US-11872",
-   "area": "US-MN",
-   "name": "Lost 40 SNA State Natural Area",
-   "pin_km": 185.02,
-   "was_g": "official",
-   "held_ids": "sgmnc198",
-   "held_names": "Lost 40",
-   "reason": "the nearest part of the joined outline is 185.0 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
-  },
-  {
-   "park": "US-4868",
-   "area": "US-NH",
-   "name": "Annett State Forest",
-   "pin_km": 9.35,
-   "was_g": "official",
-   "held_ids": "sgnhc2522 | sgnhc2651 | sgnhc2610 | sgnhc2298 | sgnhc2607 | sgnha10009 | sgnha10010 | sgnha10011 | sgnha10012 | sgnhd10009 | sgnhd10010 | sgnhd10011 | sgnhd10012",
-   "held_names": "Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest",
-   "reason": "a person said NO to this land under its old id (sgnha10009 = 56939 \"Annett State Forest\", sgnha10010 = 56939 \"Annett State Forest\", sgnha10011 = 56939 \"Annett State Forest\", sgnha10012 = 56939 \"Annett State Forest\", sgnhd10009 = 56939 \"Annett State Forest\", sgnhd10010 = 56939 \"Annett State Forest\", sgnhd10011 = 56939 \"Annett State Forest\", sgnhd10012 = 56939 \"Annett State Forest\")",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
-  },
-  {
-   "park": "US-4886",
-   "area": "US-NH",
-   "name": "Connecticut Lakes State Forest",
-   "pin_km": 5.77,
-   "was_g": "official",
-   "held_ids": "sgnhc66 | sgnha3 | sgnha138 | sgnha345 | sgnha346 | sgnha347 | sgnha495 | sgnha510 | sgnha917 | sgnhd3 | sgnhd138 | sgnhd345 | sgnhd346 | sgnhd347 | sgnhd495 | sgnhd510 | sgnhd917",
-   "held_names": "Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest",
-   "reason": "a person said NO to this land under its old id (sgnhc66 = 56956 \"Connecticut Lakes State Forest\", sgnha3 = 56956 \"Connecticut Lakes State Forest\", sgnha138 = 56956 \"Connecticut Lakes State Forest\", sgnha345 = 56956 \"Connecticut Lakes State Forest\", sgnha346 = 56956 \"Connecticut Lakes State Forest\", sgnha347 = 56956 \"Connecticut Lakes State Forest\", sgnha495 = 56956 \"Connecticut Lakes State Forest\", sgnha510 = 56956 \"Connecticut Lakes State Forest\", sgnha917 = 56956 \"Connecticut Lakes State Forest\", sgnhd3 = 56956 \"Connecticut Lakes State Forest\", sgnhd138 = 56956 \"Connecticut Lakes State Forest\", sgnhd345 = 56956 \"Connecticut Lakes State Forest\", sgnhd346 = 56956 \"Connecticut Lakes State Forest\", sgnhd347 = 56956 \"Connecticut Lakes State Forest\", sgnhd495 = 56956 \"Connecticut Lakes State Forest\", sgnhd510 = 56956 \"Connecticut Lakes State Forest\", sgnhd917 = 56956 \"Connecticut Lakes State Forest\")",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
   },
   {
    "park": "US-10844",
@@ -154,8 +106,8 @@
    "name": "Goshute BLM Herd Management Area",
    "pin_km": 5.79,
    "was_g": "official",
-   "held_ids": "sgnvi416",
-   "held_names": "Goshute",
+   "held_ids": "sgnvi416 | hab86",
+   "held_names": "Goshute | Goshute",
    "reason": "a person said NO to this land under its old id (sgnvi416 = hma44 \"Goshute\")",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
@@ -375,30 +327,6 @@
    "reason": "a person said NO to this land under its old id (sgakg12757 = rst12757 \"Fawn Creek Campground\", sgorf3756 = rst12757 \"Fawn Creek Campground\")",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
-  },
-  {
-   "park": "US-11748",
-   "area": "US-UT",
-   "name": "Cedar Mesa BLM Special Recreation Management Area",
-   "pin_km": 31.24,
-   "was_g": "official",
-   "held_ids": "rst14459",
-   "held_names": "Cedar Mesa",
-   "reason": "the nearest part of the joined outline is 31.2 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
-  },
-  {
-   "park": "US-5782",
-   "area": "US-UT",
-   "name": "Indian Creek BLM Special Recreation Management Area",
-   "pin_km": 33.59,
-   "was_g": "official",
-   "held_ids": "rst14458",
-   "held_names": "Indian Creek",
-   "reason": "the nearest part of the joined outline is 33.6 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   }
  ]
 }
