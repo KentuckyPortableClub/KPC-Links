@@ -1,17 +1,5 @@
 {
  "restarted": {
-  "kpc-band-alerts.yml|2026-11-03T11:48:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-boards.yml|2026-11-03T11:44:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-bot-health.yml|2026-11-03T09:44:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-bot-queue.yml|2026-11-03T10:22:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-ca-key.yml|2026-11-03T09:49:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-discord-watch.yml|2026-11-03T11:47:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-fb-comments.yml|2026-11-03T11:32:00+00:00": "2026-11-03T12:25+00:00 skipped (not restarted)",
-  "kpc-hunters.yml|2026-11-03T11:07:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-park-alerts.yml|2026-11-03T11:03:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-pota-discord.yml|2026-11-03T11:19:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-ses.yml|2026-11-03T10:41:00+00:00": "2026-11-03T12:25+00:00 started",
-  "kpc-us-key.yml|2026-11-03T11:46:00+00:00": "2026-11-03T12:25+00:00 started",
   "kpc-band-alerts.yml|2026-11-03T14:18:00+00:00": "2026-11-03T15:00+00:00 started",
   "kpc-boards.yml|2026-11-03T14:14:00+00:00": "2026-11-03T15:00+00:00 started",
   "kpc-bot-queue.yml|2026-11-03T14:22:00+00:00": "2026-11-03T15:00+00:00 started",
@@ -650,19 +638,6 @@
   "kpc-ses.yml|2026-11-10T10:41:00+00:00": "2026-11-10T12:16+00:00 started",
   "pages-deploy.yml|2026-11-10T10:41:00+00:00": "2026-11-10T12:16+00:00 started"
  },
- "last": "2026-11-10T12:16+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 10 11:48 UTC)",
-  "kpc-boards.yml (missed Nov 10 11:44 UTC)",
-  "kpc-bot-health.yml (missed Nov 10 09:44 UTC)",
-  "kpc-bot-queue.yml (missed Nov 10 10:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 10 11:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 10 10:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 10 11:07 UTC)",
-  "kpc-ky-maps.yml (missed Nov 10 09:21 UTC)",
-  "kpc-park-alerts.yml (missed Nov 10 11:03 UTC)",
-  "kpc-pota-discord.yml (missed Nov 10 11:19 UTC)",
-  "kpc-ses.yml (missed Nov 10 10:41 UTC)",
-  "pages-deploy.yml (missed Nov 10 10:41 UTC)"
- ]
+ "last": "2026-11-10T12:53+00:00",
+ "last_restarted": []
 }
