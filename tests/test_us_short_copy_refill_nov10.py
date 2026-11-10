@@ -94,5 +94,22 @@ try:
 except ImportError:
     print('SKIP yaml not installed')
 
+# 7. Canada and world keys: the same services*.arcgis.com rule
+for fn, a, b in (('kpc_ca_key.py', 'SAVED_ONLY_HOSTS = ', 'def get('), ('kpc_world_key.py', 'SAVED_ONLY_HOSTS = ', 'def fetch_bytes(')):
+    s2 = (ROOT / '.github/scripts' / fn).read_text(encoding='utf-8')
+    ns2 = {'os': __import__('os'), 're': re, 'urllib': __import__('urllib.parse')}
+    exec(compile(s2[s2.index(a):s2.index(b)], fn, 'exec'), ns2)
+    so2 = ns2['saved_only']
+    check(f'{fn}: services2 / services7 / services9 .arcgis.com are saved-copy only', all(so2(f'https://services{n}.arcgis.com/x/arcgis/rest/services/y/FeatureServer/0') for n in ('', '1', '2', '7', '9')))
+    check(f'{fn}: a provincial / national host is still read live', not so2('https://maps.gov.bc.ca/arcgis/rest/services/x/MapServer/5') and not so2('https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'))
+ca = (ROOT / '.github/scripts/kpc_ca_key.py').read_text(encoding='utf-8')
+check('Canada: the GeoJSON and zipped-shapefile pulls ask saved_only first', ca.count("if saved_only(url): raise RuntimeError(f'saved copy only:") == 2 and 'if saved_only(url): raise RuntimeError' in ca[ca.index('def get('):ca.index('def get(') + 200])
+wk = (ROOT / '.github/scripts/kpc_world_key.py').read_text(encoding='utf-8')
+check('world: fetch_bytes asks saved_only first', 'if saved_only(u): raise LayerStall(' in wk[wk.index('def fetch_bytes('):wk.index('def fetch_bytes(') + 600])
+# 8. a smaller re-read never replaces a saved layer
+g = src[src.index('            if missing or short:'):src.index('        if REFILL_ONLY:\n            notice(')]
+check('a short layer keeps its saved records when the re-read has fewer', 'if n_new < len(old_l):' in g and 'recs += old_l' in g and g.index('kept_old = {pre:') < g.index('add = extra_state(') < g.index('if n_new < len(old_l):'))
+check('resolve() and the zipped-shapefile layers ask saved_only too', "def rq(u):\n        if saved_only(u): raise RuntimeError" in src and "if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue" in src)
+
 if __name__ == '__main__':
     sys.exit(0 if ok else 1)

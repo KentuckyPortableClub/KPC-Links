@@ -10,7 +10,7 @@ import kpc_join_check as J, kpc_key_freeze as KF
 bad = 0
 def check(ok, msg):
     global bad; bad += not ok; print(('PASS ' if ok else 'FAIL ') + msg)
-check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': 'ee5fc3c49dd7', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}, 'rules hashes unchanged')
+check({k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')} == {'us-key': 'da660f0d5ae7', 'ca-key': 'b1a521708978', 'world-key': '1a8913a378bb'}, 'rules hashes unchanged')
 check('kpc_join_check.py' in KF.NOT_RULES, 'kpc_join_check.py is not a rules file')
 T = pathlib.Path(tempfile.mkdtemp(prefix='kpc-qsf-nov8-'))
 def run(parks, prev):

@@ -326,12 +326,20 @@ def _retry_wait(u, i):
 # Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403 (B3: the layer FAILS into
 # the saved-copy / HOLD path at once, no retries). Remove a host only when its robots.txt lets us back in.
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+# Nov 10: every services*.arcgis.com host (services2 ... services9 too) is never contacted, robots.txt included (the same rule as
+# kpc_master.live_ok): its layers fail into the saved-copy / HOLD path at once.
+_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+
+
+def saved_only(u):
+    h = urllib.parse.urlsplit(str(u)).netloc.lower().split(':')[0]
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
 
 
 def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes=None, parse=None):
     """B2: GET u; the whole answer within `total` (default REQ_S) seconds and never past `deadline` (time.monotonic()); `tries`
     tries (default REQ_TRIES) with growing, jittered waits that never sleep past `deadline`. parse(bytes) runs inside the try."""
-    if urllib.parse.urlsplit(u).netloc.lower() in SAVED_ONLY_HOSTS: raise LayerStall(f'saved copy only (Brandon t939u): {urllib.parse.urlsplit(u).netloc}')
+    if saved_only(u): raise LayerStall(f'saved copy only (owner rule, Nov 9): {urllib.parse.urlsplit(u).netloc}')
     tries, total, last = max(1, int(tries or REQ_TRIES)), float(total or REQ_S), None
     for i in range(tries):
         now = time.monotonic()

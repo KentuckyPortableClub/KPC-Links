@@ -26,8 +26,9 @@
    "id": "2026-11-10-saved-copy-refill-arcgis-hosts",
    "when": "2026-11-10",
    "from": "bbdcc89f8120",
-   "why": "A saved copy the master gate holds is refilled first (KPC_REFILL_ONLY: saved PAD-US ids by id and the newer or short state layers, then the same gate again), and every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path. What a state may read live changes, so every state is rebuilt once.",
-   "scope": "all"
+   "why": "A saved copy the master gate holds is refilled first (KPC_REFILL_ONLY: saved PAD-US ids by id and the newer or short state layers, then the same gate again); a re-read that comes back with fewer records than the saved layer no longer replaces it; and every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path. What a state may read live changes, so every state is rebuilt once.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }
