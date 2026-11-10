@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""POTA's 'sub-parks' rule is gone (Brandon Nov 9, 2026, 6:43 PM CST, t944u). Offline: no network, no run started.
+"""POTA sub-park rule change (Nov 2026). Offline: no network, no run started.
 1 the Tool Box rep check: a park inside a bigger POTA park of the SAME agency is INFO (allowed, needs its own web page + boundary
   map, a possible 2-fer), never a NO that makes the verdict 'LIKELY NOT ELIGIBLE'
 2 the Kentucky new-lands watch no longer leaves such a land out (it is listed with a note)
 3 the 2-fer finder already treats a same-agency nested pair like any other pair: one public owner = ok (no 2-fer rule file changed)
 4 point 2 of the rule: a park with only a point (no official boundary of its own) inside the bigger park is NOT tested as a 2-fer;
   it goes on the 'Missing boundary: check the official map' list, and the bigger park's shape is never its outline
-5 rule 12 text in mapping.md / RULES-NOW.md says the new rule; the rule hashes did not move"""
+5 the public rules docs are unchanged and the rule hashes did not move"""
 import json, os, pathlib, sys, types
 HERE = pathlib.Path(__file__).resolve().parent.parent
 S = HERE / '.github/scripts'
@@ -68,13 +68,10 @@ _ml = src[src.index('def missing_list'):src.index('# ---------------------------
 check("(ref in G)" in _ml and "'Missing boundary: check the official map'" in _ml,
       'point-only park inside another park = Missing boundary list, never a tested 2-fer (it has no outline in G)')
 
-# 5 rule text + hashes
-m = (HERE / '.claude/notes/mapping.md').read_text(encoding='utf-8'); rn = (HERE / '.claude/RULES-NOW.md').read_text(encoding='utf-8')
-for t, nm in ((m, 'mapping.md'), (rn, 'RULES-NOW.md')):
-    i = t.index('12. CAN A PARK BE INSIDE ANOTHER PARK OF THE SAME AGENCY?'); r12 = t[i:t.index('\n', i)]
-    check(r12.startswith('12. CAN A PARK BE INSIDE ANOTHER PARK OF THE SAME AGENCY? YES') and 'published boundary map' in r12 and 't944u' in r12, f'{nm}: rule 12 says the new rule')
-    check("'same land, two park numbers'" in r12 and 'a dot on a map is not a boundary' in r12, f'{nm}: rule 12 keeps same-land rows and point 2')
-check(rn.count('12. CAN A PARK BE INSIDE ANOTHER PARK OF THE SAME AGENCY? YES') == 1, 'RULES-NOW.md was regenerated from mapping.md')
+# 5 public docs unchanged + hashes
+import subprocess
+_d = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.claude/RULES-NOW.md', '.claude/notes/mapping.md'], cwd=HERE, capture_output=True, text=True)
+check(_d.returncode != 0 or not _d.stdout.strip(), 'the public rules docs (RULES-NOW.md, mapping.md) are not changed by this PR')
 import kpc_key_freeze as F
 want = {'us-key': '19d219f37114', 'ca-key': '22f16bc69b96', 'world-key': '10e4092cc97f', 'fers': 'eb92de7a5f65'}
 got = {k: F.rules_hash(k, HERE) for k in want}

@@ -169,8 +169,7 @@ def news():
 PARKISH = {'sp', 'hist', ''}
 
 
-# Nov 9 2026 (Brandon t944u, 6:43 PM CST): POTA dropped the 'sub-parks' rule. A park inside a bigger park of the same agency
-# (Natural Bridge State Park State Nature Preserve) is no longer left out; it is listed with this note instead.
+# Nov 2026: POTA sub-park rule change. A land inside a bigger park of the same agency is no longer left out; it gets this note.
 SUBPARK = re.compile(r'state park state nature preserve', re.I)
 
 
