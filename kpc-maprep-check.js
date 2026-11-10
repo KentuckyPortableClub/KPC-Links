@@ -499,7 +499,8 @@
     else if (pad && pad.OBJECTID && /proclamation/i.test(pad.Category || '')) rules.push(rule('fail', 'Has an official boundary', 'PAD-US Category', 'Category = Proclamation. OBJECTID ' + pad.OBJECTID + '. That line is the administrative boundary. Land inside it is not all public.'));
     else if (pad && pad.OBJECTID) rules.push(rule('pass', 'Has an official boundary', 'PAD-US OBJECTID ' + pad.OBJECTID, 'PAD-US has a record. Its outline is the PAD-US geometry for that id.'));
     else if (ctx.caExact && ctx.caExact.ZONE_ID != null) rules.push(+ctx.caExact.STATUS === 0 ? rule('fail', 'Has an official boundary', 'CPCAD STATUS', 'STATUS = 0 (Delisted). ZONE_ID ' + ctx.caExact.ZONE_ID + '.') : rule('pass', 'Has an official boundary', 'CPCAD ZONE_ID ' + ctx.caExact.ZONE_ID, 'CPCAD has a record with a mapped boundary (status ' + ctx.caExact.STATUS + ').'));
-    else rules.push(rule('unknown', 'Has an official boundary', 'layer geometry', 'No outline in the saved state layers and no PAD-US record id.'));
+    else { const _pc = window.KPCB && KPCB.pcSync && (ctx.pota || []).map(x => KPCB.pcSync(x && (x.ref || x.c || x[0]) || x)).filter(Boolean)[0];   /* Brandon t954u */
+      rules.push(rule('unknown', 'Has an official boundary', _pc ? 'official point (100 ft circle)' : 'layer geometry', _pc ? KPCB.pcNote(_pc) : 'No outline in the saved state layers and no PAD-US record id.')); }
 
     const page = urlOf(f || { properties: {} }) || (own && own.url) || '';
     if (page && govUrl(page)) rules.push(rule('pass', 'Has an official government web page', 'URL', page));

@@ -99,13 +99,17 @@
   }
   var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
   function apxLine(refs) { var a = (refs || []).filter(function (r) { return APPROX[r]; }); return a.length ? '<p class="ov-note" style="color:#8a5a00"><b>Approximate outline</b> for ' + a.map(esc).join(', ') + ' (' + esc(APPROX[a[0]]) + '), not the official boundary.</p>' : ''; }
+  /* Nov 9 2026 (Brandon t954u): a 2-fer with a point-circle park says so on its card, popups and export */
+  function pcNotes(s) { var o = (s && s.pc_note) || {}; return Object.keys(o).map(function (r) { return [r, o[r]]; }); }
+  function pcLine(ps) { var seen = {}, out = ''; (ps || []).forEach(function (s) { pcNotes(s).forEach(function (x) { if (seen[x[0]]) return; seen[x[0]] = 1; out += '<p class="ov-note ov-pc" style="color:#8a5a00">📍 <b>' + esc(x[0]) + '</b>: ' + esc(x[1]) + '</p>'; }); }); return out; }
   function rowHtml(g, ps) {
     var s = ps[0], small = ps.some(function (x) { return tierOf(x) === 'small'; }), wait = ps.some(function (x) { return !x._rev; });
     return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') +
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') + (ps.some(function (x) { return x._saved; }) ? '<span class="ov-badge bg-off">CHECKED ON OUR SAVED OUTLINE ONLY</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
-      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs) + (ps.length > 1 ? '' : accLine(s)) +
+      (ps.some(function (x) { return x.tier === 'point-circle'; }) ? '<span class="ov-badge bg-small">POINT CIRCLE: NO OFFICIAL BOUNDARY</span>' : '') +
+      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs) + pcLine(ps) + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
       '<details class="ov-more"><summary>SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
@@ -481,8 +485,9 @@
   }
   function parkPop(p) { var s = cur.best, m = (s.maps || []).filter(function (x) { return x[0] === p.ref; })[0];
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
+      (s.pc_note && s.pc_note[p.ref] ? '<br><span style="color:#8a5a00">📍 ' + esc(s.pc_note[p.ref]) + '</span>' : '') +
       '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a>'; }   /* Brandon: the overlap message only on the overlap */
-  function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
+  function patchPop(s) { return pcLine([s]) + '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
     'Last checked ' + esc(s.checked || '') + apxLine(cur.refs).replace(/<\/?p[^>]*>/g, '<br>') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p><div data-gps-refs="' + esc((g.refs || []).join(',')) + '"></div>';
@@ -535,7 +540,7 @@
 
   /* ---------- export, share, offline, report ---------- */
   function fileOut(kind) {
-    var g = cur; if (!g) return; var nmx = g.refs.join('+'), desc = esc(g.refs.map(function (r) { return r + ' ' + nm(g, r); }).join(' + ')) + ' · ' + esc(SHORT);
+    var g = cur; if (!g) return; var nmx = g.refs.join('+'), desc = esc(g.refs.map(function (r) { return r + ' ' + nm(g, r); }).join(' + ')) + ' · ' + esc(SHORT) + pcNotes(g.best || {}).map(function (x) { return ' · ' + esc(x[0] + ': ' + x[1]); }).join('');
     var s = '';
     if (kind === 'gpx') { s = '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="KPC Park Overlap Finder" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>' + esc(nmx) + '</name><desc>' + desc + '</desc></metadata>\n' +
       g.rings.map(function (x, i) { return '<trk><name>' + esc(nmx) + ' patch ' + (i + 1) + '</name><desc>' + desc + '</desc><trkseg>' + x.ring.concat([x.ring[0]]).map(function (p) { return '<trkpt lat="' + p[1] + '" lon="' + p[0] + '"/>'; }).join('') + '</trkseg></trk>'; }).join('\n') +

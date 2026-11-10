@@ -356,7 +356,8 @@
   function wname(m, a) { return cut(m.ref + " " + a.short + (a.n ? " " + a.n : ""), 30); }
   function pinDesc(m) {
     var d = m.ref + " " + m.name + ". " + PIN_LABEL + ".";
-    d += m.status === "pin" ? " " + NO_OUTLINE + "." : m.outlineMissing ? " Outline: " + m.outlineLabel + ", not in this file (see the park card)." : " Outline: " + m.outlineLabel + ".";
+    var pc = m.status === "pin" && window.KPCB && KPCB.pcSync && KPCB.pcSync(m.ref);   /* Brandon t954u: the exported file says it too */
+    d += m.status === "pin" ? " " + NO_OUTLINE + "." + (pc ? " " + KPCB.pcNote(pc) : "") : m.outlineMissing ? " Outline: " + m.outlineLabel + ", not in this file (see the park card)." : " Outline: " + m.outlineLabel + ".";
     return d;
   }
   function fileDesc(o, anyFers) {

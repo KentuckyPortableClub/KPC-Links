@@ -62,6 +62,8 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_join_check.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
+             # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join
+             'kpc_research_inbox.py', 'kpc_research_from_xlsx.py',
              # Nov 6: after the US builder. A state whose shape read is zero or under half the live key fails
              # the job instead of publishing pins. It does not decide a join (US rules hash stays a066624520b4).
              'kpc_shape_guard.py',

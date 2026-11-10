@@ -372,6 +372,8 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'us')
             if m0 and not m: continue
+            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
+                parks[ref] = pc_park(ref, st); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             # Nov 6 (Quality 2-fer grade): the key's g=approximate counts even when the join how-tag is plain 'words'/'name'
             # (US-12459 Housatonic River Southern Fields: g=approximate, how=words). A key PIN never enters an area 2-fer.
@@ -395,6 +397,8 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'ca')
             if m0 and not m: continue
+            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
+                parks[ref] = pc_park(ref, f.stem); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if _bad(ref, m, p): continue
@@ -580,9 +584,53 @@ SLOW_MAP = {}   # Nov 9 PM: map url -> requests that ran past the limit this run
 DL_CUT = set()  # Nov 9 PM: parks not downloaded for time
 
 
+# Nov 9 (Brandon t949u + t950u, 6:50-6:51 PM CST: "If we have a point shouldn't we confirm 100' circle around pin at least?"): a park
+# with NO boundary whose official POINT record matches its name near the POTA pin (POINT-CONFIRMED, data/point-circles.json) gets a
+# 100 ft (30.48 m) circle around the OFFICIAL point (the POTA pin is never moved) as a stand-in. Its 2-fers are a separate, labelled
+# 'point-circle' tier (never an official boundary; Quality filters on tier == 'point-circle'). A park with a real outline never uses
+# it (the circle is dropped as soon as the key has a boundary). KPC_FERS_POINT_CIRCLE=0 turns the tier off.
+PC_ON = (os.environ.get('KPC_FERS_POINT_CIRCLE') or '1') != '0'
+PC_KIND = 'point-circle-100ft'
+PC_LIST = '📍 Point circle: 100 ft around the official point (NOT an official boundary)'
+PCT = set()   # the parks in this run that use a point circle
+def pc_load():
+    try: d = json.load(open('data/point-circles.json', encoding='utf-8')).get('parks') or {}
+    except Exception: return {}  # noqa: BLE001
+    return {r: v for r, v in d.items() if v.get('kind') == PC_KIND and v.get('pt') and len(v['pt']) == 2}
+PC = pc_load() if PC_ON else {}
+def pc_ring(lon, lat, r_m=30.48, n=24):
+    k = math.cos(math.radians(lat))
+    ring = [[round(lon + r_m * math.cos(2 * math.pi * i / n) / (111320.0 * k), 7), round(lat + r_m * math.sin(2 * math.pi * i / n) / 110574.0, 7)] for i in range(n)]
+    return ring + [ring[0]]
+def pc_park(ref, st):
+    """the 2-fer park entry for a POINT-CONFIRMED park without a boundary (None when it has no circle)"""
+    v = PC.get(ref)
+    if not v: return None
+    PCT.add(ref); i = f'pc|{ref}'
+    return {'st': st, 'ids': [i], 'names': {i: f"{v.get('record_name') or ref} (100 ft point circle, {v.get('layer_name') or 'official point'})"}, 'pc': True}
+def pc_note(ref):
+    """the plain note every card shows for a point-circle park (Brandon t954u; neutral words, t952u). Same text as kpc-bounds.js pcNote."""
+    v = PC.get(ref) or {}
+    u = v.get('layer_url') or ''
+    m = re.search(r'services/(.+?)/(?:MapServer|FeatureServer)/(\d+)', u, re.I)
+    lay = (m.group(1).split('/')[-1].replace('_', ' ') + ' layer ' + m.group(2)) if m else ('official layer' if u else '')
+    rid = v.get('record_id')
+    src = ', '.join(x for x in [v.get('record_name') or '', lay, f'record {rid}' if rid not in (None, '') else ''] if x)
+    return ("No official boundary on file. Using a 100 ft circle around the agency\u2019s official point" + (f' ({src})' if src else '')
+            + '. The real boundary may be larger, so check before you activate.')
+def pc_tag(d):
+    """every spot touching a point-circle park is the 'point-circle' tier, labelled so (Quality filters on it)"""
+    for x in (d.get('spots') or []) if isinstance(d, dict) else []:
+        pr = sorted(set(x.get('refs') or []) & PCT)
+        if pr: x['tier'] = 'point-circle'; x['list'] = PC_LIST; x['point_circle'] = pr; x['official_boundary'] = False; x['pc_note'] = {r: pc_note(r) for r in pr}
+    return d
+
+
 def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
     be read is left out (dead certain: half a park is not the park)."""
+    _pc = {r: [[pc_ring(*PC[r]['pt'])]] for r in refs if r in PCT}   # Brandon t950u: the circle, never a download
+    refs = [r for r in refs if r not in PCT]
     want = {}
     for ref in refs:
         ca = parks[ref]['st'].startswith('CA-')
@@ -687,6 +735,7 @@ def download(parks, refs, det, prec):
     today = time.strftime('%Y-%m-%d')
     for ref in got:   # B2 (Oct 30): the real read date (a reused bundle answer can be up to weeks old), never 'today' for an old answer
         MAPDATE[ref] = f"read from the agency {time.strftime('%Y-%m-%d', time.gmtime(READ[ref]))}" if ref in READ else f'downloaded {today}'
+    got.update(_pc)
     return got, bad
 
 
@@ -2740,7 +2789,10 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
     # Nov 6 / Part A v2: area/same-land follow key PIN/approximate PER STATE (weakest if area unknown)
     _areas = {r: (st_of(r) if callable(st_of) else '') for r in refs}
-    _klm = key_line_match(refs, s.get('kind'), areas=_areas)
+    # Brandon t950u: a point-circle half has no key outline on purpose; the OTHER half still needs one (the row is the labelled
+    # 'point-circle' tier, never an official-boundary 2-fer: pc_tag)
+    _kr = [r for r in refs if r not in PCT]
+    _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else 'dropped: two point circles are not a 2-fer'
     if _klm:
         s['status'] = _klm; return
     # Nov 8 (Quality 2-fer must-fix): river/trail halves with key g=approximate must not stay plain candidates
@@ -3147,7 +3199,7 @@ def main():
             except Exception as e: LOG.append(f'drift: {str(e)[:80]}')  # noqa: BLE001
         for st, d in files.items():
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         mark('pass 5 start')
@@ -3325,7 +3377,7 @@ def main():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         counts.update(n)
     elif PASS == 4:   # access pins for candidates that have none yet (Oct 26: added after pass 3 had run)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
@@ -3342,7 +3394,7 @@ def main():
             except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
         for st, d in files.items():
             d['about'] = ABOUT
-            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         counts.update({'candidates without a pin': len(cand), 'pins placed': n})
     elif PASS == 1:
         same = same_outline(parks)
@@ -3517,8 +3569,8 @@ def main():
                 _tp = {tuple(sorted(p_)) for p_ in TIMED_PAIRS}
                 sp = sp + [x for x in (old.get(st) or {}).get('spots', []) if tuple(sorted((x.get('refs') or [])[:2])) in _tp and len(x.get('refs') or []) == 2]
             mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
-                                    **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), pc_tag({'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
+                                    **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
@@ -3590,7 +3642,7 @@ def main():
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
-            save_json(file_of(st), d, indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
     # report

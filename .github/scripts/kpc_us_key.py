@@ -41,6 +41,16 @@ SHADOW = os.environ.get('SHADOW') == '1'
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world key's kind-label rule, US version (needs the pin inside)
 
 
+# Nov 9 (Brandon t939u, 6:20 PM CST, on the hosts whose robots.txt answers 403: "4 saved copies"): no live read from these hosts
+# until their robots.txt lets us back in; their layers come from the saved copy (boundary-cache) on every path, refresh included.
+# Remove a host here (or set KPC_SAVED_ONLY_HOSTS) only when its robots.txt allows the read again.
+SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+SAVED_ONLY_SKIPPED = {}   # state -> layer prefixes taken from the saved copy instead of a live read
+
+
+def saved_only(url): return urllib.parse.urlparse(str(url).replace('svc:', '', 1).split('|')[0]).netloc.lower() in SAVED_ONLY_HOSTS
+
+
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
 
 
@@ -545,6 +555,7 @@ def pad_cross(st, P, recs, idx, hand):
 def fetch_geo(url, q, timeout=180):
     """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
     the 0.01-degree outline every run has always used, rather than losing the layer for that state."""
+    if saved_only(url): raise RuntimeError(f'saved copy only (Brandon t939u): {urllib.parse.urlparse(url).netloc}')
     tries = ([(DETAIL, PREC)] if DETAIL < 0.01 else []) + [(0.01, 3)]
     last = None
     for det, pr in tries:
@@ -575,6 +586,7 @@ def st_box(st):
 
 def fws_state(st, have):
     # USFWS's own land layer: PAD-US misses some refuges (Oklahoma: Sequoyah, Optima, Tishomingo NWR are not in it)
+    if saved_only(FWS): SAVED_ONLY_SKIPPED.setdefault(st, set()).add('fws'); return []   # Brandon t939u: from the saved copy
     box = st_box(st)
     if not box: return []
     out, off = [], 0
@@ -853,6 +865,7 @@ def extra_state(st, have, only=None):
         own = x[6] if len(x) > 6 else 'FED'
         if len(x) > 7 and x[7] is not None and st not in x[7]: continue
         opt = x[8] if len(x) > 8 else {}      # Oct 25: state-GIS options: 'where' = the layer's own filter, 'water' = lake surfaces, not property lines
+        if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Brandon t939u: the saved copy has it
         try: url, nf, af, oidf = resolve(pre, url, nf, af)
         except Exception as e:  # noqa: BLE001
             notice(f'US key {st}', f'{label} layer not found ({e})'); continue
@@ -1441,6 +1454,12 @@ def run(st):
         # must not hide the state layer's own record of that name (extra_state leaves out names PAD-US already has)
         recs += extra_state(st, _have([a for a in recs if not a.get('KPC_NameKeep')]))
         used_detail = DETAIL
+        if SAVED_ONLY_SKIPPED.get(st):   # Brandon t939u: the layers on saved-copy-only hosts come from the saved copy, never a live read
+            _old = load_cache(st)
+            _pf = SAVED_ONLY_SKIPPED[st]
+            _keep = [a for a in (_old[0] if _old else []) if re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) in _pf]
+            recs += _keep
+            notice(f'US key {st}', f"saved copy used for {len(_pf)} layer(s) on saved-copy-only hosts ({' '.join(sorted(_pf))}): {len(_keep)} areas" + ('' if _old else '; NO saved copy, so those layers are missing this run'))
         old = load_cache(st) if st in FAILED_READ else None
         # only when this read actually came back SHORT (a source that fails every time is already missing from the
         # saved copy too, and must not freeze the state on an old copy forever)
