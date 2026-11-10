@@ -29,6 +29,26 @@ const allNear=()=>NEAR;
 const vis=()=>KM&&KM.filtering()?NEAR.filter(s=>KM.show(s.c)):NEAR;
 const kmBadge=s=>KM&&s.p!=='PIN'?KM.badge(s.c):'';
 
+/* ---------- tabs (Nov 10): cards 1-4 behind one tab bar; the map stays outside them ----------
+   Layout only: every card, id and handler is the same, the panels are just hidden when their tab is not open (the code that
+   fills the nearby list / trip list still writes into a hidden panel). Last tab is remembered (kpcUsPlanTab); a URL hash
+   (#where #find #trip #nearby) opens a tab; a shared trip link (?t=…) opens MY TRIP. Smart switching: a finished search opens
+   NEARBY; ADDing a stop only flashes the MY TRIP count (it never moves you away from what you are doing). */
+const TABS=['where','find','trip','near'],TABHASH={where:'where',plan:'where',find:'find',new:'find',trip:'trip',mytrip:'trip',near:'near',nearby:'near'};
+let curTab='where',flashT=0;
+function setTab(k,o){o=o||{};if(!TABS.includes(k))k='where';curTab=k;
+ TABS.forEach(t=>{const b=$('uptab-'+t),p=document.querySelector('[data-uppanel="'+t+'"]'),on=t===k;if(!b||!p)return;b.classList.toggle('on',on);b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;p.hidden=!on});
+ if(!o.nosave)store.set('kpcUsPlanTab',k);
+ setTimeout(()=>{if(map)map.invalidateSize()},0);setTimeout(()=>{if(map)map.invalidateSize()},250)}   /* the page under the panel moved: the map re-measures itself */
+function updCounts(){const a=$('uptab-trip-n'),b=$('uptab-near-n');if(a)a.textContent='('+trip.length+')';if(b)b.textContent='('+(center?vis().length:0)+')'}
+function flashTab(k){const b=$('uptab-'+k);if(!b||curTab===k)return;b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');clearTimeout(flashT);flashT=setTimeout(()=>b.classList.remove('flash'),1500)}
+function hdrH(){const h=document.querySelector('header.site-nav'),v=h&&getComputedStyle(h).position==='sticky'?Math.round(h.getBoundingClientRect().height):0;document.documentElement.style.setProperty('--usp-hdr',v+'px');return v}
+function goNear(){setTab('near');const t=$('usp-tabwrap');if(!t)return;const r=t.getBoundingClientRect(),h=hdrH();if(r.top<h-2||r.top>innerHeight*.5)scrollTo({top:Math.max(0,scrollY+r.top-h-8),behavior:'smooth'})}   /* a finished search: show the list (measure the wrapper: the bar itself is sticky on phones) */
+function arrowTabs(list,pick){list.addEventListener('keydown',e=>{const k=e.key;if(!['ArrowLeft','ArrowRight','Home','End'].includes(k))return;
+ const b=[...list.querySelectorAll('[role=tab]')],i=b.indexOf(document.activeElement);if(i<0)return;e.preventDefault();
+ const j=k==='Home'?0:k==='End'?b.length-1:(i+(k==='ArrowRight'?1:-1)+b.length)%b.length;b[j].focus();pick(b[j])})}
+function tabFromHash(){const h=decodeURIComponent((location.hash||'').slice(1)).toLowerCase();return TABHASH[h]||null}
+
 /* ---------- data ---------- */
 async function loadAll(){const NO={rows:[]},J=u=>dfetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([dfetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
  /* Canada (Brandon Oct 16: pins now, boundaries later): CA- POTA parks, VEFF WWFF, VE/VA/VY/VO SOTA from data/canada.json */
@@ -293,23 +313,23 @@ function drawDots(){if(!map)return;
 /* ---------- search ---------- */
 function normRef(q){q=q.trim().toUpperCase().replace(/\s+/g,'');if(/^K-\d{4,5}$/.test(q))q='US-'+q.slice(2);return q}
 async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='none';
- const ll=parseLL(q);if(ll){go(ll.la,ll.lo,ll.label);return}
- const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n);openSpot(s);return}
+ const ll=parseLL(q);if(ll){go(ll.la,ll.lo,ll.label,true);return}
+ const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n,true);openSpot(s);return}
  const lq=q.toLowerCase();const parks=ALL.filter(s=>progs.includes(s.p)&&s.n.toLowerCase().includes(lq)).slice(0,8);
  status('Searching places…');let places=[];
  try{places=(await kpcGeocode(q,{world:true})).map(g=>({lat:g.la,lon:g.lo,display_name:g.label}))}catch(e){}
  const items=[...places.map(p=>({t:'place',la:+p.lat,lo:+p.lon,n:p.display_name})),...parks.map(s=>({t:'spot',s}))];
  if(!items.length){status(`Nothing found for “${esc(q)}”. Try a town and state (“Berea KY”), a ZIP, or a park number.`);return}
- if(items.length===1){const i=items[0];if(i.t==='place')go(i.la,i.lo,i.n);else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}return}
+ if(items.length===1){const i=items[0];if(i.t==='place')go(i.la,i.lo,i.n,true);else{await go(i.s.la,i.s.lo,i.s.n,true);openSpot(i.s)}return}
  status('Pick one:');const h=$('us-hits');h.style.display='block';
  h.innerHTML=items.map((i,k)=>i.t==='place'?`<button type="button" data-k="${k}">&#128205; ${esc(i.n.split(',').slice(0,3).join(','))}<small>Place</small></button>`:`<button type="button" data-k="${k}"><span class="dot" style="background:${COL[i.s.p]}"></span>${esc(i.s.n)}<small>${i.s.p} ${esc(i.s.c)}</small></button>`).join('');
- h.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const i=items[+b.dataset.k];h.style.display='none';if(i.t==='place')go(i.la,i.lo,i.n.split(',').slice(0,2).join(','));else{await go(i.s.la,i.s.lo,i.s.n);openSpot(i.s)}}}
+ h.onclick=async e=>{const b=e.target.closest('button');if(!b)return;const i=items[+b.dataset.k];h.style.display='none';if(i.t==='place')go(i.la,i.lo,i.n.split(',').slice(0,2).join(','),true);else{await go(i.s.la,i.s.lo,i.s.n,true);openSpot(i.s)}}}
 /* Oct 19 (Brandon: 'after I clicked a park my zoom option disappeared on the desktop'): scrolling the map to the middle of the screen
    put its top (zoom buttons) under the sticky site header on shorter screens; now the map's top lands just under the header */
 function toMap(){const m=$('usmap');if(!m)return;const h=document.querySelector('header.site-nav,.site-nav'),hb=h?h.getBoundingClientRect().bottom:0,r=m.getBoundingClientRect();
  scrollTo({top:Math.max(0,scrollY+r.top-Math.max(0,hb)-10),behavior:'smooth'})}
 function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit){if(!(hit.isPopupOpen&&hit.isPopupOpen()))hit.openPopup();else refit(hit.getPopup())}else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
-async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
+async function go(la,lo,label,sw){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
  NEAR=ALL.filter(s=>progs.includes(s.p)).map(s=>({s,d:KPC.miles(la,lo,s.la,s.lo)})).filter(x=>x.d<=radius).sort((a,b)=>a.d-b.d).map(x=>x.s);
@@ -319,8 +339,8 @@ async function go(la,lo,label){clearRoute();center=[la,lo];radius=+$('usr').valu
   ctrMk=L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div class="ctr-us" role="img" aria-label="Search point" title="Search point"></div>',iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
   ring=L.circle([la,lo],{radius:radius*1609.34,color:'#171717',weight:1.5,dashArray:'6 6',fill:false,interactive:false}).addTo(map);
   map.fitBounds(ring.getBounds(),{padding:[10,10]})}
- drawDots();drawNear()}
-function drawNear(){const box=$('near');if(!center){box.style.display='none';return}box.style.display='';
+ drawDots();drawNear();if(sw)goNear()}
+function drawNear(){updCounts();const box=$('near');if(!center){box.style.display='none';return}box.style.display='';
  const NEAR0=allNear(),NEAR=vis();   /* inside this function NEAR means the filtered list */
  if(KM)KM.ensure(NEAR0.filter(s=>s.p!=='WWFF').map(s=>({ref:s.c,la:s.la,lo:s.lo})));LIST=NEAR;const hid=NEAR0.length-NEAR.length,hidTxt=hid?`, ${hid.toLocaleString()} hidden by your filters`:'';
  if(RT){$('near-th2').textContent='MILE / OFF ROUTE';$('near-h').textContent=`Along your route (${NEAR.length.toLocaleString()}${NEAR.length>150?', first 150 shown':''}${hidTxt})`;
@@ -371,9 +391,11 @@ async function runRoute(){const fq=$('urf').value,tq=$('urt').value,w=+$('urw').
  if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end" role="img" aria-label="${t==='A'?'Route start':'Route end'}" title="${t==='A'?'Route start':'Route end'}">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
   routeL=L.featureGroup([L.polyline(R.pts,{color:'#171717',weight:8,opacity:.55,interactive:false}),L.polyline(R.pts,{color:'#f0c96b',weight:4,interactive:false,dashArray:R.road?null:'8 8'}),pin(A,'A'),pin(B,'B')]).addTo(map);
   map.fitBounds(routeL.getBounds(),{padding:[24,24]})}
- drawDots();drawNear()}
-function setSearchMode(m){const route=m==='route';$('usf').style.display=route?'none':'';$('urf-form').style.display=route?'':'none';
- [...$('us-modes').children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));store.set('kpcUsMode',m)}
+ drawDots();drawNear();goNear()}
+let curMode='place';
+function setSearchMode(m){const route=m==='route';curMode=route?'route':'place';$('usf').style.display=route?'none':'';$('urf-form').style.display=route?'':'none';
+ [...$('us-modes').children].forEach(b=>{const on=b.dataset.m===curMode;b.classList.toggle('on',on);b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
+ $('us-me').hidden=route;store.set('kpcUsMode',curMode)}   /* NEAR ME only makes sense for a place search */
 
 /* ---------- boundary (OpenStreetMap, on request) ---------- */
 /* The main overpass-api.de server says it is overloaded and refuses requests at busy times, so try the free public
@@ -447,14 +469,14 @@ async function osmBoundary(s,btn){
 /* ---------- trip ---------- */
 const inTrip=c=>trip.some(s=>s.c===c);
 function saveTrip(){store.set('kpcUsTrip',trip)}
-function addStop(s){if(inTrip(s.c))return;trip.push({p:s.p,c:s.c,n:s.n,la:s.la,lo:s.lo,url:s.url||'',live:!!s.live});saveTrip();drawTrip();drawDots();drawNear()}
+function addStop(s){if(inTrip(s.c))return;trip.push({p:s.p,c:s.c,n:s.n,la:s.la,lo:s.lo,url:s.url||'',live:!!s.live});saveTrip();drawTrip();drawDots();drawNear();flashTab('trip')}
 function removeStop(c){trip=trip.filter(s=>s.c!==c);saveTrip();drawTrip();drawDots();drawNear()}
 function legs(){const per=isPhone()?5:11,fromMe=$('t-fromme').checked,out=[];
  const pts=trip.map(s=>`${s.la},${s.lo}`);if(!pts.length)return out;
  if(fromMe){for(let i=0;i<pts.length;i+=per-1){const seg=pts.slice(i,i+per-1);out.push({a:i+1,b:i+seg.length,url:'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination='+seg[seg.length-1]+(seg.length>1?'&waypoints='+encodeURIComponent(seg.slice(0,-1).join('|')):'')+(i>0?'&origin='+pts[i-1]:'')})}}
  else{if(pts.length<2)return out;for(let i=0;i<pts.length-1;i+=per-1){const seg=pts.slice(i,i+per);out.push({a:i+1,b:i+seg.length,url:'https://www.google.com/maps/dir/?api=1&travelmode=driving&origin='+seg[0]+'&destination='+seg[seg.length-1]+(seg.length>2?'&waypoints='+encodeURIComponent(seg.slice(1,-1).join('|')):'')})}}
  return out}
-function drawTrip(){const n=trip.length;$('trip-empty').style.display=n?'none':'';$('trip-acts').style.display=n?'flex':'none';$('t-fromme-l').style.display=n?'flex':'none';
+function drawTrip(){updCounts();const n=trip.length;$('trip-empty').style.display=n?'none':'';$('trip-acts').style.display=n?'flex':'none';$('t-fromme-l').style.display=n?'flex':'none';
  $('trip-list').innerHTML=trip.map((s,i)=>`<li><div><b>${esc(s.n)}</b><small>${s.p==='PIN'?'Your pin':esc(s.p+' '+s.c)} • <a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}" target="_blank" rel="noopener">Street View</a></small></div><div class="mv"><button type="button" data-u="${i}" aria-label="Move up">&#8593;</button><button type="button" data-d="${i}" aria-label="Move down">&#8595;</button><button type="button" data-x="${i}" aria-label="Remove">&#10005;</button></div></li>`).join('');
  let mi=0;for(let i=1;i<n;i++)mi+=KPC.miles(trip[i-1].la,trip[i-1].lo,trip[i].la,trip[i].lo);
  $('trip-sum').textContent=n>1?`${n} stops • about ${Math.round(mi)} miles in a straight line (driving is longer).`:'';
@@ -492,7 +514,7 @@ if(window.KPCPlace){
  const local=q=>{const l=q.toLowerCase(),r=normRef(q);const hit=ALL.filter(s=>progs.includes(s.p)&&(s.c.toUpperCase()===r||s.c.toUpperCase().startsWith(r)&&r.length>3||s.n.toLowerCase().includes(l)));
   hit.sort((a,b)=>((b.c.toUpperCase()===r)-(a.c.toUpperCase()===r))||(b.n.toLowerCase().startsWith(l)-a.n.toLowerCase().startsWith(l))||a.n.localeCompare(b.n));   /* Nov 1 (site checker): US-1139 typed = US-1139 first, not US-11395 */
   return hit.slice(0,7).map(s=>({v:s.n,k:KIND[s.p]+' · '+s.c,la:s.la,lo:s.lo,s}))};
- KPCPlace.box($('usq'),{local,remote:true,onPick:async x=>{if(x.s){$('usq').value=x.s.n;await go(x.s.la,x.s.lo,x.s.n);openSpot(x.s)}else go(x.la,x.lo,x.v)}});
+ KPCPlace.box($('usq'),{local,remote:true,onPick:async x=>{if(x.s){$('usq').value=x.s.n;await go(x.s.la,x.s.lo,x.s.n,true);openSpot(x.s)}else go(x.la,x.lo,x.v,true)}});
  ['urf','urt'].forEach(id=>KPCPlace.box($(id),{local,remote:true,onPick:x=>{PICKED[x.v]={la:x.la,lo:x.lo,label:x.s?x.s.n+' ('+x.s.c+')':x.v}}}));
 }
 $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label)};
@@ -500,10 +522,18 @@ $('usr').onchange=()=>{if(center)go(center[0],center[1],(store.get('kpcUsLast',{
 $('us-progs').onclick=e=>{const b=e.target.closest('button[data-p]');if(!b)return;const p=b.dataset.p;progs=progs.includes(p)?progs.filter(x=>x!==p):progs.concat(p);if(!progs.length)progs=[p];store.set('kpcUsProgs',progs);
  [...$('us-progs').querySelectorAll('[data-p]')].forEach(x=>x.setAttribute('aria-pressed',progs.includes(x.dataset.p)));if(RT){const C=corridor(RT.pts,RT.w);RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}else if(center)go(center[0],center[1],(store.get('kpcUsLast',{})||{}).label);if(window.__usView)window.__usView()};
 $('us-me').onclick=()=>{if(!navigator.geolocation){status('This browser can’t share your location.');return}status('Finding you…');
- navigator.geolocation.getCurrentPosition(p=>go(fix(p.coords.latitude),fix(p.coords.longitude),'you'),()=>status('Location was blocked or unavailable. Type a town or ZIP instead.'),{timeout:15000,maximumAge:300000})};
+ navigator.geolocation.getCurrentPosition(p=>go(fix(p.coords.latitude),fix(p.coords.longitude),'you',true),()=>status('Location was blocked or unavailable. Type a town or ZIP instead.'),{timeout:15000,maximumAge:300000})};
 $('us-drop').onclick=()=>setDrop(!dropMode);
 $('us-modes').onclick=e=>{const b=e.target.closest('button');if(b)setSearchMode(b.dataset.m)};
 $('urf-form').onsubmit=e=>{e.preventDefault();runRoute()};
+/* ONE SEARCH button runs the open search tab; the forms' own (hidden) submit buttons and Enter in a box still work */
+$('us-go').onclick=()=>{const f=$(curMode==='route'?'urf-form':'usf');f.requestSubmit?f.requestSubmit():f.dispatchEvent(new Event('submit',{cancelable:true,bubbles:true}))};
+arrowTabs($('us-modes'),b=>setSearchMode(b.dataset.m));
+$('usp-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-uptab]');if(b)setTab(b.dataset.uptab)});
+arrowTabs($('usp-tabs'),b=>setTab(b.dataset.uptab));
+addEventListener('hashchange',()=>{const t=tabFromHash();if(!t)return;setTab(t);const p=document.querySelector('[data-uppanel="'+t+'"]');if(p)setTimeout(()=>p.scrollIntoView({block:'start'}),30)});
+addEventListener('resize',hdrH);hdrH();
+setTab(tabFromHash()||store.get('kpcUsPlanTab','where'),{nosave:!!tabFromHash()});
 $('urw').onchange=()=>{if(RT){const C=corridor(RT.pts,+$('urw').value);RT.w=+$('urw').value;RT.info=C.info;NEAR=C.list;drawDots();drawNear();status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${RT.w} miles of your route.`)}};
 {const r=store.get('kpcUsRoute',null);if(r){$('urf').value=r.f||'';$('urt').value=r.t||'';if(r.w)$('urw').value=String(r.w)}setSearchMode(store.get('kpcUsMode','place'))}
 $('near-body').onclick=e=>{const a=e.target.closest('[data-i]'),o=e.target.closest('[data-o]');
@@ -527,7 +557,7 @@ initMap();
 if(KM){KM.bar($('km-bar'));let pend=false;
  window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(()=>{if(map._popup&&map.hasLayer(map._popup))pend=true;else drawDots()},60)}})}
-loadAll().then(()=>{const shared=loadShared();drawTrip();if(window.__usView)window.__usView();
+loadAll().then(()=>{const shared=loadShared();drawTrip();if(shared&&trip.length)setTab('trip',{nosave:true});if(window.__usView)window.__usView();
  /* ?q=… (sent by the Kentucky Trip Planner for an out-of-state place): search it straight away */
  const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
  const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
